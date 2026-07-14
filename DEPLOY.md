@@ -49,26 +49,34 @@ npx wrangler deploy --dry-run
 
 ---
 
-## 1b. The API key (required for the assistant)
+## 1b. The assistant — and why it costs nothing
 
-`/api/ask` needs an Anthropic key. It is a **secret**, never a `var`, and never
-committed:
+`/api/ask` runs on **Workers AI** (`env.AI`), not a paid third-party API. **There
+is no API key and no secret to set.** The binding is declared in `wrangler.jsonc`
+and works as soon as the Worker deploys.
 
-```sh
-npx wrangler secret put ANTHROPIC_API_KEY
-```
+### The no-bill guarantee — read this before changing plans
 
-For local dev, put it in `.dev.vars` (already gitignored):
-```
-ANTHROPIC_API_KEY=sk-ant-...
-```
-Then `npx wrangler dev`. Without a key the site still works; `/api/ask` returns
-503 and logs the misconfiguration.
+| Plan | Free allocation | Price above it |
+|---|---|---|
+| **Workers Free** | 10,000 Neurons/day | **None — requests just fail** |
+| Workers Paid | 10,000 Neurons/day | $0.011 / 1,000 Neurons |
 
-**Cost control:** `/api/ask` is a public endpoint spending your money. It is rate
-limited to 8 requests/minute per IP (`ASK_LIMIT` in `wrangler.jsonc`). Set a
-spend cap in the Anthropic console too — the rate limit bounds one visitor, not
-the whole internet.
+On the **Workers Free plan this endpoint cannot bill you.** There is no overage
+price; once the daily allocation is spent, `env.AI.run` errors until it resets at
+00:00 UTC, and the assistant shows "reached its free daily limit". The site and
+all benefit guides keep working — the assistant is the only thing affected.
+
+> ⚠️ **Upgrading to Workers Paid removes that protection.** On Paid, usage above
+> 10,000 Neurons/day is billed. If you ever upgrade for some unrelated reason,
+> revisit this endpoint first.
+
+Rough budget: ~60 Neurons per question ⇒ **~150 questions/day** on the free
+allocation. `ASK_LIMIT` (8/min per IP) stops one visitor burning the whole day.
+
+Local dev note: Workers AI has no local simulator — `wrangler dev` calls your
+real account and spends real Neurons (it cannot bill on the Free plan, but it
+does consume the daily allowance).
 
 ## 2. Add your custom domain (when you buy it)
 1. Buy the domain (e.g. `abilityfinder.ca` — a `.ca` needs a Canadian presence,

@@ -3,7 +3,6 @@
   "name": "abilityfinder",
   "main": "src/index.js",
   "compatibility_date": "2026-07-14",
-  "compatibility_flags": ["nodejs_compat"],
 
   // Only ./public is uploaded. The docs (HANDOFF/ROADMAP/DEPLOY/README) and
   // serve.py stay at the repo root and are therefore never served publicly.
@@ -13,10 +12,17 @@
     "not_found_handling": "404-page"
   },
 
+  // Workers AI. Deliberately NOT a paid third-party API.
+  // On the Workers FREE plan this cannot bill: the allocation is 10,000
+  // Neurons/day and there is no overage price -- requests just fail once it is
+  // spent, and the counter resets at 00:00 UTC. Staying on the Free plan is
+  // what makes "no money" a guarantee rather than a hope.
+  "ai": { "binding": "AI" },
+
   "observability": { "enabled": true },
 
-  // Caps /api/ask abuse. The API key is the owner's, so an unmetered public
-  // endpoint is a direct billing risk. period must be 10 or 60.
+  // Second line of defence: stops one visitor burning the whole daily
+  // allocation in a minute. period must be 10 or 60.
   "ratelimits": [
     {
       "name": "ASK_LIMIT",
@@ -25,6 +31,5 @@
     }
   ]
 
-  // ANTHROPIC_API_KEY is a secret, never a var:
-  //   npx wrangler secret put ANTHROPIC_API_KEY
+  // No secrets. No API keys. Nothing to leak, nothing to bill.
 }

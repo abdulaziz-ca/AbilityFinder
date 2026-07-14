@@ -78,8 +78,8 @@ Paths below are relative to `public/` unless stated otherwise.
 
 | File | Role |
 |---|---|
-| `../src/index.js` | **Phase 4 Worker.** Serves `POST /api/ask` (streaming SSE proxy to the Anthropic API); every other path falls through to `env.ASSETS` → `public/`. Holds the assistant's system prompt, input validation, and per-IP rate limiting. |
-| `../wrangler.jsonc` | Deploy config: worker name, `assets.directory = ./public`, `ASK_LIMIT` rate-limit binding. `ANTHROPIC_API_KEY` is a **secret**, set via `wrangler secret put`. |
+| `../src/index.js` | **Phase 4 Worker.** Serves `POST /api/ask` (streaming SSE, backed by **Workers AI** — no paid API, no key); every other path falls through to `env.ASSETS` → `public/`. Holds the assistant's system prompt, input validation, and per-IP rate limiting. |
+| `../wrangler.jsonc` | Deploy config: worker name, `assets.directory = ./public`, `AI` binding, `ASK_LIMIT` rate-limit binding. **No secrets.** |
 | `index.html` | Shell: sticky nav (logo→home, theme toggle, language switch), progress bar, `#app`, reading-guide element, accessibility toolbar (FAB + panel). Inline `<head>` script sets theme before paint. Preloads the self-hosted serif; loads `icons.js`, `i18n.js`, `data.js`, `app.js` at `?v=5` (bump on CSS/JS changes). |
 | `styles.css` | Whole design system — see §12. Dark default; light via `:root[data-theme="light"]`. Editorial, borderless, left-aligned, wide (1120px) layout. |
 | `fonts/*.woff2` | Self-hosted **Fraunces** (display serif) + **Inter** (body), both OFL. `@font-face` at the top of `styles.css`. **No font CDN** → nothing leaks to a third party. |
@@ -259,8 +259,32 @@ browse/search, printable caregiver report, doctor-finder upgrade.
   deep-link to a single guide could be nice (guide id in the URL hash — safe, no
   personal data).
 
-**Phase 4 — AI assistant** (needs serverless proxy for the Anthropic API key):
-plain-English Q&A, "explain this government wording," eligibility chat.
+**Phase 4 — AI assistant: backend DONE (2026-07-14), UI still to build.**
+
+`POST /api/ask` lives in `src/index.js`. Streaming SSE, per-IP rate limited.
+
+Two decisions worth not re-litigating:
+
+1. **Workers AI, not the Anthropic API — the owner's hard rule is zero spend.**
+   There is no free Claude tier. On the **Workers Free plan** Workers AI has a
+   10,000 Neuron/day allocation and *no overage price*, so it physically cannot
+   bill; it just errors until 00:00 UTC. Model is
+   `@cf/meta/llama-4-scout-17b-16e-instruct` (~60 Neurons/question ⇒ ~150
+   questions/day). **Do not move to Workers Paid without re-reading DEPLOY.md
+   §1b** — Paid reintroduces billing on this endpoint.
+2. **The assistant's job is deliberately narrow, because the model is weak.**
+   Llama 4 Scout is much worse than a frontier model at holding "never guess"
+   under pressure, and the audience is disabled people making money decisions —
+   a hallucinated AISH cutoff is real harm. So the prompt forbids it from
+   stating *any* dollar amount, cutoff, percentage, or eligibility verdict, and
+   makes it hand off to the verified numbers already in `data.js` and to the
+   official links. **If you swap in a stronger model later, that restriction can
+   loosen — until then, do not widen its job.**
+
+⚠️ **Not done: the privacy story.** The site's promise is that nothing leaves the
+browser, and the privacy page says so. `/api/ask` sends the user's question to
+Cloudflare. The assistant must be **opt-in** and the privacy page must say
+plainly what is sent and where, before this ships.
 
 **Phase 5 — Accounts, live data, community** (needs backend): optional accounts +
 sync, renewal/benefit-change reminders (email/SMS), anonymous reviews/timelines,
