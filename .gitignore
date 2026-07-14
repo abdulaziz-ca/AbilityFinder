@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Node / Wrangler (Phase 4)
+node_modules/
+.wrangler/
+
+# Secrets — never commit. Wrangler reads .dev.vars for local dev.
+.dev.vars
+.env
+*.local
