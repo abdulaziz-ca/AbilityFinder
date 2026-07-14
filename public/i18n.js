@@ -27,7 +27,9 @@ const I18N = {
     "aside.1": "<b>Only what matters.</b> A few quick questions decide which programs fit you.",
     "aside.2": "<b>Nothing is stored.</b> Your answers live only in this browser.",
     "aside.3": "<b>No wrong answers.</b> We'll show what you're missing and how to get it.",
-    "trust.private": "Private — stays in your browser",
+    // "your answers" not "everything": the optional assistant does send the
+    // question you type. Keeping this precise so the page stays true.
+    "trust.private": "Private — your answers stay in your browser",
     "trust.free": "Free, no account",
     "trust.official": "Links to official sources",
 
@@ -164,7 +166,7 @@ const I18N = {
     "aside.1": "<b>Seulement l'essentiel.</b> Quelques questions déterminent les programmes qui vous conviennent.",
     "aside.2": "<b>Rien n'est enregistré.</b> Vos réponses restent dans ce navigateur.",
     "aside.3": "<b>Aucune mauvaise réponse.</b> On vous montre ce qui manque et comment l'obtenir.",
-    "trust.private": "Privé — reste dans votre navigateur",
+    "trust.private": "Privé — vos réponses restent dans votre navigateur",
     "trust.free": "Gratuit, sans compte",
     "trust.official": "Liens vers les sources officielles",
 

@@ -889,6 +889,9 @@ textarea.text-input { resize: vertical; min-height: 96px; line-height: 1.5; }
 .legal-block { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--hair); }
 .legal-block h2 { font-size: 1.1rem; font-weight: 620; letter-spacing: -0.02em; margin: 0 0 10px; }
 .legal-block p { color: var(--text); font-size: 1rem; line-height: 1.65; margin: 0; max-width: 68ch; }
+/* Only consecutive paragraphs — every block used to hold a single <p>, so this
+   leaves the existing ones untouched and just un-cramps the multi-<p> blocks. */
+.legal-block p + p { margin-top: 12px; }
 .legal-block p b { font-weight: 600; }
 
 /* site footer */
