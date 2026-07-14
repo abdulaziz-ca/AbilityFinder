@@ -1,48 +1,74 @@
 # Deploying AbilityFinder
 
-AbilityFinder is a **100% static site** (HTML/CSS/vanilla JS, no build step, no
-backend). Hosting is free and simple. This guide targets **Cloudflare Pages**.
+AbilityFinder is a static site **plus one small Worker route** (`/api/ask`, the
+Phase 4 assistant). It is deployed as a **Cloudflare Worker with static assets**
+— not Cloudflare Pages. It is already live at **https://abilityfinder.ca**.
+
+## Repo layout (matters for deploys)
+
+```
+public/          <- the ONLY directory that ships. Site files live here.
+src/index.js     <- the Worker: serves /api/ask, passes everything else to public/
+wrangler.jsonc   <- deploy config (name, assets dir, rate limit binding)
+*.md, serve.py   <- docs + dev server. At the root, so they are NEVER served.
+```
+
+> ⚠️ The docs used to sit next to `index.html` and were **publicly readable** on
+> the live site (`abilityfinder.ca/HANDOFF.md` returned 200). Keeping them out of
+> `public/` is what fixes that — do not move them back in.
 
 ---
 
-## 0. One find-and-replace before you deploy (the domain)
+## 0. Domain
 
-Several files use the placeholder domain `https://abilityfinder.ca`. Until you buy
-that domain, your live URL will be `https://<project>.pages.dev`. **Update the
-placeholder to your real URL** (the pages.dev one first, then your custom domain
-later) in:
-
-- `index.html` — `canonical`, `og:url`, `og:image`, `twitter:image`
-- `robots.txt` — the `Sitemap:` line
-- `sitemap.xml` — the `<loc>`
-
-> The Open Graph share image (`og-image.jpg`) uses an **absolute** URL, so it will
-> only show in link previews once these point at a URL that actually resolves.
+`https://abilityfinder.ca` is bought, live, and already used in `index.html`
+(`canonical`, `og:url`, `og:image`, `twitter:image`), `robots.txt` (`Sitemap:`),
+and `sitemap.xml` (`<loc>`). Nothing to do unless the domain changes.
 
 ---
 
-## 1. Deploy to Cloudflare Pages
+## 1. Deploy
 
-You need a free Cloudflare account (I can't create it for you). Two ways:
+### Option A — Git push (preferred, once the repo is connected)
+Every push to `main` rebuilds and redeploys via Cloudflare Workers Builds.
 
-### Option A — drag-and-drop (fastest, no Git)
-1. Go to **dash.cloudflare.com → Workers & Pages → Create → Pages → Upload assets**.
-2. Name the project (e.g. `abilityfinder`).
-3. Drag the **entire `benefit-finder` folder** onto the upload area.
-   - **Build command:** *(leave blank)*  ·  **Output directory:** `/` (the root).
-4. Click **Deploy**. In ~30s you'll get `https://abilityfinder.pages.dev`.
-5. To publish an update later, repeat the upload (or use Option B for auto-deploys).
+### Option B — from your machine
+```sh
+npx wrangler deploy
+```
+Requires `npx wrangler login` once (opens a browser).
 
-### Option B — connect Git (auto-deploy on every push)
-1. Push this folder to a GitHub/GitLab repo.
-2. Cloudflare Pages → **Create → Pages → Connect to Git** → pick the repo.
-3. **Framework preset:** None · **Build command:** *(blank)* · **Build output
-   directory:** `/`.
-4. Deploy. Every `git push` now redeploys automatically.
+To check what *would* ship without deploying:
+```sh
+npx wrangler deploy --dry-run
+```
 
-> `serve.py` is dev-only and is simply ignored by the host. The `_headers` file is
-> read by Cloudflare Pages automatically (security + cache headers — no action
-> needed).
+> `_headers` inside `public/` is applied automatically (security + cache headers).
+> Verify after any deploy that `curl -I https://abilityfinder.ca` still shows
+> `x-frame-options: DENY`.
+
+---
+
+## 1b. The API key (required for the assistant)
+
+`/api/ask` needs an Anthropic key. It is a **secret**, never a `var`, and never
+committed:
+
+```sh
+npx wrangler secret put ANTHROPIC_API_KEY
+```
+
+For local dev, put it in `.dev.vars` (already gitignored):
+```
+ANTHROPIC_API_KEY=sk-ant-...
+```
+Then `npx wrangler dev`. Without a key the site still works; `/api/ask` returns
+503 and logs the misconfiguration.
+
+**Cost control:** `/api/ask` is a public endpoint spending your money. It is rate
+limited to 8 requests/minute per IP (`ASK_LIMIT` in `wrangler.jsonc`). Set a
+spend cap in the Anthropic console too — the rate limit bounds one visitor, not
+the whole internet.
 
 ## 2. Add your custom domain (when you buy it)
 1. Buy the domain (e.g. `abilityfinder.ca` — a `.ca` needs a Canadian presence,

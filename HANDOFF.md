@@ -54,20 +54,38 @@ python3 serve.py        # serves http://localhost:8731 with NO-CACHE headers
 files. (Plain `python3 -m http.server 8731` also works but caches — hard-refresh
 with Cmd/Ctrl+Shift+R if you see stale content.)
 
-There is **no build step** — plain HTML/CSS/vanilla JS.
+The **site** still has no build step — plain HTML/CSS/vanilla JS in `public/`.
+The **Worker** (`src/index.js`, Phase 4) does use npm + wrangler to bundle. The
+site half is unchanged; you can still edit `public/*.js` and reload.
+
+### Directory layout (changed 2026-07-14)
+
+```
+public/          <- the ONLY deployed directory (site files)
+src/index.js     <- Worker: /api/ask, else pass through to public/
+wrangler.jsonc   <- deploy config      package.json <- npm deps
+*.md, serve.py   <- docs + dev server; at root so they are NEVER served
+```
+
+Docs used to sit beside `index.html` and were **publicly readable** on the live
+site. Keep them out of `public/`.
 
 ---
 
 ## 4. File map
 
+Paths below are relative to `public/` unless stated otherwise.
+
 | File | Role |
 |---|---|
+| `../src/index.js` | **Phase 4 Worker.** Serves `POST /api/ask` (streaming SSE proxy to the Anthropic API); every other path falls through to `env.ASSETS` → `public/`. Holds the assistant's system prompt, input validation, and per-IP rate limiting. |
+| `../wrangler.jsonc` | Deploy config: worker name, `assets.directory = ./public`, `ASK_LIMIT` rate-limit binding. `ANTHROPIC_API_KEY` is a **secret**, set via `wrangler secret put`. |
 | `index.html` | Shell: sticky nav (logo→home, theme toggle, language switch), progress bar, `#app`, reading-guide element, accessibility toolbar (FAB + panel). Inline `<head>` script sets theme before paint. Preloads the self-hosted serif; loads `icons.js`, `i18n.js`, `data.js`, `app.js` at `?v=5` (bump on CSS/JS changes). |
 | `styles.css` | Whole design system — see §12. Dark default; light via `:root[data-theme="light"]`. Editorial, borderless, left-aligned, wide (1120px) layout. |
 | `fonts/*.woff2` | Self-hosted **Fraunces** (display serif) + **Inter** (body), both OFL. `@font-face` at the top of `styles.css`. **No font CDN** → nothing leaks to a third party. |
 | `theme-init.js` | Tiny pre-paint theme setter (external, not inline, so a strict CSP with `script-src 'self'` works). |
 | `_headers` `404.html` `robots.txt` `sitemap.xml` `favicon.svg` `apple-touch-icon.png` `og-image.jpg` | **Launch assets** — see `DEPLOY.md`. Security/CSP headers, SEO, social share image, icons. |
-| `DEPLOY.md` | Cloudflare Pages deploy guide + pre-launch checklist. |
+| `DEPLOY.md` | Cloudflare **Workers** deploy guide (not Pages) + API-key setup + pre-launch checklist. |
 | `icons.js` | `ICONS` map of inline SVGs + `icon(name, cls)` helper. **No emoji anywhere** — the owner dislikes them. |
 | `i18n.js` | `LANG`, `I18N` (en/fr), `t(key)` (English fallback), `STEP_I18N`, `stepText()`, `optionText()`. |
 | `data.js` | **Alberta + federal data only.** See §5. |
@@ -398,8 +416,8 @@ sticky card rode up over the guide text on scroll. Fixed by putting the base rul
 first, then the media query. Also made `.side-card` **opaque** (the old
 `color-mix` with a translucent `--accent-soft` left it ~46% see-through).
 **Lesson:** in this single CSS file, put base rules before their media-query
-overrides (there's no cascade layering). ⚠️ This fix is `?v=15` — the **live site
-(abilityfinder.ca) must be redeployed** to pick it up.
+overrides (there's no cascade layering). This fix is `?v=15` and is **live** —
+verified 2026-07-14: abilityfinder.ca serves `?v=15`, matching the repo.
 
 ### Full-bleed atmospheric hero (added after first-pass feedback)
 The owner compared v1 to the real giga.ai and wanted it *open, wide, atmospheric*
