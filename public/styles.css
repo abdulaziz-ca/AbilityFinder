@@ -12,7 +12,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=15") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=16") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -20,7 +20,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=15") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=16") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -1001,9 +1001,69 @@ body.a11y-nomotion .brand-bezel, body.a11y-nomotion .brand-mark::after,
 body.a11y-nomotion .hero-wave .hw, body.a11y-nomotion .wiz-mountains .wm { animation: none !important; }
 
 @media print {
-  .nav, .progress, .a11y-wrap, .reading-guide, .results-tools, .tracker-summary, .track, .apply-row, .restart, .disclaimer, details.notmatch, .back-link { display: none !important; }
+  .nav, .progress, .a11y-wrap, .ask-wrap, .reading-guide, .results-tools, .tracker-summary, .track, .apply-row, .restart, .disclaimer, details.notmatch, .back-link { display: none !important; }
   body::before { display: none; }
   body { background: #fff; color: #000; }
   .benefit { border: 1px solid #ccc !important; border-radius: 8px; padding: 14px; margin-bottom: 10px; break-inside: avoid; }
   .amount { color: #000 !important; }
 }
+
+/* ── Assistant (Phase 4) ─────────────────────────────────────────────────────
+   Bottom-LEFT; the a11y FAB owns bottom-right. Base rules first, then the
+   media query (see HANDOFF §"detail sidebar" — this file has no cascade layers,
+   so a media query written above its base rule silently loses). */
+.ask-wrap { position: fixed; left: 20px; bottom: 20px; z-index: 80; }
+.ask-fab { width: 52px; height: 52px; border-radius: 50%; border: none; background: var(--accent); color: var(--bg); cursor: pointer; display: grid; place-items: center; box-shadow: 0 12px 34px -8px rgba(0, 0, 0, 0.7); transition: transform 0.12s, filter 0.15s; }
+.ask-fab .ic { width: 24px; height: 24px; }
+.ask-fab:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.ask-fab[aria-expanded="true"] { filter: brightness(1.08); }
+
+.ask-panel { position: absolute; left: 0; bottom: 64px; width: 380px; max-height: min(560px, calc(100vh - 120px)); background: var(--panel); border: 1px solid var(--hair-2); border-radius: var(--r); box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.7); padding: 15px; display: flex; flex-direction: column; gap: 10px; animation: rise 0.22s var(--ease); }
+.ask-panel[hidden] { display: none; }
+.ask-head { display: flex; align-items: center; justify-content: space-between; font-weight: 600; letter-spacing: -0.02em; }
+.ask-h { font-family: var(--font-display); font-size: 1.05rem; }
+
+.ask-consent { display: flex; flex-direction: column; gap: 9px; font-size: 0.88rem; line-height: 1.55; color: var(--text-dim); }
+/* `display:flex` above beats the UA stylesheet's `[hidden]{display:none}`, so
+   the hidden attribute alone does NOT hide these. Restore it explicitly. */
+.ask-consent[hidden] { display: none; }
+.ask-consent p { margin: 0; }
+.ask-consent .ask-lead { color: var(--text); font-weight: 550; }
+.ask-consent strong { color: var(--text); font-weight: 600; }
+.ask-consent .ask-dim { color: var(--text-dimmer); font-size: 0.84rem; }
+.ask-accept { margin-top: 3px; width: 100%; }
+
+.ask-body { display: flex; flex-direction: column; gap: 10px; min-height: 0; flex: 1; }
+.ask-body[hidden] { display: none; }
+.ask-log { flex: 1; min-height: 190px; overflow-y: auto; display: flex; flex-direction: column; gap: 11px; padding-right: 4px; }
+.ask-hint { margin: 0; font-size: 0.86rem; line-height: 1.55; color: var(--text-dimmer); }
+
+.ask-msg { font-size: 0.89rem; line-height: 1.6; border-radius: var(--r-sm); padding: 9px 11px; max-width: 92%; white-space: pre-wrap; overflow-wrap: anywhere; }
+.ask-msg.me { align-self: flex-end; background: var(--accent-soft); border: 1px solid var(--accent-line); color: var(--text); }
+.ask-msg.bot { align-self: flex-start; background: var(--panel-2); border: 1px solid var(--hair); color: var(--text); }
+.ask-msg.err { align-self: stretch; background: var(--warn-soft); border: 1px solid var(--warn); color: var(--text); }
+.ask-msg .cursor { opacity: 0.5; }
+
+.ask-form { display: flex; gap: 7px; align-items: flex-end; }
+.ask-form textarea { flex: 1; resize: none; font-family: inherit; font-size: 0.89rem; line-height: 1.5; color: var(--text); background: var(--bg-2); border: 1px solid var(--hair-2); border-radius: var(--r-sm); padding: 9px 10px; }
+.ask-form textarea:focus-visible { outline: 2px solid var(--accent-hi); outline-offset: 1px; }
+.ask-send { flex: 0 0 auto; width: 38px; height: 38px; display: grid; place-items: center; border-radius: var(--r-sm); border: none; cursor: pointer; background: var(--btn); color: var(--btn-ink); }
+.ask-send .ic { width: 18px; height: 18px; }
+.ask-send:hover:not(:disabled) { filter: brightness(1.08); }
+.ask-send:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.ask-foot { margin: 0; font-size: 0.76rem; line-height: 1.45; color: var(--text-dimmer); }
+
+/* Phone: full-bleed sheet — a 380px panel would overflow a 360px screen. */
+@media (max-width: 460px) {
+  .ask-wrap { left: 16px; right: 16px; bottom: 16px; }
+  .ask-panel { left: 0; right: 0; width: auto; max-height: calc(100vh - 110px); }
+}
+
+/* Respect both the OS setting and the in-app "reduce motion" toggle. */
+@media (prefers-reduced-motion: reduce) {
+  .ask-panel { animation: none; }
+  .ask-fab { transition: none; }
+}
+body.a11y-nomotion .ask-panel { animation: none; }
+body.a11y-nomotion .ask-fab { transition: none; }

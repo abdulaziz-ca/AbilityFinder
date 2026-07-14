@@ -259,9 +259,26 @@ browse/search, printable caregiver report, doctor-finder upgrade.
   deep-link to a single guide could be nice (guide id in the URL hash — safe, no
   personal data).
 
-**Phase 4 — AI assistant: backend DONE (2026-07-14), UI still to build.**
+**Phase 4 — AI assistant: BUILT (2026-07-14), not yet deployed.**
 
-`POST /api/ask` lives in `src/index.js`. Streaming SSE, per-IP rate limited.
+`POST /api/ask` lives in `src/index.js` (streaming SSE, per-IP rate limited).
+The UI is the bottom-**left** FAB + panel (`wireAssistant()` in `app.js`, markup
+in `index.html`, styles at the end of `styles.css`). Bottom-left because the
+a11y FAB owns bottom-right.
+
+Verified end-to-end in `wrangler dev`: a real question streamed back a real
+answer from Workers AI.
+
+Two UI traps already paid for — do not reintroduce:
+- **`.ask-body { display: flex }` beat the UA `[hidden] { display: none }`**, so
+  the chat input rendered on the landing page under the panel. Any new panel
+  section needs its own explicit `[hidden] { display: none }` rule.
+- **The chat log deliberately has no `aria-live`.** Tokens stream in one at a
+  time; a live region would announce every fragment. The finished answer is
+  announced once via the `#askLive` sr-only region. Do not "helpfully" add
+  `aria-live` to `.ask-log`.
+
+Model output is rendered with `textContent`, never `innerHTML`. Keep it that way.
 
 Two decisions worth not re-litigating:
 

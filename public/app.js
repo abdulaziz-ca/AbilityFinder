@@ -1962,6 +1962,183 @@ function wireDetail() {
 }
 
 /* ------------------------------------------------------------------ boot */
+/* ── Assistant (Phase 4) ──────────────────────────────────────────────────────
+   Talks to POST /api/ask on our own origin (hence CSP connect-src 'self' needs
+   no change). Backed by Workers AI on the free allocation, so it can run out;
+   that is a normal state, not an error, and is worded as such.
+
+   Opt-in on purpose: this is the ONLY part of the app that sends anything off
+   the device, and the privacy page promises otherwise. Consent is remembered. */
+const ASK_KEY = "abilityfinder.askConsent";
+let askHistory = [];
+let askBusy = false;
+
+function askConsented() {
+  try { return localStorage.getItem(ASK_KEY) === "1"; } catch (e) { return false; }
+}
+
+function askBubble(cls, text) {
+  const log = document.getElementById("askLog");
+  const el = document.createElement("div");
+  el.className = `ask-msg ${cls}`;
+  el.textContent = text; // textContent, never innerHTML — model output is untrusted
+  log.appendChild(el);
+  log.scrollTop = log.scrollHeight;
+  return el;
+}
+
+function askAnnounce(msg) {
+  const live = document.getElementById("askLive");
+  if (live) live.textContent = msg;
+}
+
+function askSetBusy(busy) {
+  askBusy = busy;
+  const send = document.getElementById("askSend");
+  if (send) send.disabled = busy;
+}
+
+async function askSend(question) {
+  askHistory.push({ role: "user", content: question });
+  askBubble("me", question);
+  askSetBusy(true);
+  askAnnounce("Thinking.");
+
+  const bubble = askBubble("bot", "");
+  let answer = "";
+
+  try {
+    const res = await fetch("/api/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ messages: askHistory }),
+    });
+
+    // Non-streaming failures (429 rate limit, 400 validation) arrive as JSON.
+    if (!res.ok) {
+      let msg = "Something went wrong. Please try again.";
+      try { msg = (await res.json()).error || msg; } catch (e) {}
+      bubble.remove();
+      askBubble("err", msg);
+      askAnnounce(msg);
+      askHistory.pop();
+      return;
+    }
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buf = "";
+    let failed = null;
+
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += decoder.decode(value, { stream: true });
+
+      const parts = buf.split("\n\n");
+      buf = parts.pop() ?? ""; // keep the trailing partial event
+
+      for (const part of parts) {
+        const ev = /^event:\s*(.+)$/m.exec(part)?.[1]?.trim();
+        const dataLine = /^data:\s*(.+)$/m.exec(part)?.[1];
+        if (!ev || !dataLine) continue;
+
+        let data;
+        try { data = JSON.parse(dataLine); } catch (e) { continue; }
+
+        if (ev === "delta" && data.text) {
+          answer += data.text;
+          bubble.textContent = answer;
+          document.getElementById("askLog").scrollTop = 99999;
+        } else if (ev === "error") {
+          failed = data.message;
+        }
+      }
+    }
+
+    if (failed) {
+      bubble.remove();
+      askBubble("err", failed);
+      askAnnounce(failed);
+      askHistory.pop();
+    } else if (answer.trim() === "") {
+      bubble.remove();
+      const m = "The assistant did not reply. Please try again.";
+      askBubble("err", m);
+      askAnnounce(m);
+      askHistory.pop();
+    } else {
+      askHistory.push({ role: "assistant", content: answer });
+      askAnnounce(answer); // announce the finished answer once, not per token
+    }
+  } catch (e) {
+    bubble.remove();
+    const m = "Could not reach the assistant. Check your connection and try again.";
+    askBubble("err", m);
+    askAnnounce(m);
+    askHistory.pop();
+  } finally {
+    askSetBusy(false);
+  }
+}
+
+function wireAssistant() {
+  const fab = document.getElementById("askFab");
+  const panel = document.getElementById("askPanel");
+  const consent = document.getElementById("askConsent");
+  const bodyEl = document.getElementById("askBody");
+  const input = document.getElementById("askInput");
+  const form = document.getElementById("askForm");
+  if (!fab || !panel) return;
+
+  const showChat = () => {
+    consent.hidden = true;
+    bodyEl.hidden = false;
+    if (!document.getElementById("askLog").children.length) {
+      const hint = document.createElement("p");
+      hint.className = "ask-hint";
+      hint.textContent =
+        "Ask about a word, a form, or a step you are stuck on. For example: what does T2201 mean?";
+      document.getElementById("askLog").appendChild(hint);
+    }
+  };
+
+  const open = (yes) => {
+    panel.hidden = !yes;
+    fab.setAttribute("aria-expanded", String(yes));
+    if (!yes) return;
+    if (askConsented()) { showChat(); input.focus(); }
+    else document.getElementById("askAccept").focus();
+  };
+
+  fab.addEventListener("click", () => open(panel.hidden));
+  document.getElementById("askClose").addEventListener("click", () => { open(false); fab.focus(); });
+
+  document.getElementById("askAccept").addEventListener("click", () => {
+    try { localStorage.setItem(ASK_KEY, "1"); } catch (e) {}
+    showChat();
+    input.focus();
+  });
+
+  // Esc closes, matching the rest of the app's panels.
+  panel.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") { open(false); fab.focus(); }
+  });
+
+  // Enter sends; Shift+Enter makes a new line.
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); }
+  });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const q = input.value.trim();
+    if (!q || askBusy) return;
+    input.value = "";
+    askSend(q);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   restore();
   restoreA11y();
@@ -1969,6 +2146,7 @@ document.addEventListener("DOMContentLoaded", () => {
   applyA11y();
   applyStaticI18n();
   wireAccessibility();
+  wireAssistant();
   history.replaceState({ view, stepIndex, detailId }, "");
   render();
 

@@ -27,14 +27,14 @@
     <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f7f2e9" media="(prefers-color-scheme: light)" />
 
-    <script src="theme-init.js?v=15"></script>
+    <script src="theme-init.js?v=16"></script>
 
     <!-- Fonts are self-hosted (see styles.css @font-face) — no external font CDN,
          nothing leaves the visitor's browser. -->
-    <link rel="preload" href="fonts/inter-latin.woff2?v=15" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="fonts/fraunces-latin.woff2?v=15" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="styles.css?v=15" />
-    <link rel="icon" href="favicon.svg?v=15" type="image/svg+xml" />
+    <link rel="preload" href="fonts/inter-latin.woff2?v=16" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="fonts/fraunces-latin.woff2?v=16" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="styles.css?v=16" />
+    <link rel="icon" href="favicon.svg?v=16" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   </head>
   <body>
@@ -121,9 +121,52 @@
       </div>
     </div>
 
-    <script src="icons.js?v=15"></script>
-    <script src="i18n.js?v=15"></script>
-    <script src="data.js?v=15"></script>
-    <script src="app.js?v=15"></script>
+    <!-- Assistant. Bottom-LEFT so it never collides with the a11y FAB (bottom-right). -->
+    <div class="ask-wrap">
+      <button class="ask-fab" id="askFab" aria-expanded="false" aria-controls="askPanel" title="Ask a question">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-3.8-.9L3 20.5l1.4-4.4A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"/><path d="M9.6 9.4a2.5 2.5 0 0 1 4.9.6c0 1.7-2.5 2.5-2.5 2.5"/><path d="M12 16.5h.01"/></svg>
+        <span class="sr-only">Ask a question</span>
+      </button>
+
+      <div class="ask-panel" id="askPanel" role="dialog" aria-label="Ask a question" hidden>
+        <div class="ask-head">
+          <span class="ask-h">Ask a question</span>
+          <button class="a11y-close" id="askClose" aria-label="Close">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <!-- Opt-in gate. Everything else in this app stays on the device; this
+             does not. The visitor gets to know that before typing, not after. -->
+        <div class="ask-consent" id="askConsent">
+          <p class="ask-lead">This is the only part of AbilityFinder that sends anything over the internet.</p>
+          <p>Your question is sent to Cloudflare's AI service to write an answer. Everything else — your answers, your progress, your bookmarks — stays on your device.</p>
+          <p><strong>Please do not type your name, address, or any health details you would rather not send.</strong></p>
+          <p class="ask-dim">It can explain government wording, explain what a form wants, and point you to the right guide. It will not tell you whether you qualify, and it will not quote amounts — the guides have the checked numbers.</p>
+          <button class="btn btn-primary ask-accept" id="askAccept" type="button">I understand — start</button>
+        </div>
+
+        <div class="ask-body" id="askBody" hidden>
+          <!-- No aria-live here on purpose: tokens stream in one at a time, and a
+               live region would announce every fragment. The whole answer is
+               announced once, via #askLive below, when it is finished. -->
+          <div class="ask-log" id="askLog" role="log" aria-label="Conversation"></div>
+          <p class="sr-only" id="askLive" aria-live="polite"></p>
+          <form class="ask-form" id="askForm">
+            <label class="sr-only" for="askInput">Your question</label>
+            <textarea id="askInput" rows="2" maxlength="2000" placeholder="What does T2201 mean?" autocomplete="off"></textarea>
+            <button class="ask-send" id="askSend" type="submit" aria-label="Send question">
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></svg>
+            </button>
+          </form>
+          <p class="ask-foot">Not legal or medical advice. Always check the official page before you rely on it.</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="icons.js?v=16"></script>
+    <script src="i18n.js?v=16"></script>
+    <script src="data.js?v=16"></script>
+    <script src="app.js?v=16"></script>
   </body>
 </html>
