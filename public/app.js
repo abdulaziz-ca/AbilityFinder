@@ -1293,6 +1293,136 @@ function renderMatchedGroups(ready, almost, rankOf) {
 }
 
 /* a compact "where am I" strip above the results (only shows active stages) */
+/* ── Phase 5B: reminders as a calendar file ───────────────────────────────────
+   The 14-list asked for renewal reminders. Doing that with email/SMS would mean
+   storing an address — i.e. holding disability data about an identifiable
+   person, breaking the promise on the landing page, for the one population that
+   can least afford a breach. A downloaded .ics needs no account, no address, no
+   server: the visitor's own calendar does the reminding, offline, forever, even
+   if this site disappears. */
+
+/** "8–20 weeks" → 140 days. "at tax time" → null (we will not invent a date). */
+function waitToDays(wait) {
+  const s = String(wait || "").toLowerCase();
+  const range = /(\d+)\s*[–-]\s*(\d+)\s*(week|month)/.exec(s);
+  const single = /~?\s*(\d+)\s*(week|month)/.exec(s);
+  const m = range ? { n: +range[2], unit: range[3] } : single ? { n: +single[1], unit: single[2] } : null;
+  if (!m) return null; // "at tax time", "next CCB payment", "same day to open"…
+  return m.unit === "month" ? m.n * 31 : m.n * 7;
+}
+
+const icsDate = (d) =>
+  `${d.getUTCFullYear()}${String(d.getUTCMonth() + 1).padStart(2, "0")}${String(d.getUTCDate()).padStart(2, "0")}`;
+
+/** RFC 5545 TEXT escaping — a stray comma silently corrupts the file otherwise. */
+const icsEsc = (s) =>
+  String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n");
+
+/**
+ * Fold to 75 OCTETS, continuation lines start with a space (RFC 5545 §3.1).
+ *
+ * Octets, not characters: our own data is full of en/em dashes ("8–20 weeks"),
+ * which are 3 bytes each in UTF-8 — a 75-character line can be 79 bytes. Also
+ * never splits mid-character, which would corrupt the file.
+ */
+function icsFold(line) {
+  const enc = new TextEncoder();
+  if (enc.encode(line).length <= 75) return line;
+  const out = [];
+  let cur = "";
+  let limit = 75; // continuation lines lose one octet to the leading space
+  for (const ch of line) {
+    if (enc.encode(cur + ch).length > limit) {
+      out.push(cur);
+      cur = ch;
+      limit = 74;
+    } else {
+      cur += ch;
+    }
+  }
+  if (cur) out.push(cur);
+  return out[0] + (out.length > 1 ? "\r\n " + out.slice(1).join("\r\n ") : "");
+}
+
+function buildReminderIcs() {
+  const now = new Date();
+  const stamp = `${icsDate(now)}T000000Z`;
+  const events = [];
+  const addDays = (n) => new Date(now.getTime() + n * 86400000);
+
+  // Follow-ups for anything submitted / waiting, dated from the benefit's own
+  // published wait. Only where that wait is actually a duration.
+  for (const b of BENEFITS) {
+    const stage = progress[b.id];
+    if (stage !== "submitted" && stage !== "waiting") continue;
+    const days = waitToDays(BENEFIT_META[b.id] && BENEFIT_META[b.id].wait);
+    if (!days) continue;
+    const phone = (b.detail && b.detail.phone) ? ` You can call: ${b.detail.phone}.` : "";
+    events.push({
+      uid: `followup-${b.id}-${icsDate(addDays(days))}@abilityfinder.ca`,
+      date: addDays(days),
+      summary: `Follow up: ${b.name}`,
+      desc:
+        `You marked this as ${STAGE[stage].label.toLowerCase()} on ${now.toLocaleDateString("en-CA")}. ` +
+        `The usual wait is ${BENEFIT_META[b.id].wait}. If you have not heard back, it is worth chasing —` +
+        ` applications do get lost, and chasing is normal.${phone}`,
+    });
+  }
+
+  // Amounts and rules change every year; a yearly nudge costs nothing.
+  events.push({
+    uid: `recheck-${icsDate(addDays(365))}@abilityfinder.ca`,
+    date: addDays(365),
+    summary: "Re-check your disability benefits (AbilityFinder)",
+    desc:
+      "Benefit amounts and income rules change most years, and new programs appear. " +
+      "Re-run the questions at https://abilityfinder.ca to see if anything changed for you.",
+  });
+
+  const lines = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//AbilityFinder//Reminders//EN",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+  ];
+  for (const e of events) {
+    lines.push(
+      "BEGIN:VEVENT",
+      `UID:${e.uid}`,
+      `DTSTAMP:${stamp}`,
+      `DTSTART;VALUE=DATE:${icsDate(e.date)}`,
+      `DTEND;VALUE=DATE:${icsDate(new Date(e.date.getTime() + 86400000))}`,
+      icsFold(`SUMMARY:${icsEsc(e.summary)}`),
+      icsFold(`DESCRIPTION:${icsEsc(e.desc)}`),
+      "TRANSP:TRANSPARENT",
+      // 9am on the day, not midnight — a reminder nobody sees is not a reminder.
+      "BEGIN:VALARM",
+      "TRIGGER:PT9H",
+      "ACTION:DISPLAY",
+      icsFold(`DESCRIPTION:${icsEsc(e.summary)}`),
+      "END:VALARM",
+      "END:VEVENT"
+    );
+  }
+  lines.push("END:VCALENDAR");
+  return { ics: lines.join("\r\n") + "\r\n", count: events.length };
+}
+
+function downloadReminders() {
+  const { ics, count } = buildReminderIcs();
+  const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "abilityfinder-reminders.ics";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  return count;
+}
+
 function trackerSummary(matched) {
   const counts = {};
   matched.forEach((e) => { const s = progress[e.b.id]; if (s && STAGE[s]) counts[s] = (counts[s] || 0) + 1; });
@@ -1301,8 +1431,14 @@ function trackerSummary(matched) {
   const pills = active
     .map((s) => `<span class="ts-pill ${s.cls}">${icon(s.ic)}<b>${counts[s.key]}</b> ${s.short}</span>`)
     .join("");
+  const waitingCount = (counts.submitted || 0) + (counts.waiting || 0);
+  const remindLbl = waitingCount
+    ? "Remind me to follow up"
+    : "Add a yearly re-check to my calendar";
   return `<div class="tracker-summary" aria-label="Your application progress">
-    <span class="ts-lbl">${icon("compass")} Your progress</span>${pills}</div>`;
+    <span class="ts-lbl">${icon("compass")} Your progress</span>${pills}
+    <button class="ts-remind" id="tsRemind" type="button">${icon("clock")} ${remindLbl}</button>
+  </div>`;
 }
 
 /* per-card progress control: pick a stage from Not started → Approved/Denied */
@@ -1476,6 +1612,14 @@ function wireResults() {
       render(); // same page → scroll position preserved
     })
   );
+  // Phase 5B — download reminders as a calendar file (no account, no server).
+  const remind = document.getElementById("tsRemind");
+  if (remind)
+    remind.addEventListener("click", () => {
+      const n = downloadReminders();
+      remind.classList.add("done");
+      remind.innerHTML = `${icon("check")} Added ${n} reminder${n === 1 ? "" : "s"} — check your downloads`;
+    });
 
   // group-by toggle (priority ↔ category dashboard)
   document.querySelectorAll("[data-group]").forEach((btn) =>
@@ -1771,6 +1915,46 @@ function listBlock(title, ic, items, ordered) {
 
 const DATA_VERIFIED = "July 2026";
 
+/* ── Phase 5C: freshness that doesn't over-claim ──────────────────────────────
+   DATA_VERIFIED is one human-readable date stamped on all 20 benefits. It is
+   honest today (they really were all checked in July 2026) but it cannot age:
+   in two years it will still say "verified", and the amounts are the product.
+   These make staleness computable and per-benefit. */
+
+/** Machine-comparable twin of DATA_VERIFIED. Keep the two in step. */
+const DATA_VERIFIED_ISO = "2026-07-01";
+
+/**
+ * Per-benefit override, "id": "YYYY-MM". ADD AN ENTRY WHEN YOU RE-CHECK ONE
+ * BENEFIT against its official page — anything absent falls back to the
+ * catalog-wide date, which is the truth: it was last checked with everything
+ * else. Never add a date you did not actually verify; a fake date here is worse
+ * than no date, because the whole point is telling people when to distrust us.
+ */
+const BENEFIT_VERIFIED = {
+  // "aish": "2026-11",
+};
+
+/** Past this, the guide tells the reader to confirm the number themselves. */
+const STALE_MONTHS = 9;
+
+const MONTHS_EN = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+function verifiedFor(b) {
+  const raw = (b && BENEFIT_VERIFIED[b.id]) || null;
+  const iso = raw ? `${raw}-01` : DATA_VERIFIED_ISO;
+  const when = new Date(`${iso}T00:00:00Z`);
+  const now = new Date();
+  const months =
+    (now.getUTCFullYear() - when.getUTCFullYear()) * 12 + (now.getUTCMonth() - when.getUTCMonth());
+  return {
+    label: `${MONTHS_EN[when.getUTCMonth()]} ${when.getUTCFullYear()}`,
+    months: Math.max(0, months),
+    stale: months >= STALE_MONTHS,
+    perBenefit: !!raw,
+  };
+}
+
 /* Phase-2 detail sections: tax warning, denial reasons, appeals, FAQs, related */
 function p2Sections(b) {
   const x = BENEFIT_EXTRA[b.id];
@@ -1805,6 +1989,7 @@ function renderDetail(id) {
   if (!b) return `<div class="card">Not found. ${backBtn("d-back")}</div>`;
   const r = evaluate(b);
   const d = b.detail || {};
+  const vFresh = verifiedFor(b); // Phase 5C — per-benefit freshness
 
   const x = BENEFIT_EXTRA[b.id] || {};
   let statusBanner = "";
@@ -1896,7 +2081,8 @@ function renderDetail(id) {
             ${dtcAction ? `<a class="apply secondary" href="${dtcAction.action.url}" target="_blank" rel="noopener noreferrer" data-ext>${dtcAction.action.text} ${icon("external")}</a>` : ""}
             <a class="source-link" href="${resolveUrl(b.source)}" target="_blank" rel="noopener noreferrer" data-ext>${t("det.official")} ${icon("external")}</a>
           </div>
-          <p class="side-foot"><span class="verified">${icon("check")} Info verified ${DATA_VERIFIED}</span></p>
+          <p class="side-foot"><span class="verified${vFresh.stale ? " stale" : ""}">${icon(vFresh.stale ? "info" : "check")} Info verified ${vFresh.label}</span></p>
+          ${vFresh.stale ? `<p class="side-stale">${icon("info")} <span>That was about ${vFresh.months} months ago. Amounts and income rules usually change each year, so <b>check the official page above</b> before you count on a number here.</span></p>` : ""}
         </div>
       </aside>
     </div>

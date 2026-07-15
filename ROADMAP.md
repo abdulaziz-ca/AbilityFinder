@@ -190,14 +190,28 @@ quietly going wrong.
       so anyone clicking "Inclusion Alberta — RDSP help" lands on an unrelated
       event. Pick a replacement URL (the Access RDSP / Plan Institute entry may
       already cover this need) rather than guessing one.
-- [ ] **5B · Renewal & deadline reminders — as a calendar file.** 14-list #7,
-      delivered *without* a backend: generate an `.ics` the user downloads, so
-      **their own** calendar does the reminding. Zero infra, zero PII, no
-      account, works offline, and survives the site being down.
-- [ ] **5C · Data-freshness surfacing.** `DATA_VERIFIED` is a single date for the
-      whole catalog. Make staleness visible (per-benefit `verified` date + a
-      "check the official page, this is N months old" nudge past a threshold)
-      rather than implying everything was checked yesterday.
+- [x] **5B · Renewal & deadline reminders — as a calendar file** ✅ **DONE & LIVE.**
+      14-list #7, with no backend: `buildReminderIcs()` in `app.js` builds an
+      `.ics` the visitor downloads, so **their own** calendar does the
+      reminding — no account, no stored address, offline, and it outlives the
+      site. Button lives in the progress strip (`trackerSummary`).
+      Events: a follow-up for every benefit marked *submitted*/*waiting*, dated
+      from that benefit's own published wait, plus a yearly "re-check" (amounts
+      change most years).
+      **It refuses to invent a date:** `waitToDays()` only converts real
+      durations ("8–20 weeks" → 140d, "~4 months" → 124d). "at tax time",
+      "next CCB payment", "same day to open" return `null` and get no event.
+      RFC 5545 details that bit: fold at **75 octets, not characters** — our own
+      en-dashes ("8–20") are 3 bytes each, so a 75-char line was 79 bytes.
+- [x] **5C · Data-freshness surfacing** ✅ **DONE & LIVE.** `DATA_VERIFIED` ("July
+      2026") is human-readable and cannot age — in two years it still says
+      "verified". Added `DATA_VERIFIED_ISO` (comparable), `BENEFIT_VERIFIED`
+      (per-benefit `"id": "YYYY-MM"` overrides) and `verifiedFor()`.
+      Guides show that benefit's own date, and past `STALE_MONTHS` (9) a warn
+      callout tells the reader to confirm the number on the official page.
+      **Seeded empty on purpose** — anything without an override falls back to
+      the catalog-wide date, which is the truth. Add an entry only when you have
+      actually re-checked that benefit; a fake date defeats the whole feature.
 
 **Shelved — and why (do not "just add" these):**
 - ~~Accounts + cross-device sync~~ — breaks the privacy promise and creates a
