@@ -356,30 +356,33 @@ export default {
     return env.ASSETS.fetch(request);
   },
 
-  /** Weekly link check (see wrangler.jsonc triggers.crons). */
-  async scheduled(controller, env, ctx) {
-    ctx.waitUntil(
-      runLinkCheck(env, new Date(controller.scheduledTime).toISOString())
-        .then((r) => {
-          // Surfaced in Workers Logs (observability is on). Only genuinely
-          // broken links raise an error — "unreachable" is logged quietly so a
-          // site that merely refuses Workers can't turn this into weekly noise.
-          if (r.brokenCount > 0) {
-            console.error(
-              `link-check: ${r.brokenCount}/${r.total} BROKEN — ` +
-                r.broken.map((b) => `${b.status} ${b.url}`).join(" | ")
-            );
-          } else {
-            console.log(`link-check: all reachable links OK (${r.okCount}/${r.total})`);
-          }
-          if (r.unreachableCount > 0) {
-            console.log(
-              `link-check: ${r.unreachableCount} could not be checked (verify by hand) — ` +
-                r.unreachable.map((u) => u.url).join(" | ")
-            );
-          }
-        })
-        .catch((e) => console.error("link-check failed:", e?.message ?? e))
-    );
+  /** Batched link check (see wrangler.jsonc triggers.crons). */
+  async scheduled(controller, env) {
+    try {
+      // Awaiting makes a cron failure visible in Cloudflare's Past Events. A
+      // scheduled handler already waits for its returned promise, so waitUntil
+      // is unnecessary here.
+      const report = await runLinkCheck(env, new Date(controller.scheduledTime).toISOString());
+      const { coverage, run } = report;
+      if (run.broken.length > 0) {
+        console.error(
+          `link-check: ${run.broken.length}/${coverage.linksCheckedThisRun} BROKEN in batch ${coverage.batch}/${coverage.batches} — ` +
+            run.broken.map((link) => `${link.status} ${link.url}`).join(" | ")
+        );
+      } else {
+        console.log(
+          `link-check: batch ${coverage.batch}/${coverage.batches} complete ` +
+            `(${coverage.linksCheckedThisRun} links; ${coverage.linksPendingThisSweep} remain in this sweep)`
+        );
+      }
+      if (run.unreachable.length > 0 || run.inconclusive.length > 0) {
+        console.log(
+          `link-check: ${run.unreachable.length} unreachable, ${run.inconclusive.length} inconclusive in this batch — verify by hand before changing data.js`
+        );
+      }
+    } catch (error) {
+      console.error("link-check failed:", error?.message ?? error);
+      throw error;
+    }
   },
 };

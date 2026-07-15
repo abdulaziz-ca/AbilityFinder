@@ -2,9 +2,9 @@
 // Regenerate with:  npm run gen:context
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS)
 //
-// 43 links. The Workers FREE plan caps subrequests at 50 per
-// invocation, so this must stay under that or the check needs chunking across
-// runs. Currently 43/50.
+// 43 links. The monitor checks a bounded rotating batch every
+// three hours, so this catalog can grow past the Workers FREE plan's 50
+// external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) applyUrls are skipped — they depend on the
 // user's answers, so there is no single URL to check.
 

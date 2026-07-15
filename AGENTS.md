@@ -83,8 +83,8 @@ Cache-bust: bump `?v=N` in `index.html` **and** `styles.css` when you touch
   streaming, rate-limited, **grounded in `data.js`** via `src/benefits-context.js`.
 - **Feedback** = `send_email` binding pinned to one destination (can't be a spam
   relay). Free because sending to a *verified destination* is free on any plan.
-- **Link monitor** = weekly cron → checks all official links → KV →
-  `/api/link-health`.
+- **Link monitor** = bounded rotating batch every 3 hours → KV-backed aggregate
+  report at `/api/link-health`. Every link remains covered as the catalog grows.
 - **State** = `answers` + `progress` in `localStorage`. No server-side state.
 
 ---
@@ -152,26 +152,29 @@ assistant, keep-it-true). 10 municipalities. Accessibility audit. All five
 user questions are answered.
 
 **The real remaining risk is decay**, not missing features: 30+ official links
-and every dollar figure go stale silently. The weekly monitor reports Mondays at
-`/api/link-health`; feedback now reaches the owner.
+and every dollar figure go stale silently. The rotating monitor reports its
+latest sweep coverage at `/api/link-health`; feedback now reaches the owner.
 
 **Next, in order:**
-1. **Get a real disabled person to use it.** The audit clears the automated
+1. **Audit the AISH / ADAP transition before adding anything else.** Alberta's
+   official ADAP page says the new program is operational and applications are
+   combined. Re-check the current AISH entry's application route, rules, figures
+   and assistant grounding against official pages before editing; never infer
+   transition details.
+2. **Get a real disabled person to use it.** The audit clears the automated
    third of WCAG; screen readers, keyboard-only, 400% zoom and whether the
    plain-language copy lands are all unverified. This is the biggest unknown.
-2. **`BENEFIT_SIGNERS` for CPP-D / AISH / parking placard** — only DTC has a
+3. **`BENEFIT_SIGNERS` for CPP-D / AISH / parking placard** — only DTC has a
    verified signer list. Needs research, not a guess: a wrong entry sends
    someone to pay for an appointment with a practitioner who can't sign.
-3. **More municipalities** — 10 done; Spruce Grove, Leduc, Cochrane, Okotoks,
-   Camrose, Canmore, Lloydminster, Fort Saskatchewan are unchecked.
-   ⚠️ **The link monitor is at 43/50 subrequests.** The Workers Free plan caps
-   subrequests at 50 per invocation, so roughly two more cities will break the
-   weekly check. `npm run gen:context` prints the count and warns past 50 —
-   when it does, chunk the check across runs (e.g. half the links on alternate
-   Mondays) rather than silently dropping links.
-4. **Per-benefit `verified` dates** (`BENEFIT_VERIFIED`) — seeded empty; add an
+4. **More municipalities** — 10 done; Spruce Grove, Leduc, Cochrane, Okotoks,
+   Camrose, Canmore, Lloydminster, Fort Saskatchewan are unchecked. The link
+   monitor uses bounded rotating batches (10 links × at most 4 redirects = 40
+   external subrequests/run), so adding cities extends the sweep length instead
+   of breaking the Workers Free limit. Never drop a link just to fit a cap.
+5. **Per-benefit `verified` dates** (`BENEFIT_VERIFIED`) — seeded empty; add an
    entry only when you have actually re-checked that benefit.
-5. Scroll-reveal animation is **unverified in a real browser** (the preview pane
+6. Scroll-reveal animation is **unverified in a real browser** (the preview pane
    can't scroll). The fail-safes are tested; the effect isn't.
 
 **Deliberately rejected — don't "just add" these** (reasons in `ROADMAP.md`):

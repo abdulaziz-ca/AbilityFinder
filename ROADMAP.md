@@ -29,7 +29,7 @@ other 12 jurisdictions.
 | 5. How do I get it? | ✅ Strong | — |
 
 **All five questions are answered.** The remaining risk is not a missing feature —
-it is **decay**: 29 official government links and every dollar figure in
+it is **decay**: 43 official government and support links and every dollar figure in
 `data.js` go stale silently, and a benefits directory that is quietly wrong is
 worse than no directory. That is what Phase 5 should protect. → see Phase 5.
 
@@ -168,12 +168,15 @@ user questions are already answered; what can still hurt someone is the answers
 quietly going wrong.
 
 **Possible now — free, no PII, no new promises:**
-- [x] **5A · Broken-link monitor** ✅ **DONE & LIVE (2026-07-15).** Cron
-      `0 13 * * 1` (Mon 07:00 Alberta) → `runLinkCheck()` in `src/link-check.js`
-      → report in KV → **`GET /api/link-health`** (public JSON, noindex; it holds
-      no user data, only the health of links we already publish). Link list is
-      generated into `src/links.js` by `npm run gen:context`, which warns if the
-      catalog outgrows the 50-subrequest cap (29/50 today).
+- [x] **5A · Broken-link monitor** ✅ **DONE & LIVE (2026-07-15).** A bounded,
+      rotating batch runs every three hours → `runLinkCheck()` in
+      `src/link-check.js` → report in KV → **`GET /api/link-health`** (public
+      JSON, noindex; it holds no user data, only the health of links we already
+      publish). Link list is generated into `src/links.js` by
+      `npm run gen:context`. A run checks at most 10 links × 4 manual GET hops =
+      40 external subrequests, below the Free-plan 50 cap even with redirects;
+      the KV report retains last-known results and shows sweep coverage. This
+      means coverage grows with the catalog rather than breaking at 50.
 
       **It reports three states, not two** — `broken` (server answered badly),
       `unreachable` (no answer at all — *not* claimed dead), `redirected` (fine
@@ -181,7 +184,7 @@ quietly going wrong.
       load-bearing: the first run called `www.edmonton.ca/ets/fare-assistance`
       broken, but it returns 200 to curl and to a browser and simply refuses
       Cloudflare Workers fetch, every time. Shipping that would have put a
-      permanent false alarm in every weekly report, and a report that cries wolf
+      permanent false alarm in every report, and a report that cries wolf
       is a report nobody reads. **Only `broken` logs an error.**
 
       ⚠️ **Open finding from run 1 — needs a decision, not yet fixed:**
@@ -321,14 +324,23 @@ Two consequences already visible:
 There is no headline feature missing and no known WCAG AA violation.
 
 The highest-value work left is **not code**:
-1. **Feed the monitor's findings back into the data.** 5A already found real rot
-   (Inclusion Alberta's RDSP page) within a minute of existing. The first
-   automated report lands Mondays 07:00 Alberta at `/api/link-health`.
-2. **Get a real disabled person to use it.** The audit clears the automated
+1. **Urgently audit the AISH / ADAP transition.** The [official Alberta ADAP
+   page](https://www.alberta.ca/alberta-disability-assistance-program) now says
+   ADAP is operational and that applications for AISH and ADAP are combined.
+   Treat the current AISH entry's application link,
+   eligibility language, amounts, work-income rules, related-benefit notes and
+   assistant grounding as potentially stale until each is re-checked against the
+   official ADAP/AISH pages. Do not patch this from memory or a news summary — a
+   wrong income-support rule has a direct cost to a person applying.
+2. **Feed the monitor's findings back into the data.** 5A already found real rot
+   (Inclusion Alberta's RDSP page) within a minute of existing. The monitor
+   updates `/api/link-health` every three hours and records whether the current
+   sweep is complete.
+3. **Get a real disabled person to use it.** The audit clears the automated
    third of WCAG; the other two thirds (screen readers, keyboard-only, 400%
    zoom, whether the plain-language copy actually lands) need humans. This is
    now the single biggest unknown in the project.
-3. **`BENEFIT_SIGNERS` for the other three practitioner benefits** — CPP-D,
+4. **`BENEFIT_SIGNERS` for the other three practitioner benefits** — CPP-D,
    AISH and the parking placard have no verified signer list, so their guides
    fall back to "family doctor". Adding them needs *your research*, not a guess;
    a wrong entry sends someone to pay for an appointment with a person who
@@ -341,8 +353,9 @@ The highest-value work left is **not code**:
   researched against its own official page: Calgary, Edmonton, **Red Deer,
   Lethbridge, Medicine Hat, Grande Prairie, St. Albert, Sherwood Park**.
   Now **10 cities** (added Airdrie + Wood Buffalo/Fort McMurray 2026-07-15).
-  ⚠️ This pushed the link monitor to **43/50** subrequests — about two more
-  cities and the weekly check exceeds the Free-plan cap and needs chunking.
+  The monitor now uses safe rotating batches, so more municipal links increase
+  the time for a full sweep rather than breaking the Free-plan cap. It checks
+  every current link and reports the sweep's coverage at `/api/link-health`.
   Everywhere else still falls through to the 2-1-1 finder via `REQS.cityOther`,
   which now reads `CITIES_WITH_PROGRAMS` — **add a city there when you add its
   program**, or its residents keep getting the generic fallback.

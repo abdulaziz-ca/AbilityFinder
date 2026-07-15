@@ -199,9 +199,9 @@ const linksOut = `// GENERATED FILE — DO NOT EDIT BY HAND.
 // Regenerate with:  npm run gen:context
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS)
 //
-// ${links.length} links. The Workers FREE plan caps subrequests at 50 per
-// invocation, so this must stay under that or the check needs chunking across
-// runs. Currently ${links.length}/50.
+// ${links.length} links. The monitor checks a bounded rotating batch every
+// three hours, so this catalog can grow past the Workers FREE plan's 50
+// external-subrequest per-invocation limit without dropping coverage.
 // ${skippedDynamic} dynamic (function) applyUrls are skipped — they depend on the
 // user's answers, so there is no single URL to check.
 
@@ -213,7 +213,6 @@ export const SKIPPED_DYNAMIC = ${skippedDynamic};
 fs.writeFileSync(OUT_LINKS, linksOut);
 console.log(
   `gen:context — wrote ${path.relative(ROOT, OUT_LINKS)}\n` +
-    `  ${links.length} checkable links (subrequest cap is 50/invocation)` +
-    (links.length > 50 ? "  *** OVER THE CAP — needs chunking ***" : "  — fits in one run") +
+  `  ${links.length} checkable links (rotating monitor batches them safely)` +
     `\n  ${skippedDynamic} dynamic applyUrls skipped (depend on user answers)`
 );

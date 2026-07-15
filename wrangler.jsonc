@@ -21,10 +21,12 @@
 
   "observability": { "enabled": true },
 
-  // Phase 5A: weekly broken-link check. Mondays 13:00 UTC = 07:00 Alberta (MDT).
-  // Crons are free on the Workers Free plan (5 per account). Cron changes can
-  // take up to ~15 min to propagate after a deploy.
-  "triggers": { "crons": ["0 13 * * 1"] },
+  // Phase 5A: batched broken-link check every three hours. One bounded batch
+  // stays safely below the 50 external-subrequest Free-plan cap; src/link-check
+  // rotates through all catalog links and keeps the aggregate report in KV.
+  // This is one of the Free plan's five account-level Cron Triggers. Cron
+  // changes can take up to ~15 min to propagate after a deploy.
+  "triggers": { "crons": ["0 */3 * * *"] },
 
   // Stores the latest link-health report. No user data — only our own links.
   "kv_namespaces": [
