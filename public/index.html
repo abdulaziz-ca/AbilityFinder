@@ -27,14 +27,14 @@
     <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f7f2e9" media="(prefers-color-scheme: light)" />
 
-    <script src="theme-init.js?v=16"></script>
+    <script src="theme-init.js?v=17"></script>
 
     <!-- Fonts are self-hosted (see styles.css @font-face) — no external font CDN,
          nothing leaves the visitor's browser. -->
-    <link rel="preload" href="fonts/inter-latin.woff2?v=16" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="fonts/fraunces-latin.woff2?v=16" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="styles.css?v=16" />
-    <link rel="icon" href="favicon.svg?v=16" type="image/svg+xml" />
+    <link rel="preload" href="fonts/inter-latin.woff2?v=17" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="fonts/fraunces-latin.woff2?v=17" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="styles.css?v=17" />
+    <link rel="icon" href="favicon.svg?v=17" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   </head>
   <body>
@@ -121,8 +121,14 @@
       </div>
     </div>
 
-    <!-- Assistant. Bottom-LEFT so it never collides with the a11y FAB (bottom-right). -->
-    <div class="ask-wrap">
+    <!-- Assistant. Bottom-LEFT so it never collides with the a11y FAB (bottom-right).
+
+         KILL SWITCH: `hidden` below disables the assistant entirely.
+         Off since 2026-07-14: ungrounded, the model invented benefit facts
+         ("AISH = Alberta Income Support for the Homeless" — it is Assured
+         Income for the Severely Handicapped). Remove `hidden` only once the
+         answers are grounded in data.js and spot-checked. See HANDOFF §9. -->
+    <div class="ask-wrap" id="askWrap" hidden>
       <button class="ask-fab" id="askFab" aria-expanded="false" aria-controls="askPanel" title="Ask a question">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-3.8-.9L3 20.5l1.4-4.4A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"/><path d="M9.6 9.4a2.5 2.5 0 0 1 4.9.6c0 1.7-2.5 2.5-2.5 2.5"/><path d="M12 16.5h.01"/></svg>
         <span class="sr-only">Ask a question</span>
@@ -164,9 +170,9 @@
       </div>
     </div>
 
-    <script src="icons.js?v=16"></script>
-    <script src="i18n.js?v=16"></script>
-    <script src="data.js?v=16"></script>
-    <script src="app.js?v=16"></script>
+    <script src="icons.js?v=17"></script>
+    <script src="i18n.js?v=17"></script>
+    <script src="data.js?v=17"></script>
+    <script src="app.js?v=17"></script>
   </body>
 </html>

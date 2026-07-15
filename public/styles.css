@@ -12,7 +12,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=16") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=17") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -20,7 +20,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=16") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=17") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -1016,6 +1016,10 @@ body.a11y-nomotion .hero-wave .hw, body.a11y-nomotion .wiz-mountains .wm { anima
    media query (see HANDOFF §"detail sidebar" — this file has no cascade layers,
    so a media query written above its base rule silently loses). */
 .ask-wrap { position: fixed; left: 20px; bottom: 20px; z-index: 80; }
+/* Kill switch. .ask-wrap sets no `display`, so the UA `[hidden]` rule would
+   already win — this is belt-and-braces so a future `display:` here can't
+   silently re-enable the assistant (the exact trap .ask-body fell into). */
+.ask-wrap[hidden] { display: none; }
 .ask-fab { width: 52px; height: 52px; border-radius: 50%; border: none; background: var(--accent); color: var(--bg); cursor: pointer; display: grid; place-items: center; box-shadow: 0 12px 34px -8px rgba(0, 0, 0, 0.7); transition: transform 0.12s, filter 0.15s; }
 .ask-fab .ic { width: 24px; height: 24px; }
 .ask-fab:hover { filter: brightness(1.08); transform: translateY(-1px); }
