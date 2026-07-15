@@ -12,7 +12,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=22") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=23") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -20,7 +20,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=22") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=23") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -1152,3 +1152,59 @@ body.a11y-nomotion .ask-fab { transition: none; }
 
 /* Feedback: two routes (send from here / open my mail app). */
 .fb-actions { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; }
+
+/* ── "What severe and prolonged actually means" ───────────────────────────────
+   Design direction from Mobbin: Trawelt (oversized ghost numerals on warm
+   cream, serif heads, hairline rules) and VanMoof (the dark-theme version of
+   the same idea). Chosen because it amplifies the editorial style this site
+   already has rather than importing a foreign one — the light theme IS Trawelt's
+   cream, and Fraunces is already loaded.
+
+   The six headings are the lesson; the numerals are decoration and are
+   aria-hidden. Skim the heads in fifteen seconds, or read the paragraphs. */
+.plaintest { position: relative; }
+.pt-lead { margin: 0 0 4px; font-size: 1rem; line-height: 1.65; color: var(--text); max-width: 68ch; }
+.pt-lead b { font-weight: 650; }
+.pt-list { list-style: none; margin: 18px 0 0; padding: 0; }
+.pt-item { position: relative; display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start; padding: 22px 0; border-top: 1px solid var(--hair); }
+.pt-item:first-child { border-top: none; padding-top: 4px; }
+/* The Trawelt move: a big, quiet numeral that reads as texture, not as a badge. */
+.pt-num { font-family: var(--font-display); font-size: 2.6rem; line-height: 0.9; font-weight: 600; letter-spacing: -0.04em; color: var(--text); opacity: 0.13; min-width: 1.6ch; text-align: right; font-variant-numeric: tabular-nums; }
+.pt-item h4 { margin: 6px 0 6px; font-family: var(--font-display); font-size: 1.12rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text); }
+.pt-item h4 i { font-style: italic; }
+.pt-item p { margin: 0; font-size: 0.95rem; line-height: 1.65; color: var(--text-dim); max-width: 62ch; }
+.pt-item p b { color: var(--text); font-weight: 600; }
+.pt-foot { display: flex; gap: 9px; align-items: flex-start; margin: 20px 0 0; padding: 12px 13px; background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: var(--r-sm); font-size: 0.86rem; line-height: 1.6; color: var(--text-dim); }
+.pt-foot .ic { width: 15px; height: 15px; flex: 0 0 auto; margin-top: 3px; color: var(--accent-hi); }
+@media (max-width: 560px) {
+  .pt-item { gap: 12px; padding: 18px 0; }
+  .pt-num { font-size: 1.9rem; }
+}
+
+/* ── Scroll reveal ───────────────────────────────────────────────────────────
+   Sections rise and fade as they enter; the hairline above each numbered item
+   draws itself left-to-right. Deliberately restrained: this audience includes
+   people with vestibular disorders and migraine triggers, for whom a big
+   parallax move is not "engaging", it's a symptom. 14px of travel, no scale,
+   no horizontal motion.
+
+   OFF unless we're sure: no-JS, prefers-reduced-motion, and the in-app
+   "Reduce motion" toggle all leave content fully visible — .reveal only hides
+   anything once JS has added .reveal-ready. */
+.reveal-ready .reveal { opacity: 0; transform: translateY(14px); }
+.reveal-ready .reveal.in { opacity: 1; transform: none; transition: opacity 0.55s var(--ease), transform 0.55s var(--ease); }
+/* Stagger, capped: item 8 shouldn't wait a second and a half to appear. */
+.reveal-ready .pt-item.reveal.in { transition-delay: calc(min(var(--i, 0), 5) * 70ms); }
+.reveal-ready .pt-item.reveal { border-top-color: transparent; }
+.reveal-ready .pt-item.reveal::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--hair-2); transform: scaleX(0); transform-origin: left; }
+.reveal-ready .pt-item:first-child.reveal::before { display: none; }
+.reveal-ready .pt-item.reveal.in::before { transform: scaleX(1); transition: transform 0.7s var(--ease) calc(min(var(--i, 0), 5) * 70ms + 90ms); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready .reveal, .reveal-ready .reveal.in { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .reveal-ready .pt-item.reveal { border-top-color: var(--hair); }
+  .reveal-ready .pt-item.reveal::before { display: none; }
+}
+body.a11y-nomotion .reveal, body.a11y-nomotion .reveal.in { opacity: 1 !important; transform: none !important; transition: none !important; }
+body.a11y-nomotion .pt-item.reveal { border-top-color: var(--hair); }
+body.a11y-nomotion .pt-item.reveal::before { display: none; }

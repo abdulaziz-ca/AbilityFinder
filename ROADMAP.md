@@ -337,8 +337,27 @@ The highest-value work left is **not code**:
 ### Still-open smaller items
 - **Per-disability browse filter** — needs benefit→disability tags in `data.js`;
   the wizard covers this today, so it is a nice-to-have.
-- **More Alberta municipalities** in the catalog (currently Calgary + Edmonton +
-  a generic 2-1-1 fallback).
+- ~~**More Alberta municipalities**~~ ✅ **DONE 2026-07-15.** Now 8 cities, each
+  researched against its own official page: Calgary, Edmonton, **Red Deer,
+  Lethbridge, Medicine Hat, Grande Prairie, St. Albert, Sherwood Park**.
+  Everywhere else still falls through to the 2-1-1 finder via `REQS.cityOther`,
+  which now reads `CITIES_WITH_PROGRAMS` — **add a city there when you add its
+  program**, or its residents keep getting the generic fallback.
+
+  They are NOT the same program with different logos, and assuming so would have
+  hurt people:
+  - **Grande Prairie explicitly excludes AISH** from its low-income transit
+    subsidy and gives AISH recipients a *better* separate pass — **$10.25/mo vs
+    $74.25** regular (the 50% subsidy would have been $37.13). Pattern-matching
+    from Calgary would have cost someone ~$27/month.
+  - **St. Albert** gives AISH/ADAP **free** local transit, free Handibus, and a
+    **free annual rec membership** — not a discount.
+  - **Lethbridge** is the only one that subsidises **paratransit** (Access-A-Ride).
+  - **Red Deer** auto-qualifies you on AISH with no income test.
+
+  Every figure came off the city's own page (2026-07-15) and each entry carries
+  its `source`. If you add one: verify it the same way. Inventing a municipal
+  program sends a disabled person chasing a benefit that never existed.
 - ~~**Accessibility audit**~~ ✅ **DONE 2026-07-15 — see "Accessibility" below.**
 - **Real feedback inbox — HALF DONE, blocked on one owner action.**
   `FEEDBACK_EMAIL` in `app.js` is `feedback@abilityfinder.ca`, which **has never

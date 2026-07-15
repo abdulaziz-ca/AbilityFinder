@@ -37,6 +37,14 @@ const DISABILITIES = [
 /* Disability groups used by benefit targeting */
 const EQUIP_NEED = ["physical", "chronic", "vision", "hearing", "speech", "braininjury"];
 
+/* Municipalities with their own verified program in BENEFITS. Everywhere else
+ * falls through to the generic 2-1-1 "local supports" finder (REQS.cityOther).
+ * Keep this in step with the city-gated benefits below. */
+const CITIES_WITH_PROGRAMS = [
+  "Calgary", "Edmonton", "Red Deer", "Lethbridge",
+  "Medicine Hat", "Grande Prairie", "St. Albert", "Sherwood Park",
+];
+
 /* ---------------------------------------------- Alberta communities (pop >5,000)
    Includes cities, larger towns, and the two big urban service areas
    (Sherwood Park, Fort McMurray). Calgary & Edmonton have their own programs;
@@ -99,6 +107,13 @@ const BENEFIT_VALUES = {
   "parking-placard": { kind: "access", note: "low-cost accessible parking permit" },
   "calgary-fair-entry": { kind: "discount", note: "transit from $5.90/mo + 75% off rec — often $600+/yr saved" },
   "edmonton-fare-assistance": { kind: "discount", note: "$36/mo transit pass + low-cost recreation" },
+  // Municipal programs researched 2026-07-15 — figures from each city's own page.
+  "reddeer-fee-assistance": { kind: "discount", note: "$34/mo transit pass + up to $200/yr recreation" },
+  "lethbridge-fee-assistance": { kind: "discount", note: "3 months of bus passes for the price of 1 + $150/season" },
+  "medicinehat-fair-entry": { kind: "discount", note: "75% off transit (max $630/yr) + $200/yr recreation" },
+  "grandeprairie-aish-pass": { kind: "discount", note: "$10.25/mo transit pass (vs $74.25) + 75% off recreation" },
+  "stalbert-subsidy": { kind: "discount", note: "Free local transit + free annual rec membership" },
+  "strathcona-subsidy": { kind: "discount", note: "Reduced transit fare cap + free annual Active Pass+" },
   "local-supports": { kind: "discount", note: "varies by community" },
 };
 
@@ -141,6 +156,12 @@ const BENEFIT_META = {
   "parking-placard": { difficulty: 1, effort: "Short form + a registry visit", wait: "often same day" },
   "calgary-fair-entry": { difficulty: 1, effort: "Online + proof of income", wait: "1–2 weeks" },
   "edmonton-fare-assistance": { difficulty: 1, effort: "Application + proof of income", wait: "1–2 weeks" },
+  "reddeer-fee-assistance": { difficulty: 1, effort: "Online form + proof", wait: "up to 10 business days" },
+  "lethbridge-fee-assistance": { difficulty: 1, effort: "Online form or call 311", wait: "apply any time" },
+  "medicinehat-fair-entry": { difficulty: 1, effort: "One form, lasts 2 years", wait: "about 2 weeks" },
+  "grandeprairie-aish-pass": { difficulty: 1, effort: "Ask at City Hall", wait: "same day in person" },
+  "stalbert-subsidy": { difficulty: 1, effort: "One FCSS form", wait: "1–2 weeks" },
+  "strathcona-subsidy": { difficulty: 2, effort: "Call or visit FCSS", wait: "ask when you apply" },
   "local-supports": { difficulty: 1, effort: "Call 2-1-1", wait: "immediate" },
 };
 
@@ -156,6 +177,54 @@ const BENEFIT_META = {
    ========================================================================== */
 const BENEFIT_EXTRA = {
   dtc: {
+    /* What "severe and prolonged" actually means, in practice.
+     *
+     * This is the single phrase the whole DTC turns on, and it is the reason
+     * people self-reject: they read "severe" as "my diagnosis must be dramatic"
+     * and never apply. It doesn't mean that.
+     *
+     * Every claim here is transcribed from CRA's own eligibility pages
+     * (verified 2026-07-15) — see `source` links on this benefit:
+     *  - markedly restricted = unable OR takes an inordinate amount of time,
+     *    EVEN WITH therapy, devices and medication
+     *  - all or substantially all of the time = CRA reads this as 90%+
+     *  - prolonged = has lasted, or is expected to last, 12+ continuous months
+     *  - cumulative effect = limitations in 2+ categories that together are as
+     *    severe as one marked restriction (CRA's own example: always slow to
+     *    both walk and dress)
+     * Do not add a criterion here that isn't on a CRA page. */
+    plainTest: {
+      lead:
+        "Everything about the DTC hangs on four words: <b>severe and prolonged</b>. They don't mean what most people assume, and that misunderstanding is why people who qualify never apply.",
+      points: [
+        {
+          h: "“Severe” is not about your diagnosis",
+          p: "The CRA never asks how serious your condition sounds. It asks how much it limits you day to day. Two people with the identical diagnosis can get opposite answers — and someone with a condition you've never heard of can qualify easily. Never rule yourself out because your diagnosis doesn't sound bad enough.",
+        },
+        {
+          h: "You're judged <i>with</i> your treatment, not without it",
+          p: "The test is whether you're still limited <b>even with</b> appropriate therapy, medication and devices. So the honest answer to “but I manage okay with my meds” is: that's exactly the question. If you're still restricted while doing everything right, that counts.",
+        },
+        {
+          h: "You don't have to be unable — just slow",
+          p: "“Markedly restricted” means unable to do something <b>or</b> taking an <b>inordinate amount of time</b> to do it. CRA's own yardstick is roughly three times longer than someone without the impairment. Taking forever to dress, walk, or organise your day is the thing being measured, not failure to do it at all.",
+        },
+        {
+          h: "“All or substantially all of the time” = about 90%",
+          p: "This is where fluctuating conditions get lost. If you have good days, the question is not “are you always like this?” — it's whether the restriction is there roughly 90% of the time. Describe your typical day, not your best one, and say plainly how often the bad days come.",
+        },
+        {
+          h: "Two smaller limits can add up to one big one",
+          p: "This is the route most people miss. If you're significantly limited in <b>two or more</b> categories and the combined effect is as severe as one marked restriction, you can qualify on <b>cumulative effect</b>. CRA's own example: always slow to walk <i>and</i> always slow to dress. Ask your practitioner about it by name.",
+        },
+        {
+          h: "“Prolonged” just means 12 months",
+          p: "It has lasted, or is expected to last, a continuous 12 months. It does not mean permanent, and it does not mean forever — an impairment expected to last a year counts.",
+        },
+      ],
+      foot:
+        "The categories the CRA scores are: walking, dressing, feeding, speaking, hearing, seeing, eliminating (bladder or bowel), mental functions, and life-sustaining therapy. Only your practitioner can say where you land — your job is to make sure they're describing your limitations, not your label.",
+    },
     confirm: "a medical practitioner confirming your condition markedly restricts a basic daily activity (or would, without therapy) all or substantially all of the time, for 12+ months",
     taxNote: "The DTC is non-refundable — it only reduces income tax you owe. If your income is low, you can transfer it to a supporting spouse or parent instead, and it still unlocks the RDSP and Canada Disability Benefit.",
     denials: [
@@ -1289,6 +1358,236 @@ const BENEFITS = [
       ],
       time: "A couple of weeks.",
       phone: "City of Edmonton 311",
+    },
+  },
+
+  /* ---- Alberta municipalities beyond Calgary/Edmonton -----------------------
+     Researched and verified against each city's own page on 2026-07-15. Every
+     figure below was read off the official source listed in the entry — none is
+     recalled or inferred. If you add a city: verify it the same way, and add it
+     to CITIES_WITH_PROGRAMS or its residents keep getting the 2-1-1 fallback.
+
+     Worth knowing: these are NOT all the same program with a different logo.
+     Grande Prairie explicitly excludes AISH recipients from its low-income
+     transit subsidy and gives them a much better separate pass; St. Albert
+     gives AISH free transit outright. Assuming they all work like Calgary's
+     Fair Entry would have sent people to the wrong program. */
+  {
+    id: "reddeer-fee-assistance",
+    name: "Red Deer Transit & Recreation Fee Assistance",
+    level: "Red Deer",
+    category: "Getting around & recreation",
+    amount: "$34/month transit pass + up to $200/year recreation",
+    summary:
+      "A reduced monthly transit pass plus help with City recreation fees. Being on AISH qualifies you automatically.",
+    requires: ["reddeer", "lowIncomeOrDisabilityIncome"],
+    note:
+      "If you're on AISH or Income Support you qualify automatically — no income test needed. The transit pass is a permanent program (not a pilot), and both need renewing each year.",
+    applyText: "Red Deer fee assistance",
+    applyUrl:
+      "https://www.reddeer.ca/city-services/transit/fares-and-passes/transit-fare-assistance-pass/",
+    source:
+      "https://www.reddeer.ca/recreation-and-culture/recreation/facility-admission-fees--pass-prices/fee-assistance-program/",
+    detail: {
+      about:
+        "Two City of Red Deer programs. The Transit Fare Assistance Pass drops a monthly pass to $34 no matter which type you'd normally buy (regular passes run $62–$75). The Recreation Fee Assistance Program adds a Recreation Pass Card for drop-in use plus up to $200 a year toward registered programs.",
+      steps: [
+        "Apply online for Recreation Fee Assistance, or for the Transit Fare Assistance Pass — being approved for recreation also qualifies you for transit.",
+        "If you're on AISH, Income Support or Guaranteed Income Supplement, say so — that's automatic qualification and you can skip the income test.",
+        "Otherwise attach your CRA Notice of Assessment so they can check you against the low-income line.",
+        "Allow up to 10 business days, then buy the $34 pass.",
+        "Re-apply every year — approval expires.",
+      ],
+      documents: [
+        "Proof you're on AISH / Income Support / GIS — or a CRA Notice of Assessment",
+        "Proof of a Red Deer address",
+      ],
+      tips: [
+        "One application can cover both: being approved for Recreation Fee Assistance is itself a qualifying route into the transit pass.",
+        "Recreation funding is 'pending available funding' — apply early in the year rather than late.",
+        "Sorensen Station staff will help you apply in person if the online form is hard going.",
+      ],
+      time: "Up to 10 business days.",
+      phone: "City of Red Deer: 403-342-8111",
+    },
+  },
+  {
+    id: "lethbridge-fee-assistance",
+    name: "Lethbridge Fee Assistance Program",
+    level: "Lethbridge",
+    category: "Getting around & recreation",
+    amount: "3 months of bus passes for the price of 1 + $150/season recreation",
+    summary:
+      "One application covers transit, Access-A-Ride paratransit, and recreation fees. AISH counts as proof of income.",
+    requires: ["lethbridge", "lowIncomeOrDisabilityIncome"],
+    note:
+      "This is the only one of these city programs that also subsidizes paratransit (Access-A-Ride) — worth knowing if you can't use a regular bus.",
+    applyText: "Lethbridge fee assistance",
+    applyUrl:
+      "https://www.lethbridge.ca/community-services-supports/community-social-development-csd/fee-assistance-program/",
+    source:
+      "https://www.lethbridge.ca/community-services-supports/community-social-development-csd/fee-assistance-program/",
+    detail: {
+      about:
+        "A single City of Lethbridge program covering three things: bus passes (you pay for one month and get the next two free), Access-A-Ride paratransit at one-third of the usual cost, and recreation or culture programs.",
+      steps: [
+        "Apply online through the City's Fee Assistance form, or call 311 for help.",
+        "Send your AISH statement as proof of income — it's on their accepted list, so you don't need a Notice of Assessment.",
+        "Choose what you need: bus pass, Access-A-Ride, recreation, or more than one.",
+        "Buy your one paid month of bus pass and the next two come free.",
+      ],
+      documents: [
+        "AISH statement — or a CRA Notice of Assessment, Alberta Works letter, housing authority letter, or a letter from a Registered Social Worker",
+        "Proof of a Lethbridge address",
+      ],
+      tips: [
+        "A letter from a Registered Social Worker is accepted on its own — useful if your paperwork is a mess or your income is hard to document.",
+        "Recreation funding is capped per season, so a season with an expensive program in it is the one to claim.",
+        "CommunityLINKS at the main library will sit with you and do the application.",
+      ],
+      time: "Apply any time; funding runs while it lasts.",
+      phone: "311, or 403-320-3111 from outside Lethbridge",
+    },
+  },
+  {
+    id: "medicinehat-fair-entry",
+    name: "Medicine Hat Fair Entry",
+    level: "Medicine Hat",
+    category: "Getting around & recreation",
+    amount: "75% off transit (up to $630/yr) + $200/yr recreation & arts",
+    summary:
+      "One application, valid up to two years, for cheaper transit passes plus recreation and Esplanade arts programs.",
+    requires: ["medicinehat", "lowIncomeOrDisabilityIncome"],
+    note:
+      "Approval lasts up to two years, so this is one of the least repetitive programs to stay on. Your AISH benefits card is accepted as proof.",
+    applyText: "Medicine Hat Fair Entry",
+    applyUrl: "https://forms.medicinehat.ca/Community-Development/Fair-Entry-Application",
+    source:
+      "https://www.medicinehat.ca/community-support-culture-safety/community-support/fair-entry/",
+    detail: {
+      about:
+        "The City of Medicine Hat's single low-income access program. It cuts 75% off monthly transit passes (to an annual maximum of $630 of subsidy), and gives each approved person $200 a year toward City recreation and Esplanade arts programs at 75% off.",
+      steps: [
+        "Fill in the Fair Entry application online, or call 403-502-8001.",
+        "Attach your AISH benefits card — it's accepted as proof of income.",
+        "Add proof of a Medicine Hat address.",
+        "Wait about two weeks for a decision.",
+      ],
+      documents: [
+        "AISH benefits card — or a CRA notice, Alberta Works document, or a social worker's letter",
+        "Proof of a Medicine Hat address",
+      ],
+      tips: [
+        "List every family member on the one application — each approved person gets their own $200 recreation subsidy.",
+        "Approval is good for up to two years, so diarize the expiry rather than re-applying blindly.",
+      ],
+      time: "About two weeks.",
+      phone: "Fair Entry: 403-502-8001",
+    },
+  },
+  {
+    id: "grandeprairie-aish-pass",
+    name: "Grande Prairie AISH Transit Pass & Recreation Access",
+    level: "Grande Prairie",
+    category: "Getting around & recreation",
+    amount: "$10.25/month transit pass + 75% off recreation",
+    summary:
+      "If you're on AISH, a monthly Grande Prairie transit pass costs $10.25 instead of $74.25 — the deepest municipal transit discount in the province that we've found.",
+    requires: ["grandeprairie"],
+    note:
+      "Important: AISH and ADAP recipients are NOT part of the general Transit Access Program — you get your own, cheaper pass instead ($10.25 vs $37.13). Ask for the AISH pass by name at City Hall.",
+    applyText: "Grande Prairie transit fares",
+    applyUrl: "https://cityofgp.com/roads-transportation/public-transit/fares",
+    source: "https://cityofgp.com/roads-transportation/public-transit/transit-access-program",
+    detail: {
+      about:
+        "Grande Prairie prices a monthly transit SUPERPASS at $10.25 for AISH recipients, against $74.25 at the regular adult rate. It's separate from the city's general low-income Transit Access Program, which AISH recipients are explicitly excluded from — because this is the better deal. The Recreation Access Program is a separate application giving 75% off memberships, punch passes and registered programs.",
+      steps: [
+        "For the transit pass: go to City Hall (10205 98 Street) and ask for the AISH monthly pass — bring your AISH documentation.",
+        "For recreation: apply separately to the Recreation Access Program, online or in person.",
+        "In-person applications are approved on the spot — about 10 minutes. Online takes about 2 days.",
+      ],
+      documents: [
+        "Proof you receive AISH (or ADAP)",
+        "Proof of a Grande Prairie address",
+        "For recreation: household income and any dependent children's details",
+      ],
+      tips: [
+        "Don't let anyone put you in the Transit Access Program instead — it's a 50% discount ($37.13), and the AISH pass is $10.25. Say 'AISH pass' explicitly.",
+        "The Recreation Access Program uses a more generous income line than most (the low-income cut-off plus 30%), so apply even if you've been refused elsewhere.",
+      ],
+      time: "Same day in person; about 2 days online.",
+      phone: "City of Grande Prairie: 780-538-0300 or 311",
+    },
+  },
+  {
+    id: "stalbert-subsidy",
+    name: "St. Albert Transit & Recreation Subsidy",
+    level: "St. Albert",
+    category: "Getting around & recreation",
+    amount: "Free local transit + free annual recreation membership",
+    summary:
+      "On AISH or ADAP in St. Albert, local buses and the Handibus are free, and a year's membership at every City rec facility is free too.",
+    requires: ["stalbert"],
+    note:
+      "AISH and ADAP recipients get automatic eligibility here — the free annual recreation membership isn't income-tested for you, and local transit is free rather than discounted.",
+    applyText: "St. Albert subsidy program",
+    applyUrl: "https://stalbert.ca/city/fcss/programs-services/subsidy/",
+    source: "https://stalbert.ca/city/fcss/programs-services/subsidy/",
+    detail: {
+      about:
+        "St. Albert's Family and Community Support Services runs one subsidy covering transit and recreation. For AISH and ADAP recipients: free local fares within St. Albert, free Handibus rides if you're an approved rider, 65% off the monthly Edmonton commuter pass, and a free annual membership at Servus Place, Fountain Park and Grosvenor Pool.",
+      steps: [
+        "Fill in the subsidy application on the City's subsidy page.",
+        "Say that you receive AISH or ADAP — that's automatic eligibility for the free annual recreation membership.",
+        "If you use the Handibus, ask about approved-rider status at the same time.",
+        "Call 780-459-1756 if you get stuck.",
+      ],
+      documents: [
+        "Proof you receive AISH or ADAP",
+        "Proof of a St. Albert address",
+      ],
+      tips: [
+        "You can't claim this if another source already funds the same thing — so if a program is already paying your bus fare, sort that out first.",
+        "The commuter pass to Edmonton is separate from free local fares — ask for both if you travel in.",
+      ],
+      time: "Allow a couple of weeks.",
+      phone: "St. Albert FCSS: 780-459-1756",
+    },
+  },
+  {
+    id: "strathcona-subsidy",
+    name: "Strathcona County Everybody Rides & Everybody Gets to Play",
+    level: "Sherwood Park",
+    category: "Getting around & recreation",
+    amount: "Reduced transit fare cap + free annual Active Pass+",
+    summary:
+      "Reduced transit fares on your Arc card and a no-cost annual Active Pass+ for County recreation facilities, for residents on a limited income.",
+    requires: ["strathcona", "lowIncomeOrDisabilityIncome"],
+    note:
+      "These are income-tested rather than disability-specific, and the income line is roughly $33,675/year for one person — AISH is below that, so it's worth applying.",
+    applyText: "Strathcona County subsidies",
+    applyUrl: "https://www.strathcona.ca/community-families/affordable-services/subsidized-fares/",
+    source: "https://www.strathcona.ca/community-families/affordable-services/",
+    detail: {
+      about:
+        "Two Strathcona County programs. Everybody Rides puts a reduced monthly fare cap on your Arc card profile for local and commuter travel. Everybody Gets to Play gives a free annual Active Pass+ for County recreation facilities plus reduced fees on programs.",
+      steps: [
+        "Call Family and Community Services at 780-464-4044, or go to 401 Festival Lane (Community Centre, 2nd floor).",
+        "Bring ID, proof you live in the County, and your Notice of Assessment.",
+        "Ask about both programs in the one visit — they're separate but handled by the same team.",
+      ],
+      documents: [
+        "Photo ID",
+        "Proof of a Strathcona County address",
+        "CRA Notice of Assessment (or other proof of income)",
+      ],
+      tips: [
+        "The County raised its income thresholds, so a refusal from years ago isn't a reason not to re-apply.",
+        "Everybody Rides works by changing the fare cap on your Arc card — you keep using the same card.",
+      ],
+      time: "Ask when you apply — it isn't published.",
+      phone: "Family and Community Services: 780-464-4044",
     },
   },
   {

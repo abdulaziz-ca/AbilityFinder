@@ -181,11 +181,20 @@ const REQS = {
 
   calgary: { met: () => answers.city === "Calgary", fixed: true, unmet: "This is a City of Calgary program." },
   edmonton: { met: () => answers.city === "Edmonton", fixed: true, unmet: "This is a City of Edmonton program." },
+  // Municipalities with their own verified programs (researched 2026-07-15).
+  reddeer: { met: () => answers.city === "Red Deer", fixed: true, unmet: "This is a City of Red Deer program." },
+  lethbridge: { met: () => answers.city === "Lethbridge", fixed: true, unmet: "This is a City of Lethbridge program." },
+  medicinehat: { met: () => answers.city === "Medicine Hat", fixed: true, unmet: "This is a City of Medicine Hat program." },
+  grandeprairie: { met: () => answers.city === "Grande Prairie", fixed: true, unmet: "This is a City of Grande Prairie program." },
+  stalbert: { met: () => answers.city === "St. Albert", fixed: true, unmet: "This is a City of St. Albert program." },
+  strathcona: { met: () => answers.city === "Sherwood Park", fixed: true, unmet: "This is a Strathcona County program." },
   cityOther: {
-    met: () =>
-      !!answers.city && answers.city !== "Calgary" && answers.city !== "Edmonton",
+    // Anywhere we DON'T have a verified municipal program → the 2-1-1 finder.
+    // Add a city here the moment you add its program, or people get the generic
+    // fallback instead of the real thing.
+    met: () => !!answers.city && !CITIES_WITH_PROGRAMS.includes(answers.city),
     fixed: true,
-    unmet: "For communities outside Calgary and Edmonton.",
+    unmet: "For communities without their own listed program.",
   },
 };
 
@@ -494,6 +503,9 @@ function applyA11y() {
   document.body.classList.toggle("a11y-links", a11y.links);
   document.body.classList.toggle("a11y-guide", a11y.guide);
   document.body.classList.toggle("a11y-nomotion", a11y.motion);
+  // The Reduce-motion toggle can flip mid-session; re-evaluate reveals so
+  // anything mid-animation is pinned visible immediately.
+  if (typeof wireReveals === "function") wireReveals();
   // reflect toggle states in the panel
   document.querySelectorAll(".a11y-toggle").forEach((btn) => {
     btn.setAttribute("aria-pressed", String(!!a11y[btn.dataset.toggle]));
@@ -732,6 +744,9 @@ function render() {
     stopReadAloud(); // don't keep narrating an old page
     window.scrollTo(0, 0);
   }
+  // Re-run after the scroll settles: "is it on screen already?" is meaningless
+  // if we ask before scrollTo has moved us.
+  wireReveals();
   lastRenderKey = renderKey;
 }
 
@@ -2096,7 +2111,28 @@ function verifiedFor(b) {
 /* Phase-2 detail sections: tax warning, denial reasons, appeals, FAQs, related */
 function p2Sections(b) {
   const x = BENEFIT_EXTRA[b.id];
-  if (!x) return { tax: "", denials: "", appeal: "", faqs: "", related: "" };
+  if (!x) return { tax: "", denials: "", appeal: "", faqs: "", related: "", plainTest: "" };
+  /* "What 'severe and prolonged' actually means."
+     Deliberately NOT collapsed: the six headings are the lesson. Skim them in
+     fifteen seconds and you've got it; read the paragraphs if you want the why.
+     That's how we add substance without adding load. */
+  const plainTest = x.plainTest
+    ? `<div class="guide-block plaintest">
+        <div class="guide-h">${icon("key")} What “severe and prolonged” actually means</div>
+        <p class="pt-lead">${x.plainTest.lead}</p>
+        <ol class="pt-list">
+          ${x.plainTest.points
+            .map(
+              (pt, i) => `<li class="pt-item reveal" style="--i:${i}">
+                <span class="pt-num" aria-hidden="true">${i + 1}</span>
+                <div><h4>${pt.h}</h4><p>${pt.p}</p></div>
+              </li>`
+            )
+            .join("")}
+        </ol>
+        <p class="pt-foot">${icon("info")} <span>${x.plainTest.foot}</span></p>
+      </div>`
+    : "";
   const tax = x.taxNote
     ? `<div class="callout"><span class="co-ic">${icon("info")}</span><div><b>Good to know</b><p>${x.taxNote}</p></div></div>`
     : "";
@@ -2118,7 +2154,7 @@ function p2Sections(b) {
       .join("");
     if (chips) related = `<div class="guide-block"><div class="guide-h">${icon("key")} Works well with</div><div class="related-chips">${chips}</div></div>`;
   }
-  return { tax, denials, appeal, faqs, related };
+  return { tax, denials, appeal, faqs, related, plainTest };
 }
 
 function renderDetail(id) {
@@ -2198,6 +2234,9 @@ function renderDetail(id) {
         ${d.about && d.about !== b.summary ? `<p class="detail-about">${d.about}</p>` : ""}
         ${b.note ? `<div class="note">${b.note}</div>` : ""}
         ${p2.tax}
+        ${/* Before "how to apply" on purpose: knowing you might actually
+              qualify is what gets someone to read the steps at all. */ ""}
+        ${p2.plainTest}
 
         ${listBlock(t("guide.how"), "compass", d.steps, true)}
         ${b.needsPractitioner ? practitionerFinder(b) : ""}
@@ -2291,6 +2330,91 @@ function wireDetail() {
 }
 
 /* ------------------------------------------------------------------ boot */
+/* ── Scroll reveal ────────────────────────────────────────────────────────────
+   Sections rise+fade in as they enter view; hairlines draw themselves.
+
+   Three rules this obeys, because the audience is disabled people and motion is
+   not a free garnish:
+   1. FAIL VISIBLE. `.reveal` hides nothing until JS adds `.reveal-ready` to
+      <html>. No JS, JS error, slow parse → the page is just... a page. Nobody
+      ever stares at blank space because an observer didn't fire.
+   2. Reduced motion wins — both the OS setting and the in-app toggle, checked
+      live rather than once at boot, since the toggle can flip mid-session.
+   3. Reveal once, then forget. Re-animating on every scroll-by is nausea, not
+      delight, and it makes re-reading a paragraph hostile. */
+let revealObserver = null;
+
+const motionOff = () =>
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+  document.body.classList.contains("a11y-nomotion");
+
+/** Reveal everything, now, and stop trying to be clever. */
+function revealAll(root = document) {
+  document.documentElement.classList.remove("reveal-ready");
+  root.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+}
+
+function wireReveals(root = document) {
+  if (motionOff()) {
+    revealAll(root); // toggle may have flipped mid-animation
+    return;
+  }
+
+  // If we have no viewport we cannot reason about "on screen", and an
+  // IntersectionObserver can never fire against a zero-height root — every
+  // .reveal would stay at opacity 0 forever. Seen for real in an embedded
+  // browser pane reporting innerHeight === 0. Don't gamble: just show it.
+  if (!window.innerHeight || typeof IntersectionObserver === "undefined") {
+    revealAll(root);
+    return;
+  }
+
+  document.documentElement.classList.add("reveal-ready");
+
+  if (!revealObserver) {
+    revealObserver = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          e.target.classList.add("in");
+          revealObserver.unobserve(e.target); // once only
+        }
+      },
+      // Fire a little before it hits the viewport so it's already settling when
+      // you get there — a reveal you watch happen is a reveal that's too slow.
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
+    );
+  }
+
+  const pending = [];
+  root.querySelectorAll(".reveal:not(.in)").forEach((el) => {
+    // Already on screen at render (e.g. the top of a guide)? Show it now —
+    // don't make someone scroll to reveal what they're already looking at.
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight * 0.92) el.classList.add("in");
+    else {
+      pending.push(el);
+      revealObserver.observe(el);
+    }
+  });
+
+  // WATCHDOG. Hiding content behind an animation is a bet that the animation
+  // will run. If that bet ever loses — observer wedged, layout thrash, some
+  // browser we didn't test — a disabled person is left staring at blank space
+  // where their benefit information should be. Nothing about this effect is
+  // worth that, so after 3s anything still waiting is simply shown.
+  if (pending.length) {
+    clearTimeout(wireReveals._watchdog);
+    wireReveals._watchdog = setTimeout(() => {
+      pending.forEach((el) => {
+        if (!el.isConnected) return;
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight) el.classList.add("in");
+      });
+    }, 3000);
+  }
+}
+
 /* ── Assistant (Phase 4) ──────────────────────────────────────────────────────
    Talks to POST /api/ask on our own origin (hence CSP connect-src 'self' needs
    no change). Backed by Workers AI on the free allocation, so it can run out;
