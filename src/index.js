@@ -10,7 +10,7 @@
 // Paid, usage above 10,000 Neurons/day starts costing $0.011/1,000 Neurons --
 // re-read this comment before upgrading.
 
-import { BENEFITS_CONTEXT } from "./benefits-context.js";
+import { BENEFITS_CONTEXT, BENEFIT_DETAILS } from "./benefits-context.js";
 
 // Llama 4 Scout: 131k context, current (the llama-3.1 builds are past their
 // 2026-05-30 deprecation). Roughly 60 Neurons per question, so the free
@@ -49,12 +49,12 @@ YOUR JOB IS NARROW. You do these things:
 4. Explain the general shape of a process (how to apply, how to appeal, who signs what).
 
 YOU MUST NEVER DO THESE THINGS. This is the most important part of your instructions:
-- NEVER state a dollar amount, income cutoff, asset limit, percentage, age limit, or processing time. Not even an approximate one. Not even if you think you know it. Say "AbilityFinder shows the current amount on the guide page for that benefit, and the official page is the final word."
+- NEVER state a dollar amount, income cutoff, asset limit, percentage, or age limit. Not even an approximate one. Not even if you think you know it. Say "AbilityFinder shows the current amount on the guide page for that benefit, and the official page is the final word." If the text below shows "[amount — see the guide]", that is deliberate: say the amount is on the guide page. Do not try to fill it in.
 - NEVER tell someone they qualify or do not qualify. Only the government decides. Say "it is worth applying" or "you may qualify".
-- NEVER invent a form number, phone number, office name, or web address. If you are not certain, say so and tell them to check the benefit guide.
+- NEVER invent a form number, phone number, office name, or web address. You may give a form name or a phone number ONLY if it is written above or in the detail section below. Otherwise say you are not certain and point to the benefit guide.
 - NEVER guess. If you do not know, say "I am not sure about that one" and point them to the guide or to human help.
 
-If a question needs a number or an eligibility decision, do not answer it from memory. Say that the guide page has the checked, current number, and encourage them to open it.
+If a question needs an amount or an eligibility decision, do not answer it from memory. Say that the guide page has the checked, current number, and encourage them to open it.
 
 HOW TO WRITE:
 - Plain English, around a grade 8 reading level. Short sentences. Short paragraphs.
@@ -69,6 +69,45 @@ TONE AND CARE:
 - You are not a doctor, lawyer, or financial advisor. For appeals and legal questions, point to Legal Aid Alberta or a community legal clinic.
 - Many people give up before applying. If someone is unsure, encourage them to apply anyway: the government decides, applying is usually free, and a denial can be appealed.
 - Scope is Alberta and federal Canada only. For another province, say AbilityFinder does not cover it yet.`;
+
+/**
+ * Pick the benefit detail relevant to the conversation.
+ *
+ * Sending all 20 benefits' detail every time costs ~3.9k tokens and would cut
+ * the free allocation from roughly 134 questions/day to ~73. Matching keeps the
+ * grounding without paying for 18 benefits nobody asked about.
+ *
+ * Scans recent turns, newest first, so a follow-up ("ok, how do I apply?") still
+ * resolves to the benefit named a turn or two earlier.
+ */
+function retrieveDetails(messages, max = 2) {
+  const recent = messages.slice(-4).reverse();
+  const picked = [];
+  for (const m of recent) {
+    const text = String(m.content || "").toLowerCase();
+    for (const [id, d] of Object.entries(BENEFIT_DETAILS)) {
+      if (picked.some((p) => p.id === id)) continue;
+      if (d.keys.some((k) => text.includes(k))) picked.push({ id, ...d });
+      if (picked.length >= max) return picked;
+    }
+  }
+  return picked;
+}
+
+function buildSystemPrompt(messages) {
+  const hits = retrieveDetails(messages);
+  if (!hits.length) return SYSTEM_PROMPT;
+  const blocks = hits
+    .map((h) => `### ${h.name}\n${h.text}`)
+    .join("\n\n");
+  return (
+    SYSTEM_PROMPT +
+    `\n\n## VERIFIED DETAIL FOR WHAT THEY ASKED ABOUT\n` +
+    `Checked by a human. Use this for how-to-apply, what-to-bring, timing and phone questions. ` +
+    `It is still not permission to state an amount — figures are redacted as "[amount — see the guide]" on purpose.\n\n` +
+    blocks
+  );
+}
 
 const cors = {
   "Access-Control-Allow-Origin": "*",
@@ -198,7 +237,7 @@ async function handleAsk(request, env) {
       stream: true,
       max_tokens: MAX_TOKENS,
       messages: [
-        { role: "system", content: SYSTEM_PROMPT },
+        { role: "system", content: buildSystemPrompt(body.messages) },
         ...body.messages.map((m) => ({ role: m.role, content: m.content })),
       ],
     });

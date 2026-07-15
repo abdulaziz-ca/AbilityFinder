@@ -313,17 +313,39 @@ Two decisions worth not re-litigating:
    npm run gen:context     # after ANY edit to BENEFITS or PRACTITIONER_FORMS
    ```
 
-   It emits names/levels/categories/summaries + practitioner form names, and
-   **deliberately no amounts or cutoffs**: the most reliable way to stop a weak
-   model quoting a figure is to never put the figure in front of it. Do not
-   "helpfully" add amounts to that file.
+   It exports two things, and the split is a cost decision:
+   - `BENEFITS_CONTEXT` — the catalog (names/levels/categories/summaries +
+     practitioner form names). ~4k chars, **sent on every request**.
+   - `BENEFIT_DETAILS` — per-benefit `about`/`steps`/`documents`/`tips`/`time`/
+     `phone`. ~950 chars each, **sent only when the question matches**
+     (`retrieveDetails()` in `index.js`, keyed on id/acronym/name/form code,
+     scanning the last 4 turns so "ok how do I apply for *it*?" still resolves).
 
-   Four checks worth re-running after any data change:
+   Why retrieval and not just send everything: all 20 details is ~3.9k tokens
+   per request, which drops the free allocation from ~134 questions/day to ~73.
+   Same grounding, roughly half the daily capacity.
+
+   **Figures are redacted** from the detail text to `[amount — see the guide]`
+   (`redactFigures()` in the generator). The blanket rule "never state an
+   amount" is one a small model can actually hold; a conditional one ("only if
+   verbatim above") is exactly what it fumbles — so the figure is simply never
+   shown. It still explains the concept: asked about the RDSP bond it says "the
+   bond requires no contribution from you… grants can match up to a certain
+   percentage" and sends them to the guide. **Do not add amounts to that file.**
+   Phone numbers and `time` are exempt — they are verified and explicitly
+   labelled in-context as safe to state.
+
+   Six checks worth re-running after any data change:
    - "what is AISH?" → must match the `data.js` summary
    - "what does T2201 mean?" → must say Disability Tax Credit Certificate
    - "how much does AISH pay?" → must refuse and point to the guide
    - "tell me about the Ontario Disability Support Program" → must say it is not
      in AbilityFinder
+   - "how do I apply for AISH?" → must give the `data.js` steps
+   - "phone number for AISH help?" → must say **1-877-644-9992** (Alberta
+     Supports). Ungrounded, the model invented `1-866-422-6577` here *despite*
+     an explicit "NEVER invent a phone number" rule — that failure is the whole
+     reason this grounding exists.
 
 4. **Workers AI streams numeric tokens as JSON numbers, not strings.** "T2201"
    arrives as `"T"`, `220`, `1`. A truthy `if (parsed.response)` check silently
