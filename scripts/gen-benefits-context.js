@@ -24,12 +24,14 @@ const ROOT = path.join(__dirname, "..");
 const SRC = path.join(ROOT, "public", "data.js");
 const APP = path.join(ROOT, "public", "app.js");
 const OUT = path.join(ROOT, "src", "benefits-context.js");
+const OUT_LINKS = path.join(ROOT, "src", "links.js");
 
 const ctx = { window: {}, document: {}, console };
 vm.createContext(ctx);
 vm.runInContext(
   fs.readFileSync(SRC, "utf8") +
-    '\n;globalThis.__B = typeof BENEFITS !== "undefined" ? BENEFITS : null;',
+    '\n;globalThis.__B = typeof BENEFITS !== "undefined" ? BENEFITS : null;' +
+    '\n;globalThis.__HELP = typeof HELP_ORGS !== "undefined" ? HELP_ORGS : null;',
   ctx
 );
 
@@ -159,4 +161,59 @@ console.log(
     `  catalog: ${body.length} chars (always sent)\n` +
     `  details: ${Object.keys(details).length} benefits, ${detailChars} chars total, ` +
     `~${Math.round(detailChars / Object.keys(details).length)} each (sent on match)`
+);
+
+/* ---------------------------------------------------------------------------
+   src/links.js — every official link we send people to, for the Phase 5A
+   monitor. These carry the whole "how do I get it?" promise and rot silently.
+
+   applyUrl can be a function of the user's answers (city-specific pages); those
+   cannot be checked without inventing a user, so they are skipped and counted
+   rather than silently dropped.
+--------------------------------------------------------------------------- */
+const links = [];
+const seen = new Set();
+let skippedDynamic = 0;
+
+const addLink = (url, label, kind) => {
+  if (typeof url === "function") { skippedDynamic++; return; }
+  if (typeof url !== "string" || !url.startsWith("http")) return;
+  if (seen.has(url)) return;
+  seen.add(url);
+  links.push({ url, label: clean(label), kind });
+};
+
+for (const b of benefits) {
+  addLink(b.applyUrl, `${clean(b.name)} — apply`, "apply");
+  addLink(b.source, `${clean(b.name)} — official source`, "source");
+}
+
+// Help orgs are the "talk to a human" escape hatch; a dead one is just as bad.
+const help = ctx.__HELP;
+if (help) {
+  const orgs = Array.isArray(help) ? help : Object.values(help).flat();
+  for (const o of orgs) if (o && o.url) addLink(o.url, `Help — ${clean(o.name || o.url)}`, "help");
+}
+
+const linksOut = `// GENERATED FILE — DO NOT EDIT BY HAND.
+// Regenerate with:  npm run gen:context
+// Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS)
+//
+// ${links.length} links. The Workers FREE plan caps subrequests at 50 per
+// invocation, so this must stay under that or the check needs chunking across
+// runs. Currently ${links.length}/50.
+// ${skippedDynamic} dynamic (function) applyUrls are skipped — they depend on the
+// user's answers, so there is no single URL to check.
+
+export const LINKS = ${JSON.stringify(links, null, 2)};
+
+export const SKIPPED_DYNAMIC = ${skippedDynamic};
+`;
+
+fs.writeFileSync(OUT_LINKS, linksOut);
+console.log(
+  `gen:context — wrote ${path.relative(ROOT, OUT_LINKS)}\n` +
+    `  ${links.length} checkable links (subrequest cap is 50/invocation)` +
+    (links.length > 50 ? "  *** OVER THE CAP — needs chunking ***" : "  — fits in one run") +
+    `\n  ${skippedDynamic} dynamic applyUrls skipped (depend on user answers)`
 );

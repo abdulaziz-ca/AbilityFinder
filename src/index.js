@@ -11,6 +11,7 @@
 // re-read this comment before upgrading.
 
 import { BENEFITS_CONTEXT, BENEFIT_DETAILS } from "./benefits-context.js";
+import { runLinkCheck, REPORT_KEY } from "./link-check.js";
 
 // Llama 4 Scout: 131k context, current (the llama-3.1 builds are past their
 // 2026-05-30 deprecation). Roughly 60 Neurons per question, so the free
@@ -256,11 +257,63 @@ async function handleAsk(request, env) {
   });
 }
 
+/**
+ * Phase 5A report endpoint. Public on purpose: it contains no user data, only
+ * the health of links we already publish. Making it public also means anyone who
+ * spots a dead link can see it's known. noindex so it stays out of search.
+ */
+async function handleLinkHealth(request, env) {
+  if (!env.LINK_HEALTH) return errorResponse("Link health is not configured.", 503);
+
+  const raw = await env.LINK_HEALTH.get(REPORT_KEY);
+  if (!raw) {
+    return new Response(
+      JSON.stringify({ status: "no report yet — the weekly check has not run" }, null, 2),
+      { status: 200, headers: { "Content-Type": "application/json", "X-Robots-Tag": "noindex" } }
+    );
+  }
+  return new Response(raw, {
+    headers: {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store",
+      "X-Robots-Tag": "noindex",
+    },
+  });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname === "/api/ask") return handleAsk(request, env);
+    if (url.pathname === "/api/link-health") return handleLinkHealth(request, env);
     // Everything else is the static site, served straight from ./public.
     return env.ASSETS.fetch(request);
+  },
+
+  /** Weekly link check (see wrangler.jsonc triggers.crons). */
+  async scheduled(controller, env, ctx) {
+    ctx.waitUntil(
+      runLinkCheck(env, new Date(controller.scheduledTime).toISOString())
+        .then((r) => {
+          // Surfaced in Workers Logs (observability is on). Only genuinely
+          // broken links raise an error — "unreachable" is logged quietly so a
+          // site that merely refuses Workers can't turn this into weekly noise.
+          if (r.brokenCount > 0) {
+            console.error(
+              `link-check: ${r.brokenCount}/${r.total} BROKEN — ` +
+                r.broken.map((b) => `${b.status} ${b.url}`).join(" | ")
+            );
+          } else {
+            console.log(`link-check: all reachable links OK (${r.okCount}/${r.total})`);
+          }
+          if (r.unreachableCount > 0) {
+            console.log(
+              `link-check: ${r.unreachableCount} could not be checked (verify by hand) — ` +
+                r.unreachable.map((u) => u.url).join(" | ")
+            );
+          }
+        })
+        .catch((e) => console.error("link-check failed:", e?.message ?? e))
+    );
   },
 };

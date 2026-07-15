@@ -21,6 +21,16 @@
 
   "observability": { "enabled": true },
 
+  // Phase 5A: weekly broken-link check. Mondays 13:00 UTC = 07:00 Alberta (MDT).
+  // Crons are free on the Workers Free plan (5 per account). Cron changes can
+  // take up to ~15 min to propagate after a deploy.
+  "triggers": { "crons": ["0 13 * * 1"] },
+
+  // Stores the latest link-health report. No user data — only our own links.
+  "kv_namespaces": [
+    { "binding": "LINK_HEALTH", "id": "740b98e5b839410588e2001debec6b79" }
+  ],
+
   // Second line of defence: stops one visitor burning the whole daily
   // allocation in a minute. period must be 10 or 60.
   "ratelimits": [
