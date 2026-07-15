@@ -2,7 +2,7 @@
 // Regenerate with:  npm run gen:context
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS)
 //
-// 43 links. The monitor checks a bounded rotating batch every
+// 51 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) applyUrls are skipped — they depend on the
@@ -50,13 +50,18 @@ export const LINKS = [
     "kind": "source"
   },
   {
-    "url": "https://www.alberta.ca/aish",
+    "url": "https://www.alberta.ca/aish-how-to-apply",
     "label": "Assured Income for the Severely Handicapped (AISH) — apply",
     "kind": "apply"
   },
   {
     "url": "https://www.alberta.ca/aish-eligibility",
     "label": "Assured Income for the Severely Handicapped (AISH) — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www.alberta.ca/alberta-disability-assistance-program",
+    "label": "Alberta Disability Assistance Program (ADAP) — official source",
     "kind": "source"
   },
   {
@@ -193,6 +198,41 @@ export const LINKS = [
     "url": "https://www.rmwb.ca/LIFT",
     "label": "Wood Buffalo LIFT (Low-Income Fare Transit) — official source",
     "kind": "source"
+  },
+  {
+    "url": "https://www.sprucegrove.org/services/spruce-grove-transit/transit-fares/",
+    "label": "Spruce Grove Low Income Transit Pass — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.leduc.ca/community/family-community-support-services/housing-financial-support",
+    "label": "Leduc Transit & Recreation Subsidies — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.cochrane.ca/node/241/financial-resources/cochrane-connect-card",
+    "label": "Cochrane Connect Card — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.okotoks.ca/your-community/social-well-being/family-community-resources/okotoks-family-resource-centre-7",
+    "label": "Okotoks Recreation Fee Assistance — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.canmore.ca/your-community/community-supports-and-services/affordable-services-program",
+    "label": "Canmore Affordable Services Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.lloydminster.ca/recreation-culture-community/social-programs-and-services/recreation-access-program/",
+    "label": "Lloydminster Recreation Access Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.fortsask.ca/recreation-parks/program-registrations-drop-in-classes/access-for-everyone-program/",
+    "label": "Fort Saskatchewan Access for Everyone — apply",
+    "kind": "apply"
   },
   {
     "url": "https://vadsociety.ca",

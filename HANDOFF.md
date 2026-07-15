@@ -93,7 +93,7 @@ Paths below are relative to `public/` unless stated otherwise.
 | `i18n.js` | `LANG`, `I18N` (en/fr), `t(key)` (English fallback), `STEP_I18N`, `stepText()`, `optionText()`. |
 | `data.js` | **Alberta + federal data only.** See §5. |
 | `data-provinces-later.js` | **PARKED, not loaded.** Other 12 jurisdictions' cities, map fragments, and `OTHER_PROVINCE_BENEFITS` (16 programs). Re-integration steps at the top of the file. |
-| `app.js` | The entire app — state, wizard, eligibility engine, router (landing/wizard/results/**browse**/detail), all render functions, accessibility engine, value/priority/retro logic, Phase-2 sections, Phase-3 progress tracker + category toggle + help directory + browse/search + caregiver report. See §6. |
+| `app.js` | The entire app — state, wizard, eligibility engine, router (landing/wizard/results/**browse**/detail/privacy/data-updates), all render functions, accessibility engine, value/priority/retro logic, Phase-2 sections, Phase-3 progress tracker + category toggle + help directory + browse/search + caregiver report. See §6. |
 | `serve.py` | No-cache dev server on :8731. |
 | `README.md` | User-facing feature docs. |
 | `ROADMAP.md` | Feature audit vs. the vision + phased roadmap (Phase 1 & 2 = done). |
@@ -110,7 +110,7 @@ adding a benefit's value/difficulty/depth is just a map entry. Key structures:
 - `ALBERTA_CITIES` — cities >5,000 pop. `CITIES_BY_PROVINCE = {AB: ALBERTA_CITIES}`.
 - `COVERED_PROVINCES = ["AB"]`. `STUDENT_AID/TWO_ELEVEN/EMPLOYMENT` = AB only (+
   `FED_STUDENT_AID`, `NATIONAL_211` fallbacks for non-AB users).
-- `BENEFITS` (20) — federal + Alberta + municipal + a generic `local-supports`.
+- `BENEFITS` (36) — federal + Alberta + municipal + a generic `local-supports`.
   Each: `{id, name, level, category, masterKey?, needsPractitioner?, amount,
   summary, requires:[reqKeys], note, applyText, applyUrl, source, detail:{about,
   steps[], documents[], tips[], time, phone}}`. `applyUrl`/`source` may be
@@ -119,7 +119,9 @@ adding a benefit's value/difficulty/depth is just a map entry. Key structures:
   lifetimeMax, retroMax, note}`. kind ∈ cash|taxCredit|grant|services|coverage|
   access|discount. Rendered by `valueParts()`.
 - `BENEFIT_META[id]` (Phase 1) — `{difficulty:1–5, effort, wait}`. Rendered by
-  `metaRow()`; also feeds `priorityScore()`.
+  `metaRow()`; also feeds `priorityScore()`. AISH/ADAP use
+  `excludeFromEstimate:true` because Alberta assesses them through one combined
+  application and adding them together would be false.
 - `BENEFIT_EXTRA[id]` (Phase 2) — `{confirm, taxNote, denials[], appeal,
   faqs:[{q,a}], related:[ids]}`. Rendered by `p2Sections()`.
 - `SUPPORTS` — non-monetary help items `{id, icon, cat, dis:[], sit:[], title,
@@ -257,7 +259,8 @@ browse/search, printable caregiver report, doctor-finder upgrade.
 **Nice-to-haves before Phase 4 (still client-side):**
 - Tag each benefit with the disabilities it's most relevant to, so the **browse
   view** can filter by disability (currently keyword + category + level only).
-- More Alberta municipalities in the catalog.
+- More Alberta municipalities in the catalog (Camrose is still unchecked; 17
+  current guides cover 18 communities).
 - The browse view is not history-pushed specially; fine, but a shareable
   deep-link to a single guide could be nice (guide id in the URL hash — safe, no
   personal data).
@@ -345,7 +348,7 @@ Two decisions worth not re-litigating:
    - "tell me about the Ontario Disability Support Program" → must say it is not
      in AbilityFinder
    - "how do I apply for AISH?" → must give the `data.js` steps
-   - "phone number for AISH help?" → must say **1-877-644-9992** (Alberta
+   - "phone number for AISH help?" → must say **1-877-759-6810** (Alberta
      Supports). Ungrounded, the model invented `1-866-422-6577` here *despite*
      an explicit "NEVER invent a phone number" rule — that failure is the whole
      reason this grounding exists.

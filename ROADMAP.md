@@ -324,27 +324,18 @@ Two consequences already visible:
 There is no headline feature missing and no known WCAG AA violation.
 
 The highest-value work left is **not code**:
-1. **Urgently audit the AISH / ADAP transition.** The [official Alberta ADAP
-   page](https://www.alberta.ca/alberta-disability-assistance-program) now says
-   ADAP is operational and that applications for AISH and ADAP are combined.
-   Treat the current AISH entry's application link,
-   eligibility language, amounts, work-income rules, related-benefit notes and
-   assistant grounding as potentially stale until each is re-checked against the
-   official ADAP/AISH pages. Do not patch this from memory or a news summary — a
-   wrong income-support rule has a direct cost to a person applying.
-2. **Feed the monitor's findings back into the data.** 5A already found real rot
+1. **Feed the monitor's findings back into the data.** 5A already found real rot
    (Inclusion Alberta's RDSP page) within a minute of existing. The monitor
    updates `/api/link-health` every three hours and records whether the current
    sweep is complete.
-3. **Get a real disabled person to use it.** The audit clears the automated
+2. **Get a real disabled person to use it.** The audit clears the automated
    third of WCAG; the other two thirds (screen readers, keyboard-only, 400%
    zoom, whether the plain-language copy actually lands) need humans. This is
    now the single biggest unknown in the project.
-4. **`BENEFIT_SIGNERS` for the other three practitioner benefits** — CPP-D,
-   AISH and the parking placard have no verified signer list, so their guides
-   fall back to "family doctor". Adding them needs *your research*, not a guess;
-   a wrong entry sends someone to pay for an appointment with a person who
-   cannot sign their form.
+3. **Do not guess AISH/ADAP signers.** CPP-D and the parking placard now have
+   official signer lists in `BENEFIT_SIGNERS`; Alberta's public AISH/ADAP
+   material still does not publish an exhaustive list, so it correctly remains
+   absent. Re-check before changing that safety boundary.
 
 ### Still-open smaller items
 - **Per-disability browse filter** — needs benefit→disability tags in `data.js`;
@@ -352,7 +343,9 @@ The highest-value work left is **not code**:
 - ~~**More Alberta municipalities**~~ ✅ **DONE 2026-07-15.** Now 8 cities, each
   researched against its own official page: Calgary, Edmonton, **Red Deer,
   Lethbridge, Medicine Hat, Grande Prairie, St. Albert, Sherwood Park**.
-  Now **10 cities** (added Airdrie + Wood Buffalo/Fort McMurray 2026-07-15).
+  Now **17 municipal guides across 18 communities** (follow-up added the Spruce
+  Grove area, Leduc, Cochrane, Okotoks, Canmore, Lloydminster and Fort
+  Saskatchewan; Spruce Grove's guide also covers Stony Plain).
   The monitor now uses safe rotating batches, so more municipal links increase
   the time for a full sweep rather than breaking the Free-plan cap. It checks
   every current link and reports the sweep's coverage at `/api/link-health`.

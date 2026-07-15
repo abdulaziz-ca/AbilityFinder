@@ -43,7 +43,8 @@ const EQUIP_NEED = ["physical", "chronic", "vision", "hearing", "speech", "brain
 const CITIES_WITH_PROGRAMS = [
   "Calgary", "Edmonton", "Red Deer", "Lethbridge",
   "Medicine Hat", "Grande Prairie", "St. Albert", "Sherwood Park",
-  "Airdrie", "Fort McMurray",
+  "Airdrie", "Fort McMurray", "Spruce Grove", "Stony Plain", "Leduc",
+  "Cochrane", "Okotoks", "Canmore", "Lloydminster", "Fort Saskatchewan",
 ];
 
 /* ---------------------------------------------- Alberta communities (pop >5,000)
@@ -97,7 +98,12 @@ const BENEFIT_VALUES = {
   "csg-disability": { kind: "grant", annualMax: 2800 },
   "csg-dse": { kind: "grant", annualMax: 20000 },
   // ---- Alberta ----
-  aish: { kind: "cash", monthlyMax: 1901, annualMax: 22812 },
+  // AISH and ADAP are assessed through one application. Keep both out of the
+  // combined estimate: adding them together would falsely promise two incomes.
+  aish: { kind: "cash", excludeFromEstimate: true,
+    note: "monthly living allowance plus health and personal benefits" },
+  adap: { kind: "cash", excludeFromEstimate: true,
+    note: "monthly financial benefit plus health, personal and employment benefits" },
   aadl: { kind: "coverage", note: "covers ~75% of approved equipment & supplies" },
   pdd: { kind: "services", note: "funded daily-living, community & employment services" },
   fscd: { kind: "services", note: "respite, services & help with some disability costs" },
@@ -117,6 +123,13 @@ const BENEFIT_VALUES = {
   "strathcona-subsidy": { kind: "discount", note: "Reduced transit fare cap + free annual Active Pass+" },
   "airdrie-fair-access": { kind: "discount", note: "25–75% off transit + Genesis Place recreation" },
   "woodbuffalo-lift": { kind: "discount", note: "$10/mo transit pass + 75% off SMART Bus + 60% off recreation" },
+  "sprucegrove-low-income-transit": { kind: "discount", note: "$25/mo local or $50/mo commuter transit pass" },
+  "leduc-subsidies": { kind: "discount", note: "half-price local, commuter and LATS transit + a free rec membership" },
+  "cochrane-connect-card": { kind: "discount", note: "25% off local transit + 50% off SLS Centre monthly passes" },
+  "okotoks-fee-assistance": { kind: "discount", note: "80% off most Town programs, passes and admission" },
+  "canmore-affordable-services": { kind: "discount", note: "discounts on local transit, recreation and community services" },
+  "lloydminster-recreation-access": { kind: "discount", note: "$2 adult drop-in admission at City recreation facilities" },
+  "fortsask-access": { kind: "discount", note: "free multi-facility membership and reduced local or commuter transit fares" },
   "local-supports": { kind: "discount", note: "varies by community" },
 };
 
@@ -132,11 +145,14 @@ const BENEFIT_VALUES = {
  * dtc: transcribed verbatim from this benefit's own `note` in this file
  *   ("Your doctor, nurse practitioner, psychologist, optometrist or audiologist
  *   documents this on Form T2201"), which was verified July 2026.
- * cpp-disability / aish / parking-placard: data.js says nothing about who signs
- *   theirs, so they are deliberately absent rather than guessed.
+ * AISH/ADAP remains deliberately absent: Alberta's public guidance says the
+ * report must be completed by a medical professional registered in Alberta, but
+ * does not publish an exhaustive profession list.
  */
 const BENEFIT_SIGNERS = {
   dtc: ["family doctor", "nurse practitioner", "psychologist", "optometrist", "audiologist"],
+  "cpp-disability": ["family doctor", "nurse practitioner"],
+  "parking-placard": ["family doctor", "occupational therapist", "physiotherapist", "surgeon", "podiatrist", "nurse practitioner", "chiropractor"],
 };
 
 const BENEFIT_META = {
@@ -148,7 +164,8 @@ const BENEFIT_META = {
   "cpp-disability": { difficulty: 5, effort: "2–4 hrs + a doctor's report", wait: "~4 months" },
   "csg-disability": { difficulty: 2, effort: "With your student aid application", wait: "with student aid" },
   "csg-dse": { difficulty: 2, effort: "Student aid + quotes for equipment", wait: "with student aid" },
-  aish: { difficulty: 4, effort: "2–3 hrs + a doctor's form", wait: "6–12 weeks" },
+  aish: { difficulty: 4, effort: "Application + medical report", wait: "Check with Alberta Supports" },
+  adap: { difficulty: 4, effort: "Application + medical report", wait: "Check with Alberta Supports" },
   aadl: { difficulty: 3, effort: "Assessment with an OT / authorizer", wait: "varies" },
   pdd: { difficulty: 3, effort: "Assessment-based", wait: "varies" },
   fscd: { difficulty: 2, effort: "Meet with an FSCD worker", wait: "varies" },
@@ -167,6 +184,13 @@ const BENEFIT_META = {
   "strathcona-subsidy": { difficulty: 2, effort: "Call or visit FCSS", wait: "ask when you apply" },
   "airdrie-fair-access": { difficulty: 1, effort: "One online form", wait: "ask when you apply" },
   "woodbuffalo-lift": { difficulty: 1, effort: "Online form + proof of income", wait: "7–10 business days" },
+  "sprucegrove-low-income-transit": { difficulty: 1, effort: "Application + proof of income", wait: "Apply year-round" },
+  "leduc-subsidies": { difficulty: 1, effort: "Contact FCSS for an assessment", wait: "Ask when you apply" },
+  "cochrane-connect-card": { difficulty: 2, effort: "Appointment + income documents", wait: "Ask when you apply" },
+  "okotoks-fee-assistance": { difficulty: 1, effort: "Application + proof of income", wait: "Ask when you apply" },
+  "canmore-affordable-services": { difficulty: 1, effort: "Application + proof of income", wait: "Ask when you apply" },
+  "lloydminster-recreation-access": { difficulty: 1, effort: "Application + proof of income", wait: "Ask when you apply" },
+  "fortsask-access": { difficulty: 1, effort: "Application + proof of income", wait: "Ask when you apply" },
   "local-supports": { difficulty: 1, effort: "Call 2-1-1", wait: "immediate" },
 };
 
@@ -264,20 +288,29 @@ const BENEFIT_EXTRA = {
   },
   aish: {
     confirm: "a severe, permanent condition that substantially limits your ability to earn a living, AND income and assets under the AISH limits",
-    taxNote: "AISH isn't taxable, but other income (like CPP-D, or earnings above the monthly exemption) reduces your payment. You must apply for CPP-D if you might qualify.",
+    taxNote: "AISH is not taxable. Other income and assets can affect assistance; Alberta's combined assessment decides the current treatment for your situation.",
     denials: [
       "The condition wasn't shown to be permanent, or was expected to improve with treatment.",
       "The medical didn't tie the disability to an inability to earn a living.",
       "Income or assets over the limit.",
-      "Hadn't first applied for other benefits like CPP-D.",
+      "The financial assessment did not meet the program rules.",
     ],
-    appeal: "You can appeal to the Citizen's Appeal Panel — usually within 30 days. An advocate (e.g. Voice of Albertans with Disabilities) can help strengthen the medical evidence.",
+    appeal: "Read Alberta's current decision and appeal information before acting; rules and routes can change during the AISH/ADAP transition.",
     faqs: [
-      { q: "Can I work and keep AISH?", a: "Yes — you can earn a set amount each month before it affects your payment, and only part of income above that reduces AISH." },
+      { q: "Do I apply separately for ADAP?", a: "No. Alberta's current application assesses both AISH and ADAP and places eligible applicants in the program that fits." },
       { q: "Do I need the DTC first?", a: "No, AISH is separate — but the DTC, CPP-D and RDSP are all worth applying for too." },
-      { q: "What assets can I keep?", a: "Your home, one vehicle, an RDSP, and some other assets are exempt." },
+      { q: "How much will I receive?", a: "It depends on Alberta's current rules and your household. Use the official AISH/ADAP benefit estimator rather than relying on a general figure." },
     ],
-    related: ["dtc", "cpp-disability", "aadl", "adult-health-benefit"],
+    related: ["adap", "dtc", "cpp-disability", "aadl", "adult-health-benefit"],
+  },
+  adap: {
+    confirm: "a severe disability that significantly impedes employment continuously or episodically, plus Alberta's age, residency, status and financial rules",
+    taxNote: "Alberta's combined assessment decides the current benefit and how household income or assets affect it.",
+    faqs: [
+      { q: "Do I have to choose AISH or ADAP?", a: "No. Alberta's one application assesses both programs and places eligible applicants in the program that fits." },
+      { q: "Can a fluctuating condition count?", a: "ADAP's official eligibility describes barriers that significantly impede employment continuously or episodically. Alberta makes the decision from the full application and medical report." },
+    ],
+    related: ["aish", "dtc", "cpp-disability", "aadl", "adult-health-benefit"],
   },
   rdsp: {
     confirm: "being approved for the Disability Tax Credit (DTC) and being under age 60",
@@ -315,7 +348,10 @@ const BENEFIT_EXTRA = {
     related: ["aish", "aadl"],
   },
   "parking-placard": {
-    faqs: [{ q: "Do I need to own a car?", a: "No — the placard belongs to you and works in any vehicle you're travelling in." }],
+    faqs: [
+      { q: "Do I need to own a car?", a: "No — the placard belongs to you and works in any vehicle you're travelling in." },
+      { q: "Who can complete the medical section?", a: "Alberta lists a physician, occupational therapist, physiotherapist, surgeon, podiatrist, nurse practitioner or chiropractor. Check with the practitioner before booking." },
+    ],
   },
   dres: { related: ["ab-grant-disability", "csg-dse"] },
 };
@@ -993,35 +1029,72 @@ const BENEFITS = [
     name: "Assured Income for the Severely Handicapped (AISH)",
     level: "Alberta",
     category: "Money",
-    amount: "Up to ~$1,901 / month + health & other benefits",
+    amount: "Monthly living allowance + health and personal benefits",
     summary:
-      "Alberta's main disability income program — a monthly living allowance plus health coverage.",
+      "Alberta disability income assistance for people whose permanent disability prevents employment.",
     requires: ["adult", "ab", "citizenPR", "severePermanent", "lowIncome"],
     note:
-      "AISH requires a SEVERE, PERMANENT disability that substantially limits your ability to earn a living. Approval is strict, but worth applying if that describes you. From July 2026 a single application also considers you for the new Alberta Disability Assistance Program.",
-    applyText: "Check AISH eligibility & apply",
-    applyUrl: "https://www.alberta.ca/aish",
+      "AISH is for a severe, permanent disability that prevents employment. Alberta now uses one application to assess both AISH and ADAP — submit it once, not separately for each program.",
+    applyText: "Apply for Alberta disability income assistance",
+    applyUrl: "https://www.alberta.ca/aish-how-to-apply",
     source: "https://www.alberta.ca/aish-eligibility",
     detail: {
       about:
-        "A monthly living allowance for Alberta adults whose severe, permanent disability substantially limits their ability to work. It also comes with health benefits (prescriptions, dental, optical) and other supports.",
+        "AISH is Alberta disability income assistance for adults whose severe, permanent disability prevents employment. It includes a monthly living allowance and may include health and personal benefits.",
       steps: [
-        "Read the eligibility page to confirm you likely qualify.",
-        "Complete Part A (you) of the application; your doctor completes Part B (medical).",
-        "Submit to an AISH office; you'll usually meet with a caseworker.",
+        "Use Alberta's combined AISH/ADAP application — it assesses which program fits; you do not make two separate applications.",
+        "Complete your part and arrange the required medical report with a medical professional registered in Alberta.",
+        "Submit online, or use the application options Alberta Supports provides if online is not workable for you.",
       ],
       documents: [
-        "Medical report showing a severe, permanent impairment",
+        "Medical report showing how a severe, permanent impairment prevents employment",
         "Proof of Alberta residency + Canadian citizenship / PR",
         "Financial details (income and assets)",
       ],
       tips: [
         "The medical form should focus on how your condition limits your ability to EARN A LIVING, not just the diagnosis.",
-        "There's a financial test — some assets (like your home and vehicle) are exempt.",
-        "If ADHD/mental health is your only condition, pair it with any other diagnoses and be detailed about work impact.",
+        "The combined application assesses AISH and ADAP. Alberta, not this tool, decides the program and benefit amount.",
+        "Use Alberta's AISH/ADAP benefit estimator for a household-specific estimate before relying on any amount.",
       ],
-      time: "Can take several months; apply early.",
-      phone: "Alberta Supports: 1-877-644-9992",
+      time: "Ask Alberta Supports for the current processing time.",
+      phone: "Alberta Supports: 1-877-759-6810",
+    },
+  },
+  {
+    id: "adap",
+    needsPractitioner: true,
+    name: "Alberta Disability Assistance Program (ADAP)",
+    level: "Alberta",
+    category: "Money",
+    amount: "Up to $1,740/month + health, personal and employment benefits",
+    summary:
+      "Alberta disability income assistance when a severe disability significantly impedes employment, including episodically.",
+    requires: ["adult", "ab", "citizenPR", "lowIncome", "disabilityDoc"],
+    note:
+      "The same combined application assesses ADAP and AISH. This guide can only flag that ADAP may be worth asking about — Alberta makes the eligibility decision.",
+    applyText: "Apply for Alberta disability income assistance",
+    applyUrl: "https://www.alberta.ca/aish-how-to-apply",
+    source: "https://www.alberta.ca/alberta-disability-assistance-program",
+    detail: {
+      about:
+        "ADAP is Alberta disability income assistance for adults whose severe disability significantly impedes employment continuously or episodically. It can include a core monthly financial benefit, health benefits, personal benefits and employment supports.",
+      steps: [
+        "Use Alberta's combined AISH/ADAP application — it assesses which program fits; you do not make two separate applications.",
+        "Complete your part and arrange the required medical report with a medical professional registered in Alberta.",
+        "Provide the residency, status and financial information requested by Alberta Supports.",
+      ],
+      documents: [
+        "Medical report describing how the disability significantly impedes employment",
+        "Proof of Alberta residency + Canadian citizenship / PR",
+        "Financial details (income and assets)",
+      ],
+      tips: [
+        "Describe functional limits and fluctuating or episodic barriers — not only your diagnosis name.",
+        "One application is enough: Alberta decides whether AISH or ADAP is the appropriate program.",
+        "Use Alberta's AISH/ADAP benefit estimator for a household-specific estimate before relying on any amount.",
+      ],
+      time: "Ask Alberta Supports for the current processing time.",
+      phone: "Alberta Supports: 1-877-759-6810",
     },
   },
   {
@@ -1289,7 +1362,7 @@ const BENEFITS = [
       ],
       tips: [
         "You don't need to own a vehicle — the placard belongs to you, not a car.",
-        "A doctor, nurse practitioner, or in some cases other practitioners can certify it.",
+        "The medical section can be completed by a physician, occupational therapist, physiotherapist, surgeon, podiatrist, nurse practitioner or chiropractor.",
       ],
       time: "Issued at the registry, often same-day.",
       phone: "Any Alberta registry agent",
@@ -1665,6 +1738,146 @@ const BENEFITS = [
       ],
       time: "7–10 business days.",
       phone: "Pulse: 780-743-7000",
+    },
+  },
+  {
+    id: "sprucegrove-low-income-transit",
+    name: "Spruce Grove Low Income Transit Pass",
+    level: "Spruce Grove area",
+    category: "Getting around",
+    amount: "$25/month local or $50/month commuter transit pass",
+    summary: "A reduced local or commuter transit pass for qualifying Spruce Grove-area residents.",
+    requires: ["sprucegrovearea", "lowIncome"],
+    note: "The City accepts applications year-round. The program also serves eligible Stony Plain and Parkland County residents.",
+    applyText: "Spruce Grove transit fares and low-income pass",
+    applyUrl: "https://www.sprucegrove.org/services/spruce-grove-transit/transit-fares/",
+    source: "https://www.sprucegrove.org/services/spruce-grove-transit/transit-fares/",
+    detail: {
+      about: "A City of Spruce Grove subsidized transit pass. Qualifying adults can buy a local pass for $25 a month or a commuter pass for $50 a month.",
+      steps: ["Read the City’s current eligibility rules and application instructions.", "Apply with proof of address and household income.", "Choose the local or commuter pass that matches your trips."],
+      documents: ["Proof of address", "Proof of household income"],
+      tips: ["The City says applications are accepted year-round.", "Stony Plain and Parkland County residents should confirm the local address rules on the City page before applying."],
+      time: "Applications are accepted year-round.",
+    },
+  },
+  {
+    id: "leduc-subsidies",
+    name: "Leduc Transit & Recreation Subsidies",
+    level: "Leduc",
+    category: "Getting around & recreation",
+    amount: "Half-price transit + a free Leduc Recreation Centre annual membership",
+    summary: "Financial-navigation support that can reduce local, commuter and LATS transit costs and provide recreation access.",
+    requires: ["leduc", "lowIncome"],
+    note: "Leduc lists half-price local, commuter and LATS transit passes, plus a free annual Leduc Recreation Centre membership for qualifying residents.",
+    applyText: "Contact Leduc FCSS about subsidies",
+    applyUrl: "https://www.leduc.ca/community/family-community-support-services/housing-financial-support",
+    source: "https://www.leduc.ca/community/family-community-support-services/housing-financial-support",
+    detail: {
+      about: "Leduc Family and Community Support Services can help qualifying residents access reduced transit and recreation costs as part of its housing and financial-navigation support.",
+      steps: ["Contact Leduc FCSS for a financial-navigation appointment.", "Ask about the transit and recreation subsidies when discussing your situation.", "Follow their directions for the documents needed to assess eligibility."],
+      documents: ["Proof of Leduc residence", "Financial information requested by FCSS"],
+      tips: ["Ask specifically about LATS if you use specialized transit.", "The City’s page describes an assessment, so do not assume eligibility until FCSS confirms it."],
+      time: "Ask FCSS when you contact them.",
+    },
+  },
+  {
+    id: "cochrane-connect-card",
+    name: "Cochrane Connect Card",
+    level: "Cochrane",
+    category: "Getting around & recreation",
+    amount: "25% off local transit + 50% off SLS Centre monthly passes",
+    summary: "A City card for residents facing financial or situational barriers, with local transit and recreation discounts.",
+    requires: ["cochrane", "lowIncome"],
+    note: "Cochrane assesses financial and situational need. Book an appointment and bring the requested income and address documents.",
+    applyText: "Cochrane Connect Card information",
+    applyUrl: "https://www.cochrane.ca/node/241/financial-resources/cochrane-connect-card",
+    source: "https://www.cochrane.ca/node/241/financial-resources/cochrane-connect-card",
+    detail: {
+      about: "The Cochrane Connect Card gives qualifying residents 25% off COLT monthly and 10-ticket transit passes, and 50% off SLS Centre 30-day and monthly passes.",
+      steps: ["Book the appointment described on the City’s Connect Card page.", "Bring proof of income and your Cochrane address.", "Ask which current transit and SLS Centre discounts the card gives you."],
+      documents: ["Proof of income", "Proof of Cochrane address"],
+      tips: ["This is not only an income test; the City also describes situational need.", "Confirm the current eligible passes at your appointment before purchasing."],
+      time: "Ask when booking the appointment.",
+    },
+  },
+  {
+    id: "okotoks-fee-assistance",
+    name: "Okotoks Recreation Fee Assistance",
+    level: "Okotoks",
+    category: "Recreation",
+    amount: "80% off most Town programs, passes and admission",
+    summary: "A recreation-fee subsidy for qualifying low-income Okotoks and Foothills County residents.",
+    requires: ["okotoks", "lowIncome"],
+    note: "The Town describes 80% support for most Town programs, passes and admission. Check current exclusions and camp limits before registering.",
+    applyText: "Okotoks recreation fee assistance",
+    applyUrl: "https://www.okotoks.ca/your-community/social-well-being/family-community-resources/okotoks-family-resource-centre-7",
+    source: "https://www.okotoks.ca/your-community/social-well-being/family-community-resources/okotoks-family-resource-centre-7",
+    detail: {
+      about: "The Town’s Recreation Fee Assistance Program helps qualifying residents afford most Town recreation programs, passes and admission at an 80% discount.",
+      steps: ["Read the Town’s current program information and eligibility rules.", "Apply with the income and residence documents requested.", "Check the program period and any limits before registering for an activity."],
+      documents: ["Proof of income", "Proof of Okotoks residence"],
+      tips: ["The Town also serves eligible Foothills County residents; confirm the current boundary rule if that is you.", "Ask about exclusions before choosing a camp or program."],
+      time: "Ask when you apply.",
+    },
+  },
+  {
+    id: "canmore-affordable-services",
+    name: "Canmore Affordable Services Program",
+    level: "Canmore",
+    category: "Getting around & recreation",
+    amount: "Discounts on local transit, recreation and community services",
+    summary: "A Town program that provides qualifying residents with lower-cost local services, including transit and recreation.",
+    requires: ["canmore", "lowIncome"],
+    note: "The Town lists discounts across local transit, recreation and community services. Transit discount tiers differ, so confirm the current rate for your household.",
+    applyText: "Canmore Affordable Services Program",
+    applyUrl: "https://www.canmore.ca/your-community/community-supports-and-services/affordable-services-program",
+    source: "https://www.canmore.ca/your-community/community-supports-and-services/affordable-services-program",
+    detail: {
+      about: "Canmore’s Affordable Services Program provides qualifying residents with discounts on Town and community services, including local transit and recreation.",
+      steps: ["Review the Town’s current eligibility and application instructions.", "Apply with the income and residency documents requested.", "Ask which discounts apply to the services you use."],
+      documents: ["Proof of income", "Proof of Canmore residence"],
+      tips: ["Transit discounts are tiered; the Town page is the source of truth for the current rate.", "Apply before assuming a discount is available for a specific community service."],
+      time: "Ask when you apply.",
+    },
+  },
+  {
+    id: "lloydminster-recreation-access",
+    name: "Lloydminster Recreation Access Program",
+    level: "Lloydminster",
+    category: "Recreation",
+    amount: "$2 adult drop-in admission at City recreation facilities",
+    summary: "Income-based recreation access for qualifying Lloydminster residents.",
+    requires: ["lloydminster", "lowIncome"],
+    note: "The City lists income-based access to City recreation facilities, including $2 adult drop-in admission. Confirm all current discounts when applying.",
+    applyText: "Lloydminster Recreation Access Program",
+    applyUrl: "https://www.lloydminster.ca/recreation-culture-community/social-programs-and-services/recreation-access-program/",
+    source: "https://www.lloydminster.ca/recreation-culture-community/social-programs-and-services/recreation-access-program/",
+    detail: {
+      about: "Lloydminster’s Recreation Access Program gives qualifying low-income residents reduced-cost access to City recreation facilities.",
+      steps: ["Review the City’s current income criteria and application instructions.", "Apply with the documents the City requests.", "Ask the recreation desk which current facility admissions and passes are covered."],
+      documents: ["Proof of household income", "Proof of Lloydminster residence"],
+      tips: ["Use the official City page to confirm current rates before making plans around a discount.", "Ask whether your household members can be included in the application."],
+      time: "Ask when you apply.",
+    },
+  },
+  {
+    id: "fortsask-access",
+    name: "Fort Saskatchewan Access for Everyone",
+    level: "Fort Saskatchewan",
+    category: "Getting around & recreation",
+    amount: "Free multi-facility membership + reduced local or commuter transit fares",
+    summary: "Recreation and transit support for eligible Fort Saskatchewan residents with limited income or approved income support.",
+    requires: ["fortsask", "lowIncome"],
+    note: "The City lists a fully discounted annual multi-facility membership and an Everyone Rides transit subsidy. It also accepts several approved income-support programs; confirm your route when applying.",
+    applyText: "Fort Saskatchewan Access for Everyone",
+    applyUrl: "https://www.fortsask.ca/recreation-parks/program-registrations-drop-in-classes/access-for-everyone-program/",
+    source: "https://www.fortsask.ca/recreation-parks/program-registrations-drop-in-classes/access-for-everyone-program/",
+    detail: {
+      about: "Fort Saskatchewan’s Access for Everyone Program combines recreation support with the Everyone Rides transit subsidy for eligible residents.",
+      steps: ["Review the City’s current eligibility routes and application instructions.", "Apply with proof of limited income or the approved income-support document that applies to you.", "Ask about both the recreation membership and Everyone Rides transit subsidy."],
+      documents: ["Proof of Fort Saskatchewan residence", "Proof of income or approved income support"],
+      tips: ["The City lists AISH, CPP Disability, FSCD and Income Support among the approved-program routes; check the current page for full details.", "Ask whether your local or commuter transit trips qualify before buying a pass."],
+      time: "Ask when you apply.",
     },
   },
   {

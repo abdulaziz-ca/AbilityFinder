@@ -148,35 +148,30 @@ Audited with axe-core: **8 views × 2 themes, 0 violations.** Keep it there.
 ## State of play
 
 **Done:** Phases 1–5 (money & priority, eligibility depth, organise & act, AI
-assistant, keep-it-true). 10 municipalities. Accessibility audit. All five
-user questions are answered.
+assistant, keep-it-true). 17 municipal guides across 18 Alberta communities.
+Accessibility audit. AISH/ADAP transition audit, public data-update record, and
+per-benefit dates for the newly re-checked guides. All five user questions are
+answered.
 
 **The real remaining risk is decay**, not missing features: 30+ official links
 and every dollar figure go stale silently. The rotating monitor reports its
 latest sweep coverage at `/api/link-health`; feedback now reaches the owner.
 
 **Next, in order:**
-1. **Audit the AISH / ADAP transition before adding anything else.** Alberta's
-   official ADAP page says the new program is operational and applications are
-   combined. Re-check the current AISH entry's application route, rules, figures
-   and assistant grounding against official pages before editing; never infer
-   transition details.
-2. **Get a real disabled person to use it.** The audit clears the automated
+1. **Get a real disabled person to use it.** The audit clears the automated
    third of WCAG; screen readers, keyboard-only, 400% zoom and whether the
    plain-language copy lands are all unverified. This is the biggest unknown.
-3. **`BENEFIT_SIGNERS` for CPP-D / AISH / parking placard** — only DTC has a
-   verified signer list. Needs research, not a guess: a wrong entry sends
-   someone to pay for an appointment with a practitioner who can't sign.
-4. **More municipalities** — 10 done; Spruce Grove, Leduc, Cochrane, Okotoks,
-   Camrose, Canmore, Lloydminster, Fort Saskatchewan are unchecked. The link
+2. **AISH/ADAP signer guidance** — CPP-D and the parking placard now have
+   verified signer lists. Do not add an AISH/ADAP profession list until Alberta
+   publishes one; the public guidance currently says only a medical professional
+   registered in Alberta.
+3. **More municipalities** — Camrose is still unchecked. The link
    monitor uses bounded rotating batches (10 links × at most 4 redirects = 40
    external subrequests/run), so adding cities extends the sweep length instead
    of breaking the Workers Free limit. Never drop a link just to fit a cap.
-5. **Per-benefit `verified` dates** (`BENEFIT_VERIFIED`) — seeded empty; add an
-   entry only when you have actually re-checked that benefit.
-6. Scroll-reveal animation is **unverified in a real browser** (the preview pane
+4. Scroll-reveal animation is **unverified in a real browser** (the preview pane
    can't scroll). The fail-safes are tested; the effect isn't.
 
 **Deliberately rejected — don't "just add" these** (reasons in `ROADMAP.md`):
-accounts/sync, email/SMS reminders, community reviews, an admin CMS, and any
+   accounts/sync, email/SMS reminders, community reviews, an admin CMS, and any
 "describe your disability and we'll pick for you" matcher.

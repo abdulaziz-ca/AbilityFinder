@@ -221,6 +221,13 @@ const REQS = {
   strathcona: { met: () => answers.city === "Sherwood Park", fixed: true, unmet: "This is a Strathcona County program." },
   airdrie: { met: () => answers.city === "Airdrie", fixed: true, unmet: "This is a City of Airdrie program." },
   woodbuffalo: { met: () => answers.city === "Fort McMurray", fixed: true, unmet: "This is a Wood Buffalo (Fort McMurray) program." },
+  sprucegrovearea: { met: () => ["Spruce Grove", "Stony Plain"].includes(answers.city), fixed: true, unmet: "This is for eligible Spruce Grove-area residents." },
+  leduc: { met: () => answers.city === "Leduc", fixed: true, unmet: "This is a City of Leduc program." },
+  cochrane: { met: () => answers.city === "Cochrane", fixed: true, unmet: "This is a Town of Cochrane program." },
+  okotoks: { met: () => answers.city === "Okotoks", fixed: true, unmet: "This is a Town of Okotoks program." },
+  canmore: { met: () => answers.city === "Canmore", fixed: true, unmet: "This is a Town of Canmore program." },
+  lloydminster: { met: () => answers.city === "Lloydminster", fixed: true, unmet: "This is a City of Lloydminster program." },
+  fortsask: { met: () => answers.city === "Fort Saskatchewan", fixed: true, unmet: "This is a City of Fort Saskatchewan program." },
   cityOther: {
     // Anywhere we DON'T have a verified municipal program → the 2-1-1 finder.
     // Add a city here the moment you add its program, or people get the generic
@@ -238,6 +245,7 @@ const resolveUrl = (u) => (typeof u === "function" ? u(answers) : u);
 function valueParts(b) {
   const v = BENEFIT_VALUES[b.id];
   if (!v) return { head: b.amount, sub: "", est: false };
+  if (v.excludeFromEstimate) return { head: b.amount, sub: "", est: false };
   const m = (n) => "$" + Math.round(n).toLocaleString("en-CA");
   let head = "";
   if (["services", "coverage", "access", "discount"].includes(v.kind)) {
@@ -297,7 +305,7 @@ function renderMoneyBand(ready, almost) {
   const matched = [...ready, ...almost];
   // headline = what's READY now (honest); unlocks shown separately as potential
   const readyVals = ready.map((e) => BENEFIT_VALUES[e.b.id]).filter(Boolean);
-  const annualTotal = readyVals.filter((v) => ["cash", "grant", "taxCredit"].includes(v.kind) && v.annualMax).reduce((s, v) => s + v.annualMax, 0);
+  const annualTotal = readyVals.filter((v) => ["cash", "grant", "taxCredit"].includes(v.kind) && !v.excludeFromEstimate && v.annualMax).reduce((s, v) => s + v.annualMax, 0);
   const lifetime = matched.map((e) => BENEFIT_VALUES[e.b.id]).find((v) => v && v.lifetimeMax);
   const hasDtc = matched.some((e) => e.b.id === "dtc");
   const round100 = (n) => Math.round(n / 100) * 100;
@@ -824,6 +832,10 @@ function render() {
     progress.style.display = "none";
     app.innerHTML = renderSafely(renderPrivacy, "privacy");
     wirePrivacy();
+  } else if (view === "updates") {
+    progress.style.display = "none";
+    app.innerHTML = renderSafely(renderUpdates, "updates");
+    wireUpdates();
   } else if (view === "help") {
     progress.style.display = "none";
     app.innerHTML = renderSafely(() => renderHelpPage(helpTopic), "help");
@@ -987,6 +999,7 @@ function renderLanding() {
       <div class="sf-brand">${icon("compass")} AbilityFinder</div>
       <div class="sf-links">
         <button class="linklike js-privacy">Privacy &amp; disclaimer</button>
+        <button class="linklike js-updates">Data updates</button>
         <button class="linklike js-browse">Browse all benefits</button>
         <span class="sf-note">Alberta + federal · Info verified ${DATA_VERIFIED} · Not government-affiliated</span>
       </div>
@@ -1007,6 +1020,9 @@ function wireLanding() {
   );
   document.querySelectorAll(".js-privacy").forEach((b) =>
     b.addEventListener("click", () => setState("privacy"))
+  );
+  document.querySelectorAll(".js-updates").forEach((b) =>
+    b.addEventListener("click", () => setState("updates"))
   );
 
   /* Feedback has two routes on purpose.
@@ -1217,6 +1233,61 @@ function renderPrivacy() {
 }
 function wirePrivacy() {
   ["p-back", "p-back2"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("click", () => setState("landing"));
+  });
+}
+
+/* A short public record of material catalog changes. It is intentionally not a
+   changelog of code polish: this is where someone can see what facts changed,
+   when we re-checked them, and follow the primary source themselves. */
+const DATA_CHANGES = [
+  {
+    date: "July 15, 2026",
+    title: "AISH and ADAP guidance updated",
+    text: "Alberta now uses one application to assess AISH and ADAP. AISH and ADAP are no longer added together in our rough total, and the older AISH amount and work-income wording were removed rather than guessed.",
+    sources: [
+      ["Alberta Disability Assistance Program", "https://www.alberta.ca/alberta-disability-assistance-program"],
+      ["AISH eligibility", "https://www.alberta.ca/aish-eligibility"],
+    ],
+  },
+  {
+    date: "July 15, 2026",
+    title: "Signer guidance checked",
+    text: "CPP disability and Alberta parking-placard signer choices now use the current official lists. AISH/ADAP remains intentionally unspecific because Alberta does not publish an exhaustive profession list on its public application guidance.",
+    sources: [
+      ["CPP disability toolkit", "https://www.canada.ca/en/employment-social-development/employment-social-development/toolkit.html"],
+      ["Alberta parking placard", "https://www.alberta.ca/get-parking-placard-people-disabilities"],
+    ],
+  },
+  {
+    date: "July 15, 2026",
+    title: "Seven municipal programs added",
+    text: "Added current official City/Town programs for Spruce Grove area, Leduc, Cochrane, Okotoks, Canmore, Lloydminster and Fort Saskatchewan. Each has its own official source on its guide; they are not assumed to work alike.",
+    sources: [],
+  },
+];
+
+function renderUpdates() {
+  const items = DATA_CHANGES.map((change) => `
+    <div class="legal-block">
+      <p class="section-label">${ttsEscape(change.date)}</p>
+      <h2>${ttsEscape(change.title)}</h2>
+      <p>${ttsEscape(change.text)}</p>
+      ${change.sources.length ? `<p>${change.sources.map(([label, url]) => `<a class="detail-link" href="${ttsEscape(url)}" target="_blank" rel="noopener noreferrer">${ttsEscape(label)} ${icon("external")}</a>`).join("<br>")}</p>` : ""}
+    </div>`).join("");
+  return `<section class="legal">
+    <button class="back-link" id="u-back">${icon("arrowLeft")} Back</button>
+    <p class="section-label">Data updates</p>
+    <h1 class="legal-title">What we checked and changed</h1>
+    <p class="legal-lede">Benefit rules can change. This is a small public record of material catalog updates — not a promise that every program stays unchanged.</p>
+    ${items}
+    <div class="legal-block"><h2>How dates work</h2><p>Each guide shows when that specific benefit was last checked. Always use the official link in a guide before applying.</p></div>
+    <button class="back-link bottom" id="u-back2">${icon("arrowLeft")} Back</button>
+  </section>`;
+}
+function wireUpdates() {
+  ["u-back", "u-back2"].forEach((id) => {
     const el = document.getElementById(id);
     if (el) el.addEventListener("click", () => setState("landing"));
   });
@@ -1836,8 +1907,9 @@ function renderAnswerChips() {
 /* which form a practitioner has to sign, per benefit (for the doctor-finder) */
 const PRACTITIONER_FORMS = {
   dtc: "the Disability Tax Credit certificate (Form T2201)",
-  "cpp-disability": "the CPP-Disability medical report",
-  aish: "the AISH medical report (Part B)",
+  "cpp-disability": "the CPP disability medical report (ISP-2519)",
+  aish: "the Disability Assistance Medical Report (for the combined AISH/ADAP application)",
+  adap: "the Disability Assistance Medical Report (for the combined AISH/ADAP application)",
   "parking-placard": "the accessible parking placard form",
 };
 
@@ -2034,7 +2106,7 @@ function reportProfileLine() {
 function reportAnnualTotal(ready) {
   const total = ready
     .map((e) => BENEFIT_VALUES[e.b.id])
-    .filter((v) => v && ["cash", "grant", "taxCredit"].includes(v.kind) && v.annualMax)
+    .filter((v) => v && ["cash", "grant", "taxCredit"].includes(v.kind) && !v.excludeFromEstimate && v.annualMax)
     .reduce((s, v) => s + v.annualMax, 0);
   return Math.round(total / 100) * 100;
 }
@@ -2347,7 +2419,17 @@ const DATA_VERIFIED_ISO = "2026-07-01";
  * than no date, because the whole point is telling people when to distrust us.
  */
 const BENEFIT_VERIFIED = {
-  // "aish": "2026-11",
+  aish: "2026-07",
+  adap: "2026-07",
+  "cpp-disability": "2026-07",
+  "parking-placard": "2026-07",
+  "sprucegrove-low-income-transit": "2026-07",
+  "leduc-subsidies": "2026-07",
+  "cochrane-connect-card": "2026-07",
+  "okotoks-fee-assistance": "2026-07",
+  "canmore-affordable-services": "2026-07",
+  "lloydminster-recreation-access": "2026-07",
+  "fortsask-access": "2026-07",
 };
 
 /** Past this, the guide tells the reader to confirm the number themselves. */
