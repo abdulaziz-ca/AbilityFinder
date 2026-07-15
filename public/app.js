@@ -68,6 +68,7 @@ let groupMode = "priority"; // "priority" | "category" — how results are group
 let browseQuery = "";
 let browseTheme = "all"; // a THEMES key, or "all"
 let browseLevel = "all"; // "all" | "Federal" | "Alberta" | "local"
+let browseDis = "all";   // a DISABILITIES value, or "all" — sorts, never hides
 
 /* the application journey, in order. No entry = "Not started". */
 const STAGES = [
@@ -859,7 +860,10 @@ function renderLanding() {
       <label class="fb-field"><span class="fb-lbl">${t("fb.msgLabel")}</span>
         <textarea id="fb-msg" class="text-input" rows="4" placeholder="${t("fb.placeholder")}"></textarea>
       </label>
-      <button class="btn btn-primary" id="fb-send">${t("fb.send")} ${icon("arrowRight")}</button>
+      <div class="fb-actions">
+        <button class="btn btn-primary" id="fb-send">${t("fb.send")} ${icon("arrowRight")}</button>
+        <button class="btn btn-ghost" id="fb-mailto" type="button">${icon("external")} Open my email app instead</button>
+      </div>
       <p class="fb-note" id="fb-status">${t("fb.note")}</p>
     </div>
 
@@ -891,26 +895,66 @@ function wireLanding() {
     b.addEventListener("click", () => setState("privacy"))
   );
 
+  /* Feedback has two routes on purpose.
+     - "Send" posts to /api/feedback and we mail it — no mail app needed, which
+       is what most people expect and the only thing that works on a phone with
+       no mail account configured.
+     - "Open my email app" is the original mailto:. It never touches our server,
+       so it stays available for anyone who'd rather not send us anything
+       directly — and it still works if the endpoint is down. */
+  const fbFields = () => ({
+    kind: document.getElementById("fb-type").value,
+    email: document.getElementById("fb-email").value.trim(),
+    message: document.getElementById("fb-msg").value.trim(),
+    status: document.getElementById("fb-status"),
+  });
+
   const send = document.getElementById("fb-send");
   if (send)
-    send.addEventListener("click", () => {
-      const type = document.getElementById("fb-type").value;
-      const email = document.getElementById("fb-email").value.trim();
-      const msg = document.getElementById("fb-msg").value.trim();
-      const status = document.getElementById("fb-status");
-      if (!msg) {
+    send.addEventListener("click", async () => {
+      const { kind, email, message, status } = fbFields();
+      if (!message) {
         status.textContent = t("fb.needMsg");
         status.classList.add("err");
         return;
       }
       status.classList.remove("err");
-      const subject = `AbilityFinder feedback — ${type}`;
-      const body =
-        `Type: ${type}\n` +
-        (email ? `Reply-to: ${email}\n` : "") +
-        `\n${msg}\n`;
-      const mailto = `mailto:${FEEDBACK_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailto;
+      send.disabled = true;
+      status.textContent = "Sending…";
+      try {
+        const res = await fetch("/api/feedback", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ kind, email, message }),
+        });
+        if (!res.ok) {
+          let m = "Could not send.";
+          try { m = (await res.json()).error || m; } catch (e) {}
+          throw new Error(m);
+        }
+        status.classList.remove("err");
+        status.innerHTML = `${icon("check")} Sent — thank you. We read every message.`;
+        document.getElementById("fb-msg").value = "";
+      } catch (err) {
+        status.classList.add("err");
+        status.textContent = `${err.message} You can use "Open my email app instead".`;
+        send.disabled = false;
+      }
+    });
+
+  const mailtoBtn = document.getElementById("fb-mailto");
+  if (mailtoBtn)
+    mailtoBtn.addEventListener("click", () => {
+      const { kind, email, message, status } = fbFields();
+      if (!message) {
+        status.textContent = t("fb.needMsg");
+        status.classList.add("err");
+        return;
+      }
+      status.classList.remove("err");
+      const subject = `AbilityFinder feedback — ${kind}`;
+      const body = `Type: ${kind}\n` + (email ? `Reply-to: ${email}\n` : "") + `\n${message}\n`;
+      window.location.href = `mailto:${FEEDBACK_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       status.innerHTML = `${t("fb.thanks")}<b>${FEEDBACK_EMAIL}</b>.`;
     });
 }
@@ -1820,6 +1864,37 @@ function benefitSearchText(b) {
   return [b.name, b.summary, b.category, b.level, d.about, (d.tips || []).join(" ")]
     .filter(Boolean).join(" ").toLowerCase();
 }
+/* ── Per-disability browse (2026-07-15) ───────────────────────────────────────
+   Derived from each benefit's own `requires`, NOT a hand-written tag table:
+   one source of truth, so it cannot drift when the rules change.
+
+     mobility      → physical, vision
+     equipmentNeed → EQUIP_NEED
+     developmental → intellectual, autism
+
+   The headline finding, and the reason this is a *sort* and not a filter:
+   only 3 of 20 benefits are disability-specific. The other 17 are universal,
+   because Canadian and Alberta disability benefits key off how much your
+   condition limits you, not your diagnosis.
+
+   So hiding non-matching benefits would be actively harmful — pick "autism" and
+   you'd stop seeing DTC, AISH and RDSP, which you very likely qualify for. That
+   is the exact self-rejection this whole site exists to prevent. Instead we
+   surface the specific ones first, badge them, and say the true thing out loud. */
+const DIS_BY_REQ = {
+  mobility: ["physical", "vision"],
+  equipmentNeed: EQUIP_NEED,
+  developmental: ["intellectual", "autism"],
+};
+
+/** Disabilities a benefit specifically targets. Empty = applies to any. */
+function benefitDisabilities(b) {
+  const out = new Set();
+  for (const r of b.requires || []) (DIS_BY_REQ[r] || []).forEach((d) => out.add(d));
+  return [...out];
+}
+const isDisSpecific = (b, dis) => benefitDisabilities(b).includes(dis);
+
 function browseFiltered() {
   const q = browseQuery.trim().toLowerCase();
   return BENEFITS.filter((b) => {
@@ -1829,20 +1904,29 @@ function browseFiltered() {
     }
     if (q && !benefitSearchText(b).includes(q)) return false;
     return true;
-  }).sort((a, b) => priorityScore(b) - priorityScore(a));
+  }).sort((a, b) => {
+    // Specifically-relevant first when a disability is picked; never hidden.
+    if (browseDis !== "all") {
+      const ra = isDisSpecific(a, browseDis) ? 1 : 0;
+      const rb = isDisSpecific(b, browseDis) ? 1 : 0;
+      if (ra !== rb) return rb - ra;
+    }
+    return priorityScore(b) - priorityScore(a);
+  });
 }
 /* a status-agnostic card for browsing (no eligibility judgement) */
 function browseCard(b) {
   const v = valueParts(b);
   const valueHtml = `<span class="amount">${v.est ? `<span class="amount-tag">Est. value</span>` : ""}${v.head}</span>${v.sub ? `<span class="amount-sub">${v.sub}</span>` : ""}`;
   return `
-  <div class="benefit browse-card ${b.masterKey ? "master" : ""}">
+  <div class="benefit browse-card ${b.masterKey ? "master" : ""}${browseDis !== "all" && isDisSpecific(b, browseDis) ? " dis-match" : ""}">
     <div class="benefit-row">
       <div class="benefit-main">
         <div class="top">
           <h3>${b.name}</h3>
           <span class="tag lvl">${b.level}</span>
           <span class="tag">${b.category}</span>
+          ${browseDis !== "all" && isDisSpecific(b, browseDis) ? `<span class="tag dis-tag">${icon("check")} Aimed at this</span>` : ""}
         </div>
         <p class="summary">${b.summary}</p>
         ${metaRow(b)}
@@ -1873,6 +1957,20 @@ function renderBrowse() {
   const levelChips = BROWSE_LEVELS
     .map((l) => browseChip(browseLevel === l.key, l.key, l.label, "blevel"))
     .join("");
+  const disChips = [browseChip(browseDis === "all", "all", "Any disability", "bdis")]
+    .concat(DISABILITIES.filter((d) => d.value !== "other")
+      .map((d) => browseChip(browseDis === d.value, d.value, d.label, "bdis")))
+    .join("");
+  // Say the true thing rather than quietly hiding 17 benefits.
+  const nSpec = browseDis === "all" ? 0 : BENEFITS.filter((b) => isDisSpecific(b, browseDis)).length;
+  const disLabel = (DISABILITIES.find((d) => d.value === browseDis) || {}).label || "";
+  const disNote = browseDis === "all" ? "" : `
+    <p class="browse-disnote">${icon("info")}
+      <span>${nSpec
+        ? `<b>${nSpec} program${nSpec === 1 ? " is" : "s are"} aimed specifically at ${disLabel.toLowerCase()}</b> — shown first.`
+        : `<b>No program is aimed only at ${disLabel.toLowerCase()}</b>.`}
+      Everything else still applies to you: most disability benefits go by <b>how much your condition limits you</b>, not by your diagnosis. That's why we don't hide the rest.</span>
+    </p>`;
   return `
   <section class="browse">
     <button class="back-link" id="b-back">${icon("arrowLeft")} Home</button>
@@ -1888,7 +1986,9 @@ function renderBrowse() {
     <div class="browse-filters">
       <div class="browse-chiprow" role="group" aria-label="Filter by category">${themeChips}</div>
       <div class="browse-chiprow" role="group" aria-label="Filter by level">${levelChips}</div>
+      <div class="browse-chiprow" role="group" aria-label="Show what is most relevant to a disability">${disChips}</div>
     </div>
+    ${disNote}
     <div class="browse-count" id="browseCount">${browseFiltered().length} benefit${browseFiltered().length === 1 ? "" : "s"}</div>
     <div id="browseResults">${browseResultsHtml()}</div>
   </section>`;
@@ -1905,6 +2005,8 @@ function refreshBrowse() {
     c.classList.toggle("on", c.dataset.btheme === browseTheme));
   document.querySelectorAll("[data-blevel]").forEach((c) =>
     c.classList.toggle("on", c.dataset.blevel === browseLevel));
+  document.querySelectorAll("[data-bdis]").forEach((c) =>
+    c.classList.toggle("on", c.dataset.bdis === browseDis));
 }
 function wireBrowse() {
   const back = document.getElementById("b-back");
@@ -1922,6 +2024,11 @@ function wireBrowse() {
     c.addEventListener("click", () => { browseTheme = c.dataset.btheme; refreshBrowse(); }));
   document.querySelectorAll("[data-blevel]").forEach((c) =>
     c.addEventListener("click", () => { browseLevel = c.dataset.blevel; refreshBrowse(); }));
+  document.querySelectorAll("[data-bdis]").forEach((c) =>
+    c.addEventListener("click", () => {
+      browseDis = c.dataset.bdis;
+      render();      // full render: the explainer line above the list has to change too
+    }));
 
   // delegate "View guide" clicks (survives partial innerHTML refreshes)
   const results = document.getElementById("browseResults");

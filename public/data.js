@@ -8,19 +8,30 @@
    ========================================================================== */
 
 /* ------------------------------------------------------ disability options */
+/* The `sub` lines are for RECOGNITION, not diagnosis. People scan this list
+ * looking for their own condition, and if they don't see it they assume the
+ * tool isn't for them and leave — so half-lists ending in "…" were costing us
+ * users who qualify. They are examples, never exhaustive; "Something else /
+ * not listed" is always there, and nothing here affects eligibility (the
+ * government decides that). Keep each line scannable: this audience includes
+ * people with brain fog and cognitive disabilities, so completeness has to be
+ * balanced against wall-of-text.
+ *
+ * NOTE: these buckets drive PRACTITIONERS (which specialist we suggest) and the
+ * *_NEED groups below. If you move a condition between buckets, check both. */
 const DISABILITIES = [
-  { value: "adhd", icon: "adhd", label: "ADHD / attention" },
-  { value: "autism", icon: "autism", label: "Autism spectrum" },
-  { value: "learning", icon: "learning", label: "Learning disability", sub: "dyslexia, dyscalculia…" },
-  { value: "intellectual", icon: "intellectual", label: "Intellectual / developmental" },
-  { value: "mental", icon: "mental", label: "Mental health", sub: "anxiety, depression, PTSD, bipolar…" },
-  { value: "physical", icon: "physical", label: "Physical / mobility", sub: "MS, cerebral palsy, spinal, arthritis…" },
-  { value: "chronic", icon: "chronic", label: "Chronic illness / pain", sub: "diabetes, Crohn's, fibromyalgia, cancer…" },
-  { value: "vision", icon: "vision", label: "Vision loss / blindness" },
-  { value: "hearing", icon: "hearing", label: "Hearing loss / Deaf" },
-  { value: "speech", icon: "speech", label: "Speech / communication" },
-  { value: "braininjury", icon: "braininjury", label: "Brain injury", sub: "stroke, concussion, TBI" },
-  { value: "other", icon: "other", label: "Something else / not listed" },
+  { value: "adhd", icon: "adhd", label: "ADHD / attention", sub: "ADHD, ADD, inattentive or hyperactive type" },
+  { value: "autism", icon: "autism", label: "Autism spectrum", sub: "autism, ASD, Asperger's, PDD-NOS" },
+  { value: "learning", icon: "learning", label: "Learning disability", sub: "dyslexia, dyscalculia, dysgraphia, auditory or visual processing, non-verbal learning disability" },
+  { value: "intellectual", icon: "intellectual", label: "Intellectual / developmental", sub: "Down syndrome, fragile X, fetal alcohol spectrum (FASD), global developmental delay" },
+  { value: "mental", icon: "mental", label: "Mental health", sub: "anxiety, depression, PTSD, bipolar, OCD, schizophrenia, eating disorders, addiction" },
+  { value: "physical", icon: "physical", label: "Physical / mobility", sub: "MS, cerebral palsy, spinal cord injury, muscular dystrophy, arthritis, amputation or limb difference, dwarfism, chronic back or joint pain" },
+  { value: "chronic", icon: "chronic", label: "Chronic illness / pain", sub: "diabetes, Crohn's or colitis, fibromyalgia, ME/CFS, long COVID, cancer, epilepsy, lupus, heart, lung or kidney disease" },
+  { value: "vision", icon: "vision", label: "Vision loss / blindness", sub: "blind, low vision, macular degeneration, glaucoma, retinitis pigmentosa" },
+  { value: "hearing", icon: "hearing", label: "Hearing loss / Deaf", sub: "Deaf, hard of hearing, hearing loss, severe tinnitus" },
+  { value: "speech", icon: "speech", label: "Speech / communication", sub: "stutter, apraxia, aphasia, non-speaking, uses AAC or a communication device" },
+  { value: "braininjury", icon: "braininjury", label: "Brain injury", sub: "stroke, concussion, traumatic brain injury (TBI), aneurysm, brain tumour" },
+  { value: "other", icon: "other", label: "Something else / not listed", sub: "pick this if nothing above fits — you can still qualify" },
 ];
 
 /* Disability groups used by benefit targeting */

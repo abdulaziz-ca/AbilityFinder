@@ -257,6 +257,71 @@ async function handleAsk(request, env) {
   });
 }
 
+const MAX_FEEDBACK_CHARS = 4000;
+
+/**
+ * POST /api/feedback — send the feedback form without a desktop mail app.
+ *
+ * The mailto: link is kept in the UI as the alternative: it never touches this
+ * server, which some people will prefer, and it is the only thing that works if
+ * this endpoint is down or out of quota. The visitor picks.
+ *
+ * Free by construction: the send_email binding is pinned to one verified
+ * destination, and sending to a verified destination costs nothing on any plan.
+ */
+async function handleFeedback(request, env) {
+  if (request.method === "OPTIONS") return new Response(null, { headers: cors });
+  if (request.method !== "POST") return errorResponse("Use POST.", 405);
+  if (!env.FEEDBACK_MAIL) return errorResponse("Feedback is not available right now.", 503);
+
+  // Same limiter as the assistant: this sends mail, so it is worth guarding.
+  const ip = request.headers.get("CF-Connecting-IP") ?? "unknown";
+  const { success } = await env.ASK_LIMIT.limit({ key: `fb:${ip}` });
+  if (!success) return errorResponse("You are sending feedback too quickly. Please wait a minute.", 429);
+
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return errorResponse("Malformed request.", 400);
+  }
+
+  const message = String(body?.message ?? "").trim();
+  const kind = String(body?.kind ?? "feedback").trim().slice(0, 40);
+  const replyTo = String(body?.email ?? "").trim().slice(0, 200);
+
+  if (!message) return errorResponse("Please write a message first.", 400);
+  if (message.length > MAX_FEEDBACK_CHARS) {
+    return errorResponse(`Please keep it under ${MAX_FEEDBACK_CHARS} characters.`, 400);
+  }
+  // Header injection guard: a newline in a header field could forge headers.
+  const safeReply = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(replyTo) ? replyTo : "";
+
+  const text =
+    `Type: ${kind}\n` +
+    `Reply-to: ${safeReply || "(not given)"}\n` +
+    `Sent from: abilityfinder.ca feedback form\n` +
+    `\n${message}\n`;
+
+  try {
+    await env.FEEDBACK_MAIL.send({
+      from: "feedback@abilityfinder.ca",
+      to: "abeehaconstruction@gmail.com",
+      subject: `AbilityFinder feedback — ${kind}`,
+      text,
+      ...(safeReply ? { replyTo: safeReply } : {}),
+    });
+  } catch (err) {
+    console.error("feedback send failed:", err?.message ?? err);
+    // Don't lose their words — tell them the mail-app route still works.
+    return errorResponse("Could not send from here. Try the 'open my email app' option instead.", 502);
+  }
+
+  return new Response(JSON.stringify({ ok: true }), {
+    headers: { "Content-Type": "application/json", ...cors },
+  });
+}
+
 /**
  * Phase 5A report endpoint. Public on purpose: it contains no user data, only
  * the health of links we already publish. Making it public also means anyone who
@@ -285,6 +350,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname === "/api/ask") return handleAsk(request, env);
+    if (url.pathname === "/api/feedback") return handleFeedback(request, env);
     if (url.pathname === "/api/link-health") return handleLinkHealth(request, env);
     // Everything else is the static site, served straight from ./public.
     return env.ASSETS.fetch(request);

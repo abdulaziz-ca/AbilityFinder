@@ -12,7 +12,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=21") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=22") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -20,7 +20,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=21") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=22") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -1141,3 +1141,14 @@ body.a11y-nomotion .ask-fab { transition: none; }
    --text-dimmer was rejected: it is 2.82:1 on light --bg-2, a clear fail.
    Verified with axe-core 4.12.1 + a per-element contrast calculation. */
 ::placeholder { color: var(--text-dim); opacity: 1; }
+
+/* Per-disability browse: highlight, never hide. */
+.browse-disnote { display: flex; gap: 9px; align-items: flex-start; max-width: 74ch; margin: 4px 0 14px; padding: 11px 13px; background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: var(--r-sm); font-size: 0.86rem; line-height: 1.55; color: var(--text-dim); }
+.browse-disnote .ic { width: 15px; height: 15px; flex: 0 0 auto; margin-top: 3px; color: var(--accent-hi); }
+.browse-disnote b { color: var(--text); font-weight: 600; }
+.tag.dis-tag { display: inline-flex; align-items: center; gap: 4px; background: var(--ok-soft); border-color: var(--ok); color: var(--ok); font-weight: 600; }
+.tag.dis-tag .ic { width: 11px; height: 11px; }
+.benefit.dis-match { border-color: color-mix(in srgb, var(--ok) 45%, transparent); }
+
+/* Feedback: two routes (send from here / open my mail app). */
+.fb-actions { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; }

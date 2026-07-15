@@ -31,6 +31,20 @@
     { "binding": "LINK_HEALTH", "id": "740b98e5b839410588e2001debec6b79" }
   ],
 
+  // Feedback form → owner's inbox, so visitors don't need a desktop mail app.
+  // destination_address pins it to ONE recipient: even if /api/feedback were
+  // abused, it can only ever mail the owner — it cannot become a spam relay.
+  // Sending to a *verified destination* is free on every plan (arbitrary
+  // recipients would need Workers Paid), so this stays within the no-spend rule.
+  // remote:true lets `wrangler dev` exercise the real service.
+  "send_email": [
+    {
+      "name": "FEEDBACK_MAIL",
+      "destination_address": "abeehaconstruction@gmail.com",
+      "remote": true
+    }
+  ],
+
   // Second line of defence: stops one visitor burning the whole daily
   // allocation in a minute. period must be 10 or 60.
   "ratelimits": [
