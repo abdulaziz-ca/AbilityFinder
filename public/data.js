@@ -43,6 +43,7 @@ const EQUIP_NEED = ["physical", "chronic", "vision", "hearing", "speech", "brain
 const CITIES_WITH_PROGRAMS = [
   "Calgary", "Edmonton", "Red Deer", "Lethbridge",
   "Medicine Hat", "Grande Prairie", "St. Albert", "Sherwood Park",
+  "Airdrie", "Fort McMurray",
 ];
 
 /* ---------------------------------------------- Alberta communities (pop >5,000)
@@ -114,6 +115,8 @@ const BENEFIT_VALUES = {
   "grandeprairie-aish-pass": { kind: "discount", note: "$10.25/mo transit pass (vs $74.25) + 75% off recreation" },
   "stalbert-subsidy": { kind: "discount", note: "Free local transit + free annual rec membership" },
   "strathcona-subsidy": { kind: "discount", note: "Reduced transit fare cap + free annual Active Pass+" },
+  "airdrie-fair-access": { kind: "discount", note: "25–75% off transit + Genesis Place recreation" },
+  "woodbuffalo-lift": { kind: "discount", note: "$10/mo transit pass + 75% off SMART Bus + 60% off recreation" },
   "local-supports": { kind: "discount", note: "varies by community" },
 };
 
@@ -162,6 +165,8 @@ const BENEFIT_META = {
   "grandeprairie-aish-pass": { difficulty: 1, effort: "Ask at City Hall", wait: "same day in person" },
   "stalbert-subsidy": { difficulty: 1, effort: "One FCSS form", wait: "1–2 weeks" },
   "strathcona-subsidy": { difficulty: 2, effort: "Call or visit FCSS", wait: "ask when you apply" },
+  "airdrie-fair-access": { difficulty: 1, effort: "One online form", wait: "ask when you apply" },
+  "woodbuffalo-lift": { difficulty: 1, effort: "Online form + proof of income", wait: "7–10 business days" },
   "local-supports": { difficulty: 1, effort: "Call 2-1-1", wait: "immediate" },
 };
 
@@ -1588,6 +1593,78 @@ const BENEFITS = [
       ],
       time: "Ask when you apply — it isn't published.",
       phone: "Family and Community Services: 780-464-4044",
+    },
+  },
+  {
+    id: "airdrie-fair-access",
+    name: "Airdrie Fair Access",
+    level: "Airdrie",
+    category: "Getting around & recreation",
+    amount: "25–75% off transit passes + Genesis Place recreation",
+    summary:
+      "One income-tested application covering Airdrie transit passes and Genesis Place recreation, at 25%, 50% or 75% off depending on income.",
+    requires: ["airdrie", "lowIncomeOrDisabilityIncome"],
+    note:
+      "Unlike Red Deer or Medicine Hat, being on AISH does NOT qualify you automatically here — Airdrie goes purely on household income. AISH income is well under the line, so it's still worth applying; just expect to show income rather than an AISH card.",
+    applyText: "Airdrie Fair Access",
+    applyUrl: "https://www.airdrie.ca/index.cfm?serviceID=2414",
+    source: "https://www.airdrie.ca/index.cfm?serviceID=2157",
+    detail: {
+      about:
+        "The City of Airdrie's single low-income subsidy (formerly the Airdrie Participant Support Program). One application covers transit passes and Genesis Place recreation admissions, passes and registered programs. The discount is tiered: 75%, 50% or 25% depending where your household income falls against the low-income cut-off before tax.",
+      steps: [
+        "Apply online through the Airdrie Fair Access form — it's a one-step application.",
+        "Show household income; the tier you land in (75 / 50 / 25%) is worked out from it.",
+        "Call Community Links on 403-945-3900 if you want help with the form.",
+      ],
+      documents: [
+        "Proof of household income",
+        "Proof of an Airdrie address",
+      ],
+      tips: [
+        "Income up to 25% ABOVE the low-income cut-off still gets you the 25% tier — don't assume you earn too much.",
+        "If you use Access Airdrie (paratransit), ask whether your subsidy applies to it — the program page doesn't say either way, so check rather than assume.",
+      ],
+      time: "Ask when you apply.",
+      phone: "City of Airdrie: 403-948-8800 · Community Links: 403-945-3900",
+    },
+  },
+  {
+    id: "woodbuffalo-lift",
+    name: "Wood Buffalo LIFT (Low-Income Fare Transit)",
+    level: "Fort McMurray",
+    category: "Getting around & recreation",
+    amount: "$10/month transit pass + 75% off SMART Bus + 60% off recreation",
+    summary:
+      "A $10 monthly transit pass, 75% off specialized SMART Bus passes, and a separate 60% discount on regional recreation memberships.",
+    requires: ["woodbuffalo", "lowIncomeOrDisabilityIncome"],
+    note:
+      "One of only two municipal programs here that discounts specialized (door-to-door) transit — the other is Lethbridge's Access-A-Ride. Your AISH statement is accepted as proof of income.",
+    applyText: "Wood Buffalo LIFT",
+    applyUrl: "https://forms.rmwb.ca/Community-Services/LIFT-Program-Application",
+    source: "https://www.rmwb.ca/LIFT",
+    detail: {
+      about:
+        "The Regional Municipality of Wood Buffalo's Low-Income Fare Transit program: a monthly conventional transit pass for $10, and 75% off 10- and 20-ride passes for the SMART Bus (the specialized service for seniors and people with mobility needs). Everyone in the household is covered by the one application. The Wood Buffalo Recreation Support Program is separate and gives 60% off memberships at Syncrude Sport and Wellness Centre, Regional Recreation Corporation facilities and Vista Ridge.",
+      steps: [
+        "Apply online for LIFT, or email community.services@rmwb.ca, or apply in person.",
+        "Send your AISH statement as proof of income — it's accepted.",
+        "Allow 7–10 business days for approval.",
+        "For SMART Bus, buy the discounted 10- or 25-ride passes directly from the operator once you're approved.",
+        "Ask about the Recreation Support Program separately — it's a different application.",
+      ],
+      documents: [
+        "AISH statement (or other proof of household income)",
+        "Proof of a Wood Buffalo address",
+        "You must be 18 or older to apply",
+      ],
+      tips: [
+        "The income line here is generous — about $35,500 for one person, well above AISH.",
+        "One application covers your partner and dependent children too, not just you.",
+        "Call Pulse on 780-743-7000 if anything about the form is unclear.",
+      ],
+      time: "7–10 business days.",
+      phone: "Pulse: 780-743-7000",
     },
   },
   {

@@ -60,10 +60,19 @@ async function checkOne(link) {
     if (res.status === 403 || res.status === 405 || res.status === 501) {
       res = await attempt("GET");
     }
+    // SOFT 404: some sites answer 200 and redirect to their own "not found"
+    // page. Found for real while researching Wood Buffalo —
+    // rmwb.ca/en/transit/low-income-fare-transit-pilot-program.aspx returns 200
+    // and lands on /not-found-404/. A status-code check calls that healthy, so
+    // the monitor would have sworn a dead Apply link was fine.
+    const landed = (res.url || "").toLowerCase();
+    const softDead = /\/(not-?found|404|page-?not-?found|error)(\/|\.|$)/.test(landed);
+
     return {
       ...link,
       status: res.status,
-      ok: res.ok,
+      ok: res.ok && !softDead,
+      softDead,
       reachable: true,
       redirectedTo: res.url && res.url !== link.url ? res.url : null,
       ms: Date.now() - started,
@@ -120,7 +129,13 @@ export async function runLinkCheck(env, nowIso) {
     brokenCount: broken.length,
     unreachableCount: unreachable.length,
     skippedDynamic: SKIPPED_DYNAMIC,
-    broken: broken.map(({ url, label, kind, status }) => ({ url, label, kind, status })),
+    broken: broken.map(({ url, label, kind, status, softDead }) => ({
+      url,
+      label,
+      kind,
+      status,
+      ...(softDead ? { softDead: true, note: "Answered 200 but redirected to a 'not found' page." } : {}),
+    })),
     unreachable: unreachable.map(({ url, label, kind, error }) => ({
       url,
       label,

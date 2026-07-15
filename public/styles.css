@@ -12,7 +12,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=25") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=26") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -20,7 +20,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=25") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=26") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -1213,15 +1213,60 @@ body.a11y-nomotion .reveal, body.a11y-nomotion .reveal.in { opacity: 1 !importan
 body.a11y-nomotion .pt-item.reveal { border-top-color: var(--hair); }
 body.a11y-nomotion .pt-item.reveal::before { display: none; }
 
-/* "I don't know" escape hatch under a wizard question. Quiet — it must not
-   compete with the actual answers — but reachable, because the people who need
-   it are the ones about to guess and get it wrong. */
-.side-note { display: inline-flex; align-items: center; gap: 8px; appearance: none; font-family: inherit; cursor: pointer; margin: 14px 0 0; padding: 9px 13px; background: transparent; border: 1px dashed var(--hair-2); border-radius: 999px; color: var(--text-dim); font-size: 0.87rem; font-weight: 500; text-align: left; }
-.side-note .ic { width: 14px; height: 14px; flex: 0 0 auto; }
-.side-note .ic:last-child { color: var(--text-dimmer); transition: transform 0.15s var(--ease); }
-.side-note:hover { border-style: solid; border-color: var(--accent-line); background: var(--accent-soft); color: var(--text); }
-.side-note:hover .ic:last-child { transform: translateX(3px); }
-body.a11y-nomotion .side-note:hover .ic:last-child { transform: none; }
+/* ── "I don't know" escape hatch ─────────────────────────────────────────────
+   Sits ABOVE the options now. It used to be a quiet dashed pill underneath,
+   which is exactly where someone who's already guessed will never look.
+
+   The animation is a slow sheen that crosses the card every ~6s. It draws the
+   eye without moving anything: no bounce, no scale, no position change — this
+   audience includes people with vestibular disorders and migraine triggers,
+   where "attention-grabbing motion" is a symptom. It also stops on hover (you
+   found it, it can stop shouting), and is fully removed for reduced motion. */
+.side-note {
+  position: relative; overflow: hidden;
+  display: grid; grid-template-columns: auto 1fr auto; gap: 13px; align-items: center;
+  width: 100%; margin: 0 0 20px; padding: 14px 16px;
+  appearance: none; font-family: inherit; text-align: left; cursor: pointer;
+  background: var(--accent-soft); border: 1px solid var(--accent-line);
+  border-radius: var(--r); color: var(--text);
+  transition: border-color 0.18s var(--ease), background 0.18s var(--ease);
+}
+.sn-ic { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: var(--bg); }
+.sn-ic .ic { width: 17px; height: 17px; }
+.sn-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.sn-label { font-size: 0.95rem; font-weight: 600; letter-spacing: -0.01em; color: var(--text); }
+.sn-sub { font-size: 0.83rem; line-height: 1.45; color: var(--text-dim); }
+.sn-go { color: var(--accent-hi); display: grid; place-items: center; }
+.sn-go .ic { width: 17px; height: 17px; transition: transform 0.18s var(--ease); }
+.side-note:hover { background: color-mix(in srgb, var(--accent) 18%, transparent); border-color: var(--accent-hi); }
+.side-note:hover .sn-go .ic { transform: translateX(4px); }
+.side-note:focus-visible { outline: 2px solid var(--accent-hi); outline-offset: 2px; }
+
+/* the sheen */
+.side-note::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(100deg, transparent 35%, color-mix(in srgb, var(--accent-hi) 14%, transparent) 50%, transparent 65%);
+  transform: translateX(-100%);
+  animation: sn-sheen 6s var(--ease) 1.2s infinite;
+  pointer-events: none;
+}
+.side-note:hover::after { animation-play-state: paused; opacity: 0; }
+@keyframes sn-sheen {
+  0%   { transform: translateX(-100%); }
+  18%  { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+@media (max-width: 560px) { .side-note { padding: 12px 13px; gap: 10px; } .sn-ic { width: 30px; height: 30px; } }
+
+/* Motion off — OS setting or the in-app toggle. No sheen, no arrow slide. */
+@media (prefers-reduced-motion: reduce) {
+  .side-note::after { display: none; }
+  .side-note, .sn-go .ic { transition: none; }
+  .side-note:hover .sn-go .ic { transform: none; }
+}
+body.a11y-nomotion .side-note::after { display: none; }
+body.a11y-nomotion .side-note:hover .sn-go .ic { transform: none; }
+
 .helppage .pt-list { margin-top: 22px; }
 
 /* "Things you can use this week" — was a stack of collapsed rows showing only a

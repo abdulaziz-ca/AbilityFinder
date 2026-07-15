@@ -340,6 +340,9 @@ The highest-value work left is **not code**:
 - ~~**More Alberta municipalities**~~ ✅ **DONE 2026-07-15.** Now 8 cities, each
   researched against its own official page: Calgary, Edmonton, **Red Deer,
   Lethbridge, Medicine Hat, Grande Prairie, St. Albert, Sherwood Park**.
+  Now **10 cities** (added Airdrie + Wood Buffalo/Fort McMurray 2026-07-15).
+  ⚠️ This pushed the link monitor to **43/50** subrequests — about two more
+  cities and the weekly check exceeds the Free-plan cap and needs chunking.
   Everywhere else still falls through to the 2-1-1 finder via `REQS.cityOther`,
   which now reads `CITIES_WITH_PROGRAMS` — **add a city there when you add its
   program**, or its residents keep getting the generic fallback.

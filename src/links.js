@@ -2,9 +2,9 @@
 // Regenerate with:  npm run gen:context
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS)
 //
-// 29 links. The Workers FREE plan caps subrequests at 50 per
+// 43 links. The Workers FREE plan caps subrequests at 50 per
 // invocation, so this must stay under that or the check needs chunking across
-// runs. Currently 29/50.
+// runs. Currently 43/50.
 // 5 dynamic (function) applyUrls are skipped — they depend on the
 // user's answers, so there is no single URL to check.
 
@@ -123,6 +123,76 @@ export const LINKS = [
     "url": "https://www.edmonton.ca/ets/fare-assistance",
     "label": "Edmonton Ride Transit & Leisure Access — apply",
     "kind": "apply"
+  },
+  {
+    "url": "https://www.reddeer.ca/city-services/transit/fares-and-passes/transit-fare-assistance-pass/",
+    "label": "Red Deer Transit & Recreation Fee Assistance — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.reddeer.ca/recreation-and-culture/recreation/facility-admission-fees--pass-prices/fee-assistance-program/",
+    "label": "Red Deer Transit & Recreation Fee Assistance — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www.lethbridge.ca/community-services-supports/community-social-development-csd/fee-assistance-program/",
+    "label": "Lethbridge Fee Assistance Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://forms.medicinehat.ca/Community-Development/Fair-Entry-Application",
+    "label": "Medicine Hat Fair Entry — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.medicinehat.ca/community-support-culture-safety/community-support/fair-entry/",
+    "label": "Medicine Hat Fair Entry — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://cityofgp.com/roads-transportation/public-transit/fares",
+    "label": "Grande Prairie AISH Transit Pass & Recreation Access — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://cityofgp.com/roads-transportation/public-transit/transit-access-program",
+    "label": "Grande Prairie AISH Transit Pass & Recreation Access — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://stalbert.ca/city/fcss/programs-services/subsidy/",
+    "label": "St. Albert Transit & Recreation Subsidy — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.strathcona.ca/community-families/affordable-services/subsidized-fares/",
+    "label": "Strathcona County Everybody Rides & Everybody Gets to Play — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.strathcona.ca/community-families/affordable-services/",
+    "label": "Strathcona County Everybody Rides & Everybody Gets to Play — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www.airdrie.ca/index.cfm?serviceID=2414",
+    "label": "Airdrie Fair Access — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.airdrie.ca/index.cfm?serviceID=2157",
+    "label": "Airdrie Fair Access — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://forms.rmwb.ca/Community-Services/LIFT-Program-Application",
+    "label": "Wood Buffalo LIFT (Low-Income Fare Transit) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.rmwb.ca/LIFT",
+    "label": "Wood Buffalo LIFT (Low-Income Fare Transit) — official source",
+    "kind": "source"
   },
   {
     "url": "https://vadsociety.ca",

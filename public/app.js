@@ -219,6 +219,8 @@ const REQS = {
   grandeprairie: { met: () => answers.city === "Grande Prairie", fixed: true, unmet: "This is a City of Grande Prairie program." },
   stalbert: { met: () => answers.city === "St. Albert", fixed: true, unmet: "This is a City of St. Albert program." },
   strathcona: { met: () => answers.city === "Sherwood Park", fixed: true, unmet: "This is a Strathcona County program." },
+  airdrie: { met: () => answers.city === "Airdrie", fixed: true, unmet: "This is a City of Airdrie program." },
+  woodbuffalo: { met: () => answers.city === "Fort McMurray", fixed: true, unmet: "This is a Wood Buffalo (Fort McMurray) program." },
   cityOther: {
     // Anywhere we DON'T have a verified municipal program → the 2-1-1 finder.
     // Add a city here the moment you add its program, or people get the generic
@@ -375,7 +377,11 @@ const STEPS = [
     id: "disabilities", type: "multi", kicker: "Your disability",
     q: () => (answers.forWho === "self" ? "Which of these apply to you?" : `Which of these apply to ${subj()}?`),
     help: "Pick all that fit — you can choose more than one. This is private and never leaves your browser.",
-    sideNote: { topic: "disabilities", label: "Not sure which one to pick?" },
+    sideNote: {
+      topic: "disabilities",
+      label: "Not sure which one to pick?",
+      sub: "You don't need a diagnosis — read this first",
+    },
     key: "disabilities",
     options: DISABILITIES,
   },
@@ -451,7 +457,11 @@ const STEPS = [
     ],
     // Answering "not sure" and moving on costs someone the single biggest
     // benefit in the app. Give them a way to actually find out, right here.
-    sideNote: { topic: "dtc", label: "Not sure? Read what the DTC is and how to tell" },
+    sideNote: {
+      topic: "dtc",
+      label: "Not sure if you have it?",
+      sub: "How to check in 2 minutes — it's worth the most here",
+    },
   },
   {
     id: "situation", type: "multi", kicker: "Your situation",
@@ -1263,8 +1273,20 @@ function renderStep(step) {
       <p class="step-kicker">${icon("compass")} ${T.kicker} · ${t("wiz.step")} ${stepIndex + 1} ${t("wiz.of")} ${steps.length}</p>
       <h2 class="step-q">${T.q}</h2>
       <p class="step-help">${T.help}</p>
+      ${/* ABOVE the options, not below. Someone who doesn't know the answer
+            decides that while reading the question — by the time they're
+            scanning options they've already picked one and moved on, and on the
+            DTC step a wrong guess costs them the biggest benefit here. */ ""}
+      ${step.sideNote ? `
+        <button class="side-note" id="sideNote" type="button">
+          <span class="sn-ic">${icon("help")}</span>
+          <span class="sn-body">
+            <span class="sn-label">${step.sideNote.label}</span>
+            <span class="sn-sub">${step.sideNote.sub}</span>
+          </span>
+          <span class="sn-go">${icon("arrowRight")}</span>
+        </button>` : ""}
       ${controlHtml}
-      ${step.sideNote ? `<button class="side-note" id="sideNote" type="button">${icon("info")}<span>${step.sideNote.label}</span>${icon("arrowRight")}</button>` : ""}
       <div class="nav-row">
         <button class="btn btn-ghost" id="back">${editingReturn ? t("wiz.cancel") : isFirst ? t("wiz.exit") : t("wiz.back")}</button>
         <button class="btn btn-primary" id="next" ${nextDisabled ? "disabled" : ""}>
