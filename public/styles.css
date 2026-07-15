@@ -12,7 +12,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=19") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=20") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -20,7 +20,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=19") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=20") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -1088,3 +1088,21 @@ body.a11y-nomotion .ask-fab { transition: none; }
 .verified.stale { color: var(--warn); }
 .side-stale { display: flex; gap: 8px; align-items: flex-start; margin: 8px 0 0; padding: 10px 11px; background: var(--warn-soft); border: 1px solid var(--warn); border-radius: var(--r-sm); font-size: 0.82rem; line-height: 1.5; color: var(--text); }
 .side-stale .ic { width: 15px; height: 15px; flex: 0 0 auto; margin-top: 2px; color: var(--warn); }
+
+/* Phase 5 — verified alternate signers + the "do the wizard" nudge in the
+   practitioner finder. Chips, not buttons: they're alternatives to the primary
+   action, and five equal-weight buttons would bury it. */
+.finder-signers { margin-top: 12px; }
+.fs-lead { margin: 0 0 8px; font-size: 0.85rem; line-height: 1.5; color: var(--text-dim); }
+.fs-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.fs-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 0.83rem; font-weight: 550; text-decoration: none; color: var(--text); background: var(--pill); border: 1px solid var(--hair-2); border-radius: 999px; padding: 7px 12px; }
+.fs-chip .ic { width: 13px; height: 13px; color: var(--text-dimmer); }
+.fs-chip:hover { border-color: var(--accent-line); background: var(--accent-soft); }
+.fs-chip:hover .ic { color: var(--accent-hi); }
+
+.finder-nudge { display: flex; gap: 8px; align-items: flex-start; margin: 12px 0 0; font-size: 0.85rem; line-height: 1.55; color: var(--text-dim); }
+.finder-nudge .ic { width: 15px; height: 15px; flex: 0 0 auto; margin-top: 3px; color: var(--text-dimmer); }
+/* A button that reads as a link — keeps it keyboard-reachable and announced as
+   a button, without looking like a third call-to-action. */
+.linkish { appearance: none; background: none; border: none; padding: 0; font: inherit; color: var(--accent-hi); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.linkish:hover { text-decoration-thickness: 2px; }

@@ -92,6 +92,24 @@ const BENEFIT_VALUES = {
 };
 
 /* difficulty (1 easy … 5 hard), effort to apply, and typical wait to hear back */
+/* Who is allowed to sign a benefit's form.
+ *
+ * ONLY add an entry you have actually verified on the official page. This drives
+ * real "find one near you" buttons, so a wrong entry sends a disabled person to
+ * book (and often pay for) an appointment with someone who cannot sign their
+ * form. An absent entry costs nothing — the finder just falls back to the
+ * practitioner matched to their disability.
+ *
+ * dtc: transcribed verbatim from this benefit's own `note` in this file
+ *   ("Your doctor, nurse practitioner, psychologist, optometrist or audiologist
+ *   documents this on Form T2201"), which was verified July 2026.
+ * cpp-disability / aish / parking-placard: data.js says nothing about who signs
+ *   theirs, so they are deliberately absent rather than guessed.
+ */
+const BENEFIT_SIGNERS = {
+  dtc: ["family doctor", "nurse practitioner", "psychologist", "optometrist", "audiologist"],
+};
+
 const BENEFIT_META = {
   dtc: { difficulty: 3, effort: "30–60 min + a doctor visit", wait: "8–20 weeks" },
   "cdb-adult": { difficulty: 2, effort: "15–30 min (after DTC)", wait: "monthly once approved" },
@@ -526,7 +544,12 @@ const HELP_ORGS = [
     summary:
       "Family-focused help understanding the DTC, RDSP and other supports for people with developmental disabilities — including free RDSP guidance sessions.",
     phone: "1-800-252-7556",
-    url: "https://inclusionalberta.org/individuals-families/rdsp/",
+    // Was /individuals-families/rdsp/ — that page is gone and now 301s to a
+    // one-off event page, so anyone clicking "RDSP help" landed somewhere
+    // useless. Caught by the Phase 5A link monitor, 2026-07-15. /dtc-rdsp-info/
+    // is canonical (/dtc-rdsp/ is an alias that redirects to it), covers DTC +
+    // RDSP, and lists the same 1-800-252-7556 as above.
+    url: "https://inclusionalberta.org/dtc-rdsp-info/",
     urlText: "inclusionalberta.org",
     focus: ["dtc", "rdsp", "family"],
   },

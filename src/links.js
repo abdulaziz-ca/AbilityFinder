@@ -130,7 +130,7 @@ export const LINKS = [
     "kind": "help"
   },
   {
-    "url": "https://inclusionalberta.org/individuals-families/rdsp/",
+    "url": "https://inclusionalberta.org/dtc-rdsp-info/",
     "label": "Help — Inclusion Alberta",
     "kind": "help"
   },

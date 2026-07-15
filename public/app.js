@@ -1536,6 +1536,35 @@ function practitionerFinder(b) {
     <div class="finder-flag">${icon("check")}
       <span>You'll need a practitioner willing to complete <b>${formName}</b>. Not every clinic does these — it's worth calling ahead to ask.</span>
     </div>`;
+  /* (C) Other people who can sign THIS form — only where data.js actually says
+     so (today: DTC). In Alberta a family doctor can take months to see, and
+     plenty of people don't have one at all; knowing a nurse practitioner or
+     optometrist can sign a T2201 is the difference between applying and giving
+     up. Never render a signer we haven't verified. */
+  const shown = new Set([type, "family doctor"]);
+  const others = ((b && BENEFIT_SIGNERS[b.id]) || []).filter((s) => !shown.has(s));
+  const signerChips = others.length
+    ? `<div class="finder-signers">
+        <p class="fs-lead">Any of these can sign this form — whoever you can get in to see soonest:</p>
+        <div class="fs-chips">
+          ${others
+            .map(
+              (s) =>
+                `<a class="fs-chip finder-search" data-ptype="${s}" href="${mapsSearchUrl(s)}" target="_blank" rel="noopener noreferrer" data-ext>${findLabel(s)} ${icon("external")}</a>`
+            )
+            .join("")}
+        </div>
+      </div>`
+    : "";
+
+  /* (B) Without the wizard we can only guess "family doctor". Say so, instead of
+     quietly showing the weakest option as if it were tailored. */
+  const wizardNudge = !wizardDone()
+    ? `<p class="finder-nudge">${icon("info")}
+        <span>This is the general default. <button type="button" class="linkish" id="finderWizard">Answer a few questions</button> and it will show the kind of practitioner that fits your situation.</span>
+      </p>`
+    : "";
+
   const askTips = `
     <div class="finder-ask">
       <div class="finder-ask-h">What to ask when you call a clinic</div>
@@ -1559,6 +1588,8 @@ function practitionerFinder(b) {
       <a class="apply finder-search" data-ptype="${type}" href="${mapsSearchUrl(type)}" target="_blank" rel="noopener noreferrer" data-ext>${findLabel(type)} ${icon("external")}</a>
       ${type !== "family doctor" ? `<a class="apply secondary finder-search" data-ptype="family doctor" href="${mapsSearchUrl("family doctor")}" target="_blank" rel="noopener noreferrer" data-ext>${findLabel("family doctor")} ${icon("external")}</a>` : ""}
     </div>
+    ${signerChips}
+    ${wizardNudge}
     ${askTips}
     <p class="finder-note" id="finderNote">${t("finder.note")}</p>
   </div>`;
@@ -2122,6 +2153,10 @@ function wireDetail() {
       persist();
       updateFinderLinks(null);
     });
+  // "Answer a few questions" nudge — only rendered when the wizard isn't done.
+  const finderWizard = document.getElementById("finderWizard");
+  if (finderWizard)
+    finderWizard.addEventListener("click", () => setState("wizard", { stepIndex: 0 }));
   const loc = document.getElementById("finderLoc");
   const note = document.getElementById("finderNote");
   if (loc)
