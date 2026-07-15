@@ -740,6 +740,40 @@ function updateNavTag() {
 }
 
 let lastRenderKey = null;
+/**
+ * Last line of defence.
+ *
+ * render() writes #app.innerHTML. If anything it calls throws, the assignment
+ * never happens and the visitor is left with a blank page and no way out — not
+ * even a refresh, because the broken view is restored from localStorage. That
+ * shipped once (valueLabel() read step.options directly after it became a
+ * function on one step): the wizard rendered fine, so per-piece checks passed,
+ * but "Find my benefits" jumps straight to results when you already have
+ * answers, and results threw.
+ *
+ * A benefits site going blank for a disabled person is not a cosmetic failure —
+ * they leave, and they don't get the money. So: never let one throw eat the
+ * page. Show something honest, and always offer a way to start over.
+ */
+function renderSafely(fn, label) {
+  try {
+    return fn();
+  } catch (err) {
+    console.error(`render failed (${label}):`, err);
+    return `
+    <section class="card render-error">
+      <h2>Something went wrong on our end</h2>
+      <p>This is our bug, not anything you did. Your answers are still saved.</p>
+      <p class="re-detail">${label}: ${String(err && err.message ? err.message : err).slice(0, 160)}</p>
+      <div class="re-actions">
+        <button class="btn btn-primary" onclick="location.reload()">Try again</button>
+        <button class="btn btn-ghost" id="reReset">Start over</button>
+      </div>
+      <p class="re-foot">If it keeps happening, please tell us — the feedback form is on the home page, and it genuinely gets read.</p>
+    </section>`;
+  }
+}
+
 function render() {
   updateNavTag();
   const app = document.getElementById("app");
@@ -753,36 +787,36 @@ function render() {
 
   if (view === "landing") {
     progress.style.display = "none";
-    app.innerHTML = renderLanding();
+    app.innerHTML = renderSafely(renderLanding, "landing");
     wireLanding();
   } else if (view === "wizard") {
     const steps = visibleSteps();
     if (stepIndex > steps.length - 1) stepIndex = steps.length - 1;
     progress.style.display = "block";
     bar.style.width = `${(stepIndex / steps.length) * 100}%`;
-    app.innerHTML = renderStep(steps[stepIndex]);
+    app.innerHTML = renderSafely(() => renderStep(steps[stepIndex]), "wizard");
     wireStep(steps[stepIndex]);
   } else if (view === "results") {
     progress.style.display = "block";
     bar.style.width = "100%";
-    app.innerHTML = renderResults();
+    app.innerHTML = renderSafely(renderResults, "results");
     wireResults();
   } else if (view === "browse") {
     progress.style.display = "none";
-    app.innerHTML = renderBrowse();
+    app.innerHTML = renderSafely(renderBrowse, "browse");
     wireBrowse();
   } else if (view === "detail") {
     progress.style.display = "block";
     bar.style.width = "100%";
-    app.innerHTML = renderDetail(detailId);
+    app.innerHTML = renderSafely(() => renderDetail(detailId), "guide");
     wireDetail();
   } else if (view === "privacy") {
     progress.style.display = "none";
-    app.innerHTML = renderPrivacy();
+    app.innerHTML = renderSafely(renderPrivacy, "privacy");
     wirePrivacy();
   } else if (view === "help") {
     progress.style.display = "none";
-    app.innerHTML = renderHelpPage(helpTopic);
+    app.innerHTML = renderSafely(() => renderHelpPage(helpTopic), "help");
     wireHelpPage();
   }
   if (samePage) {
@@ -791,6 +825,14 @@ function render() {
     stopReadAloud(); // don't keep narrating an old page
     window.scrollTo(0, 0);
   }
+  // "Start over" on the error card, wired here so it works from any view.
+  const reReset = document.getElementById("reReset");
+  if (reReset)
+    reReset.addEventListener("click", () => {
+      try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+      answers = BLANK(); progress = {}; stepIndex = 0; detailId = null;
+      setState("landing");
+    });
   // Re-run after the scroll settles: "is it on screen already?" is meaningless
   // if we ask before scrollTo has moved us.
   wireReveals();
@@ -1745,7 +1787,12 @@ function benefitCard(b, r, rank) {
 
 /* editable summary of the user's answers */
 function valueLabel(step, val) {
-  const o = (step.options || []).find((x) => x.value === val);
+  // MUST go through stepOptions(): a step's `options` may be a function (so its
+  // labels can address the right person), and `city` builds its list from the
+  // province. Reading step.options directly here threw
+  // "(step.options || []).find is not a function" and took the whole results
+  // page down — renderResults() throws, #app is never written, blank screen.
+  const o = (stepOptions(step) || []).find((x) => x.value === val);
   return o ? optionText(step, o) : val == null ? "—" : String(val);
 }
 function answerSummary(step) {

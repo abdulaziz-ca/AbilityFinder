@@ -12,7 +12,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=24") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=25") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -20,7 +20,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=24") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=25") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -1241,3 +1241,12 @@ body.a11y-nomotion .side-note:hover .ic:last-child { transform: none; }
   .sh-num { font-size: 1.9rem; }
   .ss-preview { white-space: normal; }
 }
+
+/* Shown if a view throws. Better a page that admits it broke than a blank
+   screen a disabled person quietly leaves. */
+.render-error { max-width: 60ch; }
+.render-error h2 { margin: 0 0 8px; font-family: var(--font-display); font-size: 1.3rem; letter-spacing: -0.02em; }
+.render-error p { margin: 0 0 10px; color: var(--text-dim); line-height: 1.6; }
+.re-detail { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dimmer); background: var(--bg-2); border: 1px solid var(--hair); border-radius: var(--r-sm); padding: 8px 10px; overflow-wrap: anywhere; }
+.re-actions { display: flex; flex-wrap: wrap; gap: 9px; margin: 14px 0 10px; }
+.re-foot { font-size: 0.84rem; color: var(--text-dimmer); }
