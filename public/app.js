@@ -8,7 +8,7 @@
 
 /* -------------------------------------------------- answer state (defaults) */
 const BLANK = () => ({
-  forWho: null,        // "self" | "child"
+  forWho: null,        // "self" | "child" | "family"
   disabilities: [],    // from DISABILITIES values
   ageGroup: null,      // "child" | "adult" | "senior"
   onsetBefore18: null, // true | false  (dynamic: autism/intellectual)
@@ -20,7 +20,36 @@ const BLANK = () => ({
   income: null,        // "low" | "moderate" | "high"
   city: null,          // an ALBERTA_CITIES string
   postal: null,        // optional — used to find local practitioners
+  retroYears: 5,       // back-pay estimator; lives here so it survives a re-render
 });
+
+/* ── Who are we talking about? ────────────────────────────────────────────────
+   Every question used to say "you", even after someone said they were doing
+   this for their child. Being asked "can you walk 50 metres?" about your kid is
+   confusing at best, and it quietly signals the tool wasn't built for you.
+
+   `subj()` is the subject ("you" / "your child" / "your family member") and
+   `poss()` the possessive. Use them in question text instead of hardcoding.
+   Third person is deliberate over a name: we never ask for one, and we are not
+   going to start — see the privacy page. */
+const FOR_WHO = {
+  self: {
+    subj: "you", poss: "your", them: "you",
+    doQ: "Do you", areQ: "Are you", canQ: "Can you", haveQ: "Have you",
+  },
+  child: {
+    subj: "your child", poss: "your child's", them: "them",
+    doQ: "Does your child", areQ: "Is your child", canQ: "Can your child", haveQ: "Has your child",
+  },
+  family: {
+    subj: "your family member", poss: "their", them: "them",
+    doQ: "Does your family member", areQ: "Is your family member",
+    canQ: "Can your family member", haveQ: "Has your family member",
+  },
+};
+const who = () => FOR_WHO[answers.forWho] || FOR_WHO.self;
+const subj = () => who().subj;
+const poss = () => who().poss;
 
 /* which kind of practitioner best fits the chosen disability (for finding help) */
 const PRACTITIONERS = {
@@ -69,6 +98,8 @@ let browseQuery = "";
 let browseTheme = "all"; // a THEMES key, or "all"
 let browseLevel = "all"; // "all" | "Federal" | "Alberta" | "local"
 let browseDis = "all";   // a DISABILITIES value, or "all" — sorts, never hides
+let helpTopic = null;    // "disabilities" | "dtc" — the "I don't know" pages
+let helpReturnStep = 0;  // which wizard step to come back to
 
 /* the application journey, in order. No entry = "Not started". */
 const STAGES = [
@@ -276,8 +307,8 @@ function renderMoneyBand(ready, almost) {
         <label class="retro-label" for="retroYears">Roughly how long have you had your disability? <span class="opt-tag">(estimates back-pay)</span></label>
         <div class="retro-row">
           <select class="select-input" id="retroYears">
-            <option value="0">Less than a year</option>
-            ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((y) => `<option value="${y}"${y === 5 ? " selected" : ""}>${y} year${y > 1 ? "s" : ""}${y === 10 ? "+" : ""}</option>`).join("")}
+            <option value="0"${(answers.retroYears ?? 5) === 0 ? " selected" : ""}>Less than a year</option>
+            ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((y) => `<option value="${y}"${y === (answers.retroYears ?? 5) ? " selected" : ""}>${y} year${y > 1 ? "s" : ""}${y === 10 ? "+" : ""}</option>`).join("")}
           </select>
           <div class="retro-out" id="retroOut"></div>
         </div>
@@ -331,16 +362,20 @@ const STEPS = [
     options: [
       { value: "self", label: "Myself" },
       { value: "child", label: "My child" },
+      { value: "family", label: "Another family member", sub: "a partner, parent, sibling or someone you care for" },
     ],
     onPick(v) {
+      // Only "my child" implies an age group. A family member could be any age,
+      // so don't guess — let them answer the age question themselves.
       if (v === "child") answers.ageGroup = "child";
       else if (answers.ageGroup === "child") answers.ageGroup = null;
     },
   },
   {
     id: "disabilities", type: "multi", kicker: "Your disability",
-    q: "Which of these apply?",
+    q: () => (answers.forWho === "self" ? "Which of these apply to you?" : `Which of these apply to ${subj()}?`),
     help: "Pick all that fit — you can choose more than one. This is private and never leaves your browser.",
+    sideNote: { topic: "disabilities", label: "Not sure which one to pick?" },
     key: "disabilities",
     options: DISABILITIES,
   },
@@ -359,8 +394,8 @@ const STEPS = [
   {
     // DYNAMIC — only if a physical/mobility condition is selected
     id: "mobilityQ", type: "single", kicker: "A bit more",
-    q: "Can you comfortably walk about 50 metres (half a block)?",
-    help: "This decides whether an accessible parking placard applies to you.",
+    q: () => `${who().canQ} comfortably walk about 50 metres (half a block)?`,
+    help: () => `This decides whether an accessible parking placard applies to ${who().them}.`,
     key: "canWalkFar",
     skipIf: () => !hasDisability("physical"),
     options: [
@@ -370,8 +405,8 @@ const STEPS = [
   },
   {
     id: "age", type: "single", kicker: "About you",
-    q: "Which age group applies?",
-    help: "Age decides which programs are open to you.",
+    q: () => (answers.forWho === "self" ? "Which age group applies?" : `Which age group is ${subj()} in?`),
+    help: () => `Age decides which programs are open to ${who().them}.`,
     key: "ageGroup",
     skipIf: () => answers.forWho === "child",
     options: [
@@ -382,7 +417,7 @@ const STEPS = [
   },
   {
     id: "residency", type: "single", kicker: "About you",
-    q: "Do you live in Alberta?",
+    q: () => `${who().doQ} live in Alberta?`,
     help: "Federal benefits apply anywhere in Canada. Alberta's provincial programs are fully built out right now — other provinces are coming soon.",
     key: "province",
     options: [
@@ -396,7 +431,7 @@ const STEPS = [
   },
   {
     id: "citizen", type: "single", kicker: "About you",
-    q: "Are you a Canadian citizen or permanent resident?",
+    q: () => `${who().areQ} a Canadian citizen or permanent resident?`,
     help: "Most government benefits require this.",
     key: "citizenPR",
     options: [
@@ -406,18 +441,21 @@ const STEPS = [
   },
   {
     id: "dtc", type: "single", kicker: "The master key 🔑",
-    q: "Are you approved for the Disability Tax Credit (DTC)?",
+    q: () => `${who().areQ} approved for the Disability Tax Credit (DTC)?`,
     help: "The DTC is the #1 thing that unlocks most disability benefits. If you don't have it, that's okay — we'll show you how to get it.",
     key: "dtc",
-    options: [
-      { value: "yes", label: "Yes, I'm approved" },
+    options: () => [
+      { value: "yes", label: answers.forWho === "self" ? "Yes, I'm approved" : "Yes, approved" },
       { value: "no", label: "No, not yet" },
       { value: "unsure", label: "I'm not sure what that is" },
     ],
+    // Answering "not sure" and moving on costs someone the single biggest
+    // benefit in the app. Give them a way to actually find out, right here.
+    sideNote: { topic: "dtc", label: "Not sure? Read what the DTC is and how to tell" },
   },
   {
     id: "situation", type: "multi", kicker: "Your situation",
-    q: "What best describes you right now?",
+    q: () => `What best describes ${subj()} right now?`,
     help: "Pick all that apply — this opens up work & school supports.",
     key: "situation",
     options: [
@@ -442,7 +480,7 @@ const STEPS = [
   },
   {
     id: "city", type: "select", kicker: "Your community",
-    q: "Which city or town do you live in or near?",
+    q: () => `Which city or town ${who().doQ.toLowerCase()} live in or near?`,
     help: "Unlocks local transit and recreation discounts. Start typing to find yours.",
     key: "city",
     placeholder: "Choose your city or town…",
@@ -453,7 +491,12 @@ const STEPS = [
 
 /* the city list depends on the chosen province */
 const stepOptions = (step) =>
-  step.id === "city" ? (CITIES_BY_PROVINCE[answers.province] || []) : step.options;
+  step.id === "city"
+    ? (CITIES_BY_PROVINCE[answers.province] || [])
+    // options may be a function so labels can address the right person
+    : typeof step.options === "function"
+      ? step.options()
+      : step.options;
 
 const visibleSteps = () => STEPS.filter((s) => !(s.skipIf && s.skipIf()));
 
@@ -737,6 +780,10 @@ function render() {
     progress.style.display = "none";
     app.innerHTML = renderPrivacy();
     wirePrivacy();
+  } else if (view === "help") {
+    progress.style.display = "none";
+    app.innerHTML = renderHelpPage(helpTopic);
+    wireHelpPage();
   }
   if (samePage) {
     window.scrollTo(0, keepScroll);
@@ -975,6 +1022,120 @@ function wireLanding() {
 }
 
 /* =============================================================================
+   "I DON'T KNOW" HELP PAGES  (reachable from a wizard step, returns to it)
+
+   Two of the questions are ones people genuinely cannot answer, and answering
+   them wrong is expensive: guess "not sure" on the DTC and you may skip the
+   single biggest benefit here.
+
+   NOTE ON THE DISABILITY PAGE: there is deliberately no "list of disabilities
+   the government recognises", because there isn't one. Eligibility is decided
+   by how much you are limited, not by your diagnosis — that is the entire point
+   of "severe and prolonged". Publishing a list would be false, and would feed
+   the exact belief ("my condition isn't on the list, so I don't qualify") that
+   stops people applying. So the page says the true thing instead.
+
+   ALSO DELIBERATELY ABSENT: a "describe your disability and we'll pick for you"
+   box. Mapping free text to a disability category is diagnosis-adjacent
+   guesswork; get it wrong and we steer someone away from money they're owed.
+   The assistant is explicitly fenced off from exactly this. Pointing people to
+   someone who can actually answer is the honest version.
+   ========================================================================== */
+const HELP_PAGES = {
+  disabilities: {
+    kicker: "Not sure which to pick?",
+    title: "You don't need a diagnosis to use this",
+    lead: "This question trips people up more than any other. Here's the honest answer.",
+    blocks: [
+      {
+        h: "There is no official list of “qualifying disabilities”",
+        p: "People expect one, and it doesn't exist. The government doesn't decide by diagnosis — it decides by <b>how much your condition limits you day to day</b>, even with treatment. Two people with the same diagnosis can get different answers. Someone with a condition nobody's heard of can qualify easily.",
+      },
+      {
+        h: "This question does not decide anything",
+        p: "The categories on the last page are just buckets we use to match you to programs and to suggest the right kind of practitioner. Picking one doesn't make you eligible, and picking the “wrong” one doesn't disqualify you. Nothing here is sent to the government.",
+      },
+      {
+        h: "So what should you pick?",
+        p: "Whatever is closest. If two fit, pick both — it's a multi-select. If nothing fits, pick <b>“Something else / not listed”</b> and carry on; you'll still get the full federal and Alberta list, because most benefits don't depend on the category at all.",
+      },
+      {
+        h: "If you don't have a diagnosis yet",
+        p: "You can still apply for most of this. What the forms need is a <b>practitioner describing your limitations</b> — not a label. Start with a family doctor or nurse practitioner and describe what you struggle to do, and how long it takes. If you don't have a practitioner, the benefit guides here have a “find one near you” search.",
+      },
+      {
+        h: "If you want to talk to a person",
+        p: "Voice of Albertans with Disabilities and Inclusion Alberta both help people work out what they might qualify for, for free, before any paperwork. Alberta 211 (dial 2-1-1, any time) will point you to local help. They're all listed under “Real people who can help” on your results.",
+      },
+    ],
+    foot:
+      "Still stuck? Pick the closest option and keep going — you can change any answer afterwards by tapping it on the results page.",
+  },
+  dtc: {
+    kicker: "The master key",
+    title: "How to tell if you have the DTC",
+    lead: "The Disability Tax Credit unlocks more than anything else here — the RDSP, the Canada Disability Benefit, the Child Disability Benefit. It's worth two minutes to find out.",
+    blocks: [
+      {
+        h: "You'd know if you applied",
+        p: "The DTC isn't automatic and nobody gets it by accident. Someone had to send the CRA a <b>Form T2201</b> with a practitioner's section filled in, and the CRA had to write back approving it. If none of that rings a bell, the answer is almost certainly <b>“No, not yet”</b>.",
+      },
+      {
+        h: "The reliable way to check",
+        p: "Sign in to <b>CRA My Account</b> and look under benefits and credits — an active DTC shows there, with the years it covers. No account? Call the CRA at <b>1-800-959-8281</b> and ask “am I approved for the disability tax credit?”. They'll tell you.",
+      },
+      {
+        h: "It might be on an old tax return",
+        p: "If someone claimed it for you, it appears as the disability amount on your return (or on a parent's or spouse's, if it was transferred to them). Worth asking whoever does your taxes.",
+      },
+      {
+        h: "It can expire",
+        p: "Approvals are sometimes granted for a set number of years. If you were approved years ago and nothing's been re-submitted, it may have lapsed — CRA My Account shows the end year.",
+      },
+      {
+        h: "Not approved? That's the normal starting point",
+        p: "Most people using this site don't have it yet, and it's the first thing worth doing. Answer <b>“No, not yet”</b> and we'll put the DTC at the top of your list with a step-by-step guide — including what “severe and prolonged” actually means, which is where most people wrongly rule themselves out.",
+      },
+    ],
+    foot:
+      "If you're unsure, answering “No, not yet” is the safer choice — we'll show you the DTC guide either way, and you can change the answer later.",
+  },
+};
+
+function renderHelpPage(topic) {
+  const hp = HELP_PAGES[topic];
+  if (!hp) return `<div class="card">Not found.</div>`;
+  const back = (id) => `<button class="back-link${id === "hp-back2" ? " bottom" : ""}" id="${id}">${icon("arrowLeft")} Back to the question</button>`;
+  return `
+  <section class="legal helppage">
+    ${back("hp-back")}
+    <p class="section-label">${hp.kicker}</p>
+    <h1 class="legal-title">${hp.title}</h1>
+    <p class="legal-lede">${hp.lead}</p>
+    <ol class="pt-list">
+      ${hp.blocks
+        .map(
+          (b, i) => `<li class="pt-item reveal" style="--i:${i}">
+            <span class="pt-num" aria-hidden="true">${i + 1}</span>
+            <div><h4>${b.h}</h4><p>${b.p}</p></div>
+          </li>`
+        )
+        .join("")}
+    </ol>
+    <p class="pt-foot">${icon("info")} <span>${hp.foot}</span></p>
+    ${back("hp-back2")}
+  </section>`;
+}
+
+function wireHelpPage() {
+  ["hp-back", "hp-back2"].forEach((id) => {
+    const el = document.getElementById(id);
+    // Return to the exact question they left, not the top of the wizard.
+    if (el) el.addEventListener("click", () => setState("wizard", { stepIndex: helpReturnStep }));
+  });
+}
+
+/* =============================================================================
    PRIVACY & DISCLAIMER
    ========================================================================== */
 function renderPrivacy() {
@@ -1027,7 +1188,8 @@ function renderStep(step) {
         ${opts}
       </select>`;
   } else {
-    const optionsHtml = step.options
+    const stepOpts = stepOptions(step);
+    const optionsHtml = stepOpts
       .map((o) => {
         const selected =
           step.type === "multi"
@@ -1041,7 +1203,7 @@ function renderStep(step) {
         </button>`;
       })
       .join("");
-    const twoCol = step.options.length === 2 ? "two" : "";
+    const twoCol = stepOpts.length === 2 ? "two" : "";
     controlHtml = `<div class="options ${twoCol}">${optionsHtml}</div>`;
   }
 
@@ -1060,6 +1222,7 @@ function renderStep(step) {
       <h2 class="step-q">${T.q}</h2>
       <p class="step-help">${T.help}</p>
       ${controlHtml}
+      ${step.sideNote ? `<button class="side-note" id="sideNote" type="button">${icon("info")}<span>${step.sideNote.label}</span>${icon("arrowRight")}</button>` : ""}
       <div class="nav-row">
         <button class="btn btn-ghost" id="back">${editingReturn ? t("wiz.cancel") : isFirst ? t("wiz.exit") : t("wiz.back")}</button>
         <button class="btn btn-primary" id="next" ${nextDisabled ? "disabled" : ""}>
@@ -1086,6 +1249,13 @@ function stepAnswered(step) {
 }
 
 function wireStep(step) {
+  const sn = document.getElementById("sideNote");
+  if (sn && step.sideNote)
+    sn.addEventListener("click", () => {
+      helpReturnStep = stepIndex;      // come back to this exact question
+      helpTopic = step.sideNote.topic;
+      setState("help");
+    });
   if (step.type === "select") {
     const sel = document.getElementById("selInput");
     if (sel)
@@ -1227,15 +1397,27 @@ function benefitProvince(b) {
 function renderSupportsArea() {
   const matched = SUPPORTS.filter(supportMatches);
   if (!matched.length) return "";
+  /* This section was being ignored, and the content is some of the most useful
+     on the site — "extra time on exams", "a distraction-free exam room". The
+     closed row said only a category name and a count, which gives nobody a
+     reason to open it. So the closed state now previews what's actually inside,
+     and the framing leads with the real selling point: unlike every benefit
+     here, none of this needs a form, a practitioner, or a 20-week wait. */
+  const totalTips = matched.reduce((n, s) => n + (s.tips ? s.tips.length : 0), 0);
   const sections = SUPPORT_CATEGORIES.map((c) => {
     const items = matched.filter((s) => s.cat === c.cat);
     if (!items.length) return "";
+    const preview = items.map((i) => i.title).join(" · ");
+    const tipCount = items.reduce((n, i) => n + (i.tips ? i.tips.length : 0), 0);
     return `
     <details class="support-section">
       <summary>
         <span class="ss-ic">${icon(c.icon)}</span>
-        <span class="ss-name">${c.cat}</span>
-        <span class="count">${items.length}</span>
+        <span class="ss-body">
+          <span class="ss-name">${c.cat}</span>
+          <span class="ss-preview">${preview}</span>
+        </span>
+        <span class="count" title="${tipCount} practical tip${tipCount === 1 ? "" : "s"}">${tipCount}</span>
         <span class="ss-chev">${icon("arrowRight")}</span>
       </summary>
       <div class="support-list">${items.map(renderSupportCard).join("")}</div>
@@ -1245,6 +1427,12 @@ function renderSupportsArea() {
   <div class="supports-area">
     <h2 class="supports-heading">${t("supports.heading")}</h2>
     <p class="supports-sub">${t("supports.sub")}</p>
+    <div class="supports-hook">
+      <span class="sh-num" aria-hidden="true">${totalTips}</span>
+      <p>practical things matched to ${who().poss === "your" ? "your" : poss()} answers that need
+        <b>no form, no practitioner and no waiting</b> — you can use them this week.
+        Everything above takes weeks; none of this does.</p>
+    </div>
     ${sections}
   </div>`;
 }
@@ -1731,6 +1919,11 @@ function wireResults() {
   if (retroSel && retroOut) {
     const upd = () => {
       const y = Math.min(parseInt(retroSel.value, 10) || 0, 10);
+      // Store it: this used to be hardcoded to 5, so opening a benefit and
+      // coming back silently threw the choice away and showed the wrong
+      // back-pay figure.
+      answers.retroYears = y;
+      persist();
       const amt = y * 2000;
       retroOut.innerHTML = amt > 0
         ? `≈ <b>${money(amt)}</b> in DTC back-pay you could recover`

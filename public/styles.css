@@ -12,7 +12,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=23") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=24") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -20,7 +20,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=23") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=24") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -250,7 +250,11 @@ body::before {
 .lang .ic { width: 15px; height: 15px; }
 
 /* ---------------------------------------------------------------- layout */
-.wrap { position: relative; z-index: 1; max-width: none; margin: 0; padding: 40px clamp(28px, 5vw, 72px) 130px; }
+/* Left gutter widened 2026-07-15: at 5vw/72px max the content hugged the left
+   edge on a wide screen and read as "hanging off the side". The left-aligned
+   editorial layout is deliberate (we don't centre), so the fix is a bigger
+   gutter, not a max-width — 7vw up to 132px. Mobile min is unchanged at 28px. */
+.wrap { position: relative; z-index: 1; max-width: none; margin: 0; padding: 40px clamp(28px, 7vw, 132px) 130px; }
 @media (max-width: 640px) { .wrap { padding: 32px 20px 120px; } }
 /* views that read better in a narrower measure stay left-aligned, not centered */
 .wrap.narrow { max-width: 720px; }
@@ -1208,3 +1212,32 @@ body.a11y-nomotion .ask-fab { transition: none; }
 body.a11y-nomotion .reveal, body.a11y-nomotion .reveal.in { opacity: 1 !important; transform: none !important; transition: none !important; }
 body.a11y-nomotion .pt-item.reveal { border-top-color: var(--hair); }
 body.a11y-nomotion .pt-item.reveal::before { display: none; }
+
+/* "I don't know" escape hatch under a wizard question. Quiet — it must not
+   compete with the actual answers — but reachable, because the people who need
+   it are the ones about to guess and get it wrong. */
+.side-note { display: inline-flex; align-items: center; gap: 8px; appearance: none; font-family: inherit; cursor: pointer; margin: 14px 0 0; padding: 9px 13px; background: transparent; border: 1px dashed var(--hair-2); border-radius: 999px; color: var(--text-dim); font-size: 0.87rem; font-weight: 500; text-align: left; }
+.side-note .ic { width: 14px; height: 14px; flex: 0 0 auto; }
+.side-note .ic:last-child { color: var(--text-dimmer); transition: transform 0.15s var(--ease); }
+.side-note:hover { border-style: solid; border-color: var(--accent-line); background: var(--accent-soft); color: var(--text); }
+.side-note:hover .ic:last-child { transform: translateX(3px); }
+body.a11y-nomotion .side-note:hover .ic:last-child { transform: none; }
+.helppage .pt-list { margin-top: 22px; }
+
+/* "Things you can use this week" — was a stack of collapsed rows showing only a
+   name and a count, so nobody opened it. The closed row now previews what's
+   inside, and the hook leads with the actual differentiator: no form, no wait.
+   Numeral styling borrowed from the guide's Trawelt-derived numerals. */
+.supports-hook { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center; max-width: 62ch; margin: 4px 0 22px; padding: 16px 18px; background: var(--ok-soft); border: 1px solid color-mix(in srgb, var(--ok) 35%, transparent); border-radius: var(--r); }
+.sh-num { font-family: var(--font-display); font-size: 2.4rem; line-height: 1; font-weight: 600; letter-spacing: -0.04em; color: var(--ok); font-variant-numeric: tabular-nums; }
+.supports-hook p { margin: 0; font-size: 0.92rem; line-height: 1.6; color: var(--text-dim); }
+.supports-hook b { color: var(--text); font-weight: 600; }
+.support-section summary { align-items: center; }
+.ss-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1; }
+.ss-preview { font-size: 0.83rem; line-height: 1.45; color: var(--text-dimmer); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.support-section[open] .ss-preview { opacity: 0.45; }
+@media (max-width: 560px) {
+  .supports-hook { gap: 12px; padding: 14px; }
+  .sh-num { font-size: 1.9rem; }
+  .ss-preview { white-space: normal; }
+}

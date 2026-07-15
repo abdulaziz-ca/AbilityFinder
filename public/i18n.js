@@ -109,8 +109,8 @@ const I18N = {
     "grp.ready": "Ready to apply",
     "grp.almost": "One step away",
     "grp.supports": "Supports & strategies for you",
-    "supports.heading": "Beyond the money: supports & strategies",
-    "supports.sub": "Open any topic for practical help matched to you — no paperwork, just what works.",
+    "supports.heading": "Things you can use this week",
+    "supports.sub": "Benefits take weeks. These don't — no forms, no doctor's note, no waiting.",
     "supports.resource": "Recommended resource",
     "nm.summary": "Not a match right now",
     "nm.tap": "tap to see why",
@@ -317,11 +317,14 @@ function t(key) {
 /* localized step accessor: returns {kicker,q,help,placeholder} */
 function stepText(step) {
   const o = STEP_I18N[LANG] && STEP_I18N[LANG][step.id];
+  // A step's q/help may be a function so it can address the right person —
+  // "Can you walk 50m?" vs "Can your child walk 50m?" (see FOR_WHO in app.js).
+  const r = (v) => (typeof v === "function" ? v() : v);
   return {
-    kicker: (o && o.kicker) || step.kicker,
-    q: (o && o.q) || step.q,
-    help: (o && o.help) || step.help,
-    placeholder: (o && o.placeholder) || step.placeholder,
+    kicker: r((o && o.kicker) || step.kicker),
+    q: r((o && o.q) || step.q),
+    help: r((o && o.help) || step.help),
+    placeholder: r((o && o.placeholder) || step.placeholder),
   };
 }
 /* localized option label for a step option */
