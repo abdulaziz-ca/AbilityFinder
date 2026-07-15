@@ -12,7 +12,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=20") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=21") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -20,7 +20,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=20") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=21") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -51,6 +51,9 @@
   --ok: #57bf90;
   --ok-soft: rgba(87, 191, 144, 0.13);
   --warn: #e0a44e;
+  /* a11y audit: `.bm-diff.hard` hardcoded this. Tokenised so the light theme
+     can override it — #e0605e is fine on dark, but 3.14:1 on light. */
+  --danger: #e0605e;
   --warn-soft: rgba(224, 164, 78, 0.13);
 
   --btn: #f7f2ea;
@@ -78,16 +81,34 @@
   --hair-2: rgba(30, 24, 18, 0.18);
   --text: #1f1913;
   --text-dim: #665d51;
-  --text-dimmer: #938a7d;
+  /* Was #938a7d — only 3.05:1 on --bg and 2.82:1 on --bg-2, i.e. below the WCAG
+     AA 4.5:1 minimum for normal text. It reads fine on the dark theme (5.35:1)
+     but the light theme inverted the backgrounds without re-checking this one,
+     so .opt-tag, .disclaimer, #fb-status and friends were failing. Found by the
+     2026-07-15 axe-core audit; the dark theme value is unchanged and passes.
+     #6b6256 measures 5.37 (--bg) / 4.96 (--bg-2) / 5.89 (--panel).
+     It lands close to --text-dim (5.82) on purpose: on a light background a
+     "dimmer" grey cannot be much lighter and still be readable, and leaning on
+     a subtle contrast difference for hierarchy is itself an a11y anti-pattern. */
+  --text-dimmer: #6b6256;
   /* accent flips to a dark warm ink in light mode */
   --accent: #43372a;
   --accent-hi: #241c13;
   --accent-soft: rgba(67, 55, 42, 0.07);
   --accent-line: rgba(67, 55, 42, 0.28);
-  --ok: #1a9163;
-  --ok-soft: rgba(26, 145, 99, 0.10);
-  --warn: #b9791f;
-  --warn-soft: rgba(185, 121, 31, 0.10);
+  /* a11y audit 2026-07-15 — these were tuned by eye and failed WCAG AA on the
+     light backgrounds. --ok is the colour of `.amount`, i.e. every dollar
+     figure on the site: the most important text we render was sitting at
+     3.57:1. Values below clear 4.5:1 against every background they actually
+     land on — including their OWN soft tint (e.g. --ok text inside an
+     --ok-soft callout composites to #e0e6da, which is where the first attempt
+     still failed at 4.41). Hue preserved; the dark theme already passed and is
+     unchanged. */
+  --ok: #106843;              /* was #1a9163 → 3.57:1. now 4.90:1 worst-case */
+  --ok-soft: rgba(16, 104, 67, 0.10);
+  --warn: #855511;            /* was #b9791f → 3.24:1. now 4.60:1 worst-case */
+  --warn-soft: rgba(133, 85, 17, 0.10);
+  --danger: #b53a38;          /* was a hardcoded #e0605e → 3.14:1. now 5.19 / 4.80 / 5.70 */
   --btn: #1f1913;
   --btn-ink: #fffdf8;
 }
@@ -399,7 +420,7 @@ body::before {
 .bm-diff .dots { letter-spacing: 1px; font-size: 0.6rem; }
 .bm-diff.easy { color: var(--ok); }
 .bm-diff.med { color: var(--warn); }
-.bm-diff.hard { color: #e0605e; }
+.bm-diff.hard { color: var(--danger); }
 
 /* priority rank badge */
 .rank-badge { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 999px; background: var(--accent); color: var(--bg); font-size: 0.78rem; font-weight: 700; flex: none; }
@@ -430,7 +451,7 @@ body::before {
 /* progress-tracker treatment of the card's status bar */
 .benefit.stage-saved::before, .benefit.stage-submitted::before { background: var(--accent); }
 .benefit.stage-approved::before { background: var(--ok); box-shadow: 0 0 10px color-mix(in srgb, var(--ok) 60%, transparent); }
-.benefit.stage-denied::before { background: #e0605e; }
+.benefit.stage-denied::before { background: var(--danger); }
 
 .benefit .top { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; }
 .benefit h3 { margin: 0; font-size: 1.1rem; font-weight: 600; letter-spacing: -0.025em; flex: 1 1 auto; min-width: 55%; }
@@ -475,7 +496,7 @@ body::before {
 .track.saved .track-ic, .track.saved .track-sel, .track.submitted .track-ic, .track.submitted .track-sel { color: var(--accent-hi); }
 .track.gathering .track-ic, .track.gathering .track-sel, .track.waiting .track-ic, .track.waiting .track-sel { color: var(--warn); }
 .track.approved .track-ic, .track.approved .track-sel { color: var(--ok); }
-.track.denied .track-ic, .track.denied .track-sel { color: #e0605e; }
+.track.denied .track-ic, .track.denied .track-sel { color: var(--danger); }
 
 /* group-by toggle (priority ↔ category dashboard) */
 .group-toggle { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid var(--hair); border-radius: var(--pill); }
@@ -501,8 +522,8 @@ body::before {
 .ts-pill b { color: var(--text); }
 .ts-pill.approved { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 40%, transparent); background: var(--ok-soft); }
 .ts-pill.approved b { color: var(--ok); }
-.ts-pill.denied { color: #e0605e; border-color: rgba(224, 96, 94, 0.4); }
-.ts-pill.denied b { color: #e0605e; }
+.ts-pill.denied { color: var(--danger); border-color: rgba(224, 96, 94, 0.4); }
+.ts-pill.denied b { color: var(--danger); }
 .ts-pill.saved, .ts-pill.submitted { color: var(--accent-hi); }
 .ts-pill.gathering, .ts-pill.waiting { color: var(--warn); }
 .source-link { font-size: 0.82rem; color: var(--text-dimmer); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
@@ -948,7 +969,7 @@ textarea.text-input { resize: vertical; min-height: 96px; line-height: 1.5; }
 .fact dt { color: var(--text-dim); flex: none; }
 .fact dd { margin: 0; text-align: right; font-weight: 500; color: var(--text); }
 .fact-diff .dots { letter-spacing: 1px; margin-right: 4px; font-size: 0.78rem; }
-.fact-diff.easy { color: var(--ok); } .fact-diff.med { color: var(--warn); } .fact-diff.hard { color: #e0605e; }
+.fact-diff.easy { color: var(--ok); } .fact-diff.med { color: var(--warn); } .fact-diff.hard { color: var(--danger); }
 .side-actions { display: flex; flex-direction: column; gap: 10px; }
 .side-actions .apply { justify-content: center; padding: 13px 18px; }
 .side-actions .source-link { justify-content: center; margin-top: 4px; }
@@ -1106,3 +1127,17 @@ body.a11y-nomotion .ask-fab { transition: none; }
    a button, without looking like a third call-to-action. */
 .linkish { appearance: none; background: none; border: none; padding: 0; font: inherit; color: var(--accent-hi); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
 .linkish:hover { text-decoration-thickness: 2px; }
+
+/* ── Accessibility audit fix (2026-07-15) ────────────────────────────────────
+   Placeholders were never styled, so every input fell back to the browser's
+   default #757575. Measured against our own backgrounds that is 3.58:1 on the
+   feedback form and 3.94:1 in the assistant — both under the WCAG AA minimum of
+   4.5:1 for normal text. Unreadable placeholder text is a real barrier for an
+   app whose users include people with low vision.
+
+   --text-dim is the only dim token that clears AA in BOTH themes:
+     dark  9.67 (--bg-2) / 9.37 (--panel)
+     light 5.35 (--bg-2) / 6.36 (--panel)
+   --text-dimmer was rejected: it is 2.82:1 on light --bg-2, a clear fail.
+   Verified with axe-core 4.12.1 + a per-element contrast calculation. */
+::placeholder { color: var(--text-dim); opacity: 1; }

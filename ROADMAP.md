@@ -153,7 +153,7 @@ Shipped, but **not as planned here** — read this before touching it.
 
 > Full detail + the six regression checks: **HANDOFF §9**.
 
-### Phase 5 — Keep it true (re-scoped 2026-07-15)
+### Phase 5 — Keep it true (re-scoped 2026-07-15) — 5A/5B/5C ✅ ALL DONE
 
 The original Phase 5 (accounts, sync, email/SMS, community) assumed a paid
 backend and a willingness to hold user data. **Two constraints kill most of it:**
@@ -231,6 +231,63 @@ OCR, native app, browser extension.
 
 ---
 
+## Accessibility — audited 2026-07-15 ✅
+
+Run with **axe-core 4.12.1** (WCAG 2.0/2.1 A + AA) over **8 views × 2 themes**,
+plus the in-app high-contrast mode: landing, wizard, results (with every tracker
+stage incl. *denied*), guide, browse, privacy, the a11y panel and the assistant.
+**Result: 0 violations everywhere.** It was not clean when it started.
+
+### How to re-run it (the tooling is not committed, on purpose)
+The strict CSP (`script-src 'self'`) blocks CDN tooling — so serve axe from our
+own origin, which satisfies it:
+```sh
+curl -sL -o public/axe.min.js https://cdn.jsdelivr.net/npm/axe-core@4/axe.min.js  # gitignored
+npx wrangler dev
+# in the page console:
+#   await new Promise(r=>{const s=document.createElement('script');s.src='/axe.min.js';s.onload=r;document.head.appendChild(s)});
+#   (await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}})).violations
+rm public/axe.min.js   # NEVER ship it
+```
+⚠️ **Load the page fresh for each theme** (set `localStorage.abilityfinder.theme`
+then reload). Flipping `data-theme` in-page and re-running gave *wildly* wrong
+counts — 47 phantom violations on a view that is actually clean. Don't trust a
+run that didn't start from a reload.
+
+### What it found — all fixed
+1. **Placeholders were never styled**, so every input inherited the browser's
+   default `#757575`: **3.58:1** on the feedback form, **3.94:1** in the
+   assistant. Both under the AA minimum of 4.5:1. Now `::placeholder` uses
+   `--text-dim` (the only dim token that clears AA in *both* themes) with
+   `opacity: 1` — Firefox dims placeholders by default and would have eaten the
+   fix.
+2. **`--text-dimmer` was unreadable in light theme** — `#938a7d` = **3.05:1**,
+   hitting `.opt-tag`, `.disclaimer`, `#fb-status`. The light theme inverted the
+   backgrounds without re-checking this token. Now `#6b6256`.
+3. **The light theme's semantic colours all failed** — and one of them mattered
+   more than the rest: `--ok` is the colour of **`.amount`, every dollar figure
+   on the site**, sitting at **3.57:1**. `--warn` was 3.24:1 and a hardcoded
+   `#e0605e` "denied" red was 3.14:1 — a rejected applicant read their status in
+   failing-contrast text. Now `--ok: #106843`, `--warn: #855511`, and the red is
+   tokenised as **`--danger`** (dark `#e0605e`, light `#b53a38`), which also
+   caught 5 other hardcoded uses axe never reached.
+
+**Two lessons worth keeping:**
+- Check a colour against **every background it lands on, including its own soft
+  tint**. `--ok` at `#15764f` passed on `--bg` (5.04) but failed at **4.41** on
+  `--ok-soft` composited over `--bg` — the exact place `.amount` sits.
+- **axe cannot check contrast over the gradient hero** (`body::before`) — it
+  reports `incomplete`, ~15–30 nodes per view, not `pass`. Those are unverified,
+  not verified. Anything placed on the gradient still needs a human eye.
+
+### Not covered by this audit
+Automated rules catch roughly a third of WCAG. Still unverified: real
+screen-reader passes (VoiceOver/NVDA), keyboard-only journeys end to end,
+zoom/reflow at 200–400%, and whether the plain-language copy actually lands for
+people with cognitive disabilities. Those need humans — ideally disabled testers.
+
+---
+
 ## Architecture note (important) — updated 2026-07-15
 The site is a **Cloudflare Worker with static assets** (not Pages). `public/` is
 the only deployed directory; `src/index.js` serves `/api/ask` and passes
@@ -260,24 +317,29 @@ Two consequences already visible:
 
 ## Suggested immediate next step
 
-**Phases 1–4 are complete and live.** All five user questions are answered, so
-there is no headline feature missing. The next most valuable work is **5A, the
-broken-link monitor** — it defends what is already built. 29 official links carry
-the entire "how do I get it?" promise, they were verified once (July 2026), and
-nothing tells us when one dies. A dead Apply link is a dead end for the person
-who needed it most, and today we would only find out if a user told us.
+**Phases 1–5 are complete and live, and the accessibility audit is done.**
+There is no headline feature missing and no known WCAG AA violation.
 
-Then **5B (calendar reminders)** for user-facing value, and **5C (per-benefit
-verified dates)** to stop over-claiming freshness.
+The highest-value work left is **not code**:
+1. **Feed the monitor's findings back into the data.** 5A already found real rot
+   (Inclusion Alberta's RDSP page) within a minute of existing. The first
+   automated report lands Mondays 07:00 Alberta at `/api/link-health`.
+2. **Get a real disabled person to use it.** The audit clears the automated
+   third of WCAG; the other two thirds (screen readers, keyboard-only, 400%
+   zoom, whether the plain-language copy actually lands) need humans. This is
+   now the single biggest unknown in the project.
+3. **`BENEFIT_SIGNERS` for the other three practitioner benefits** — CPP-D,
+   AISH and the parking placard have no verified signer list, so their guides
+   fall back to "family doctor". Adding them needs *your research*, not a guess;
+   a wrong entry sends someone to pay for an appointment with a person who
+   cannot sign their form.
 
 ### Still-open smaller items
 - **Per-disability browse filter** — needs benefit→disability tags in `data.js`;
   the wizard covers this today, so it is a nice-to-have.
 - **More Alberta municipalities** in the catalog (currently Calgary + Edmonton +
   a generic 2-1-1 fallback).
-- **Accessibility audit** (Lighthouse/axe) — deferred since before launch, and
-  overdue: the audience is disabled users, so contrast/keyboard/screen-reader
-  checks matter more here than almost anywhere.
+- ~~**Accessibility audit**~~ ✅ **DONE 2026-07-15 — see "Accessibility" below.**
 - **Real feedback inbox — HALF DONE, blocked on one owner action.**
   `FEEDBACK_EMAIL` in `app.js` is `feedback@abilityfinder.ca`, which **has never
   existed**: Email Routing on the zone reads `unconfigured` with 0 destinations,

@@ -9,3 +9,6 @@ node_modules/
 .dev.vars
 .env
 *.local
+
+# Temporary a11y audit tool — never ship
+public/axe.min.js
