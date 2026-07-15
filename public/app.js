@@ -2047,7 +2047,9 @@ async function askSend(question) {
         let data;
         try { data = JSON.parse(dataLine); } catch (e) { continue; }
 
-        if (ev === "delta" && data.text) {
+        // Not a truthy check: a "0" token is legitimate content and would be
+        // dropped. The Worker already sends strings, but stay defensive.
+        if (ev === "delta" && data.text !== undefined && data.text !== null) {
           answer += data.text;
           bubble.textContent = answer;
           document.getElementById("askLog").scrollTop = 99999;

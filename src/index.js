@@ -10,6 +10,8 @@
 // Paid, usage above 10,000 Neurons/day starts costing $0.011/1,000 Neurons --
 // re-read this comment before upgrading.
 
+import { BENEFITS_CONTEXT } from "./benefits-context.js";
+
 // Llama 4 Scout: 131k context, current (the llama-3.1 builds are past their
 // 2026-05-30 deprecation). Roughly 60 Neurons per question, so the free
 // allocation is very roughly 150 questions/day.
@@ -22,7 +24,23 @@ const MAX_TURNS = 20;
 // under pressure, and the audience is disabled people making decisions about
 // money. So the prompt does not ask it to reason about eligibility at all --
 // it explains, points, and hands off to the verified data already in the app.
+//
+// GROUNDING: ungrounded, this model invented Alberta benefit facts (it called
+// AISH "Alberta Income Support for the Homeless"). BENEFITS_CONTEXT is the
+// verified catalog generated from data.js; the rules below make it the only
+// permitted source for what a program is. Do not remove it.
 const SYSTEM_PROMPT = `You are the assistant for AbilityFinder, a free tool that helps disabled Albertans find government benefits.
+
+## THE BENEFIT LIST — YOUR ONLY SOURCE OF TRUTH
+These are the only benefits AbilityFinder covers. This list is correct and was checked by a human. Your own memory of Canadian or Alberta benefit programs is NOT reliable and must not be used.
+
+${BENEFITS_CONTEXT}
+
+RULES FOR THAT LIST — these override everything else:
+- When you name or describe a program, use the name and the description EXACTLY as written above. Do not reword the name. Do not expand an acronym yourself — the expansion is already in the list.
+- If someone asks what a program is, answer using only its line above.
+- If a program is NOT on that list, say: "That one isn't in AbilityFinder, so I can't describe it." Then suggest they check the official government page. Do NOT describe it from memory.
+- If you are about to state a fact about a program that is not written above, stop and say you are not sure, and point them to that benefit's guide page in AbilityFinder.
 
 YOUR JOB IS NARROW. You do these things:
 1. Explain confusing government words and phrases in plain English.
@@ -114,7 +132,14 @@ function toClientStream(aiStream) {
 
             try {
               const parsed = JSON.parse(payload);
-              if (parsed.response) send("delta", { text: parsed.response });
+              const t = parsed.response;
+              // Workers AI streams numeric tokens as JSON numbers, not strings
+              // ("T2201" arrives as "T", 220, 1). A truthy check would silently
+              // swallow a literal 0 token, so test for null/undefined and
+              // normalise to a string for the client.
+              if (t !== undefined && t !== null && t !== "") {
+                send("delta", { text: String(t) });
+              }
             } catch {
               // A malformed chunk shouldn't kill an otherwise good answer.
             }

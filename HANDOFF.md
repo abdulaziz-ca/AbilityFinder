@@ -298,10 +298,43 @@ Two decisions worth not re-litigating:
    official links. **If you swap in a stronger model later, that restriction can
    loosen — until then, do not widen its job.**
 
-⚠️ **Not done: the privacy story.** The site's promise is that nothing leaves the
-browser, and the privacy page says so. `/api/ask` sends the user's question to
-Cloudflare. The assistant must be **opt-in** and the privacy page must say
-plainly what is sent and where, before this ships.
+3. **It is GROUNDED — and must stay grounded.** Ungrounded it invented facts:
+   it called AISH *"Alberta Income Support for the Homeless"* (it is Assured
+   Income for the Severely Handicapped, the flagship benefit in this app) and
+   T2201 the *"Medical Certificate"* (it is the Disability Tax Credit
+   Certificate). Prompt rules alone did **not** prevent this — the amount and
+   eligibility rules held, but nothing stopped it misidentifying a *program*.
+
+   Fix: `src/benefits-context.js` is **generated** from `public/data.js` (the
+   `BENEFITS` array) plus `PRACTITIONER_FORMS` in `public/app.js`, and injected
+   into the system prompt as the only permitted source for what a program is.
+
+   ```sh
+   npm run gen:context     # after ANY edit to BENEFITS or PRACTITIONER_FORMS
+   ```
+
+   It emits names/levels/categories/summaries + practitioner form names, and
+   **deliberately no amounts or cutoffs**: the most reliable way to stop a weak
+   model quoting a figure is to never put the figure in front of it. Do not
+   "helpfully" add amounts to that file.
+
+   Four checks worth re-running after any data change:
+   - "what is AISH?" → must match the `data.js` summary
+   - "what does T2201 mean?" → must say Disability Tax Credit Certificate
+   - "how much does AISH pay?" → must refuse and point to the guide
+   - "tell me about the Ontario Disability Support Program" → must say it is not
+     in AbilityFinder
+
+4. **Workers AI streams numeric tokens as JSON numbers, not strings.** "T2201"
+   arrives as `"T"`, `220`, `1`. A truthy `if (parsed.response)` check silently
+   swallows a literal `0` token — the Worker and `app.js` both test for
+   null/undefined instead. Don't "simplify" those back into truthy checks.
+
+**Privacy: done (2026-07-14).** The assistant is opt-in behind a consent gate,
+the privacy page has a "The assistant — the one exception" section, and the
+landing badge now says "Private — your answers stay in your browser" (the wizard
+answers really do stay local; only the typed question leaves). If the assistant's
+data flow ever changes, that copy has to change with it.
 
 **Phase 5 — Accounts, live data, community** (needs backend): optional accounts +
 sync, renewal/benefit-change reminders (email/SMS), anonymous reviews/timelines,

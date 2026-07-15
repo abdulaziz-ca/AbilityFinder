@@ -5,7 +5,8 @@
   "description": "AbilityFinder — every disability benefit you can get in Alberta",
   "scripts": {
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy"
+    "deploy": "wrangler deploy",
+    "gen:context": "node scripts/gen-benefits-context.js"
   },
   "devDependencies": {
     "wrangler": "^4.0.0"
