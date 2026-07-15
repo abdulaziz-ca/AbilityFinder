@@ -78,8 +78,11 @@ Paths below are relative to `public/` unless stated otherwise.
 
 | File | Role |
 |---|---|
-| `../src/index.js` | **Phase 4 Worker.** Serves `POST /api/ask` (streaming SSE, backed by **Workers AI** — no paid API, no key); every other path falls through to `env.ASSETS` → `public/`. Holds the assistant's system prompt, input validation, and per-IP rate limiting. |
-| `../wrangler.jsonc` | Deploy config: worker name, `assets.directory = ./public`, `AI` binding, `ASK_LIMIT` rate-limit binding. **No secrets.** |
+| `../src/index.js` | **The Worker.** `POST /api/ask` (Phase 4 assistant — streaming SSE on **Workers AI**, no paid API, no key), `GET /api/link-health` (Phase 5A report), a `scheduled()` cron handler, and a fall-through to `env.ASSETS` → `public/`. |
+| `../src/link-check.js` | **Phase 5A monitor.** Weekly check of all 29 official links → report to KV. Reports `broken` / `unreachable` / `redirected` as **distinct** states — see §9; conflating them produces false alarms and a report nobody reads. |
+| `../src/benefits-context.js`, `../src/links.js` | **GENERATED — do not hand-edit.** `npm run gen:context` builds both from `public/data.js` (+ `PRACTITIONER_FORMS` in `app.js`). Re-run after any `BENEFITS` edit. |
+| `../scripts/gen-benefits-context.js` | The generator. Redacts figures from the AI grounding on purpose (§9) and warns if the link count outgrows the 50-subrequest cap. |
+| `../wrangler.jsonc` | Deploy config: worker name, `assets.directory = ./public`, `AI` binding, `ASK_LIMIT` rate limit, `LINK_HEALTH` KV, weekly cron. **No secrets.** |
 | `index.html` | Shell: sticky nav (logo→home, theme toggle, language switch), progress bar, `#app`, reading-guide element, accessibility toolbar (FAB + panel). Inline `<head>` script sets theme before paint. Preloads the self-hosted serif; loads `icons.js`, `i18n.js`, `data.js`, `app.js` at `?v=5` (bump on CSS/JS changes). |
 | `styles.css` | Whole design system — see §12. Dark default; light via `:root[data-theme="light"]`. Editorial, borderless, left-aligned, wide (1120px) layout. |
 | `fonts/*.woff2` | Self-hosted **Fraunces** (display serif) + **Inter** (body), both OFL. `@font-face` at the top of `styles.css`. **No font CDN** → nothing leaks to a third party. |

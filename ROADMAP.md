@@ -168,11 +168,28 @@ user questions are already answered; what can still hurt someone is the answers
 quietly going wrong.
 
 **Possible now — free, no PII, no new promises:**
-- [ ] **5A · Broken-link monitor** (cron Worker). 29 official links rot silently;
-      a dead "Apply" link is a dead end for someone who needed it. Free-plan
-      facts checked: Cron Triggers are free (5/account) and 29 links fit inside
-      the **50-subrequest/invocation** cap in a single run, with room to spare.
-      Report to KV, surfaced on a small owner-only page. No user data touched.
+- [x] **5A · Broken-link monitor** ✅ **DONE & LIVE (2026-07-15).** Cron
+      `0 13 * * 1` (Mon 07:00 Alberta) → `runLinkCheck()` in `src/link-check.js`
+      → report in KV → **`GET /api/link-health`** (public JSON, noindex; it holds
+      no user data, only the health of links we already publish). Link list is
+      generated into `src/links.js` by `npm run gen:context`, which warns if the
+      catalog outgrows the 50-subrequest cap (29/50 today).
+
+      **It reports three states, not two** — `broken` (server answered badly),
+      `unreachable` (no answer at all — *not* claimed dead), `redirected` (fine
+      today, but this is how a link quietly goes wrong). That distinction is
+      load-bearing: the first run called `www.edmonton.ca/ets/fare-assistance`
+      broken, but it returns 200 to curl and to a browser and simply refuses
+      Cloudflare Workers fetch, every time. Shipping that would have put a
+      permanent false alarm in every weekly report, and a report that cries wolf
+      is a report nobody reads. **Only `broken` logs an error.**
+
+      ⚠️ **Open finding from run 1 — needs a decision, not yet fixed:**
+      `inclusionalberta.org/individuals-families/rdsp/` returns 200 but redirects
+      to `/event/rdsp-dtc-info-session-virtual/`. The RDSP resource page is gone,
+      so anyone clicking "Inclusion Alberta — RDSP help" lands on an unrelated
+      event. Pick a replacement URL (the Access RDSP / Plan Institute entry may
+      already cover this need) rather than guessing one.
 - [ ] **5B · Renewal & deadline reminders — as a calendar file.** 14-list #7,
       delivered *without* a backend: generate an `.ics` the user downloads, so
       **their own** calendar does the reminding. Zero infra, zero PII, no
@@ -247,10 +264,28 @@ verified dates)** to stop over-claiming freshness.
 - **Accessibility audit** (Lighthouse/axe) — deferred since before launch, and
   overdue: the audience is disabled users, so contrast/keyboard/screen-reader
   checks matter more here than almost anywhere.
-- **Real feedback inbox** — `FEEDBACK_EMAIL` in `app.js` is still the
-  `feedback@abilityfinder.ca` placeholder, so user feedback currently goes
-  nowhere. Cheapest fix that keeps the no-PII stance: a form service, or just a
-  real mailbox on the domain.
+- **Real feedback inbox — HALF DONE, blocked on one owner action.**
+  `FEEDBACK_EMAIL` in `app.js` is `feedback@abilityfinder.ca`, which **has never
+  existed**: Email Routing on the zone reads `unconfigured` with 0 destinations,
+  so every feedback click since launch has mailed a black hole. This also means
+  the only channel a user has to report a dead link or a wrong amount is
+  disconnected — it directly feeds the decay problem Phase 5 exists to fix.
+
+  Done: `abeehaconstruction@gmail.com` added as a destination address (a
+  Cloudflare verification email was sent to it).
+
+  **Remaining (owner):** enabling Email Routing writes **MX + SPF records** to
+  `abilityfinder.ca`. That is a DNS change on a live domain and needs explicit
+  authorization; the OAuth token also cannot read DNS (`zone (read)` only), so
+  it cannot be pre-checked for conflicts from here. Do it in the dashboard
+  (Email → Email Routing → enable), then add the rule
+  `feedback@abilityfinder.ca → abeehaconstruction@gmail.com`. Email Routing is
+  free and unlimited inbound on the Workers Free plan.
+
+  > Bonus once this exists: sending **to a verified destination address is free
+  > on any plan** (arbitrary recipients need Workers Paid), so the 5A monitor
+  > could then email the owner when a link actually breaks — instead of relying
+  > on someone remembering to open `/api/link-health`.
 - **Re-integrate the other 12 provinces** from `data-provinces-later.js` once
   Alberta is genuinely "done" (steps at the top of that file).
 - **French** — paused; `i18n.js` has the scaffolding and partial `fr` strings.
