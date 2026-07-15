@@ -18,15 +18,20 @@ other 12 jurisdictions.
 
 ## Scorecard — how we answer the 5 questions today
 
+*(Updated 2026-07-15. Phases 1–4 are done and live at https://abilityfinder.ca.)*
+
 | Question | State | Gap |
 |---|---|---|
 | 1. What can I get? | ✅ Strong | — |
-| 2. How much am I missing? | 🟡 Partial | amounts shown, but no $ estimate / totals / retroactive |
-| 3. Am I eligible & why? | ✅ Mostly | add per-benefit Eligible/Maybe/No badge + deeper "why" |
-| 4. What should I apply for first? | ❌ Missing | no priority / difficulty / value ranking |
+| 2. How much am I missing? | ✅ Strong | Phase 1: value model, totals, retro estimator |
+| 3. Am I eligible & why? | ✅ Strong | Phase 2: badges, "why", denials, appeals |
+| 4. What should I apply for first? | ✅ Strong | Phase 1: priority rank = value × ease |
 | 5. How do I get it? | ✅ Strong | — |
 
-**Biggest gaps vs. the vision: #2 (money value) and #4 (priority).** → Phase 1.
+**All five questions are answered.** The remaining risk is not a missing feature —
+it is **decay**: 29 official government links and every dollar figure in
+`data.js` go stale silently, and a benefits directory that is quietly wrong is
+worse than no directory. That is what Phase 5 should protect. → see Phase 5.
 
 ---
 
@@ -59,7 +64,7 @@ other 12 jurisdictions.
 
 ## The Alberta-first roadmap
 
-### Phase 1 — Money & Priority (highest value, client-side) 🎯 in progress
+### Phase 1 — Money & Priority (highest value, client-side) ✅ COMPLETE
 Directly closes gaps #2 and #4.
 - [x] **Structured value model** per benefit — `BENEFIT_VALUES` in `data.js`
       (kind + annual/monthly/lifetime/retro), verified 2025–2026 figures for all
@@ -127,43 +132,125 @@ Delivered via `BENEFIT_EXTRA` in `data.js` + `p2Sections()` on the guide page.
       placard form via `PRACTITIONER_FORMS`), flags that not all clinics do them,
       and adds "what to ask when you call" (incl. the form-fee question). ✅ done
 
-### Phase 4 — Smart help (needs an API — first server piece)
-- [ ] **AI assistant** (Claude API): "What can I get with autism + part-time
-      work?", "Explain this government wording," eligibility Q&A.
-  - ⚠️ Requires a tiny serverless proxy to hold the API key (can't ship keys to
-    the browser). First break from the pure-static model.
+### Phase 4 — Smart help ✅ COMPLETE (shipped 2026-07-14/15, live)
+Shipped, but **not as planned here** — read this before touching it.
+- [x] **AI assistant** — bottom-left FAB + panel, opt-in behind a consent gate,
+      streaming. `POST /api/ask` in `src/index.js`; same Worker, same origin, so
+      no separate proxy and no CSP change was needed. ✅ done
+- [x] **Not the Claude API — Workers AI** (`env.AI`,
+      `@cf/meta/llama-4-scout-17b-16e-instruct`). The owner's hard rule is zero
+      spend and there is no free Claude tier. On the **Workers Free plan**
+      (confirmed) Workers AI has a 10k Neuron/day allocation and **no overage
+      price**, so the endpoint cannot bill. ~134 questions/day. ✅ done
+- [x] **Grounded in `data.js`** — `npm run gen:context` generates
+      `src/benefits-context.js`; the Worker retrieves the matching benefit's
+      detail per question. Ungrounded, the free model invented benefit facts
+      (called AISH "Alberta Income Support for the Homeless", invented a phone
+      number) *despite* prompt rules forbidding it. Prompt rules alone do not
+      contain this model. **Do not widen its job without a stronger model.** ✅ done
+- [x] **Privacy reconciled** — the assistant is the only thing that leaves the
+      device, so the privacy page and landing badge now say so plainly. ✅ done
 
-### Phase 5 — Accounts, live data & community (needs a backend)
-- [ ] Optional **accounts** + cross-device sync (keep anonymous/no-login default —
-      privacy is a selling point).
-- [ ] **Renewal reminders**, email/SMS alerts, **benefit-change alerts** (e.g.,
-      "2027 budget: DTC +4%").
-- [ ] **Community**: anonymous reviews, success timelines ("my DTC took 9 weeks").
-- [ ] **Admin CMS**, broken-link monitor, version history, amount/threshold
-      update workflow.
-- [ ] **Far future**: CRA / Service Canada integration, form auto-fill, OCR,
-      native app, browser extension.
+> Full detail + the six regression checks: **HANDOFF §9**.
+
+### Phase 5 — Keep it true (re-scoped 2026-07-15)
+
+The original Phase 5 (accounts, sync, email/SMS, community) assumed a paid
+backend and a willingness to hold user data. **Two constraints kill most of it:**
+1. **Zero spend** — owner's hard rule, and the reason Phase 4 uses Workers AI.
+2. **Privacy is the product** — the site's promise is that your answers never
+   leave your device. Accounts and email reminders both mean storing disability
+   and income data about identifiable people. That is a breach liability and a
+   broken promise, for a population that can least afford either.
+
+So Phase 5 is re-aimed at the *real* remaining risk: **silent decay**. All five
+user questions are already answered; what can still hurt someone is the answers
+quietly going wrong.
+
+**Possible now — free, no PII, no new promises:**
+- [ ] **5A · Broken-link monitor** (cron Worker). 29 official links rot silently;
+      a dead "Apply" link is a dead end for someone who needed it. Free-plan
+      facts checked: Cron Triggers are free (5/account) and 29 links fit inside
+      the **50-subrequest/invocation** cap in a single run, with room to spare.
+      Report to KV, surfaced on a small owner-only page. No user data touched.
+- [ ] **5B · Renewal & deadline reminders — as a calendar file.** 14-list #7,
+      delivered *without* a backend: generate an `.ics` the user downloads, so
+      **their own** calendar does the reminding. Zero infra, zero PII, no
+      account, works offline, and survives the site being down.
+- [ ] **5C · Data-freshness surfacing.** `DATA_VERIFIED` is a single date for the
+      whole catalog. Make staleness visible (per-benefit `verified` date + a
+      "check the official page, this is N months old" nudge past a threshold)
+      rather than implying everything was checked yesterday.
+
+**Shelved — and why (do not "just add" these):**
+- ~~Accounts + cross-device sync~~ — breaks the privacy promise and creates a
+  breach liability for disability/income data. If sync is ever wanted, do it as
+  **export/import a file** (client-side, no server, no account).
+- ~~Email / SMS alerts~~ — requires storing an address (PII); SMS costs money.
+  5B delivers the same user value with neither. Revisit only if 5B proves
+  insufficient.
+- ~~Community reviews / success timelines~~ — needs a backend *and* ongoing
+  moderation. Free-text from users invites PII and abuse, and the moderation
+  burden lands on one person. High risk, low certainty of payoff.
+- ~~Admin CMS~~ — `data.js` + git already is the CMS, with better version
+  history than we would build.
+
+**Far future (unchanged):** CRA / Service Canada integration, form auto-fill,
+OCR, native app, browser extension.
 
 ---
 
-## Architecture note (important)
-Today the site is **100% static, client-side, no account, fully private** — a
-genuine advantage. Everything through **Phase 3 stays that way.** Phase 4 needs a
-small serverless function (API key). Phase 5 needs a real backend + database.
-Decision to make later: keep anonymous-by-default and make accounts *optional*.
+## Architecture note (important) — updated 2026-07-15
+The site is a **Cloudflare Worker with static assets** (not Pages). `public/` is
+the only deployed directory; `src/index.js` serves `/api/ask` and passes
+everything else through. A push to `main` auto-deploys in ~35s.
+
+**Still no account, and everything except the assistant stays on the device.**
+Phases 1–3 are pure client-side. Phase 4 added one server route, which is why the
+privacy copy had to change. **Phase 5 as re-scoped adds no user data at all** —
+the link monitor touches only our own links, and reminders are a file the browser
+generates. Keep it that way: the moment we hold disability or income data about
+an identifiable person, the promise on the landing page stops being true.
 
 ## Data-accuracy note
-Phases 1–2 require **researching & verifying real Alberta/federal numbers**
+Phases 1–2 required **researching & verifying real Alberta/federal numbers**
 (DTC amounts, RDSP grant/bond formula, AISH & Alberta health-benefit income
-cutoffs, processing times, denial reasons). Each benefit gets a small structured
-data upgrade. This is the real work — and where the value is.
+cutoffs, processing times, denial reasons). That research is the product.
+
+**It is also a decaying asset**, and that is now the main risk (see Phase 5).
+Two consequences already visible:
+- The assistant is forbidden from stating any figure, and figures are *redacted*
+  from its grounding, precisely so the verified `data.js` numbers stay the single
+  source of truth rather than being paraphrased by a model.
+- `DATA_VERIFIED` is one date for the whole catalog, which quietly claims more
+  than it should → Phase 5C.
 
 ---
 
 ## Suggested immediate next step
-**Phases 1–3 are complete.** The next frontier is **Phase 4 — the AI assistant**,
-which is the first feature needing a server piece (a tiny serverless proxy to hold
-the Anthropic API key). Before that, two client-side polish options worth
-considering: (a) tag each benefit with the disabilities it's most relevant to so
-the browse view can filter by disability; (b) broaden the catalog with more
-Alberta municipalities. Otherwise, begin scaffolding the Phase 4 proxy.
+
+**Phases 1–4 are complete and live.** All five user questions are answered, so
+there is no headline feature missing. The next most valuable work is **5A, the
+broken-link monitor** — it defends what is already built. 29 official links carry
+the entire "how do I get it?" promise, they were verified once (July 2026), and
+nothing tells us when one dies. A dead Apply link is a dead end for the person
+who needed it most, and today we would only find out if a user told us.
+
+Then **5B (calendar reminders)** for user-facing value, and **5C (per-benefit
+verified dates)** to stop over-claiming freshness.
+
+### Still-open smaller items
+- **Per-disability browse filter** — needs benefit→disability tags in `data.js`;
+  the wizard covers this today, so it is a nice-to-have.
+- **More Alberta municipalities** in the catalog (currently Calgary + Edmonton +
+  a generic 2-1-1 fallback).
+- **Accessibility audit** (Lighthouse/axe) — deferred since before launch, and
+  overdue: the audience is disabled users, so contrast/keyboard/screen-reader
+  checks matter more here than almost anywhere.
+- **Real feedback inbox** — `FEEDBACK_EMAIL` in `app.js` is still the
+  `feedback@abilityfinder.ca` placeholder, so user feedback currently goes
+  nowhere. Cheapest fix that keeps the no-PII stance: a form service, or just a
+  real mailbox on the domain.
+- **Re-integrate the other 12 provinces** from `data-provinces-later.js` once
+  Alberta is genuinely "done" (steps at the top of that file).
+- **French** — paused; `i18n.js` has the scaffolding and partial `fr` strings.
