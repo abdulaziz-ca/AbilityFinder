@@ -33,7 +33,7 @@ does not validate Worker routes, bindings, or production CSP behavior.
 Preferred release flow:
 
 ```sh
-npm run gen:context          # only when catalog/practitioner forms changed
+npm run gen:context          # after BENEFITS, HELP_ORGS, or PRACTITIONER_FORMS changes
 npm test
 npm run test:e2e
 git diff --check

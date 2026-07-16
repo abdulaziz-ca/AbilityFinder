@@ -32,7 +32,7 @@ AbilityFinder is one Cloudflare Worker with static assets:
 
 | Route | Purpose | Data boundary |
 |---|---|---|
-| `POST /api/ask` | Opt-in, grounded Workers AI assistant | Typed question and recent assistant conversation only |
+| `POST /api/ask` | Opt-in, grounded Workers AI assistant | Entire current in-memory conversation, up to 20 messages |
 | `POST /api/feedback` | Opt-in feedback through the pinned email binding | Kind, optional reply email, and message |
 | `GET /api/link-health` | Public noindex link-monitor report | Official catalog links only; no user state |
 
@@ -83,7 +83,8 @@ may be functions of current answers and must be resolved through existing helper
 1. Verify every factual field on the official source that day.
 2. Edit the relevant `BENEFITS` record and ID-keyed metadata maps.
 3. Add/update `BENEFIT_VERIFIED` only for records actually re-checked.
-4. Run `npm run gen:context`.
+4. Run `npm run gen:context` after changing `BENEFITS`, `HELP_ORGS`, or
+   `PRACTITIONER_FORMS`.
 5. Review generated grounding and links; figures must remain redacted from model
    context.
 6. Run `npm test` and `npm run test:e2e`.
@@ -132,8 +133,8 @@ Startup is asynchronous: restore completes before normal rendering.
    selection sets from the app.
 3. A one-time importer reads legacy `abilityfinder.*` localStorage values, converts
    old progress/group fields, and sanitizes them through the current allowlist. It
-   removes old keys only after a successful sanitized write, or when an existing
-   authoritative tombstone proves that state was already cleared.
+   removes old keys only after a successful sanitized write, or when an
+   authoritative IndexedDB snapshot or tombstone already exists.
 4. Writes are queued per tab and use optimistic revisions inside a read-write
    transaction.
 5. Clear writes a metadata-only revision tombstone. A stale tab cannot overwrite a
@@ -142,7 +143,7 @@ Startup is asynchronous: restore completes before normal rendering.
    full state.
 
 Persisted: validated answers, route/help context, progress, approved filters,
-accessibility, language, theme, grouping, and assistant consent.
+`browseQuery` text, accessibility, language, theme, grouping, and assistant consent.
 
 Excluded: postal/geolocation input, assistant messages, feedback, DOM/function
 state, rendering internals, and unknown future properties.
@@ -158,6 +159,8 @@ following negative instructions. Therefore:
 - Amounts and percentages are redacted from grounding. The model is told to point
   to the verified guide instead of stating figures or eligibility verdicts.
 - Output is streamed and rendered with `textContent`.
+- Each request transmits the entire current in-memory conversation, up to the
+  Worker's 20-message limit; it is not trimmed to only the latest turn.
 - Numeric stream fragments may be JSON numbers; explicit null/undefined checks are
   required.
 
@@ -182,7 +185,9 @@ Before release:
 - Run both themes from fresh reloads.
 - Exercise self/child/family across all routes.
 - Check console/page errors and fail-visible behavior.
-- Verify no free text appears in IndexedDB or URLs.
+- Verify sensitive wizard/profile data and unapproved free text do not appear in
+  IndexedDB or app URLs. The allowlisted `browseQuery` persists locally; postal or
+  coordinate text enters a user-initiated Google Maps URL only when that link opens.
 - For Worker/CSP changes, test through `wrangler dev`, not only a static server.
 - For data changes, verify official live destinations and `/api/link-health`.
 

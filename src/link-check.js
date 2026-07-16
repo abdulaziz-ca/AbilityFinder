@@ -1,7 +1,7 @@
 import { LINKS, SKIPPED_DYNAMIC } from "./links.js";
 
 /**
- * Phase 5A — broken-link monitor.
+ * Broken-link monitor.
  *
  * The Workers Free plan allows 50 external subrequests per invocation, and
  * every hop in a redirect chain counts. One URL therefore cannot safely be

@@ -1,6 +1,6 @@
 # AbilityFinder — active roadmap
 
-The core finder, guides, progress tracking, assistant, feedback, link monitoring,
+The core finder, guides, progress tracking, assistant, feedback UI/endpoint, link monitoring,
 calendar reminders, data-freshness warnings, accessibility controls, and local
 IndexedDB recovery are live. Completed phase-by-phase history remains available in
 git and is intentionally not repeated here.
@@ -27,7 +27,8 @@ feature.
 - Re-verify figures, eligibility rules, forms, phone numbers, processing times, and
   municipal details before their freshness dates age out.
 - Update `BENEFIT_VERIFIED` only after an actual official-source review.
-- Run `npm run gen:context` after catalog or practitioner-form changes.
+- Run `npm run gen:context` after `BENEFITS`, `HELP_ORGS`, or
+  `PRACTITIONER_FORMS` changes.
 
 ### 2. Human accessibility and usability testing
 

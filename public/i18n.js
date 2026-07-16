@@ -25,10 +25,10 @@ const I18N = {
     "pv.needsDtc": "needs the DTC first",
     "aside.title": "Why we ask",
     "aside.1": "<b>Only what matters.</b> A few quick questions decide which programs fit you.",
-    "aside.2": "<b>Nothing is stored.</b> Your answers live only in this browser.",
+    "aside.2": "<b>Stored only on this device.</b> Your answers live in this browser.",
     "aside.3": "<b>No wrong answers.</b> We'll show what you're missing and how to get it.",
-    // "your answers" not "everything": the optional assistant does send the
-    // question you type. Keeping this precise so the page stays true.
+    // "your answers" not "everything": assistant and feedback text can be sent
+    // through their separate opt-in actions.
     "trust.private": "Private — your answers stay in your browser",
     "trust.free": "Free, no account",
     "trust.official": "Links to official sources",
@@ -47,7 +47,7 @@ const I18N = {
 
     "how.title": "How it works",
     "how.1h": "Answer a few questions",
-    "how.1p": "Your disability, age, income and situation. Takes about a minute. Nothing is saved or sent.",
+    "how.1p": "Your disability, age, income and situation. Takes about a minute. Saved on this device, not sent to us.",
     "how.2h": "See what you qualify for",
     "how.2p": "A tailored list of money, discounts and supports — with what's ready now and what's one step away.",
     "how.3h": "Apply with confidence",
@@ -78,7 +78,7 @@ const I18N = {
     "fb.msgLabel": "Your message",
     "fb.placeholder": "Tell us what's on your mind…",
     "fb.send": "Send feedback",
-    "fb.note": "This opens your email app so you can send it to us. Nothing is sent automatically.",
+    "fb.note": "Send feedback sends this form to AbilityFinder through our server and emails it to our inbox. The email-app option does not submit it through this site.",
     "fb.needMsg": "Please add a short message first.",
     "fb.thanks": "Thanks! Your email app should open. If it doesn't, email us at ",
 
@@ -164,7 +164,7 @@ const I18N = {
     "pv.needsDtc": "nécessite d'abord le CIPH",
     "aside.title": "Pourquoi ces questions",
     "aside.1": "<b>Seulement l'essentiel.</b> Quelques questions déterminent les programmes qui vous conviennent.",
-    "aside.2": "<b>Rien n'est enregistré.</b> Vos réponses restent dans ce navigateur.",
+    "aside.2": "<b>Enregistré seulement sur cet appareil.</b> Vos réponses restent dans ce navigateur.",
     "aside.3": "<b>Aucune mauvaise réponse.</b> On vous montre ce qui manque et comment l'obtenir.",
     "trust.private": "Privé — vos réponses restent dans votre navigateur",
     "trust.free": "Gratuit, sans compte",
@@ -184,7 +184,7 @@ const I18N = {
 
     "how.title": "Comment ça marche",
     "how.1h": "Répondez à quelques questions",
-    "how.1p": "Votre handicap, âge, revenu et situation. Environ une minute. Rien n'est enregistré ni envoyé.",
+    "how.1p": "Votre handicap, âge, revenu et situation. Environ une minute. Enregistré sur cet appareil, non envoyé à AbilityFinder.",
     "how.2h": "Voyez à quoi vous êtes admissible",
     "how.2p": "Une liste personnalisée d'argent, de rabais et de soutiens — ce qui est prêt et ce qui est à une étape près.",
     "how.3h": "Faites votre demande en confiance",
@@ -215,7 +215,7 @@ const I18N = {
     "fb.msgLabel": "Votre message",
     "fb.placeholder": "Dites-nous ce que vous pensez…",
     "fb.send": "Envoyer",
-    "fb.note": "Ceci ouvre votre application de courriel pour nous l'envoyer. Rien n'est envoyé automatiquement.",
+    "fb.note": "Envoyer envoie ce formulaire à AbilityFinder par notre serveur et à notre boîte courriel. L'option d'application de courriel ne le soumet pas par ce site.",
     "fb.needMsg": "Veuillez d'abord ajouter un court message.",
     "fb.thanks": "Merci ! Votre application de courriel devrait s'ouvrir. Sinon, écrivez-nous à ",
 

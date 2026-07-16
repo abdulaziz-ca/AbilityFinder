@@ -79,7 +79,7 @@ const TWO_ELEVEN = { AB: "https://ab.211.ca/" };
 const EMPLOYMENT = { AB: "https://www.alberta.ca/disability-related-employment-supports" };
 
 /* =============================================================================
-   STRUCTURED VALUE MODEL (Phase 1) — approximate dollar value per benefit, so we
+   STRUCTURED VALUE MODEL — approximate dollar value per benefit, so we
    can answer "how much money could I get?" instead of a dense description.
    kind: cash | taxCredit | grant | services | coverage | access | discount
    Amounts are 2025–2026 figures, rounded. Verified July 2026 (see each benefit's
@@ -195,7 +195,7 @@ const BENEFIT_META = {
 };
 
 /* =============================================================================
-   PHASE 2 — eligibility depth & trust. Per-benefit:
+   ELIGIBILITY DEPTH & TRUST. Per-benefit:
    confirm  → what actually confirms eligibility (turns "eligible" into an honest
               "likely eligible — depends on…")
    taxNote  → tax / interaction warnings (does it count as income? affect AISH?)
@@ -634,7 +634,7 @@ const SUPPORT_CATEGORIES = [
 ];
 
 /* =============================================================================
-   HUMAN-HELP DIRECTORY (Phase 3)
+   HUMAN-HELP DIRECTORY
    Real Alberta + national organizations that help people actually GET these
    benefits — filling out forms, appealing a denial, or finding local services.
    Free unless noted. Grouped by `cat` (see HELP_CATEGORIES). Links verified
@@ -667,7 +667,7 @@ const HELP_ORGS = [
     phone: "1-800-252-7556",
     // Was /individuals-families/rdsp/ — that page is gone and now 301s to a
     // one-off event page, so anyone clicking "RDSP help" landed somewhere
-    // useless. Caught by the Phase 5A link monitor, 2026-07-15. /dtc-rdsp-info/
+    // useless. Caught by the link monitor, 2026-07-15. /dtc-rdsp-info/
     // is canonical (/dtc-rdsp/ is an alias that redirects to it), covers DTC +
     // RDSP, and lists the same 1-800-252-7556 as above.
     url: "https://inclusionalberta.org/dtc-rdsp-info/",

@@ -24,13 +24,14 @@ universal list of qualifying diagnoses.
 
 ## Privacy
 
-Wizard answers and approved UI preferences stay in the browser's IndexedDB. There
-are no accounts or analytics. Postal/geolocation input, assistant history, and
-feedback text are not persisted.
+Wizard answers, the local browse search, and approved UI preferences stay in the
+browser's IndexedDB. There are no accounts or analytics. Postal/geolocation input
+and assistant history are not persisted. Feedback text is not saved in IndexedDB;
+the submitted copy is emailed to AbilityFinder and may remain with the mail provider.
 
 Two opt-in actions contact the Worker:
 
-- `/api/ask` receives the typed assistant question and recent assistant context.
+- `/api/ask` receives the entire current in-memory conversation, up to 20 messages.
 - `/api/feedback` receives the submitted feedback form.
 
 Clearing site data or the browser profile removes local progress.
@@ -53,7 +54,7 @@ npm run test:e2e
 npx wrangler deploy --dry-run
 ```
 
-After changing benefits or practitioner forms:
+After changing `BENEFITS`, `HELP_ORGS`, or `PRACTITIONER_FORMS`:
 
 ```sh
 npm run gen:context

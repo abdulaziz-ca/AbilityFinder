@@ -1247,11 +1247,11 @@ function renderPrivacy() {
     <h1 class="legal-title">Your information stays with you</h1>
     <p class="legal-lede">AbilityFinder is built to be private by default. Here's exactly how it works — in plain language.</p>
 
-    ${block("What we collect", `<p>Nothing. AbilityFinder has no accounts, no sign-up, and no server that stores your data. Your selections and progress live only in <b>your own browser</b>, in a private IndexedDB database for this site, so the site can remember where you were. We can't see it, and it never leaves your device.</p><p>There is <b>one exception</b>, and only if you choose to use it: the optional assistant. It is described below.</p>`)}
-    ${block("The assistant — the one exception", `<p>The <b>Ask a question</b> button opens an optional assistant. It is the only part of AbilityFinder that sends anything over the internet.</p><p>If you open it, we tell you this before you can type, and you have to agree first. If you never open it, <b>nothing you do here leaves your device</b>.</p><p>When you send a question, the text you typed is sent to <b>Cloudflare's AI service</b> to write the answer. Cloudflare also hosts this website. We don't keep your questions, and there is no account to link them to — but the words you type do leave your browser, so <b>please don't type your name, address, or health details you would rather not send</b>.</p><p>The assistant can be <b>wrong</b>. It is there to explain confusing wording, explain what a form is asking for, and point you to the right guide. It cannot tell you whether you qualify, and it will not quote dollar amounts — the guides on this site have the checked numbers, and the official page is always the final word.</p>`)}
+    ${block("What stays on your device", `<p>AbilityFinder has no accounts, sign-up, analytics, or advertising. Your wizard answers, progress, bookmarks, browse search, and settings live only in <b>your own browser</b>, in this site's IndexedDB database. We can't see that local state, and it is not sent to our Worker.</p>`)}
+    ${block("Two optional ways information leaves your browser", `<p><b>Assistant:</b> The Ask a question button opens an optional assistant. Before you type, you must agree to send data. Each time you send, the entire current in-memory conversation (up to 20 messages) is sent through our Worker to <b>Cloudflare's AI service</b>. It is not saved in IndexedDB or linked to an AbilityFinder account, but the words leave your browser, so <b>please don't type your name, address, or health details you would rather not send</b>.</p><p><b>Feedback:</b> Choosing “Send feedback” posts the type, message, and optional reply email to our Worker. The feedback is emailed to AbilityFinder's pinned inbox and the emailed copy may be retained by the mail provider. Choosing “Open my email app instead” does not submit the form through our Worker.</p><p>The assistant can be <b>wrong</b>. It can explain confusing wording, explain what a form asks for, and point to a guide. It cannot tell you whether you qualify or quote dollar amounts — the checked guides and official pages are the final word.</p>`)}
     ${block("No tracking, no cookies, no ads", `<p>There are no analytics trackers, no advertising, and no third-party scripts watching what you do. We don't set tracking cookies.</p>`)}
     ${block("Fonts and files", `<p>All fonts and code are served from this site itself — we don't call Google Fonts or any external CDN, so no third party is told that you visited.</p>`)}
-    ${block("Location", `<p>The “Use my location” button only asks your browser for your location when <b>you tap it</b>, and only to build a Google Maps search link for nearby practitioners. Your location is never sent to us or saved. A postal code typed into the finder also stays only in the current page's memory and is not saved in IndexedDB.</p>`)}
+    ${block("Location", `<p>The “Use my location” button only asks your browser for your location when <b>you tap it</b>. A postal code stays in current-page memory; neither it nor your coordinates are saved in IndexedDB or sent to AbilityFinder. If you open a practitioner-search link, the postal code or coordinates are included in a user-initiated Google Maps URL and are then sent to Google under its privacy policy.</p>`)}
     ${block("Links to other sites", `<p>Every “Apply” and official link opens the relevant government website in a new tab. Once you're on those sites, their own privacy policies apply — not ours.</p>`)}
     ${block("Clearing your data", `<p>Click the <b>AbilityFinder</b> logo (or “Start over”) to wipe your answers, or clear your browser's site data at any time. IndexedDB is still browser-owned storage: if you clear this site's data or delete your browser profile, your saved progress is deleted and AbilityFinder cannot recover it.</p>`)}
 
@@ -1707,7 +1707,7 @@ function renderMatchedGroups(ready, almost, rankOf) {
 }
 
 /* a compact "where am I" strip above the results (only shows active stages) */
-/* ── Phase 5B: reminders as a calendar file ───────────────────────────────────
+/* ── Reminders as a calendar file ─────────────────────────────────────────────
    The 14-list asked for renewal reminders. Doing that with email/SMS would mean
    storing an address — i.e. holding disability data about an identifiable
    person, breaking the promise on the landing page, for the one population that
@@ -1948,7 +1948,7 @@ const PRACTITIONER_FORMS = {
 /* "Find a/an <type>" with the correct article */
 const findLabel = (type) => `Find a${/^[aeiou]/i.test(type) ? "n" : ""} ${type}`;
 
-/* personalized "find a practitioner near you" block (Phase 3: form-aware) */
+/* Personalized, form-aware "find a practitioner near you" block. */
 function practitionerFinder(b) {
   const type = practitionerType();
   const formName = (b && PRACTITIONER_FORMS[b.id]) || "your disability form";
@@ -2063,7 +2063,7 @@ function wireResults() {
       render(); // same page → scroll position preserved
     })
   );
-  // Phase 5B — download reminders as a calendar file (no account, no server).
+  // Download reminders as a calendar file (no account, no server).
   const remind = document.getElementById("tsRemind");
   if (remind)
     remind.addEventListener("click", () => {
@@ -2253,10 +2253,9 @@ function benefitSearchText(b) {
      equipmentNeed → EQUIP_NEED
      developmental → intellectual, autism
 
-   The headline finding, and the reason this is a *sort* and not a filter:
-   only 3 of 20 benefits are disability-specific. The other 17 are universal,
-   because Canadian and Alberta disability benefits key off how much your
-   condition limits you, not your diagnosis.
+   This is a *sort*, not a filter: most catalog entries are not diagnosis-specific
+   because Canadian and Alberta disability benefits usually key off how much a
+   condition limits someone, not the diagnosis label.
 
    So hiding non-matching benefits would be actively harmful — pick "autism" and
    you'd stop seeing DTC, AISH and RDSP, which you very likely qualify for. That
@@ -2447,8 +2446,8 @@ function listBlock(title, ic, items, ordered) {
 
 const DATA_VERIFIED = "July 2026";
 
-/* ── Phase 5C: freshness that doesn't over-claim ──────────────────────────────
-   DATA_VERIFIED is one human-readable date stamped on all 20 benefits. It is
+/* ── Freshness that doesn't over-claim ────────────────────────────────────────
+   DATA_VERIFIED is one human-readable date stamped on all catalog entries. It is
    honest today (they really were all checked in July 2026) but it cannot age:
    in two years it will still say "verified", and the amounts are the product.
    These make staleness computable and per-benefit. */
@@ -2552,7 +2551,7 @@ function renderDetail(id) {
   if (!b) return `<div class="card">Not found. ${backBtn("d-back")}</div>`;
   const r = evaluate(b);
   const d = b.detail || {};
-  const vFresh = verifiedFor(b); // Phase 5C — per-benefit freshness
+  const vFresh = verifiedFor(b); // Per-benefit freshness.
 
   const x = BENEFIT_EXTRA[b.id] || {};
   let statusBanner = "";
@@ -2805,13 +2804,13 @@ function wireReveals(root = document) {
   }
 }
 
-/* ── Assistant (Phase 4) ──────────────────────────────────────────────────────
+/* ── Assistant ────────────────────────────────────────────────────────────────
    Talks to POST /api/ask on our own origin (hence CSP connect-src 'self' needs
    no change). Backed by Workers AI on the free allocation, so it can run out;
    that is a normal state, not an error, and is worded as such.
 
-   Opt-in on purpose: this is the ONLY part of the app that sends anything off
-   the device, and the privacy page promises otherwise. Consent is remembered. */
+   Opt-in on purpose: this sends the current conversation off the device. The
+   separate feedback form is also opt-in. Assistant consent is remembered. */
 let askHistory = [];
 let askBusy = false;
 

@@ -4,15 +4,14 @@
    generous rhythm. Light + dark aware, accessible.
    ========================================================================== */
 
-/* self-hosted fonts (both OFL) — served from our own origin, so NO third party
-   (e.g. Google Fonts) is ever contacted. This keeps the "private, nothing leaves
-   your browser" promise fully true. Fraunces = display serif; Inter = body. */
+/* Self-hosted fonts (both OFL) avoid contacting a third-party font CDN.
+   Fraunces = display serif; Inter = body. */
 @font-face {
   font-family: "Fraunces";
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=28") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=29") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -20,7 +19,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=28") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=29") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -513,7 +512,7 @@ body::before {
 .tracker-summary { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; max-width: 820px; margin: 16px 0 2px; }
 .ts-lbl { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; color: var(--text-dim); }
 .ts-lbl .ic { width: 15px; height: 15px; }
-/* Phase 5B — download reminders (.ics). margin-left:auto pushes it to the end
+/* Download reminders (.ics). margin-left:auto pushes it to the end
    of the flex row, so it reads as an action rather than another status pill. */
 .ts-remind { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; appearance: none; font-family: inherit; cursor: pointer; font-size: 0.8rem; font-weight: 550; color: var(--text); background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: 999px; padding: 6px 12px; }
 .ts-remind .ic { width: 14px; height: 14px; color: var(--accent-hi); }
@@ -1044,9 +1043,9 @@ body.a11y-nomotion .hero-wave .hw, body.a11y-nomotion .wiz-mountains .wm { anima
   .amount { color: #000 !important; }
 }
 
-/* ── Assistant (Phase 4) ─────────────────────────────────────────────────────
+/* ── Assistant ───────────────────────────────────────────────────────────────
    Bottom-LEFT; the a11y FAB owns bottom-right. Base rules first, then the
-   media query (see HANDOFF §"detail sidebar" — this file has no cascade layers,
+   media query (see ARCHIVAL_KNOWLEDGE_BASE.md "Media-query order caused a sticky overlay" — this file has no cascade layers,
    so a media query written above its base rule silently loses). */
 .ask-wrap { position: fixed; left: 20px; bottom: 20px; z-index: 80; }
 /* Kill switch. .ask-wrap sets no `display`, so the UA `[hidden]` rule would
@@ -1108,13 +1107,13 @@ body.a11y-nomotion .hero-wave .hw, body.a11y-nomotion .wiz-mountains .wm { anima
 body.a11y-nomotion .ask-panel { animation: none; }
 body.a11y-nomotion .ask-fab { transition: none; }
 
-/* Phase 5C — staleness nudge on a guide. Deliberately warn-coloured, not error:
+/* Staleness nudge on a guide. Deliberately warn-coloured, not error:
    the data is probably still right, but the reader deserves to know its age. */
 .verified.stale { color: var(--warn); }
 .side-stale { display: flex; gap: 8px; align-items: flex-start; margin: 8px 0 0; padding: 10px 11px; background: var(--warn-soft); border: 1px solid var(--warn); border-radius: var(--r-sm); font-size: 0.82rem; line-height: 1.5; color: var(--text); }
 .side-stale .ic { width: 15px; height: 15px; flex: 0 0 auto; margin-top: 2px; color: var(--warn); }
 
-/* Phase 5 — verified alternate signers + the "do the wizard" nudge in the
+/* Verified alternate signers + the "do the wizard" nudge in the
    practitioner finder. Chips, not buttons: they're alternatives to the primary
    action, and five equal-weight buttons would bury it. */
 .finder-signers { margin-top: 12px; }

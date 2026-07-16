@@ -63,7 +63,7 @@ Root documentation is not deployed. Never move it into `public/`.
 ```sh
 npm install                 # dependencies
 npm run dev                 # Worker + static assets locally
-npm run gen:context         # required after BENEFITS/PRACTITIONER_FORMS changes
+npm run gen:context         # after BENEFITS, HELP_ORGS, or PRACTITIONER_FORMS changes
 npm test                    # Node unit and persistence-boundary tests
 npm run test:e2e            # Playwright browser journeys
 npx wrangler deploy --dry-run
@@ -82,7 +82,8 @@ When a browser-loaded CSS, JavaScript, font, or icon asset changes, bump the sha
 ### Benefit or guide data
 
 1. Read the official page that day; do not extrapolate from another program/city.
-2. Edit `public/data.js` and keep the source URL.
+2. Edit `BENEFITS`, `HELP_ORGS`, or `PRACTITIONER_FORMS` in `public/data.js` and
+   keep each official source URL.
 3. Run `npm run gen:context`.
 4. Review generated diffs in `src/benefits-context.js` and `src/links.js`.
 5. Run unit and browser tests. Check the real user path, not only the changed object.
@@ -113,7 +114,7 @@ different AISH exclusions, transit prices, and recreation coverage.
   stale tab from overwriting or resurrecting cleared answers.
 - Legacy `abilityfinder.*` localStorage values must pass through the current
   allowlist before migration. Remove them only after a successful sanitized write,
-  or when an authoritative tombstone proves the user already cleared that state.
+  or when an authoritative IndexedDB snapshot or tombstone already exists.
 
 ### Assistant or Worker APIs
 
@@ -128,8 +129,10 @@ null/undefined checks with truthiness checks.
 - Automated axe results do not replace screen-reader, keyboard-only, 200–400%
   zoom/reflow, motion, and cognitive-usability testing with real people.
 - Contrast must clear 4.5:1 on every background, including semantic soft tints.
-- The assistant and feedback form are opt-in server requests. Everything else is
-  browser-local. No free text belongs in URLs or persistent state.
+- The assistant and feedback form are opt-in server requests. Nonsensitive
+  `browseQuery` text may persist locally, and practitioner searches put postal or
+  coordinate text in a user-initiated Google Maps URL. Never put sensitive wizard
+  or profile data in URLs or persist unapproved free text.
 - Cloudflare may inject Browser Insights/challenge scripts at the edge; the strict
   CSP blocks them. Do not weaken CSP to allow analytics. Disable injection in the
   Cloudflare dashboard instead if console noise needs removal.
@@ -141,7 +144,7 @@ count. In order:
 
 1. Act on `/api/link-health` and re-verify stale figures against official sources.
 2. Conduct real disabled-user accessibility/usability testing.
-3. Add signer guidance only when Alberta publishes an official list.
+3. Add AISH/ADAP signer guidance only when Alberta publishes an official list.
 4. Expand municipalities/provinces only with program-by-program official research.
 
 Do not casually add accounts/sync, email or SMS reminders, community reviews, an

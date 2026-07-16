@@ -1,6 +1,6 @@
 // AbilityFinder Worker.
 //
-// Serves POST /api/ask (the Phase 4 assistant) and passes everything else to
+// Serves Worker API routes and passes everything else to
 // the static site in ./public.
 //
 // COST: this uses Workers AI, which on the Workers FREE plan has a 10,000
@@ -74,9 +74,9 @@ TONE AND CARE:
 /**
  * Pick the benefit detail relevant to the conversation.
  *
- * Sending all 20 benefits' detail every time costs ~3.9k tokens and would cut
- * the free allocation from roughly 134 questions/day to ~73. Matching keeps the
- * grounding without paying for 18 benefits nobody asked about.
+ * Sending every benefit's detail on each request materially increases tokens and
+ * burns through the free allocation. Matching keeps grounding focused on the
+ * benefits the visitor asked about.
  *
  * Scans recent turns, newest first, so a follow-up ("ok, how do I apply?") still
  * resolves to the benefit named a turn or two earlier.
@@ -323,7 +323,7 @@ async function handleFeedback(request, env) {
 }
 
 /**
- * Phase 5A report endpoint. Public on purpose: it contains no user data, only
+ * Public report endpoint. It contains no user data, only
  * the health of links we already publish. Making it public also means anyone who
  * spots a dead link can see it's known. noindex so it stays out of search.
  */
@@ -333,7 +333,7 @@ async function handleLinkHealth(request, env) {
   const raw = await env.LINK_HEALTH.get(REPORT_KEY);
   if (!raw) {
     return new Response(
-      JSON.stringify({ status: "no report yet — the weekly check has not run" }, null, 2),
+      JSON.stringify({ status: "no report yet — the three-hour check has not run" }, null, 2),
       { status: 200, headers: { "Content-Type": "application/json", "X-Robots-Tag": "noindex" } }
     );
   }

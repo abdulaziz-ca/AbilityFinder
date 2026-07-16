@@ -101,6 +101,19 @@ continuously.
 
 ## Persistence failures and decisions
 
+### Privacy copy drifted after the feedback endpoint changed
+
+The privacy page still called the assistant the only network submission after the
+feedback form began posting to the Worker and emailing its payload. Other prose also
+hid that the full in-memory assistant conversation is sent and treated local browse
+text and user-initiated Maps URLs as forbidden even though the implementation allows
+them.
+
+**Decision:** Privacy copy must enumerate both opt-in submissions, distinguish local
+IndexedDB persistence from email retention, describe the assistant's full submitted
+history, and name narrow browse/Maps exceptions. Static contract tests now keep the
+user-facing copy, implementation, and maintainer docs aligned.
+
 ### Broad serialization violates privacy
 
 Legacy state could contain postal/free-text and unknown fields. Migrating that object
