@@ -1,4 +1,4 @@
-# Cloudflare Pages headers. Security + caching.
+# Cloudflare static-asset headers. Security + caching.
 # CSP is strict: only our own origin. 'unsafe-inline' is allowed for STYLES only
 # (the app sets inline styles via JS — progress bar, text-size, reading guide);
 # scripts are all external files, so script-src stays 'self' (no 'unsafe-inline').

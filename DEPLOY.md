@@ -1,122 +1,140 @@
-# Deploying AbilityFinder
+# AbilityFinder — deployment and operations
 
-AbilityFinder is a static site **plus one small Worker route** (`/api/ask`, the
-Phase 4 assistant). It is deployed as a **Cloudflare Worker with static assets**
-— not Cloudflare Pages. It is already live at **https://abilityfinder.ca**.
+AbilityFinder is deployed as a **Cloudflare Worker with static assets**, not Pages.
+The live site is https://abilityfinder.ca.
 
-## Repo layout (matters for deploys)
+## What ships
 
-```
-public/          <- the ONLY directory that ships. Site files live here.
-src/index.js     <- the Worker: serves /api/ask, passes everything else to public/
-wrangler.jsonc   <- deploy config (name, assets dir, rate limit binding)
-*.md, serve.py   <- docs + dev server. At the root, so they are NEVER served.
+```text
+public/        static assets; the only deployed directory
+src/index.js   Worker entry for APIs and asset fallthrough
+wrangler.jsonc bindings, cron, and asset configuration
 ```
 
-> ⚠️ The docs used to sit next to `index.html` and were **publicly readable** on
-> the live site (`abilityfinder.ca/HANDOFF.md` returned 200). Keeping them out of
-> `public/` is what fixes that — do not move them back in.
+Root documentation, tests, scripts, and `serve.py` are not public assets. Never move
+docs into `public/`; they were once exposed on the live domain.
 
----
+## Local development
 
-## 0. Domain
+```sh
+npm install
+npm run dev
+```
 
-`https://abilityfinder.ca` is bought, live, and already used in `index.html`
-(`canonical`, `og:url`, `og:image`, `twitter:image`), `robots.txt` (`Sitemap:`),
-and `sitemap.xml` (`<loc>`). Nothing to do unless the domain changes.
+`wrangler dev` uses the real remote AI/email services declared with remote bindings.
+Assistant testing consumes the free daily Workers AI allocation even though it
+cannot create overage charges on Workers Free.
 
----
+For static-only work, `python3 serve.py` serves a no-cache site on port 8731, but it
+does not validate Worker routes, bindings, or production CSP behavior.
 
-## 1. Deploy
+## Deploy
 
-### Option A — Git push (preferred, once the repo is connected)
-Every push to `main` rebuilds and redeploys via Cloudflare Workers Builds.
+Preferred release flow:
 
-### Option B — from your machine
+```sh
+npm run gen:context          # only when catalog/practitioner forms changed
+npm test
+npm run test:e2e
+git diff --check
+npx wrangler deploy --dry-run
+git commit -m "..."
+git push origin main        # Workers Builds deploys main
+```
+
+An explicit deployment is also supported:
+
 ```sh
 npx wrangler deploy
 ```
-Requires `npx wrangler login` once (opens a browser).
 
-To check what *would* ship without deploying:
+After changing a browser-loaded CSS, JavaScript, font, or icon asset, bump the
+shared `?v=N` query version in `public/index.html`. Keep matching font URLs in
+`public/styles.css` aligned.
+
+## Bindings and cost boundary
+
+`wrangler.jsonc` is authoritative:
+
+| Binding | Purpose | User data |
+|---|---|---|
+| `ASSETS` | Serves `public/` | None |
+| `AI` | `/api/ask` Workers AI | Opt-in question/conversation |
+| `ASK_LIMIT` | Per-IP assistant/feedback abuse limit | Ephemeral IP-based key |
+| `LINK_HEALTH` | Link-monitor aggregate | Official links only |
+| `FEEDBACK_MAIL` | Pinned feedback destination | Opt-in form content |
+
+The Worker also has a three-hour cron for the rotating link monitor.
+
+### Zero-spend guarantee
+
+Production must remain on **Workers Free**. Workers AI has a daily free allocation
+and no overage price on that plan: once exhausted, requests fail until reset while
+the static finder continues working.
+
+Workers Paid introduces usage billing above the allocation. Before any plan change:
+
+1. Re-evaluate or disable `/api/ask`.
+2. Confirm Worker, AI, KV, email, and cron pricing.
+3. Add explicit usage caps/alerts.
+4. Update `AGENTS.md`, this file, and user-facing availability copy.
+
+No third-party model API key is required or stored.
+
+## Feedback
+
+`POST /api/feedback` sends through `FEEDBACK_MAIL`, pinned to the verified
+destination in `wrangler.jsonc`; it cannot choose arbitrary recipients. The UI also
+offers a `mailto:` alternative. If the destination or domain routing changes, test
+both paths and update the privacy page if the payload changes.
+
+Configuration and a successful deploy prove that the binding exists, not that a
+message reached the inbox. After email or routing changes, send a non-sensitive test
+submission and confirm receipt before describing feedback delivery as operational.
+
+## Link monitor
+
+- Cron runs every three hours.
+- `src/link-check.js` checks a bounded rotating batch and merges last-known results
+  into KV.
+- `GET /api/link-health` exposes the aggregate report.
+- Treat `broken`, `unreachable`, `inconclusive`, and `redirected` differently.
+  A Worker fetch failure is not proof that a browser link is dead.
+- Soft 404s can return 200; inspect the landed URL and content before replacement.
+
+## Security and privacy checks
+
+`public/_headers` supplies CSP and other security headers. After deployment:
+
 ```sh
-npx wrangler deploy --dry-run
+curl -I https://abilityfinder.ca
 ```
 
-> `_headers` inside `public/` is applied automatically (security + cache headers).
-> Verify after any deploy that `curl -I https://abilityfinder.ca` still shows
-> `x-frame-options: DENY`.
+Confirm at least CSP, `x-frame-options: DENY`, `x-content-type-options: nosniff`,
+referrer policy, and permissions policy.
 
----
+Cloudflare zone features may inject Browser Insights or challenge scripts at the
+edge. The current strict `script-src 'self'` CSP blocks those scripts. **Do not allow
+external analytics in CSP.** Disable Browser Insights/automatic injection in the
+Cloudflare dashboard if clean-console verification requires it.
 
-## 1b. The assistant — and why it costs nothing
+## Post-deploy verification
 
-`/api/ask` runs on **Workers AI** (`env.AI`), not a paid third-party API. **There
-is no API key and no secret to set.** The binding is declared in `wrangler.jsonc`
-and works as soon as the Worker deploys.
+1. Confirm the deployed HTML references the new cache version.
+2. Compare a changed asset with the local file or inspect its deployed content.
+3. Complete a fresh wizard start, reload, and IndexedDB restore on the custom domain.
+4. Test `/api/link-health` and any changed Worker endpoint.
+5. Check browser page errors and application console errors. Distinguish CSP-blocked
+   Cloudflare injections from application failures; do not hide real errors.
+6. Verify `origin/main` matches the intended commit and Workers Builds succeeded.
+7. Test keyboard navigation, dark/light theme, print, and a mobile viewport when the
+   change touches them.
 
-### The no-bill guarantee — read this before changing plans
+## Domain and recovery
 
-| Plan | Free allocation | Price above it |
-|---|---|---|
-| **Workers Free** | 10,000 Neurons/day | **None — requests just fail** |
-| Workers Paid | 10,000 Neurons/day | $0.011 / 1,000 Neurons |
+The canonical domain, social metadata, robots file, and sitemap already use
+`abilityfinder.ca`. If the domain changes, update all of them together.
 
-On the **Workers Free plan this endpoint cannot bill you.** There is no overage
-price; once the daily allocation is spent, `env.AI.run` errors until it resets at
-00:00 UTC, and the assistant shows "reached its free daily limit". The site and
-all benefit guides keep working — the assistant is the only thing affected.
-
-> ⚠️ **Upgrading to Workers Paid removes that protection.** On Paid, usage above
-> 10,000 Neurons/day is billed. If you ever upgrade for some unrelated reason,
-> revisit this endpoint first.
-
-Rough budget: ~60 Neurons per question ⇒ **~150 questions/day** on the free
-allocation. `ASK_LIMIT` (8/min per IP) stops one visitor burning the whole day.
-
-Local dev note: Workers AI has no local simulator — `wrangler dev` calls your
-real account and spends real Neurons (it cannot bill on the Free plan, but it
-does consume the daily allowance).
-
-## 2. Add your custom domain (when you buy it)
-1. Buy the domain (e.g. `abilityfinder.ca` — a `.ca` needs a Canadian presence,
-   which you have). Cloudflare Registrar is cheapest/at-cost.
-2. Pages project → **Custom domains → Set up a domain** → enter it → Cloudflare
-   adds the DNS + free SSL automatically.
-3. Redo the **§0 find-and-replace** with the real domain and redeploy.
-
----
-
-## 3. Pre-launch checklist
-
-**Done in code already**
-- [x] Fonts self-hosted (no Google Fonts) — nothing leaves the visitor's browser.
-- [x] Strict Content-Security-Policy + security headers (`_headers`).
-- [x] Privacy & disclaimer page (footer link) + honest privacy copy.
-- [x] SEO: `<title>`, description, canonical, Open Graph + Twitter tags,
-      `favicon.svg`, `apple-touch-icon.png`, `og-image.jpg`, `robots.txt`,
-      `sitemap.xml`, branded `404.html`.
-- [x] Official government links re-verified (see HANDOFF/QA notes).
-- [x] Print / "Save as PDF" report tested.
-- [x] Responsive layout checked at mobile/tablet/desktop.
-
-**You still need to do**
-- [ ] **Feedback:** `FEEDBACK_EMAIL` in `app.js` is a placeholder
-      (`feedback@abilityfinder.ca`). Set a real inbox, or swap the `mailto:` in
-      `wireLanding()` for a free form service (Formspree) so feedback actually
-      reaches you.
-- [ ] **Domain** (§0 + §2).
-- [ ] **Accessibility audit** (deferred): run Lighthouse/axe before wide launch —
-      the audience is disabled users, so contrast + keyboard + screen-reader
-      checks matter most.
-- [ ] Optional: privacy-friendly, cookieless analytics (Cloudflare Web Analytics
-      or Plausible) if you want usage numbers.
-
----
-
-## 4. After it's live — quick smoke test
-- Open the `.pages.dev` URL on a **real phone** and desktop.
-- Confirm **HTTPS** (padlock) — required, and the "Use my location" button needs it.
-- Run the wizard → results → open a guide → Save/print the report.
-- Toggle light/dark; reload (your answers should persist).
-- Paste the URL into a Slack/iMessage/X DM to confirm the link preview image shows.
+A direct `npx wrangler deploy` can restore the last known-good working tree even if
+Workers Builds is unavailable. Cloudflare deployment/version history provides
+rollback options; verify the custom domain after any rollback.

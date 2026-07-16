@@ -1,187 +1,154 @@
-# AbilityFinder — start here
+# AbilityFinder — AI entry point
 
-**Read this first. It's the short version.** Deeper detail lives in `HANDOFF.md`
-(architecture + conventions), `ROADMAP.md` (what's done, what's next, and why
-some things were rejected), and `DEPLOY.md` (hosting, cost, email).
+Read this file first. Load deeper docs only when the task needs them:
 
----
+- `HANDOFF.md` — current architecture, data model, and change workflows.
+- `DEPLOY.md` — Cloudflare bindings, zero-spend constraints, and release checks.
+- `ROADMAP.md` — active priorities and deliberately rejected features.
+- `ARCHIVAL_KNOWLEDGE_BASE.md` — failures and decisions that must not be re-learned.
+- `README.md` — short public/project overview.
 
-## What this is
+Do not load every document by default. The source code is authoritative when a
+document and implementation disagree.
 
-A free tool that finds every disability benefit an Albertan can get — federal,
-provincial and municipal — and hands them plain-English guides to apply.
+## Product and stakes
 
-**Live:** https://abilityfinder.ca · **Repo:** github.com/abdulaziz-ca/AbilityFinder
+AbilityFinder helps disabled Albertans and their families find federal, provincial,
+and municipal benefits, then gives them plain-English application guides.
 
-**Who uses it:** disabled people, their caregivers and families. Many are tired,
-in pain, short on money, or have been denied before. Some have cognitive
-disabilities or brain fog. This shapes every decision below.
+A wrong amount, rule, form, phone number, or deadline can cost someone money or a
+scarce appointment. Optimize in this order: **accuracy, usefulness, presentation**.
+Users may be tired, in pain, short on money, or experiencing cognitive fatigue.
+Keep journeys forgiving and copy concrete.
 
-**The stakes, plainly:** if we're wrong, someone doesn't get money they're owed,
-or wastes an appointment they had to wait months for. A confidently wrong
-benefits directory is worse than none. Optimise for *not being wrong*, then for
-being useful, then for being pretty.
+## Non-negotiable rules
 
----
+1. **Never invent benefit facts.** Verify every amount, cutoff, eligibility rule,
+   form, phone number, date, and municipal detail on an official source before
+   changing `public/data.js`. Every benefit must retain its `source`.
+2. **Zero spend.** Production stays on Cloudflare Workers Free. Workers AI has no
+   overage billing on that plan; requests fail after the free allocation. Read
+   `DEPLOY.md` before changing plans, bindings, or model usage.
+3. **Privacy is part of the product.** No accounts, analytics, or remote storage of
+   wizard answers. The two opt-in submissions of user-entered content to our Worker
+   are `/api/ask` and `/api/feedback`. Update the privacy page in the same change if
+   that boundary moves.
+4. **Eligibility is about functional limitation, not diagnosis.** Never imply that
+   a diagnosis alone guarantees a benefit or that there is a universal list of
+   qualifying disabilities.
+5. **Never allow a blank page.** Every route renders through `renderSafely()` and
+   motion effects fail visible.
 
-## The five rules
+## Current architecture
 
-1. **Never invent a benefit fact.** No amount, cutoff, form number, phone
-   number, timeline or eligibility rule unless you read it on the official page
-   *today*. Every entry in `data.js` carries a `source`. This isn't caution
-   theatre — see "Things that actually went wrong".
-2. **Zero spend.** The owner's hard rule. Everything is on the **Workers Free
-   plan**, where Workers AI has no overage price (10k Neurons/day, then requests
-   just fail). Moving to Workers Paid reintroduces billing on `/api/ask` — read
-   `DEPLOY.md` §1b before ever upgrading.
-3. **Privacy is the product.** Everything stays in the browser except two
-   opt-in things: the assistant (`/api/ask`) and the feedback form
-   (`/api/feedback`). No accounts, no analytics, no PII. If you change what
-   leaves the device, **change the privacy page in the same commit**.
-4. **Eligibility is about limitation, not diagnosis.** This is the single most
-   important idea in the domain. Most benefits don't care what you have; they
-   care how much it limits you. There is no list of "qualifying disabilities".
-   Never imply otherwise — it's the belief that stops people applying.
-5. **Never let the page go blank.** See "Things that actually went wrong".
-
----
-
-## Layout
-
-```
-public/          the ONLY deployed directory — the whole static site
-  data.js        BENEFITS catalog + values/meta/extras. The product is in here.
-  app.js         everything: state, wizard, eligibility engine, router, render
-  styles.css     one design system, no build step
-src/index.js     the Worker: /api/ask, /api/feedback, /api/link-health, cron
-src/*-context.js GENERATED — do not hand-edit (npm run gen:context)
-*.md, serve.py   docs + dev server. At the ROOT so they are never served.
+```text
+public/                    only deployed static directory
+  data.js                  benefits, values, metadata, guides, sources
+  app.js                   state, wizard, eligibility, router, rendering
+  dbManager.js             all raw IndexedDB operations and legacy import
+  stateManager.js          persisted-state allowlist and validation
+  styles.css               single design system; no build step
+src/index.js               Worker APIs and static-asset fallthrough
+src/link-check.js          rotating link-health monitor
+src/benefits-context.js    generated AI grounding; never hand-edit
+src/links.js               generated monitor link list; never hand-edit
+scripts/gen-benefits-context.js
+wrangler.jsonc             Worker, assets, AI, email, KV, rate limit, cron
 ```
 
-> Docs used to sit next to `index.html` and were publicly readable at
-> `abilityfinder.ca/HANDOFF.md`. Keep them out of `public/`.
+Root documentation is not deployed. Never move it into `public/`.
 
 ## Commands
 
 ```sh
-npx wrangler dev        # local, real bindings
-npm run gen:context     # AFTER any data.js edit — regenerates the AI grounding + link list
-npx wrangler deploy     # deploy (wrangler is already authenticated)
-git push                # also auto-deploys via Workers Builds in ~35s
+npm install                 # dependencies
+npm run dev                 # Worker + static assets locally
+npm run gen:context         # required after BENEFITS/PRACTITIONER_FORMS changes
+npm test                    # Node unit and persistence-boundary tests
+npm run test:e2e            # Playwright browser journeys
+npx wrangler deploy --dry-run
+npx wrangler deploy
 ```
-Cache-bust: bump `?v=N` in `index.html` **and** `styles.css` when you touch
-`public/` — otherwise returning visitors get stale files.
 
----
+`git push origin main` also deploys through Workers Builds. Do not commit, push, or
+deploy unless the user asks.
 
-## Architecture in six lines
+When a browser-loaded CSS, JavaScript, font, or icon asset changes, bump the shared
+`?v=N` references in `public/index.html`; update matching font URLs in
+`public/styles.css` when needed.
 
-- Cloudflare **Worker with static assets** (not Pages). `public/` is served;
-  `/api/*` is handled by `src/index.js`.
-- **No build step for the site.** Plain HTML/CSS/vanilla JS.
-- **Assistant** = Workers AI (`@cf/meta/llama-4-scout-17b-16e-instruct`), opt-in,
-  streaming, rate-limited, **grounded in `data.js`** via `src/benefits-context.js`.
-- **Feedback** = `send_email` binding pinned to one destination (can't be a spam
-  relay). Free because sending to a *verified destination* is free on any plan.
-- **Link monitor** = bounded rotating batch every 3 hours → KV-backed aggregate
-  report at `/api/link-health`. Every link remains covered as the catalog grows.
-- **State** = whitelisted answers/progress/UI flags in IndexedDB. No server-side state.
+## Required workflow by change type
 
----
+### Benefit or guide data
 
-## Things that actually went wrong (do not re-learn these)
+1. Read the official page that day; do not extrapolate from another program/city.
+2. Edit `public/data.js` and keep the source URL.
+3. Run `npm run gen:context`.
+4. Review generated diffs in `src/benefits-context.js` and `src/links.js`.
+5. Run unit and browser tests. Check the real user path, not only the changed object.
 
-**The free model invents things.** Ungrounded, it called AISH *"Alberta Income
-Support for the Homeless"* (it's Assured Income for the Severely Handicapped),
-called T2201 the *"Medical Certificate"*, and invented an AISH phone number —
-all **despite** a prompt explicitly forbidding it. Prompt rules do not contain
-this model; data does. That's why `benefits-context.js` exists, why figures are
-*redacted* from it (a model can't quote a number it was never shown), and why
-the assistant is forbidden from stating any amount or eligibility verdict.
-**Don't widen its job without a stronger model.**
+Never hand-copy municipal rules. Programs that look similar have materially
+different AISH exclusions, transit prices, and recreation coverage.
 
-**Municipal programs are not copies of each other.** Grande Prairie *excludes*
-AISH recipients from its low-income transit subsidy and gives them a better
-separate pass ($10.25/mo vs $74.25). St. Albert gives AISH free transit outright.
-Pattern-matching from Calgary would have cost a real person ~$27/month. Verify
-every city individually.
+### Shared UI, routing, or CSS
 
-**A blank page is the worst failure mode.** `valueLabel()` read `step.options`
-directly after that field became a *function* on one step → `renderResults()`
-threw → `#app.innerHTML` was never assigned → blank page, unrecoverable by
-refresh (the broken view is restored from IndexedDB). Every view now goes
-through `renderSafely()`. **After touching anything shared, render every view for
-every persona (self/child/family) before deploying** — the thing that broke was
-on the one page that wasn't checked.
+- Exercise every route for `self`, `child`, and `family`; persisted broken routes
+  can otherwise reload into a permanent blank screen.
+- Check dark, light, and high-contrast modes with a fresh reload per theme.
+- Respect both `prefers-reduced-motion` and `.a11y-nomotion`.
+- Keep assistant output on `textContent`; never render model output as HTML.
+- Do not add `aria-live` to the streaming chat log. Announce only the final answer
+  through `#askLive`.
+- Base CSS rules must precede equal-specificity media-query overrides. Any class
+  that sets `display` needs an explicit `[hidden] { display:none }` rule.
 
-**Verify the path a user takes, not the diff you wrote.** Unit-checking your own
-change proves only the parts you were already thinking about.
+### Persistence
 
-**CSS traps in this file:** (1) there are no cascade layers — a media query above
-its base rule silently loses; (2) a class with `display:` beats the UA's
-`[hidden]{display:none}`, so any hidden element needs its own
-`[hidden]{display:none}`; (3) the light theme was built by inverting backgrounds
-without re-checking token contrast — every colour must clear 4.5:1 against
-*every* background it lands on, **including its own soft tint**.
+- Raw IndexedDB calls stay in `public/dbManager.js`.
+- The allowlist and catalog-backed validation stay in `public/stateManager.js`.
+- Never persist postal text, feedback, assistant history, DOM state, or arbitrary
+  runtime objects.
+- Restore must complete before the first meaningful render.
+- Preserve optimistic record revisions and metadata-only tombstones: they stop a
+  stale tab from overwriting or resurrecting cleared answers.
+- Legacy `abilityfinder.*` localStorage values must pass through the current
+  allowlist before migration. Remove them only after a successful sanitized write,
+  or when an authoritative tombstone proves the user already cleared that state.
 
-**Soft 404s return 200.** rmwb.ca answered 200 and redirected to `/not-found-404/`.
-The link monitor checks the landed URL for this now.
+### Assistant or Worker APIs
 
----
+The free model is intentionally narrow and grounded. It must not state dollar
+figures or eligibility verdicts. Figures are redacted from generated grounding.
+Do not widen its role without a demonstrably stronger model and a new safety review.
+Workers AI can emit numeric streaming tokens as numbers; do not replace explicit
+null/undefined checks with truthiness checks.
 
-## Accessibility (non-negotiable)
+## Accessibility and privacy gates
 
-Audited with axe-core: **8 views × 2 themes, 0 violations.** Keep it there.
+- Automated axe results do not replace screen-reader, keyboard-only, 200–400%
+  zoom/reflow, motion, and cognitive-usability testing with real people.
+- Contrast must clear 4.5:1 on every background, including semantic soft tints.
+- The assistant and feedback form are opt-in server requests. Everything else is
+  browser-local. No free text belongs in URLs or persistent state.
+- Cloudflare may inject Browser Insights/challenge scripts at the edge; the strict
+  CSP blocks them. Do not weaken CSP to allow analytics. Disable injection in the
+  Cloudflare dashboard instead if console noise needs removal.
 
-- Motion: respect `prefers-reduced-motion` **and** the in-app `a11y-nomotion`
-  toggle. Reveals **fail visible** — content is never hidden unless JS confirms
-  motion is wanted, plus a 3s watchdog. A section stuck at `opacity:0` is a
-  person who doesn't get their benefit.
-- Don't put `aria-live` on the assistant's chat log — streaming tokens would
-  announce every fragment. The finished answer is announced once via `#askLive`.
-- Model output renders with `textContent`, never `innerHTML`.
-- Re-run the audit per theme with a **fresh reload** — flipping `data-theme`
-  in-page and re-running gives false counts (47 phantom violations once).
+## Current priorities
 
----
+The major feature phases are complete. The main risk is **data decay**, not feature
+count. In order:
 
-## ✨ V2 Persistence Layer Update (IndexedDB)
+1. Act on `/api/link-health` and re-verify stale figures against official sources.
+2. Conduct real disabled-user accessibility/usability testing.
+3. Add signer guidance only when Alberta publishes an official list.
+4. Expand municipalities/provinces only with program-by-program official research.
 
-This section documents the successful migration of client-side state persistence from `localStorage` to a robust IndexedDB service layer. This change is mandatory for all future maintenance and constitutes Phase 4 completion.
+Do not casually add accounts/sync, email or SMS reminders, community reviews, an
+admin CMS, or a free-text disability-to-benefit matcher. Reasons and safer
+alternatives are in `ROADMAP.md`.
 
-**Key Achievements:**
-*   **Persistence Medium:** Switched primary storage from volatile `localStorage` to resilient IndexedDB.
-*   **Mechanism:** Implemented the centralized `dbManager.js` pattern, ensuring all state operations (read/write) pass through one regulated API layer.
-*   **Resilience:** The system now supports seamless session recovery by loading state directly from the local browser DB upon application startup following a page refresh or process interruption.
-
-**The Process (Mandatory for Future Devs):**
-A dedicated workflow, available as **`local-state-persistence-migration:skill_view`**, must be used to guide any future changes, ensuring proper versioning and data integrity checks are maintained. The core principle remains that no PII/PHI leaves the local machine or is stored on a remote server.
-
-**Done:** Phases 1–5 (money & priority, eligibility depth, organise & act, AI
-assistant, keep-it-true). 17 municipal guides across 18 Alberta communities.
-Accessibility audit. AISH/ADAP transition audit, public data-update record, and
-per-benefit dates for the newly re-checked guides. All five user questions are
-answered.
-
-**The real remaining risk is decay**, not missing features: 30+ official links
-and every dollar figure go stale silently. The rotating monitor reports its
-latest sweep coverage at `/api/link-health`; feedback now reaches the owner.
-
-**Next, in order:**
-1. **Get a real disabled person to use it.** The audit clears the automated
-   third of WCAG; screen readers, keyboard-only, 400% zoom and whether the
-   plain-language copy lands are all unverified. This is the biggest unknown.
-2. **AISH/ADAP signer guidance** — CPP-D and the parking placard now have
-   verified signer lists. Do not add an AISH/ADAP profession list until Alberta
-   publishes one; the public guidance currently says only a medical professional
-   registered in Alberta.
-3. **More municipalities** — Camrose is still unchecked. The link
-   monitor uses bounded rotating batches (10 links × at most 4 redirects = 40
-   external subrequests/run), so adding cities extends the sweep length instead
-   of breaking the Workers Free limit. Never drop a link just to fit a cap.
-4. Scroll-reveal animation is **unverified in a real browser** (the preview pane
-   can't scroll). The fail-safes are tested; the effect isn't.
-
-**Deliberately rejected — don't "just add" these** (reasons in `ROADMAP.md`):
-   accounts/sync, email/SMS reminders, community reviews, an admin CMS, and any
-"describe your disability and we'll pick for you" matcher.
+For detailed incidents—including hallucinated AISH facts, blank-page persistence,
+soft 404s, CSS ordering, accessibility contrast, link-monitor false alarms,
+calendar folding, and IndexedDB cross-tab races—read
+`ARCHIVAL_KNOWLEDGE_BASE.md`.
