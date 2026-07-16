@@ -85,7 +85,7 @@ Cache-bust: bump `?v=N` in `index.html` **and** `styles.css` when you touch
   relay). Free because sending to a *verified destination* is free on any plan.
 - **Link monitor** = bounded rotating batch every 3 hours → KV-backed aggregate
   report at `/api/link-health`. Every link remains covered as the catalog grows.
-- **State** = `answers` + `progress` in `localStorage`. No server-side state.
+- **State** = whitelisted answers/progress/UI flags in IndexedDB. No server-side state.
 
 ---
 
@@ -109,7 +109,7 @@ every city individually.
 **A blank page is the worst failure mode.** `valueLabel()` read `step.options`
 directly after that field became a *function* on one step → `renderResults()`
 threw → `#app.innerHTML` was never assigned → blank page, unrecoverable by
-refresh (the broken view is restored from localStorage). Every view now goes
+refresh (the broken view is restored from IndexedDB). Every view now goes
 through `renderSafely()`. **After touching anything shared, render every view for
 every persona (self/child/family) before deploying** — the thing that broke was
 on the one page that wasn't checked.

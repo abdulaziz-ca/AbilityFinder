@@ -58,7 +58,7 @@ worse than no directory. That is what Phase 5 should protect. → see Phase 5.
 - **Accessibility toolbar** — read-aloud w/ per-sentence highlight, text size,
   high contrast, highlight links, reading guide, reduce motion, dyslexia spacing.
 - **Light/dark theme**, **EN/FR interface** (paused), **auto-saved progress**
-  (localStorage, no account, fully private), responsive/mobile.
+  (IndexedDB, no account, fully private), responsive/mobile.
 
 ---
 
@@ -252,8 +252,8 @@ npx wrangler dev
 #   (await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}})).violations
 rm public/axe.min.js   # NEVER ship it
 ```
-⚠️ **Load the page fresh for each theme** (set `localStorage.abilityfinder.theme`
-then reload). Flipping `data-theme` in-page and re-running gave *wildly* wrong
+⚠️ **Load the page fresh for each theme** (use the theme toggle, wait for the
+IndexedDB write, then reload). Flipping `data-theme` in-page and re-running gave *wildly* wrong
 counts — 47 phantom violations on a view that is actually clean. Don't trust a
 run that didn't start from a reload.
 

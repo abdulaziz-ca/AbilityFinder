@@ -4,6 +4,8 @@
 # Node / Wrangler (Phase 4)
 node_modules/
 .wrangler/
+test-results/
+playwright-report/
 
 # Secrets — never commit. Wrangler reads .dev.vars for local dev.
 .dev.vars

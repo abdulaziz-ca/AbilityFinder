@@ -53,8 +53,8 @@ A floating ♿ button (bottom-right, on every page) opens a panel with:
 **Read this page aloud** (text-to-speech via the Web Speech API), **text size**
 (A−/A/A+), **readable spacing** (dyslexia-friendly font + spacing), **high
 contrast**, **highlight links**, a **reading guide** ruler that follows the
-cursor, and **reduce motion**. Preferences are saved to their own `localStorage`
-key so they survive reloads and are *not* wiped by "Start over".
+cursor, and **reduce motion**. Preferences are saved in the site's IndexedDB
+record so they survive reloads and are *not* wiped by "Start over".
 
 ### Edit answers after results
 The results page shows your answers as chips ("tap any to change"). Clicking one
@@ -120,10 +120,12 @@ Clicking the **AbilityFinder** logo clears all answers and applied progress and
 returns to the landing page (accessibility preferences are kept).
 
 ### Never lose your answers
-All state (answers + which page you're on) is saved to `localStorage` and wired
-to the browser history. Reloading, pressing Back, or returning from an external
-gov link all restore exactly where you were — no re-entering anything. External
-links always open in a **new tab**, and the logo returns you to the start.
+Selected answers, progress, the current page, filters and UI preferences are
+saved to a versioned IndexedDB object store and wired to the browser history.
+Reloading, pressing Back, or returning from an external gov link restores where
+you were — no re-entering anything. External links always open in a **new tab**,
+and the logo returns you to the start. This is still browser-owned storage:
+clearing the site's data or deleting the browser profile deletes saved progress.
 
 ### Dynamic questions
 The questionnaire adapts to the disabilities picked: e.g. choosing autism or an
@@ -152,6 +154,8 @@ the "Local transit & recreation discounts" card (Alberta 211).
 | `icons.js` | Inline SVG icon set (`icon(name)`) — replaces all emoji |
 | `i18n.js` | English + French dictionaries, `t(key)`, and step/option translation |
 | `data.js` | **The data** — `DISABILITIES`, `ALBERTA_CITIES`, `BENEFITS` (amounts, links, notes, rich `detail` guides) |
+| `dbManager.js` | All raw IndexedDB setup, versioning, queued writes, reads, clearing and one-time legacy migration |
+| `stateManager.js` | Persisted-field whitelist, restore validation and the internal state-change emitter |
 | `app.js` | Router (landing/wizard/results/detail) + eligibility engine (`REQS`) + persistence/history + read-aloud |
 
 ### Look & feel — "editorial warm-black"

@@ -12,7 +12,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=26") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=28") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -20,7 +20,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=26") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=28") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 

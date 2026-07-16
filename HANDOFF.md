@@ -31,8 +31,9 @@ we generalized (privately) into the "supports & strategies" content.
   other 12 provinces/territories (16 verified benefit programs + city lists +
   map entries) are **parked in `data-provinces-later.js`** (NOT loaded). The
   residency question is now just **Alberta / "another province (coming soon)."**
-- **100% static, client-side, no accounts, fully private.** All state lives in
-  `localStorage`. This is a genuine selling point and holds through Phase 3.
+- **100% static, client-side, no accounts, fully private.** Selected state lives
+  in the site's IndexedDB database and never reaches the server. This is a
+  genuine selling point and holds through Phase 3.
   Phase 4 (AI assistant) is the first thing needing a serverless function (to
   hold an API key). Phase 5 (accounts, reminders, community) needs a real backend.
 - **French is PAUSED.** The i18n framework + a French UI translation exist, but
@@ -92,6 +93,8 @@ Paths below are relative to `public/` unless stated otherwise.
 | `icons.js` | `ICONS` map of inline SVGs + `icon(name, cls)` helper. **No emoji anywhere** — the owner dislikes them. |
 | `i18n.js` | `LANG`, `I18N` (en/fr), `t(key)` (English fallback), `STEP_I18N`, `stepText()`, `optionText()`. |
 | `data.js` | **Alberta + federal data only.** See §5. |
+| `dbManager.js` | All raw IndexedDB setup/versioning and queued read/write/clear operations, plus one-time import of legacy localStorage records. |
+| `stateManager.js` | Persisted-field whitelist, restore validation, and the internal state-change emitter. |
 | `data-provinces-later.js` | **PARKED, not loaded.** Other 12 jurisdictions' cities, map fragments, and `OTHER_PROVINCE_BENEFITS` (16 programs). Re-integration steps at the top of the file. |
 | `app.js` | The entire app — state, wizard, eligibility engine, router (landing/wizard/results/**browse**/detail/privacy/data-updates), all render functions, accessibility engine, value/priority/retro logic, Phase-2 sections, Phase-3 progress tracker + category toggle + help directory + browse/search + caregiver report. See §6. |
 | `serve.py` | No-cache dev server on :8731. |
@@ -148,11 +151,14 @@ adding a benefit's value/difficulty/depth is just a map entry. Key structures:
   situation[], income, city, postal.
 - **Progress tracker (Phase 3):** `STAGES[]` = saved → gathering → submitted →
   waiting → approved → denied (`STAGE` is the key→obj map). No entry = "Not
-  started". `progress{}` replaced the old binary `applied{}`; `restore()`
-  migrates any legacy `applied:true` → `"submitted"` and drops unknown stages.
-- **localStorage keys:** `abilityfinder.v2` (answers/view/**progress**/groupMode
-  — still reads a legacy `applied` for migration), `abilityfinder.a11y`,
-  `abilityfinder.theme`, `abilityfinder.lang`.
+  started". `progress{}` replaced the old binary `applied{}`; the one-time legacy
+  import maps `applied:true` → `"submitted"`, and `loadState()` drops unknown stages.
+- **IndexedDB persistence:** `dbManager.js` owns every raw IndexedDB call and the
+  versioned `sessionState` object store; `stateManager.js` owns the persisted
+  field whitelist, restore validation and state-change emitter. One anonymous
+  record contains wizard selections, route/progress, filters and UI flags. Postal
+  finder text and assistant/feedback content are excluded. A one-time migration
+  imports the old `abilityfinder.*` localStorage keys, then removes them.
 - **Eligibility engine:** `REQS` (requirement key → `{met(), fixed, unmet,
   action?}`). `fixed:true` = unchangeable trait → "not a match"; `fixed:false` =
   actionable → "one step away". `evaluate(benefit)` → `{status:
@@ -495,7 +501,7 @@ left-aligned) and disliked the narrow centered column + boxy panels. So:
   **hero wave** + **preview value-gauge** (`.pv-gauge`) added; cards stretched.
 - **Preview card** is a mini product mockup with a Giga-style gradient value gauge.
 - **Privacy & disclaimer page** (`renderPrivacy` / view `"privacy"`, linked from a new
-  landing `.site-footer`). Honest copy: no accounts, no tracking, localStorage only.
+  landing `.site-footer`). Honest copy: no accounts, no tracking, IndexedDB stays local.
 - **Fonts fully self-hosted** — Google Fonts `<link>` removed; Inter now in `fonts/`.
   Verified at runtime: **zero external requests**.
 - **Deploy-ready:** `_headers` (strict CSP `script-src 'self'` — hence external

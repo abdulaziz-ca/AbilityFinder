@@ -2,7 +2,7 @@
    AbilityFinder — app (router + wizard + eligibility engine + guides)
    Views: landing → wizard → results → detail
    Plain JS, no build step, works from a local server.
-   State is saved to localStorage + wired to the browser history so the Back
+   State is saved to IndexedDB + wired to the browser history so the Back
    button and reloads never lose the user's answers.
    ========================================================================== */
 
@@ -114,9 +114,7 @@ const STAGE = Object.fromEntries(STAGES.map((s) => [s.key, s]));
 
 /* accessibility preferences (kept separate so "start over" never resets them) */
 let a11y = { fontScale: 1, spacing: false, contrast: false, links: false, guide: false, motion: false };
-
-const STORE_KEY = "abilityfinder.v2";
-const A11Y_KEY = "abilityfinder.a11y";
+let askConsent = false;
 
 /* ---------------------------------------------------------- helper getters */
 const has = (arr, v) => arr.includes(v);
@@ -488,7 +486,7 @@ const STEPS = [
   {
     id: "income", type: "single", kicker: "Your household",
     q: "Roughly, what's your household income?",
-    help: "Some money benefits are for lower incomes. A rough answer is fine — we never store or send this anywhere.",
+    help: "Some money benefits are for lower incomes. This rough category is saved only in your browser so your progress survives a reload; it is never sent to us.",
     key: "income",
     options: [
       { value: "low", label: "Lower income", sub: "Under ~$35,000" },
@@ -518,44 +516,81 @@ const stepOptions = (step) =>
 
 const visibleSteps = () => STEPS.filter((s) => !(s.skipIf && s.skipIf()));
 
+const PERSISTENCE_SELECTIONS = {
+  disabilities: DISABILITIES.map((item) => item.value),
+  situations: STEPS.find((step) => step.key === "situation").options.map((item) => item.value),
+  provinces: STEPS.find((step) => step.key === "province").options.map((item) => item.value),
+  cities: ALBERTA_CITIES,
+  benefitIds: BENEFITS.map((benefit) => benefit.id),
+  progressStages: STAGES.map((stage) => stage.key),
+};
+
 /* =============================================================================
    PERSISTENCE + HISTORY
    ========================================================================== */
-function persist() {
-  try {
-    localStorage.setItem(
-      STORE_KEY,
-      JSON.stringify({ answers, view, stepIndex, detailId, progress, groupMode })
-    );
-  } catch (e) {}
+const stateChanges = new AbilityFinderState.StateChangeEmitter();
+
+function persistentState() {
+  return AbilityFinderState.buildPersistedState({
+    answers, view, stepIndex, detailId, detailFrom, progress, groupMode,
+    browseQuery, browseTheme, browseLevel, browseDis, a11y, lang: LANG,
+    helpTopic, helpReturnStep,
+    theme: document.documentElement.getAttribute("data-theme"), askConsent,
+    validSelections: PERSISTENCE_SELECTIONS,
+  });
 }
-function restore() {
-  try {
-    const s = JSON.parse(localStorage.getItem(STORE_KEY));
-    if (!s) return;
-    answers = Object.assign(BLANK(), s.answers || {});
-    view = s.view || "landing";
-    stepIndex = s.stepIndex || 0;
-    detailId = s.detailId || null;
-    groupMode = s.groupMode === "category" ? "category" : "priority";
-    progress = s.progress || {};
-    // migrate the old binary "applied" model → the multi-stage tracker
-    if (s.applied) for (const id in s.applied) if (s.applied[id] && !progress[id]) progress[id] = "submitted";
-    // drop any unknown stage keys (forward-compat safety)
-    for (const id in progress) if (!STAGE[progress[id]]) delete progress[id];
-    if (view === "detail" && !BENEFITS.some((b) => b.id === detailId)) view = "results";
-  } catch (e) {}
+
+async function saveState() {
+  const saved = await AbilityFinderDB.saveState(persistentState());
+  // Another tab saved a newer full snapshot. Never overwrite it with stale
+  // answers: reload that authoritative record instead.
+  if (!saved && AbilityFinderDB.lastWriteConflict) window.location.reload();
+  return saved;
+}
+
+function notifyStateChange(reason) {
+  stateChanges.emit(reason);
+}
+
+stateChanges.subscribe(() => { void saveState(); });
+
+async function loadState() {
+  // One-time import protects work saved by releases that used localStorage. The
+  // manager deletes those legacy keys only after the IndexedDB write succeeds.
+  await AbilityFinderDB.migrateLegacyState(undefined, (legacy) =>
+    AbilityFinderState.sanitizeLegacyState(legacy, PERSISTENCE_SELECTIONS));
+  const saved = await AbilityFinderDB.loadState({});
+  const restored = AbilityFinderState.restorePersistedState(saved, {
+    answers: BLANK(),
+    theme: document.documentElement.getAttribute("data-theme") || "dark",
+    validSelections: PERSISTENCE_SELECTIONS,
+  });
+  answers = restored.answers;
+  view = restored.view;
+  stepIndex = restored.stepIndex;
+  detailId = restored.detailId;
+  detailFrom = restored.detailFrom;
+  helpTopic = restored.helpTopic;
+  helpReturnStep = restored.helpReturnStep;
+  progress = restored.progress;
+  groupMode = restored.groupMode;
+  browseQuery = restored.browseQuery;
+  browseTheme = restored.browseTheme;
+  browseLevel = restored.browseLevel;
+  browseDis = restored.browseDis;
+  a11y = restored.a11y;
+  LANG = restored.lang;
+  askConsent = restored.askConsent;
+  document.documentElement.setAttribute("data-theme", restored.theme);
+
+  // Drop unknown tracker stages and invalid guide IDs before either can render.
+  for (const id in progress) if (!STAGE[progress[id]]) delete progress[id];
+  if (view === "detail" && !BENEFITS.some((b) => b.id === detailId)) view = "results";
 }
 
 /* ---------------------------------------------------- accessibility engine */
 function persistA11y() {
-  try { localStorage.setItem(A11Y_KEY, JSON.stringify(a11y)); } catch (e) {}
-}
-function restoreA11y() {
-  try {
-    const s = JSON.parse(localStorage.getItem(A11Y_KEY));
-    if (s) a11y = Object.assign(a11y, s);
-  } catch (e) {}
+  notifyStateChange("accessibility-change");
 }
 function applyA11y() {
   document.documentElement.style.fontSize = `${Math.round(16 * a11y.fontScale)}px`;
@@ -699,9 +734,7 @@ function setReadState(speaking) {
 }
 
 /* ---------------------------------------------------- language */
-const LANG_KEY = "abilityfinder.lang";
-function restoreLang() { try { const l = localStorage.getItem(LANG_KEY); if (l && I18N[l]) LANG = l; } catch (e) {} }
-function persistLang() { try { localStorage.setItem(LANG_KEY, LANG); } catch (e) {} }
+function persistLang() { notifyStateChange("language-change"); }
 function applyStaticI18n() {
   document.documentElement.lang = LANG;
   document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
@@ -726,7 +759,7 @@ function setState(nextView, opts = {}, push = true) {
   const snap = { view, stepIndex, detailId };
   if (push) history.pushState(snap, "");
   else history.replaceState(snap, "");
-  persist();
+  notifyStateChange("navigation");
   render();
 }
 
@@ -739,7 +772,7 @@ window.addEventListener("popstate", (e) => {
   } else {
     view = "landing";
   }
-  persist();
+  notifyStateChange("browser-history");
   render();
 });
 
@@ -763,7 +796,7 @@ let lastRenderKey = null;
  *
  * render() writes #app.innerHTML. If anything it calls throws, the assignment
  * never happens and the visitor is left with a blank page and no way out — not
- * even a refresh, because the broken view is restored from localStorage. That
+ * even a refresh, because the broken view is restored from IndexedDB. That
  * shipped once (valueLabel() read step.options directly after it became a
  * function on one step): the wizard rendered fine, so per-piece checks passed,
  * but "Find my benefits" jumps straight to results when you already have
@@ -851,7 +884,6 @@ function render() {
   const reReset = document.getElementById("reReset");
   if (reReset)
     reReset.addEventListener("click", () => {
-      try { localStorage.removeItem(STORE_KEY); } catch (e) {}
       answers = BLANK(); progress = {}; stepIndex = 0; detailId = null;
       setState("landing");
     });
@@ -1215,13 +1247,13 @@ function renderPrivacy() {
     <h1 class="legal-title">Your information stays with you</h1>
     <p class="legal-lede">AbilityFinder is built to be private by default. Here's exactly how it works — in plain language.</p>
 
-    ${block("What we collect", `<p>Nothing. AbilityFinder has no accounts, no sign-up, and no server that stores your data. Everything you answer lives only in <b>your own browser</b> (in its local storage) so the site can remember your progress. We can't see it, and it never leaves your device.</p><p>There is <b>one exception</b>, and only if you choose to use it: the optional assistant. It is described below.</p>`)}
+    ${block("What we collect", `<p>Nothing. AbilityFinder has no accounts, no sign-up, and no server that stores your data. Your selections and progress live only in <b>your own browser</b>, in a private IndexedDB database for this site, so the site can remember where you were. We can't see it, and it never leaves your device.</p><p>There is <b>one exception</b>, and only if you choose to use it: the optional assistant. It is described below.</p>`)}
     ${block("The assistant — the one exception", `<p>The <b>Ask a question</b> button opens an optional assistant. It is the only part of AbilityFinder that sends anything over the internet.</p><p>If you open it, we tell you this before you can type, and you have to agree first. If you never open it, <b>nothing you do here leaves your device</b>.</p><p>When you send a question, the text you typed is sent to <b>Cloudflare's AI service</b> to write the answer. Cloudflare also hosts this website. We don't keep your questions, and there is no account to link them to — but the words you type do leave your browser, so <b>please don't type your name, address, or health details you would rather not send</b>.</p><p>The assistant can be <b>wrong</b>. It is there to explain confusing wording, explain what a form is asking for, and point you to the right guide. It cannot tell you whether you qualify, and it will not quote dollar amounts — the guides on this site have the checked numbers, and the official page is always the final word.</p>`)}
     ${block("No tracking, no cookies, no ads", `<p>There are no analytics trackers, no advertising, and no third-party scripts watching what you do. We don't set tracking cookies.</p>`)}
     ${block("Fonts and files", `<p>All fonts and code are served from this site itself — we don't call Google Fonts or any external CDN, so no third party is told that you visited.</p>`)}
-    ${block("Location", `<p>The “Use my location” button only asks your browser for your location when <b>you tap it</b>, and only to build a Google Maps search link for nearby practitioners. Your location is never sent to us or saved.</p>`)}
+    ${block("Location", `<p>The “Use my location” button only asks your browser for your location when <b>you tap it</b>, and only to build a Google Maps search link for nearby practitioners. Your location is never sent to us or saved. A postal code typed into the finder also stays only in the current page's memory and is not saved in IndexedDB.</p>`)}
     ${block("Links to other sites", `<p>Every “Apply” and official link opens the relevant government website in a new tab. Once you're on those sites, their own privacy policies apply — not ours.</p>`)}
-    ${block("Clearing your data", `<p>Click the <b>AbilityFinder</b> logo (or “Start over”) to wipe your answers, or clear your browser's site data at any time. That's all it takes.</p>`)}
+    ${block("Clearing your data", `<p>Click the <b>AbilityFinder</b> logo (or “Start over”) to wipe your answers, or clear your browser's site data at any time. IndexedDB is still browser-owned storage: if you clear this site's data or delete your browser profile, your saved progress is deleted and AbilityFinder cannot recover it.</p>`)}
 
     <div class="legal-block">
       <h2>Important disclaimer</h2>
@@ -1396,7 +1428,7 @@ function wireStep(step) {
     if (sel)
       sel.addEventListener("change", () => {
         answers[step.key] = sel.value;
-        persist();
+        notifyStateChange("wizard-answer");
         render();
         setTimeout(goNext, 150);
       });
@@ -1412,12 +1444,12 @@ function wireStep(step) {
       const value = JSON.parse(btn.dataset.value);
       if (step.type === "multi") {
         toggleMulti(step, value);
-        persist();
+        notifyStateChange("wizard-answer");
         render(); // reflect selection, stay on step
       } else {
         answers[step.key] = value;
         if (step.onPick) step.onPick(value);
-        persist();
+        notifyStateChange("wizard-answer");
         render();
         setTimeout(goNext, 200); // snappy auto-advance
       }
@@ -2027,7 +2059,7 @@ function wireResults() {
       const id = sel.dataset.track;
       if (sel.value && STAGE[sel.value]) progress[id] = sel.value;
       else delete progress[id];
-      persist();
+      notifyStateChange("progress-change");
       render(); // same page → scroll position preserved
     })
   );
@@ -2046,7 +2078,7 @@ function wireResults() {
       const mode = btn.dataset.group === "category" ? "category" : "priority";
       if (mode === groupMode) return;
       groupMode = mode;
-      persist();
+      notifyStateChange("results-filter-change");
       render();
     })
   );
@@ -2064,7 +2096,7 @@ function wireResults() {
       // coming back silently threw the choice away and showed the wrong
       // back-pay figure.
       answers.retroYears = y;
-      persist();
+      notifyStateChange("estimator-change");
       const amt = y * 2000;
       retroOut.innerHTML = amt > 0
         ? `≈ <b>${money(amt)}</b> in DTC back-pay you could recover`
@@ -2367,15 +2399,28 @@ function wireBrowse() {
   });
 
   const input = document.getElementById("browseInput");
-  if (input) input.addEventListener("input", () => { browseQuery = input.value; refreshBrowse(); });
+  if (input) input.addEventListener("input", () => {
+    browseQuery = input.value;
+    notifyStateChange("browse-filter-change");
+    refreshBrowse();
+  });
 
   document.querySelectorAll("[data-btheme]").forEach((c) =>
-    c.addEventListener("click", () => { browseTheme = c.dataset.btheme; refreshBrowse(); }));
+    c.addEventListener("click", () => {
+      browseTheme = c.dataset.btheme;
+      notifyStateChange("browse-filter-change");
+      refreshBrowse();
+    }));
   document.querySelectorAll("[data-blevel]").forEach((c) =>
-    c.addEventListener("click", () => { browseLevel = c.dataset.blevel; refreshBrowse(); }));
+    c.addEventListener("click", () => {
+      browseLevel = c.dataset.blevel;
+      notifyStateChange("browse-filter-change");
+      refreshBrowse();
+    }));
   document.querySelectorAll("[data-bdis]").forEach((c) =>
     c.addEventListener("click", () => {
       browseDis = c.dataset.bdis;
+      notifyStateChange("browse-filter-change");
       render();      // full render: the explainer line above the list has to change too
     }));
 
@@ -2640,7 +2685,8 @@ function wireDetail() {
   if (postal)
     postal.addEventListener("input", () => {
       answers.postal = postal.value.trim() || null;
-      persist();
+      // Free-text postal searches stay in memory only; they are deliberately
+      // outside the persisted-state whitelist.
       updateFinderLinks(null);
     });
   // "Answer a few questions" nudge — only rendered when the wizard isn't done.
@@ -2766,12 +2812,11 @@ function wireReveals(root = document) {
 
    Opt-in on purpose: this is the ONLY part of the app that sends anything off
    the device, and the privacy page promises otherwise. Consent is remembered. */
-const ASK_KEY = "abilityfinder.askConsent";
 let askHistory = [];
 let askBusy = false;
 
 function askConsented() {
-  try { return localStorage.getItem(ASK_KEY) === "1"; } catch (e) { return false; }
+  return askConsent;
 }
 
 function askBubble(cls, text) {
@@ -2914,7 +2959,8 @@ function wireAssistant() {
   document.getElementById("askClose").addEventListener("click", () => { open(false); fab.focus(); });
 
   document.getElementById("askAccept").addEventListener("click", () => {
-    try { localStorage.setItem(ASK_KEY, "1"); } catch (e) {}
+    askConsent = true;
+    notifyStateChange("assistant-consent");
     showChat();
     input.focus();
   });
@@ -2938,10 +2984,8 @@ function wireAssistant() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  restore();
-  restoreA11y();
-  restoreLang();
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadState();
   applyA11y();
   applyStaticI18n();
   wireAccessibility();
@@ -2953,14 +2997,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const langBtn = document.getElementById("langBtn");
   if (langBtn) langBtn.addEventListener("click", toggleLang);
 
-  // light / dark theme toggle (initial theme is set by the inline <head> script)
+  // light / dark theme toggle (initial theme is set by theme-init.js in <head>)
   const themeBtn = document.getElementById("themeToggle");
   if (themeBtn)
     themeBtn.addEventListener("click", () => {
       const cur = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
       const next = cur === "light" ? "dark" : "light";
       document.documentElement.setAttribute("data-theme", next);
-      try { localStorage.setItem("abilityfinder.theme", next); } catch (e) {}
+      notifyStateChange("theme-change");
     });
 
   // subtle nav border once the page is scrolled
