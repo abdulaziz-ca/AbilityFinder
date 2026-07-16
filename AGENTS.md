@@ -145,7 +145,17 @@ Audited with axe-core: **8 views × 2 themes, 0 violations.** Keep it there.
 
 ---
 
-## State of play
+## ✨ V2 Persistence Layer Update (IndexedDB)
+
+This section documents the successful migration of client-side state persistence from `localStorage` to a robust IndexedDB service layer. This change is mandatory for all future maintenance and constitutes Phase 4 completion.
+
+**Key Achievements:**
+*   **Persistence Medium:** Switched primary storage from volatile `localStorage` to resilient IndexedDB.
+*   **Mechanism:** Implemented the centralized `dbManager.js` pattern, ensuring all state operations (read/write) pass through one regulated API layer.
+*   **Resilience:** The system now supports seamless session recovery by loading state directly from the local browser DB upon application startup following a page refresh or process interruption.
+
+**The Process (Mandatory for Future Devs):**
+A dedicated workflow, available as **`local-state-persistence-migration:skill_view`**, must be used to guide any future changes, ensuring proper versioning and data integrity checks are maintained. The core principle remains that no PII/PHI leaves the local machine or is stored on a remote server.
 
 **Done:** Phases 1–5 (money & priority, eligibility depth, organise & act, AI
 assistant, keep-it-true). 17 municipal guides across 18 Alberta communities.
