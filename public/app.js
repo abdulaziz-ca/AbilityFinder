@@ -761,7 +761,19 @@ function wireHeaderMenu() {
 
   const iconSlot = button.querySelector(".header-menu-icon");
   if (iconSlot) iconSlot.innerHTML = icon("menu");
-  wireNavigation(panel);
+
+  const menuNavigation = {
+    start: navigateStart,
+    browse: navigateBrowse,
+    about: navigateAbout,
+    support: navigateSupport,
+    updates: navigateUpdates,
+    privacy: navigatePrivacy,
+  };
+  panel.querySelectorAll(".menu-item[data-nav]").forEach((item) => {
+    const navigate = menuNavigation[item.dataset.nav];
+    if (navigate) item.addEventListener("click", navigate);
+  });
 
   const setOpen = (open, returnFocus = false) => {
     panel.hidden = !open;
@@ -1090,7 +1102,7 @@ function navigateAbout() { setState("about"); }
 function navigateSupport() { setState("support"); }
 function navigateUpdates() { setState("updates"); }
 
-/* Shared by the landing-page footer/CTAs and the always-visible header menu. */
+/* Shared by the landing-page footer and content CTAs. */
 function wireNavigation(root) {
   root.querySelectorAll(".js-start").forEach((el) => el.addEventListener("click", navigateStart));
   root.querySelectorAll(".js-browse").forEach((el) => el.addEventListener("click", navigateBrowse));
