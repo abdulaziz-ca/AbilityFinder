@@ -129,53 +129,68 @@ body {
   transition: background-color 0.45s var(--ease), color 0.45s var(--ease);
 }
 
-/* Site-wide ambient light. These warm amber / umber / bronze hues echo the
-   palette without using semantic status colours. Their low alpha keeps the
-   resulting canvas within a few percent luminance of --bg. Overscan prevents
-   an animated edge from entering the viewport. */
+/* Site-wide living aurora. Two wrapper layers and two body layers provide four
+   independently drifting lights without extra markup. All sit at the same
+   z-index as the previous body lights and are painted before page content;
+   25% overscan keeps transformed edges outside the viewport. */
+.wrap::before,
+.wrap::after,
 body::before,
 body::after {
   content: "";
   position: fixed;
-  inset: -20%;
+  inset: -25%;
   z-index: 0;
   pointer-events: none;
   will-change: transform;
-  transition: opacity 0.45s var(--ease);
 }
+/* Aurora ribbon A — the most visible, warm-amber diagonal. */
+.wrap::before {
+  background: radial-gradient(ellipse 68% 18% at 48% 48%, rgba(138, 90, 43, 0.22) 0%, rgba(138, 90, 43, 0.11) 42%, transparent 76%);
+  animation: af-aurora-a 36s ease-in-out infinite alternate;
+}
+/* Aurora ribbon B — a broader bronze counter-diagonal. */
+.wrap::after {
+  background: radial-gradient(ellipse 62% 16% at 52% 50%, rgba(107, 68, 35, 0.18) 0%, rgba(107, 68, 35, 0.08) 46%, transparent 78%);
+  animation: af-aurora-b 52s ease-in-out infinite alternate-reverse;
+}
+/* Deep glow — broad, low-frequency warmth beneath the ribbons. */
 body::before {
-  background-image:
-    radial-gradient(44% 48% at 16% 18%, rgba(104, 68, 35, 0.14), transparent 72%),
-    radial-gradient(48% 52% at 84% 30%, rgba(126, 82, 38, 0.11), transparent 74%),
-    radial-gradient(42% 46% at 58% 88%, rgba(82, 53, 32, 0.12), transparent 72%);
-  animation: af-drift-a 72s ease-in-out infinite alternate;
+  background: radial-gradient(circle at 68% 42%, rgba(125, 77, 43, 0.14) 0%, rgba(125, 77, 43, 0.07) 34%, transparent 68%);
+  animation: af-deep-drift 80s ease-in-out infinite alternate;
 }
+/* Shimmer accent — small enough to read as a passing highlight, never a flash. */
 body::after {
-  opacity: 0.5;
-  background-image:
-    radial-gradient(46% 50% at 78% 14%, rgba(151, 99, 43, 0.12), transparent 74%),
-    radial-gradient(50% 54% at 22% 76%, rgba(91, 57, 34, 0.13), transparent 76%);
-  animation: af-drift-b 102s ease-in-out infinite alternate-reverse;
+  background: radial-gradient(circle at 30% 66%, rgba(194, 143, 74, 0.10) 0%, rgba(194, 143, 74, 0.045) 24%, transparent 48%);
+  animation: af-shimmer-drift 60s ease-in-out infinite alternate;
 }
-@keyframes af-drift-a {
-  from { transform: translate3d(-3%, -2%, 0) scale(1.05); }
-  to   { transform: translate3d(3%, 2%, 0) scale(1.12); }
+@keyframes af-aurora-a {
+  from { transform: translate3d(-12%, -6%, 0) rotate(-14deg) scale(1); }
+  to   { transform: translate3d(12%, 6%, 0) rotate(-10deg) scale(1.15); }
 }
-@keyframes af-drift-b {
-  from { transform: translate3d(3%, -2%, 0) scale(1.08); }
-  to   { transform: translate3d(-2%, 3%, 0) scale(1.15); }
+@keyframes af-aurora-b {
+  from { transform: translate3d(10%, -7%, 0) rotate(17deg) scale(1.03); }
+  to   { transform: translate3d(-10%, 7%, 0) rotate(12deg) scale(1.14); }
+}
+@keyframes af-deep-drift {
+  from { transform: translate3d(7%, -4%, 0) scale(1.04); }
+  to   { transform: translate3d(-7%, 6%, 0) scale(1.16); }
+}
+@keyframes af-shimmer-drift {
+  from { transform: translate3d(-14%, 10%, 0) scale(0.96); }
+  to   { transform: translate3d(16%, -12%, 0) scale(1.12); }
+}
+:root[data-theme="light"] .wrap::before {
+  background: radial-gradient(ellipse 68% 18% at 48% 48%, rgba(231, 185, 120, 0.20) 0%, rgba(231, 185, 120, 0.10) 42%, transparent 76%);
+}
+:root[data-theme="light"] .wrap::after {
+  background: radial-gradient(ellipse 62% 16% at 52% 50%, rgba(217, 164, 99, 0.17) 0%, rgba(217, 164, 99, 0.075) 46%, transparent 78%);
 }
 :root[data-theme="light"] body::before {
-  background-image:
-    radial-gradient(44% 48% at 16% 18%, rgba(231, 188, 132, 0.13), transparent 72%),
-    radial-gradient(48% 52% at 84% 30%, rgba(224, 170, 105, 0.10), transparent 74%),
-    radial-gradient(42% 46% at 58% 88%, rgba(237, 207, 169, 0.12), transparent 72%);
+  background: radial-gradient(circle at 68% 42%, rgba(239, 201, 149, 0.15) 0%, rgba(239, 201, 149, 0.07) 34%, transparent 68%);
 }
 :root[data-theme="light"] body::after {
-  opacity: 0.42;
-  background-image:
-    radial-gradient(46% 50% at 78% 14%, rgba(241, 197, 139, 0.11), transparent 74%),
-    radial-gradient(50% 54% at 22% 76%, rgba(218, 178, 133, 0.12), transparent 76%);
+  background: radial-gradient(circle at 30% 66%, rgba(228, 174, 98, 0.15) 0%, rgba(228, 174, 98, 0.065) 24%, transparent 48%);
 }
 
 .ic { width: 1.15em; height: 1.15em; flex: none; display: inline-block; vertical-align: middle; }
@@ -193,8 +208,12 @@ body::after {
 .nav.scrolled { border-bottom-color: var(--hair-2); }
 .nav-inner {
   width: 100%; max-width: none; margin: 0; padding: 0 clamp(28px, 5vw, 72px);
-  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center; gap: 14px;
 }
+.nav-left { min-width: 0; justify-self: start; }
+.nav-inner > .brand { justify-self: center; }
+.nav-right { min-width: 0; justify-self: end; }
 @media (max-width: 640px) { .nav-inner { padding: 0 20px; } }
 
 /* day / night theme toggle */
@@ -283,7 +302,7 @@ body::after {
 .header-menu-icon { display: inline-flex; }
 .header-menu-icon .ic { width: 17px; height: 17px; }
 .header-menu-panel {
-  position: absolute; top: calc(100% + 16px); right: 0; width: min(340px, calc(100vw - 40px));
+  position: absolute; top: calc(100% + 16px); left: 0; width: min(340px, calc(100vw - 40px));
   display: flex; flex-direction: column; padding: 8px;
   background: var(--panel); border: 1px solid var(--hair-2); border-radius: var(--r);
   box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.78);
@@ -874,6 +893,41 @@ textarea.text-input { resize: vertical; min-height: 96px; line-height: 1.5; }
 @media (min-width: 761px) { .benefit-actions { align-items: flex-end; } }
 .benefit-actions .apply { justify-content: center; }
 
+/* Results-card guide accordion. These presentation classes are deliberately
+   separate from the data-* attributes used to wire behavior. */
+.guide-toggle {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 10px 16px; border: 1px solid var(--hair-2);
+  border-radius: var(--pill); background: transparent; color: var(--text);
+  font: 550 0.9rem/1.2 var(--font-sans); cursor: pointer;
+  transition: border-color 0.18s var(--ease), background-color 0.18s var(--ease), color 0.18s var(--ease);
+}
+.guide-toggle:hover, .guide-toggle[aria-expanded="true"] {
+  border-color: var(--accent-line); background: var(--accent-soft); color: var(--accent-hi);
+}
+.guide-toggle-icon { display: inline-flex; transition: transform 0.2s var(--ease); }
+.guide-toggle-icon .ic { width: 16px; height: 16px; }
+.guide-toggle[aria-expanded="true"] .guide-toggle-icon { transform: rotate(90deg); }
+.inline-guide[hidden] { display: none; }
+.inline-guide {
+  margin-top: 32px; padding: 34px 0 8px 26px; border-top: 1px solid var(--hair);
+  animation: inline-guide-open 0.22s var(--ease) both;
+}
+.inline-guide-body { width: 100%; }
+@keyframes inline-guide-open {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 760px) {
+  .inline-guide { margin-top: 26px; padding: 28px 0 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .guide-toggle, .guide-toggle-icon, .inline-guide { animation: none; transition: none; }
+}
+body.a11y-nomotion .guide-toggle,
+body.a11y-nomotion .guide-toggle-icon,
+body.a11y-nomotion .inline-guide { animation: none; transition: none; }
+
 .results-head, .results-tools, .group-title, .answers-bar, .tracker-summary { max-width: 1000px; }
 
 /* editable answer chips */
@@ -1102,24 +1156,28 @@ body.a11y-spacing #app { font-family: Verdana, Tahoma, "Trebuchet MS", sans-seri
 body.a11y-links a, body.a11y-links .apply, body.a11y-links .source-link, body.a11y-links .back-link { text-decoration: underline !important; text-underline-offset: 3px; font-weight: 600; }
 body.a11y-nomotion *, body.a11y-nomotion *::before, body.a11y-nomotion *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 body.a11y-contrast { --bg: #000; --bg-2: #000; --panel: #0b0b0b; --panel-2: #151515; --hair: rgba(255,255,255,0.5); --hair-2: rgba(255,255,255,0.8); --text: #fff; --text-dim: #ececec; --text-dimmer: #d0d0d0; --accent: #f4ead6; --accent-hi: #ffffff; --ok: #5ce6a0; --warn: #ffd27a; }
-body.a11y-contrast::before, body.a11y-contrast::after { display: none; }
+body.a11y-contrast::before, body.a11y-contrast::after,
+body.a11y-contrast .wrap::before, body.a11y-contrast .wrap::after { display: none; }
 body.a11y-contrast .wizard-card, body.a11y-contrast .opt, body.a11y-contrast .cat { border-width: 2px; }
 
 /* ---------------------------------------------------------------- print */
 .print-action-plan { display: none; }
 @media (prefers-reduced-motion: reduce) {
-  .hero-bloom, .preview, .hero-ridges, .hero-atmos::after, body::before, body::after,
+  .hero-bloom, .preview, .hero-ridges, .hero-atmos::after,
+  .wrap::before, .wrap::after, body::before, body::after,
   .brand-needle, .brand-bezel, .brand-mark::after, .hero-wave .hw, .wiz-mountains .wm { animation: none !important; }
 }
 body.a11y-nomotion .hero-ridges, body.a11y-nomotion .hero-atmos::after,
-body.a11y-nomotion::before, body.a11y-nomotion::after, body.a11y-nomotion .brand-needle,
-body.a11y-nomotion .brand-bezel, body.a11y-nomotion .brand-mark::after,
-body.a11y-nomotion .hero-wave .hw, body.a11y-nomotion .wiz-mountains .wm { animation: none !important; }
+body.a11y-nomotion::before, body.a11y-nomotion::after,
+body.a11y-nomotion .wrap::before, body.a11y-nomotion .wrap::after,
+body.a11y-nomotion .brand-needle, body.a11y-nomotion .brand-bezel,
+body.a11y-nomotion .brand-mark::after, body.a11y-nomotion .hero-wave .hw,
+body.a11y-nomotion .wiz-mountains .wm { animation: none !important; }
 
 @media print {
   @page { margin: 16mm; }
   .nav, .progress, .a11y-wrap, .ask-wrap, .reading-guide, .results-tools, .tracker-summary, .track, .apply-row, .restart, .disclaimer, details.notmatch, .back-link { display: none !important; }
-  body::before, body::after { display: none !important; }
+  .wrap::before, .wrap::after, body::before, body::after { display: none !important; }
   body { background: #fff !important; color: #000 !important; margin: 0; }
   #app { max-width: none; margin: 0; padding: 0; }
   #app > :not(.print-action-plan) { display: none !important; }

@@ -27,21 +27,37 @@
     <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f7f2e9" media="(prefers-color-scheme: light)" />
 
-    <script src="dbManager.js?v=31"></script>
-    <script src="stateManager.js?v=31"></script>
-    <script src="theme-init.js?v=31"></script>
+    <script src="dbManager.js?v=32"></script>
+    <script src="stateManager.js?v=32"></script>
+    <script src="theme-init.js?v=32"></script>
 
     <!-- Fonts are self-hosted (see styles.css @font-face), so loading them does
          not contact an external font CDN. -->
-    <link rel="preload" href="fonts/inter-latin.woff2?v=31" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="fonts/fraunces-latin.woff2?v=31" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="styles.css?v=31" />
-    <link rel="icon" href="favicon.svg?v=31" type="image/svg+xml" />
+    <link rel="preload" href="fonts/inter-latin.woff2?v=32" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="fonts/fraunces-latin.woff2?v=32" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="styles.css?v=32" />
+    <link rel="icon" href="favicon.svg?v=32" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   </head>
   <body>
     <header class="nav" id="nav">
       <div class="nav-inner">
+        <div class="nav-left">
+          <div class="header-menu-wrap">
+            <button class="header-menu-toggle" id="headerMenuToggle" type="button" aria-expanded="false" aria-controls="headerMenuPanel">
+              <span data-i18n="menu.label">Menu</span>
+              <span class="header-menu-icon" aria-hidden="true"></span>
+            </button>
+            <nav class="header-menu-panel" id="headerMenuPanel" aria-label="Main navigation" hidden>
+              <button class="header-menu-item menu-item primary" type="button" data-nav="start" data-i18n="menu.find">Find my benefits</button>
+              <button class="header-menu-item menu-item" type="button" data-nav="browse" data-i18n="menu.browse">Browse all benefits</button>
+              <button class="header-menu-item menu-item" type="button" data-nav="about" data-i18n="menu.about">About &amp; how we verify</button>
+              <button class="header-menu-item menu-item" type="button" data-nav="support" data-i18n="menu.support">Support AbilityFinder</button>
+              <button class="header-menu-item menu-item" type="button" data-nav="updates" data-i18n="menu.updates">Data updates</button>
+              <button class="header-menu-item menu-item" type="button" data-nav="privacy" data-i18n="menu.privacy">Privacy &amp; disclaimer</button>
+            </nav>
+          </div>
+        </div>
         <a class="brand" href="#" id="brandHome" aria-label="AbilityFinder — start over">
           <span class="brand-mark" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
@@ -74,21 +90,6 @@
             <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.4 3.9 5.6 4 9-.1 3.4-1.5 6.6-4 9-2.5-2.4-3.9-5.6-4-9 .1-3.4 1.5-6.6 4-9z"/></svg>
             <span id="langLabel">EN</span>
           </button>
-          <div class="header-menu-wrap">
-            <button class="header-menu-toggle" id="headerMenuToggle" type="button" aria-expanded="false" aria-controls="headerMenuPanel">
-              <span data-i18n="menu.label">Menu</span>
-              <span class="header-menu-icon" aria-hidden="true"></span>
-            </button>
-            <nav class="header-menu-panel" id="headerMenuPanel" aria-label="Main navigation" hidden>
-              <button class="header-menu-item menu-item primary" type="button" data-nav="start" data-i18n="menu.find">Find my benefits</button>
-              <button class="header-menu-item menu-item" type="button" data-nav="browse" data-i18n="menu.browse">Browse all benefits</button>
-              <a class="header-menu-item menu-item" href="/guides/" data-nav="guides" data-i18n="menu.guides">Program guides</a>
-              <button class="header-menu-item menu-item" type="button" data-nav="about" data-i18n="menu.about">About &amp; how we verify</button>
-              <button class="header-menu-item menu-item" type="button" data-nav="support" data-i18n="menu.support">Support AbilityFinder</button>
-              <button class="header-menu-item menu-item" type="button" data-nav="updates" data-i18n="menu.updates">Data updates</button>
-              <button class="header-menu-item menu-item" type="button" data-nav="privacy" data-i18n="menu.privacy">Privacy &amp; disclaimer</button>
-            </nav>
-          </div>
         </div>
       </div>
     </header>
@@ -187,10 +188,10 @@
       </div>
     </div>
 
-    <script src="icons.js?v=31"></script>
-    <script src="i18n.js?v=31"></script>
-    <script src="data.js?v=31"></script>
-    <script src="app.js?v=31"></script>
+    <script src="icons.js?v=32"></script>
+    <script src="i18n.js?v=32"></script>
+    <script src="data.js?v=32"></script>
+    <script src="app.js?v=32"></script>
     <!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ddfa6696ce10444fb1526ec39711bd9e"}'></script><!-- End Cloudflare Web Analytics -->
   </body>
 </html>

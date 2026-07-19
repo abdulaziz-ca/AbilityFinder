@@ -94,6 +94,7 @@ let detailFrom = "results"; // "results" | "browse" — where the guide was open
 let progress = {};      // { benefitId: stageKey } — where the user is in each application
 let editingReturn = false; // when true, editing one answer returns to results
 let groupMode = "priority"; // "priority" | "category" — how results are grouped
+const expandedBenefitIds = new Set(); // results-only accordion state; deliberately never persisted
 
 /* browse/search view state (explore all benefits without doing the wizard) */
 let browseQuery = "";
@@ -1080,7 +1081,6 @@ function renderLanding() {
       <div class="sf-brand">${icon("compass")} AbilityFinder</div>
       <div class="sf-links">
         <button class="linklike js-privacy">Privacy &amp; disclaimer</button>
-        <a class="linklike" href="/guides/">Program guides</a>
         <button class="linklike js-about">About &amp; how we verify</button>
         <button class="linklike js-support">Support AbilityFinder</button>
         <button class="linklike js-updates">Data updates</button>
@@ -2015,7 +2015,7 @@ function benefitCard(b, r, rank) {
       <div class="benefit-main">
         <div class="top">
           ${rankBadge}
-          <h3>${b.name}</h3>
+          <h3 id="benefit-title-${b.id}">${b.name}</h3>
           <span class="tag lvl">${b.level}</span>
           <span class="tag">${b.category}</span>
         </div>
@@ -2026,12 +2026,17 @@ function benefitCard(b, r, rank) {
       <div class="benefit-side">
         <div class="benefit-value">${valueHtml}</div>
         <div class="benefit-actions">
-          <button class="apply js-detail" data-id="${b.id}">
-            ${r.status === "ready" ? t("apply.how") : t("apply.unlock")} ${icon("arrowRight")}
+          <button class="apply js-detail" type="button" data-id="${b.id}">${t("guide.how")} ${icon("arrowRight")}</button>
+          <button class="guide-toggle" id="guide-toggle-${b.id}" type="button" data-guide-toggle="${b.id}" aria-expanded="${expandedBenefitIds.has(b.id)}" aria-controls="guide-panel-${b.id}">
+            <span class="guide-toggle-label">${expandedBenefitIds.has(b.id) ? t("guide.close") : t("guide.full")}</span>
+            <span class="guide-toggle-icon" aria-hidden="true">${icon("arrowRight")}</span>
           </button>
           ${statusControl(b)}
         </div>
       </div>
+    </div>
+    <div class="inline-guide" id="guide-panel-${b.id}" role="region" aria-labelledby="guide-toggle-${b.id} benefit-title-${b.id}" ${expandedBenefitIds.has(b.id) ? "" : "hidden"}>
+      ${renderGuideBody(b, r, { inline: true })}
     </div>
   </div>`;
 }
@@ -2107,7 +2112,7 @@ function practitionerFinder(b) {
      quietly showing the weakest option as if it were tailored. */
   const wizardNudge = !wizardDone()
     ? `<p class="finder-nudge">${icon("info")}
-        <span>This is the general default. <button type="button" class="linkish" id="finderWizard">Answer a few questions</button> and it will show the kind of practitioner that fits your situation.</span>
+        <span>This is the general default. <button type="button" class="linkish" data-finder-wizard>Answer a few questions</button> and it will show the kind of practitioner that fits your situation.</span>
       </p>`
     : "";
 
@@ -2127,8 +2132,8 @@ function practitionerFinder(b) {
     <p class="finder-lead">${t("finder.lead")}</p>
     ${formFlag}
     <div class="finder-row">
-      <input class="text-input finder-postal" id="finderPostal" inputmode="text" placeholder="${t("finder.postalPh")}" value="${answers.postal || ""}" />
-      <button class="btn btn-ghost" id="finderLoc" type="button">${icon("compass")} ${t("finder.useLoc")}</button>
+      <input id="finderPostal" class="text-input finder-postal" data-finder-postal inputmode="text" placeholder="${t("finder.postalPh")}" value="${answers.postal || ""}" />
+      <button class="btn btn-ghost" data-finder-loc type="button">${icon("compass")} ${t("finder.useLoc")}</button>
     </div>
     <div class="finder-btns">
       <a class="apply finder-search" data-ptype="${type}" href="${mapsSearchUrl(type)}" target="_blank" rel="noopener noreferrer" data-ext>${findLabel(type)} ${icon("external")}</a>
@@ -2137,7 +2142,7 @@ function practitionerFinder(b) {
     ${signerChips}
     ${wizardNudge}
     ${askTips}
-    <p class="finder-note" id="finderNote">${t("finder.note")}</p>
+    <p class="finder-note" data-finder-note>${t("finder.note")}</p>
   </div>`;
 }
 
@@ -2167,18 +2172,41 @@ function renderSupportCard(item) {
 }
 
 function wireResults() {
-  document.querySelectorAll("[data-edit]").forEach((btn) =>
-    btn.addEventListener("click", () => {
-      editingReturn = true;
-      setState("wizard", { stepIndex: parseInt(btn.dataset.edit, 10) });
-    })
-  );
   document.querySelectorAll(".js-detail").forEach((btn) =>
     btn.addEventListener("click", () => {
       detailFrom = "results";
       setState("detail", { detailId: btn.dataset.id });
     })
   );
+  document.querySelectorAll("[data-open-full-guide]").forEach((btn) =>
+    btn.addEventListener("click", () => {
+      detailFrom = "results";
+      setState("detail", { detailId: btn.dataset.openFullGuide });
+    })
+  );
+  document.querySelectorAll("[data-edit]").forEach((btn) =>
+    btn.addEventListener("click", () => {
+      editingReturn = true;
+      setState("wizard", { stepIndex: parseInt(btn.dataset.edit, 10) });
+    })
+  );
+  document.querySelectorAll("[data-guide-toggle]").forEach((btn) =>
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.guideToggle;
+      const panel = document.getElementById(`guide-panel-${id}`);
+      if (!panel) return;
+      const open = btn.getAttribute("aria-expanded") !== "true";
+      btn.setAttribute("aria-expanded", String(open));
+      panel.hidden = !open;
+      btn.querySelector(".guide-toggle-label").textContent = open ? t("guide.close") : t("guide.full");
+      if (open) {
+        expandedBenefitIds.add(id);
+        wireGuideInteractions(panel);
+        wireReveals(panel);
+      } else expandedBenefitIds.delete(id);
+    })
+  );
+  document.querySelectorAll(".inline-guide:not([hidden])").forEach(wireGuideInteractions);
   // per-benefit progress tracker
   document.querySelectorAll("[data-track]").forEach((sel) =>
     sel.addEventListener("change", () => {
@@ -2703,18 +2731,16 @@ function p2Sections(b) {
   let related = "";
   if (x.related && x.related.length) {
     const chips = x.related
-      .map((rid) => { const rb = BENEFITS.find((z) => z.id === rid); return rb ? `<button class="related-chip" data-id="${rid}">${rb.name} ${icon("arrowRight")}</button>` : ""; })
+      .map((rid) => { const rb = BENEFITS.find((z) => z.id === rid); return rb ? `<button class="related-chip" data-related-id="${rid}">${rb.name} ${icon("arrowRight")}</button>` : ""; })
       .join("");
     if (chips) related = `<div class="guide-block"><div class="guide-h">${icon("key")} Works well with</div><div class="related-chips">${chips}</div></div>`;
   }
   return { tax, denials, appeal, faqs, related, plainTest };
 }
 
-function renderDetail(id) {
-  const b = BENEFITS.find((x) => x.id === id);
+function renderGuideBody(b, r = evaluate(b), options = {}) {
+  const inline = !!options.inline;
   const backBtn = (idn) => `<button class="back-link${idn === "d-back2" ? " bottom" : ""}" id="${idn}">${icon("arrowLeft")} ${t("det.back")}</button>`;
-  if (!b) return `<div class="card">Not found. ${backBtn("d-back")}</div>`;
-  const r = evaluate(b);
   const d = b.detail || {};
   const vFresh = verifiedFor(b); // Per-benefit freshness.
 
@@ -2724,7 +2750,7 @@ function renderDetail(id) {
     statusBanner = `
       <div class="status-banner maybe">${icon("compass")}<div><b>Want to know if you qualify?</b>
         Answer a few quick questions and we'll tell you — and tailor this guide to you.
-        <button class="linklike" id="d-check">Check my eligibility ${icon("arrowRight")}</button></div>
+        <button class="linklike" data-guide-check>Check my eligibility ${icon("arrowRight")}</button></div>
       </div>`;
   } else if (r.status === "almost") {
     statusBanner = `
@@ -2767,7 +2793,7 @@ function renderDetail(id) {
     : { cls: "ready", txt: "You're eligible" };
 
   return `
-  <div class="detail">
+  ${inline ? "" : `<div class="detail">
     ${backBtn("d-back")}
 
     <header class="detail-hero">
@@ -2777,9 +2803,9 @@ function renderDetail(id) {
       </div>
       <h1 class="detail-title">${b.name}</h1>
       <p class="detail-lede">${b.summary}</p>
-    </header>
+    </header>`}
 
-    <div class="detail-body">
+    <div class="detail-body${inline ? " inline-guide-body" : ""}">
       <div class="detail-main">
         ${statusBanner}
         ${enNote}
@@ -2792,13 +2818,14 @@ function renderDetail(id) {
         ${p2.plainTest}
 
         ${listBlock(t("guide.how"), "compass", d.steps, true)}
-        ${b.needsPractitioner ? practitionerFinder(b) : ""}
+        ${b.needsPractitioner && !inline ? practitionerFinder(b) : ""}
         ${listBlock(t("guide.need"), "check", d.documents, false)}
         ${listBlock(t("guide.tips"), "info", d.tips, false)}
         ${p2.denials}
         ${p2.appeal}
         ${p2.faqs}
         ${p2.related}
+        ${inline ? `<div class="inline-guide-full"><button class="inline-guide-full-link" type="button" data-open-full-guide="${b.id}">${t("guide.openFull")} ${icon("arrowRight")}</button></div>` : ""}
       </div>
 
       <aside class="detail-side">
@@ -2817,8 +2844,13 @@ function renderDetail(id) {
       </aside>
     </div>
 
-    ${backBtn("d-back2")}
-  </div>`;
+    ${inline ? "" : `${backBtn("d-back2")}</div>`}`;
+}
+
+function renderDetail(id) {
+  const b = BENEFITS.find((x) => x.id === id);
+  if (!b) return `<div class="card">Not found. <button class="back-link" id="d-back">${icon("arrowLeft")} ${t("det.back")}</button></div>`;
+  return renderGuideBody(b, evaluate(b));
 }
 
 function wireDetail() {
@@ -2830,22 +2862,29 @@ function wireDetail() {
     if (el) el.addEventListener("click", () => setState(detailFrom === "browse" ? "browse" : "results"));
   });
 
-  // "check my eligibility" CTA (shown when the wizard isn't done yet)
-  const check = document.getElementById("d-check");
-  if (check) check.addEventListener("click", () => setState("wizard", { stepIndex: 0 }));
+  wireGuideInteractions(document.querySelector(".detail") || document);
+}
 
-  // related-benefit chips → open that benefit's guide
-  document.querySelectorAll(".related-chip[data-id]").forEach((btn) =>
-    btn.addEventListener("click", () => setState("detail", { detailId: btn.dataset.id }))
+function wireGuideInteractions(root) {
+  if (!root || root.dataset.guideWired === "true") return;
+  root.dataset.guideWired = "true";
+  // "check my eligibility" CTA (shown when the wizard isn't done yet)
+  root.querySelectorAll("[data-guide-check]").forEach((check) =>
+    check.addEventListener("click", () => setState("wizard", { stepIndex: 0 }))
   );
 
-  // practitioner finder: keep the map-search links in sync with postal / location
+  // Related benefits keep their existing deep-link route.
+  root.querySelectorAll(".related-chip[data-related-id]").forEach((btn) =>
+    btn.addEventListener("click", () => setState("detail", { detailId: btn.dataset.relatedId }))
+  );
+
+  // Each inline guide owns its finder controls, so several open cards never clash.
   const updateFinderLinks = (coords) => {
-    document.querySelectorAll(".finder-search").forEach((a) => {
+    root.querySelectorAll(".finder-search").forEach((a) => {
       a.href = mapsSearchUrl(a.dataset.ptype, coords);
     });
   };
-  const postal = document.getElementById("finderPostal");
+  const postal = root.querySelector("[data-finder-postal]");
   if (postal)
     postal.addEventListener("input", () => {
       answers.postal = postal.value.trim() || null;
@@ -2854,11 +2893,11 @@ function wireDetail() {
       updateFinderLinks(null);
     });
   // "Answer a few questions" nudge — only rendered when the wizard isn't done.
-  const finderWizard = document.getElementById("finderWizard");
+  const finderWizard = root.querySelector("[data-finder-wizard]");
   if (finderWizard)
     finderWizard.addEventListener("click", () => setState("wizard", { stepIndex: 0 }));
-  const loc = document.getElementById("finderLoc");
-  const note = document.getElementById("finderNote");
+  const loc = root.querySelector("[data-finder-loc]");
+  const note = root.querySelector("[data-finder-note]");
   if (loc)
     loc.addEventListener("click", () => {
       if (!navigator.geolocation) { if (note) note.textContent = t("finder.locUnsupported"); return; }
