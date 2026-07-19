@@ -62,6 +62,35 @@ Potential low-risk enhancements:
 - Client-side export/import if users demonstrate a real need for cross-device
   transfer.
 
+## Horizon (owner direction, set 2026-07-19)
+
+1. **Now — Alberta polish.** Make the Alberta disability service so complete that
+   organizations and clinics have no comparable alternative. Feature additions come
+   from the comparative research backlog (owner picks). Includes trust/credibility
+   artifacts for organization outreach.
+2. **Next — For Professionals v1.** Adviser-facing quick reference, DTC/T2201
+   appointment-prep sheets, and a "For professionals" page. Practitioner involvement
+   must use legally clean structures only: transparent directories and disclosed
+   sponsorships — **NO paid referral inducements** (physician referral payments risk
+   violating CPSA standards / fee-splitting rules; verify before any clinic
+   arrangement).
+3. **Then — Canada-wide, province by province.** Re-integrate provinces from
+   `public/data-provinces-later.js` one at a time, each with a full source audit; the
+   Alberta depth bar is the standard. National-but-shallow (the Disability Benefits
+   Compass approach) is explicitly rejected.
+4. **Later — Multi-audience expansion.** Beyond disability, add audience streams like
+   Benefits Wayfinder's starting points: newcomers, seniors, veterans, job loss,
+   caregivers, Indigenous peoples, housing, education, emergency money. One audience
+   at a time, same verified-depth treatment.
+5. **Future — Agency product.** A separate, paid portal for organizations/agents
+   managing multiple clients (caseloads, saved scenarios, reports, white-label).
+   Requires accounts and server-side state — a deliberate, scoped revisit of the free
+   site's no-accounts privacy rule, applying to the separate product only. First
+   genuine paid-infrastructure need.
+
+Revenue sequencing unchanged: credibility → partnerships/grants (e.g. VAD) →
+sponsorships → agency licensing.
+
 ## Safety boundaries awaiting official evidence
 
 Do not publish an exhaustive AISH/ADAP signer-profession list until Alberta provides
