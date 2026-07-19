@@ -1,5 +1,37 @@
 const { test, expect } = require("@playwright/test");
 
+// Only the local app and the two disclosed Cloudflare Web Analytics endpoints may be requested.
+const ALLOWED_REQUEST_ORIGINS = new Set([
+  "http://127.0.0.1:8766",
+  "https://static.cloudflareinsights.com",
+  "https://cloudflareinsights.com",
+]);
+const CLOUDFLARE_INSIGHTS_ORIGINS = new Set([
+  "https://static.cloudflareinsights.com",
+  "https://cloudflareinsights.com",
+]);
+
+async function abortCloudflareInsights(context) {
+  await context.route("**/*", async (route) => {
+    const origin = new URL(route.request().url()).origin;
+    if (CLOUDFLARE_INSIGHTS_ORIGINS.has(origin)) {
+      await route.abort();
+    } else {
+      await route.continue();
+    }
+  });
+}
+
+function collectPageErrors(page, errors) {
+  page.on("pageerror", (error) => {
+    if (!error.message.includes("cloudflareinsights")) errors.push(error.message);
+  });
+}
+
+test.beforeEach(async ({ context }) => {
+  await abortCloudflareInsights(context);
+});
+
 async function deleteAppStorage(page) {
   await page.goto("/");
   await page.evaluate(async () => {
@@ -33,7 +65,7 @@ async function pick(page, text) {
 test("normal wizard cycle saves continuously and reloads from IndexedDB mid-flow", async ({ page, context }) => {
   const errors = [];
   const requests = [];
-  page.on("pageerror", (error) => errors.push(error.message));
+  collectPageErrors(page, errors);
   context.on("request", (request) => requests.push(request.url()));
   await deleteAppStorage(page);
 
@@ -82,7 +114,7 @@ test("normal wizard cycle saves continuously and reloads from IndexedDB mid-flow
   await page.close();
   const recovered = await context.newPage();
   const recoveredErrors = [];
-  recovered.on("pageerror", (error) => recoveredErrors.push(error.message));
+  collectPageErrors(recovered, recoveredErrors);
   await recovered.goto("/");
   await expect(recovered.locator(".results-head")).toBeVisible();
   await expect(recovered.locator('[data-group="category"]')).toHaveClass(/on/);
@@ -113,7 +145,7 @@ test("normal wizard cycle saves continuously and reloads from IndexedDB mid-flow
     city: "Edmonton",
   });
 
-  expect(requests.every((url) => new URL(url).origin === "http://127.0.0.1:8766")).toBe(true);
+  expect(requests.every((url) => ALLOWED_REQUEST_ORIGINS.has(new URL(url).origin))).toBe(true);
   expect(errors).toEqual([]);
   expect(recoveredErrors).toEqual([]);
 });
@@ -231,7 +263,7 @@ const personas = [
 for (const persona of personas) {
   test(`${persona.name} persona restores and renders every persisted route safely`, async ({ page }) => {
     const errors = [];
-    page.on("pageerror", (error) => errors.push(error.message));
+    collectPageErrors(page, errors);
     await deleteAppStorage(page);
 
     for (const viewState of [
@@ -273,6 +305,7 @@ for (const persona of personas) {
 
 test("the app fails visible with clean defaults when IndexedDB is unavailable", async ({ browser }) => {
   const context = await browser.newContext();
+  await abortCloudflareInsights(context);
   await context.addInitScript(() => {
     Object.defineProperty(window, "indexedDB", { configurable: true, value: undefined });
   });
@@ -288,7 +321,7 @@ test("a stale second tab cannot overwrite newer wizard state", async ({ page, co
   await deleteAppStorage(page);
   const stale = await context.newPage();
   const errors = [];
-  stale.on("pageerror", (error) => errors.push(error.message));
+  collectPageErrors(stale, errors);
   await stale.goto("/");
 
   await page.locator(".js-start").first().click();
