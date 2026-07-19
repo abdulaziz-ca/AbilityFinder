@@ -87,7 +87,7 @@ const DONATION_URL = "";
 let answers = BLANK();
 
 /* view state */
-let view = "landing";   // landing, wizard, results, browse, detail, privacy, about, support, updates, help
+let view = "landing";   // landing, wizard, results, browse, detail, privacy, about, support, updates, help, accessibility, professionals, partner-overview, impact
 let stepIndex = 0;
 let detailId = null;
 let detailFrom = "results"; // "results" | "browse" — where the guide was opened from
@@ -770,6 +770,7 @@ function wireHeaderMenu() {
     support: navigateSupport,
     updates: navigateUpdates,
     privacy: navigatePrivacy,
+    professionals: navigateProfessionals,
   };
   panel.querySelectorAll(".menu-item[data-nav]").forEach((item) => {
     const navigate = menuNavigation[item.dataset.nav];
@@ -923,6 +924,22 @@ function render() {
     progress.style.display = "none";
     app.innerHTML = renderSafely(() => renderHelpPage(helpTopic), "help");
     wireHelpPage();
+  } else if (view === "accessibility") {
+    progress.style.display = "none";
+    app.innerHTML = renderSafely(renderAccessibilityStatement, "accessibility statement");
+    wireAccessibilityStatement();
+  } else if (view === "professionals") {
+    progress.style.display = "none";
+    app.innerHTML = renderSafely(renderProfessionals, "for professionals");
+    wireProfessionals();
+  } else if (view === "partner-overview") {
+    progress.style.display = "none";
+    app.innerHTML = renderSafely(renderPartnerOverview, "partner overview");
+    wirePartnerOverview();
+  } else if (view === "impact") {
+    progress.style.display = "none";
+    app.innerHTML = renderSafely(renderImpact, "impact and coverage");
+    wireImpact();
   }
   if (samePage) {
     window.scrollTo(0, keepScroll);
@@ -1004,6 +1021,42 @@ function renderLanding() {
       </div>
     </div>
 
+    <section class="section life-events" aria-labelledby="life-events-title">
+      <h2 class="section-title" id="life-events-title">${t("life.title")}</h2>
+      <div class="life-event-grid">
+        <button class="life-event-card menu-item reveal" type="button" data-nav="life-diagnosed">
+          <span class="life-event-icon" aria-hidden="true">${icon("compass")}</span>
+          <span class="life-event-copy"><span class="life-event-title">${t("life.diagnosed.h")}</span><span class="life-event-description">${t("life.diagnosed.p")}</span></span>
+          <span class="life-event-arrow" aria-hidden="true">${icon("arrowRight")}</span>
+        </button>
+        <button class="life-event-card menu-item reveal" type="button" data-nav="life-turning18">
+          <span class="life-event-icon" aria-hidden="true">${icon("clock")}</span>
+          <span class="life-event-copy"><span class="life-event-title">${t("life.turning18.h")}</span><span class="life-event-description">${t("life.turning18.p")}</span></span>
+          <span class="life-event-arrow" aria-hidden="true">${icon("arrowRight")}</span>
+        </button>
+        <button class="life-event-card menu-item reveal" type="button" data-nav="life-parent">
+          <span class="life-event-icon" aria-hidden="true">${icon("family")}</span>
+          <span class="life-event-copy"><span class="life-event-title">${t("life.parent.h")}</span><span class="life-event-description">${t("life.parent.p")}</span></span>
+          <span class="life-event-arrow" aria-hidden="true">${icon("arrowRight")}</span>
+        </button>
+        <button class="life-event-card menu-item reveal" type="button" data-nav="life-unable">
+          <span class="life-event-icon" aria-hidden="true">${icon("unable")}</span>
+          <span class="life-event-copy"><span class="life-event-title">${t("life.unable.h")}</span><span class="life-event-description">${t("life.unable.p")}</span></span>
+          <span class="life-event-arrow" aria-hidden="true">${icon("arrowRight")}</span>
+        </button>
+        <button class="life-event-card menu-item reveal" type="button" data-nav="life-alberta">
+          <span class="life-event-icon" aria-hidden="true">${icon("globe")}</span>
+          <span class="life-event-copy"><span class="life-event-title">${t("life.alberta.h")}</span><span class="life-event-description">${t("life.alberta.p")}</span></span>
+          <span class="life-event-arrow" aria-hidden="true">${icon("arrowRight")}</span>
+        </button>
+        <button class="life-event-card menu-item reveal" type="button" data-nav="life-helper">
+          <span class="life-event-icon" aria-hidden="true">${icon("help")}</span>
+          <span class="life-event-copy"><span class="life-event-title">${t("life.helper.h")}</span><span class="life-event-description">${t("life.helper.p")}</span></span>
+          <span class="life-event-arrow" aria-hidden="true">${icon("arrowRight")}</span>
+        </button>
+      </div>
+    </section>
+
     <div class="section problem">
       <h2 class="section-title">${t("prob.title")}</h2>
       <div class="compare">
@@ -1081,9 +1134,12 @@ function renderLanding() {
       <div class="sf-brand">${icon("compass")} AbilityFinder</div>
       <div class="sf-links">
         <button class="linklike js-privacy">Privacy &amp; disclaimer</button>
+        <button class="linklike" type="button" data-info-nav="accessibility">${t("footer.accessibility")}</button>
         <button class="linklike js-about">About &amp; how we verify</button>
         <button class="linklike js-support">Support AbilityFinder</button>
         <button class="linklike js-updates">Data updates</button>
+        <button class="linklike" type="button" data-info-nav="impact">${t("footer.impact")}</button>
+        <button class="linklike" type="button" data-info-nav="professionals">${t("footer.professionals")}</button>
         <button class="linklike js-browse">Browse all benefits</button>
         <span class="sf-note">Alberta + federal · Info verified ${DATA_VERIFIED} · Not government-affiliated</span>
       </div>
@@ -1101,6 +1157,10 @@ function navigatePrivacy() { setState("privacy"); }
 function navigateAbout() { setState("about"); }
 function navigateSupport() { setState("support"); }
 function navigateUpdates() { setState("updates"); }
+function navigateAccessibility() { setState("accessibility"); }
+function navigateProfessionals() { setState("professionals"); }
+function navigatePartnerOverview() { setState("partner-overview"); }
+function navigateImpact() { setState("impact"); }
 
 /* Shared by the landing-page footer and content CTAs. */
 function wireNavigation(root) {
@@ -1110,10 +1170,44 @@ function wireNavigation(root) {
   root.querySelectorAll(".js-about").forEach((el) => el.addEventListener("click", navigateAbout));
   root.querySelectorAll(".js-support").forEach((el) => el.addEventListener("click", navigateSupport));
   root.querySelectorAll(".js-updates").forEach((el) => el.addEventListener("click", navigateUpdates));
+  const infoNavigation = { accessibility: navigateAccessibility, professionals: navigateProfessionals, impact: navigateImpact };
+  root.querySelectorAll("[data-info-nav]").forEach((el) => {
+    const navigate = infoNavigation[el.dataset.infoNav];
+    if (navigate) el.addEventListener("click", navigate);
+  });
+}
+
+const LIFE_EVENT_ANSWERS = {
+  "life-diagnosed": [],
+  "life-turning18": [["forWho", "self"], ["ageGroup", "adult"]],
+  "life-parent": [["forWho", "child"]],
+  "life-unable": [["forWho", "self"], ["situation", "unableToWork"]],
+  "life-alberta": [],
+  "life-helper": [["forWho", "family"]],
+};
+
+function startFromLifeEvent(startingPoint) {
+  const selections = LIFE_EVENT_ANSWERS[startingPoint];
+  if (!selections) return;
+
+  // Every starting point begins a fresh questionnaire. Preseeds are applied by
+  // the same validated selection helper used by the wizard's own option taps.
+  answers = BLANK();
+  progress = {};
+  editingReturn = false;
+  selections.forEach(([key, value]) => {
+    const step = STEPS.find((candidate) => candidate.key === key);
+    if (step) applyWizardSelection(step, value);
+  });
+  setState("wizard", { stepIndex: 0 });
 }
 
 function wireLanding() {
-  wireNavigation(document.getElementById("app"));
+  const app = document.getElementById("app");
+  wireNavigation(app);
+  app.querySelectorAll(".life-event-card.menu-item[data-nav]").forEach((card) => {
+    card.addEventListener("click", () => startFromLifeEvent(card.dataset.nav));
+  });
 
   /* Feedback has two routes on purpose.
      - "Send" posts to /api/feedback and we mail it — no mail app needed, which
@@ -1395,52 +1489,234 @@ function wireInfoPage(backIds) {
 function wireAbout() { wireInfoPage(["a-back", "a-back2"]); }
 function wireSupport() { wireInfoPage(["s-back", "s-back2"]); }
 
-/* A short public record of material catalog changes. It is intentionally not a
-   changelog of code polish: this is where someone can see what facts changed,
-   when we re-checked them, and follow the primary source themselves. */
-const DATA_CHANGES = [
-  {
-    date: "July 15, 2026",
-    title: "AISH and ADAP guidance updated",
-    text: "Alberta now uses one application to assess AISH and ADAP. AISH and ADAP are no longer added together in our rough total, and the older AISH amount and work-income wording were removed rather than guessed.",
-    sources: [
-      ["Alberta Disability Assistance Program", "https://www.alberta.ca/alberta-disability-assistance-program"],
-      ["AISH eligibility", "https://www.alberta.ca/aish-eligibility"],
-    ],
-  },
-  {
-    date: "July 15, 2026",
-    title: "Signer guidance checked",
-    text: "CPP disability and Alberta parking-placard signer choices now use the current official lists. AISH/ADAP remains intentionally unspecific because Alberta does not publish an exhaustive profession list on its public application guidance.",
-    sources: [
-      ["CPP disability toolkit", "https://www.canada.ca/en/employment-social-development/employment-social-development/toolkit.html"],
-      ["Alberta parking placard", "https://www.alberta.ca/get-parking-placard-people-disabilities"],
-    ],
-  },
-  {
-    date: "July 15, 2026",
-    title: "Seven municipal programs added",
-    text: "Added current official City/Town programs for Spruce Grove area, Leduc, Cochrane, Okotoks, Canmore, Lloydminster and Fort Saskatchewan. Each has its own official source on its guide; they are not assumed to work alike.",
-    sources: [],
-  },
-];
+function infoList(keys) {
+  return `<ul class="cred-list">${keys.map((key) => `<li>${icon("check")}<span>${t(key)}</span></li>`).join("")}</ul>`;
+}
+
+function renderAccessibilityStatement() {
+  const block = (h, body) => `<div class="legal-block"><h2>${h}</h2>${body}</div>`;
+  return `<section class="legal credibility-page">
+    <button class="back-link" id="access-back">${icon("arrowLeft")} Back</button>
+    <p class="section-label">${t("access.kicker")}</p>
+    <h1 class="legal-title">${t("access.title")}</h1>
+    <p class="legal-lede">${t("access.lede")}</p>
+    ${block(t("access.commitment.h"), `<p>${t("access.commitment.p")}</p>`)}
+    ${block(t("access.works.h"), infoList(Array.from({ length: 10 }, (_, i) => `access.works.${i + 1}`)))}
+    ${block(t("access.test.h"), `<p>${t("access.test.p1")}</p><p>${t("access.test.p2")}</p>`)}
+    ${block(t("access.limits.h"), infoList(["access.limits.1", "access.limits.2", "access.limits.3"]))}
+    ${block(t("access.barrier.h"), `<p>${t("access.barrier.p")} <button class="linklike" type="button" data-page-feedback>${t("fb.send")}</button></p>`)}
+    <p class="cred-reviewed">${t("access.reviewed")}</p>
+    <button class="back-link bottom" id="access-back2">${icon("arrowLeft")} Back</button>
+  </section>`;
+}
+
+function renderProfessionals() {
+  const block = (h, body) => `<div class="legal-block"><h2>${h}</h2>${body}</div>`;
+  return `<section class="legal credibility-page professionals-page">
+    <button class="back-link" id="pro-back">${icon("arrowLeft")} Back</button>
+    <p class="section-label">${t("pro.kicker")}</p>
+    <h1 class="legal-title">${t("pro.title")}</h1>
+    <p class="legal-lede">${t("pro.lede")}</p>
+    ${block(t("pro.what.h"), `<p>${t("pro.what.p")}</p>`)}
+    ${block(t("pro.use.h"), infoList(["pro.use.1", "pro.use.2", "pro.use.3", "pro.use.4"]))}
+    ${block(t("pro.not.h"), `<p>${t("pro.not.p")} <button class="linklike" type="button" data-prof-nav="browse">${t("trust.official")}</button></p>`)}
+    ${block(t("pro.link.h"), `<p>${t("pro.link.p")}</p><p class="stable-links"><a href="https://abilityfinder.ca/">abilityfinder.ca</a><span>abilityfinder.ca/guides/&lt;program&gt;.html</span></p>`)}
+    ${block(t("pro.partner.h"), `<p>${t("pro.partner.p")}</p><p><button class="btn btn-primary cred-cta" type="button" data-prof-nav="partner">${t("pro.partner.button")} ${icon("arrowRight")}</button></p>`)}
+    ${block(t("pro.contact.h"), `<p>${t("pro.contact.p")} <button class="linklike" type="button" data-page-feedback>${t("fb.send")}</button></p>`)}
+    <button class="back-link bottom" id="pro-back2">${icon("arrowLeft")} Back</button>
+  </section>`;
+}
+
+function renderPartnerOverview() {
+  const programCount = Array.isArray(BENEFITS) ? BENEFITS.length : 0;
+  const municipalityCount = Array.isArray(CITIES_WITH_PROGRAMS) ? new Set(CITIES_WITH_PROGRAMS).size : 0;
+  return `<article class="partner-overview" id="partnerOverview">
+    <header class="partner-head">
+      <div>
+        <p class="section-label">${t("partner.kicker")}</p>
+        <h1 class="legal-title">${t("partner.title")}</h1>
+        <p class="legal-lede">${t("partner.lede")}</p>
+      </div>
+      <div class="partner-actions">
+        <button class="tool-btn" id="partnerPrint" type="button">${icon("print")}${t("partner.print")}</button>
+        <button class="back-link" id="partner-back">${icon("arrowLeft")} Back</button>
+      </div>
+    </header>
+    <section class="partner-metrics" aria-label="${t("partner.coverage.h")}">
+      <div><strong>${programCount}</strong><span>${t("partner.coverage.programs")}</span></div>
+      <div><strong>${municipalityCount}</strong><span>${t("partner.coverage.municipalities")}</span></div>
+    </section>
+    <div class="partner-grid">
+      <section><h2>${icon("check")}${t("partner.verify.h")}</h2><p>${t("partner.verify.p")}</p></section>
+      <section><h2>${icon("lock")}${t("partner.privacy.h")}</h2><p>${t("partner.privacy.p")}</p></section>
+      <section><h2>${icon("compass")}${t("partner.impact.h")}</h2><p>${t("partner.impact.p")} <button class="linklike" type="button" data-partner-nav="impact">${t("partner.impact.link")}</button></p></section>
+      <section><h2>${icon("link")}${t("partner.contact.h")}</h2><p>${t("partner.contact.p")} <button class="linklike" type="button" data-page-feedback>${t("fb.send")}</button></p></section>
+    </div>
+    <footer class="partner-foot">AbilityFinder · abilityfinder.ca · ${t("access.reviewed")}</footer>
+  </article>`;
+}
+
+function wirePageFeedback() {
+  document.querySelectorAll("[data-page-feedback]").forEach((el) => el.addEventListener("click", () => {
+    setState("landing");
+    requestAnimationFrame(() => document.getElementById("feedback")?.scrollIntoView({ block: "start" }));
+  }));
+}
+function wireAccessibilityStatement() {
+  ["access-back", "access-back2"].forEach((id) => document.getElementById(id)?.addEventListener("click", () => setState("landing")));
+  wirePageFeedback();
+}
+function wireProfessionals() {
+  ["pro-back", "pro-back2"].forEach((id) => document.getElementById(id)?.addEventListener("click", () => setState("landing")));
+  document.querySelector('[data-prof-nav="browse"]')?.addEventListener("click", navigateBrowse);
+  document.querySelector('[data-prof-nav="partner"]')?.addEventListener("click", navigatePartnerOverview);
+  wirePageFeedback();
+}
+function wirePartnerOverview() {
+  document.getElementById("partner-back")?.addEventListener("click", () => setState("professionals"));
+  document.getElementById("partnerPrint")?.addEventListener("click", () => window.print());
+  document.querySelector('[data-partner-nav="impact"]')?.addEventListener("click", navigateImpact);
+  wirePageFeedback();
+}
+
+function impactCatalogStats() {
+  const programs = Array.isArray(BENEFITS) ? BENEFITS : [];
+  const levels = programs.reduce((counts, benefit) => {
+    if (benefit.level === "Federal") counts.federal += 1;
+    else if (benefit.level === "Alberta") counts.provincial += 1;
+    else counts.municipal += 1;
+    return counts;
+  }, { federal: 0, provincial: 0, municipal: 0 });
+  return {
+    programs: programs.length,
+    municipalities: Array.isArray(CITIES_WITH_PROGRAMS) ? new Set(CITIES_WITH_PROGRAMS).size : 0,
+    categories: new Set(programs.map((benefit) => benefit.category).filter(Boolean)).size,
+    sourced: programs.filter((benefit) => benefit.source).length,
+    ...levels,
+  };
+}
+
+function renderImpact() {
+  const stats = impactCatalogStats();
+  const metric = (value, label) => `<div class="impact-metric"><strong>${value}</strong><span>${label}</span></div>`;
+  return `<section class="legal credibility-page impact-page">
+    <button class="back-link" id="impact-back">${icon("arrowLeft")} ${t("impact.back")}</button>
+    <p class="section-label">${t("impact.kicker")}</p>
+    <h1 class="legal-title">${t("impact.title")}</h1>
+    <p class="legal-lede">${t("impact.lede")}</p>
+
+    <div class="legal-block">
+      <h2>${icon("compass")}${t("impact.coverage.h")}</h2>
+      <div class="impact-metrics">
+        ${metric(stats.programs, t("impact.coverage.programs"))}
+        ${metric(stats.municipalities, t("impact.coverage.municipalities"))}
+        ${metric(stats.categories, t("impact.coverage.categories"))}
+      </div>
+      <div class="impact-levels" aria-label="${t("impact.coverage.levels")}">
+        <span><b>${stats.federal}</b> ${t("impact.coverage.federal")}</span>
+        <span><b>${stats.provincial}</b> ${t("impact.coverage.provincial")}</span>
+        <span><b>${stats.municipal}</b> ${t("impact.coverage.municipal")}</span>
+      </div>
+    </div>
+
+    <div class="legal-block">
+      <h2>${icon("check")}${t("impact.truth.h")}</h2>
+      <p>${t("impact.truth.sources").replace("{sourced}", stats.sourced).replace("{programs}", stats.programs)}</p>
+      <p>${t("impact.truth.monitor")}</p>
+      <p>${t("impact.truth.changes")} <button class="linklike" type="button" data-impact-nav="updates">${t("impact.links.updates")}</button>.</p>
+    </div>
+
+    <div class="legal-block">
+      <h2>${icon("info")}${t("impact.usage.h")}</h2>
+      <p>${t("impact.usage.p")}</p>
+    </div>
+
+    <div class="legal-block">
+      <h2>${icon("money")}${t("impact.estimates.h")}</h2>
+      <p>${t("impact.estimates.p1")}</p>
+      <p>${t("impact.estimates.p2")}</p>
+    </div>
+
+    <nav class="impact-links" aria-label="${t("impact.links.label")}">
+      <button type="button" data-impact-nav="professionals">${icon("working")}<span>${t("impact.links.professionals")}</span>${icon("arrowRight")}</button>
+      <button type="button" data-impact-nav="partner">${icon("compass")}<span>${t("impact.links.partner")}</span>${icon("arrowRight")}</button>
+      <button type="button" data-impact-nav="updates">${icon("check")}<span>${t("impact.links.updates")}</span>${icon("arrowRight")}</button>
+    </nav>
+    <button class="back-link bottom" id="impact-back2">${icon("arrowLeft")} ${t("impact.back")}</button>
+  </section>`;
+}
+
+function wireImpact() {
+  ["impact-back", "impact-back2"].forEach((id) => document.getElementById(id)?.addEventListener("click", () => setState("landing")));
+  const destinations = { professionals: navigateProfessionals, partner: navigatePartnerOverview, updates: navigateUpdates };
+  document.querySelectorAll("[data-impact-nav]").forEach((element) => {
+    const navigate = destinations[element.dataset.impactNav];
+    if (navigate) element.addEventListener("click", navigate);
+  });
+}
+
+function plainEnglishDate(isoDate) {
+  if (typeof isoDate !== "string" || !isoDate.trim()) return "Date not available";
+  const date = new Date(`${isoDate}T00:00:00Z`);
+  if (Number.isNaN(date.getTime())) return isoDate;
+  return new Intl.DateTimeFormat(LANG === "fr" ? "fr-CA" : "en-CA", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  }).format(date);
+}
+
+function recentlyVerifiedBenefits() {
+  const programs = Array.isArray(BENEFITS) ? BENEFITS : [];
+  const verifiedDates = typeof BENEFIT_VERIFIED === "object" && BENEFIT_VERIFIED ? BENEFIT_VERIFIED : {};
+  const catalogDate = typeof DATA_VERIFIED_ISO === "string" ? DATA_VERIFIED_ISO : "";
+  return programs.filter((benefit) => benefit && typeof benefit === "object").map((benefit, catalogIndex) => {
+    const rawDate = benefit.id ? verifiedDates[benefit.id] : null;
+    const isoDate = typeof rawDate === "string" && /^\d{4}-\d{2}$/.test(rawDate)
+      ? `${rawDate}-01`
+      : catalogDate;
+    return { benefit, catalogIndex, isoDate };
+  })
+    .sort((a, b) => String(b.isoDate).localeCompare(String(a.isoDate)) || a.catalogIndex - b.catalogIndex)
+    .slice(0, 10);
+}
 
 function renderUpdates() {
-  const items = DATA_CHANGES.map((change) => `
+  const verifiedItems = recentlyVerifiedBenefits().map(({ benefit, isoDate }) => `
+    <li class="updates-feed-item">
+      <div class="updates-feed-heading">
+        <h3>${ttsEscape(String(benefit.name || "Unnamed program"))}</h3>
+        <time datetime="${ttsEscape(String(isoDate || ""))}">${ttsEscape(plainEnglishDate(isoDate))}</time>
+      </div>
+      <p>${ttsEscape(String(benefit.summary || "See the program guide for details."))}</p>
+    </li>`).join("");
+  const changes = typeof DATA_CHANGELOG !== "undefined" && Array.isArray(DATA_CHANGELOG)
+    ? DATA_CHANGELOG.filter((change) => change && typeof change === "object")
+    : [];
+  const changelogSection = changes.length ? `
     <div class="legal-block">
-      <p class="section-label">${ttsEscape(change.date)}</p>
-      <h2>${ttsEscape(change.title)}</h2>
-      <p>${ttsEscape(change.text)}</p>
-      ${change.sources.length ? `<p>${change.sources.map(([label, url]) => `<a class="detail-link" href="${ttsEscape(url)}" target="_blank" rel="noopener noreferrer">${ttsEscape(label)} ${icon("external")}</a>`).join("<br>")}</p>` : ""}
-    </div>`).join("");
-  return `<section class="legal">
-    <button class="back-link" id="u-back">${icon("arrowLeft")} Back</button>
-    <p class="section-label">Data updates</p>
-    <h1 class="legal-title">What we checked and changed</h1>
-    <p class="legal-lede">Benefit rules can change. This is a small public record of material catalog updates — not a promise that every program stays unchanged.</p>
-    ${items}
-    <div class="legal-block"><h2>How dates work</h2><p>Each guide shows when that specific benefit was last checked. Always use the official link in a guide before applying.</p></div>
-    <button class="back-link bottom" id="u-back2">${icon("arrowLeft")} Back</button>
+      <h2>${t("updates.changelog.h")}</h2>
+      <ol class="updates-feed updates-changelog">${[...changes]
+        .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")))
+        .map((change) => `
+          <li class="updates-feed-item">
+            <time datetime="${ttsEscape(String(change.date || ""))}">${ttsEscape(plainEnglishDate(change.date))}</time>
+            <p>${ttsEscape(String(change.text || "Catalog updated."))}</p>
+          </li>`).join("")}</ol>
+    </div>` : "";
+  return `<section class="legal updates-page">
+    <button class="back-link" id="u-back">${icon("arrowLeft")} ${t("updates.back")}</button>
+    <p class="section-label">${t("updates.kicker")}</p>
+    <h1 class="legal-title">${t("updates.title")}</h1>
+    <p class="legal-lede">${t("updates.lede")}</p>
+    <div class="legal-block">
+      <h2>${t("updates.verified.h")}</h2>
+      <p>${t("updates.verified.note")}</p>
+      <ol class="updates-feed">${verifiedItems}</ol>
+    </div>
+    ${changelogSection}
+    <button class="back-link bottom" id="u-back2">${icon("arrowLeft")} ${t("updates.back")}</button>
   </section>`;
 }
 function wireUpdates() {
@@ -1540,6 +1816,22 @@ function stepAnswered(step) {
   return answers[step.key] !== null;
 }
 
+function applyWizardSelection(step, value) {
+  const validOption = stepOptions(step).some((option) => {
+    const optionValue = typeof option === "object" ? option.value : option;
+    return optionValue === value;
+  });
+  if (!validOption) return false;
+
+  if (step.type === "multi") toggleMulti(step, value);
+  else {
+    answers[step.key] = value;
+    if (step.onPick) step.onPick(value);
+  }
+  notifyStateChange("wizard-answer");
+  return true;
+}
+
 function wireStep(step) {
   const sn = document.getElementById("sideNote");
   if (sn && step.sideNote)
@@ -1567,14 +1859,10 @@ function wireStep(step) {
   document.querySelectorAll(".opt").forEach((btn) => {
     btn.addEventListener("click", () => {
       const value = JSON.parse(btn.dataset.value);
+      if (!applyWizardSelection(step, value)) return;
       if (step.type === "multi") {
-        toggleMulti(step, value);
-        notifyStateChange("wizard-answer");
         render(); // reflect selection, stay on step
       } else {
-        answers[step.key] = value;
-        if (step.onPick) step.onPick(value);
-        notifyStateChange("wizard-answer");
         render();
         setTimeout(goNext, 200); // snappy auto-advance
       }

@@ -27,6 +27,7 @@ feature.
 - Re-verify figures, eligibility rules, forms, phone numbers, processing times, and
   municipal details before their freshness dates age out.
 - Update `BENEFIT_VERIFIED` only after an actual official-source review.
+- Append a `DATA_CHANGELOG` entry in `public/changelog.js` when benefit facts change.
 - Run `npm run gen:context` after `BENEFITS`, `HELP_ORGS`, or
   `PRACTITIONER_FORMS` changes.
 - Run `npm run gen:guides` after `BENEFITS` changes.
