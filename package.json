@@ -7,6 +7,7 @@
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
     "gen:context": "node scripts/gen-benefits-context.js",
+    "gen:guides": "node scripts/gen-guide-pages.js",
     "test": "node --test test/*.test.js",
     "test:e2e": "playwright test"
   },

@@ -27,7 +27,7 @@
     "retroYears",
   ];
   const A11Y_KEYS = ["spacing", "contrast", "links", "guide", "motion"];
-  const VIEWS = new Set(["landing", "wizard", "results", "browse", "detail", "privacy", "updates", "help"]);
+  const VIEWS = new Set(["landing", "wizard", "results", "browse", "detail", "privacy", "about", "support", "updates", "help"]);
   const BROWSE_LEVELS = new Set(["all", "Federal", "Alberta", "local"]);
   const BROWSE_THEMES = new Set(["all", "money", "health", "getting-around", "employment", "education", "family"]);
 

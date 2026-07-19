@@ -56,6 +56,8 @@ stores aggregate health in `LINK_HEALTH` KV.
 | `src/benefits-context.js` | Generated assistant grounding; do not edit |
 | `src/links.js` | Generated canonical monitor links; do not edit |
 | `scripts/gen-benefits-context.js` | Generates both files above from current source data |
+| `scripts/gen-guide-pages.js` | Generates static benefit guides and updates the sitemap from the active catalog |
+| `public/guides/` | Generated indexable HTML guide pages; do not edit by hand |
 | `test/` | Node tests for persistence, migration, privacy boundary, and races |
 | `e2e/` | Playwright reload, route/persona, migration, privacy, and failure tests |
 | `wrangler.jsonc` | Assets, AI, KV, email, rate limit, observability, and cron bindings |
@@ -105,7 +107,9 @@ Never infer one municipality from another.
 Useful concepts:
 
 - `answers`: wizard selections created by `BLANK()`.
-- `view`: landing, wizard, results, browse, detail, privacy, updates, or help.
+- `view`: landing, wizard, results, browse, detail, privacy, about, support, updates, or help.
+- `about`: the public About & how we verify page.
+- `support`: the public Support AbilityFinder page.
 - `progress`: benefit ID to application stage.
 - `groupMode`: priority or category.
 - browse filters, accessibility preferences, language, theme, assistant consent,

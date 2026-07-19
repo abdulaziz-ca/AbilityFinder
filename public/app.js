@@ -82,10 +82,12 @@ function mapsSearchUrl(query, coords) {
 
 /* configure where feedback is emailed. Change this to your real inbox. */
 const FEEDBACK_EMAIL = "feedback@abilityfinder.ca";
+// Set to the donation page URL (e.g. Ko-fi) to show the donation section.
+const DONATION_URL = "";
 let answers = BLANK();
 
 /* view state */
-let view = "landing";   // "landing" | "wizard" | "results" | "detail"
+let view = "landing";   // landing, wizard, results, browse, detail, privacy, about, support, updates, help
 let stepIndex = 0;
 let detailId = null;
 let detailFrom = "results"; // "results" | "browse" — where the guide was opened from
@@ -865,6 +867,14 @@ function render() {
     progress.style.display = "none";
     app.innerHTML = renderSafely(renderPrivacy, "privacy");
     wirePrivacy();
+  } else if (view === "about") {
+    progress.style.display = "none";
+    app.innerHTML = renderSafely(renderAbout, "about");
+    wireAbout();
+  } else if (view === "support") {
+    progress.style.display = "none";
+    app.innerHTML = renderSafely(renderSupport, "support");
+    wireSupport();
   } else if (view === "updates") {
     progress.style.display = "none";
     app.innerHTML = renderSafely(renderUpdates, "updates");
@@ -1031,6 +1041,9 @@ function renderLanding() {
       <div class="sf-brand">${icon("compass")} AbilityFinder</div>
       <div class="sf-links">
         <button class="linklike js-privacy">Privacy &amp; disclaimer</button>
+        <a class="linklike" href="/guides/">Program guides</a>
+        <button class="linklike js-about">About &amp; how we verify</button>
+        <button class="linklike js-support">Support AbilityFinder</button>
         <button class="linklike js-updates">Data updates</button>
         <button class="linklike js-browse">Browse all benefits</button>
         <span class="sf-note">Alberta + federal · Info verified ${DATA_VERIFIED} · Not government-affiliated</span>
@@ -1052,6 +1065,12 @@ function wireLanding() {
   );
   document.querySelectorAll(".js-privacy").forEach((b) =>
     b.addEventListener("click", () => setState("privacy"))
+  );
+  document.querySelectorAll(".js-about").forEach((b) =>
+    b.addEventListener("click", () => setState("about"))
+  );
+  document.querySelectorAll(".js-support").forEach((b) =>
+    b.addEventListener("click", () => setState("support"))
   );
   document.querySelectorAll(".js-updates").forEach((b) =>
     b.addEventListener("click", () => setState("updates"))
@@ -1269,6 +1288,72 @@ function wirePrivacy() {
     if (el) el.addEventListener("click", () => setState("landing"));
   });
 }
+
+/* =============================================================================
+   ABOUT & METHODOLOGY
+   ========================================================================== */
+function renderAbout() {
+  const block = (h, body) => `<div class="legal-block"><h2>${h}</h2>${body}</div>`;
+  return `
+  <section class="legal">
+    <button class="back-link" id="a-back">${icon("arrowLeft")} Back</button>
+    <p class="section-label">About &amp; how we verify</p>
+    <h1 class="legal-title">Clear help, checked against official sources</h1>
+    <p class="legal-lede">AbilityFinder makes it easier to find disability benefits and understand what to do next.</p>
+
+    ${block("What AbilityFinder is", `<p>AbilityFinder is a free, independent tool that helps Albertans with disabilities find every government benefit they may qualify for. It is not affiliated with any government. There is no login and there are no ads.</p>`)}
+    ${block("How we verify facts", `<p>Every benefit is backed by official government sources. Each benefit shows when its information was last verified.</p><p>Automated link monitoring checks official links around the clock and flags pages that break or move. The app also shows a warning when information is getting old and needs another review.</p>`)}
+    ${block("What we never do", `<p>We do not create accounts, show ads, or use third-party trackers. Your answers stay on your device. We never sell or share your data.</p>`)}
+    ${block("Found a mistake?", `<p>Please tell us through the <button class="linklike js-feedback">feedback form</button>. Corrections help everyone who uses AbilityFinder.</p>`)}
+    ${block("Who runs this", `<p>AbilityFinder is an independent project built in Alberta by a small team. It is not a government service.</p>`)}
+
+    <button class="back-link bottom" id="a-back2">${icon("arrowLeft")} Back</button>
+  </section>`;
+}
+
+function renderSupport() {
+  const donation = DONATION_URL ? `
+    <div class="legal-block">
+      <h2>Donations</h2>
+      <p>If you would like to help cover the cost of running AbilityFinder, you can support the project.</p>
+      <p><a class="btn btn-primary" href="${ttsEscape(DONATION_URL)}" target="_blank" rel="noopener noreferrer">Support this project ${icon("external")}</a></p>
+    </div>` : "";
+  return `
+  <section class="legal">
+    <button class="back-link" id="s-back">${icon("arrowLeft")} Back</button>
+    <p class="section-label">Support AbilityFinder</p>
+    <h1 class="legal-title">Help keep AbilityFinder useful</h1>
+    <p class="legal-lede">Small actions can help more disabled Albertans find support.</p>
+
+    <div class="legal-block">
+      <h2>Keep it free</h2>
+      <p>AbilityFinder is free and independent, and it will stay free for the people who need it.</p>
+    </div>
+    <div class="legal-block">
+      <h2>Ways to help</h2>
+      <p>Share AbilityFinder with someone who may need it. If you find an error, please use the <button class="linklike js-feedback">feedback form</button> to tell us.</p>
+      <p>Organizations that help disabled Albertans are welcome to link to AbilityFinder or get in touch through the <button class="linklike js-feedback">feedback form</button>.</p>
+    </div>
+    ${donation}
+
+    <button class="back-link bottom" id="s-back2">${icon("arrowLeft")} Back</button>
+  </section>`;
+}
+
+function wireInfoPage(backIds) {
+  backIds.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("click", () => setState("landing"));
+  });
+  document.querySelectorAll(".js-feedback").forEach((el) => {
+    el.addEventListener("click", () => {
+      setState("landing");
+      requestAnimationFrame(() => document.getElementById("feedback")?.scrollIntoView({ block: "start" }));
+    });
+  });
+}
+function wireAbout() { wireInfoPage(["a-back", "a-back2"]); }
+function wireSupport() { wireInfoPage(["s-back", "s-back2"]); }
 
 /* A short public record of material catalog changes. It is intentionally not a
    changelog of code polish: this is where someone can see what facts changed,
@@ -1528,7 +1613,8 @@ function renderResults() {
     </div>
   </div>
   ${trackerSummary(matched)}
-  ${renderAnswerChips()}`;
+  ${renderAnswerChips()}
+  ${renderPrintActionPlan(matched)}`;
 
   html += renderMatchedGroups(ready, almost, rankOf);
 
@@ -2084,7 +2170,13 @@ function wireResults() {
   );
 
   const print = document.getElementById("printList");
-  if (print) print.addEventListener("click", printResults);
+  if (print) print.addEventListener("click", () => {
+    const date = document.querySelector(".print-action-plan .print-date");
+    if (date) date.textContent = new Date().toLocaleDateString(undefined, {
+      year: "numeric", month: "long", day: "numeric",
+    });
+    window.print();
+  });
 
   // retroactive DTC back-pay estimator (~$2,000/yr of DTC value, up to 10 years)
   const retroSel = document.getElementById("retroYears");
@@ -2115,6 +2207,39 @@ function wireResults() {
       detailId = null;
       setState("landing", {}, true);
     });
+}
+
+/* ---- print-only action plan; built entirely from the local catalog ---- */
+function renderPrintActionPlan(matched) {
+  const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+  const listed = matched.map((e) => e.b);
+  // Keep an explicitly tracked benefit in the plan even if later answer edits
+  // mean it is no longer in the current match set.
+  BENEFITS.forEach((b) => {
+    if (progress[b.id] && !listed.some((item) => item.id === b.id)) listed.push(b);
+  });
+  const printDate = new Date().toLocaleDateString(undefined, {
+    year: "numeric", month: "long", day: "numeric",
+  });
+  const items = listed.map((b) => {
+    const url = resolveUrl(b.applyUrl);
+    const nextStep = b.detail && Array.isArray(b.detail.steps) && b.detail.steps.length
+      ? `<p class="print-next"><b>Next step:</b> ${esc(b.detail.steps[0])}</p>` : "";
+    const documents = b.detail && Array.isArray(b.detail.documents) && b.detail.documents.length
+      ? `<div class="print-documents"><b>Forms and documents</b><ul>${b.detail.documents.map((item) => `<li>${esc(item)}</li>`).join("")}</ul></div>` : "";
+    return `<section class="print-benefit">
+      <h2>${esc(b.name)}</h2>
+      <p>${esc(b.summary)}</p>
+      ${url ? `<p class="print-url"><b>Official link:</b> ${esc(url)}</p>` : ""}
+      ${nextStep}
+      ${documents}
+    </section>`;
+  }).join("");
+  return `<article class="print-action-plan" aria-hidden="true">
+    <header><h1>AbilityFinder — My action plan</h1><p class="print-date">${esc(printDate)}</p></header>
+    ${items || "<p>No matched or tracked benefits yet.</p>"}
+    <footer>Generated by abilityfinder.ca — free, independent, not affiliated with any government. Details change; confirm with official sources.</footer>
+  </article>`;
 }
 
 /* ---- printable / shareable report (Save as PDF → send to a caregiver) ---- */

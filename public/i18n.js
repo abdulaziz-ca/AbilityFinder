@@ -104,7 +104,7 @@ const I18N = {
 
     "res.headline": "benefits you may be able to get",
     "res.headline1": "benefit you may be able to get",
-    "res.print": "Save / share my report",
+    "res.print": "Print my action plan",
     "res.applied": "marked as applied",
     "grp.ready": "Ready to apply",
     "grp.almost": "One step away",
@@ -241,7 +241,7 @@ const I18N = {
 
     "res.headline": "prestations que vous pourriez obtenir",
     "res.headline1": "prestation que vous pourriez obtenir",
-    "res.print": "Enregistrer / imprimer ma liste",
+    "res.print": "Imprimer mon plan d’action",
     "res.applied": "marquées comme demandées",
     "grp.ready": "Prêt à demander",
     "grp.almost": "À une étape près",

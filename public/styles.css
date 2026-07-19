@@ -1026,6 +1026,7 @@ body.a11y-contrast::before { display: none; }
 body.a11y-contrast .wizard-card, body.a11y-contrast .opt, body.a11y-contrast .cat { border-width: 2px; }
 
 /* ---------------------------------------------------------------- print */
+.print-action-plan { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .hero-bloom, .preview, .hero-ridges, .hero-atmos::after, body::before,
   .brand-needle, .brand-bezel, .brand-mark::after, .hero-wave .hw, .wiz-mountains .wm { animation: none !important; }
@@ -1036,11 +1037,25 @@ body.a11y-nomotion .brand-bezel, body.a11y-nomotion .brand-mark::after,
 body.a11y-nomotion .hero-wave .hw, body.a11y-nomotion .wiz-mountains .wm { animation: none !important; }
 
 @media print {
+  @page { margin: 16mm; }
   .nav, .progress, .a11y-wrap, .ask-wrap, .reading-guide, .results-tools, .tracker-summary, .track, .apply-row, .restart, .disclaimer, details.notmatch, .back-link { display: none !important; }
-  body::before { display: none; }
-  body { background: #fff; color: #000; }
-  .benefit { border: 1px solid #ccc !important; border-radius: 8px; padding: 14px; margin-bottom: 10px; break-inside: avoid; }
-  .amount { color: #000 !important; }
+  body::before { display: none !important; }
+  body { background: #fff !important; color: #000 !important; margin: 0; }
+  #app { max-width: none; margin: 0; padding: 0; }
+  #app > :not(.print-action-plan) { display: none !important; }
+  .print-action-plan { display: block !important; color: #000; font: 11pt/1.45 Arial, sans-serif; }
+  .print-action-plan header { border-bottom: 2px solid #000; margin-bottom: 18pt; padding-bottom: 9pt; }
+  .print-action-plan h1 { color: #000; font: 700 22pt/1.15 Arial, sans-serif; margin: 0 0 5pt; }
+  .print-date { margin: 0; }
+  .print-benefit { border: 1px solid #777; margin: 0 0 12pt; padding: 10pt 12pt; break-inside: avoid; page-break-inside: avoid; }
+  .print-benefit h2 { color: #000; font: 700 14pt/1.25 Arial, sans-serif; margin: 0 0 5pt; }
+  .print-benefit p { color: #000; margin: 4pt 0; }
+  .print-url { overflow-wrap: anywhere; word-break: break-word; }
+  .print-documents { margin-top: 7pt; }
+  .print-documents ul { list-style: none; margin: 4pt 0 0; padding: 0; }
+  .print-documents li { margin: 3pt 0; padding-left: 18pt; position: relative; }
+  .print-documents li::before { border: 1.5px solid #000; box-sizing: border-box; content: ""; height: 10pt; left: 0; position: absolute; top: 2pt; width: 10pt; }
+  .print-action-plan footer { border-top: 1px solid #000; color: #000; font-size: 9pt; margin-top: 18pt; padding-top: 8pt; }
 }
 
 /* ── Assistant ───────────────────────────────────────────────────────────────

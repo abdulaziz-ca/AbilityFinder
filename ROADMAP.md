@@ -29,6 +29,7 @@ feature.
 - Update `BENEFIT_VERIFIED` only after an actual official-source review.
 - Run `npm run gen:context` after `BENEFITS`, `HELP_ORGS`, or
   `PRACTITIONER_FORMS` changes.
+- Run `npm run gen:guides` after `BENEFITS` changes.
 
 ### 2. Human accessibility and usability testing
 
