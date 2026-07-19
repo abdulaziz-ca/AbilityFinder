@@ -106,7 +106,11 @@ function header() {
   return `    <header class="nav">
       <div class="nav-inner">
         <a class="brand" href="https://abilityfinder.ca/" aria-label="AbilityFinder home"><span class="brand-name">AbilityFinder</span></a>
-        <span class="nav-tag">Alberta</span>
+        <div class="nav-right">
+          <span class="nav-tag">Alberta</span>
+          <a class="guide-link" href="https://abilityfinder.ca/">All benefits</a>
+          <a class="guide-link" href="https://abilityfinder.ca/guides/">Program guides</a>
+        </div>
       </div>
     </header>`;
 }
@@ -161,6 +165,7 @@ ${links.map((x) => `              <li><a class="guide-link" href="${esc(x.url)}"
       </main>
 ${footer()}
     </div>
+    <!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ddfa6696ce10444fb1526ec39711bd9e"}'></script><!-- End Cloudflare Web Analytics -->
   </body>
 </html>
 `;
@@ -204,6 +209,7 @@ ${items.map((b) => `            <li><a class="guide-link" href="/guides/${slugif
       </main>
 ${footer()}
     </div>
+    <!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ddfa6696ce10444fb1526ec39711bd9e"}'></script><!-- End Cloudflare Web Analytics -->
   </body>
 </html>
 `;

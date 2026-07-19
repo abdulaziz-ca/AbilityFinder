@@ -754,6 +754,33 @@ function toggleLang() {
   render();
 }
 
+function wireHeaderMenu() {
+  const button = document.getElementById("headerMenuToggle");
+  const panel = document.getElementById("headerMenuPanel");
+  if (!button || !panel) return;
+
+  const iconSlot = button.querySelector(".header-menu-icon");
+  if (iconSlot) iconSlot.innerHTML = icon("menu");
+  wireNavigation(panel);
+
+  const setOpen = (open, returnFocus = false) => {
+    panel.hidden = !open;
+    button.setAttribute("aria-expanded", String(open));
+    if (!open && returnFocus) button.focus();
+  };
+
+  button.addEventListener("click", () => setOpen(panel.hidden));
+  panel.addEventListener("click", (event) => {
+    if (event.target.closest(".header-menu-item")) setOpen(false);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !panel.hidden) setOpen(false, true);
+  });
+  document.addEventListener("click", (event) => {
+    if (!panel.hidden && !event.target.closest(".header-menu-wrap")) setOpen(false);
+  });
+}
+
 function setState(nextView, opts = {}, push = true) {
   view = nextView;
   if ("stepIndex" in opts) stepIndex = opts.stepIndex;
@@ -1052,29 +1079,29 @@ function renderLanding() {
   </section>`;
 }
 
+function navigateStart() {
+  // if they already have answers, jump straight to results
+  if (answers.forWho && answers.income) setState("results");
+  else setState("wizard", { stepIndex: 0 });
+}
+function navigateBrowse() { setState("browse"); }
+function navigatePrivacy() { setState("privacy"); }
+function navigateAbout() { setState("about"); }
+function navigateSupport() { setState("support"); }
+function navigateUpdates() { setState("updates"); }
+
+/* Shared by the landing-page footer/CTAs and the always-visible header menu. */
+function wireNavigation(root) {
+  root.querySelectorAll(".js-start").forEach((el) => el.addEventListener("click", navigateStart));
+  root.querySelectorAll(".js-browse").forEach((el) => el.addEventListener("click", navigateBrowse));
+  root.querySelectorAll(".js-privacy").forEach((el) => el.addEventListener("click", navigatePrivacy));
+  root.querySelectorAll(".js-about").forEach((el) => el.addEventListener("click", navigateAbout));
+  root.querySelectorAll(".js-support").forEach((el) => el.addEventListener("click", navigateSupport));
+  root.querySelectorAll(".js-updates").forEach((el) => el.addEventListener("click", navigateUpdates));
+}
+
 function wireLanding() {
-  document.querySelectorAll(".js-start").forEach((b) =>
-    b.addEventListener("click", () => {
-      // if they already have answers, jump straight to results
-      if (answers.forWho && answers.income) setState("results");
-      else setState("wizard", { stepIndex: 0 });
-    })
-  );
-  document.querySelectorAll(".js-browse").forEach((b) =>
-    b.addEventListener("click", () => setState("browse"))
-  );
-  document.querySelectorAll(".js-privacy").forEach((b) =>
-    b.addEventListener("click", () => setState("privacy"))
-  );
-  document.querySelectorAll(".js-about").forEach((b) =>
-    b.addEventListener("click", () => setState("about"))
-  );
-  document.querySelectorAll(".js-support").forEach((b) =>
-    b.addEventListener("click", () => setState("support"))
-  );
-  document.querySelectorAll(".js-updates").forEach((b) =>
-    b.addEventListener("click", () => setState("updates"))
-  );
+  wireNavigation(document.getElementById("app"));
 
   /* Feedback has two routes on purpose.
      - "Send" posts to /api/feedback and we mail it — no mail app needed, which
@@ -1266,10 +1293,11 @@ function renderPrivacy() {
     <h1 class="legal-title">Your information stays with you</h1>
     <p class="legal-lede">AbilityFinder is built to be private by default. Here's exactly how it works — in plain language.</p>
 
-    ${block("What stays on your device", `<p>AbilityFinder has no accounts, sign-up, analytics, or advertising. Your wizard answers, progress, bookmarks, browse search, and settings live only in <b>your own browser</b>, in this site's IndexedDB database. We can't see that local state, and it is not sent to our Worker.</p>`)}
+    ${block("What stays on your device", `<p>AbilityFinder has no accounts, sign-up, or advertising. Your wizard answers, progress, bookmarks, browse search, and settings live only in <b>your own browser</b>, in this site's IndexedDB database. We can't see that local state, and it is not sent to our Worker.</p>`)}
     ${block("Two optional ways information leaves your browser", `<p><b>Assistant:</b> The Ask a question button opens an optional assistant. Before you type, you must agree to send data. Each time you send, the entire current in-memory conversation (up to 20 messages) is sent through our Worker to <b>Cloudflare's AI service</b>. It is not saved in IndexedDB or linked to an AbilityFinder account, but the words leave your browser, so <b>please don't type your name, address, or health details you would rather not send</b>.</p><p><b>Feedback:</b> Choosing “Send feedback” posts the type, message, and optional reply email to our Worker. The feedback is emailed to AbilityFinder's pinned inbox and the emailed copy may be retained by the mail provider. Choosing “Open my email app instead” does not submit the form through our Worker.</p><p>The assistant can be <b>wrong</b>. It can explain confusing wording, explain what a form asks for, and point to a guide. It cannot tell you whether you qualify or quote dollar amounts — the checked guides and official pages are the final word.</p>`)}
-    ${block("No tracking, no cookies, no ads", `<p>There are no analytics trackers, no advertising, and no third-party scripts watching what you do. We don't set tracking cookies.</p>`)}
-    ${block("Fonts and files", `<p>All fonts and code are served from this site itself — we don't call Google Fonts or any external CDN, so no third party is told that you visited.</p>`)}
+    ${block("Analytics", `<p>AbilityFinder uses <b>Cloudflare Web Analytics</b>, a privacy-first measurement tool with no cookies, no fingerprinting, no cross-site tracking, and no personal profiles. It counts aggregate page views — including the page, country, and browser type — so we know which guides help people. Your wizard answers are never part of analytics and never leave your device.</p>`)}
+    ${block("No tracking cookies, no ads", `<p>There is no advertising, cross-site tracking, or fingerprinting. We don't set tracking cookies.</p>`)}
+    ${block("Fonts and files", `<p>All fonts and core app files are served from this site itself. The Cloudflare Web Analytics beacon is the only externally hosted measurement script.</p>`)}
     ${block("Location", `<p>The “Use my location” button only asks your browser for your location when <b>you tap it</b>. A postal code stays in current-page memory; neither it nor your coordinates are saved in IndexedDB or sent to AbilityFinder. If you open a practitioner-search link, the postal code or coordinates are included in a user-initiated Google Maps URL and are then sent to Google under its privacy policy.</p>`)}
     ${block("Links to other sites", `<p>Every “Apply” and official link opens the relevant government website in a new tab. Once you're on those sites, their own privacy policies apply — not ours.</p>`)}
     ${block("Clearing your data", `<p>Click the <b>AbilityFinder</b> logo (or “Start over”) to wipe your answers, or clear your browser's site data at any time. IndexedDB is still browser-owned storage: if you clear this site's data or delete your browser profile, your saved progress is deleted and AbilityFinder cannot recover it.</p>`)}
@@ -3114,6 +3142,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   applyStaticI18n();
   wireAccessibility();
   wireAssistant();
+  wireHeaderMenu();
   history.replaceState({ view, stepIndex, detailId }, "");
   render();
 

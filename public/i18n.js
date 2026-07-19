@@ -9,6 +9,14 @@ const LANGS = [{ code: "en", label: "EN", name: "English" }, { code: "fr", label
 const I18N = {
   en: {
     "nav.tag": "Canada",
+    "menu.label": "Menu",
+    "menu.find": "Find my benefits",
+    "menu.browse": "Browse all benefits",
+    "menu.guides": "Program guides",
+    "menu.about": "About & how we verify",
+    "menu.support": "Support AbilityFinder",
+    "menu.updates": "Data updates",
+    "menu.privacy": "Privacy & disclaimer",
     "benefitsEnglishNote": "",
 
     "land.eyebrow": "Alberta + federal benefits",
@@ -148,6 +156,14 @@ const I18N = {
 
   fr: {
     "nav.tag": "Canada",
+    "menu.label": "Menu",
+    "menu.find": "Trouver mes prestations",
+    "menu.browse": "Parcourir toutes les prestations",
+    "menu.guides": "Guides des programmes",
+    "menu.about": "À propos et méthode de vérification",
+    "menu.support": "Soutenir AbilityFinder",
+    "menu.updates": "Mises à jour des données",
+    "menu.privacy": "Confidentialité et avis",
     "benefitsEnglishNote": "",
 
     "land.eyebrow": "Alberta · C.-B. · Ontario · Québec",

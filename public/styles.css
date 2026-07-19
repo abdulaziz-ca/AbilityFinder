@@ -129,31 +129,53 @@ body {
   transition: background-color 0.45s var(--ease), color 0.45s var(--ease);
 }
 
-/* ambient atmosphere — cool + warm gradient blooms that fill the open space
-   (fixed, so every scroll position keeps some colour & motion behind content) */
-body::before {
+/* Site-wide ambient light. These warm amber / umber / bronze hues echo the
+   palette without using semantic status colours. Their low alpha keeps the
+   resulting canvas within a few percent luminance of --bg. Overscan prevents
+   an animated edge from entering the viewport. */
+body::before,
+body::after {
   content: "";
-  position: fixed; inset: 0; z-index: 0; pointer-events: none;
-  background:
-    radial-gradient(42% 48% at 85% 12%, rgba(108, 152, 222, 0.40), transparent 64%),
-    radial-gradient(38% 44% at 99% 55%, rgba(78, 196, 182, 0.30), transparent 66%),
-    radial-gradient(44% 50% at 8% 2%, rgba(233, 221, 201, 0.18), transparent 68%),
-    radial-gradient(34% 42% at 74% 99%, rgba(158, 122, 226, 0.30), transparent 68%);
-  filter: blur(26px);
-  animation: ambientDrift 26s ease-in-out infinite alternate;
+  position: fixed;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
   transition: opacity 0.45s var(--ease);
 }
-@keyframes ambientDrift {
-  from { transform: translate3d(-1.8%, -1.2%, 0) scale(1); }
-  to   { transform: translate3d(2.2%, 1.8%, 0) scale(1.08); }
+body::before {
+  background-image:
+    radial-gradient(44% 48% at 16% 18%, rgba(104, 68, 35, 0.14), transparent 72%),
+    radial-gradient(48% 52% at 84% 30%, rgba(126, 82, 38, 0.11), transparent 74%),
+    radial-gradient(42% 46% at 58% 88%, rgba(82, 53, 32, 0.12), transparent 72%);
+  animation: af-drift-a 72s ease-in-out infinite alternate;
+}
+body::after {
+  opacity: 0.5;
+  background-image:
+    radial-gradient(46% 50% at 78% 14%, rgba(151, 99, 43, 0.12), transparent 74%),
+    radial-gradient(50% 54% at 22% 76%, rgba(91, 57, 34, 0.13), transparent 76%);
+  animation: af-drift-b 102s ease-in-out infinite alternate-reverse;
+}
+@keyframes af-drift-a {
+  from { transform: translate3d(-3%, -2%, 0) scale(1.05); }
+  to   { transform: translate3d(3%, 2%, 0) scale(1.12); }
+}
+@keyframes af-drift-b {
+  from { transform: translate3d(3%, -2%, 0) scale(1.08); }
+  to   { transform: translate3d(-2%, 3%, 0) scale(1.15); }
 }
 :root[data-theme="light"] body::before {
-  opacity: 1;
-  background:
-    radial-gradient(42% 48% at 87% 10%, rgba(58, 118, 214, 0.26), transparent 62%),
-    radial-gradient(38% 44% at 100% 52%, rgba(24, 168, 156, 0.22), transparent 64%),
-    radial-gradient(40% 46% at 6% 0%, rgba(214, 148, 78, 0.16), transparent 66%),
-    radial-gradient(36% 44% at 76% 100%, rgba(128, 92, 214, 0.22), transparent 66%);
+  background-image:
+    radial-gradient(44% 48% at 16% 18%, rgba(231, 188, 132, 0.13), transparent 72%),
+    radial-gradient(48% 52% at 84% 30%, rgba(224, 170, 105, 0.10), transparent 74%),
+    radial-gradient(42% 46% at 58% 88%, rgba(237, 207, 169, 0.12), transparent 72%);
+}
+:root[data-theme="light"] body::after {
+  opacity: 0.42;
+  background-image:
+    radial-gradient(46% 50% at 78% 14%, rgba(241, 197, 139, 0.11), transparent 74%),
+    radial-gradient(50% 54% at 22% 76%, rgba(218, 178, 133, 0.12), transparent 76%);
 }
 
 .ic { width: 1.15em; height: 1.15em; flex: none; display: inline-block; vertical-align: middle; }
@@ -247,6 +269,64 @@ body::before {
 }
 .lang:hover { border-color: var(--hair-2); color: var(--text); }
 .lang .ic { width: 15px; height: 15px; }
+
+/* always-visible header navigation disclosure */
+.header-menu-wrap { position: relative; }
+.header-menu-toggle {
+  appearance: none; display: inline-flex; align-items: center; gap: 7px;
+  min-height: 40px; padding: 7px 13px; border: 1px solid var(--hair);
+  border-radius: var(--pill); background: transparent; color: var(--text);
+  font: 550 0.86rem/1 var(--font-sans); cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.header-menu-toggle:hover, .header-menu-toggle[aria-expanded="true"] { border-color: var(--hair-2); background: var(--accent-soft); }
+.header-menu-icon { display: inline-flex; }
+.header-menu-icon .ic { width: 17px; height: 17px; }
+.header-menu-panel {
+  position: absolute; top: calc(100% + 16px); right: 0; width: min(340px, calc(100vw - 40px));
+  display: flex; flex-direction: column; padding: 8px;
+  background: var(--panel); border: 1px solid var(--hair-2); border-radius: var(--r);
+  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.78);
+  animation: menu-in 0.18s var(--ease);
+}
+.header-menu-panel[hidden] { display: none; }
+@keyframes menu-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+.header-menu-item {
+  appearance: none; display: block; width: 100%; min-height: 46px; padding: 12px 14px;
+  border: 0; border-top: 1px solid var(--hair); border-radius: 0;
+  background: transparent; color: var(--text); text-decoration: none;
+  font: 500 0.94rem/1.35 var(--font-sans); text-align: left; cursor: pointer;
+}
+.header-menu-item:first-child { border-top: 0; }
+.header-menu-item:hover { background: var(--accent-soft); }
+.header-menu-item.primary {
+  margin-bottom: 4px; border-radius: var(--r-sm); background: var(--btn); color: var(--btn-ink);
+  font-weight: 650;
+}
+.header-menu-item.primary:hover { filter: brightness(1.08); }
+body.a11y-contrast .header-menu-panel { border-width: 2px; }
+@media (max-width: 640px) {
+  .nav-right { gap: 6px; }
+  .header-menu-wrap { position: static; }
+  .header-menu-panel {
+    position: fixed; top: var(--nav-h); left: 0; right: 0; width: 100%;
+    border-left: 0; border-right: 0; border-radius: 0 0 var(--r) var(--r);
+    padding: 10px 20px 14px;
+  }
+}
+@media (max-width: 430px) {
+  .nav-inner { padding-inline: 14px; gap: 8px; }
+  .brand { gap: 8px; }
+  .brand-name { display: none; }
+  .brand-mark { width: 42px; height: 42px; border-radius: 13px; }
+  .theme-toggle { padding-inline: 1px; }
+  .tt-track { width: 46px; }
+  :root[data-theme="light"] .tt-thumb { transform: translateX(19px); }
+  .lang { padding-inline: 9px; }
+  .header-menu-toggle { padding-inline: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .header-menu-panel { animation: none; } }
+body.a11y-nomotion .header-menu-panel { animation: none; }
 
 /* ---------------------------------------------------------------- layout */
 /* Left gutter widened 2026-07-15: at 5vw/72px max the content hugged the left
@@ -1022,24 +1102,24 @@ body.a11y-spacing #app { font-family: Verdana, Tahoma, "Trebuchet MS", sans-seri
 body.a11y-links a, body.a11y-links .apply, body.a11y-links .source-link, body.a11y-links .back-link { text-decoration: underline !important; text-underline-offset: 3px; font-weight: 600; }
 body.a11y-nomotion *, body.a11y-nomotion *::before, body.a11y-nomotion *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 body.a11y-contrast { --bg: #000; --bg-2: #000; --panel: #0b0b0b; --panel-2: #151515; --hair: rgba(255,255,255,0.5); --hair-2: rgba(255,255,255,0.8); --text: #fff; --text-dim: #ececec; --text-dimmer: #d0d0d0; --accent: #f4ead6; --accent-hi: #ffffff; --ok: #5ce6a0; --warn: #ffd27a; }
-body.a11y-contrast::before { display: none; }
+body.a11y-contrast::before, body.a11y-contrast::after { display: none; }
 body.a11y-contrast .wizard-card, body.a11y-contrast .opt, body.a11y-contrast .cat { border-width: 2px; }
 
 /* ---------------------------------------------------------------- print */
 .print-action-plan { display: none; }
 @media (prefers-reduced-motion: reduce) {
-  .hero-bloom, .preview, .hero-ridges, .hero-atmos::after, body::before,
+  .hero-bloom, .preview, .hero-ridges, .hero-atmos::after, body::before, body::after,
   .brand-needle, .brand-bezel, .brand-mark::after, .hero-wave .hw, .wiz-mountains .wm { animation: none !important; }
 }
 body.a11y-nomotion .hero-ridges, body.a11y-nomotion .hero-atmos::after,
-body.a11y-nomotion::before, body.a11y-nomotion .brand-needle,
+body.a11y-nomotion::before, body.a11y-nomotion::after, body.a11y-nomotion .brand-needle,
 body.a11y-nomotion .brand-bezel, body.a11y-nomotion .brand-mark::after,
 body.a11y-nomotion .hero-wave .hw, body.a11y-nomotion .wiz-mountains .wm { animation: none !important; }
 
 @media print {
   @page { margin: 16mm; }
   .nav, .progress, .a11y-wrap, .ask-wrap, .reading-guide, .results-tools, .tracker-summary, .track, .apply-row, .restart, .disclaimer, details.notmatch, .back-link { display: none !important; }
-  body::before { display: none !important; }
+  body::before, body::after { display: none !important; }
   body { background: #fff !important; color: #000 !important; margin: 0; }
   #app { max-width: none; margin: 0; padding: 0; }
   #app > :not(.print-action-plan) { display: none !important; }

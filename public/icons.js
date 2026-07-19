@@ -58,6 +58,7 @@ const ICON_PATHS = {
     '<circle cx="8" cy="8" r="4.2"/><path d="m11 11 8.5 8.5"/><path d="m16.5 16.5 2-2"/><path d="m18.5 18.5 1.8-1.8"/>',
 
   /* ui */
+  menu: '<path d="M4 6h16M4 12h16M4 18h16"/>',
   compass:
     '<circle cx="12" cy="12" r="9.2"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2z" fill="currentColor" stroke="none"/>',
   speaker:
