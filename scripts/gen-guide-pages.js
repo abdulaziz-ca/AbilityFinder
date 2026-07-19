@@ -80,6 +80,26 @@ function head({ title, desc, canonical }) {
     <meta property="og:url" content="${esc(canonical)}" />
     <meta property="og:site_name" content="AbilityFinder" />
     <link rel="stylesheet" href="${esc(styleHref)}" />
+    <style>
+      .guide-link, .guide-link:visited {
+        color: var(--accent-hi);
+        text-decoration: underline;
+        text-decoration-color: var(--accent-line);
+        text-underline-offset: 0.16em;
+      }
+      .guide-link:hover {
+        color: var(--accent);
+        text-decoration-color: currentColor;
+        text-decoration-thickness: 2px;
+      }
+      .guide-link:focus-visible {
+        color: var(--accent-hi);
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 4px;
+        text-decoration-color: currentColor;
+      }
+    </style>
   </head>`;
 }
 function header() {
@@ -132,7 +152,7 @@ ${header()}
           <aside class="detail-side card">
             <h2 class="guide-h">Official information</h2>
             <ul class="guide-list">
-${links.map((x) => `              <li><a href="${esc(x.url)}">${esc(x.label)}</a></li>`).join("\n")}
+${links.map((x) => `              <li><a class="guide-link" href="${esc(x.url)}">${esc(x.label)}</a></li>`).join("\n")}
             </ul>
             <p class="detail-foot">Benefit rules and amounts can change. Confirm the current details before applying.</p>
             <p><a class="btn btn-primary" href="https://abilityfinder.ca/">Answer a few questions to see every benefit you may qualify for</a></p>
@@ -178,7 +198,7 @@ ${header()}
 ${[...groups].map(([name, items]) => `        <section class="section">
           <h2 class="section-title">${name}</h2>
           <ul class="guide-list">
-${items.map((b) => `            <li><a href="/guides/${slugify(b.id)}">${esc(b.name)}</a> — ${esc(b.summary)}</li>`).join("\n")}
+${items.map((b) => `            <li><a class="guide-link" href="/guides/${slugify(b.id)}">${esc(b.name)}</a> — ${esc(b.summary)}</li>`).join("\n")}
           </ul>
         </section>`).join("\n")}
       </main>
