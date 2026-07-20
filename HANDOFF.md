@@ -88,8 +88,8 @@ may be functions of current answers and must be resolved through existing helper
 1. Verify every factual field on the official source that day.
 2. Edit the relevant `BENEFITS` record and ID-keyed metadata maps.
 3. Add/update `BENEFIT_VERIFIED` only for records actually re-checked.
-4. Run `npm run gen:context` after changing `BENEFITS`, `HELP_ORGS`, or
-   `PRACTITIONER_FORMS`.
+4. Run `npm run gen:context` after changing `BENEFITS`, `HELP_ORGS`,
+   `PRACTITIONER_FORMS`, `public/grants-data.js`, or `public/orgs-data.js`.
 5. Review generated grounding and links; figures must remain redacted from model
    context.
 6. Run `npm test` and `npm run test:e2e`.

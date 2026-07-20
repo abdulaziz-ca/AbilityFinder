@@ -22,6 +22,8 @@ const vm = require("vm");
 
 const ROOT = path.join(__dirname, "..");
 const SRC = path.join(ROOT, "public", "data.js");
+const GRANTS_SRC = path.join(ROOT, "public", "grants-data.js");
+const ORGS_SRC = path.join(ROOT, "public", "orgs-data.js");
 const APP = path.join(ROOT, "public", "app.js");
 const OUT = path.join(ROOT, "src", "benefits-context.js");
 const OUT_LINKS = path.join(ROOT, "src", "links.js");
@@ -31,7 +33,11 @@ vm.createContext(ctx);
 vm.runInContext(
   fs.readFileSync(SRC, "utf8") +
     '\n;globalThis.__B = typeof BENEFITS !== "undefined" ? BENEFITS : null;' +
-    '\n;globalThis.__HELP = typeof HELP_ORGS !== "undefined" ? HELP_ORGS : null;',
+    '\n;globalThis.__HELP = typeof HELP_ORGS !== "undefined" ? HELP_ORGS : null;' +
+    "\n" + fs.readFileSync(GRANTS_SRC, "utf8") +
+    '\n;globalThis.__GRANTS = typeof GRANTS_DIRECTORY !== "undefined" ? GRANTS_DIRECTORY : null;' +
+    "\n" + fs.readFileSync(ORGS_SRC, "utf8") +
+    '\n;globalThis.__ORGS = typeof ORGS_DIRECTORY !== "undefined" ? ORGS_DIRECTORY : null;',
   ctx
 );
 
@@ -195,9 +201,20 @@ if (help) {
   for (const o of orgs) if (o && o.url) addLink(o.url, `Help — ${clean(o.name || o.url)}`, "help");
 }
 
+// Directory links use stable ID-prefixed labels so monitor reports can be traced
+// directly back to their source records. addLink() deduplicates them against all
+// catalog/help URLs already collected above.
+for (const grant of ctx.__GRANTS || []) {
+  if (grant && grant.url) addLink(grant.url, `grant:${clean(grant.id)} — ${clean(grant.name || grant.url)}`, "grant");
+}
+for (const org of ctx.__ORGS || []) {
+  if (org && org.url) addLink(org.url, `org:${clean(org.id)} — ${clean(org.name || org.url)}`, "org");
+}
+
 const linksOut = `// GENERATED FILE — DO NOT EDIT BY HAND.
 // Regenerate with:  npm run gen:context
-// Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS)
+// Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
+// public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
 // ${links.length} links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50

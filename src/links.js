@@ -1,8 +1,9 @@
 // GENERATED FILE — DO NOT EDIT BY HAND.
 // Regenerate with:  npm run gen:context
-// Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS)
+// Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
+// public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 51 links. The monitor checks a bounded rotating batch every
+// 74 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) applyUrls are skipped — they depend on the
@@ -263,6 +264,121 @@ export const LINKS = [
     "url": "https://ab.211.ca",
     "label": "Help — Alberta 211",
     "kind": "help"
+  },
+  {
+    "url": "https://www.waramps.ca/ways-we-help/child-amputees/",
+    "label": "grant:champ — CHAMP Program",
+    "kind": "grant"
+  },
+  {
+    "url": "https://cpalberta.com/funding-request",
+    "label": "grant:cp-cares — CP CARES funding requests",
+    "kind": "grant"
+  },
+  {
+    "url": "https://tetrasociety.org",
+    "label": "grant:tetra — Custom assistive devices",
+    "kind": "grant"
+  },
+  {
+    "url": "https://easterseals.ab.ca/equipment-programs/",
+    "label": "grant:easter-seals-ab — Equipment programs, camp and scholarships",
+    "kind": "grant"
+  },
+  {
+    "url": "https://varietyalberta.ca",
+    "label": "grant:variety-ab — Adaptive equipment and inclusive programs",
+    "kind": "grant"
+  },
+  {
+    "url": "https://www.hopeair.ca",
+    "label": "grant:hope-air — Free medical travel",
+    "kind": "grant"
+  },
+  {
+    "url": "https://www.dogguides.com",
+    "label": "grant:dog-guides — Dog Guides at no cost",
+    "kind": "grant"
+  },
+  {
+    "url": "https://alsab.ca",
+    "label": "grant:als-ab-equipment — Equipment loan and client support",
+    "kind": "grant"
+  },
+  {
+    "url": "https://kidscancercare.ab.ca",
+    "label": "grant:kids-cancer-care — Family programs, camps and scholarships",
+    "kind": "grant"
+  },
+  {
+    "url": "https://www.dayforcecares.com",
+    "label": "grant:dayforce-cares — Grants for basic needs and equipment",
+    "kind": "grant"
+  },
+  {
+    "url": "https://www.shinefoundation.ca",
+    "label": "grant:shine-dreams — Dreams for young people with severe physical disabilities",
+    "kind": "grant"
+  },
+  {
+    "url": "https://inclusionalberta.org",
+    "label": "org:inclusion-alberta — Inclusion Alberta",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.cnib.ca",
+    "label": "org:cnib-ab — CNIB Alberta",
+    "kind": "org"
+  },
+  {
+    "url": "https://gatewayassociation.ca",
+    "label": "org:gateway — Gateway Association",
+    "kind": "org"
+  },
+  {
+    "url": "https://momentum.org",
+    "label": "org:momentum — Momentum",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.sci-ab.ca",
+    "label": "org:sci-alberta — Spinal Cord Injury Alberta",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.autismedmonton.org",
+    "label": "org:autism-edmonton — Autism Edmonton",
+    "kind": "org"
+  },
+  {
+    "url": "https://employabilities.ab.ca",
+    "label": "org:employabilities — EmployAbilities",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.skillssociety.ca",
+    "label": "org:skills-society — Skills Society",
+    "kind": "org"
+  },
+  {
+    "url": "https://chrysalis.ca",
+    "label": "org:chrysalis — Chrysalis",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.eclc.ca",
+    "label": "org:eclc — Edmonton Community Legal Centre",
+    "kind": "org"
+  },
+  {
+    "url": "https://clg.ab.ca",
+    "label": "org:calgary-legal-guidance — Calgary Legal Guidance",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.betweenfriends.ab.ca",
+    "label": "org:between-friends — Between Friends",
+    "kind": "org"
   }
 ];
 

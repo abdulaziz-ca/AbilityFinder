@@ -30,8 +30,8 @@ feature.
 - Re-verify `GRANTS_DIRECTORY` entries before their verified dates age out.
 - Re-verify `ORGS_DIRECTORY` entries before their verified dates age out.
 - Append a `DATA_CHANGELOG` entry in `public/changelog.js` when benefit facts change.
-- Run `npm run gen:context` after `BENEFITS`, `HELP_ORGS`, or
-  `PRACTITIONER_FORMS` changes.
+- Run `npm run gen:context` after `BENEFITS`, `HELP_ORGS`,
+  `PRACTITIONER_FORMS`, `public/grants-data.js`, or `public/orgs-data.js` changes.
 - Run `npm run gen:guides` after `BENEFITS` changes.
 
 ### 2. Human accessibility and usability testing
