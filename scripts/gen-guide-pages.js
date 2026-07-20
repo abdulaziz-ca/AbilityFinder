@@ -68,6 +68,7 @@ ${items.map((x) => `  <li>${esc(x)}</li>`).join("\n")}
 
 function head({ title, desc, canonical }) {
   return `  <head>
+    <!-- template r2 -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark light" />
