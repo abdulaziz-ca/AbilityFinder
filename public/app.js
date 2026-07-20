@@ -87,7 +87,7 @@ const DONATION_URL = "";
 let answers = BLANK();
 
 /* view state */
-let view = "landing";   // landing, wizard, results, browse, detail, privacy, about, support, updates, help, accessibility, professionals, partner-overview, impact, dtc-prep
+let view = "landing";   // landing, wizard, results, browse, detail, privacy, about, support, updates, help, accessibility, professionals, partner-overview, impact, dtc-prep, grants, organizations
 let stepIndex = 0;
 let detailId = null;
 let detailFrom = "results"; // "results" | "browse" — where the guide was opened from
@@ -97,6 +97,7 @@ let groupMode = "priority"; // "priority" | "category" — how results are group
 const expandedBenefitIds = new Set(); // results-only accordion state; deliberately never persisted
 let scenarioOpen = false; // results-only "what if" panel; deliberately never persisted
 let dtcPrepFrom = "professionals"; // in-memory return target for the printable DTC sheet
+let grantsAudience = "all"; // directory-only audience filter; deliberately never persisted
 const scenarioChanges = new Map(); // hypothetical answer overrides; memory only, cleared on route changes
 
 /* browse/search view state (explore all benefits without doing the wizard) */
@@ -769,6 +770,8 @@ function wireHeaderMenu() {
   const menuNavigation = {
     start: navigateStart,
     browse: navigateBrowse,
+    grants: navigateGrants,
+    organizations: navigateOrganizations,
     about: navigateAbout,
     support: navigateSupport,
     updates: navigateUpdates,
@@ -954,6 +957,14 @@ function render() {
     progress.style.display = "none";
     app.innerHTML = renderSafely(renderDtcPrep, "DTC preparation sheet");
     wireDtcPrep();
+  } else if (view === "grants") {
+    progress.style.display = "none";
+    app.innerHTML = renderSafely(renderGrants, "grants and charitable funds");
+    wireGrants();
+  } else if (view === "organizations") {
+    progress.style.display = "none";
+    app.innerHTML = renderSafely(renderOrganizations, "organizations that can help");
+    wireOrganizations();
   }
   if (samePage) {
     window.scrollTo(0, keepScroll);
@@ -1154,6 +1165,8 @@ function renderLanding() {
         <button class="linklike js-updates">Data updates</button>
         <button class="linklike" type="button" data-info-nav="impact">${t("footer.impact")}</button>
         <button class="linklike" type="button" data-info-nav="professionals">${t("footer.professionals")}</button>
+        <button class="linklike" type="button" data-info-nav="grants">${t("footer.grants")}</button>
+        <button class="linklike" type="button" data-info-nav="organizations">${t("footer.organizations")}</button>
         <button class="linklike js-browse">Browse all benefits</button>
         <span class="sf-note">Alberta + federal · Info verified ${DATA_VERIFIED} · Not government-affiliated</span>
       </div>
@@ -1167,6 +1180,8 @@ function navigateStart() {
   else setState("wizard", { stepIndex: 0 });
 }
 function navigateBrowse() { setState("browse"); }
+function navigateGrants() { setState("grants"); }
+function navigateOrganizations() { setState("organizations"); }
 function navigatePrivacy() { setState("privacy"); }
 function navigateAbout() { setState("about"); }
 function navigateSupport() { setState("support"); }
@@ -1188,7 +1203,7 @@ function wireNavigation(root) {
   root.querySelectorAll(".js-about").forEach((el) => el.addEventListener("click", navigateAbout));
   root.querySelectorAll(".js-support").forEach((el) => el.addEventListener("click", navigateSupport));
   root.querySelectorAll(".js-updates").forEach((el) => el.addEventListener("click", navigateUpdates));
-  const infoNavigation = { accessibility: navigateAccessibility, professionals: navigateProfessionals, impact: navigateImpact };
+  const infoNavigation = { accessibility: navigateAccessibility, professionals: navigateProfessionals, impact: navigateImpact, grants: navigateGrants, organizations: navigateOrganizations };
   root.querySelectorAll("[data-info-nav]").forEach((el) => {
     const navigate = infoNavigation[el.dataset.infoNav];
     if (navigate) el.addEventListener("click", navigate);
@@ -1542,6 +1557,7 @@ function renderProfessionals() {
     ${block("Embed AbilityFinder on your site", `<p>Add the private, one-question AbilityFinder card to your organization’s website.</p><div class="embed-snippet"><code id="embedSnippet" tabindex="0">&lt;iframe src=&quot;https://abilityfinder.ca/embed.html&quot; title=&quot;AbilityFinder benefit check&quot; width=&quot;100%&quot; height=&quot;420&quot; style=&quot;border:0&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;</code><button class="btn btn-secondary" id="copyEmbedSnippet" type="button">Copy snippet</button></div>`)}
     ${block(t("pro.partner.h"), `<p>${t("pro.partner.p")}</p><p><button class="btn btn-primary cred-cta" type="button" data-prof-nav="partner">${t("pro.partner.button")} ${icon("arrowRight")}</button></p>`)}
     ${block(t("pro.dtc.h"), `<p>${t("pro.dtc.p")}</p><p><button class="btn btn-primary cred-cta" type="button" data-prof-nav="dtc-prep">${t("pro.dtc.button")} ${icon("arrowRight")}</button></p>`)}
+    ${block(t("orgs.pro.h"), `<p>${t("orgs.pro.p")}</p><p><button class="btn btn-primary cred-cta" type="button" data-prof-nav="organizations">${t("orgs.pro.button")} ${icon("arrowRight")}</button></p>`)}
     ${block(t("pro.contact.h"), `<p>${t("pro.contact.p")} <button class="linklike" type="button" data-page-feedback>${t("fb.send")}</button></p>`)}
     <button class="back-link bottom" id="pro-back2">${icon("arrowLeft")} Back</button>
   </section>`;
@@ -1591,6 +1607,7 @@ function wireProfessionals() {
   document.querySelector('[data-prof-nav="browse"]')?.addEventListener("click", navigateBrowse);
   document.querySelector('[data-prof-nav="partner"]')?.addEventListener("click", navigatePartnerOverview);
   document.querySelector('[data-prof-nav="dtc-prep"]')?.addEventListener("click", () => navigateDtcPrep("professionals"));
+  document.querySelector('[data-prof-nav="organizations"]')?.addEventListener("click", navigateOrganizations);
 
   const snippet = document.getElementById("embedSnippet");
   const copyButton = document.getElementById("copyEmbedSnippet");
@@ -1687,6 +1704,99 @@ function wirePartnerOverview() {
   wirePageFeedback();
 }
 
+function renderGrants() {
+  const directory = typeof GRANTS_DIRECTORY !== "undefined" && Array.isArray(GRANTS_DIRECTORY)
+    ? GRANTS_DIRECTORY
+    : [];
+  const visible = directory.filter((grant) => grantsAudience === "all" || grant.audience === "all" || grant.audience === grantsAudience);
+  const filters = ["all", "children", "adults"].map((audience) => `
+    <button class="grants-filter" type="button" data-grants-filter="${audience}" aria-pressed="${grantsAudience === audience}">
+      ${t(`grants.filter.${audience}`)}
+    </button>`).join("");
+  const cards = visible.map((grant) => `
+    <article class="grant-card" data-grant-id="${ttsEscape(grant.id)}">
+      <header>
+        <span class="grant-card-icon" aria-hidden="true">${icon("money")}</span>
+        <div><h2>${ttsEscape(grant.name)}</h2><p class="grant-org">${ttsEscape(grant.org)}</p></div>
+      </header>
+      <dl>
+        <div><dt>${t("grants.who")}</dt><dd>${ttsEscape(grant.whoFor)}</dd></div>
+        <div><dt>${t("grants.offers")}</dt><dd>${ttsEscape(grant.offers)}</dd></div>
+        <div><dt>${t("grants.apply")}</dt><dd><a href="${ttsEscape(grant.url)}" target="_blank" rel="noopener noreferrer">${ttsEscape(grant.howToApply)} ${icon("external")}</a></dd></div>
+      </dl>
+      <p class="grant-verified">${icon("check")}${t("grants.verified").replace("{date}", plainEnglishDate(grant.verified))}</p>
+    </article>`).join("");
+  return `<section class="legal grants-page">
+    <button class="back-link" type="button" data-grants-back>${icon("arrowLeft")} ${t("grants.back")}</button>
+    <p class="section-label">${t("grants.kicker")}</p>
+    <h1 class="legal-title">${t("grants.title")}</h1>
+    <p class="legal-lede">${t("grants.lede")}</p>
+    <div class="grants-filters" role="group" aria-label="${t("grants.filter.label")}">${filters}</div>
+    <div class="grants-grid">${cards}</div>
+    <aside class="grants-suggest">
+      <span aria-hidden="true">${icon("help")}</span>
+      <div><h2>${t("grants.suggest.h")}</h2><p>${t("grants.suggest.p")}</p>
+      <button class="linklike" type="button" data-page-feedback>${t("grants.suggest.button")}</button></div>
+    </aside>
+    <button class="back-link bottom" type="button" data-grants-back>${icon("arrowLeft")} ${t("grants.back")}</button>
+  </section>`;
+}
+
+function wireGrants() {
+  document.querySelectorAll("[data-grants-back]").forEach((button) => button.addEventListener("click", () => setState("landing")));
+  document.querySelectorAll("[data-grants-filter]").forEach((button) => button.addEventListener("click", () => {
+    grantsAudience = button.dataset.grantsFilter;
+    lastRenderKey = null;
+    render();
+  }));
+  wirePageFeedback();
+}
+
+function renderOrganizations() {
+  const directory = typeof ORGS_DIRECTORY !== "undefined" && Array.isArray(ORGS_DIRECTORY)
+    ? ORGS_DIRECTORY
+    : [];
+  const cards = directory.map((organization) => `
+    <article class="org-card" data-org-id="${ttsEscape(organization.id)}">
+      <header>
+        <span class="org-card-icon" aria-hidden="true">${icon("help")}</span>
+        <div><h2>${ttsEscape(organization.name)}</h2><p class="org-region">${ttsEscape(organization.region)}</p></div>
+      </header>
+      <dl>
+        <div><dt>${t("orgs.region")}</dt><dd>${ttsEscape(organization.region)}</dd></div>
+        <div><dt>${t("orgs.what")}</dt><dd>${ttsEscape(organization.whatTheyDo)}</dd></div>
+      </dl>
+      <a class="org-link" href="${ttsEscape(organization.url)}" target="_blank" rel="noopener noreferrer">${t("orgs.website")} ${icon("external")}</a>
+      <p class="org-verified">${icon("check")}${t("orgs.verified")}</p>
+    </article>`).join("");
+  const rules = Array.from({ length: 6 }, (_, index) => {
+    const content = t(`orgs.rules.${index + 1}`);
+    return `<li>${index === 5 ? `<button class="linklike" type="button" data-page-feedback>${content}</button>` : content}</li>`;
+  }).join("");
+  return `<section class="legal orgs-page">
+    <button class="back-link" type="button" data-orgs-back>${icon("arrowLeft")} ${t("orgs.back")}</button>
+    <p class="section-label">${t("orgs.kicker")}</p>
+    <h1 class="legal-title">${t("orgs.title")}</h1>
+    <p class="legal-lede">${t("orgs.lede")}</p>
+    <div class="orgs-grid">${cards}</div>
+    <section class="orgs-rules" aria-labelledby="orgs-rules-title">
+      <h2 id="orgs-rules-title">${icon("check")}${t("orgs.rules.h")}</h2>
+      <ul>${rules}</ul>
+    </section>
+    <aside class="orgs-suggest">
+      <span aria-hidden="true">${icon("help")}</span>
+      <div><h2>${t("orgs.suggest.h")}</h2><p>${t("orgs.suggest.p")}</p>
+      <button class="linklike" type="button" data-page-feedback>${t("orgs.suggest.button")}</button></div>
+    </aside>
+    <button class="back-link bottom" type="button" data-orgs-back>${icon("arrowLeft")} ${t("orgs.back")}</button>
+  </section>`;
+}
+
+function wireOrganizations() {
+  document.querySelectorAll("[data-orgs-back]").forEach((button) => button.addEventListener("click", () => setState("landing")));
+  wirePageFeedback();
+}
+
 function impactCatalogStats() {
   const programs = Array.isArray(BENEFITS) ? BENEFITS : [];
   const levels = programs.reduce((counts, benefit) => {
@@ -1749,6 +1859,7 @@ function renderImpact() {
       <button type="button" data-impact-nav="professionals">${icon("working")}<span>${t("impact.links.professionals")}</span>${icon("arrowRight")}</button>
       <button type="button" data-impact-nav="partner">${icon("compass")}<span>${t("impact.links.partner")}</span>${icon("arrowRight")}</button>
       <button type="button" data-impact-nav="updates">${icon("check")}<span>${t("impact.links.updates")}</span>${icon("arrowRight")}</button>
+      <button type="button" data-impact-nav="grants">${icon("money")}<span>${t("grants.related")}</span>${icon("arrowRight")}</button>
     </nav>
     <button class="back-link bottom" id="impact-back2">${icon("arrowLeft")} ${t("impact.back")}</button>
   </section>`;
@@ -1756,7 +1867,7 @@ function renderImpact() {
 
 function wireImpact() {
   ["impact-back", "impact-back2"].forEach((id) => document.getElementById(id)?.addEventListener("click", () => setState("landing")));
-  const destinations = { professionals: navigateProfessionals, partner: navigatePartnerOverview, updates: navigateUpdates };
+  const destinations = { professionals: navigateProfessionals, partner: navigatePartnerOverview, updates: navigateUpdates, grants: navigateGrants };
   document.querySelectorAll("[data-impact-nav]").forEach((element) => {
     const navigate = destinations[element.dataset.impactNav];
     if (navigate) element.addEventListener("click", navigate);

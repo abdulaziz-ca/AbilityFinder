@@ -49,6 +49,8 @@ stores aggregate health in `LINK_HEALTH` KV.
 | `public/i18n.js` | English/French UI strings and fallback helpers |
 | `public/data.js` | Catalog, official sources, values, metadata, guides, supports, help organizations |
 | `public/changelog.js` | Public dated record of material catalog and guide changes |
+| `public/grants-data.js` | Verified directory of charitable, non-government grants and funds |
+| `public/orgs-data.js` | Verified directory of independent organizations serving Albertans with disabilities and families |
 | `public/app.js` | In-memory state, wizard, eligibility, router, all render/wire functions |
 | `public/dbManager.js` | IndexedDB open/upgrade/read/write/clear/close, revisions, tombstones, legacy reads |
 | `public/stateManager.js` | Persistence allowlist, catalog-backed validation, legacy sanitization, change emitter |
