@@ -6,6 +6,9 @@
    button and reloads never lose the user's answers.
    ========================================================================== */
 
+/* Flip to true when the BC catalog lands. */
+const BC_ENABLED = false;
+
 /* -------------------------------------------------- answer state (defaults) */
 const BLANK = () => ({
   forWho: null,        // "self" | "child" | "family"
@@ -436,12 +439,15 @@ const STEPS = [
   },
   {
     id: "residency", type: "single", kicker: "About you",
-    q: () => `${who().doQ} live in Alberta?`,
-    help: "Federal benefits apply anywhere in Canada. Alberta's provincial programs are fully built out right now — other provinces are coming soon.",
+    q: () => BC_ENABLED ? `Where ${who().doQ.toLowerCase()} live?` : `${who().doQ} live in Alberta?`,
+    help: BC_ENABLED
+      ? "Federal benefits apply anywhere in Canada. Alberta and British Columbia provincial programs are fully built out right now — other provinces are coming soon."
+      : "Federal benefits apply anywhere in Canada. Alberta's provincial programs are fully built out right now — other provinces are coming soon.",
     key: "province",
     options: [
-      { value: "AB", label: "Yes, I live in Alberta" },
-      { value: "other", label: "No, another province or territory", sub: "you'll still see all Canada-wide benefits" },
+      { value: "AB", label: BC_ENABLED ? "Alberta" : "Yes, I live in Alberta" },
+      ...(BC_ENABLED ? [{ value: "BC", label: "British Columbia" }] : []),
+      { value: "other", label: BC_ENABLED ? "Another province or territory" : "No, another province or territory", sub: "you'll still see all Canada-wide benefits" },
     ],
     onPick(v) {
       // a city from another province is no longer valid
@@ -507,7 +513,7 @@ const STEPS = [
     help: "Unlocks local transit and recreation discounts. Start typing to find yours.",
     key: "city",
     placeholder: "Choose your city or town…",
-    skipIf: () => !COVERED_PROVINCES.includes(answers.province),
+    skipIf: () => !COVERED_PROVINCES.includes(answers.province) || (answers.province === "BC" && !BC_ENABLED),
     options: ALBERTA_CITIES, // replaced at render time by the province's list
   },
 ];
@@ -527,7 +533,7 @@ const PERSISTENCE_SELECTIONS = {
   disabilities: DISABILITIES.map((item) => item.value),
   situations: STEPS.find((step) => step.key === "situation").options.map((item) => item.value),
   provinces: STEPS.find((step) => step.key === "province").options.map((item) => item.value),
-  cities: ALBERTA_CITIES,
+  cities: [...ALBERTA_CITIES, ...(BC_ENABLED ? BC_CITIES : [])],
   benefitIds: BENEFITS.map((benefit) => benefit.id),
   progressStages: STAGES.map((stage) => stage.key),
 };

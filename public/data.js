@@ -64,11 +64,22 @@ const ALBERTA_CITIES = [
   "Other / my town isn't listed",
 ];
 
-/* ALBERTA-ONLY for now. Other provinces/territories (cities, map entries and
-   benefit programs) are parked in data-provinces-later.js and will be
-   re-integrated once the Alberta feature set is complete. */
-const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES };
-const COVERED_PROVINCES = ["AB"];
+/* ------------------------------------------- British Columbia communities */
+const BC_CITIES = [
+  "Abbotsford", "Burnaby", "Campbell River", "Chilliwack", "Colwood", "Comox",
+  "Coquitlam", "Courtenay", "Cranbrook", "Dawson Creek", "Delta", "Duncan",
+  "Fort St. John", "Kamloops", "Kelowna", "Langford", "Langley", "Maple Ridge",
+  "Mission", "Nanaimo", "Nelson", "New Westminster", "North Vancouver",
+  "Parksville", "Penticton", "Pitt Meadows", "Port Coquitlam", "Port Moody",
+  "Powell River", "Prince George", "Prince Rupert", "Quesnel", "Richmond",
+  "Saanich", "Salmon Arm", "Squamish", "Surrey", "Terrace", "Vancouver",
+  "Vernon", "Victoria", "West Vancouver", "White Rock", "Williams Lake",
+  "Other / my town isn't listed",
+];
+
+/* Province scaffolding can land before its catalog. Visibility is gated in app.js. */
+const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES };
+const COVERED_PROVINCES = ["AB", "BC"];
 
 /* national fallbacks (used when a jurisdiction isn't in the maps yet) */
 const FED_STUDENT_AID = "https://www.canada.ca/en/employment-social-development/services/education/grants/disabilities.html";
