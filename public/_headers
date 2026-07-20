@@ -9,6 +9,13 @@
   Permissions-Policy: geolocation=(self), camera=(), microphone=()
   Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
 
+# The embed is the only public asset partners may frame. Detach inherited
+# anti-framing headers before applying its isolated CSP.
+/embed.html
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'unsafe-inline'; frame-ancestors *; base-uri 'none'; form-action 'none'
+
 # Long-cache the fingerprinted/static assets
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable

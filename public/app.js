@@ -87,7 +87,7 @@ const DONATION_URL = "";
 let answers = BLANK();
 
 /* view state */
-let view = "landing";   // landing, wizard, results, browse, detail, privacy, about, support, updates, help, accessibility, professionals, partner-overview, impact
+let view = "landing";   // landing, wizard, results, browse, detail, privacy, about, support, updates, help, accessibility, professionals, partner-overview, impact, dtc-prep
 let stepIndex = 0;
 let detailId = null;
 let detailFrom = "results"; // "results" | "browse" — where the guide was opened from
@@ -95,6 +95,9 @@ let progress = {};      // { benefitId: stageKey } — where the user is in each
 let editingReturn = false; // when true, editing one answer returns to results
 let groupMode = "priority"; // "priority" | "category" — how results are grouped
 const expandedBenefitIds = new Set(); // results-only accordion state; deliberately never persisted
+let scenarioOpen = false; // results-only "what if" panel; deliberately never persisted
+let dtcPrepFrom = "professionals"; // in-memory return target for the printable DTC sheet
+const scenarioChanges = new Map(); // hypothetical answer overrides; memory only, cleared on route changes
 
 /* browse/search view state (explore all benefits without doing the wizard) */
 let browseQuery = "";
@@ -795,7 +798,13 @@ function wireHeaderMenu() {
   });
 }
 
+function clearScenario() {
+  scenarioOpen = false;
+  scenarioChanges.clear();
+}
+
 function setState(nextView, opts = {}, push = true) {
+  if (nextView !== "results") clearScenario();
   view = nextView;
   if ("stepIndex" in opts) stepIndex = opts.stepIndex;
   if ("detailId" in opts) detailId = opts.detailId;
@@ -807,6 +816,7 @@ function setState(nextView, opts = {}, push = true) {
 }
 
 window.addEventListener("popstate", (e) => {
+  clearScenario();
   const s = e.state;
   if (s) {
     view = s.view;
@@ -940,6 +950,10 @@ function render() {
     progress.style.display = "none";
     app.innerHTML = renderSafely(renderImpact, "impact and coverage");
     wireImpact();
+  } else if (view === "dtc-prep") {
+    progress.style.display = "none";
+    app.innerHTML = renderSafely(renderDtcPrep, "DTC preparation sheet");
+    wireDtcPrep();
   }
   if (samePage) {
     window.scrollTo(0, keepScroll);
@@ -1161,6 +1175,10 @@ function navigateAccessibility() { setState("accessibility"); }
 function navigateProfessionals() { setState("professionals"); }
 function navigatePartnerOverview() { setState("partner-overview"); }
 function navigateImpact() { setState("impact"); }
+function navigateDtcPrep(from = "professionals") {
+  dtcPrepFrom = from === "detail" ? "detail" : "professionals";
+  setState("dtc-prep");
+}
 
 /* Shared by the landing-page footer and content CTAs. */
 function wireNavigation(root) {
@@ -1521,7 +1539,9 @@ function renderProfessionals() {
     ${block(t("pro.use.h"), infoList(["pro.use.1", "pro.use.2", "pro.use.3", "pro.use.4"]))}
     ${block(t("pro.not.h"), `<p>${t("pro.not.p")} <button class="linklike" type="button" data-prof-nav="browse">${t("trust.official")}</button></p>`)}
     ${block(t("pro.link.h"), `<p>${t("pro.link.p")}</p><p class="stable-links"><a href="https://abilityfinder.ca/">abilityfinder.ca</a><span>abilityfinder.ca/guides/&lt;program&gt;.html</span></p>`)}
+    ${block("Embed AbilityFinder on your site", `<p>Add the private, one-question AbilityFinder card to your organization’s website.</p><div class="embed-snippet"><code id="embedSnippet" tabindex="0">&lt;iframe src=&quot;https://abilityfinder.ca/embed.html&quot; title=&quot;AbilityFinder benefit check&quot; width=&quot;100%&quot; height=&quot;420&quot; style=&quot;border:0&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;</code><button class="btn btn-secondary" id="copyEmbedSnippet" type="button">Copy snippet</button></div>`)}
     ${block(t("pro.partner.h"), `<p>${t("pro.partner.p")}</p><p><button class="btn btn-primary cred-cta" type="button" data-prof-nav="partner">${t("pro.partner.button")} ${icon("arrowRight")}</button></p>`)}
+    ${block(t("pro.dtc.h"), `<p>${t("pro.dtc.p")}</p><p><button class="btn btn-primary cred-cta" type="button" data-prof-nav="dtc-prep">${t("pro.dtc.button")} ${icon("arrowRight")}</button></p>`)}
     ${block(t("pro.contact.h"), `<p>${t("pro.contact.p")} <button class="linklike" type="button" data-page-feedback>${t("fb.send")}</button></p>`)}
     <button class="back-link bottom" id="pro-back2">${icon("arrowLeft")} Back</button>
   </section>`;
@@ -1570,8 +1590,96 @@ function wireProfessionals() {
   ["pro-back", "pro-back2"].forEach((id) => document.getElementById(id)?.addEventListener("click", () => setState("landing")));
   document.querySelector('[data-prof-nav="browse"]')?.addEventListener("click", navigateBrowse);
   document.querySelector('[data-prof-nav="partner"]')?.addEventListener("click", navigatePartnerOverview);
+  document.querySelector('[data-prof-nav="dtc-prep"]')?.addEventListener("click", () => navigateDtcPrep("professionals"));
+
+  const snippet = document.getElementById("embedSnippet");
+  const copyButton = document.getElementById("copyEmbedSnippet");
+  const selectSnippet = () => {
+    if (!snippet) return;
+    const selection = window.getSelection();
+    const range = document.createRange();
+    range.selectNodeContents(snippet);
+    selection.removeAllRanges();
+    selection.addRange(range);
+  };
+  snippet?.addEventListener("click", selectSnippet);
+  snippet?.addEventListener("focus", selectSnippet);
+  copyButton?.addEventListener("click", async () => {
+    const text = snippet?.textContent || "";
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error("Clipboard API unavailable");
+      await navigator.clipboard.writeText(text);
+      copyButton.textContent = "Copied";
+      window.setTimeout(() => { copyButton.textContent = "Copy snippet"; }, 1800);
+    } catch (_) {
+      selectSnippet();
+      copyButton.textContent = "Snippet selected — copy it";
+    }
+  });
   wirePageFeedback();
 }
+function renderDtcPrep() {
+  const dtc = BENEFITS.find((benefit) => benefit.id === "dtc");
+  if (!dtc) return `<div class="card">DTC catalog entry not found.</div>`;
+  const formUrl = resolveUrl(dtc.applyUrl);
+  const sourceUrl = resolveUrl(dtc.source);
+  const check = (key) => `<li><span class="dtc-prep-box" aria-hidden="true"></span><span>${t(key)}</span></li>`;
+  const lines = (key) => `<div class="dtc-prep-prompt"><p>${t(key)}</p><span></span><span></span></div>`;
+  return `<article class="dtc-prep" id="dtcPrepSheet">
+    <header class="dtc-prep-head">
+      <div>
+        <p class="section-label">${t("dtcPrep.kicker")}</p>
+        <h1>${t("dtcPrep.title")}</h1>
+        <p class="dtc-prep-lede">${t("dtcPrep.lede")}</p>
+        <p class="dtc-prep-bring">${icon("check")}<strong>${t("dtcPrep.bring")}</strong></p>
+      </div>
+      <div class="dtc-prep-actions">
+        <button class="tool-btn" type="button" data-dtc-prep-print>${icon("print")}${t("dtcPrep.print")}</button>
+        <button class="back-link" type="button" data-dtc-prep-back>${icon("arrowLeft")}${t("dtcPrep.back")}</button>
+      </div>
+    </header>
+
+    <section class="dtc-prep-section">
+      <h2>${icon("check")}${t("dtcPrep.before.h")}</h2>
+      <ul class="dtc-prep-checklist">
+        ${check("dtcPrep.before.sin")}
+        ${check("dtcPrep.before.practitioner")}
+        ${check("dtcPrep.before.examples")}
+        ${check("dtcPrep.before.route")}
+      </ul>
+    </section>
+
+    <section class="dtc-prep-section dtc-prep-notes">
+      <h2>${icon("info")}${t("dtcPrep.notes.h")}</h2>
+      <p class="dtc-prep-note-label">${t("dtcPrep.notes.label")}</p>
+      ${lines("dtcPrep.notes.1")}
+      ${lines("dtcPrep.notes.2")}
+      ${lines("dtcPrep.notes.3")}
+    </section>
+
+    <section class="dtc-prep-section">
+      <h2>${icon("compass")}${t("dtcPrep.practitioner.h")}</h2>
+      <ul class="dtc-prep-facts">
+        <li>${t("dtcPrep.practitioner.partB")}</li>
+        <li>${t("dtcPrep.practitioner.digital")}</li>
+        <li><a href="${sourceUrl}" target="_blank" rel="noopener noreferrer" data-ext>${t("dtcPrep.practitioner.list")} ${icon("external")}</a></li>
+      </ul>
+    </section>
+
+    <section class="dtc-prep-section dtc-prep-sources">
+      <h2>${icon("link")}${t("dtcPrep.sources.h")}</h2>
+      <p><strong>${t("dtcPrep.sources.form")}</strong><br><a href="${formUrl}" target="_blank" rel="noopener noreferrer" data-ext>${formUrl}</a></p>
+      <p><strong>${t("dtcPrep.sources.dtc")}</strong><br><a href="${sourceUrl}" target="_blank" rel="noopener noreferrer" data-ext>${sourceUrl}</a></p>
+    </section>
+    <footer>${t("dtcPrep.footer")}</footer>
+  </article>`;
+}
+
+function wireDtcPrep() {
+  document.querySelector("[data-dtc-prep-print]")?.addEventListener("click", () => window.print());
+  document.querySelector("[data-dtc-prep-back]")?.addEventListener("click", () => setState(dtcPrepFrom, dtcPrepFrom === "detail" ? { detailId: "dtc" } : {}));
+}
+
 function wirePartnerOverview() {
   document.getElementById("partner-back")?.addEventListener("click", () => setState("professionals"));
   document.getElementById("partnerPrint")?.addEventListener("click", () => window.print());
@@ -1903,6 +2011,102 @@ function goBack() {
 /* =============================================================================
    RESULTS
    ========================================================================== */
+function cloneAnswers(source = answers) {
+  return { ...source, disabilities: [...source.disabilities], situation: [...source.situation] };
+}
+
+/* REQS intentionally powers both real and hypothetical results. Swap its answer
+   model only for this synchronous calculation, then restore the real model before
+   returning. Nothing here emits a state change or reaches persistence. */
+function evaluateAnswers(answerModel) {
+  const realAnswers = answers;
+  answers = answerModel;
+  try {
+    return BENEFITS.map((b) => ({ b, r: evaluate(b) }));
+  } finally {
+    answers = realAnswers;
+  }
+}
+
+function scenarioAnswerModel() {
+  const model = cloneAnswers();
+  for (const change of scenarioChanges.values()) {
+    if (change.key === "situation") {
+      const set = new Set(model.situation);
+      if (change.value) {
+        set.delete("none");
+        set.add(change.option);
+      } else {
+        set.delete(change.option);
+        if (!set.size) set.add("none");
+      }
+      model.situation = [...set];
+    } else {
+      model[change.key] = change.value;
+      if (change.key === "province" && !(CITIES_BY_PROVINCE[change.value] || []).includes(model.city)) model.city = null;
+    }
+  }
+  return model;
+}
+
+function scenarioOptionLabel(step, value) {
+  const option = stepOptions(step).find((item) => (typeof item === "object" ? item.value : item) === value);
+  return typeof option === "object" ? optionText(step, option) : String(option || value);
+}
+
+function scenarioSelect(step, label, options) {
+  return `<label class="scenario-field"><span>${label}</span><select class="select-input" data-scenario-select="${step.key}">
+    <option value="">${t("scenario.choose")}</option>${options.join("")}
+  </select></label>`;
+}
+
+function renderScenarioPanel(currentEvaluated) {
+  const model = scenarioAnswerModel();
+  const controls = [];
+  const visible = visibleSteps();
+  const age = visible.find((step) => step.key === "ageGroup");
+  const situation = visible.find((step) => step.key === "situation");
+  const income = visible.find((step) => step.key === "income");
+  const city = visible.find((step) => step.key === "city");
+
+  if (situation) {
+    const options = stepOptions(situation).filter((o) => o.value !== "none").map((o) => {
+      const active = model.situation.includes(o.value);
+      return `<option value="${o.value}">${active ? t("scenario.stop") : t("scenario.start")} ${optionText(situation, o)}</option>`;
+    });
+    controls.push(scenarioSelect(situation, t("scenario.situation"), options));
+  }
+  if (age) controls.push(scenarioSelect(age, t("scenario.age"), stepOptions(age).map((o) => `<option value="${o.value}">${optionText(age, o)}</option>`)));
+  if (income) controls.push(scenarioSelect(income, t("scenario.income"), stepOptions(income).map((o) => `<option value="${o.value}">${optionText(income, o)}</option>`)));
+  if (city) controls.push(scenarioSelect(city, t("scenario.city"), stepOptions(city).map((value) => `<option value="${value}">${value}</option>`)));
+
+  const chips = [...scenarioChanges.values()].map((change) => `<button type="button" class="scenario-chip" data-scenario-remove="${change.id}" aria-label="${t("scenario.remove")} ${change.label}">${change.label}${icon("x")}</button>`).join("");
+  let diff = `<p class="scenario-empty">${t("scenario.empty")}</p>`;
+  if (scenarioChanges.size) {
+    const hypothetical = evaluateAnswers(model);
+    const current = new Map(currentEvaluated.map((e) => [e.b.id, e]));
+    const changed = new Map(hypothetical.map((e) => [e.b.id, e]));
+    const matched = (status) => status === "ready" || status === "almost";
+    const gained = hypothetical.filter((e) => matched(e.r.status) && !matched(current.get(e.b.id).r.status));
+    const lost = currentEvaluated.filter((e) => matched(e.r.status) && !matched(changed.get(e.b.id).r.status));
+    const newlyReady = hypothetical.filter((e) => e.r.status === "ready" && current.get(e.b.id).r.status !== "ready");
+    const noLongerReady = currentEvaluated.filter((e) => e.r.status === "ready" && changed.get(e.b.id).r.status !== "ready");
+    const row = (key, items, tone) => `<div class="scenario-diff-row ${tone}"><b>${t(key)} <span>${items.length}</span></b><p>${items.length ? items.map((e) => e.b.name).join(" · ") : t("scenario.none")}</p></div>`;
+    diff = `${row("scenario.gain", gained, "gain")}${row("scenario.lose", lost, "lose")}${row("scenario.newReady", newlyReady, "ready")}${row("scenario.noReady", noLongerReady, "not-ready")}`;
+  }
+
+  return `<section class="scenario" aria-labelledby="scenario-title">
+    <button type="button" class="scenario-toggle" id="scenario-title" aria-expanded="${scenarioOpen}" aria-controls="scenario-panel">${icon("compass")}<span>${t("scenario.title")}</span>${icon("arrowRight")}</button>
+    <div class="scenario-panel" id="scenario-panel"${scenarioOpen ? "" : " hidden"}>
+      <p class="scenario-intro">${t("scenario.intro")}</p>
+      <div class="scenario-controls">${controls.join("")}</div>
+      ${scenarioChanges.size ? `<div class="scenario-active"><span>${t("scenario.active")}</span>${chips}<button type="button" class="linklike scenario-reset">${t("scenario.reset")}</button></div>` : ""}
+      <div class="scenario-diff" aria-live="polite" aria-atomic="true">${diff}</div>
+      <p class="scenario-estimate"><b>${t("scenario.estimate")}</b> ${t("scenario.note")}</p>
+    </div>
+  </section>`;
+}
+
 function renderResults() {
   const evaluated = BENEFITS.map((b) => ({ b, r: evaluate(b) }));
   const ready = evaluated.filter((e) => e.r.status === "ready");
@@ -1933,6 +2137,7 @@ function renderResults() {
     <p>${resultsBlurb(ready.length, almost.length)}</p>
   </div>
   ${renderMoneyBand(ready, almost)}
+  ${renderScenarioPanel(evaluated)}
   <div class="results-tools">
     <button class="tool-btn" id="printList">${icon("print")}${t("res.print")}</button>
     <div class="group-toggle" role="group" aria-label="Group benefits by">
@@ -2460,6 +2665,40 @@ function renderSupportCard(item) {
 }
 
 function wireResults() {
+  const scenarioToggle = document.getElementById("scenario-title");
+  if (scenarioToggle) scenarioToggle.addEventListener("click", () => {
+    scenarioOpen = !scenarioOpen;
+    scenarioToggle.setAttribute("aria-expanded", String(scenarioOpen));
+    document.getElementById("scenario-panel").hidden = !scenarioOpen;
+  });
+  document.querySelectorAll("[data-scenario-select]").forEach((select) =>
+    select.addEventListener("change", () => {
+      if (!select.value) return;
+      const key = select.dataset.scenarioSelect;
+      const step = STEPS.find((item) => item.key === key);
+      if (!step) return;
+      if (key === "situation") {
+        const active = scenarioAnswerModel().situation.includes(select.value);
+        const optionLabel = scenarioOptionLabel(step, select.value);
+        scenarioChanges.set(`situation:${select.value}`, {
+          id: `situation:${select.value}`, key, option: select.value, value: !active,
+          label: `${active ? t("scenario.stop") : t("scenario.start")} ${optionLabel}`,
+        });
+      } else {
+        const optionValue = step.type === "select" ? select.value : stepOptions(step)
+          .map((item) => typeof item === "object" ? item.value : item)
+          .find((value) => String(value) === select.value);
+        scenarioChanges.set(key, { id: key, key, value: optionValue, label: `${select.previousElementSibling.textContent}: ${scenarioOptionLabel(step, optionValue)}` });
+      }
+      scenarioOpen = true;
+      render();
+    })
+  );
+  document.querySelectorAll("[data-scenario-remove]").forEach((button) =>
+    button.addEventListener("click", () => { scenarioChanges.delete(button.dataset.scenarioRemove); scenarioOpen = true; render(); })
+  );
+  document.querySelector(".scenario-reset")?.addEventListener("click", () => { scenarioChanges.clear(); scenarioOpen = true; render(); });
+
   document.querySelectorAll(".js-detail").forEach((btn) =>
     btn.addEventListener("click", () => {
       detailFrom = "results";
@@ -3100,6 +3339,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
 
         ${d.about && d.about !== b.summary ? `<p class="detail-about">${d.about}</p>` : ""}
         ${b.note ? `<div class="note">${b.note}</div>` : ""}
+        ${b.id === "dtc" ? `<div class="dtc-prep-guide-cta"><button class="apply" type="button" data-open-dtc-prep>${icon("print")}${t("dtcPrep.guideButton")}</button></div>` : ""}
         ${p2.tax}
         ${/* Before "how to apply" on purpose: knowing you might actually
               qualify is what gets someone to read the steps at all. */ ""}
@@ -3164,6 +3404,11 @@ function wireGuideInteractions(root) {
   // Related benefits keep their existing deep-link route.
   root.querySelectorAll(".related-chip[data-related-id]").forEach((btn) =>
     btn.addEventListener("click", () => setState("detail", { detailId: btn.dataset.relatedId }))
+  );
+
+  // The DTC guide links to the printable practitioner-visit preparation sheet.
+  root.querySelectorAll("[data-open-dtc-prep]").forEach((btn) =>
+    btn.addEventListener("click", () => navigateDtcPrep("detail"))
   );
 
   // Each inline guide owns its finder controls, so several open cards never clash.
