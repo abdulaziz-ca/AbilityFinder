@@ -247,6 +247,15 @@ const REQS = {
   canmore: { met: () => answers.city === "Canmore", fixed: true, unmet: "This is a Town of Canmore program." },
   lloydminster: { met: () => answers.city === "Lloydminster", fixed: true, unmet: "This is a City of Lloydminster program." },
   fortsask: { met: () => answers.city === "Fort Saskatchewan", fixed: true, unmet: "This is a City of Fort Saskatchewan program." },
+  vancouver: { met: () => answers.city === "Vancouver", fixed: true, unmet: "This is a City of Vancouver program." },
+  surrey: { met: () => answers.city === "Surrey", fixed: true, unmet: "This is a City of Surrey program." },
+  burnaby: { met: () => answers.city === "Burnaby", fixed: true, unmet: "This is a City of Burnaby program." },
+  richmondbc: { met: () => answers.city === "Richmond", fixed: true, unmet: "This is a City of Richmond program." },
+  victoria: { met: () => answers.city === "Victoria", fixed: true, unmet: "This is a City of Victoria program." },
+  saanich: { met: () => answers.city === "Saanich", fixed: true, unmet: "This is a District of Saanich program." },
+  kelowna: { met: () => answers.city === "Kelowna", fixed: true, unmet: "This is a City of Kelowna program." },
+  coquitlam: { met: () => answers.city === "Coquitlam", fixed: true, unmet: "This is a City of Coquitlam program." },
+  kamloops: { met: () => answers.city === "Kamloops", fixed: true, unmet: "This is a City of Kamloops program." },
   cityOther: {
     // Anywhere we DON'T have a verified municipal program → the 2-1-1 finder.
     // Add a city here the moment you add its program, or people get the generic

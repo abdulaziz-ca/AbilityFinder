@@ -2694,6 +2694,74 @@ const BENEFITS = [
     "detail": {
       "about": "Claim it when you file your T1 Income Tax Return using the British Columbia Credits form (BC479). You must claim within 3 years after the end of the tax year."
     }
+  },
+  {
+    "id": "vancouver-leisure-access",
+    "name": "Leisure Access Program (LAP)",
+    "level": "Vancouver",
+    "category": "Recreation",
+    "amount": "Free admission to pools and rinks, 50% off fitness centres and lessons, and a pass now valid for 3 years",
+    "summary": "Vancouver's low-income recreation pass. Swimming and skating admission are free, and most other Park Board recreation is half price.",
+    "requires": ["bc", "vancouver", "lowIncome"],
+    "requiresNote": "You must be a resident of the City of Vancouver. You qualify if you are a family with a child up to 17 who qualifies for the Child Disability Benefit, or if you, your spouse or partner, or a dependent aged 18 or older qualifies for the Disability Tax Credit. You can also qualify if you receive income assistance or another listed provincial or federal subsidy; are a client of a non-profit or government agency that can refer you; are an asylum seeker or temporary foreign worker; are a low-income resident who does not receive income assistance and cannot be referred; or are receiving Employment Insurance benefits in 2026/2027.",
+    "note": "Starting January 1, 2026, Leisure Access passes are valid for 3 years — a pass issued in 2026 does not expire until 2029. Note that UBC and the University Endowment Lands are not in the City of Vancouver.",
+    "applyText": "Apply for a Leisure Access pass",
+    "applyUrl": "https://vancouver.ca/parks-recreation-culture/leisure-access-card.aspx",
+    "source": "https://vancouver.ca/parks-recreation-culture/leisure-access-card.aspx",
+    "detail": {
+      "about": "What you get: 100% admission discount at indoor pools, outdoor pools and ice rinks; 100% skate rental discount for group lessons and public skating; 100% discount on Aquatics Academy courses; 50% discount on group swimming lessons and group skating lessons; 50% off fitness centres, indoor cycling, Flexipass, and racquetball and squash; 50% off one Community Centre Association program each season per facility; 50% off pitch and putt admission and club rentals; 50% off Bloedel Conservatory and VanDusen Botanical Garden admission or membership; 50% off Playland and the PNE; and the Vancouver Aquarium free visit pass followed by unlimited 50% admission. There is also a Mobi by Rogers seasonal bike share pass and a Lime e-scooter access program with a free unlock and reduced per-minute rate. Who cannot apply: immigrants classified as investors or entrepreneurs; anyone with interest and other investment income (line 12100) over $1,500, net rental income (line 12600) over $2,000, or capital gains (line 12700) over $2,000; and non-residents of the City of Vancouver."
+    }
+  },
+  {
+    "id": "surrey-leisure-access",
+    "name": "Leisure Access Program (LAP)",
+    "level": "Surrey",
+    "category": "Recreation",
+    "amount": "Free 1-year pass for ages 0-18 and 60+, or 75% off for adults 19-59, plus 75% off registered courses",
+    "summary": "Surrey's recreation subsidy. Children, youth and seniors get a free year-long pass to every City recreation facility; adults get three quarters off.",
+    "requires": ["bc", "surrey", "lowIncome"],
+    "requiresNote": "You must be a Surrey resident and qualify one of these ways: applying with income tax documents against the family size and income table; as a client of the Ministry of Social Development; with a Disability Tax Credit; as a senior receiving the Guaranteed Income Supplement; as a client of the Ministry of Children and Family Development; or as a refugee.",
+    "note": "Enrolment is valid for one year. If you apply with income tax documents, the family net income maximum (line 23600 of your Notice of Assessment) is $25,588 for a family of 1, $31,140 for 2, $38,777 for 3, $48,377 for 4, $55,089 for 5, $61,095 for 6, $67,099 for 7, and $6,006 more for each additional person.",
+    "applyText": "Apply for the Leisure Access Program",
+    "applyUrl": "https://www.surrey.ca/activities-parks-recreation/admissions-passes/leisure-access-program",
+    "source": "https://www.surrey.ca/activities-parks-recreation/admissions-passes/leisure-access-program",
+    "detail": {
+      "about": "Children 0 to 12, youth 13 to 18 and seniors 60 and older receive a free 1-year pass to all City of Surrey recreation facilities. Adults 19 to 59 receive a 75% discount on single admission, monthly or 1-year passes. Youth 10 to 18 and seniors 60 and over also receive a free one-year Youth/Seniors Services Membership Pass. Drop-in activities include fitness classes, gymnasium spots, the weight room, aquatic activities and skating including skate and helmet rentals. Members receive a 75% discount on most registered courses: during the year of enrolment children and youth 0 to 18 receive up to $500 in program discounts plus $500 in Semiahmoo Arts Society program discounts, while adults 19 to 59 and seniors 60 and over receive up to $250 plus $250 in Semiahmoo Arts Society discounts. Applicable day camps for children and youth get a 75% discount with no discount limit. A few specialty programs are not included."
+    }
+  },
+  {
+    "id": "burnaby-fair-play",
+    "name": "FAIR Play Program",
+    "level": "Burnaby",
+    "category": "Recreation",
+    "amount": "$250 credit per youth, adult or senior, $500 per child, plus an annual Be Active Pass for each family member",
+    "summary": "Burnaby gives every eligible family member a recreation credit AND a free annual Be Active Pass — the pass is on top of the credit, not paid for out of it.",
+    "requires": ["bc", "burnaby", "lowIncome"],
+    "requiresNote": "You must live in Burnaby and meet one of these: you receive federal or provincial government income assistance; you meet the income criteria; you are a child with a disability; you are a government or privately sponsored refugee; or you have an approved agency referral.",
+    "note": "You can apply once a year and the credit is valid for a year. Unused credit is removed when it expires and has no cash value. The FAIR Play Program replaced the older Recreation Credit Program on March 1, 2024.",
+    "applyText": "Apply for FAIR Play",
+    "applyUrl": "https://www.burnaby.ca/services-and-payments/seniors-and-family-support/fair-play-program",
+    "source": "https://www.burnaby.ca/services-and-payments/seniors-and-family-support/fair-play-program",
+    "detail": {
+      "about": "Each eligible family member receives a Be Active Pass, and the dollar credit is in addition to it — you do not need to spend the credit to get a pass. The credit is $250 per person, or $500 for children up to the age of 14. It can be used for activity registrations and also for non-Be Active passes, a Seniors' membership, a Burnaby Village Museum membership, skate and helmet rentals, and childminding. It cannot be used for golf, personal training, birthday parties, drop-in admissions, or merchandise other than supplies required for a registered activity. Burnaby Community Services can help with translation, gathering documents and completing the application."
+    }
+  },
+  {
+    "id": "richmond-rec-fee-subsidy",
+    "name": "Recreation Fee Subsidy Program (RFSP)",
+    "level": "Richmond",
+    "category": "Recreation",
+    "amount": "Unlimited free drop-in admission plus 90% off registered programs, up to $300 a year for children and youth or $100 a year for adults and seniors",
+    "summary": "Richmond's recreation subsidy for residents in financial hardship — free drop-ins with no cap, and nine tenths off most registered programs.",
+    "requires": ["bc", "richmondbc", "lowIncome"],
+    "requiresNote": "You must live in Richmond and be in financial hardship, which the City defines as having difficulty paying for basic living costs such as food, clothing and housing, without savings or other financial resources.",
+    "note": "The 90% discount on registered programs is capped at $300 per year in subsidy for children and youth 18 and under, and $100 per year for adults and seniors 19 and over. Free drop-in admission is not capped.",
+    "applyText": "Apply for the Recreation Fee Subsidy",
+    "applyUrl": "https://www.richmond.ca/culture/social/accessibility/subsidies/recreation-fee.htm",
+    "source": "https://www.richmond.ca/culture/social/accessibility/subsidies/recreation-fee.htm",
+    "detail": {
+      "about": "Participants get unlimited free admission to many drop-in programs and services, a 90 per cent discount on most registered parks, recreation and cultural programs offered by the City of Richmond and by Community Associations and Societies, and select opportunities at the Richmond Olympic Oval."
+    }
   }
 
 ];
