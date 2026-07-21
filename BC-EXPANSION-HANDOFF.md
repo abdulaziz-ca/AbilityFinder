@@ -5,9 +5,9 @@ have been folded into `HANDOFF.md` / `ROADMAP.md`.
 
 ## Status in one line
 
-29 BC programs are merged into `public/data.js` and **completely hidden** behind
+34 BC programs are merged into `public/data.js` and **completely hidden** behind
 `BC_ENABLED = false` in `public/app.js`. BC is **not launchable yet** only because
-roughly 20 candidates remain unverified; the blocking bug is cleared.
+roughly 15 candidates remain unverified; the blocking bug is cleared.
 
 ## Launch decisions already made (owner)
 
@@ -54,7 +54,7 @@ usually live in the **BCEA rate tables**, not on program pages — cite the rate
 - Health Supplements and Programs Rate Table
 - General Supplements and Programs Rate Table
 
-## What is verified and merged (29 entries)
+## What is verified and merged (34 entries)
 
 Batch 1 — `bc-disability-assistance-pwd`, `bc-autism-funding-under-6`,
 `bc-autism-funding-6-18`, `bc-cy-disability-benefit`, `bc-monthly-nutritional-supplement`,
@@ -71,6 +71,11 @@ Batch 3 — `bc-pwd-designation`, `bc-fair-pharmacare`, `bc-pharmacare-plan-c`,
 `taxi-saver-bctransit`.
 
 Batch 4 — `bc-at-home-medical`, `bc-supported-child-development`.
+
+Batch 5 (verified and merged 2026-07-21) — `bc-access-grant-students-disabilities`,
+`bc-supplemental-bursary-students-disabilities`,
+`bc-assistance-program-students-disabilities`,
+`bc-learning-disability-assessment-bursary`, `bc-access-grant-deaf-students`.
 
 ### Facts confirmed against official sources
 
@@ -123,6 +128,17 @@ Batch 4 — `bc-at-home-medical`, `bc-supported-child-development`.
   assessed as dependent in at least three of four activities of daily living. Benefits
   and Plan F end on the last day of the month the youth turns 18. New families can apply
   until March 2027.
+- B.C. Access Grant for Students with Disabilities: up to **$1,560 per program year**,
+  which is **$30 per week of study**. It is full-time only and non-repayable. It replaces
+  B.C. student loan funding rather than adding to it.
+- B.C. Supplemental Bursary: **$800 per program year** for full-time study at a course
+  load of 40 percent or more, or **$400** for part-time study at 20 to 39 percent. It is
+  non-repayable.
+- B.C. Assistance Program for Students with Disabilities: up to **$10,000**, or
+  **$12,000** if an attendant is required at school, for exceptional education-related
+  services and adaptive equipment.
+- Learning Disability Assessment Bursary: up to **$3,500** for the up-front cost of the
+  assessment.
 
 ### Corrections already applied (research had these wrong)
 
@@ -181,6 +197,33 @@ Batch 4 — `bc-at-home-medical`, `bc-supported-child-development`.
   had asserted that it was free with extra staffing. If a future pass finds an official
   page stating those facts, the entry can be enriched.
 
+### Corrections and constraints found in batch 5
+
+- **The B.C. Access Grant for Deaf Students is not general funding for deaf students in
+  B.C.** The only eligible schools are Gallaudet University in Washington, D.C. and the
+  National Technical Institute for the Deaf in Rochester, New York. It also requires a
+  full-time course load of 60 percent or more, verified disability status, and
+  demonstrated financial need. No dollar amount is published, so the entry states none.
+  The research had described it as general grant funding based on assessed need, which
+  would have badly misled users.
+- Institution type varies per program and the research captured none of it. The Access
+  Grant and the Supplemental Bursary are for B.C. public post-secondary institutions
+  only. The Assistance Program covers designated private or public institutions. The
+  Learning Disability Assessment Bursary is for designated public institutions only.
+- The Assistance Program is a top-up of last resort. A student can receive it only after
+  using all available funds through the federal Canada Student Grant for Services and
+  Equipment. Its page does not say whether the **$10,000** and **$12,000** figures are
+  annual or lifetime, so the entry does not claim "per year."
+- Only the Access Grant and the Supplemental Bursary are explicitly described as
+  non-repayable on their pages. The other three do not state repayment terms, so those
+  entries make no repayment claim. Do not add one without checking.
+- The Supplemental Bursary has a transition rule. Students at a non-public school in
+  2025/26 who already received it may request to continue until they finish their program
+  or until 2029-07-31.
+- The Learning Disability Assessment Bursary requires the school accessibility services
+  office to have recommended the assessment. That recommendation is part of eligibility,
+  not a formality.
+
 ### Time-sensitive BC transition — keep these in sync
 
 BC is mid-restructure of children's disability programs:
@@ -197,18 +240,11 @@ launch and again after 2027-04-01.
 
 ## Remaining work
 
-1. **Verify roughly 20 remaining candidates**, then merge. The count is down from 24:
-   two candidates were merged in batch 4, `bc-at-home-respite` was dropped as
-   nonexistent, and two research candidates are duplicates of entries already merged and
-   must be skipped:
+1. **Verify roughly 15 remaining candidates**, then merge. Batch 5 is done. Two
+   research candidates are duplicates of entries already merged and must be skipped:
    - `workbc-assistive-technology` duplicates `bc-workbc-assistive-technology`.
    - `bc-medical-equipment-supplement` duplicates `bc-medical-equipment-devices`.
 2. **Resume with these remaining batches:**
-   - **Batch 5 — StudentAid BC education, 5 candidates:**
-     `bc-access-grant-students-disabilities`,
-     `bc-supplemental-bursary-students-disabilities`,
-     `bc-assistance-program-students-disabilities`,
-     `bc-learning-disability-assessment-bursary`, `bc-access-grant-deaf-students`.
    - **Batch 6 — work, tax, and fees, 5 candidates:**
      `bc-workbc-employment-services`, `bc-property-tax-deferment-disabilities`,
      `bc-fuel-tax-refund-disabilities`, `bc-icbc-disability-discount`,

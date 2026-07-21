@@ -2431,6 +2431,101 @@ const BENEFITS = [
     }
   },
   {
+    "id": "bc-access-grant-students-disabilities",
+    "needsPractitioner": true,
+    "name": "B.C. Access Grant for Students with Disabilities",
+    "level": "British Columbia",
+    "category": "Education",
+    "amount": "Up to $1,560 per program year ($30 per week of study)",
+    "summary": "Non-repayable grant money that replaces B.C. student loans for full-time students with a disability, so you borrow less.",
+    "requires": ["bc", "student"],
+    "requiresNote": "You are a full-time student at a B.C. public post-secondary school, you qualify for federal and provincial student financial aid, and you have a permanent disability, or a persistent or prolonged disability as defined by the Canada Student Financial Assistance Program.",
+    "note": "B.C. public post-secondary schools only. It replaces B.C. student loan funding with grant funding, so it lowers what you have to pay back.",
+    "applyText": "See how to apply for disability funding",
+    "applyUrl": "https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-students-disabilities",
+    "source": "https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-students-disabilities",
+    "verified": "2026-07-21",
+    "detail": {
+      "about": "This non-repayable grant replaces B.C. student loan funding with grant funding for eligible full-time students with a disability at B.C. public post-secondary schools, reducing the amount they borrow."
+    }
+  },
+  {
+    "id": "bc-supplemental-bursary-students-disabilities",
+    "needsPractitioner": true,
+    "name": "B.C. Supplemental Bursary for Students with Disabilities",
+    "level": "British Columbia",
+    "category": "Education",
+    "amount": "$800 per program year full-time, or $400 per program year part-time",
+    "summary": "A non-repayable bursary to help with the cost of post-secondary education for students with a permanent, or persistent or prolonged, disability. Full-time and part-time students both qualify.",
+    "requires": ["bc", "student"],
+    "requiresNote": "Full-time means a course load of 40% or more; part-time means 20% to 39%. Available to students attending B.C. public post-secondary schools only.",
+    "note": "There is a transition rule for students who were at a non-public school in 2025/26 and had already received this bursary — they may request to continue receiving it until they finish their program or until July 31, 2029.",
+    "applyText": "See how to apply for disability funding",
+    "applyUrl": "https://studentaidbc.ca/explore/grants-scholarships/bc-supplemental-bursary-students-disabilities",
+    "source": "https://studentaidbc.ca/explore/grants-scholarships/bc-supplemental-bursary-students-disabilities",
+    "verified": "2026-07-21",
+    "detail": {
+      "about": "This non-repayable bursary helps eligible full-time and part-time students with a permanent, or persistent or prolonged, disability pay post-secondary education costs at B.C. public post-secondary schools."
+    }
+  },
+  {
+    "id": "bc-assistance-program-students-disabilities",
+    "needsPractitioner": true,
+    "name": "B.C. Assistance Program for Students with Disabilities",
+    "level": "British Columbia",
+    "category": "Education",
+    "amount": "Up to $10,000, or up to $12,000 if an attendant is required at school",
+    "summary": "Funding for exceptional education-related services and adaptive equipment — the top-up you turn to once the federal services and equipment grant runs out.",
+    "requires": ["bc", "student"],
+    "requiresNote": "You are enrolled at a designated private or public post-secondary institution in B.C. and have a permanent disability, or a persistent or prolonged disability. It also covers students in developmental programs or courses.",
+    "note": "You can only receive this grant once you have used up all available funds through the Canada Student Grant for Services and Equipment – Students with Disabilities. Apply for that federal grant first. The page does not say whether these amounts are per year or a lifetime limit.",
+    "applyText": "See how to apply for disability funding",
+    "applyUrl": "https://studentaidbc.ca/explore/grants-scholarships/bc-assistance-program-students-disabilities",
+    "source": "https://studentaidbc.ca/explore/grants-scholarships/bc-assistance-program-students-disabilities",
+    "verified": "2026-07-21",
+    "detail": {
+      "about": "This grant funds exceptional education-related services and adaptive equipment after all available funding from the Canada Student Grant for Services and Equipment – Students with Disabilities has been used. Apply for the federal grant first. StudentAid BC does not state whether the listed limits are annual or lifetime amounts."
+    }
+  },
+  {
+    "id": "bc-learning-disability-assessment-bursary",
+    "needsPractitioner": true,
+    "name": "Learning Disability Assessment Bursary",
+    "level": "British Columbia",
+    "category": "Education",
+    "amount": "Up to $3,500",
+    "summary": "Covers the up-front cost of a learning disability assessment — the assessment that unlocks disability funding and academic accommodations in the first place.",
+    "requires": ["bc", "student"],
+    "requiresNote": "You qualify for student funding through StudentAid BC, you are enrolled full-time or part-time in post-secondary level courses at a designated public post-secondary institution in B.C., and the accessibility services office at your school has recommended that you have a learning disability assessment.",
+    "note": "The recommendation from your school's accessibility services office is part of the eligibility, so start there — contact the accessibility services office at the school you plan to attend.",
+    "applyText": "Contact your school's accessibility services office",
+    "applyUrl": "https://studentaidbc.ca/explore/grants-scholarships/learning-disability-assessment-bursary",
+    "source": "https://studentaidbc.ca/explore/grants-scholarships/learning-disability-assessment-bursary",
+    "verified": "2026-07-21",
+    "detail": {
+      "about": "This bursary covers up to $3,500 of the up-front cost of a learning disability assessment when the accessibility services office at an eligible B.C. public post-secondary institution recommends the assessment."
+    }
+  },
+  {
+    "id": "bc-access-grant-deaf-students",
+    "needsPractitioner": true,
+    "name": "B.C. Access Grant for Deaf Students",
+    "level": "British Columbia",
+    "category": "Education",
+    "amount": "Amount not published — StudentAid BC assesses it",
+    "summary": "Helps deaf and hard of hearing students with the extra cost of attending a specialized school that teaches in American Sign Language. It applies only to Gallaudet University in Washington, D.C. and the National Technical Institute for the Deaf in Rochester, New York — both in the United States.",
+    "requires": ["bc", "student"],
+    "requiresNote": "You are deaf or hard of hearing, your disability status is verified by StudentAid BC, you demonstrate financial need, you are enrolled in a full-time course load of 60% or more, and you are attending an eligible school. The only eligible schools are Gallaudet University in Washington, D.C. and the National Technical Institute for the Deaf in Rochester, New York.",
+    "note": "There is no separate application. If StudentAid BC has verified your disability status and you are attending one of the two eligible schools, they assess your eligibility automatically.",
+    "applyText": "Learn more at StudentAid BC",
+    "applyUrl": "https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-deaf-students",
+    "source": "https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-deaf-students",
+    "verified": "2026-07-21",
+    "detail": {
+      "about": "This grant is only for eligible deaf or hard of hearing students attending Gallaudet University in Washington, D.C. or the National Technical Institute for the Deaf in Rochester, New York. StudentAid BC assesses it automatically when disability status is verified and the student attends one of those two schools."
+    }
+  },
+  {
     "id": "bc-dental-supplement",
     "name": "Dental Supplements (Income & Disability Assistance)",
     "level": "British Columbia",
