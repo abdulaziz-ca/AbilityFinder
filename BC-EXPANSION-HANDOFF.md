@@ -5,9 +5,9 @@ have been folded into `HANDOFF.md` / `ROADMAP.md`.
 
 ## Status in one line
 
-34 BC programs are merged into `public/data.js` and **completely hidden** behind
+39 BC programs are merged into `public/data.js` and **completely hidden** behind
 `BC_ENABLED = false` in `public/app.js`. BC is **not launchable yet** only because
-roughly 15 candidates remain unverified; the blocking bug is cleared.
+9 candidates remain unverified; the blocking bug is cleared.
 
 ## Launch decisions already made (owner)
 
@@ -54,7 +54,7 @@ usually live in the **BCEA rate tables**, not on program pages — cite the rate
 - Health Supplements and Programs Rate Table
 - General Supplements and Programs Rate Table
 
-## What is verified and merged (34 entries)
+## What is verified and merged (39 entries)
 
 Batch 1 — `bc-disability-assistance-pwd`, `bc-autism-funding-under-6`,
 `bc-autism-funding-6-18`, `bc-cy-disability-benefit`, `bc-monthly-nutritional-supplement`,
@@ -76,6 +76,10 @@ Batch 5 (verified and merged 2026-07-21) — `bc-access-grant-students-disabilit
 `bc-supplemental-bursary-students-disabilities`,
 `bc-assistance-program-students-disabilities`,
 `bc-learning-disability-assessment-bursary`, `bc-access-grant-deaf-students`.
+
+Batch 6 (verified and merged 2026-07-21) — `bc-workbc-employment-services`,
+`bc-fuel-tax-refund-disabilities`, `bc-icbc-disability-discount`,
+`bc-property-tax-deferment-disabilities`, `bc-sales-tax-credit`.
 
 ### Facts confirmed against official sources
 
@@ -139,6 +143,25 @@ Batch 5 (verified and merged 2026-07-21) — `bc-access-grant-students-disabilit
   services and adaptive equipment.
 - Learning Disability Assessment Bursary: up to **$3,500** for the up-front cost of the
   assessment.
+- Fuel Tax Refund for Persons with Disabilities: up to **$500 per calendar year** for a
+  qualifying registered vehicle, plus a **25 percent discount** off ICBC basic Autoplan
+  insurance, including for electric vehicles. The person must register with the Ministry
+  of Finance and be confirmed before claiming a refund.
+- B.C. Sales Tax Credit: up to **$75** for the claimant and **$75** for a cohabiting spouse
+  or common-law partner. It is reduced by 2 percent of net income over **$15,000** for a
+  single person, or 2 percent of family net income over **$18,000** for couples. It is a
+  refundable credit claimed on the T1 return using form BC479, within three years of the
+  end of the tax year.
+- Property Tax Deferment: qualification is through the PWD designation under the
+  Employment and Assistance for Persons with Disabilities Act. The owner must maintain
+  minimum equity of 25 percent of the assessed value, so charges plus deferred taxes
+  cannot exceed 75 percent of the BC Assessment value. The fees are a **$60 application
+  fee** and a **$10 annual renewal fee**, with no interest charged on those fees.
+- WorkBC Employment Services is free and includes academic upgrading, sector-specific
+  training, work experience placements and wage subsidies lasting from a few weeks up to
+  12 months, equipment and devices that reduce work-related barriers, transportation
+  supports, and dependent care supports. For clients with disabilities, the job-search
+  service includes working with employers to carve or customize jobs.
 
 ### Corrections already applied (research had these wrong)
 
@@ -224,6 +247,31 @@ Batch 5 (verified and merged 2026-07-21) — `bc-access-grant-students-disabilit
   office to have recommended the assessment. That recommendation is part of eligibility,
   not a formality.
 
+### Corrections and constraints found in batch 6
+
+- **NO INTEREST-RATE PERCENTAGE WAS PUT IN THE PROPERTY TAX DEFERMENT ENTRY,
+  DELIBERATELY.** The research had 6.45 percent. The rate is set at 2 percent above the
+  prime rate of the government's principal banker, and the published rate only holds
+  until 2026-09-30, so a hardcoded figure would rot. The entry states the prime-plus-2-
+  percent formula and tells the user to check the current rate. Keep it that way.
+- The research claim that the program defers "100 percent" of annual property taxes was
+  not verified. The eligibility page states no percentage, so the entry does not claim
+  one.
+- The 25 percent minimum equity requirement was missing from the research entirely and is
+  a real gate. It is now in the entry.
+- The ICBC discount could not be verified on ICBC's own page, which loads its content
+  dynamically and returned nothing readable. Every fact in that entry comes from the B.C.
+  government fuel tax refund page, which states the 25 percent discount. Broker-visit
+  document lists and any minimum age rule were not verified and are not in the entry.
+- The ICBC discount and the fuel tax refund are one pathway, not two independent programs.
+  Both entries cross-reference each other so users register once.
+- The B.C. Sales Tax Credit is not a disability program. It is a general low-income
+  refundable credit that phases out at a low income. The entry says so plainly rather
+  than implying disability relevance.
+- WorkBC Assistive Technology Services was already merged separately as
+  `bc-workbc-assistive-technology`. The new employment services entry points to it rather
+  than duplicating it.
+
 ### Time-sensitive BC transition — keep these in sync
 
 BC is mid-restructure of children's disability programs:
@@ -240,23 +288,19 @@ launch and again after 2027-04-01.
 
 ## Remaining work
 
-1. **Verify roughly 15 remaining candidates**, then merge. Batch 5 is done. Two
-   research candidates are duplicates of entries already merged and must be skipped:
+1. **Batches 5 and 6 are done. The only remaining catalog work is Batch 7 — municipal
+   recreation, 9 candidates:** `vancouver-leisure-access`, `surrey-leisure-access`,
+   `burnaby-fair-play`, `richmond-rec-fee-subsidy`, `victoria-life`, `saanich-life`,
+   `kelowna-recreation-assistance`, `coquitlam-far`, `kamloops-arch`. These are municipal
+   programs on city websites, not gov.bc.ca. Each candidate needs its own official city
+   page verified before merge.
+2. Two research candidates are duplicates of entries already merged and must be skipped:
    - `workbc-assistive-technology` duplicates `bc-workbc-assistive-technology`.
    - `bc-medical-equipment-supplement` duplicates `bc-medical-equipment-devices`.
-2. **Resume with these remaining batches:**
-   - **Batch 6 — work, tax, and fees, 5 candidates:**
-     `bc-workbc-employment-services`, `bc-property-tax-deferment-disabilities`,
-     `bc-fuel-tax-refund-disabilities`, `bc-icbc-disability-discount`,
-     `bc-sales-tax-credit`.
-   - **Batch 7 — municipal recreation, 9 candidates:** `vancouver-leisure-access`,
-     `surrey-leisure-access`, `burnaby-fair-play`, `richmond-rec-fee-subsidy`,
-     `victoria-life`, `saanich-life`, `kelowna-recreation-assistance`, `coquitlam-far`,
-     `kamloops-arch`.
    The raw research file is gitignored, and **`test-results/` is wiped by every e2e
    run**, so the master copy of `bc-research.json` now lives only in the session
    scratchpad.
-3. **Launch sequence** once items 1 and 2 are done:
+3. **Launch sequence** once Batch 7 is done:
    - Run the BC gate: `npx playwright test e2e/bc-dryrun.spec.js` — 4 tests must pass.
    - Flip `BC_ENABLED = true` in `public/app.js`.
    - Update the static scope strings marked with `SCOPE:` comments in

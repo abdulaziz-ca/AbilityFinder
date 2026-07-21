@@ -2615,6 +2615,85 @@ const BENEFITS = [
       "time": "Varies by request; contact ATS for current timelines",
       "phone": "1-844-453-5506"
     }
+  },
+  {
+    "id": "bc-workbc-employment-services",
+    "name": "WorkBC Employment Services",
+    "level": "British Columbia",
+    "category": "Work",
+    "amount": "Free — including skills training, wage subsidies, assistive technology, and transportation and dependent-care supports",
+    "summary": "BC's free public employment service. Help finding work, paid training, and practical supports that remove the barriers around a job, with services built specifically for people with disabilities.",
+    "requires": ["bc"],
+    "requiresNote": "Check whether you are eligible by applying online at apply.workbc.ca. Staff can support you in completing your application.",
+    "note": "For clients with disabilities, the job search service includes working with employers to carve or customize jobs to meet your needs. Assistive technology funding is covered separately in the related WorkBC Assistive Technology Services program already in this catalog.",
+    "applyText": "Apply online at WorkBC",
+    "applyUrl": "https://www.workbc.ca/discover-employment-services/workbc-centres",
+    "source": "https://www.workbc.ca/discover-employment-services/workbc-centres",
+    "detail": {
+      "about": "WorkBC centres provide a wide range of free employment services: resume and cover letter help, interview preparation and job boards; high school diploma and other academic upgrading and sector-specific training; work experience placements and wage subsidies lasting from a few weeks to up to 12 months; equipment and devices to reduce work-related barriers; transportation supports to travel to attend job interviews, training or work; and dependent care supports to cover childcare."
+    }
+  },
+  {
+    "id": "bc-fuel-tax-refund-disabilities",
+    "name": "Fuel Tax Refund for Persons with Disabilities",
+    "level": "British Columbia",
+    "category": "Transit",
+    "amount": "Up to $500 per calendar year for a registered vehicle, plus a 25% discount off ICBC basic Autoplan insurance",
+    "summary": "Refunds provincial fuel tax on a vehicle you own, lease or have an ownership interest in — and registering also unlocks a 25% discount on your basic ICBC insurance.",
+    "requires": ["bc"],
+    "requiresNote": "You must own or lease a vehicle, or have an ownership interest in a vehicle, and confirm your disability one of these ways: a B.C. Disability Assistance Certification; a letter from BCANDS for Social Assistance for Persons with Disability; a Veterans' Affairs letter confirming a 100% disability pension; a CNIB letter confirming permanent sight impairment; or medical certification of loss of a limb, wheelchair dependence, loss of function in a lower limb, a movement impairment that makes public transit hazardous, a mental disability that makes public transit hazardous, or sight impairment that prevents you from holding a driver's licence.",
+    "note": "Register FIRST — you can apply for a refund only after your registration is confirmed. You register with the Ministry of Finance online or by downloadable form, then receive a registration confirmation letter, then claim refunds.",
+    "applyText": "Register for the fuel tax refund",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities",
+    "source": "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities"
+  },
+  {
+    "id": "bc-icbc-disability-discount",
+    "name": "ICBC Disability Discount (Basic Autoplan)",
+    "level": "British Columbia",
+    "category": "Transit",
+    "amount": "25% off ICBC basic Autoplan insurance, including electric vehicles",
+    "summary": "A quarter off the basic part of your vehicle insurance. It comes with registering for the provincial fuel tax refund program, so the two go together.",
+    "requires": ["bc"],
+    "requiresNote": "You qualify by registering for the Fuel Tax Refund Program for Persons with Disabilities — the same disability confirmations listed there apply.",
+    "note": "Register for bc-fuel-tax-refund-disabilities first, then talk to an Autoplan broker about applying the discount to your policy.",
+    "applyText": "Start with the fuel tax refund program",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities",
+    "source": "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities"
+  },
+  {
+    "id": "bc-property-tax-deferment-disabilities",
+    "name": "Property Tax Deferment for Persons with Disabilities",
+    "level": "British Columbia",
+    "category": "Tax",
+    "amount": "A low-interest provincial loan that pays your annual property taxes; interest is 2% above the prime rate, plus a $60 application fee and a $10 annual renewal fee",
+    "summary": "Instead of paying your property taxes each year, the province pays them and registers a loan against your home. You repay when you sell or transfer it.",
+    "requires": ["bc"],
+    "requiresNote": "You must be designated as a person with disabilities under the Employment and Assistance for Persons with Disabilities Act — a severe mental or physical impairment likely to continue at least two years that directly and significantly restricts your ability to perform daily living activities and requires an assistive device, supervision, or the services of an assistance animal. You must also have and maintain a minimum equity of 25 percent of the property's assessed value.",
+    "note": "The 25 percent equity rule means your charges plus deferred taxes cannot exceed 75 percent of the BC Assessment value of your home. Interest compounds monthly for taxes deferred for the 2026 and later tax years. You are not charged interest on the application or renewal fees.",
+    "applyText": "Check eligibility and apply",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/property-tax-deferment-program/eligibility",
+    "source": "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/property-tax-deferment-program/eligibility",
+    "detail": {
+      "about": "Interest is charged at an annual rate of 2 percent above the prime rate of the government's principal banker. The rate is reset periodically, so check the current rate on the government's interest and fees page before you decide. There is a $60 administrative fee when you first apply and a $10 fee each year you renew."
+    }
+  },
+  {
+    "id": "bc-sales-tax-credit",
+    "name": "B.C. Sales Tax Credit",
+    "level": "British Columbia",
+    "category": "Tax",
+    "amount": "Up to $75 for yourself and $75 for a cohabiting spouse or common-law partner",
+    "summary": "A small refundable credit you claim on your tax return. It is not a disability program, but it is easy money for people on a low income who file.",
+    "requires": ["bc", "lowIncome"],
+    "requiresNote": "You were a B.C. resident on December 31 and were either 19 or older, or had a spouse or common-law partner, or were a parent.",
+    "note": "The credit is reduced by 2% of your net income over $15,000 if you are single, or 2% of family net income over $18,000 for couples, so it phases out at a low income. It is refundable to the extent it exceeds the income tax you owe, which means you can get it even if you owe no tax.",
+    "applyText": "See how to claim it",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/sales-tax",
+    "source": "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/sales-tax",
+    "detail": {
+      "about": "Claim it when you file your T1 Income Tax Return using the British Columbia Credits form (BC479). You must claim within 3 years after the end of the tax year."
+    }
   }
 
 ];
