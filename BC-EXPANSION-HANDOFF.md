@@ -5,9 +5,10 @@ have been folded into `HANDOFF.md` / `ROADMAP.md`.
 
 ## Status in one line
 
-39 BC programs are merged into `public/data.js` and **completely hidden** behind
-`BC_ENABLED = false` in `public/app.js`. BC is **not launchable yet** only because
-9 candidates remain unverified; the blocking bug is cleared.
+All 51 researched BC candidates are resolved. 48 entries are merged into
+`public/data.js` and **completely hidden** behind `BC_ENABLED = false` in
+`public/app.js`. BC is no longer blocked by research. What remains is the launch
+sequence itself, which is an owner decision.
 
 ## Launch decisions already made (owner)
 
@@ -54,7 +55,7 @@ usually live in the **BCEA rate tables**, not on program pages — cite the rate
 - Health Supplements and Programs Rate Table
 - General Supplements and Programs Rate Table
 
-## What is verified and merged (39 entries)
+## What is verified and merged (48 entries)
 
 Batch 1 — `bc-disability-assistance-pwd`, `bc-autism-funding-under-6`,
 `bc-autism-funding-6-18`, `bc-cy-disability-benefit`, `bc-monthly-nutritional-supplement`,
@@ -80,6 +81,28 @@ Batch 5 (verified and merged 2026-07-21) — `bc-access-grant-students-disabilit
 Batch 6 (verified and merged 2026-07-21) — `bc-workbc-employment-services`,
 `bc-fuel-tax-refund-disabilities`, `bc-icbc-disability-discount`,
 `bc-property-tax-deferment-disabilities`, `bc-sales-tax-credit`.
+
+Batch 7 was split into two commits:
+
+- Batch 7a — `vancouver-leisure-access`, `surrey-leisure-access`,
+  `burnaby-fair-play`, `richmond-rec-fee-subsidy`.
+- Batch 7b — `victoria-life`, `saanich-life`, `kelowna-recreation-assistance`,
+  `coquitlam-far`, `kamloops-arch`.
+
+### Municipal gating (new machinery, batch 7a)
+
+Nine BC city requirement keys were added to the `REQUIREMENTS` map in
+`public/app.js`, matching the existing Alberta city-gate pattern: `vancouver`,
+`surrey`, `burnaby`, `richmondbc`, `victoria`, `saanich`, `kelowna`, `coquitlam`,
+and `kamloops`. The Richmond key is deliberately named `richmondbc` to avoid any
+collision.
+
+Every municipal entry carries both `"bc"` and its city key in `requires`, and its
+`level` is the exact city name from `BC_CITIES`. Both matter: `benefitProvince()`
+keys off `"bc"`, and the `BC_ENABLED` generator filter keys off `level`.
+
+VERIFIED WORKING: the BC gate run shows a BC adult in Vancouver sees exactly one
+municipal program, Vancouver Leisure Access, and none of the other eight cities.
 
 ### Facts confirmed against official sources
 
@@ -272,6 +295,30 @@ Batch 6 (verified and merged 2026-07-21) — `bc-workbc-employment-services`,
   `bc-workbc-assistive-technology`. The new employment services entry points to it rather
   than duplicating it.
 
+### Corrections and constraints found in batch 7
+
+- All nine city sites (`vancouver.ca`, `surrey.ca`, `burnaby.ca`, `richmond.ca`,
+  `victoria.ca`, `saanich.ca`, `kelowna.ca`, `coquitlam.ca`, and `kamloops.ca`)
+  return HTTP 403 to plain fetches. They were read through the in-app browser pane
+  instead. Vancouver additionally shows a bot-verification interstitial that clears
+  itself after a few seconds. Expect to use the browser pane for any future municipal
+  work.
+- The Disability Tax Credit is itself a qualifying route for Vancouver and Surrey.
+  Vancouver also accepts a family with a child up to 17 who qualifies for the Child
+  Disability Benefit. These are the strongest disability hooks in the municipal set.
+- Burnaby's disability route is specifically a child with a disability, not adults. The
+  entry says so.
+- Vancouver Leisure Access passes became valid for three years on January 1, 2026. A pass
+  issued in 2026 does not expire until 2029.
+- Victoria and Saanich program credits cover the full two-year term, not per year. Saying
+  "per year" would overstate them.
+- Kelowna has no dollar figure in the entry. The City publishes the credit amount only
+  inside a collapsed FAQ that could not be read. Do not add a figure without verifying
+  it. The claim that it is renewed yearly was also not verified and is not in the entry.
+- Coquitlam accepts a red Compass Card as proof of income, which is the same concession
+  card BC transit riders already carry.
+- Kamloops ARCH and KamPASS, the affordable transit program, share one application.
+
 ### Time-sensitive BC transition — keep these in sync
 
 BC is mid-restructure of children's disability programs:
@@ -288,29 +335,32 @@ launch and again after 2027-04-01.
 
 ## Remaining work
 
-1. **Batches 5 and 6 are done. The only remaining catalog work is Batch 7 — municipal
-   recreation, 9 candidates:** `vancouver-leisure-access`, `surrey-leisure-access`,
-   `burnaby-fair-play`, `richmond-rec-fee-subsidy`, `victoria-life`, `saanich-life`,
-   `kelowna-recreation-assistance`, `coquitlam-far`, `kamloops-arch`. These are municipal
-   programs on city websites, not gov.bc.ca. Each candidate needs its own official city
-   page verified before merge.
-2. Two research candidates are duplicates of entries already merged and must be skipped:
-   - `workbc-assistive-technology` duplicates `bc-workbc-assistive-technology`.
-   - `bc-medical-equipment-supplement` duplicates `bc-medical-equipment-devices`.
-   The raw research file is gitignored, and **`test-results/` is wiped by every e2e
-   run**, so the master copy of `bc-research.json` now lives only in the session
-   scratchpad.
-3. **Launch sequence** once Batch 7 is done:
-   - Run the BC gate: `npx playwright test e2e/bc-dryrun.spec.js` — 4 tests must pass.
-   - Flip `BC_ENABLED = true` in `public/app.js`.
-   - Update the static scope strings marked with `SCOPE:` comments in
-     `public/index.html`, `public/embed.html`, and `scripts/gen-guide-pages.js`
-     (see the Province launch checklist in `DEPLOY.md`).
-   - `npm run gen:context` (assistant grounding) and `npm run gen:guides` (SEO pages
-     and sitemap) — both currently Alberta-only by design.
-   - Add BC cities to whatever the impact page counts as covered municipalities.
-   - `npm test`, `npm run test:e2e`, `npx wrangler deploy --dry-run`, then push.
-   - Confirm live by content marker, not by HTTP status.
+Candidate verification is complete. All 51 researched candidates are resolved. The two
+research duplicates were correctly skipped:
+
+- `workbc-assistive-technology` duplicates `bc-workbc-assistive-technology`.
+- `bc-medical-equipment-supplement` duplicates `bc-medical-equipment-devices`.
+
+The researched candidate `bc-at-home-respite` was dropped because the program does not
+exist. The raw research file is gitignored, and **`test-results/` is wiped by every e2e
+run**, so the master copy of `bc-research.json` now lives only in the session scratchpad.
+
+The only remaining item is the launch sequence, which needs an owner go-ahead:
+
+1. Run the BC gate: `npx playwright test e2e/bc-dryrun.spec.js` — 4 tests must pass.
+2. Flip `BC_ENABLED` to `true` in `public/app.js`.
+3. Update the static scope strings marked `SCOPE:` in `public/index.html`,
+   `public/embed.html`, and `scripts/gen-guide-pages.js`.
+4. Run `npm run gen:context` and `npm run gen:guides`. Both now respect the flag, so
+   flipping it will add 48 BC entries to the assistant grounding context and generate BC
+   guide pages and sitemap entries. Expect a large diff. That is correct, not a bug.
+5. Add BC cities to whatever the impact page counts as covered municipalities.
+6. Run `npm test`, `npm run test:e2e`, and `npx wrangler deploy --dry-run`, then push.
+7. Confirm live by content marker, not by HTTP status.
+
+Immediately before launch, re-verify the autism funding and Children and Youth Disability
+Benefit cluster. Re-verify it again after April 1, 2027. Re-check the Canada Student Grant
+temporary increase before July 31, 2027.
 
 ## Machinery notes (saves rediscovery)
 

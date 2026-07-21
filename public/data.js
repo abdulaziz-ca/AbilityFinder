@@ -2762,6 +2762,88 @@ const BENEFITS = [
     "detail": {
       "about": "Participants get unlimited free admission to many drop-in programs and services, a 90 per cent discount on most registered parks, recreation and cultural programs offered by the City of Richmond and by Community Associations and Societies, and select opportunities at the Richmond Olympic Oval."
     }
+  },
+  {
+    "id": "victoria-life",
+    "name": "L.I.F.E. Program (Leisure Involvement For Everyone)",
+    "level": "Victoria",
+    "category": "Recreation",
+    "amount": "Two years of unlimited free drop-ins, 52 free regional drop-ins a year, plus a program credit of $80 to $120 depending on age",
+    "summary": "Victoria's low-income recreation membership. It runs two years from your approval date, not by calendar year, and covers pool, skating and regional partner facilities.",
+    "requires": ["bc", "victoria", "lowIncome"],
+    "requiresNote": "You must be a City of Victoria resident with a fixed address, have lived there for the previous 30 days, and be able to demonstrate proof of residency. Household income must be at or below the Statistics Canada low-income threshold: $29,640 for 1 person, $38,493 for 2, $47,145 for 3, $55,076 for 4, $62,464 for 5, $70,451 for 6 and $78,436 for 7. All family members and dependants at the same address are included.",
+    "note": "Membership is valid for two years and the cycle begins on your approval date, so you do not have to apply in January. The registered-programming credit is for the whole two-year term, not per year.",
+    "applyText": "Apply for the L.I.F.E. Program",
+    "applyUrl": "https://www.victoria.ca/parks-recreation/recreation/accessibility-inclusion/life-program",
+    "source": "https://www.victoria.ca/parks-recreation/recreation/accessibility-inclusion/life-program",
+    "detail": {
+      "about": "Benefits include unlimited free drop-in sessions at Crystal Pool and Fitness Centre, unlimited drop-in public skating at Save-On-Foods Memorial Arena, and 52 free drop-in sessions a year at participating regional partner facilities — those 52 follow the calendar year and you need a new sticker each year. Credit toward registered programming for the two-year term is $80 per preschooler aged 0 to 5, $120 per youth aged 6 to 18, and $80 per adult aged 19 and over, usable at Crystal Pool and Fitness Centre or at community and senior centres in the municipality. Instead of unlimited Crystal Pool access you can choose to buy an Annual Regional Recreation Pass at 50% off, and your credit can go toward that; the second year of the membership returns to unlimited drop-ins. To apply, bring the L.I.F.E. Application Form, one per family at the same address; proof of Victoria residency, using a current utility bill, phone bill or rental agreement from within the last three months; and proof of income, using the most recent CRA Notice of Assessment for everyone over 19 in the household and line 15000. Applicants who cannot provide the documents may still apply using an adjudicator: a community member with a professional relationship to the applicant who can verify their financial and residential situation."
+    }
+  },
+  {
+    "id": "saanich-life",
+    "name": "L.I.F.E. Program (Leisure Involvement For Everyone)",
+    "level": "Saanich",
+    "category": "Recreation",
+    "amount": "Two years of free drop-ins at Saanich facilities plus a one-time grant of $80 to $120 toward registered programs",
+    "summary": "Saanich's version of the regional L.I.F.E. program. Approval lasts two years and you pick one of two benefit options.",
+    "requires": ["bc", "saanich", "lowIncome"],
+    "requiresNote": "You need proof of Saanich residency — a utility or phone bill dated within the last three months, a current signed rental agreement, or a current driver's licence or BC identification card. One proof covers the whole family. You also need a Canada Revenue Agency Proof of Income Statement for every household member 19 and over, even those who will not use the program; thresholds are based on their combined gross income. Newcomers to Canada without that statement can apply with landing papers showing a landing date within one year of applying.",
+    "note": "Approval is valid for two years from the date of approval, and the grant amounts below are for that whole two-year term — there are no further funds once the initial grant is used. Saanich only accepts CRA Proof of Income Statements, not Notices of Assessment. Allow at least 5 days between approval and registering, because grants take up to 5 days to appear on your account.",
+    "applyText": "Apply online for L.I.F.E.",
+    "applyUrl": "https://www.saanich.ca/EN/main/parks-recreation-community/community-services/financial-assistance/financial-assistance.html",
+    "source": "https://www.saanich.ca/EN/main/parks-recreation-community/community-services/financial-assistance/financial-assistance.html",
+    "detail": {
+      "about": "Approved clients choose between two options. Under the free-drop-ins-and-discounts option you get unlimited free drop-in sessions at Saanich facilities, swiping your pass every visit, plus 52 free drop-in sessions a year at participating Greater Victoria regional recreation centres including Panorama, West Shore, City of Victoria, Oak Bay, Esquimalt and SEAPARC — you must carry the regional 52-visit sticker, renewed each calendar year, and you do not get unlimited visits at those other centres. Grants for use at Saanich centres are $80 for adults 19 to 59, $80 for adults 60 and over, $120 for youth 13 to 18 and $120 for children 5 to 12. Adults 60 and over also get a free annual membership to one of the Silver Threads Les Passmore Centre, the Cordova Bay 55+ Association or the Goward House Society. Adults and youth also receive a free weight room orientation, and youth get two free weeks of Breakout Adventures Camps plus two free youth workshops or events across the two-year term. There may be some additional funds for children and youth after the initial grant is used, but they are not guaranteed."
+    }
+  },
+  {
+    "id": "kelowna-recreation-assistance",
+    "name": "Financial Assistance for Recreation (KFAP)",
+    "level": "Kelowna",
+    "category": "Recreation",
+    "amount": "A credit toward a Parkinson Recreation Centre pass or City programs",
+    "summary": "Kelowna's recreation subsidy for residents on a low income — a credit you spend on a facility pass or on programs.",
+    "requires": ["bc", "kelowna", "lowIncome", "citizenPR"],
+    "requiresNote": "You must be a Canadian citizen or permanent resident currently residing in Kelowna as a full-time resident, and meet the family net income threshold based on Statistics Canada's after-tax Low Income Cut-off: $31,264 for a family of 1, $38,922 for 2, $47,851 for 3, $58,096 for 4, $65,892 for 5, $74,315 for 6 and $82,739 for 7. People receiving government financial assistance qualify, as do people who do not receive it but are experiencing financial hardship and meet the guidelines.",
+    "note": "Apply by emailing the Access to Recreation Department. Assessment can take up to two weeks once all information is received. The income assessment counts income from all sources, including disability benefits and workers' compensation as well as employment, investments, pensions, child and foster child support, rental income and funds held in trust.",
+    "applyText": "Email Access to Recreation to apply",
+    "applyUrl": "https://www.kelowna.ca/parks-recreation/recreation-sport/recreation-programs-registration/financial-assistance-recreation",
+    "source": "https://www.kelowna.ca/parks-recreation/recreation-sport/recreation-programs-registration/financial-assistance-recreation"
+  },
+  {
+    "id": "coquitlam-far",
+    "name": "Financial Assistance for Recreation (FAR)",
+    "level": "Coquitlam",
+    "category": "Recreation",
+    "amount": "50 drop-in passes plus a $225 credit for every eligible family member",
+    "summary": "Coquitlam gives each eligible family member their own 50 drop-in passes and their own $225 credit toward City admissions, passes and programs.",
+    "requires": ["bc", "coquitlam", "lowIncome"],
+    "requiresNote": "You must be a Coquitlam resident and meet the 2025 Low Income Cut-off for your household size: $27,478 for 1 person, $34,206 for 2, $42,053 for 3, $51,058 for 4, $57,908 for 5, $65,313 for 6 and $72,715 for 7 or more. A family here means one or two married or common-law adults and their legal dependents aged 18 and younger.",
+    "note": "You can verify income four different ways: a CRA Income Statement (the Option C print, not a Notice of Assessment) for each family member who contributes to household income; OR the main applicant's proof of government assistance; OR the main applicant's proof of receiving a red Compass Card; OR a completed adjudicator or agency signature section on the application. You also need proof of Coquitlam residency dated within two months. The red Compass Card route is worth calling out — it is the same card BC transit concession holders already carry.",
+    "applyText": "Apply for Financial Assistance for Recreation",
+    "applyUrl": "https://www.coquitlam.ca/499/Financial-Assistance-for-Recreation",
+    "source": "https://www.coquitlam.ca/499/Financial-Assistance-for-Recreation",
+    "detail": {
+      "about": "Total family income means the combined before-tax income of all family members in Canada and abroad who contribute to household income and expenses, including employment of all types, investments, pensions, child support and foster child support, rental revenue, funds in trust, disability benefits, workers' compensation and foreign income. The City accepts redacted documents — you may black out a driver's licence number, a social insurance number or a bank account number before submitting."
+    }
+  },
+  {
+    "id": "kamloops-arch",
+    "name": "ARCH (Affordable Recreation for Community Health)",
+    "level": "Kamloops",
+    "category": "Recreation",
+    "amount": "Up to $400 in recreation credits per year",
+    "summary": "Kamloops' recreation subsidy — and the same application also gets you KamPASS, the City's affordable transit program, so one form covers both.",
+    "requires": ["bc", "kamloops", "lowIncome"],
+    "requiresNote": "You must be a permanent Kamloops resident who meets the income-based eligibility or assistance criteria.",
+    "note": "ARCH is an annual program and requires a new application each year. Applying for KamPASS, the City's affordable transit program, is done through the same ARCH application — so do not apply separately.",
+    "applyText": "Apply for ARCH",
+    "applyUrl": "https://www.kamloops.ca/parks-recreation/accessible-recreation/arch-program",
+    "source": "https://www.kamloops.ca/parks-recreation/accessible-recreation/arch-program",
+    "detail": {
+      "about": "The credits reduce the cost of fitness classes, activities, and facility memberships or drop-in services."
+    }
   }
 
 ];
