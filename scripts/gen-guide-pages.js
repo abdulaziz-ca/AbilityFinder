@@ -7,6 +7,7 @@ const vm = require("vm");
 const ROOT = path.join(__dirname, "..");
 const DATA = path.join(ROOT, "public", "data.js");
 const INDEX = path.join(ROOT, "public", "index.html");
+const APP = path.join(ROOT, "public", "app.js");
 const OUT_DIR = path.join(ROOT, "public", "guides");
 const SITEMAP = path.join(ROOT, "public", "sitemap.xml");
 
@@ -16,14 +17,34 @@ const ctx = { window: {}, document: {}, console };
 vm.createContext(ctx);
 vm.runInContext(
   fs.readFileSync(DATA, "utf8") +
-    '\n;globalThis.__B = typeof BENEFITS !== "undefined" ? BENEFITS : null;',
+    '\n;globalThis.__B = typeof BENEFITS !== "undefined" ? BENEFITS : null;' +
+    '\n;globalThis.__BC_CITIES = typeof BC_CITIES !== "undefined" ? BC_CITIES : null;',
   ctx
 );
-const benefits = ctx.__B;
-if (!Array.isArray(benefits) || benefits.length === 0) {
+const allBenefits = ctx.__B;
+if (!Array.isArray(allBenefits) || allBenefits.length === 0) {
   console.error("gen:guides — could not read BENEFITS from data.js");
   process.exit(1);
 }
+
+const appSource = fs.readFileSync(APP, "utf8");
+const bcEnabledMatch = /^const BC_ENABLED = (true|false);\s*$/m.exec(appSource);
+if (!bcEnabledMatch) {
+  throw new Error("gen:guides — could not find literal const BC_ENABLED = true/false in public/app.js");
+}
+const bcEnabled = bcEnabledMatch[1] === "true";
+const bcCities = ctx.__BC_CITIES;
+if (!Array.isArray(bcCities)) {
+  throw new Error("gen:guides — could not read BC_CITIES from data.js");
+}
+const benefitIsBritishColumbia = (b) =>
+  b.level === "British Columbia" || b.level === "Metro Vancouver" || bcCities.includes(b.level);
+const benefits = bcEnabled ? allBenefits : allBenefits.filter((b) => !benefitIsBritishColumbia(b));
+const excludedBenefits = allBenefits.length - benefits.length;
+console.log(
+  `BC_ENABLED=${bcEnabled} - excluded ${excludedBenefits} British Columbia entries, ` +
+    `generating ${benefits.length} ${bcEnabled ? "Alberta, British Columbia, and federal" : "Alberta and federal"} entries.`
+);
 
 const indexHtml = fs.readFileSync(INDEX, "utf8");
 const styleMatch = /<link\s+rel="stylesheet"\s+href="([^"]*styles\.css(?:\?v=[^"]+)?)"\s*\/>/.exec(indexHtml);

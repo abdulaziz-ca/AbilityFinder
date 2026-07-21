@@ -33,6 +33,7 @@ vm.createContext(ctx);
 vm.runInContext(
   fs.readFileSync(SRC, "utf8") +
     '\n;globalThis.__B = typeof BENEFITS !== "undefined" ? BENEFITS : null;' +
+    '\n;globalThis.__BC_CITIES = typeof BC_CITIES !== "undefined" ? BC_CITIES : null;' +
     '\n;globalThis.__HELP = typeof HELP_ORGS !== "undefined" ? HELP_ORGS : null;' +
     "\n" + fs.readFileSync(GRANTS_SRC, "utf8") +
     '\n;globalThis.__GRANTS = typeof GRANTS_DIRECTORY !== "undefined" ? GRANTS_DIRECTORY : null;' +
@@ -41,11 +42,30 @@ vm.runInContext(
   ctx
 );
 
-const benefits = ctx.__B;
-if (!Array.isArray(benefits) || benefits.length === 0) {
+const allBenefits = ctx.__B;
+if (!Array.isArray(allBenefits) || allBenefits.length === 0) {
   console.error("gen:context — could not read BENEFITS from data.js");
   process.exit(1);
 }
+
+const appSource = fs.readFileSync(APP, "utf8");
+const bcEnabledMatch = /^const BC_ENABLED = (true|false);\s*$/m.exec(appSource);
+if (!bcEnabledMatch) {
+  throw new Error("gen:context — could not find literal const BC_ENABLED = true/false in public/app.js");
+}
+const bcEnabled = bcEnabledMatch[1] === "true";
+const bcCities = ctx.__BC_CITIES;
+if (!Array.isArray(bcCities)) {
+  throw new Error("gen:context — could not read BC_CITIES from data.js");
+}
+const benefitIsBritishColumbia = (b) =>
+  b.level === "British Columbia" || b.level === "Metro Vancouver" || bcCities.includes(b.level);
+const benefits = bcEnabled ? allBenefits : allBenefits.filter((b) => !benefitIsBritishColumbia(b));
+const excludedBenefits = allBenefits.length - benefits.length;
+console.log(
+  `BC_ENABLED=${bcEnabled} - excluded ${excludedBenefits} British Columbia entries, ` +
+    `generating ${benefits.length} ${bcEnabled ? "Alberta, British Columbia, and federal" : "Alberta and federal"} entries.`
+);
 
 const clean = (s) => String(s ?? "").replace(/\s+/g, " ").trim();
 
@@ -74,9 +94,7 @@ const byId = new Map(benefits.map((b) => [b.id, b]));
 // "which form does my doctor sign" — the ungrounded model got this wrong too
 // (it called T2201 the "Medical Certificate"). Pull just that object literal
 // rather than evaluating app.js, which expects a DOM.
-const formsMatch = /const PRACTITIONER_FORMS = (\{[\s\S]*?\});/.exec(
-  fs.readFileSync(APP, "utf8")
-);
+const formsMatch = /const PRACTITIONER_FORMS = (\{[\s\S]*?\});/.exec(appSource);
 if (!formsMatch) {
   console.error("gen:context — could not find PRACTITIONER_FORMS in app.js");
   process.exit(1);
@@ -88,8 +106,8 @@ const lines = benefits.map((b) => {
   return `- ${clean(b.name)} [${where}] — ${clean(b.summary)}`;
 });
 
-const formLines = Object.entries(forms).map(([id, label]) => {
-  const name = byId.has(id) ? clean(byId.get(id).name) : id;
+const formLines = Object.entries(forms).filter(([id]) => byId.has(id)).map(([id, label]) => {
+  const name = clean(byId.get(id).name);
   return `- ${name}: a practitioner signs ${clean(label)}.`;
 });
 
