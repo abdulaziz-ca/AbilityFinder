@@ -28,7 +28,7 @@ const I18N = {
     "orgs.back": "Back",
     "orgs.kicker": "Community help",
     "orgs.title": "Organizations that can help",
-    "orgs.lede": "Independent organizations that help Albertans with disabilities and their families. AbilityFinder lists them free and takes no payment for listings.",
+    "orgs.lede": "Independent organizations that help {scopeResidents} with disabilities and their families. AbilityFinder lists them free and takes no payment for listings.",
     "orgs.region": "Region",
     "orgs.what": "What they do",
     "orgs.website": "Visit the organization",
@@ -36,7 +36,7 @@ const I18N = {
     "orgs.rules.h": "How this list works",
     "orgs.rules.1": "listings are free — we accept no payment for inclusion or placement",
     "orgs.rules.2": "organization-level services only, never individual practitioners",
-    "orgs.rules.3": "must serve Albertans with disabilities or their families",
+    "orgs.rules.3": "must serve {scopeResidents} with disabilities or their families",
     "orgs.rules.4": "must have a verifiable official website",
     "orgs.rules.5": "entries are reviewed before publishing and re-verified over time",
     "orgs.rules.6": "corrections, removals, and suggestions go through our feedback form",
@@ -129,7 +129,7 @@ const I18N = {
     "pro.title": "Use AbilityFinder with the people you support",
     "pro.lede": "A quick, private way for advisers, social workers, clinic staff, and educators to find disability benefits with a client.",
     "pro.what.h": "What AbilityFinder is",
-    "pro.what.p": "AbilityFinder is a free, independent directory and matching tool for more than 35 verified Alberta, federal, and municipal programs. Every benefit fact links to an official source and shows when it was last verified.",
+    "pro.what.p": "AbilityFinder is a free, independent directory and matching tool for more than 35 verified {scopeProgramList} programs. Every benefit fact links to an official source and shows when it was last verified.",
     "pro.use.h": "How to use it with a client",
     "pro.use.1": "Run the short wizard together. It takes only a few minutes and does not ask for a name.",
     "pro.use.2": "Open a result to read its full plain-language guide, steps, documents, and official link.",
@@ -149,7 +149,7 @@ const I18N = {
     "pro.contact.p": "Use the feedback form to report a barrier, suggest a program, or ask about organizational use.",
 
     "partner.kicker": "Partner overview",
-    "partner.title": "A private benefits navigator for disabled Albertans",
+    "partner.title": "A private benefits navigator for disabled {scopeResidents}",
     "partner.lede": "AbilityFinder turns scattered government benefit rules into a short questionnaire, tailored results, and practical application guides.",
     "partner.coverage.h": "Coverage",
     "partner.coverage.programs": "verified programs",
@@ -192,7 +192,7 @@ const I18N = {
     "dtcPrep.guideButton": "Prepare for your practitioner visit",
     "benefitsEnglishNote": "",
 
-    "land.eyebrow": "Alberta + federal benefits",
+    "land.eyebrow": "{scopeBenefits}",
     "land.title": "Every benefit you're owed, found in one minute.",
     "land.sub": "Government support for your disability is real money — but it's scattered across dozens of confusing pages. AbilityFinder asks a few simple questions and hands you the exact list you qualify for, with plain-language guides and direct links to apply.",
     "land.find": "Find my benefits",
@@ -206,7 +206,7 @@ const I18N = {
     "life.parent.p": "Find programs for your child and family.",
     "life.unable.h": "Can't work because of my disability",
     "life.unable.p": "Focus on income and employment-related supports.",
-    "life.alberta.h": "New to Alberta",
+    "life.alberta.h": "New to {scopeDestination}",
     "life.alberta.p": "Explore federal and provincial support from the start.",
     "life.helper.h": "Helping someone else",
     "life.helper.p": "Answer the questions for a family member you support.",
@@ -384,7 +384,7 @@ const I18N = {
     "orgs.back": "Retour",
     "orgs.kicker": "Aide communautaire",
     "orgs.title": "Organismes qui peuvent aider",
-    "orgs.lede": "Des organismes indépendants qui aident les personnes handicapées de l’Alberta et leurs familles. AbilityFinder les répertorie gratuitement et n’accepte aucun paiement pour les inscriptions.",
+    "orgs.lede": "Des organismes indépendants qui aident les personnes handicapées {scopeResidentsPrep} et leurs familles. AbilityFinder les répertorie gratuitement et n’accepte aucun paiement pour les inscriptions.",
     "orgs.region": "Région",
     "orgs.what": "Ce qu’ils font",
     "orgs.website": "Visiter le site de l’organisme",
@@ -392,7 +392,7 @@ const I18N = {
     "orgs.rules.h": "Fonctionnement de cette liste",
     "orgs.rules.1": "les inscriptions sont gratuites — nous n’acceptons aucun paiement pour l’inclusion ou le placement",
     "orgs.rules.2": "seulement des services offerts par des organismes, jamais des praticiens individuels",
-    "orgs.rules.3": "doit servir les personnes handicapées de l’Alberta ou leurs familles",
+    "orgs.rules.3": "doit servir les personnes handicapées {scopeResidentsPrep} ou leurs familles",
     "orgs.rules.4": "doit avoir un site Web officiel vérifiable",
     "orgs.rules.5": "les entrées sont examinées avant publication et revérifiées au fil du temps",
     "orgs.rules.6": "les corrections, retraits et suggestions passent par notre formulaire de rétroaction",
@@ -485,7 +485,7 @@ const I18N = {
     "pro.title": "Utilisez AbilityFinder avec les personnes que vous accompagnez",
     "pro.lede": "Une façon rapide et privée pour les conseillers, travailleurs sociaux, équipes cliniques et éducateurs de chercher des prestations avec un client.",
     "pro.what.h": "Ce qu’est AbilityFinder",
-    "pro.what.p": "AbilityFinder est un répertoire et un outil de jumelage gratuit et indépendant couvrant plus de 35 programmes albertains, fédéraux et municipaux vérifiés. Chaque fait renvoie à une source officielle et affiche sa date de vérification.",
+    "pro.what.p": "AbilityFinder est un répertoire et un outil de jumelage gratuit et indépendant couvrant plus de 35 programmes {scopeProgramList} vérifiés. Chaque fait renvoie à une source officielle et affiche sa date de vérification.",
     "pro.use.h": "Comment l’utiliser avec un client",
     "pro.use.1": "Remplissez ensemble le court questionnaire. Il prend quelques minutes et ne demande aucun nom.",
     "pro.use.2": "Ouvrez un résultat pour lire le guide complet en langage clair, les étapes, les documents et le lien officiel.",
@@ -505,7 +505,7 @@ const I18N = {
     "pro.contact.p": "Utilisez le formulaire de commentaires pour signaler un obstacle, proposer un programme ou poser une question sur l’utilisation en organisme.",
 
     "partner.kicker": "Aperçu pour partenaires",
-    "partner.title": "Un navigateur privé de prestations pour les Albertains handicapés",
+    "partner.title": "Un navigateur privé de prestations pour les {scopeResidents} handicapés",
     "partner.lede": "AbilityFinder transforme des règles gouvernementales dispersées en un court questionnaire, des résultats adaptés et des guides pratiques.",
     "partner.coverage.h": "Couverture",
     "partner.coverage.programs": "programmes vérifiés",
@@ -547,7 +547,7 @@ const I18N = {
     "dtcPrep.guideButton": "Préparer votre rendez-vous avec le professionnel",
     "benefitsEnglishNote": "",
 
-    "land.eyebrow": "Alberta · C.-B. · Ontario · Québec",
+    "land.eyebrow": "{scopeBenefits}",
     "land.title": "Toutes les prestations qui vous reviennent, trouvées en une minute.",
     "land.sub": "Le soutien gouvernemental lié à votre handicap représente de l'argent réel — mais il est éparpillé sur des dizaines de pages déroutantes. AbilityFinder pose quelques questions simples et vous remet la liste exacte à laquelle vous êtes admissible, avec des guides en langage clair et des liens directs pour faire une demande.",
     "land.find": "Trouver mes prestations",
@@ -561,7 +561,7 @@ const I18N = {
     "life.parent.p": "Trouvez des programmes pour votre enfant et votre famille.",
     "life.unable.h": "Mon handicap m’empêche de travailler",
     "life.unable.p": "Mettez l’accent sur le revenu et les soutiens liés à l’emploi.",
-    "life.alberta.h": "Nouvellement en Alberta",
+    "life.alberta.h": "Nouvellement en {scopeDestination}",
     "life.alberta.p": "Explorez dès le départ les soutiens fédéraux et provinciaux.",
     "life.helper.h": "J’aide une autre personne",
     "life.helper.p": "Répondez aux questions pour un proche que vous soutenez.",
@@ -607,7 +607,7 @@ const I18N = {
     "cat.employment": "Soutiens à l'emploi",
     "cat.transit": "Transport et loisirs",
     "cat.family": "Soutiens à la famille",
-    "cats.note": "Programmes fédéraux, albertains et municipaux — pour le TDAH, l'autisme, la santé mentale, les conditions physiques et chroniques, la vision, l'audition, les troubles d'apprentissage et plus.",
+    "cats.note": "Programmes {scopeProgramList} — pour le TDAH, l'autisme, la santé mentale, les conditions physiques et chroniques, la vision, l'audition, les troubles d'apprentissage et plus.",
 
     "final.title": "Prêt à voir votre liste ?",
     "final.sub": "C'est gratuit, privé, et ça prend environ une minute.",
@@ -727,7 +727,7 @@ const STEP_I18N = {
       options: { true: "Oui, généralement", false: "Non, c'est difficile ou impossible" } },
     age: { kicker: "À propos de vous", q: "Quel groupe d'âge s'applique ?", help: "L'âge détermine les programmes qui vous sont ouverts.",
       options: { child: "Moins de 18 ans", adult: "18 à 64 ans", senior: "65 ans ou plus" } },
-    residency: { kicker: "À propos de vous", q: "Dans quelle province vivez-vous ?", help: "Les prestations fédérales s'appliquent partout ; les programmes provinciaux et municipaux dépendent de votre lieu de résidence. Nous couvrons l'AB, la C.-B., l'Ontario et le Québec en détail.",
+    residency: { kicker: "À propos de vous", q: "Dans quelle province vivez-vous ?", help: () => SCOPE_RESIDENCY_HELP_FR,
       options: { AB: "Alberta", BC: "Colombie-Britannique", ON: "Ontario", QC: "Québec", other: "Une autre province ou un territoire" } },
     citizen: { kicker: "À propos de vous", q: "Êtes-vous citoyen canadien ou résident permanent ?", help: "La plupart des prestations l'exigent.",
       options: { true: "Oui", false: "Non / pas encore" } },
@@ -743,8 +743,24 @@ const STEP_I18N = {
 
 function t(key) {
   const d = I18N[LANG];
-  if (d && d[key] != null) return d[key];
-  return (I18N.en[key] != null ? I18N.en[key] : key);
+  const raw = d && d[key] != null ? d[key] : (I18N.en[key] != null ? I18N.en[key] : key);
+  const bc = typeof BC_ENABLED !== "undefined" && BC_ENABLED;
+  const scope = LANG === "fr"
+    ? {
+        scopeBenefits: bc ? "Alberta · C.-B. + prestations fédérales" : "Alberta · C.-B. · Ontario · Québec",
+        scopeResidents: bc ? "Albertains et Britanno-Colombiens" : "Albertains",
+        scopeResidentsPrep: bc ? "de l’Alberta et de la Colombie-Britannique" : "de l’Alberta",
+        scopeProgramList: bc ? "albertains, britanno-colombiens, fédéraux et municipaux" : "albertains, fédéraux et municipaux",
+        scopeDestination: bc ? "Alberta ou Colombie-Britannique" : "Alberta",
+      }
+    : {
+        scopeBenefits: typeof SCOPE_LABEL !== "undefined" ? `${SCOPE_LABEL} benefits` : "Alberta + federal benefits",
+        scopeResidents: typeof SCOPE_RESIDENTS !== "undefined" ? SCOPE_RESIDENTS : "Albertans",
+        scopeResidentsPrep: "",
+        scopeProgramList: bc ? "Alberta, British Columbia, federal, and municipal" : "Alberta, federal, and municipal",
+        scopeDestination: typeof SCOPE_DESTINATION !== "undefined" ? SCOPE_DESTINATION : "Alberta",
+      };
+  return String(raw).replace(/\{(scopeBenefits|scopeResidents|scopeResidentsPrep|scopeProgramList|scopeDestination)\}/g, (_, name) => scope[name]);
 }
 
 /* localized step accessor: returns {kicker,q,help,placeholder} */

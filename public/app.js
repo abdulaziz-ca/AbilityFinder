@@ -8,6 +8,17 @@
 
 /* Flip to true when the BC catalog lands. */
 const BC_ENABLED = false;
+const SCOPE_LABEL = BC_ENABLED ? "Alberta, BC + federal" : "Alberta + federal";
+const SCOPE_LABEL_LONG = BC_ENABLED ? "Alberta and British Columbia" : "Alberta";
+const SCOPE_RESIDENTS = BC_ENABLED ? "Albertans and British Columbians" : "Albertans";
+const SCOPE_GOVERNMENTS = BC_ENABLED ? "Canada, Alberta, or British Columbia" : "Canada or Alberta";
+const SCOPE_ORGANIZATIONS = BC_ENABLED ? "Alberta, British Columbia, and national" : "Alberta and national";
+const SCOPE_REGION_LABEL = BC_ENABLED ? "Alberta + BC" : "Canada";
+const SCOPE_DESTINATION = BC_ENABLED ? "Alberta or British Columbia" : "Alberta";
+const SCOPE_RESIDENCY_HELP = `Federal benefits apply anywhere in Canada. ${SCOPE_LABEL_LONG}${BC_ENABLED ? " provincial programs are" : "'s provincial programs are"} fully built out right now — other provinces are coming soon.`;
+const SCOPE_RESIDENCY_HELP_FR = BC_ENABLED
+  ? "Les prestations fédérales s'appliquent partout ; les programmes provinciaux et municipaux dépendent de votre lieu de résidence. Nous couvrons l'AB et la C.-B. en détail."
+  : "Les prestations fédérales s'appliquent partout ; les programmes provinciaux et municipaux dépendent de votre lieu de résidence. Nous couvrons l'AB, la C.-B., l'Ontario et le Québec en détail.";
 
 /* -------------------------------------------------- answer state (defaults) */
 const BLANK = () => ({
@@ -440,9 +451,7 @@ const STEPS = [
   {
     id: "residency", type: "single", kicker: "About you",
     q: () => BC_ENABLED ? `Where ${who().doQ.toLowerCase()} live?` : `${who().doQ} live in Alberta?`,
-    help: BC_ENABLED
-      ? "Federal benefits apply anywhere in Canada. Alberta and British Columbia provincial programs are fully built out right now — other provinces are coming soon."
-      : "Federal benefits apply anywhere in Canada. Alberta's provincial programs are fully built out right now — other provinces are coming soon.",
+    help: SCOPE_RESIDENCY_HELP,
     key: "province",
     options: [
       { value: "AB", label: BC_ENABLED ? "Alberta" : "Yes, I live in Alberta" },
@@ -849,7 +858,7 @@ const PROVINCE_NAME = {
 };
 function updateNavTag() {
   const tag = document.getElementById("navTag");
-  if (tag) tag.textContent = PROVINCE_NAME[answers.province] || t("nav.tag");
+  if (tag) tag.textContent = PROVINCE_NAME[answers.province] || SCOPE_REGION_LABEL;
 }
 
 let lastRenderKey = null;
@@ -1174,7 +1183,7 @@ function renderLanding() {
         <button class="linklike" type="button" data-info-nav="grants">${t("footer.grants")}</button>
         <button class="linklike" type="button" data-info-nav="organizations">${t("footer.organizations")}</button>
         <button class="linklike js-browse">Browse all benefits</button>
-        <span class="sf-note">Alberta + federal · Info verified ${DATA_VERIFIED} · Not government-affiliated</span>
+        <span class="sf-note">${SCOPE_LABEL} · Info verified ${DATA_VERIFIED} · Not government-affiliated</span>
       </div>
     </footer>
   </section>`;
@@ -1348,7 +1357,7 @@ const HELP_PAGES = {
       },
       {
         h: "So what should you pick?",
-        p: "Whatever is closest. If two fit, pick both — it's a multi-select. If nothing fits, pick <b>“Something else / not listed”</b> and carry on; you'll still get the full federal and Alberta list, because most benefits don't depend on the category at all.",
+        p: `Whatever is closest. If two fit, pick both — it's a multi-select. If nothing fits, pick <b>“Something else / not listed”</b> and carry on; you'll still get the full ${SCOPE_LABEL} list, because most benefits don't depend on the category at all.`,
       },
       {
         h: "If you don't have a diagnosis yet",
@@ -1449,7 +1458,7 @@ function renderPrivacy() {
 
     <div class="legal-block">
       <h2>Important disclaimer</h2>
-      <p>AbilityFinder is a free helper tool, <b>not</b> legal, medical, or financial advice, and it is not affiliated with the Government of Canada or Alberta. Dollar figures are <b>estimates</b> to give you a sense of scale — your actual amount depends on your situation. Eligibility rules and amounts change; always confirm the current details on each official government page before you apply. Information was last verified ${DATA_VERIFIED}.</p>
+      <p>AbilityFinder is a free helper tool, <b>not</b> legal, medical, or financial advice, and it is not affiliated with the Government of ${SCOPE_GOVERNMENTS}. Dollar figures are <b>estimates</b> to give you a sense of scale — your actual amount depends on your situation. Eligibility rules and amounts change; always confirm the current details on each official government page before you apply. Information was last verified ${DATA_VERIFIED}.</p>
     </div>
 
     <button class="back-link bottom" id="p-back2">${icon("arrowLeft")} Back</button>
@@ -1474,7 +1483,7 @@ function renderAbout() {
     <h1 class="legal-title">Clear help, checked against official sources</h1>
     <p class="legal-lede">AbilityFinder makes it easier to find disability benefits and understand what to do next.</p>
 
-    ${block("What AbilityFinder is", `<p>AbilityFinder is a free, independent tool that helps Albertans with disabilities find every government benefit they may qualify for. It is not affiliated with any government. There is no login and there are no ads.</p>`)}
+    ${block("What AbilityFinder is", `<p>AbilityFinder is a free, independent tool that helps ${SCOPE_RESIDENTS} with disabilities find every government benefit they may qualify for. It is not affiliated with any government. There is no login and there are no ads.</p>`)}
     ${block("How we verify facts", `<p>Every benefit is backed by official government sources. Each benefit shows when its information was last verified.</p><p>Automated link monitoring checks official links around the clock and flags pages that break or move. The app also shows a warning when information is getting old and needs another review.</p>`)}
     ${block("What we never do", `<p>We do not create accounts, show ads, or use third-party trackers. Your answers stay on your device. We never sell or share your data.</p>`)}
     ${block("Found a mistake?", `<p>Please tell us through the <button class="linklike js-feedback">feedback form</button>. Corrections help everyone who uses AbilityFinder.</p>`)}
@@ -1496,7 +1505,7 @@ function renderSupport() {
     <button class="back-link" id="s-back">${icon("arrowLeft")} Back</button>
     <p class="section-label">Support AbilityFinder</p>
     <h1 class="legal-title">Help keep AbilityFinder useful</h1>
-    <p class="legal-lede">Small actions can help more disabled Albertans find support.</p>
+    <p class="legal-lede">Small actions can help more disabled ${SCOPE_RESIDENTS} find support.</p>
 
     <div class="legal-block">
       <h2>Keep it free</h2>
@@ -1505,7 +1514,7 @@ function renderSupport() {
     <div class="legal-block">
       <h2>Ways to help</h2>
       <p>Share AbilityFinder with someone who may need it. If you find an error, please use the <button class="linklike js-feedback">feedback form</button> to tell us.</p>
-      <p>Organizations that help disabled Albertans are welcome to link to AbilityFinder or get in touch through the <button class="linklike js-feedback">feedback form</button>.</p>
+      <p>Organizations that help disabled ${SCOPE_RESIDENTS} are welcome to link to AbilityFinder or get in touch through the <button class="linklike js-feedback">feedback form</button>.</p>
     </div>
     ${donation}
 
@@ -2372,7 +2381,7 @@ function renderHelpDirectory() {
   return `
   <div class="help-area">
     <h2 class="supports-heading">${icon("help")} Real people who can help</h2>
-    <p class="supports-sub">You don't have to do this alone. These Alberta and national organizations help people fill out the forms, appeal a decision, and find local services — most of them for free.</p>
+    <p class="supports-sub">You don't have to do this alone. These ${SCOPE_ORGANIZATIONS} organizations help people fill out the forms, appeal a decision, and find local services — most of them for free.</p>
     ${sections}
   </div>`;
 }
@@ -3043,7 +3052,7 @@ function printResults() {
       @media print{.noprint{display:none;} body{margin:0;}}
     </style></head><body>
     <header>
-      <p class="brand">AbilityFinder · Alberta + federal</p>
+      <p class="brand">AbilityFinder · ${SCOPE_LABEL}</p>
       <h1>My disability benefits report</h1>
       ${profile ? `<p class="profile"><b>Based on:</b> ${esc(profile)}</p>` : ""}
       ${total > 0 ? `<p class="total">Estimated support you may qualify for: <b>up to ~$${total.toLocaleString("en-CA")}/year</b>, plus one-time back-pay and lifetime savings where noted. Rough estimate — not everything stacks.</p>` : ""}
@@ -3076,6 +3085,12 @@ const BROWSE_LEVELS = [
 ];
 function benefitIsLocal(b) {
   return b.level === "Calgary" || b.level === "Edmonton" || b.level === "Your community";
+}
+function benefitIsBritishColumbia(b) {
+  return b.level === "British Columbia" || b.level === "Metro Vancouver" || BC_CITIES.includes(b.level);
+}
+function browseCatalog() {
+  return BC_ENABLED ? BENEFITS : BENEFITS.filter((b) => !benefitIsBritishColumbia(b));
 }
 function benefitSearchText(b) {
   const d = b.detail || {};
@@ -3114,7 +3129,7 @@ const isDisSpecific = (b, dis) => benefitDisabilities(b).includes(dis);
 
 function browseFiltered() {
   const q = browseQuery.trim().toLowerCase();
-  return BENEFITS.filter((b) => {
+  return browseCatalog().filter((b) => {
     if (browseTheme !== "all" && benefitTheme(b) !== browseTheme) return false;
     if (browseLevel !== "all") {
       if (browseLevel === "local" ? !benefitIsLocal(b) : b.level !== browseLevel) return false;
@@ -3179,7 +3194,8 @@ function renderBrowse() {
       .map((d) => browseChip(browseDis === d.value, d.value, d.label, "bdis")))
     .join("");
   // Say the true thing rather than quietly hiding 17 benefits.
-  const nSpec = browseDis === "all" ? 0 : BENEFITS.filter((b) => isDisSpecific(b, browseDis)).length;
+  const catalog = browseCatalog();
+  const nSpec = browseDis === "all" ? 0 : catalog.filter((b) => isDisSpecific(b, browseDis)).length;
   const disLabel = (DISABILITIES.find((d) => d.value === browseDis) || {}).label || "";
   const disNote = browseDis === "all" ? "" : `
     <p class="browse-disnote">${icon("info")}
@@ -3193,7 +3209,7 @@ function renderBrowse() {
     <button class="back-link" id="b-back">${icon("arrowLeft")} Home</button>
     <div class="browse-head">
       <h1>Browse every benefit</h1>
-      <p>Explore all ${BENEFITS.length} programs in our Alberta + federal catalog — no questionnaire needed. Want a list tailored to you?
+      <p>Explore all ${catalog.length} programs in our ${SCOPE_LABEL} catalog — no questionnaire needed. Want a list tailored to you?
         <button class="linklike" id="b-start">Get my personalized results ${icon("arrowRight")}</button></p>
     </div>
     <div class="browse-search">

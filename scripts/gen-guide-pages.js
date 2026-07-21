@@ -108,6 +108,7 @@ function header() {
       <div class="nav-inner">
         <a class="brand" href="https://abilityfinder.ca/" aria-label="AbilityFinder home"><span class="brand-name">AbilityFinder</span></a>
         <div class="nav-right">
+          <!-- SCOPE: update when BC launches (see BC_ENABLED in app.js) -->
           <span class="nav-tag">Alberta</span>
           <a class="guide-link" href="https://abilityfinder.ca/">All benefits</a>
           <a class="guide-link" href="https://abilityfinder.ca/guides/">Program guides</a>
@@ -188,6 +189,7 @@ const guideIndex = `<!DOCTYPE html>
 <html lang="en">
 ${head({
   title: "Disability benefit program guides — AbilityFinder",
+  // <!-- SCOPE: update when BC launches (see BC_ENABLED in app.js) -->
   desc: "Plain-language guides to federal, Alberta, and municipal disability benefits, with eligibility, value, application steps, and official sources.",
   canonical: "https://abilityfinder.ca/guides/",
 })}
@@ -196,6 +198,7 @@ ${header()}
     <div class="wrap">
       <main class="browse">
         <header class="browse-head">
+          <!-- SCOPE: update when BC launches (see BC_ENABLED in app.js) -->
           <p class="eyebrow">Alberta + federal benefits</p>
           <h1>Program guides</h1>
           <p>Browse plain-language guides to every benefit in the AbilityFinder catalog.</p>

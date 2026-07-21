@@ -138,3 +138,18 @@ The canonical domain, social metadata, robots file, and sitemap already use
 A direct `npx wrangler deploy` can restore the last known-good working tree even if
 Workers Builds is unavailable. Cloudflare deployment/version history provides
 rollback options; verify the custom domain after any rollback.
+
+## Province launch checklist
+
+When `BC_ENABLED` is flipped in `public/app.js`, update the static scope wording that JavaScript cannot reach:
+
+- `public/index.html`: page `<title>`, meta description, Open Graph description, and Twitter description.
+- `public/embed.html`: page `<title>` and the embed headline.
+- `scripts/gen-guide-pages.js`: guide header region label, guide-index meta description, and guide-index eyebrow.
+
+Regenerate the generated grounding context and static guide pages after flipping `BC_ENABLED` and updating the template:
+
+```sh
+npm run gen:context
+npm run gen:guides
+```
