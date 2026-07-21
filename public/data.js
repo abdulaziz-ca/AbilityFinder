@@ -2136,6 +2136,193 @@ const BENEFITS = [
       "time": "Weeks to a couple of months depending on assessments, quotes and pre-approval",
       "phone": "1-866-866-0800"
     }
+  },
+  {
+    "id": "bc-at-home-saet",
+    "needsPractitioner": true,
+    "name": "At Home Program: School-Aged Extended Therapies (SAET)",
+    "level": "British Columbia",
+    "category": "Health",
+    "amount": "Up to $5,760/year each for OT, PT and speech therapy, plus up to $1,920/year for chiropractic or massage",
+    "summary": "Pays for private occupational therapy, physiotherapy and speech-language pathology outside school hours for school-aged children enrolled in the At Home Program.",
+    "requires": ["bc", "child", "severePermanent"],
+    "requiresNote": "School-aged children and youth enrolled in the At Home Program",
+    "note": "SAET families were the first moved to the new Children and Youth Disability Benefit, starting April 2026 (therapies remain an approved use of the new benefit). SAET remains documented in the October 2025 At Home Program Guide and new At Home applications are accepted until March 2027 — check with AHP Medical Benefits about which stream applies to your child.",
+    "applyText": "Request through AHP Medical Benefits",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program/medical-benefits",
+    "source": "https://www2.gov.bc.ca/assets/gov/family-and-social-supports/children-teens-with-support-needs/at_home_program_guide.pdf",
+    "verified": "2026-07-20",
+    "detail": {
+      "about": "Up to $5,760 per 12-month period for each of occupational therapy, physiotherapy and speech-language pathology (including therapist-assistant services), delivered one-to-one or in groups. Maximum billing rates: $160/hour for therapists, $60/hour for therapist assistants; up to $480 of the maximum can go to consultation, report writing and travel. A separate $1,920/year is available for chiropractic ($40/session) or massage ($40/hour). Exceptions to maximums are considered for post-surgical rehabilitation. Services must complement, not duplicate, school-based therapy.",
+      "steps": ["Ensure the child is enrolled in the At Home Program", "Have the treating OT, PT, SLP, chiropractor or massage therapist complete the At Home Program Request for School-Aged Extended Therapies form, including intended functional outcomes", "Submit the request to AHP Medical Benefits for review", "Approved therapists invoice AHP Medical Benefits directly"],
+      "documents": ["Request for School-Aged Extended Therapies form completed by the treating therapist", "Functional outcomes for the child (Part 5 of the request form)"],
+      "tips": ["The requesting therapist must coordinate with the school-based therapy team so services do not overlap", "Sequential therapy blocks (one goal at a time) are preferred over running everything simultaneously", "If your child moved to the Disability Benefit in April 2026, pay for the same therapies from the new $6,500/$17,000 allocation instead", "Post-surgical rehab can exceed the annual maximum — ask for an exception"],
+      "time": "Requests reviewed by AHP Medical Benefits; SAET recipients transitioned to the Disability Benefit starting April 2026.",
+      "phone": "1-888-613-3232"
+    }
+  },
+  {
+    "id": "bc-clbc",
+    "needsPractitioner": true,
+    "name": "Community Living BC (CLBC) Adult Supports",
+    "level": "British Columbia",
+    "category": "Family",
+    "amount": "Individually planned funded services — residential, employment, community inclusion, respite",
+    "summary": "Provincial agency funding lifelong supports for adults 19+ with developmental disabilities — home sharing and staffed living, employment services, community inclusion, respite and family support. Youth can apply from age 16 to have services ready at 19.",
+    "requires": ["bc", "adult", "severePermanent"],
+    "requiresNote": "Adults 19+ with significantly impaired intellectual AND adaptive functioning that began before age 18; or, under the PSI stream, adults with an FASD or autism spectrum diagnosis plus significant adaptive-functioning limitations. Apply from age 16; supports continue beyond 65",
+    "note": "Two eligibility streams: Developmental Disability (needs a psychologist's cognitive and adaptive assessments) and the Personalized Supports Initiative (FASD or ASD diagnosis plus significant daily-living limitations, no intellectual disability required). School-era assessments can often be reused.",
+    "applyText": "Check CLBC eligibility",
+    "applyUrl": "https://www.communitylivingbc.ca/who-does-clbc-support/eligible-clbc-support/",
+    "source": "https://www.communitylivingbc.ca/what-support-is-available/",
+    "verified": "2026-07-20",
+    "detail": {
+      "about": "CLBC funds and coordinates: residential supports (living in your own place, shared living/home sharing with a contracted family, or staffed homes), employment support to find and keep a job, community inclusion and connection programs, skill development, respite for families, wellness supports for daily responsibilities, behavioural support, and the Provincial Assessment Centre's mental-health services for people 14+ with developmental disabilities. Services are delivered through a network of contracted agencies and planned individually with a CLBC facilitator.",
+      "steps": ["From age 16, ask your MCFD/CYSN worker about transition planning to CLBC", "Contact your nearest CLBC office (1-877-660-2522) — a facilitator explains the required documents and approved assessors", "Submit assessments and forms completed by an approved professional (registered psychologist for the DD stream); school-years assessments may be reusable", "Once eligibility is confirmed, attend the CLBC Welcome Workshop series and work with your facilitator on a support plan", "CLBC connects you to funded services based on the plan and available resources"],
+      "documents": ["Cognitive/psychoeducational assessment by a registered psychologist (DD stream)", "Adaptive functioning assessment completed by an approved professional", "Confirmed FASD or autism spectrum diagnosis for the PSI stream", "CLBC eligibility forms completed by approved professionals"],
+      "tips": ["Start at 16 — assessments and planning take time, and starting early means supports can begin right at 19", "If you were assessed in school, ask the school district for copies; a new assessment may not be needed", "Not eligible under the DD stream? Ask specifically about the Personalized Supports Initiative (PSI)", "Respite or equivalent funding is commonly the first service offered to families of transitioning youth — ask your facilitator what is available in your region", "Adults on CLBC services usually also qualify for BC PWD disability assistance — apply for both"],
+      "time": "Apply from age 16; eligibility confirmation before the 19th birthday is recommended so services start on time.",
+      "phone": "1-877-660-2522"
+    }
+  },
+  {
+    "id": "bc-csg-students-disabilities",
+    "needsPractitioner": true,
+    "name": "Canada Student Grant for Students with Disabilities (StudentAid BC)",
+    "level": "British Columbia",
+    "category": "Education",
+    "amount": "$2,800 per program year",
+    "summary": "A non-repayable grant of $2,800 per program year (August 1 to July 31) for post-secondary students with a permanent, or persistent or prolonged, disability. Administered in B.C. through your StudentAid BC application.",
+    "requires": ["bc", "student"],
+    "requiresNote": "You must qualify for federal student aid, be enrolled full-time or part-time at a designated post-secondary institution, and have a permanent disability or a persistent or prolonged disability (lasting at least 12 months) verified by a qualified medical assessor.",
+    "note": "The current amount reflects a temporary 40% federal increase that runs until July 31, 2027. Once StudentAid BC verifies your disability status you are automatically considered for the province's other disability grants too. Note: StudentAid BC changed its process in June 2026 — new applicants use the online Disability status application instead of the old Appendix 8 form. This amount is a temporary increase in place until July 31, 2027 — check the current figure before you count on it.",
+    "applyText": "Apply through StudentAid BC",
+    "applyUrl": "https://studentaidbc.ca/apply/how-to-apply-disability-funding",
+    "source": "https://studentaidbc.ca/explore/grants-scholarships/canada-student-grant-students-disabilities",
+    "verified": "2026-07-20",
+    "detail": {
+      "about": "This federal grant, delivered through StudentAid BC, helps cover education costs for students with disabilities. It is money you do not pay back, and it is available whether you study full-time or part-time. Disability status can be a permanent disability (lifelong) or a persistent or prolonged disability (12+ months). Once your disability status is verified, it also unlocks reduced course-load rules (40-59% counts as full-time) and other B.C. disability grants.",
+      "steps": ["Apply for StudentAid BC full-time or part-time funding online.", "In your StudentAid BC account, open the Disability status application in the Forms section (for applications submitted after June 23, 2026).", "Download the Disability Verification Form and have a qualified medical assessor complete it.", "Upload the signed form inside the Disability status application and submit your declaration.", "StudentAid BC reviews it (about 6 weeks) and posts the decision to your account; the grant is then included in your funding assessment."],
+      "documents": ["StudentAid BC application (full-time or part-time)", "Disability Verification Form completed by a qualified medical assessor", "Social Insurance Number and B.C. ID for your StudentAid BC account"],
+      "tips": ["You can submit the disability verification any time — you do not have to wait for your loan application to finish.", "Permanent disabilities never need re-verification; persistent or prolonged disabilities are re-verified when you enter repayment or after a break of more than 5 years.", "If you already receive provincial disability assistance (PWD), tell your school's financial aid office — it can affect how your funding is structured."],
+      "time": "About 6 weeks for disability verification",
+      "phone": "1-800-561-1818"
+    }
+  },
+  {
+    "id": "bc-csg-services-equipment",
+    "needsPractitioner": true,
+    "name": "Canada Student Grant for Services and Equipment – Students with Disabilities",
+    "level": "British Columbia",
+    "category": "Education",
+    "amount": "Up to $20,000 per loan year",
+    "summary": "Up to $20,000 per year for disability-related education services and equipment — notetakers, tutors, interpreters and technical aids — for post-secondary students with disabilities, delivered through StudentAid BC.",
+    "requires": ["bc", "student"],
+    "requiresNote": "You must qualify for a federal student loan, study full-time or part-time at a designated institution, have a verified permanent or persistent/prolonged disability, and have exceptional education-related costs caused by your disability.",
+    "note": "This grant is on top of the $2,800 Canada Student Grant for Students with Disabilities. If you use up the full $20,000 and still have costs, the B.C. Assistance Program for Students with Disabilities can add up to $10,000-$12,000 more.",
+    "applyText": "Apply through StudentAid BC",
+    "applyUrl": "https://studentaidbc.ca/apply/how-to-apply-disability-funding",
+    "source": "https://studentaidbc.ca/explore/grants-scholarships/canada-student-grant-services-and-equipment-students-disabilities",
+    "verified": "2026-07-20",
+    "detail": {
+      "about": "This grant pays for the specific services and equipment you need because of your disability while studying — things like notetakers, tutors, interpreters, assistive software and other technical aids. It is non-repayable and is assessed through your StudentAid BC application after your disability status is verified.",
+      "steps": ["Complete a StudentAid BC application and get your disability status verified (Disability Verification Form from a qualified medical assessor).", "Work with your school's accessibility services office to identify the services and equipment you need.", "Submit the services-and-equipment request with cost details through StudentAid BC.", "Funding decisions are posted to your StudentAid BC account."],
+      "documents": ["Verified disability status with StudentAid BC", "Documentation of the services or equipment you need and their costs (your school's accessibility office helps prepare this)"],
+      "tips": ["Book an appointment with your institution's accessibility services office early — they know this process well and often start the paperwork for you.", "Keep receipts for everything the grant pays for."],
+      "time": "About 6 weeks for disability verification, then with your funding assessment",
+      "phone": "1-800-561-1818"
+    }
+  },
+  {
+    "id": "bc-dental-supplement",
+    "name": "Dental Supplements (Income & Disability Assistance)",
+    "level": "British Columbia",
+    "category": "Health",
+    "amount": "Up to $1,000 per 2 calendar years for adults (current period Jan 2025–Dec 2026); up to $2,000 per 2 years for children under 19, plus $1,000/year for hospital dental under general anesthesia",
+    "summary": "Basic dental care — check-ups, fillings, extractions, dentures — for people on disability assistance, paid by the ministry directly to the dentist; emergency treatment to relieve pain is covered for everyone on assistance.",
+    "requires": ["bc", "lowIncome"],
+    "requiresNote": "Adults qualify for routine dental if they receive disability assistance, have the PPMB designation, or otherwise qualify for general health supplements; children under 19 in families on any assistance are covered. Adults on plain income assistance get emergency dental only.",
+    "note": "The adult limit resets on January 1 of every odd-numbered year — the current $1,000 window runs January 2025 through December 2026, so unused room disappears in January 2027. Amounts and covered services are set out in BC's health supplements rate table — confirm current limits there.",
+    "applyText": "See what's covered",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance/supplements/dental",
+    "source": "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance/supplements/dental",
+    "verified": "2026-07-20",
+    "detail": {
+      "about": "Coverage includes restorations, extractions, preventative care, partial and replacement dentures, and crowns or bridges in certain cases, billed under ministry fee schedules. Adults with eligibility get up to $1,000 over each two-calendar-year period; children get up to $2,000 plus an extra $1,000 per year for hospital dental treatment under general anesthesia. Emergency dental to relieve pain is available to everyone on assistance regardless of the limit.",
+      "steps": ["Confirm you receive disability assistance or otherwise qualify for general health supplements", "Book any dentist, denturist or dental hygienist and show your BC Services Card", "The office confirms your coverage with the ministry's insurer (Pacific Blue Cross) before treatment", "The ministry pays the provider directly — ask in advance about any costs above the fee schedule"],
+      "documents": ["BC Services Card or Personal Health Number"],
+      "tips": ["Ministry fee-schedule rates are below many dentists' usual fees — ask the office to bill within the schedule or tell you the difference before work starts", "Plan larger treatment around the 2-year cycle so a January reset gives you a fresh $1,000", "Dentures have their own rules and limits — ask the ministry before ordering"],
+      "time": "No application — coverage is active while you are on assistance; the provider verifies it at booking",
+      "phone": "1-866-866-0800"
+    }
+  },
+  {
+    "id": "bc-home-reno-tax-credit",
+    "name": "Home Renovation Tax Credit for Seniors and Persons with Disabilities",
+    "level": "British Columbia",
+    "category": "Tax",
+    "amount": "Up to $1,000 per year (10% of up to $10,000 in eligible renovation costs), refundable",
+    "summary": "A refundable B.C. tax credit worth 10% of up to $10,000 in accessibility renovations to your principal residence — up to $1,000 back per year — for people who qualify for the disability tax credit, seniors 65+, and family members who live with them.",
+    "requires": ["bc"],
+    "requiresNote": "You must be a B.C. resident at year end and either qualify for the federal disability tax credit (any age), be 65 or older, or be a family member living with (and claiming for) an eligible person.",
+    "note": "Refundable means you get the money even if you owe no tax. Renovations must improve access, mobility or safety in the home — for example ramps, grab bars, walk-in tubs, widened doors, stair lifts — not general repairs or value-boosting upgrades. Active for the 2025 and 2026 tax years.",
+    "applyText": "Claim on your tax return",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/seniors-renovation",
+    "source": "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/seniors-renovation",
+    "verified": "2026-07-20",
+    "detail": {
+      "about": "This credit helps cover permanent renovations that make your principal residence more accessible, functional or safe — improving access to the home or land, helping you move around and function at home, or reducing risk of harm. Qualifying examples include wheelchair ramps, grab bars, handrails, walk-in bathtubs, raised toilets, lowered cupboards, adjustable counters, widened doorways, non-slip flooring, motion-activated lighting and stair lifts. Aesthetic upgrades, appliances, regular repairs, HVAC, windows, and mobility equipment like walkers or wheelchairs do not qualify.",
+      "steps": ["Complete eligible renovations to your principal residence and keep all receipts.", "At tax time, complete Schedule BC(S12) — the B.C. Home Renovation Tax Credit for Seniors and Persons with Disabilities form.", "Enter your renovation expenses beside box 60480 on the British Columbia Credits form (BC479).", "File with your T1 return; the credit is refunded even if you owe no tax."],
+      "documents": ["Receipts from suppliers and contractors (with GST/HST numbers where applicable)", "Disability tax credit eligibility (if claiming as a person with a disability)"],
+      "tips": ["Family members who live with a senior or a person with a disability can claim the credit for work on the shared home.", "The renovation's main purpose cannot be increasing your property value — keep documentation showing the accessibility purpose.", "You can pair this with the federal Home Accessibility Tax Credit and Multigenerational Home Renovation Credit on the same expenses where rules allow — ask your tax preparer."],
+      "time": "Claimed annually at tax time",
+      "phone": "1-800-959-8281"
+    }
+  },
+  {
+    "id": "bc-work-able-internship",
+    "name": "Work-Able Accessible Employment Program (BC Public Service)",
+    "level": "British Columbia",
+    "category": "Work",
+    "amount": "Paid BC Public Service internship of up to 24 months",
+    "summary": "A paid internship program in the BC Public Service for recent post-secondary graduates who self-identify as having a disability — any physical, sensory, neurological, visible or invisible disability.",
+    "requires": ["bc"],
+    "requiresNote": "You must be a recent post-secondary graduate (graduation within 3 years of the program start date) who self-identifies as having a disability. You do not have to disclose your specific diagnosis.",
+    "note": "Intake runs annually. Applications for the 2026/27 cohort are closed — the next intake for the 2027/28 cohort opens in spring 2027. Graduates keep access to internal BC Public Service job postings for 24 months after completing the program.",
+    "applyText": "Check intake dates and apply",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/careers-myhr/job-seekers/internship-co-op-opportunities/work-able",
+    "source": "https://www2.gov.bc.ca/gov/content/careers-myhr/job-seekers/internship-co-op-opportunities/work-able",
+    "verified": "2026-07-20",
+    "detail": {
+      "about": "Work-Able coordinates paid internship opportunities across the BC Public Service for recent graduates with disabilities, for up to 24 months. Participants get government work experience, a peer cohort of other graduates with disabilities, exposure to different career paths, and post-program access to internal job postings.",
+      "steps": ["Watch the Work-Able page for the annual intake (next opens spring 2027 for the 2027/28 cohort).", "Confirm you graduated within 3 years of the program start date.", "Apply online during the intake window; you self-identify as having a disability without disclosing a diagnosis.", "If selected, you are placed in a paid position with a ministry."],
+      "documents": ["Proof of post-secondary graduation (within 3 years of program start)", "Resume"],
+      "tips": ["Contact the Work-Able team to be notified when the next application period opens.", "Workplace accommodations are part of the program's design — you do not need to negotiate them alone."],
+      "time": "Annual intake; internships run up to 24 months"
+    }
+  },
+  {
+    "id": "bc-workbc-assistive-technology",
+    "name": "WorkBC Assistive Technology Services",
+    "level": "British Columbia",
+    "category": "Equipment",
+    "amount": "Equipment and supports funded fully or partially, based on your financial circumstances",
+    "summary": "Funding for assistive technology you need to get or keep a job: devices and equipment, ergonomic furniture, communication and hearing devices, ASL interpreting and captioning, workplace modifications — even vehicle modifications for getting to work.",
+    "requires": ["bc"],
+    "requiresNote": "You must be 16 or older, a B.C. resident legally eligible to work, not a full-time student (unless in your final year), and have a work-related barrier due to a disability or functional limitation. Volunteering toward an employment goal and self-employment count.",
+    "note": "Covers work-related needs only — not medical treatments or daily-living items. Delivered under contract to the province with regional offices in Burnaby, Kelowna, Nanaimo and Victoria.",
+    "applyText": "Apply online",
+    "applyUrl": "https://apply.workbc.ca/",
+    "source": "https://www.workbc.ca/discover-employment-services/assistive-technology-services",
+    "verified": "2026-07-20",
+    "detail": {
+      "about": "Assistive Technology Services (ATS) removes equipment barriers between you and employment. It funds assistive devices and technology, ergonomic supports like furniture and lighting, restorative supports, ASL interpreting and captioning, communication and hearing devices for work, workplace access modifications, and vehicle modifications needed for employment. How much is covered depends on your financial circumstances.",
+      "steps": ["Apply through WorkBC Online Employment Services (apply.workbc.ca) or contact ATS directly.", "An ATS specialist works with you to understand your work barrier and equipment needs.", "Approved equipment and services are arranged fully or partially funded."],
+      "documents": ["Proof you are a B.C. resident eligible to work", "Information about your job, job offer, self-employment or volunteer role", "Details of the disability-related barrier and equipment needs (ATS helps document this)"],
+      "tips": ["Commuting barriers count — vehicle modifications and travel-related equipment can be funded when needed for work.", "You can use ATS while employed to keep your job, not just when job hunting.", "Email info-ats@workbc.ca if you are unsure whether your situation qualifies."],
+      "time": "Varies by request; contact ATS for current timelines",
+      "phone": "1-844-453-5506"
+    }
   }
 
 ];
