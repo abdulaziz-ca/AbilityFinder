@@ -2167,7 +2167,7 @@ const BENEFITS = [
     "level": "British Columbia",
     "category": "Money",
     "amount": "$6,500 or $17,000/year",
-    "summary": "New direct-funding benefit for children and youth up to age 19 with significant disabilities of any diagnosis (autism, Down syndrome, cerebral palsy, intellectual disability and more) — replacing Autism Funding and At Home respite/SAET streams.",
+    "summary": "New direct-funding benefit for children and youth up to age 19 with significant disabilities of any diagnosis (autism, Down syndrome, cerebral palsy, intellectual disability and more) — replacing Autism Funding and the School-Aged Extended Therapies stream.",
     "requires": ["bc", "child", "severePermanent"],
     "requiresNote": "Ages 0-19 with a long-term disability causing significant and complex developmental support needs, based on diagnosis and/or functional impact",
     "note": "Starts April 1, 2026 for families already receiving ministry services for children and youth with support needs; they do not need to apply. The benefit will be available province-wide by April 1, 2027.",
@@ -2177,9 +2177,9 @@ const BENEFITS = [
     "verified": "2026-07-20",
     "detail": {
       "about": "Two funding tiers: a base tier of $6,500/year and a higher tier of $17,000/year set through support planning with a ministry worker. Funding covers disability-related expenses including respite, paediatric therapies, behavioural intervention, and assistive and augmentative communication supports. Eligibility is needs-based, not diagnosis-specific: direct admission for conditions such as moderate-to-profound intellectual disability, autism with intellectual disability, and degenerative conditions, plus a needs-based clinical review pathway for rare or atypical cases. Part of a $475-million, three-year provincial investment that also expands free community services (therapies from spring 2026, behaviour and mental-health supports 2027, navigation and school-aged programming 2027-2028).",
-      "steps": ["Already receiving Autism Funding, At Home respite or SAET: wait to be contacted — a ministry worker manages your transition between April 2026 and March 2027", "Not yet in a program: apply through the current pathways (Autism Funding or At Home Program) before March 2027 and you will move to the Disability Benefit automatically in April 2027", "From April 1, 2027: apply directly to the Disability Benefit", "Work with a ministry worker on support planning if your child may qualify for the $17,000 higher tier"],
+      "steps": ["Already receiving Autism Funding or SAET: wait to be contacted — a ministry worker manages your transition between April 2026 and March 2027", "Not yet in a program: apply through Autism Funding or the School-Aged Extended Therapies stream before March 2027 and you will move to the Disability Benefit automatically in April 2027", "From April 1, 2027: apply directly to the Disability Benefit", "Work with a ministry worker on support planning if your child may qualify for the $17,000 higher tier"],
       "documents": ["Existing program enrolment (for automatic transition), or", "Diagnostic reports and functional assessments showing significant support needs (communication, cognitive/adaptive functioning, safety or behavioural complexity)"],
-      "tips": ["Do not wait for 2027 — applying to Autism Funding or the At Home Program now locks in an automatic transition", "Funding is flexible across respite, therapy, behaviour intervention and AAC rather than tied to one diagnosis stream", "Services outside British Columbia and unresearched interventions are not eligible uses", "Call the CYSN Resource Line (1-833-882-0024) or your local CYSN office to discuss eligibility today"],
+      "tips": ["Do not wait for 2027 — applying to Autism Funding or the School-Aged Extended Therapies stream now locks in an automatic transition", "Funding is flexible across respite, therapy, behaviour intervention and AAC rather than tied to one diagnosis stream", "Services outside British Columbia and unresearched interventions are not eligible uses", "Call the CYSN Resource Line (1-833-882-0024) or your local CYSN office to discuss eligibility today"],
       "time": "Transition runs April 2026 to March 2027; open to direct applications April 1, 2027.",
       "phone": "1-844-442-2800"
     }
@@ -2297,6 +2297,41 @@ const BENEFITS = [
       "tips": ["Never buy first — equipment purchased before pre-approval is not reimbursed", "Ask your OT to note why the least-expensive option would not meet your medical need if you require specific features", "Repairs and batteries can be covered between replacement cycles"],
       "time": "Weeks to a couple of months depending on assessments, quotes and pre-approval",
       "phone": "1-866-866-0800"
+    }
+  },
+  {
+    "id": "bc-at-home-medical",
+    "needsPractitioner": true,
+    "name": "At Home Program: Medical Benefits",
+    "level": "British Columbia",
+    "category": "Health",
+    "amount": "Per-item coverage — wheelchair seating to $9,000, lifts to $8,000, hospital bed to $4,000, scooter to $3,700, dental $700 a year, optical $150 a year, plus free prescriptions through PharmaCare Plan F",
+    "summary": "Covers medical equipment, therapies, dental and optical care, medical travel and PharmaCare Plan F for children with severe disabilities who live at home and are dependent in most daily living activities.",
+    "requires": ["bc", "child", "severePermanent"],
+    "requiresNote": "Your child is 17 or younger, is a BC resident enrolled in the Medical Services Plan, lives at home with a parent or guardian or with an Extended Family Program caregiver, and has been assessed as dependent in at least three of the four activities of daily living — eating, dressing, toileting and washing.",
+    "note": "Benefits run until the last day of the month your child turns 18, and PharmaCare Plan F coverage ends the same day. Start the adult disability assistance application about six months before that birthday — young people enrolled in the program get a streamlined route into it. New families can still apply until March 2027.",
+    "applyText": "See eligibility and apply",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program/at-home-program-eligibility",
+    "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program",
+    "detail": {
+      "about": "Figures come from the At Home Program Guide dated October 2025. Equipment limits include a wheelchair seating system up to $9,000, a basic manual wheelchair of $4,000, a basic scooter to $3,700, a standard electric hospital bed to $4,000, a floor or ceiling lift to $8,000 including the lift, two slings and installation, additional alternate positioning devices to $5,000, a floor therapy mat to a $500 lifetime maximum, and step stools to $200. Audiology equipment is covered to $8,000 for all devices combined in a three-year period. Therapies are covered to $5,760 per twelve-month period for each of occupational therapy, physiotherapy and speech-language pathology, billed at $160 per hour for a therapist and $60 per hour for a therapist assistant. Chiropractic or massage is covered to $1,920 per twelve-month period, at $40 per chiropractic session and $40 per hour of massage. Dental is $700 per year for restorative procedures, orthodontic is $5,000 lifetime, and optical is prescription lenses and frames to $150 per year — all three must be pre-approved and purchased within six months of the approval. Routine dental care is not eligible. PharmaCare Plan F covers prescription medications, orthotics and prosthetics, needles and syringes for insulin-dependent diabetics, and blood glucose testing strips.\n\nMedical travel: Non-emergency medical travel must be pre-approved. It is covered only when the service is not available in your home community AND the round trip exceeds 80 kilometres. It pays the least costly car, bus, train, ferry or air travel for your child and one other person from the family home, car travel at the BC government rate of 63 cents per kilometre, accommodation to $150 per night plus $15 per night for hotel parking, highway tolls, and parking at the appointment. Meals are not reimbursed, and neither is travel within the city where the appointment is, or travel for appointments unrelated to your child's disability. Claims more than six months after the date of service are not accepted. Apply to the Travel Assistance Program (TAP BC) before using this benefit. Emergency ambulance service is free for enrolled children.\n\nWhat is not covered: The program is not intended for children with acute or temporary equipment needs, children admitted to hospital for more than four months, or children receiving in-home respite care through Nursing Support Services. Children or parents receiving an insurance settlement or court award related to the child's disability are not eligible."
+    }
+  },
+  {
+    "id": "bc-supported-child-development",
+    "name": "Supported Child Development",
+    "level": "British Columbia",
+    "category": "Family",
+    "amount": "Consulting and support services so a child with extra support needs can take part in inclusive child care",
+    "summary": "Community-based programs that help children with extra support needs take part in regular, fully inclusive child care — support for the family and for the child care centre, not just the child.",
+    "requires": ["bc", "child"],
+    "requiresNote": "For children with extra support needs who are attending or want to attend a child care setting in BC.",
+    "note": "Ask your public health nurse or physician, or contact your local Ministry of Children and Family Development office. Aboriginal Supported Child Development offers the same supports in a culturally relevant and meaningful way — see ascdp.bc.ca.",
+    "applyText": "Find your local program",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/early-childhood-intervention",
+    "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/early-childhood-intervention",
+    "detail": {
+      "about": "Supported Child Development is a set of community-based programs offering a range of consulting and support services to children, families and child care centres so that children with extra support needs can participate in fully inclusive child care settings. Aboriginal Supported Child Development provides these supports in a culturally relevant and meaningful way."
     }
   },
   {
