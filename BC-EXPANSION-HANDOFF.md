@@ -20,15 +20,15 @@ sequence itself, which is an owner decision.
 
 ## RESOLVED — no Alberta leak (verified 2026-07-21)
 
-The hardened Playwright gate is permanently stored at `e2e/bc-dryrun.spec.js`. Do not
-delete it. Re-run it at any time with:
+The hardened Playwright gate is stored at `e2e/bc-dryrun.spec.js` for pre-launch use.
+Run it while `BC_ENABLED` is still `false` with:
 
 `npx playwright test e2e/bc-dryrun.spec.js`
 
 The gate enables BC without editing source files: `page.route` intercepts the `app.js`
 response and rewrites `const BC_ENABLED = false;` to `const BC_ENABLED = true;`. It
-hard-fails if that exact string is absent. The old flip-the-flag, run, revert, and delete
-the spec ritual is obsolete.
+hard-fails if that exact string is absent. That refusal to run vacuously is intentional.
+Delete the gate in the same commit that permanently flips the flag to `true`.
 
 All 4 tests pass: a BC adult in Vancouver, a BC child persona, a BC resident in an
 unlisted city, and the BC-enabled browse view. Persona checks expand the not-a-match
@@ -333,6 +333,36 @@ BC is mid-restructure of children's disability programs:
 Both autism entries already carry the replacement notice. Re-verify this cluster before
 launch and again after 2027-04-01.
 
+## Launch rehearsal findings (2026-07-21)
+
+A local launch rehearsal flipped `BC_ENABLED` to `true`, ran the full suite, and then
+reverted the flag. The flip was never committed, and the working tree is clean again.
+
+With the flag on, the generators correctly produced 84 entries (36 Alberta and federal +
+48 BC) and 84 guide pages. All 26 unit tests passed. Two e2e tests failed, and both must
+be handled as part of the launch rather than treated as surprises.
+
+### Finding 1 — launch blocker
+
+`e2e/persistence.spec.js` is coupled to the Alberta-only wizard wording. It asserts that
+the residency step contains `live in Alberta` and selects `Yes, I live in Alberta` at
+lines 81, 84, 87, and 131. With `BC_ENABLED = true`, the residency question becomes
+`Where do you live?` and the option label becomes `Alberta`, so those assertions fail.
+
+This must be fixed before launch. Update `e2e/persistence.spec.js` to the flag-on wording
+before the test and deploy step. Until that update is made, `npm run test:e2e` will fail
+with the flag on.
+
+### Finding 2 — expected pre-launch gate behaviour
+
+`e2e/bc-dryrun.spec.js` hard-fails when the source flag is already `true` because it
+exists to patch `const BC_ENABLED = false;` over the network and refuses to run vacuously
+when that exact string is absent. This is correct behaviour, not a bug.
+
+The BC dry-run gate is a pre-launch tool. Run it while the flag is still `false` as the
+final check before flipping. Once the flag is permanently `true`, the gate is obsolete.
+Delete `e2e/bc-dryrun.spec.js` in the same commit that flips the flag.
+
 ## Remaining work
 
 Candidate verification is complete. All 51 researched candidates are resolved. The two
@@ -347,16 +377,21 @@ run**, so the master copy of `bc-research.json` now lives only in the session sc
 
 The only remaining item is the launch sequence, which needs an owner go-ahead:
 
-1. Run the BC gate: `npx playwright test e2e/bc-dryrun.spec.js` — 4 tests must pass.
-2. Flip `BC_ENABLED` to `true` in `public/app.js`.
-3. Update the static scope strings marked `SCOPE:` in `public/index.html`,
+1. While `BC_ENABLED` is still `false`, run the final BC dry-run gate:
+   `npx playwright test e2e/bc-dryrun.spec.js` — 4 tests must pass.
+2. Update `e2e/persistence.spec.js` to the flag-on residency wording: `Where do you live?`
+   and the `Alberta` option. This is a launch prerequisite, not a post-flip test fix.
+3. Flip `BC_ENABLED` to `true` in `public/app.js` and delete
+   `e2e/bc-dryrun.spec.js` in the same commit.
+4. Update the static scope strings marked `SCOPE:` in `public/index.html`,
    `public/embed.html`, and `scripts/gen-guide-pages.js`.
-4. Run `npm run gen:context` and `npm run gen:guides`. Both now respect the flag, so
-   flipping it will add 48 BC entries to the assistant grounding context and generate BC
-   guide pages and sitemap entries. Expect a large diff. That is correct, not a bug.
-5. Add BC cities to whatever the impact page counts as covered municipalities.
-6. Run `npm test`, `npm run test:e2e`, and `npx wrangler deploy --dry-run`, then push.
-7. Confirm live by content marker, not by HTTP status.
+5. Run `npm run gen:context` and `npm run gen:guides`. Both respect the flag, so flipping
+   it will add 48 BC entries to the assistant grounding context and generate 84 total
+   guide pages plus the corresponding sitemap entries. Expect a large diff. That is
+   correct, not a bug.
+6. Add BC cities to whatever the impact page counts as covered municipalities.
+7. Run `npm test`, `npm run test:e2e`, and `npx wrangler deploy --dry-run`.
+8. Push and confirm live by content marker, not by HTTP status.
 
 Immediately before launch, re-verify the autism funding and Children and Youth Disability
 Benefit cluster. Re-verify it again after April 1, 2027. Re-check the Canada Student Grant
