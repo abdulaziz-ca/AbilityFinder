@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 74 links. The monitor checks a bounded rotating batch every
+// 110 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) applyUrls are skipped — they depend on the
@@ -234,6 +234,186 @@ export const LINKS = [
     "url": "https://www.fortsask.ca/recreation-parks/program-registrations-drop-in-classes/access-for-everyone-program/",
     "label": "Fort Saskatchewan Access for Everyone — apply",
     "kind": "apply"
+  },
+  {
+    "url": "https://myselfserve.gov.bc.ca/",
+    "label": "Persons with Disabilities (PWD) Designation — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/pwd-designation-and-application/designation-application",
+    "label": "Persons with Disabilities (PWD) Designation — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://my.gov.bc.ca/ahdc",
+    "label": "Fair PharmaCare — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/fair-pharmacare-plan",
+    "label": "Fair PharmaCare — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/plan-c",
+    "label": "PharmaCare Plan C (Income & Disability Assistance) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/family/child-teen-health/dental-eyeglasses",
+    "label": "BC Healthy Kids Program — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/health-supplements-and-programs/medical-transportation",
+    "label": "Medical Transportation Supplement — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www.translink.ca/rider-guide/transit-accessibility/handydart",
+    "label": "HandyDART (TransLink) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.translink.ca/rider-guide/transit-accessibility/how-to-use-accessible-transit",
+    "label": "TaxiSaver Program (TransLink) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.bctransit.com/victoria/riderinfo/handydart/register/",
+    "label": "handyDART (BC Transit) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.bctransit.com/victoria/riderinfo/handydart/",
+    "label": "handyDART (BC Transit) — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www.bctransit.com/victoria/riderinfo/handydart/taxi-saver/",
+    "label": "Taxi Saver Program (BC Transit) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/disability-assistance-rate-table",
+    "label": "BC Disability Assistance (PWD) — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/apply",
+    "label": "Autism Funding: Under Age 6 — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/funding-amount",
+    "label": "Autism Funding: Under Age 6 — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/financial-supports/disability-benefit",
+    "label": "BC Children and Youth Disability Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://news.gov.bc.ca/releases/2026CFD0002-000136",
+    "label": "BC Children and Youth Disability Benefit — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/assets/gov/british-columbians-our-governments/policies-for-government/bc-employment-assistance-policy-procedure-manual/forms/pdfs/hr2847.pdf",
+    "label": "Monthly Nutritional Supplement — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/health-supplements-and-programs-rate-table",
+    "label": "Monthly Nutritional Supplement — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance/supplements/optical",
+    "label": "Optical Supplements (Glasses & Eye Exams) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/transportation/passenger-travel/buses-taxis-limos/bus-pass/people-with-disabilities",
+    "label": "BC Bus Pass Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/general-supplements-and-programs-rate-table",
+    "label": "BC Bus Pass Program — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www.sparc.bc.ca/parking-permits/",
+    "label": "Accessible Parking Permit (SPARC BC) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/health-supplements-and-programs/medical-equipment-and-devices",
+    "label": "Medical Equipment & Devices Supplement — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program/medical-benefits",
+    "label": "At Home Program: School-Aged Extended Therapies (SAET) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/assets/gov/family-and-social-supports/children-teens-with-support-needs/at_home_program_guide.pdf",
+    "label": "At Home Program: School-Aged Extended Therapies (SAET) — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www.communitylivingbc.ca/who-does-clbc-support/eligible-clbc-support/",
+    "label": "Community Living BC (CLBC) Adult Supports — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.communitylivingbc.ca/what-support-is-available/",
+    "label": "Community Living BC (CLBC) Adult Supports — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://studentaidbc.ca/apply/how-to-apply-disability-funding",
+    "label": "Canada Student Grant for Students with Disabilities (StudentAid BC) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://studentaidbc.ca/explore/grants-scholarships/canada-student-grant-students-disabilities",
+    "label": "Canada Student Grant for Students with Disabilities (StudentAid BC) — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://studentaidbc.ca/explore/grants-scholarships/canada-student-grant-services-and-equipment-students-disabilities",
+    "label": "Canada Student Grant for Services and Equipment – Students with Disabilities — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance/supplements/dental",
+    "label": "Dental Supplements (Income & Disability Assistance) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/seniors-renovation",
+    "label": "Home Renovation Tax Credit for Seniors and Persons with Disabilities — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/careers-myhr/job-seekers/internship-co-op-opportunities/work-able",
+    "label": "Work-Able Accessible Employment Program (BC Public Service) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://apply.workbc.ca/",
+    "label": "WorkBC Assistive Technology Services — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.workbc.ca/discover-employment-services/assistive-technology-services",
+    "label": "WorkBC Assistive Technology Services — official source",
+    "kind": "source"
   },
   {
     "url": "https://vadsociety.ca",

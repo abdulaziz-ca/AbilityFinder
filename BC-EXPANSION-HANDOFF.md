@@ -5,9 +5,9 @@ have been folded into `HANDOFF.md` / `ROADMAP.md`.
 
 ## Status in one line
 
-17 BC programs are merged into `public/data.js` and **completely hidden** behind
+27 BC programs are merged into `public/data.js` and **completely hidden** behind
 `BC_ENABLED = false` in `public/app.js`. BC is **not launchable yet** only because
-~34 programs remain unverified; the blocking bug is cleared.
+~24 programs remain unverified; the blocking bug is cleared.
 
 ## Launch decisions already made (owner)
 
@@ -54,7 +54,7 @@ usually live in the **BCEA rate tables**, not on program pages — cite the rate
 - Health Supplements and Programs Rate Table
 - General Supplements and Programs Rate Table
 
-## What is verified and merged (17 entries)
+## What is verified and merged (27 entries)
 
 Batch 1 — `bc-disability-assistance-pwd`, `bc-autism-funding-under-6`,
 `bc-autism-funding-6-18`, `bc-cy-disability-benefit`, `bc-monthly-nutritional-supplement`,
@@ -65,6 +65,11 @@ Batch 2 — `bc-at-home-saet`, `bc-clbc`, `bc-csg-students-disabilities`,
 `bc-csg-services-equipment`, `bc-dental-supplement`, `bc-home-reno-tax-credit`,
 `bc-work-able-internship`, `bc-workbc-assistive-technology`.
 
+Batch 3 — `bc-pwd-designation`, `bc-fair-pharmacare`, `bc-pharmacare-plan-c`,
+`bc-healthy-kids`, `bc-medical-transportation`, `handydart-translink`,
+`handycard-translink`, `taxisaver-translink`, `handydart-bctransit`,
+`taxi-saver-bctransit`.
+
 ### Facts confirmed against official sources
 
 - PWD disability assistance: `$983.50` support + `$500` shelter = **$1,483.50/month**
@@ -72,6 +77,23 @@ Batch 2 — `bc-at-home-saet`, `bc-clbc`, `bc-csg-students-disabilities`,
 - Autism funding: **$22,000/year** under 6, **$6,000/year** ages 6–18.
 - Monthly Nutritional Supplement: up to **$180**/month dietary + **$45**/month
   vitamins or minerals.
+- Fair PharmaCare: family net income of **$13,750 or less** means no deductible and no
+  family maximum, so PharmaCare pays 100 percent from the first prescription. Up to
+  **$30,000** there is still no deductible, with a family maximum of **$100–$800**. The
+  deductible starts at **$650** just above $30,000. After the deductible, PharmaCare pays
+  70 percent, or 75 percent if a family member was born before 1940. Source: the Fair
+  PharmaCare assistance levels table.
+- Medical transportation: **$0.36 per kilometre** and **$8 per meal**, from the Health
+  Supplements and Programs Rate Table effective 2023-08-01. The same table reconfirms
+  the Monthly Nutritional Supplement figures of **$180** dietary and **$45** vitamins,
+  and the optical figures of **$44.83** for an optometrist and **$48.90** for an
+  ophthalmologist.
+- Healthy Kids: up to **$2,000** in basic dental services every two years, prescription
+  glasses once a year, and hearing instruments. Eligibility is gated by MSP supplementary
+  benefits, which require adjusted net income under **$42,000**.
+- TransLink 1-Zone fares current as of 2026-07-01: **$2.85** adult and **$2.30**
+  concession on Compass stored value, and **$3.50** adult cash. TransLink normally
+  changes fares each July 1, so re-check after 2027-07-01.
 
 ### Corrections already applied (research had these wrong)
 
@@ -81,6 +103,33 @@ Batch 2 — `bc-at-home-saet`, `bc-clbc`, `bc-csg-students-disabilities`,
   Permit validity (3 years permanent, 1–12 months temporary) is confirmed.
 - Optical: **$44.83** with an optometrist, **$48.90** with an ophthalmologist. The
   research had conflated these into one figure.
+
+### Corrections applied in batch 3
+
+- Medical transportation meals: the **$8** meal rate is not a standard entitlement.
+  Policy says meal allowances are normally not provided and may be issued only in
+  exceptional circumstances. The entry says so.
+- Medical transportation pre-approval: the earlier "after-the-fact requests are routinely
+  refused" framing was too strong. Policy allows a request after travel in exceptional
+  circumstances where funding could not be obtained beforehand.
+- Plan C: devices and supplies are exempt from PharmaCare's Full Payment Policy, so a
+  pharmacy or device provider may charge above the maximum eligible cost even though
+  drugs and dispensing fees cannot be charged. This caveat is now in the entry.
+- Plan C covers more groups than income and disability assistance: it also covers children
+  and youth in the care of MCFD or of an Indigenous Governing Body, and people who
+  arrived through the Canada-Ukraine authorization for emergency travel.
+- TransLink HandyDART: two unsupported claims were dropped — that attendants ride free
+  on HandyDART itself, and that a professional must sign a verification section. Neither
+  is on TransLink's page. Attendant-free travel is confirmed for HandyCard holders on
+  buses, SkyTrain, SeaBus, and West Coast Express.
+- BC Transit handyDART: the claim that DayPASS, ticket books, and monthly passes work on
+  both handyDART and fixed-route buses was dropped, as was the specific Victoria fare
+  figure. Neither is stated on BC Transit's page.
+- BC Transit Taxi Saver: the **$40 for $80** package and one-per-month limit are confirmed
+  for the Victoria region only. The earlier list of other participating regions was
+  dropped as unverified.
+- PWD designation: no earnings-exemption dollar figure was included because it was not
+  verified.
 
 ### Time-sensitive BC transition — keep these in sync
 
@@ -98,16 +147,15 @@ launch and again after 2027-04-01.
 
 ## Remaining work
 
-1. **Verify ~34 remaining candidates**, then merge. Raw research for all 51 candidates
-   is at `test-results/bc-research.json` (gitignored; master copy lives in the session
-   scratchpad — **`test-results/` is wiped by every e2e run**, so never stage handoff
-   data there). Unverified groups: PWD designation process, At Home medical/respite,
-   Healthy Kids, PharmaCare (Fair + Plan C), medical transportation and equipment
-   supplements, WorkBC employment services, five StudentAid BC grants/bursaries, sales
-   tax credit, fuel tax refund, ICBC discount, property tax deferment, TransLink
-   (HandyDART / HandyCard / TaxiSaver), BC Transit (handyDART / Taxi Saver), and eight
-   municipal recreation programs (Vancouver, Surrey, Burnaby, Richmond, Victoria,
-   Saanich, Kelowna, Coquitlam, Kamloops).
+1. **Verify ~24 remaining candidates**, then merge. The raw research file is gitignored,
+   and **`test-results/` is wiped by every e2e run**, so the master copy of
+   `bc-research.json` now lives only in the session scratchpad. Unverified groups: At Home
+   Program medical and respite benefits, WorkBC employment services, five StudentAid BC
+   grants and bursaries, sales tax credit, fuel tax refund, ICBC discount, property tax
+   deferment, and eight municipal recreation programs. The At Home Program entries were
+   deliberately deferred because the program is mid-restructure and its transition dates
+   need to be re-checked alongside the autism and Children and Youth Disability Benefit
+   cluster.
 2. **Launch sequence** once item 1 is done:
    - Run the BC gate: `npx playwright test e2e/bc-dryrun.spec.js` — 4 tests must pass.
    - Flip `BC_ENABLED = true` in `public/app.js`.

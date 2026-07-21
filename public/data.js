@@ -1928,6 +1928,168 @@ const BENEFITS = [
 
   /* ---- British Columbia (hidden until BC_ENABLED) ---- */
   {
+    "id": "bc-pwd-designation",
+    "needsPractitioner": true,
+    "name": "Persons with Disabilities (PWD) Designation",
+    "level": "British Columbia",
+    "category": "Money",
+    "amount": "No direct payment on its own — it is the designation that unlocks disability assistance, the transportation supplement and the ministry health supplements.",
+    "summary": "BC's provincial disability status for adults 18 and over with a severe impairment expected to last at least two years. It is the credential behind most other BC disability programs.",
+    "requires": ["bc", "adult", "severePermanent"],
+    "requiresNote": "You are 18 or older, and in the opinion of a medical practitioner or nurse practitioner your severe mental or physical impairment is likely to continue for at least two years.",
+    "note": "The test is functional, not diagnostic. The impairment must directly and significantly restrict your ability to perform daily living activities, AND you must need an assistive device, the significant help or supervision of another person, or the services of an assistance animal.",
+    "applyText": "Start on My Self Serve",
+    "applyUrl": "https://myselfserve.gov.bc.ca/",
+    "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/pwd-designation-and-application/designation-application",
+    "detail": {
+      "about": "The standard application is form HR2883. Five prescribed classes can use the shorter HR3642 application instead: people on BC PharmaCare Plan P (palliative care), At Home Program participants, Community Living BC eligible clients, people receiving CPP Disability or the Post-Retirement Disability Benefit, and people with an Indigenous Services Canada PWD designation in the BC region."
+    }
+  },
+  {
+    "id": "bc-fair-pharmacare",
+    "name": "Fair PharmaCare",
+    "level": "British Columbia",
+    "category": "Health",
+    "amount": "Income-based drug coverage. Family net income of $13,750 or less: PharmaCare pays 100 percent of eligible costs from the first prescription. Up to $30,000: no deductible, with a family maximum between $100 and $800. Above that a deductible applies, then PharmaCare pays 70 percent, and 100 percent once you reach your family maximum.",
+    "summary": "BC's main drug plan for anyone enrolled in MSP. It pays a share of your eligible prescriptions based on family net income — the lower your income, the sooner and the more it pays. Free to register.",
+    "requires": ["bc"],
+    "requiresNote": "Any MSP-enrolled BC resident or family can register. Your assistance level is scaled to family net income from two years earlier, verified with the CRA.",
+    "note": "Return the consent form within 30 days of registering. If you do not, temporary coverage ends and your family's deductible is set at $10,000.",
+    "applyText": "Register online",
+    "applyUrl": "https://my.gov.bc.ca/ahdc",
+    "source": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/fair-pharmacare-plan",
+    "detail": {
+      "about": "Assistance is tied to family net income from two years prior and coverage applies automatically at the pharmacy counter. After a family meets its deductible PharmaCare pays 70% of eligible costs, or 75% if a family member was born before 1940. After a family reaches its family maximum, Fair PharmaCare pays 100% of eligible costs for the rest of the year. Income bands table: https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/fair-pharmacare-plan/how-your-coverage-is-calculated/fair-pharmacare-assistance-levels-regular"
+    }
+  },
+  {
+    "id": "bc-pharmacare-plan-c",
+    "name": "PharmaCare Plan C (Income & Disability Assistance)",
+    "level": "British Columbia",
+    "category": "Health",
+    "amount": "100% of the cost of eligible drugs and dispensing fees",
+    "summary": "Automatic first-dollar drug coverage if you are on BC income, disability or hardship assistance. PharmaCare pays the full cost of eligible drugs and dispensing fees at the pharmacy counter.",
+    "requires": ["bc", "lowIncome"],
+    "requiresNote": "You are receiving income assistance, disability assistance, hardship assistance or Medical Services Only through the Ministry of Social Development and Poverty Reduction; or you are a child or youth in the care of the Ministry of Children and Family Development or of an Indigenous Governing Body; or you arrived in BC through the Canada-Ukraine authorization for emergency travel.",
+    "note": "You cannot be charged for medications or dispensing fees covered by Plan C. Medical devices and supplies are the exception — they are exempt from PharmaCare's Full Payment Policy, so a pharmacy or device provider may charge you above the maximum eligible cost.",
+    "applyText": "Automatic — learn more",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/plan-c",
+    "source": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/plan-c",
+    "detail": {
+      "about": "Enrolment in those programs automatically enrols you in Plan C — there is no separate application. It also covers prostheses and orthoses including offloading devices for diabetic foot ulcers, ostomy supplies, and insulin and insulin pumps (insulin pumps need an approved Special Authority request from a doctor)."
+    }
+  },
+  {
+    "id": "bc-healthy-kids",
+    "name": "BC Healthy Kids Program",
+    "level": "British Columbia",
+    "category": "Health",
+    "amount": "Up to $2,000 in basic dental every two years per child, prescription glasses once a year, plus hearing instruments",
+    "summary": "Free basic dental care, glasses and hearing help for children under 19 in low-income working families that are not on income, disability or hardship assistance.",
+    "requires": ["bc", "child", "lowIncome"],
+    "requiresNote": "Your family qualifies for MSP supplementary benefits — that means an adjusted net income of less than $42,000 — and you are NOT receiving income assistance, disability assistance or hardship assistance. Children in families on assistance get equivalent dental and optical coverage through the ministry supplements instead.",
+    "note": "Coverage stays active until the end of the month of your child's 19th birthday. If your child reaches the $2,000 dental limit, emergency treatment is still available, but only for the immediate relief of pain.",
+    "applyText": "Apply for health & drug coverage",
+    "applyUrl": "https://my.gov.bc.ca/ahdc",
+    "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/family/child-teen-health/dental-eyeglasses",
+    "detail": {
+      "about": "Dental is up to $2,000 of basic services every two years. Optical is prescription glasses once a year, including lenses and basic frames. Hearing instruments include hearing aids, bone-anchored hearing aids, cochlear implants, repairs and related items — the least expensive appropriate option, based on an assessment by an audiologist or hearing instrument practitioner, when the family has no other resources to pay. Adjusted net income is your net income after deductions for age, family size, disability, and income from the Universal Child Care Benefit and a Registered Disability Savings Plan."
+    }
+  },
+  {
+    "id": "bc-medical-transportation",
+    "name": "Medical Transportation Supplement",
+    "level": "British Columbia",
+    "category": "Health",
+    "amount": "$0.36 per kilometre by private vehicle, plus bus, ferry, air or train fares, accommodation for overnight travel, and an escort where required",
+    "summary": "Pays your travel costs to get to essential medical treatment, using the least expensive appropriate way of getting there.",
+    "requires": ["bc", "lowIncome"],
+    "requiresNote": "For people on disability assistance, people on income assistance in the Persons with Persistent Multiple Barriers category, people in special care facilities, and people on Medical Services Only. The supplement is not available if you are only receiving income assistance.",
+    "note": "Ask for pre-approval before you travel. The ministry can consider a request afterwards in exceptional circumstances where you could not get funding beforehand, but do not count on it. Ambulance bills and the cost to buy, maintain, repair or insure a vehicle are not covered, and neither are trips for non-essential services.",
+    "applyText": "Submit form HR3320",
+    "applyUrl": "https://myselfserve.gov.bc.ca/",
+    "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/health-supplements-and-programs/medical-transportation",
+    "detail": {
+      "about": "Covers travel to essential medical treatment — services under the Medicare Protection Act or Hospital Insurance Act with a medical practitioner, nurse practitioner, specialist or hospital. Meal allowances are normally NOT provided as part of a medical transportation supplement; in exceptional circumstances the ministry may issue up to $8 per meal. Escort costs are covered where an escort is required, including for children and for adults who are medically incapable of travelling alone. The rates come from the Health Supplements and Programs Rate Table (effective August 1, 2023): https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/health-supplements-and-programs-rate-table"
+    }
+  },
+  {
+    "id": "handydart-translink",
+    "name": "HandyDART (TransLink)",
+    "level": "Metro Vancouver",
+    "category": "Transit",
+    "amount": "Every trip is a 1-Zone fare — $2.85 adult / $2.30 concession with Compass stored value, $3.50 adult / $2.30 concession in cash",
+    "summary": "Door-to-door shared-ride transit across Metro Vancouver for people who cannot use conventional public transit for all trips without assistance. Any distance, always a 1-Zone fare.",
+    "requires": ["bc"],
+    "requiresNote": "You live in Metro Vancouver and have a physical, sensory or cognitive disability that means you cannot use conventional public transit for all trips without assistance. TransLink states no age or income test.",
+    "note": "This is a Metro Vancouver service. Outside Metro Vancouver, look for BC Transit handyDART instead. Fares shown are current as of July 1, 2026 — TransLink usually changes fares on July 1.",
+    "applyText": "Download the HandyDART & HandyCard application",
+    "applyUrl": "https://www.translink.ca/rider-guide/transit-accessibility/handydart",
+    "source": "https://www.translink.ca/rider-guide/transit-accessibility/handydart",
+    "detail": {
+      "about": "The earliest pickup is 6 a.m. and the last drop-off is 2 a.m. You can book your trip as far as seven days in advance and up until 4 p.m. the day before your trip. One combined HandyDART and HandyCard application form covers both services."
+    }
+  },
+  {
+    "id": "handycard-translink",
+    "name": "HandyCard (TransLink)",
+    "level": "Metro Vancouver",
+    "category": "Transit",
+    "amount": "Free photo ID card — concession fares for you, free travel for your attendant, and access to half-price TaxiSaver coupons",
+    "summary": "Photo ID card for Metro Vancouver riders who cannot use conventional transit without assistance. It gets you concession fares, lets an attendant travel free, and unlocks the TaxiSaver program.",
+    "requires": ["bc"],
+    "requiresNote": "Same eligibility and the same combined application form as HandyDART — a physical, sensory or cognitive disability that means you cannot use conventional public transit for all trips without assistance.",
+    "note": "The attendant travels free on buses, SkyTrain, SeaBus and West Coast Express. HandyDART trips are paid separately at the 1-Zone fare.",
+    "applyText": "Apply with the HandyDART & HandyCard form",
+    "applyUrl": "https://www.translink.ca/rider-guide/transit-accessibility/handydart",
+    "source": "https://www.translink.ca/rider-guide/transit-accessibility/handydart"
+  },
+  {
+    "id": "taxisaver-translink",
+    "name": "TaxiSaver Program (TransLink)",
+    "level": "Metro Vancouver",
+    "category": "Transit",
+    "amount": "Half-price taxi coupons — $25.00 buys one book with $50.00 worth of coupons, maximum two books per month",
+    "summary": "Half-price taxi coupons for HandyCard holders, for trips where a scheduled HandyDART ride does not work.",
+    "requires": ["bc"],
+    "requiresNote": "You must be a TransLink HandyCard member.",
+    "note": "Order by cheque or money order with a self-addressed envelope, or buy in person at the TransLink Customer Service Centre at Waterfront Station, which takes cash, debit or credit. Buying in person, you or your representative must present the original HandyCard.",
+    "applyText": "Get a HandyCard, then order TaxiSavers",
+    "applyUrl": "https://www.translink.ca/rider-guide/transit-accessibility/how-to-use-accessible-transit",
+    "source": "https://www.translink.ca/rider-guide/transit-accessibility/how-to-use-accessible-transit"
+  },
+  {
+    "id": "handydart-bctransit",
+    "name": "handyDART (BC Transit)",
+    "level": "British Columbia",
+    "category": "Transit",
+    "amount": "Registration is free; attendants ride free",
+    "summary": "Door-to-door shared-ride transit in BC Transit communities outside Metro Vancouver, for people whose disability prevents them from using fixed-route transit without assistance.",
+    "requires": ["bc"],
+    "requiresNote": "You live in a BC Transit community that has handyDART service, and you have a permanent or temporary disability that prevents you from using fixed-route transit without assistance.",
+    "note": "Attendants ride free and must board and exit at the same stop as you. Each region has its own handyDART page, contact and booking office — start from your community's page on bctransit.com.",
+    "applyText": "Register with your region's handyDART office",
+    "applyUrl": "https://www.bctransit.com/victoria/riderinfo/handydart/register/",
+    "source": "https://www.bctransit.com/victoria/riderinfo/handydart/",
+    "detail": {
+      "about": "handyDART is shared, door-to-door service. Drivers drop you off at the closest accessible point near your destination. Registration is free. You can pay your fare with cash when you board, or buy fare products in advance."
+    }
+  },
+  {
+    "id": "taxi-saver-bctransit",
+    "name": "Taxi Saver Program (BC Transit)",
+    "level": "British Columbia",
+    "category": "Transit",
+    "amount": "Half-price taxi coupons — in the Victoria region, $40 buys an $80 package, one package per month",
+    "summary": "Half-price taxi coupons for permanently registered handyDART riders, for one-off trips when handyDART does not work.",
+    "requires": ["bc"],
+    "requiresNote": "You are a permanently registered handyDART customer, 12 years of age or older, and you have a handyPASS.",
+    "note": "Coupons come in $1, $2 and $5 values and taxi drivers do not give change for them — pay any remainder in cash. Coupons cannot be transferred or used as a tip. The $40 for $80 package and the one-per-month limit are confirmed for the Victoria region; other BC Transit regions run their own versions, so check your region's page.",
+    "applyText": "Check your region's Taxi Saver page",
+    "applyUrl": "https://www.bctransit.com/victoria/riderinfo/handydart/taxi-saver/",
+    "source": "https://www.bctransit.com/victoria/riderinfo/handydart/taxi-saver/"
+  },
+  {
     "id": "bc-disability-assistance-pwd",
     "needsPractitioner": true,
     "name": "BC Disability Assistance (PWD)",
