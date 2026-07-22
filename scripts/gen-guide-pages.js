@@ -55,6 +55,7 @@ if (!styleMatch) {
 const styleHref = styleMatch[1].replace(/^\/?/, "/");
 
 const clean = (value) => String(value ?? "").replace(/\s+/g, " ").trim();
+const cleanGeneratedWhitespace = (value) => value.replace(/[ \t]+$/gm, "");
 const esc = (value) => clean(value)
   .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
   .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
@@ -129,8 +130,7 @@ function header() {
       <div class="nav-inner">
         <a class="brand" href="https://abilityfinder.ca/" aria-label="AbilityFinder home"><span class="brand-name">AbilityFinder</span></a>
         <div class="nav-right">
-          <!-- SCOPE: update when BC launches (see BC_ENABLED in app.js) -->
-          <span class="nav-tag">Alberta</span>
+          <span class="nav-tag">Alberta + BC</span>
           <a class="guide-link" href="https://abilityfinder.ca/">All benefits</a>
           <a class="guide-link" href="https://abilityfinder.ca/guides/">Program guides</a>
         </div>
@@ -203,15 +203,18 @@ const publishableBenefits = benefits.filter((b) => {
 
 const groups = new Map([["Federal", []], ["Provincial", []], ["Municipal", []]]);
 for (const b of publishableBenefits) {
-  const group = b.level === "Federal" ? "Federal" : b.level === "Alberta" ? "Provincial" : "Municipal";
+  const group = b.level === "Federal"
+    ? "Federal"
+    : ["Alberta", "British Columbia"].includes(b.level)
+      ? "Provincial"
+      : "Municipal";
   groups.get(group).push(b);
 }
 const guideIndex = `<!DOCTYPE html>
 <html lang="en">
 ${head({
   title: "Disability benefit program guides — AbilityFinder",
-  // <!-- SCOPE: update when BC launches (see BC_ENABLED in app.js) -->
-  desc: "Plain-language guides to federal, Alberta, and municipal disability benefits, with eligibility, value, application steps, and official sources.",
+  desc: "Plain-language guides to federal, Alberta, British Columbia, and municipal disability benefits, with eligibility, value, application steps, and official sources.",
   canonical: "https://abilityfinder.ca/guides/",
 })}
   <body>
@@ -219,8 +222,7 @@ ${header()}
     <div class="wrap">
       <main class="browse">
         <header class="browse-head">
-          <!-- SCOPE: update when BC launches (see BC_ENABLED in app.js) -->
-          <p class="eyebrow">Alberta + federal benefits</p>
+          <p class="eyebrow">Alberta, BC + federal benefits</p>
           <h1>Program guides</h1>
           <p>Browse plain-language guides to every benefit in the AbilityFinder catalog.</p>
           <p><a class="btn btn-primary" href="https://abilityfinder.ca/">Answer a few questions to see every benefit you may qualify for</a></p>
@@ -244,8 +246,10 @@ const outputFiles = new Set(["index.html", ...publishableBenefits.map((b) => `${
 for (const file of fs.readdirSync(OUT_DIR)) {
   if (file.endsWith(".html") && !outputFiles.has(file)) fs.unlinkSync(path.join(OUT_DIR, file));
 }
-for (const b of publishableBenefits) fs.writeFileSync(path.join(OUT_DIR, `${slugify(b.id)}.html`), benefitPage(b));
-fs.writeFileSync(path.join(OUT_DIR, "index.html"), guideIndex);
+for (const b of publishableBenefits) {
+  fs.writeFileSync(path.join(OUT_DIR, `${slugify(b.id)}.html`), cleanGeneratedWhitespace(benefitPage(b)));
+}
+fs.writeFileSync(path.join(OUT_DIR, "index.html"), cleanGeneratedWhitespace(guideIndex));
 
 const oldSitemap = fs.existsSync(SITEMAP) ? fs.readFileSync(SITEMAP, "utf8") : "";
 const preserved = [...oldSitemap.matchAll(/  <url>\n[\s\S]*?  <\/url>/g)]

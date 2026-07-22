@@ -363,7 +363,7 @@ The BC dry-run gate is a pre-launch tool. Run it while the flag is still `false`
 final check before flipping. Once the flag is permanently `true`, the gate is obsolete.
 Delete `e2e/bc-dryrun.spec.js` in the same commit that flips the flag.
 
-## Remaining work
+## Launch completion (2026-07-21)
 
 Candidate verification is complete. All 51 researched candidates are resolved. The two
 research duplicates were correctly skipped:
@@ -375,23 +375,22 @@ The researched candidate `bc-at-home-respite` was dropped because the program do
 exist. The raw research file is gitignored, and **`test-results/` is wiped by every e2e
 run**, so the master copy of `bc-research.json` now lives only in the session scratchpad.
 
-The only remaining item is the launch sequence, which needs an owner go-ahead:
+The launch sequence is complete in the launch commit:
 
-1. While `BC_ENABLED` is still `false`, run the final BC dry-run gate:
-   `npx playwright test e2e/bc-dryrun.spec.js` — 4 tests must pass.
-2. Update `e2e/persistence.spec.js` to the flag-on residency wording: `Where do you live?`
-   and the `Alberta` option. This is a launch prerequisite, not a post-flip test fix.
-3. Flip `BC_ENABLED` to `true` in `public/app.js` and delete
-   `e2e/bc-dryrun.spec.js` in the same commit.
-4. Update the static scope strings marked `SCOPE:` in `public/index.html`,
-   `public/embed.html`, and `scripts/gen-guide-pages.js`.
-5. Run `npm run gen:context` and `npm run gen:guides`. Both respect the flag, so flipping
-   it will add 48 BC entries to the assistant grounding context and generate 84 total
-   guide pages plus the corresponding sitemap entries. Expect a large diff. That is
-   correct, not a bug.
-6. Add BC cities to whatever the impact page counts as covered municipalities.
-7. Run `npm test`, `npm run test:e2e`, and `npx wrangler deploy --dry-run`.
-8. Push and confirm live by content marker, not by HTTP status.
+- The final flag-off BC dry-run gate passed 4/4 before the flag changed.
+- `BC_ENABLED` is now `true`; the one-time gate was deleted and replaced by permanent
+  live-flag BC browser coverage in `e2e/bc-live.spec.js`.
+- Persistence wording, static scope copy, the browse province/local filters, impact
+  accounting, and guide-index provincial grouping were updated for both provinces.
+- All nine verified BC municipal-program cities are in `CITIES_WITH_PROGRAMS`.
+- Assistant grounding, monitored links, 83 static benefit pages, the guide index, and
+  the sitemap were regenerated from the 84-entry active catalog.
+- The release gate passed: 26 unit tests, 12 browser tests, `git diff --check`, and
+  `npx wrangler deploy --dry-run`.
+
+Operational verification for this release remains the standard deploy step: push the
+launch commit to `origin/main`, wait for Workers Builds, and confirm live using a BC
+content marker and cache version rather than HTTP status alone.
 
 Immediately before launch, re-verify the autism funding and Children and Youth Disability
 Benefit cluster. Re-verify it again after April 1, 2027. Re-check the Canada Student Grant

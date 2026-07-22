@@ -78,13 +78,13 @@ test("normal wizard cycle saves continuously and reloads from IndexedDB mid-flow
   await pick(page, "No, that's difficult or impossible");
   await pick(page, "18 to 64");
 
-  await expect(page.locator(".step-q")).toContainText("live in Alberta");
+  await expect(page.locator(".step-q")).toContainText("Where do you live?");
   await expect.poll(async () => (await storedState(page)).stepIndex).toBe(5);
   await page.reload();
-  await expect(page.locator(".step-q")).toContainText("live in Alberta");
+  await expect(page.locator(".step-q")).toContainText("Where do you live?");
   await expect(page.locator("button.opt.selected")).toHaveCount(0);
 
-  await pick(page, "Yes, I live in Alberta");
+  await pick(page, "Alberta");
   await pick(page, "Yes");
   await pick(page, "No, not yet");
   await pick(page, "Working / have a job");
@@ -128,7 +128,7 @@ test("normal wizard cycle saves continuously and reloads from IndexedDB mid-flow
   await pick(recovered, "Autism spectrum");
   await recovered.locator("#next").click();
   await pick(recovered, "Yes, it began in childhood");
-  await pick(recovered, "Yes, I live in Alberta");
+  await pick(recovered, "Alberta");
   await pick(recovered, "Yes");
   await pick(recovered, "I'm not sure what that is");
   await pick(recovered, "None of these");

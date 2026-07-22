@@ -45,6 +45,8 @@ const CITIES_WITH_PROGRAMS = [
   "Medicine Hat", "Grande Prairie", "St. Albert", "Sherwood Park",
   "Airdrie", "Fort McMurray", "Spruce Grove", "Stony Plain", "Leduc",
   "Cochrane", "Okotoks", "Canmore", "Lloydminster", "Fort Saskatchewan",
+  "Vancouver", "Surrey", "Burnaby", "Richmond", "Victoria", "Saanich",
+  "Kelowna", "Coquitlam", "Kamloops",
 ];
 
 /* ---------------------------------------------- Alberta communities (pop >5,000)
@@ -2126,7 +2128,7 @@ const BENEFITS = [
     "applyText": "Apply for autism funding",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/apply",
     "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/funding-amount",
-    "verified": "2026-07-20",
+    "verified": "2026-07-21",
     "detail": {
       "about": "Up to $22,000 per year per child, spent on professionals listed on the Registry of Autism Service Providers (RASP) and behaviour interventionists supervised by a RASP professional. Also covers family counselling from certified counsellors, psychologists, social workers or psychiatrists, employment-related costs when you hire staff, and administrative costs up to $100/month. Up to 20% of the allocation can go to training, travel and equipment (TTE); the allocation may be prorated in your first funding period.",
       "steps": ["Get an autism diagnosis through the BC Autism Assessment Network (BCAAN, free via physician referral) or a private assessment meeting BC standards", "Register for a Basic BCeID account to apply online, or complete the paper Application for Autism Funding", "Email the application and supporting documents to mcf.autismfundingintake@gov.bc.ca or submit through your local CYSN office", "Sign the funding agreement, then choose RASP-listed providers and submit invoices or reimbursement claims"],
@@ -2150,7 +2152,7 @@ const BENEFITS = [
     "applyText": "Apply for autism funding",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/apply",
     "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/funding-amount",
-    "verified": "2026-07-20",
+    "verified": "2026-07-21",
     "detail": {
       "about": "Up to $6,000 per year per child for behaviour consultants or analysts, speech-language pathologists, occupational or physical therapists, behaviour interventionists, life skills and social skills programs, out-of-school learning support and tutoring, dietary counselling from registered dieticians, family counselling, and specialized therapeutic camps for autism. Administrative costs up to $50/month (or $600 per period for an accountant) and up to 20% for training, travel and equipment.",
       "steps": ["Have an autism diagnosis on file (BCAAN or qualified private assessment)", "Apply online with a Basic BCeID or send the Application for Autism Funding to mcf.autismfundingintake@gov.bc.ca, or go through your local CYSN office", "Sign the funding agreement and hire qualified providers", "Submit invoices for direct payment or claim reimbursements"],
@@ -2174,7 +2176,7 @@ const BENEFITS = [
     "applyText": "Learn about the Disability Benefit",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/financial-supports/disability-benefit",
     "source": "https://news.gov.bc.ca/releases/2026CFD0002-000136",
-    "verified": "2026-07-20",
+    "verified": "2026-07-21",
     "detail": {
       "about": "Two funding tiers: a base tier of $6,500/year and a higher tier of $17,000/year set through support planning with a ministry worker. Funding covers disability-related expenses including respite, paediatric therapies, behavioural intervention, and assistive and augmentative communication supports. Eligibility is needs-based, not diagnosis-specific: direct admission for conditions such as moderate-to-profound intellectual disability, autism with intellectual disability, and degenerative conditions, plus a needs-based clinical review pathway for rare or atypical cases. Part of a $475-million, three-year provincial investment that also expands free community services (therapies from spring 2026, behaviour and mental-health supports 2027, navigation and school-aged programming 2027-2028).",
       "steps": ["Already receiving Autism Funding or SAET: wait to be contacted — a ministry worker manages your transition between April 2026 and March 2027", "Not yet in a program: apply through Autism Funding or the School-Aged Extended Therapies stream before March 2027 and you will move to the Disability Benefit automatically in April 2027", "From April 1, 2027: apply directly to the Disability Benefit", "Work with a ministry worker on support planning if your child may qualify for the $17,000 higher tier"],

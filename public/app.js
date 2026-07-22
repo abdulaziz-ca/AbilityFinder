@@ -6,8 +6,7 @@
    button and reloads never lose the user's answers.
    ========================================================================== */
 
-/* Flip to true when the BC catalog lands. */
-const BC_ENABLED = false;
+const BC_ENABLED = true;
 const SCOPE_LABEL = BC_ENABLED ? "Alberta, BC + federal" : "Alberta + federal";
 const SCOPE_LABEL_LONG = BC_ENABLED ? "Alberta and British Columbia" : "Alberta";
 const SCOPE_RESIDENTS = BC_ENABLED ? "Albertans and British Columbians" : "Albertans";
@@ -1825,7 +1824,7 @@ function impactCatalogStats() {
   const programs = Array.isArray(BENEFITS) ? BENEFITS : [];
   const levels = programs.reduce((counts, benefit) => {
     if (benefit.level === "Federal") counts.federal += 1;
-    else if (benefit.level === "Alberta") counts.provincial += 1;
+    else if (["Alberta", "British Columbia"].includes(benefit.level)) counts.provincial += 1;
     else counts.municipal += 1;
     return counts;
   }, { federal: 0, provincial: 0, municipal: 0 });
@@ -3090,10 +3089,11 @@ const BROWSE_LEVELS = [
   { key: "all", label: "All levels" },
   { key: "Federal", label: "Federal" },
   { key: "Alberta", label: "Alberta" },
+  { key: "British Columbia", label: "British Columbia" },
   { key: "local", label: "Local / city" },
 ];
 function benefitIsLocal(b) {
-  return b.level === "Calgary" || b.level === "Edmonton" || b.level === "Your community";
+  return !["Federal", "Alberta", "British Columbia"].includes(b.level);
 }
 function benefitIsBritishColumbia(b) {
   return b.level === "British Columbia" || b.level === "Metro Vancouver" || BC_CITIES.includes(b.level);
