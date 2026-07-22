@@ -15,6 +15,7 @@
   const ANSWER_KEYS = [
     "forWho",
     "disabilities",
+    "age",
     "ageBand",
     "ageGroup",
     "disabilityVerified",
@@ -34,6 +35,7 @@
     "retroYears",
   ];
   const A11Y_KEYS = ["spacing", "contrast", "links", "guide", "motion"];
+  const HELP_TOPICS = ["disabilities", "documentation", "autismAssessment", "functionalNeeds", "msp", "bcAssistance", "circumstances", "dtc"];
   const VIEWS = new Set(["landing", "wizard", "results", "browse", "detail", "privacy", "about", "support", "updates", "help", "accessibility", "professionals", "partner-overview", "impact", "dtc-prep", "grants", "organizations"]);
   const BROWSE_LEVELS = new Set(["all", "Federal", "Alberta", "local"]);
   const BROWSE_THEMES = new Set(["all", "money", "health", "getting-around", "employment", "education", "family"]);
@@ -56,6 +58,9 @@
     }
     if (key === "retroYears") {
       return Number.isInteger(value) && value >= 0 && value <= 10;
+    }
+    if (key === "age") {
+      return Number.isInteger(value) && value >= 0 && value <= 120;
     }
     if (typeof value !== "string") return false;
     if (key === "forWho") return ["self", "child", "family"].includes(value);
@@ -131,7 +136,7 @@
       stepIndex: Number.isInteger(live.stepIndex) && live.stepIndex >= 0 ? live.stepIndex : 0,
       detailId: typeof live.detailId === "string" && (!benefitIds || benefitIds.has(live.detailId)) ? live.detailId : null,
       detailFrom: live.detailFrom === "browse" ? "browse" : "results",
-      helpTopic: ["disabilities", "dtc"].includes(live.helpTopic) ? live.helpTopic : null,
+      helpTopic: HELP_TOPICS.includes(live.helpTopic) ? live.helpTopic : null,
       helpReturnStep: Number.isInteger(live.helpReturnStep) && live.helpReturnStep >= 0 ? live.helpReturnStep : 0,
       progress: cleanProgress(live.progress, validSelections),
       ui: {
@@ -154,7 +159,7 @@
     const source = saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
     const ui = source.ui && typeof source.ui === "object" && !Array.isArray(source.ui) ? source.ui : {};
     const validSelections = defaults.validSelections || {};
-    const helpTopic = ["disabilities", "dtc"].includes(source.helpTopic) ? source.helpTopic : null;
+    const helpTopic = HELP_TOPICS.includes(source.helpTopic) ? source.helpTopic : null;
     const restoredView = VIEWS.has(source.view) ? source.view : "landing";
     const disabilities = allowedValues(validSelections, "disabilities");
     const benefitIds = allowedValues(validSelections, "benefitIds");

@@ -168,3 +168,108 @@ continue without repeating the audit. Do not delete completed changelog history.
 
 - The account credential rotation mentioned in the previous launch handoff remains
   an owner-authorized security task. No credential was read, printed, or changed.
+
+## Follow-up: questionnaire clarity and footer alignment (`v=41`)
+
+Status: implemented and verified locally on 2026-07-21. This follow-up has not
+been committed, pushed, or deployed; those release actions require explicit user
+authorization for this change set.
+
+### Root cause and fixes
+
+- Old persisted child questionnaires could contain the broad legacy value
+  `ageGroup: "child"` without the newer exact `ageBand`, while also restoring at a
+  later wizard step. The situation screen then fell through to adult choices such
+  as post-secondary school. Restore now moves any incomplete wizard session back
+  to its earliest unanswered current question, so the exact-age question cannot be
+  skipped. A conservative regular-school fallback also protects legacy child
+  sessions if an age band is still unavailable.
+- Situation choices now follow the selected child age: preschool/child care for
+  under six, elementary/middle school for ages 6–11, and junior/high school for
+  ages 12–18. Age 18 can select either regular school or post-secondary, while
+  children under 18 are not shown the post-secondary choice.
+- Every questionnaire branch that offers an uncertainty answer now includes a
+  contextual help button. Help is available for disability/condition selection,
+  disability documentation, autism assessment, functional needs, Disability Tax
+  Credit status, B.C. Medical Services Plan enrolment, B.C. income/disability
+  assistance, and changing circumstances. Each page returns to the exact question
+  without discarding answers, and all new help routes pass the persisted-state
+  allowlist.
+- The legal/privacy disclaimer itself, not only the surrounding site footer, now
+  has a centred bounded layout. The shared browser cache was advanced from `v=40`
+  to `v=41`, including the 83 generated static guides.
+- The public changelog gained a new entry; no older launch or release history was
+  removed.
+
+### Follow-up verification
+
+- `npm test`: passed, 28/28.
+- `npm run test:e2e -- --reporter=dot`: passed, 19/19.
+- `npm run gen:guides`: passed, 83 guide pages plus guide index and sitemap.
+- `git diff --check`: passed.
+- JavaScript syntax checks: passed for the changed application, state manager and
+  browser-test files.
+- In-app browser verification: the disclaimer centre offset was 0 px at both a
+  1280 px desktop viewport and a 320 px narrow viewport, with no horizontal
+  overflow at 320 px. The child-age journeys and contextual help/return flow were
+  also exercised directly.
+
+## Follow-up: exact age, broader needs, and readable guides (`v=42`)
+
+Status: deployed to production on 2026-07-21 as Cloudflare version
+`9ca33b76-b07b-43a1-b254-20ee2dc04d7b`. This section describes the matching v42
+source release submitted after the production verification passed.
+
+### Questionnaire and matching
+
+- Replaced the long age-band list with one whole-number age field accepting ages
+  0 through 120. The value remains in the browser and derives the existing exact
+  catalog cutoffs internally, so under-six, school-age, transition-age, adult and
+  senior rules are not blurred together. Old band-only sessions are not assigned
+  a guessed exact age; they resume at the age question.
+- The school choices remain age-aware: child care/preschool under six, elementary
+  school from 6–11, junior/high school from 12–18, and both regular school and
+  post-secondary at age 18. Post-secondary is not offered below age 18.
+- Expanded the daily-life question with communication, memory/safety, sensory,
+  home-access, care-coordination, and fatigue/pain needs. These additions tailor
+  practical supports only; they do not imply that a diagnosis or selected need
+  guarantees benefit eligibility.
+- All current uncertainty choices retain contextual help and return to the exact
+  questionnaire page without losing answers.
+
+### BC guide usefulness and design
+
+- Re-verified the relevant official sources and replaced generic application
+  filler with program-specific steps, document lists, timing, phone details and
+  practical tips for 31 BC provincial, transit and municipal guides. A catalog
+  audit now reports zero BC guides using the generic fallback workflow.
+- Applied the approved compact action-card design to live and generated guides.
+  Long value text now wraps in the main guide column under a semantic “What it can
+  provide” heading. The side card shows at most two unmet prerequisites, a direct
+  next-action link when one exists, concise facts and official application/source
+  links. It has no fixed maximum height or internal scrolling.
+- Added direct prerequisite actions for StudentAid BC disability verification,
+  B.C. MSP enrolment and My Self Serve/PWD status. Generated static guides use the
+  same compact card pattern.
+- Advanced every browser-loaded asset and all 83 generated guides to `v=42` and
+  appended a public changelog entry without removing any earlier history.
+
+### v42 verification and release
+
+- `npm test`: passed, 29/29.
+- `npx playwright test --reporter=dot`: passed, 21/21.
+- `npm run gen:context`: passed (84 catalog entries; 151 monitored links).
+- `npm run gen:guides`: passed (83 guide pages plus guide index and sitemap).
+- JavaScript syntax checks and `git diff --check`: passed.
+- BC guide workflow audit: 0 entries missing program-specific application steps.
+- In-app browser QA passed in dark, light, high-contrast and reduced-motion modes,
+  at the default desktop viewport and 320 px. Exact-age and guide pages had no
+  horizontal overflow; the guide card's `scrollHeight` equalled `clientHeight` at
+  both sizes, confirming there is no clipped internal content.
+- `npx wrangler deploy --dry-run`: passed with Wrangler 4.112.0; 110 static assets,
+  197.66 KiB raw / 51.49 KiB gzip, with the existing zero-spend bindings intact.
+- Production deployment uploaded 90 changed assets. `https://abilityfinder.ca/`
+  returned HTTP 200 and served `v=42`; the live script contained the exact-age,
+  direct-action and main-column value implementations, and the Fair PharmaCare
+  guide contained its specific steps and compact guide card. CSP, permissions,
+  referrer, MIME-sniffing and frame-denial headers remained present.

@@ -522,6 +522,7 @@ const SUPPORTS = [
   {
     id: "memory", icon: "key", cat: "Memory",
     dis: ["adhd", "learning", "braininjury"], sit: [],
+    needs: ["memorySafety"],
     title: "Memory strategies",
     summary: "Ways to hold on to information when short-term memory is a weak spot.",
     tips: [
@@ -536,6 +537,7 @@ const SUPPORTS = [
   {
     id: "calm", icon: "mental", cat: "Emotional wellbeing",
     dis: ["mental", "adhd"], sit: [],
+    needs: ["sensory"],
     title: "Managing anxiety & overwhelm",
     summary: "Techniques to calm your nervous system and think clearly under pressure.",
     tips: [
@@ -551,6 +553,7 @@ const SUPPORTS = [
   {
     id: "time", icon: "compass", cat: "Organization & time",
     dis: ["adhd", "learning", "mental", "intellectual"], sit: [],
+    needs: ["careCoordination", "memorySafety"],
     title: "Time management & organization",
     summary: "Structure that helps you plan, start early, and hit deadlines.",
     tips: [
@@ -609,6 +612,7 @@ const SUPPORTS = [
   {
     id: "mobility-supports", icon: "physical", cat: "Getting around",
     dis: ["physical"], sit: [],
+    needs: ["homeAccess"],
     title: "Mobility, home & vehicle supports",
     summary: "Getting around and adapting your space with a physical or mobility disability.",
     tips: [
@@ -624,6 +628,7 @@ const SUPPORTS = [
   {
     id: "speech-aac", icon: "speech", cat: "Communication",
     dis: ["speech"], sit: [],
+    needs: ["communication"],
     title: "Communication supports (AAC)",
     summary: "Tools if speaking or being understood is difficult.",
     tips: [
@@ -638,6 +643,7 @@ const SUPPORTS = [
   {
     id: "energy-pacing", icon: "chronic", cat: "Energy & pacing",
     dis: ["chronic"], sit: [],
+    needs: ["fatiguePain"],
     title: "Managing energy & chronic symptoms",
     summary: "Getting things done while protecting your energy with a chronic illness or pain.",
     tips: [
@@ -2116,7 +2122,12 @@ const BENEFITS = [
     "applyUrl": "https://myselfserve.gov.bc.ca/",
     "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/pwd-designation-and-application/designation-application",
     "detail": {
-      "about": "The standard application is form HR2883. Five prescribed classes can use the shorter HR3642 application instead: people on BC PharmaCare Plan P (palliative care), At Home Program participants, Community Living BC eligible clients, people receiving CPP Disability or the Post-Retirement Disability Benefit, and people with an Indigenous Services Canada PWD designation in the BC region."
+      "about": "The standard application is form HR2883. Five prescribed classes can use the shorter HR3642 application instead: people on BC PharmaCare Plan P (palliative care), At Home Program participants, Community Living BC eligible clients, people receiving CPP Disability or the Post-Retirement Disability Benefit, and people with an Indigenous Services Canada PWD designation in the BC region.",
+      "steps": ["Start an assistance application through My Self Serve so the ministry can first check financial eligibility", "Ask the ministry for the PWD designation application (HR2883) after you start the assistance application", "Complete the applicant section, then have a doctor or nurse practitioner complete the medical report", "Have a prescribed professional who knows your daily limitations complete the assessor report", "Submit all sections and keep a copy; respond if the ministry asks for more information"],
+      "documents": ["Identification, income, asset and shelter information for the assistance application", "PWD designation application HR2883", "Medical and functional information describing how the impairment restricts daily living and what help or supervision is required"],
+      "tips": ["You can start the PWD application at age 17 and a half, although disability assistance cannot begin before 18", "If you are in a prescribed class, ask whether the shorter HR3642 form applies before arranging two professional reports", "Ask each professional to describe functional restrictions and support needs, not only the diagnosis"],
+      "time": "The ministry does not publish one guaranteed decision time",
+      "phone": "1-866-866-0800"
     }
   },
   {
@@ -2133,7 +2144,12 @@ const BENEFITS = [
     "applyUrl": "https://my.gov.bc.ca/ahdc",
     "source": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/fair-pharmacare-plan",
     "detail": {
-      "about": "Assistance is tied to family net income from two years prior and coverage applies automatically at the pharmacy counter. After a family meets its deductible PharmaCare pays 70% of eligible costs, or 75% if a family member was born before 1940. After a family reaches its family maximum, Fair PharmaCare pays 100% of eligible costs for the rest of the year. Income bands table: https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/fair-pharmacare-plan/how-your-coverage-is-calculated/fair-pharmacare-assistance-levels-regular"
+      "about": "Assistance is tied to family net income from two years prior and coverage applies automatically at the pharmacy counter. After a family meets its deductible PharmaCare pays 70% of eligible costs, or 75% if a family member was born before 1940. After a family reaches its family maximum, Fair PharmaCare pays 100% of eligible costs for the rest of the year.",
+      "steps": ["Gather the Personal Health Number for every family member, Social Insurance Numbers for adults, and the adults' tax information from two years ago", "Register online, or call Health Insurance BC if online registration is not accessible to you", "Use the temporary coverage that begins the same day while income verification is pending", "Sign and return the CRA consent form within 30 days so temporary coverage does not end", "Check your registration status online or call if a pharmacy cannot see the coverage"],
+      "documents": ["Personal Health Number for every family member", "Social Insurance Number for each adult", "Line 23600 from each adult's Notice of Assessment from two years ago", "Line 12500 Registered Disability Savings Plan income, if applicable"],
+      "tips": ["Registration is free and temporary coverage begins the same day", "The CRA consent deadline matters: return it within 30 days", "If family income has dropped substantially, ask PharmaCare whether an income review is available"],
+      "time": "Temporary coverage begins the day you register; income verification follows",
+      "phone": "1-800-663-7100"
     }
   },
   {
@@ -2150,7 +2166,12 @@ const BENEFITS = [
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/plan-c",
     "source": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/plan-c",
     "detail": {
-      "about": "Enrolment in those programs automatically enrols you in Plan C — there is no separate application. It also covers prostheses and orthoses including offloading devices for diabetic foot ulcers, ostomy supplies, and insulin and insulin pumps (insulin pumps need an approved Special Authority request from a doctor)."
+      "about": "Enrolment in those programs automatically enrols you in Plan C — there is no separate application. It also covers prostheses and orthoses including offloading devices for diabetic foot ulcers, ostomy supplies, and insulin and insulin pumps (insulin pumps need an approved Special Authority request from a doctor).",
+      "steps": ["Confirm that your qualifying income, disability, hardship, care or protected status is active with the responsible ministry", "Give the pharmacy your BC Services Card or Personal Health Number so it can check Plan C", "If the status is active but the pharmacy cannot see Plan C, ask the ministry or Health Insurance BC to correct the enrolment", "For an urgent prescription, ask the prescriber or pharmacist whether the emergency 48-hour Plan C process applies"],
+      "documents": ["BC Services Card or Personal Health Number", "Any recent ministry notice showing the qualifying assistance or care status"],
+      "tips": ["There is no separate Plan C application", "Register for Fair PharmaCare as well so coverage can continue if your assistance status changes", "Ask the pharmacy about any amount before paying; covered drugs and dispensing fees should not be charged under Plan C"],
+      "time": "Automatic when the qualifying ministry status is active",
+      "phone": "1-800-663-7100"
     }
   },
   {
@@ -2167,7 +2188,12 @@ const BENEFITS = [
     "applyUrl": "https://my.gov.bc.ca/ahdc",
     "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/family/child-teen-health/dental-eyeglasses",
     "detail": {
-      "about": "Dental is up to $2,000 of basic services every two years. Optical is prescription glasses once a year, including lenses and basic frames. Hearing instruments include hearing aids, bone-anchored hearing aids, cochlear implants, repairs and related items — the least expensive appropriate option, based on an assessment by an audiologist or hearing instrument practitioner, when the family has no other resources to pay. Adjusted net income is your net income after deductions for age, family size, disability, and income from the Universal Child Care Benefit and a Registered Disability Savings Plan."
+      "about": "Dental is up to $2,000 of basic services every two years. Optical is prescription glasses once a year, including lenses and basic frames. Hearing instruments include hearing aids, bone-anchored hearing aids, cochlear implants, repairs and related items — the least expensive appropriate option, based on an assessment by an audiologist or hearing instrument practitioner, when the family has no other resources to pay. Adjusted net income is your net income after deductions for age, family size, disability, and income from the Universal Child Care Benefit and a Registered Disability Savings Plan.",
+      "steps": ["Apply for MSP supplementary benefits through the provincial health and drug coverage application", "File income taxes every year and keep the family's MSP information current", "Before treatment, ask the dental, optical or hearing provider to confirm the child's Healthy Kids coverage and any amount you would have to pay", "Show the child's BC Services Card or CareCard at the appointment", "For hearing instruments, have the provider obtain any required pre-authorization before ordering"],
+      "documents": ["Child's BC Services Card or CareCard", "Family income information used for MSP supplementary benefits", "Provider assessment and recommendation for hearing instruments, when applicable"],
+      "tips": ["Not every provider charges only the program fee; ask about extra charges before agreeing to treatment", "Tell Health Insurance BC when the family size, address or marital status changes", "Families on income, disability or hardship assistance receive comparable dental and optical supplements through the ministry instead"],
+      "time": "Ask Health Insurance BC when you apply",
+      "phone": "1-866-866-0800"
     }
   },
   {
@@ -2184,7 +2210,12 @@ const BENEFITS = [
     "applyUrl": "https://myselfserve.gov.bc.ca/",
     "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/health-supplements-and-programs/medical-transportation",
     "detail": {
-      "about": "Covers travel to essential medical treatment — services under the Medicare Protection Act or Hospital Insurance Act with a medical practitioner, nurse practitioner, specialist or hospital. Meal allowances are normally NOT provided as part of a medical transportation supplement; in exceptional circumstances the ministry may issue up to $8 per meal. Escort costs are covered where an escort is required, including for children and for adults who are medically incapable of travelling alone. The rates come from the Health Supplements and Programs Rate Table (effective August 1, 2023): https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/health-supplements-and-programs-rate-table"
+      "about": "Covers travel to essential medical treatment — services under the Medicare Protection Act or Hospital Insurance Act with a medical practitioner, nurse practitioner, specialist or hospital. Meal allowances are normally not provided; in exceptional circumstances the ministry may issue up to $8 per meal. Escort costs are covered where an escort is required, including for children and adults who are medically incapable of travelling alone.",
+      "steps": ["Ask for pre-approval before booking travel through My Self Serve, by phone, mail, fax or at a ministry office", "Complete the medical transportation request form HR3320", "Attach proof of the treatment and appointment, such as a provider note, appointment card, email, screenshot or Travel Assistance Program form", "Explain the least expensive appropriate travel method and whether an escort or overnight stay is medically required", "Keep approval and travel receipts in case the ministry requests them"],
+      "documents": ["Form HR3320", "Proof of the medical appointment and why the treatment is essential", "Travel dates, destination, distance and expected fare or accommodation cost", "Medical confirmation that an escort or special travel method is required, if applicable"],
+      "tips": ["Request approval before you travel; after-the-fact payment is limited to exceptional circumstances", "For repeated treatment, ask whether approval can cover ongoing trips for up to 12 months", "The ministry chooses the least expensive appropriate transportation, so explain accessibility or medical barriers clearly"],
+      "time": "Apply before arranging the trip",
+      "phone": "1-866-866-0800"
     }
   },
   {
@@ -2201,7 +2232,12 @@ const BENEFITS = [
     "applyUrl": "https://www.translink.ca/rider-guide/transit-accessibility/handydart",
     "source": "https://www.translink.ca/rider-guide/transit-accessibility/handydart",
     "detail": {
-      "about": "The earliest pickup is 6 a.m. and the last drop-off is 2 a.m. You can book your trip as far as seven days in advance and up until 4 p.m. the day before your trip. One combined HandyDART and HandyCard application form covers both services."
+      "about": "The earliest pickup is 6 a.m. and the last drop-off is 2 a.m. You can book your trip as far as seven days in advance and up until 4 p.m. the day before your trip. One combined HandyDART and HandyCard application form covers both services.",
+      "steps": ["Download and complete the combined HandyDART and HandyCard application", "Describe the parts of conventional transit you cannot navigate without help, including temporary or changing barriers", "Include the optional medical verification if it will help explain the functional barrier", "Submit the application using the instructions on the form and wait for Access Transit to contact you", "After approval, call to book trips one to seven days ahead; bookings for the next day must be requested before 4 p.m."],
+      "documents": ["Completed HandyDART and HandyCard application", "Recent photo for the HandyCard portion", "Optional functional or medical verification"],
+      "tips": ["Explain what happens from your door to the stop, on the vehicle and during transfers — eligibility is about the functional trip, not a diagnosis", "A HandyDART taxi replacement costs the regular HandyDART fare; it is not a TaxiSaver trip", "Tell the booking agent about mobility aids, an attendant, a service dog or vehicle limitations"],
+      "time": "Ask Access Transit when you submit the application",
+      "phone": "604-953-3680"
     }
   },
   {
@@ -2216,7 +2252,15 @@ const BENEFITS = [
     "note": "The attendant travels free on buses, SkyTrain, SeaBus and West Coast Express. HandyDART trips are paid separately at the 1-Zone fare.",
     "applyText": "Apply with the HandyDART & HandyCard form",
     "applyUrl": "https://www.translink.ca/rider-guide/transit-accessibility/handydart",
-    "source": "https://www.translink.ca/rider-guide/transit-accessibility/handydart"
+    "source": "https://www.translink.ca/rider-guide/transit-accessibility/handydart",
+    "detail": {
+      "about": "HandyCard is for conventional TransLink services, not HandyDART. Carry the original photo card and show it when paying a concession fare or travelling with an attendant.",
+      "steps": ["Complete the combined HandyDART and HandyCard application", "Describe why you cannot use conventional transit without an attendant", "Include the required photo and submit the form using its instructions", "When the card arrives, carry it on every eligible trip and show it when requested"],
+      "documents": ["Completed combined application", "A recent photo meeting the form requirements", "Optional supporting verification describing the transit barrier"],
+      "tips": ["HandyCard applicants must be at least 12 and live in the TransLink service region", "An attendant rides free with you on conventional transit, but you still pay your own concession fare", "The same application can request HandyDART and HandyCard together"],
+      "time": "Ask Access Transit when you apply",
+      "phone": "604-953-3680"
+    }
   },
   {
     "id": "taxisaver-translink",
@@ -2230,7 +2274,15 @@ const BENEFITS = [
     "note": "Order by cheque or money order with a self-addressed envelope, or buy in person at the TransLink Customer Service Centre at Waterfront Station, which takes cash, debit or credit. Buying in person, you or your representative must present the original HandyCard.",
     "applyText": "Get a HandyCard, then order TaxiSavers",
     "applyUrl": "https://www.translink.ca/rider-guide/transit-accessibility/how-to-use-accessible-transit",
-    "source": "https://www.translink.ca/rider-guide/transit-accessibility/how-to-use-accessible-transit"
+    "source": "https://www.translink.ca/rider-guide/transit-accessibility/how-to-use-accessible-transit",
+    "detail": {
+      "about": "TaxiSavers are coupon books for ordinary participating taxi trips. They are separate from taxis dispatched by HandyDART as part of a booked HandyDART trip.",
+      "steps": ["Get and keep an active TransLink HandyCard", "Choose mail order or in-person purchase at the TransLink Customer Service Centre at Waterfront Station", "For mail order, send a cheque or money order with the required self-addressed envelope", "For an in-person purchase, bring the original HandyCard; a representative may purchase for you if they bring it", "Show the HandyCard to the taxi driver and use coupons toward the participating taxi fare"],
+      "documents": ["Original TransLink HandyCard", "Cheque or money order for mail orders, or accepted payment for an in-person purchase"],
+      "tips": ["One $25 book contains $50 in coupons and the limit is two books per month", "You can use post-dated cheques to pre-order future months", "Call before travelling to Waterfront Station if you need accessibility or current counter-hour information"],
+      "time": "In person is immediate when stock and eligibility are confirmed; mail delivery varies",
+      "phone": "604-953-3680"
+    }
   },
   {
     "id": "handydart-bctransit",
@@ -2246,7 +2298,12 @@ const BENEFITS = [
     "applyUrl": "https://www.bctransit.com/victoria/riderinfo/handydart/register/",
     "source": "https://www.bctransit.com/victoria/riderinfo/handydart/",
     "detail": {
-      "about": "handyDART is shared, door-to-door service. Drivers drop you off at the closest accessible point near your destination. Registration is free. You can pay your fare with cash when you board, or buy fare products in advance."
+      "about": "handyDART is shared, door-to-door service. Drivers drop you off at the closest accessible point near your destination. Registration is free. You can pay your fare with cash when you board, or buy fare products in advance.",
+      "steps": ["Find your community on the BC Transit website and open its handyDART registration page", "Complete, sign and date the regional handyDART application", "Describe which parts of fixed-route transit you cannot use without assistance", "Include the optional medical verification if it helps explain the functional barrier", "Submit the form to the regional registrar, then follow the local instructions for booking after approval"],
+      "documents": ["Completed regional handyDART application", "Optional Medical Verification of Eligibility form", "Mobility-aid measurements or travel-support details if requested by the region"],
+      "tips": ["Registration is free and eligibility is based on functional ability, not diagnosis, age or mobility device", "Contacts, fares and booking hours differ by community — use your own regional page", "Ask whether your region offers a handyPASS for a free attendant and Taxi Saver access"],
+      "time": "Varies by regional transit system",
+      "phone": "Use the handyDART number on your community's BC Transit page"
     }
   },
   {
@@ -2261,7 +2318,15 @@ const BENEFITS = [
     "note": "Coupons come in $1, $2 and $5 values and taxi drivers do not give change for them — pay any remainder in cash. Coupons cannot be transferred or used as a tip. The $40 for $80 package and the one-per-month limit are confirmed for the Victoria region; other BC Transit regions run their own versions, so check your region's page.",
     "applyText": "Check your region's Taxi Saver page",
     "applyUrl": "https://www.bctransit.com/victoria/riderinfo/handydart/taxi-saver/",
-    "source": "https://www.bctransit.com/victoria/riderinfo/handydart/taxi-saver/"
+    "source": "https://www.bctransit.com/victoria/riderinfo/handydart/taxi-saver/",
+    "detail": {
+      "about": "Taxi Saver is delivered by participating regional BC Transit systems. This guide uses Victoria's current rules; other regions can set different prices, purchase methods and taxi companies.",
+      "steps": ["Confirm that you are permanently registered for handyDART, age 12 or older and have a handyPASS", "Open your region's Taxi Saver page and confirm the current package price and purchase method", "Buy vouchers from the regional Taxi Saver office or approved outlet", "Book a participating taxi directly and show your handyPASS", "Use vouchers for part of the metered fare and pay any remainder using a method the taxi accepts"],
+      "documents": ["Current handyPASS", "Payment accepted by the regional Taxi Saver office"],
+      "tips": ["Vouchers cover 50% of eligible taxi fares but cannot be transferred or used as a tip", "Drivers do not give change for vouchers, so combine denominations carefully", "Check the participating taxi list before booking because companies can change"],
+      "time": "Ask the regional Taxi Saver office",
+      "phone": "Victoria region: 250-995-5618"
+    }
   },
   {
     "id": "bc-disability-assistance-pwd",
@@ -2488,7 +2553,12 @@ const BENEFITS = [
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program/at-home-program-eligibility",
     "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program",
     "detail": {
-      "about": "Figures come from the At Home Program Guide dated October 2025. Equipment limits include a wheelchair seating system up to $9,000, a basic manual wheelchair of $4,000, a basic scooter to $3,700, a standard electric hospital bed to $4,000, a floor or ceiling lift to $8,000 including the lift, two slings and installation, additional alternate positioning devices to $5,000, a floor therapy mat to a $500 lifetime maximum, and step stools to $200. Audiology equipment is covered to $8,000 for all devices combined in a three-year period. Therapies are covered to $5,760 per twelve-month period for each of occupational therapy, physiotherapy and speech-language pathology, billed at $160 per hour for a therapist and $60 per hour for a therapist assistant. Chiropractic or massage is covered to $1,920 per twelve-month period, at $40 per chiropractic session and $40 per hour of massage. Dental is $700 per year for restorative procedures, orthodontic is $5,000 lifetime, and optical is prescription lenses and frames to $150 per year — all three must be pre-approved and purchased within six months of the approval. Routine dental care is not eligible. PharmaCare Plan F covers prescription medications, orthotics and prosthetics, needles and syringes for insulin-dependent diabetics, and blood glucose testing strips.\n\nMedical travel: Non-emergency medical travel must be pre-approved. It is covered only when the service is not available in your home community AND the round trip exceeds 80 kilometres. It pays the least costly car, bus, train, ferry or air travel for your child and one other person from the family home, car travel at the BC government rate of 63 cents per kilometre, accommodation to $150 per night plus $15 per night for hotel parking, highway tolls, and parking at the appointment. Meals are not reimbursed, and neither is travel within the city where the appointment is, or travel for appointments unrelated to your child's disability. Claims more than six months after the date of service are not accepted. Apply to the Travel Assistance Program (TAP BC) before using this benefit. Emergency ambulance service is free for enrolled children.\n\nWhat is not covered: The program is not intended for children with acute or temporary equipment needs, children admitted to hospital for more than four months, or children receiving in-home respite care through Nursing Support Services. Children or parents receiving an insurance settlement or court award related to the child's disability are not eligible."
+      "about": "Medical Benefits can cover approved equipment, supplies, therapies, dental, optical, medical travel and PharmaCare Plan F. The program must approve many items before they are bought, and coverage ends on the last day of the month the child turns 18.",
+      "steps": ["Complete the At Home Program application with a doctor or nurse practitioner", "Attach the requested identification and functional assessments; children under 3 may be asked for extra supporting information", "Send the application to the regional At Home Program office listed by the province", "Take part in the in-home assessment of eating, dressing, toileting and washing if one is required", "Wait for the written decision, then work with the CYSN worker or Medical Benefits branch before purchasing covered equipment or services"],
+      "documents": ["Completed At Home Program application with parent and medical-professional sections", "Identification for the child and parent or guardian", "Child's Personal Health Number and proof of active MSP", "Requested functional assessments such as Vineland-3, PEDI-CAT or GMFCS, when applicable"],
+      "tips": ["Families in current pilot areas use a different Medical Benefits application route; check the official page for your community", "Do not buy equipment, dental, optical or travel first when pre-approval is required", "Start adult PWD planning about six months before the child's 18th birthday"],
+      "time": "Assessment and regional review follow a complete application; no guaranteed timeline is published",
+      "phone": "Medical Benefits: 1-888-613-3232"
     }
   },
   {
@@ -2505,7 +2575,11 @@ const BENEFITS = [
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/early-childhood-intervention",
     "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/early-childhood-intervention",
     "detail": {
-      "about": "Supported Child Development is a set of community-based programs offering a range of consulting and support services to children, families and child care centres so that children with extra support needs can participate in fully inclusive child care settings. Aboriginal Supported Child Development provides these supports in a culturally relevant and meaningful way."
+      "about": "Supported Child Development is a set of community-based programs offering consulting and support to children, families and child care centres so children with extra support needs can participate in inclusive child care. Aboriginal Supported Child Development provides culturally relevant support.",
+      "steps": ["Use the provincial early-intervention page to find the Supported Child Development program serving your community", "Contact the program directly, or ask a public health nurse or physician to help with the referral", "Tell the program which child care setting the child attends or hopes to attend and what participation barriers are present", "Work with the program and child care provider on an individual support plan"],
+      "documents": ["Child and parent or guardian contact information", "Information from the child care provider about participation and support needs", "Relevant developmental or health reports if the local program requests them"],
+      "tips": ["Contact the program even if the child does not yet have a child care placement", "Ask about Aboriginal Supported Child Development if culturally grounded service is a better fit", "Availability and intake steps are local, so the community program is the authoritative contact"],
+      "time": "Intake and availability vary by community"
     }
   },
   {
@@ -2620,7 +2694,12 @@ const BENEFITS = [
     "source": "https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-students-disabilities",
     "verified": "2026-07-21",
     "detail": {
-      "about": "This non-repayable grant replaces B.C. student loan funding with grant funding for eligible full-time students with a disability at B.C. public post-secondary schools, reducing the amount they borrow."
+      "about": "This non-repayable grant replaces B.C. student loan funding with grant funding for eligible full-time students with a disability at B.C. public post-secondary schools, reducing the amount they borrow.",
+      "steps": ["Apply for full-time StudentAid BC funding for the study period", "If disability status is not already verified, submit the StudentAid BC Disability Verification Form completed by an accepted medical assessor", "Confirm that the school is a B.C. public post-secondary institution", "Review the assessment notice in your StudentAid BC account; the grant is assessed with the aid application"],
+      "documents": ["StudentAid BC application", "Disability Verification Form if status is not already verified", "Any follow-up financial information StudentAid BC requests"],
+      "tips": ["There is no separate grant application after disability status is verified", "Contact the school's accessibility services office early for accommodations and related disability funding"],
+      "time": "Assessed with the StudentAid BC application",
+      "phone": "1-800-561-1818"
     }
   },
   {
@@ -2639,7 +2718,12 @@ const BENEFITS = [
     "source": "https://studentaidbc.ca/explore/grants-scholarships/bc-supplemental-bursary-students-disabilities",
     "verified": "2026-07-21",
     "detail": {
-      "about": "This non-repayable bursary helps eligible full-time and part-time students with a permanent, or persistent or prolonged, disability pay post-secondary education costs at B.C. public post-secondary schools."
+      "about": "This non-repayable bursary helps eligible full-time and part-time students with a permanent, or persistent or prolonged, disability pay post-secondary education costs at B.C. public post-secondary schools.",
+      "steps": ["Apply for StudentAid BC full-time or part-time funding for the study period", "Submit the Disability Verification Form if StudentAid BC has not already verified disability status", "Confirm that the school and course load meet the bursary rules", "Review the StudentAid BC assessment notice; the bursary is assessed automatically when the conditions are met"],
+      "documents": ["StudentAid BC aid application", "Disability Verification Form when needed", "School and course-load information"],
+      "tips": ["A 40% course load counts as full-time for this bursary; 20% to 39% counts as part-time", "Ask StudentAid BC about the published transition rule if you received this bursary at a non-public school in 2025/26"],
+      "time": "Assessed with the StudentAid BC application",
+      "phone": "1-800-561-1818"
     }
   },
   {
@@ -2658,7 +2742,12 @@ const BENEFITS = [
     "source": "https://studentaidbc.ca/explore/grants-scholarships/bc-assistance-program-students-disabilities",
     "verified": "2026-07-21",
     "detail": {
-      "about": "This grant funds exceptional education-related services and adaptive equipment after all available funding from the Canada Student Grant for Services and Equipment – Students with Disabilities has been used. Apply for the federal grant first. StudentAid BC does not state whether the listed limits are annual or lifetime amounts."
+      "about": "This grant funds exceptional education-related services and adaptive equipment after all available funding from the Canada Student Grant for Services and Equipment – Students with Disabilities has been used. Apply for the federal grant first.",
+      "steps": ["Have StudentAid BC verify your disability status", "Meet with the school's accessibility services office to document disability-related services and equipment", "Apply first for the Canada Student Grant for Services and Equipment – Students with Disabilities", "If eligible costs exceed that grant, have the accessibility office submit the B.C. Assistance Program request and quotes", "Wait for written approval before purchasing equipment or committing to services"],
+      "documents": ["Verified disability status", "Accessibility-services assessment of required services or equipment", "Supplier quotes or service-cost estimates", "Evidence that the federal services-and-equipment grant has been used"],
+      "tips": ["Do not buy equipment before written funding approval", "The official page does not state whether the maximum is annual or lifetime; ask StudentAid BC before planning around it"],
+      "time": "Varies with assessment, quotes and funding review",
+      "phone": "1-800-561-1818"
     }
   },
   {
@@ -2677,7 +2766,12 @@ const BENEFITS = [
     "source": "https://studentaidbc.ca/explore/grants-scholarships/learning-disability-assessment-bursary",
     "verified": "2026-07-21",
     "detail": {
-      "about": "This bursary covers up to $3,500 of the up-front cost of a learning disability assessment when the accessibility services office at an eligible B.C. public post-secondary institution recommends the assessment."
+      "about": "This bursary covers up to $3,500 of the up-front cost of a learning disability assessment when the accessibility services office at an eligible B.C. public post-secondary institution recommends the assessment.",
+      "steps": ["Apply for StudentAid BC funding and confirm that the school is an eligible B.C. public post-secondary institution", "Meet with the school's accessibility services office and ask whether it recommends a current learning-disability assessment", "Have the accessibility office start the bursary process before booking the assessment", "Use the approved qualified assessor and submit the required invoice or receipt through the school process"],
+      "documents": ["StudentAid BC funding eligibility", "Accessibility-services recommendation", "Assessment quote or invoice and the completed assessment documentation requested by the school"],
+      "tips": ["Start with accessibility services — independently booking an assessment does not establish bursary eligibility", "Ask how the assessor will be paid and what amount, if any, you must pay up front"],
+      "time": "Ask the school's accessibility services office",
+      "phone": "StudentAid BC: 1-800-561-1818"
     }
   },
   {
@@ -2696,7 +2790,12 @@ const BENEFITS = [
     "source": "https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-deaf-students",
     "verified": "2026-07-21",
     "detail": {
-      "about": "This grant is only for eligible deaf or hard of hearing students attending Gallaudet University in Washington, D.C. or the National Technical Institute for the Deaf in Rochester, New York. StudentAid BC assesses it automatically when disability status is verified and the student attends one of those two schools."
+      "about": "This grant is only for eligible deaf or hard of hearing students attending Gallaudet University in Washington, D.C. or the National Technical Institute for the Deaf in Rochester, New York. StudentAid BC assesses it automatically when disability status is verified and the student attends one of those two schools.",
+      "steps": ["Apply for StudentAid BC funding for full-time study at Gallaudet University or the National Technical Institute for the Deaf", "Submit the Disability Verification Form if StudentAid BC has not already verified deaf or hard-of-hearing status", "Provide any financial-need or enrolment information StudentAid BC requests", "Review the funding assessment; there is no separate application for this grant"],
+      "documents": ["StudentAid BC application", "Verified disability status", "Full-time enrolment information for one of the two eligible schools"],
+      "tips": ["Only the two named U.S. institutions qualify", "Ask StudentAid BC how cross-border tuition, currency and disbursement are handled before committing to costs"],
+      "time": "Assessed with the StudentAid BC application",
+      "phone": "1-800-561-1818"
     }
   },
   {
@@ -2804,7 +2903,12 @@ const BENEFITS = [
     "applyUrl": "https://www.workbc.ca/discover-employment-services/workbc-centres",
     "source": "https://www.workbc.ca/discover-employment-services/workbc-centres",
     "detail": {
-      "about": "WorkBC centres provide a wide range of free employment services: resume and cover letter help, interview preparation and job boards; high school diploma and other academic upgrading and sector-specific training; work experience placements and wage subsidies lasting from a few weeks to up to 12 months; equipment and devices to reduce work-related barriers; transportation supports to travel to attend job interviews, training or work; and dependent care supports to cover childcare."
+      "about": "WorkBC centres provide free employment services including job-search help, training, work experience, wage subsidies and practical disability-related supports. A WorkBC counsellor reviews eligibility and builds the plan with you.",
+      "steps": ["Get a Basic BCeID or set up online access with a BC Services Card", "Register for Online Employment Services and select WorkBC Employment Services", "Complete the application, including work status, barriers and the WorkBC centre you want to use", "Upload requested documents and communicate with the centre through the secure portal", "Meet an employment counsellor to confirm eligibility and create a personal action plan"],
+      "documents": ["Valid Social Insurance Number", "Information showing you are legally allowed to work in B.C.", "Work and education history", "Information about disability-related employment barriers if requesting specialized supports"],
+      "tips": ["A phone number and fixed mailing address are not required to submit the online application", "Centre staff can help you complete the application", "People with disabilities can qualify in additional employed or student situations, including risk of losing a job or the final year of school"],
+      "time": "The local WorkBC centre decides eligibility after reviewing the completed application",
+      "phone": "Contact your selected WorkBC centre"
     }
   },
   {
@@ -2819,7 +2923,15 @@ const BENEFITS = [
     "note": "Register FIRST — you can apply for a refund only after your registration is confirmed. You register with the Ministry of Finance online or by downloadable form, then receive a registration confirmation letter, then claim refunds.",
     "applyText": "Register for the fuel tax refund",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities",
-    "source": "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities"
+    "source": "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities",
+    "detail": {
+      "about": "This is a two-stage program: register the person and qualifying vehicle first, then claim fuel-tax refunds using original receipts after the registration effective date.",
+      "steps": ["Gather the disability confirmation and vehicle ownership or lease information listed by the Ministry of Finance", "Register online or submit form FIN 119 with every required supporting document", "Wait for the mailed registration confirmation letter and note the registration effective date", "Keep original fuel receipts from that effective date onward", "Submit the refund application with eligible receipts; the ministry must receive a claim within four years of the fuel purchase"],
+      "documents": ["Accepted disability confirmation or medical certification", "Vehicle registration, lease or ownership-interest documentation", "Power of attorney or representation agreement if applying for another adult", "Original receipts showing date, fuel type, litres, and seller name and address"],
+      "tips": ["Do not claim fuel bought before the registration effective date", "Incomplete registration packages delay approval", "Once registered, take the confirmation to an Autoplan broker for the related Basic Autoplan discount"],
+      "time": "Registration must be approved before any refund claim",
+      "phone": "1-877-388-4440"
+    }
   },
   {
     "id": "bc-icbc-disability-discount",
@@ -2833,7 +2945,14 @@ const BENEFITS = [
     "note": "Register for bc-fuel-tax-refund-disabilities first, then talk to an Autoplan broker about applying the discount to your policy.",
     "applyText": "Start with the fuel tax refund program",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities",
-    "source": "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities"
+    "source": "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities",
+    "detail": {
+      "about": "The discount is applied through an Autoplan broker after the Ministry of Finance registers you in the Fuel Tax Refund Program for Persons with Disabilities.",
+      "steps": ["Complete the provincial Fuel Tax Refund Program registration", "Wait for the Ministry of Finance registration confirmation", "Bring the confirmation and vehicle information to an Autoplan broker", "Ask the broker to apply the disability discount to eligible Basic Autoplan coverage"],
+      "documents": ["Fuel Tax Refund Program registration confirmation", "Vehicle registration and current Autoplan policy information", "Identification requested by the broker"],
+      "tips": ["The discount is on Basic Autoplan, not every optional coverage charge", "Ask the broker when the discount will take effect if the policy is already active", "Electric vehicles can receive the insurance discount even though they do not use fuel"],
+      "time": "Ask an Autoplan broker after provincial registration is confirmed"
+    }
   },
   {
     "id": "bc-property-tax-deferment-disabilities",
@@ -2849,7 +2968,11 @@ const BENEFITS = [
     "applyUrl": "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/property-tax-deferment-program/eligibility",
     "source": "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/property-tax-deferment-program/eligibility",
     "detail": {
-      "about": "Interest is charged at an annual rate of 2 percent above the prime rate of the government's principal banker. The rate is reset periodically, so check the current rate on the government's interest and fees page before you decide. There is a $60 administrative fee when you first apply and a $10 fee each year you renew."
+      "about": "Property tax deferment is a loan secured against the home, not a grant. Interest and fees are added to the account, and eligibility must be maintained.",
+      "steps": ["Check the regular-program eligibility rules, including B.C. residency, citizenship or permanent residency, principal residence and at least 25% equity", "Pay all previous-year property taxes, utility user fees, penalties and interest", "Gather each owner's Social Insurance Number, birth date and property-tax notice", "Apply online between May 1 and December 31; applying after the local due date can still cause late penalties", "Check application status and renew each year unless you choose and remain eligible for auto-renewal"],
+      "documents": ["Current property-tax notice and jurisdiction information", "Social Insurance Number and date of birth for each owner", "PWD designation information or physician certification requested by the program", "Mortgage and other registered-charge information needed to verify equity"],
+      "tips": ["Apply before the municipality's tax due date to avoid late penalties while the province reviews the application", "Confirm the current interest rate and understand that interest compounds for 2026 and later deferrals", "Do not use this program if current-year property taxes have already been paid in full"],
+      "time": "Applications and renewals are accepted May 1 to December 31 each year"
     }
   },
   {
@@ -2866,7 +2989,12 @@ const BENEFITS = [
     "applyUrl": "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/sales-tax",
     "source": "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/sales-tax",
     "detail": {
-      "about": "Claim it when you file your T1 Income Tax Return using the British Columbia Credits form (BC479). You must claim within 3 years after the end of the tax year."
+      "about": "Claim it when you file your T1 Income Tax Return using the British Columbia Credits form (BC479). You must claim within three years after the end of the tax year.",
+      "steps": ["File the federal T1 income tax return for the year", "Complete the B.C. Credits form BC479", "Enter the sales tax credit claim from BC479 with the return", "If you missed it, ask the Canada Revenue Agency to adjust the return within three years after the tax year"],
+      "documents": ["Tax slips and income information for the year", "Spouse or common-law partner income information when applicable", "Form BC479"],
+      "tips": ["File even if you owe no income tax because this credit is refundable", "The credit is income-tested and is not specific to disability", "CRA handles questions about the tax return and refund"],
+      "time": "Claimed with the annual tax return",
+      "phone": "Canada Revenue Agency: 1-800-959-8281"
     }
   },
   {
@@ -2883,7 +3011,11 @@ const BENEFITS = [
     "applyUrl": "https://vancouver.ca/parks-recreation-culture/leisure-access-card.aspx",
     "source": "https://vancouver.ca/parks-recreation-culture/leisure-access-card.aspx",
     "detail": {
-      "about": "What you get: 100% admission discount at indoor pools, outdoor pools and ice rinks; 100% skate rental discount for group lessons and public skating; 100% discount on Aquatics Academy courses; 50% discount on group swimming lessons and group skating lessons; 50% off fitness centres, indoor cycling, Flexipass, and racquetball and squash; 50% off one Community Centre Association program each season per facility; 50% off pitch and putt admission and club rentals; 50% off Bloedel Conservatory and VanDusen Botanical Garden admission or membership; 50% off Playland and the PNE; and the Vancouver Aquarium free visit pass followed by unlimited 50% admission. There is also a Mobi by Rogers seasonal bike share pass and a Lime e-scooter access program with a free unlock and reduced per-minute rate. Who cannot apply: immigrants classified as investors or entrepreneurs; anyone with interest and other investment income (line 12100) over $1,500, net rental income (line 12600) over $2,000, or capital gains (line 12700) over $2,000; and non-residents of the City of Vancouver."
+      "about": "The pass adds free or reduced recreation access to a Vancouver Park Board OneCard and ActiveNet account. The route and documents depend on whether you qualify through a listed benefit, an agency referral or the low-income application.",
+      "steps": ["Open the City's page and choose the application route matching your situation", "Complete the Leisure Access application and gather the documents listed for that route", "Submit it at a Park Board community centre or by the stated mail process", "After approval, have the Leisure Access membership added to the OneCard and ActiveNet account", "For a child 16 or younger, complete the parent or guardian photo-consent form"],
+      "documents": ["Proof of a qualifying benefit or current Proof of Income Statement, depending on route", "Proof of a City of Vancouver address dated within 90 days", "Government-issued identification", "OneCard photo consent for children 16 and younger"],
+      "tips": ["A Notice of Assessment is not the same as the CRA Proof of Income Statement requested for the low-income route", "UBC and University Endowment Lands addresses are outside the City of Vancouver", "Bring the pass and photo identification when a partner venue requires both"],
+      "time": "Ask the Leisure Access office when submitting"
     }
   },
   {
@@ -2900,7 +3032,12 @@ const BENEFITS = [
     "applyUrl": "https://www.surrey.ca/activities-parks-recreation/admissions-passes/leisure-access-program",
     "source": "https://www.surrey.ca/activities-parks-recreation/admissions-passes/leisure-access-program",
     "detail": {
-      "about": "Children 0 to 12, youth 13 to 18 and seniors 60 and older receive a free 1-year pass to all City of Surrey recreation facilities. Adults 19 to 59 receive a 75% discount on single admission, monthly or 1-year passes. Youth 10 to 18 and seniors 60 and over also receive a free one-year Youth/Seniors Services Membership Pass. Drop-in activities include fitness classes, gymnasium spots, the weight room, aquatic activities and skating including skate and helmet rentals. Members receive a 75% discount on most registered courses: during the year of enrolment children and youth 0 to 18 receive up to $500 in program discounts plus $500 in Semiahmoo Arts Society program discounts, while adults 19 to 59 and seniors 60 and over receive up to $250 plus $250 in Semiahmoo Arts Society discounts. Applicable day camps for children and youth get a 75% discount with no discount limit. A few specialty programs are not included."
+      "about": "Surrey accepts several qualifying routes. Income-tax applicants must meet both the family-income table and the additional investment, rental, RRSP-deduction and capital-gain limits on the current City page.",
+      "steps": ["Review the City's qualifying routes and select the one that applies", "Complete the Leisure Access Program application and copy the documents required for that route", "Submit online and wait for staff to schedule an appointment, or submit in person at a listed Surrey facility", "After approval, use the pass through the MySurrey account or call registration staff"],
+      "documents": ["Application form", "Government-issued photo identification for one adult", "Proof of Income Statement or Notice of Assessment for each adult when applying by income", "Program confirmation, DTC information or referral documents for another qualifying route"],
+      "tips": ["Translation and interpretation support are available free", "Check that tax documents are from a currently accepted year before submitting", "Ask whether a specialty program is excluded before registering"],
+      "time": "Online applicants are contacted for appointments on a first-come, first-served basis",
+      "phone": "604-502-6325"
     }
   },
   {
@@ -2917,7 +3054,11 @@ const BENEFITS = [
     "applyUrl": "https://www.burnaby.ca/services-and-payments/seniors-and-family-support/fair-play-program",
     "source": "https://www.burnaby.ca/services-and-payments/seniors-and-family-support/fair-play-program",
     "detail": {
-      "about": "Each eligible family member receives a Be Active Pass, and the dollar credit is in addition to it — you do not need to spend the credit to get a pass. The credit is $250 per person, or $500 for children up to the age of 14. It can be used for activity registrations and also for non-Be Active passes, a Seniors' membership, a Burnaby Village Museum membership, skate and helmet rentals, and childminding. It cannot be used for golf, personal training, birthday parties, drop-in admissions, or merchandise other than supplies required for a registered activity. Burnaby Community Services can help with translation, gathering documents and completing the application."
+      "about": "Each approved family member receives both a Be Active Pass and recreation credit. The City accepts income-assistance, income, child-disability, refugee and agency-referral routes.",
+      "steps": ["Download and print the FAIR Play application or pick up a copy at a Burnaby recreation or culture facility", "Choose the qualifying route and gather the supporting documents listed on the form", "Complete the household information and submit the application using the City's instructions", "After approval, use the Be Active Pass and apply the recreation credit during online or staff-assisted registration"],
+      "documents": ["Completed FAIR Play application", "Proof of Burnaby residence", "Income, assistance, child-disability, refugee or agency-referral documentation for the chosen route"],
+      "tips": ["Burnaby Community Services can help with translation, documents and the application", "Credit expires after one year and cannot be paid out as cash", "During online registration, check that the recreation-credit box is applied to the balance"],
+      "time": "Apply once per year; ask the City for current processing time"
     }
   },
   {
@@ -2934,7 +3075,12 @@ const BENEFITS = [
     "applyUrl": "https://www.richmond.ca/culture/social/accessibility/subsidies/recreation-fee.htm",
     "source": "https://www.richmond.ca/culture/social/accessibility/subsidies/recreation-fee.htm",
     "detail": {
-      "about": "Participants get unlimited free admission to many drop-in programs and services, a 90 per cent discount on most registered parks, recreation and cultural programs offered by the City of Richmond and by Community Associations and Societies, and select opportunities at the Richmond Olympic Oval."
+      "about": "Participants get unlimited free admission to many drop-in services and a 90% discount on most registered City and participating community programs, subject to the annual registered-program subsidy cap.",
+      "steps": ["Download the application for the current program year and review the two financial-hardship qualification methods", "Complete one application per family or couple and attach the documents for the selected method", "Submit by email, mail or at a Richmond recreation facility, Cultural Centre or City Hall", "If help is needed, book an in-person support appointment at City Hall", "Keep the approval letter and use the subsidy when registering for eligible activities"],
+      "documents": ["Completed current-year application", "Proof of Richmond residence", "Government-assistance confirmation or current income and financial-hardship documents required by the form"],
+      "tips": ["Use the application for the correct program year", "In-person application help is by appointment, not drop-in", "Ask before registering whether a program counts toward the annual discounted-program cap"],
+      "time": "Current 2026–2027 applications cover September 1, 2026 to August 31, 2027",
+      "phone": "604-247-4909"
     }
   },
   {
@@ -2951,7 +3097,11 @@ const BENEFITS = [
     "applyUrl": "https://www.victoria.ca/parks-recreation/recreation/accessibility-inclusion/life-program",
     "source": "https://www.victoria.ca/parks-recreation/recreation/accessibility-inclusion/life-program",
     "detail": {
-      "about": "Benefits include unlimited free drop-in sessions at Crystal Pool and Fitness Centre, unlimited drop-in public skating at Save-On-Foods Memorial Arena, and 52 free drop-in sessions a year at participating regional partner facilities — those 52 follow the calendar year and you need a new sticker each year. Credit toward registered programming for the two-year term is $80 per preschooler aged 0 to 5, $120 per youth aged 6 to 18, and $80 per adult aged 19 and over, usable at Crystal Pool and Fitness Centre or at community and senior centres in the municipality. Instead of unlimited Crystal Pool access you can choose to buy an Annual Regional Recreation Pass at 50% off, and your credit can go toward that; the second year of the membership returns to unlimited drop-ins. To apply, bring the L.I.F.E. Application Form, one per family at the same address; proof of Victoria residency, using a current utility bill, phone bill or rental agreement from within the last three months; and proof of income, using the most recent CRA Notice of Assessment for everyone over 19 in the household and line 15000. Applicants who cannot provide the documents may still apply using an adjudicator: a community member with a professional relationship to the applicant who can verify their financial and residential situation."
+      "about": "The two-year membership combines local unlimited drop-ins, a regional 52-visit benefit and a one-time registered-program credit. The City also accepts an adjudicator route when standard documents cannot reasonably be provided.",
+      "steps": ["Complete one L.I.F.E. application for family members living at the same address", "Gather current proof of City of Victoria residence and income documents for household adults", "If documents are unavailable, ask an eligible professional who knows the household situation to complete the adjudicator section", "Submit through the method on the current City form", "After approval, obtain the regional visit sticker each calendar year and use the program credit before the two-year term ends"],
+      "documents": ["Completed L.I.F.E. application", "Utility bill, phone bill or rental agreement from the last three months", "Most recent CRA Notice of Assessment for household members over 19, or completed adjudicator verification"],
+      "tips": ["The $80 or $120 program credit is for the whole two-year term, not each year", "The regional 52-visit sticker must be renewed each calendar year", "Ask staff which benefit option is better before choosing the discounted regional annual pass"],
+      "time": "Membership lasts two years from approval"
     }
   },
   {
@@ -2968,7 +3118,11 @@ const BENEFITS = [
     "applyUrl": "https://www.saanich.ca/EN/main/parks-recreation-community/community-services/financial-assistance/financial-assistance.html",
     "source": "https://www.saanich.ca/EN/main/parks-recreation-community/community-services/financial-assistance/financial-assistance.html",
     "detail": {
-      "about": "Approved clients choose between two options. Under the free-drop-ins-and-discounts option you get unlimited free drop-in sessions at Saanich facilities, swiping your pass every visit, plus 52 free drop-in sessions a year at participating Greater Victoria regional recreation centres including Panorama, West Shore, City of Victoria, Oak Bay, Esquimalt and SEAPARC — you must carry the regional 52-visit sticker, renewed each calendar year, and you do not get unlimited visits at those other centres. Grants for use at Saanich centres are $80 for adults 19 to 59, $80 for adults 60 and over, $120 for youth 13 to 18 and $120 for children 5 to 12. Adults 60 and over also get a free annual membership to one of the Silver Threads Les Passmore Centre, the Cordova Bay 55+ Association or the Goward House Society. Adults and youth also receive a free weight room orientation, and youth get two free weeks of Breakout Adventures Camps plus two free youth workshops or events across the two-year term. There may be some additional funds for children and youth after the initial grant is used, but they are not guaranteed."
+      "about": "Saanich's two-year L.I.F.E. approval includes local drop-ins, regional visits and an age-based one-time program grant. Current applications can be completed through the City's secure online form.",
+      "steps": ["Gather one current proof of Saanich residence for the household", "Get the current CRA Proof of Income Statement for every household member age 19 or older", "Complete the secure online L.I.F.E. application and upload the documents", "If income shown is under $1,000 or the household has a special situation, contact the financial-assistance office directly", "Allow time after approval for the program grant to appear before registering"],
+      "documents": ["Utility or phone bill from the last three months, signed rental agreement, driver's licence or BC identification", "Current CRA Proof of Income Statement for every household member 19 or older", "Recent landing papers instead of income statements for eligible newcomers within one year of arrival"],
+      "tips": ["Saanich accepts CRA Proof of Income Statements, not Notices of Assessment", "The initial grant is for the whole two-year approval", "Allow at least five days after approval before trying to spend the grant"],
+      "time": "Grant setup can take up to five days after approval"
     }
   },
   {
@@ -2983,7 +3137,14 @@ const BENEFITS = [
     "note": "Apply by emailing the Access to Recreation Department. Assessment can take up to two weeks once all information is received. The income assessment counts income from all sources, including disability benefits and workers' compensation as well as employment, investments, pensions, child and foster child support, rental income and funds held in trust.",
     "applyText": "Email Access to Recreation to apply",
     "applyUrl": "https://www.kelowna.ca/parks-recreation/recreation-sport/recreation-programs-registration/financial-assistance-recreation",
-    "source": "https://www.kelowna.ca/parks-recreation/recreation-sport/recreation-programs-registration/financial-assistance-recreation"
+    "source": "https://www.kelowna.ca/parks-recreation/recreation-sport/recreation-programs-registration/financial-assistance-recreation",
+    "detail": {
+      "about": "Kelowna assesses combined household income from all sources and places an approved credit on the recreation account for passes or City programs.",
+      "steps": ["Email the Access to Recreation Department to request the current application process", "Gather proof of a Kelowna address from the last three months", "Get a CRA Income Statement (Option C print, not Notice of Assessment) for each household member who contributes income or expenses", "Submit the completed application and all supporting documents", "Wait for approval before buying a pass or program; approved credit can then be used during registration"],
+      "documents": ["Recent utility, cable or internet bill, rental agreement, or government document showing a Kelowna address", "CRA Income Statement for contributing household members", "Government-assistance confirmation when using that qualifying route", "Citizenship or permanent-resident information requested by the form"],
+      "tips": ["Previous purchases are not covered, so wait for approval", "All income sources count, including disability benefits and income outside Canada", "A clerk at Parkinson Recreation Centre can check whether processing is complete"],
+      "time": "Up to two weeks after all required information is received"
+    }
   },
   {
     "id": "coquitlam-far",
@@ -2999,7 +3160,12 @@ const BENEFITS = [
     "applyUrl": "https://www.coquitlam.ca/499/Financial-Assistance-for-Recreation",
     "source": "https://www.coquitlam.ca/499/Financial-Assistance-for-Recreation",
     "detail": {
-      "about": "Total family income means the combined before-tax income of all family members in Canada and abroad who contribute to household income and expenses, including employment of all types, investments, pensions, child support and foster child support, rental revenue, funds in trust, disability benefits, workers' compensation and foreign income. The City accepts redacted documents — you may black out a driver's licence number, a social insurance number or a bank account number before submitting."
+      "about": "Each eligible family member receives 50 drop-in passes and a $225 credit. Income verification can use a CRA statement, government assistance, a red Compass Card or an approved adjudicator or agency signature.",
+      "steps": ["Complete the online FAR form or download the paper application", "Attach proof of Coquitlam residence dated within two months", "Choose one accepted income-verification route and attach that evidence", "Submit online, by email, mail or in a sealed envelope at Glen Pine Pavilion", "After approval, use each family member's passes and credit in the recreation registration system"],
+      "documents": ["Completed FAR application", "Recent Coquitlam bill or government-issued identification", "CRA Income Statement, assistance proof, red Compass Card proof, or adjudicator or agency section"],
+      "tips": ["You may redact irrelevant licence, SIN and bank-account numbers while leaving name, address, date and income visible", "Use an Option C Income Statement, not a Notice of Assessment", "Each eligible family member gets a separate set of passes and credit"],
+      "time": "Ask Community Access and Support after submission",
+      "phone": "604-927-6076"
     }
   },
   {
@@ -3016,7 +3182,12 @@ const BENEFITS = [
     "applyUrl": "https://www.kamloops.ca/parks-recreation/accessible-recreation/arch-program",
     "source": "https://www.kamloops.ca/parks-recreation/accessible-recreation/arch-program",
     "detail": {
-      "about": "The credits reduce the cost of fitness classes, activities, and facility memberships or drop-in services."
+      "about": "The annual ARCH application can also request KamPASS. A participating screening or referral agency reviews the application; City recreation facilities do not accept the application itself.",
+      "steps": ["Download the current ARCH–KamPASS application or pick up a paper copy", "Gather photo identification, a second piece of identification, proof of a Kamloops address and proof of income for each adult", "Take the complete application to a participating ARCH public screening agency or, if you are a client, a listed referral agency", "If approved, take the approval letter and photo identification to a listed City facility to activate ARCH credit", "If also approved for KamPASS, purchase it at Kamloops Museum and Archives"],
+      "documents": ["Photo identification and a second piece of identification", "Current utility bill or other accepted proof of Kamloops residence", "Ministry assistance confirmation, each adult's latest Notice of Assessment, or accepted disability or pension income evidence"],
+      "tips": ["Applications are not accepted at City recreation facilities", "One form covers ARCH and KamPASS, but the programs have different eligibility exceptions", "Apply again each year and use the form for the current program year"],
+      "time": "Annual approval; ask the screening agency for current review time",
+      "phone": "250-828-3582"
     }
   }
 

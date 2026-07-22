@@ -23,8 +23,9 @@ const SCOPE_RESIDENCY_HELP_FR = BC_ENABLED
 const BLANK = () => ({
   forWho: null,        // "self" | "child" | "family"
   disabilities: [],    // from DISABILITIES values
-  ageBand: null,       // exact matching band; ageGroup remains for old sessions
-  ageGroup: null,      // "child" | "adult" | "senior"
+  age: null,           // whole years, 0–120; stays in this browser
+  ageBand: null,       // derived compatibility band for catalog/grant matching
+  ageGroup: null,      // derived "child" | "adult" | "senior"
   disabilityVerified: null, // "yes" | "no" | "unsure"
   autismDiagnosis: null,    // "yes" | "no" | "unsure" (only asked when relevant)
   onsetBefore18: null, // true | false  (dynamic: autism/intellectual)
@@ -125,7 +126,7 @@ let browseQuery = "";
 let browseTheme = "all"; // a THEMES key, or "all"
 let browseLevel = "all"; // "all" | "Federal" | "Alberta" | "local"
 let browseDis = "all";   // a DISABILITIES value, or "all" — sorts, never hides
-let helpTopic = null;    // "disabilities" | "dtc" — the "I don't know" pages
+let helpTopic = null;    // current contextual "I'm not sure" help page
 let helpReturnStep = 0;  // which wizard step to come back to
 
 /* the application journey, in order. No entry = "Not started". */
@@ -157,6 +158,23 @@ const hasFunctionalNeed = (v) => has(answers.functionalNeeds, v);
 const functionalNeedUnknown = () => hasFunctionalNeed("unsure");
 const hasCircumstance = (v) => has(answers.circumstances, v);
 const circumstanceUnknown = () => hasCircumstance("unsure");
+const validExactAge = (value) => Number.isInteger(value) && value >= 0 && value <= 120;
+const ageBandFor = (age) => {
+  if (!validExactAge(age)) return null;
+  if (age < 6) return "under6";
+  if (age < 12) return "6to11";
+  if (age < 16) return "12to15";
+  if (age < 18) return "16to17";
+  if (age === 18) return "18";
+  if (age < 60) return "19to59";
+  if (age < 65) return "60to64";
+  return "65plus";
+};
+const ageGroupFor = (age) => !validExactAge(age) ? null : age < 18 ? "child" : age < 65 ? "adult" : "senior";
+function syncAgeMetadata(age) {
+  answers.ageBand = ageBandFor(age);
+  answers.ageGroup = ageGroupFor(age);
+}
 const ageIn = (...bands) => bands.includes(answers.ageBand);
 const isUnder18 = () => ageIn("under6", "6to11", "12to15", "16to17");
 const isAdultAge = () => ageIn("18", "19to59", "60to64");
@@ -243,6 +261,7 @@ const REQS = {
     met: () => answers.disabilityVerified === "yes",
     fixed: false,
     unmet: "Have a qualified professional verify the disability or functional limitation first.",
+    action: { text: "See B.C. disability verification steps", url: "https://studentaidbc.ca/apply/how-to-apply-disability-funding" },
   },
   autismDiagnosis: {
     met: () => answers.autismDiagnosis === "yes",
@@ -254,11 +273,13 @@ const REQS = {
     met: () => answers.msp === "yes",
     fixed: () => answers.msp === "no",
     unmet: "Confirm B.C. Medical Services Plan enrolment first.",
+    action: { text: "Check or apply for MSP", url: "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents/eligibility-and-enrolment" },
   },
   bcPwdStatus: {
     met: () => answers.bcAssistance === "pwd",
     fixed: false,
     unmet: "This requires B.C. PWD designation or disability assistance first.",
+    action: { text: "Start through My Self Serve", url: "https://myselfserve.gov.bc.ca/" },
   },
   bcAssistanceStatus: {
     met: () => ["pwd", "other"].includes(answers.bcAssistance),
@@ -543,6 +564,7 @@ const STEPS = [
       // Relationship does not establish age. A person's child may be 4, 14, or
       // 40, and the exact band materially changes eligibility.
       if (previous !== v) {
+        answers.age = null;
         answers.ageBand = null;
         answers.ageGroup = null;
         answers.situation = [];
@@ -563,32 +585,31 @@ const STEPS = [
     options: DISABILITIES,
   },
   {
-    id: "age", type: "single", kicker: "Age",
+    id: "age", type: "number", kicker: "Age",
     q: () => (answers.forWho === "self" ? "How old are you?" : `How old is ${subj()}?`),
-    help: () => `Choose the closest band. Age cutoffs prevent child, youth, adult, and senior programs from being mixed together.`,
-    key: "ageBand",
-    options: [
-      { value: "under6", label: "Younger than 6", sub: "Baby, toddler or preschool age" },
-      { value: "6to11", label: "6 to 11", sub: "Usually elementary school" },
-      { value: "12to15", label: "12 to 15", sub: "Usually junior high or secondary school" },
-      { value: "16to17", label: "16 to 17", sub: "Secondary school or transition planning" },
-      { value: "18", label: "18" },
-      { value: "19to59", label: "19 to 59" },
-      { value: "60to64", label: "60 to 64" },
-      { value: "65plus", label: "65 or older" },
-    ],
-    onPick(v) {
-      answers.ageGroup = ["under6", "6to11", "12to15", "16to17"].includes(v)
-        ? "child"
-        : v === "65plus" ? "senior" : "adult";
-      answers.situation = [];
-      answers.functionalNeeds = [];
+    help: () => `Enter age in whole years. We use it only in this browser so programs with exact age cutoffs are not mixed together.`,
+    key: "age",
+    label: () => (answers.forWho === "self" ? "Your age in years" : `${subj()[0].toUpperCase()}${subj().slice(1)}'s age in years`),
+    hint: "Enter 0 for a baby younger than one. The maximum accepted age is 120.",
+    min: 0,
+    max: 120,
+    onPick(v, previous) {
+      syncAgeMetadata(v);
+      if (previous !== v) {
+        answers.situation = [];
+        answers.functionalNeeds = [];
+      }
     },
   },
   {
     id: "disabilityVerified", type: "single", kicker: "Documentation",
     q: () => `Has a qualified professional documented ${poss()} disability or functional limitation?`,
     help: "This does not decide whether someone is disabled. It prevents programs that require professional verification from being shown as ready before that step is complete.",
+    sideNote: {
+      topic: "documentation",
+      label: "Not sure what counts as documented?",
+      sub: "See which records count and how to check",
+    },
     key: "disabilityVerified",
     options: [
       { value: "yes", label: "Yes, it is documented" },
@@ -602,6 +623,11 @@ const STEPS = [
       ? "Do you have an autism diagnosis that meets provincial assessment standards?"
       : `Does ${subj()} have an autism diagnosis that meets provincial assessment standards?`,
     help: "A diagnosis is required for the current BC Autism Funding programs. It does not guarantee approval for other benefits.",
+    sideNote: {
+      topic: "autismAssessment",
+      label: "Not sure whether the assessment counts?",
+      sub: "See what document to look for",
+    },
     key: "autismDiagnosis",
     skipIf: () => !hasDisability("autism"),
     options: [
@@ -638,6 +664,11 @@ const STEPS = [
     id: "functionalNeeds", type: "multi", kicker: "How daily life is affected",
     q: () => `Which of these are true for ${subj()}?`,
     help: "Pick only what applies. These functional details are more important than a diagnosis for many programs.",
+    sideNote: {
+      topic: "functionalNeeds",
+      label: "Not sure which daily-life answer fits?",
+      sub: "Read plain examples before deciding",
+    },
     key: "functionalNeeds",
     options: () => {
       const childOptions = isUnder18() ? [
@@ -654,6 +685,12 @@ const STEPS = [
         { value: "equipment", icon: "health", label: "Needs disability-related medical equipment or supplies" },
         { value: "nutrition", icon: "health", label: "Needs a medically prescribed special diet or nutritional products" },
         { value: "medicalTravel", icon: "transit", label: "Must travel outside the community for essential medical care" },
+        { value: "communication", icon: "speech", label: "Needs help communicating, understanding others, or being understood" },
+        { value: "memorySafety", icon: "braininjury", label: "Needs prompting or supervision because memory, judgment, or safety is affected" },
+        { value: "sensory", icon: "autism", label: "Needs sensory or behavioural support to take part safely in daily activities" },
+        { value: "homeAccess", icon: "physical", label: "Needs disability-related changes to the home for access or safety" },
+        { value: "careCoordination", icon: "compass", label: "Needs help organizing medication, appointments, forms, or services" },
+        { value: "fatiguePain", icon: "chronic", label: "Pain, fatigue, seizures, or changing symptoms regularly limit daily activities" },
         { value: "none", icon: "none", label: "None of these" },
         { value: "unsure", icon: "help", label: "I'm not sure" },
       ];
@@ -679,6 +716,11 @@ const STEPS = [
     id: "msp", type: "single", kicker: "British Columbia health coverage",
     q: () => `Is ${subj()} enrolled in B.C.'s Medical Services Plan (MSP)?`,
     help: "Fair PharmaCare and the At Home Program require MSP enrolment.",
+    sideNote: {
+      topic: "msp",
+      label: "Not sure whether MSP is active?",
+      sub: "How to check your B.C. coverage",
+    },
     key: "msp",
     skipIf: () => answers.province !== "BC",
     options: [
@@ -691,6 +733,11 @@ const STEPS = [
     id: "bcAssistance", type: "single", kicker: "British Columbia assistance",
     q: () => `Which B.C. assistance status applies to ${subj()}?`,
     help: "Several health, transport and income programs require an existing assistance status. Pick the closest answer; each guide lists the full exceptions.",
+    sideNote: {
+      topic: "bcAssistance",
+      label: "Not sure which assistance status applies?",
+      sub: "Understand PWD and where to check",
+    },
     key: "bcAssistance",
     skipIf: () => answers.province !== "BC",
     options: [
@@ -704,6 +751,11 @@ const STEPS = [
     id: "circumstances", type: "multi", kicker: "A few specific programs",
     q: () => `Which of these are true for ${subj()}?`,
     help: "These answers prevent vehicle, property and recent-graduate programs from appearing when they cannot apply.",
+    sideNote: {
+      topic: "circumstances",
+      label: "Not sure about ownership or dates?",
+      sub: "See exactly what each choice is asking",
+    },
     key: "circumstances",
     skipIf: () => answers.province !== "BC",
     options: [
@@ -749,6 +801,16 @@ const STEPS = [
     help: "Pick all that apply — this opens up work & school supports.",
     key: "situation",
     options: () => {
+      // A pre-v39 in-progress session can contain the old broad child age but
+      // no exact age band. Never fall through to adult-only choices while that
+      // session is being repaired; give it regular-school choices and route the
+      // person back to the missing age question on restore (see loadState()).
+      if (!answers.ageBand && answers.ageGroup === "child") return [
+        { value: "childcare", icon: "family", label: "In child care or preschool" },
+        { value: "elementary", icon: "student", label: "In elementary or middle school" },
+        { value: "secondary", icon: "student", label: "In junior high or high school" },
+        { value: "none", icon: "none", label: "Not currently in school or child care" },
+      ];
       if (answers.ageBand === "under6") return [
         { value: "childcare", icon: "family", label: "In child care or preschool" },
         { value: "none", icon: "none", label: "Not in child care or preschool" },
@@ -768,13 +830,17 @@ const STEPS = [
           ? teen
           : teen.filter((option) => !["working", "looking"].includes(option.value));
       }
-      return [
+      const adultOptions = [
+        ...(answers.ageBand === "18"
+          ? [{ value: "secondary", icon: "student", label: "In junior high or high school" }]
+          : []),
         { value: "student", icon: "student", label: "In post-secondary school" },
         { value: "working", icon: "working", label: "Working / have a job" },
         { value: "looking", icon: "looking", label: "Looking for work or training" },
         { value: "unableToWork", icon: "unable", label: () => `A disability stops ${answers.forWho === "self" ? "me" : subj()} from working` },
         { value: "none", icon: "none", label: "None of these" },
       ];
+      return adultOptions;
     },
     exclusive: "none",
   },
@@ -815,7 +881,7 @@ const PERSISTENCE_SELECTIONS = {
   disabilities: DISABILITIES.map((item) => item.value),
   ageBands: ["under6", "6to11", "12to15", "16to17", "18", "19to59", "60to64", "65plus"],
   situations: ["childcare", "elementary", "secondary", "student", "working", "looking", "unableToWork", "none"],
-  functionalNeeds: ["childHighNeeds", "childThreeAdls", "dailyLiving", "transitBarrier", "equipment", "nutrition", "medicalTravel", "none", "unsure"],
+  functionalNeeds: ["childHighNeeds", "childThreeAdls", "dailyLiving", "transitBarrier", "equipment", "nutrition", "medicalTravel", "communication", "memorySafety", "sensory", "homeAccess", "careCoordination", "fatiguePain", "none", "unsure"],
   circumstances: ["homeowner", "vehicleOwner", "recentGraduate", "none", "unsure"],
   provinces: STEPS.find((step) => step.key === "province").options.map((item) => item.value),
   cities: [...ALBERTA_CITIES, ...(BC_ENABLED ? BC_CITIES : [])],
@@ -864,6 +930,15 @@ async function loadState() {
     validSelections: PERSISTENCE_SELECTIONS,
   });
   answers = restored.answers;
+  // `age` is authoritative. Releases before v42 stored only a broad band, which
+  // is not precise enough to infer an exact age safely. Those sessions resume at
+  // the age question; current sessions always rebuild the compatibility metadata.
+  if (validExactAge(answers.age)) syncAgeMetadata(answers.age);
+  else {
+    answers.age = null;
+    answers.ageBand = null;
+    answers.ageGroup = null;
+  }
   view = restored.view;
   stepIndex = restored.stepIndex;
   detailId = restored.detailId;
@@ -892,6 +967,13 @@ async function loadState() {
     stepIndex = Math.max(0, firstMissing);
   } else {
     stepIndex = Math.min(stepIndex, Math.max(0, visibleSteps().length - 1));
+    // Old in-progress sessions may point beyond questions added in a newer
+    // release. Resume at the earliest unanswered question so a missing exact
+    // age can never produce the adult situation options shown in the report.
+    if (view === "wizard") {
+      const firstMissing = visibleSteps().findIndex((step) => !stepAnswered(step));
+      if (firstMissing >= 0 && stepIndex > firstMissing) stepIndex = firstMissing;
+    }
   }
 }
 
@@ -1518,7 +1600,7 @@ function wireNavigation(root) {
 
 const LIFE_EVENT_ANSWERS = {
   "life-diagnosed": [],
-  "life-turning18": [["forWho", "self"], ["ageGroup", "adult"]],
+  "life-turning18": [["forWho", "self"], ["age", 18]],
   "life-parent": [["forWho", "child"]],
   "life-unable": [["forWho", "self"], ["situation", "unableToWork"]],
   "life-alberta": [],
@@ -1536,7 +1618,15 @@ function startFromLifeEvent(startingPoint) {
   editingReturn = false;
   selections.forEach(([key, value]) => {
     const step = STEPS.find((candidate) => candidate.key === key);
-    if (step) applyWizardSelection(step, value);
+    if (!step) return;
+    if (step.type === "number" && validExactAge(value)) {
+      const previous = answers[step.key];
+      answers[step.key] = value;
+      step.onPick?.(value, previous);
+      notifyStateChange("wizard-answer");
+    } else {
+      applyWizardSelection(step, value);
+    }
   });
   setState("wizard", { stepIndex: 0 });
 }
@@ -1614,9 +1704,9 @@ function wireLanding() {
 /* =============================================================================
    "I DON'T KNOW" HELP PAGES  (reachable from a wizard step, returns to it)
 
-   Two of the questions are ones people genuinely cannot answer, and answering
-   them wrong is expensive: guess "not sure" on the DTC and you may skip the
-   single biggest benefit here.
+   Every question that offers "I'm not sure" links to a question-specific page.
+   These are decision aids, not extra eligibility screens: they explain what the
+   words mean, what record to look for, and when to keep the unsure answer.
 
    NOTE ON THE DISABILITY PAGE: there is deliberately no "list of disabilities
    the government recognises", because there isn't one. Eligibility is decided
@@ -1660,6 +1750,126 @@ const HELP_PAGES = {
     ],
     foot:
       "Still stuck? Pick the closest option and keep going — you can change any answer afterwards by tapping it on the results page.",
+  },
+  documentation: {
+    kicker: "Professional documentation",
+    title: "What “documented” means here",
+    lead: "You are only telling AbilityFinder whether a qualified professional has recorded the disability or its day-to-day effects.",
+    blocks: [
+      {
+        h: "Choose yes when there is a professional record",
+        p: "Examples include a diagnostic or assessment report, a medical chart note, a specialist letter, or a benefit form completed by a doctor, nurse practitioner, psychologist, occupational therapist or another professional relevant to the program. You do not need to upload or show it here.",
+      },
+      {
+        h: "A school plan alone may not satisfy every program",
+        p: "An individualized education plan or school accommodation record is useful evidence, but some government programs require a medical practitioner or another specifically named professional. The guide for each program tells you who must confirm what.",
+      },
+      {
+        h: "How to check",
+        p: "Look for an assessment report or letter, check the patient portal if the clinic uses one, or ask the clinic whether the disability or functional limitation is recorded in the chart. If you cannot confirm that, keep <b>“I'm not sure”</b>; AbilityFinder will show the requirement as something to verify instead of calling it complete.",
+      },
+    ],
+    foot: "This answer does not decide whether the person is disabled. It only prevents a documentation requirement from being treated as complete when it may not be.",
+  },
+  autismAssessment: {
+    kicker: "B.C. autism assessment",
+    title: "How to tell whether the diagnosis meets B.C. standards",
+    lead: "The current B.C. Autism Funding application asks for an assessment and diagnosis that meet the province's requirements.",
+    blocks: [
+      {
+        h: "Look for the diagnostic paperwork",
+        p: "A B.C. Autism Assessment Network assessment normally produces a clinical outcome form. A private or out-of-province diagnosis needs the forms and confirmation described by B.C. A school identification, screening result or referral by itself is not the same as the required diagnostic assessment.",
+      },
+      {
+        h: "Ask the assessor or Autism Information Services",
+        p: "If the report does not make this clear, ask the diagnosing clinic whether it meets current B.C. Autism Funding standards. Autism Information Services can also explain the next step at <b>1-844-878-4700</b>.",
+      },
+      {
+        h: "Use the unsure answer until it is confirmed",
+        p: `Choosing <b>“I'm not sure”</b> keeps AbilityFinder from presenting Autism Funding as ready. It does not remove other disability supports. <a href="https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/diagnosis" target="_blank" rel="noopener noreferrer">Read B.C.'s official assessment guidance</a>.`,
+      },
+    ],
+    foot: "B.C. says the current Autism Funding program continues during its announced transition. Always check the official page for the latest application rules.",
+  },
+  functionalNeeds: {
+    kicker: "Daily-life needs",
+    title: "Choose what is true in everyday life",
+    lead: "These choices describe practical barriers and support needs. They are not diagnoses and they do not guarantee a program.",
+    blocks: [
+      {
+        h: "Think about a usual difficult day",
+        p: "Consider what happens most days even with medication, equipment or routines: whether another person must help or supervise, whether regular transit is usable, and whether equipment, a prescribed diet or medical travel is actually needed.",
+      },
+      {
+        h: "Pick every statement that clearly applies",
+        p: "This is a multi-select question. It includes personal care, transit, equipment, communication, memory and safety, sensory needs, home access, care coordination, pain and fatigue. For a child, the eating, dressing, toileting and washing choice means help with at least three of those listed activities. For transit, choose the barrier only when regular public transit cannot be used without assistance for some or all trips.",
+      },
+      {
+        h: "Use unsure instead of guessing",
+        p: "If you cannot tell whether a program would consider the need significant enough, choose <b>“I'm not sure”</b>. Do not choose “None of these” unless every statement is clearly false. The relevant guides will tell you what must be confirmed.",
+      },
+    ],
+    foot: "Describe function honestly. The government or funding organization—not AbilityFinder—decides whether its threshold is met.",
+  },
+  msp: {
+    kicker: "B.C. health coverage",
+    title: "How to check MSP enrolment",
+    lead: "MSP is British Columbia's public medical coverage. An active enrolment is different from simply having lived in B.C. or having applied in the past.",
+    blocks: [
+      {
+        h: "A Personal Health Number is a useful clue",
+        p: "People enrolled in MSP receive a Personal Health Number, usually shown on a BC Services Card. Because that number stays with a person for life, the card alone may not prove that coverage is currently active.",
+      },
+      {
+        h: "The reliable check is an account confirmation",
+        p: "B.C. provides an online MSP Account Confirmation request. You can also call Health Insurance BC at <b>604-683-7151</b> in the Lower Mainland or <b>1-800-663-7100</b> elsewhere in B.C.",
+      },
+      {
+        h: "Keep unsure until you verify it",
+        p: `Choose <b>“I'm not sure”</b> if you cannot confirm active enrolment. AbilityFinder will mark MSP-dependent programs as needing confirmation. <a href="https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents/eligibility-and-enrolment" target="_blank" rel="noopener noreferrer">Check enrolment or request confirmation on the official B.C. page</a>.`,
+      },
+    ],
+    foot: "No health number or confirmation? The official page also explains how to apply for MSP.",
+  },
+  bcAssistance: {
+    kicker: "B.C. assistance status",
+    title: "PWD, disability assistance and other statuses",
+    lead: "This question asks about an existing government assistance status—not whether the person has a disability generally.",
+    blocks: [
+      {
+        h: "PWD is a provincial designation",
+        p: "Choose the first answer if the Ministry has granted the Persons with Disabilities (PWD) designation or the person currently receives B.C. disability assistance. The federal Disability Tax Credit is separate and does not by itself mean someone has PWD status.",
+      },
+      {
+        h: "Other qualifying status depends on the program",
+        p: "Some B.C. health and supplement programs also cover people in named income-assistance, child-in-care, palliative-care or protected-status groups. Those exceptions differ by program, so use the second answer only when you know an official status applies.",
+      },
+      {
+        h: "Where to check",
+        p: `Look at a Ministry decision letter or My Self Serve account, or ask the Ministry office handling the file. If the wording is still unclear, choose <b>“I'm not sure”</b> and confirm it in each guide. <a href="https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/pwd-designation-and-application/designation-application" target="_blank" rel="noopener noreferrer">Read the official PWD designation guidance</a>.`,
+      },
+    ],
+    foot: "Selecting PWD here never grants the designation. It only tells the matcher that the person says the Ministry has already granted it.",
+  },
+  circumstances: {
+    kicker: "Specific B.C. programs",
+    title: "What the ownership and graduation choices mean",
+    lead: "These narrow facts keep property, vehicle and recent-graduate programs out of results when they cannot apply.",
+    blocks: [
+      {
+        h: "Owns and lives in a home",
+        p: "Choose this only when the person—or the eligible family member named by the program—has an ownership interest in the home and lives there. Renting a home is not ownership.",
+      },
+      {
+        h: "Owns, leases or has an interest in a vehicle",
+        p: "Choose this when the person owns or leases a vehicle, or is named in another legally recognized ownership interest. Being a passenger or occasionally using someone else's vehicle is not enough for vehicle-owner programs.",
+      },
+      {
+        h: "Graduated within the last three years",
+        p: "Use the completion date on the post-secondary credential or official school record. If the date or completion status is unclear, choose <b>“I'm not sure”</b> so the related program appears only as a condition to investigate.",
+      },
+    ],
+    foot: "If every statement is clearly false, choose “None of these.” Otherwise choose the true statements or keep “I'm not sure” until you can check.",
   },
   dtc: {
     kicker: "The master key",
@@ -2260,7 +2470,18 @@ function renderStep(step) {
   const T = stepText(step);
   let controlHtml;
 
-  if (step.type === "select") {
+  if (step.type === "number") {
+    const current = validExactAge(answers[step.key]) ? answers[step.key] : "";
+    const label = typeof step.label === "function" ? step.label() : step.label;
+    controlHtml = `
+      <div class="number-field">
+        <label for="numberInput">${label || "Age in years"}</label>
+        <input class="text-input number-input" id="numberInput" type="number"
+          inputmode="numeric" min="${step.min}" max="${step.max}" step="1"
+          value="${current}" autocomplete="off" aria-describedby="numberHint" />
+        <p class="number-hint" id="numberHint">${step.hint || ""}</p>
+      </div>`;
+  } else if (step.type === "select") {
     const opts = stepOptions(step)
       .map((c) => `<option value="${c}" ${answers[step.key] === c ? "selected" : ""}>${c}</option>`)
       .join("");
@@ -2339,6 +2560,7 @@ function renderStep(step) {
 
 function stepAnswered(step) {
   if (step.type === "multi") return answers[step.key].length > 0;
+  if (step.type === "number") return validExactAge(answers[step.key]);
   return answers[step.key] !== null;
 }
 
@@ -2367,6 +2589,31 @@ function wireStep(step) {
       helpTopic = step.sideNote.topic;
       setState("help");
     });
+  if (step.type === "number") {
+    const input = document.getElementById("numberInput");
+    const next = document.getElementById("next");
+    if (input) {
+      input.addEventListener("input", () => {
+        const parsed = input.value === "" ? null : Number(input.value);
+        const value = validExactAge(parsed) ? parsed : null;
+        const previous = answers[step.key];
+        answers[step.key] = value;
+        if (value === null) {
+          answers.ageBand = null;
+          answers.ageGroup = null;
+        } else if (step.onPick) {
+          step.onPick(value, previous);
+        }
+        input.setAttribute("aria-invalid", String(input.value !== "" && value === null));
+        if (next) next.disabled = value === null;
+        notifyStateChange("wizard-answer");
+      });
+    }
+    const back = document.getElementById("back");
+    if (back) back.addEventListener("click", goBack);
+    if (next) next.addEventListener("click", goNext);
+    return;
+  }
   if (step.type === "select") {
     const sel = document.getElementById("selInput");
     if (sel)
@@ -2479,6 +2726,10 @@ function scenarioAnswerModel() {
       model.situation = [...set];
     } else {
       model[change.key] = change.value;
+      if (change.key === "age") {
+        model.ageBand = ageBandFor(change.value);
+        model.ageGroup = ageGroupFor(change.value);
+      }
       if (change.key === "province" && !(CITIES_BY_PROVINCE[change.value] || []).includes(model.city)) model.city = null;
     }
   }
@@ -2496,11 +2747,16 @@ function scenarioSelect(step, label, options) {
   </select></label>`;
 }
 
+function scenarioNumber(step, label, value) {
+  return `<label class="scenario-field"><span>${label}</span><input class="text-input" type="number" inputmode="numeric"
+    min="${step.min}" max="${step.max}" step="1" value="${validExactAge(value) ? value : ""}" data-scenario-number="${step.key}" /></label>`;
+}
+
 function renderScenarioPanel(currentEvaluated) {
   const model = scenarioAnswerModel();
   const controls = [];
   const visible = visibleSteps();
-  const age = visible.find((step) => step.key === "ageGroup");
+  const age = visible.find((step) => step.key === "age");
   const situation = visible.find((step) => step.key === "situation");
   const income = visible.find((step) => step.key === "income");
   const city = visible.find((step) => step.key === "city");
@@ -2512,7 +2768,7 @@ function renderScenarioPanel(currentEvaluated) {
     });
     controls.push(scenarioSelect(situation, t("scenario.situation"), options));
   }
-  if (age) controls.push(scenarioSelect(age, t("scenario.age"), stepOptions(age).map((o) => `<option value="${o.value}">${optionText(age, o)}</option>`)));
+  if (age) controls.push(scenarioNumber(age, t("scenario.age"), model.age));
   if (income) controls.push(scenarioSelect(income, t("scenario.income"), stepOptions(income).map((o) => `<option value="${o.value}">${optionText(income, o)}</option>`)));
   if (city) controls.push(scenarioSelect(city, t("scenario.city"), stepOptions(city).map((value) => `<option value="${value}">${value}</option>`)));
 
@@ -3048,6 +3304,7 @@ function valueLabel(step, val) {
 function answerSummary(step) {
   const v = answers[step.key];
   if (step.type === "multi") return v && v.length ? v.map((x) => valueLabel(step, x)).join(", ") : "—";
+  if (step.type === "number") return validExactAge(v) ? (v === 0 ? "Younger than 1" : `${v} years old`) : "—";
   if (step.id === "city") return v || "—";
   return v == null ? "—" : valueLabel(step, v);
 }
@@ -3144,7 +3401,8 @@ function practitionerFinder(b) {
 function supportMatches(item) {
   const disOk = item.dis && item.dis.length ? item.dis.some((d) => hasDisability(d)) : null;
   const sitOk = item.sit && item.sit.length ? item.sit.some((s) => answers.situation.includes(s)) : null;
-  return disOk === true || sitOk === true;
+  const needOk = item.needs && item.needs.length ? item.needs.some((need) => hasFunctionalNeed(need)) : null;
+  return disOk === true || sitOk === true || needOk === true;
 }
 function renderSupportCard(item) {
   const url = item.link ? resolveUrl(item.link) : null;
@@ -3191,6 +3449,20 @@ function wireResults() {
           .find((value) => String(value) === select.value);
         scenarioChanges.set(key, { id: key, key, value: optionValue, label: `${select.previousElementSibling.textContent}: ${scenarioOptionLabel(step, optionValue)}` });
       }
+      scenarioOpen = true;
+      render();
+    })
+  );
+  document.querySelectorAll("[data-scenario-number]").forEach((input) =>
+    input.addEventListener("change", () => {
+      const value = Number(input.value);
+      if (!validExactAge(value)) {
+        input.setAttribute("aria-invalid", "true");
+        return;
+      }
+      input.setAttribute("aria-invalid", "false");
+      const key = input.dataset.scenarioNumber;
+      scenarioChanges.set(key, { id: key, key, value, label: `${t("scenario.age")}: ${value}` });
       scenarioOpen = true;
       render();
     })
@@ -3346,8 +3618,7 @@ function reportProfileLine() {
     .filter(Boolean);
   if (answers.forWho === "child") parts.push("For a child");
   if (disLabels.length) parts.push(disLabels.join(", "));
-  const age = { child: "Under 18", adult: "18–64", senior: "65+" }[answers.ageGroup];
-  if (age) parts.push(age);
+  if (validExactAge(answers.age)) parts.push(answers.age === 0 ? "Younger than 1" : `Age ${answers.age}`);
   if (answers.province) parts.push(PROVINCE_NAME[answers.province] || answers.province);
   if (answers.city) parts.push(answers.city);
   const dtc = { yes: "DTC approved", no: "DTC not yet", unsure: "DTC unsure" }[answers.dtc];
@@ -3800,10 +4071,10 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
         <button class="linklike" data-guide-check>Check my eligibility ${icon("arrowRight")}</button></div>
       </div>`;
   } else if (r.status === "almost") {
-    statusBanner = `
-      <div class="status-banner almost">${icon("key")}<div><b>${t("det.almostH")}</b> ${t("det.almostSub")}
-        <ul>${r.needs.map((n) => `<li>${n.text}</li>`).join("")}</ul></div>
-      </div>`;
+    // The approved action card owns this state. Keeping the same long message in
+    // both columns made the guide feel repetitive and was especially cramped on
+    // smaller screens.
+    statusBanner = "";
   } else if (x.confirm) {
     statusBanner = `<div class="status-banner maybe">${icon("info")}<div><b>Possible match</b> — confirm ${x.confirm}; the program makes the final decision.</div></div>`;
   } else {
@@ -3811,7 +4082,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   }
   const p2 = p2Sections(b);
 
-  const dtcAction = wizardDone() ? r.needs.find((n) => n.action) : null;
+  const nextAction = wizardDone() ? r.needs.find((n) => n.action) : null;
   const meta = [];
   if (d.time) meta.push(`<div class="meta-item"><span>${t("meta.time")}</span>${d.time}</div>`);
   if (d.phone) meta.push(`<div class="meta-item"><span>${t("meta.contact")}</span>${d.phone}</div>`);
@@ -3819,6 +4090,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
 
   const v = valueParts(b);
   const valueHead = `<div class="detail-amount">${v.est ? `<span class="amount-tag">Est. value</span>` : ""}${v.head}</div>${v.sub ? `<div class="detail-amount-sub">${v.sub}</div>` : ""}`;
+  const valueSection = b.amount ? `<section class="guide-block guide-value"><h2 class="guide-h">${icon("info")} What it can provide</h2>${valueHead}</section>` : "";
 
   // "At a glance" facts for the sticky sidebar
   const mm = BENEFIT_META[b.id] || {};
@@ -3838,6 +4110,12 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
     : r.status === "almost" ? { cls: "almost", txt: "One step away" }
     : x.confirm ? { cls: "maybe", txt: "Possible match — confirm rules" }
     : { cls: "ready", txt: "Close match — confirm rules" };
+  const unmet = wizardDone() && r.status === "almost" ? r.needs.slice(0, 2) : [];
+  const sidePrompt = !wizardDone()
+    ? `<div class="side-next"><h2>See if it fits you</h2><p>Answer the questionnaire for a personalized match.</p></div>`
+    : unmet.length
+      ? `<div class="side-next"><h2>Before you can apply</h2><ul>${unmet.map((n) => `<li>${n.text}</li>`).join("")}</ul></div>`
+      : `<div class="side-next"><h2>Next step</h2><p>Confirm the current rules, then use the official application.</p></div>`;
 
   return `
   ${inline ? "" : `<div class="detail">
@@ -3859,6 +4137,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
 
         ${d.about && d.about !== b.summary ? `<p class="detail-about">${d.about}</p>` : ""}
         ${b.note ? `<div class="note">${b.note}</div>` : ""}
+        ${valueSection}
         ${b.id === "dtc" ? `<div class="dtc-prep-guide-cta"><button class="apply" type="button" data-open-dtc-prep>${icon("print")}${t("dtcPrep.guideButton")}</button></div>` : ""}
         ${p2.tax}
         ${/* Before "how to apply" on purpose: knowing you might actually
@@ -3879,11 +4158,11 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
       <aside class="detail-side">
         <div class="side-card">
           <span class="side-status ${sideStatus.cls}">${sideStatus.txt}</span>
-          ${valueHead}
+          ${sidePrompt}
+          ${nextAction ? `<a class="apply side-next-action" href="${nextAction.action.url}" target="_blank" rel="noopener noreferrer" data-ext>${nextAction.action.text} ${icon("external")}</a>` : ""}
           <dl class="side-facts">${factsHtml}</dl>
           <div class="side-actions">
             <a class="apply" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.applyText} ${icon("external")}</a>
-            ${dtcAction ? `<a class="apply secondary" href="${dtcAction.action.url}" target="_blank" rel="noopener noreferrer" data-ext>${dtcAction.action.text} ${icon("external")}</a>` : ""}
             <a class="source-link" href="${resolveUrl(b.source)}" target="_blank" rel="noopener noreferrer" data-ext>${t("det.official")} ${icon("external")}</a>
           </div>
           <p class="side-foot"><span class="verified${vFresh.stale ? " stale" : ""}">${icon(vFresh.stale ? "info" : "check")} Info verified ${vFresh.label}</span></p>

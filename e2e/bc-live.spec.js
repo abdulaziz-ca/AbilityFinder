@@ -24,12 +24,17 @@ async function pick(page, text) {
   await page.waitForTimeout(230);
 }
 
+async function enterAge(page, age) {
+  await page.locator("#numberInput").fill(String(age));
+  await page.locator("#next").click();
+}
+
 async function completeBcWizard(page, forWho = "Myself") {
   await page.locator(".js-start").first().click();
   await pick(page, forWho);
   await pick(page, "Something else / not listed");
   await page.locator("#next").click();
-  await pick(page, forWho === "Myself" ? "19 to 59" : "6 to 11");
+  await enterAge(page, forWho === "Myself" ? 34 : 9);
   await pick(page, "Yes, it is documented");
   await pick(page, forWho === "Myself" ? "None of these" : "Has very high or complex developmental support needs");
   await page.locator("#next").click();
@@ -99,7 +104,7 @@ test("BC adult post-secondary answers exclude child and unrelated work programs"
   await pick(page, "Myself");
   await pick(page, "Learning disability");
   await page.locator("#next").click();
-  await pick(page, "19 to 59");
+  await enterAge(page, 22);
   await pick(page, "Yes, it is documented");
   await pick(page, "None of these");
   await page.locator("#next").click();
@@ -131,7 +136,7 @@ test("Alberta adult post-secondary answers exclude child programs", async ({ pag
   await pick(page, "Myself");
   await pick(page, "Learning disability");
   await page.locator("#next").click();
-  await pick(page, "19 to 59");
+  await enterAge(page, 22);
   await pick(page, "Yes, it is documented");
   await pick(page, "None of these");
   await page.locator("#next").click();
@@ -148,6 +153,112 @@ test("Alberta adult post-secondary answers exclude child programs", async ({ pag
   await expect(matched.getByRole("heading", { name: "Family Support for Children with Disabilities (FSCD)", exact: true })).toHaveCount(0);
   await expect(matched.getByRole("heading", { name: "Child Disability Benefit", exact: true })).toHaveCount(0);
   await expect(matched.getByRole("heading", { name: "Alberta Child Health Benefit", exact: true })).toHaveCount(0);
+});
+
+test("children and eighteen-year-olds receive age-appropriate regular-school choices", async ({ page }) => {
+  const cases = [
+    { age: 4, expected: ["In child care or preschool"] },
+    { age: 9, expected: ["In elementary school"] },
+    { age: 14, expected: ["In junior high or high school"] },
+    { age: 17, expected: ["In junior high or high school"] },
+    { age: 18, expected: ["In junior high or high school", "In post-secondary school"] },
+  ];
+
+  for (const [index, item] of cases.entries()) {
+    if (index) await deleteAppStorage(page);
+    await page.locator(".js-start").first().click();
+    await pick(page, "My child");
+    await pick(page, "Something else / not listed");
+    await page.locator("#next").click();
+    await enterAge(page, item.age);
+    await pick(page, "Yes, it is documented");
+    await pick(page, "None of these");
+    await page.locator("#next").click();
+    await pick(page, "Alberta");
+    await pick(page, "Yes");
+    await pick(page, "No, not yet");
+
+    for (const label of item.expected) {
+      await expect(page.getByRole("button", { name: label, exact: true })).toBeVisible();
+    }
+    if (item.age !== 18) {
+      await expect(page.getByRole("button", { name: "In post-secondary school", exact: true })).toHaveCount(0);
+    }
+  }
+});
+
+test("exact age field rejects unsafe values and accepts age cutoffs", async ({ page }) => {
+  await page.locator(".js-start").first().click();
+  await pick(page, "Myself");
+  await pick(page, "Something else / not listed");
+  await page.locator("#next").click();
+
+  const age = page.locator("#numberInput");
+  for (const invalid of ["-1", "18.5", "121"]) {
+    await age.fill(invalid);
+    await expect(page.locator("#next")).toBeDisabled();
+  }
+  await age.fill("18");
+  await expect(page.locator("#next")).toBeEnabled();
+  await page.locator("#next").click();
+  await expect(page.getByRole("heading", { name: /documented your disability/i })).toBeVisible();
+});
+
+test("one-step-away guide uses a compact direct-action card without clipping", async ({ page }) => {
+  await completeBcWizard(page);
+  await page.evaluate(() => {
+    answers.msp = "unknown";
+    setState("detail", { detailId: "bc-fair-pharmacare" });
+  });
+
+  const card = page.locator(".side-card");
+  await expect(card.getByText("Before you can apply", { exact: true })).toBeVisible();
+  await expect(card.getByText("Confirm B.C. Medical Services Plan enrolment first.", { exact: true })).toBeVisible();
+  await expect(card.getByRole("link", { name: /Check or apply for MSP/ })).toHaveAttribute("href", /eligibility-and-enrolment/);
+  await expect(page.getByRole("heading", { name: "What it can provide", exact: true })).toBeVisible();
+
+  for (const width of [1280, 320]) {
+    await page.setViewportSize({ width, height: 800 });
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    expect(overflow).toBeLessThanOrEqual(1);
+    const clipped = await card.evaluate((element) => element.scrollHeight > element.clientHeight + 1);
+    expect(clipped).toBe(false);
+  }
+});
+
+test("every uncertainty choice has contextual help and returns to its question", async ({ page }) => {
+  const openHelpAndReturn = async (title) => {
+    await expect(page.locator("#sideNote")).toBeVisible();
+    await page.locator("#sideNote").click();
+    await expect(page.getByRole("heading", { name: title, exact: true })).toBeVisible();
+    await page.locator("#hp-back").click();
+    await expect(page.locator("#sideNote")).toBeVisible();
+  };
+
+  await page.locator(".js-start").first().click();
+  await pick(page, "My child");
+  await pick(page, "Autism spectrum");
+  await page.locator("#next").click();
+  await enterAge(page, 9);
+
+  await openHelpAndReturn("What “documented” means here");
+  await pick(page, "Yes, it is documented");
+  await openHelpAndReturn("How to tell whether the diagnosis meets B.C. standards");
+  await pick(page, "Yes");
+  await pick(page, "Yes, it began in childhood");
+  await openHelpAndReturn("Choose what is true in everyday life");
+  await pick(page, "None of these");
+  await page.locator("#next").click();
+  await pick(page, "British Columbia");
+  await openHelpAndReturn("How to check MSP enrolment");
+  await pick(page, "I'm not sure");
+  await openHelpAndReturn("PWD, disability assistance and other statuses");
+  await pick(page, "I'm not sure");
+  await openHelpAndReturn("What the ownership and graduation choices mean");
+  await pick(page, "I'm not sure");
+  await page.locator("#next").click();
+  await pick(page, "Yes");
+  await openHelpAndReturn("How to tell if you have the DTC");
 });
 
 test("browse filters distinguish BC provincial and local programs", async ({ page }) => {
@@ -184,4 +295,10 @@ test("footer and accessibility controls reflow at a 320px viewport", async ({ pa
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   expect(overflow).toBeLessThanOrEqual(1);
   await expect(page.locator(".site-footer")).toHaveCSS("text-align", "center");
+  await expect(page.locator(".disclaimer")).toHaveCSS("text-align", "center");
+  const disclaimerCenterOffset = await page.locator(".disclaimer").evaluate((element) => {
+    const box = element.getBoundingClientRect();
+    return Math.abs((box.left + box.right) / 2 - document.documentElement.clientWidth / 2);
+  });
+  expect(disclaimerCenterOffset).toBeLessThanOrEqual(1);
 });

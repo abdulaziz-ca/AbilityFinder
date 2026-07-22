@@ -186,13 +186,16 @@ ${header()}
             ${detail.time ? `<section class="guide-block"><h2 class="guide-h">Timing</h2><p class="detail-about">${esc(detail.time)}</p></section>` : ""}
             ${detail.phone ? `<section class="guide-block"><h2 class="guide-h">Phone</h2><p class="detail-about">${esc(detail.phone)}</p></section>` : ""}
           </div>
-          <aside class="detail-side card">
-            <h2 class="guide-h">Official information</h2>
+          <aside class="detail-side">
+            <div class="side-card">
+            <span class="side-status maybe">Confirm before applying</span>
+            <div class="side-next"><h2>Your next step</h2><p>Open the official program page, check the current rules, and use its application route.</p></div>
             <ul class="guide-list">
 ${links.map((x) => `              <li><a class="guide-link" href="${esc(x.url)}">${esc(x.label)}</a></li>`).join("\n")}
             </ul>
             <p class="detail-foot">Benefit rules and amounts can change. Confirm the current details before applying.</p>
             <p><a class="btn btn-primary" href="https://abilityfinder.ca/">Answer a few questions to see every benefit you may qualify for</a></p>
+            </div>
           </aside>
         </div>
       </main>

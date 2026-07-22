@@ -13,7 +13,7 @@ const validSelections = {
   disabilities: ["physical", "autism", "other"],
   ageBands: ["under6", "6to11", "19to59"],
   situations: ["elementary", "student", "working", "none"],
-  functionalNeeds: ["dailyLiving", "equipment", "none", "unsure"],
+  functionalNeeds: ["dailyLiving", "equipment", "communication", "memorySafety", "sensory", "homeAccess", "careCoordination", "fatiguePain", "none", "unsure"],
   circumstances: ["homeowner", "vehicleOwner", "none", "unsure"],
   provinces: ["AB", "BC", "other"],
   cities: ["Calgary", "Edmonton", "Vancouver"],
@@ -24,6 +24,7 @@ const validSelections = {
 const blankAnswers = () => ({
   forWho: null,
   disabilities: [],
+  age: null,
   ageBand: null,
   ageGroup: null,
   disabilityVerified: null,
@@ -59,6 +60,8 @@ function liveState() {
     stepIndex: 3,
     detailId: "dtc",
     detailFrom: "browse",
+    helpTopic: "msp",
+    helpReturnStep: 7,
     progress: { dtc: "submitted" },
     groupMode: "category",
     browseQuery: "tax",
@@ -87,6 +90,8 @@ test("buildPersistedState whitelists app selections and excludes free-text/priva
   assert.equal("askHistory" in saved, false);
   assert.equal("calculate" in saved, false);
   assert.deepEqual(saved.progress, { dtc: "submitted" });
+  assert.equal(saved.helpTopic, "msp");
+  assert.equal(saved.helpReturnStep, 7);
   assert.deepEqual(saved.ui, {
     groupMode: "category",
     browseQuery: "tax",
@@ -158,6 +163,27 @@ test("restorePersistedState rejects malformed values that could break rendering"
   assert.equal(restored.askConsent, false);
 });
 
+test("restorePersistedState keeps every current uncertainty-help topic and rejects unknown ones", () => {
+  for (const helpTopic of ["disabilities", "documentation", "autismAssessment", "functionalNeeds", "msp", "bcAssistance", "circumstances", "dtc"]) {
+    const restored = restorePersistedState({ view: "help", helpTopic, helpReturnStep: 6 }, {
+      answers: blankAnswers(),
+      theme: "dark",
+      validSelections,
+    });
+    assert.equal(restored.view, "help");
+    assert.equal(restored.helpTopic, helpTopic);
+    assert.equal(restored.helpReturnStep, 6);
+  }
+
+  const rejected = restorePersistedState({ view: "help", helpTopic: "made-up" }, {
+    answers: blankAnswers(),
+    theme: "dark",
+    validSelections,
+  });
+  assert.equal(rejected.view, "wizard");
+  assert.equal(rejected.helpTopic, null);
+});
+
 test("restorePersistedState rejects unknown catalog selections and progress IDs", () => {
   const restored = restorePersistedState({
     answers: {
@@ -185,6 +211,7 @@ test("restorePersistedState preserves a valid BC city and new conservative match
       ...blankAnswers(),
       forWho: "child",
       disabilities: ["physical"],
+      age: 9,
       ageBand: "6to11",
       ageGroup: "child",
       disabilityVerified: "yes",
@@ -200,9 +227,25 @@ test("restorePersistedState preserves a valid BC city and new conservative match
 
   assert.equal(restored.answers.province, "BC");
   assert.equal(restored.answers.city, "Vancouver");
+  assert.equal(restored.answers.age, 9);
   assert.equal(restored.answers.ageBand, "6to11");
   assert.deepEqual(restored.answers.functionalNeeds, ["equipment"]);
   assert.deepEqual(restored.answers.situation, ["elementary"]);
+});
+
+test("exact age persistence accepts whole years from 0 to 120 and rejects unsafe values", () => {
+  for (const age of [0, 18, 65, 120]) {
+    const restored = restorePersistedState({ answers: { ...blankAnswers(), age } }, {
+      answers: blankAnswers(), theme: "dark", validSelections,
+    });
+    assert.equal(restored.answers.age, age);
+  }
+  for (const age of [-1, 18.5, 121, "18"]) {
+    const restored = restorePersistedState({ answers: { ...blankAnswers(), age } }, {
+      answers: blankAnswers(), theme: "dark", validSelections,
+    });
+    assert.equal(restored.answers.age, null);
+  }
 });
 
 test("sanitizeLegacyState applies the whitelist and preserves supported legacy UI state", () => {
