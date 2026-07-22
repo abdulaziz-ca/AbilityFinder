@@ -24,7 +24,6 @@ const validSelections = {
 const blankAnswers = () => ({
   forWho: null,
   disabilities: [],
-  age: null,
   ageBand: null,
   ageGroup: null,
   disabilityVerified: null,
@@ -211,7 +210,6 @@ test("restorePersistedState preserves a valid BC city and new conservative match
       ...blankAnswers(),
       forWho: "child",
       disabilities: ["physical"],
-      age: 9,
       ageBand: "6to11",
       ageGroup: "child",
       disabilityVerified: "yes",
@@ -227,25 +225,18 @@ test("restorePersistedState preserves a valid BC city and new conservative match
 
   assert.equal(restored.answers.province, "BC");
   assert.equal(restored.answers.city, "Vancouver");
-  assert.equal(restored.answers.age, 9);
   assert.equal(restored.answers.ageBand, "6to11");
   assert.deepEqual(restored.answers.functionalNeeds, ["equipment"]);
   assert.deepEqual(restored.answers.situation, ["elementary"]);
 });
 
-test("exact age persistence accepts whole years from 0 to 120 and rejects unsafe values", () => {
-  for (const age of [0, 18, 65, 120]) {
-    const restored = restorePersistedState({ answers: { ...blankAnswers(), age } }, {
-      answers: blankAnswers(), theme: "dark", validSelections,
-    });
-    assert.equal(restored.answers.age, age);
-  }
-  for (const age of [-1, 18.5, 121, "18"]) {
-    const restored = restorePersistedState({ answers: { ...blankAnswers(), age } }, {
-      answers: blankAnswers(), theme: "dark", validSelections,
-    });
-    assert.equal(restored.answers.age, null);
-  }
+test("exact ages from the brief v42 field are discarded while its derived band survives", () => {
+  const restored = restorePersistedState({ answers: { ...blankAnswers(), age: 34, ageBand: "19to59", ageGroup: "adult" } }, {
+    answers: blankAnswers(), theme: "dark", validSelections,
+  });
+  assert.equal("age" in restored.answers, false);
+  assert.equal(restored.answers.ageBand, "19to59");
+  assert.equal(restored.answers.ageGroup, "adult");
 });
 
 test("sanitizeLegacyState applies the whitelist and preserves supported legacy UI state", () => {

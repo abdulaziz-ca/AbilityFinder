@@ -23,8 +23,7 @@ const SCOPE_RESIDENCY_HELP_FR = BC_ENABLED
 const BLANK = () => ({
   forWho: null,        // "self" | "child" | "family"
   disabilities: [],    // from DISABILITIES values
-  age: null,           // whole years, 0–120; stays in this browser
-  ageBand: null,       // derived compatibility band for catalog/grant matching
+  ageBand: null,       // eligibility-relevant age range selected in the wizard
   ageGroup: null,      // derived "child" | "adult" | "senior"
   disabilityVerified: null, // "yes" | "no" | "unsure"
   autismDiagnosis: null,    // "yes" | "no" | "unsure" (only asked when relevant)
@@ -158,23 +157,22 @@ const hasFunctionalNeed = (v) => has(answers.functionalNeeds, v);
 const functionalNeedUnknown = () => hasFunctionalNeed("unsure");
 const hasCircumstance = (v) => has(answers.circumstances, v);
 const circumstanceUnknown = () => hasCircumstance("unsure");
-const validExactAge = (value) => Number.isInteger(value) && value >= 0 && value <= 120;
-const ageBandFor = (age) => {
-  if (!validExactAge(age)) return null;
-  if (age < 6) return "under6";
-  if (age < 12) return "6to11";
-  if (age < 16) return "12to15";
-  if (age < 18) return "16to17";
-  if (age === 18) return "18";
-  if (age < 60) return "19to59";
-  if (age < 65) return "60to64";
-  return "65plus";
-};
-const ageGroupFor = (age) => !validExactAge(age) ? null : age < 18 ? "child" : age < 65 ? "adult" : "senior";
-function syncAgeMetadata(age) {
-  answers.ageBand = ageBandFor(age);
-  answers.ageGroup = ageGroupFor(age);
-}
+const AGE_BANDS = [
+  { value: "under6", label: "Younger than 6", sub: "Baby, toddler or preschool age" },
+  { value: "6to11", label: "6 to 11", sub: "Usually elementary school" },
+  { value: "12to15", label: "12 to 15", sub: "Usually junior high or secondary school" },
+  { value: "16to17", label: "16 to 17", sub: "Secondary school or transition planning" },
+  { value: "18", label: "18", sub: "Adult benefits may begin; school supports can continue" },
+  { value: "19to59", label: "19 to 59" },
+  { value: "60to64", label: "60 to 64" },
+  { value: "65plus", label: "65 or older" },
+];
+const ageGroupForBand = (band) =>
+  ["under6", "6to11", "12to15", "16to17"].includes(band)
+    ? "child"
+    : ["18", "19to59", "60to64"].includes(band)
+      ? "adult"
+      : band === "65plus" ? "senior" : null;
 const ageIn = (...bands) => bands.includes(answers.ageBand);
 const isUnder18 = () => ageIn("under6", "6to11", "12to15", "16to17");
 const isAdultAge = () => ageIn("18", "19to59", "60to64");
@@ -564,7 +562,6 @@ const STEPS = [
       // Relationship does not establish age. A person's child may be 4, 14, or
       // 40, and the exact band materially changes eligibility.
       if (previous !== v) {
-        answers.age = null;
         answers.ageBand = null;
         answers.ageGroup = null;
         answers.situation = [];
@@ -585,16 +582,13 @@ const STEPS = [
     options: DISABILITIES,
   },
   {
-    id: "age", type: "number", kicker: "Age",
+    id: "age", type: "single", kicker: "Age",
     q: () => (answers.forWho === "self" ? "How old are you?" : `How old is ${subj()}?`),
-    help: () => `Enter age in whole years. We use it only in this browser so programs with exact age cutoffs are not mixed together.`,
-    key: "age",
-    label: () => (answers.forWho === "self" ? "Your age in years" : `${subj()[0].toUpperCase()}${subj().slice(1)}'s age in years`),
-    hint: "Enter 0 for a baby younger than one. The maximum accepted age is 120.",
-    min: 0,
-    max: 120,
+    help: "Choose the closest range. These eight cutoffs keep child, transition-age, adult and senior programs from being mixed together.",
+    key: "ageBand",
+    options: AGE_BANDS,
     onPick(v, previous) {
-      syncAgeMetadata(v);
+      answers.ageGroup = ageGroupForBand(v);
       if (previous !== v) {
         answers.situation = [];
         answers.functionalNeeds = [];
@@ -879,7 +873,7 @@ const visibleSteps = () => STEPS.filter((s) => !(s.skipIf && s.skipIf()));
 
 const PERSISTENCE_SELECTIONS = {
   disabilities: DISABILITIES.map((item) => item.value),
-  ageBands: ["under6", "6to11", "12to15", "16to17", "18", "19to59", "60to64", "65plus"],
+  ageBands: AGE_BANDS.map((item) => item.value),
   situations: ["childcare", "elementary", "secondary", "student", "working", "looking", "unableToWork", "none"],
   functionalNeeds: ["childHighNeeds", "childThreeAdls", "dailyLiving", "transitBarrier", "equipment", "nutrition", "medicalTravel", "communication", "memorySafety", "sensory", "homeAccess", "careCoordination", "fatiguePain", "none", "unsure"],
   circumstances: ["homeowner", "vehicleOwner", "recentGraduate", "none", "unsure"],
@@ -930,15 +924,10 @@ async function loadState() {
     validSelections: PERSISTENCE_SELECTIONS,
   });
   answers = restored.answers;
-  // `age` is authoritative. Releases before v42 stored only a broad band, which
-  // is not precise enough to infer an exact age safely. Those sessions resume at
-  // the age question; current sessions always rebuild the compatibility metadata.
-  if (validExactAge(answers.age)) syncAgeMetadata(answers.age);
-  else {
-    answers.age = null;
-    answers.ageBand = null;
-    answers.ageGroup = null;
-  }
+  // v43 returns to the smaller tap-to-select age ranges. v42 also persisted the
+  // derived band, so current sessions keep their progress without retaining the
+  // exact age value that release briefly collected.
+  answers.ageGroup = ageGroupForBand(answers.ageBand);
   view = restored.view;
   stepIndex = restored.stepIndex;
   detailId = restored.detailId;
@@ -959,7 +948,7 @@ async function loadState() {
   // Drop unknown tracker stages and invalid guide IDs before either can render.
   for (const id in progress) if (!STAGE[progress[id]]) delete progress[id];
   if (view === "detail" && !BENEFITS.some((b) => b.id === detailId)) view = "results";
-  // Older snapshots do not contain the new exact age and functional answers.
+  // Older snapshots may not contain the current age band and functional answers.
   // Never render broad results from an incomplete legacy questionnaire.
   if (view === "results" && !wizardDone()) {
     const firstMissing = visibleSteps().findIndex((step) => !stepAnswered(step));
@@ -968,8 +957,8 @@ async function loadState() {
   } else {
     stepIndex = Math.min(stepIndex, Math.max(0, visibleSteps().length - 1));
     // Old in-progress sessions may point beyond questions added in a newer
-    // release. Resume at the earliest unanswered question so a missing exact
-    // age can never produce the adult situation options shown in the report.
+    // release. Resume at the earliest unanswered question so a missing age band
+    // can never produce adult situation options for a child.
     if (view === "wizard") {
       const firstMissing = visibleSteps().findIndex((step) => !stepAnswered(step));
       if (firstMissing >= 0 && stepIndex > firstMissing) stepIndex = firstMissing;
@@ -1600,7 +1589,7 @@ function wireNavigation(root) {
 
 const LIFE_EVENT_ANSWERS = {
   "life-diagnosed": [],
-  "life-turning18": [["forWho", "self"], ["age", 18]],
+  "life-turning18": [["forWho", "self"], ["ageBand", "18"]],
   "life-parent": [["forWho", "child"]],
   "life-unable": [["forWho", "self"], ["situation", "unableToWork"]],
   "life-alberta": [],
@@ -1619,14 +1608,7 @@ function startFromLifeEvent(startingPoint) {
   selections.forEach(([key, value]) => {
     const step = STEPS.find((candidate) => candidate.key === key);
     if (!step) return;
-    if (step.type === "number" && validExactAge(value)) {
-      const previous = answers[step.key];
-      answers[step.key] = value;
-      step.onPick?.(value, previous);
-      notifyStateChange("wizard-answer");
-    } else {
-      applyWizardSelection(step, value);
-    }
+    applyWizardSelection(step, value);
   });
   setState("wizard", { stepIndex: 0 });
 }
@@ -2470,18 +2452,7 @@ function renderStep(step) {
   const T = stepText(step);
   let controlHtml;
 
-  if (step.type === "number") {
-    const current = validExactAge(answers[step.key]) ? answers[step.key] : "";
-    const label = typeof step.label === "function" ? step.label() : step.label;
-    controlHtml = `
-      <div class="number-field">
-        <label for="numberInput">${label || "Age in years"}</label>
-        <input class="text-input number-input" id="numberInput" type="number"
-          inputmode="numeric" min="${step.min}" max="${step.max}" step="1"
-          value="${current}" autocomplete="off" aria-describedby="numberHint" />
-        <p class="number-hint" id="numberHint">${step.hint || ""}</p>
-      </div>`;
-  } else if (step.type === "select") {
+  if (step.type === "select") {
     const opts = stepOptions(step)
       .map((c) => `<option value="${c}" ${answers[step.key] === c ? "selected" : ""}>${c}</option>`)
       .join("");
@@ -2560,7 +2531,6 @@ function renderStep(step) {
 
 function stepAnswered(step) {
   if (step.type === "multi") return answers[step.key].length > 0;
-  if (step.type === "number") return validExactAge(answers[step.key]);
   return answers[step.key] !== null;
 }
 
@@ -2589,31 +2559,6 @@ function wireStep(step) {
       helpTopic = step.sideNote.topic;
       setState("help");
     });
-  if (step.type === "number") {
-    const input = document.getElementById("numberInput");
-    const next = document.getElementById("next");
-    if (input) {
-      input.addEventListener("input", () => {
-        const parsed = input.value === "" ? null : Number(input.value);
-        const value = validExactAge(parsed) ? parsed : null;
-        const previous = answers[step.key];
-        answers[step.key] = value;
-        if (value === null) {
-          answers.ageBand = null;
-          answers.ageGroup = null;
-        } else if (step.onPick) {
-          step.onPick(value, previous);
-        }
-        input.setAttribute("aria-invalid", String(input.value !== "" && value === null));
-        if (next) next.disabled = value === null;
-        notifyStateChange("wizard-answer");
-      });
-    }
-    const back = document.getElementById("back");
-    if (back) back.addEventListener("click", goBack);
-    if (next) next.addEventListener("click", goNext);
-    return;
-  }
   if (step.type === "select") {
     const sel = document.getElementById("selInput");
     if (sel)
@@ -2726,10 +2671,7 @@ function scenarioAnswerModel() {
       model.situation = [...set];
     } else {
       model[change.key] = change.value;
-      if (change.key === "age") {
-        model.ageBand = ageBandFor(change.value);
-        model.ageGroup = ageGroupFor(change.value);
-      }
+      if (change.key === "ageBand") model.ageGroup = ageGroupForBand(change.value);
       if (change.key === "province" && !(CITIES_BY_PROVINCE[change.value] || []).includes(model.city)) model.city = null;
     }
   }
@@ -2747,16 +2689,11 @@ function scenarioSelect(step, label, options) {
   </select></label>`;
 }
 
-function scenarioNumber(step, label, value) {
-  return `<label class="scenario-field"><span>${label}</span><input class="text-input" type="number" inputmode="numeric"
-    min="${step.min}" max="${step.max}" step="1" value="${validExactAge(value) ? value : ""}" data-scenario-number="${step.key}" /></label>`;
-}
-
 function renderScenarioPanel(currentEvaluated) {
   const model = scenarioAnswerModel();
   const controls = [];
   const visible = visibleSteps();
-  const age = visible.find((step) => step.key === "age");
+  const age = visible.find((step) => step.key === "ageBand");
   const situation = visible.find((step) => step.key === "situation");
   const income = visible.find((step) => step.key === "income");
   const city = visible.find((step) => step.key === "city");
@@ -2768,7 +2705,7 @@ function renderScenarioPanel(currentEvaluated) {
     });
     controls.push(scenarioSelect(situation, t("scenario.situation"), options));
   }
-  if (age) controls.push(scenarioNumber(age, t("scenario.age"), model.age));
+  if (age) controls.push(scenarioSelect(age, t("scenario.age"), stepOptions(age).map((o) => `<option value="${o.value}">${optionText(age, o)}</option>`)));
   if (income) controls.push(scenarioSelect(income, t("scenario.income"), stepOptions(income).map((o) => `<option value="${o.value}">${optionText(income, o)}</option>`)));
   if (city) controls.push(scenarioSelect(city, t("scenario.city"), stepOptions(city).map((value) => `<option value="${value}">${value}</option>`)));
 
@@ -3304,7 +3241,6 @@ function valueLabel(step, val) {
 function answerSummary(step) {
   const v = answers[step.key];
   if (step.type === "multi") return v && v.length ? v.map((x) => valueLabel(step, x)).join(", ") : "—";
-  if (step.type === "number") return validExactAge(v) ? (v === 0 ? "Younger than 1" : `${v} years old`) : "—";
   if (step.id === "city") return v || "—";
   return v == null ? "—" : valueLabel(step, v);
 }
@@ -3449,20 +3385,6 @@ function wireResults() {
           .find((value) => String(value) === select.value);
         scenarioChanges.set(key, { id: key, key, value: optionValue, label: `${select.previousElementSibling.textContent}: ${scenarioOptionLabel(step, optionValue)}` });
       }
-      scenarioOpen = true;
-      render();
-    })
-  );
-  document.querySelectorAll("[data-scenario-number]").forEach((input) =>
-    input.addEventListener("change", () => {
-      const value = Number(input.value);
-      if (!validExactAge(value)) {
-        input.setAttribute("aria-invalid", "true");
-        return;
-      }
-      input.setAttribute("aria-invalid", "false");
-      const key = input.dataset.scenarioNumber;
-      scenarioChanges.set(key, { id: key, key, value, label: `${t("scenario.age")}: ${value}` });
       scenarioOpen = true;
       render();
     })
@@ -3618,7 +3540,8 @@ function reportProfileLine() {
     .filter(Boolean);
   if (answers.forWho === "child") parts.push("For a child");
   if (disLabels.length) parts.push(disLabels.join(", "));
-  if (validExactAge(answers.age)) parts.push(answers.age === 0 ? "Younger than 1" : `Age ${answers.age}`);
+  const ageLabel = AGE_BANDS.find((band) => band.value === answers.ageBand)?.label;
+  if (ageLabel) parts.push(`Age ${ageLabel}`);
   if (answers.province) parts.push(PROVINCE_NAME[answers.province] || answers.province);
   if (answers.city) parts.push(answers.city);
   const dtc = { yes: "DTC approved", no: "DTC not yet", unsure: "DTC unsure" }[answers.dtc];

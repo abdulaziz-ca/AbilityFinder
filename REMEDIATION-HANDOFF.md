@@ -273,3 +273,35 @@ source release submitted after the production verification passed.
   direct-action and main-column value implementations, and the Fair PharmaCare
   guide contained its specific steps and compact guide card. CSP, permissions,
   referrer, MIME-sniffing and frame-denial headers remained present.
+
+## Follow-up: simpler age-range selection (`v=43`)
+
+Status: deployed to production on 2026-07-21. Cloudflare version
+`b4543694-4762-4030-83a3-d4e72ebc7e7c` serves cache version `v=43`.
+
+- Replaced the v42 typed exact-age field with eight large tap targets: younger
+  than 6, 6–11, 12–15, 16–17, 18, 19–59, 60–64 and 65 or older. The boundaries
+  remain aligned with the catalog's child, transition, adult and senior rules.
+- New sessions no longer collect or persist an exact age. Existing v42 sessions
+  keep the already-derived age range and discard the exact value at the persisted
+  state boundary, so the change does not force people to restart.
+- The results “what if” control now uses the same age-range dropdown instead of a
+  number field. School-stage choices and conservative eligibility gates continue
+  to use the selected range.
+- Advanced shared browser assets and generated guides to `v=43`; appended the
+  public changelog without removing earlier release history.
+
+### v43 verification and release
+
+- `npm test`: passed, 29/29.
+- `npx playwright test --reporter=dot`: passed, 21/21, including the eight-option
+  age screen, adult post-secondary matching and persisted-state compatibility.
+- `npm run gen:guides`: passed (83 guide pages plus guide index and sitemap).
+- JavaScript syntax checks and `git diff --check`: passed.
+- `npx wrangler deploy --dry-run`: passed with Wrangler 4.112.0; 110 static
+  assets, 197.66 KiB raw / 51.49 KiB gzip, with the zero-spend bindings intact.
+- Production uploaded 89 changed assets. `https://abilityfinder.ca/` returned
+  HTTP 200 and served `v=43`; the live app exposed all eight age ranges, omitted
+  the typed exact-age control and discarded exact age at the persistence boundary.
+  CSP, permissions, referrer, MIME-sniffing and frame-denial headers remained
+  present.

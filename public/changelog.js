@@ -1,5 +1,6 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
+  { date: "2026-07-21", text: "Restored the quicker tap-to-select age question with eight eligibility-relevant ranges. Exact ages are no longer collected or stored, while existing questionnaire progress remains compatible." },
   { date: "2026-07-21", text: "Replaced age-band guessing with a private exact-age field, expanded daily-life and school situations, and rebuilt B.C. application guides with verified steps, document checklists, direct next actions and a readable responsive guide layout." },
   { date: "2026-07-21", text: "Added contextual help for every questionnaire uncertainty choice, repaired older child sessions so they return to the exact age question, added regular-school choices for students through age 18, and centred the legal/privacy note across viewport sizes." },
   { date: "2026-07-21", text: "Questionnaire matching tightened with exact age bands, child school stages, disability documentation, functional-impact questions, and explicit BC program prerequisites to prevent unrelated results. BC charitable funds, helper organizations, guide metadata, program-type labels and province-specific practical resources were added." },

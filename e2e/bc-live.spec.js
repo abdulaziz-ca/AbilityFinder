@@ -22,11 +22,23 @@ async function deleteAppStorage(page) {
 async function pick(page, text) {
   await page.locator("button.opt", { hasText: text }).click();
   await page.waitForTimeout(230);
+  const next = page.locator("#next");
+  if (await next.count() && (await next.textContent()).includes("Continue")) {
+    await page.locator(".wizard-card").evaluate(async (card) => {
+      await Promise.all(card.getAnimations().map((animation) => animation.finished.catch(() => {})));
+    });
+  }
 }
 
 async function enterAge(page, age) {
-  await page.locator("#numberInput").fill(String(age));
-  await page.locator("#next").click();
+  const label = age < 6 ? "Younger than 6"
+    : age < 12 ? "6 to 11"
+      : age < 16 ? "12 to 15"
+        : age < 18 ? "16 to 17"
+          : age === 18 ? "18"
+            : age < 60 ? "19 to 59"
+              : age < 65 ? "60 to 64" : "65 or older";
+  await pick(page, label);
 }
 
 async function completeBcWizard(page, forWho = "Myself") {
@@ -187,20 +199,17 @@ test("children and eighteen-year-olds receive age-appropriate regular-school cho
   }
 });
 
-test("exact age field rejects unsafe values and accepts age cutoffs", async ({ page }) => {
+test("age question uses eight tap targets and no typed field", async ({ page }) => {
   await page.locator(".js-start").first().click();
   await pick(page, "Myself");
   await pick(page, "Something else / not listed");
   await page.locator("#next").click();
 
-  const age = page.locator("#numberInput");
-  for (const invalid of ["-1", "18.5", "121"]) {
-    await age.fill(invalid);
-    await expect(page.locator("#next")).toBeDisabled();
-  }
-  await age.fill("18");
-  await expect(page.locator("#next")).toBeEnabled();
-  await page.locator("#next").click();
+  await expect(page.locator("#numberInput")).toHaveCount(0);
+  await expect(page.locator(".options .opt")).toHaveCount(8);
+  await expect(page.getByRole("button", { name: /Younger than 6/ })).toBeVisible();
+  await expect(page.getByRole("button", { name: /65 or older/ })).toBeVisible();
+  await pick(page, "18");
   await expect(page.getByRole("heading", { name: /documented your disability/i })).toBeVisible();
 });
 

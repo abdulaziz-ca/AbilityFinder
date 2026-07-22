@@ -61,11 +61,23 @@ async function expectHealthy(page) {
 async function pick(page, text) {
   await page.locator("button.opt", { hasText: text }).click();
   await page.waitForTimeout(230);
+  const next = page.locator("#next");
+  if (await next.count() && (await next.textContent()).includes("Continue")) {
+    await page.locator(".wizard-card").evaluate(async (card) => {
+      await Promise.all(card.getAnimations().map((animation) => animation.finished.catch(() => {})));
+    });
+  }
 }
 
 async function enterAge(page, age) {
-  await page.locator("#numberInput").fill(String(age));
-  await page.locator("#next").click();
+  const label = age < 6 ? "Younger than 6"
+    : age < 12 ? "6 to 11"
+      : age < 16 ? "12 to 15"
+        : age < 18 ? "16 to 17"
+          : age === 18 ? "18"
+            : age < 60 ? "19 to 59"
+              : age < 65 ? "60 to 64" : "65 or older";
+  await pick(page, label);
 }
 
 test("normal wizard cycle saves continuously and reloads from IndexedDB mid-flow", async ({ page, context }) => {
@@ -89,7 +101,6 @@ test("normal wizard cycle saves continuously and reloads from IndexedDB mid-flow
   await page.locator("#next").click();
 
   await expect(page.locator(".step-q")).toContainText("Where do you live?");
-  await expect.poll(async () => (await storedState(page)).answers.age).toBe(34);
   await expect.poll(async () => (await storedState(page)).answers.ageBand).toBe("19to59");
   await page.reload();
   await expect(page.locator(".step-q")).toContainText("Where do you live?");
@@ -157,7 +168,6 @@ test("normal wizard cycle saves continuously and reloads from IndexedDB mid-flow
   await expect(recovered.locator(".results-head")).toBeVisible();
   expect((await storedState(recovered)).answers).toMatchObject({
     forWho: "child",
-    age: 9,
     ageBand: "6to11",
     ageGroup: "child",
     city: "Edmonton",
@@ -263,7 +273,7 @@ test("legacy browser state is sanitized before migration and restores its help r
   }).toEqual({ view: "wizard", stepIndex: 2 });
 });
 
-test("an older child session missing the exact age resumes at age instead of adult school choices", async ({ page }) => {
+test("an older child session missing its age range resumes there instead of showing adult school choices", async ({ page }) => {
   await deleteAppStorage(page);
   await page.evaluate(async () => {
     await window.AbilityFinderDB.saveState({
@@ -308,15 +318,15 @@ test("an older child session missing the exact age resumes at age instead of adu
 const personas = [
   {
     name: "self",
-    answers: { forWho: "self", disabilities: ["autism", "physical"], age: 34, ageBand: "19to59", ageGroup: "adult", disabilityVerified: "yes", autismDiagnosis: "yes", functionalNeeds: ["dailyLiving", "transitBarrier"], onsetBefore18: true, canWalkFar: false, province: "AB", msp: null, bcAssistance: null, circumstances: [], citizenPR: true, dtc: "no", situation: ["working", "student"], income: "low", city: "Calgary", retroYears: 5 },
+    answers: { forWho: "self", disabilities: ["autism", "physical"], ageBand: "19to59", ageGroup: "adult", disabilityVerified: "yes", autismDiagnosis: "yes", functionalNeeds: ["dailyLiving", "transitBarrier"], onsetBefore18: true, canWalkFar: false, province: "AB", msp: null, bcAssistance: null, circumstances: [], citizenPR: true, dtc: "no", situation: ["working", "student"], income: "low", city: "Calgary", retroYears: 5 },
   },
   {
     name: "child",
-    answers: { forWho: "child", disabilities: ["autism", "physical"], age: 9, ageBand: "6to11", ageGroup: "child", disabilityVerified: "yes", autismDiagnosis: "yes", functionalNeeds: ["childHighNeeds", "childThreeAdls", "transitBarrier"], onsetBefore18: true, canWalkFar: false, province: "AB", msp: null, bcAssistance: null, circumstances: [], citizenPR: true, dtc: "unsure", situation: ["elementary"], income: "moderate", city: "Edmonton", retroYears: 5 },
+    answers: { forWho: "child", disabilities: ["autism", "physical"], ageBand: "6to11", ageGroup: "child", disabilityVerified: "yes", autismDiagnosis: "yes", functionalNeeds: ["childHighNeeds", "childThreeAdls", "transitBarrier"], onsetBefore18: true, canWalkFar: false, province: "AB", msp: null, bcAssistance: null, circumstances: [], citizenPR: true, dtc: "unsure", situation: ["elementary"], income: "moderate", city: "Edmonton", retroYears: 5 },
   },
   {
     name: "family",
-    answers: { forWho: "family", disabilities: ["other"], age: 70, ageBand: "65plus", ageGroup: "senior", disabilityVerified: "yes", autismDiagnosis: null, functionalNeeds: ["none"], onsetBefore18: null, canWalkFar: null, province: "other", msp: null, bcAssistance: null, circumstances: [], citizenPR: true, dtc: "yes", situation: ["none"], income: "high", city: null, retroYears: 5 },
+    answers: { forWho: "family", disabilities: ["other"], ageBand: "65plus", ageGroup: "senior", disabilityVerified: "yes", autismDiagnosis: null, functionalNeeds: ["none"], onsetBefore18: null, canWalkFar: null, province: "other", msp: null, bcAssistance: null, circumstances: [], citizenPR: true, dtc: "yes", situation: ["none"], income: "high", city: null, retroYears: 5 },
   },
 ];
 

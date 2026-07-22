@@ -15,7 +15,6 @@
   const ANSWER_KEYS = [
     "forWho",
     "disabilities",
-    "age",
     "ageBand",
     "ageGroup",
     "disabilityVerified",
@@ -58,9 +57,6 @@
     }
     if (key === "retroYears") {
       return Number.isInteger(value) && value >= 0 && value <= 10;
-    }
-    if (key === "age") {
-      return Number.isInteger(value) && value >= 0 && value <= 120;
     }
     if (typeof value !== "string") return false;
     if (key === "forWho") return ["self", "child", "family"].includes(value);
