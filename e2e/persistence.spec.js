@@ -60,6 +60,7 @@ async function expectHealthy(page) {
 
 async function pick(page, text) {
   await page.locator("button.opt", { hasText: text }).click();
+  await page.waitForTimeout(230);
 }
 
 test("normal wizard cycle saves continuously and reloads from IndexedDB mid-flow", async ({ page, context }) => {
@@ -74,12 +75,16 @@ test("normal wizard cycle saves continuously and reloads from IndexedDB mid-flow
   await pick(page, "Autism spectrum");
   await pick(page, "Physical / mobility");
   await page.locator("#next").click();
+  await pick(page, "19 to 59");
+  await pick(page, "Yes, it is documented");
+  await pick(page, "Yes");
   await pick(page, "Yes, it began in childhood");
   await pick(page, "No, that's difficult or impossible");
-  await pick(page, "18 to 64");
+  await pick(page, "Needs significant help, supervision");
+  await page.locator("#next").click();
 
   await expect(page.locator(".step-q")).toContainText("Where do you live?");
-  await expect.poll(async () => (await storedState(page)).stepIndex).toBe(5);
+  await expect.poll(async () => (await storedState(page)).answers.ageBand).toBe("19to59");
   await page.reload();
   await expect(page.locator(".step-q")).toContainText("Where do you live?");
   await expect(page.locator("button.opt.selected")).toHaveCount(0);
@@ -127,11 +132,16 @@ test("normal wizard cycle saves continuously and reloads from IndexedDB mid-flow
   await pick(recovered, "My child");
   await pick(recovered, "Autism spectrum");
   await recovered.locator("#next").click();
+  await pick(recovered, "6 to 11");
+  await pick(recovered, "Yes, it is documented");
+  await pick(recovered, "Yes");
   await pick(recovered, "Yes, it began in childhood");
+  await pick(recovered, "Has very high or complex developmental support needs");
+  await recovered.locator("#next").click();
   await pick(recovered, "Alberta");
   await pick(recovered, "Yes");
   await pick(recovered, "I'm not sure what that is");
-  await pick(recovered, "None of these");
+  await pick(recovered, "In elementary school");
   await recovered.locator("#next").click();
   await pick(recovered, "Middle income");
   await recovered.locator("#selInput").selectOption("Edmonton");
@@ -141,6 +151,7 @@ test("normal wizard cycle saves continuously and reloads from IndexedDB mid-flow
   await expect(recovered.locator(".results-head")).toBeVisible();
   expect((await storedState(recovered)).answers).toMatchObject({
     forWho: "child",
+    ageBand: "6to11",
     ageGroup: "child",
     city: "Edmonton",
   });
@@ -248,15 +259,15 @@ test("legacy browser state is sanitized before migration and restores its help r
 const personas = [
   {
     name: "self",
-    answers: { forWho: "self", disabilities: ["autism", "physical"], ageGroup: "adult", onsetBefore18: true, canWalkFar: false, province: "AB", citizenPR: true, dtc: "no", situation: ["working", "student"], income: "low", city: "Calgary", retroYears: 5 },
+    answers: { forWho: "self", disabilities: ["autism", "physical"], ageBand: "19to59", ageGroup: "adult", disabilityVerified: "yes", autismDiagnosis: "yes", functionalNeeds: ["dailyLiving", "transitBarrier"], onsetBefore18: true, canWalkFar: false, province: "AB", msp: null, bcAssistance: null, circumstances: [], citizenPR: true, dtc: "no", situation: ["working", "student"], income: "low", city: "Calgary", retroYears: 5 },
   },
   {
     name: "child",
-    answers: { forWho: "child", disabilities: ["autism", "physical"], ageGroup: "child", onsetBefore18: true, canWalkFar: false, province: "AB", citizenPR: true, dtc: "unsure", situation: ["none"], income: "moderate", city: "Edmonton", retroYears: 5 },
+    answers: { forWho: "child", disabilities: ["autism", "physical"], ageBand: "6to11", ageGroup: "child", disabilityVerified: "yes", autismDiagnosis: "yes", functionalNeeds: ["childHighNeeds", "childThreeAdls", "transitBarrier"], onsetBefore18: true, canWalkFar: false, province: "AB", msp: null, bcAssistance: null, circumstances: [], citizenPR: true, dtc: "unsure", situation: ["elementary"], income: "moderate", city: "Edmonton", retroYears: 5 },
   },
   {
     name: "family",
-    answers: { forWho: "family", disabilities: ["other"], ageGroup: "senior", onsetBefore18: null, canWalkFar: null, province: "other", citizenPR: true, dtc: "yes", situation: ["none"], income: "high", city: null, retroYears: 5 },
+    answers: { forWho: "family", disabilities: ["other"], ageBand: "65plus", ageGroup: "senior", disabilityVerified: "yes", autismDiagnosis: null, functionalNeeds: ["none"], onsetBefore18: null, canWalkFar: null, province: "other", msp: null, bcAssistance: null, circumstances: [], citizenPR: true, dtc: "yes", situation: ["none"], income: "high", city: null, retroYears: 5 },
   },
 ];
 
@@ -273,7 +284,16 @@ for (const persona of personas) {
       { view: "browse" },
       { view: "detail", detailId: "dtc" },
       { view: "privacy" },
+      { view: "about" },
+      { view: "support" },
       { view: "updates" },
+      { view: "accessibility" },
+      { view: "professionals" },
+      { view: "partner-overview" },
+      { view: "impact" },
+      { view: "dtc-prep" },
+      { view: "grants" },
+      { view: "organizations" },
       { view: "help", helpTopic: "dtc", helpReturnStep: 4 },
     ]) {
       await page.evaluate(async ({ answers, viewState }) => {

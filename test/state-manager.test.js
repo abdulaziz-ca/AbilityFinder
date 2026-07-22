@@ -11,9 +11,12 @@ const {
 
 const validSelections = {
   disabilities: ["physical", "autism", "other"],
-  situations: ["student", "working", "none"],
-  provinces: ["AB", "other"],
-  cities: ["Calgary", "Edmonton"],
+  ageBands: ["under6", "6to11", "19to59"],
+  situations: ["elementary", "student", "working", "none"],
+  functionalNeeds: ["dailyLiving", "equipment", "none", "unsure"],
+  circumstances: ["homeowner", "vehicleOwner", "none", "unsure"],
+  provinces: ["AB", "BC", "other"],
+  cities: ["Calgary", "Edmonton", "Vancouver"],
   benefitIds: ["dtc", "aish"],
   progressStages: ["saved", "submitted"],
 };
@@ -21,10 +24,17 @@ const validSelections = {
 const blankAnswers = () => ({
   forWho: null,
   disabilities: [],
+  ageBand: null,
   ageGroup: null,
+  disabilityVerified: null,
+  autismDiagnosis: null,
   onsetBefore18: null,
   canWalkFar: null,
+  functionalNeeds: [],
   province: null,
+  msp: null,
+  bcAssistance: null,
+  circumstances: [],
   citizenPR: null,
   dtc: null,
   situation: [],
@@ -167,6 +177,32 @@ test("restorePersistedState rejects unknown catalog selections and progress IDs"
   assert.equal(restored.answers.city, null);
   assert.deepEqual(restored.progress, { dtc: "submitted" });
   assert.equal(restored.browseDis, "all");
+});
+
+test("restorePersistedState preserves a valid BC city and new conservative matching answers", () => {
+  const restored = restorePersistedState({
+    answers: {
+      ...blankAnswers(),
+      forWho: "child",
+      disabilities: ["physical"],
+      ageBand: "6to11",
+      ageGroup: "child",
+      disabilityVerified: "yes",
+      functionalNeeds: ["equipment"],
+      province: "BC",
+      msp: "yes",
+      bcAssistance: "none",
+      circumstances: ["none"],
+      situation: ["elementary"],
+      city: "Vancouver",
+    },
+  }, { answers: blankAnswers(), theme: "dark", validSelections });
+
+  assert.equal(restored.answers.province, "BC");
+  assert.equal(restored.answers.city, "Vancouver");
+  assert.equal(restored.answers.ageBand, "6to11");
+  assert.deepEqual(restored.answers.functionalNeeds, ["equipment"]);
+  assert.deepEqual(restored.answers.situation, ["elementary"]);
 });
 
 test("sanitizeLegacyState applies the whitelist and preserves supported legacy UI state", () => {

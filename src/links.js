@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 131 links. The monitor checks a bounded rotating batch every
+// 151 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) applyUrls are skipped — they depend on the
@@ -551,6 +551,36 @@ export const LINKS = [
     "kind": "help"
   },
   {
+    "url": "https://disabilityalliancebc.org/publications/publications-bc-disability-benefits-help-sheets/",
+    "label": "Help — Disability Alliance BC — Advocacy Access",
+    "kind": "help"
+  },
+  {
+    "url": "https://disabilityalliancebc.org/direct-service/help-with-the-rdsp-and-dtc/",
+    "label": "Help — Disability Alliance BC — Access DTC",
+    "kind": "help"
+  },
+  {
+    "url": "https://disabilityalliancebc.org/program/disability-law-clinic/",
+    "label": "Help — Disability Alliance BC — Disability Law Clinic",
+    "kind": "help"
+  },
+  {
+    "url": "https://inclusionbc.org/what-we-do/individual-family-advocacy/",
+    "label": "Help — Inclusion BC — Individual & Family Advocacy",
+    "kind": "help"
+  },
+  {
+    "url": "https://bc.211.ca/",
+    "label": "Help — 211 British Columbia",
+    "kind": "help"
+  },
+  {
+    "url": "https://familysupportbc.com/",
+    "label": "Help — Family Support Institute of BC",
+    "kind": "help"
+  },
+  {
     "url": "https://www.waramps.ca/ways-we-help/child-amputees/",
     "label": "grant:champ — CHAMP Program",
     "kind": "grant"
@@ -606,12 +636,47 @@ export const LINKS = [
     "kind": "grant"
   },
   {
+    "url": "https://www.variety.bc.ca/grant-qualifications/",
+    "label": "grant:variety-bc — Individual grants for equipment, therapies and assessments",
+    "kind": "grant"
+  },
+  {
+    "url": "https://www.cknwkidsfund.com/what-is-cknw-kids-fund-adgrant",
+    "label": "grant:cknw-kids-fund — Individual funding for equipment, therapies and education",
+    "kind": "grant"
+  },
+  {
+    "url": "https://www.kinsmenfoundationofbc.ca/apply-for-funding/",
+    "label": "grant:kinsmen-bc-equipment — Equipment grants for adults with physical disabilities",
+    "kind": "grant"
+  },
+  {
+    "url": "https://bcrehab.org/applications/individual-grant/",
+    "label": "grant:bc-rehab-equipment — Individual equipment grants",
+    "kind": "grant"
+  },
+  {
+    "url": "https://bcrehab.org/applications/gert-vorsteher-education/",
+    "label": "grant:bc-rehab-bursary — Gert Vorsteher Educational Bursary",
+    "kind": "grant"
+  },
+  {
+    "url": "https://bccerebralpalsy.com/programs/equipment-funding-program/",
+    "label": "grant:cpabc-equipment — Equipment Subsidy",
+    "kind": "grant"
+  },
+  {
+    "url": "https://islandkidsfirst.com/bear-essentials/",
+    "label": "grant:bear-essentials — Bear Essentials health travel and equipment funding",
+    "kind": "grant"
+  },
+  {
     "url": "https://inclusionalberta.org",
     "label": "org:inclusion-alberta — Inclusion Alberta",
     "kind": "org"
   },
   {
-    "url": "https://www.cnib.ca",
+    "url": "https://www.cnib.ca/en",
     "label": "org:cnib-ab — CNIB Alberta",
     "kind": "org"
   },
@@ -663,6 +728,41 @@ export const LINKS = [
   {
     "url": "https://www.betweenfriends.ab.ca",
     "label": "org:between-friends — Between Friends",
+    "kind": "org"
+  },
+  {
+    "url": "https://disabilityalliancebc.org",
+    "label": "org:dabc — Disability Alliance BC",
+    "kind": "org"
+  },
+  {
+    "url": "https://familysupportbc.com",
+    "label": "org:fsi-bc — Family Support Institute of BC",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.neilsquire.ca/individual-programs-services/",
+    "label": "org:neil-squire — Neil Squire",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.autismbc.ca/programs/support/ask-autismbc/",
+    "label": "org:autism-bc — AutismBC",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.wavefrontcentre.ca",
+    "label": "org:wavefront — Wavefront Centre for Communication Accessibility",
+    "kind": "org"
+  },
+  {
+    "url": "https://sci-bc.ca",
+    "label": "org:sci-bc — Spinal Cord Injury BC",
+    "kind": "org"
+  },
+  {
+    "url": "https://bc.211.ca",
+    "label": "org:bc-211 — 211 British Columbia",
     "kind": "org"
   }
 ];

@@ -18,10 +18,12 @@ vm.createContext(ctx);
 vm.runInContext(
   fs.readFileSync(DATA, "utf8") +
     '\n;globalThis.__B = typeof BENEFITS !== "undefined" ? BENEFITS : null;' +
+    '\n;globalThis.__M = typeof BENEFIT_META !== "undefined" ? BENEFIT_META : null;' +
     '\n;globalThis.__BC_CITIES = typeof BC_CITIES !== "undefined" ? BC_CITIES : null;',
   ctx
 );
 const allBenefits = ctx.__B;
+const benefitMeta = ctx.__M || {};
 if (!Array.isArray(allBenefits) || allBenefits.length === 0) {
   console.error("gen:guides — could not read BENEFITS from data.js");
   process.exit(1);
@@ -152,6 +154,13 @@ function benefitPage(b) {
   const canonical = `https://abilityfinder.ca/guides/${slug}`;
   const desc = description(b.summary);
   const detail = b.detail || {};
+  const meta = benefitMeta[b.id] || {};
+  const difficulty = meta.difficulty <= 2 ? "Easy" : meta.difficulty === 3 ? "Medium" : meta.difficulty ? "Hard" : "";
+  const steps = Array.isArray(detail.steps) && detail.steps.length ? detail.steps : [
+    "Open the official program page and review the current eligibility rules, dates and application method.",
+    "Gather the documents named on the official application page; requirements can change.",
+    "Apply through the official link below, then keep a copy or confirmation number for follow-up.",
+  ];
   const links = officialLinks(b);
   return `<!DOCTYPE html>
 <html lang="en">
@@ -170,7 +179,8 @@ ${header()}
             ${detail.about ? `<section class="guide-block"><h2 class="guide-h">What it is</h2><p class="detail-about">${esc(detail.about)}</p></section>` : ""}
             ${b.note ? `<section class="guide-block"><h2 class="guide-h">Who it is for</h2><p class="detail-about">${esc(b.note)}</p></section>` : ""}
             ${b.amount ? `<section class="guide-block"><h2 class="guide-h">Amount or value</h2><p class="detail-amount">${esc(b.amount)}</p></section>` : ""}
-            ${list("How to apply", detail.steps, true)}
+            ${difficulty || meta.effort || meta.wait ? `<section class="guide-block"><h2 class="guide-h">At a glance</h2><dl class="guide-list">${difficulty ? `<div><dt>Difficulty</dt><dd>${esc(difficulty)}</dd></div>` : ""}${meta.effort ? `<div><dt>Application</dt><dd>${esc(meta.effort)}</dd></div>` : ""}${meta.wait ? `<div><dt>Decision timing</dt><dd>${esc(meta.wait)}</dd></div>` : ""}</dl></section>` : ""}
+            ${list("How to apply", steps, true)}
             ${list("What you may need", detail.documents)}
             ${list("Practical tips", detail.tips)}
             ${detail.time ? `<section class="guide-block"><h2 class="guide-h">Timing</h2><p class="detail-about">${esc(detail.time)}</p></section>` : ""}

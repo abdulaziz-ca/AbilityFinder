@@ -23,10 +23,17 @@ const SCOPE_RESIDENCY_HELP_FR = BC_ENABLED
 const BLANK = () => ({
   forWho: null,        // "self" | "child" | "family"
   disabilities: [],    // from DISABILITIES values
+  ageBand: null,       // exact matching band; ageGroup remains for old sessions
   ageGroup: null,      // "child" | "adult" | "senior"
+  disabilityVerified: null, // "yes" | "no" | "unsure"
+  autismDiagnosis: null,    // "yes" | "no" | "unsure" (only asked when relevant)
   onsetBefore18: null, // true | false  (dynamic: autism/intellectual)
   canWalkFar: null,    // true | false  (dynamic: physical)
+  functionalNeeds: [],// selected functional impacts; never a diagnosis verdict
   province: null,      // "AB" | "BC" | "ON" | "QC" | "other"
+  msp: null,           // "yes" | "no" | "unsure" (BC only)
+  bcAssistance: null,  // "pwd" | "other" | "none" | "unsure" (BC only)
+  circumstances: [],  // concrete ownership/education facts used by a few BC programs
   citizenPR: null,     // true | false
   dtc: null,           // "yes" | "no" | "unsure"
   situation: [],       // "student","working","looking","unableToWork","none"
@@ -138,7 +145,7 @@ let askConsent = false;
 
 /* ---------------------------------------------------------- helper getters */
 const has = (arr, v) => arr.includes(v);
-const wizardDone = () => !!(answers.forWho && answers.income); // completed the questionnaire?
+const wizardDone = () => visibleSteps().every(stepAnswered); // completed the current adaptive questionnaire?
 const isStudent = () => has(answers.situation, "student");
 const isWorking = () => has(answers.situation, "working");
 const isLooking = () => has(answers.situation, "looking");
@@ -146,6 +153,20 @@ const isUnableToWork = () => has(answers.situation, "unableToWork");
 const lowIncome = () => answers.income === "low";
 const hasDisability = (v) => has(answers.disabilities, v);
 const hasAnyDisability = (list) => list.some((v) => hasDisability(v));
+const hasFunctionalNeed = (v) => has(answers.functionalNeeds, v);
+const functionalNeedUnknown = () => hasFunctionalNeed("unsure");
+const hasCircumstance = (v) => has(answers.circumstances, v);
+const circumstanceUnknown = () => hasCircumstance("unsure");
+const ageIn = (...bands) => bands.includes(answers.ageBand);
+const isUnder18 = () => ageIn("under6", "6to11", "12to15", "16to17");
+const isAdultAge = () => ageIn("18", "19to59", "60to64");
+const isSeniorAge = () => answers.ageBand === "65plus";
+const isEmploymentActive = () => isWorking() || isLooking();
+const METRO_VANCOUVER_CITIES = [
+  "Burnaby", "Coquitlam", "Delta", "Langley", "Maple Ridge", "New Westminster",
+  "North Vancouver", "Pitt Meadows", "Port Coquitlam", "Port Moody", "Richmond",
+  "Surrey", "Vancouver", "West Vancouver", "White Rock",
+];
 
 /* =============================================================================
    REQUIREMENTS  (key -> {met, fixed, unmet, action?})
@@ -165,12 +186,21 @@ const REQS = {
   prolonged: { met: () => true, fixed: false, unmet: "Your condition must have lasted (or be expected to last) 12+ months." },
   certifier: { met: () => true, fixed: false, unmet: "A medical practitioner must certify the form." },
 
-  adult: { met: () => answers.ageGroup === "adult", fixed: true, unmet: "This is for working-age adults (18–64)." },
-  workingAge: { met: () => answers.ageGroup === "adult", fixed: true, unmet: "This is for people aged 18–64." },
-  child: { met: () => answers.ageGroup === "child", fixed: true, unmet: "This is for children under 18." },
-  under60: { met: () => answers.ageGroup !== "senior", fixed: true, unmet: "You must be under 60 to open this." },
+  adult: { met: isAdultAge, fixed: true, unmet: "This is for people aged 18–64." },
+  workingAge: { met: isAdultAge, fixed: true, unmet: "This is for people aged 18–64." },
+  child: { met: isUnder18, fixed: true, unmet: "This is for children under 18." },
+  under6: { met: () => ageIn("under6"), fixed: true, unmet: "This program is only for children younger than 6." },
+  age6to18: { met: () => ageIn("6to11", "12to15", "16to17", "18"), fixed: true, unmet: "This program is for children and youth aged 6–18." },
+  schoolAge: { met: () => ageIn("6to11", "12to15", "16to17"), fixed: true, unmet: "This is for school-aged children and youth." },
+  under19: { met: () => isUnder18() || ageIn("18"), fixed: true, unmet: "This is for children and youth younger than 19." },
+  age12plus: { met: () => ageIn("12to15", "16to17", "18", "19to59", "60to64", "65plus"), fixed: true, unmet: "You must be at least 12." },
+  age16plus: { met: () => ageIn("16to17", "18", "19to59", "60to64", "65plus"), fixed: true, unmet: "You must be at least 16." },
+  age18plus: { met: () => ageIn("18", "19to59", "60to64", "65plus"), fixed: true, unmet: "You must be at least 18." },
+  age19plus: { met: () => ageIn("19to59", "60to64", "65plus"), fixed: true, unmet: "This program starts at age 19." },
+  under60: { met: () => ageIn("under6", "6to11", "12to15", "16to17", "18", "19to59"), fixed: true, unmet: "You must be under 60 to open this." },
   ab: { met: () => answers.province === "AB", fixed: true, unmet: "This is an Alberta program." },
   bc: { met: () => answers.province === "BC", fixed: true, unmet: "This is a British Columbia program." },
+  notBcStudentAidDuplicate: { met: () => answers.province !== "BC", fixed: true, unmet: "Use the StudentAid BC version of this federal grant; it is the same program with B.C.-specific application steps." },
   on: { met: () => answers.province === "ON", fixed: true, unmet: "This is an Ontario program." },
   qc: { met: () => answers.province === "QC", fixed: true, unmet: "This is a Quebec program." },
   mb: { met: () => answers.province === "MB", fixed: true, unmet: "This is a Manitoba program." },
@@ -193,6 +223,7 @@ const REQS = {
   },
 
   student: { met: () => isStudent(), fixed: true, unmet: "This is for post-secondary students." },
+  childcare: { met: () => has(answers.situation, "childcare"), fixed: true, unmet: "This support is for a child attending or seeking child care." },
   working: { met: () => isWorking(), fixed: true, unmet: "This is for people with employment income." },
   lookingOrTraining: {
     met: () => isWorking() || isLooking() || isStudent(),
@@ -200,6 +231,7 @@ const REQS = {
     unmet: "You should be working, looking for work, or in training.",
   },
   unableToWork: { met: () => isUnableToWork(), fixed: true, unmet: "This is for people a disability regularly stops from working." },
+  employmentActive: { met: isEmploymentActive, fixed: true, unmet: "This is for someone working or looking for work." },
   cppContrib: { met: () => isWorking() || isUnableToWork(), fixed: false, unmet: "You need enough past CPP contributions from working." },
   severePermanent: {
     met: () => isUnableToWork(),
@@ -207,7 +239,42 @@ const REQS = {
     unmet: "Requires a severe, permanent disability that substantially limits your ability to work.",
   },
 
-  disabilityDoc: { met: () => answers.disabilities.length > 0, fixed: true, unmet: "You'll provide documentation of your disability." },
+  disabilityDoc: {
+    met: () => answers.disabilityVerified === "yes",
+    fixed: false,
+    unmet: "Have a qualified professional verify the disability or functional limitation first.",
+  },
+  autismDiagnosis: {
+    met: () => answers.autismDiagnosis === "yes",
+    fixed: false,
+    unmet: "BC Autism Funding requires an autism diagnosis that meets B.C. standards.",
+  },
+  autismSelected: { met: () => hasDisability("autism"), fixed: true, unmet: "This funding is specifically for an autistic child or youth." },
+  bcMsp: {
+    met: () => answers.msp === "yes",
+    fixed: () => answers.msp === "no",
+    unmet: "Confirm B.C. Medical Services Plan enrolment first.",
+  },
+  bcPwdStatus: {
+    met: () => answers.bcAssistance === "pwd",
+    fixed: false,
+    unmet: "This requires B.C. PWD designation or disability assistance first.",
+  },
+  bcAssistanceStatus: {
+    met: () => ["pwd", "other"].includes(answers.bcAssistance),
+    fixed: () => answers.bcAssistance === "none",
+    unmet: "This requires a qualifying B.C. assistance, care, or protected-status category; check the guide first.",
+  },
+  bcBusPassStatus: {
+    met: () => answers.bcAssistance === "pwd" || (isSeniorAge() && lowIncome()),
+    fixed: false,
+    unmet: "This requires B.C. disability assistance/PWD status or one of the listed low-income senior categories.",
+  },
+  notBcAssistance: {
+    met: () => answers.bcAssistance === "none",
+    fixed: () => ["pwd", "other"].includes(answers.bcAssistance),
+    unmet: "BC Healthy Kids is for eligible lower-income families not already receiving ministry assistance; those on assistance receive equivalent ministry coverage.",
+  },
 
   /* disability-type driven */
   mobility: {
@@ -218,7 +285,61 @@ const REQS = {
     fixed: true,
     unmet: "For a mobility limitation (can't walk ~50m) or vision loss.",
   },
-  equipmentNeed: { met: () => hasAnyDisability(EQUIP_NEED), fixed: true, unmet: "For conditions that need medical equipment or supplies." },
+  equipmentNeed: {
+    met: () => hasFunctionalNeed("equipment"),
+    fixed: () => !functionalNeedUnknown(),
+    unmet: "This is for someone who needs disability-related medical equipment or supplies.",
+  },
+  dailyLivingLimit: {
+    met: () => hasFunctionalNeed("dailyLiving"),
+    fixed: () => !functionalNeedUnknown(),
+    unmet: "PWD requires significant restrictions in daily living plus help, supervision, an assistive device, service animal, or similar support.",
+  },
+  childHighNeeds: {
+    met: () => hasFunctionalNeed("childHighNeeds"),
+    fixed: () => !functionalNeedUnknown(),
+    unmet: "This benefit is for children and youth with the highest functional support needs.",
+  },
+  childThreeAdls: {
+    met: () => hasFunctionalNeed("childThreeAdls"),
+    fixed: () => !functionalNeedUnknown(),
+    unmet: "The At Home Program requires dependence in at least 3 of eating, dressing, toileting and washing.",
+  },
+  transitBarrier: {
+    met: () => hasFunctionalNeed("transitBarrier"),
+    fixed: () => !functionalNeedUnknown(),
+    unmet: "This is for someone who cannot use regular public transit without assistance for some or all trips.",
+  },
+  nutritionNeed: {
+    met: () => hasFunctionalNeed("nutrition"),
+    fixed: () => !functionalNeedUnknown(),
+    unmet: "This supplement requires a qualifying medical need for a special diet or nutritional products.",
+  },
+  medicalTravelNeed: {
+    met: () => hasFunctionalNeed("medicalTravel"),
+    fixed: () => !functionalNeedUnknown(),
+    unmet: "This is for essential medical travel that cannot be obtained in the home community.",
+  },
+  metroVancouver: { met: () => METRO_VANCOUVER_CITIES.includes(answers.city), fixed: true, unmet: "This TransLink program is for Metro Vancouver residents." },
+  outsideMetroVancouver: { met: () => !!answers.city && !METRO_VANCOUVER_CITIES.includes(answers.city), fixed: true, unmet: "Use the TransLink program in Metro Vancouver; this listing is for B.C. Transit communities." },
+  translinkHandyCard: { met: () => false, fixed: false, unmet: "Register for TransLink HandyDART/HandyCard first." },
+  bcTransitHandyDart: { met: () => false, fixed: false, unmet: "Register as a permanent handyDART customer and obtain a handyPASS first." },
+  atHomeProgram: { met: () => false, fixed: false, unmet: "The child must first be enrolled in the At Home Program." },
+  recentGraduate: { met: () => hasCircumstance("recentGraduate"), fixed: () => !circumstanceUnknown(), unmet: "Work-Able requires graduation within three years of the program start date." },
+  vehicleOwner: { met: () => hasCircumstance("vehicleOwner"), fixed: () => !circumstanceUnknown(), unmet: "You must own, lease, or have an ownership interest in a qualifying vehicle." },
+  homeowner: { met: () => hasCircumstance("homeowner"), fixed: () => !circumstanceUnknown(), unmet: "You or the eligible family member must own and live in the home and meet the program's other property rules." },
+  homeRenoCandidate: {
+    met: () => answers.dtc === "yes" || isSeniorAge(),
+    fixed: true,
+    unmet: "This credit requires DTC eligibility (any age), age 65+, or an eligible supporting family member living with the person.",
+  },
+  vehicleDisability: {
+    met: () => hasDisability("physical") || hasDisability("vision") || hasFunctionalNeed("transitBarrier"),
+    fixed: () => !functionalNeedUnknown(),
+    unmet: "The vehicle programs require one of the listed mobility, vision, or public-transit disability criteria.",
+  },
+  hearingDisability: { met: () => hasDisability("hearing"), fixed: true, unmet: "This grant is specifically for Deaf or hard-of-hearing students." },
+  learningDisability: { met: () => hasDisability("learning"), fixed: true, unmet: "This bursary is specifically for a recommended learning-disability assessment." },
   developmental: {
     // PDD: a developmental disability that began before age 18
     met: () =>
@@ -267,6 +388,22 @@ const REQS = {
 
 /* some benefit URLs are functions of the answers (province-specific) */
 const resolveUrl = (u) => (typeof u === "function" ? u(answers) : u);
+
+/* Province-scoped directories must never leak Alberta-only resources into a BC
+   journey (or vice versa). National entries use CA and remain visible in both. */
+function coverageApplies(record, province = answers.province) {
+  const coverage = Array.isArray(record && record.coverage) ? record.coverage : [];
+  if (!province || !["AB", "BC"].includes(province)) return true;
+  return coverage.includes("CA") || coverage.includes(province);
+}
+
+function coverageLabel(record) {
+  const coverage = Array.isArray(record && record.coverage) ? record.coverage : [];
+  if (coverage.includes("CA")) return "Canada-wide";
+  if (coverage.includes("BC")) return "British Columbia";
+  if (coverage.includes("AB")) return "Alberta";
+  return "Check service area";
+}
 
 /* format the structured value model into a money-forward headline + sub-line */
 function valueParts(b) {
@@ -357,7 +494,7 @@ function renderMoneyBand(ready, almost) {
       <span class="mb-badge">${icon("money")}</span>
       <div>
         <div class="mb-total">Up to <b>~${money(round100(annualTotal))}</b> / year</div>
-        <div class="mb-sub">in support you may qualify for${extras.length ? " · " + extras.join(" · ") : ""}</div>
+        <div class="mb-sub">in support represented by your close matches${extras.length ? " · " + extras.join(" · ") : ""}</div>
       </div>
     </div>
     ${retro}
@@ -372,7 +509,8 @@ function evaluate(benefit) {
   for (const key of benefit.requires) {
     const req = REQS[key];
     if (!req || req.met()) continue;
-    if (req.fixed) {
+    const fixed = typeof req.fixed === "function" ? req.fixed() : req.fixed;
+    if (fixed) {
       reasons.push(req.unmet);
     } else {
       let text = req.unmet;
@@ -401,11 +539,15 @@ const STEPS = [
       { value: "child", label: "My child" },
       { value: "family", label: "Another family member", sub: "a partner, parent, sibling or someone you care for" },
     ],
-    onPick(v) {
-      // Only "my child" implies an age group. A family member could be any age,
-      // so don't guess — let them answer the age question themselves.
-      if (v === "child") answers.ageGroup = "child";
-      else if (answers.ageGroup === "child") answers.ageGroup = null;
+    onPick(v, previous) {
+      // Relationship does not establish age. A person's child may be 4, 14, or
+      // 40, and the exact band materially changes eligibility.
+      if (previous !== v) {
+        answers.ageBand = null;
+        answers.ageGroup = null;
+        answers.situation = [];
+        answers.functionalNeeds = [];
+      }
     },
   },
   {
@@ -419,6 +561,54 @@ const STEPS = [
     },
     key: "disabilities",
     options: DISABILITIES,
+  },
+  {
+    id: "age", type: "single", kicker: "Age",
+    q: () => (answers.forWho === "self" ? "How old are you?" : `How old is ${subj()}?`),
+    help: () => `Choose the closest band. Age cutoffs prevent child, youth, adult, and senior programs from being mixed together.`,
+    key: "ageBand",
+    options: [
+      { value: "under6", label: "Younger than 6", sub: "Baby, toddler or preschool age" },
+      { value: "6to11", label: "6 to 11", sub: "Usually elementary school" },
+      { value: "12to15", label: "12 to 15", sub: "Usually junior high or secondary school" },
+      { value: "16to17", label: "16 to 17", sub: "Secondary school or transition planning" },
+      { value: "18", label: "18" },
+      { value: "19to59", label: "19 to 59" },
+      { value: "60to64", label: "60 to 64" },
+      { value: "65plus", label: "65 or older" },
+    ],
+    onPick(v) {
+      answers.ageGroup = ["under6", "6to11", "12to15", "16to17"].includes(v)
+        ? "child"
+        : v === "65plus" ? "senior" : "adult";
+      answers.situation = [];
+      answers.functionalNeeds = [];
+    },
+  },
+  {
+    id: "disabilityVerified", type: "single", kicker: "Documentation",
+    q: () => `Has a qualified professional documented ${poss()} disability or functional limitation?`,
+    help: "This does not decide whether someone is disabled. It prevents programs that require professional verification from being shown as ready before that step is complete.",
+    key: "disabilityVerified",
+    options: [
+      { value: "yes", label: "Yes, it is documented" },
+      { value: "no", label: "No, not yet" },
+      { value: "unsure", label: "I'm not sure" },
+    ],
+  },
+  {
+    id: "autismDiagnosis", type: "single", kicker: "A required detail",
+    q: () => answers.forWho === "self"
+      ? "Do you have an autism diagnosis that meets provincial assessment standards?"
+      : `Does ${subj()} have an autism diagnosis that meets provincial assessment standards?`,
+    help: "A diagnosis is required for the current BC Autism Funding programs. It does not guarantee approval for other benefits.",
+    key: "autismDiagnosis",
+    skipIf: () => !hasDisability("autism"),
+    options: [
+      { value: "yes", label: "Yes" },
+      { value: "no", label: "No / not yet" },
+      { value: "unsure", label: "I'm not sure" },
+    ],
   },
   {
     // DYNAMIC — only if autism / intellectual selected (drives PDD eligibility)
@@ -445,16 +635,30 @@ const STEPS = [
     ],
   },
   {
-    id: "age", type: "single", kicker: "About you",
-    q: () => (answers.forWho === "self" ? "Which age group applies?" : `Which age group is ${subj()} in?`),
-    help: () => `Age decides which programs are open to ${who().them}.`,
-    key: "ageGroup",
-    skipIf: () => answers.forWho === "child",
-    options: [
-      { value: "child", label: "Under 18" },
-      { value: "adult", label: "18 to 64", sub: "Working age" },
-      { value: "senior", label: "65 or older" },
-    ],
+    id: "functionalNeeds", type: "multi", kicker: "How daily life is affected",
+    q: () => `Which of these are true for ${subj()}?`,
+    help: "Pick only what applies. These functional details are more important than a diagnosis for many programs.",
+    key: "functionalNeeds",
+    options: () => {
+      const childOptions = isUnder18() ? [
+        { value: "childHighNeeds", icon: "family", label: "Has very high or complex developmental support needs" },
+        { value: "childThreeAdls", icon: "help", label: "Depends on help with at least 3 of eating, dressing, toileting and washing" },
+      ] : [];
+      const adultOptions = ageIn("18", "19to59", "60to64", "65plus") ? [
+        { value: "dailyLiving", icon: "help", label: "Needs significant help, supervision, an assistive device or service animal for daily activities" },
+      ] : [];
+      return [
+        ...childOptions,
+        ...adultOptions,
+        { value: "transitBarrier", icon: "transit", label: "Cannot use regular public transit without assistance for some or all trips" },
+        { value: "equipment", icon: "health", label: "Needs disability-related medical equipment or supplies" },
+        { value: "nutrition", icon: "health", label: "Needs a medically prescribed special diet or nutritional products" },
+        { value: "medicalTravel", icon: "transit", label: "Must travel outside the community for essential medical care" },
+        { value: "none", icon: "none", label: "None of these" },
+        { value: "unsure", icon: "help", label: "I'm not sure" },
+      ];
+    },
+    exclusive: ["none", "unsure"],
   },
   {
     id: "residency", type: "single", kicker: "About you",
@@ -470,6 +674,46 @@ const STEPS = [
       // a city from another province is no longer valid
       if (!(CITIES_BY_PROVINCE[v] || []).includes(answers.city)) answers.city = null;
     },
+  },
+  {
+    id: "msp", type: "single", kicker: "British Columbia health coverage",
+    q: () => `Is ${subj()} enrolled in B.C.'s Medical Services Plan (MSP)?`,
+    help: "Fair PharmaCare and the At Home Program require MSP enrolment.",
+    key: "msp",
+    skipIf: () => answers.province !== "BC",
+    options: [
+      { value: "yes", label: "Yes" },
+      { value: "no", label: "No" },
+      { value: "unsure", label: "I'm not sure" },
+    ],
+  },
+  {
+    id: "bcAssistance", type: "single", kicker: "British Columbia assistance",
+    q: () => `Which B.C. assistance status applies to ${subj()}?`,
+    help: "Several health, transport and income programs require an existing assistance status. Pick the closest answer; each guide lists the full exceptions.",
+    key: "bcAssistance",
+    skipIf: () => answers.province !== "BC",
+    options: [
+      { value: "pwd", label: "PWD designation or disability assistance" },
+      { value: "other", label: "Other qualifying assistance, care or protected status" },
+      { value: "none", label: "None of these" },
+      { value: "unsure", label: "I'm not sure" },
+    ],
+  },
+  {
+    id: "circumstances", type: "multi", kicker: "A few specific programs",
+    q: () => `Which of these are true for ${subj()}?`,
+    help: "These answers prevent vehicle, property and recent-graduate programs from appearing when they cannot apply.",
+    key: "circumstances",
+    skipIf: () => answers.province !== "BC",
+    options: [
+      { value: "homeowner", icon: "family", label: "Owns and lives in a home" },
+      { value: "vehicleOwner", icon: "transit", label: "Owns, leases or has an ownership interest in a vehicle" },
+      { value: "recentGraduate", icon: "student", label: "Graduated from post-secondary within the last 3 years" },
+      { value: "none", icon: "none", label: "None of these" },
+      { value: "unsure", icon: "help", label: "I'm not sure" },
+    ],
+    exclusive: ["none", "unsure"],
   },
   {
     id: "citizen", type: "single", kicker: "About you",
@@ -504,13 +748,34 @@ const STEPS = [
     q: () => `What best describes ${subj()} right now?`,
     help: "Pick all that apply — this opens up work & school supports.",
     key: "situation",
-    options: [
-      { value: "student", icon: "student", label: "In post-secondary school" },
-      { value: "working", icon: "working", label: "Working / have a job" },
-      { value: "looking", icon: "looking", label: "Looking for work or training" },
-      { value: "unableToWork", icon: "unable", label: "A disability stops me from working" },
-      { value: "none", icon: "none", label: "None of these" },
-    ],
+    options: () => {
+      if (answers.ageBand === "under6") return [
+        { value: "childcare", icon: "family", label: "In child care or preschool" },
+        { value: "none", icon: "none", label: "Not in child care or preschool" },
+      ];
+      if (answers.ageBand === "6to11") return [
+        { value: "elementary", icon: "student", label: "In elementary school" },
+        { value: "none", icon: "none", label: "Not currently in school" },
+      ];
+      if (["12to15", "16to17"].includes(answers.ageBand)) {
+        const teen = [
+          { value: "secondary", icon: "student", label: "In junior high or high school" },
+          { value: "working", icon: "working", label: "Working / have a job" },
+          { value: "looking", icon: "looking", label: "Looking for work or training" },
+          { value: "none", icon: "none", label: "None of these" },
+        ];
+        return answers.ageBand === "16to17"
+          ? teen
+          : teen.filter((option) => !["working", "looking"].includes(option.value));
+      }
+      return [
+        { value: "student", icon: "student", label: "In post-secondary school" },
+        { value: "working", icon: "working", label: "Working / have a job" },
+        { value: "looking", icon: "looking", label: "Looking for work or training" },
+        { value: "unableToWork", icon: "unable", label: () => `A disability stops ${answers.forWho === "self" ? "me" : subj()} from working` },
+        { value: "none", icon: "none", label: "None of these" },
+      ];
+    },
     exclusive: "none",
   },
   {
@@ -548,7 +813,10 @@ const visibleSteps = () => STEPS.filter((s) => !(s.skipIf && s.skipIf()));
 
 const PERSISTENCE_SELECTIONS = {
   disabilities: DISABILITIES.map((item) => item.value),
-  situations: STEPS.find((step) => step.key === "situation").options.map((item) => item.value),
+  ageBands: ["under6", "6to11", "12to15", "16to17", "18", "19to59", "60to64", "65plus"],
+  situations: ["childcare", "elementary", "secondary", "student", "working", "looking", "unableToWork", "none"],
+  functionalNeeds: ["childHighNeeds", "childThreeAdls", "dailyLiving", "transitBarrier", "equipment", "nutrition", "medicalTravel", "none", "unsure"],
+  circumstances: ["homeowner", "vehicleOwner", "recentGraduate", "none", "unsure"],
   provinces: STEPS.find((step) => step.key === "province").options.map((item) => item.value),
   cities: [...ALBERTA_CITIES, ...(BC_ENABLED ? BC_CITIES : [])],
   benefitIds: BENEFITS.map((benefit) => benefit.id),
@@ -616,6 +884,15 @@ async function loadState() {
   // Drop unknown tracker stages and invalid guide IDs before either can render.
   for (const id in progress) if (!STAGE[progress[id]]) delete progress[id];
   if (view === "detail" && !BENEFITS.some((b) => b.id === detailId)) view = "results";
+  // Older snapshots do not contain the new exact age and functional answers.
+  // Never render broad results from an incomplete legacy questionnaire.
+  if (view === "results" && !wizardDone()) {
+    const firstMissing = visibleSteps().findIndex((step) => !stepAnswered(step));
+    view = "wizard";
+    stepIndex = Math.max(0, firstMissing);
+  } else {
+    stepIndex = Math.min(stepIndex, Math.max(0, visibleSteps().length - 1));
+  }
 }
 
 /* ---------------------------------------------------- accessibility engine */
@@ -1002,6 +1279,9 @@ function render() {
       answers = BLANK(); progress = {}; stepIndex = 0; detailId = null;
       setState("landing");
     });
+  // Content CTAs can appear on results and information pages as well as the
+  // landing page. Wire them after every render so none become inert links.
+  wireNavigation(app);
   // Re-run after the scroll settles: "is it on screen already?" is meaningless
   // if we ask before scrollTo has moved us.
   wireReveals();
@@ -1199,8 +1479,11 @@ function renderLanding() {
 
 function navigateStart() {
   // if they already have answers, jump straight to results
-  if (answers.forWho && answers.income) setState("results");
-  else setState("wizard", { stepIndex: 0 });
+  if (wizardDone()) setState("results");
+  else {
+    const firstMissing = visibleSteps().findIndex((step) => !stepAnswered(step));
+    setState("wizard", { stepIndex: Math.max(0, firstMissing) });
+  }
 }
 function navigateBrowse() { setState("browse"); }
 function navigateGrants() { setState("grants"); }
@@ -1260,7 +1543,6 @@ function startFromLifeEvent(startingPoint) {
 
 function wireLanding() {
   const app = document.getElementById("app");
-  wireNavigation(app);
   app.querySelectorAll(".life-event-card.menu-item[data-nav]").forEach((card) => {
     card.addEventListener("click", () => startFromLifeEvent(card.dataset.nav));
   });
@@ -1731,7 +2013,8 @@ function renderGrants() {
   const directory = typeof GRANTS_DIRECTORY !== "undefined" && Array.isArray(GRANTS_DIRECTORY)
     ? GRANTS_DIRECTORY
     : [];
-  const visible = directory.filter((grant) => grantsAudience === "all" || grant.audience === "all" || grant.audience === grantsAudience);
+  const visible = directory.filter((grant) => coverageApplies(grant) &&
+    (grantsAudience === "all" || grant.audience === "all" || grant.audience === grantsAudience));
   const filters = ["all", "children", "adults"].map((audience) => `
     <button class="grants-filter" type="button" data-grants-filter="${audience}" aria-pressed="${grantsAudience === audience}">
       ${t(`grants.filter.${audience}`)}
@@ -1740,7 +2023,7 @@ function renderGrants() {
     <article class="grant-card" data-grant-id="${ttsEscape(grant.id)}">
       <header>
         <span class="grant-card-icon" aria-hidden="true">${icon("money")}</span>
-        <div><h2>${ttsEscape(grant.name)}</h2><p class="grant-org">${ttsEscape(grant.org)}</p></div>
+        <div><h2>${ttsEscape(grant.name)}</h2><p class="grant-org">${ttsEscape(grant.org)} · ${coverageLabel(grant)}</p></div>
       </header>
       <dl>
         <div><dt>${t("grants.who")}</dt><dd>${ttsEscape(grant.whoFor)}</dd></div>
@@ -1753,7 +2036,7 @@ function renderGrants() {
     <button class="back-link" type="button" data-grants-back>${icon("arrowLeft")} ${t("grants.back")}</button>
     <p class="section-label">${t("grants.kicker")}</p>
     <h1 class="legal-title">${t("grants.title")}</h1>
-    <p class="legal-lede">${t("grants.lede")}</p>
+    <p class="legal-lede">${t("grants.lede")} ${["AB", "BC"].includes(answers.province) ? `Showing ${answers.province === "BC" ? "British Columbia" : "Alberta"} and Canada-wide funds.` : "Choose a province in the questionnaire to narrow this directory."}</p>
     <div class="grants-filters" role="group" aria-label="${t("grants.filter.label")}">${filters}</div>
     <div class="grants-grid">${cards}</div>
     <aside class="grants-suggest">
@@ -1779,7 +2062,8 @@ function renderOrganizations() {
   const directory = typeof ORGS_DIRECTORY !== "undefined" && Array.isArray(ORGS_DIRECTORY)
     ? ORGS_DIRECTORY
     : [];
-  const cards = directory.map((organization) => `
+  const visible = directory.filter((organization) => coverageApplies(organization));
+  const cards = visible.map((organization) => `
     <article class="org-card" data-org-id="${ttsEscape(organization.id)}">
       <header>
         <span class="org-card-icon" aria-hidden="true">${icon("help")}</span>
@@ -1800,7 +2084,7 @@ function renderOrganizations() {
     <button class="back-link" type="button" data-orgs-back>${icon("arrowLeft")} ${t("orgs.back")}</button>
     <p class="section-label">${t("orgs.kicker")}</p>
     <h1 class="legal-title">${t("orgs.title")}</h1>
-    <p class="legal-lede">${t("orgs.lede")}</p>
+    <p class="legal-lede">${t("orgs.lede")} ${["AB", "BC"].includes(answers.province) ? `Showing organizations that serve ${answers.province === "BC" ? "British Columbia" : "Alberta"}.` : "Choose a province in the questionnaire to narrow this directory."}</p>
     <div class="orgs-grid">${cards}</div>
     <section class="orgs-rules" aria-labelledby="orgs-rules-title">
       <h2 id="orgs-rules-title">${icon("check")}${t("orgs.rules.h")}</h2>
@@ -2067,8 +2351,9 @@ function applyWizardSelection(step, value) {
 
   if (step.type === "multi") toggleMulti(step, value);
   else {
+    const previous = answers[step.key];
     answers[step.key] = value;
-    if (step.onPick) step.onPick(value);
+    if (step.onPick) step.onPick(value, previous);
   }
   notifyStateChange("wizard-answer");
   return true;
@@ -2122,14 +2407,25 @@ function toggleMulti(step, value) {
   const idx = arr.indexOf(value);
   if (idx >= 0) { arr.splice(idx, 1); return; }
   if (step.exclusive) {
-    if (value === step.exclusive) { answers[step.key] = [value]; return; }
-    const ex = arr.indexOf(step.exclusive);
-    if (ex >= 0) arr.splice(ex, 1);
+    const exclusiveValues = Array.isArray(step.exclusive) ? step.exclusive : [step.exclusive];
+    if (exclusiveValues.includes(value)) { answers[step.key] = [value]; return; }
+    exclusiveValues.forEach((exclusiveValue) => {
+      const ex = arr.indexOf(exclusiveValue);
+      if (ex >= 0) arr.splice(ex, 1);
+    });
   }
   arr.push(value);
 }
 
-function finishEdit() { editingReturn = false; setState("results"); }
+function finishEdit() {
+  editingReturn = false;
+  if (!wizardDone()) {
+    const firstMissing = visibleSteps().findIndex((step) => !stepAnswered(step));
+    setState("wizard", { stepIndex: Math.max(0, firstMissing) });
+    return;
+  }
+  setState("results");
+}
 function goNext() {
   if (editingReturn) return finishEdit();
   const steps = visibleSteps();
@@ -2146,7 +2442,13 @@ function goBack() {
    RESULTS
    ========================================================================== */
 function cloneAnswers(source = answers) {
-  return { ...source, disabilities: [...source.disabilities], situation: [...source.situation] };
+  return {
+    ...source,
+    disabilities: [...source.disabilities],
+    functionalNeeds: [...source.functionalNeeds],
+    circumstances: [...source.circumstances],
+    situation: [...source.situation],
+  };
 }
 
 /* REQS intentionally powers both real and hypothetical results. Swap its answer
@@ -2285,6 +2587,8 @@ function renderResults() {
 
   html += renderMatchedGroups(ready, almost, rankOf);
 
+  html += renderMatchedGrants();
+
   if (no.length) {
     html += `
     <details class="notmatch">
@@ -2317,12 +2621,9 @@ function benefitProvince(b) {
 function renderSupportsArea() {
   const matched = SUPPORTS.filter(supportMatches);
   if (!matched.length) return "";
-  /* This section was being ignored, and the content is some of the most useful
-     on the site — "extra time on exams", "a distraction-free exam room". The
-     closed row said only a category name and a count, which gives nobody a
-     reason to open it. So the closed state now previews what's actually inside,
-     and the framing leads with the real selling point: unlike every benefit
-     here, none of this needs a form, a practitioner, or a 20-week wait. */
+  /* Low-barrier ideas are kept separate from benefits. Some linked services can
+     still have intake steps, fees or waits, so the framing never promises that
+     every resource is immediate or application-free. */
   const totalTips = matched.reduce((n, s) => n + (s.tips ? s.tips.length : 0), 0);
   const sections = SUPPORT_CATEGORIES.map((c) => {
     const items = matched.filter((s) => s.cat === c.cat);
@@ -2349,9 +2650,9 @@ function renderSupportsArea() {
     <p class="supports-sub">${t("supports.sub")}</p>
     <div class="supports-hook">
       <span class="sh-num" aria-hidden="true">${totalTips}</span>
-      <p>practical things matched to ${who().poss === "your" ? "your" : poss()} answers that need
-        <b>no form, no practitioner and no waiting</b> — you can use them this week.
-        Everything above takes weeks; none of this does.</p>
+      <p>practical ideas matched to ${who().poss === "your" ? "your" : poss()} answers.
+        <b>Many can be tried without an application</b>; linked services may still have
+        intake steps, costs or wait lists. Start with one manageable step.</p>
     </div>
     ${sections}
   </div>`;
@@ -2375,7 +2676,7 @@ function renderHelpOrg(o) {
 function renderHelpDirectory() {
   if (typeof HELP_ORGS === "undefined" || !HELP_ORGS.length) return "";
   const sections = HELP_CATEGORIES.map((c) => {
-    const orgs = HELP_ORGS.filter((o) => o.cat === c.cat);
+    const orgs = HELP_ORGS.filter((o) => o.cat === c.cat && coverageApplies(o));
     if (!orgs.length) return "";
     return `
     <div class="help-group">
@@ -2389,9 +2690,45 @@ function renderHelpDirectory() {
   return `
   <div class="help-area">
     <h2 class="supports-heading">${icon("help")} Real people who can help</h2>
-    <p class="supports-sub">You don't have to do this alone. These ${SCOPE_ORGANIZATIONS} organizations help people fill out the forms, appeal a decision, and find local services — most of them for free.</p>
+    <p class="supports-sub">You don't have to do this alone. These ${answers.province === "BC" ? "British Columbia and national" : answers.province === "AB" ? "Alberta and national" : SCOPE_ORGANIZATIONS} organizations can help with forms, appeals and local services. Each card says what it offers; confirm any fees when you contact them.</p>
     ${sections}
   </div>`;
+}
+
+/* Charitable funding is not a government entitlement. These matches use only
+   explicit directory rules and are deliberately phrased as leads to check. */
+function grantMatchesAnswers(grant) {
+  if (!grant || grant.matchOnResults === false || !coverageApplies(grant)) return false;
+  const age = answers.ageBand;
+  const childProfile = answers.forWho === "child" || ["under6", "6to11", "12to15", "16to17"].includes(age);
+  if (grant.audience === "children" && !childProfile) return false;
+  if (grant.audience === "adults" && childProfile) return false;
+  if (grant.ageBands && grant.ageBands.length && !grant.ageBands.includes(age)) return false;
+  if (grant.disabilities && grant.disabilities.length && !grant.disabilities.some((d) => hasDisability(d))) return false;
+  if (grant.situations && grant.situations.length && !grant.situations.some((s) => answers.situation.includes(s))) return false;
+  if (grant.functionalNeeds && grant.functionalNeeds.length && !grant.functionalNeeds.some((need) => hasFunctionalNeed(need))) return false;
+  if (grant.cities && grant.cities.length && !grant.cities.includes(answers.city)) return false;
+  if (grant.lowIncome && answers.income === "high") return false;
+  return true;
+}
+
+function renderMatchedGrants() {
+  const directory = typeof GRANTS_DIRECTORY !== "undefined" && Array.isArray(GRANTS_DIRECTORY)
+    ? GRANTS_DIRECTORY
+    : [];
+  const grants = directory.filter(grantMatchesAnswers);
+  const cards = grants.map((grant) => `<article class="result-grant" data-result-grant="${ttsEscape(grant.id)}">
+    <div><span class="program-kind charity">Charitable fund</span><h3>${ttsEscape(grant.name)}</h3>
+    <p>${ttsEscape(grant.offers)}</p><small>${ttsEscape(grant.org)} · ${coverageLabel(grant)}</small></div>
+    <a class="apply" href="${ttsEscape(grant.url)}" target="_blank" rel="noopener noreferrer">Check full rules ${icon("external")}</a>
+  </article>`).join("");
+  return `<section class="matched-grants" aria-labelledby="matched-grants-title">
+    <p class="section-label">Separate from government programs</p>
+    <h2 id="matched-grants-title">Charitable funds worth checking</h2>
+    <p>${grants.length ? "These leads fit the broad answers you gave, but charities use their own detailed rules, budgets and deadlines." : "No charitable fund in the current directory closely matched every broad answer you gave. The full directory may still contain a diagnosis-specific or local fund the questionnaire cannot safely identify."} These are not confirmed eligibility and are not included in the benefit count above.</p>
+    ${grants.length ? `<div class="result-grants-grid">${cards}</div>` : ""}
+    <button class="linklike" type="button" data-info-nav="grants">Browse the full grants and charitable funds directory ${icon("arrowRight")}</button>
+  </section>`;
 }
 
 function resultsBlurb(readyN, almostN) {
@@ -2399,15 +2736,15 @@ function resultsBlurb(readyN, almostN) {
   if (readyN && almostN)
     return fr
       ? `Vous pouvez faire une demande pour ${readyN} maintenant, et ${almostN} de plus s'ouvrent après une étape (souvent l'obtention du crédit d'impôt pour personnes handicapées). Touchez une carte pour un guide détaillé.`
-      : `You're ready to apply for ${readyN} now, and ${almostN} more open up once you take one step (usually getting your Disability Tax Credit). Tap any card for a step-by-step guide.`;
+      : `${readyN} programs closely match your answers, and ${almostN} more need a requirement confirmed first. This is a screening result, not an approval decision — open each guide before applying.`;
   if (readyN)
     return fr
       ? `Voici ce que vous pouvez demander dès maintenant. Touchez une carte pour un guide en langage clair et le lien direct.`
-      : `Here's what you can apply for right now. Tap any card for a plain-language guide and the direct link.`;
+      : `These programs closely match your answers. This is not a guarantee of eligibility — open each guide and confirm the full rules before applying.`;
   if (almostN)
     return fr
       ? `Vous y êtes presque ! Obtenir votre crédit d'impôt pour personnes handicapées (CIPH) est la clé qui débloque ces prestations.`
-      : `You're close! Getting your Disability Tax Credit (DTC) is the key that unlocks these. Tap any card to see how.`;
+      : `These programs may fit, but each has a requirement to confirm first. Open a card to see exactly what is missing.`;
   return fr
     ? `Aucune correspondance selon vos réponses — ajustez vos réponses, ou commencez par le crédit d'impôt pour personnes handicapées.`
     : `Based on your answers we didn't find a match — try adjusting your answers, or start with the Disability Tax Credit.`;
@@ -2417,14 +2754,39 @@ function groupTitle(kind, ic, text, count) {
   return `<div class="group-title ${kind}"><span class="gi">${icon(ic)}</span>${text}<span class="count">${count}</span></div>`;
 }
 
-/* broad theme buckets for the "By category" dashboard view */
+/* Program type says what a result actually is. This avoids presenting a tax
+   credit, funded service, transit pass and charitable fund as the same thing. */
+const PROGRAM_TYPES = [
+  { key: "income", label: "Income benefits", badge: "Income benefit", icon: "money" },
+  { key: "tax", label: "Tax credits", badge: "Tax credit", icon: "check" },
+  { key: "grant", label: "Government grants & bursaries", badge: "Government grant/bursary", icon: "education" },
+  { key: "service", label: "Funded services & supports", badge: "Funded service/support", icon: "family" },
+  { key: "health", label: "Health & equipment coverage", badge: "Health/equipment coverage", icon: "health" },
+  { key: "discount", label: "Discounts, passes & permits", badge: "Discount/pass/permit", icon: "transit" },
+  { key: "savings", label: "Savings plans", badge: "Savings plan", icon: "key" },
+];
+function benefitType(b) {
+  const value = BENEFIT_VALUES[b.id] || {};
+  const category = (b.category || "").toLowerCase();
+  if (b.id === "rdsp") return "savings";
+  if (value.kind === "taxCredit") return "tax";
+  if (value.kind === "grant") return "grant";
+  if (/grant|bursary/i.test(b.name || "")) return "grant";
+  if (["coverage"].includes(value.kind) || category.includes("health") || category.includes("equipment")) return "health";
+  if (["discount", "access"].includes(value.kind) || category.includes("transit") || category.includes("recreation") || category.includes("getting around")) return "discount";
+  if (value.kind === "services" || category.includes("employ") || category.includes("family") || category.includes("daily living")) return "service";
+  return "income";
+}
+
+/* The browse directory keeps the broader topic filters people already know;
+   result cards and grouping use the more precise program taxonomy above. */
 const THEMES = [
-  { key: "money",         label: "Money & income",        icon: "money" },
-  { key: "health",        label: "Health & equipment",    icon: "health" },
-  { key: "getting-around",label: "Getting around",        icon: "transit" },
-  { key: "employment",    label: "Work & employment",     icon: "working" },
-  { key: "education",     label: "Education",             icon: "education" },
-  { key: "family",        label: "Family & daily living", icon: "family" },
+  { key: "money", label: "Money & income", icon: "money" },
+  { key: "health", label: "Health & equipment", icon: "health" },
+  { key: "getting-around", label: "Getting around", icon: "transit" },
+  { key: "employment", label: "Work & employment", icon: "working" },
+  { key: "education", label: "Education", icon: "education" },
+  { key: "family", label: "Family & daily living", icon: "family" },
 ];
 function benefitTheme(b) {
   const c = (b.category || "").toLowerCase();
@@ -2433,15 +2795,19 @@ function benefitTheme(b) {
   if (c.includes("education")) return "education";
   if (c.includes("health") || c.includes("equipment")) return "health";
   if (c.includes("getting around") || c.includes("recreation") || c.includes("transit")) return "getting-around";
-  return "family"; // family supports, daily-living supports
+  return "family";
+}
+function benefitTypeLabel(b) {
+  const type = PROGRAM_TYPES.find((entry) => entry.key === benefitType(b));
+  return type ? type.badge : "Government program";
 }
 
 /* render matched benefits either in priority groups or by category theme */
 function renderMatchedGroups(ready, almost, rankOf) {
   if (groupMode === "category") {
     const all = [...ready, ...almost].sort((a, b) => priorityScore(b.b) - priorityScore(a.b));
-    return THEMES.map((th) => {
-      const items = all.filter((e) => benefitTheme(e.b) === th.key);
+    return PROGRAM_TYPES.map((th) => {
+      const items = all.filter((e) => benefitType(e.b) === th.key);
       if (!items.length) return "";
       return groupTitle(th.key, th.icon, th.label, items.length) +
         `<div class="benefits-grid">${items.map((e) => benefitCard(e.b, e.r, rankOf[e.b.id])).join("")}</div>`;
@@ -2643,6 +3009,7 @@ function benefitCard(b, r, rank) {
         <div class="top">
           ${rankBadge}
           <h3 id="benefit-title-${b.id}">${b.name}</h3>
+          <span class="program-kind ${benefitType(b)}">${benefitTypeLabel(b)}</span>
           <span class="tag lvl">${b.level}</span>
           <span class="tag">${b.category}</span>
         </div>
@@ -3009,8 +3376,11 @@ function printResults() {
     const di = difficultyInfo(meta.difficulty);
     const metaBits = [meta.effort && `Apply: ${meta.effort}`, meta.wait && `Wait: ${meta.wait}`, `Difficulty: ${di.label}`]
       .filter(Boolean).map(esc).join(" · ");
-    const steps = b.detail && b.detail.steps
-      ? `<p class="lbl">How to apply</p><ol>${b.detail.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>` : "";
+    const printSteps = b.detail && b.detail.steps && b.detail.steps.length ? b.detail.steps : [
+      "Review the current rules and application method on the official program page.",
+      "Gather the documents named on that page, apply through the official link, and save your confirmation.",
+    ];
+    const steps = `<p class="lbl">How to apply</p><ol>${printSteps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>`;
     const docs = b.detail && b.detail.documents && b.detail.documents.length
       ? `<p class="lbl">What you'll need</p><ul>${b.detail.documents.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>` : "";
     const tracked = progress[b.id] && STAGE[progress[b.id]] ? STAGE[progress[b.id]].label : null;
@@ -3063,7 +3433,7 @@ function printResults() {
       <p class="brand">AbilityFinder · ${SCOPE_LABEL}</p>
       <h1>My disability benefits report</h1>
       ${profile ? `<p class="profile"><b>Based on:</b> ${esc(profile)}</p>` : ""}
-      ${total > 0 ? `<p class="total">Estimated support you may qualify for: <b>up to ~$${total.toLocaleString("en-CA")}/year</b>, plus one-time back-pay and lifetime savings where noted. Rough estimate — not everything stacks.</p>` : ""}
+      ${total > 0 ? `<p class="total">Estimated value represented by these close matches: <b>up to ~$${total.toLocaleString("en-CA")}/year</b>, plus one-time back-pay and lifetime savings where noted. This is not an eligibility or payment estimate, and programs may not stack.</p>` : ""}
       ${dateStr ? `<p class="profile" style="color:#888;font-size:12px;margin-top:8px;">Prepared ${esc(dateStr)}. Share this with a family member, caregiver, or case worker.</p>` : ""}
     </header>
     ${readyRows ? `<p class="grp">Ready to apply (${ready.length})</p>${readyRows}` : ""}
@@ -3255,8 +3625,11 @@ function wireBrowse() {
   if (back) back.addEventListener("click", () => setState("landing"));
   const start = document.getElementById("b-start");
   if (start) start.addEventListener("click", () => {
-    if (answers.forWho && answers.income) setState("results");
-    else setState("wizard", { stepIndex: 0 });
+    if (wizardDone()) setState("results");
+    else {
+      const firstMissing = visibleSteps().findIndex((step) => !stepAnswered(step));
+      setState("wizard", { stepIndex: Math.max(0, firstMissing) });
+    }
   });
 
   const input = document.getElementById("browseInput");
@@ -3411,6 +3784,11 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   const inline = !!options.inline;
   const backBtn = (idn) => `<button class="back-link${idn === "d-back2" ? " bottom" : ""}" id="${idn}">${icon("arrowLeft")} ${t("det.back")}</button>`;
   const d = b.detail || {};
+  const guideSteps = d.steps && d.steps.length ? d.steps : [
+    "Open the official program page and review the current eligibility rules, dates and application method.",
+    "Gather the documents named on the official application page; requirements can change.",
+    "Apply through the official link below, then keep a copy or confirmation number for follow-up.",
+  ];
   const vFresh = verifiedFor(b); // Per-benefit freshness.
 
   const x = BENEFIT_EXTRA[b.id] || {};
@@ -3427,7 +3805,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
         <ul>${r.needs.map((n) => `<li>${n.text}</li>`).join("")}</ul></div>
       </div>`;
   } else if (x.confirm) {
-    statusBanner = `<div class="status-banner maybe">${icon("info")}<div><b>Likely eligible</b> — final approval depends on ${x.confirm}.</div></div>`;
+    statusBanner = `<div class="status-banner maybe">${icon("info")}<div><b>Possible match</b> — confirm ${x.confirm}; the program makes the final decision.</div></div>`;
   } else {
     statusBanner = `<div class="status-banner ready">${icon("check")}<span>${t("det.eligible")}</span></div>`;
   }
@@ -3458,8 +3836,8 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   const sideStatus = !wizardDone()
     ? { cls: "maybe", txt: "Check your eligibility" }
     : r.status === "almost" ? { cls: "almost", txt: "One step away" }
-    : x.confirm ? { cls: "maybe", txt: "Likely eligible" }
-    : { cls: "ready", txt: "You're eligible" };
+    : x.confirm ? { cls: "maybe", txt: "Possible match — confirm rules" }
+    : { cls: "ready", txt: "Close match — confirm rules" };
 
   return `
   ${inline ? "" : `<div class="detail">
@@ -3487,7 +3865,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
               qualify is what gets someone to read the steps at all. */ ""}
         ${p2.plainTest}
 
-        ${listBlock(t("guide.how"), "compass", d.steps, true)}
+        ${listBlock(t("guide.how"), "compass", guideSteps, true)}
         ${b.needsPractitioner && !inline ? practitionerFinder(b) : ""}
         ${listBlock(t("guide.need"), "check", d.documents, false)}
         ${listBlock(t("guide.tips"), "info", d.tips, false)}

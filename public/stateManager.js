@@ -15,10 +15,17 @@
   const ANSWER_KEYS = [
     "forWho",
     "disabilities",
+    "ageBand",
     "ageGroup",
+    "disabilityVerified",
+    "autismDiagnosis",
     "onsetBefore18",
     "canWalkFar",
+    "functionalNeeds",
     "province",
+    "msp",
+    "bcAssistance",
+    "circumstances",
     "citizenPR",
     "dtc",
     "situation",
@@ -41,7 +48,7 @@
 
   function answerValueIsValid(key, value) {
     if (value === null) return true;
-    if (key === "disabilities" || key === "situation") {
+    if (key === "disabilities" || key === "situation" || key === "functionalNeeds" || key === "circumstances") {
       return Array.isArray(value) && value.every((item) => typeof item === "string");
     }
     if (key === "onsetBefore18" || key === "canWalkFar" || key === "citizenPR") {
@@ -53,7 +60,10 @@
     if (typeof value !== "string") return false;
     if (key === "forWho") return ["self", "child", "family"].includes(value);
     if (key === "ageGroup") return ["child", "adult", "senior"].includes(value);
+    if (key === "ageBand") return ["under6", "6to11", "12to15", "16to17", "18", "19to59", "60to64", "65plus"].includes(value);
     if (key === "dtc") return ["yes", "no", "unsure"].includes(value);
+    if (["disabilityVerified", "autismDiagnosis", "msp"].includes(key)) return ["yes", "no", "unsure"].includes(value);
+    if (key === "bcAssistance") return ["pwd", "other", "none", "unsure"].includes(value);
     if (key === "income") return ["low", "moderate", "high"].includes(value);
     return true;
   }
@@ -68,7 +78,7 @@
     if (!candidate || typeof candidate !== "object" || Array.isArray(candidate)) return clean;
     ANSWER_KEYS.forEach((key) => {
       if (Object.prototype.hasOwnProperty.call(candidate, key) && answerValueIsValid(key, candidate[key])) {
-        const selectionKey = { situation: "situations", province: "provinces", city: "cities" }[key] || key;
+        const selectionKey = { ageBand: "ageBands", situation: "situations", province: "provinces", city: "cities" }[key] || key;
         const allowed = allowedValues(validSelections, selectionKey);
         if (Array.isArray(candidate[key])) {
           clean[key] = allowed
@@ -79,7 +89,7 @@
         }
       }
     });
-    if (clean.province !== "AB") clean.city = null;
+    if (!["AB", "BC"].includes(clean.province)) clean.city = null;
     return clean;
   }
 
