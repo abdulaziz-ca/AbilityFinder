@@ -41,7 +41,6 @@ const blankAnswers = () => ({
   income: null,
   city: null,
   postal: null,
-  retroYears: 5,
 });
 
 function liveState() {
@@ -130,7 +129,6 @@ test("restorePersistedState rejects malformed values that could break rendering"
       forWho: { bad: true },
       disabilities: "physical",
       citizenPR: "yes",
-      retroYears: 99,
     },
     view: "made-up-view",
     stepIndex: -4,

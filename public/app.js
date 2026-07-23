@@ -40,7 +40,6 @@ const BLANK = () => ({
   income: null,        // "low" | "moderate" | "high"
   city: null,          // an ALBERTA_CITIES string
   postal: null,        // optional — used to find local practitioners
-  retroYears: 5,       // back-pay estimator; lives here so it survives a re-render
 });
 
 /* ── Who are we talking about? ────────────────────────────────────────────────
@@ -199,8 +198,21 @@ const REQS = {
     unmet: "Get approved for the Disability Tax Credit first — it unlocks this.",
     action: { text: "Start the DTC (T2201)", url: DTC_URL },
   },
-  prolonged: { met: () => true, fixed: false, unmet: "Your condition must have lasted (or be expected to last) 12+ months." },
-  certifier: { met: () => true, fixed: false, unmet: "A medical practitioner must certify the form." },
+  prolonged: {
+    // The questionnaire does not collect the CRA's marked-restriction,
+    // cumulative-effects, or life-sustaining-therapy evidence. Keep this
+    // unresolved instead of turning every completed profile into DTC-ready.
+    met: () => false,
+    fixed: false,
+    unmet: "Confirm that the functional impact meets the CRA's severe and prolonged criteria.",
+  },
+  certifier: {
+    // Documentation in the profile is not the same as an authorized
+    // practitioner certifying the program's application form.
+    met: () => false,
+    fixed: false,
+    unmet: "Have an authorized practitioner certify the program's required form.",
+  },
 
   adult: { met: isAdultAge, fixed: true, unmet: "This is for people aged 18–64." },
   workingAge: { met: isAdultAge, fixed: true, unmet: "This is for people aged 18–64." },
@@ -233,9 +245,16 @@ const REQS = {
 
   lowIncome: { met: () => lowIncome(), fixed: true, unmet: "This is for lower-income households." },
   lowIncomeOrDisabilityIncome: {
-    met: () => lowIncome() || answers.dtc === "yes" || isUnableToWork(),
-    fixed: true,
-    unmet: "For lower-income residents, or those on AISH / CPP Disability.",
+    // Household-size thresholds and actual receipt of AISH/CPP-D are not asked.
+    // DTC approval or inability to work cannot stand in for either route.
+    met: () => false,
+    fixed: false,
+    unmet: "Confirm the municipality's household-income limit or an accepted benefit-recipient route.",
+  },
+  municipalProgramEligibility: {
+    met: () => false,
+    fixed: false,
+    unmet: "Confirm the program's household-income or qualifying benefit-recipient route.",
   },
 
   student: { met: () => isStudent(), fixed: true, unmet: "This is for post-secondary students." },
@@ -248,7 +267,12 @@ const REQS = {
   },
   unableToWork: { met: () => isUnableToWork(), fixed: true, unmet: "This is for people a disability regularly stops from working." },
   employmentActive: { met: isEmploymentActive, fixed: true, unmet: "This is for someone working or looking for work." },
-  cppContrib: { met: () => isWorking() || isUnableToWork(), fixed: false, unmet: "You need enough past CPP contributions from working." },
+  cppContrib: {
+    // Current work status does not establish the official contribution history.
+    met: () => false,
+    fixed: false,
+    unmet: "Check your CPP Statement of Contributions for the required contribution history.",
+  },
   severePermanent: {
     met: () => isUnableToWork(),
     fixed: false,
@@ -259,7 +283,32 @@ const REQS = {
     met: () => answers.disabilityVerified === "yes",
     fixed: false,
     unmet: "Have a qualified professional verify the disability or functional limitation first.",
-    action: { text: "See B.C. disability verification steps", url: "https://studentaidbc.ca/apply/how-to-apply-disability-funding" },
+  },
+  pddEligibility: {
+    met: () => false,
+    fixed: false,
+    unmet: "Confirm PDD's citizenship and assessed intellectual/adaptive-function criteria.",
+  },
+  fscdEligibility: {
+    met: () => false,
+    fixed: false,
+    unmet: "Confirm guardianship, the child's status, and medical documentation of disability or an awaiting-diagnosis assessment.",
+  },
+  adultHealthGateway: {
+    met: () => false,
+    fixed: false,
+    unmet: "Confirm pregnancy, high ongoing prescription needs, or the qualifying AISH/Income Support transition route.",
+  },
+  abPlacardMobility: {
+    met: () => hasDisability("physical") && answers.canWalkFar === false,
+    fixed: () =>
+      !hasDisability("physical") &&
+      !hasDisability("vision"),
+    unmet: "Confirm inability to walk 50 metres or vision loss that substantially limits safe, independent navigation in parking areas.",
+    action: {
+      text: "Review Alberta's parking placard criteria",
+      url: "https://www.alberta.ca/get-parking-placard-people-disabilities",
+    },
   },
   autismDiagnosis: {
     met: () => answers.autismDiagnosis === "yes",
@@ -429,7 +478,10 @@ function valueParts(b) {
   const v = BENEFIT_VALUES[b.id];
   if (!v) return { head: b.amount, sub: "", est: false };
   if (v.excludeFromEstimate) return { head: b.amount, sub: "", est: false };
-  const m = (n) => "$" + Math.round(n).toLocaleString("en-CA");
+  const m = (n) => "$" + Number(n).toLocaleString("en-CA", {
+    minimumFractionDigits: Number.isInteger(n) ? 0 : 2,
+    maximumFractionDigits: 2,
+  });
   let head = "";
   if (["services", "coverage", "access", "discount"].includes(v.kind)) {
     head = v.note || b.amount;
@@ -446,7 +498,6 @@ function valueParts(b) {
   const subs = [];
   if (v.kind === "taxCredit" && v.note) subs.push(v.note);
   if (v.lifetimeMax) subs.push(`up to ${m(v.lifetimeMax)} lifetime`);
-  if (v.retroMax) subs.push(`up to ${m(v.retroMax)} back-pay if backdated`);
   const cash = ["cash", "taxCredit", "grant"].includes(v.kind);
   return { head, sub: subs.join(" · "), est: cash };
 }
@@ -469,7 +520,8 @@ function metaRow(b) {
     ${meta.wait ? `<span class="bm"><b>Wait:</b> ${meta.wait}</span>` : ""}
   </div>`;
 }
-/* priority = value × ease, with a big boost for the DTC (it unlocks the rest) */
+/* Editorial ordering aid based on structured value and application difficulty.
+   It is not an official recommendation or a substitute for urgency/deadlines. */
 function priorityScore(b) {
   const v = BENEFIT_VALUES[b.id] || {};
   const meta = BENEFIT_META[b.id] || {};
@@ -477,11 +529,9 @@ function priorityScore(b) {
   if (v.annualMax) value += Math.min(v.annualMax / 1000, 14);
   else if (v.monthlyMax) value += Math.min(v.monthlyMax / 100, 14);
   if (v.lifetimeMax) value += Math.min(v.lifetimeMax / 12000, 8);
-  if (v.retroMax) value += Math.min(v.retroMax / 6000, 4);
   if (["services", "coverage"].includes(v.kind)) value += 3;
   const ease = 6 - (meta.difficulty || 3);
-  const gateway = b.masterKey ? 12 : 0;
-  return value * 1.4 + ease + gateway;
+  return value * 1.4 + ease;
 }
 
 function renderMoneyBand(ready, almost) {
@@ -490,23 +540,9 @@ function renderMoneyBand(ready, almost) {
   const readyVals = ready.map((e) => BENEFIT_VALUES[e.b.id]).filter(Boolean);
   const annualTotal = readyVals.filter((v) => ["cash", "grant", "taxCredit"].includes(v.kind) && !v.excludeFromEstimate && v.annualMax).reduce((s, v) => s + v.annualMax, 0);
   const lifetime = matched.map((e) => BENEFIT_VALUES[e.b.id]).find((v) => v && v.lifetimeMax);
-  const hasDtc = matched.some((e) => e.b.id === "dtc");
   const round100 = (n) => Math.round(n / 100) * 100;
   const extras = [];
-  if (hasDtc) extras.push("up to $25,000 one-time DTC back-pay");
   if (lifetime) extras.push(`up to ${money(lifetime.lifetimeMax)} lifetime (RDSP)`);
-  const retro = hasDtc
-    ? `<div class="retro">
-        <label class="retro-label" for="retroYears">Roughly how long have you had your disability? <span class="opt-tag">(estimates back-pay)</span></label>
-        <div class="retro-row">
-          <select class="select-input" id="retroYears">
-            <option value="0"${(answers.retroYears ?? 5) === 0 ? " selected" : ""}>Less than a year</option>
-            ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((y) => `<option value="${y}"${y === (answers.retroYears ?? 5) ? " selected" : ""}>${y} year${y > 1 ? "s" : ""}${y === 10 ? "+" : ""}</option>`).join("")}
-          </select>
-          <div class="retro-out" id="retroOut"></div>
-        </div>
-      </div>`
-    : "";
   return `
   <div class="money-band">
     <div class="mb-head">
@@ -516,7 +552,6 @@ function renderMoneyBand(ready, almost) {
         <div class="mb-sub">in support represented by your close matches${extras.length ? " · " + extras.join(" · ") : ""}</div>
       </div>
     </div>
-    ${retro}
     <p class="mb-caveat">Rough estimates — not everything stacks (e.g. AISH has income limits). Open each benefit for real numbers.</p>
   </div>`;
 }
@@ -772,9 +807,9 @@ const STEPS = [
     ],
   },
   {
-    id: "dtc", type: "single", kicker: "The master key 🔑",
+    id: "dtc", type: "single", kicker: "A federal tax credit",
     q: () => `${who().areQ} approved for the Disability Tax Credit (DTC)?`,
-    help: "The DTC is the #1 thing that unlocks most disability benefits. If you don't have it, that's okay — we'll show you how to get it.",
+    help: "DTC approval is required for several federal programs, but not for every disability benefit. If you don't have it, we'll show you the official application guide.",
     key: "dtc",
     options: () => [
       { value: "yes", label: answers.forWho === "self" ? "Yes, I'm approved" : "Yes, approved" },
@@ -1056,7 +1091,7 @@ function splitSentences(text) {
 }
 function buildTtsUnits() {
   ttsUnits = [];
-  const sel = "#app h1, #app h2, #app h3, #app p, #app li, #app .amount, #app .step-kicker, #app .master-flag, #app .eyebrow, #app .group-title";
+  const sel = "#app h1, #app h2, #app h3, #app p, #app li, #app .amount, #app .step-kicker, #app .eyebrow, #app .group-title";
   const els = [...document.querySelectorAll(sel)].filter((el) => el.offsetParent !== null && el.textContent.trim());
   els.forEach((el) => {
     // wrap plain-text blocks into sentence spans so each can be highlighted
@@ -1406,13 +1441,13 @@ function renderLanding() {
         <div class="preview-top"><span class="pv-dot"></span><b>8</b> ${t("pv.found")}<span class="pv-badge">${icon("check")} ${t("pv.qualify")}</span></div>
         <div class="pv-hero">
           <div class="pv-hero-l">
-            <span class="pv-hero-lbl">Estimated total</span>
-            <span class="pv-hero-val">~$14,600<i>/yr</i></span>
+            <span class="pv-hero-lbl">Example results</span>
+            <span class="pv-hero-val">Amounts vary</span>
           </div>
           <div class="pv-gauge"><span class="pv-gauge-fill"></span><span class="pv-gauge-tick" style="left:74%"></span></div>
         </div>
         <div class="pv-list">
-          <div class="pv-row"><span class="pv-ic">${icon("money")}</span><span class="pv-meta"><b>${t("pv.dtc")}</b><span>≈ $10,138 / year</span></span><span class="pv-check">${icon("check")}</span></div>
+          <div class="pv-row"><span class="pv-ic">${icon("money")}</span><span class="pv-meta"><b>${t("pv.dtc")}</b><span>Non-refundable tax credit</span></span><span class="pv-check">${icon("check")}</span></div>
           <div class="pv-row"><span class="pv-ic">${icon("money")}</span><span class="pv-meta"><b>${t("pv.rdsp")}</b><span>+ $4,500 / year</span></span><span class="pv-check">${icon("check")}</span></div>
           <div class="pv-row"><span class="pv-ic">${icon("transit")}</span><span class="pv-meta"><b>${t("pv.transit")}</b><span>from $5.90 / month</span></span><span class="pv-check">${icon("check")}</span></div>
           <div class="pv-row"><span class="pv-ic">${icon("money")}</span><span class="pv-meta"><b>${t("pv.cdb")}</b><span>${t("pv.needsDtc")}</span></span><span class="pv-lock">${icon("lock")}</span></div>
@@ -1854,7 +1889,7 @@ const HELP_PAGES = {
     foot: "If every statement is clearly false, choose “None of these.” Otherwise choose the true statements or keep “I'm not sure” until you can check.",
   },
   dtc: {
-    kicker: "The master key",
+    kicker: "A federal tax credit",
     title: "How to tell if you have the DTC",
     lead: "The Disability Tax Credit unlocks more than anything else here — the RDSP, the Canada Disability Benefit, the Child Disability Benefit. It's worth two minutes to find out.",
     blocks: [
@@ -1876,7 +1911,7 @@ const HELP_PAGES = {
       },
       {
         h: "Not approved? That's the normal starting point",
-        p: "Most people using this site don't have it yet, and it's the first thing worth doing. Answer <b>“No, not yet”</b> and we'll put the DTC at the top of your list with a step-by-step guide — including what “severe and prolonged” actually means, which is where most people wrongly rule themselves out.",
+        p: "Answer <b>“No, not yet”</b> and we'll include the DTC step-by-step guide. It explains the CRA's “severe and prolonged” rules and which practitioner can certify each functional category.",
       },
     ],
     foot:
@@ -2747,7 +2782,8 @@ function renderResults() {
     return !p || p === answers.province;
   });
 
-  // order by priority (value × ease; DTC boosted because it unlocks the rest)
+  // Order by the site's editorial value/ease score. This is not an official
+  // eligibility or urgency ranking.
   ready.sort((a, b) => priorityScore(b.b) - priorityScore(a.b));
   almost.sort((a, b) => priorityScore(b.b) - priorityScore(a.b));
 
@@ -3181,9 +3217,6 @@ function statusControl(b) {
 
 function benefitCard(b, r, rank) {
   const stage = progress[b.id] || "";
-  const cls = b.masterKey ? "master" : r.status;
-  const masterFlag = b.masterKey
-    ? `<div class="master-flag">${icon("key")} Start here — this unlocks the rest</div>` : "";
   const rankBadge = rank ? `<span class="rank-badge" title="Suggested order to apply">${rank}</span>` : "";
   const needsHtml =
     r.status === "almost" && r.needs.length
@@ -3195,8 +3228,7 @@ function benefitCard(b, r, rank) {
   const v = valueParts(b);
   const valueHtml = `<span class="amount">${v.est ? `<span class="amount-tag">Est. value</span>` : ""}${v.head}</span>${v.sub ? `<span class="amount-sub">${v.sub}</span>` : ""}`;
   return `
-  <div class="benefit ${cls} ${stage ? "stage-" + stage : ""}">
-    ${masterFlag}
+  <div class="benefit ${r.status} ${stage ? "stage-" + stage : ""}">
     <div class="benefit-row">
       <div class="benefit-main">
         <div class="top">
@@ -3268,17 +3300,19 @@ const findLabel = (type) => `Find a${/^[aeiou]/i.test(type) ? "n" : ""} ${type}`
 
 /* Personalized, form-aware "find a practitioner near you" block. */
 function practitionerFinder(b) {
-  const type = practitionerType();
+  // The general disability-to-practitioner hint is not safe for the DTC:
+  // specialists may certify only the CRA categories in the matrix below.
+  // Default DTC search to a universally authorized signer.
+  const isDtc = b && b.id === "dtc";
+  const type = isDtc ? "family doctor" : practitionerType();
   const formName = (b && PRACTITIONER_FORMS[b.id]) || "your disability form";
   const formFlag = `
     <div class="finder-flag">${icon("check")}
       <span>You'll need a practitioner willing to complete <b>${formName}</b>. Not every clinic does these — it's worth calling ahead to ask.</span>
     </div>`;
-  /* (C) Other people who can sign THIS form — only where data.js actually says
-     so (today: DTC). In Alberta a family doctor can take months to see, and
-     plenty of people don't have one at all; knowing a nurse practitioner or
-     optometrist can sign a T2201 is the difference between applying and giving
-     up. Never render a signer we haven't verified. */
+  /* Other people who can sign this form, where the official program source
+     treats them as interchangeable signers. DTC is handled by its scoped
+     matrix instead. */
   const shown = new Set([type, "family doctor"]);
   const others = ((b && BENEFIT_SIGNERS[b.id]) || []).filter((s) => !shown.has(s));
   const signerChips = others.length
@@ -3292,6 +3326,18 @@ function practitionerFinder(b) {
             )
             .join("")}
         </div>
+      </div>`
+    : "";
+  const dtcSignerMatrix = isDtc
+    ? `<div class="finder-signers">
+        <p class="fs-lead">Who can certify depends on the functional category. A medical doctor or nurse practitioner can certify every category; the other professions are limited:</p>
+        <div class="fs-chips">
+          ${DTC_SIGNER_SCOPES.map(
+            (entry) =>
+              `<a class="fs-chip finder-search" data-ptype="${entry.search}" href="${mapsSearchUrl(entry.search)}" target="_blank" rel="noopener noreferrer" data-ext><b>${entry.name}</b> — ${entry.scope} ${icon("external")}</a>`
+          ).join("")}
+        </div>
+        <p class="finder-note">Do not book a limited-scope professional unless the affected function matches the category they are allowed to certify. <a href="${DTC_SIGNER_SOURCE}" target="_blank" rel="noopener noreferrer" data-ext>Check the current CRA matrix ${icon("external")}</a></p>
       </div>`
     : "";
 
@@ -3324,9 +3370,14 @@ function practitionerFinder(b) {
     </div>
     <div class="finder-btns">
       <a class="apply finder-search" data-ptype="${type}" href="${mapsSearchUrl(type)}" target="_blank" rel="noopener noreferrer" data-ext>${findLabel(type)} ${icon("external")}</a>
-      ${type !== "family doctor" ? `<a class="apply secondary finder-search" data-ptype="family doctor" href="${mapsSearchUrl("family doctor")}" target="_blank" rel="noopener noreferrer" data-ext>${findLabel("family doctor")} ${icon("external")}</a>` : ""}
+      ${isDtc
+        ? `<a class="apply secondary finder-search" data-ptype="nurse practitioner" href="${mapsSearchUrl("nurse practitioner")}" target="_blank" rel="noopener noreferrer" data-ext>${findLabel("nurse practitioner")} ${icon("external")}</a>`
+        : type !== "family doctor"
+          ? `<a class="apply secondary finder-search" data-ptype="family doctor" href="${mapsSearchUrl("family doctor")}" target="_blank" rel="noopener noreferrer" data-ext>${findLabel("family doctor")} ${icon("external")}</a>`
+          : ""}
     </div>
     ${signerChips}
+    ${dtcSignerMatrix}
     ${wizardNudge}
     ${askTips}
     <p class="finder-note" data-finder-note>${t("finder.note")}</p>
@@ -3467,26 +3518,6 @@ function wireResults() {
     });
     window.print();
   });
-
-  // retroactive DTC back-pay estimator (~$2,000/yr of DTC value, up to 10 years)
-  const retroSel = document.getElementById("retroYears");
-  const retroOut = document.getElementById("retroOut");
-  if (retroSel && retroOut) {
-    const upd = () => {
-      const y = Math.min(parseInt(retroSel.value, 10) || 0, 10);
-      // Store it: this used to be hardcoded to 5, so opening a benefit and
-      // coming back silently threw the choice away and showed the wrong
-      // back-pay figure.
-      answers.retroYears = y;
-      notifyStateChange("estimator-change");
-      const amt = y * 2000;
-      retroOut.innerHTML = amt > 0
-        ? `≈ <b>${money(amt)}</b> in DTC back-pay you could recover`
-        : `Apply now so future years start counting`;
-    };
-    upd();
-    retroSel.addEventListener("change", upd);
-  }
 
   const r = document.getElementById("restart");
   if (r)
@@ -3724,7 +3755,7 @@ function browseCard(b) {
   const v = valueParts(b);
   const valueHtml = `<span class="amount">${v.est ? `<span class="amount-tag">Est. value</span>` : ""}${v.head}</span>${v.sub ? `<span class="amount-sub">${v.sub}</span>` : ""}`;
   return `
-  <div class="benefit browse-card ${b.masterKey ? "master" : ""}${browseDis !== "all" && isDisSpecific(b, browseDis) ? " dis-match" : ""}">
+  <div class="benefit browse-card${browseDis !== "all" && isDisSpecific(b, browseDis) ? " dis-match" : ""}">
     <div class="benefit-row">
       <div class="benefit-main">
         <div class="top">
@@ -3892,6 +3923,8 @@ const DATA_VERIFIED_ISO = "2026-07-01";
  * than no date, because the whole point is telling people when to distrust us.
  */
 const BENEFIT_VERIFIED = {
+  dtc: "2026-07",
+  "cdb-adult": "2026-07",
   aish: "2026-07",
   adap: "2026-07",
   "cpp-disability": "2026-07",

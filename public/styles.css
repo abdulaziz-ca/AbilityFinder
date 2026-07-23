@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=43") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=46") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=43") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=46") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -541,12 +541,6 @@ body.a11y-nomotion .life-event-card:hover .life-event-arrow { transform: none; }
 .mb-total { font-family: var(--font-display); font-optical-sizing: auto; font-size: clamp(1.6rem, 4vw, 2rem); font-weight: 400; letter-spacing: -0.015em; line-height: 1.12; }
 .mb-total b { color: var(--ok); }
 .mb-sub { color: var(--text-dim); font-size: 0.9rem; margin-top: 2px; }
-.retro { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--hair); }
-.retro-label { display: block; font-size: 0.88rem; font-weight: 550; color: var(--text); margin-bottom: 9px; }
-.retro-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-.retro-row .select-input { width: auto; min-width: 180px; flex: 0 0 auto; padding: 10px 40px 10px 14px; }
-.retro-out { font-size: 0.95rem; color: var(--text); }
-.retro-out b { color: var(--ok); }
 .mb-caveat { margin: 14px 0 0; font-size: 0.78rem; color: var(--text-dimmer); line-height: 1.5; }
 
 /* in-memory scenario comparison below the real value summary */
@@ -591,7 +585,6 @@ body.a11y-nomotion .scenario-toggle .ic:last-child { transition: none; }
 
 /* priority rank badge */
 .rank-badge { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 999px; background: var(--accent); color: var(--bg); font-size: 0.78rem; font-weight: 700; flex: none; }
-.benefit.master .rank-badge { background: var(--accent-hi); color: var(--btn-ink); }
 
 .results-tools { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin: 18px 0 4px; }
 .applied-progress { font-size: 0.86rem; color: var(--text-dim); }
@@ -613,8 +606,6 @@ body.a11y-nomotion .scenario-toggle .ic:last-child { transition: none; }
 .benefit::before { content: ""; position: absolute; left: 0; top: 26px; width: 3px; height: 22px; border-radius: 999px; background: var(--text-dimmer); }
 .benefit.ready::before { background: var(--ok); }
 .benefit.almost::before { background: var(--warn); }
-.benefit.master::before { background: var(--accent); box-shadow: 0 0 12px var(--accent); }
-.benefit.master { background: linear-gradient(90deg, var(--accent-soft), transparent 60%); border-radius: var(--r-sm); }
 /* progress-tracker treatment of the card's status bar */
 .benefit.stage-saved::before, .benefit.stage-submitted::before { background: var(--accent); }
 .benefit.stage-approved::before { background: var(--ok); box-shadow: 0 0 10px color-mix(in srgb, var(--ok) 60%, transparent); }
@@ -629,11 +620,7 @@ body.a11y-nomotion .scenario-toggle .ic:last-child { transition: none; }
 .amount-sub { display: block; margin-top: 3px; font-size: 0.83rem; font-weight: 500; color: var(--text-dim); }
 .detail-amount-sub { margin: 4px 0 20px; font-size: 0.92rem; color: var(--text-dim); }
 .benefit.almost .amount { color: var(--warn); }
-.benefit.master .amount { color: var(--accent-hi); }
 .benefit .summary { margin: 5px 0 0; color: var(--text); font-size: 0.95rem; line-height: 1.5; }
-
-.master-flag { display: inline-flex; align-items: center; gap: 7px; font-size: 0.74rem; font-weight: 600; color: var(--accent-hi); margin-bottom: 8px; }
-.master-flag .ic { width: 15px; height: 15px; }
 
 .needs { margin-top: 13px; padding: 2px 0 2px 14px; border-left: 2px solid var(--warn); font-size: 0.89rem; }
 .needs .needs-h { font-weight: 600; color: var(--warn); margin-bottom: 4px; }
@@ -939,7 +926,6 @@ textarea.text-input { resize: vertical; min-height: 96px; line-height: 1.5; }
 .benefits-grid .benefit:hover { background: linear-gradient(90deg, var(--accent-soft), transparent 42%); }
 .benefits-grid .benefit::before { top: 46px; height: 30px; }
 .benefits-grid .benefit:last-of-type { border-bottom: none; }
-.benefits-grid .benefit.master { background: linear-gradient(90deg, var(--accent-soft), transparent 55%); }
 
 /* full-width row → main content stretches left, value + actions sit at the right edge */
 .benefit-row { display: grid; grid-template-columns: minmax(0, 1fr) clamp(280px, 26%, 380px); gap: clamp(32px, 3.5vw, 60px); align-items: start; }

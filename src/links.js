@@ -341,7 +341,7 @@ export const LINKS = [
     "kind": "apply"
   },
   {
-    "url": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/general-supplements-and-programs-rate-table",
+    "url": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/general-supplements-and-programs/bc-bus-pass-program",
     "label": "BC Bus Pass Program — official source",
     "kind": "source"
   },

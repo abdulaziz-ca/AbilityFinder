@@ -1,0 +1,221 @@
+{
+  "total": 925,
+  "counts": {
+    "dtc": {
+      "total": 74,
+      "Verified": 49,
+      "Outdated": 4,
+      "Unsupported": 16,
+      "Ambiguous": 1,
+      "Manual follow-up required": 4
+    },
+    "cdb-adult": {
+      "total": 37,
+      "Verified": 24,
+      "Outdated": 6,
+      "Unsupported": 2,
+      "Ambiguous": 0,
+      "Manual follow-up required": 5
+    },
+    "child-disability-benefit": {
+      "total": 32,
+      "Verified": 25,
+      "Outdated": 0,
+      "Unsupported": 3,
+      "Ambiguous": 0,
+      "Manual follow-up required": 4
+    },
+    "rdsp": {
+      "total": 40,
+      "Verified": 28,
+      "Outdated": 0,
+      "Unsupported": 7,
+      "Ambiguous": 0,
+      "Manual follow-up required": 5
+    },
+    "cpp-disability": {
+      "total": 51,
+      "Verified": 41,
+      "Outdated": 0,
+      "Unsupported": 4,
+      "Ambiguous": 0,
+      "Manual follow-up required": 6
+    },
+    "csg-disability": {
+      "total": 27,
+      "Verified": 20,
+      "Outdated": 0,
+      "Unsupported": 2,
+      "Ambiguous": 0,
+      "Manual follow-up required": 5
+    },
+    "csg-dse": {
+      "total": 27,
+      "Verified": 19,
+      "Outdated": 0,
+      "Unsupported": 2,
+      "Ambiguous": 0,
+      "Manual follow-up required": 6
+    },
+    "aish": {
+      "total": 53,
+      "Verified": 43,
+      "Outdated": 1,
+      "Unsupported": 2,
+      "Ambiguous": 0,
+      "Manual follow-up required": 7
+    },
+    "adap": {
+      "total": 46,
+      "Verified": 37,
+      "Outdated": 0,
+      "Unsupported": 2,
+      "Ambiguous": 0,
+      "Manual follow-up required": 7
+    },
+    "aadl": {
+      "total": 30,
+      "Verified": 23,
+      "Outdated": 0,
+      "Unsupported": 1,
+      "Ambiguous": 0,
+      "Manual follow-up required": 6
+    },
+    "calgary-fair-entry": {
+      "total": 27,
+      "Verified": 17,
+      "Outdated": 4,
+      "Unsupported": 1,
+      "Ambiguous": 0,
+      "Manual follow-up required": 5
+    },
+    "edmonton-fare-assistance": {
+      "total": 26,
+      "Verified": 17,
+      "Outdated": 2,
+      "Unsupported": 3,
+      "Ambiguous": 0,
+      "Manual follow-up required": 4
+    },
+    "reddeer-fee-assistance": {
+      "total": 29,
+      "Verified": 22,
+      "Outdated": 0,
+      "Unsupported": 0,
+      "Ambiguous": 0,
+      "Manual follow-up required": 7
+    },
+    "lethbridge-fee-assistance": {
+      "total": 28,
+      "Verified": 20,
+      "Outdated": 0,
+      "Unsupported": 1,
+      "Ambiguous": 0,
+      "Manual follow-up required": 7
+    },
+    "medicinehat-fair-entry": {
+      "total": 27,
+      "Verified": 18,
+      "Outdated": 0,
+      "Unsupported": 0,
+      "Ambiguous": 3,
+      "Manual follow-up required": 6
+    },
+    "grandeprairie-aish-pass": {
+      "total": 27,
+      "Verified": 19,
+      "Outdated": 0,
+      "Unsupported": 3,
+      "Ambiguous": 0,
+      "Manual follow-up required": 5
+    },
+    "stalbert-subsidy": {
+      "total": 27,
+      "Verified": 20,
+      "Outdated": 0,
+      "Unsupported": 1,
+      "Ambiguous": 0,
+      "Manual follow-up required": 6
+    },
+    "strathcona-subsidy": {
+      "total": 27,
+      "Verified": 21,
+      "Outdated": 0,
+      "Unsupported": 0,
+      "Ambiguous": 0,
+      "Manual follow-up required": 6
+    },
+    "bc-healthy-kids": {
+      "total": 33,
+      "Verified": 24,
+      "Outdated": 0,
+      "Unsupported": 2,
+      "Ambiguous": 0,
+      "Manual follow-up required": 7
+    },
+    "bc-disability-assistance-pwd": {
+      "total": 36,
+      "Verified": 27,
+      "Outdated": 0,
+      "Unsupported": 2,
+      "Ambiguous": 0,
+      "Manual follow-up required": 7
+    },
+    "bc-autism-funding-under-6": {
+      "total": 34,
+      "Verified": 25,
+      "Outdated": 2,
+      "Unsupported": 1,
+      "Ambiguous": 0,
+      "Manual follow-up required": 6
+    },
+    "bc-autism-funding-6-18": {
+      "total": 33,
+      "Verified": 24,
+      "Outdated": 1,
+      "Unsupported": 1,
+      "Ambiguous": 0,
+      "Manual follow-up required": 7
+    },
+    "bc-cy-disability-benefit": {
+      "total": 31,
+      "Verified": 22,
+      "Outdated": 0,
+      "Unsupported": 2,
+      "Ambiguous": 0,
+      "Manual follow-up required": 7
+    },
+    "bc-bus-pass": {
+      "total": 29,
+      "Verified": 18,
+      "Outdated": 1,
+      "Unsupported": 3,
+      "Ambiguous": 0,
+      "Manual follow-up required": 7
+    },
+    "bc-fuel-tax-refund-disabilities": {
+      "total": 32,
+      "Verified": 24,
+      "Outdated": 0,
+      "Unsupported": 1,
+      "Ambiguous": 0,
+      "Manual follow-up required": 7
+    },
+    "bc-icbc-disability-discount": {
+      "total": 29,
+      "Verified": 21,
+      "Outdated": 0,
+      "Unsupported": 1,
+      "Ambiguous": 0,
+      "Manual follow-up required": 7
+    },
+    "bc-property-tax-deferment-disabilities": {
+      "total": 33,
+      "Verified": 24,
+      "Outdated": 0,
+      "Unsupported": 2,
+      "Ambiguous": 0,
+      "Manual follow-up required": 7
+    }
+  }
+}

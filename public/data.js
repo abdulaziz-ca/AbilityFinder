@@ -106,9 +106,13 @@ const EMPLOYMENT = {
    ========================================================================== */
 const BENEFIT_VALUES = {
   // ---- federal ----
-  dtc: { kind: "taxCredit", annualMin: 1500, annualMax: 2700, retroMax: 25000,
-    note: "in income tax you (or a supporting family member) save" },
-  "cdb-adult": { kind: "cash", annualMax: 2400, monthlyMax: 200 },
+  // The annual disability amount is not cash and is not the tax reduction.
+  // Actual federal/provincial tax relief depends on tax payable, transfers,
+  // province and tax year, so DTC is deliberately excluded from totals.
+  dtc: { kind: "taxCredit", excludeFromEstimate: true,
+    note: "reduces income tax payable; the actual reduction varies" },
+  "cdb-adult": { kind: "cash", annualMax: 2450.4, monthlyMax: 204.2,
+    note: "July 2026–June 2027 maximum; excludes the separate conditional $150 supplement" },
   "child-disability-benefit": { kind: "cash", annualMax: 3480, monthlyMax: 290 },
   rdsp: { kind: "grant", annualMax: 4500, lifetimeMax: 90000,
     note: "in free government grants & bonds" },
@@ -161,18 +165,31 @@ const BENEFIT_VALUES = {
  * form. An absent entry costs nothing — the finder just falls back to the
  * practitioner matched to their disability.
  *
- * dtc: transcribed verbatim from this benefit's own `note` in this file
- *   ("Your doctor, nurse practitioner, psychologist, optometrist or audiologist
- *   documents this on Form T2201"), which was verified July 2026.
  * AISH/ADAP remains deliberately absent: Alberta's public guidance says the
  * report must be completed by a medical professional registered in Alberta, but
  * does not publish an exhaustive profession list.
  */
 const BENEFIT_SIGNERS = {
-  dtc: ["family doctor", "nurse practitioner", "psychologist", "optometrist", "audiologist"],
   "cpp-disability": ["family doctor", "nurse practitioner"],
   "parking-placard": ["family doctor", "occupational therapist", "physiotherapist", "surgeon", "podiatrist", "nurse practitioner", "chiropractor"],
 };
+
+/* Current CRA DTC certification matrix, verified 2026-07-22.
+ *
+ * The Spring Economic Update 2026 proposes broader scopes and adding
+ * podiatrists, but those changes are not treated as current rules here. */
+const DTC_SIGNER_SCOPES = [
+  { name: "Medical doctor", search: "family doctor", scope: "All impairments" },
+  { name: "Nurse practitioner", search: "nurse practitioner", scope: "All impairments" },
+  { name: "Optometrist", search: "optometrist", scope: "Vision only" },
+  { name: "Audiologist", search: "audiologist", scope: "Hearing only" },
+  { name: "Occupational therapist", search: "occupational therapist", scope: "Walking, feeding or dressing only" },
+  { name: "Physiotherapist", search: "physiotherapist", scope: "Walking only" },
+  { name: "Psychologist", search: "psychologist", scope: "Mental functions only" },
+  { name: "Speech-language pathologist", search: "speech-language pathologist", scope: "Speaking only" },
+];
+const DTC_SIGNER_SOURCE =
+  "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
   dtc: { difficulty: 3, effort: "30–60 min + a doctor visit", wait: "8–20 weeks" },
@@ -319,9 +336,9 @@ const BENEFIT_EXTRA = {
         },
       ],
       foot:
-        "The categories the CRA scores are: walking, dressing, feeding, speaking, hearing, seeing, eliminating (bladder or bowel), mental functions, and life-sustaining therapy. Only your practitioner can say where you land — your job is to make sure they're describing your limitations, not your label.",
+        "The CRA considers walking, dressing, feeding, speaking, hearing, vision, eliminating (bladder or bowel), mental functions, and life-sustaining therapy. Your practitioner documents the impairment and its effects; the CRA decides eligibility.",
     },
-    confirm: "a medical practitioner confirming your condition markedly restricts a basic daily activity (or would, without therapy) all or substantially all of the time, for 12+ months",
+    confirm: "CRA approval after an authorized practitioner certifies that the impairment is prolonged and its effects meet an official DTC route",
     taxNote: "The DTC is non-refundable — it only reduces income tax you owe. If your income is low, you can transfer it to a supporting spouse or parent instead, and it still unlocks the RDSP and Canada Disability Benefit.",
     denials: [
       "The practitioner described the diagnosis instead of your day-to-day limitations.",
@@ -329,11 +346,11 @@ const BENEFIT_EXTRA = {
       "Limitations weren't shown to be present 'all or substantially all of the time' (about 90%+).",
       "Not enough detail on how much longer everyday tasks take you than others.",
     ],
-    appeal: "Call the CRA to ask exactly why. You can send more medical detail, request a formal review, or file a Notice of Objection within 90 days. Many people are approved on a second try once the practitioner describes function (not just diagnosis).",
+    appeal: "Read the CRA decision letter and ask what information was missing. You may send additional medical information, request a review, or file a Notice of Objection within 90 days.",
     faqs: [
-      { q: "Do I need a family doctor?", a: "No — a nurse practitioner, psychologist, optometrist or audiologist can certify, depending on your condition." },
+      { q: "Do I need a family doctor?", a: "Not always. A medical doctor or nurse practitioner can certify any impairment. Other practitioners can certify only the functional categories listed by the CRA, so check the official matrix before booking." },
       { q: "Does a diagnosis alone qualify me?", a: "No. Approval is about how much your condition limits daily functions, not the diagnosis name." },
-      { q: "Worth it if I don't pay much tax?", a: "Yes — transfer it to a supporting family member, and it unlocks the RDSP and Canada Disability Benefit." },
+      { q: "Worth checking if I don't pay much tax?", a: "It may still help. An unused amount may be transferable to an eligible supporting family member, and DTC approval is required for several other federal programs. Confirm the transfer and program rules for your situation." },
     ],
     related: ["rdsp", "cdb-adult", "child-disability-benefit", "cwb-disability"],
   },
@@ -355,7 +372,7 @@ const BENEFIT_EXTRA = {
   },
   aish: {
     confirm: "a severe, permanent condition that substantially limits your ability to earn a living, AND income and assets under the AISH limits",
-    taxNote: "AISH is not taxable. Other income and assets can affect assistance; Alberta's combined assessment decides the current treatment for your situation.",
+    taxNote: "AISH is not taxable. Other income and assets can affect assistance. If you receive AISH or ADAP, Alberta requires you to report the outcome of your Canada Disability Benefit and/or Disability Tax Credit application, including the approved CDB amount or a denial.",
     denials: [
       "The condition wasn't shown to be permanent, or was expected to improve with treatment.",
       "The medical didn't tie the disability to an inability to earn a living.",
@@ -368,16 +385,16 @@ const BENEFIT_EXTRA = {
       { q: "Do I need the DTC first?", a: "No, AISH is separate — but the DTC, CPP-D and RDSP are all worth applying for too." },
       { q: "How much will I receive?", a: "It depends on Alberta's current rules and your household. Use the official AISH/ADAP benefit estimator rather than relying on a general figure." },
     ],
-    related: ["adap", "dtc", "cpp-disability", "aadl", "adult-health-benefit"],
+    related: ["adap", "dtc", "cdb-adult", "cpp-disability", "aadl", "adult-health-benefit"],
   },
   adap: {
     confirm: "a severe disability that significantly impedes employment continuously or episodically, plus Alberta's age, residency, status and financial rules",
-    taxNote: "Alberta's combined assessment decides the current benefit and how household income or assets affect it.",
+    taxNote: "Alberta's combined assessment decides the current benefit and how household income or assets affect it. If you receive ADAP or AISH, Alberta requires you to report the outcome of your Canada Disability Benefit and/or Disability Tax Credit application, including the approved CDB amount or a denial.",
     faqs: [
       { q: "Do I have to choose AISH or ADAP?", a: "No. Alberta's one application assesses both programs and places eligible applicants in the program that fits." },
       { q: "Can a fluctuating condition count?", a: "ADAP's official eligibility describes barriers that significantly impede employment continuously or episodically. Alberta makes the decision from the full application and medical report." },
     ],
-    related: ["aish", "dtc", "cpp-disability", "aadl", "adult-health-benefit"],
+    related: ["aish", "dtc", "cdb-adult", "cpp-disability", "aadl", "adult-health-benefit"],
   },
   rdsp: {
     confirm: "being approved for the Disability Tax Credit (DTC) and being under age 60",
@@ -391,12 +408,13 @@ const BENEFIT_EXTRA = {
   },
   "cdb-adult": {
     confirm: "DTC approval, age 18–64, a filed tax return, and income under the threshold",
-    taxNote: "The Canada Disability Benefit isn't taxable and shouldn't reduce federal income-tested benefits — but check how Alberta treats it alongside AISH.",
+    taxNote: "The Canada Disability Benefit is not taxable. If you receive AISH or ADAP, Alberta requires you to report the outcome of your CDB and/or DTC application, including the approved CDB amount or a denial.",
     faqs: [
       { q: "Do I need the DTC?", a: "Yes — get the DTC first; it's required." },
-      { q: "How much will I get?", a: "Up to $200/month, reduced as income rises above about $23,000 (single)." },
+      { q: "How much will I get?", a: "For July 2026 to June 2027, the maximum is $204.20 per month. Your actual amount is recalculated from adjusted family net income on your 2025 federal tax return." },
+      { q: "What is the $150 supplement?", a: "Starting in September 2026, eligible recipients may receive a separate fixed $150 lump sum toward the cost of obtaining the DTC. You do not apply for it separately." },
     ],
-    related: ["dtc"],
+    related: ["dtc", "aish", "adap"],
   },
   "child-disability-benefit": {
     faqs: [{ q: "Do I apply separately?", a: "No — once your child has the DTC and you receive the Canada Child Benefit, it's added automatically." }],
@@ -919,13 +937,12 @@ const BENEFITS = [
     name: "Disability Tax Credit (DTC)",
     level: "Federal",
     category: "Money & taxes",
-    masterKey: true,
-    amount: "≈ $10,138 tax credit / year + up to 10 years back-pay",
+    amount: "Non-refundable tax credit — actual tax reduction varies",
     summary:
-      "The master key. A tax credit that lowers the income tax you (or a family member) pay — and it unlocks most other disability benefits below.",
+      "A non-refundable tax credit that may reduce income tax for an approved person or an eligible supporting family member. Approval is also required for several related federal programs.",
     requires: ["prolonged", "certifier"],
     note:
-      "Approval is based on how much your condition limits your everyday functions — not on the diagnosis name. Your doctor, nurse practitioner, psychologist, optometrist or audiologist documents this on Form T2201. Many conditions qualify when the limitations are well described.",
+      "Approval is based on the effects of an impairment, not the diagnosis name. A medical doctor or nurse practitioner can certify all impairments; other practitioners can certify only specific functional categories on Form T2201.",
     applyText: "Start the DTC application (T2201)",
     applyUrl:
       "https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/t2201.html",
@@ -933,13 +950,13 @@ const BENEFITS = [
       "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit.html",
     detail: {
       about:
-        "A federal tax credit for people with a severe, long-lasting impairment in physical or mental functions. Getting approved is the single most important step, because it's what makes you eligible for the Canada Disability Benefit, RDSP, Child Disability Benefit and more.",
+        "A non-refundable federal tax credit for people whose impairment and functional effects meet the CRA's severe and prolonged rules. It may reduce income tax payable and is also a requirement for several related federal programs, but it is not required for every disability benefit.",
       steps: [
         "Sign in to (or create) CRA My Account — or use the paper form.",
         "Fill Part A (your personal information).",
         "Ask a medical practitioner who knows you to complete Part B, describing how your condition limits your daily life.",
         "Submit through CRA My Account for the fastest processing.",
-        "If approved, ask the CRA to reassess up to 10 past years — this can mean a large back-payment.",
+        "If the CRA approves years you already filed, request the applicable tax-return adjustments. Past claims may go back up to 10 years, but any refund depends on the tax situation for each year.",
       ],
       documents: [
         "Your Social Insurance Number (SIN)",
@@ -949,9 +966,9 @@ const BENEFITS = [
       tips: [
         "The medical practitioner's section decides most approvals — ask them to be specific and give concrete examples of your limitations.",
         "You do NOT need to pay a private company a percentage of your refund. Applying directly is free.",
-        "Denied? You can request a review or appeal. Many people are approved on a second try with stronger wording.",
+        "Denied? Read the decision letter, ask what information was missing, and use the CRA review or objection process that applies to your case.",
       ],
-      time: "About 8 weeks once the CRA has the completed form.",
+      time: "Processing time varies; check the CRA processing-times tool for a current estimate.",
       phone: "CRA: 1-800-959-8281",
     },
   },
@@ -960,12 +977,12 @@ const BENEFITS = [
     name: "Canada Disability Benefit",
     level: "Federal",
     category: "Money",
-    amount: "Up to $2,400 / year ($200 / month)",
+    amount: "Up to $204.20 / month for July 2026–June 2027",
     summary:
       "A monthly payment for working-age adults with a disability and lower income.",
     requires: ["dtc", "workingAge", "lowIncome"],
     note:
-      "You get the maximum if your income is under about $23,000 (single) or $32,500 (couple). You must be approved for the DTC first.",
+      "The amount is reassessed each year from adjusted family net income. July 2026–June 2027 payments use the 2025 federal tax return. You must be approved for the DTC first.",
     applyText: "Learn how to apply",
     applyUrl:
       "https://www.canada.ca/en/services/benefits/disability/canada-disability-benefit.html",
@@ -986,7 +1003,9 @@ const BENEFITS = [
       ],
       tips: [
         "File your taxes every year even with no income — payments are calculated from your return.",
-        "The first $10,000 of your own working income (or $14,000 for a couple) is not counted against you.",
+        "For July 2026 to June 2027, up to $10,210 of working income is exempt for a single person, or up to $14,294 of combined working income for a couple.",
+        "Starting in September 2026, eligible recipients may receive a separate fixed $150 lump sum toward the cost of obtaining the DTC. You do not apply for it separately, and it is not included in the monthly maximum shown here.",
+        "If you receive AISH or ADAP, report the CDB and/or DTC application outcome to Alberta, including the approved CDB amount or a denial. Alberta says that when no CDB decision had been made by February 28, 2026, $200 was reduced from April 2026 AISH or ADAP benefits.",
       ],
       time: "Paid monthly once approved.",
       phone: "Service Canada: 1-800-O-Canada",
@@ -1246,6 +1265,7 @@ const BENEFITS = [
         "The medical form should focus on how your condition limits your ability to EARN A LIVING, not just the diagnosis.",
         "The combined application assesses AISH and ADAP. Alberta, not this tool, decides the program and benefit amount.",
         "Use Alberta's AISH/ADAP benefit estimator for a household-specific estimate before relying on any amount.",
+        "If you receive AISH or ADAP, report the outcome of your CDB and/or DTC application to Alberta, including the approved CDB amount or a denial. Alberta says that when no CDB decision had been made by February 28, 2026, $200 was reduced from April 2026 benefits.",
       ],
       time: "Ask Alberta Supports for the current processing time.",
       phone: "Alberta Supports: 1-877-759-6810",
@@ -1283,6 +1303,7 @@ const BENEFITS = [
         "Describe functional limits and fluctuating or episodic barriers — not only your diagnosis name.",
         "One application is enough: Alberta decides whether AISH or ADAP is the appropriate program.",
         "Use Alberta's AISH/ADAP benefit estimator for a household-specific estimate before relying on any amount.",
+        "If you receive ADAP or AISH, report the outcome of your CDB and/or DTC application to Alberta, including the approved CDB amount or a denial. Alberta says that when no CDB decision had been made by February 28, 2026, $200 was reduced from April 2026 benefits.",
       ],
       time: "Ask Alberta Supports for the current processing time.",
       phone: "Alberta Supports: 1-877-759-6810",
@@ -1330,7 +1351,7 @@ const BENEFITS = [
     amount: "Funded support services (not a cash payment)",
     summary:
       "Support services for adults with a developmental disability — help with daily living, community involvement, and employment.",
-    requires: ["adult", "ab", "developmental"],
+    requires: ["age18plus", "ab", "developmental", "pddEligibility"],
     note:
       "For adults whose developmental disability began before age 18 and significantly affects daily living. Provides services and supports, not direct cash.",
     applyText: "Persons with Developmental Disabilities",
@@ -1364,7 +1385,7 @@ const BENEFITS = [
     amount: "Services + funding for families raising a child with a disability",
     summary:
       "Support and funding for Alberta families raising a child under 18 with a disability — respite, aids, counselling, and reimbursement of some costs.",
-    requires: ["child", "ab"],
+    requires: ["child", "ab", "fscdEligibility"],
     note:
       "Wide-ranging support for families: respite care, specialized services, and help with some out-of-pocket disability costs. Separate from (and can be combined with) the federal Child Disability Benefit.",
     applyText: "Family Support for Children with Disabilities",
@@ -1467,7 +1488,7 @@ const BENEFITS = [
     amount: "Free prescriptions, dental, optical and more",
     summary:
       "Health coverage for adults in lower-income households — prescriptions, dental, eye care, essential diabetic supplies.",
-    requires: ["adult", "ab", "lowIncome"],
+    requires: ["adult", "ab", "lowIncome", "adultHealthGateway"],
     note:
       "Great for covering the cost of medication if you're on a lower income and not already covered by AISH.",
     applyText: "Alberta Adult Health Benefit",
@@ -1534,7 +1555,7 @@ const BENEFITS = [
     amount: "Low-cost accessible parking permit",
     summary:
       "A placard that lets you use accessible parking spaces.",
-    requires: ["ab", "mobility"],
+    requires: ["ab", "abPlacardMobility", "certifier"],
     note:
       "For people who can't walk more than about 50 metres, or whose vision loss makes moving around parking areas unsafe.",
     applyText: "Apply for a parking placard",
@@ -1762,7 +1783,7 @@ const BENEFITS = [
     amount: "$10.25/month transit pass + 75% off recreation",
     summary:
       "If you're on AISH, a monthly Grande Prairie transit pass costs $10.25 instead of $74.25 — the deepest municipal transit discount in the province that we've found.",
-    requires: ["grandeprairie"],
+    requires: ["grandeprairie", "municipalProgramEligibility"],
     note:
       "Important: AISH and ADAP recipients are NOT part of the general Transit Access Program — you get your own, cheaper pass instead ($10.25 vs $37.13). Ask for the AISH pass by name at City Hall.",
     applyText: "Grande Prairie transit fares",
@@ -1797,7 +1818,7 @@ const BENEFITS = [
     amount: "Free local transit + free annual recreation membership",
     summary:
       "On AISH or ADAP in St. Albert, local buses and the Handibus are free, and a year's membership at every City rec facility is free too.",
-    requires: ["stalbert"],
+    requires: ["stalbert", "municipalProgramEligibility"],
     note:
       "AISH and ADAP recipients get automatic eligibility here — the free annual recreation membership isn't income-tested for you, and local transit is free rather than discounted.",
     applyText: "St. Albert subsidy program",
@@ -2361,17 +2382,17 @@ const BENEFITS = [
     "summary": "Direct annual funding to buy autism intervention services (behaviour consultants, therapists, supervised behaviour interventionists) for children under 6 with an autism diagnosis.",
     "requires": ["bc", "under6", "autismSelected", "autismDiagnosis"],
     "requiresNote": "Child under age 6 with an autism spectrum disorder diagnosis meeting BC standards (BCAAN or qualified private assessment)",
-    "note": "The Autism Funding program continues unchanged and accepts new applications until March 2027, then is replaced by the new BC Children and Youth Disability Benefit. Families already receiving Autism Funding start transitioning automatically in July 2026 — the ministry contacts you, no reapplication needed. This program is being replaced: it accepts new applications until March 2027 and ends March 31, 2027. The Children and Youth Disability Benefit is taking over.",
+    "note": "Autism Funding accepts new applications until March 2027 and ends March 31, 2027. Current families transition to the BC Children and Youth Disability Benefit in phases; the ministry will contact them. Final aligned funding periods may be prorated to March 31, 2027.",
     "applyText": "Apply for autism funding",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/apply",
     "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/funding-amount",
-    "verified": "2026-07-21",
+    "verified": "2026-07-22",
     "detail": {
-      "about": "Up to $22,000 per year per child, spent on professionals listed on the Registry of Autism Service Providers (RASP) and behaviour interventionists supervised by a RASP professional. Also covers family counselling from certified counsellors, psychologists, social workers or psychiatrists, employment-related costs when you hire staff, and administrative costs up to $100/month. Up to 20% of the allocation can go to training, travel and equipment (TTE); the allocation may be prorated in your first funding period.",
+      "about": "Up to $22,000 per year per child, spent on professionals listed on the Registry of Autism Service Providers (RASP) and behaviour interventionists supervised by a RASP professional. Also covers family counselling from certified counsellors, psychologists, social workers or psychiatrists, employment-related costs when you hire staff, and administrative costs up to $100/month. Normally, up to 20% of the allocation can go to training, travel and equipment (TTE). For the final aligned funding period ending March 31, 2027, BC increased the allowable TTE portion to 50%.",
       "steps": ["Get an autism diagnosis through the BC Autism Assessment Network (BCAAN, free via physician referral) or a private assessment meeting BC standards", "Register for a Basic BCeID account to apply online, or complete the paper Application for Autism Funding", "Email the application and supporting documents to mcf.autismfundingintake@gov.bc.ca or submit through your local CYSN office", "Sign the funding agreement, then choose RASP-listed providers and submit invoices or reimbursement claims"],
       "documents": ["Diagnostic report confirming autism spectrum disorder", "Confirmation of Previous Diagnosis of Autism Spectrum Disorder form (CF0905) if diagnosed elsewhere", "Child's Personal Health Number and proof of BC residency", "Basic BCeID account for online applications"],
-      "tips": ["Providers must be on the RASP registry for children under 6 — search it before hiring", "Reserve part of the budget for the 20% travel/training/equipment allowance if you need tablets, AAC apps or workshop fees", "Unspent funds do not roll over indefinitely — plan spending across the funding year", "From July 2026 the ministry contacts Autism Funding families about moving to the new Disability Benefit ($6,500 or $17,000/year); you keep current funding until your transition date"],
-      "time": "New applications accepted until March 2027; funding starts after the agreement is signed. BCAAN assessment wait lists are long — private assessment is faster but paid out of pocket.",
+      "tips": ["Providers must be on the RASP registry for children under 6 — search it before hiring", "The normal training, travel and equipment limit is 20%, but BC raised it to 50% for the final aligned funding period ending March 31, 2027", "Approved services and purchases must be delivered by March 31, 2027; direct-payment supporting documents are due May 31, 2027, and final invoices or reimbursement requests are due September 30, 2027", "From July 2026 the ministry contacts Autism Funding families about moving to the new Disability Benefit ($6,500 or $17,000/year); you keep current funding until your transition date"],
+      "time": "New applications are accepted until March 2027. The program and final aligned funding periods end March 31, 2027; later paperwork deadlines do not extend the service-delivery date.",
       "phone": "1-877-777-3530"
     }
   },
@@ -2385,17 +2406,17 @@ const BENEFITS = [
     "summary": "Annual funding for autism intervention, therapies, life-skills programs, camps and out-of-school tutoring for children and youth aged 6 to 18.",
     "requires": ["bc", "age6to18", "autismSelected", "autismDiagnosis"],
     "requiresNote": "Child or youth aged 6-18 with an autism spectrum disorder diagnosis meeting BC standards",
-    "note": "Program runs until March 31, 2027, then is replaced by the BC Children and Youth Disability Benefit. Current families transition automatically starting July 2026 — the ministry will contact you. New applications are still accepted until March 2027. This program is being replaced: it accepts new applications until March 2027 and ends March 31, 2027. The Children and Youth Disability Benefit is taking over.",
+    "note": "Autism Funding accepts new applications until March 2027 and ends March 31, 2027. Current families transition to the BC Children and Youth Disability Benefit in phases; the ministry will contact them. Final aligned funding periods may be prorated to March 31, 2027.",
     "applyText": "Apply for autism funding",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/apply",
     "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/funding-amount",
-    "verified": "2026-07-21",
+    "verified": "2026-07-22",
     "detail": {
-      "about": "Up to $6,000 per year per child for behaviour consultants or analysts, speech-language pathologists, occupational or physical therapists, behaviour interventionists, life skills and social skills programs, out-of-school learning support and tutoring, dietary counselling from registered dieticians, family counselling, and specialized therapeutic camps for autism. Administrative costs up to $50/month (or $600 per period for an accountant) and up to 20% for training, travel and equipment.",
+      "about": "Up to $6,000 per year per child for behaviour consultants or analysts, speech-language pathologists, occupational or physical therapists, behaviour interventionists, life skills and social skills programs, out-of-school learning support and tutoring, dietary counselling from registered dieticians, family counselling, and specialized therapeutic camps for autism. Administrative costs are normally limited to $50/month (or $600 per period for an accountant), and the normal training, travel and equipment (TTE) limit is 20%. For the final aligned funding period ending March 31, 2027, BC increased the allowable TTE portion to 50%.",
       "steps": ["Have an autism diagnosis on file (BCAAN or qualified private assessment)", "Apply online with a Basic BCeID or send the Application for Autism Funding to mcf.autismfundingintake@gov.bc.ca, or go through your local CYSN office", "Sign the funding agreement and hire qualified providers", "Submit invoices for direct payment or claim reimbursements"],
       "documents": ["Diagnostic report or CF0905 confirmation form", "Child's Personal Health Number", "Basic BCeID account for the online portal"],
-      "tips": ["For ages 6-18 providers do not have to be RASP-listed for every service type, so therapy, tutoring and camps are easier to fund than under the Under-6 program", "Specialized autism camps and social-skills groups are eligible — get receipts", "The new Disability Benefit will pay $6,500 (base) or $17,000 (higher tier), so most transitioning families see an increase from the current $6,000", "Ask your CYSN office about the transition schedule if you have not been contacted by fall 2026"],
-      "time": "New applications accepted until March 2027; existing families move to the Disability Benefit in phases from July 2026 through March 2027.",
+      "tips": ["For ages 6-18 providers do not have to be RASP-listed for every service type, so therapy, tutoring and camps are easier to fund than under the Under-6 program", "The normal training, travel and equipment limit is 20%, but BC raised it to 50% for the final aligned funding period ending March 31, 2027", "Approved services and purchases must be delivered by March 31, 2027; direct-payment supporting documents are due May 31, 2027, and final invoices or reimbursement requests are due September 30, 2027", "Ask your CYSN office about the transition schedule if you have not been contacted by fall 2026"],
+      "time": "New applications are accepted until March 2027. The program and final aligned funding periods end March 31, 2027; later paperwork deadlines do not extend the service-delivery date.",
       "phone": "1-877-777-3530"
     }
   },
@@ -2473,21 +2494,21 @@ const BENEFITS = [
     "name": "BC Bus Pass Program",
     "level": "British Columbia",
     "category": "Transit",
-    "amount": "$45 per year",
+    "amount": "No annual fee for PWD recipients; $45/year for eligible low-income seniors",
     "summary": "Annual bus pass for people on BC disability assistance and low-income seniors, valid on scheduled BC Transit services provincewide and issued as a Compass Card for Metro Vancouver.",
     "requires": ["bc", "bcBusPassStatus"],
     "requiresNote": "For people receiving BC disability assistance (PWD designation). Low-income seniors also qualify: GIS recipients, 60-64 year olds on provincial income assistance, and 65+ who would get GIS but for residency rules.",
-    "note": "The fee is $45 per year. PWD recipients should confirm with the program how the pass affects their $52/month transportation supplement.",
+    "note": "PWD recipients pay no annual fee and choose the bus pass instead of the $52 monthly cash transportation supplement. The separate eligible low-income-senior stream costs $45 per year.",
     "applyText": "Request via My Self Serve or call 1-866-866-0800",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/transportation/passenger-travel/buses-taxis-limos/bus-pass/people-with-disabilities",
-    "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/general-supplements-and-programs-rate-table",
-    "verified": "2026-07-20",
+    "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/general-supplements-and-programs/bc-bus-pass-program",
+    "verified": "2026-07-22",
     "detail": {
-      "about": "The BC Bus Pass Program provides an annual pass for eligible people with the PWD designation receiving disability assistance and for eligible low-income seniors. The pass gives travel on scheduled BC Transit bus services across the province and comes as a Compass Card usable on TransLink in Metro Vancouver. The fee is $45 per year. PWD recipients should confirm with the program how the pass affects their $52/month transportation supplement.",
-      "steps": ["Confirm that you meet the PWD or low-income senior eligibility rules", "Ask the program how receiving the pass will affect your $52/month transportation supplement if you receive PWD disability assistance", "Request the pass through My Self Serve or by calling 1-866-866-0800", "Allow up to 6 weeks for the pass to arrive"],
+      "about": "The BC Bus Pass Program provides a monthly pass at no annual cost to eligible people with the PWD designation who receive disability assistance, and a separate $45 annual pass to eligible low-income seniors. The pass works on scheduled BC Transit services across the province and as a Compass Card on TransLink in Metro Vancouver. A PWD recipient chooses either the pass or the $52 monthly cash transportation supplement.",
+      "steps": ["Confirm whether you qualify through the PWD stream or the low-income-senior stream", "If you receive PWD disability assistance, choose either the no-fee bus pass or the $52 monthly cash transportation supplement", "Request the pass through My Self Serve or by calling 1-866-866-0800; PWD recipients switching from cash should contact the ministry by the 5th for the change to start the next month", "Allow 4 to 6 weeks for a new pass to arrive"],
       "documents": ["No new documents if you already receive disability assistance — just your request", "Seniors stream: SIN, name, date of birth, address and contact details"],
-      "tips": ["The pass works in BC Transit communities across the whole province, not just your home city", "BC Transit enabled digital tap validation for BC Bus Pass holders in Umo-equipped communities starting fall 2025", "Replacement passes for lost or stolen cards may carry a fee — report them promptly", "PWD recipients should confirm directly with the program how the pass affects the monthly transportation supplement"],
-      "time": "Allow up to 6 weeks for the pass to arrive",
+      "tips": ["PWD recipients pay no annual fee; the $45 annual fee applies to the eligible low-income-senior stream", "The pass works in BC Transit communities across the whole province, not just your home city", "Replacement passes can carry a fee even when the original PWD pass had no annual fee — report a lost pass promptly", "PWD recipients can later cancel the pass and return to the $52 monthly cash supplement by contacting the ministry by the 5th"],
+      "time": "Allow 4 to 6 weeks for a new pass to arrive",
       "phone": "1-866-866-0800"
     }
   },

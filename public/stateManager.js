@@ -31,7 +31,6 @@
     "situation",
     "income",
     "city",
-    "retroYears",
   ];
   const A11Y_KEYS = ["spacing", "contrast", "links", "guide", "motion"];
   const HELP_TOPICS = ["disabilities", "documentation", "autismAssessment", "functionalNeeds", "msp", "bcAssistance", "circumstances", "dtc"];
@@ -54,9 +53,6 @@
     }
     if (key === "onsetBefore18" || key === "canWalkFar" || key === "citizenPR") {
       return typeof value === "boolean";
-    }
-    if (key === "retroYears") {
-      return Number.isInteger(value) && value >= 0 && value <= 10;
     }
     if (typeof value !== "string") return false;
     if (key === "forWho") return ["self", "child", "family"].includes(value);

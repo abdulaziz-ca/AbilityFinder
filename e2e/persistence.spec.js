@@ -202,7 +202,9 @@ test("browse filters, UI flags and consent recover while free text stays out of 
 
   // A postal code is useful for a one-off Maps link, but is free text and is not
   // among the selections this migration is allowed to retain.
-  await page.locator(".js-detail").first().click();
+  // Open a guide that is guaranteed to include the practitioner finder. Browse
+  // ordering is editorial and may change without affecting this privacy boundary.
+  await page.locator('.js-detail[data-id="dtc"]').click();
   await page.locator("#finderPostal").fill("T2P 1J9");
   await page.locator("#d-back").click();
   await expect.poll(async () => JSON.stringify(await storedState(page))).not.toContain("T2P 1J9");
@@ -297,7 +299,6 @@ test("an older child session missing its age range resumes there instead of show
         situation: [],
         income: null,
         city: null,
-        retroYears: 5,
       },
       view: "wizard",
       stepIndex: 9,
@@ -318,15 +319,15 @@ test("an older child session missing its age range resumes there instead of show
 const personas = [
   {
     name: "self",
-    answers: { forWho: "self", disabilities: ["autism", "physical"], ageBand: "19to59", ageGroup: "adult", disabilityVerified: "yes", autismDiagnosis: "yes", functionalNeeds: ["dailyLiving", "transitBarrier"], onsetBefore18: true, canWalkFar: false, province: "AB", msp: null, bcAssistance: null, circumstances: [], citizenPR: true, dtc: "no", situation: ["working", "student"], income: "low", city: "Calgary", retroYears: 5 },
+    answers: { forWho: "self", disabilities: ["autism", "physical"], ageBand: "19to59", ageGroup: "adult", disabilityVerified: "yes", autismDiagnosis: "yes", functionalNeeds: ["dailyLiving", "transitBarrier"], onsetBefore18: true, canWalkFar: false, province: "AB", msp: null, bcAssistance: null, circumstances: [], citizenPR: true, dtc: "no", situation: ["working", "student"], income: "low", city: "Calgary" },
   },
   {
     name: "child",
-    answers: { forWho: "child", disabilities: ["autism", "physical"], ageBand: "6to11", ageGroup: "child", disabilityVerified: "yes", autismDiagnosis: "yes", functionalNeeds: ["childHighNeeds", "childThreeAdls", "transitBarrier"], onsetBefore18: true, canWalkFar: false, province: "AB", msp: null, bcAssistance: null, circumstances: [], citizenPR: true, dtc: "unsure", situation: ["elementary"], income: "moderate", city: "Edmonton", retroYears: 5 },
+    answers: { forWho: "child", disabilities: ["autism", "physical"], ageBand: "6to11", ageGroup: "child", disabilityVerified: "yes", autismDiagnosis: "yes", functionalNeeds: ["childHighNeeds", "childThreeAdls", "transitBarrier"], onsetBefore18: true, canWalkFar: false, province: "AB", msp: null, bcAssistance: null, circumstances: [], citizenPR: true, dtc: "unsure", situation: ["elementary"], income: "moderate", city: "Edmonton" },
   },
   {
     name: "family",
-    answers: { forWho: "family", disabilities: ["other"], ageBand: "65plus", ageGroup: "senior", disabilityVerified: "yes", autismDiagnosis: null, functionalNeeds: ["none"], onsetBefore18: null, canWalkFar: null, province: "other", msp: null, bcAssistance: null, circumstances: [], citizenPR: true, dtc: "yes", situation: ["none"], income: "high", city: null, retroYears: 5 },
+    answers: { forWho: "family", disabilities: ["other"], ageBand: "65plus", ageGroup: "senior", disabilityVerified: "yes", autismDiagnosis: null, functionalNeeds: ["none"], onsetBefore18: null, canWalkFar: null, province: "other", msp: null, bcAssistance: null, circumstances: [], citizenPR: true, dtc: "yes", situation: ["none"], income: "high", city: null },
   },
 ];
 

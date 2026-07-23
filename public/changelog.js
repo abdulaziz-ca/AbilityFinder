@@ -1,5 +1,7 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
+  { date: "2026-07-22", text: "Updated the Canada Disability Benefit maximum for July 2026–June 2027 and its separate September 2026 supplement, added the required AISH/ADAP reporting action, distinguished the no-fee PWD Bus Pass from the $45 senior stream, and documented the 50% final-period Autism Funding equipment, travel and training exception." },
+  { date: "2026-07-22", text: "Corrected Disability Tax Credit guidance: removed the disability amount and unsupported back-pay estimate from value totals, replaced universal practitioner suggestions with the current CRA certification matrix, and removed automatic first-place ranking." },
   { date: "2026-07-21", text: "Restored the quicker tap-to-select age question with eight eligibility-relevant ranges. Exact ages are no longer collected or stored, while existing questionnaire progress remains compatible." },
   { date: "2026-07-21", text: "Replaced age-band guessing with a private exact-age field, expanded daily-life and school situations, and rebuilt B.C. application guides with verified steps, document checklists, direct next actions and a readable responsive guide layout." },
   { date: "2026-07-21", text: "Added contextual help for every questionnaire uncertainty choice, repaired older child sessions so they return to the exact age question, added regular-school choices for students through age 18, and centred the legal/privacy note across viewport sizes." },
