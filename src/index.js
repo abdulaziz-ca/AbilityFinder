@@ -333,6 +333,7 @@ async function handleAsk(request, env) {
 }
 
 const MAX_FEEDBACK_CHARS = 4000;
+const FEEDBACK_KINDS = ["Feature request", "Bug or broken link", "Missing benefit", "Something else"];
 
 /**
  * POST /api/feedback — send the feedback form without a desktop mail app.
@@ -364,7 +365,8 @@ async function handleFeedback(request, env) {
   }
 
   const message = String(body?.message ?? "").trim();
-  const kind = String(body?.kind ?? "feedback").trim().slice(0, 40);
+  const rawKind = String(body?.kind ?? "").trim();
+  const kind = FEEDBACK_KINDS.includes(rawKind) ? rawKind : "Something else";
   const replyTo = String(body?.email ?? "").trim().slice(0, 200);
 
   if (!message) return errorResponse("Please write a message first.", 400);

@@ -258,3 +258,44 @@ test("OPTIONS is accepted only from the exact request origin and never enables C
   assert.equal(hostile.status, 403);
   assert.equal(hostile.headers.get("access-control-allow-origin"), null);
 });
+
+test("feedback subjects allowlist kinds and reject header injection", async () => {
+  const worker = loadWorkerForTest();
+  let captured;
+  const env = {
+    ASK_LIMIT: { async limit() { return { success: true }; } },
+    FEEDBACK_MAIL: { async send(msg) { captured = msg; } },
+  };
+  const headers = {
+    "Content-Type": "application/json",
+    "Origin": "https://abilityfinder.ca",
+  };
+
+  const injected = await worker.fetch(
+    new Request("https://abilityfinder.ca/api/feedback", {
+      method: "POST",
+      headers,
+      body: JSON.stringify({
+        kind: "Bug\r\nBcc: attacker@evil.com",
+        email: "",
+        message: "hello",
+      }),
+    }),
+    env
+  );
+  assert.equal(injected.status, 200);
+  assert.ok(captured);
+  assert.equal(captured.subject, "AbilityFinder feedback — Something else");
+  assert.equal(/[\r\n]/.test(captured.subject), false);
+
+  const legitimate = await worker.fetch(
+    new Request("https://abilityfinder.ca/api/feedback", {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ kind: "Missing benefit", email: "", message: "hello" }),
+    }),
+    env
+  );
+  assert.equal(legitimate.status, 200);
+  assert.equal(captured.subject, "AbilityFinder feedback — Missing benefit");
+});
