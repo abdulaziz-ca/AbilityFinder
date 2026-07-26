@@ -1,36 +1,14 @@
 const { test, expect } = require("@playwright/test");
 
-// Only the local app and the two disclosed Cloudflare Web Analytics endpoints may be requested.
-const ALLOWED_REQUEST_ORIGINS = new Set([
-  "http://127.0.0.1:8766",
-  "https://static.cloudflareinsights.com",
-  "https://cloudflareinsights.com",
-]);
-const CLOUDFLARE_INSIGHTS_ORIGINS = new Set([
-  "https://static.cloudflareinsights.com",
-  "https://cloudflareinsights.com",
-]);
-
-async function abortCloudflareInsights(context) {
-  await context.route("**/*", async (route) => {
-    const origin = new URL(route.request().url()).origin;
-    if (CLOUDFLARE_INSIGHTS_ORIGINS.has(origin)) {
-      await route.abort();
-    } else {
-      await route.continue();
-    }
-  });
-}
+// Ordinary use must load only from AbilityFinder's own origin. User-initiated
+// official/Maps links are covered separately and are not opened in this journey.
+const ALLOWED_REQUEST_ORIGINS = new Set(["http://127.0.0.1:8766"]);
 
 function collectPageErrors(page, errors) {
   page.on("pageerror", (error) => {
-    if (!error.message.includes("cloudflareinsights")) errors.push(error.message);
+    errors.push(error.message);
   });
 }
-
-test.beforeEach(async ({ context }) => {
-  await abortCloudflareInsights(context);
-});
 
 async function deleteAppStorage(page) {
   await page.goto("/");
@@ -59,7 +37,7 @@ async function expectHealthy(page) {
 }
 
 async function pick(page, text) {
-  await page.locator("button.opt", { hasText: text }).click();
+  await page.locator(".opt", { hasText: text }).click();
   await page.waitForTimeout(230);
   const next = page.locator("#next");
   if (await next.count() && (await next.textContent()).includes("Continue")) {
@@ -104,7 +82,7 @@ test("normal wizard cycle saves continuously and reloads from IndexedDB mid-flow
   await expect.poll(async () => (await storedState(page)).answers.ageBand).toBe("19to59");
   await page.reload();
   await expect(page.locator(".step-q")).toContainText("Where do you live?");
-  await expect(page.locator("button.opt.selected")).toHaveCount(0);
+  await expect(page.locator(".opt.selected")).toHaveCount(0);
 
   await pick(page, "Alberta");
   await pick(page, "Yes");
@@ -313,7 +291,7 @@ test("an older child session missing its age range resumes there instead of show
 
   await page.reload();
   await expect(page.locator(".step-q")).toHaveText("How old is your child?");
-  await expect(page.locator("button.opt", { hasText: "In post-secondary school" })).toHaveCount(0);
+  await expect(page.locator(".opt", { hasText: "In post-secondary school" })).toHaveCount(0);
 });
 
 const personas = [
@@ -385,7 +363,6 @@ for (const persona of personas) {
 
 test("the app fails visible with clean defaults when IndexedDB is unavailable", async ({ browser }) => {
   const context = await browser.newContext();
-  await abortCloudflareInsights(context);
   await context.addInitScript(() => {
     Object.defineProperty(window, "indexedDB", { configurable: true, value: undefined });
   });

@@ -30,7 +30,7 @@ The owner authorized the first recommended correction group after the audit. Thi
 - **ABFED-06:** Alberta parking-placard matching now uses the official 50-metre or qualifying-vision route and still requires authorized certification.
 - Browser asset references were advanced from `v=43` through `v=46`, including matching self-hosted font URLs.
 
-These are conservative harm-reduction changes. Most matcher findings are **mitigated, not closed**: the safer matcher now avoids unsupported `ready` verdicts, but the next iteration should add concrete, program-specific questions and revalidate every answer-to-rule mapping. The audit's **NO-GO recommendation remains in effect** because accessibility, security, privacy, assistant-grounding, intake-state and other matcher/data blockers remain.
+These are conservative harm-reduction changes. Most matcher findings are **mitigated, not closed**: the safer matcher now avoids unsupported `ready` verdicts, but the next iteration should add concrete, program-specific questions and revalidate every answer-to-rule mapping. The audit's **NO-GO recommendation remains in effect** because privacy, intake-state and other matcher/data blockers remain; later assistant, wizard-accessibility and transport-security remediations described below are still local and have not changed production.
 
 ### Verification performed after the changes
 
@@ -58,7 +58,7 @@ The next recommended group corrected DATA-01 and DATA-02 across source, generate
 
 Official re-verification used the current [CRA DTC explanation](https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/about-dtc.html), [CRA application and practitioner matrix](https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html), and [CRA claiming guidance](https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/claiming-dtc.html), accessed 2026-07-22. Finance Canada's 2026 expansion material was reviewed as a proposal and was not implemented as current eligibility or signer policy.
 
-No commit, push, or deployment was performed.
+This batch was later committed and deployed with the other approved remediation work in `68b8dfc` on 2026-07-22.
 
 ### Third remediation batch: time-sensitive benefit integrity
 
@@ -72,7 +72,45 @@ The next immediate data group corrected DATA-03, DATA-05, DATA-06 and DATA-14 ac
 
 Official re-verification used the [federal CDB amount page](https://www.canada.ca/en/services/benefits/disability/canada-disability-benefit/amount.html), [Alberta's federal-support action page](https://www.alberta.ca/aish-apply-for-federal-disability-supports), [BC Bus Pass policy](https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/general-supplements-and-programs/bc-bus-pass-program), and [BC's current support-needs transition page](https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs), accessed 2026-07-22.
 
-No commit, push, or deployment was performed.
+This batch was later committed and deployed with the other approved remediation work in `68b8dfc` on 2026-07-22.
+
+### Fourth remediation batch: assistant grounding and scope safety
+
+The next recommended group addresses AI-01 and AI-02 without widening the assistant's role, privacy boundary or Cloudflare cost profile.
+
+- **AI-01 — completed locally; not deployed:** every catalogue name, summary and retrieved narrative field now passes through one fail-closed grounding-safety module. It removes dollar and other currency figures, percentages including worded fractions and tier lists, age limits, income/asset cutoffs and embedded phone numbers. The generator aborts before writing if one of those facts survives.
+- Allowed practitioner form facts and verified phone/contact facts are now emitted as explicit generated fields and appended by the Worker, rather than bypassing narrative redaction through regex exceptions.
+- **AI-02 — completed locally; not deployed:** the generated grounding exports its scope from the same literal `BC_ENABLED` switch that controls catalogue inclusion. The Worker now describes Alberta, British Columbia and federal coverage and gives a separate unsupported-province response that preserves federal applicability.
+- **Regression coverage:** six assistant-specific unit/Worker-contract tests cover currency symbols and words, percentage tiers, age bands, cutoffs, `2-1-1`, Canadian phone numbers, fail-closed generation, generated-field separation, BC scope, captured Worker prompt content and fragmented zero-valued SSE tokens.
+- **Verification:** `npm run gen:context` passed with 84 benefits and 151 monitored links; `npm test` passed 35/35; `npm run test:e2e` passed 32/32 in Chromium; `git diff --check` passed; Wrangler 4.112.0 dry-run passed with 110 assets and the unchanged KV, email, AI, rate-limit and asset bindings.
+
+This batch does not claim that a small language model can never disobey instructions. Production adversarial prompts and quota/failure validation remain required after release, using only synthetic questions and the bounded free allocation.
+
+### Fifth remediation batch: wizard accessibility and transport security
+
+The next recommended group addresses A11Y-01 and the repository-controlled portion of SEC-01 without changing the privacy model, adding a paid service or forcing every static request through the Worker.
+
+- **A11Y-01 — completed locally; manual AT validation required:** wizard choices are native radio or checkbox inputs inside a `fieldset` with a `legend`. Labels retain the existing visual design, expose checked state programmatically, and have keyboard and forced-colours focus styles. Same-question multi-select changes update in place and retain focus; deliberate step navigation focuses the next question heading.
+- **A11Y regression coverage:** a dedicated browser test verifies native role/state/group semantics, unique radio groups, checkbox focus persistence, visual selection, Next-button state and focus transfer. Existing tests were updated to query the native roles rather than the former custom-button implementation.
+- **SEC-01 — repository mitigation completed locally; production edge action still required:** static assets and Worker responses now carry a six-month `Strict-Transport-Security: max-age=15552000` rollout policy on HTTPS. The Worker returns a same-path 308 redirect for canonical-host HTTP requests that reach it. It deliberately omits `includeSubDomains` and `preload` until every subdomain is inventoried and a stable 12-month policy is justified.
+- **Cloudflare edge requirement:** Workers Static Assets are assets-first by default, so ordinary HTTP HTML, JavaScript and generated-guide requests bypass the Worker. Enabling `run_worker_first` would spend a Worker invocation on every static request and create unnecessary Free-plan capacity and latency risk. The release owner must enable Cloudflare **Always Use HTTPS** for the zone when this batch is deployed, then verify root, guide, asset and API redirects at the edge.
+- **Production recheck (Observed, 2026-07-22 Edmonton / 2026-07-23 UTC):** header-only requests still returned HTTP 200 for `/`, canonical generated guide `/guides/bc-bus-pass`, and `/app.js?v=46`; the API accepted HTTP and returned its normal 405 to `HEAD`; HTTPS root, guide and `/api/link-health` lacked HSTS. This is expected because this fifth batch is not deployed and the zone setting has not been changed.
+- **Verification:** `npm test` passed 39/39, including four Worker transport-policy tests; `npm run test:e2e` passed 33/33 in Chromium, including the new wizard semantics/focus journey; `git diff --check` passed; Wrangler 4.112.0 dry-run passed with 110 assets (200.33 KiB / 52.10 KiB gzip) and the unchanged KV, email, AI, rate-limit and asset bindings.
+
+Transport-policy sources accessed 2026-07-22: [Cloudflare Always Use HTTPS](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/always-use-https/), [Cloudflare HSTS guidance](https://developers.cloudflare.com/use-cases/solutions/encrypt-all-keep-site-secure/), [Workers Static Assets routing](https://developers.cloudflare.com/workers/static-assets/routing/worker-script/) and [static `_headers`](https://developers.cloudflare.com/workers/static-assets/headers/).
+
+### Sixth remediation batch: privacy boundary and API-origin enforcement
+
+The next recommended group addresses PRIV-01 and SEC-02 without adding tracking, accounts, remote questionnaire storage, paid infrastructure or a new production service.
+
+- **PRIV-01 — repository correction completed locally; Cloudflare dashboard and deployment work remain:** the explicit Web Analytics beacon was removed from the app shell, guide generator and all 84 generated guide HTML surfaces. The CSP is again self-only for scripts and connections. Privacy, partner and impact copy now consistently says that AbilityFinder does not collect visitor/page statistics and that only the assistant and feedback form submit user-entered content to the Worker. Browser asset versions advanced to `v=48`.
+- **Required edge action:** Cloudflare can inject Web Analytics on proxied sites independently of repository markup. At release, disable the site in **Web Analytics → Manage Site → Disable**, deploy the local source, then verify the app and representative guides have no beacon markup, no analytics request and the self-only CSP. This dashboard action was not performed in this batch.
+- **SEC-02 — completed locally; not deployed:** `/api/ask` and `/api/feedback` now require an exact, parseable same-origin `Origin` before method handling, rate limiting, AI or email binding access. Missing, opaque `null`, malformed, path-bearing and hostile origins return `403` with `Cache-Control: no-store`; same-origin preflight returns `204` without any `Access-Control-Allow-*` header. This is an abuse boundary, not authentication: non-browser clients can forge `Origin`, so the existing per-IP limiter remains necessary.
+- **Production recheck (Observed, 2026-07-22 Edmonton / 2026-07-23 UTC):** the deployed site still contains the explicit analytics beacon, serves the widened analytics CSP and accepts hostile API preflight with `Access-Control-Allow-Origin: *`. This is expected because the sixth batch is local and the Cloudflare Web Analytics site remains enabled.
+- **Regression coverage:** the privacy contract scans the shell, CSP, generator and every generated guide; four Worker-origin contracts cover hostile, missing, opaque, malformed and exact same-origin requests; the existing browser privacy journey now permits only the local application origin.
+- **Verification:** `npm run gen:guides` regenerated 83 benefit pages plus guide index and sitemap; `npm test` passed 44/44; `npm run test:e2e` passed 33/33 in Chromium. A local Wrangler server reproduced strict self-only CSP, same-origin `204`, hostile `403`, missing-origin `403` and same-origin request validation without invoking real AI or email. Wrangler 4.112.0 dry-run passed with 110 assets (201.10 KiB / 52.20 KiB gzip) and the expected KV, email, AI, rate-limit and asset bindings.
+
+Cloudflare sources accessed 2026-07-22: [disable a Web Analytics site](https://developers.cloudflare.com/web-analytics/get-started/), [CORS and cache behavior](https://developers.cloudflare.com/cache/cache-security/cors/), [Workers best practices](https://developers.cloudflare.com/workers/best-practices/workers-best-practices/) and [static `_headers`](https://developers.cloudflare.com/workers/static-assets/headers/).
 
 ## 1. Scope and authorization boundary
 
@@ -249,7 +287,7 @@ Evidence labels used below: **Observed** means directly reproduced; **Code-confi
 
 ### DATA-01 — DTC base amount is presented as the value of the credit
 
-- **Remediation status (2026-07-22): Completed locally; not deployed.** The misleading estimate, homepage amount and retroactive-value calculator were removed from source and regenerated surfaces. Focused browser assertions and the complete 28-test Chromium suite pass.
+- **Remediation status (2026-07-22): Deployed in `68b8dfc`.** The misleading estimate, homepage amount and retroactive-value calculator were removed from source and regenerated surfaces. Focused browser assertions and the complete Chromium suite pass.
 - **Severity / priority / confidence / type:** High / P1 / Confirmed / Data accuracy.
 - **Affected users:** DTC applicants and supporting relatives, especially users budgeting under financial pressure.
 - **Affected surfaces:** `public/data.js` DTC value/summary/detail, result/detail/print value path, `public/guides/dtc.html`, and the homepage preview.
@@ -262,7 +300,7 @@ Evidence labels used below: **Observed** means directly reproduced; **Code-confi
 
 ### DATA-02 — DTC practitioner guidance ignores the impairment matrix
 
-- **Remediation status (2026-07-22): Completed locally; not deployed.** The current CRA function-by-practitioner matrix is encoded and covered by an exact table assertion. Proposed signer expansions are not presented as current.
+- **Remediation status (2026-07-22): Deployed in `68b8dfc`.** The current CRA function-by-practitioner matrix is encoded and covered by an exact table assertion. Proposed signer expansions are not presented as current.
 - **Severity / priority / confidence / type:** High / P1 / Confirmed / Data accuracy.
 - **Affected users:** Applicants who may pay for or wait for the wrong practitioner.
 - **Affected surfaces:** practitioner finder, `PRACTITIONER_FORMS`, DTC detail/static guide and assistant grounding.
@@ -287,7 +325,7 @@ Evidence labels used below: **Observed** means directly reproduced; **Code-confi
 
 ### DATA-06 — BC Autism Funding final-period expenditure rule is stale
 
-- **Remediation status (2026-07-22): Completed locally; not deployed.** Both age records now distinguish the normal 20% TTE rule from the 50% final-aligned-period exception and include all three transition deadlines. Source, generated guides and assistant detail grounding were regenerated; focused and full browser regressions pass.
+- **Remediation status (2026-07-22): Deployed in `68b8dfc`.** Both age records now distinguish the normal 20% TTE rule from the 50% final-aligned-period exception and include all three transition deadlines. Source, generated guides and assistant detail grounding were regenerated; focused and full browser regressions pass.
 - **Severity / priority / confidence / type:** High / P1 / Confirmed / Data accuracy.
 - **Affected users:** Families transitioning from Autism Funding who could lose usable funds.
 - **Affected surfaces:** both autism records, guides and generated assistant detail.
@@ -299,7 +337,7 @@ Evidence labels used below: **Observed** means directly reproduced; **Code-confi
 
 ### DATA-14 — AISH/CDB interaction guidance omits current required action
 
-- **Remediation status (2026-07-22): Completed locally; not deployed.** CDB, AISH and ADAP surfaces now give the mandatory outcome-reporting action and date the published no-decision reduction scenario. Current federal indexation remains separate from Alberta's `$200` wording.
+- **Remediation status (2026-07-22): Deployed in `68b8dfc`.** CDB, AISH and ADAP surfaces now give the mandatory outcome-reporting action and date the published no-decision reduction scenario. Current federal indexation remains separate from Alberta's `$200` wording.
 - **Severity / priority / confidence / type:** High / P1 / Confirmed / Data accuracy.
 - **Affected users:** AISH recipients applying for or receiving the Canada Disability Benefit.
 - **Affected surfaces:** AISH/CDB details, interactions and sequencing guidance.
@@ -310,17 +348,19 @@ Evidence labels used below: **Observed** means directly reproduced; **Code-confi
 
 ### SEC-01 — production is available over plaintext HTTP
 
+- **Remediation status (2026-07-22): In progress; local code complete, production edge action required.** HTTPS HSTS coverage is implemented for static and Worker responses, and HTTP requests reaching the Worker receive a 308. Assets-first routing means Cloudflare Always Use HTTPS must be enabled at release; production remains vulnerable until deployment and that edge change are verified.
 - **Severity / priority / confidence / type:** High / P1 / Confirmed / Security.
 - **Affected users:** Anyone whose first visit occurs on an untrusted or compromised network.
 - **Affected surface:** `http://abilityfinder.ca` and HTTPS response headers.
-- **Evidence:** **Observed twice.** `curl -I http://abilityfinder.ca/` returned `HTTP/1.1 200 OK` with the full app and Cloudflare SEA `CF-RAY`; HTTPS returned 200 without `Strict-Transport-Security`.
+- **Evidence:** **Observed three times, most recently 2026-07-22 Edmonton / 2026-07-23 UTC.** `curl -I` against the HTTP root, canonical generated BC Bus Pass guide and current JavaScript asset returned `HTTP/1.1 200 OK` with Cloudflare SEA `CF-RAY`; the HTTP API route returned its normal method response instead of redirecting; HTTPS root, guide and link-health responses lacked `Strict-Transport-Security`. **Code-confirmed:** the local release candidate adds HSTS in `public/_headers` and `src/index.js`, with same-path Worker redirects and four contract tests.
 - **Expected / actual:** Expected an unconditional 301/308 redirect to HTTPS and a reviewed HSTS policy. Actual permits plaintext content/script substitution before a secure visit.
-- **Root cause:** Cloudflare zone redirect/HSTS is not enabled; these controls are not in repository `_headers`.
-- **Correction / verification:** Enable Always Use HTTPS or an equivalent zone redirect. After confirming every required subdomain is HTTPS-ready, add HSTS deliberately. Assert every HTTP path and asset redirects and HTTPS carries the intended header. This is security best practice, not a legal conclusion.
+- **Root cause:** Cloudflare zone redirect/HSTS was not enabled. Static assets bypass Worker code by default, so repository Worker redirects alone cannot enforce HTTPS for the full site.
+- **Correction / verification:** Deploy the local headers/Worker policy and enable Cloudflare Always Use HTTPS for the zone. Keep the six-month no-subdomain/no-preload rollout until the domain inventory and sustained HTTPS operation justify expansion. Assert every HTTP path and asset redirects and every HTTPS static/API response carries the intended header. This is security best practice, not a legal conclusion.
 - **Regression:** Production smoke test for root, guide, asset and API HTTP redirects plus HTTPS HSTS.
 
 ### AI-01 — numeric facts survive the assistant redaction generator
 
+- **Remediation status (2026-07-22): Completed locally; not deployed.** All narrative grounding is redacted and checked before generation; verified form and contact facts are separated into explicit fields. Unit and captured-Worker-prompt regressions pass.
 - **Severity / priority / confidence / type:** High / P1 / Confirmed / Reliability and data accuracy.
 - **Affected users:** Anyone asking the assistant about amounts, cutoffs, percentages or age.
 - **Affected files:** `scripts/gen-benefits-context.js:104-117,147-176`, `src/benefits-context.js`, `src/index.js:52-58,108`.
@@ -333,9 +373,10 @@ Evidence labels used below: **Observed** means directly reproduced; **Code-confi
 
 ### A11Y-01 — wizard selection semantics and focus are broken
 
+- **Remediation status (2026-07-22): Completed locally; manual AT validation required.** Native radio/checkbox groups, fieldset/legend semantics, persistent same-question focus and next-question heading focus are implemented. Chromium role/state/focus regressions pass; VoiceOver, NVDA and TalkBack remain required before claiming real-world accessibility.
 - **Severity / priority / confidence / type:** High / P1 / High confidence / Accessibility.
 - **Affected users:** Screen-reader, keyboard, switch, voice-control and motor-limited users.
-- **Affected code:** `public/app.js:2465-2482,2578-2587`.
+- **Affected code:** audited implementation at `public/app.js:2465-2482,2578-2587`; local remediation at `public/app.js:2490,2603-2665` and `public/styles.css`.
 - **Evidence:** **Code-confirmed; Manual validation required for AT impact.** Choices are ordinary buttons whose selected state exists only in `.selected` CSS. They expose no `aria-pressed`, radio/checkbox state, fieldset/legend or group. Every click replaces `#app`, destroying the focused element; multi-select users remain on the same question with focus lost.
 - **Expected / actual:** Expected programmatic state and predictable focus. Actual selection is visually conveyed only and keyboard navigation can restart at the document beginning.
 - **Root cause:** Full-app string rendering is coupled to every answer update.
@@ -346,14 +387,14 @@ Evidence labels used below: **Observed** means directly reproduced; **Code-confi
 
 #### DATA-03 — Canada Disability Benefit
 
-- **Remediation status (2026-07-22): Completed locally; not deployed.** Catalog, estimates and generated guide now use `$204.20/month` for July 2026–June 2027. The conditional fixed `$150` supplement is shown separately and excluded from annual recurring totals.
+- **Remediation status (2026-07-22): Deployed in `68b8dfc`.** Catalog, estimates and generated guide now use `$204.20/month` for July 2026–June 2027. The conditional fixed `$150` supplement is shown separately and excluded from annual recurring totals.
 - **Affected/evidence:** Adults considering CDB; `public/data.js`, guide and estimates. **Source-confirmed** current July 2026–June 2027 maximum is $204.20/month and a September 2026 DTC-cost supplement of up to $150 exists; site shows $200/$2,400 and omits the supplement.
 - **Cause/correction:** annual indexation and the new measure were not propagated. Reverify and update from the [official CDB amount page](https://www.canada.ca/en/services/benefits/disability/canada-disability-benefit/amount.html), then regenerate.
 - **Verify/regression:** boundary tests for benefit year, indexed monthly/annual display and supplement eligibility wording.
 
 #### DATA-05 — BC Bus Pass fee
 
-- **Remediation status (2026-07-22): Completed locally; not deployed.** The record and guide now state no annual fee for the PWD stream, attach `$45/year` only to the eligible low-income-senior stream and explain the PWD pass-versus-`$52/month` choice.
+- **Remediation status (2026-07-22): Deployed in `68b8dfc`.** The record and guide now state no annual fee for the PWD stream, attach `$45/year` only to the eligible low-income-senior stream and explain the PWD pass-versus-`$52/month` choice.
 - **Affected/evidence:** PWD recipients; record/guide/estimate. **Source-confirmed** PWD recipients choose the pass or $52/month transportation support, and the PWD pass stream has no annual fee; the site states $45.
 - **Cause/correction:** rules from a different eligibility stream were combined. Correct from the [official BC Bus Pass page](https://www2.gov.bc.ca/gov/content/transportation/passenger-travel/buses-taxis-limos/bus-pass/people-with-disabilities).
 - **Verify/regression:** separate PWD and other program streams; never reuse a fee across them.
@@ -377,15 +418,17 @@ Evidence labels used below: **Observed** means directly reproduced; **Code-confi
 
 ### PRIV-01 — analytics conflicts with the mandatory privacy model
 
+- **Remediation status (2026-07-22): In progress.** Repository markup, generated guides, CSP and privacy-facing copy are corrected locally. Production still requires deployment, Cloudflare Web Analytics disablement and a clean network/CSP verification.
 - **Severity / priority / confidence / type:** Medium / P1 / Confirmed / Privacy and maintainability.
 - **Affected users:** all visitors; guide URLs can reveal interest in a particular disability benefit.
 - **Evidence:** **Observed; Code-confirmed.** `public/index.html:201` and generated guides load Cloudflare Web Analytics; production loaded both the explicit beacon and an edge-injected beacon. `public/_headers:10` permits the analytics script/connection. AGENTS, DEPLOY, ARCHIVAL and README say no analytics or self-only CSP; privacy copy instead discloses analytics.
 - **Expected / actual:** Expected the documented no-analytics boundary. Actual third-party scripts execute on app and guide pages. No questionnaire-answer exfiltration was observed, so this is not reported as confirmed sensitive-data leakage.
-- **Correction / verification:** Resolve the product decision explicitly. Under current mandatory instructions, remove the beacon and CSP exceptions, disable dashboard injection, update privacy text, and confirm no analytics requests on any route/guide.
+- **Correction / verification:** The repository portion is complete. Disable dashboard injection, deploy, and confirm no analytics requests or CSP exceptions on any route/guide.
 - **Regression:** production network/CSP assertion rejecting third-party scripts.
 
 ### AI-02 — assistant scope contradicts the product
 
+- **Remediation status (2026-07-22): Completed locally; not deployed.** Scope is generated from `BC_ENABLED`, and the Worker prompt now covers Alberta, British Columbia and federal benefits while qualifying unsupported provinces.
 - **Severity / priority / confidence / type:** Medium / P1 / Confirmed / Reliability.
 - **Evidence:** **Code-confirmed; Observed narrow production check.** `public/app.js:9` enables BC, while `src/index.js:72` says Alberta/federal only. A BC prompt happened to get a BC answer because BC catalogue text competes with the stale instruction; that does not make the contract deterministic.
 - **Correction / verification:** Generate scope wording from the same source as catalogue inclusion. Test BC, Alberta, federal and unsupported-province prompts.
@@ -408,10 +451,11 @@ Evidence labels used below: **Observed** means directly reproduced; **Code-confi
 
 ### SEC-02 — same-origin APIs are exposed cross-origin
 
+- **Remediation status (2026-07-22): Completed locally; not deployed.** Exact same-origin `Origin` validation now runs before rate-limit, AI or email bindings, and API responses no longer emit CORS permission headers.
 - **Severity / priority / confidence / type:** Medium / P1 / Confirmed / Security and reliability.
 - **Affected users/system:** shared Workers AI free allocation and pinned feedback inbox.
 - **Evidence:** **Observed; Code-confirmed.** `src/index.js:113-117` returns `Access-Control-Allow-Origin: *`; production preflight accepted cross-origin calls. These endpoints have no cross-origin UI requirement. This is not conventional authenticated CSRF, but arbitrary sites can spend a visitor IP's quota or trigger owner-bound email. Per-IP limiting reduces, not removes, distributed abuse.
-- **Correction / verification:** Omit CORS for same-origin calls or allow only production origins; validate `Origin` when present. Cross-origin preflight/POST should fail while same-origin UI works.
+- **Correction / verification:** Local contracts now reject cross-origin, missing, opaque, malformed and path-bearing origins while exact same-origin UI requests work. After deployment, repeat these contracts at the production edge; retain rate limiting because `Origin` can be forged outside browsers.
 - **Regression:** same-origin, hostile-origin, absent-origin and malformed-origin tests.
 
 ### UX-02 — the homepage overpromises certainty and completeness
@@ -584,8 +628,8 @@ All **84/84 benefit records** therefore received current official-source review 
 
 | Program | Exact high-risk claims checked | Current official source | Status / correction |
 |---|---|---|---|
-| Disability Tax Credit | base/value, non-refundable character, practitioners | [CRA DTC/application](https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html); [Finance Canada 2026](https://budget.canada.ca/update-miseajour/2026/report-rapport/tm-mf-en.html) | **Corrected locally on 2026-07-22; not deployed:** DATA-01/02 |
-| Canada Disability Benefit | Jul 2026 maximum, threshold concept, Sep supplement, AISH interaction | [CDB amount](https://www.canada.ca/en/services/benefits/disability/canada-disability-benefit/amount.html); [Alberta interaction](https://www.alberta.ca/aish-apply-for-federal-disability-supports) | **Corrected locally on 2026-07-22; not deployed:** DATA-03/14 |
+| Disability Tax Credit | base/value, non-refundable character, practitioners | [CRA DTC/application](https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html); [Finance Canada 2026](https://budget.canada.ca/update-miseajour/2026/report-rapport/tm-mf-en.html) | **Deployed in `68b8dfc` on 2026-07-22:** DATA-01/02 |
+| Canada Disability Benefit | Jul 2026 maximum, threshold concept, Sep supplement, AISH interaction | [CDB amount](https://www.canada.ca/en/services/benefits/disability/canada-disability-benefit/amount.html); [Alberta interaction](https://www.alberta.ca/aish-apply-for-federal-disability-supports) | **Deployed in `68b8dfc` on 2026-07-22:** DATA-03/14 |
 | Child Disability Benefit | $3,480/$290, $82,847 threshold, automatic CCB/DTC, phone | [CRA CDB for children](https://www.canada.ca/en/revenue-agency/services/child-family-benefits/child-disability-benefit.html) | Verified for checked fields |
 | RDSP grant/bond | $3,500 grant, $1,000 bond, no contribution for bond, carry-forward | [CRA grant/bond](https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/registered-disability-savings-plan-rdsp/canada-disability-savings-grant-canada-disability-savings-bond.html) | Verified checked fields; lifetime total still follow-up |
 | CPP Disability | 2026 $610.46 basic/$1,741.20 max, under 65, severe/prolonged | [CPP-D amount](https://www.canada.ca/en/services/benefits/publicpensions/cpp-disability-benefit/benefit-amount.html) | Verified; displayed rounding should be labelled |
@@ -603,9 +647,9 @@ All **84/84 benefit records** therefore received current official-source review 
 | St. Albert | local/commuter fares, recreation for AISH/ADAP | [City subsidy](https://stalbert.ca/city/fcss/programs-services/subsidy/) | Verified checked fields |
 | Strathcona County | Arc cap, no-cost Active Pass | [Subsidized fares](https://www.strathcona.ca/community-families/affordable-services/subsidized-fares/); [affordable services](https://www.strathcona.ca/community-families/affordable-services/) | Fields verified; shared proxy unsupported |
 | BC Disability Assistance | support/shelter maximums and 2026 earnings exemptions | [BC rate table](https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/disability-assistance-rate-table); [BC release](https://news.gov.bc.ca/releases/2025SDPR0017-001110) | Verified checked fields |
-| BC Autism Funding, both age records | amounts, end date, transition spending | [BC support needs](https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs) | **Corrected locally on 2026-07-22; not deployed:** DATA-06 |
+| BC Autism Funding, both age records | amounts, end date, transition spending | [BC support needs](https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs) | **Deployed in `68b8dfc` on 2026-07-22:** DATA-06 |
 | BC Children and Youth Disability Benefit | $6,500/$17,000, needs basis, timing | [Official program page](https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/financial-supports/disability-benefit) | Verified checked fields; use canonical page as source |
-| BC Bus Pass | $52-or-pass choice, fee stream, delivery | [BC Bus Pass policy](https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/general-supplements-and-programs/bc-bus-pass-program) | **Corrected locally on 2026-07-22; not deployed:** DATA-05 |
+| BC Bus Pass | $52-or-pass choice, fee stream, delivery | [BC Bus Pass policy](https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/general-supplements-and-programs/bc-bus-pass-program) | **Deployed in `68b8dfc` on 2026-07-22:** DATA-05 |
 | BC Property Tax Deferment | prime + 2%, fees, 2026 compounding | [Interest/fees](https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/property-tax-deferment-program/tax-deferment-interest-fees) | Verified checked fields; quarterly monitoring needed |
 | BC Fuel Tax Refund / ICBC discount | up to $500/year; 25% Basic Autoplan | [BC refund](https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities) | Verified checked fields |
 | BC Healthy Kids | dental maximum/period, glasses, hearing | [BC Healthy Kids](https://www2.gov.bc.ca/gov/content/health/managing-your-health/family/child-teen-health/dental-eyeglasses) | Verified checked fields; page should be periodically reconfirmed |
@@ -642,8 +686,8 @@ WCAG 2.2 AA is the technical benchmark, not a legal finding. Automated coverage 
 
 | Area | Observation |
 |---|---|
-| Keyboard | Core controls are native buttons/links, but wizard rerenders destroy focus; dialog and route focus are incomplete. Full manual journey not performed. |
-| Name/role/state | Critical wizard selected state and grouping fail the source review; accessibility toggles themselves correctly use `aria-pressed`. |
+| Keyboard | The local fifth batch replaces wizard custom buttons with native radio/checkbox controls, preserves same-question focus and focuses the next question heading. Production still has the audited behavior; dialog and route focus remain incomplete. Full manual journey was not performed. |
+| Name/role/state | Native wizard selection and grouping semantics pass local Chromium assertions. Accessibility toggles correctly use `aria-pressed`. Real VoiceOver/NVDA/TalkBack validation is still required. |
 | Focus order/visible focus | DOM order is generally logical. Select/text controls use outline suppression and need forced visual verification on every theme/background. |
 | Landmarks/headings | Main and header exist; no skip link; wizard/results lack page `h1`; route titles do not change. |
 | Dynamic status | Final assistant reply has a targeted live region and streamed deltas use `textContent`, both positive. Whole-main live region is excessive; feedback errors lack association/status. |
@@ -663,8 +707,8 @@ Required disabled-user study: people using screen readers, magnification, switch
 
 ### Confirmed vulnerabilities
 
-- **SEC-01:** plaintext application/no HSTS.
-- **SEC-02:** unnecessary wildcard cross-origin API invocation. It is an abuse/quota issue, not authenticated CSRF.
+- **SEC-01:** plaintext application/no HSTS remains confirmed in production; repository mitigation is local and the zone redirect is pending.
+- **SEC-02:** unnecessary wildcard cross-origin API invocation remains confirmed in production; the exact-origin/no-CORS correction is complete locally. It is an abuse/quota issue, not authenticated CSRF.
 - **SEC-05:** local self-markup injection through unescaped postal attribute. Impact is low; no stored/remote XSS or model-output XSS was found.
 
 ### Likely issue requiring isolated validation
@@ -674,8 +718,8 @@ Required disabled-user study: people using screen readers, magnification, switch
 ### Defence-in-depth improvements
 
 - Apply app-level request-size rejection before JSON parsing where possible.
-- Restrict origins, explicitly handle binding failures, add request/stream timeouts, and test AI quota exhaustion.
-- Remove analytics scripts/CSP exceptions under the current privacy decision.
+- Explicitly handle binding failures, add request/stream timeouts, and test AI quota exhaustion.
+- Disable Cloudflare Web Analytics at the edge and production-verify the repository's restored self-only CSP.
 
 ### Positive controls
 
@@ -690,7 +734,7 @@ Required disabled-user study: people using screen readers, magnification, switch
 - No source maps, tracked environment/key files, debug bundles or obvious secrets were found in `public/`; however, the unused parked jurisdiction file is deployed (DEPLOY-01).
 - `npm audit --omit=dev` found no production vulnerability. The one current advisory path is in the Wrangler/Miniflare `sharp` development stack and is not reachable through an AbilityFinder untrusted-image feature (SUPPLY-01).
 
-Privacy conclusion: the implemented local-answer model is strong, but active analytics is a direct policy inconsistency. No evidence showed questionnaire answers being transmitted by the application. External analytics JavaScript technically executes with page origin context, and guide URLs can reveal program interest; remove it to restore the promised boundary.
+Privacy conclusion: the implemented local-answer model is strong, and the local release candidate removes the direct analytics-policy inconsistency from source and generated files. Production still executes analytics until the corrected build is deployed and the Cloudflare Web Analytics site is disabled. No evidence showed questionnaire answers being transmitted by the application.
 
 ## 12. UI/UX, plain language and cognitive accessibility
 
@@ -786,15 +830,16 @@ Not recommended: accounts/sync, analytics, advertising, community reviews, CMS, 
 
 - Every High/P1 matcher group: DATA-25/28/30/33/35–44/47–51 and ABFED-01–06, using the exact ledger source and negative witnesses.
 - DATA-01, DATA-02, DATA-03, DATA-05, DATA-06 and DATA-14 are corrected locally and await final release-candidate review/deployment; closed/intake records ABFED-16/17 and BC-BC-05/09 remain open.
-- AI-01, SEC-01 and A11Y-01.
+- Deploy and production-validate the completed local AI-01/02 and A11Y-01 work. Complete SEC-01 by enabling Cloudflare Always Use HTTPS at release and verifying the six-month HSTS rollout.
 - Re-run generators only after source records are corrected; inspect every propagated diff.
-- Resolve PRIV-01 under the current no-analytics instruction.
+- Complete PRIV-01 by disabling the Cloudflare Web Analytics site, deploying the corrected repository and verifying zero analytics markup/requests with the restored self-only CSP.
+- Deploy and production-validate the completed local SEC-02 exact-origin/no-CORS correction.
 - Reconcile every affected app/detail/print/static-guide/context surface and keep unresolved ledger rows visibly unverified.
 
 ### Short term — next iteration
 
 - DATA-08, DATA-10, DATA-46, ABFED-07/08/09/A01 and BC-BC-02/06/12/14–17.
-- AI-02, A11Y-02, REL-01, SEC-02, UX-02, TEST-01 and REL-06 validation.
+- A11Y-02, REL-01, UX-02, TEST-01 and REL-06 validation.
 - Worker-backed/cross-browser tests, route focus/title, assistant reset/timeouts and binding failures.
 - Resolve ambiguous/manual program-owner questions and convert the audit ledgers into an owned review workflow.
 
@@ -844,16 +889,18 @@ Every P1 path should be run three ways: clean profile, valid persisted restore, 
 ## 20. Independent regression/consistency pass
 
 - Clean/full E2E after the third remediation batch: 32/32 passed in Chromium.
+- Clean/full E2E after the fifth local remediation batch: 33/33 passed in Chromium; unit/Worker contracts passed 39/39.
+- Clean/full E2E after the sixth local remediation batch: 33/33 passed in Chromium; unit/Worker/privacy contracts passed 44/44.
 - All persona/view persisted reload cases in the suite passed.
 - 250,000-state evaluator run was deterministic with zero exceptions.
 - Generated context, links, guides and sitemap reproduced byte-for-byte.
 - Production HTTP/no-HSTS was repeated and remained reproducible.
 - Production API curl contracts were repeated and worked at SEA; contradictory in-app 404 was repeated with a cache-busting query and remains unresolved, so REL-06 is not dismissed as an artifact.
-- Production analytics scripts were observed again (two beacon script URLs).
+- Production analytics markup, widened CSP and wildcard API preflight were observed again; local Wrangler reproduced the corrected self-only CSP and exact-origin behavior.
 - Local postal self-markup was reproduced once through the visible UI and independently confirmed from the renderer; it still needs a post-fix rerun.
 - Confirmed data discrepancies were checked across their propagated app/guide/context surfaces.
 
-The original audit was read-only. Post-audit remediation batches were independently rerun through focused tests, the complete 32-test Chromium suite, static invariants, the 250,000-model evaluator and Worker packaging. Nothing was committed, pushed or deployed.
+The original audit was read-only. The first three post-audit remediation batches were independently rerun, committed as `68b8dfc`, pushed to `main`, deployed as Cloudflare version `1ee35dbc-8547-4023-b65a-cbd1f9a6b755`, and smoke-tested on the custom domain. The fourth assistant-safety, fifth wizard/transport and sixth privacy/origin batches are local and uncommitted. Cloudflare Always Use HTTPS and Web Analytics disablement have not been enabled or verified.
 
 ## Top 10 actions with the greatest reduction in user harm
 
@@ -870,7 +917,7 @@ The original audit was read-only. Post-audit remediation batches were independen
 
 ## Quick wins without privacy-model or production-cost change
 
-- Remove Web Analytics beacon/CSP exceptions and disable edge injection.
+- Deploy the completed Web Analytics beacon/CSP removal and disable edge injection.
 - Fix stale BC assistant scope text.
 - Bind the render-error reload button without inline JavaScript.
 - Fix static-guide privacy links.

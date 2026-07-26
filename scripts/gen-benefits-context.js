@@ -19,6 +19,10 @@
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
+const {
+  assertGroundingNarrativeSafe,
+  redactGroundingNarrative,
+} = require("./benefits-context-safety");
 
 const ROOT = path.join(__dirname, "..");
 const SRC = path.join(ROOT, "public", "data.js");
@@ -69,25 +73,6 @@ console.log(
 
 const clean = (s) => String(s ?? "").replace(/\s+/g, " ").trim();
 
-/**
- * Strip figures out of grounding text.
- *
- * The blanket rule "never state a dollar amount" is one a small model can
- * actually follow; a conditional one ("only if it appears verbatim above") is
- * exactly the kind it fumbles. So we keep the rule absolute and make it true by
- * construction — the model is never shown a figure it could quote or, worse,
- * misattribute from one benefit to another. The sentence still explains the
- * concept, and the guide (which has the checked number) is one click away.
- *
- * Deliberately does NOT touch phone numbers: they carry no $ or % and don't
- * match the thousands pattern.
- */
-const redactFigures = (s) =>
-  String(s ?? "")
-    .replace(/\$\s?[\d,]+(?:\.\d+)?/g, "[amount — see the guide]")
-    .replace(/\b\d+(?:\.\d+)?\s?%/g, "[percentage — see the guide]")
-    .replace(/\b\d{1,3},\d{3}\b/g, "[amount — see the guide]");
-
 const byId = new Map(benefits.map((b) => [b.id, b]));
 
 // PRACTITIONER_FORMS lives in app.js, not data.js. It is the verified answer to
@@ -103,7 +88,7 @@ const forms = vm.runInNewContext(`(${formsMatch[1]})`);
 
 const lines = benefits.map((b) => {
   const where = [b.level, b.category].filter(Boolean).join(" · ");
-  return `- ${clean(b.name)} [${where}] — ${clean(b.summary)}`;
+  return `- ${redactGroundingNarrative(clean(b.name))} [${where}] — ${redactGroundingNarrative(clean(b.summary))}`;
 });
 
 const formLines = Object.entries(forms).filter(([id]) => byId.has(id)).map(([id, label]) => {
@@ -111,10 +96,9 @@ const formLines = Object.entries(forms).filter(([id]) => byId.has(id)).map(([id,
   return `- ${name}: a practitioner signs ${clean(label)}.`;
 });
 
-const body =
-  lines.join("\n") +
-  "\n\nFORMS A PRACTITIONER MUST SIGN (the only form names you may state):\n" +
-  formLines.join("\n");
+const body = lines.join("\n");
+const formContext = formLines.join("\n");
+assertGroundingNarrativeSafe(body, "always-sent benefit catalogue");
 
 /* ---------------------------------------------------------------------------
    Per-benefit detail, retrieved on demand.
@@ -148,18 +132,32 @@ const details = {};
 for (const b of benefits) {
   const d = b.detail || {};
   const parts = [];
-  if (d.about) parts.push(`What it is: ${redactFigures(clean(d.about))}`);
+  if (d.about) parts.push(`What it is: ${redactGroundingNarrative(clean(d.about))}`);
   if (d.steps?.length)
-    parts.push(`How to apply:\n${d.steps.map((s, i) => `  ${i + 1}. ${redactFigures(clean(s))}`).join("\n")}`);
+    parts.push(`How to apply:\n${d.steps.map((s, i) => `  ${i + 1}. ${redactGroundingNarrative(clean(s))}`).join("\n")}`);
   if (d.documents?.length)
-    parts.push(`What you need:\n${d.documents.map((s) => `  - ${redactFigures(clean(s))}`).join("\n")}`);
+    parts.push(`What you need:\n${d.documents.map((s) => `  - ${redactGroundingNarrative(clean(s))}`).join("\n")}`);
   if (d.tips?.length)
-    parts.push(`Practical tips:\n${d.tips.map((s) => `  - ${redactFigures(clean(s))}`).join("\n")}`);
-  if (d.time) parts.push(`How long it takes (verified — you may state this): ${redactFigures(clean(d.time))}`);
-  if (d.phone) parts.push(`Phone (this exact number is verified — you may give it): ${clean(d.phone)}`);
+    parts.push(`Practical tips:\n${d.tips.map((s) => `  - ${redactGroundingNarrative(clean(s))}`).join("\n")}`);
+  if (d.time) parts.push(`How long it takes (verified — you may state this): ${redactGroundingNarrative(clean(d.time))}`);
   if (!parts.length) continue;
-  details[b.id] = { name: clean(b.name), keys: keysFor(b), text: parts.join("\n") };
+  const text = parts.join("\n");
+  assertGroundingNarrativeSafe(text, `${b.id} detail grounding`);
+  details[b.id] = {
+    name: redactGroundingNarrative(clean(b.name)),
+    keys: keysFor(b),
+    text,
+    ...(d.phone ? { phone: clean(d.phone) } : {}),
+  };
 }
+
+const scope = {
+  bcEnabled,
+  label: bcEnabled
+    ? "Alberta, British Columbia, and federal Canada"
+    : "Alberta and federal Canada",
+  provinces: bcEnabled ? ["Alberta", "British Columbia"] : ["Alberta"],
+};
 
 const out = `// GENERATED FILE — DO NOT EDIT BY HAND.
 // Regenerate with:  npm run gen:context
@@ -172,8 +170,14 @@ const out = `// GENERATED FILE — DO NOT EDIT BY HAND.
 /** Always injected: the catalog of what exists + the verified form names. */
 export const BENEFITS_CONTEXT = ${JSON.stringify(body)};
 
+/** Allowed exact form facts are kept separate from redacted narrative text. */
+export const PRACTITIONER_FORM_CONTEXT = ${JSON.stringify(formContext)};
+
 /** Injected only when the question matches — see retrieveDetails() in index.js. */
 export const BENEFIT_DETAILS = ${JSON.stringify(details, null, 2)};
+
+/** Generated from the same BC_ENABLED switch that controls catalogue inclusion. */
+export const BENEFITS_SCOPE = Object.freeze(${JSON.stringify(scope)});
 
 export const BENEFIT_COUNT = ${benefits.length};
 `;

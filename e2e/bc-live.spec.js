@@ -20,7 +20,7 @@ async function deleteAppStorage(page) {
 }
 
 async function pick(page, text) {
-  await page.locator("button.opt", { hasText: text }).click();
+  await page.locator(".opt", { hasText: text }).click();
   await page.waitForTimeout(230);
   const next = page.locator("#next");
   if (await next.count() && (await next.textContent()).includes("Continue")) {
@@ -191,10 +191,10 @@ test("children and eighteen-year-olds receive age-appropriate regular-school cho
     await pick(page, "No, not yet");
 
     for (const label of item.expected) {
-      await expect(page.getByRole("button", { name: label, exact: true })).toBeVisible();
+      await expect(page.getByRole("checkbox", { name: label, exact: true })).toBeVisible();
     }
     if (item.age !== 18) {
-      await expect(page.getByRole("button", { name: "In post-secondary school", exact: true })).toHaveCount(0);
+      await expect(page.getByRole("checkbox", { name: "In post-secondary school", exact: true })).toHaveCount(0);
     }
   }
 });
@@ -207,8 +207,8 @@ test("age question uses eight tap targets and no typed field", async ({ page }) 
 
   await expect(page.locator("#numberInput")).toHaveCount(0);
   await expect(page.locator(".options .opt")).toHaveCount(8);
-  await expect(page.getByRole("button", { name: /Younger than 6/ })).toBeVisible();
-  await expect(page.getByRole("button", { name: /65 or older/ })).toBeVisible();
+  await expect(page.getByRole("radio", { name: /Younger than 6/ })).toBeVisible();
+  await expect(page.getByRole("radio", { name: /65 or older/ })).toBeVisible();
   await pick(page, "18");
   await expect(page.getByRole("heading", { name: /documented your disability/i })).toBeVisible();
 });

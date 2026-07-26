@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=46") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=48") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=46") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=48") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -401,6 +401,7 @@ body.a11y-nomotion .header-menu-panel { animation: none; }
 .step-help { color: var(--text-dim); margin: 0 0 26px; font-size: 1rem; max-width: 52ch; }
 
 /* ---------------------------------------------------------------- options */
+.wizard-options-fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
 .options { display: grid; gap: 10px; }
 .options.two { grid-template-columns: 1fr 1fr; }
 @media (max-width: 540px) { .options.two { grid-template-columns: 1fr; } }
@@ -413,6 +414,7 @@ body.a11y-nomotion .header-menu-panel { animation: none; }
 }
 .opt:hover { background: var(--accent-soft); border-color: var(--hair-2); }
 .opt:active { transform: scale(0.995); }
+.wizard-choice:focus-visible + .opt { outline: 3px solid var(--accent-hi); outline-offset: 3px; }
 .opt.selected { border-color: var(--accent-line); background: var(--accent-soft); }
 .opt .ic { width: 20px; height: 20px; color: var(--text-dim); }
 .opt.selected .ic { color: var(--accent-hi); }
@@ -421,6 +423,11 @@ body.a11y-nomotion .header-menu-panel { animation: none; }
 .opt .tick { width: 19px; height: 19px; border-radius: 50%; border: 1.5px solid var(--hair-2); flex: none; display: grid; place-items: center; color: #fff; font-size: 0.68rem; }
 .opt.selected .tick { background: var(--accent); border-color: var(--accent); color: var(--bg); }
 .opt.selected .tick::after { content: "✓"; }
+
+@media (forced-colors: active) {
+  .wizard-choice:focus-visible + .opt { outline: 2px solid CanvasText; }
+  .opt.selected .tick { forced-color-adjust: none; background: Highlight; border-color: Highlight; color: HighlightText; }
+}
 
 
 /* ---------------------------------------------------------------- buttons */

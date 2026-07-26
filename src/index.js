@@ -10,7 +10,12 @@
 // Paid, usage above 10,000 Neurons/day starts costing $0.011/1,000 Neurons --
 // re-read this comment before upgrading.
 
-import { BENEFITS_CONTEXT, BENEFIT_DETAILS } from "./benefits-context.js";
+import {
+  BENEFITS_CONTEXT,
+  BENEFIT_DETAILS,
+  BENEFITS_SCOPE,
+  PRACTITIONER_FORM_CONTEXT,
+} from "./benefits-context.js";
 import { runLinkCheck, REPORT_KEY } from "./link-check.js";
 
 // Llama 4 Scout: 131k context, current (the llama-3.1 builds are past their
@@ -20,6 +25,11 @@ const MODEL = "@cf/meta/llama-4-scout-17b-16e-instruct";
 const MAX_TOKENS = 1024;
 const MAX_QUESTION_CHARS = 2000;
 const MAX_TURNS = 20;
+const CANONICAL_HOST = "abilityfinder.ca";
+// Start with Cloudflare's recommended six-month HSTS rollout. Do not add
+// includeSubDomains or preload until every subdomain has been inventoried and
+// proven HTTPS-only; either flag can make an unready hostname inaccessible.
+const HSTS_POLICY = "max-age=15552000";
 
 // This model is far weaker than a frontier model at following "do not guess"
 // under pressure, and the audience is disabled people making decisions about
@@ -30,15 +40,21 @@ const MAX_TURNS = 20;
 // AISH "Alberta Income Support for the Homeless"). BENEFITS_CONTEXT is the
 // verified catalog generated from data.js; the rules below make it the only
 // permitted source for what a program is. Do not remove it.
-const SYSTEM_PROMPT = `You are the assistant for AbilityFinder, a free tool that helps disabled Albertans find government benefits.
+const SYSTEM_PROMPT = `You are the assistant for AbilityFinder, a free tool that helps disabled people in ${BENEFITS_SCOPE.label} find government benefits.
 
 ## THE BENEFIT LIST — YOUR ONLY SOURCE OF TRUTH
-These are the only benefits AbilityFinder covers. This list is correct and was checked by a human. Your own memory of Canadian or Alberta benefit programs is NOT reliable and must not be used.
+These are the only benefits AbilityFinder covers. This list is correct and was checked by a human. Your own memory of Canadian benefit programs is NOT reliable and must not be used.
 
 ${BENEFITS_CONTEXT}
 
+## FORMS A PRACTITIONER MUST SIGN
+These are the only form names and form numbers you may state:
+
+${PRACTITIONER_FORM_CONTEXT}
+
 RULES FOR THAT LIST — these override everything else:
 - When you name or describe a program, use the name and the description EXACTLY as written above. Do not reword the name. Do not expand an acronym yourself — the expansion is already in the list.
+- Bracketed markers such as "[amount — see the guide]" and "[age limit — see the guide]" are deliberate redactions. Never fill them in or guess what they replace.
 - If someone asks what a program is, answer using only its line above.
 - If a program is NOT on that list, say: "That one isn't in AbilityFinder, so I can't describe it." Then suggest they check the official government page. Do NOT describe it from memory.
 - If you are about to state a fact about a program that is not written above, stop and say you are not sure, and point them to that benefit's guide page in AbilityFinder.
@@ -69,7 +85,7 @@ TONE AND CARE:
 - Many people using this are tired, in pain, or have been denied before. Never suggest someone is not trying hard enough.
 - You are not a doctor, lawyer, or financial advisor. For appeals and legal questions, point to Legal Aid Alberta or a community legal clinic.
 - Many people give up before applying. If someone is unsure, encourage them to apply anyway: the government decides, applying is usually free, and a denial can be appealed.
-- Scope is Alberta and federal Canada only. For another province, say AbilityFinder does not cover it yet.`;
+- Scope is ${BENEFITS_SCOPE.label}. For a province or territory outside ${BENEFITS_SCOPE.provinces.join(" and ")}, say AbilityFinder does not cover its provincial or territorial programs yet, but federal programs may still apply.`;
 
 /**
  * Pick the benefit detail relevant to the conversation.
@@ -99,7 +115,12 @@ function buildSystemPrompt(messages) {
   const hits = retrieveDetails(messages);
   if (!hits.length) return SYSTEM_PROMPT;
   const blocks = hits
-    .map((h) => `### ${h.name}\n${h.text}`)
+    .map((h) => {
+      const verifiedPhone = h.phone
+        ? `\nPhone (this exact number is verified — you may give it): ${h.phone}`
+        : "";
+      return `### ${h.name}\n${h.text}${verifiedPhone}`;
+    })
     .join("\n\n");
   return (
     SYSTEM_PROMPT +
@@ -110,16 +131,69 @@ function buildSystemPrompt(messages) {
   );
 }
 
-const cors = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type",
-};
-
 function errorResponse(message, status) {
   return new Response(JSON.stringify({ error: message }), {
     status,
-    headers: { "Content-Type": "application/json", ...cors },
+    headers: {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store",
+    },
+  });
+}
+
+/**
+ * The assistant and feedback APIs exist only for the UI served from the same
+ * origin. Requiring the browser-supplied Origin before any rate-limit, AI, or
+ * email binding prevents another site from spending a visitor's shared quota.
+ *
+ * Non-browser clients can forge Origin, so this complements rather than replaces
+ * the existing per-IP limiter. Missing, opaque, or malformed origins fail closed.
+ */
+function rejectNonSameOrigin(request) {
+  const origin = request.headers.get("Origin");
+  if (!origin) return errorResponse("Requests must come from this AbilityFinder site.", 403);
+
+  try {
+    const parsed = new URL(origin);
+    const requestOrigin = new URL(request.url).origin;
+    if (parsed.origin === origin && parsed.origin === requestOrigin) return null;
+  } catch {
+    // Treat malformed and opaque origins exactly like a cross-origin request.
+  }
+  return errorResponse("Requests must come from this AbilityFinder site.", 403);
+}
+
+function apiOptionsResponse() {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      "Allow": "POST, OPTIONS",
+      "Cache-Control": "no-store",
+    },
+  });
+}
+
+function redirectCanonicalHttp(url) {
+  if (url.protocol !== "http:" || url.hostname !== CANONICAL_HOST) return null;
+  const target = new URL(url);
+  target.protocol = "https:";
+  return new Response(null, {
+    status: 308,
+    headers: {
+      "Location": target.toString(),
+      "Cache-Control": "no-store",
+    },
+  });
+}
+
+function withTransportSecurity(response, url) {
+  if (url.protocol !== "https:") return response;
+  const headers = new Headers(response.headers);
+  headers.set("Strict-Transport-Security", HSTS_POLICY);
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
   });
 }
 
@@ -207,7 +281,9 @@ function toClientStream(aiStream) {
 }
 
 async function handleAsk(request, env) {
-  if (request.method === "OPTIONS") return new Response(null, { headers: cors });
+  const originError = rejectNonSameOrigin(request);
+  if (originError) return originError;
+  if (request.method === "OPTIONS") return apiOptionsResponse();
   if (request.method !== "POST") return errorResponse("Use POST.", 405);
 
   if (!env.AI) {
@@ -252,7 +328,6 @@ async function handleAsk(request, env) {
     headers: {
       "Content-Type": "text/event-stream; charset=utf-8",
       "Cache-Control": "no-store",
-      ...cors,
     },
   });
 }
@@ -270,7 +345,9 @@ const MAX_FEEDBACK_CHARS = 4000;
  * destination, and sending to a verified destination costs nothing on any plan.
  */
 async function handleFeedback(request, env) {
-  if (request.method === "OPTIONS") return new Response(null, { headers: cors });
+  const originError = rejectNonSameOrigin(request);
+  if (originError) return originError;
+  if (request.method === "OPTIONS") return apiOptionsResponse();
   if (request.method !== "POST") return errorResponse("Use POST.", 405);
   if (!env.FEEDBACK_MAIL) return errorResponse("Feedback is not available right now.", 503);
 
@@ -318,7 +395,10 @@ async function handleFeedback(request, env) {
   }
 
   return new Response(JSON.stringify({ ok: true }), {
-    headers: { "Content-Type": "application/json", ...cors },
+    headers: {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store",
+    },
   });
 }
 
@@ -349,11 +429,16 @@ async function handleLinkHealth(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    if (url.pathname === "/api/ask") return handleAsk(request, env);
-    if (url.pathname === "/api/feedback") return handleFeedback(request, env);
-    if (url.pathname === "/api/link-health") return handleLinkHealth(request, env);
+    const redirect = redirectCanonicalHttp(url);
+    if (redirect) return redirect;
+
+    let response;
+    if (url.pathname === "/api/ask") response = await handleAsk(request, env);
+    else if (url.pathname === "/api/feedback") response = await handleFeedback(request, env);
+    else if (url.pathname === "/api/link-health") response = await handleLinkHealth(request, env);
     // Everything else is the static site, served straight from ./public.
-    return env.ASSETS.fetch(request);
+    else response = await env.ASSETS.fetch(request);
+    return withTransportSecurity(response, url);
   },
 
   /** Batched link check (see wrangler.jsonc triggers.crons). */

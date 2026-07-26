@@ -1378,6 +1378,11 @@ function render() {
     stopReadAloud(); // don't keep narrating an old page
     window.scrollTo(0, 0);
   }
+  if (!samePage && view === "wizard") {
+    // A new question is a navigation event. Put keyboard/screen-reader focus on
+    // its heading once, while same-question checkbox changes stay in place.
+    document.getElementById("wizard-question")?.focus({ preventScroll: true });
+  }
   // "Start over" on the error card, wired here so it works from any view.
   const reReset = document.getElementById("reReset");
   if (reReset)
@@ -1966,9 +1971,9 @@ function renderPrivacy() {
 
     ${block("What stays on your device", `<p>AbilityFinder has no accounts, sign-up, or advertising. Your wizard answers, progress, bookmarks, browse search, and settings live only in <b>your own browser</b>, in this site's IndexedDB database. We can't see that local state, and it is not sent to our Worker.</p>`)}
     ${block("Two optional ways information leaves your browser", `<p><b>Assistant:</b> The Ask a question button opens an optional assistant. Before you type, you must agree to send data. Each time you send, the entire current in-memory conversation (up to 20 messages) is sent through our Worker to <b>Cloudflare's AI service</b>. It is not saved in IndexedDB or linked to an AbilityFinder account, but the words leave your browser, so <b>please don't type your name, address, or health details you would rather not send</b>.</p><p><b>Feedback:</b> Choosing “Send feedback” posts the type, message, and optional reply email to our Worker. The feedback is emailed to AbilityFinder's pinned inbox and the emailed copy may be retained by the mail provider. Choosing “Open my email app instead” does not submit the form through our Worker.</p><p>The assistant can be <b>wrong</b>. It can explain confusing wording, explain what a form asks for, and point to a guide. It cannot tell you whether you qualify or quote dollar amounts — the checked guides and official pages are the final word.</p>`)}
-    ${block("Analytics", `<p>AbilityFinder uses <b>Cloudflare Web Analytics</b>, a privacy-first measurement tool with no cookies, no fingerprinting, no cross-site tracking, and no personal profiles. It counts aggregate page views — including the page, country, and browser type — so we know which guides help people. Your wizard answers are never part of analytics and never leave your device.</p>`)}
+    ${block("No analytics", `<p>AbilityFinder does not run client-side analytics or measure which pages or benefit guides you view. The site is delivered through Cloudflare, so ordinary web requests still pass through its infrastructure to load the site and protect it, but AbilityFinder does not use a Web Analytics or Browser Insights beacon.</p>`)}
     ${block("No tracking cookies, no ads", `<p>There is no advertising, cross-site tracking, or fingerprinting. We don't set tracking cookies.</p>`)}
-    ${block("Fonts and files", `<p>All fonts and core app files are served from this site itself. The Cloudflare Web Analytics beacon is the only externally hosted measurement script.</p>`)}
+    ${block("Fonts and files", `<p>All fonts and core app files are served from this site itself. AbilityFinder does not load an externally hosted analytics or measurement script.</p>`)}
     ${block("Location", `<p>The “Use my location” button only asks your browser for your location when <b>you tap it</b>. A postal code stays in current-page memory; neither it nor your coordinates are saved in IndexedDB or sent to AbilityFinder. If you open a practitioner-search link, the postal code or coordinates are included in a user-initiated Google Maps URL and are then sent to Google under its privacy policy.</p>`)}
     ${block("Links to other sites", `<p>Every “Apply” and official link opens the relevant government website in a new tab. Once you're on those sites, their own privacy policies apply — not ours.</p>`)}
     ${block("Clearing your data", `<p>Click the <b>AbilityFinder</b> logo (or “Start over”) to wipe your answers, or clear your browser's site data at any time. IndexedDB is still browser-owned storage: if you clear this site's data or delete your browser profile, your saved progress is deleted and AbilityFinder cannot recover it.</p>`)}
@@ -2499,21 +2504,30 @@ function renderStep(step) {
   } else {
     const stepOpts = stepOptions(step);
     const optionsHtml = stepOpts
-      .map((o) => {
+      .map((o, optionIndex) => {
         const selected =
           step.type === "multi"
             ? answers[step.key].includes(o.value)
             : answers[step.key] === o.value;
+        const inputId = `wizard-option-${stepIndex}-${optionIndex}`;
         return `
-        <button class="opt ${selected ? "selected" : ""}" data-value='${JSON.stringify(o.value)}'>
+        <input class="wizard-choice sr-only" id="${inputId}"
+          type="${step.type === "multi" ? "checkbox" : "radio"}"
+          name="wizard-${step.key}" data-value='${JSON.stringify(o.value)}'
+          ${selected ? "checked" : ""}>
+        <label class="opt ${selected ? "selected" : ""}" for="${inputId}">
           ${o.icon ? icon(o.icon) : ""}
           <span class="label">${optionText(step, o)}${o.sub ? `<span class="sub">${o.sub}</span>` : ""}</span>
-          <span class="tick"></span>
-        </button>`;
+          <span class="tick" aria-hidden="true"></span>
+        </label>`;
       })
       .join("");
     const twoCol = stepOpts.length === 2 ? "two" : "";
-    controlHtml = `<div class="options ${twoCol}">${optionsHtml}</div>`;
+    controlHtml = `
+      <fieldset class="wizard-options-fieldset" aria-describedby="wizard-help">
+        <legend class="sr-only">${T.q}</legend>
+        <div class="options ${twoCol}">${optionsHtml}</div>
+      </fieldset>`;
   }
 
   const nextDisabled = !stepAnswered(step);
@@ -2528,8 +2542,8 @@ function renderStep(step) {
   <div class="wizard-layout">
     <div class="card wizard-card">
       <p class="step-kicker">${icon("compass")} ${T.kicker} · ${t("wiz.step")} ${stepIndex + 1} ${t("wiz.of")} ${steps.length}</p>
-      <h2 class="step-q">${T.q}</h2>
-      <p class="step-help">${T.help}</p>
+      <h2 class="step-q" id="wizard-question" tabindex="-1">${T.q}</h2>
+      <p class="step-help" id="wizard-help">${T.help}</p>
       ${/* ABOVE the options, not below. Someone who doesn't know the answer
             decides that while reading the question — by the time they're
             scanning options they've already picked one and moved on, and on the
@@ -2586,6 +2600,20 @@ function applyWizardSelection(step, value) {
   return true;
 }
 
+function refreshWizardSelectionControls(step) {
+  document.querySelectorAll(".wizard-choice").forEach((choice) => {
+    const value = JSON.parse(choice.dataset.value);
+    const selected = step.type === "multi"
+      ? answers[step.key].includes(value)
+      : answers[step.key] === value;
+    choice.checked = selected;
+    const label = choice.nextElementSibling;
+    if (label?.classList.contains("opt")) label.classList.toggle("selected", selected);
+  });
+  const next = document.getElementById("next");
+  if (next) next.disabled = !stepAnswered(step);
+}
+
 function wireStep(step) {
   const sn = document.getElementById("sideNote");
   if (sn && step.sideNote)
@@ -2600,7 +2628,6 @@ function wireStep(step) {
       sel.addEventListener("change", () => {
         answers[step.key] = sel.value;
         notifyStateChange("wizard-answer");
-        render();
         setTimeout(goNext, 150);
       });
     const back = document.getElementById("back");
@@ -2610,14 +2637,15 @@ function wireStep(step) {
     return;
   }
 
-  document.querySelectorAll(".opt").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const value = JSON.parse(btn.dataset.value);
+  document.querySelectorAll(".wizard-choice").forEach((choice) => {
+    choice.addEventListener("change", () => {
+      const value = JSON.parse(choice.dataset.value);
       if (!applyWizardSelection(step, value)) return;
+      refreshWizardSelectionControls(step);
       if (step.type === "multi") {
-        render(); // reflect selection, stay on step
+        // Native checkboxes expose their state without replacing #app, so the
+        // focused choice remains focused while someone builds a multi-answer.
       } else {
-        render();
         setTimeout(goNext, 200); // snappy auto-advance
       }
     });

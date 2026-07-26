@@ -51,6 +51,38 @@ test("privacy invariants acknowledge nonsensitive browse and Maps exceptions", (
   }
 });
 
+test("repository and generated pages enforce the no-analytics privacy boundary", () => {
+  const app = source("public/app.js");
+  const html = source("public/index.html");
+  const i18n = source("public/i18n.js");
+  const headers = source("public/_headers");
+  const generator = source("scripts/gen-guide-pages.js");
+  const guidesDir = path.join(ROOT, "public", "guides");
+
+  assert.match(app, /AbilityFinder does not run client-side analytics/i);
+  assert.match(i18n, /does not use client-side analytics/i);
+  assert.match(i18n, /There are no accounts, analytics, advertising, or tracking cookies/i);
+
+  for (const [name, text] of [
+    ["index", html],
+    ["headers", headers],
+    ["guide generator", generator],
+  ]) {
+    assert.doesNotMatch(text, /cloudflareinsights|beacon\.min\.js|data-cf-beacon/i, name);
+  }
+  assert.match(headers, /script-src 'self';/);
+  assert.match(headers, /connect-src 'self';/);
+
+  for (const file of fs.readdirSync(guidesDir).filter((name) => name.endsWith(".html"))) {
+    const guide = fs.readFileSync(path.join(guidesDir, file), "utf8");
+    assert.doesNotMatch(
+      guide,
+      /cloudflareinsights|beacon\.min\.js|data-cf-beacon/i,
+      `generated guide ${file}`
+    );
+  }
+});
+
 test("all generated-file inputs appear in regeneration instructions", () => {
   for (const file of ["AGENTS.md", "README.md", "ROADMAP.md", "DEPLOY.md"]) {
     const text = source(file);

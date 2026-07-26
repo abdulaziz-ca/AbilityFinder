@@ -201,7 +201,6 @@ ${links.map((x) => `              <li><a class="guide-link" href="${esc(x.url)}"
       </main>
 ${footer()}
     </div>
-    <!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ddfa6696ce10444fb1526ec39711bd9e"}'></script><!-- End Cloudflare Web Analytics -->
   </body>
 </html>
 `;
@@ -249,7 +248,6 @@ ${items.map((b) => `            <li><a class="guide-link" href="/guides/${slugif
       </main>
 ${footer()}
     </div>
-    <!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ddfa6696ce10444fb1526ec39711bd9e"}'></script><!-- End Cloudflare Web Analytics -->
   </body>
 </html>
 `;
