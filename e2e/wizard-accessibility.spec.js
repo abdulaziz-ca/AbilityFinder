@@ -38,3 +38,18 @@ test("wizard exposes native choice state, preserves multi-select focus, and focu
   await expect(question).not.toContainText("Which of these apply");
   await expect(question).toBeFocused();
 });
+
+test("route navigation updates title, announces the view, and is not a persistent live region", async ({ page }) => {
+  await page.goto("/");
+
+  await expect(page.locator("#app")).not.toHaveAttribute("aria-live", /.*/);
+  await expect(page.locator("#routeLive")).toHaveCount(1);
+
+  await page.locator(".js-start").first().click();
+
+  const heading = page.locator("#wizard-question");
+  const label = (await heading.textContent()).replace(/\s+/g, " ").trim();
+  await expect(page).toHaveTitle(/· AbilityFinder$/);
+  await expect(page).toHaveTitle(`${label} · AbilityFinder`);
+  await expect(page.locator("#routeLive")).not.toBeEmpty();
+});

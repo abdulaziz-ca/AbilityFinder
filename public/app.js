@@ -1378,10 +1378,15 @@ function render() {
     stopReadAloud(); // don't keep narrating an old page
     window.scrollTo(0, 0);
   }
-  if (!samePage && view === "wizard") {
-    // A new question is a navigation event. Put keyboard/screen-reader focus on
-    // its heading once, while same-question checkbox changes stay in place.
-    document.getElementById("wizard-question")?.focus({ preventScroll: true });
+  if (!samePage) {
+    const appEl = document.getElementById("app");
+    const heading = appEl && appEl.querySelector("h1, h2");
+    const label = (heading && heading.textContent ? heading.textContent : "AbilityFinder").replace(/\s+/g, " ").trim();
+    document.title = label === "AbilityFinder" ? "AbilityFinder" : `${label} · AbilityFinder`;
+    const live = document.getElementById("routeLive");
+    if (live) live.textContent = label;
+    const focusTarget = document.getElementById("wizard-question") || heading;
+    if (focusTarget) { focusTarget.tabIndex = -1; focusTarget.focus({ preventScroll: true }); }
   }
   // "Start over" on the error card, wired here so it works from any view.
   const reReset = document.getElementById("reReset");

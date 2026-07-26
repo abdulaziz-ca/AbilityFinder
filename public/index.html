@@ -27,16 +27,16 @@
     <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f7f2e9" media="(prefers-color-scheme: light)" />
 
-    <script src="dbManager.js?v=48"></script>
-    <script src="stateManager.js?v=48"></script>
-    <script src="theme-init.js?v=48"></script>
+    <script src="dbManager.js?v=49"></script>
+    <script src="stateManager.js?v=49"></script>
+    <script src="theme-init.js?v=49"></script>
 
     <!-- Fonts are self-hosted (see styles.css @font-face), so loading them does
          not contact an external font CDN. -->
-    <link rel="preload" href="fonts/inter-latin.woff2?v=48" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="fonts/fraunces-latin.woff2?v=48" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="styles.css?v=48" />
-    <link rel="icon" href="favicon.svg?v=48" type="image/svg+xml" />
+    <link rel="preload" href="fonts/inter-latin.woff2?v=49" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="fonts/fraunces-latin.woff2?v=49" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="styles.css?v=49" />
+    <link rel="icon" href="favicon.svg?v=49" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   </head>
   <body>
@@ -99,7 +99,8 @@
 
     <div class="wrap">
       <div class="progress"><span id="progress-bar"></span></div>
-      <main id="app" aria-live="polite"><p role="status">Loading your saved progress…</p></main>
+      <main id="app"><p role="status">Loading your saved progress…</p></main>
+      <p class="sr-only" id="routeLive" aria-live="polite"></p>
     </div>
 
     <div class="reading-guide" id="readingGuide" aria-hidden="true"></div>
@@ -191,12 +192,12 @@
       </div>
     </div>
 
-    <script src="icons.js?v=48"></script>
-    <script src="i18n.js?v=48"></script>
-    <script src="data.js?v=48"></script>
-    <script src="changelog.js?v=48"></script>
-    <script src="grants-data.js?v=48"></script>
-    <script src="orgs-data.js?v=48"></script>
-    <script src="app.js?v=48"></script>
+    <script src="icons.js?v=49"></script>
+    <script src="i18n.js?v=49"></script>
+    <script src="data.js?v=49"></script>
+    <script src="changelog.js?v=49"></script>
+    <script src="grants-data.js?v=49"></script>
+    <script src="orgs-data.js?v=49"></script>
+    <script src="app.js?v=49"></script>
   </body>
 </html>
