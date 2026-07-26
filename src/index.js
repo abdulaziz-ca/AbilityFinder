@@ -280,6 +280,27 @@ function toClientStream(aiStream) {
   });
 }
 
+/**
+ * Rate-limit safely. A missing binding is a deploy misconfiguration and a
+ * thrown .limit() is an infra hiccup; either must not surface as a generic
+ * 500. Fail closed with a clear 503, because the limiter guards the shared
+ * free-tier allocation and proceeding unprotected would remove that guard.
+ * Returns "ok" (proceed), "limited" (rate-limited), or a 503 Response.
+ */
+async function limitOr503(env, key) {
+  if (!env.ASK_LIMIT || typeof env.ASK_LIMIT.limit !== "function") {
+    console.error("ASK_LIMIT binding missing");
+    return errorResponse("This service is temporarily unavailable. Please try again shortly.", 503);
+  }
+  try {
+    const { success } = await env.ASK_LIMIT.limit({ key });
+    return success ? "ok" : "limited";
+  } catch (err) {
+    console.error("rate limit check failed:", err?.message ?? err);
+    return errorResponse("This service is temporarily unavailable. Please try again shortly.", 503);
+  }
+}
+
 async function handleAsk(request, env) {
   const originError = rejectNonSameOrigin(request);
   if (originError) return originError;
@@ -293,9 +314,11 @@ async function handleAsk(request, env) {
 
   // Rate limit per IP. Guards the shared daily allocation from a single visitor.
   const ip = request.headers.get("CF-Connecting-IP") ?? "unknown";
-  const { success } = await env.ASK_LIMIT.limit({ key: ip });
-  if (!success) {
-    return errorResponse("You are sending questions too quickly. Please wait a minute.", 429);
+  const rl = await limitOr503(env, ip);
+  if (rl !== "ok") {
+    return rl === "limited"
+      ? errorResponse("You are sending questions too quickly. Please wait a minute.", 429)
+      : rl;
   }
 
   let body;
@@ -354,8 +377,12 @@ async function handleFeedback(request, env) {
 
   // Same limiter as the assistant: this sends mail, so it is worth guarding.
   const ip = request.headers.get("CF-Connecting-IP") ?? "unknown";
-  const { success } = await env.ASK_LIMIT.limit({ key: `fb:${ip}` });
-  if (!success) return errorResponse("You are sending feedback too quickly. Please wait a minute.", 429);
+  const rl = await limitOr503(env, `fb:${ip}`);
+  if (rl !== "ok") {
+    return rl === "limited"
+      ? errorResponse("You are sending feedback too quickly. Please wait a minute.", 429)
+      : rl;
+  }
 
   let body;
   try {
@@ -412,7 +439,13 @@ async function handleFeedback(request, env) {
 async function handleLinkHealth(request, env) {
   if (!env.LINK_HEALTH) return errorResponse("Link health is not configured.", 503);
 
-  const raw = await env.LINK_HEALTH.get(REPORT_KEY);
+  let raw;
+  try {
+    raw = await env.LINK_HEALTH.get(REPORT_KEY);
+  } catch (err) {
+    console.error("link-health KV read failed:", err?.message ?? err);
+    return errorResponse("Link health is temporarily unavailable.", 503);
+  }
   if (!raw) {
     return new Response(
       JSON.stringify({ status: "no report yet — the three-hour check has not run" }, null, 2),

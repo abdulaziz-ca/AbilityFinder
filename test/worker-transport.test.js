@@ -299,3 +299,79 @@ test("feedback subjects allowlist kinds and reject header injection", async () =
   assert.equal(legitimate.status, 200);
   assert.equal(captured.subject, "AbilityFinder feedback — Missing benefit");
 });
+
+test("assistant returns 503 when ASK_LIMIT is missing", async () => {
+  const worker = loadWorkerForTest();
+  const env = {
+    AI: { async run() { throw new Error("must not reach AI"); } },
+  };
+
+  const response = await worker.fetch(
+    new Request("https://abilityfinder.ca/api/ask", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Origin": "https://abilityfinder.ca",
+      },
+      body: JSON.stringify({ messages: [{ role: "user", content: "hi" }] }),
+    }),
+    env
+  );
+  assert.equal(response.status, 503);
+});
+
+test("assistant returns 503 when ASK_LIMIT throws", async () => {
+  const worker = loadWorkerForTest();
+  const env = {
+    AI: { async run() { throw new Error("must not reach AI"); } },
+    ASK_LIMIT: { async limit() { throw new Error("boom"); } },
+  };
+
+  const response = await worker.fetch(
+    new Request("https://abilityfinder.ca/api/ask", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Origin": "https://abilityfinder.ca",
+      },
+      body: JSON.stringify({ messages: [{ role: "user", content: "hi" }] }),
+    }),
+    env
+  );
+  assert.equal(response.status, 503);
+});
+
+test("feedback returns 503 when ASK_LIMIT is missing", async () => {
+  const worker = loadWorkerForTest();
+  const env = {
+    FEEDBACK_MAIL: { async send() {} },
+  };
+
+  const response = await worker.fetch(
+    new Request("https://abilityfinder.ca/api/feedback", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Origin": "https://abilityfinder.ca",
+      },
+      body: JSON.stringify({ kind: "Something else", message: "hi" }),
+    }),
+    env
+  );
+  assert.equal(response.status, 503);
+});
+
+test("link health returns 503 when KV read throws", async () => {
+  const worker = loadWorkerForTest();
+  const env = {
+    LINK_HEALTH: { async get() { throw new Error("kv down"); } },
+  };
+
+  const response = await worker.fetch(
+    new Request("https://abilityfinder.ca/api/link-health", {
+      headers: { "Origin": "https://abilityfinder.ca" },
+    }),
+    env
+  );
+  assert.equal(response.status, 503);
+});
