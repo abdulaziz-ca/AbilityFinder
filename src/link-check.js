@@ -25,13 +25,33 @@ const REPORT_SCHEMA = 2;
 
 export const REPORT_KEY = "latest";
 
+const SOFT_DEAD_URL = /\/(not-?found|404|page-?not-?found|error)(\/|\.|$)/;
+// Only unambiguous not-found phrasings, matched against <title>/<h1> ONLY.
+const SOFT_DEAD_TEXT = /(page not found|page (?:can.?t|cannot|could not) be found|page you (?:requested|are looking for)|page (?:is )?no longer available|page not available|error 404|404 error|404 - )/i;
+
+function titleAndH1(body) {
+  const title = (String(body).match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [, ""])[1];
+  const h1raw = (String(body).match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) || [, ""])[1];
+  const h1 = h1raw.replace(/<[^>]+>/g, " ");
+  return `${title} ${h1}`.replace(/\s+/g, " ").trim();
+}
+
+// Exported for unit testing. finalUrl = the URL actually landed on; body =
+// the response HTML (may be empty when not read).
+export function detectSoftDead(finalUrl, body) {
+  if (SOFT_DEAD_URL.test(String(finalUrl).toLowerCase())) return true;
+  if (body && SOFT_DEAD_TEXT.test(titleAndH1(body))) return true;
+  return false;
+}
+
 const isRedirect = (status) => status >= 300 && status < 400;
 const catalogSignature = () => LINKS.map((link) => link.url).join("\n");
 
 /**
  * A real click uses GET, not HEAD. Using GET therefore removes the old
  * HEAD→GET retry (which could silently double the request count) and is a more
- * faithful health check. We do not read the response body.
+ * faithful health check. For 2xx responses, a bounded body is read to detect
+ * soft 404s from the <title> and first <h1> only.
  *
  * Redirects are followed manually so their request cost is known. A chain that
  * exceeds the cap is *inconclusive*, never called broken: it needs a human
@@ -97,8 +117,11 @@ async function checkOne(link) {
 
       // SOFT 404: some sites answer 200 while landing on their own "not found"
       // page. Status code alone would incorrectly call that healthy.
-      const landed = currentUrl.toLowerCase();
-      const softDead = /\/(not-?found|404|page-?not-?found|error)(\/|\.|$)/.test(landed);
+      let body = "";
+      if (res.ok) {
+        try { body = (await res.text()).slice(0, 200000); } catch { body = ""; }
+      }
+      const softDead = detectSoftDead(currentUrl, body);
 
       return {
         ...link,
