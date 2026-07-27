@@ -167,6 +167,7 @@ test("browse filters, UI flags and consent recover while free text stays out of 
   await page.locator("#themeToggle").click();
   await page.locator("#a11yFab").click();
   await page.locator('[data-toggle="contrast"]').click();
+  await page.keyboard.press("Escape"); // a11y dialog is now modal (A11Y-03) — close it before using the assistant
   await page.locator("#askFab").click();
   await page.locator("#askAccept").click();
 

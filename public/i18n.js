@@ -9,6 +9,8 @@ const LANGS = [{ code: "en", label: "EN", name: "English" }, { code: "fr", label
 const I18N = {
   en: {
     "nav.tag": "Canada",
+    "skip.main": "Skip to main content",
+    "lang.switch": "change language to French",
     "menu.label": "Menu",
     "menu.find": "Find my benefits",
     "menu.browse": "Browse all benefits",
@@ -380,6 +382,8 @@ const I18N = {
 
   fr: {
     "nav.tag": "Canada",
+    "skip.main": "Passer au contenu principal",
+    "lang.switch": "changer la langue pour l’anglais",
     "menu.label": "Menu",
     "menu.find": "Trouver mes prestations",
     "menu.browse": "Parcourir toutes les prestations",

@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=52") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=53") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=52") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=53") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -128,6 +128,10 @@ body {
   min-height: 100vh;
   transition: background-color 0.45s var(--ease), color 0.45s var(--ease);
 }
+
+.skip-link { position: fixed; top: 8px; left: 8px; z-index: 1000; background: var(--panel); color: var(--text); border: 2px solid var(--accent-hi); border-radius: var(--r-sm); padding: 10px 16px; font-weight: 600; text-decoration: none; transform: translateY(-200%); transition: transform 0.15s ease; }
+.skip-link:focus { transform: translateY(0); outline: 3px solid var(--accent-hi); outline-offset: 2px; }
+@media (forced-colors: active) { .skip-link:focus { outline: 3px solid CanvasText; } }
 
 /* Site-wide living aurora. Two wrapper layers and two body layers provide four
    independently drifting lights without extra markup. All sit at the same
@@ -1277,6 +1281,9 @@ body.a11y-spacing { letter-spacing: 0.045em; word-spacing: 0.16em; }
 body.a11y-spacing p, body.a11y-spacing li, body.a11y-spacing .summary, body.a11y-spacing .step-help, body.a11y-spacing .detail-about, body.a11y-spacing .hero-sub { line-height: 1.9; }
 body.a11y-spacing #app { font-family: Verdana, Tahoma, "Trebuchet MS", sans-serif; }
 body.a11y-links a, body.a11y-links .apply, body.a11y-links .source-link, body.a11y-links .back-link { text-decoration: underline !important; text-underline-offset: 3px; font-weight: 600; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
 body.a11y-nomotion *, body.a11y-nomotion *::before, body.a11y-nomotion *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 body.a11y-contrast { --bg: #000; --bg-2: #000; --panel: #0b0b0b; --panel-2: #151515; --hair: rgba(255,255,255,0.5); --hair-2: rgba(255,255,255,0.8); --text: #fff; --text-dim: #ececec; --text-dimmer: #d0d0d0; --accent: #f4ead6; --accent-hi: #ffffff; --ok: #5ce6a0; --warn: #ffd27a; }
 body.a11y-contrast::before, body.a11y-contrast::after,

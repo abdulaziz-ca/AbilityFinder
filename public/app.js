@@ -1032,14 +1032,31 @@ function wireAccessibility() {
   const close = document.getElementById("a11yClose");
   if (!fab || !panel) return;
 
+  let a11yLastFocus = null;
+  const bgEls = () => [document.querySelector("header"), document.getElementById("app"), document.querySelector(".ask-wrap")].filter(Boolean);
+  const focusables = () => Array.from(panel.querySelectorAll("button:not([disabled]), a[href], input, select, textarea, [tabindex]:not([tabindex=\"-1\"])")).filter((el) => el.offsetParent !== null || el === document.activeElement);
   const openPanel = (open) => {
     panel.hidden = !open;
     fab.setAttribute("aria-expanded", String(open));
+    if (open) {
+      a11yLastFocus = document.activeElement;
+      bgEls().forEach((el) => el.setAttribute("inert", ""));
+      const f = focusables(); if (f.length) f[0].focus();
+    } else {
+      bgEls().forEach((el) => el.removeAttribute("inert"));
+      if (a11yLastFocus && typeof a11yLastFocus.focus === "function") a11yLastFocus.focus(); else fab.focus();
+      a11yLastFocus = null;
+    }
   };
   fab.addEventListener("click", () => openPanel(panel.hidden));
   if (close) close.addEventListener("click", () => openPanel(false));
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") openPanel(false);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !panel.hidden) openPanel(false); });
+  panel.addEventListener("keydown", (e) => {
+    if (e.key !== "Tab") return;
+    const f = focusables(); if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   });
 
   // text size
@@ -1158,6 +1175,8 @@ function applyStaticI18n() {
   document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
   const label = document.getElementById("langLabel");
   if (label) label.textContent = LANG === "fr" ? "FR" : "EN";
+  const langBtn = document.getElementById("langBtn");
+  if (langBtn) langBtn.setAttribute("aria-label", `${LANG === "fr" ? "FR" : "EN"} — ${t("lang.switch")}`);
   const tag = document.getElementById("navTag");
   if (tag) tag.textContent = t("nav.tag");
 }
@@ -1258,6 +1277,7 @@ function updateNavTag() {
 }
 
 let lastRenderKey = null;
+let hasRenderedView = false; // true after the first render; gates route-change focus so it never fires on initial load (keeps the skip link first-focusable)
 /**
  * Last line of defence.
  *
@@ -1391,7 +1411,10 @@ function render() {
     const live = document.getElementById("routeLive");
     if (live) live.textContent = label;
     const focusTarget = document.getElementById("wizard-question") || heading;
-    if (focusTarget) { focusTarget.tabIndex = -1; focusTarget.focus({ preventScroll: true }); }
+    // Move focus on route CHANGES only, not the initial page load, so the skip
+    // link stays the first focusable element on load (reconciles A11Y-02 + A11Y-03).
+    if (focusTarget && hasRenderedView) { focusTarget.tabIndex = -1; focusTarget.focus({ preventScroll: true }); }
+    hasRenderedView = true;
   }
   // "Start over" on the error card, wired here so it works from any view.
   const reReset = document.getElementById("reReset");
@@ -1568,13 +1591,13 @@ function renderLanding() {
         </label>
       </div>
       <label class="fb-field"><span class="fb-lbl">${t("fb.msgLabel")}</span>
-        <textarea id="fb-msg" class="text-input" rows="4" placeholder="${t("fb.placeholder")}"></textarea>
+        <textarea id="fb-msg" class="text-input" rows="4" placeholder="${t("fb.placeholder")}" aria-describedby="fb-status" aria-invalid="false"></textarea>
       </label>
       <div class="fb-actions">
         <button class="btn btn-primary" id="fb-send">${t("fb.send")} ${icon("arrowRight")}</button>
         <button class="btn btn-ghost" id="fb-mailto" type="button">${icon("external")} Open my email app instead</button>
       </div>
-      <p class="fb-note" id="fb-status">${t("fb.note")}</p>
+      <p class="fb-note" id="fb-status" role="status" aria-live="polite">${t("fb.note")}</p>
     </div>
 
     <p class="disclaimer">${t("disclaimer")}</p>
@@ -1689,7 +1712,14 @@ function wireLanding() {
     send.addEventListener("click", async () => {
       if (fbBusy) return; // no duplicate submissions
       const { kind, email, message, status } = fbFields();
-      if (!message) { status.textContent = t("fb.needMsg"); status.classList.add("err"); return; }
+      const msgEl = document.getElementById("fb-msg");
+      if (!message) {
+        status.textContent = t("fb.needMsg");
+        status.classList.add("err");
+        if (msgEl) { msgEl.setAttribute("aria-invalid", "true"); msgEl.focus(); }
+        return;
+      }
+      if (msgEl) msgEl.setAttribute("aria-invalid", "false");
       status.classList.remove("err");
       fbBusy = true; send.disabled = true;
       status.textContent = t("fb.sending");
@@ -1720,9 +1750,11 @@ function wireLanding() {
   if (mailtoBtn)
     mailtoBtn.addEventListener("click", () => {
       const { kind, email, message, status } = fbFields();
+      const msgEl = document.getElementById("fb-msg");
       if (!message) {
         status.textContent = t("fb.needMsg");
         status.classList.add("err");
+        if (msgEl) { msgEl.setAttribute("aria-invalid", "true"); msgEl.focus(); }
         return;
       }
       status.classList.remove("err");
@@ -4537,6 +4569,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   wireAccessibility();
   wireAssistant();
   wireHeaderMenu();
+  const skipLink = document.getElementById("skipLink");
+  if (skipLink) skipLink.addEventListener("click", (e) => { e.preventDefault(); const main = document.getElementById("app"); if (main) { main.setAttribute("tabindex", "-1"); main.focus(); } });
   history.replaceState({ view, stepIndex, detailId }, "");
   render();
 
