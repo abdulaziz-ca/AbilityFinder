@@ -3155,7 +3155,17 @@ function waitToDays(wait) {
 }
 
 const icsDate = (d) =>
-  `${d.getUTCFullYear()}${String(d.getUTCMonth() + 1).padStart(2, "0")}${String(d.getUTCDate()).padStart(2, "0")}`;
+  `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`;
+
+const icsUtcTimestamp = (d) =>
+  `${d.getUTCFullYear()}${String(d.getUTCMonth() + 1).padStart(2, "0")}${String(d.getUTCDate()).padStart(2, "0")}` +
+  `T${String(d.getUTCHours()).padStart(2, "0")}${String(d.getUTCMinutes()).padStart(2, "0")}${String(d.getUTCSeconds()).padStart(2, "0")}Z`;
+
+function addCalendarDays(date, days) {
+  const result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}
 
 /** RFC 5545 TEXT escaping — a stray comma silently corrupts the file otherwise. */
 const icsEsc = (s) =>
@@ -3189,9 +3199,9 @@ function icsFold(line) {
 
 function buildReminderIcs() {
   const now = new Date();
-  const stamp = `${icsDate(now)}T000000Z`;
+  const stamp = icsUtcTimestamp(now);
   const events = [];
-  const addDays = (n) => new Date(now.getTime() + n * 86400000);
+  const addDays = (n) => addCalendarDays(now, n);
 
   // Follow-ups for anything submitted / waiting, dated from the benefit's own
   // published wait. Only where that wait is actually a duration.
@@ -3235,7 +3245,7 @@ function buildReminderIcs() {
       `UID:${e.uid}`,
       `DTSTAMP:${stamp}`,
       `DTSTART;VALUE=DATE:${icsDate(e.date)}`,
-      `DTEND;VALUE=DATE:${icsDate(new Date(e.date.getTime() + 86400000))}`,
+      `DTEND;VALUE=DATE:${icsDate(addCalendarDays(e.date, 1))}`,
       icsFold(`SUMMARY:${icsEsc(e.summary)}`),
       icsFold(`DESCRIPTION:${icsEsc(e.desc)}`),
       "TRANSP:TRANSPARENT",
