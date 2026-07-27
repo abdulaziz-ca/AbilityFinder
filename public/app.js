@@ -273,12 +273,6 @@ const REQS = {
     fixed: false,
     unmet: "Check your CPP Statement of Contributions for the required contribution history.",
   },
-  severePermanent: {
-    met: () => isUnableToWork(),
-    fixed: false,
-    unmet: "Requires a severe, permanent disability that substantially limits your ability to work.",
-  },
-
   disabilityDoc: {
     met: () => answers.disabilityVerified === "yes",
     fixed: false,
@@ -294,10 +288,57 @@ const REQS = {
     fixed: false,
     unmet: "Confirm guardianship, the child's status, and medical documentation of disability or an awaiting-diagnosis assessment.",
   },
+  aishMedical: {
+    met: () => false,
+    fixed: false,
+    unmet: "AISH decides whether your disability is severe, permanent and prevents you from earning a living. A doctor must complete the medical report as part of the application.",
+    action: { text: "Review AISH eligibility", url: "https://www.alberta.ca/aish-eligibility" },
+  },
+  aishFinancial: {
+    met: () => false,
+    fixed: false,
+    unmet: "AISH counts your income and your spouse or partner's income, and your combined non-exempt assets must stay at or under $100,000. You must also apply for other income you may qualify for, such as CPP-D, the Canada Disability Benefit, EI or WCB.",
+    action: { text: "Review AISH eligibility", url: "https://www.alberta.ca/aish-eligibility" },
+  },
+  adapMedical: {
+    met: () => false,
+    fixed: false,
+    unmet: "Alberta decides whether your disability significantly impedes employment, continuously or episodically. One application assesses both AISH and ADAP.",
+    action: { text: "Review ADAP eligibility", url: "https://www.alberta.ca/adap-eligibility" },
+  },
+  adapFinancial: {
+    met: () => false,
+    fixed: false,
+    unmet: "ADAP reviews your income monthly and your non-exempt assets must stay at or under $100,000. You must also apply for other income you may qualify for, such as CPP-D, the Canada Disability Benefit, EI or WCB.",
+    action: { text: "Review ADAP eligibility", url: "https://www.alberta.ca/adap-eligibility" },
+  },
+  ahcipRegistered: {
+    met: () => false,
+    fixed: false,
+    unmet: "Confirm you are registered for the Alberta Health Care Insurance Plan (AHCIP) and hold a valid card.",
+    action: { text: "Check AHCIP registration", url: "https://www.alberta.ca/ahcip-how-to-apply" },
+  },
+  aadlAssessment: {
+    met: () => false,
+    fixed: false,
+    unmet: "An authorized health professional must assess you, and the item must be an AADL-listed benefit bought from an approved vendor. The condition must be expected to last 6 months or longer.",
+    action: { text: "Review AADL eligibility", url: "https://www.alberta.ca/aadl-eligibility-and-application-for-benefits" },
+  },
+  aadlOtherPayer: {
+    met: () => false,
+    fixed: false,
+    unmet: "AADL does not cover items already covered by Veterans Affairs, Workers' Compensation Board, Non-Insured Health Benefits, or a private insurance plan.",
+  },
+  adultHealthIncome: {
+    met: () => false,
+    fixed: false,
+    unmet: "Alberta sets a maximum income by family size — $16,580 for a single adult and $23,212 for a couple with no children, rising with each child. Check your family size against the current table.",
+    action: { text: "Check the income table", url: "https://www.alberta.ca/alberta-adult-health-benefit" },
+  },
   adultHealthGateway: {
     met: () => false,
     fixed: false,
-    unmet: "Confirm pregnancy, high ongoing prescription needs, or the qualifying AISH/Income Support transition route.",
+    unmet: "Confirm pregnancy, high ongoing prescription drug needs, or the qualifying AISH/Income Support transition route. You cannot already be receiving Income Support, AISH, the Child and Youth Support Program, Non-Insured Health Benefits or another federal First Nations or Inuit program, or the Alberta Seniors Benefit.",
   },
   abPlacardMobility: {
     met: () => hasDisability("physical") && answers.canWalkFar === false,

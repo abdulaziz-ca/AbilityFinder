@@ -193,3 +193,120 @@ test("generated DTC guide uses corrected value and prioritization language", asy
   expect(guide).not.toMatch(/master key|single most important step|\$10,138|up to \$25,000/i);
   expect(guide).toMatch(/refund depends on the tax situation for each year/i);
 });
+
+test("Alberta disability programs never return ready from unasked criteria", async ({ page }) => {
+  const results = await evaluateProfile(page, {
+    disabilityVerified: "yes",
+    situation: ["unableToWork"],
+    income: "low",
+    functionalNeeds: ["equipment"],
+    province: "AB",
+    ageBand: "19to59",
+    citizenPR: true,
+  });
+
+  const aishNeeds = results.aish.needs.map((need) => need.text).join(" ");
+  const adapNeeds = results.adap.needs.map((need) => need.text).join(" ");
+  const aadlNeeds = results.aadl.needs.map((need) => need.text).join(" ");
+  const adultHealthNeeds = results["adult-health-benefit"].needs
+    .map((need) => need.text)
+    .join(" ");
+
+  for (const id of ["aish", "adap", "aadl", "adult-health-benefit"]) {
+    expect(results[id].status).toBe("almost");
+  }
+
+  expect(aishNeeds).toMatch(/\$100,000/);
+  expect(aishNeeds).toMatch(/severe, permanent/);
+  expect(adapNeeds).toMatch(/significantly impedes/);
+  expect(adapNeeds).toMatch(/\$100,000/);
+  expect(aadlNeeds).toMatch(/Alberta Health Care Insurance Plan/);
+  expect(aadlNeeds).toMatch(/approved vendor/);
+  expect(aadlNeeds).toMatch(/Veterans Affairs/);
+  expect(adultHealthNeeds).toMatch(/\$16,580/);
+  expect(adultHealthNeeds).toMatch(/high ongoing prescription drug needs/);
+
+  expect(results.aadl.needs).toHaveLength(3);
+  expect(results.aish.needs).toHaveLength(2);
+  expect(results.adap.needs).toHaveLength(2);
+  expect(results["adult-health-benefit"].needs).toHaveLength(2);
+});
+
+test("no Alberta answer combination reaches ready", async ({ page }) => {
+  const targetIds = ["aish", "adap", "aadl", "adult-health-benefit"];
+  await page.goto("/");
+
+  for (const income of ["low", "moderate", "high"]) {
+    for (const disabilityVerified of ["yes", "no", "unsure"]) {
+      for (const situation of [["unableToWork"], ["working"], ["none"]]) {
+        for (const functionalNeeds of [["equipment"], ["dailyLiving"], ["none"], ["unsure"]]) {
+          const statuses = await page.evaluate(
+            ({ model, ids }) => {
+              const evaluated = evaluateAnswers(model);
+              return Object.fromEntries(
+                evaluated
+                  .filter(({ b }) => ids.includes(b.id))
+                  .map(({ b, r }) => [b.id, r.status]),
+              );
+            },
+            {
+              model: answerModel({
+                income,
+                disabilityVerified,
+                situation,
+                functionalNeeds,
+                province: "AB",
+                ageBand: "19to59",
+                citizenPR: true,
+              }),
+              ids: targetIds,
+            },
+          );
+
+          for (const id of targetIds) {
+            expect(statuses[id]).not.toBe("ready");
+          }
+        }
+      }
+    }
+  }
+});
+
+test("jurisdiction, age and status produce a clean no-match", async ({ page }) => {
+  const albertaIds = ["aish", "adap", "aadl", "adult-health-benefit"];
+  const adultProgramIds = ["aish", "adap", "adult-health-benefit"];
+
+  const outsideAlberta = await evaluateProfile(page, {
+    province: "BC",
+    functionalNeeds: ["equipment"],
+  });
+  for (const id of albertaIds) expect(outsideAlberta[id].status).toBe("no");
+
+  const senior = await evaluateProfile(page, { ageBand: "65plus" });
+  for (const id of adultProgramIds) expect(senior[id].status).toBe("no");
+
+  const nonCitizen = await evaluateProfile(page, { citizenPR: false });
+  for (const id of adultProgramIds) expect(nonCitizen[id].status).toBe("no");
+
+  const noEquipmentNeed = await evaluateProfile(page, { functionalNeeds: ["none"] });
+  expect(noEquipmentNeed.aadl.status).toBe("no");
+});
+
+test("shared predicates are unchanged for other programs", async ({ page }) => {
+  await page.goto("/");
+  const sharedPredicateResults = await page.evaluate((model) => {
+    const changedIds = new Set(["aish", "adap", "aadl", "adult-health-benefit"]);
+    return evaluateAnswers(model)
+      .filter(
+        ({ b }) =>
+          !changedIds.has(b.id) &&
+          b.requires.some((requirement) =>
+            ["disabilityDoc", "lowIncome"].includes(requirement),
+          ),
+      )
+      .map(({ b, r }) => ({ id: b.id, status: r.status }));
+  }, answerModel());
+
+  expect(sharedPredicateResults.length).toBeGreaterThanOrEqual(6);
+  expect(sharedPredicateResults.some(({ status }) => status === "ready")).toBe(true);
+});

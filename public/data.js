@@ -1293,7 +1293,7 @@ const BENEFITS = [
     amount: "Monthly living allowance + health and personal benefits",
     summary:
       "Alberta disability income assistance for people whose permanent disability prevents employment.",
-    requires: ["adult", "ab", "citizenPR", "severePermanent", "lowIncome"],
+    requires: ["adult", "ab", "citizenPR", "aishMedical", "aishFinancial"],
     note:
       "AISH is for a severe, permanent disability that prevents employment. Alberta now uses one application to assess both AISH and ADAP — submit it once, not separately for each program.",
     applyText: "Apply for Alberta disability income assistance",
@@ -1331,7 +1331,7 @@ const BENEFITS = [
     amount: "Up to $1,740/month + health, personal and employment benefits",
     summary:
       "Alberta disability income assistance when a severe disability significantly impedes employment, including episodically.",
-    requires: ["adult", "ab", "citizenPR", "lowIncome", "disabilityDoc"],
+    requires: ["adult", "ab", "citizenPR", "adapMedical", "adapFinancial"],
     note:
       "The same combined application assesses ADAP and AISH. This guide can only flag that ADAP may be worth asking about — Alberta makes the eligibility decision.",
     applyText: "Apply for Alberta disability income assistance",
@@ -1368,7 +1368,7 @@ const BENEFITS = [
     amount: "Funding for medical equipment & supplies (you pay a small share)",
     summary:
       "Helps pay for equipment and supplies you need for a long-term illness, disability or condition — wheelchairs, hearing aids, breathing supplies and much more.",
-    requires: ["ab", "equipmentNeed"],
+    requires: ["ab", "equipmentNeed", "ahcipRegistered", "aadlAssessment", "aadlOtherPayer"],
     note:
       "Covers a huge range of devices. You usually pay 25% (capped per year), and low-income households can have that waived.",
     applyText: "Alberta Aids to Daily Living",
@@ -1539,7 +1539,7 @@ const BENEFITS = [
     amount: "Free prescriptions, dental, optical and more",
     summary:
       "Health coverage for adults in lower-income households — prescriptions, dental, eye care, essential diabetic supplies.",
-    requires: ["adult", "ab", "lowIncome", "adultHealthGateway"],
+    requires: ["adult", "ab", "citizenPR", "adultHealthIncome", "adultHealthGateway"],
     note:
       "Great for covering the cost of medication if you're on a lower income and not already covered by AISH.",
     applyText: "Alberta Adult Health Benefit",
