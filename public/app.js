@@ -525,12 +525,17 @@ function metaRow(b) {
 function priorityScore(b) {
   const v = BENEFIT_VALUES[b.id] || {};
   const meta = BENEFIT_META[b.id] || {};
+  const ease = 6 - (meta.difficulty || 3);
+  // DATA-51: values flagged excludeFromEstimate are typed for display only and
+  // must not shift priority ordering; wiring value into priority is deferred to
+  // the priority/UX work. This preserves todays ordering exactly (dtc/aish/adap
+  // already scored ease-only, and BC benefits had no entry = ease-only).
+  if (v.excludeFromEstimate) return ease;
   let value = 0;
   if (v.annualMax) value += Math.min(v.annualMax / 1000, 14);
   else if (v.monthlyMax) value += Math.min(v.monthlyMax / 100, 14);
   if (v.lifetimeMax) value += Math.min(v.lifetimeMax / 12000, 8);
   if (["services", "coverage"].includes(v.kind)) value += 3;
-  const ease = 6 - (meta.difficulty || 3);
   return value * 1.4 + ease;
 }
 
