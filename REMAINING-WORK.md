@@ -29,7 +29,6 @@ Update this file whenever a finding is closed, reopened, or found to be wrong.
 
 | ID | What is wrong | Notes |
 |---|---|---|
-| ABFED-A01 | Adult Health Benefit shows an unsupported `$1,000+/yr` coverage value | `public/data.js` BENEFIT_META. Needs an official value or removal |
 | DATA-07 | Calgary Fair Entry shows 2025 prices; 2026 rates are $6.30/$44.10/$63 | Verify against the current Calgary Transit fare notice |
 | DATA-08 | Edmonton processing time understated (site 1–2 weeks; official 8–12 weeks + card delivery) | |
 | DATA-09 | ADAP contact mislabeled — the number shown is the AISH application-status line | Alberta Supports is 1-877-644-9992 |
@@ -39,7 +38,7 @@ Update this file whenever a finding is closed, reopened, or found to be wrong.
 | UX-03 | "Priority order" uses unexplained editorial weights | Mitigated only; formula still unexplained and unvalidated |
 | DATA-25 | DTC readiness | Mitigated, not closed — needs real CRA functional-criteria questions |
 | TEST-01 | No systematic eligibility oracle across all programs | The gap that allowed the false-ready cluster |
-| TEST-02 | E2E is Chromium-only on a Python static server, with fixed sleeps | Needs a Wrangler-backed project + browser matrix |
+| TEST-02 | E2E is Chromium-only on a Python static server, with fixed sleeps | Needs a Wrangler-backed project + browser matrix. **Observed flake 2026-07-27:** `e2e/a11y-batch.spec.js` "A11Y-03: skip link is first focusable" failed once inside the full suite and passed on isolated re-run and on full-suite re-run — exactly the timing fragility this finding describes |
 | PERF-01 | Production mobile lab LCP 4.0s; render-blocking scripts | INP still unmeasured |
 | SEC-04 | Request body parsed before app-level size limits | Hardening only |
 | DOC-01 | HANDOFF and public claims disagree with the live BC architecture | Update after the remaining fixes land |
@@ -82,9 +81,9 @@ Update this file whenever a finding is closed, reopened, or found to be wrong.
 Matcher safety (no unsupported "ready" verdict anywhere): **DATA-42/43/44 + ABFED-02** (`fc0a8f9`),
 **DATA-30/47/48/49/50 + BC-BC-05/14/16** (`eb0210d`), **DATA-33/35/36/37/39/40/41 + ABFED-08** (`f4bc205`).
 
-Data accuracy: DATA-01, DATA-02, DATA-03, DATA-05, DATA-06, DATA-10, DATA-14, DATA-46,
-ABFED-05 (`f438915`), ABFED-07 (`3aa85cd`), ABFED-09 (`3ef9a32`), BC-BC-06 (`9ab36d8`),
-BC-BC-12 (`f4eb57c`), BC-BC-17 (`2891c17`), DATA-51.
+Data accuracy: DATA-01, DATA-02, DATA-03, DATA-05, DATA-06, DATA-10, DATA-14,
+DATA-46 (`a7c648d`), ABFED-05 (`f438915`), ABFED-07 (`3aa85cd`), ABFED-09 (`3ef9a32`),
+ABFED-A01, BC-BC-06 (`9ab36d8`), BC-BC-12 (`f4eb57c`), BC-BC-17 (`2891c17`), DATA-51.
 
 Defects and hardening: DATA-04, DATA-28, DATA-38, ABFED-01/03/04/06, AI-01, AI-02,
 A11Y-01/02/03/05/06, REL-01, REL-02, REL-03, REL-04, CAL-01, SEC-02, SEC-03,

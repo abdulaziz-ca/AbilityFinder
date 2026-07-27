@@ -148,7 +148,7 @@ const BENEFIT_VALUES = {
   dres: { kind: "services", note: "may fund approved disability-related accommodations for work or eligible education or training routes" },
   "ab-grant-disability": { kind: "grant", annualMax: 3000,
     note: "per loan year; limited to approved service/equipment costs after federal funding is allocated first" },
-  "adult-health-benefit": { kind: "coverage", note: "free prescriptions, dental & optical — often $1,000+/yr" },
+  "adult-health-benefit": { kind: "coverage", note: "prescriptions, dental, optical, ambulance and diabetes supplies — Alberta publishes no annual dollar value" },
   "child-health-benefit": { kind: "coverage", note: "free prescriptions, dental & optical for kids" },
   "parking-placard": { kind: "access", note: "low-cost accessible parking permit" },
   "calgary-fair-entry": { kind: "discount", note: "transit from $5.90/mo + 75% off rec — often $600+/yr saved" },
@@ -3287,6 +3287,7 @@ const BENEFITS = [
 
 const BENEFIT_VERIFIED = {
   dtc: "2026-07", "cdb-adult": "2026-07", aish: "2026-07", adap: "2026-07",
+  "adult-health-benefit": "2026-07",
   "cpp-disability": "2026-07", "parking-placard": "2026-07",
   "canmore-affordable-services": "2026-07", "cochrane-connect-card": "2026-07",
   "fortsask-access": "2026-07", "leduc-subsidies": "2026-07",
