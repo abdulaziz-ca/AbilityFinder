@@ -2011,7 +2011,7 @@ function renderAbout() {
     <p class="legal-lede">AbilityFinder makes it easier to find disability benefits and understand what to do next.</p>
 
     ${block("What AbilityFinder is", `<p>AbilityFinder is a free, independent tool that helps ${SCOPE_RESIDENTS} with disabilities find every government benefit they may qualify for. It is not affiliated with any government. There is no login and there are no ads.</p>`)}
-    ${block("How we verify facts", `<p>Every benefit is backed by official government sources. Each benefit shows when its information was last verified.</p><p>Automated link monitoring checks official links around the clock and flags pages that break or move. The app also shows a warning when information is getting old and needs another review.</p>`)}
+    ${block("How we verify facts", `<p>Every benefit links to an official government source. The whole catalog was last fully reviewed in July 2026; each guide shows that date, and any benefit we re-check later shows its own.</p><p>Automated link monitoring checks official links around the clock and flags pages that break or move, and each guide warns when its review is getting old and the numbers are worth re-confirming.</p>`)}
     ${block("What we never do", `<p>We do not create accounts, show ads, or use third-party trackers. Your answers stay on your device. We never sell or share your data.</p>`)}
     ${block("Found a mistake?", `<p>Please tell us through the <button class="linklike js-feedback">feedback form</button>. Corrections help everyone who uses AbilityFinder.</p>`)}
     ${block("Who runs this", `<p>AbilityFinder is an independent project built in Alberta by a small team. It is not a government service.</p>`)}
@@ -2430,27 +2430,38 @@ function plainEnglishDate(isoDate) {
   }).format(date);
 }
 
+function plainEnglishMonth(monthDate) {
+  if (typeof monthDate !== "string" || !/^\d{4}-\d{2}$/.test(monthDate)) return "Date not available";
+  const [year, month] = monthDate.split("-").map(Number);
+  if (month < 1 || month > 12) return monthDate;
+  return new Intl.DateTimeFormat(LANG === "fr" ? "fr-CA" : "en-CA", {
+    year: "numeric",
+    month: "long",
+    timeZone: "UTC",
+  }).format(new Date(Date.UTC(year, month - 1, 1)));
+}
+
 function recentlyVerifiedBenefits() {
   const programs = Array.isArray(BENEFITS) ? BENEFITS : [];
   const verifiedDates = typeof BENEFIT_VERIFIED === "object" && BENEFIT_VERIFIED ? BENEFIT_VERIFIED : {};
-  const catalogDate = typeof DATA_VERIFIED_ISO === "string" ? DATA_VERIFIED_ISO : "";
+  const catalogMonth = typeof DATA_VERIFIED_MONTH === "string" ? DATA_VERIFIED_MONTH : "";
   return programs.filter((benefit) => benefit && typeof benefit === "object").map((benefit, catalogIndex) => {
     const rawDate = benefit.id ? verifiedDates[benefit.id] : null;
-    const isoDate = typeof rawDate === "string" && /^\d{4}-\d{2}$/.test(rawDate)
-      ? `${rawDate}-01`
-      : catalogDate;
-    return { benefit, catalogIndex, isoDate };
+    const reviewMonth = typeof rawDate === "string" && /^\d{4}-\d{2}$/.test(rawDate)
+      ? rawDate
+      : catalogMonth;
+    return { benefit, catalogIndex, reviewMonth };
   })
-    .sort((a, b) => String(b.isoDate).localeCompare(String(a.isoDate)) || a.catalogIndex - b.catalogIndex)
+    .sort((a, b) => String(b.reviewMonth).localeCompare(String(a.reviewMonth)) || a.catalogIndex - b.catalogIndex)
     .slice(0, 10);
 }
 
 function renderUpdates() {
-  const verifiedItems = recentlyVerifiedBenefits().map(({ benefit, isoDate }) => `
+  const verifiedItems = recentlyVerifiedBenefits().map(({ benefit, reviewMonth }) => `
     <li class="updates-feed-item">
       <div class="updates-feed-heading">
         <h3>${ttsEscape(String(benefit.name || "Unnamed program"))}</h3>
-        <time datetime="${ttsEscape(String(isoDate || ""))}">${ttsEscape(plainEnglishDate(isoDate))}</time>
+        <time datetime="${ttsEscape(String(reviewMonth || ""))}">${ttsEscape(plainEnglishMonth(reviewMonth))}</time>
       </div>
       <p>${ttsEscape(String(benefit.summary || "See the program guide for details."))}</p>
     </li>`).join("");
@@ -3940,36 +3951,12 @@ function listBlock(title, ic, items, ordered) {
 const DATA_VERIFIED = "July 2026";
 
 /* ── Freshness that doesn't over-claim ────────────────────────────────────────
-   DATA_VERIFIED is one human-readable date stamped on all catalog entries. It is
-   honest today (they really were all checked in July 2026) but it cannot age:
-   in two years it will still say "verified", and the amounts are the product.
-   These make staleness computable and per-benefit. */
+   BENEFIT_VERIFIED in public/data.js is the single source of truth for
+   per-benefit review dates. Dates are month-granular, with no fabricated day.
+   A benefit absent from the map is covered by the catalog review month. */
 
 /** Machine-comparable twin of DATA_VERIFIED. Keep the two in step. */
-const DATA_VERIFIED_ISO = "2026-07-01";
-
-/**
- * Per-benefit override, "id": "YYYY-MM". ADD AN ENTRY WHEN YOU RE-CHECK ONE
- * BENEFIT against its official page — anything absent falls back to the
- * catalog-wide date, which is the truth: it was last checked with everything
- * else. Never add a date you did not actually verify; a fake date here is worse
- * than no date, because the whole point is telling people when to distrust us.
- */
-const BENEFIT_VERIFIED = {
-  dtc: "2026-07",
-  "cdb-adult": "2026-07",
-  aish: "2026-07",
-  adap: "2026-07",
-  "cpp-disability": "2026-07",
-  "parking-placard": "2026-07",
-  "sprucegrove-low-income-transit": "2026-07",
-  "leduc-subsidies": "2026-07",
-  "cochrane-connect-card": "2026-07",
-  "okotoks-fee-assistance": "2026-07",
-  "canmore-affordable-services": "2026-07",
-  "lloydminster-recreation-access": "2026-07",
-  "fortsask-access": "2026-07",
-};
+const DATA_VERIFIED_MONTH = "2026-07";
 
 /** Past this, the guide tells the reader to confirm the number themselves. */
 const STALE_MONTHS = 9;
@@ -3977,18 +3964,11 @@ const STALE_MONTHS = 9;
 const MONTHS_EN = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 function verifiedFor(b) {
-  const raw = (b && BENEFIT_VERIFIED[b.id]) || null;
-  const iso = raw ? `${raw}-01` : DATA_VERIFIED_ISO;
-  const when = new Date(`${iso}T00:00:00Z`);
+  const raw = (b && BENEFIT_VERIFIED[b.id]) || DATA_VERIFIED_MONTH; // "YYYY-MM"
+  const [y, m] = raw.split("-").map(Number);
   const now = new Date();
-  const months =
-    (now.getUTCFullYear() - when.getUTCFullYear()) * 12 + (now.getUTCMonth() - when.getUTCMonth());
-  return {
-    label: `${MONTHS_EN[when.getUTCMonth()]} ${when.getUTCFullYear()}`,
-    months: Math.max(0, months),
-    stale: months >= STALE_MONTHS,
-    perBenefit: !!raw,
-  };
+  const months = (now.getUTCFullYear() - y) * 12 + (now.getUTCMonth() - (m - 1));
+  return { label: `${MONTHS_EN[m - 1]} ${y}`, months: Math.max(0, months), stale: months >= STALE_MONTHS, perBenefit: !!(b && BENEFIT_VERIFIED[b.id]) };
 }
 
 /* Phase-2 detail sections: tax warning, denial reasons, appeals, FAQs, related */

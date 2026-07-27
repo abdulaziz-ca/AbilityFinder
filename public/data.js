@@ -2362,7 +2362,6 @@ const BENEFITS = [
     "applyText": "Apply on My Self Serve",
     "applyUrl": "https://myselfserve.gov.bc.ca/",
     "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/disability-assistance-rate-table",
-    "verified": "2026-07-20",
     "detail": {
       "about": "Disability assistance is BC's core income program for people with the PWD designation. A single person receives a $983.50 monthly support allowance plus actual shelter costs up to $500, and every PWD recipient gets a $52 transportation supplement as cash or an in-kind bus pass. It also opens the door to dental, optical, medical equipment, medical transportation and nutrition supplements, and 100% drug coverage under PharmaCare Plan C.",
       "steps": ["Create an account at myselfserve.gov.bc.ca (or call 1-866-866-0800) and complete the online application so the ministry can check financial eligibility", "Request the PWD designation application and complete the applicant section (form HR2883)", "Have your doctor or nurse practitioner complete the medical report section", "Have a doctor, nurse practitioner or prescribed professional (e.g., occupational therapist, social worker) complete the assessor report", "Submit everything and respond to any ministry follow-up; once the designation is approved and you are financially eligible, payments begin", "Report income and changes monthly as required to keep payments accurate"],
@@ -2386,7 +2385,6 @@ const BENEFITS = [
     "applyText": "Apply for autism funding",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/apply",
     "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/funding-amount",
-    "verified": "2026-07-22",
     "detail": {
       "about": "Up to $22,000 per year per child, spent on professionals listed on the Registry of Autism Service Providers (RASP) and behaviour interventionists supervised by a RASP professional. Also covers family counselling from certified counsellors, psychologists, social workers or psychiatrists, employment-related costs when you hire staff, and administrative costs up to $100/month. Normally, up to 20% of the allocation can go to training, travel and equipment (TTE). For the final aligned funding period ending March 31, 2027, BC increased the allowable TTE portion to 50%.",
       "steps": ["Get an autism diagnosis through the BC Autism Assessment Network (BCAAN, free via physician referral) or a private assessment meeting BC standards", "Register for a Basic BCeID account to apply online, or complete the paper Application for Autism Funding", "Email the application and supporting documents to mcf.autismfundingintake@gov.bc.ca or submit through your local CYSN office", "Sign the funding agreement, then choose RASP-listed providers and submit invoices or reimbursement claims"],
@@ -2410,7 +2408,6 @@ const BENEFITS = [
     "applyText": "Apply for autism funding",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/apply",
     "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/funding-amount",
-    "verified": "2026-07-22",
     "detail": {
       "about": "Up to $6,000 per year per child for behaviour consultants or analysts, speech-language pathologists, occupational or physical therapists, behaviour interventionists, life skills and social skills programs, out-of-school learning support and tutoring, dietary counselling from registered dieticians, family counselling, and specialized therapeutic camps for autism. Administrative costs are normally limited to $50/month (or $600 per period for an accountant), and the normal training, travel and equipment (TTE) limit is 20%. For the final aligned funding period ending March 31, 2027, BC increased the allowable TTE portion to 50%.",
       "steps": ["Have an autism diagnosis on file (BCAAN or qualified private assessment)", "Apply online with a Basic BCeID or send the Application for Autism Funding to mcf.autismfundingintake@gov.bc.ca, or go through your local CYSN office", "Sign the funding agreement and hire qualified providers", "Submit invoices for direct payment or claim reimbursements"],
@@ -2434,7 +2431,6 @@ const BENEFITS = [
     "applyText": "Learn about the Disability Benefit",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/financial-supports/disability-benefit",
     "source": "https://news.gov.bc.ca/releases/2026CFD0002-000136",
-    "verified": "2026-07-21",
     "detail": {
       "about": "Two funding tiers: a base tier of $6,500/year and a higher tier of $17,000/year set through support planning with a ministry worker. Funding covers disability-related expenses including respite, paediatric therapies, behavioural intervention, and assistive and augmentative communication supports. Eligibility is needs-based, not diagnosis-specific: direct admission for conditions such as moderate-to-profound intellectual disability, autism with intellectual disability, and degenerative conditions, plus a needs-based clinical review pathway for rare or atypical cases. Part of a $475-million, three-year provincial investment that also expands free community services (therapies from spring 2026, behaviour and mental-health supports 2027, navigation and school-aged programming 2027-2028).",
       "steps": ["Already receiving Autism Funding or SAET: wait to be contacted — a ministry worker manages your transition between April 2026 and March 2027", "Not yet in a program: apply through Autism Funding or the School-Aged Extended Therapies stream before March 2027 and you will move to the Disability Benefit automatically in April 2027", "From April 1, 2027: apply directly to the Disability Benefit", "Work with a ministry worker on support planning if your child may qualify for the $17,000 higher tier"],
@@ -2457,7 +2453,6 @@ const BENEFITS = [
     "applyText": "Get form HR2847 (PDF)",
     "applyUrl": "https://www2.gov.bc.ca/assets/gov/british-columbians-our-governments/policies-for-government/bc-employment-assistance-policy-procedure-manual/forms/pdfs/hr2847.pdf",
     "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/health-supplements-and-programs-rate-table",
-    "verified": "2026-07-20",
     "detail": {
       "about": "The MNS is for people on disability assistance with the PWD designation who have a severe medical condition causing chronic, progressive deterioration of health with wasting-type symptoms, and who need additional nutritional items or vitamins and minerals to prevent imminent danger to life. Current maximums (Health Supplements & Programs rate table, effective August 1, 2023) are $180/month for dietary items and $45/month for vitamins or minerals.",
       "steps": ["Get form HR2847 (Application for Monthly Nutritional Supplement) from your ministry office, My Self Serve or the link above", "Complete Part B yourself", "Have a medical practitioner, nurse practitioner or registered dietitian complete Part C describing your condition, symptoms and the items needed", "Submit the form; the ministry's Health Assistance staff review and decide"],
@@ -2479,7 +2474,6 @@ const BENEFITS = [
     "applyText": "See what's covered",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance/supplements/optical",
     "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/health-supplements-and-programs-rate-table",
-    "verified": "2026-07-20",
     "detail": {
       "about": "Everyone receiving income or disability assistance gets specified optical services: routine eye exams for adults ($44.83 with an optometrist or $48.90 with an ophthalmologist every two years), new eyeglasses up to ministry maximum rates, lens replacement when a prescription changes, and repairs to frames and lenses. Payment goes straight from the ministry to the optometrist or optician.",
       "steps": ["Take your BC Services Card to any eye clinic", "The clinic verifies your coverage through Pacific Blue Cross", "Get your exam and choose frames within the ministry rate (or pay the difference)", "The ministry pays the provider directly"],
@@ -2502,7 +2496,6 @@ const BENEFITS = [
     "applyText": "Request via My Self Serve or call 1-866-866-0800",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/transportation/passenger-travel/buses-taxis-limos/bus-pass/people-with-disabilities",
     "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/general-supplements-and-programs/bc-bus-pass-program",
-    "verified": "2026-07-22",
     "detail": {
       "about": "The BC Bus Pass Program provides a monthly pass at no annual cost to eligible people with the PWD designation who receive disability assistance, and a separate $45 annual pass to eligible low-income seniors. The pass works on scheduled BC Transit services across the province and as a Compass Card on TransLink in Metro Vancouver. A PWD recipient chooses either the pass or the $52 monthly cash transportation supplement.",
       "steps": ["Confirm whether you qualify through the PWD stream or the low-income-senior stream", "If you receive PWD disability assistance, choose either the no-fee bus pass or the $52 monthly cash transportation supplement", "Request the pass through My Self Serve or by calling 1-866-866-0800; PWD recipients switching from cash should contact the ministry by the 5th for the change to start the next month", "Allow 4 to 6 weeks for a new pass to arrive"],
@@ -2526,7 +2519,6 @@ const BENEFITS = [
     "applyText": "Apply through SPARC BC",
     "applyUrl": "https://www.sparc.bc.ca/parking-permits/",
     "source": "https://www.sparc.bc.ca/parking-permits/",
-    "verified": "2026-07-20",
     "detail": {
       "about": "SPARC BC issues the accessible parking permits recognized in designated spaces across British Columbia. Three types exist: permanent (valid 3 years, renewable), temporary (1 to 12 months, not renewable — reapply if still needed), and conditional (3 years, not renewable). The permit belongs to the person, not a car, and must be displayed on the rear-view mirror while parked.",
       "steps": ["Download the application form from sparc.bc.ca or call 604-718-7744 / 1-888-718-7794 for a copy", "Have the referral section completed by a medical professional with a valid MSP number", "Check SPARC BC's site for the current fee and submit it with the application; ask about hardship assistance if needed", "Allow 2 to 3 weeks for processing", "Display the permit on the rear-view mirror whenever parked in an accessible space"],
@@ -2549,7 +2541,6 @@ const BENEFITS = [
     "applyText": "Request via My Self Serve",
     "applyUrl": "https://myselfserve.gov.bc.ca/",
     "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/health-supplements-and-programs/medical-equipment-and-devices",
-    "verified": "2026-07-20",
     "detail": {
       "about": "Covered items include canes, crutches, walkers, manual and power wheelchairs, scooters, grab bars, bath seats, commodes, lift devices, hospital beds, pressure-relief mattresses and non-conventional glucose meters. A prescription from a doctor or nurse practitioner is required, and many items also need an occupational or physical therapist assessment. Most equipment can be replaced every five years (wheelchair seating after two; canes, crutches and walkers as needed). Recreational scooters, lift chairs and automatic beds are excluded.",
       "steps": ["Contact the ministry through My Self Serve or 1-866-866-0800 to start an equipment request", "Get a prescription from your doctor or nurse practitioner", "Complete an occupational or physical therapist assessment where required (wheelchairs, seating, scooters, lifts)", "Submit supplier quote(s); wait for written ministry pre-approval", "The ministry pays the supplier directly; repairs are requested the same way"],
@@ -2617,7 +2608,6 @@ const BENEFITS = [
     "applyText": "Request through AHP Medical Benefits",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program/medical-benefits",
     "source": "https://www2.gov.bc.ca/assets/gov/family-and-social-supports/children-teens-with-support-needs/at_home_program_guide.pdf",
-    "verified": "2026-07-20",
     "detail": {
       "about": "Up to $5,760 per 12-month period for each of occupational therapy, physiotherapy and speech-language pathology (including therapist-assistant services), delivered one-to-one or in groups. Maximum billing rates: $160/hour for therapists, $60/hour for therapist assistants; up to $480 of the maximum can go to consultation, report writing and travel. A separate $1,920/year is available for chiropractic ($40/session) or massage ($40/hour). Exceptions to maximums are considered for post-surgical rehabilitation. Services must complement, not duplicate, school-based therapy.",
       "steps": ["Ensure the child is enrolled in the At Home Program", "Have the treating OT, PT, SLP, chiropractor or massage therapist complete the At Home Program Request for School-Aged Extended Therapies form, including intended functional outcomes", "Submit the request to AHP Medical Benefits for review", "Approved therapists invoice AHP Medical Benefits directly"],
@@ -2641,7 +2631,6 @@ const BENEFITS = [
     "applyText": "Check CLBC eligibility",
     "applyUrl": "https://www.communitylivingbc.ca/who-does-clbc-support/eligible-clbc-support/",
     "source": "https://www.communitylivingbc.ca/what-support-is-available/",
-    "verified": "2026-07-20",
     "detail": {
       "about": "CLBC funds and coordinates: residential supports (living in your own place, shared living/home sharing with a contracted family, or staffed homes), employment support to find and keep a job, community inclusion and connection programs, skill development, respite for families, wellness supports for daily responsibilities, behavioural support, and the Provincial Assessment Centre's mental-health services for people 14+ with developmental disabilities. Services are delivered through a network of contracted agencies and planned individually with a CLBC facilitator.",
       "steps": ["From age 16, ask your MCFD/CYSN worker about transition planning to CLBC", "Contact your nearest CLBC office (1-877-660-2522) — a facilitator explains the required documents and approved assessors", "Submit assessments and forms completed by an approved professional (registered psychologist for the DD stream); school-years assessments may be reusable", "Once eligibility is confirmed, attend the CLBC Welcome Workshop series and work with your facilitator on a support plan", "CLBC connects you to funded services based on the plan and available resources"],
@@ -2665,7 +2654,6 @@ const BENEFITS = [
     "applyText": "Apply through StudentAid BC",
     "applyUrl": "https://studentaidbc.ca/apply/how-to-apply-disability-funding",
     "source": "https://studentaidbc.ca/explore/grants-scholarships/canada-student-grant-students-disabilities",
-    "verified": "2026-07-20",
     "detail": {
       "about": "This federal grant, delivered through StudentAid BC, helps cover education costs for students with disabilities. It is money you do not pay back, and it is available whether you study full-time or part-time. Disability status can be a permanent disability (lifelong) or a persistent or prolonged disability (12+ months). Once your disability status is verified, it also unlocks reduced course-load rules (40-59% counts as full-time) and other B.C. disability grants.",
       "steps": ["Apply for StudentAid BC full-time or part-time funding online.", "In your StudentAid BC account, open the Disability status application in the Forms section (for applications submitted after June 23, 2026).", "Download the Disability Verification Form and have a qualified medical assessor complete it.", "Upload the signed form inside the Disability status application and submit your declaration.", "StudentAid BC reviews it (about 6 weeks) and posts the decision to your account; the grant is then included in your funding assessment."],
@@ -2689,7 +2677,6 @@ const BENEFITS = [
     "applyText": "Apply through StudentAid BC",
     "applyUrl": "https://studentaidbc.ca/apply/how-to-apply-disability-funding",
     "source": "https://studentaidbc.ca/explore/grants-scholarships/canada-student-grant-services-and-equipment-students-disabilities",
-    "verified": "2026-07-20",
     "detail": {
       "about": "This grant pays for the specific services and equipment you need because of your disability while studying — things like notetakers, tutors, interpreters, assistive software and other technical aids. It is non-repayable and is assessed through your StudentAid BC application after your disability status is verified.",
       "steps": ["Complete a StudentAid BC application and get your disability status verified (Disability Verification Form from a qualified medical assessor).", "Work with your school's accessibility services office to identify the services and equipment you need.", "Submit the services-and-equipment request with cost details through StudentAid BC.", "Funding decisions are posted to your StudentAid BC account."],
@@ -2713,7 +2700,6 @@ const BENEFITS = [
     "applyText": "See how to apply for disability funding",
     "applyUrl": "https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-students-disabilities",
     "source": "https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-students-disabilities",
-    "verified": "2026-07-21",
     "detail": {
       "about": "This non-repayable grant replaces B.C. student loan funding with grant funding for eligible full-time students with a disability at B.C. public post-secondary schools, reducing the amount they borrow.",
       "steps": ["Apply for full-time StudentAid BC funding for the study period", "If disability status is not already verified, submit the StudentAid BC Disability Verification Form completed by an accepted medical assessor", "Confirm that the school is a B.C. public post-secondary institution", "Review the assessment notice in your StudentAid BC account; the grant is assessed with the aid application"],
@@ -2737,7 +2723,6 @@ const BENEFITS = [
     "applyText": "See how to apply for disability funding",
     "applyUrl": "https://studentaidbc.ca/explore/grants-scholarships/bc-supplemental-bursary-students-disabilities",
     "source": "https://studentaidbc.ca/explore/grants-scholarships/bc-supplemental-bursary-students-disabilities",
-    "verified": "2026-07-21",
     "detail": {
       "about": "This non-repayable bursary helps eligible full-time and part-time students with a permanent, or persistent or prolonged, disability pay post-secondary education costs at B.C. public post-secondary schools.",
       "steps": ["Apply for StudentAid BC full-time or part-time funding for the study period", "Submit the Disability Verification Form if StudentAid BC has not already verified disability status", "Confirm that the school and course load meet the bursary rules", "Review the StudentAid BC assessment notice; the bursary is assessed automatically when the conditions are met"],
@@ -2761,7 +2746,6 @@ const BENEFITS = [
     "applyText": "See how to apply for disability funding",
     "applyUrl": "https://studentaidbc.ca/explore/grants-scholarships/bc-assistance-program-students-disabilities",
     "source": "https://studentaidbc.ca/explore/grants-scholarships/bc-assistance-program-students-disabilities",
-    "verified": "2026-07-21",
     "detail": {
       "about": "This grant funds exceptional education-related services and adaptive equipment after all available funding from the Canada Student Grant for Services and Equipment – Students with Disabilities has been used. Apply for the federal grant first.",
       "steps": ["Have StudentAid BC verify your disability status", "Meet with the school's accessibility services office to document disability-related services and equipment", "Apply first for the Canada Student Grant for Services and Equipment – Students with Disabilities", "If eligible costs exceed that grant, have the accessibility office submit the B.C. Assistance Program request and quotes", "Wait for written approval before purchasing equipment or committing to services"],
@@ -2785,7 +2769,6 @@ const BENEFITS = [
     "applyText": "Contact your school's accessibility services office",
     "applyUrl": "https://studentaidbc.ca/explore/grants-scholarships/learning-disability-assessment-bursary",
     "source": "https://studentaidbc.ca/explore/grants-scholarships/learning-disability-assessment-bursary",
-    "verified": "2026-07-21",
     "detail": {
       "about": "This bursary covers up to $3,500 of the up-front cost of a learning disability assessment when the accessibility services office at an eligible B.C. public post-secondary institution recommends the assessment.",
       "steps": ["Apply for StudentAid BC funding and confirm that the school is an eligible B.C. public post-secondary institution", "Meet with the school's accessibility services office and ask whether it recommends a current learning-disability assessment", "Have the accessibility office start the bursary process before booking the assessment", "Use the approved qualified assessor and submit the required invoice or receipt through the school process"],
@@ -2809,7 +2792,6 @@ const BENEFITS = [
     "applyText": "Learn more at StudentAid BC",
     "applyUrl": "https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-deaf-students",
     "source": "https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-deaf-students",
-    "verified": "2026-07-21",
     "detail": {
       "about": "This grant is only for eligible deaf or hard of hearing students attending Gallaudet University in Washington, D.C. or the National Technical Institute for the Deaf in Rochester, New York. StudentAid BC assesses it automatically when disability status is verified and the student attends one of those two schools.",
       "steps": ["Apply for StudentAid BC funding for full-time study at Gallaudet University or the National Technical Institute for the Deaf", "Submit the Disability Verification Form if StudentAid BC has not already verified deaf or hard-of-hearing status", "Provide any financial-need or enrolment information StudentAid BC requests", "Review the funding assessment; there is no separate application for this grant"],
@@ -2832,7 +2814,6 @@ const BENEFITS = [
     "applyText": "See what's covered",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance/supplements/dental",
     "source": "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance/supplements/dental",
-    "verified": "2026-07-20",
     "detail": {
       "about": "Coverage includes restorations, extractions, preventative care, partial and replacement dentures, and crowns or bridges in certain cases, billed under ministry fee schedules. Adults with eligibility get up to $1,000 over each two-calendar-year period; children get up to $2,000 plus an extra $1,000 per year for hospital dental treatment under general anesthesia. Emergency dental to relieve pain is available to everyone on assistance regardless of the limit.",
       "steps": ["Confirm you receive disability assistance or otherwise qualify for general health supplements", "Book any dentist, denturist or dental hygienist and show your BC Services Card", "The office confirms your coverage with the ministry's insurer (Pacific Blue Cross) before treatment", "The ministry pays the provider directly — ask in advance about any costs above the fee schedule"],
@@ -2855,7 +2836,6 @@ const BENEFITS = [
     "applyText": "Claim on your tax return",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/seniors-renovation",
     "source": "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/seniors-renovation",
-    "verified": "2026-07-20",
     "detail": {
       "about": "This credit helps cover permanent renovations that make your principal residence more accessible, functional or safe — improving access to the home or land, helping you move around and function at home, or reducing risk of harm. Qualifying examples include wheelchair ramps, grab bars, handrails, walk-in bathtubs, raised toilets, lowered cupboards, adjustable counters, widened doorways, non-slip flooring, motion-activated lighting and stair lifts. Aesthetic upgrades, appliances, regular repairs, HVAC, windows, and mobility equipment like walkers or wheelchairs do not qualify.",
       "steps": ["Complete eligible renovations to your principal residence and keep all receipts.", "At tax time, complete Schedule BC(S12) — the B.C. Home Renovation Tax Credit for Seniors and Persons with Disabilities form.", "Enter your renovation expenses beside box 60480 on the British Columbia Credits form (BC479).", "File with your T1 return; the credit is refunded even if you owe no tax."],
@@ -2878,7 +2858,6 @@ const BENEFITS = [
     "applyText": "Check intake dates and apply",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/careers-myhr/job-seekers/internship-co-op-opportunities/work-able",
     "source": "https://www2.gov.bc.ca/gov/content/careers-myhr/job-seekers/internship-co-op-opportunities/work-able",
-    "verified": "2026-07-20",
     "detail": {
       "about": "Work-Able coordinates paid internship opportunities across the BC Public Service for recent graduates with disabilities, for up to 24 months. Participants get government work experience, a peer cohort of other graduates with disabilities, exposure to different career paths, and post-program access to internal job postings.",
       "steps": ["Watch the Work-Able page for the annual intake (next opens spring 2027 for the 2027/28 cohort).", "Confirm you graduated within 3 years of the program start date.", "Apply online during the intake window; you self-identify as having a disability without disclosing a diagnosis.", "If selected, you are placed in a paid position with a ministry."],
@@ -2900,7 +2879,6 @@ const BENEFITS = [
     "applyText": "Apply online",
     "applyUrl": "https://apply.workbc.ca/",
     "source": "https://www.workbc.ca/discover-employment-services/assistive-technology-services",
-    "verified": "2026-07-20",
     "detail": {
       "about": "Assistive Technology Services (ATS) removes equipment barriers between you and employment. It funds assistive devices and technology, ergonomic supports like furniture and lighting, restorative supports, ASL interpreting and captioning, communication and hearing devices for work, workplace access modifications, and vehicle modifications needed for employment. How much is covered depends on your financial circumstances.",
       "steps": ["Apply through WorkBC Online Employment Services (apply.workbc.ca) or contact ATS directly.", "An ATS specialist works with you to understand your work barrier and equipment needs.", "Approved equipment and services are arranged fully or partially funded."],
@@ -3213,3 +3191,23 @@ const BENEFITS = [
   }
 
 ];
+
+const BENEFIT_VERIFIED = {
+  dtc: "2026-07", "cdb-adult": "2026-07", aish: "2026-07", adap: "2026-07",
+  "cpp-disability": "2026-07", "parking-placard": "2026-07",
+  "canmore-affordable-services": "2026-07", "cochrane-connect-card": "2026-07",
+  "fortsask-access": "2026-07", "leduc-subsidies": "2026-07",
+  "lloydminster-recreation-access": "2026-07", "okotoks-fee-assistance": "2026-07",
+  "sprucegrove-low-income-transit": "2026-07",
+  "bc-access-grant-deaf-students": "2026-07", "bc-access-grant-students-disabilities": "2026-07",
+  "bc-assistance-program-students-disabilities": "2026-07", "bc-at-home-saet": "2026-07",
+  "bc-autism-funding-6-18": "2026-07", "bc-autism-funding-under-6": "2026-07",
+  "bc-bus-pass": "2026-07", "bc-clbc": "2026-07", "bc-csg-services-equipment": "2026-07",
+  "bc-csg-students-disabilities": "2026-07", "bc-cy-disability-benefit": "2026-07",
+  "bc-dental-supplement": "2026-07", "bc-disability-assistance-pwd": "2026-07",
+  "bc-home-reno-tax-credit": "2026-07", "bc-learning-disability-assessment-bursary": "2026-07",
+  "bc-medical-equipment-devices": "2026-07", "bc-monthly-nutritional-supplement": "2026-07",
+  "bc-optical-supplement": "2026-07", "bc-supplemental-bursary-students-disabilities": "2026-07",
+  "bc-work-able-internship": "2026-07", "bc-workbc-assistive-technology": "2026-07",
+  "sparc-parking-permit": "2026-07",
+};
