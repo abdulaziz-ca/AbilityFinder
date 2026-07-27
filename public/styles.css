@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=57") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=58") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=57") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=58") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -553,6 +553,13 @@ body.a11y-nomotion .life-event-card:hover .life-event-arrow { transform: none; }
 .mb-total b { color: var(--ok); }
 .mb-sub { color: var(--text-dim); font-size: 0.9rem; margin-top: 2px; }
 .mb-caveat { margin: 14px 0 0; font-size: 0.78rem; color: var(--text-dimmer); line-height: 1.5; }
+.money-band.no-estimate { border-top-color: color-mix(in srgb, var(--warn) 34%, var(--hair)); }
+.money-band.no-estimate .mb-badge { background: var(--warn-soft); color: var(--warn); }
+@media (max-width: 420px) {
+  .mb-head { align-items: flex-start; gap: 11px; }
+  .mb-badge { width: 40px; height: 40px; border-radius: 10px; }
+  .mb-total { font-size: 1.45rem; }
+}
 
 /* in-memory scenario comparison below the real value summary */
 .scenario { max-width: 1000px; margin: 14px 0 8px; border: 1px solid var(--hair); border-radius: var(--r-sm); background: color-mix(in srgb, var(--panel) 75%, transparent); overflow: clip; }
@@ -604,12 +611,14 @@ body.a11y-nomotion .scenario-toggle .ic:last-child { transition: none; }
 .tool-btn:hover { border-color: var(--hair-2); }
 .tool-btn .ic { width: 15px; height: 15px; color: var(--text-dim); }
 
-.group-title { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.72rem; font-weight: 500; color: var(--text-dim); margin: 40px 0 8px; }
+.group-title { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.72rem; font-weight: 500; color: var(--text-dim); margin: 40px 0 8px; }
 .group-title .gi { display: inline-flex; }
 .group-title .gi .ic { width: 16px; height: 16px; }
 .group-title.ready .gi .ic { color: var(--ok); }
 .group-title.almost .gi .ic { color: var(--warn); }
 .group-title .count { font-size: 0.72rem; font-weight: 600; padding: 1px 8px; border-radius: 999px; background: var(--panel-2); color: var(--text-dim); }
+.group-title.primary { margin-top: 28px; color: var(--text); font-size: 0.78rem; }
+.group-title.primary .count { background: var(--warn-soft); color: var(--warn); }
 
 /* benefits are now flowing rows separated by hairlines — not boxes */
 .benefit { position: relative; padding: 22px 4px 22px 18px; border-top: 1px solid var(--hair); transition: background 0.18s; }

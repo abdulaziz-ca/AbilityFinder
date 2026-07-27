@@ -707,24 +707,42 @@ function priorityScore(b) {
 }
 
 function renderMoneyBand(ready, almost) {
-  const matched = [...ready, ...almost];
-  // headline = what's READY now (honest); unlocks shown separately as potential
+  if (!ready.length && !almost.length) return "";
+
+  // Only READY benefits can contribute a figure. Conditional matches have at
+  // least one unanswered gate, so neither annual nor lifetime values are shown.
   const readyVals = ready.map((e) => BENEFIT_VALUES[e.b.id]).filter(Boolean);
   const annualTotal = readyVals.filter((v) => ["cash", "grant", "taxCredit"].includes(v.kind) && !v.excludeFromEstimate && v.annualMax).reduce((s, v) => s + v.annualMax, 0);
-  const lifetime = matched.map((e) => BENEFIT_VALUES[e.b.id]).find((v) => v && v.lifetimeMax);
+  const lifetime = readyVals.find((v) => v.lifetimeMax && !v.excludeFromEstimate);
   const round100 = (n) => Math.round(n / 100) * 100;
   const extras = [];
-  if (lifetime) extras.push(`up to ${money(lifetime.lifetimeMax)} lifetime (RDSP)`);
-  return `
+  if (lifetime) extras.push(t("mb.lifetime").replace("{amount}", money(lifetime.lifetimeMax)));
+
+  if (annualTotal > 0) {
+    return `
   <div class="money-band">
     <div class="mb-head">
       <span class="mb-badge">${icon("money")}</span>
       <div>
-        <div class="mb-total">Up to <b>~${money(round100(annualTotal))}</b> / year</div>
-        <div class="mb-sub">in support represented by your close matches${extras.length ? " · " + extras.join(" · ") : ""}</div>
+        <div class="mb-total">${t("mb.upTo").replace("{amount}", `<b>~${money(round100(annualTotal))}</b>`)}</div>
+        <div class="mb-sub">${t("mb.readySub")}${extras.length ? " · " + extras.join(" · ") : ""}</div>
       </div>
     </div>
-    <p class="mb-caveat">Rough estimates — not everything stacks (e.g. AISH has income limits). Open each benefit for real numbers.</p>
+    <p class="mb-caveat">${t("mb.caveat")}</p>
+  </div>`;
+  }
+
+  const hasReady = ready.length > 0;
+  return `
+  <div class="money-band no-estimate">
+    <div class="mb-head">
+      <span class="mb-badge">${icon(hasReady ? "money" : "key")}</span>
+      <div>
+        <div class="mb-total">${t(hasReady ? "mb.noTotalTitle" : "mb.conditionalTitle")}</div>
+        <div class="mb-sub">${t(hasReady ? "mb.noTotalSub" : "mb.conditionalSub")}${extras.length ? " · " + extras.join(" · ") : ""}</div>
+      </div>
+    </div>
+    <p class="mb-caveat">${t(hasReady ? "mb.noTotalCaveat" : "mb.conditionalCaveat")}</p>
   </div>`;
 }
 
@@ -3212,16 +3230,15 @@ function resultsBlurb(readyN, almostN) {
   const fr = LANG === "fr";
   if (readyN && almostN)
     return fr
-      ? `Vous pouvez faire une demande pour ${readyN} maintenant, et ${almostN} de plus s'ouvrent après une étape (souvent l'obtention du crédit d'impôt pour personnes handicapées). Touchez une carte pour un guide détaillé.`
+      ? `${readyN} programmes correspondent étroitement à vos réponses, et ${almostN} autres nécessitent d’abord la confirmation d’une condition. Il s’agit d’un résultat de dépistage, et non d’une décision d’approbation — ouvrez chaque guide avant de faire une demande.`
       : `${readyN} programs closely match your answers, and ${almostN} more need a requirement confirmed first. This is a screening result, not an approval decision — open each guide before applying.`;
   if (readyN)
     return fr
       ? `Voici ce que vous pouvez demander dès maintenant. Touchez une carte pour un guide en langage clair et le lien direct.`
       : `These programs closely match your answers. This is not a guarantee of eligibility — open each guide and confirm the full rules before applying.`;
   if (almostN)
-    return fr
-      ? `Vous y êtes presque ! Obtenir votre crédit d'impôt pour personnes handicapées (CIPH) est la clé qui débloque ces prestations.`
-      : `These programs may fit, but each has a requirement to confirm first. Open a card to see exactly what is missing.`;
+    return t(almostN === 1 ? "res.conditionalOne" : "res.conditionalMany")
+      .replace("{count}", almostN);
   return fr
     ? `Aucune correspondance selon vos réponses — ajustez vos réponses, ou commencez par le crédit d'impôt pour personnes handicapées.`
     : `Based on your answers we didn't find a match — try adjusting your answers, or start with the Disability Tax Credit.`;
@@ -3296,7 +3313,8 @@ function renderMatchedGroups(ready, almost, rankOf) {
     h += `<div class="benefits-grid">${ready.map((e) => benefitCard(e.b, e.r, rankOf[e.b.id])).join("")}</div>`;
   }
   if (almost.length) {
-    h += groupTitle("almost", "key", t("grp.almost"), almost.length);
+    const isPrimary = !ready.length;
+    h += groupTitle(`almost${isPrimary ? " primary" : ""}`, "key", t(isPrimary ? "grp.almostOnly" : "grp.almost"), almost.length);
     h += `<div class="benefits-grid">${almost.map((e) => benefitCard(e.b, e.r, rankOf[e.b.id])).join("")}</div>`;
   }
   return h;

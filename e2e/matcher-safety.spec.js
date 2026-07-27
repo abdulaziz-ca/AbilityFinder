@@ -158,6 +158,150 @@ test("DTC disability amount is not presented as cash, tax savings, or back-pay e
   await expect(page.locator(".pv-hero-val")).toHaveText("Amounts vary");
 });
 
+test("money band covers empty, ready, mixed, zero-total, and RDSP states", async ({ page }) => {
+  await page.goto("/");
+  const model = await page.evaluate(() => {
+    const entry = (id) => ({ b: BENEFITS.find((benefit) => benefit.id === id), r: { status: "almost" } });
+    const text = (html) => {
+      const node = document.createElement("div");
+      node.innerHTML = html;
+      return node.textContent.replace(/\s+/g, " ").trim();
+    };
+    const originalLang = LANG;
+    LANG = "en";
+    try {
+      const cwb = entry("cwb-disability");
+      const child = entry("child-disability-benefit");
+      const dtc = entry("dtc");
+      const rdsp = entry("rdsp");
+      const mixedReady = [cwb, child];
+      return {
+        empty: renderMoneyBand([], []),
+        mixed: text(renderMoneyBand(mixedReady, [rdsp])),
+        mixedAnnualTotal: reportAnnualTotal(mixedReady),
+        zeroTotal: text(renderMoneyBand([dtc], [])),
+        almostOnly: text(renderMoneyBand([], [cwb])),
+        almostRdsp: text(renderMoneyBand([], [rdsp])),
+        readyRdsp: text(renderMoneyBand([rdsp], [])),
+      };
+    } finally {
+      LANG = originalLang;
+    }
+  });
+
+  expect(model.empty).toBe("");
+  expect(model.mixedAnnualTotal).toBe(4300);
+  expect(model.mixed).toContain("Up to ~$4,300 / year");
+  expect(model.mixed).not.toContain("$90,000");
+  expect(model.zeroTotal).toContain("No single yearly amount to total");
+  expect(model.zeroTotal).not.toMatch(/\$[\d,]+/);
+  expect(model.almostOnly).toContain("No amount is estimated yet");
+  expect(model.almostOnly).not.toMatch(/\$[\d,]+/);
+  expect(model.almostRdsp).toContain("No amount is estimated yet");
+  expect(model.almostRdsp).not.toContain("$90,000");
+  expect(model.almostRdsp).not.toContain("$4,500");
+  expect(model.readyRdsp).toContain("Up to ~$4,500 / year");
+  expect(model.readyRdsp).toContain("up to $90,000 lifetime (RDSP)");
+});
+
+test("money and all-conditional result copy is complete in English and French", async ({ page }) => {
+  await page.goto("/");
+  const copy = await page.evaluate(() => {
+    const entry = (id) => ({
+      b: BENEFITS.find((benefit) => benefit.id === id),
+      r: { status: "almost", needs: [], reasons: [] },
+    });
+    const text = (html) => {
+      const node = document.createElement("div");
+      node.innerHTML = html;
+      return node.textContent.replace(/\s+/g, " ").trim();
+    };
+    const originalLang = LANG;
+    try {
+      LANG = "en";
+      const en = {
+        one: resultsBlurb(0, 1),
+        many: resultsBlurb(0, 2),
+        almost: text(renderMoneyBand([], [entry("rdsp")])),
+        ready: text(renderMoneyBand([entry("rdsp")], [])),
+        group: renderMatchedGroups([], [entry("rdsp")], {}),
+      };
+      LANG = "fr";
+      const fr = {
+        one: resultsBlurb(0, 1),
+        many: resultsBlurb(0, 2),
+        mixed: resultsBlurb(1, 1),
+        almost: text(renderMoneyBand([], [entry("rdsp")])),
+        ready: text(renderMoneyBand([entry("rdsp")], [])),
+        group: renderMatchedGroups([], [entry("rdsp")], {}),
+      };
+      return { en, fr };
+    } finally {
+      LANG = originalLang;
+    }
+  });
+
+  expect(copy.en.one).toContain("This program is not ruled out");
+  expect(copy.en.one).not.toContain("These 1 programs");
+  expect(copy.en.many).toContain("These 2 programs are not ruled out");
+  expect(copy.en.almost).toContain("No amount is estimated yet");
+  expect(copy.en.ready).toContain("Up to ~$4,500 / year");
+  expect(copy.en.group).toMatch(/group-title almost primary/);
+  expect(copy.en.group).toContain("Programs to confirm");
+
+  expect(copy.fr.one).toContain("Ce programme n’est pas écarté");
+  expect(copy.fr.many).toContain("Ces 2 programmes ne sont pas écartés");
+  expect(copy.fr.one + copy.fr.many).not.toMatch(/CIPH|crédit d.impôt/i);
+  expect(copy.fr.mixed).not.toMatch(/CIPH|crédit d.impôt/i);
+  expect(copy.fr.almost).toContain("Aucun montant n’est encore estimé");
+  expect(copy.fr.ready).toContain("Jusqu’à ~$4,500 / an");
+  expect(copy.fr.ready).toContain("jusqu’à $90,000 à vie (REEI)");
+  expect(copy.fr.group).toMatch(/group-title almost primary/);
+  expect(copy.fr.group).toContain("Programmes à confirmer");
+});
+
+test("results UX helpers preserve matcher definitions, values, questions, and input ordering", async ({ page }) => {
+  await page.goto("/");
+  const preserved = await page.evaluate(() => {
+    const snapshot = () => JSON.stringify({
+      benefits: BENEFITS.map((benefit) => ({ id: benefit.id, requires: benefit.requires })),
+      reqs: Object.entries(REQS).map(([key, req]) => [key, {
+        fixed: req.fixed,
+        unmet: req.unmet,
+        hasTest: typeof req.test === "function",
+        action: req.action || null,
+      }]),
+      values: BENEFIT_VALUES,
+      steps: STEPS.map((step) => ({ id: step.id, type: step.type })),
+    });
+    const before = snapshot();
+    const ready = ["cwb-disability", "child-disability-benefit"].map((id) => ({
+      b: BENEFITS.find((benefit) => benefit.id === id),
+      r: { status: "ready", needs: [], reasons: [] },
+    }));
+    const almost = ["rdsp", "dtc"].map((id) => ({
+      b: BENEFITS.find((benefit) => benefit.id === id),
+      r: { status: "almost", needs: [], reasons: [] },
+    }));
+    const readyOrder = ready.map((entry) => entry.b.id);
+    const almostOrder = almost.map((entry) => entry.b.id);
+    renderMoneyBand(ready, almost);
+    resultsBlurb(ready.length, almost.length);
+    renderMatchedGroups(ready, almost, {});
+    return {
+      unchanged: before === snapshot(),
+      readyOrder,
+      readyOrderAfter: ready.map((entry) => entry.b.id),
+      almostOrder,
+      almostOrderAfter: almost.map((entry) => entry.b.id),
+    };
+  });
+
+  expect(preserved.unchanged).toBe(true);
+  expect(preserved.readyOrderAfter).toEqual(preserved.readyOrder);
+  expect(preserved.almostOrderAfter).toEqual(preserved.almostOrder);
+});
+
 test("DTC practitioner finder exposes the current scoped CRA certification matrix", async ({ page }) => {
   await page.goto("/");
   const signerModel = await page.evaluate(() => {
