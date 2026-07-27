@@ -1031,7 +1031,7 @@ const BENEFITS = [
     amount: "Up to $204.20 / month for July 2026–June 2027",
     summary:
       "A monthly payment for working-age adults with a disability and lower income.",
-    requires: ["dtc", "workingAge", "lowIncome"],
+    requires: ["dtc", "workingAge", "cdbTaxFiling", "cdbStatus", "cdbAmountCalculation"],
     note:
       "The amount is reassessed each year from adjusted family net income. July 2026–June 2027 payments use the 2025 federal tax return. You must be approved for the DTC first.",
     applyText: "Learn how to apply",
@@ -1070,7 +1070,7 @@ const BENEFITS = [
     amount: "Up to $3,480 / year per child ($290 / month)",
     summary:
       "A tax-free monthly amount added to the Canada Child Benefit for a child approved for the DTC.",
-    requires: ["dtc", "child"],
+    requires: ["dtc", "child", "ccbEligibility"],
     note:
       "Once your child is approved for the DTC and you already receive the Canada Child Benefit, this is added automatically — no separate form.",
     applyText: "How the Child Disability Benefit works",
@@ -1106,7 +1106,7 @@ const BENEFITS = [
     amount: "Up to $3,500 grant + $1,000 bond per year (free government money)",
     summary:
       "A savings account where the government adds matching grants (up to 300%) and bonds — you don't even need to contribute to get the bond if your income is low.",
-    requires: ["dtc", "under60"],
+    requires: ["dtc", "under60", "rdspOpening", "rdspContributionWindow", "rdspGrantWindow"],
     note:
       "One of the best-value benefits available. Open one at most banks or credit unions after you're approved for the DTC.",
     applyText: "How to open an RDSP",
@@ -1144,7 +1144,7 @@ const BENEFITS = [
     amount: "Extra refundable tax credit on top of the base benefit",
     summary:
       "If you work and earn a lower income, this adds an extra disability top-up to your tax refund.",
-    requires: ["dtc", "working", "lowIncome"],
+    requires: ["dtc", "working", "cwbEligibility"],
     note:
       "Claimed automatically on your annual tax return once your DTC is on file with the CRA.",
     applyText: "Canada Workers Benefit details",
@@ -1220,7 +1220,7 @@ const BENEFITS = [
     amount: "Up to $2,800 / year (a grant — you don't pay it back)",
     summary:
       "Extra grant money for post-secondary students with a documented disability.",
-    requires: ["student", "disabilityDoc", "notBcStudentAidDuplicate"],
+    requires: ["student", "notBcStudentAidDuplicate", "csgNeedAndProgram"],
     note:
       "Applied for through Alberta Student Aid — one application covers this and the Alberta grant.",
     applyText: "Apply through your provincial student aid",
@@ -1255,7 +1255,7 @@ const BENEFITS = [
     amount: "Up to $20,000 / year",
     summary:
       "Covers assistive technology, note-taking, tutoring, coaching and other supports for students with disabilities.",
-    requires: ["student", "disabilityDoc", "notBcStudentAidDuplicate"],
+    requires: ["student", "notBcStudentAidDuplicate", "csgNeedAndProgram", "csgServicesEquipment"],
     note:
       "Covers a lot: assistive tech, tutors, note-takers, learning coaches, specialized transportation and more.",
     applyText: "Apply through your provincial student aid",
