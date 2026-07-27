@@ -128,6 +128,35 @@ test("shared disability documentation no longer sends Alberta users to StudentAi
   );
 });
 
+test("Deaf Students grant keeps representative matcher statuses", async ({ page }) => {
+  const ready = await evaluateProfile(page, {
+    province: "BC",
+    city: "Vancouver",
+    situation: ["student"],
+    disabilities: ["hearing"],
+    disabilityVerified: "yes",
+  });
+  expect(ready["bc-access-grant-deaf-students"].status).toBe("ready");
+
+  const needsVerification = await evaluateProfile(page, {
+    province: "BC",
+    city: "Vancouver",
+    situation: ["student"],
+    disabilities: ["hearing"],
+    disabilityVerified: "no",
+  });
+  expect(needsVerification["bc-access-grant-deaf-students"].status).toBe("almost");
+
+  const wrongDisability = await evaluateProfile(page, {
+    province: "BC",
+    city: "Vancouver",
+    situation: ["student"],
+    disabilities: ["physical"],
+    disabilityVerified: "yes",
+  });
+  expect(wrongDisability["bc-access-grant-deaf-students"].status).toBe("no");
+});
+
 const achbUrl = "https://www.alberta.ca/alberta-child-health-benefit";
 const achbDeclarationUrl = "https://cfr.forms.gov.ab.ca/Form/AEHB3654";
 

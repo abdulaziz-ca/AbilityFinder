@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 151 links. The monitor checks a bounded rotating batch every
+// 152 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) URLs are skipped — they depend on the
@@ -429,6 +429,11 @@ export const LINKS = [
     "url": "https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-deaf-students",
     "label": "B.C. Access Grant for Deaf Students — apply",
     "kind": "apply"
+  },
+  {
+    "url": "https://studentaidbc.ca/sites/all/files/school-officials/policy_manual_26_27.pdf",
+    "label": "B.C. Access Grant for Deaf Students — official source",
+    "kind": "source"
   },
   {
     "url": "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance/supplements/dental",
