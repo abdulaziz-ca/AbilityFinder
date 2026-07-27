@@ -130,7 +130,7 @@ const BENEFIT_VALUES = {
   aadl: { kind: "coverage", note: "covers ~75% of approved equipment & supplies" },
   pdd: { kind: "services", note: "funded daily-living, community & employment services" },
   fscd: { kind: "services", note: "respite, services & help with some disability costs" },
-  dres: { kind: "services", note: "funds assistive tech, training & workplace supports" },
+  dres: { kind: "services", note: "may fund approved disability-related accommodations for work or eligible education or training routes" },
   "ab-grant-disability": { kind: "grant", annualMax: 3000,
     note: "per loan year; limited to approved service/equipment costs after federal funding is allocated first" },
   "adult-health-benefit": { kind: "coverage", note: "free prescriptions, dental & optical — often $1,000+/yr" },
@@ -257,7 +257,6 @@ const BENEFIT_META = {
   aadl: { difficulty: 3, effort: "Assessment with an OT / authorizer", wait: "varies" },
   pdd: { difficulty: 3, effort: "Assessment-based", wait: "varies" },
   fscd: { difficulty: 2, effort: "Meet with an FSCD worker", wait: "varies" },
-  dres: { difficulty: 2, effort: "Meet at an Alberta Supports Centre", wait: "varies" },
   "ab-grant-disability": { difficulty: 2, effort: "Student aid + current Schedule 4 and cost quotes", wait: "with student aid" },
   "adult-health-benefit": { difficulty: 2, effort: "Form + proof of income", wait: "a few weeks" },
   "child-health-benefit": { difficulty: 2, effort: "Form + proof of income", wait: "a few weeks" },
@@ -490,7 +489,6 @@ const BENEFIT_EXTRA = {
       { q: "Who can complete the medical section?", a: "Alberta lists a physician, occupational therapist, physiotherapist, surgeon, podiatrist, nurse practitioner or chiropractor. Check with the practitioner before booking." },
     ],
   },
-  dres: { related: ["ab-grant-disability", "csg-dse"] },
 };
 
 /* =============================================================================
@@ -1468,33 +1466,44 @@ const BENEFITS = [
     name: "Disability Related Employment Supports (DRES)",
     level: "Alberta",
     category: "Employment",
-    amount: "Funding for assistive tech, coaching, training & workplace supports",
+    amount: "Potential funding for approved disability-related accommodations",
     summary:
-      "Pays for supports that help you get or keep a job, or finish training — assistive devices, tutoring, coaching, workplace tools.",
-    requires: ["ab", "citizenPR", "disabilityDoc", "lookingOrTraining"],
+      "May fund approved accommodations for an employed or employment-destined Albertan whose documented permanent or long-term disability creates a barrier to education, training, or employment.",
+    requires: [
+      "age16plus",
+      "ab",
+      "disabilityDoc",
+      "dresResidencyAndStatus",
+      "dresDisabilityBarrier",
+      "dresEmploymentRoute",
+    ],
+    requiresNote:
+      "You must be 16 or older, reside in Alberta, be legally entitled to work or train in Canada, and be a Canadian citizen, permanent resident, or Convention Refugee. You must be employed or employment destined, and a documented permanent or long-term disability must create a barrier to education, training, or employment.",
     note:
-      "Does NOT require the DTC and is very flexible — can fund coaching, focus/organization tools, and training supports. Start at an Alberta Supports Centre.",
+      "Published examples include assistive devices, equipment or technology; ASL interpreting and captioning; an academic aide or note taker; communication or hearing devices for work; workplace access or modification; and work-related vehicle modifications. Education or training supports are not available while attending Alberta Education-funded K–12 or a publicly funded Alberta post-secondary institution; contact the school or institution for disability accommodations. A separate eligible work route may still be considered.",
     applyText: "Disability Related Employment Supports",
     applyUrl: "https://www.alberta.ca/disability-related-employment-supports",
     source: "https://www.alberta.ca/disability-related-employment-supports",
     detail: {
       about:
-        "Funding for the specific supports you need to overcome disability-related barriers to work or training — assistive technology, tutoring, interpreters, coaching, exam accommodations, even some vehicle or workplace modifications.",
+        "DRES may fund approved accommodations that address a documented permanent or long-term disability barrier for an employed or employment-destined person. Published examples are assistive devices, equipment or technology; ASL interpreting and captioning; an academic aide or note taker; communication or hearing devices for work; workplace access or modification; and work-related vehicle modifications. It does not fund medical treatments or therapies, daily-living items, job matching, employment and skills training, or wage subsidies.",
       steps: [
-        "Contact your nearest Alberta Supports Centre.",
-        "Complete an employability assessment with a worker.",
-        "Together you build a service plan listing the supports DRES will fund.",
+        "Open the official DRES page and use its current contact route to ask about an employment or employment-destined accommodation.",
+        "Confirm the Alberta residency, age, legal entitlement, immigration-status, disability-duration, disability-barrier and employment-route criteria.",
+        "Describe the disability-related barrier and the specific accommodation requested, using only the current DRES coverage rules.",
       ],
       documents: [
-        "Documentation of a permanent/chronic disability that affects work or training",
-        "Proof you're legally entitled to work in Canada",
+        "Documentation that the disability is permanent or long-term and creates a barrier to education, training or employment",
+        "Information confirming Alberta residency and legal entitlement to work or train in Canada",
+        "Information confirming Canadian citizen, permanent resident or Convention Refugee status",
+        "Information showing that you are employed or employment destined and identifying the requested accommodation",
       ],
       tips: [
-        "No DTC needed — this is one of the easiest supports to access with an ADHD, learning, or mental-health diagnosis.",
-        "Be specific about the barrier and the tool that would fix it (e.g. 'text-to-speech software for reports').",
+        "Covered examples published by Alberta include assistive devices, equipment or technology; ASL interpreting and captioning; an academic aide or note taker; communication or hearing devices for work; workplace access or modification; and work-related vehicle modifications.",
+        "DRES does not fund medical treatments or therapies, daily-living items, job matching, employment and skills training, or wage subsidies.",
+        "If the request is for education or training while attending Alberta Education-funded K–12 or a publicly funded Alberta post-secondary institution, contact the school or institution for disability accommodations. This does not by itself rule out a separate eligible work route.",
       ],
-      time: "Assessment-based.",
-      phone: "Alberta Supports: 1-877-644-9992",
+      phone: "Alberta Supports Contact Centre 780-644-9992 or 1-877-644-9992",
     },
   },
   {

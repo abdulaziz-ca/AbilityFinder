@@ -190,6 +190,7 @@ const METRO_VANCOUVER_CITIES = [
    ========================================================================== */
 const DTC_URL =
   "https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/t2201.html";
+const DRES_URL = "https://www.alberta.ca/disability-related-employment-supports";
 
 const REQS = {
   dtc: {
@@ -353,6 +354,30 @@ const REQS = {
     met: () => answers.disabilityVerified === "yes",
     fixed: false,
     unmet: "Have a qualified professional verify the disability or functional limitation first.",
+  },
+  dresResidencyAndStatus: {
+    // The questionnaire's citizen/PR answer cannot rule out a Convention Refugee,
+    // and it does not establish current Alberta residency or legal work status.
+    met: () => false,
+    fixed: false,
+    unmet: "Confirm that you reside in Alberta, are legally entitled to work or train in Canada, and are a Canadian citizen, permanent resident, or Convention Refugee.",
+    action: { text: "Review DRES eligibility", url: DRES_URL },
+  },
+  dresDisabilityBarrier: {
+    // A general documentation answer does not establish DRES's duration and
+    // barrier tests. Keep both unresolved even when unsupported fields appear.
+    met: () => false,
+    fixed: false,
+    unmet: "Confirm that your documented disability is permanent or long-term and creates a barrier to education, training, or employment.",
+    action: { text: "Review DRES disability criteria", url: DRES_URL },
+  },
+  dresEmploymentRoute: {
+    // Work/training answers do not establish employment-destined status, the
+    // requested accommodation, or whether an institutional exclusion applies.
+    met: () => false,
+    fixed: false,
+    unmet: "Confirm that you are employed or employment destined and that the request is for a DRES-funded accommodation. Education or training supports are not available while attending Alberta Education-funded K–12 or a publicly funded Alberta post-secondary institution; contact the school or institution for disability accommodations. DRES does not fund ordinary job matching, employment or skills training, or wage subsidies.",
+    action: { text: "Review DRES routes and exclusions", url: DRES_URL },
   },
   pddEligibility: {
     met: () => false,

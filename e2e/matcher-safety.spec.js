@@ -128,6 +128,135 @@ test("shared disability documentation no longer sends Alberta users to StudentAi
   );
 });
 
+const dresUrl = "https://www.alberta.ca/disability-related-employment-supports";
+
+async function expectDresConditional(page, overrides = {}) {
+  const results = await evaluateProfile(page, {
+    province: "AB",
+    ageBand: "19to59",
+    disabilityVerified: "yes",
+    situation: ["working"],
+    ...overrides,
+  });
+  expect(results.dres.status).toBe("almost");
+  expect(results.dres.status).not.toBe("ready");
+  return results.dres;
+}
+
+test("DRES keeps a documented employed Alberta adult conditional", async ({ page }) => {
+  const dres = await expectDresConditional(page);
+  expect(dres.needs).toHaveLength(3);
+  expect(dres.needs.map((need) => need.actionUrl)).toEqual([
+    dresUrl,
+    dresUrl,
+    dresUrl,
+  ]);
+});
+
+test("DRES does not hard-reject citizenPR=false and confirms Convention Refugee status", async ({ page }) => {
+  const dres = await expectDresConditional(page, { citizenPR: false });
+  const statusNeed = dres.needs.find((need) => /Convention Refugee/.test(need.text));
+  expect(statusNeed).toBeTruthy();
+  expect(statusNeed.text).toMatch(/reside in Alberta/i);
+  expect(statusNeed.text).toMatch(/legally entitled to work or train in Canada/i);
+  expect(statusNeed.actionUrl).toBe(dresUrl);
+  expect(dres.reasons).not.toContain("You must be a Canadian citizen or permanent resident.");
+});
+
+test("DRES hard-routes age under 16 to no", async ({ page }) => {
+  const results = await evaluateProfile(page, {
+    ageBand: "12to15",
+    ageGroup: "child",
+    disabilityVerified: "yes",
+    situation: ["working"],
+  });
+  expect(results.dres.status).toBe("no");
+  expect(results.dres.reasons).toContain("You must be at least 16.");
+});
+
+test("DRES warns institution students and ordinary-training-only profiles", async ({ page }) => {
+  const dres = await expectDresConditional(page, {
+    situation: ["student"],
+    attendsPublicInstitution: true,
+    trainingOnly: true,
+  });
+  const warning = dres.needs.map((need) => need.text).join(" ");
+  expect(warning).toMatch(/Alberta Education-funded K–12/);
+  expect(warning).toMatch(/publicly funded Alberta post-secondary institution/);
+  expect(warning).toMatch(/contact the school or institution for disability accommodations/i);
+  expect(warning).toMatch(/does not fund ordinary job matching, employment or skills training, or wage subsidies/i);
+});
+
+test("DRES injected employment and covered-device facts cannot manufacture ready", async ({ page }) => {
+  const dres = await expectDresConditional(page, {
+    functionalNeeds: ["equipment"],
+    dresAlbertaResident: true,
+    dresLegalWorkStatus: true,
+    dresConventionRefugee: true,
+    dresPermanentLongTermBarrier: true,
+    dresEmploymentDestined: true,
+    dresCoveredAccommodation: "assistive device",
+    dresInstitutionExcluded: false,
+  });
+  expect(dres.needs).toHaveLength(3);
+  expect(dres.needs.every((need) => need.actionUrl === dresUrl)).toBe(true);
+});
+
+test("DRES copy contains only published examples, exclusions and official actions", async ({ page }) => {
+  await page.goto("/");
+  const dres = await page.evaluate(() => {
+    const benefit = BENEFITS.find((item) => item.id === "dres");
+    return {
+      benefit,
+      value: BENEFIT_VALUES.dres,
+      meta: BENEFIT_META.dres || null,
+      extra: BENEFIT_EXTRA.dres || null,
+    };
+  });
+  const copy = JSON.stringify(dres);
+
+  for (const publishedExample of [
+    "assistive devices, equipment or technology",
+    "ASL interpreting and captioning",
+    "academic aide or note taker",
+    "communication or hearing devices for work",
+    "workplace access or modification",
+    "work-related vehicle modifications",
+  ]) {
+    expect(copy).toContain(publishedExample);
+  }
+  for (const exclusion of [
+    "medical treatments or therapies",
+    "daily-living items",
+    "job matching",
+    "employment and skills training",
+    "wage subsidies",
+  ]) {
+    expect(copy).toContain(exclusion);
+  }
+  expect(copy).toContain("Alberta Education-funded K–12");
+  expect(copy).toContain("publicly funded Alberta post-secondary institution");
+  expect(copy).not.toMatch(
+    /(?<!not )\b(?:funds?|funding for|pays? for|covers?|provides?|offers?)\b[^.!?]{0,120}\b(?:ordinary training|training supports?|coaching|tutoring|focus\/?organization tools?|exam accommodations?|finish training)\b/i,
+  );
+  expect(copy).not.toMatch(/one of the easiest|very flexible|diagnosis/i);
+  expect(dres.benefit.applyUrl).toBe(dresUrl);
+  expect(dres.benefit.source).toBe(dresUrl);
+  expect(dres.benefit.detail.phone).toBe(
+    "Alberta Supports Contact Centre 780-644-9992 or 1-877-644-9992",
+  );
+  expect(dres.benefit.requires).toEqual([
+    "age16plus",
+    "ab",
+    "disabilityDoc",
+    "dresResidencyAndStatus",
+    "dresDisabilityBarrier",
+    "dresEmploymentRoute",
+  ]);
+  expect(dres.meta).toBeNull();
+  expect(dres.extra).toBeNull();
+});
+
 const abGrantConfirmationNeeds = [
   "Confirm Alberta student-funding eligibility, a full-time course load of at least 60% (or a documented reduced load of at least 40%), and at least $1 of Alberta calculated need.",
   "For this financial-assistance application, confirm an approved Schedule 4 lists current disability-related service or equipment costs with quotes or estimates, and that approved costs remain after federal funding is allocated first.",
@@ -1065,13 +1194,14 @@ test("Alberta and BC slices are preserved", async ({ page }) => {
 });
 
 test("ready is still reachable for realistic profiles", async ({ page }) => {
-  const workingStudent = await evaluateProfile(page, {
-    situation: ["working", "student"],
-    income: "moderate",
-    disabilityVerified: "yes",
-    functionalNeeds: ["equipment"],
+  const albertaLowIncomeChild = await evaluateProfile(page, {
+    forWho: "child",
+    province: "AB",
+    ageBand: "6to11",
+    ageGroup: "child",
+    income: "low",
   });
-  const abReady = Object.values(workingStudent).filter((r) => r.status === "ready");
+  const abReady = Object.values(albertaLowIncomeChild).filter((r) => r.status === "ready");
   expect(abReady.length).toBeGreaterThan(0);
 
   const bcPwdAdult = await evaluateProfile(page, {
