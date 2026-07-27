@@ -1169,6 +1169,14 @@ const stepOptions = (step) =>
 
 const visibleSteps = () => STEPS.filter((s) => !(s.skipIf && s.skipIf()));
 
+const BROWSE_LEVELS = [
+  { key: "all", label: "All levels" },
+  { key: "Federal", label: "Federal" },
+  { key: "Alberta", label: "Alberta" },
+  { key: "British Columbia", label: "British Columbia" },
+  { key: "local", label: "Local / city" },
+];
+
 const PERSISTENCE_SELECTIONS = {
   disabilities: DISABILITIES.map((item) => item.value),
   ageBands: AGE_BANDS.map((item) => item.value),
@@ -1177,6 +1185,8 @@ const PERSISTENCE_SELECTIONS = {
   circumstances: ["homeowner", "vehicleOwner", "recentGraduate", "none", "unsure"],
   provinces: STEPS.find((step) => step.key === "province").options.map((item) => item.value),
   cities: [...ALBERTA_CITIES, ...(BC_ENABLED ? BC_CITIES : [])],
+  citiesByProvince: { AB: ALBERTA_CITIES, BC: BC_ENABLED ? BC_CITIES : [] },
+  browseLevels: BROWSE_LEVELS.map((level) => level.key),
   benefitIds: BENEFITS.map((benefit) => benefit.id),
   progressStages: STAGES.map((stage) => stage.key),
 };
@@ -1365,6 +1375,11 @@ function wireAccessibility() {
 let ttsUnits = [], ttsIndex = 0, ttsActive = false;
 
 function ttsEscape(s) { return s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c])); }
+function attrEscape(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+  }[c]));
+}
 function splitSentences(text) {
   const m = text.replace(/\s+/g, " ").trim().match(/[^.!?]+[.!?]*/g);
   return m ? m.map((s) => s.trim()).filter(Boolean) : [text.trim()];
@@ -1562,8 +1577,8 @@ function renderSafely(fn, label) {
       <p>This is our bug, not anything you did. Your answers are still saved.</p>
       <p class="re-detail">${label}: ${String(err && err.message ? err.message : err).slice(0, 160)}</p>
       <div class="re-actions">
-        <button class="btn btn-primary" onclick="location.reload()">Try again</button>
-        <button class="btn btn-ghost" id="reReset">Start over</button>
+        <button class="btn btn-primary" id="reRetry" type="button">Try again</button>
+        <button class="btn btn-ghost" id="reReset" type="button">Start over</button>
       </div>
       <p class="re-foot">If it keeps happening, please tell us — the feedback form is on the home page, and it genuinely gets read.</p>
     </section>`;
@@ -1674,7 +1689,11 @@ function render() {
     if (focusTarget && hasRenderedView) { focusTarget.tabIndex = -1; focusTarget.focus({ preventScroll: true }); }
     hasRenderedView = true;
   }
-  // "Start over" on the error card, wired here so it works from any view.
+  // Error-card recovery actions, wired here so they work from any view.
+  // Recovery actions are wired here, not inline, so the self-only script CSP
+  // never has to allow inline event handlers.
+  const reRetry = document.getElementById("reRetry");
+  if (reRetry) reRetry.addEventListener("click", () => window.location.reload());
   const reReset = document.getElementById("reReset");
   if (reReset)
     reReset.addEventListener("click", () => {
@@ -3714,7 +3733,7 @@ function practitionerFinder(b) {
     <p class="finder-lead">${t("finder.lead")}</p>
     ${formFlag}
     <div class="finder-row">
-      <input id="finderPostal" class="text-input finder-postal" data-finder-postal inputmode="text" placeholder="${t("finder.postalPh")}" value="${answers.postal || ""}" />
+      <input id="finderPostal" class="text-input finder-postal" data-finder-postal inputmode="text" placeholder="${t("finder.postalPh")}" value="${attrEscape(answers.postal)}" />
       <button class="btn btn-ghost" data-finder-loc type="button">${icon("compass")} ${t("finder.useLoc")}</button>
     </div>
     <div class="finder-btns">
@@ -4029,13 +4048,6 @@ function printResults() {
 /* =============================================================================
    BROWSE / SEARCH — explore every benefit without doing the wizard
    ========================================================================== */
-const BROWSE_LEVELS = [
-  { key: "all", label: "All levels" },
-  { key: "Federal", label: "Federal" },
-  { key: "Alberta", label: "Alberta" },
-  { key: "British Columbia", label: "British Columbia" },
-  { key: "local", label: "Local / city" },
-];
 function benefitIsLocal(b) {
   return !["Federal", "Alberta", "British Columbia"].includes(b.level);
 }
@@ -4833,6 +4845,10 @@ function wireAssistant() {
 
 document.addEventListener("DOMContentLoaded", async () => {
   await loadState();
+  // Stable deep link for static guide footers. Only this one value is honoured.
+  try {
+    if (new URLSearchParams(window.location.search).get("view") === "privacy") view = "privacy";
+  } catch (_) { /* malformed query strings must never block boot */ }
   applyA11y();
   applyStaticI18n();
   wireAccessibility();

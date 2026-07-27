@@ -35,7 +35,7 @@
   const A11Y_KEYS = ["spacing", "contrast", "links", "guide", "motion"];
   const HELP_TOPICS = ["disabilities", "documentation", "autismAssessment", "functionalNeeds", "msp", "bcAssistance", "circumstances", "dtc"];
   const VIEWS = new Set(["landing", "wizard", "results", "browse", "detail", "privacy", "about", "support", "updates", "help", "accessibility", "professionals", "partner-overview", "impact", "dtc-prep", "grants", "organizations"]);
-  const BROWSE_LEVELS = new Set(["all", "Federal", "Alberta", "local"]);
+  const BROWSE_LEVELS = new Set(["all", "Federal", "Alberta", "British Columbia", "local"]);
   const BROWSE_THEMES = new Set(["all", "money", "health", "getting-around", "employment", "education", "family"]);
 
   function copyJson(value, fallback) {
@@ -86,7 +86,13 @@
         }
       }
     });
-    if (!["AB", "BC"].includes(clean.province)) clean.city = null;
+    if (!["AB", "BC"].includes(clean.province)) {
+      clean.city = null;
+    } else if (clean.city !== null) {
+      const byProvince = validSelections && validSelections.citiesByProvince;
+      const provinceCities = byProvince && byProvince[clean.province];
+      if (Array.isArray(provinceCities) && !provinceCities.includes(clean.city)) clean.city = null;
+    }
     return clean;
   }
 
@@ -135,7 +141,7 @@
         groupMode: live.groupMode === "category" ? "category" : "priority",
         browseQuery: typeof live.browseQuery === "string" ? live.browseQuery.slice(0, 200) : "",
         browseTheme: BROWSE_THEMES.has(live.browseTheme) ? live.browseTheme : "all",
-        browseLevel: BROWSE_LEVELS.has(live.browseLevel) ? live.browseLevel : "all",
+        browseLevel: (allowedValues(validSelections, "browseLevels") || BROWSE_LEVELS).has(live.browseLevel) ? live.browseLevel : "all",
         browseDis: live.browseDis === "all" || (allowedValues(validSelections, "disabilities") || new Set()).has(live.browseDis)
           ? live.browseDis
           : "all",
@@ -154,6 +160,7 @@
     const helpTopic = HELP_TOPICS.includes(source.helpTopic) ? source.helpTopic : null;
     const restoredView = VIEWS.has(source.view) ? source.view : "landing";
     const disabilities = allowedValues(validSelections, "disabilities");
+    const browseLevels = allowedValues(validSelections, "browseLevels") || BROWSE_LEVELS;
     const benefitIds = allowedValues(validSelections, "benefitIds");
     return {
       answers: cleanAnswers(source.answers, defaults.answers || {}, validSelections),
@@ -167,7 +174,7 @@
       groupMode: ui.groupMode === "category" ? "category" : "priority",
       browseQuery: typeof ui.browseQuery === "string" ? ui.browseQuery.slice(0, 200) : "",
       browseTheme: BROWSE_THEMES.has(ui.browseTheme) ? ui.browseTheme : "all",
-      browseLevel: BROWSE_LEVELS.has(ui.browseLevel) ? ui.browseLevel : "all",
+      browseLevel: browseLevels.has(ui.browseLevel) ? ui.browseLevel : "all",
       browseDis: ui.browseDis === "all" || (disabilities && disabilities.has(ui.browseDis)) ? ui.browseDis : "all",
       a11y: cleanA11y(ui.a11y),
       lang: ui.lang === "fr" ? "fr" : "en",

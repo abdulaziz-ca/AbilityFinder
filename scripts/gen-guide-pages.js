@@ -144,7 +144,7 @@ function footer() {
   return `      <footer class="site-footer">
         <div class="sf-brand">AbilityFinder</div>
         <div class="sf-links">
-          <a href="https://abilityfinder.ca/">Privacy &amp; disclaimer</a>
+          <a href="https://abilityfinder.ca/?view=privacy">Privacy &amp; disclaimer</a>
           <span class="sf-note">AbilityFinder is independent and not affiliated with any government. Always confirm details with the official source.</span>
         </div>
       </footer>`;
