@@ -437,11 +437,11 @@ const BENEFIT_EXTRA = {
     related: ["dtc", "aish"],
   },
   aish: {
-    confirm: "a severe, permanent condition that substantially limits your ability to earn a living, AND income and assets under the AISH limits",
+    confirm: "a severe disability that permanently prevents employment, AND income and assets under the AISH limits",
     taxNote: "AISH is not taxable. Other income and assets can affect assistance. If you receive AISH or ADAP, Alberta requires you to report the outcome of your Canada Disability Benefit and/or Disability Tax Credit application, including the approved CDB amount or a denial.",
     denials: [
       "The condition wasn't shown to be permanent, or was expected to improve with treatment.",
-      "The medical didn't tie the disability to an inability to earn a living.",
+      "The medical didn't show that the disability permanently prevents employment.",
       "Income or assets over the limit.",
       "The financial assessment did not meet the program rules.",
     ],
@@ -1327,7 +1327,7 @@ const BENEFITS = [
         "Financial details (income and assets)",
       ],
       tips: [
-        "The medical form should focus on how your condition limits your ability to EARN A LIVING, not just the diagnosis.",
+        "The medical form should focus on how your condition permanently prevents employment, not just the diagnosis.",
         "The combined application assesses AISH and ADAP. Alberta, not this tool, decides the program and benefit amount.",
         "Use Alberta's AISH/ADAP benefit estimator for a household-specific estimate before relying on any amount.",
         "If you receive AISH or ADAP, report the outcome of your CDB and/or DTC application to Alberta, including the approved CDB amount or a denial. Alberta says that when no CDB decision had been made by February 28, 2026, $200 was reduced from April 2026 benefits.",

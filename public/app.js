@@ -422,7 +422,7 @@ const REQS = {
   aishMedical: {
     met: () => false,
     fixed: false,
-    unmet: "AISH decides whether your disability is severe, permanent and prevents you from earning a living. A doctor must complete the medical report as part of the application.",
+    unmet: "AISH decides whether you have a severe disability that permanently prevents employment. A doctor must complete the medical report, and AISH reviews the treatments, therapies, rehabilitation and training that might improve your condition.",
     action: { text: "Review AISH eligibility", url: "https://www.alberta.ca/aish-eligibility" },
   },
   aishFinancial: {

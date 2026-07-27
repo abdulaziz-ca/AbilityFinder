@@ -749,7 +749,9 @@ test("Alberta disability programs never return ready from unasked criteria", asy
   }
 
   expect(aishNeeds).toMatch(/\$100,000/);
-  expect(aishNeeds).toMatch(/severe, permanent/);
+  // DATA-46: Alberta official wording is "a severe disability that permanently
+  // prevents employment" — assert the official test, not the earlier phrasing.
+  expect(aishNeeds).toMatch(/permanently prevents employment/);
   expect(adapNeeds).toMatch(/significantly impedes/);
   expect(adapNeeds).toMatch(/\$100,000/);
   expect(aadlNeeds).toMatch(/Alberta Health Care Insurance Plan/);
