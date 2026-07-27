@@ -576,6 +576,17 @@ const REQS = {
     unmet: "Coquitlam verifies household income against the Low Income Cut-off for your household size, which ranges from \$27,478 for one person to \$72,715 for seven or more. Check your household size against the current table.",
     action: { text: "Review Coquitlam's eligibility", url: "https://www.coquitlam.ca/499/Financial-Assistance-for-Recreation" },
   },
+  archIncomeOrAssistance: {
+    // ARCH accepts any ONE of three official routes. The questionnaire can
+    // suggest none of them: the income band is far below the City's
+    // household-size Low Income Guidelines, and an assistance status is not the
+    // same as currently receiving MSDPR Income Assistance. Never deny on income
+    // alone.
+    met: () => false,
+    fixed: false,
+    unmet: "Kamloops accepts any one of three routes: you receive Income Assistance from the Ministry of Social Development and Poverty Reduction, your annual income is below the Statistics Canada Low Income Guidelines listed on the application form, or you receive a Canadian pension or long-term disability payment below those guidelines.",
+    action: { text: "Check ARCH eligibility", url: "https://www.kamloops.ca/recreation-culture/programs-activities/accessible-recreation/arch-program" },
+  },
   notBcAssistance: {
     met: () => answers.bcAssistance === "none",
     fixed: () => ["pwd", "other"].includes(answers.bcAssistance),

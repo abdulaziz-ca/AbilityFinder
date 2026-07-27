@@ -50,7 +50,7 @@ Update this file whenever a finding is closed, reopened, or found to be wrong.
 |---|---|
 | Money band never shows an amount | The `mb.upTo` "Up to ~$X / year" path is now **unreachable** — 540 profiles probed, none produces a countable annual total, because every cash benefit correctly requires adjudication and DTC is excluded from estimates. Decide whether the band earns its prominence |
 | All-conditional results framing | Some realistic profiles (e.g. an Alberta adult unable to work) yield **zero** ready results — accurate, but the page should read as actionable rather than as a downgrade |
-| ARCH income route under-inclusion | `kamloops-arch` gates on `lowIncome` (`fixed: true`, ~$35k band), but ARCH officially accepts **MSDPR Income Assistance _or_ income below StatCan LICO**. A Kamloops resident on disability assistance reporting moderate income gets a wrong hard "not a match". Same pattern as the fixed Coquitlam/Healthy Kids cases |
+| **`requiresNote` is never rendered** | 45 benefit records carry a `requiresNote` field, but no surface displays it — not `public/app.js`, not `scripts/gen-guide-pages.js`, not `scripts/gen-benefits-context.js`. Every eligibility clarification written into that field since the project began is invisible to users. Decide whether to render it or drop it; until then, put user-facing eligibility detail in `detail.about`, which **is** rendered. Discovered 2026-07-27 while fixing the ARCH income route |
 
 ## Still open — needs a human, cannot be automated
 

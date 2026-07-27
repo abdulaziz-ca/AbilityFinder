@@ -71,8 +71,10 @@ test("KamPASS-eligible applicants still see that both are possible", () => {
   assert.match(benefit.detail.about, /qualified participants can use both programs or just one/);
 });
 
-test("matcher behaviour is untouched", () => {
-  assert.deepEqual(Array.from(benefit.requires), ["bc", "kamloops", "lowIncome"]);
+// The lowIncome hard gate was replaced: ARCH accepts an MSDPR assistance route,
+// so moderate income alone must never produce a no-match.
+test("the matcher uses the ARCH income-or-assistance route gate", () => {
+  assert.deepEqual(Array.from(benefit.requires), ["bc", "kamloops", "archIncomeOrAssistance"]);
 });
 
 test("official links are canonical and the record is dated", () => {
