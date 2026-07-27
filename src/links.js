@@ -96,7 +96,7 @@ export const LINKS = [
     "kind": "apply"
   },
   {
-    "url": "https://studentaid.alberta.ca/policy/student-aid-policy-manual/disability-permanent-disability-or-persistent-or-prolonged-disability/grants-for-students-with-a-disability-pd-or-ppd/",
+    "url": "https://studentaid.alberta.ca/policy/student-aid-policy-manual/eligibility-for-student-loans-and-grants/alberta-student-grants/",
     "label": "Alberta Grant for Students with Disabilities — official source",
     "kind": "source"
   },

@@ -128,6 +128,102 @@ test("shared disability documentation no longer sends Alberta users to StudentAi
   );
 });
 
+const abGrantConfirmationNeeds = [
+  "Confirm Alberta student-funding eligibility, a full-time course load of at least 60% (or a documented reduced load of at least 40%), and at least $1 of Alberta calculated need.",
+  "For this financial-assistance application, confirm an approved Schedule 4 lists current disability-related service or equipment costs with quotes or estimates, and that approved costs remain after federal funding is allocated first.",
+];
+const abGrantPolicyUrl =
+  "https://studentaid.alberta.ca/policy/student-aid-policy-manual/eligibility-for-student-loans-and-grants/alberta-student-grants/";
+
+async function expectAbGrantAlmost(page, overrides = {}) {
+  const results = await evaluateProfile(page, {
+    situation: ["student"],
+    province: "AB",
+    disabilityVerified: "yes",
+    ...overrides,
+  });
+  const grant = results["ab-grant-disability"];
+  expect(grant.status).toBe("almost");
+  expect(grant.status).not.toBe("ready");
+  expect(grant.needs.map((need) => need.text)).toEqual(abGrantConfirmationNeeds);
+  expect(grant.needs.map((need) => need.actionUrl)).toEqual([
+    abGrantPolicyUrl,
+    abGrantPolicyUrl,
+  ]);
+  for (const need of grant.needs) {
+    expect(new URL(need.actionUrl).hostname).toBe("studentaid.alberta.ca");
+  }
+  return grant;
+}
+
+test("Alberta disability grant first and repeat applications require current confirmations", async ({ page }) => {
+  await expectAbGrantAlmost(page, { abGrantApplication: "first" });
+  await expectAbGrantAlmost(page, { abGrantApplication: "repeat" });
+});
+
+test("Alberta disability grant never infers requested costs or a federal funding gap", async ({ page }) => {
+  await expectAbGrantAlmost(page, {
+    abGrantRequestedDisabilityCosts: false,
+  });
+  await expectAbGrantAlmost(page, {
+    abGrantRequestedDisabilityCosts: true,
+    abGrantFederalCoverage: "full",
+  });
+});
+
+test("Alberta disability grant does not manufacture ready from unsupported excess-cost facts", async ({ page }) => {
+  await expectAbGrantAlmost(page, {
+    abGrantRequestedDisabilityCosts: true,
+    abGrantCostsApproved: true,
+    abGrantFederalCoverage: "eligible-excess",
+    abGrantStudyLoadEligible: true,
+    abGrantCalculatedNeed: 1,
+  });
+
+  const notStudent = await evaluateProfile(page, {
+    province: "AB",
+    disabilityVerified: "yes",
+    situation: ["none"],
+  });
+  expect(notStudent["ab-grant-disability"].status).toBe("no");
+  expect(notStudent["ab-grant-disability"].reasons).toContain(
+    "This is for post-secondary students.",
+  );
+
+  const notAlberta = await evaluateProfile(page, {
+    province: "ON",
+    disabilityVerified: "yes",
+    situation: ["student"],
+  });
+  expect(notAlberta["ab-grant-disability"].status).toBe("no");
+  expect(notAlberta["ab-grant-disability"].reasons).toContain(
+    "This is an Alberta program.",
+  );
+});
+
+test("Alberta disability grant copy states current federal-first rules without overclaims", async ({ page }) => {
+  await page.goto("/");
+  const copy = await page.evaluate(() => {
+    const benefit = BENEFITS.find((entry) => entry.id === "ab-grant-disability");
+    return JSON.stringify({
+      benefit,
+      value: BENEFIT_VALUES[benefit.id],
+      meta: BENEFIT_META[benefit.id],
+    });
+  });
+
+  expect(copy).toMatch(/federal funding is allocated first/i);
+  expect(copy).toMatch(/current financial-assistance application|each new financial-assistance application/i);
+  expect(copy).toMatch(/quotes or estimates/i);
+  expect(copy).toMatch(/verification already on file may sometimes be reusable/i);
+  expect(copy).toMatch(/\$3,000 per loan year/i);
+  expect(copy).toMatch(/receipts by the end of the study period/i);
+  expect(copy).toMatch(/unused or undocumented funding.*returned|unused funding.*must be returned/i);
+  expect(copy).not.toMatch(/top-up|stacks on top|automatic(?:ally)? stack/i);
+  expect(copy).not.toMatch(/Schedule 4 \(once\)|submit medical documentation once|no extra form/i);
+  expect(copy).not.toMatch(/one-time submission|documentation is.*reused in future years/i);
+});
+
 test("DTC disability amount is not presented as cash, tax savings, or back-pay estimate", async ({ page }) => {
   await page.goto("/");
   const dtcModel = await page.evaluate(() => {

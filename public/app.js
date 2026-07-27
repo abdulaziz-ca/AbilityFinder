@@ -333,6 +333,22 @@ const REQS = {
     unmet: "You must also send written confirmation from a qualified person — a rehabilitation caseworker, an official from a centre for students with disabilities, a guidance counsellor, or your school's financial aid administrator — that you need the education-related services or equipment, plus a document confirming their cost.",
     action: { text: "Review the services and equipment grant", url: "https://www.canada.ca/en/services/benefits/education/student-aid/grants-loans/disabilities-service-equipment.html" },
   },
+  abGrantStudyAidEligibility: {
+    // Course-load percentage, Alberta funding eligibility, and Alberta's
+    // calculated-need result are not collected by the questionnaire.
+    met: () => false,
+    fixed: false,
+    unmet: "Confirm Alberta student-funding eligibility, a full-time course load of at least 60% (or a documented reduced load of at least 40%), and at least $1 of Alberta calculated need.",
+    action: { text: "Review Alberta grant eligibility", url: "https://studentaid.alberta.ca/policy/student-aid-policy-manual/eligibility-for-student-loans-and-grants/alberta-student-grants/" },
+  },
+  abGrantCurrentCostRequest: {
+    // A disability document does not establish a current approved Schedule 4
+    // request, current costs, or a gap after the federal grant is allocated first.
+    met: () => false,
+    fixed: false,
+    unmet: "For this financial-assistance application, confirm an approved Schedule 4 lists current disability-related service or equipment costs with quotes or estimates, and that approved costs remain after federal funding is allocated first.",
+    action: { text: "Review Schedule 4 and cost rules", url: "https://studentaid.alberta.ca/policy/student-aid-policy-manual/eligibility-for-student-loans-and-grants/alberta-student-grants/" },
+  },
   disabilityDoc: {
     met: () => answers.disabilityVerified === "yes",
     fixed: false,
