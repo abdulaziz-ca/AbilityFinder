@@ -521,7 +521,7 @@ export const LINKS = [
     "kind": "apply"
   },
   {
-    "url": "https://www.kamloops.ca/parks-recreation/accessible-recreation/arch-program",
+    "url": "https://www.kamloops.ca/recreation-culture/programs-activities/accessible-recreation/arch-program",
     "label": "ARCH (Affordable Recreation for Community Health) — apply",
     "kind": "apply"
   },

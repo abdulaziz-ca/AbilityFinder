@@ -3266,18 +3266,18 @@ const BENEFITS = [
     "level": "Kamloops",
     "category": "Recreation",
     "amount": "Up to $400 in recreation credits per year",
-    "summary": "Kamloops' recreation subsidy — and the same application also gets you KamPASS, the City's affordable transit program, so one form covers both.",
+    "summary": "Kamloops' recreation subsidy — up to $400 in recreation credits a year. The same form also asks to be considered for KamPASS, the City's affordable transit pass, but KamPASS is a separate program with its own exclusions.",
     "requires": ["bc", "kamloops", "lowIncome"],
     "requiresNote": "You must be a permanent Kamloops resident who meets the income-based eligibility or assistance criteria.",
-    "note": "ARCH is an annual program and requires a new application each year. Applying for KamPASS, the City's affordable transit program, is done through the same ARCH application — so do not apply separately.",
+    "note": "ARCH is an annual program and requires a new application each year. One form covers both programs and applicants are automatically considered for both, but ARCH and KamPASS are two separate programs: being approved for ARCH does not establish that you are eligible for KamPASS. Check the KamPASS exclusions before counting on a transit pass.",
     "applyText": "Apply for ARCH",
-    "applyUrl": "https://www.kamloops.ca/parks-recreation/accessible-recreation/arch-program",
-    "source": "https://www.kamloops.ca/parks-recreation/accessible-recreation/arch-program",
+    "applyUrl": "https://www.kamloops.ca/recreation-culture/programs-activities/accessible-recreation/arch-program",
+    "source": "https://www.kamloops.ca/recreation-culture/programs-activities/accessible-recreation/arch-program",
     "detail": {
-      "about": "The annual ARCH application can also request KamPASS. A participating screening or referral agency reviews the application; City recreation facilities do not accept the application itself.",
+      "about": "ARCH provides up to $400 in recreation credits for permanent Kamloops residents who meet the income or assistance criteria. The annual application also asks to be considered for KamPASS, the City's reduced-cost adult monthly transit pass. The City states that ARCH and KamPASS are two separate programs that share one application process, that applicants are automatically considered for both, and that qualified participants can use both programs or just one. Approval for ARCH does not establish KamPASS eligibility. A participating screening or referral agency reviews the application; City recreation facilities do not accept the application itself.",
       "steps": ["Download the current ARCH–KamPASS application or pick up a paper copy", "Gather photo identification, a second piece of identification, proof of a Kamloops address and proof of income for each adult", "Take the complete application to a participating ARCH public screening agency or, if you are a client, a listed referral agency", "If approved, take the approval letter and photo identification to a listed City facility to activate ARCH credit", "If also approved for KamPASS, purchase it at Kamloops Museum and Archives"],
       "documents": ["Photo identification and a second piece of identification", "Current utility bill or other accepted proof of Kamloops residence", "Ministry assistance confirmation, each adult's latest Notice of Assessment, or accepted disability or pension income evidence"],
-      "tips": ["Applications are not accepted at City recreation facilities", "One form covers ARCH and KamPASS, but the programs have different eligibility exceptions", "Apply again each year and use the form for the current program year"],
+      "tips": ["Applications are not accepted at City recreation facilities", "One form requests both, but ARCH and KamPASS have separate eligibility — being approved for ARCH does not mean you qualify for KamPASS", "KamPASS is not available to people who receive disability assistance from the Ministry of Social Development and Poverty Reduction under the Employment and Assistance for Persons with Disabilities Act, so many people who qualify for ARCH are excluded from KamPASS", "KamPASS also excludes people aged 60 and over who are eligible for the Provincial BC Bus Pass for Seniors and Others, people aged 18 or under eligible for the BC Transit Family Travel Program or School District No. 73 Transportation Assistance, post-secondary students enrolled in U-PASS, CNIB card holders, and anyone whose income is above the Statistics Canada Low Income Cut-Offs or who cannot provide income verification", "Apply again each year and use the application form for the current program year"],
       "time": "Annual approval; ask the screening agency for current review time",
       "phone": "250-828-3582"
     }
@@ -3302,5 +3302,5 @@ const BENEFIT_VERIFIED = {
   "bc-medical-equipment-devices": "2026-07", "bc-monthly-nutritional-supplement": "2026-07",
   "bc-optical-supplement": "2026-07", "bc-supplemental-bursary-students-disabilities": "2026-07",
   "bc-work-able-internship": "2026-07", "bc-workbc-assistive-technology": "2026-07",
-  "sparc-parking-permit": "2026-07",
+  "kamloops-arch": "2026-07", "sparc-parking-permit": "2026-07",
 };
