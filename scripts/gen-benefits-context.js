@@ -195,20 +195,25 @@ console.log(
    src/links.js — every official link we send people to, for the Phase 5A
    monitor. These carry the whole "how do I get it?" promise and rot silently.
 
-   applyUrl can be a function of the user's answers (city-specific pages); those
-   cannot be checked without inventing a user, so they are skipped and counted
-   rather than silently dropped.
+   URLs can be functions of the user's answers (city-specific pages). A function
+   may expose a safe staticUrl for monitoring; otherwise it cannot be checked
+   without inventing a user, so it is skipped and counted rather than silently
+   dropped.
 --------------------------------------------------------------------------- */
 const links = [];
 const seen = new Set();
 let skippedDynamic = 0;
 
 const addLink = (url, label, kind) => {
-  if (typeof url === "function") { skippedDynamic++; return; }
-  if (typeof url !== "string" || !url.startsWith("http")) return;
-  if (seen.has(url)) return;
-  seen.add(url);
-  links.push({ url, label: clean(label), kind });
+  const staticUrl = typeof url === "function" ? url.staticUrl : url;
+  if (typeof url === "function" && (typeof staticUrl !== "string" || !staticUrl.startsWith("http"))) {
+    skippedDynamic++;
+    return;
+  }
+  if (typeof staticUrl !== "string" || !staticUrl.startsWith("http")) return;
+  if (seen.has(staticUrl)) return;
+  seen.add(staticUrl);
+  links.push({ url: staticUrl, label: clean(label), kind });
 };
 
 for (const b of benefits) {
@@ -241,8 +246,8 @@ const linksOut = `// GENERATED FILE — DO NOT EDIT BY HAND.
 // ${links.length} links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
-// ${skippedDynamic} dynamic (function) applyUrls are skipped — they depend on the
-// user's answers, so there is no single URL to check.
+// ${skippedDynamic} dynamic (function) URLs are skipped — they depend on the
+// user's answers and expose no safe static URL to check.
 
 export const LINKS = ${JSON.stringify(links, null, 2)};
 
@@ -253,5 +258,5 @@ fs.writeFileSync(OUT_LINKS, linksOut);
 console.log(
   `gen:context — wrote ${path.relative(ROOT, OUT_LINKS)}\n` +
   `  ${links.length} checkable links (rotating monitor batches them safely)` +
-    `\n  ${skippedDynamic} dynamic applyUrls skipped (depend on user answers)`
+    `\n  ${skippedDynamic} dynamic URLs skipped (no safe static URL)`
 );

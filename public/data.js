@@ -79,6 +79,21 @@ const BC_CITIES = [
   "Other / my town isn't listed",
 ];
 
+const BC_TRANSIT_HANDYDART_CHOOSER = "https://www.bctransit.com/";
+const BC_TRANSIT_HANDYDART_REGISTRATION = {
+  Victoria: "https://www.bctransit.com/victoria/riderinfo/handydart/register/",
+  Colwood: "https://www.bctransit.com/victoria/riderinfo/handydart/register/",
+  Langford: "https://www.bctransit.com/victoria/riderinfo/handydart/register/",
+  Saanich: "https://www.bctransit.com/victoria/riderinfo/handydart/register/",
+  Kelowna: "https://www.bctransit.com/kelowna/riderinfo/handydart/register/",
+  Kamloops: "https://www.bctransit.com/kamloops/riderinfo/handydart/register/",
+  Nanaimo: "https://www.bctransit.com/nanaimo/riderinfo/handydart/register/",
+  Parksville: "https://www.bctransit.com/nanaimo/riderinfo/handydart/register/",
+};
+const resolveBcTransitHandyDartUrl = (a) =>
+  BC_TRANSIT_HANDYDART_REGISTRATION[a && a.city] || BC_TRANSIT_HANDYDART_CHOOSER;
+resolveBcTransitHandyDartUrl.staticUrl = BC_TRANSIT_HANDYDART_CHOOSER;
+
 /* Province scaffolding can land before its catalog. Visibility is gated in app.js. */
 const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES };
 const COVERED_PROVINCES = ["AB", "BC"];
@@ -2328,8 +2343,8 @@ const BENEFITS = [
     "requiresNote": "You live in Metro Vancouver and have a physical, sensory or cognitive disability that means you cannot use conventional public transit for all trips without assistance. TransLink states no age or income test.",
     "note": "This is a Metro Vancouver service. Outside Metro Vancouver, look for BC Transit handyDART instead. Fares shown are current as of July 1, 2026 — TransLink usually changes fares on July 1.",
     "applyText": "Download the HandyDART & HandyCard application",
-    "applyUrl": "https://www.translink.ca/rider-guide/transit-accessibility/handydart",
-    "source": "https://www.translink.ca/rider-guide/transit-accessibility/handydart",
+    "applyUrl": "https://www.translink.ca/handydart",
+    "source": "https://www.translink.ca/handydart",
     "detail": {
       "about": "The earliest pickup is 6 a.m. and the last drop-off is 2 a.m. You can book your trip as far as seven days in advance and up until 4 p.m. the day before your trip. One combined HandyDART and HandyCard application form covers both services.",
       "steps": ["Download and complete the combined HandyDART and HandyCard application", "Describe the parts of conventional transit you cannot navigate without help, including temporary or changing barriers", "Include the optional medical verification if it will help explain the functional barrier", "Submit the application using the instructions on the form and wait for Access Transit to contact you", "After approval, call to book trips one to seven days ahead; bookings for the next day must be requested before 4 p.m."],
@@ -2394,8 +2409,8 @@ const BENEFITS = [
     "requiresNote": "You live in a BC Transit community that has handyDART service, and you have a permanent or temporary disability that prevents you from using fixed-route transit without assistance.",
     "note": "Attendants ride free and must board and exit at the same stop as you. Each region has its own handyDART page, contact and booking office — start from your community's page on bctransit.com.",
     "applyText": "Register with your region's handyDART office",
-    "applyUrl": "https://www.bctransit.com/victoria/riderinfo/handydart/register/",
-    "source": "https://www.bctransit.com/victoria/riderinfo/handydart/",
+    "applyUrl": resolveBcTransitHandyDartUrl,
+    "source": resolveBcTransitHandyDartUrl,
     "detail": {
       "about": "handyDART is shared, door-to-door service. Drivers drop you off at the closest accessible point near your destination. Registration is free. You can pay your fare with cash when you board, or buy fare products in advance.",
       "steps": ["Find your community on the BC Transit website and open its handyDART registration page", "Complete, sign and date the regional handyDART application", "Describe which parts of fixed-route transit you cannot use without assistance", "Include the optional medical verification if it helps explain the functional barrier", "Submit the form to the regional registrar, then follow the local instructions for booking after approval"],

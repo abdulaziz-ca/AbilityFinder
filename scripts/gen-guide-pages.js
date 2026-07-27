@@ -72,8 +72,9 @@ const description = (text, max = 155) => {
 const officialLinks = (b) => {
   const links = [];
   const add = (url, label) => {
-    if (typeof url !== "string" || !/^https?:\/\//.test(url) || links.some((x) => x.url === url)) return;
-    links.push({ url, label });
+    const staticUrl = typeof url === "function" ? url.staticUrl : url;
+    if (typeof staticUrl !== "string" || !/^https?:\/\//.test(staticUrl) || links.some((x) => x.url === staticUrl)) return;
+    links.push({ url: staticUrl, label });
   };
   add(b.applyUrl, clean(b.applyText) || "Apply or learn more");
   add(b.source, "Official government source");

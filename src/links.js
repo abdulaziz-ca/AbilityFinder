@@ -6,8 +6,8 @@
 // 151 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
-// 5 dynamic (function) applyUrls are skipped — they depend on the
-// user's answers, so there is no single URL to check.
+// 5 dynamic (function) URLs are skipped — they depend on the
+// user's answers and expose no safe static URL to check.
 
 export const LINKS = [
   {
@@ -271,8 +271,13 @@ export const LINKS = [
     "kind": "source"
   },
   {
-    "url": "https://www.translink.ca/rider-guide/transit-accessibility/handydart",
+    "url": "https://www.translink.ca/handydart",
     "label": "HandyDART (TransLink) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.translink.ca/rider-guide/transit-accessibility/handydart",
+    "label": "HandyCard (TransLink) — apply",
     "kind": "apply"
   },
   {
@@ -281,14 +286,9 @@ export const LINKS = [
     "kind": "apply"
   },
   {
-    "url": "https://www.bctransit.com/victoria/riderinfo/handydart/register/",
+    "url": "https://www.bctransit.com/",
     "label": "handyDART (BC Transit) — apply",
     "kind": "apply"
-  },
-  {
-    "url": "https://www.bctransit.com/victoria/riderinfo/handydart/",
-    "label": "handyDART (BC Transit) — official source",
-    "kind": "source"
   },
   {
     "url": "https://www.bctransit.com/victoria/riderinfo/handydart/taxi-saver/",
