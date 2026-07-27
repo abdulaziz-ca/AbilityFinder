@@ -138,7 +138,10 @@ test("BC adult post-secondary answers exclude child and unrelated work programs"
   await expect(matched.getByRole("heading", { name: "Autism Funding: Under Age 6", exact: true })).toHaveCount(0);
   await expect(matched.getByRole("heading", { name: "BC Children and Youth Disability Benefit", exact: true })).toHaveCount(0);
   await expect(matched.getByRole("heading", { name: "Work-Able Accessible Employment Program (BC Public Service)", exact: true })).toHaveCount(0);
-  await expect(matched.getByRole("heading", { name: "WorkBC Employment Services", exact: true })).toHaveCount(0);
+  // BC-BC-14: WorkBC officially covers final-year post-secondary students with
+  // disabilities, so the card is shown with a "confirm which route applies"
+  // step rather than hidden. It can never reach "ready".
+  await expect(matched.getByRole("heading", { name: "WorkBC Employment Services", exact: true })).toHaveCount(1);
   await expect(matched.locator(".program-kind", { hasText: "Government grant/bursary" }).first()).toBeVisible();
   await expect(page.locator('[data-result-grant="variety-bc"]')).toHaveCount(0);
 });

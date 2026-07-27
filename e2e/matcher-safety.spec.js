@@ -310,3 +310,245 @@ test("shared predicates are unchanged for other programs", async ({ page }) => {
   expect(sharedPredicateResults.length).toBeGreaterThanOrEqual(6);
   expect(sharedPredicateResults.some(({ status }) => status === "ready")).toBe(true);
 });
+
+const bcWitnessIds = [
+  "bc-pwd-designation",
+  "bc-disability-assistance-pwd",
+  "bc-cy-disability-benefit",
+  "bc-fuel-tax-refund-disabilities",
+  "bc-icbc-disability-discount",
+  "bc-property-tax-deferment-disabilities",
+  "bc-healthy-kids",
+  "bc-workbc-employment-services",
+  "coquitlam-far",
+];
+
+const qualifyingBcAdult = {
+  province: "BC",
+  city: "Coquitlam",
+  ageBand: "19to59",
+  citizenPR: true,
+  msp: "yes",
+  bcAssistance: "pwd",
+  income: "low",
+  functionalNeeds: ["dailyLiving", "equipment", "transitBarrier"],
+  circumstances: ["vehicleOwner", "homeowner"],
+  disabilities: ["physical"],
+};
+
+const qualifyingBcChild = {
+  ...qualifyingBcAdult,
+  forWho: "child",
+  ageBand: "6to11",
+  ageGroup: "child",
+  functionalNeeds: ["childHighNeeds"],
+  bcAssistance: "none",
+  msp: "yes",
+};
+
+test("BC programs never return ready from unasked criteria", async ({ page }) => {
+  const adult = await evaluateProfile(page, qualifyingBcAdult);
+  for (const id of [
+    "bc-pwd-designation",
+    "bc-disability-assistance-pwd",
+    "bc-fuel-tax-refund-disabilities",
+    "bc-icbc-disability-discount",
+    "bc-property-tax-deferment-disabilities",
+    "bc-workbc-employment-services",
+    "coquitlam-far",
+  ]) {
+    expect(adult[id].status).toBe("almost");
+  }
+
+  const child = await evaluateProfile(page, qualifyingBcChild);
+  expect(child["bc-cy-disability-benefit"].status).toBe("almost");
+  expect(child["bc-healthy-kids"].status).toBe("almost");
+});
+
+test("BC needs carry the official wording", async ({ page }) => {
+  const adult = await evaluateProfile(page, qualifyingBcAdult);
+  const child = await evaluateProfile(page, qualifyingBcChild);
+  const needsText = (results, id) =>
+    results[id].needs.map((need) => need.text).join(" ");
+
+  expect(needsText(adult, "bc-disability-assistance-pwd")).toMatch(/\$100,000/);
+  expect(needsText(adult, "bc-disability-assistance-pwd")).toMatch(/\$200,000/);
+  expect(needsText(adult, "bc-pwd-designation")).toMatch(/prescribed-class/i);
+  expect(needsText(adult, "bc-pwd-designation")).toMatch(/not automatically lost/i);
+  expect(needsText(adult, "bc-pwd-designation")).toMatch(/at least two years/);
+  expect(needsText(adult, "bc-disability-assistance-pwd")).toMatch(/at least two years/);
+  expect(needsText(child, "bc-cy-disability-benefit")).toMatch(/April 1, 2027/);
+  expect(needsText(child, "bc-cy-disability-benefit")).toMatch(/Support is available now/);
+  expect(needsText(adult, "bc-fuel-tax-refund-disabilities")).toMatch(/BCANDS/);
+  expect(needsText(adult, "bc-fuel-tax-refund-disabilities")).toMatch(/CNIB/);
+  expect(needsText(adult, "bc-icbc-disability-discount")).toMatch(/registration is confirmed/);
+  expect(needsText(adult, "bc-property-tax-deferment-disabilities")).toMatch(/25% equity/);
+  expect(needsText(adult, "bc-property-tax-deferment-disabilities")).toMatch(/at least one year/);
+  expect(needsText(child, "bc-healthy-kids")).toMatch(/\$42,000/);
+  expect(needsText(adult, "bc-workbc-employment-services")).toMatch(/unemployed or underemployed/);
+  expect(needsText(adult, "coquitlam-far")).toMatch(/refugees/);
+  expect(needsText(adult, "coquitlam-far")).toMatch(/study or work permit/);
+});
+
+test("no BC answer combination reaches ready", async ({ page }) => {
+  const models = [];
+  for (const income of ["low", "moderate", "high"]) {
+    for (const bcAssistance of ["pwd", "other", "none"]) {
+      for (const msp of ["yes", "no"]) {
+        for (const functionalNeeds of [
+          ["dailyLiving"],
+          ["equipment"],
+          ["transitBarrier"],
+          ["childHighNeeds"],
+          ["none"],
+        ]) {
+          for (const circumstances of [["vehicleOwner", "homeowner"], ["none"]]) {
+            for (const ageBand of ["6to11", "19to59", "65plus"]) {
+              models.push(
+                answerModel({
+                  ...qualifyingBcAdult,
+                  province: "BC",
+                  income,
+                  bcAssistance,
+                  msp,
+                  functionalNeeds,
+                  circumstances,
+                  ageBand,
+                }),
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+
+  await page.goto("/");
+  const readyMatches = await page.evaluate(
+    ({ profiles, ids }) =>
+      profiles.flatMap((model, index) =>
+        evaluateAnswers(model)
+          .filter(({ b, r }) => ids.includes(b.id) && r.status === "ready")
+          .map(({ b }) => ({ id: b.id, index, model })),
+      ),
+    { profiles: models, ids: bcWitnessIds },
+  );
+
+  expect(readyMatches).toEqual([]);
+});
+
+test("preserved BC no-match gates still fire", async ({ page }) => {
+  const outsideBc = await evaluateProfile(page, {
+    ...qualifyingBcAdult,
+    province: "AB",
+    city: "Edmonton",
+  });
+  for (const id of bcWitnessIds) expect(outsideBc[id].status).toBe("no");
+
+  const noMsp = await evaluateProfile(page, { ...qualifyingBcChild, msp: "no" });
+  expect(noMsp["bc-healthy-kids"].status).toBe("no");
+
+  const receivesPwd = await evaluateProfile(page, {
+    ...qualifyingBcChild,
+    bcAssistance: "pwd",
+  });
+  expect(receivesPwd["bc-healthy-kids"].status).toBe("no");
+
+  const noAssistance = await evaluateProfile(page, {
+    ...qualifyingBcAdult,
+    bcAssistance: "none",
+  });
+  // bcPwdStatus is fixed:false by design — someone without the designation can
+  // still apply for it, so the program stays visible with a confirm step
+  // rather than being hidden behind a hard no-match.
+  expect(noAssistance["bc-property-tax-deferment-disabilities"].status).toBe("almost");
+  expect(
+    noAssistance["bc-property-tax-deferment-disabilities"].needs
+      .map((need) => need.text)
+      .join(" "),
+  ).toMatch(/PWD designation or disability assistance/i);
+
+  const noCircumstances = await evaluateProfile(page, {
+    ...qualifyingBcAdult,
+    circumstances: ["none"],
+  });
+  expect(noCircumstances["bc-property-tax-deferment-disabilities"].status).toBe("no");
+  expect(noCircumstances["bc-fuel-tax-refund-disabilities"].status).toBe("no");
+
+  const adult = await evaluateProfile(page, {
+    ...qualifyingBcChild,
+    forWho: "self",
+    ageBand: "19to59",
+    ageGroup: "adult",
+  });
+  expect(adult["bc-cy-disability-benefit"].status).toBe("no");
+
+  const outsideCoquitlam = await evaluateProfile(page, {
+    ...qualifyingBcAdult,
+    city: "Kelowna",
+  });
+  expect(outsideCoquitlam["coquitlam-far"].status).toBe("no");
+});
+
+test("under-inclusion regressions are fixed", async ({ page }) => {
+  const moderateIncomeFamily = await evaluateProfile(page, {
+    ...qualifyingBcChild,
+    income: "moderate",
+    msp: "yes",
+    bcAssistance: "none",
+    forWho: "child",
+    ageBand: "6to11",
+  });
+  expect(moderateIncomeFamily["bc-healthy-kids"].status).not.toBe("no");
+  expect(moderateIncomeFamily["bc-healthy-kids"].status).toBe("almost");
+
+  const unemployedAdult = await evaluateProfile(page, {
+    ...qualifyingBcAdult,
+    situation: ["none"],
+    income: "low",
+  });
+  expect(unemployedAdult["bc-workbc-employment-services"].status).not.toBe("no");
+  expect(unemployedAdult["bc-workbc-employment-services"].status).toBe("almost");
+});
+
+test("the Alberta slice is preserved", async ({ page }) => {
+  const results = await evaluateProfile(page, {
+    province: "AB",
+    city: "Edmonton",
+    ageBand: "19to59",
+    citizenPR: true,
+    disabilityVerified: "yes",
+    situation: ["unableToWork"],
+    income: "low",
+    functionalNeeds: ["equipment"],
+  });
+
+  for (const id of ["aish", "adap", "aadl", "adult-health-benefit"]) {
+    expect(results[id].status).toBe("almost");
+  }
+  expect(results.aish.needs).toHaveLength(2);
+  expect(results.adap.needs).toHaveLength(2);
+  expect(results.aadl.needs).toHaveLength(3);
+  expect(results["adult-health-benefit"].needs).toHaveLength(2);
+  expect(results.aish.needs.map((need) => need.text).join(" ")).toMatch(/\$100,000/);
+});
+
+test("shared predicates still serve their other consumers", async ({ page }) => {
+  const changedIds = new Set([
+    ...bcWitnessIds,
+    "aish",
+    "adap",
+    "aadl",
+    "adult-health-benefit",
+  ]);
+  await page.goto("/");
+  const readyIds = await page.evaluate(
+    ({ model, excludedIds }) =>
+      evaluateAnswers(model)
+        .filter(({ b, r }) => !excludedIds.includes(b.id) && r.status === "ready")
+        .map(({ b }) => b.id),
+    { model: answerModel(), excludedIds: [...changedIds] },
+  );
+
+  expect(readyIds.length).toBeGreaterThan(0);
+});
