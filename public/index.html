@@ -27,16 +27,16 @@
     <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f7f2e9" media="(prefers-color-scheme: light)" />
 
-    <script src="dbManager.js?v=51"></script>
-    <script src="stateManager.js?v=51"></script>
-    <script src="theme-init.js?v=51"></script>
+    <script src="dbManager.js?v=52"></script>
+    <script src="stateManager.js?v=52"></script>
+    <script src="theme-init.js?v=52"></script>
 
     <!-- Fonts are self-hosted (see styles.css @font-face), so loading them does
          not contact an external font CDN. -->
-    <link rel="preload" href="fonts/inter-latin.woff2?v=51" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="fonts/fraunces-latin.woff2?v=51" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="styles.css?v=51" />
-    <link rel="icon" href="favicon.svg?v=51" type="image/svg+xml" />
+    <link rel="preload" href="fonts/inter-latin.woff2?v=52" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="fonts/fraunces-latin.woff2?v=52" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="styles.css?v=52" />
+    <link rel="icon" href="favicon.svg?v=52" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   </head>
   <body>
@@ -180,24 +180,26 @@
                announced once, via #askLive below, when it is finished. -->
           <div class="ask-log" id="askLog" role="log" aria-label="Conversation"></div>
           <p class="sr-only" id="askLive" aria-live="polite"></p>
+          <button class="btn btn-secondary ask-new" id="askNew" type="button" hidden>Start a new conversation</button>
           <form class="ask-form" id="askForm">
             <label class="sr-only" for="askInput">Your question</label>
             <textarea id="askInput" rows="2" maxlength="2000" placeholder="What does T2201 mean?" autocomplete="off"></textarea>
             <button class="ask-send" id="askSend" type="submit" aria-label="Send question">
               <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></svg>
             </button>
+            <button class="ask-stop" id="askStop" type="button" hidden aria-label="Stop response">Stop</button>
           </form>
           <p class="ask-foot">Not legal or medical advice. Always check the official page before you rely on it.</p>
         </div>
       </div>
     </div>
 
-    <script src="icons.js?v=51"></script>
-    <script src="i18n.js?v=51"></script>
-    <script src="data.js?v=51"></script>
-    <script src="changelog.js?v=51"></script>
-    <script src="grants-data.js?v=51"></script>
-    <script src="orgs-data.js?v=51"></script>
-    <script src="app.js?v=51"></script>
+    <script src="icons.js?v=52"></script>
+    <script src="i18n.js?v=52"></script>
+    <script src="data.js?v=52"></script>
+    <script src="changelog.js?v=52"></script>
+    <script src="grants-data.js?v=52"></script>
+    <script src="orgs-data.js?v=52"></script>
+    <script src="app.js?v=52"></script>
   </body>
 </html>

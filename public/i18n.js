@@ -259,6 +259,16 @@ const I18N = {
     "final.title": "Ready to see your list?",
     "final.sub": "It's free, private, and takes about a minute.",
 
+    "ask.thinking": "Thinking.",
+    "ask.generic": "Something went wrong. Please try again.",
+    "ask.noreply": "The assistant did not reply. Please try again.",
+    "ask.netfail": "Could not reach the assistant. Check your connection and try again.",
+    "ask.timeout": "The assistant took too long. Please try again.",
+    "ask.stopped": "Response stopped.",
+    "ask.new": "Start a new conversation",
+    "ask.capReached": "This conversation has reached its limit. Start a new one to keep asking.",
+    "ask.newStarted": "Started a new conversation.",
+
     "fb.label": "Help shape AbilityFinder",
     "fb.title": "Got an idea, or found something broken?",
     "fb.lead": "Missing a benefit? Broken link? A feature you'd love? Tell us — this tool gets better because of people like you.",
@@ -275,6 +285,11 @@ const I18N = {
     "fb.note": "Send feedback sends this form to AbilityFinder through our server and emails it to our inbox. The email-app option does not submit it through this site.",
     "fb.needMsg": "Please add a short message first.",
     "fb.thanks": "Thanks! Your email app should open. If it doesn't, email us at ",
+    "fb.sending": "Sending…",
+    "fb.sent": "Sent — thank you. We read every message.",
+    "fb.timeout": "Sending timed out — your message is saved.",
+    "fb.orMailApp": "You can use \"Open my email app instead\".",
+    "fb.failGeneric": "Could not send.",
 
     "disclaimer": "AbilityFinder is a free helper tool, not legal, medical, or financial advice. Benefit rules and amounts change — always confirm on the official government page (linked in each guide) before applying. Amounts shown are 2025–2026 figures. Your answers stay in your browser and are never saved or sent anywhere.",
 
@@ -612,6 +627,16 @@ const I18N = {
     "final.title": "Prêt à voir votre liste ?",
     "final.sub": "C'est gratuit, privé, et ça prend environ une minute.",
 
+    "ask.thinking": "Réflexion…",
+    "ask.generic": "Une erreur s’est produite. Veuillez réessayer.",
+    "ask.noreply": "L’assistant n’a pas répondu. Veuillez réessayer.",
+    "ask.netfail": "Impossible de joindre l’assistant. Vérifiez votre connexion et réessayez.",
+    "ask.timeout": "L’assistant a mis trop de temps. Veuillez réessayer.",
+    "ask.stopped": "Réponse arrêtée.",
+    "ask.new": "Commencer une nouvelle conversation",
+    "ask.capReached": "Cette conversation a atteint sa limite. Commencez-en une nouvelle pour continuer.",
+    "ask.newStarted": "Nouvelle conversation démarrée.",
+
     "fb.label": "Aidez à améliorer AbilityFinder",
     "fb.title": "Une idée, ou quelque chose de brisé ?",
     "fb.lead": "Une prestation manquante ? Un lien brisé ? Une fonction souhaitée ? Dites-le-nous — cet outil s'améliore grâce à des gens comme vous.",
@@ -628,6 +653,11 @@ const I18N = {
     "fb.note": "Envoyer envoie ce formulaire à AbilityFinder par notre serveur et à notre boîte courriel. L'option d'application de courriel ne le soumet pas par ce site.",
     "fb.needMsg": "Veuillez d'abord ajouter un court message.",
     "fb.thanks": "Merci ! Votre application de courriel devrait s'ouvrir. Sinon, écrivez-nous à ",
+    "fb.sending": "Envoi…",
+    "fb.sent": "Envoyé — merci. Nous lisons chaque message.",
+    "fb.timeout": "L’envoi a expiré — votre message est conservé.",
+    "fb.orMailApp": "Vous pouvez utiliser « Ouvrir mon application de courriel».",
+    "fb.failGeneric": "Envoi impossible.",
 
     "disclaimer": "AbilityFinder est un outil d'aide gratuit, et non un conseil juridique, médical ou financier. Les règles et montants changent — confirmez toujours sur la page gouvernementale officielle (liée dans chaque guide) avant de faire une demande. Les montants indiqués sont ceux de 2025–2026. Vos réponses restent dans votre navigateur et ne sont jamais enregistrées ni envoyées.",
 

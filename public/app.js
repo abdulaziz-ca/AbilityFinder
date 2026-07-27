@@ -1683,36 +1683,36 @@ function wireLanding() {
     status: document.getElementById("fb-status"),
   });
 
+  let fbBusy = false;
   const send = document.getElementById("fb-send");
   if (send)
     send.addEventListener("click", async () => {
+      if (fbBusy) return; // no duplicate submissions
       const { kind, email, message, status } = fbFields();
-      if (!message) {
-        status.textContent = t("fb.needMsg");
-        status.classList.add("err");
-        return;
-      }
+      if (!message) { status.textContent = t("fb.needMsg"); status.classList.add("err"); return; }
       status.classList.remove("err");
-      send.disabled = true;
-      status.textContent = "Sending…";
+      fbBusy = true; send.disabled = true;
+      status.textContent = t("fb.sending");
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), fbTimeoutMs());
       try {
         const res = await fetch("/api/feedback", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ kind, email, message }),
+          signal: controller.signal,
         });
-        if (!res.ok) {
-          let m = "Could not send.";
-          try { m = (await res.json()).error || m; } catch (e) {}
-          throw new Error(m);
-        }
+        if (!res.ok) { let m = t("fb.failGeneric"); try { m = (await res.json()).error || m; } catch (e) {} throw new Error(m); }
         status.classList.remove("err");
-        status.innerHTML = `${icon("check")} Sent — thank you. We read every message.`;
-        document.getElementById("fb-msg").value = "";
+        status.innerHTML = `${icon("check")} ${t("fb.sent")}`;
+        document.getElementById("fb-msg").value = ""; // clear only on success
       } catch (err) {
         status.classList.add("err");
-        status.textContent = `${err.message} You can use "Open my email app instead".`;
-        send.disabled = false;
+        const msg = err.name === "AbortError" ? t("fb.timeout") : err.message;
+        status.textContent = `${msg} ${t("fb.orMailApp")}`; // message text preserved for retry
+      } finally {
+        clearTimeout(timer);
+        fbBusy = false; send.disabled = false;
       }
     });
 
@@ -4323,6 +4323,11 @@ function wireReveals(root = document) {
    separate feedback form is also opt-in. Assistant consent is remembered. */
 let askHistory = [];
 let askBusy = false;
+const ASK_MAX_MESSAGES = 20; // matches the Worker MAX_TURNS (10 exchanges)
+let askController = null;
+let askCancelled = false;
+const askTimeoutMs = () => Number(window.__ASK_TIMEOUT_MS) || 30000; // idle/inactivity bound
+const fbTimeoutMs = () => Number(window.__FB_TIMEOUT_MS) || 15000;
 
 function askConsented() {
   return askConsent;
@@ -4346,59 +4351,62 @@ function askAnnounce(msg) {
 function askSetBusy(busy) {
   askBusy = busy;
   const send = document.getElementById("askSend");
-  if (send) send.disabled = busy;
+  const stop = document.getElementById("askStop");
+  if (send) send.hidden = busy;
+  if (stop) stop.hidden = !busy;
 }
 
 async function askSend(question) {
   askHistory.push({ role: "user", content: question });
   askBubble("me", question);
   askSetBusy(true);
-  askAnnounce("Thinking.");
+  askAnnounce(t("ask.thinking"));
 
   const bubble = askBubble("bot", "");
   let answer = "";
+  askCancelled = false;
+  let askTimedOut = false;
+  let idleTimer = null;
+  askController = new AbortController();
+  const clearIdle = () => { if (idleTimer) { clearTimeout(idleTimer); idleTimer = null; } };
+  const bumpIdle = () => { clearIdle(); idleTimer = setTimeout(() => { askTimedOut = true; if (askController) askController.abort(); }, askTimeoutMs()); };
 
   try {
+    bumpIdle();
     const res = await fetch("/api/ask", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ messages: askHistory }),
+      signal: askController.signal,
     });
-
-    // Non-streaming failures (429 rate limit, 400 validation) arrive as JSON.
     if (!res.ok) {
-      let msg = "Something went wrong. Please try again.";
+      clearIdle();
+      let msg = t("ask.generic");
       try { msg = (await res.json()).error || msg; } catch (e) {}
       bubble.remove();
       askBubble("err", msg);
       askAnnounce(msg);
       askHistory.pop();
+      if (/too long/i.test(msg) || askHistory.length >= ASK_MAX_MESSAGES) showAskCap();
       return;
     }
-
     const reader = res.body.getReader();
     const decoder = new TextDecoder();
     let buf = "";
     let failed = null;
-
     for (;;) {
       const { done, value } = await reader.read();
       if (done) break;
+      bumpIdle();
       buf += decoder.decode(value, { stream: true });
-
       const parts = buf.split("\n\n");
-      buf = parts.pop() ?? ""; // keep the trailing partial event
-
+      buf = parts.pop() ?? "";
       for (const part of parts) {
         const ev = /^event:\s*(.+)$/m.exec(part)?.[1]?.trim();
         const dataLine = /^data:\s*(.+)$/m.exec(part)?.[1];
         if (!ev || !dataLine) continue;
-
         let data;
         try { data = JSON.parse(dataLine); } catch (e) { continue; }
-
-        // Not a truthy check: a "0" token is legitimate content and would be
-        // dropped. The Worker already sends strings, but stay defensive.
         if (ev === "delta" && data.text !== undefined && data.text !== null) {
           answer += data.text;
           bubble.textContent = answer;
@@ -4408,31 +4416,56 @@ async function askSend(question) {
         }
       }
     }
-
+    clearIdle();
     if (failed) {
-      bubble.remove();
-      askBubble("err", failed);
-      askAnnounce(failed);
-      askHistory.pop();
+      bubble.remove(); askBubble("err", failed); askAnnounce(failed); askHistory.pop();
     } else if (answer.trim() === "") {
-      bubble.remove();
-      const m = "The assistant did not reply. Please try again.";
-      askBubble("err", m);
-      askAnnounce(m);
-      askHistory.pop();
+      bubble.remove(); const m = t("ask.noreply"); askBubble("err", m); askAnnounce(m); askHistory.pop();
     } else {
       askHistory.push({ role: "assistant", content: answer });
-      askAnnounce(answer); // announce the finished answer once, not per token
+      askAnnounce(answer);
+      if (askHistory.length >= ASK_MAX_MESSAGES) showAskCap();
     }
   } catch (e) {
+    clearIdle();
     bubble.remove();
-    const m = "Could not reach the assistant. Check your connection and try again.";
-    askBubble("err", m);
-    askAnnounce(m);
     askHistory.pop();
+    const m = askCancelled ? t("ask.stopped") : askTimedOut ? t("ask.timeout") : t("ask.netfail");
+    askBubble(askCancelled ? "note" : "err", m);
+    askAnnounce(m);
   } finally {
+    clearIdle();
+    askController = null;
     askSetBusy(false);
   }
+}
+
+function showAskCap() {
+  const newBtn = document.getElementById("askNew");
+  const input = document.getElementById("askInput");
+  const send = document.getElementById("askSend");
+  if (newBtn) { newBtn.hidden = false; newBtn.textContent = t("ask.new"); }
+  if (input) input.disabled = true;
+  if (send) send.disabled = true;
+  askAnnounce(t("ask.capReached"));
+}
+function resetAskConversation() {
+  askHistory = []; // in-memory only; questionnaire/profile answers are untouched
+  const log = document.getElementById("askLog");
+  if (log) {
+    log.innerHTML = "";
+    const hint = document.createElement("p");
+    hint.className = "ask-hint";
+    hint.textContent = "Ask about a word, a form, or a step you are stuck on. For example: what does T2201 mean?";
+    log.appendChild(hint);
+  }
+  const newBtn = document.getElementById("askNew");
+  const input = document.getElementById("askInput");
+  const send = document.getElementById("askSend");
+  if (newBtn) newBtn.hidden = true;
+  if (send) send.disabled = false;
+  if (input) { input.disabled = false; input.value = ""; input.focus(); }
+  askAnnounce(t("ask.newStarted"));
 }
 
 function wireAssistant() {
@@ -4466,6 +4499,10 @@ function wireAssistant() {
 
   fab.addEventListener("click", () => open(panel.hidden));
   document.getElementById("askClose").addEventListener("click", () => { open(false); fab.focus(); });
+  const askStop = document.getElementById("askStop");
+  if (askStop) askStop.addEventListener("click", () => { askCancelled = true; if (askController) askController.abort(); });
+  const askNew = document.getElementById("askNew");
+  if (askNew) askNew.addEventListener("click", () => resetAskConversation());
 
   document.getElementById("askAccept").addEventListener("click", () => {
     askConsent = true;
