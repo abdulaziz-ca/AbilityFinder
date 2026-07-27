@@ -128,6 +128,140 @@ test("shared disability documentation no longer sends Alberta users to StudentAi
   );
 });
 
+const achbUrl = "https://www.alberta.ca/alberta-child-health-benefit";
+const achbDeclarationUrl = "https://cfr.forms.gov.ab.ca/Form/AEHB3654";
+
+async function childHealthResult(page, overrides = {}) {
+  const results = await evaluateProfile(page, {
+    forWho: "child",
+    ageBand: "6to11",
+    ageGroup: "child",
+    province: "AB",
+    citizenPR: true,
+    income: "low",
+    situation: ["none"],
+    ...overrides,
+  });
+  return results["child-health-benefit"];
+}
+
+test("Alberta Child Health Benefit keeps a child under 18 conditional, never ready", async ({ page }) => {
+  const benefit = await childHealthResult(page);
+
+  expect(benefit.status).toBe("almost");
+  expect(benefit.status).not.toBe("ready");
+  expect(benefit.needs).toHaveLength(2);
+  expect(benefit.needs.map((need) => need.text).join(" ")).toMatch(/every family member/i);
+  expect(benefit.needs.map((need) => need.text).join(" ")).toMatch(/Income Support.*AISH.*Child and Youth Support Program.*Non-Insured Health Benefits/i);
+
+  const ineligibleStatus = await childHealthResult(page, { citizenPR: false });
+  expect(ineligibleStatus.status).toBe("no");
+  expect(ineligibleStatus.reasons).toContain("You must be a Canadian citizen or permanent resident.");
+});
+
+test("Alberta Child Health Benefit keeps an 18-year-old in high school conditional", async ({ page }) => {
+  const benefit = await childHealthResult(page, {
+    forWho: "self",
+    ageBand: "18",
+    ageGroup: "adult",
+    situation: ["secondary"],
+  });
+
+  expect(benefit.status).toBe("almost");
+  expect(benefit.status).not.toBe("ready");
+  expect(benefit.needs.map((need) => need.text).join(" ")).toMatch(/lives at home.*grade 12.*AEHB3654/i);
+  expect(benefit.needs.find((need) => /AEHB3654/.test(need.text))?.actionUrl).toBe(achbDeclarationUrl);
+});
+
+test("19to59 high school is only a conditional proxy for a possible 19-year-old", async ({ page }) => {
+  const benefit = await childHealthResult(page, {
+    forWho: "self",
+    ageBand: "19to59",
+    ageGroup: "adult",
+    situation: ["secondary"],
+  });
+
+  expect(benefit.status).toBe("almost");
+  expect(benefit.status).not.toBe("ready");
+  expect(benefit.needs.map((need) => need.text).join(" ")).toMatch(/exactly 19.*selected age band also includes older adults.*lives at home.*grade 12.*AEHB3654/i);
+});
+
+test("19to59 without high school and clearly older bands route Child Health Benefit to no", async ({ page }) => {
+  const broadAdult = await childHealthResult(page, {
+    forWho: "self",
+    ageBand: "19to59",
+    ageGroup: "adult",
+    situation: ["student"],
+  });
+  expect(broadAdult.status).toBe("no");
+
+  for (const ageBand of ["60to64", "65plus"]) {
+    const older = await childHealthResult(page, {
+      forWho: "self",
+      ageBand,
+      ageGroup: ageBand === "65plus" ? "senior" : "adult",
+      situation: ["secondary"],
+    });
+    expect(older.status).toBe("no");
+  }
+});
+
+test("19to59 offers a clearly limited high-school choice", async ({ page }) => {
+  await page.goto("/");
+  const options = await page.evaluate(() => {
+    const originalBand = answers.ageBand;
+    answers.ageBand = "19to59";
+    const situationStep = STEPS.find((step) => step.id === "situation");
+    const values = situationStep.options().map((option) => ({ value: option.value, label: option.label }));
+    answers.ageBand = originalBand;
+    return values;
+  });
+
+  expect(options).toContainEqual({
+    value: "secondary",
+    label: "Age 19 and still attending high school through grade 12",
+  });
+});
+
+test("supplied excluded government coverage cannot be inferred by the production matcher", async ({ page }) => {
+  // This synthetic field deliberately is not part of the production questionnaire.
+  // Supplying a known Income Support case documents the limitation: the matcher
+  // cannot consume it as an exclusion or infer that coverage has been cleared.
+  const benefit = await childHealthResult(page, {
+    governmentHealthCoverage: ["Income Support"],
+  });
+  const coverageNeed = benefit.needs.find((need) => /Income Support/.test(need.text));
+
+  expect(benefit.status).toBe("almost");
+  expect(benefit.status).not.toBe("ready");
+  expect(coverageNeed).toBeTruthy();
+  expect(coverageNeed.text).toMatch(/not receiving government health-benefit coverage.*Income Support.*AISH.*Child and Youth Support Program.*Non-Insured Health Benefits/i);
+  expect(coverageNeed.text).toMatch(/Private or other health plans are not exclusions.*use them first.*remaining eligible costs/i);
+  expect(coverageNeed.text).toMatch(/Canadian Dental Care Plan first.*remaining eligible dental costs/i);
+  expect(coverageNeed.actionUrl).toBe(achbUrl);
+});
+
+test("Child Health Benefit exposes the official source and AEHB3654 links", async ({ page }) => {
+  await page.goto("/");
+  const record = await page.evaluate(() => {
+    const benefit = BENEFITS.find((item) => item.id === "child-health-benefit");
+    return {
+      applyUrl: benefit.applyUrl,
+      source: benefit.source,
+      declarationUrl: benefit.declarationUrl,
+      declarationText: benefit.declarationText,
+      html: renderGuideBody(benefit, { status: "almost", needs: [], reasons: [] }),
+    };
+  });
+
+  expect(record.applyUrl).toBe(achbUrl);
+  expect(record.source).toBe(achbUrl);
+  expect(record.declarationUrl).toBe(achbDeclarationUrl);
+  expect(record.declarationText).toMatch(/AEHB3654/);
+  expect(record.html).toContain(`href="${achbUrl}"`);
+  expect(record.html).toContain(`href="${achbDeclarationUrl}"`);
+});
+
 const dresUrl = "https://www.alberta.ca/disability-related-employment-supports";
 
 async function expectDresConditional(page, overrides = {}) {
@@ -1193,7 +1327,7 @@ test("Alberta and BC slices are preserved", async ({ page }) => {
   }
 });
 
-test("ready is still reachable for realistic profiles", async ({ page }) => {
+test("ready remains reachable while the Alberta child profile stays conditional", async ({ page }) => {
   const albertaLowIncomeChild = await evaluateProfile(page, {
     forWho: "child",
     province: "AB",
@@ -1202,7 +1336,9 @@ test("ready is still reachable for realistic profiles", async ({ page }) => {
     income: "low",
   });
   const abReady = Object.values(albertaLowIncomeChild).filter((r) => r.status === "ready");
-  expect(abReady.length).toBeGreaterThan(0);
+  expect(abReady).toHaveLength(0);
+  expect(albertaLowIncomeChild["child-health-benefit"].status).toBe("almost");
+  expect(albertaLowIncomeChild["child-health-benefit"].needs.map((need) => need.text).join(" ")).toMatch(/government health-benefit coverage/i);
 
   const bcPwdAdult = await evaluateProfile(page, {
     province: "BC",

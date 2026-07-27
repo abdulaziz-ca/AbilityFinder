@@ -191,6 +191,8 @@ const METRO_VANCOUVER_CITIES = [
 const DTC_URL =
   "https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/t2201.html";
 const DRES_URL = "https://www.alberta.ca/disability-related-employment-supports";
+const ACHB_URL = "https://www.alberta.ca/alberta-child-health-benefit";
+const ACHB_DEPENDENT_DECLARATION_URL = "https://cfr.forms.gov.ab.ca/Form/AEHB3654";
 
 const REQS = {
   dtc: {
@@ -243,6 +245,34 @@ const REQS = {
   nu: { met: () => answers.province === "NU", fixed: true, unmet: "This is a Nunavut program." },
   provinceCovered: { met: () => COVERED_PROVINCES.includes(answers.province), fixed: true, unmet: "Available across the covered provinces & territories." },
   citizenPR: { met: () => answers.citizenPR === true, fixed: true, unmet: "You must be a Canadian citizen or permanent resident." },
+  achbAge: {
+    met: () => isUnder18() || (ageIn("18", "19to59") && has(answers.situation, "secondary")),
+    fixed: true,
+    unmet: "Ordinary Alberta Child Health Benefit coverage is for children under 18. An 18- or 19-year-old must still be attending high school through grade 12.",
+  },
+  achbOlderDependent: {
+    // The broad 19–59 answer plus "secondary" is only a safe proxy for a
+    // possible 19-year-old. Exact age, home residence, grade and the required
+    // declaration are not collected, so an older dependent can never be ready.
+    met: () => isUnder18(),
+    fixed: false,
+    unmet: () => ageIn("19to59")
+      ? "Confirm the person is exactly 19 (the selected age band also includes older adults), lives at home, is attending high school through grade 12, and submit the Declaration of 18 and 19 Year Old Dependent (AEHB3654)."
+      : "Confirm the 18-year-old lives at home, is attending high school through grade 12, and submit the Declaration of 18 and 19 Year Old Dependent (AEHB3654).",
+    action: { text: "Open declaration AEHB3654", url: ACHB_DEPENDENT_DECLARATION_URL },
+  },
+  achbFamilyResidencyStatus: {
+    met: () => false,
+    fixed: false,
+    unmet: "Confirm the applicant and every family member included in the application live in Alberta and are Canadian citizens or permanent residents.",
+    action: { text: "Review Alberta Child Health Benefit eligibility", url: ACHB_URL },
+  },
+  achbCoverageCoordination: {
+    met: () => false,
+    fixed: false,
+    unmet: "Confirm the family is not receiving government health-benefit coverage through Income Support, AISH, the Child and Youth Support Program, or Non-Insured Health Benefits for First Nations and Inuit. Private or other health plans are not exclusions: use them first and ACHB may cover remaining eligible costs. Use the Canadian Dental Care Plan first too; ACHB may cover remaining eligible dental costs.",
+    action: { text: "Review coverage and coordination rules", url: ACHB_URL },
+  },
 
   lowIncome: { met: () => lowIncome(), fixed: true, unmet: "This is for lower-income households." },
   lowIncomeOrDisabilityIncome: {
@@ -796,9 +826,9 @@ function evaluate(benefit) {
     if (!req || req.met()) continue;
     const fixed = typeof req.fixed === "function" ? req.fixed() : req.fixed;
     if (fixed) {
-      reasons.push(req.unmet);
+      reasons.push(typeof req.unmet === "function" ? req.unmet() : req.unmet);
     } else {
-      let text = req.unmet;
+      let text = typeof req.unmet === "function" ? req.unmet() : req.unmet;
       if (key === "dtc" && answers.dtc === "unsure") {
         text = "You're not sure about your Disability Tax Credit — apply for it; it unlocks this.";
       }
@@ -1093,7 +1123,9 @@ const STEPS = [
       const adultOptions = [
         ...(answers.ageBand === "18"
           ? [{ value: "secondary", icon: "student", label: "In junior high or high school" }]
-          : []),
+          : answers.ageBand === "19to59"
+            ? [{ value: "secondary", icon: "student", label: "Age 19 and still attending high school through grade 12" }]
+            : []),
         { value: "student", icon: "student", label: "In post-secondary school" },
         { value: "working", icon: "working", label: "Working / have a job" },
         { value: "looking", icon: "looking", label: "Looking for work or training" },
@@ -4405,6 +4437,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
           <dl class="side-facts">${factsHtml}</dl>
           <div class="side-actions">
             <a class="apply" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.applyText} ${icon("external")}</a>
+            ${b.declarationUrl ? `<a class="source-link" href="${resolveUrl(b.declarationUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.declarationText || "Required dependent declaration"} ${icon("external")}</a>` : ""}
             <a class="source-link" href="${resolveUrl(b.source)}" target="_blank" rel="noopener noreferrer" data-ext>${t("det.official")} ${icon("external")}</a>
           </div>
           <p class="side-foot"><span class="verified${vFresh.stale ? " stale" : ""}">${icon(vFresh.stale ? "info" : "check")} Info verified ${vFresh.label}</span></p>
