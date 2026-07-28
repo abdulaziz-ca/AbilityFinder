@@ -45,16 +45,25 @@ async function pick(page, text) {
   // Single-answer steps auto-advance (goNext on a 150-200 ms timer); multi-answer
   // steps stay put and enable Continue. Wait for whichever actually happens rather
   // than sleeping past the longest timer.
-  await page.waitForFunction(
-    (prev) => {
-      const question = document.getElementById("wizard-question");
-      const next = document.getElementById("next");
-      if (!question) return true; // left the wizard entirely (e.g. results)
-      if (question.textContent !== prev) return true; // auto-advanced
-      return !!next && /Continue/.test(next.textContent || "") && !next.disabled;
-    },
-    questionBefore,
-  );
+  // Bounded on purpose. Normally this resolves in a few ms as soon as the
+  // wizard settles. But clicking an option whose radio is already checked
+  // fires no change event, so there is no auto-advance and no Continue button
+  // to observe — nothing would ever become true. The timeout is a safety net,
+  // not a sleep: the happy path never waits for it, and the pathological path
+  // degrades to the old fixed-wait behaviour instead of hanging for 45s.
+  await page
+    .waitForFunction(
+      (prev) => {
+        const question = document.getElementById("wizard-question");
+        const next = document.getElementById("next");
+        if (!question) return true; // left the wizard entirely (e.g. results)
+        if (question.textContent !== prev) return true; // auto-advanced
+        return !!next && /Continue/.test(next.textContent || "") && !next.disabled;
+      },
+      questionBefore,
+      { timeout: 3000 },
+    )
+    .catch(() => {});
   const next = page.locator("#next");
   if (await next.count() && (await next.textContent()).includes("Continue")) {
     await page.locator(".wizard-card").evaluate(async (card) => {
