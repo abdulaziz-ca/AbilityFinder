@@ -1651,7 +1651,6 @@ const BENEFITS = [
     summary:
       "Alberta grant that pays for permanent changes so you can get into and move around your own home — for wheelchair users of any age, seniors using a 4-wheel walker, and people living with certain progressive conditions.",
     requires: ["ab", "citizenPR", "homeAccessNeed", "rampMobilityRoute", "rampIncomeAndResidency"],
-    requiresNote: "You use a wheelchair at any age, or are 65 or older and use a 4-wheel walker on an ongoing basis, or live with one of the listed progressive conditions; you are a Canadian citizen or permanent resident who has lived in Alberta for 90 continuous days; and your family income is within the RAMP table for your family size.",
     note:
       "You can apply as a homeowner, a tenant, or someone living with family, and Indigenous applicants can apply whether living on- or off-reserve. Modifications must be permanent and must be finished within 90 days of approval unless RAMP authorises longer.",
     applyText: "Apply for RAMP",
@@ -3311,7 +3310,6 @@ const BENEFITS = [
     "amount": "Up to $400 in recreation credits per year",
     "summary": "Kamloops' recreation subsidy — up to $400 in recreation credits a year. The same form also asks to be considered for KamPASS, the City's affordable transit pass, but KamPASS is a separate program with its own exclusions.",
     "requires": ["bc", "kamloops", "archIncomeOrAssistance"],
-    "requiresNote": "You must be a permanent Kamloops resident and meet ONE of three routes: you receive Income Assistance from the Ministry of Social Development and Poverty Reduction; your annual income is below the Statistics Canada Low Income Guidelines listed on the application form; or you receive a Canadian pension or long-term disability payment below those guidelines.",
     "note": "ARCH is an annual program and requires a new application each year. One form covers both programs and applicants are automatically considered for both, but ARCH and KamPASS are two separate programs: being approved for ARCH does not establish that you are eligible for KamPASS. Check the KamPASS exclusions before counting on a transit pass.",
     "applyText": "Apply for ARCH",
     "applyUrl": "https://www.kamloops.ca/recreation-culture/programs-activities/accessible-recreation/arch-program",

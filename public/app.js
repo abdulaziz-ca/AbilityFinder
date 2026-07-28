@@ -4087,7 +4087,7 @@ function browseCatalog() {
 }
 function benefitSearchText(b) {
   const d = b.detail || {};
-  return [b.name, b.summary, b.category, b.level, d.about, (d.tips || []).join(" ")]
+  return [b.name, b.summary, b.category, b.level, d.about, b.requiresNote, (d.tips || []).join(" ")]
     .filter(Boolean).join(" ").toLowerCase();
 }
 /* ── Per-disability browse (2026-07-15) ───────────────────────────────────────
@@ -4464,6 +4464,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
 
         ${d.about && d.about !== b.summary ? `<p class="detail-about">${d.about}</p>` : ""}
         ${b.note ? `<div class="note">${b.note}</div>` : ""}
+        ${b.requiresNote ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="detail-about">${b.requiresNote}</p></section>` : ""}
         ${valueSection}
         ${b.id === "dtc" ? `<div class="dtc-prep-guide-cta"><button class="apply" type="button" data-open-dtc-prep>${icon("print")}${t("dtcPrep.guideButton")}</button></div>` : ""}
         ${p2.tax}

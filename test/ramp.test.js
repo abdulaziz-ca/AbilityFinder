@@ -50,7 +50,6 @@ test("every dollar figure on the record is one Alberta actually publishes", () =
     benefit.amount,
     benefit.summary,
     benefit.note,
-    benefit.requiresNote,
     benefit.detail.about,
     ...benefit.detail.steps,
     ...benefit.detail.documents,
