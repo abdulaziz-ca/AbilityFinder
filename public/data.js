@@ -151,7 +151,7 @@ const BENEFIT_VALUES = {
   "adult-health-benefit": { kind: "coverage", note: "prescriptions, dental, optical, ambulance and diabetes supplies — Alberta publishes no annual dollar value" },
   "child-health-benefit": { kind: "coverage", note: "free prescriptions, dental & optical for kids" },
   "parking-placard": { kind: "access", note: "low-cost accessible parking permit" },
-  "calgary-fair-entry": { kind: "discount", note: "transit from $5.90/mo + 75% off rec — often $600+/yr saved" },
+  "calgary-fair-entry": { kind: "discount", note: "transit $6.30–$63/mo by income band + 75% off rec" },
   "edmonton-fare-assistance": { kind: "discount", note: "$36/mo transit pass + low-cost recreation" },
   // Municipal programs researched 2026-07-15 — figures from each city's own page.
   "reddeer-fee-assistance": { kind: "discount", note: "$34/mo transit pass + up to $200/yr recreation" },
@@ -277,7 +277,7 @@ const BENEFIT_META = {
   "child-health-benefit": { difficulty: 2, effort: "Form + proof of income", wait: "a few weeks" },
   "parking-placard": { difficulty: 1, effort: "Short form + a registry visit", wait: "often same day" },
   "calgary-fair-entry": { difficulty: 1, effort: "Online + proof of income", wait: "1–2 weeks" },
-  "edmonton-fare-assistance": { difficulty: 1, effort: "Application + proof of income", wait: "1–2 weeks" },
+  "edmonton-fare-assistance": { difficulty: 1, effort: "Application + proof of income", wait: "8–12 weeks" },
   "reddeer-fee-assistance": { difficulty: 1, effort: "Online form + proof", wait: "up to 10 business days" },
   "lethbridge-fee-assistance": { difficulty: 1, effort: "Online form or call 311", wait: "apply any time" },
   "medicinehat-fair-entry": { difficulty: 1, effort: "One form, lasts 2 years", wait: "about 2 weeks" },
@@ -1333,7 +1333,7 @@ const BENEFITS = [
         "If you receive AISH or ADAP, report the outcome of your CDB and/or DTC application to Alberta, including the approved CDB amount or a denial. Alberta says that when no CDB decision had been made by February 28, 2026, $200 was reduced from April 2026 benefits.",
       ],
       time: "Ask Alberta Supports for the current processing time.",
-      phone: "Alberta Supports: 1-877-759-6810",
+      phone: "DIA Application Processing Centre (applications and status): 1-877-759-6810",
     },
   },
   {
@@ -1371,7 +1371,7 @@ const BENEFITS = [
         "If you receive ADAP or AISH, report the outcome of your CDB and/or DTC application to Alberta, including the approved CDB amount or a denial. Alberta says that when no CDB decision had been made by February 28, 2026, $200 was reduced from April 2026 benefits.",
       ],
       time: "Ask Alberta Supports for the current processing time.",
-      phone: "Alberta Supports: 1-877-759-6810",
+      phone: "DIA Application Processing Centre (applications and status): 1-877-759-6810",
     },
   },
   {
@@ -1680,12 +1680,12 @@ const BENEFITS = [
     name: "Calgary Fair Entry — Transit & Recreation",
     level: "Calgary",
     category: "Getting around & recreation",
-    amount: "Transit pass from $5.90/mo + 75% off recreation",
+    amount: "Transit pass $6.30–$63/month by income band + 75% off recreation",
     summary:
       "One application unlocks a low-income monthly transit pass and 75% off City of Calgary pools, fitness and rec programs.",
     requires: ["calgary", "lowIncome"],
     note:
-      "Apply once through Fair Entry; the sliding-scale transit pass is $5.90–$59/month depending on income.",
+      "Apply once through Fair Entry; the sliding-scale transit pass has three 2026 income bands — $6.30, $44.10 or $63.00 per month.",
     applyText: "Apply through Calgary Fair Entry",
     applyUrl: "https://www.calgary.ca/social-services/low-income/fair-entry-subsidy.html",
     source: "https://www.calgary.ca/social-services/low-income/fair-entry-subsidy.html",
@@ -1703,7 +1703,7 @@ const BENEFITS = [
       ],
       tips: [
         "One approval covers transit AND recreation — you don't apply separately.",
-        "The transit pass price slides with income, as low as $5.90/month.",
+        "The transit pass price slides with income across three 2026 bands: $6.30, $44.10 or $63.00 per month.",
       ],
       time: "Usually processed within a couple of weeks.",
       phone: "City of Calgary 311",
@@ -1739,7 +1739,7 @@ const BENEFITS = [
         "Applying for Leisure Access automatically considers you for the transit discount too.",
         "If you're on AISH or CPP Disability you likely qualify regardless of the income cutoff.",
       ],
-      time: "A couple of weeks.",
+      time: "Approximately 8 to 12 weeks for approval. If you ask for your Arc card by mail, allow up to 10 more business days; you can pick it up in person instead.",
       phone: "City of Edmonton 311",
     },
   },

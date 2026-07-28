@@ -29,11 +29,8 @@ Update this file whenever a finding is closed, reopened, or found to be wrong.
 
 | ID | What is wrong | Notes |
 |---|---|---|
-| DATA-07 | Calgary Fair Entry shows 2025 prices; 2026 rates are $6.30/$44.10/$63 | Verify against the current Calgary Transit fare notice |
-| DATA-08 | Edmonton processing time understated (site 1–2 weeks; official 8–12 weeks + card delivery) | |
-| DATA-09 | ADAP contact mislabeled — the number shown is the AISH application-status line | Alberta Supports is 1-877-644-9992 |
-| DATA-15 | Organization cards render a hardcoded "Verified July 2026" | `orgs-data.js` holds real per-org dates; render `record.verified` |
 | DATA-12 | Several in-scope programs absent (RAMP, BC Additional Home Owner Grant, BC Rebate for Accessible Home Adaptations, federal Home Accessibility Tax Credit) | Enhancement. ROADMAP allows expansion only program by program |
+| Calgary recreation 75% | The "75% off recreation" figure on `calgary-fair-entry` could **not** be re-verified on 2026-07-27 — neither the Fair Entry pages nor the recreation fee-assistance page publishes a percentage. Left unchanged pending verification. Several other municipal records quote 75% too |
 | UX-02 | Homepage still overpromises completeness/certainty | Mitigated only; needs a content pass + comprehension testing |
 | UX-03 | "Priority order" uses unexplained editorial weights | Mitigated only; formula still unexplained and unvalidated |
 | DATA-25 | DTC readiness | Mitigated, not closed — needs real CRA functional-criteria questions |
@@ -81,9 +78,13 @@ Update this file whenever a finding is closed, reopened, or found to be wrong.
 Matcher safety (no unsupported "ready" verdict anywhere): **DATA-42/43/44 + ABFED-02** (`fc0a8f9`),
 **DATA-30/47/48/49/50 + BC-BC-05/14/16** (`eb0210d`), **DATA-33/35/36/37/39/40/41 + ABFED-08** (`f4bc205`).
 
-Data accuracy: DATA-01, DATA-02, DATA-03, DATA-05, DATA-06, DATA-10, DATA-14,
-DATA-46 (`a7c648d`), ABFED-05 (`f438915`), ABFED-07 (`3aa85cd`), ABFED-09 (`3ef9a32`),
-ABFED-A01, BC-BC-06 (`9ab36d8`), BC-BC-12 (`f4eb57c`), BC-BC-17 (`2891c17`), DATA-51.
+Data accuracy: DATA-01, DATA-02, DATA-03, DATA-05, DATA-06, DATA-07, DATA-08,
+DATA-09, DATA-10, DATA-14, DATA-15, DATA-46 (`a7c648d`), ABFED-05 (`f438915`),
+ABFED-07 (`3aa85cd`), ABFED-09 (`3ef9a32`), ABFED-A01 (`fdd6d25`),
+BC-BC-06 (`9ab36d8`), BC-BC-12 (`f4eb57c`), BC-BC-17 (`2891c17`), DATA-51.
+
+Matcher under-inclusion: Kamloops ARCH income-or-assistance route (`86512cc`) —
+a resident on MSDPR assistance is no longer denied for reporting moderate income.
 
 Defects and hardening: DATA-04, DATA-28, DATA-38, ABFED-01/03/04/06, AI-01, AI-02,
 A11Y-01/02/03/05/06, REL-01, REL-02, REL-03, REL-04, CAL-01, SEC-02, SEC-03,

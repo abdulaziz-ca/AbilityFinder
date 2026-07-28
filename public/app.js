@@ -2636,7 +2636,7 @@ function renderOrganizations() {
         <div><dt>${t("orgs.what")}</dt><dd>${ttsEscape(organization.whatTheyDo)}</dd></div>
       </dl>
       <a class="org-link" href="${ttsEscape(organization.url)}" target="_blank" rel="noopener noreferrer">${t("orgs.website")} ${icon("external")}</a>
-      <p class="org-verified">${icon("check")}${t("orgs.verified")}</p>
+      ${orgVerifiedLabel(organization) ? `<p class="org-verified">${icon("check")}${t("orgs.verified").replace("{date}", orgVerifiedLabel(organization))}</p>` : ""}
     </article>`).join("");
   const rules = Array.from({ length: 6 }, (_, index) => {
     const content = t(`orgs.rules.${index + 1}`);
@@ -4290,6 +4290,19 @@ const DATA_VERIFIED_MONTH = "2026-07";
 const STALE_MONTHS = 9;
 
 const MONTHS_EN = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const MONTHS_FR = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+function orgVerifiedLabel(organization) {
+  const raw = organization && organization.verified;
+  if (typeof raw !== "string") return null;
+  const match = /^(\d{4})-(\d{2})(?:-\d{2})?$/.exec(raw);
+  if (!match) return null;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  if (!(month >= 1 && month <= 12)) return null;
+  // Month granularity only, matching the DATA-10 rule against synthetic precision.
+  const name = (LANG === "fr" ? MONTHS_FR : MONTHS_EN)[month - 1];
+  return `${name} ${year}`;
+}
 
 function verifiedFor(b) {
   const raw = (b && BENEFIT_VERIFIED[b.id]) || DATA_VERIFIED_MONTH; // "YYYY-MM"
