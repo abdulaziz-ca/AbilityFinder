@@ -460,6 +460,23 @@ const REQS = {
     fixed: false,
     unmet: "AADL does not cover items already covered by Veterans Affairs, Workers' Compensation Board, Non-Insured Health Benefits, or a private insurance plan.",
   },
+  homeAccessNeed: {
+    met: () => hasFunctionalNeed("homeAccess"),
+    fixed: () => !functionalNeedUnknown(),
+    unmet: "This is for someone who needs disability-related changes to the home for access or safety.",
+  },
+  rampMobilityRoute: {
+    met: () => false,
+    fixed: false,
+    unmet: "RAMP is for an Albertan of any age who uses a wheelchair, a senior 65 or older who uses a 4-wheel walker on an ongoing basis, or someone living with one of the listed progressive conditions: multiple sclerosis, muscular dystrophy, ALS, COPD, Parkinson's disease, Alzheimer's disease, spina bifida, a spinal cord injury, or a non-recovering stroke.",
+    action: { text: "Review RAMP eligibility", url: "https://www.alberta.ca/residential-access-modification-program" },
+  },
+  rampIncomeAndResidency: {
+    met: () => false,
+    fixed: false,
+    unmet: "Maximum family income runs from \$36,900 for a single adult to \$94,500 for a couple with five children, with \$7,131 added when a child permanently uses a wheelchair. You must also have lived in Alberta for 90 continuous days.",
+    action: { text: "Check the RAMP income table", url: "https://www.alberta.ca/residential-access-modification-program" },
+  },
   adultHealthIncome: {
     met: () => false,
     fixed: false,

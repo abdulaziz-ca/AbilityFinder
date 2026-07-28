@@ -143,6 +143,7 @@ const BENEFIT_VALUES = {
   adap: { kind: "cash", excludeFromEstimate: true,
     note: "monthly financial benefit plus health, personal and employment benefits" },
   aadl: { kind: "coverage", note: "covers ~75% of approved equipment & supplies" },
+  ramp: { kind: "grant", annualMax: 12000, excludeFromEstimate: true, note: "up to \$12,000 per benefit year for approved home modifications; \$24,000 over any 10 years" },
   pdd: { kind: "services", note: "funded daily-living, community & employment services" },
   fscd: { kind: "services", note: "respite, services & help with some disability costs" },
   dres: { kind: "services", note: "may fund approved disability-related accommodations for work or eligible education or training routes" },
@@ -270,6 +271,7 @@ const BENEFIT_META = {
   aish: { difficulty: 4, effort: "Application + medical report", wait: "Check with Alberta Supports" },
   adap: { difficulty: 4, effort: "Application + medical report", wait: "Check with Alberta Supports" },
   aadl: { difficulty: 3, effort: "Assessment with an OT / authorizer", wait: "varies" },
+  ramp: { difficulty: 3, effort: "Multi-form application + income verification", wait: "About 30 days for a decision" },
   pdd: { difficulty: 3, effort: "Assessment-based", wait: "varies" },
   fscd: { difficulty: 2, effort: "Meet with an FSCD worker", wait: "varies" },
   "ab-grant-disability": { difficulty: 2, effort: "Student aid + current Schedule 4 and cost quotes", wait: "with student aid" },
@@ -1637,6 +1639,47 @@ const BENEFITS = [
       ],
       time: "A few weeks to process.",
       phone: "Alberta Supports: 1-877-644-9992",
+    },
+  },
+  {
+    id: "ramp",
+    needsPractitioner: true,
+    name: "Residential Access Modification Program (RAMP)",
+    level: "Alberta",
+    category: "Health & equipment",
+    amount: "Up to \$12,000 per benefit year, to a maximum of \$24,000 over 10 years",
+    summary:
+      "Alberta grant that pays for permanent changes so you can get into and move around your own home — for wheelchair users of any age, seniors using a 4-wheel walker, and people living with certain progressive conditions.",
+    requires: ["ab", "citizenPR", "homeAccessNeed", "rampMobilityRoute", "rampIncomeAndResidency"],
+    requiresNote: "You use a wheelchair at any age, or are 65 or older and use a 4-wheel walker on an ongoing basis, or live with one of the listed progressive conditions; you are a Canadian citizen or permanent resident who has lived in Alberta for 90 continuous days; and your family income is within the RAMP table for your family size.",
+    note:
+      "You can apply as a homeowner, a tenant, or someone living with family, and Indigenous applicants can apply whether living on- or off-reserve. Modifications must be permanent and must be finished within 90 days of approval unless RAMP authorises longer.",
+    applyText: "Apply for RAMP",
+    applyUrl: "https://www.alberta.ca/residential-access-modification-program",
+    source: "https://www.alberta.ca/residential-access-modification-program",
+    detail: {
+      about:
+        "A provincial grant for permanent modifications that let you enter and move within your own living space. RAMP pays up to \$12,000 per person each benefit year, which runs April 1 to March 31, and up to \$24,000 per person within 10 years. You qualify by one of three routes: you use a wheelchair at any age; you are 65 or older and use a 4-wheel walker on an ongoing basis; or you live with multiple sclerosis, muscular dystrophy, ALS, COPD, Parkinson's disease, Alzheimer's disease, spina bifida, a spinal cord injury, or a non-recovering stroke. You must be a Canadian citizen or permanent resident who has lived in Alberta for 90 continuous days, and your family income must be within the RAMP table — from \$36,900 for a single adult to \$94,500 for a couple with five children, plus \$7,131 when a child permanently uses a wheelchair. Alberta notes that exceptions may apply when income is within \$1,200 of the threshold.",
+      steps: [
+        "Read the RAMP Guidelines and Criteria document before starting; Alberta says incomplete applications will not be processed.",
+        "Complete the RAMP Application Checklist, the RAMP Application Form and the RAMP Modification Recommendation Form.",
+        "Add any conditional forms that apply to you — Landlord Agreement, Band Council Resolution, Sponsor Income Verification, or Disclosure Consent.",
+        "Mail the complete package to RAMP, Assisted Living and Social Services, PO Box 808 Edmonton Main, Edmonton, AB T5J 2L4, or use the email address on the RAMP page.",
+      ],
+      documents: [
+        "RAMP Application Checklist, Application Form and Modification Recommendation Form",
+        "Proof of Canadian citizenship or permanent residence, and of 90 continuous days in Alberta",
+        "Family income verification for your household size",
+        "Any conditional form that applies: Landlord Agreement, Band Council Resolution, Sponsor Income Verification, or Disclosure Consent",
+      ],
+      tips: [
+        "Tell RAMP if you are awaiting hospital discharge or are in palliative care — Alberta prioritises those applications.",
+        "Modifications must be permanent. RAMP reviews requests for temporary modifications case by case.",
+        "Work must be completed within 90 days of approval unless RAMP authorises more time.",
+        "There is no appeal process. If you are refused you can reapply with updated information.",
+        "Alberta has said the Guidelines and Criteria document and the Application Form are being updated — use the current forms on the RAMP page until the new ones appear.",
+      ],
+      time: "Alberta says you should receive a decision letter in the mail within 30 days of applying.",
     },
   },
   {
@@ -3288,6 +3331,7 @@ const BENEFITS = [
 const BENEFIT_VERIFIED = {
   dtc: "2026-07", "cdb-adult": "2026-07", aish: "2026-07", adap: "2026-07",
   "adult-health-benefit": "2026-07",
+  ramp: "2026-07",
   "cpp-disability": "2026-07", "parking-placard": "2026-07",
   "canmore-affordable-services": "2026-07", "cochrane-connect-card": "2026-07",
   "fortsask-access": "2026-07", "leduc-subsidies": "2026-07",
