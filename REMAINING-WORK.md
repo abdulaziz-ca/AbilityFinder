@@ -38,6 +38,67 @@ Update this file whenever a finding is closed, reopened, or found to be wrong.
 | TEST-02 | E2E is Chromium-only on a Python static server, with fixed sleeps | Needs a Wrangler-backed project + browser matrix. **Observed flake 2026-07-27:** `e2e/a11y-batch.spec.js` "A11Y-03: skip link is first focusable" failed once inside the full suite and passed on isolated re-run and on full-suite re-run — exactly the timing fragility this finding describes |
 | PERF-01 | Production mobile lab LCP 4.0s; render-blocking scripts | INP still unmeasured |
 
+## Planned procedure — deploy gate and TEST-02 (agreed 2026-07-28, not started)
+
+Do these as **four small separate landings**, in this order. Do not combine them: mixing new
+test infrastructure with fixes for what it surfaces produces an unreviewable diff and
+un-bisectable failures.
+
+### 0. Pre-deploy gate — higher value than all of TEST-02
+
+**The problem is not test quality, it is that nothing gates deployment.** There is no CI, no
+git hooks, and no pre-deploy check: `git push origin main` triggers Workers Builds directly.
+On 2026-07-27 two `e2e/reminder-calendar.spec.js` tests were red across two deploys and were
+reported as passing, because a truncated `tail` of the Playwright output hid the `N failed`
+header. The suite worked correctly; the human control failed. Better tests would not have
+prevented this. A gate would.
+
+This is not in the audit — the audit assumed a competent human reads the output. It matters
+more on a solo-maintained project, not less, because there is no second reviewer.
+
+- Add a GitHub Actions workflow running `npm test && npx playwright test` on push to `main`.
+- Move `wrangler deploy` **into** that workflow behind a Cloudflare API token so a red suite
+  physically cannot reach production.
+- **Open decision for the owner:** this needs a Cloudflare API token stored as a GitHub
+  secret, and it changes how deploys work — pushing would no longer deploy directly, the
+  workflow would. Fallback if declined: a pre-push hook, which is weaker (local-only,
+  bypassable with `--no-verify`) but better than nothing.
+- Always read Playwright results with `grep -E "passed|failed|flaky"`, never a truncated tail.
+
+### 1. Remove the 5 fixed sleeps in `e2e/`
+
+Replace `waitForTimeout` with state-based waits. Small and purely mechanical, but do it
+**before** adding surface area: a flaky baseline trains you to skim failures, which is the
+habit behind the reporting error above. Establish a green you trust first.
+
+### 2. Wrangler-backed Playwright project
+
+Highest value of the three original TEST-02 items, because it closes a **demonstrated**
+escape rather than a theoretical one. REL-05 — the crash-recovery button broken by the
+production CSP — shipped and lived in production, and the suite could never have caught it:
+`python3 -m http.server` serves no `_headers` and no Worker. The same blind spot covers
+SEC-02, SEC-04 and Cloudflare asset routing, all currently verified only by hand against
+production after each deploy, which is not a sustainable control.
+
+### 3. Browser matrix (Chromium + Firefox + WebKit) — last, and expect it red
+
+The app is plain HTML/CSS/classic JS with no build, which lowers risk, but it leans on
+exactly the APIs that diverge across engines: IndexedDB, `<dialog>`, focus management,
+`prefers-reduced-motion`, forced-colors, and date handling. **WebKit matters most** — a
+disability audience skews toward iOS, and VoiceOver runs on Safari. Firefox is nearly free
+once the matrix exists.
+
+Land it on a stable base and treat the first red run as **findings to triage separately**,
+not as something to force green in the same change.
+
+### Deliberately excluded: automated axe
+
+The audit lists it as supplemental; the recommendation is to skip it for now. Automated
+tooling catches roughly a third of real accessibility problems, and here it would produce a
+green check reading "accessible" while the actual documented gap is that **no human using a
+screen reader has ever used this product**. A passing axe run would make that gap feel
+closed. Leave the absence visible until the AT testing actually happens.
+
 ## Still open — found during remediation, not in the audit
 
 | Item | What is wrong |
