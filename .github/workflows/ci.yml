@@ -68,8 +68,18 @@ jobs:
       - name: Unit tests
         run: npm test
 
-      - name: Browser tests
+      # Two Playwright projects run here. "app" uses a static server; "worker"
+      # boots `wrangler dev --local`, which is what makes the production CSP,
+      # the security headers and the /api/* contracts testable at all. Local mode
+      # needs no Cloudflare credentials: KV, send_email, the rate limiter and
+      # assets are simulated, and the AI binding is unsupported locally — which is
+      # fine, because no test depends on a successful /api/ask.
+      - name: Browser and Worker tests
         run: npx playwright test --reporter=line
+        env:
+          # Wrangler otherwise prompts about telemetry on first run, which would
+          # hang a non-interactive runner.
+          WRANGLER_SEND_METRICS: 'false'
 
       # Keeps SUPPLY-01 from regressing. Production dependencies must stay clean;
       # dev-only advisories are reported but do not fail the build, because they
