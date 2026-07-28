@@ -30,9 +30,12 @@ jobs:
   test:
     name: Unit and browser tests
     runs-on: ubuntu-latest
-    # The three-engine matrix takes about 13 minutes on a runner, plus install
-    # time. 20 was cutting it close enough to risk a false failure.
-    timeout-minutes: 30
+    # The three-engine matrix takes about 13 minutes on a runner. 30 was not enough:
+    # on 2026-07-28 a 16m37s browser download pushed the job past the cap and it was
+    # cancelled mid-suite, which also blocked the deploy through `needs: test`. The
+    # cache above should keep normal runs near 15 minutes; 45 leaves room for a slow
+    # mirror on a cache miss while still catching a genuine hang.
+    timeout-minutes: 45
 
     steps:
       - name: Check out the repository
@@ -52,8 +55,33 @@ jobs:
       # pulls the system libraries each engine needs on CI. All three are required
       # because the suite runs a Chromium/Firefox/WebKit matrix — WebKit most of
       # all, since this is a disability product whose audience skews to iOS.
-      - name: Install Playwright browsers
+      # Cached because on 2026-07-28 this download took 16m37s on one runner and the
+      # job hit its 30-minute cap mid-suite and was CANCELLED. The tests were fine.
+      # A cancelled test job also blocks the deploy through `needs: test`, so a slow
+      # mirror became a release blocker. The cache key is the resolved Playwright
+      # version, so a version bump invalidates it automatically.
+      - name: Resolve the Playwright version
+        id: playwright-version
+        run: echo "version=$(node -p "require(@playwright/test/package.json).version")" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}
+
+      # On a cache miss, fetch the browsers AND their apt dependencies.
+      - name: Install Playwright browsers and system dependencies
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium firefox webkit
+
+      # On a cache hit the binaries are restored but the apt packages are NOT — they
+      # live outside ~/.cache/ms-playwright. WebKit in particular will not launch
+      # without them, so install just the system dependencies.
+      - name: Install Playwright system dependencies
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium firefox webkit
 
       # Generated files must reproduce from their scripts. If a generated artifact
       # was hand-edited, or someone forgot to regenerate after a data change, the
