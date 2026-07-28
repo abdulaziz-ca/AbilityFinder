@@ -33,6 +33,33 @@ async function deleteAppStorage(page) {
   await expect(page.locator("#app h1")).toBeVisible();
 }
 
+// Every step render animates the card in: `.card` gets `rise 0.5s`, which translateY(10px)s the
+// whole card, options included, while `.options` has a matching 10px gap. Playwright decides an
+// element is "stable" from two same-valued bounding-box samples, and under load both samples can
+// land inside one animation frame — so a click into an unsettled card can be dispatched at stale
+// coordinates and fall into the gap BETWEEN two options. Nothing is hit, no change event fires,
+// and the wizard sits.
+//
+// Only FINITE animations are awaited. The page also runs decorative infinite ones (the aurora
+// layers and .wiz-mountains drift) whose `finished` promise never resolves; awaiting those would
+// hang. The 1000ms race is a backstop for an animation that fails to settle under contention.
+async function settleWizardCard(page) {
+  const card = page.locator(".wizard-card");
+  if (!(await card.count())) return;
+  await card
+    .evaluate(async (el) => {
+      const finite = el.getAnimations().filter((animation) => {
+        const timing = animation.effect && animation.effect.getComputedTiming();
+        return !timing || timing.iterations !== Infinity;
+      });
+      await Promise.race([
+        Promise.all(finite.map((animation) => animation.finished.catch(() => {}))),
+        new Promise((resolve) => setTimeout(resolve, 1000)),
+      ]);
+    }, undefined, { timeout: 5000 })
+    .catch(() => {});
+}
+
 async function pick(page, text) {
   const questionBefore = await page
     .locator("#wizard-question")
@@ -89,6 +116,10 @@ async function pick(page, text) {
         `The walk has already answered this step.`,
     );
   }
+  // Settle the card we are about to click into. This pick may follow a direct `#next` click,
+  // a `.js-start` click, or a previous pick — only the last of those left the card settled, so
+  // waiting here rather than only at the end is what makes every entry path safe.
+  await settleWizardCard(page);
   await page.locator(".opt", { hasText: text }).click();
   // Single-answer steps auto-advance (goNext on a 150-200 ms timer); multi-answer
   // steps stay put and enable Continue. Wait for whichever actually happens rather
@@ -117,36 +148,9 @@ async function pick(page, text) {
           `enabled a Continue button. The click landed but fired no change event, or goNext stalled.`,
       );
     });
-  // Every step render animates the card in: .card gets `rise 0.5s`, which
-  // translateY(10px)s the whole card — options included — while `.options` has a
-  // 10px gap. Playwright decides an element is "stable" from two same-valued
-  // bounding-box samples, and under load those two samples can land inside one
-  // animation frame, so a click can be dispatched at stale coordinates and fall
-  // into the gap BETWEEN two options: nothing is hit, no change event fires, and
-  // the wizard sits. This wait used to be reachable only on multi-answer steps,
-  // because it was gated on a "Continue" button that only multi steps render —
-  // so single-answer steps, which are most of the walk, clicked into a moving
-  // target. It is unconditional now.
-  //
-  // Only FINITE animations are awaited. The page also runs decorative infinite
-  // ones (the aurora layers and .wiz-mountains drift), whose `finished` promise
-  // never resolves; awaiting those would hang. The 1000ms race is a backstop for
-  // an animation that fails to settle under CPU contention.
-  const card = page.locator(".wizard-card");
-  if (await card.count()) {
-    await card
-      .evaluate(async (el) => {
-        const finite = el.getAnimations().filter((animation) => {
-          const timing = animation.effect && animation.effect.getComputedTiming();
-          return !timing || timing.iterations !== Infinity;
-        });
-        await Promise.race([
-          Promise.all(finite.map((animation) => animation.finished.catch(() => {}))),
-          new Promise((resolve) => setTimeout(resolve, 1000)),
-        ]);
-      }, undefined, { timeout: 5000 })
-      .catch(() => {});
-  }
+  // Settles the card that this advance just rendered, which protects a following direct
+  // `#next` click — those do not go through pick() and have no wait of their own.
+  await settleWizardCard(page);
 }
 
 async function enterAge(page, age) {
