@@ -13,7 +13,11 @@ async function tabReachesButtonsAndLinks(page) {
   });
 }
 
-test.setTimeout(5000);
+// No per-file timeout override. A hardcoded 5s cap lived here from when the
+// suite was Chromium-only on a dev machine; it failed as soon as WebKit ran on a
+// 2-vCPU CI runner, where the same work takes several times longer. These tests
+// are not testing speed, so they inherit the global budget (45s locally, 90s on
+// CI) instead of asserting an arbitrary one.
 
 test("A11Y-03: skip link is first focusable, visible on focus, and moves focus to main", async ({ page }) => {
   await page.goto("/");
