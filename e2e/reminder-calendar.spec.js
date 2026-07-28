@@ -88,17 +88,31 @@ test.describe("all-day reminder calendar dates", () => {
             `enabled a Continue button. The click landed but fired no change event, or goNext stalled.`,
         );
       });
-    const next = page.locator("#next");
-    if (await next.count() && (await next.textContent()).includes("Continue")) {
-      // Bounded for the same reason as the wizard wait above: an animation
-      // promise can fail to settle under CPU contention and would otherwise hang
-      // the whole test for 45s. Settling early is the normal case; the race is a
-      // safety net.
-      await page
-        .locator(".wizard-card")
-        .evaluate(async (card) => {
+    // Every step render animates the card in: .card gets `rise 0.5s`, which
+    // translateY(10px)s the whole card — options included — while `.options` has a
+    // 10px gap. Playwright decides an element is "stable" from two same-valued
+    // bounding-box samples, and under load those two samples can land inside one
+    // animation frame, so a click can be dispatched at stale coordinates and fall
+    // into the gap BETWEEN two options: nothing is hit, no change event fires, and
+    // the wizard sits. This wait used to be reachable only on multi-answer steps,
+    // because it was gated on a "Continue" button that only multi steps render —
+    // so single-answer steps, which are most of the walk, clicked into a moving
+    // target. It is unconditional now.
+    //
+    // Only FINITE animations are awaited. The page also runs decorative infinite
+    // ones (the aurora layers and .wiz-mountains drift), whose `finished` promise
+    // never resolves; awaiting those would hang. The 1000ms race is a backstop for
+    // an animation that fails to settle under CPU contention.
+    const card = page.locator(".wizard-card");
+    if (await card.count()) {
+      await card
+        .evaluate(async (el) => {
+          const finite = el.getAnimations().filter((animation) => {
+            const timing = animation.effect && animation.effect.getComputedTiming();
+            return !timing || timing.iterations !== Infinity;
+          });
           await Promise.race([
-            Promise.all(card.getAnimations().map((animation) => animation.finished.catch(() => {}))),
+            Promise.all(finite.map((animation) => animation.finished.catch(() => {}))),
             new Promise((resolve) => setTimeout(resolve, 1000)),
           ]);
         }, undefined, { timeout: 5000 })

@@ -136,7 +136,8 @@ closed. Leave the absence visible until the AT testing actually happens.
 |---|---|
 | Money band never shows an amount | The `mb.upTo` "Up to ~$X / year" path is now **unreachable** — 540 profiles probed, none produces a countable annual total, because every cash benefit correctly requires adjudication and DTC is excluded from estimates. Decide whether the band earns its prominence |
 | All-conditional results framing | Some realistic profiles (e.g. an Alberta adult unable to work) yield **zero** ready results — accurate, but the page should read as actionable rather than as a downgrade |
-| **`requiresNote` is never rendered** | 45 benefit records carry a `requiresNote` field, but no surface displays it — not `public/app.js`, not `scripts/gen-guide-pages.js`, not `scripts/gen-benefits-context.js`. Every eligibility clarification written into that field since the project began is invisible to users. Decide whether to render it or drop it; until then, put user-facing eligibility detail in `detail.about`, which **is** rendered. Discovered 2026-07-27 while fixing the ARCH income route |
+| ~~`requiresNote` is never rendered~~ | **Closed 2026-07-28 (`e1d9e68`).** It was 46 records, not 45. Measured before deciding: **0** were verbatim duplicates of their own `detail.about`, only 2 exceeded 80% keyword overlap, and **42 sat below 50%** — eligibility detail available nowhere else, median 263 characters. Rendered as a "What you must meet" block on both guide pages and the in-app detail view, and added to `benefitSearchText`. De-duplicated by removing the field from exactly two records, `ramp` and `kamloops-arch`, whose `detail.about` already states the same routes more completely. `test/requires-note-rendered.test.js` guards all 44 remaining records against going dark again, and was **mutation-tested** three ways rather than assumed |
+| **WebKit: `Database deletion blocked`** | Found 2026-07-28. `deleteAppStorage()` in `e2e/persistence.spec.js:22` rejects on IndexedDB's `onblocked`, which fired once in 9 full-suite runs on `[app-webkit] persistence.spec.js:311`. `onblocked` does not mean failure — it means the delete is deferred until other connections close, so rejecting on it is too strict. The helper already calls `AbilityFinderDB.close()` first, so something reopens the connection (a pending restore or a `notifyStateChange` write racing back). Same family as the `pick()` defects: a test helper turning a benign async state into a hard failure. Runs before any wizard interaction, so it is unrelated to the animation race above |
 
 ## Still open — needs a human, cannot be automated
 
@@ -203,11 +204,41 @@ divergence now reports `wizard is on step "autismDiagnosis", whose options are [
 frozen `goNext` reports `the wizard did not settle within 3000ms` — plus 107 unit and 411 e2e
 green across all six projects.
 
-Caveat kept on purpose: **the original stall was never reproduced.** 3 sequential spec runs,
+Caveat kept on purpose: **the original CI stall was never reproduced.** 3 sequential spec runs,
 the full 126-test Firefox project and 22 instrumented replays (12 under CPU contention) were
-all clean, and Firefox advance latency measured 240ms median / 269ms max against the 3s bound.
-The CI trace needs auth to download. So the fix does not prove the stall cannot recur — it
-guarantees the next occurrence names its cause instead of burning 90s anonymously.
+all clean, and Firefox advance latency measured 240ms median / 269ms max. The CI trace needs
+auth to download.
+
+**Then the new guard found the root cause, 2026-07-28.** Made fatal, the settle wait failed
+twice on full-suite runs — `[app-firefox] bc-live.spec.js:151` and `[app-webkit]
+persistence.spec.js:152` — the second time after **20 seconds** on an *unchecked* radio, which
+is not a slow machine. Both failures were in tests where **animation is on**, which is what
+gave it away:
+
+`public/styles.css:371` sets `.card { animation: rise 0.5s var(--ease); }`, and `@keyframes
+rise` is `from { opacity: 0; transform: translateY(10px); }`. The wizard step container carries
+`class="card wizard-card"`, so **every step render animates the whole card — every `.opt`
+included — 10px upward over 500ms.** `.options` has a `gap: 10px`: the same distance.
+Playwright decides an element is "stable" from two same-valued bounding-box samples, and under
+load both samples can land inside one animation frame, so the click is dispatched at stale
+coordinates and can fall into the gap **between** two options. Nothing is hit, no `change`
+event fires, `goNext` never runs, and the wizard sits.
+
+`pick()` already had the right wait — a race of `card.getAnimations()` against 1000ms — but it
+was **unreachable on the steps that needed it**, gated behind `includes("Continue")`, and only
+multi-answer steps render a Continue button (`t("wiz.continue")` vs `t("wiz.next")`). So
+single-answer steps, which are most of every walk, had never waited for the entrance animation.
+The wait is now unconditional and filters to finite animations, because the decorative aurora
+and `.wiz-mountains` drift animations are `infinite` and their `finished` promise never resolves.
+
+Deliberately **not** fixed by defaulting the suite to `reducedMotion: "reduce"`. That would buy
+the same green by deleting a real accessibility surface from the tests — motion is something
+this product has to get right, and `e2e/a11y-batch.spec.js:103` opts into
+`no-preference` precisely to exercise it.
+
+Evidence: **2 wizard stalls in 5 full runs before the fix, 0 in 4 after.** Suggestive, not
+proof — but the mechanism is now understood rather than guessed, which matters more than the
+sample count.
 
 ---
 
