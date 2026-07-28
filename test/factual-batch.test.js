@@ -78,6 +78,20 @@ test("Calgary carries no unsupported recreation percentage, but other cities kee
   }
 });
 
+test("Wood Buffalo LIFT states the official specialized-transit ride counts", () => {
+  const record = benefitById("woodbuffalo-lift");
+  assert.ok(record, "expected to find woodbuffalo-lift");
+  const text = [record.amount, record.summary, record.note, record.detail && record.detail.about]
+    .filter(Boolean).join(" | ");
+  // Verified 2026-07-28 at rmwb.ca/LIFT: "75% discount on 10 and 25-ride passes".
+  assert.match(text, /10- and 25-ride/);
+  assert.doesNotMatch(text, /20-ride/);
+  // The figures that were already correct must survive.
+  assert.match(text, /\$10/);
+  assert.match(text, /75%/);
+  assert.match(text, /60%/);
+});
+
 test("DATA-08: Edmonton states the real processing time", () => {
   const benefit = benefitById("edmonton-fare-assistance");
   assert.ok(benefit, "edmonton-fare-assistance record was found");

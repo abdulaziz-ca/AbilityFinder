@@ -2066,7 +2066,7 @@ const BENEFITS = [
     source: "https://www.rmwb.ca/LIFT",
     detail: {
       about:
-        "The Regional Municipality of Wood Buffalo's Low-Income Fare Transit program: a monthly conventional transit pass for $10, and 75% off 10- and 20-ride passes for the SMART Bus (the specialized service for seniors and people with mobility needs). Everyone in the household is covered by the one application. The Wood Buffalo Recreation Support Program is separate and gives 60% off memberships at Syncrude Sport and Wellness Centre, Regional Recreation Corporation facilities and Vista Ridge.",
+        "The Regional Municipality of Wood Buffalo's Low-Income Fare Transit program: a monthly conventional transit pass for $10, and 75% off 10- and 25-ride passes for the SMART Bus (the specialized service for seniors and people with mobility needs). Everyone in the household is covered by the one application. The Wood Buffalo Recreation Support Program is separate and gives 60% off memberships at Syncrude Sport and Wellness Centre, Regional Recreation Corporation facilities and Vista Ridge.",
       steps: [
         "Apply online for LIFT, or email community.services@rmwb.ca, or apply in person.",
         "Send your AISH statement as proof of income — it's accepted.",

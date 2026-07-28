@@ -30,7 +30,7 @@ Update this file whenever a finding is closed, reopened, or found to be wrong.
 | ID | What is wrong | Notes |
 |---|---|---|
 | DATA-12 | Several in-scope programs absent (RAMP, BC Additional Home Owner Grant, BC Rebate for Accessible Home Adaptations, federal Home Accessibility Tax Credit) | Enhancement. ROADMAP allows expansion only program by program |
-| **Other municipal percentages unverified** | Calgary's "75% off recreation" was checked on 2026-07-27 against three City pages and **no percentage is published anywhere** — it was unsupported and has been removed. **18 other `75%`/`60%`/`25–75%` claims remain** on `medicinehat-fair-entry`, `grandeprairie-aish-pass`, `airdrie-fair-access`, `woodbuffalo-lift` and `surrey-leisure-access`. Each has a different city source and none was re-verified. Given Calgary's turned out to be invented, these deserve a verification pass. (`aadl`'s "~75%" is correct — it is the official 25% client cost-share inverted) |
+| ~~Other municipal percentages~~ | **Verification pass completed 2026-07-28 — see "Closed after verification" below.** |
 | UX-02 | Homepage still overpromises completeness/certainty | Mitigated only; needs a content pass + comprehension testing |
 | UX-03 | "Priority order" uses unexplained editorial weights | Mitigated only; formula still unexplained and unvalidated |
 | DATA-25 | DTC readiness | Mitigated, not closed — needs real CRA functional-criteria questions |
@@ -121,6 +121,26 @@ closed. Leave the absence visible until the AT testing actually happens.
 | Accessibility specialist | 200% text, 400% zoom/reflow, 320px portrait, forced colours, touch targets, print |
 | Real disabled-user study | Keyboard/switch/voice, magnification, cognitive fatigue, pain, financial stress |
 | Production-only validation | AI quota exhaustion, adversarial assistant prompts, email header sanitation in a non-delivery environment, field Core Web Vitals without analytics |
+
+---
+
+## Closed after verification
+
+**Municipal percentage claims — checked one by one, 2026-07-28.** Calgary's "75% off
+recreation" turned out to be invented, so every remaining municipal percentage was
+re-verified against its own city source. **Calgary was the outlier, not the pattern.**
+
+| Record | Claim | Verdict |
+|---|---|---|
+| `medicinehat-fair-entry` | 75% off transit, $630/yr max, $200/yr recreation | **Correct** — all three published |
+| `grandeprairie-aish-pass` | $10.25 vs $74.25 pass, 75% recreation | **Correct** — the 75% comes from the separate Recreation Access Program, which does publish it |
+| `airdrie-fair-access` | 25% / 50% / 75% by income | **Correct** — published as Levels C / B / A |
+| `surrey-leisure-access` | free pass 0–18 and 60+, 75% adults, 75% courses | **Correct** — all published |
+| `woodbuffalo-lift` | $10 pass, 75% specialized, 60% recreation | **One error fixed** — official is "10 and **25**-ride passes"; the record said 20-ride in `detail.about` while its own tip already said 25, so it contradicted itself |
+| `aadl` | "~75% of approved equipment" | **Correct** — the official 25% client cost-share inverted |
+
+Remaining caveat: DATA-11's Medicine Hat $630 vs $635 conflict is unrelated to the
+percentage and still needs program-owner clarification (see the human-only table).
 
 ---
 
