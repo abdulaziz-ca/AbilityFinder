@@ -49,9 +49,19 @@ async function pick(page, text) {
     .catch(() => {});
   const next = page.locator("#next");
   if (await next.count() && (await next.textContent()).includes("Continue")) {
-    await page.locator(".wizard-card").evaluate(async (card) => {
-      await Promise.all(card.getAnimations().map((animation) => animation.finished.catch(() => {})));
-    });
+    // Bounded for the same reason as the wizard wait above: an animation
+    // promise can fail to settle under CPU contention and would otherwise hang
+    // the whole test for 45s. Settling early is the normal case; the race is a
+    // safety net.
+    await page
+      .locator(".wizard-card")
+      .evaluate(async (card) => {
+        await Promise.race([
+          Promise.all(card.getAnimations().map((animation) => animation.finished.catch(() => {}))),
+          new Promise((resolve) => setTimeout(resolve, 1000)),
+        ]);
+      }, undefined, { timeout: 5000 })
+      .catch(() => {});
   }
 }
 

@@ -59,6 +59,10 @@ async function evaluateLoadedProfile(page, overrides = {}) {
 
 async function evaluateProfile(page, overrides = {}) {
   await page.goto("/");
+  // app.js is a classic script; wait until it has actually executed before
+  // touching its globals, so a slow or restarting dev server surfaces as a
+  // clear wait rather than a confusing ReferenceError.
+  await page.waitForFunction(() => typeof window.evaluateAnswers === "function");
   return evaluateLoadedProfile(page, overrides);
 }
 
@@ -143,6 +147,10 @@ test("the confirmation need names all three official routes", async ({ page }) =
 
 test("ARCH can never return ready", async ({ page }) => {
   await page.goto("/");
+  // app.js is a classic script; wait until it has actually executed before
+  // touching its globals, so a slow or restarting dev server surfaces as a
+  // clear wait rather than a confusing ReferenceError.
+  await page.waitForFunction(() => typeof window.evaluateAnswers === "function");
 
   for (const income of ["low", "moderate", "high"]) {
     for (const bcAssistance of ["pwd", "other", "none", "unsure"]) {
@@ -174,6 +182,10 @@ test("the shared lowIncome predicate still serves other programs", async ({ page
 
 test("the BC-BC-17 KamPASS separation is preserved", async ({ page }) => {
   await page.goto("/");
+  // app.js is a classic script; wait until it has actually executed before
+  // touching its globals, so a slow or restarting dev server surfaces as a
+  // clear wait rather than a confusing ReferenceError.
+  await page.waitForFunction(() => typeof window.evaluateAnswers === "function");
   const note = await page.evaluate(
     (id) => BENEFITS.find((benefit) => benefit.id === id)?.note || "",
     ARCH_ID,

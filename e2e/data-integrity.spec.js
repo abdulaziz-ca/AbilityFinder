@@ -2,6 +2,10 @@ const { test, expect } = require("@playwright/test");
 
 async function catalogEntry(page, id) {
   await page.goto("/");
+  // app.js is a classic script; wait until it has actually executed before
+  // touching its globals, so a slow or restarting dev server surfaces as a
+  // clear wait rather than a confusing ReferenceError.
+  await page.waitForFunction(() => typeof window.valueParts === "function");
   return page.evaluate((benefitId) => {
     const benefit = BENEFITS.find((entry) => entry.id === benefitId);
     return {

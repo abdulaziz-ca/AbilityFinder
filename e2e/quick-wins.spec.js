@@ -17,6 +17,10 @@ test('REL-05 "error-card recovery works under a self-only script CSP"', async ({
   expect(appSource).not.toContain("onclick=");
 
   await page.goto("/");
+  // app.js is a classic script; wait until it has actually executed before
+  // touching its globals, so a slow or restarting dev server surfaces as a
+  // clear wait rather than a confusing ReferenceError.
+  await page.waitForFunction(() => typeof window.renderSafely === "function");
   const errorHtml = await page.evaluate(() => {
     const html = window.renderSafely(() => {
       throw new Error("injected");
@@ -38,6 +42,10 @@ test('REL-05 "error-card recovery works under a self-only script CSP"', async ({
 
 test('SEC-05 "postal text cannot inject markup into the input attribute"', async ({ page }) => {
   await page.goto("/");
+  // app.js is a classic script; wait until it has actually executed before
+  // touching its globals, so a slow or restarting dev server surfaces as a
+  // clear wait rather than a confusing ReferenceError.
+  await page.waitForFunction(() => typeof window.attrEscape === "function");
 
   const escaped = await page.evaluate(() => {
     const values = [
@@ -86,6 +94,10 @@ test('SEC-05 "postal text cannot inject markup into the input attribute"', async
 
 test('AQ-03 "British Columbia browse filter survives a reload"', async ({ page }) => {
   await page.goto("/");
+  // app.js is a classic script; wait until it has actually executed before
+  // touching its globals, so a slow or restarting dev server surfaces as a
+  // clear wait rather than a confusing ReferenceError.
+  await page.waitForFunction(() => typeof window.AbilityFinderState === "object");
   const restored = await page.evaluate(() => {
     const validSelections = {
       browseLevels: ["all", "Federal", "Alberta", "British Columbia", "local"],
@@ -110,6 +122,10 @@ test('AQ-03 "British Columbia browse filter survives a reload"', async ({ page }
 
 test('AQ-04 "a cross-jurisdiction province/city pair does not survive a restore"', async ({ page }) => {
   await page.goto("/");
+  // app.js is a classic script; wait until it has actually executed before
+  // touching its globals, so a slow or restarting dev server surfaces as a
+  // clear wait rather than a confusing ReferenceError.
+  await page.waitForFunction(() => typeof window.AbilityFinderState === "object");
   const cities = await page.evaluate(() => {
     const validSelections = {
       provinces: ["AB", "BC", "other"],

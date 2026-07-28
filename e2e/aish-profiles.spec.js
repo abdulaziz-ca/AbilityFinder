@@ -27,6 +27,10 @@ function answerModel(overrides = {}) {
 
 async function evaluateProfile(page, overrides = {}) {
   await page.goto("/");
+  // app.js is a classic script; wait until it has actually executed before
+  // touching its globals, so a slow or restarting dev server surfaces as a
+  // clear wait rather than a confusing ReferenceError.
+  await page.waitForFunction(() => typeof window.evaluateAnswers === "function");
   return page.evaluate((model) => {
     const evaluated = evaluateAnswers(model);
     return Object.fromEntries(

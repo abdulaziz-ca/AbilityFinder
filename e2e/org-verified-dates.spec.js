@@ -11,6 +11,10 @@ async function renderOrganizationsView(page) {
 
 test("DATA-15: each organization card shows its own verified date", async ({ page }) => {
   await page.goto("/");
+  // app.js is a classic script; wait until it has actually executed before
+  // touching its globals, so a slow or restarting dev server surfaces as a
+  // clear wait rather than a confusing ReferenceError.
+  await page.waitForFunction(() => typeof window.renderOrganizations === "function");
   await renderOrganizationsView(page);
 
   const cards = page.locator("#app article.org-card");
@@ -29,6 +33,10 @@ test("DATA-15: each organization card shows its own verified date", async ({ pag
 
 test("the label is derived from the record, not hardcoded", async ({ page }) => {
   await page.goto("/");
+  // app.js is a classic script; wait until it has actually executed before
+  // touching its globals, so a slow or restarting dev server surfaces as a
+  // clear wait rather than a confusing ReferenceError.
+  await page.waitForFunction(() => typeof window.orgVerifiedLabel === "function");
 
   const labels = await page.evaluate(() => [
     window.orgVerifiedLabel({ verified: "2026-07-21" }),
@@ -41,6 +49,10 @@ test("the label is derived from the record, not hardcoded", async ({ page }) => 
 
 test("missing or malformed dates omit the line instead of inventing one", async ({ page }) => {
   await page.goto("/");
+  // app.js is a classic script; wait until it has actually executed before
+  // touching its globals, so a slow or restarting dev server surfaces as a
+  // clear wait rather than a confusing ReferenceError.
+  await page.waitForFunction(() => typeof window.orgVerifiedLabel === "function");
 
   const labels = await page.evaluate(() => [
     window.orgVerifiedLabel({}),
@@ -58,6 +70,10 @@ test("no page errors and the view renders", async ({ page }) => {
   page.on("pageerror", (error) => pageErrors.push(error.message));
 
   await page.goto("/");
+  // app.js is a classic script; wait until it has actually executed before
+  // touching its globals, so a slow or restarting dev server surfaces as a
+  // clear wait rather than a confusing ReferenceError.
+  await page.waitForFunction(() => typeof window.renderOrganizations === "function");
   await renderOrganizationsView(page);
 
   const cardCount = await page.locator("#app article.org-card").count();

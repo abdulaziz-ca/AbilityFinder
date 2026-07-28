@@ -25,8 +25,16 @@ function answerModel(overrides = {}) {
   };
 }
 
-async function evaluateProfile(page, overrides = {}) {
+async function gotoReadyApp(page) {
   await page.goto("/");
+  // app.js is a classic script; wait until it has actually executed before
+  // touching its globals, so a slow or restarting dev server surfaces as a
+  // clear wait rather than a confusing ReferenceError.
+  await page.waitForFunction(() => typeof window.evaluateAnswers === "function");
+}
+
+async function evaluateProfile(page, overrides = {}) {
+  await gotoReadyApp(page);
   return page.evaluate((model) => {
     const evaluated = evaluateAnswers(model);
     return Object.fromEntries(
@@ -236,7 +244,7 @@ test("19to59 without high school and clearly older bands route Child Health Bene
 });
 
 test("19to59 offers a clearly limited high-school choice", async ({ page }) => {
-  await page.goto("/");
+  await gotoReadyApp(page);
   const options = await page.evaluate(() => {
     const originalBand = answers.ageBand;
     answers.ageBand = "19to59";
@@ -271,7 +279,7 @@ test("supplied excluded government coverage cannot be inferred by the production
 });
 
 test("Child Health Benefit exposes the official source and AEHB3654 links", async ({ page }) => {
-  await page.goto("/");
+  await gotoReadyApp(page);
   const record = await page.evaluate(() => {
     const benefit = BENEFITS.find((item) => item.id === "child-health-benefit");
     return {
@@ -366,7 +374,7 @@ test("DRES injected employment and covered-device facts cannot manufacture ready
 });
 
 test("DRES copy contains only published examples, exclusions and official actions", async ({ page }) => {
-  await page.goto("/");
+  await gotoReadyApp(page);
   const dres = await page.evaluate(() => {
     const benefit = BENEFITS.find((item) => item.id === "dres");
     return {
@@ -494,7 +502,7 @@ test("Alberta disability grant does not manufacture ready from unsupported exces
 });
 
 test("Alberta disability grant copy states current federal-first rules without overclaims", async ({ page }) => {
-  await page.goto("/");
+  await gotoReadyApp(page);
   const copy = await page.evaluate(() => {
     const benefit = BENEFITS.find((entry) => entry.id === "ab-grant-disability");
     return JSON.stringify({
@@ -517,7 +525,7 @@ test("Alberta disability grant copy states current federal-first rules without o
 });
 
 test("DTC disability amount is not presented as cash, tax savings, or back-pay estimate", async ({ page }) => {
-  await page.goto("/");
+  await gotoReadyApp(page);
   const dtcModel = await page.evaluate(() => {
     const benefit = BENEFITS.find((entry) => entry.id === "dtc");
     const value = BENEFIT_VALUES.dtc;
@@ -547,7 +555,7 @@ test("DTC disability amount is not presented as cash, tax savings, or back-pay e
 });
 
 test("money band covers empty, ready, mixed, zero-total, and RDSP states", async ({ page }) => {
-  await page.goto("/");
+  await gotoReadyApp(page);
   const model = await page.evaluate(() => {
     const entry = (id) => ({ b: BENEFITS.find((benefit) => benefit.id === id), r: { status: "almost" } });
     const text = (html) => {
@@ -593,7 +601,7 @@ test("money band covers empty, ready, mixed, zero-total, and RDSP states", async
 });
 
 test("money and all-conditional result copy is complete in English and French", async ({ page }) => {
-  await page.goto("/");
+  await gotoReadyApp(page);
   const copy = await page.evaluate(() => {
     const entry = (id) => ({
       b: BENEFITS.find((benefit) => benefit.id === id),
@@ -649,7 +657,7 @@ test("money and all-conditional result copy is complete in English and French", 
 });
 
 test("results UX helpers preserve matcher definitions, values, questions, and input ordering", async ({ page }) => {
-  await page.goto("/");
+  await gotoReadyApp(page);
   const preserved = await page.evaluate(() => {
     const snapshot = () => JSON.stringify({
       benefits: BENEFITS.map((benefit) => ({ id: benefit.id, requires: benefit.requires })),
@@ -691,7 +699,7 @@ test("results UX helpers preserve matcher definitions, values, questions, and in
 });
 
 test("DTC practitioner finder exposes the current scoped CRA certification matrix", async ({ page }) => {
-  await page.goto("/");
+  await gotoReadyApp(page);
   const signerModel = await page.evaluate(() => {
     const benefit = BENEFITS.find((entry) => entry.id === "dtc");
     return {
@@ -768,7 +776,7 @@ test("Alberta disability programs never return ready from unasked criteria", asy
 
 test("no Alberta answer combination reaches ready", async ({ page }) => {
   const targetIds = ["aish", "adap", "aadl", "adult-health-benefit"];
-  await page.goto("/");
+  await gotoReadyApp(page);
 
   for (const income of ["low", "moderate", "high"]) {
     for (const disabilityVerified of ["yes", "no", "unsure"]) {
@@ -827,7 +835,7 @@ test("jurisdiction, age and status produce a clean no-match", async ({ page }) =
 });
 
 test("shared predicates are unchanged for other programs", async ({ page }) => {
-  await page.goto("/");
+  await gotoReadyApp(page);
   const sharedPredicateResults = await page.evaluate((model) => {
     const changedIds = new Set(["aish", "adap", "aadl", "adult-health-benefit"]);
     return evaluateAnswers(model)
@@ -962,7 +970,7 @@ test("no BC answer combination reaches ready", async ({ page }) => {
     }
   }
 
-  await page.goto("/");
+  await gotoReadyApp(page);
   const readyMatches = await page.evaluate(
     ({ profiles, ids }) =>
       profiles.flatMap((model, index) =>
@@ -1080,7 +1088,7 @@ test("shared predicates still serve their other consumers", async ({ page }) => 
     "aadl",
     "adult-health-benefit",
   ]);
-  await page.goto("/");
+  await gotoReadyApp(page);
   const sharedPredicateResults = await page.evaluate(
     ({ model, excludedIds }) =>
       evaluateAnswers(model)
@@ -1248,7 +1256,7 @@ test("no federal answer combination reaches ready", async ({ page }) => {
     }
   }
 
-  await page.goto("/");
+  await gotoReadyApp(page);
   const readyMatches = await page.evaluate(
     ({ profiles, ids }) =>
       profiles.flatMap((model, index) =>
