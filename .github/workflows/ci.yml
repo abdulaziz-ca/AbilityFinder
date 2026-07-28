@@ -74,8 +74,12 @@ jobs:
       # needs no Cloudflare credentials: KV, send_email, the rate limiter and
       # assets are simulated, and the AI binding is unsupported locally — which is
       # fine, because no test depends on a successful /api/ask.
+      # No --reporter flag here on purpose: a CLI reporter OVERRIDES the config,
+      # which is what silently disabled the "github" reporter on the first runs
+      # and left annotations saying only "exit code 1". The config already picks
+      # github + line when CI is set.
       - name: Browser and Worker tests
-        run: npx playwright test --reporter=line
+        run: npx playwright test
         env:
           # Wrangler otherwise prompts about telemetry on first run, which would
           # hang a non-interactive runner.

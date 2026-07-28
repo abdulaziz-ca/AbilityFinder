@@ -2,7 +2,12 @@ const { defineConfig } = require("@playwright/test");
 
 module.exports = defineConfig({
   testDir: "./e2e",
-  timeout: 45_000,
+  // CI runners are materially slower than a dev machine — the same suite takes
+  // roughly 1.75x longer there. Some tests legitimately do a lot of work: the
+  // age-appropriate-schooling test walks the whole wizard five times, about 55
+  // interactions, inside one test. Give CI proportionate headroom rather than
+  // trimming coverage or weakening waits to fit an arbitrary limit.
+  timeout: process.env.CI ? 90_000 : 45_000,
   fullyParallel: false,
   // On CI the default reporter writes failures only into the job log, which is
   // not readable without a token — a failure there is undiagnosable from
