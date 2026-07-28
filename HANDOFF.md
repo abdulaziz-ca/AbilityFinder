@@ -6,8 +6,8 @@ rules. Use `ROADMAP.md` for active work, `DEPLOY.md` for production operations, 
 
 ## Scope
 
-AbilityFinder is an Alberta-first disability-benefit finder with federal,
-provincial, and municipal guides. It answers five questions:
+AbilityFinder is a disability-benefit finder covering Alberta and British Columbia,
+with federal, provincial, and municipal guides. It answers five questions:
 
 1. What can I get?
 2. What may it be worth?
@@ -15,9 +15,16 @@ provincial, and municipal guides. It answers five questions:
 4. What should I apply for first?
 5. How do I apply?
 
-Other jurisdictions are parked in `public/data-provinces-later.js` and are not
-loaded. French scaffolding exists in `public/i18n.js`, but catalog translation is
-paused.
+**British Columbia is live.** `BC_ENABLED` in `public/app.js` is `true`, and the
+catalog holds **84 benefits** — 8 federal, 10 Alberta, 36 British Columbia, and the
+remainder municipal. The residency question offers Alberta, British Columbia, and
+"another province or territory"; the last of these still sees federal benefits only.
+
+Provinces beyond Alberta and B.C. are parked in `archive/data-provinces-later.js`,
+which is **outside the deployed directory** and is not loaded or served (it was moved
+out of `public/` for DEPLOY-01). Re-integrating any of them requires a full source
+audit per the ROADMAP gate. French scaffolding exists in `public/i18n.js`, but catalog
+translation is paused.
 
 ## Runtime architecture
 

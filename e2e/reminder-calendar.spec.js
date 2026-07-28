@@ -105,18 +105,19 @@ test.describe("all-day reminder calendar dates", () => {
   test("uses calendar-day arithmetic through Edmonton spring and fall DST changes", async ({ page }) => {
     await openEdmontonResults(page);
 
+    // These anchors make the 84-day follow-up land exactly on the spring-forward and fall-back days.
     const cases = [
       {
-        now: new Date("2026-02-22T23:30:15-07:00"),
+        now: new Date("2025-12-14T23:30:15-07:00"),
         start: "20260308",
         end: "20260309",
-        stamp: "20260223T063015Z",
+        stamp: "20251215T063015Z",
       },
       {
-        now: new Date("2026-10-18T00:30:15-06:00"),
+        now: new Date("2026-08-09T00:30:15-06:00"),
         start: "20261101",
         end: "20261102",
-        stamp: "20261018T063015Z",
+        stamp: "20260809T063015Z",
       },
     ];
 
@@ -128,7 +129,7 @@ test.describe("all-day reminder calendar dates", () => {
       );
       expectAllDayDates(followup, sample.start, sample.end);
       expect(followup).toContain(`DTSTAMP:${sample.stamp}`);
-      expect(followup).toContain("The usual wait is 1–2 weeks.");
+      expect(followup).toContain("The usual wait is 8–12 weeks.");
     }
   });
 
@@ -142,7 +143,7 @@ test.describe("all-day reminder calendar dates", () => {
     expectAllDayDates(recheck, "20240229", "20240301");
     expect(recheck).toContain("DTSTAMP:20230301T190509Z");
 
-    expect(followup).toContain("The usual wait is 1–2 weeks.");
+    expect(followup).toContain("The usual wait is 8–12 weeks.");
     expect(followup).not.toContain("�");
     expect(ics).toMatch(/\r\n [^\r\n]+/);
     for (const line of ics.split("\r\n").filter(Boolean)) {

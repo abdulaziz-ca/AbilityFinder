@@ -25,6 +25,10 @@ const MODEL = "@cf/meta/llama-4-scout-17b-16e-instruct";
 const MAX_TOKENS = 1024;
 const MAX_QUESTION_CHARS = 2000;
 const MAX_TURNS = 20;
+// 20 messages x 2,000 chars is the app-level ceiling; 64 KB leaves generous room
+// for JSON overhead while refusing anything that could never be valid. Cloudflare
+// enforces its own platform limits above this.
+const MAX_BODY_BYTES = 65536;
 const CANONICAL_HOST = "abilityfinder.ca";
 // Start with Cloudflare's recommended six-month HSTS rollout. Do not add
 // includeSubDomains or preload until every subdomain has been inventoried and
@@ -139,6 +143,11 @@ function errorResponse(message, status) {
       "Cache-Control": "no-store",
     },
   });
+}
+
+function bodyTooLarge(request) {
+  const declared = Number(request.headers.get("content-length"));
+  return Number.isFinite(declared) && declared > MAX_BODY_BYTES;
 }
 
 /**
@@ -307,6 +316,10 @@ async function handleAsk(request, env) {
   if (request.method === "OPTIONS") return apiOptionsResponse();
   if (request.method !== "POST") return errorResponse("Use POST.", 405);
 
+  // A pure header read, so refuse an impossible body before touching any binding:
+  // no rate-limit write, no AI or email quota, no parse.
+  if (bodyTooLarge(request)) return errorResponse("That request is too large.", 413);
+
   if (!env.AI) {
     console.error("AI binding missing");
     return errorResponse("The assistant is not available right now.", 503);
@@ -373,6 +386,11 @@ async function handleFeedback(request, env) {
   if (originError) return originError;
   if (request.method === "OPTIONS") return apiOptionsResponse();
   if (request.method !== "POST") return errorResponse("Use POST.", 405);
+
+  // A pure header read, so refuse an impossible body before touching any binding:
+  // no rate-limit write, no AI or email quota, no parse.
+  if (bodyTooLarge(request)) return errorResponse("That request is too large.", 413);
+
   if (!env.FEEDBACK_MAIL) return errorResponse("Feedback is not available right now.", 503);
 
   // Same limiter as the assistant: this sends mail, so it is worth guarding.

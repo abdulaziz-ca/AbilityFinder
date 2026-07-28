@@ -51,8 +51,9 @@ Document findings as reproducible issues, not broad redesign requests.
 
 - Re-check Camrose and other municipalities one program at a time.
 - Keep local transit/recreation rules distinct; never clone another city's policy.
-- Re-integrate other provinces from `public/data-provinces-later.js` only after a
-  province-specific source audit and metadata pass.
+- Re-integrate other provinces from `archive/data-provinces-later.js` only after a
+  province-specific source audit and metadata pass. That file sits outside the
+  deployed `public/` directory and is not served.
 - Keep French paused until there is capacity to translate and maintain the benefit
   catalog, not only the interface.
 
@@ -77,10 +78,11 @@ Potential low-risk enhancements:
    sponsorships — **NO paid referral inducements** (physician referral payments risk
    violating CPSA standards / fee-splitting rules; verify before any clinic
    arrangement).
-3. **Then — Canada-wide, province by province.** Re-integrate provinces from
-   `public/data-provinces-later.js` one at a time, each with a full source audit; the
-   Alberta depth bar is the standard. National-but-shallow (the Disability Benefits
-   Compass approach) is explicitly rejected.
+3. **Then — Canada-wide, province by province.** British Columbia is done and live.
+   Re-integrate the remaining provinces from `archive/data-provinces-later.js` one at
+   a time, each with a full source audit; the Alberta and B.C. depth bar is the
+   standard. National-but-shallow (the Disability Benefits Compass approach) is
+   explicitly rejected.
 4. **Later — Multi-audience expansion.** Beyond disability, add audience streams like
    Benefits Wayfinder's starting points: newcomers, seniors, veterans, job loss,
    caregivers, Indigenous peoples, housing, education, emergency money. One audience

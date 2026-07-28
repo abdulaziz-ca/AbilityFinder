@@ -37,9 +37,6 @@ Update this file whenever a finding is closed, reopened, or found to be wrong.
 | TEST-01 | No systematic eligibility oracle across all programs | The gap that allowed the false-ready cluster |
 | TEST-02 | E2E is Chromium-only on a Python static server, with fixed sleeps | Needs a Wrangler-backed project + browser matrix. **Observed flake 2026-07-27:** `e2e/a11y-batch.spec.js` "A11Y-03: skip link is first focusable" failed once inside the full suite and passed on isolated re-run and on full-suite re-run — exactly the timing fragility this finding describes |
 | PERF-01 | Production mobile lab LCP 4.0s; render-blocking scripts | INP still unmeasured |
-| SEC-04 | Request body parsed before app-level size limits | Hardening only |
-| DOC-01 | HANDOFF and public claims disagree with the live BC architecture | Update after the remaining fixes land |
-| SUPPLY-01 | 3 high advisories via `wrangler` → `miniflare` → `sharp` | **Dev-only**; production deps audit clean. Monitor, do not blind-downgrade |
 
 ## Still open — found during remediation, not in the audit
 
@@ -89,6 +86,15 @@ a resident on MSDPR assistance is no longer denied for reporting moderate income
 Defects and hardening: DATA-04, DATA-28, DATA-38, ABFED-01/03/04/06, AI-01, AI-02,
 A11Y-01/02/03/05/06, REL-01, REL-02, REL-03, REL-04, CAL-01, SEC-02, SEC-03,
 and the quick-win bundle REL-05, SEC-05, UX-01, AQ-03, AQ-04, DEPLOY-01 (`8042e42`).
+
+Hardening, toolchain and docs: **SEC-04** — `MAX_BODY_BYTES` (64 KB) rejects an oversized
+declared body with 413 **before any binding is touched**, so it never consumes the KV rate
+limiter or reaches AI/email quota. **SUPPLY-01** — resolved by upgrading to wrangler
+`^4.114.0` (→ miniflare 4.20260722.0 → sharp 0.35.2); `npm audit` reports 0 vulnerabilities,
+with no downgrade. **DOC-01** — `HANDOFF.md` and `ROADMAP.md` corrected: B.C. is live with
+real counts (84 total; 8 federal, 10 Alberta, 36 B.C.) and the parked-provinces file is at
+`archive/`, not `public/`. `test/docs-consistency.test.js` now fails if the docs drift from
+the catalogue again.
 
 Edge/infrastructure: **SEC-01** — HTTP now 301-redirects to HTTPS on root, guides, assets and
 API, with HSTS `max-age=15552000`. **PRIV-01** — self-only CSP, zero analytics beacons.

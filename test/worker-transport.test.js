@@ -375,3 +375,100 @@ test("link health returns 503 when KV read throws", async () => {
   );
   assert.equal(response.status, 503);
 });
+
+test("SEC-04: an oversized declared body is refused before parsing", async () => {
+  const worker = loadWorkerForTest();
+  const env = {
+    AI: { async run() { throw new Error("must not run"); } },
+    ASK_LIMIT: { async limit() { return { success: true }; } },
+    FEEDBACK_MAIL: { async send() { throw new Error("must not send"); } },
+  };
+
+  for (const pathName of ["/api/ask", "/api/feedback"]) {
+    const response = await worker.fetch(
+      new Request(`https://abilityfinder.ca${pathName}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Length": "65537",
+          "Origin": "https://abilityfinder.ca",
+        },
+        body: "{}",
+      }),
+      env
+    );
+
+    assert.equal(response.status, 413, pathName);
+    assert.match((await response.json()).error, /too large/i, pathName);
+    assert.equal(response.headers.get("cache-control"), "no-store", pathName);
+  }
+});
+
+test("SEC-04: a body at the limit is still accepted for parsing", async () => {
+  const worker = loadWorkerForTest();
+  const response = await worker.fetch(
+    new Request("https://abilityfinder.ca/api/ask", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Content-Length": "65536",
+        "Origin": "https://abilityfinder.ca",
+      },
+      body: "{",
+    }),
+    {
+      AI: { async run() { throw new Error("must not run"); } },
+      ASK_LIMIT: { async limit() { return { success: true }; } },
+    }
+  );
+
+  assert.equal(response.status, 400);
+  assert.notEqual(response.status, 413);
+});
+
+test("SEC-04: a request with no Content-Length still reaches validation", async () => {
+  const worker = loadWorkerForTest();
+  const response = await worker.fetch(
+    new Request("https://abilityfinder.ca/api/feedback", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Origin": "https://abilityfinder.ca",
+      },
+      body: "{",
+    }),
+    {
+      ASK_LIMIT: { async limit() { return { success: true }; } },
+      FEEDBACK_MAIL: { async send() { throw new Error("must not send"); } },
+    }
+  );
+
+  // Intentional: an undeclared length cannot be pre-checked, and Cloudflare's platform limits apply.
+  assert.equal(response.status, 400);
+  assert.notEqual(response.status, 413);
+});
+
+test("SEC-04: the size gate runs before any binding is touched", async () => {
+  const worker = loadWorkerForTest();
+  const env = {};
+  Object.defineProperty(env, "AI", {
+    get() {
+      throw new Error("AI binding must not be touched");
+    },
+  });
+
+  const response = await worker.fetch(
+    new Request("https://abilityfinder.ca/api/ask", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Content-Length": "65537",
+        "Origin": "https://abilityfinder.ca",
+      },
+      body: "{}",
+    }),
+    env
+  );
+
+  assert.equal(response.status, 413);
+});
