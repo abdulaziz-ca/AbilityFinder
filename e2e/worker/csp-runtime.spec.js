@@ -58,12 +58,22 @@ test("REL-05: the crash-recovery controls work under the real CSP", async ({ pag
   await page.evaluate(() => {
     window.__beforeReload = true;
   });
-  await Promise.all([
-    page.waitForLoadState("load"),
-    card.click(),
-  ]);
-  const survived = await page.evaluate(() => window.__beforeReload === true);
-  expect(survived).toBe(false);
+  await card.click();
+  // The old barrier here was `Promise.all([page.waitForLoadState('load'), card.click()])`,
+  // which awaited NOTHING: waitForLoadState('load') resolves immediately when the page is
+  // already in the load state, and it is — the goto above finished long ago. So there was no
+  // barrier at all between the click and the assertion, and the test relied on page.evaluate
+  // happening to synchronise on the pending navigation. That held locally across 14 runs,
+  // including 8 under CPU contention, but failed once on [worker-webkit] on CI with
+  // __beforeReload still true, i.e. the assertion read the OLD document.
+  //
+  // waitForFunction re-evaluates across navigations, so it is a real barrier. A reload is the
+  // only thing that can clear this marker, so this proves exactly what the old assertion
+  // claimed — and if the reload never happens it fails loudly on the timeout instead of
+  // passing by luck.
+  await page.waitForFunction(() => window.__beforeReload === undefined, undefined, {
+    timeout: 15000,
+  });
 
   expect(await cspViolations(page)).toEqual([]);
 });
