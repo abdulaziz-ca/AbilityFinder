@@ -3,7 +3,38 @@
 **Purpose:** the single place to see what is actually finished and what still needs doing.
 Update this file whenever a finding is closed, reopened, or found to be wrong.
 
-**Last updated:** 2026-07-27 · **Source of findings:** `AUDIT_REPORT_2026-07-22.md`
+**Last updated:** 2026-07-28 · **Source of findings:** `AUDIT_REPORT_2026-07-22.md`
+
+> **Start here.** This file is the working record. `AUDIT_REPORT_2026-07-22.md` is
+> 120 KB — do not load it whole. Grep it for a specific finding ID when you need the
+> original evidence.
+
+## Audit completion
+
+The audit's findings table has **65 rows**. Current state:
+
+| Status | Rows | Notes |
+|---|---|---|
+| **Fully closed and deployed** | **54** | ~83% |
+| Partly closed | 2 | BC-BC group (7 of 8 done, BC-BC-15 needs a human); DATA-12 (RAMP added, 3 candidates remain) |
+| Mitigated, not closed | 3 | DATA-25, UX-02, UX-03 — all need product decisions or user testing |
+| Open | 6 | TEST-01, PERF-01, and 4 needing a human |
+
+By severity:
+
+| Severity | Closed | Total | |
+|---|---|---|---|
+| **High / P1** | **22** | 23 | only DATA-25 outstanding, and it is mitigated |
+| Medium / P1 | 12 | 18 | 2 mitigated, 4 need a human |
+| Medium / P2 | 9 | 12 | PERF-01, DATA-11, DATA-12 |
+| Low + Informational | 12 | 12 | complete |
+
+**Every High/P1 release blocker except DATA-25 is closed.** What remains is
+concentrated in two places: work that needs a product decision (DATA-25, UX-02,
+UX-03, TEST-01) and work that needs a person (see the human-only table).
+
+The NO-GO has still not been lifted — see *Release status* at the end. Code
+completeness is not the blocker; the untested accessibility is.
 
 > **Treat the audit as a lead, not an authority.** Two of its findings have now been
 > disproved against primary sources (see *Closed as incorrect*). Always re-verify a

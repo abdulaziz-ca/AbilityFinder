@@ -1,12 +1,27 @@
 # AbilityFinder — AI entry point
 
-Read this file first. Load deeper docs only when the task needs them:
+Read this file first, then `REMAINING-WORK.md`. Load anything else only when the
+task needs it:
 
+- **`REMAINING-WORK.md` — what is done, what is left, and what must not be
+  "fixed". Always read this second. It is the working record.**
 - `HANDOFF.md` — current architecture, data model, and change workflows.
 - `DEPLOY.md` — Cloudflare bindings, zero-spend constraints, and release checks.
 - `ROADMAP.md` — active priorities and deliberately rejected features.
 - `ARCHIVAL_KNOWLEDGE_BASE.md` — failures and decisions that must not be re-learned.
 - `README.md` — short public/project overview.
+- `archive/` — superseded handoffs, kept for history. Do not read unless digging
+  into why an old decision was made.
+
+**Never load `AUDIT_REPORT_2026-07-22.md` whole — it is 120 KB and will eat the
+context window.** `REMAINING-WORK.md` already carries the status of every finding.
+Grep the audit for a specific ID (e.g. `grep -n "DATA-46" AUDIT_REPORT_2026-07-22.md`)
+only when you need the original evidence for that one finding. The same applies to
+`AUDIT_EVIDENCE_2026-07-22/`, which is 1.7 MB.
+
+Treat the audit as a lead, not an authority: three of its findings have been
+disproved against primary sources. Re-verify against the current official page
+before changing anything.
 
 Do not load every document by default. The source code is authoritative when a
 document and implementation disagree.
