@@ -8,11 +8,25 @@ async function deleteAppStorage(page) {
     localStorage.clear();
     sessionStorage.clear();
     if (window.AbilityFinderDB) await window.AbilityFinderDB.close();
+    // `blocked` is NOT a failure. Per the IndexedDB spec it means another connection is
+    // still open, so the delete request stays PENDING and fires `success` once they close.
+    // The old code rejected on it, which turned a benign self-resolving state into a hard
+    // failure — it broke two consecutive CI runs on WebKit, where releasing the handle
+    // after close() is evidently not synchronous. Wait for the real outcome instead, and
+    // only fail on a bounded timeout, reporting whether `blocked` had fired.
     await new Promise((resolve, reject) => {
       const request = indexedDB.deleteDatabase("abilityfinder");
-      request.onsuccess = resolve;
-      request.onerror = () => reject(request.error);
-      request.onblocked = () => reject(new Error("Database deletion blocked"));
+      let blocked = false;
+      const timer = setTimeout(() => {
+        reject(new Error(
+          `indexedDB.deleteDatabase("abilityfinder") did not complete within 15000ms` +
+            (blocked ? " — it fired blocked, so a connection stayed open" : ""),
+        ));
+      }, 15000);
+      const settle = (fn, value) => { clearTimeout(timer); fn(value); };
+      request.onsuccess = () => settle(resolve);
+      request.onerror = () => settle(reject, request.error);
+      request.onblocked = () => { blocked = true; };
     });
   });
   await page.reload();
