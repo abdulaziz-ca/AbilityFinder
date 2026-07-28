@@ -5,8 +5,24 @@ test.describe("all-day reminder calendar dates", () => {
   test.use({ timezoneId: "America/Edmonton", reducedMotion: "reduce" });
 
   async function pick(page, text) {
+    const questionBefore = await page
+      .locator("#wizard-question")
+      .textContent()
+      .catch(() => null);
     await page.locator(".opt", { hasText: text }).click();
-    await page.waitForTimeout(230);
+    // Single-answer steps auto-advance (goNext on a 150-200 ms timer); multi-answer
+    // steps stay put and enable Continue. Wait for whichever actually happens rather
+    // than sleeping past the longest timer.
+    await page.waitForFunction(
+      (prev) => {
+        const question = document.getElementById("wizard-question");
+        const next = document.getElementById("next");
+        if (!question) return true; // left the wizard entirely (e.g. results)
+        if (question.textContent !== prev) return true; // auto-advanced
+        return !!next && /Continue/.test(next.textContent || "") && !next.disabled;
+      },
+      questionBefore,
+    );
     const next = page.locator("#next");
     if (await next.count() && (await next.textContent()).includes("Continue")) {
       await page.locator(".wizard-card").evaluate(async (card) => {

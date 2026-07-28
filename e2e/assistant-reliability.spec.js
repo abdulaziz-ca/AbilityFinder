@@ -52,8 +52,11 @@ test("REL-02: starting a new conversation does not clear questionnaire/profile",
   await page.locator(".js-start").first().click();
   const question = page.locator("#wizard-question");
   await expect(question).toBeVisible();
+  const questionBefore = await question.textContent();
   await page.locator(".opt").first().click();
-  await page.waitForTimeout(300); // allow any auto-advance to settle
+  // The first step is single-answer, so it auto-advances; wait for the new
+  // question rather than sleeping past the timer.
+  await expect(question).not.toHaveText(questionBefore);
   // Snapshot the current questionnaire state (the wizard lives in #app; the chat
   // panel and #askLog live outside it, so a conversation reset must not touch this).
   const profileBefore = await question.textContent();
@@ -116,9 +119,12 @@ test("REL-03: no duplicate assistant requests while busy", async ({ page }) => {
 
   await openChat(page);
   await ask(page, "hi");
+  // Wait for the deterministic busy state instead of sleeping: #askStop replaces
+  // #askSend while a request is in flight.
+  await expect(page.locator("#askStop")).toBeVisible();
   await page.locator("#askInput").press("Enter");
-  await page.waitForTimeout(300);
-
+  // The send handler starts its fetch synchronously, so a duplicate would already
+  // have been counted by now.
   expect(count).toBe(1);
 });
 
