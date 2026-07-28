@@ -9,16 +9,44 @@ test.describe("all-day reminder calendar dates", () => {
       .locator("#wizard-question")
       .textContent()
       .catch(() => null);
+    // The wizard is adaptive (skipIf() keys off answers.disabilities) and hasText
+    // is a SUBSTRING match, so a stalled advance used to let the next pick() click
+    // a plausible-looking option on the WRONG step — surfacing one or two steps
+    // later as a zero-match locator that ate the full test timeout. Assert the
+    // option belongs to the step actually on screen, so divergence fails HERE.
+    const onScreen = await page.evaluate((wanted) => {
+      const norm = (s) => String(s).replace(/\s+/g, " ").trim().toLowerCase();
+      if (view !== "wizard") return { view };
+      const step = visibleSteps()[stepIndex];
+      if (!step) return { view, id: null, labels: [] };
+      const labels = stepOptions(step).map((o) =>
+        typeof o === "object" ? `${optionText(step, o)}${o.sub ? ` ${o.sub}` : ""}` : String(o),
+      );
+      return {
+        view,
+        id: step.id,
+        labels,
+        matches: labels.filter((l) => norm(l).includes(norm(wanted))).length,
+      };
+    }, text);
+    if (onScreen.view !== "wizard") {
+      throw new Error(`pick(${JSON.stringify(text)}): not in the wizard (view="${onScreen.view}")`);
+    }
+    if (onScreen.matches !== 1) {
+      throw new Error(
+        `pick(${JSON.stringify(text)}): wizard is on step "${onScreen.id}", whose options are ` +
+          `[${onScreen.labels.join(" | ")}] — ${onScreen.matches} of them match. ` +
+          `Expected exactly 1. The walk has diverged from the step this pick assumes.`,
+      );
+    }
     await page.locator(".opt", { hasText: text }).click();
     // Single-answer steps auto-advance (goNext on a 150-200 ms timer); multi-answer
     // steps stay put and enable Continue. Wait for whichever actually happens rather
     // than sleeping past the longest timer.
-    // Bounded on purpose. Normally this resolves in a few ms as soon as the
-    // wizard settles. But clicking an option whose radio is already checked
-    // fires no change event, so there is no auto-advance and no Continue button
-    // to observe — nothing would ever become true. The timeout is a safety net,
-    // not a sleep: the happy path never waits for it, and the pathological path
-    // degrades to the old fixed-wait behaviour instead of hanging for 45s.
+    // Bounded at 3s on purpose, and it now THROWS. Clicking an option whose radio
+    // is already checked fires no change event, so goNext never runs and nothing
+    // here would ever become true. Swallowing that left the wizard silently one
+    // step behind; failing here names the step instead.
     await page
       .waitForFunction(
         (prev) => {
@@ -31,7 +59,13 @@ test.describe("all-day reminder calendar dates", () => {
         questionBefore,
         { timeout: 3000 },
       )
-      .catch(() => {});
+      .catch(() => {
+        throw new Error(
+          `pick(${JSON.stringify(text)}) on step "${onScreen.id}": the wizard did not settle ` +
+            `within 3000ms — it neither auto-advanced past ${JSON.stringify(questionBefore)} nor ` +
+            `enabled a Continue button. The click landed but fired no change event, or goNext stalled.`,
+        );
+      });
     const next = page.locator("#next");
     if (await next.count() && (await next.textContent()).includes("Continue")) {
       // Bounded for the same reason as the wizard wait above: an animation

@@ -173,6 +173,42 @@ re-verified against its own city source. **Calgary was the outlier, not the patt
 Remaining caveat: DATA-11's Medicine Hat $630 vs $635 conflict is unrelated to the
 percentage and still needs program-owner clarification (see the human-only table).
 
+**The `[app-firefox]` reminder-calendar flake — diagnosed and made diagnosable, 2026-07-28.**
+On run `73a1ddf`, `e2e/reminder-calendar.spec.js:111` timed out at 90s on CI. The reported
+symptom ("waiting for `.opt` to become clickable") was wrong: the call log has no
+actionability lines at all, so the locator matched **zero** elements for the full 90s and the
+wizard was never on the `onset` step.
+
+Three defects in the copy-pasted `pick()` helper let one stalled advance surface, one or two
+steps later, as an undiagnosable timeout:
+
+1. `hasText` is a **substring** match, and labels overlap across steps — `"Yes"` is a
+   substring of `"Yes, it is documented"`, `"Yes, usually fine"` and
+   `"Yes, it began in childhood"`. A pick could click a plausible option on the **wrong** step.
+2. The settle wait was bounded at 3s but its rejection was swallowed by `.catch(() => {})`,
+   so a late advance returned **silently** with the wizard one step behind.
+3. Auto-advance rides the radio's `change` event (`public/app.js:2999`). Re-clicking an
+   already-checked option fires no `change`, so `goNext` never runs — one step behind became
+   **permanently wedged**, not merely late.
+
+Compounding all three: the wizard is adaptive, so `skipIf` predicates keyed off
+`answers.disabilities` mean the walk's shape is not fixed, and nothing asserted which
+question was being answered. Every divergence path produced a byte-identical failure.
+
+Fixed in all three copies (`reminder-calendar`, `persistence`, `bc-live`): `pick()` now reads
+the wizard's real step from the page and asserts the option belongs to it **before** clicking,
+and the settle wait throws with context. **No timeout was raised and no sleep was added**, and
+no production code changed. Verified by inducing both failure modes deliberately — a
+divergence now reports `wizard is on step "autismDiagnosis", whose options are [...]` and a
+frozen `goNext` reports `the wizard did not settle within 3000ms` — plus 107 unit and 411 e2e
+green across all six projects.
+
+Caveat kept on purpose: **the original stall was never reproduced.** 3 sequential spec runs,
+the full 126-test Firefox project and 22 instrumented replays (12 under CPU contention) were
+all clean, and Firefox advance latency measured 240ms median / 269ms max against the 3s bound.
+The CI trace needs auth to download. So the fix does not prove the stall cannot recur — it
+guarantees the next occurrence names its cause instead of burning 90s anonymously.
+
 ---
 
 ## Closed as incorrect — do not "fix" these
