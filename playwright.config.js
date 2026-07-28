@@ -1,4 +1,22 @@
-const { defineConfig } = require("@playwright/test");
+const { defineConfig, devices } = require("@playwright/test");
+
+// TEST-02 step 4: run against all three engines, not just Chromium.
+//
+// The app is plain HTML/CSS/classic JavaScript with no build, which lowers the
+// risk — but it leans on precisely the APIs that diverge between engines:
+// IndexedDB (persistence and restore), <dialog>, focus management, native radio
+// and checkbox semantics, prefers-reduced-motion, forced-colors, Intl date
+// handling and getAnimations().
+//
+// WebKit matters most here and is not a box-ticking exercise: this is a
+// disability product, its audience skews toward iOS, and VoiceOver runs on
+// Safari. A defect that only appears in WebKit lands on the users least able to
+// work around it. Firefox is nearly free once the matrix exists.
+const ENGINES = [
+  { id: "chromium", device: devices["Desktop Chrome"] },
+  { id: "firefox", device: devices["Desktop Firefox"] },
+  { id: "webkit", device: devices["Desktop Safari"] },
+];
 
 module.exports = defineConfig({
   testDir: "./e2e",
@@ -25,13 +43,13 @@ module.exports = defineConfig({
     trace: "retain-on-failure",
   },
 
-  projects: [
+  projects: ENGINES.flatMap((engine) => [
     {
       // The product suite. A plain static server is enough here and is fast.
-      name: "app",
+      name: `app-${engine.id}`,
       testDir: "./e2e",
       testIgnore: "**/worker/**",
-      use: { baseURL: "http://127.0.0.1:8766" },
+      use: { ...engine.device, baseURL: "http://127.0.0.1:8766" },
     },
     {
       // TEST-02: the static server serves no _headers and no Worker, so the
@@ -40,11 +58,15 @@ module.exports = defineConfig({
       // real CSP — shipped and lived in production for exactly that reason.
       // These run against `wrangler dev`, which applies _headers and runs the
       // actual Worker.
-      name: "worker",
+      //
+      // Worth running on every engine despite being only 11 tests: CSP
+      // enforcement is implemented per-engine, so "the policy is applied" is a
+      // claim each browser has to demonstrate for itself.
+      name: `worker-${engine.id}`,
       testDir: "./e2e/worker",
-      use: { baseURL: "http://127.0.0.1:8788" },
+      use: { ...engine.device, baseURL: "http://127.0.0.1:8788" },
     },
-  ],
+  ]),
 
   webServer: [
     {

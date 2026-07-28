@@ -1,36 +1,68 @@
 const { test, expect } = require("@playwright/test");
 
+// Safari/WebKit only tabs between form controls unless the user turns on Full
+// Keyboard Access; links and buttons are skipped. That is engine policy, not a
+// defect in this app, so probe the behaviour rather than hardcoding a browser
+// name — a Safari with Full Keyboard Access enabled should run these assertions.
+async function tabReachesButtonsAndLinks(page) {
+  await page.evaluate(() => document.body.focus());
+  await page.keyboard.press("Tab");
+  return page.evaluate(() => {
+    const a = document.activeElement;
+    return !!a && (a.tagName === "A" || a.tagName === "BUTTON");
+  });
+}
+
 test.setTimeout(5000);
 
 test("A11Y-03: skip link is first focusable, visible on focus, and moves focus to main", async ({ page }) => {
   await page.goto("/");
-  await page.keyboard.press("Tab");
   const skip = page.locator("#skipLink");
-  await expect(skip).toBeFocused();
+
+  // Engine-specific: only assert Tab lands on it where the engine tabs to links.
+  if (await tabReachesButtonsAndLinks(page)) {
+    await page.goto("/");
+    await page.keyboard.press("Tab");
+    await expect(skip).toBeFocused();
+  }
+
+  // Engine-agnostic product claims, asserted everywhere:
+  // it is the first focusable element in DOM order,
+  await expect(
+    page.locator("a[href], button, input, select, textarea, [tabindex]:not([tabindex=\"-1\"])").first()
+  ).toHaveAttribute("id", "skipLink");
+  // it becomes visible when focused,
+  await skip.focus();
   await expect(skip).toBeInViewport();
+  // and activating it moves focus to main.
   await skip.press("Enter");
   await expect(page.locator("#app")).toBeFocused();
 });
 
 test("A11Y-03: accessibility dialog is modal (focus, trap, Escape, restore, inert)", async ({ page }) => {
   await page.goto("/");
+  const tabsToButtonsAndLinks = await tabReachesButtonsAndLinks(page);
+  await page.goto("/");
   const fab = page.locator("#a11yFab");
   const panel = page.locator("#a11yPanel");
-  await fab.click();
+  await fab.focus();
+  await fab.press("Enter");
   await expect(panel).toBeVisible();
   await expect(panel).toHaveAttribute("aria-modal", "true");
   // initial focus is inside the panel
   expect(await page.evaluate(() => !!(document.activeElement && document.activeElement.closest("#a11yPanel")))).toBe(true);
   // background is inert
   await expect(page.locator("#app")).toHaveAttribute("inert", "");
-  // Tab stays trapped inside the panel
-  for (let i = 0; i < 12; i++) {
-    await page.keyboard.press("Tab");
+  if (tabsToButtonsAndLinks) {
+    // Tab stays trapped inside the panel
+    for (let i = 0; i < 12; i++) {
+      await page.keyboard.press("Tab");
+      expect(await page.evaluate(() => !!(document.activeElement && document.activeElement.closest("#a11yPanel")))).toBe(true);
+    }
+    // Shift+Tab also stays trapped
+    await page.keyboard.press("Shift+Tab");
     expect(await page.evaluate(() => !!(document.activeElement && document.activeElement.closest("#a11yPanel")))).toBe(true);
   }
-  // Shift+Tab also stays trapped
-  await page.keyboard.press("Shift+Tab");
-  expect(await page.evaluate(() => !!(document.activeElement && document.activeElement.closest("#a11yPanel")))).toBe(true);
   // Escape closes, restores focus to the opener, removes inert
   await page.keyboard.press("Escape");
   await expect(panel).toBeHidden();

@@ -205,17 +205,19 @@ test("Alberta adult post-secondary answers exclude child programs", async ({ pag
   await expect(matched.getByRole("heading", { name: "Alberta Child Health Benefit", exact: true })).toHaveCount(0);
 });
 
-test("children and eighteen-year-olds receive age-appropriate regular-school choices", async ({ page }) => {
-  const cases = [
-    { age: 4, expected: ["In child care or preschool"] },
-    { age: 9, expected: ["In elementary school"] },
-    { age: 14, expected: ["In junior high or high school"] },
-    { age: 17, expected: ["In junior high or high school"] },
-    { age: 18, expected: ["In junior high or high school", "In post-secondary school"] },
-  ];
+// Split from one looping test: five full wizard walks in a single test made it
+// the longest in the suite and it timed out under CI and matrix load. Separate
+// tests keep each walk well inside the budget and name the failing age case.
+const schoolChoiceCases = [
+  { age: 4, expected: ["In child care or preschool"] },
+  { age: 9, expected: ["In elementary school"] },
+  { age: 14, expected: ["In junior high or high school"] },
+  { age: 17, expected: ["In junior high or high school"] },
+  { age: 18, expected: ["In junior high or high school", "In post-secondary school"] },
+];
 
-  for (const [index, item] of cases.entries()) {
-    if (index) await deleteAppStorage(page);
+for (const item of schoolChoiceCases) {
+  test(`age ${item.age} receives age-appropriate regular-school choices`, async ({ page }) => {
     await page.locator(".js-start").first().click();
     await pick(page, "My child");
     await pick(page, "Something else / not listed");
@@ -234,8 +236,8 @@ test("children and eighteen-year-olds receive age-appropriate regular-school cho
     if (item.age !== 18) {
       await expect(page.getByRole("checkbox", { name: "In post-secondary school", exact: true })).toHaveCount(0);
     }
-  }
-});
+  });
+}
 
 test("age question uses eight tap targets and no typed field", async ({ page }) => {
   await page.locator(".js-start").first().click();

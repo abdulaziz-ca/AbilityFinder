@@ -117,6 +117,7 @@ closed. Leave the absence visible until the AT testing actually happens.
 | DATA-11 | Medicine Hat city page and 2026 PDF disagree ($630 vs $635) — needs program-owner clarification |
 | REL-06 | Two production clients returned contradictory API routing — retest from ≥2 real networks/regions capturing CF-Ray |
 | A11Y-01/02/03/05/06 | Wizard rebuild passes automated checks but has **never** been through VoiceOver, NVDA or TalkBack |
+| **Safari keyboard reachability** | Found 2026-07-28 by the new WebKit project. Chromium tabs `A#skipLink → BUTTON#headerMenuToggle → A#brandHome…`; WebKit tabs `SELECT → INPUT → TEXTAREA → BODY`, skipping **links and buttons entirely**. That is Safari's default until the user enables Full Keyboard Access — not an app defect. But it means a Safari keyboard-only user cannot Tab to the skip link, and the accessibility dialog (which contains only `<button>`s) cannot be Tab-traversed at all. VoiceOver users are unaffected because they navigate with the VO cursor, not Tab. **Confirm this during the real AT testing** — it is exactly the kind of thing automated checks cannot settle |
 | Accessibility specialist | 200% text, 400% zoom/reflow, 320px portrait, forced colours, touch targets, print |
 | Real disabled-user study | Keyboard/switch/voice, magnification, cognitive fatigue, pain, financial stress |
 | Production-only validation | AI quota exhaustion, adversarial assistant prompts, email header sanitation in a non-delivery environment, field Core Web Vitals without analytics |
