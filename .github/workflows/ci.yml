@@ -1,0 +1,93 @@
+name: CI
+
+# Why this exists: git push to main triggers a Cloudflare Workers Build directly.
+# Before this workflow, nothing ran the test suite on the way to production, so a
+# red suite could ship — and on 2026-07-27 it did, twice, because a truncated
+# terminal read hid Playwright's "N failed" header. This makes the result visible
+# on every push regardless of what any human reads.
+#
+# NOTE: this reports status only. It does not yet BLOCK the deploy, because
+# Workers Builds deploys straight off the push. Closing that gap needs a
+# Cloudflare API token stored as a repository secret so `wrangler deploy` can move
+# into this workflow — see REMAINING-WORK.md, "Planned procedure", step 0.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# A newer push makes an in-flight run irrelevant; don't burn minutes on it.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Unit and browser tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          # Matches the local toolchain (Node 26).
+          node-version: '26'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # The Playwright browser binaries are not in node_modules; installing them
+      # with --with-deps also pulls the system libraries Chromium needs on CI.
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      # Generated files must reproduce from their scripts. If a generated artifact
+      # was hand-edited, or someone forgot to regenerate after a data change, the
+      # working tree will be dirty here and this step fails.
+      - name: Verify generated files reproduce
+        run: |
+          npm run gen:context
+          npm run gen:guides
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::error::Generated files are out of date. Run 'npm run gen:context && npm run gen:guides' and commit the result."
+            git status --short
+            git diff
+            exit 1
+          fi
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Browser tests
+        run: npx playwright test --reporter=line
+
+      # Keeps SUPPLY-01 from regressing. Production dependencies must stay clean;
+      # dev-only advisories are reported but do not fail the build, because they
+      # are frequently out of our control and turning CI red for them trains
+      # people to ignore it.
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Audit all dependencies (informational)
+        run: npm audit --audit-level=high || true
+
+      - name: Upload Playwright report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
+          if-no-files-found: ignore
