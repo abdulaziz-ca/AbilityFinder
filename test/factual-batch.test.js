@@ -49,6 +49,33 @@ test("DATA-07: Calgary shows the current 2026 transit bands", () => {
   assert.doesNotMatch(text, /5\.90/);
   assert.doesNotMatch(text, /\$59\b/);
   assert.doesNotMatch(text, /600\+/);
+  assert.doesNotMatch(text, /75\s?%/);
+  assert.match(text, /lower-cost recreation/);
+});
+
+test("Calgary carries no unsupported recreation percentage, but other cities keep theirs", () => {
+  // Calgary publishes no percentage; the other municipal figures come from
+  // different city sources and were NOT re-verified, so they must survive.
+  const benefit = benefitById("calgary-fair-entry");
+  assert.ok(benefit, "calgary-fair-entry record was found");
+  const value = BENEFIT_VALUES["calgary-fair-entry"];
+  assert.ok(value, "calgary-fair-entry BENEFIT_VALUES entry was found");
+  const calgary = [
+    benefit.amount,
+    benefit.summary,
+    benefit.note,
+    benefit.detail && benefit.detail.about,
+    value.note,
+  ].filter(Boolean).join(" | ");
+  assert.ok(!/\d{1,3}\s?%/.test(calgary), "Calgary must not state any percentage");
+
+  for (const id of ["medicinehat-fair-entry", "grandeprairie-aish-pass", "airdrie-fair-access", "woodbuffalo-lift"]) {
+    const record = BENEFITS.find((b) => b.id === id);
+    assert.ok(record, `expected to find ${id}`);
+    const text = [record.amount, record.summary, record.note, record.detail && record.detail.about]
+      .filter(Boolean).join(" | ");
+    assert.match(text, /\d{1,3}\s?%/, `${id} should still state its own percentage`);
+  }
 });
 
 test("DATA-08: Edmonton states the real processing time", () => {

@@ -30,7 +30,7 @@ Update this file whenever a finding is closed, reopened, or found to be wrong.
 | ID | What is wrong | Notes |
 |---|---|---|
 | DATA-12 | Several in-scope programs absent (RAMP, BC Additional Home Owner Grant, BC Rebate for Accessible Home Adaptations, federal Home Accessibility Tax Credit) | Enhancement. ROADMAP allows expansion only program by program |
-| Calgary recreation 75% | The "75% off recreation" figure on `calgary-fair-entry` could **not** be re-verified on 2026-07-27 — neither the Fair Entry pages nor the recreation fee-assistance page publishes a percentage. Left unchanged pending verification. Several other municipal records quote 75% too |
+| **Other municipal percentages unverified** | Calgary's "75% off recreation" was checked on 2026-07-27 against three City pages and **no percentage is published anywhere** — it was unsupported and has been removed. **18 other `75%`/`60%`/`25–75%` claims remain** on `medicinehat-fair-entry`, `grandeprairie-aish-pass`, `airdrie-fair-access`, `woodbuffalo-lift` and `surrey-leisure-access`. Each has a different city source and none was re-verified. Given Calgary's turned out to be invented, these deserve a verification pass. (`aadl`'s "~75%" is correct — it is the official 25% client cost-share inverted) |
 | UX-02 | Homepage still overpromises completeness/certainty | Mitigated only; needs a content pass + comprehension testing |
 | UX-03 | "Priority order" uses unexplained editorial weights | Mitigated only; formula still unexplained and unvalidated |
 | DATA-25 | DTC readiness | Mitigated, not closed — needs real CRA functional-criteria questions |

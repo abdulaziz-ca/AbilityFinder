@@ -151,7 +151,7 @@ const BENEFIT_VALUES = {
   "adult-health-benefit": { kind: "coverage", note: "prescriptions, dental, optical, ambulance and diabetes supplies — Alberta publishes no annual dollar value" },
   "child-health-benefit": { kind: "coverage", note: "free prescriptions, dental & optical for kids" },
   "parking-placard": { kind: "access", note: "low-cost accessible parking permit" },
-  "calgary-fair-entry": { kind: "discount", note: "transit $6.30–$63/mo by income band + 75% off rec" },
+  "calgary-fair-entry": { kind: "discount", note: "transit $6.30–$63/mo by income band + lower-cost recreation" },
   "edmonton-fare-assistance": { kind: "discount", note: "$36/mo transit pass + low-cost recreation" },
   // Municipal programs researched 2026-07-15 — figures from each city's own page.
   "reddeer-fee-assistance": { kind: "discount", note: "$34/mo transit pass + up to $200/yr recreation" },
@@ -1680,9 +1680,9 @@ const BENEFITS = [
     name: "Calgary Fair Entry — Transit & Recreation",
     level: "Calgary",
     category: "Getting around & recreation",
-    amount: "Transit pass $6.30–$63/month by income band + 75% off recreation",
+    amount: "Transit pass $6.30–$63/month by income band + lower-cost recreation",
     summary:
-      "One application unlocks a low-income monthly transit pass and 75% off City of Calgary pools, fitness and rec programs.",
+      "One application unlocks a low-income monthly transit pass and lower-cost City of Calgary pools, fitness and rec programs.",
     requires: ["calgary", "lowIncome"],
     note:
       "Apply once through Fair Entry; the sliding-scale transit pass has three 2026 income bands — $6.30, $44.10 or $63.00 per month.",
@@ -1691,7 +1691,7 @@ const BENEFITS = [
     source: "https://www.calgary.ca/social-services/low-income/fair-entry-subsidy.html",
     detail: {
       about:
-        "A single City of Calgary application ('Fair Entry') that qualifies you for several low-income discounts at once — the sliding-scale monthly transit pass and 75% off recreation admission and programs.",
+        "A single City of Calgary application ('Fair Entry') that qualifies you for several low-income discounts at once — the sliding-scale monthly transit pass and lower-cost recreation admission and programs. Calgary does not publish a fixed percentage for recreation fee assistance.",
       steps: [
         "Gather proof of income for your household.",
         "Apply online through Fair Entry (or in person).",
