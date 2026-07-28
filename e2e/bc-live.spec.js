@@ -37,11 +37,20 @@ async function pick(page, text) {
     const labels = stepOptions(step).map((o) =>
       typeof o === "object" ? `${optionText(step, o)}${o.sub ? ` ${o.sub}` : ""}` : String(o),
     );
+    const optionLabels = [...document.querySelectorAll("label.opt")].filter((el) =>
+      norm(el.textContent).includes(norm(wanted)),
+    );
+    const pairedInput = optionLabels.length === 1
+      ? document.getElementById(optionLabels[0].getAttribute("for"))
+      : null;
     return {
       view,
       id: step.id,
       labels,
       matches: labels.filter((l) => norm(l).includes(norm(wanted))).length,
+      type: step.type,
+      alreadySelected: !!(pairedInput && pairedInput.checked),
+      question: (document.getElementById("wizard-question") || {}).textContent || null,
     };
   }, text);
   if (onScreen.view !== "wizard") {
@@ -54,14 +63,27 @@ async function pick(page, text) {
         `Expected exactly 1. The walk has diverged from the step this pick assumes.`,
     );
   }
+  // A single-answer step auto-advances off the radio's change event, so clicking an
+  // option that is ALREADY checked fires nothing: goNext never runs and the wizard
+  // sits there. That is the one case that could hang, and it is knowable now rather
+  // than after a wait — which is why the settle wait below no longer needs a short
+  // bound. Multi-answer steps are excluded: re-clicking there legitimately deselects.
+  if (onScreen.type !== "multi" && onScreen.alreadySelected) {
+    throw new Error(
+      `pick(${JSON.stringify(text)}) on step "${onScreen.id}": that option is already ` +
+        `selected, so clicking it fires no change event and the wizard will never advance. ` +
+        `The walk has already answered this step.`,
+    );
+  }
   await page.locator(".opt", { hasText: text }).click();
   // Single-answer steps auto-advance (goNext on a 150-200 ms timer); multi-answer
   // steps stay put and enable Continue. Wait for whichever actually happens rather
   // than sleeping past the longest timer.
-  // Bounded at 3s on purpose, and it now THROWS. Clicking an option whose radio
-  // is already checked fires no change event, so goNext never runs and nothing
-  // here would ever become true. Swallowing that left the wizard silently one
-  // step behind; failing here names the step instead.
+  // Bounded and fatal. The only state that could never resolve — clicking an
+  // already-checked radio — is now rejected before the click, so this bound is not
+  // a hang guard: it is headroom for a loaded machine, and blowing it is a real
+  // failure worth reporting rather than swallowing. A stall was observed here on a
+  // full-suite run, which the old swallowed 3s bound had been hiding.
   await page
     .waitForFunction(
       (prev) => {
@@ -72,12 +94,12 @@ async function pick(page, text) {
         return !!next && /Continue/.test(next.textContent || "") && !next.disabled;
       },
       questionBefore,
-      { timeout: 3000 },
+      { timeout: 20000 },
     )
     .catch(() => {
       throw new Error(
         `pick(${JSON.stringify(text)}) on step "${onScreen.id}": the wizard did not settle ` +
-          `within 3000ms — it neither auto-advanced past ${JSON.stringify(questionBefore)} nor ` +
+          `within 20000ms — it neither auto-advanced past ${JSON.stringify(questionBefore)} nor ` +
           `enabled a Continue button. The click landed but fired no change event, or goNext stalled.`,
       );
     });
