@@ -178,7 +178,7 @@ ${header()}
         <div class="detail-body">
           <div class="detail-main">
             ${detail.about ? `<section class="guide-block"><h2 class="guide-h">What it is</h2><p class="detail-about">${esc(detail.about)}</p></section>` : ""}
-            ${b.note ? `<section class="guide-block"><h2 class="guide-h">Who it is for</h2><p class="detail-about">${esc(b.note)}</p></section>` : ""}
+            ${b.note ? `<section class="guide-block"><h2 class="guide-h">Good to know</h2><p class="detail-about">${esc(b.note)}</p></section>` : ""}
             ${b.requiresNote ? `<section class="guide-block"><h2 class="guide-h">What you must meet</h2><p class="detail-about">${esc(b.requiresNote)}</p></section>` : ""}
             ${b.amount ? `<section class="guide-block"><h2 class="guide-h">Amount or value</h2><p class="detail-amount">${esc(b.amount)}</p></section>` : ""}
             ${difficulty || meta.effort || meta.wait ? `<section class="guide-block"><h2 class="guide-h">At a glance</h2><dl class="guide-list">${difficulty ? `<div><dt>Difficulty</dt><dd>${esc(difficulty)}</dd></div>` : ""}${meta.effort ? `<div><dt>Application</dt><dd>${esc(meta.effort)}</dd></div>` : ""}${meta.wait ? `<div><dt>Decision timing</dt><dd>${esc(meta.wait)}</dd></div>` : ""}</dl></section>` : ""}

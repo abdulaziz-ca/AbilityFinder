@@ -69,31 +69,36 @@ completeness is not the blocker; the untested accessibility is.
 | TEST-02 | E2E is Chromium-only on a Python static server, with fixed sleeps | Needs a Wrangler-backed project + browser matrix. **Observed flake 2026-07-27:** `e2e/a11y-batch.spec.js` "A11Y-03: skip link is first focusable" failed once inside the full suite and passed on isolated re-run and on full-suite re-run — exactly the timing fragility this finding describes |
 | PERF-01 | Production mobile lab LCP 4.0s; render-blocking scripts | INP still unmeasured |
 
-## Planned procedure — deploy gate and TEST-02 (agreed 2026-07-28, not started)
+## Planned procedure — deploy gate and TEST-02 (agreed 2026-07-28)
 
-Do these as **four small separate landings**, in this order. Do not combine them: mixing new
-test infrastructure with fixes for what it surfaces produces an unreviewable diff and
-un-bisectable failures.
+Do these as **small separate landings**. Do not combine them: mixing new test infrastructure
+with fixes for what it surfaces produces an unreviewable diff and un-bisectable failures.
 
-### 0. Pre-deploy gate — higher value than all of TEST-02
+### 0. Pre-deploy gate — **DONE and PROVEN, 2026-07-28**
 
-**The problem is not test quality, it is that nothing gates deployment.** There is no CI, no
-git hooks, and no pre-deploy check: `git push origin main` triggers Workers Builds directly.
-On 2026-07-27 two `e2e/reminder-calendar.spec.js` tests were red across two deploys and were
-reported as passing, because a truncated `tail` of the Playwright output hid the `N failed`
-header. The suite worked correctly; the human control failed. Better tests would not have
-prevented this. A gate would.
+**The gate is live and no longer advisory. Do not describe it as inert.** Earlier notes in this
+file said otherwise; they were wrong and are corrected here.
 
-This is not in the audit — the audit assumed a competent human reads the output. It matters
-more on a solo-maintained project, not less, because there is no second reviewer.
+`.github/workflows/ci.yml` runs `npm test` plus the full six-project Playwright matrix on every
+push to `main`, and the `deploy` job has `needs: test`, so a red suite physically cannot reach
+production. `CLOUDFLARE_API_TOKEN` **is** set as a repository secret, and Workers Builds **is**
+disconnected, so CI is the only path to production.
 
-- Add a GitHub Actions workflow running `npm test && npx playwright test` on push to `main`.
-- Move `wrangler deploy` **into** that workflow behind a Cloudflare API token so a red suite
-  physically cannot reach production.
-- **Open decision for the owner:** this needs a Cloudflare API token stored as a GitHub
-  secret, and it changes how deploys work — pushing would no longer deploy directly, the
-  workflow would. Fallback if declined: a pre-push hook, which is weaker (local-only,
-  bypassable with `--no-verify`) but better than nothing.
+All three states have now been observed, which is what makes it proven rather than assumed:
+
+| Commit | Tests | Deploy | Meaning |
+|---|---|---|---|
+| `73a1ddf` | red | **skipped** | but Workers Builds still shipped it — the old ungated path |
+| `f718bfa`, `974b0c5` | red | **skipped** | Workers Builds now disconnected, so nothing shipped |
+| `db92994` | **green** | **deployed** | verified live: `?v=73` and the new blocks served from production |
+
+A `deploy` job reporting **success does not prove it deployed** — it exits 0 either way, warning
+and skipping when the token is absent. Confirm a real release against the live site (the asset
+`?v=N` in `https://abilityfinder.ca/`), never from the job's own conclusion.
+
+Remaining risk, owner's call: the token in GitHub has **not been rotated** and its value was
+pasted into a chat transcript. It is live, Workers-edit scoped, and demonstrably able to deploy.
+
 - Always read Playwright results with `grep -E "passed|failed|flaky"`, never a truncated tail.
 
 ### 1. Remove the 5 fixed sleeps in `e2e/`
@@ -138,6 +143,7 @@ closed. Leave the absence visible until the AT testing actually happens.
 | All-conditional results framing | Some realistic profiles (e.g. an Alberta adult unable to work) yield **zero** ready results — accurate, but the page should read as actionable rather than as a downgrade |
 | ~~`requiresNote` is never rendered~~ | **Closed 2026-07-28 (`e1d9e68`).** It was 46 records, not 45. Measured before deciding: **0** were verbatim duplicates of their own `detail.about`, only 2 exceeded 80% keyword overlap, and **42 sat below 50%** — eligibility detail available nowhere else, median 263 characters. Rendered as a "What you must meet" block on both guide pages and the in-app detail view, and added to `benefitSearchText`. De-duplicated by removing the field from exactly two records, `ramp` and `kamloops-arch`, whose `detail.about` already states the same routes more completely. `test/requires-note-rendered.test.js` guards all 44 remaining records against going dark again, and was **mutation-tested** three ways rather than assumed |
 | ~~WebKit: `Database deletion blocked`~~ | **Closed 2026-07-28.** `deleteAppStorage()` rejected on IndexedDB's `onblocked` in both copies (`persistence.spec.js`, `bc-live.spec.js`). Per spec, `blocked` is **not** a failure — it means another connection is still open, so the delete stays pending and fires `success` once they close. WebKit evidently does not release the handle synchronously after `close()`. It broke **both** of the CI runs on `f718bfa` and `974b0c5`, and 1 of 9 local runs. Now waits for the real outcome and fails only on a bounded 15s timeout, reporting whether `blocked` fired |
+| ~~Guide pages label `b.note` "Who it is for"~~ | **Closed 2026-07-28.** Audited all 85 records: **48** notes are practical caveats/timing/gotchas, **7** are imperative instructions (`taxisaver-translink` "Order by cheque or money order…", `bc-fuel-tax-refund-disabilities` "Register FIRST…"), and only ~10–15 are genuinely eligibility-first. So the heading was wrong for most of them, and it existed **only** on the generated guides — `public/app.js` rendered the field as a bare unlabelled `<div class="note">`, which is why it went unnoticed. Since the eligibility question now has its own correct "What you must meet" block, `b.note` was relabelled **"Good to know"** on guides and given the same heading in the app. **No benefit text was touched**, so nothing needed re-verification. `test/guide-note-heading.test.js` fails if the old heading ever returns, and was mutation-tested |
 | **`[app-firefox] wizard-accessibility.spec.js:38`** | Found on CI 2026-07-28 (`f718bfa`). After `page.locator("#next").click()` on the multi step, `#wizard-question` stayed on "Which of these apply to you?" for the full 5s — the click did nothing. **Mechanism NOT established.** It is plausibly the same `rise` animation race (that spec sets no `reducedMotion` and has **no** animation wait at all, and `#next` sits inside the animating card), but unlike the `pick()` cases the click there follows several awaits and two keyboard presses, so the 500ms animation had probably finished. Do not assume the `pick()` fix covers it — this spec does not use `pick()`. Seen once |
 
 ## Still open — needs a human, cannot be automated

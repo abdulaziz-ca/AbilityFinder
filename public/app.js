@@ -4463,7 +4463,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
         ${enNote}
 
         ${d.about && d.about !== b.summary ? `<p class="detail-about">${d.about}</p>` : ""}
-        ${b.note ? `<div class="note">${b.note}</div>` : ""}
+        ${b.note ? `<section class="guide-block"><h2 class="guide-h">${t("guide.goodToKnow")}</h2><div class="note">${b.note}</div></section>` : ""}
         ${b.requiresNote ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="detail-about">${b.requiresNote}</p></section>` : ""}
         ${valueSection}
         ${b.id === "dtc" ? `<div class="dtc-prep-guide-cta"><button class="apply" type="button" data-open-dtc-prep>${icon("print")}${t("dtcPrep.guideButton")}</button></div>` : ""}
