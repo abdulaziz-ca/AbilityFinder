@@ -96,6 +96,18 @@ A `deploy` job reporting **success does not prove it deployed** — it exits 0 e
 and skipping when the token is absent. Confirm a real release against the live site (the asset
 `?v=N` in `https://abilityfinder.ca/`), never from the job's own conclusion.
 
+**A CANCELLED test job blocks the deploy exactly like a red one**, through `needs: test`. On
+2026-07-28 the `Install Playwright browsers` step took **16m37s** on one runner, the job hit its
+then-30-minute cap mid-suite and was cancelled, and a perfectly good release was blocked by a slow
+mirror. The browsers are now cached at `~/.cache/ms-playwright`, keyed on the resolved
+`@playwright/test` version so a bump invalidates it automatically, and the cap is **45 minutes**.
+Normal runs land near 14 minutes.
+
+If you ever touch those cache conditions: `cache-hit` is a **string**, so they must compare against
+a quoted `'true'`. GitHub coerces mixed-type comparisons to numbers — `"true"` → NaN, `true` → 1 —
+so an unquoted `== true` is *always false* and `!= true` *always true*. Written unquoted, the cache
+is populated and never read, and the whole step is silently pointless.
+
 Remaining risk, owner's call: the token in GitHub has **not been rotated** and its value was
 pasted into a chat transcript. It is live, Workers-edit scoped, and demonstrably able to deploy.
 
@@ -144,7 +156,7 @@ closed. Leave the absence visible until the AT testing actually happens.
 | ~~`requiresNote` is never rendered~~ | **Closed 2026-07-28 (`e1d9e68`).** It was 46 records, not 45. Measured before deciding: **0** were verbatim duplicates of their own `detail.about`, only 2 exceeded 80% keyword overlap, and **42 sat below 50%** — eligibility detail available nowhere else, median 263 characters. Rendered as a "What you must meet" block on both guide pages and the in-app detail view, and added to `benefitSearchText`. De-duplicated by removing the field from exactly two records, `ramp` and `kamloops-arch`, whose `detail.about` already states the same routes more completely. `test/requires-note-rendered.test.js` guards all 44 remaining records against going dark again, and was **mutation-tested** three ways rather than assumed |
 | ~~WebKit: `Database deletion blocked`~~ | **Closed 2026-07-28.** `deleteAppStorage()` rejected on IndexedDB's `onblocked` in both copies (`persistence.spec.js`, `bc-live.spec.js`). Per spec, `blocked` is **not** a failure — it means another connection is still open, so the delete stays pending and fires `success` once they close. WebKit evidently does not release the handle synchronously after `close()`. It broke **both** of the CI runs on `f718bfa` and `974b0c5`, and 1 of 9 local runs. Now waits for the real outcome and fails only on a bounded 15s timeout, reporting whether `blocked` fired |
 | ~~Guide pages label `b.note` "Who it is for"~~ | **Closed 2026-07-28.** Audited all 85 records: **48** notes are practical caveats/timing/gotchas, **7** are imperative instructions (`taxisaver-translink` "Order by cheque or money order…", `bc-fuel-tax-refund-disabilities` "Register FIRST…"), and only ~10–15 are genuinely eligibility-first. So the heading was wrong for most of them, and it existed **only** on the generated guides — `public/app.js` rendered the field as a bare unlabelled `<div class="note">`, which is why it went unnoticed. Since the eligibility question now has its own correct "What you must meet" block, `b.note` was relabelled **"Good to know"** on guides and given the same heading in the app. **No benefit text was touched**, so nothing needed re-verification. `test/guide-note-heading.test.js` fails if the old heading ever returns, and was mutation-tested |
-| **`[app-firefox] wizard-accessibility.spec.js:38`** | Found on CI 2026-07-28 (`f718bfa`). After `page.locator("#next").click()` on the multi step, `#wizard-question` stayed on "Which of these apply to you?" for the full 5s — the click did nothing. **Mechanism NOT established.** It is plausibly the same `rise` animation race (that spec sets no `reducedMotion` and has **no** animation wait at all, and `#next` sits inside the animating card), but unlike the `pick()` cases the click there follows several awaits and two keyboard presses, so the 500ms animation had probably finished. Do not assume the `pick()` fix covers it — this spec does not use `pick()`. Seen once |
+| ~~`[app-firefox] wizard-accessibility.spec.js:38`~~ | **Closed 2026-07-28, mechanism proven by measurement.** After `page.locator("#next").click()` the question stayed on "Which of these apply to you?" for the full 5s — the click did nothing. The earlier note here guessed the 500ms `rise` animation "had probably finished" by then. **That guess was wrong.** Instrumenting the exact sequence in Firefox showed the card animation still **running at t = 75, 100, 108 and 99 ms** of its 500ms across four iterations — the `#next` click always lands mid-translate. Fixed by adding the same `settleWizardCard(page)` wait used by the `pick()` specs before both the `.opt` and `#next` clicks. Re-measured after the fix: `getAnimations()` returns `[]` at click time. `reducedMotion` was deliberately **not** added — motion is a real accessibility surface and switching it off would delete coverage rather than fix the race |
 
 ## Still open — needs a human, cannot be automated
 
