@@ -130,9 +130,11 @@ same-day verification of every figure before it ships:
   "One step away" rather than a false "ready". These were the **fourth and fifth** gap
   entries written from a hub sweep without first reading the record that already covered
   it. Check the catalogue before recording a gap.
-- **B.C. PharmaCare has 13 plans and the catalogue carries three** (Fair PharmaCare, Plan C,
-  Plan P as of 2026-07-29). Found while adding Plan P. Several of the remaining ten are
-  squarely in scope for a disability audience, and each needs its own same-day verification:
+- **B.C. PharmaCare has 13 plans, and as of 2026-07-29 all 13 have been assessed.** The
+  catalogue carries five: Fair PharmaCare, Plan C, Plan G and Plan P as their own records,
+  plus Plan W through `bc-fnha-health-benefits`. Plan F is handled inside
+  `bc-at-home-medical` and Plans B, NP and S inside `bc-fair-pharmacare`, because none of
+  them has an application of its own. Per-plan verdicts:
   ~~**Plan G (Psychiatric Medications)**~~ **done 2026-07-29** (`bc-pharmacare-plan-g`) — it was
   the highest priority because `mental` is one of the twelve disability categories the
   questionnaire offers and had no drug-coverage record at all.
@@ -174,14 +176,23 @@ same-day verification of every figure before it ships:
   Fair PharmaCare record on its own.
   **Plan M (Medication Management)** — no record: "automatic coverage for B.C. residents".
   A tip at most.
-  **Plan X (HIV/AIDS)** — no record, **not selected 2026-07-29** when the owner chose Plan W
-  only. There is a real enrolment route, since PharmaCare "cannot determine eligibility for
-  the program or enrol individuals in it" and the BC Centre for Excellence in HIV/AIDS Drug
-  Treatment Program does, so this is a scope decision rather than a dead end. Revisit if
-  condition-specific records come into scope.
-  **Plan S (Smoking Cessation)** — no record: "talk to a pharmacist". **Not verified in
-  detail** — whether it still needs annual registration was not checked, and it is the
-  weakest fit for this audience.
+  **Plan X (HIV/AIDS)** — **closed as out of scope 2026-07-29, by owner decision.** Unlike
+  the other plans without records, this one does have a real enrolment route: PharmaCare
+  "cannot determine eligibility for the program or enrol individuals in it", and the BC
+  Centre for Excellence in HIV/AIDS Drug Treatment Program does. It was excluded because it
+  is condition-specific rather than disability-based, not because the route is unclear. Do
+  not re-open it as a coverage gap. If condition-specific records ever come into scope, note
+  that the `gov.bc.ca` page for it is a 2012 policy-manual entry last updated March 2025,
+  so re-verify against `bccfe.ca` rather than that page.
+  **Plan S (Smoking Cessation)** — **verified in detail 2026-07-29, no record, written as a
+  tip on `bc-fair-pharmacare`.** There is no application and no annual re-registration:
+  "you and the pharmacist must both sign a declaration form" at the counter, and the
+  allowance resets each January 1. Full cost of nicotine gum, lozenges and patches, one
+  continuous course of up to 12 weeks (84 days) per calendar year. MSP is required but Fair
+  PharmaCare registration is not — "you do not need to be signed up for Fair PharmaCare, but
+  you do need to be enrolled in MSP". Prescription stop-smoking drugs route through Fair
+  PharmaCare or Plans B, C, G or W instead. It stays a tip rather than a record because it
+  is a general-population program with nothing to apply for.
   The list lives at `gov.bc.ca` → PharmaCare → who-we-cover. **Note the standalone per-plan URLs
   are unreliable — the Plan P one 404s — so read the section anchors on that hub instead.**
 - **Alberta:** community access for people in continuing care (CAPCC); the Alberta
