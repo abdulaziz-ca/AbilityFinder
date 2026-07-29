@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 166 links. The monitor checks a bounded rotating batch every
+// 167 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) URLs are skipped — they depend on the
@@ -43,6 +43,11 @@ export const LINKS = [
   {
     "url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp-disability-benefit.html",
     "label": "CPP Disability Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-childrens-benefit.html",
+    "label": "CPP Children's Benefit — apply",
     "kind": "apply"
   },
   {

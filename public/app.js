@@ -309,6 +309,12 @@ const REQS = {
     fixed: false,
     unmet: "Check your CPP Statement of Contributions for the required contribution history.",
   },
+  cppDisabilityContributorLink: {
+    met: () => false,
+    fixed: false,
+    unmet: "This is paid because of a parent's disability rather than the child's: a parent or guardian must be receiving a CPP disability benefit or a post-retirement disability benefit, and the child must be under 18, or 18 to 25 and attending a recognized school or university.",
+    action: { text: "Check CPP children's benefit eligibility", url: "https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-childrens-benefit.html" },
+  },
   cdbTaxFiling: {
     met: () => false,
     fixed: false,

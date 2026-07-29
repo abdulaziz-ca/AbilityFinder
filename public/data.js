@@ -129,6 +129,8 @@ const BENEFIT_VALUES = {
   "cdb-adult": { kind: "cash", annualMax: 2450.4, monthlyMax: 204.2,
     note: "July 2026–June 2027 maximum; excludes the separate conditional $150 supplement" },
   "child-disability-benefit": { kind: "cash", annualMax: 3480, monthlyMax: 290 },
+  "cpp-childrens-benefit": { kind: "cash", excludeFromEstimate: true,
+    note: "$307.81 per month per child in 2026, or $153.91 for a part-time student aged 18 to 25" },
   rdsp: { kind: "grant", annualMax: 4500, lifetimeMax: 90000,
     note: "in free government grants & bonds" },
   "cwb-disability": { kind: "cash", annualMax: 843, note: "refundable top-up on your tax return" },
@@ -1241,6 +1243,48 @@ const BENEFITS = [
       ],
       time: "Around 120 days for a decision.",
       phone: "Service Canada: 1-800-277-9914",
+    },
+  },
+  {
+    id: "cpp-childrens-benefit",
+    name: "CPP Children's Benefit",
+    level: "Federal",
+    category: "Money (for parents)",
+    amount: "$307.81 / month per child in 2026 ($153.91 for a part-time student 18-25)",
+    summary:
+      "A monthly payment for the dependent child of someone receiving a CPP disability benefit. The disability is the parent's, not the child's — the child does not need to have a disability at all. A child can be paid a maximum of two children's benefits.",
+    requires: ["cppDisabilityContributorLink"],
+    note:
+      "Apply as soon as you can. The Canada Pension Plan can only make back payments for up to 12 months — 11 months plus the month you apply. You do not have to wait for the parent's CPP disability benefit to be approved before applying for the child's benefit.",
+    requiresNote:
+      "A parent or guardian must be receiving a CPP disability benefit or a post-retirement disability benefit. The child must be under 18, or age 18 to 25 and in full-time or part-time attendance at a recognized school or university. The child must also be the natural child of the contributor, a child adopted legally or in fact by the contributor while under the age of 21, or a child legally or in fact living with and under the contributor's decision-making responsibility while under the age of 21. If the disabled contributor is over the age of 65 and the child stops attending school, the child's eligibility for the disabled contributor's child's benefit ends.",
+    applyUrl:
+      "https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-childrens-benefit.html",
+    source:
+      "https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-childrens-benefit.html",
+    detail: {
+      about:
+        "The CPP children's benefit is a monthly payment to the dependent child of a disabled or deceased CPP contributor. The disabled contributor's child's benefit is for a child of someone receiving a CPP disability benefit or a post-retirement disability benefit. The amount is a flat rate that is adjusted annually: for benefits beginning in January 2026 it is $307.81 a month for a child under 18 and for a full-time student aged 18 to 25, and $153.91 a month for a part-time student aged 18 to 25. A child can be paid a maximum of two children's benefits. For a child under 18 the benefit is paid on behalf of the child to the disabled contributor when the child lives with them and they have decision-making responsibility; otherwise the person or agency with decision-making responsibility may receive it. Students aged 18 to 25 apply for and are paid the benefit themselves.",
+      steps: [
+        "Apply as soon as the parent or guardian applies for a CPP disability benefit — you do not have to wait for that benefit to be approved",
+        "For a child under 18, sign in to My Service Canada Account and select \"Apply for Canada Pension Plan disability benefits\" to complete the online application, or apply by mail",
+        "For a student aged 18 to 25, complete the Canada Pension Plan Child's Benefit Application and Declaration for a student over 18 years of age in Attendance at School or University, form ISP1402",
+        "Include proof of enrolment with the ISP1402, or have an authorized representative from the school complete Section E of the form, then mail the forms",
+        "Submit the ISP1402 again at the beginning of every school year, and again if the student returns to school after a break from studies",
+      ],
+      documents: [
+        "Form ISP1402, for a student aged 18 to 25",
+        "Proof of enrolment for a student aged 18 to 25: an official document from the online student portal, an electronic attestation from a school official, or Section E of the ISP1402 completed by an authorized representative of the school",
+        "Photocopies are accepted where proof is required, but Service Canada may request an original or certified copy at any time",
+      ],
+      tips: [
+        "The child does not need to have a disability. This benefit is paid because of the parent's disability, which is easy to miss when you are looking for children's supports.",
+        "A full-time student aged 18 to 25 can renew online through My Service Canada Account, but a part-time student must submit the paper ISP1402 both to apply and to renew.",
+        "The benefit is paid during normal school vacation periods, but it stops if the school attendance form is not sent in when the student returns to school.",
+        "A part-time student receives half the flat rate — $153.91 a month in 2026 rather than $307.81.",
+      ],
+      time:
+        "The program page does not publish a processing time. Back payments reach up to 12 months, 11 months plus the month you apply.",
     },
   },
   {
@@ -3655,7 +3699,7 @@ const BENEFIT_VERIFIED = {
   dtc: "2026-07", "cdb-adult": "2026-07", aish: "2026-07", adap: "2026-07",
   "adult-health-benefit": "2026-07",
   ramp: "2026-07",
-  "cpp-disability": "2026-07", "parking-placard": "2026-07",
+  "cpp-disability": "2026-07", "cpp-childrens-benefit": "2026-07", "parking-placard": "2026-07",
   "canmore-affordable-services": "2026-07", "cochrane-connect-card": "2026-07",
   "fortsask-access": "2026-07", "leduc-subsidies": "2026-07",
   "lloydminster-recreation-access": "2026-07", "okotoks-fee-assistance": "2026-07",
