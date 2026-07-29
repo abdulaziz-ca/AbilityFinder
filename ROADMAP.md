@@ -112,10 +112,14 @@ same-day verification of every figure before it ships:
 
 - **Federal:** excise gasoline tax refund; CPP children's benefits; multigenerational
   home renovation tax credit.
-- **B.C.:** the annual earnings exemption on disability assistance (disability-specific
-  and materially changes how much a PWD recipient can earn without clawback);
-  PharmaCare Plan P (palliative); MSP Supplementary Benefits, which the matcher
-  already references via `bcMsp` but has no record for.
+- **B.C.:** ~~the annual earnings exemption~~ **done 2026-07-28** — and my note above
+  overstated it: the exemption was already in `bc-disability-assistance-pwd`'s note, not
+  absent. Its figures were re-verified as still current ($16,200 single, $23,400 one PWD,
+  $32,400 both, effective January 1, 2026) and the record gained the rules that were
+  genuinely missing. It was deliberately NOT given its own record: there is no application,
+  no award and no amount received, so a catalogue entry would need a fabricated applyUrl and
+  would read as a benefit to apply for. Still open: PharmaCare Plan P (palliative); MSP
+  Supplementary Benefits, which the matcher references via `bcMsp` but has no record for.
 - **Alberta:** community access for people in continuing care (CAPCC); the Alberta
   service dog qualification and ID; special needs housing.
 - **Scope questions rather than gaps:** provincial child/family benefits such as the
