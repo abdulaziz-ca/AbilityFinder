@@ -105,6 +105,20 @@ A `deploy` job reporting **success does not prove it deployed** — it exits 0 e
 and skipping when the token is absent. Confirm a real release against the live site (the asset
 `?v=N` in `https://abilityfinder.ca/`), never from the job's own conclusion.
 
+**And a successful deploy does not mean the edge is serving it yet.** On 2026-07-29 a smoke test
+fired immediately after `deploy` reported success and produced a genuinely confusing result: the new
+guide URLs returned **200** while `/` still advertised the **previous** `?v=N` and every content
+check returned **0**. Nothing was wrong — propagation was simply mid-flight. Re-running it a moment
+later showed the correct version and content. So when a post-deploy check disagrees with itself
+— new URLs live but old version string, or 200s with missing content — **re-run it before
+concluding anything**. Do not report the zeros as a failure, and do not explain them away either.
+
+**Pushing again cancels an in-flight run**, by design (`concurrency: cancel-in-progress`). That is
+harmless when the newer commit contains the older one — on 2026-07-29 `be6d5e9` (Plan P) was
+cancelled by `e226332` (Plan G) and `?v=87` shipped both, so `?v=86` never deployed as its own step.
+But between the push and the next green deploy, the earlier commit's new pages **404 in production**.
+Do not push a second change while you still need the first one verified live.
+
 **A CANCELLED test job blocks the deploy exactly like a red one**, through `needs: test`. On
 2026-07-28 the `Install Playwright browsers` step took **16m37s** on one runner, the job hit its
 then-30-minute cap mid-suite and was cancelled, and a perfectly good release was blocked by a slow
