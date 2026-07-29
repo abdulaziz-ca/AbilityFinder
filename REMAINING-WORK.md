@@ -67,7 +67,7 @@ completeness is not the blocker; the untested accessibility is.
 | DATA-25 | DTC readiness | Mitigated, not closed — needs real CRA functional-criteria questions |
 | TEST-01 | No systematic eligibility oracle across all programs | The gap that allowed the false-ready cluster |
 | TEST-02 | E2E is Chromium-only on a Python static server, with fixed sleeps | Needs a Wrangler-backed project + browser matrix. **Observed flake 2026-07-27:** `e2e/a11y-batch.spec.js` "A11Y-03: skip link is first focusable" failed once inside the full suite and passed on isolated re-run and on full-suite re-run — exactly the timing fragility this finding describes |
-| PERF-01 | Production mobile lab LCP 4.0s; render-blocking scripts | INP still unmeasured |
+| PERF-01 | **Re-measured 2026-07-28 — the audit's headline figure is stale.** On a throttled Pixel 5 profile (4× CPU, ~1.6 Mbps, 150 ms RTT) production was **LCP 2364 ms, not 4.0 s**, and **long tasks totalled 0 ms**, so "render-blocking scripts" is not the right framing — the main thread is not the bottleneck. Two real defects were found by measuring and are now **fixed**: both webfonts were downloaded **twice** on every cold load (preload/`@font-face` URL drift, 113 KB wasted, LCP → 2196 ms), and first-load **CLS was 0.0905 → now 0.0000**. What remains: above-the-fold content is still gated on ~170 KB gzipped of script plus an async IndexedDB restore, because `<main id="app">` ships only a loading placeholder. **INP still unmeasured in the field** — it needs real users, and there is no analytics by design, so it belongs with the production-only validation in the human table |
 
 ## Planned procedure — deploy gate and TEST-02 (agreed 2026-07-28)
 

@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=77") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=78") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=77") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=78") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -361,7 +361,10 @@ body.a11y-nomotion .header-menu-panel { animation: none; }
 /* views that read better in a narrower measure stay left-aligned, not centered */
 .wrap.narrow { max-width: 720px; }
 
-.progress { height: 2px; background: var(--hair); border-radius: 999px; overflow: hidden; margin-bottom: 44px; max-width: 720px; }
+/* Hidden by default so the first paint matches the landing, which is the default view and hides it anyway. render() sets display explicitly for every view, so the wizard and results still show it. Leaving it visible cost a 46px jump on first render. */
+.progress { display: none; height: 2px; background: var(--hair); border-radius: 999px; overflow: hidden; margin-bottom: 44px; max-width: 720px; }
+/* flow-root stops the landing hero.s negative top margin collapsing THROUGH #app and yanking its box upward once JS renders. Measured: this plus the line above takes first-load CLS from 0.0905 to 0.0000, with 46 rendered elements byte-identical either way — #app has no background or border, so its own box position is invisible. */
+#app { display: flow-root; }
 .progress > span {
   display: block; height: 100%; width: 0%;
   background: linear-gradient(90deg, var(--accent), var(--accent-hi));
