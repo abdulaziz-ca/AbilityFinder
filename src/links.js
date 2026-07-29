@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 164 links. The monitor checks a bounded rotating batch every
+// 166 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) URLs are skipped — they depend on the
@@ -308,6 +308,16 @@ export const LINKS = [
   {
     "url": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover#planp",
     "label": "PharmaCare Plan P (BC Palliative Care Benefits) — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www.fnha.ca/benefits",
+    "label": "First Nations Health Benefits (FNHA) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/first-nations-health-authority-clients",
+    "label": "First Nations Health Benefits (FNHA) — official source",
     "kind": "source"
   },
   {

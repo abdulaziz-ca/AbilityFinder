@@ -542,6 +542,12 @@ const REQS = {
     unmet: "You qualify one of three ways: your adjusted net income last year was less than $42,000, or you are enroled with MSP through the At Home Program, or you are enroled with MSP as a Mental Health Client.",
     action: { text: "Apply for Supplementary Benefits", url: "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents/benefits/services-covered-by-msp/supplementary-benefits" },
   },
+  firstNationsStatus: {
+    met: () => false,
+    fixed: false,
+    unmet: "This program is for First Nations people with Indian status living in B.C. The questionnaire does not ask about status, so check directly with FNHA Health Benefits.",
+    action: { text: "Check FNHA Health Benefits eligibility", url: "https://www.fnha.ca/benefits/eligibility" },
+  },
   bcPwdStatus: {
     met: () => answers.bcAssistance === "pwd",
     fixed: false,

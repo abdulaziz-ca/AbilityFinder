@@ -118,8 +118,18 @@ same-day verification of every figure before it ships:
   $32,400 both, effective January 1, 2026) and the record gained the rules that were
   genuinely missing. It was deliberately NOT given its own record: there is no application,
   no award and no amount received, so a catalogue entry would need a fabricated applyUrl and
-  would read as a benefit to apply for. Still open: PharmaCare Plan P (palliative); MSP
-  Supplementary Benefits, which the matcher references via `bcMsp` but has no record for.
+  would read as a benefit to apply for.
+  ~~Still open: PharmaCare Plan P (palliative); MSP Supplementary Benefits, which the
+  matcher references via `bcMsp` but has no record for.~~ **Both were already closed when
+  this was written or within a day of it — audited 2026-07-29, and neither was a gap.**
+  `bc-pharmacare-plan-p` shipped 2026-07-29 and is listed as carried three lines below, so
+  this sentence contradicted its own section. `bc-msp-supplementary-benefits` shipped
+  2026-07-28 in `7b8e9db`, complete with `requiresNote`, full `detail`, `applyUrl` and
+  `source`; the matcher gates it on `bcSupplementaryBenefitsEligibility`
+  (`met: () => false, fixed: false`), the correct unasked-criterion pattern, which yields
+  "One step away" rather than a false "ready". These were the **fourth and fifth** gap
+  entries written from a hub sweep without first reading the record that already covered
+  it. Check the catalogue before recording a gap.
 - **B.C. PharmaCare has 13 plans and the catalogue carries three** (Fair PharmaCare, Plan C,
   Plan P as of 2026-07-29). Found while adding Plan P. Several of the remaining ten are
   squarely in scope for a disability audience, and each needs its own same-day verification:
@@ -144,9 +154,31 @@ same-day verification of every figure before it ships:
   care, and there is no existing record for this to attach to the way Plan F attached to
   `bc-at-home-medical`. The genuinely useful content is the warning to check a facility's Plan B
   registration **before** moving in — decide where that belongs before writing a record for it.
-  Condition-specific plans worth assessing: Plan D (Cystic Fibrosis), Plan X (HIV/AIDS),
-  Plan Z (Assurance), Plan M (Medication Management). Also worth a look: Plan W (First Nations
-  Health Benefits), Plan NP (National Pharmacare) and Plan S (Smoking Cessation).
+  **All seven remaining plans were assessed 2026-07-29 against the `who-we-cover` hub, and
+  the result is one record, not seven.** The test that decided each was "does this have its
+  own application?":
+  **Plan W (First Nations Health Benefits)** — **BUILT** as `bc-fnha-health-benefits`. B.C.
+  states "You do not need to apply for Plan W. You must be enrolled with FNHA to be covered
+  by Plan W", and unlike Plan F there was **no existing record to attach it to**, so it
+  earned its own. It is framed as the FNHA enrolment route rather than as "Plan W", because
+  a phone call to FNHA with a status number is what the person actually does.
+  **Plan D (Cystic Fibrosis)** — no record: "the cystic fibrosis clinic arranges Plan D
+  coverage for their patients", so it is automatic, exactly like Plan F.
+  **Plan Z (Assurance)** — no record: "automatic coverage for anyone with MSP coverage".
+  **Plan NP (National Pharmacare)** — no record: "automatic coverage for anyone enrolled in
+  MSP". Its content is still useful — full cost of many contraceptives, diabetes medications
+  and menopausal hormone therapy. **Still open:** that is worth a tip on
+  `bc-fair-pharmacare`, and has not been written.
+  **Plan M (Medication Management)** — no record: "automatic coverage for B.C. residents".
+  A tip at most.
+  **Plan X (HIV/AIDS)** — no record, **not selected 2026-07-29** when the owner chose Plan W
+  only. There is a real enrolment route, since PharmaCare "cannot determine eligibility for
+  the program or enrol individuals in it" and the BC Centre for Excellence in HIV/AIDS Drug
+  Treatment Program does, so this is a scope decision rather than a dead end. Revisit if
+  condition-specific records come into scope.
+  **Plan S (Smoking Cessation)** — no record: "talk to a pharmacist". **Not verified in
+  detail** — whether it still needs annual registration was not checked, and it is the
+  weakest fit for this audience.
   The list lives at `gov.bc.ca` → PharmaCare → who-we-cover. **Note the standalone per-plan URLs
   are unreliable — the Plan P one 404s — so read the section anchors on that hub instead.**
 - **Alberta:** community access for people in continuing care (CAPCC); the Alberta
@@ -154,6 +186,16 @@ same-day verification of every figure before it ships:
 - **Scope questions rather than gaps:** provincial child/family benefits such as the
   Alberta Child and Family Benefit and the B.C. Family Benefit are income-based rather
   than disability-based.
+
+**Remaining entries re-audited against the catalogue, 2026-07-29.** After the two stale
+entries above, every other open item in this section was checked against `public/data.js`
+by record id and by keyword. All are **genuinely absent**: the excise gasoline tax refund,
+CPP children's benefits, the multigenerational home renovation tax credit, CAPCC, the
+Alberta service dog qualification and ID, special needs housing, and PharmaCare Plans D, X,
+Z, M, NP and S. The only keyword hits were incidental mentions inside other records' tips,
+not records. Plan W was on that list when the audit ran and has since been built as
+`bc-fnha-health-benefits`.
+Federal stands at 13 records and Alberta at 11, matching the catalogue counts.
 
 Sources swept: `canada.ca/en/services/benefits/disability.html`, the CRA
 persons-with-disabilities tax hub, `alberta.ca/disability-supports`,

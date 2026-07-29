@@ -204,6 +204,7 @@ const BENEFIT_VALUES = {
   "bc-msp-supplementary-benefits": { kind: "coverage", excludeFromEstimate: true, note: "$23 per visit toward six covered services, up to a combined 10 visits each calendar year" },
   "bc-pharmacare-plan-c": { kind: "coverage", excludeFromEstimate: true, note: "100% of eligible drug costs for people on assistance" },
   "bc-pharmacare-plan-g": { kind: "coverage", excludeFromEstimate: true, note: "100% of eligible costs for covered psychiatric medications" },
+  "bc-fnha-health-benefits": { kind: "coverage", excludeFromEstimate: true, note: "100% of eligible prescriptions plus dental, vision, medical transportation, mental health and medical supplies" },
   "bc-pharmacare-plan-p": { kind: "coverage", excludeFromEstimate: true, note: "100% coverage of eligible costs for medications used in palliative care and in the Plan P formulary" },
   "bc-healthy-kids": { kind: "coverage", excludeFromEstimate: true, note: "children: dental (<=$2,000/2yr), glasses, hearing" },
   "bc-dental-supplement": { kind: "coverage", excludeFromEstimate: true, note: "basic dental for people on assistance" },
@@ -2591,6 +2592,26 @@ const BENEFITS = [
     }
   },
   {
+    "id": "bc-fnha-health-benefits",
+    "name": "First Nations Health Benefits (FNHA)",
+    "level": "British Columbia",
+    "category": "Health",
+    "amount": "100% of eligible prescriptions plus dental, vision, medical transportation, mental health and medical supplies",
+    "requires": ["bc", "firstNationsStatus"],
+    "summary": "Status First Nations people living in B.C. get health coverage through the First Nations Health Authority. It covers prescriptions, medical supplies and equipment, dental, vision, mental health and medical transportation. You enrol by phone with your status number.",
+    "note": "Plan W is not a separate application. B.C. states that you do not apply for Plan W and must be enrolled with FNHA to be covered by it, so enrolling with FNHA is the whole route. Some items, including insulin pumps, need special authorization rather than being covered automatically.",
+    "requiresNote": "You must be a First Nations person with Indian status living in British Columbia. Infants up to 24 months are covered if at least one parent is eligible. You are not eligible if you have health insurance provided by the federal government, or by a First Nations organization as part of a self-government agreement with Canada. The pharmacy coverage, which B.C. calls PharmaCare Plan W, also requires active Medical Services Plan enrolment.",
+    "applyText": "First Nations Health Benefits (FNHA)",
+    "applyUrl": "https://www.fnha.ca/benefits",
+    "source": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/first-nations-health-authority-clients",
+    "detail": {
+      "about": "The FNHA Health Benefits program includes dental, medical supplies and equipment, medical transportation, mental health, pharmacy and vision care. The pharmacy part is PharmaCare Plan W, which covers 100 percent of eligible prescription costs, certain medical supplies, certain over-the-counter drugs, some natural health products, and pharmacy services. Covered medical supplies include diabetes supplies such as test strips, lancets and alcohol wipes, contraceptives, and ostomy supplies. Plan W requires active MSP coverage together with registered Indian status under the Indian Act, or being a child under two years old with at least one parent who is a registered Indian under the Indian Act.",
+      "steps": ["Have your status number ready", "Call FNHA Health Benefits at 1-855-550-5454 to enrol, Monday to Friday, 8 a.m. to 4:30 p.m., excluding weekends and statutory holidays", "If you are registering for the first time, you may also need to complete the Pacific Blue Cross Enrollment Application for Group Benefits and the Medical Services Plan Application for Enrollment", "Email the completed forms to HealthBenefits@fnha.ca", "To enrol a child, register the birth with B.C. within three months so the child gets a Personal Health Number, and register the child for Indian Status with Indigenous Services Canada"],
+      "documents": ["Status number", "Personal Health Number", "Pacific Blue Cross Enrollment Application for Group Benefits, for first-time registration", "Medical Services Plan Application for Enrollment, for first-time registration"],
+      "tips": ["A child with a Personal Health Number can be covered under a parent's account until age two while waiting for their own status number; once the child has their own status number, call 1-855-550-5454 to enrol them separately", "Enrolment is done over the phone rather than through an online form, so plan the call inside the weekday office hours", "If you already have health insurance from the federal government, or through a First Nations self-government agreement with Canada, you are not eligible for this program"]
+    }
+  },
+  {
     "id": "bc-healthy-kids",
     "name": "BC Healthy Kids Program",
     "level": "British Columbia",
@@ -3645,7 +3666,7 @@ const BENEFIT_VERIFIED = {
   "bc-bus-pass": "2026-07", "bc-clbc": "2026-07", "bc-csg-services-equipment": "2026-07",
   "bc-csg-students-disabilities": "2026-07", "bc-cy-disability-benefit": "2026-07",
   "bc-dental-supplement": "2026-07", "bc-disability-assistance-pwd": "2026-07",
-  "bc-home-reno-tax-credit": "2026-07", "bc-learning-disability-assessment-bursary": "2026-07",
+  "bc-fnha-health-benefits": "2026-07", "bc-home-reno-tax-credit": "2026-07", "bc-learning-disability-assessment-bursary": "2026-07",
   "bc-medical-equipment-devices": "2026-07", "bc-monthly-nutritional-supplement": "2026-07",
   "bc-msp-supplementary-benefits": "2026-07", "bc-optical-supplement": "2026-07", "bc-pharmacare-plan-g": "2026-07", "bc-pharmacare-plan-p": "2026-07", "bc-supplemental-bursary-students-disabilities": "2026-07",
   "bc-work-able-internship": "2026-07", "bc-workbc-assistive-technology": "2026-07",
