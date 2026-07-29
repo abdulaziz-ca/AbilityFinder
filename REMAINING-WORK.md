@@ -75,7 +75,7 @@ completeness is not the blocker; the untested accessibility is.
 | UX-03 | "Priority order" uses unexplained editorial weights | Mitigated only; formula still unexplained and unvalidated |
 | DATA-25 | DTC readiness | Mitigated, not closed — needs real CRA functional-criteria questions |
 | TEST-01 | No systematic eligibility oracle across all programs | The gap that allowed the false-ready cluster |
-| TEST-02 | E2E is Chromium-only on a Python static server, with fixed sleeps | Needs a Wrangler-backed project + browser matrix. **Observed flake 2026-07-27:** `e2e/a11y-batch.spec.js` "A11Y-03: skip link is first focusable" failed once inside the full suite and passed on isolated re-run and on full-suite re-run — exactly the timing fragility this finding describes |
+| ~~TEST-02~~ | **Closed 2026-07-29.** All three planned items are implemented, and the row above was stale on every count. **Sleeps:** zero `waitForTimeout` remain in `e2e/` or `test/` — replaced by 22 `waitForFunction`, 51 `toBeVisible` and 12 `settleWizardCard`. **Engines:** `playwright.config.js` builds six projects from an ENGINES array of chromium, firefox and webkit. **Wrangler:** the three `worker-*` projects run against `npx wrangler dev --port 8788 --local`, so `_headers`, the production CSP and the real `/api/*` contracts are now exercised — the blind spot that let REL-05 ship. The three `app-*` projects still use the python3 static server, which is correct and faster for product journeys. `retries: 0` is deliberate, so a flake surfaces instead of being laundered into a pass. Green at 420/420 across all six projects on repeated full runs on 2026-07-29. The 2026-07-27 `a11y-batch.spec.js` A11Y-03 flake noted here has not recurred, but with `retries: 0` it would be visible if it did |
 | PERF-01 | **Re-measured 2026-07-28 — the audit's headline figure is stale.** On a throttled Pixel 5 profile (4× CPU, ~1.6 Mbps, 150 ms RTT) production was **LCP 2364 ms, not 4.0 s**, and **long tasks totalled 0 ms**, so "render-blocking scripts" is not the right framing — the main thread is not the bottleneck. Two real defects were found by measuring and are now **fixed**: both webfonts were downloaded **twice** on every cold load (preload/`@font-face` URL drift, 113 KB wasted, LCP → 2196 ms), and first-load **CLS was 0.0905 → now 0.0000**. What remains: above-the-fold content is still gated on ~170 KB gzipped of script plus an async IndexedDB restore, because `<main id="app">` ships only a loading placeholder. **INP still unmeasured in the field** — it needs real users, and there is no analytics by design, so it belongs with the production-only validation in the human table |
 
 ## Planned procedure — deploy gate and TEST-02 (agreed 2026-07-28)
@@ -136,13 +136,13 @@ pasted into a chat transcript. It is live, Workers-edit scoped, and demonstrably
 
 - Always read Playwright results with `grep -E "passed|failed|flaky"`, never a truncated tail.
 
-### 1. Remove the 5 fixed sleeps in `e2e/`
+### 1. Remove the 5 fixed sleeps in `e2e/` — **DONE, verified 2026-07-29**
 
 Replace `waitForTimeout` with state-based waits. Small and purely mechanical, but do it
 **before** adding surface area: a flaky baseline trains you to skim failures, which is the
 habit behind the reporting error above. Establish a green you trust first.
 
-### 2. Wrangler-backed Playwright project
+### 2. Wrangler-backed Playwright project — **DONE, verified 2026-07-29**
 
 Highest value of the three original TEST-02 items, because it closes a **demonstrated**
 escape rather than a theoretical one. REL-05 — the crash-recovery button broken by the
@@ -151,7 +151,7 @@ production CSP — shipped and lived in production, and the suite could never ha
 SEC-02, SEC-04 and Cloudflare asset routing, all currently verified only by hand against
 production after each deploy, which is not a sustainable control.
 
-### 3. Browser matrix (Chromium + Firefox + WebKit) — last, and expect it red
+### 3. Browser matrix (Chromium + Firefox + WebKit) — **DONE, verified 2026-07-29**
 
 The app is plain HTML/CSS/classic JS with no build, which lowers risk, but it leans on
 exactly the APIs that diverge across engines: IndexedDB, `<dialog>`, focus management,
