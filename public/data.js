@@ -2951,7 +2951,7 @@ const BENEFITS = [
     "name": "At Home Program: Medical Benefits",
     "level": "British Columbia",
     "category": "Health",
-    "amount": "Per-item coverage — wheelchair seating to $9,000, lifts to $8,000, hospital bed to $4,000, scooter to $3,700, dental $700 a year, optical $150 a year, plus free prescriptions through PharmaCare Plan F",
+    "amount": "Per-item coverage — wheelchair seating to $9,000, lifts to $8,000, hospital bed to $4,000, scooter to $3,700, dental $700 a year, optical $150 a year, plus 100% of eligible prescription drugs and designated medical supplies through PharmaCare Plan F",
     "summary": "Covers medical equipment, therapies, dental and optical care, medical travel and PharmaCare Plan F for children with severe disabilities who live at home and are dependent in most daily living activities.",
     "requires": ["bc", "child", "bcMsp", "childThreeAdls"],
     "requiresNote": "Your child is 17 or younger, is a BC resident enrolled in the Medical Services Plan, lives at home with a parent or guardian or with an Extended Family Program caregiver, and has been assessed as dependent in at least three of the four activities of daily living — eating, dressing, toileting and washing.",
@@ -2960,10 +2960,10 @@ const BENEFITS = [
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program/at-home-program-eligibility",
     "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program",
     "detail": {
-      "about": "Medical Benefits can cover approved equipment, supplies, therapies, dental, optical, medical travel and PharmaCare Plan F. The program must approve many items before they are bought, and coverage ends on the last day of the month the child turns 18.",
+      "about": "Medical Benefits can cover approved equipment, supplies, therapies, dental, optical, medical travel, and prescription drugs and designated medical supplies at 100% through PharmaCare Plan F. The program must approve many items before they are bought, and coverage ends on the last day of the month the child turns 18.",
       "steps": ["Complete the At Home Program application with a doctor or nurse practitioner", "Attach the requested identification and functional assessments; children under 3 may be asked for extra supporting information", "Send the application to the regional At Home Program office listed by the province", "Take part in the in-home assessment of eating, dressing, toileting and washing if one is required", "Wait for the written decision, then work with the CYSN worker or Medical Benefits branch before purchasing covered equipment or services"],
       "documents": ["Completed At Home Program application with parent and medical-professional sections", "Identification for the child and parent or guardian", "Child's Personal Health Number and proof of active MSP", "Requested functional assessments such as Vineland-3, PEDI-CAT or GMFCS, when applicable"],
-      "tips": ["Families in current pilot areas use a different Medical Benefits application route; check the official page for your community", "Do not buy equipment, dental, optical or travel first when pre-approval is required", "Start adult PWD planning about six months before the child's 18th birthday"],
+      "tips": ["Families in current pilot areas use a different Medical Benefits application route; check the official page for your community", "Do not buy equipment, dental, optical or travel first when pre-approval is required", "Start adult PWD planning about six months before the child's 18th birthday", "PharmaCare Plan F is not a separate application. Once your child is receiving full benefits or medical benefits through the At Home Program, MCFD sends their information to PharmaCare and the drug coverage follows automatically.", "Plan F covers designated medical supplies at 100% as well as prescription drugs, so ask the At Home Program or your pharmacist whether a supply you are paying for is on the designated list before you keep buying it yourself."],
       "time": "Assessment and regional review follow a complete application; no guaranteed timeline is published",
       "phone": "Medical Benefits: 1-888-613-3232"
     }

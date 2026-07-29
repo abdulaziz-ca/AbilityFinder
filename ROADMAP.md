@@ -123,10 +123,27 @@ same-day verification of every figure before it ships:
 - **B.C. PharmaCare has 13 plans and the catalogue carries three** (Fair PharmaCare, Plan C,
   Plan P as of 2026-07-29). Found while adding Plan P. Several of the remaining ten are
   squarely in scope for a disability audience, and each needs its own same-day verification:
-  **Plan G (Psychiatric Medications)** is the highest priority — `mental` is one of the twelve
-  disability categories the questionnaire offers and it has **no drug-coverage record attached
-  to it at all**. Then **Plan F (Children in the At Home Program)**, the drug counterpart to the
-  `bc-at-home-medical` record already in the catalogue, and **Plan B (Long-term Care)**.
+  ~~**Plan G (Psychiatric Medications)**~~ **done 2026-07-29** (`bc-pharmacare-plan-g`) — it was
+  the highest priority because `mental` is one of the twelve disability categories the
+  questionnaire offers and had no drug-coverage record at all.
+  ~~**Plan F (Children in the At Home Program)**~~ **handled 2026-07-29, and my entry above was
+  wrong to call it a gap.** Plan F has **no application of its own**: the province says "MCFD
+  submits your information to PharmaCare" and "For coverage, apply to the At Home Program", so it
+  arrives automatically with At Home Program enrolment. It was already referenced by
+  `bc-at-home-medical`, and a separate record would have read as another thing to apply for. What
+  the record actually had wrong was the coverage: it said "free prescriptions", while Plan F covers
+  **100% of eligible prescription drugs AND designated medical supplies**. Corrected in place, no
+  new record, catalogue unchanged at 95.
+  **Plan B (Long-term Care)** — verified 2026-07-29 but **not built, and it needs a scope decision
+  first.** Facts: 100% of eligible prescription drugs and medical supplies for permanent residents
+  of licensed long-term care facilities **registered with Plan B**; coverage is **automatic** on
+  becoming a permanent resident, so like Plan F it has no application of its own; **not all
+  facilities are registered**, and the province suggests asking before moving in; it does **not**
+  apply to extended-care, acute-care, multi-level or assisted-living facilities, nor to short-term
+  or respite stays. The scope problem: the questionnaire never asks whether someone lives in long-term
+  care, and there is no existing record for this to attach to the way Plan F attached to
+  `bc-at-home-medical`. The genuinely useful content is the warning to check a facility's Plan B
+  registration **before** moving in — decide where that belongs before writing a record for it.
   Condition-specific plans worth assessing: Plan D (Cystic Fibrosis), Plan X (HIV/AIDS),
   Plan Z (Assurance), Plan M (Medication Management). Also worth a look: Plan W (First Nations
   Health Benefits), Plan NP (National Pharmacare) and Plan S (Smoking Cessation).
