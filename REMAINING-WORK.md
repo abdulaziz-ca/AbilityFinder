@@ -14,7 +14,7 @@ Update this file whenever a finding is closed, reopened, or found to be wrong.
 The audit's findings table has **65 rows**. Current state:
 
 > ⚠️ **Trust the tables below, not this summary.** The status rows were updated for the
-> 2026-07-28 closures — **DATA-12**, **REL-06**, **BC-BC-09**, **BC-BC-15**, **ABFED-16/17**,
+> 2026-07-28 closures — **DATA-12**, **BC-BC-09**, **BC-BC-15**, **ABFED-16/17**,
 > **DATA-11**, the BC RAHA limits, and PERF-01's two measurable defects. The **per-severity rows
 > below are deliberately NOT recounted**: closing a finding does not reveal its severity band
 > without re-reading the audit, and doing that arithmetic by assumption would be exactly the kind
@@ -26,14 +26,14 @@ The audit's findings table has **65 rows**. Current state:
 | **Fully closed and deployed** | **54+** | was ~83% before 2026-07-28; several more closed that day, not yet recounted |
 | Partly closed | 0 | **BC-BC is now complete** (BC-BC-15 and BC-BC-09 both closed 2026-07-28) and **DATA-12 is fully closed** |
 | Mitigated, not closed | 3 | DATA-25, UX-02, UX-03 — all need product decisions or user testing |
-| Open | 2 | TEST-01, and the accessibility/user testing. **PERF-01** measured with its two real defects fixed; **REL-06**, **BC-BC-09/15**, **ABFED-16/17** and **DATA-11** all closed 2026-07-28 |
+| Open | 2 | TEST-01, and the accessibility/user testing. **PERF-01** measured with its two real defects fixed. **BC-BC-09/15**, **ABFED-16/17** and **DATA-11** closed 2026-07-28. **REL-06 is root-caused but WON'T FIX** — the behaviour still exists in production; the fix was declined on zero-spend grounds, see its row below |
 
 By severity:
 
 | Severity | Closed | Total | |
 |---|---|---|---|
 | **High / P1** | **22** | 23 | only DATA-25 outstanding, and it is mitigated |
-| Medium / P1 | see note | 18 | 2 mitigated. The human-only clarifications (BC-BC-09/15, ABFED-16/17, DATA-11, REL-06) all closed 2026-07-28, but **nobody has re-mapped finding IDs to severities**, so no count is stated rather than an invented one |
+| Medium / P1 | see note | 18 | 2 mitigated. The human-only clarifications (BC-BC-09/15, ABFED-16/17, DATA-11) closed 2026-07-28; **REL-06 is root-caused but WON'T FIX, not fixed**. **Nobody has re-mapped finding IDs to severities**, so no count is stated rather than an invented one |
 | Medium / P2 | see note | 12 | DATA-11 and DATA-12 closed 2026-07-28; only PERF-01's residual JS-gating remains. Count not restated for the same reason as the row above |
 | Low + Informational | 12 | 12 | complete |
 
