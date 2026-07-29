@@ -56,6 +56,26 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://abilityfinder.ca/guides/canadian-dental-care-plan</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abilityfinder.ca/guides/disability-supports-deduction</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abilityfinder.ca/guides/medical-expense-tax-credit</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abilityfinder.ca/guides/canada-caregiver-credit</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://abilityfinder.ca/guides/aish</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

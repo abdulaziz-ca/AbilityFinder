@@ -102,6 +102,33 @@ Do not publish an exhaustive AISH/ADAP signer-profession list until Alberta prov
 one. Existing CPP-D and parking-placard signer guidance may remain because those
 lists have official support.
 
+## Known coverage gaps (official-source sweep, 2026-07-28)
+
+A sweep of the federal, Alberta and B.C. government benefit hubs found that DATA-12's
+list of four missing programs was **not exhaustive**. Four federal gaps were closed
+that day (Canadian Dental Care Plan, disability supports deduction, medical expense
+tax credit, Canada caregiver credit). These remain **open and unbuilt**, each needing
+same-day verification of every figure before it ships:
+
+- **Federal:** excise gasoline tax refund; CPP children's benefits; multigenerational
+  home renovation tax credit.
+- **B.C.:** the annual earnings exemption on disability assistance (disability-specific
+  and materially changes how much a PWD recipient can earn without clawback);
+  PharmaCare Plan P (palliative); MSP Supplementary Benefits, which the matcher
+  already references via `bcMsp` but has no record for.
+- **Alberta:** community access for people in continuing care (CAPCC); the Alberta
+  service dog qualification and ID; special needs housing.
+- **Scope questions rather than gaps:** provincial child/family benefits such as the
+  Alberta Child and Family Benefit and the B.C. Family Benefit are income-based rather
+  than disability-based.
+
+Sources swept: `canada.ca/en/services/benefits/disability.html`, the CRA
+persons-with-disabilities tax hub, `alberta.ca/disability-supports`,
+`alberta.ca/supports-for-people-with-disabilities`, `gov.bc.ca` benefits hub and the
+B.C. disability-assistance page. Note that the B.C. general benefits hub is mostly
+out of scope (minimum wage, EV rebates, business services) and was filtered, not
+harvested.
+
 ## Deliberately rejected
 
 Do not "just add" these without revisiting the product's privacy/zero-spend model:
@@ -117,6 +144,12 @@ Do not "just add" these without revisiting the product's privacy/zero-spend mode
   text and false certainty. The structured limitation-based wizard is safer.
 - **Unverified automated government integration/form filling:** high factual and
   privacy risk.
+- **Veterans Affairs Canada (VAC) disability benefits:** decided out of scope
+  2026-07-28. VAC is a parallel federal system with service-related eligibility, its
+  own adjudication and its own vocabulary. Covering it properly is a research
+  programme in itself; covering it partially would imply this catalogue speaks for a
+  population it has never verified anything for. Point veterans at VAC's own Benefits
+  Browser instead. Revisit only as a deliberate, separately scoped expansion.
 
 ## Definition of done for future changes
 

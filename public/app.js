@@ -579,6 +579,21 @@ const REQS = {
     fixed: false,
     unmet: "This credit pays back part of what you spend, so it applies only once the qualifying renovation has actually been done and paid for. Keep your invoices and receipts.",
   },
+  cdcpRequirements: {
+    met: () => false,
+    fixed: false,
+    unmet: "You must meet all four CDCP requirements: you have no access to private dental insurance or coverage, you and your spouse or partner have filed your Canadian tax returns, your adjusted family net income is under $90,000, and you are a Canadian resident.",
+  },
+  disabilityMedicalExpensesPaid: {
+    met: () => false,
+    fixed: false,
+    unmet: "This is claimed on your tax return for money you have already spent, so it applies once you have paid the expenses and have the receipts.",
+  },
+  caregiverSupportClaim: {
+    met: () => false,
+    fixed: false,
+    unmet: "This is claimed by the person providing support, on their own tax return, for a spouse, partner or dependant with a mental or physical impairment.",
+  },
   bcHomeOwnerGrantDisabilityRoute: {
     met: () => false,
     fixed: false,

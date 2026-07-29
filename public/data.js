@@ -135,6 +135,14 @@ const BENEFIT_VALUES = {
   "cpp-disability": { kind: "cash", monthlyMin: 611, monthlyMax: 1741, annualMax: 20894 },
   "csg-disability": { kind: "grant", annualMax: 2800 },
   "csg-dse": { kind: "grant", annualMax: 20000 },
+  "canadian-dental-care-plan": { kind: "coverage", excludeFromEstimate: true,
+    note: "The plan pays at CDCP established fees, which can be lower than what your provider charges, so you may still owe the difference directly to them." },
+  "disability-supports-deduction": { kind: "taxCredit", excludeFromEstimate: true,
+    note: "This is a deduction, not a credit — it reduces the income you are taxed on rather than paying out money." },
+  "medical-expense-tax-credit": { kind: "taxCredit", excludeFromEstimate: true,
+    note: "Only the portion above a threshold counts." },
+  "canada-caregiver-credit": { kind: "taxCredit", excludeFromEstimate: true,
+    note: "A federal non-refundable credit for someone who supports a spouse, common-law partner or dependant with a mental or physical impairment." },
   // ---- Alberta ----
   // AISH and ADAP are assessed through one application. Keep both out of the
   // combined estimate: adding them together would falsely promise two incomes.
@@ -1337,6 +1345,153 @@ const BENEFITS = [
         "it is non-refundable, so it reduces tax owing rather than paying out on its own",
         "costs that mainly raise the value of the home, routine repairs, appliances and financing costs are not eligible",
         "an item you buy that does not become a permanent part of the home is generally not eligible",
+      ],
+    },
+  },
+  {
+    id: "canadian-dental-care-plan",
+    name: "Canadian Dental Care Plan (CDCP)",
+    level: "Federal",
+    category: "Health",
+    amount: "Covers 100% of eligible costs at CDCP established fees under $70,000 family income, 60% from $70,000 to $79,999, and 40% from $80,000 to $89,999",
+    requires: ["cdcpRequirements"],
+    summary:
+      "A federal plan that pays part of the cost of dental care for people without private dental coverage whose adjusted family net income is under $90,000. It is income-based rather than disability-based, but Canada lists it among its disability benefits because so many disabled people have no workplace dental coverage.",
+    note:
+      "The plan pays at CDCP established fees, which can be lower than what your provider charges, so you may still owe the difference directly to them. Ask your provider what the CDCP pays and what you will owe BEFORE treatment.",
+    requiresNote:
+      "You must meet all four requirements. First, you have no access to private dental insurance or coverage, including a health spending account that covers dental costs. The only exception is if you retired and opted out of dental coverage through your pension plan before December 11, 2023 and cannot opt back in. Second, you and your spouse or common-law partner have filed your Canadian tax returns for the previous year. Third, your adjusted family net income is less than $90,000. Fourth, you are a Canadian resident. You can check the coverage question on your T4 or T4A: code 1 in the dental box means you do not have access, while 2, 3, 4 or 5 means your work or pension plan offers some dental coverage for you or your family.",
+    applyText: "Apply for the Canadian Dental Care Plan",
+    applyUrl: "https://www.canada.ca/en/services/benefits/dental/dental-care-plan.html",
+    source: "https://www.canada.ca/en/services/benefits/dental/dental-care-plan.html",
+    detail: {
+      about:
+        "The CDCP pays a share of eligible oral health care at fees the plan sets. What it pays depends on adjusted family net income: under $70,000 the plan covers 100% of eligible costs at CDCP established fees and you cover none of those fees; from $70,000 to $79,999 the plan covers 60% and you cover 40%; from $80,000 to $89,999 the plan covers 40% and you cover 60%. Covered services include diagnostic and preventive care, complete dentures including standard and temporary, denture repairs, relines and rebases, and linings placed to condition oral tissues. Partial dentures and complete immediate and overdentures need preauthorization, as do services beyond the plan's frequency limits. Providers are paid by the plan directly, so you should not have to pay the whole cost up front, but you may owe additional charges to the provider.",
+      steps: [
+        "check all four requirements, including the dental code on your T4 or T4A",
+        "confirm your tax return and your spouse or partner's are filed for the previous year",
+        "apply through the Canadian Dental Care Plan",
+        "before treatment, ask your oral health provider what the CDCP will pay and what you will owe, and whether the service needs preauthorization.",
+      ],
+      documents: [
+        "your T4 or T4A slip showing the dental coverage code",
+        "your filed tax return for the previous year, and your spouse or common-law partner's",
+        "proof that you no longer have access to dental coverage, if CRA asks for it.",
+      ],
+      tips: [
+        "the plan pays at CDCP established fees, which may be below your provider's fee, so ask what you will owe first",
+        "some services need preauthorization and not every request is approved",
+        "if you have any dental coverage at all you are not eligible, even if it covers very little",
+        "if you join while you actually had coverage you may have to repay the government for services the plan paid.",
+      ],
+    },
+  },
+  {
+    id: "disability-supports-deduction",
+    name: "Disability Supports Deduction (line 21500)",
+    level: "Federal",
+    category: "Tax",
+    amount: "A deduction from your income for what you paid, with no fixed maximum",
+    requires: ["disabilityMedicalExpensesPaid"],
+    summary:
+      "A federal tax deduction for a person with an impairment in physical or mental functions, covering what they paid for supports that let them work, attend school or do research. Only the person with the disability can claim it.",
+    note:
+      "This is a deduction, not a credit — it reduces the income you are taxed on rather than paying out money. The same expense can go here or to the medical expense credit, or be split between them, but the total claimed cannot exceed what you actually spent.",
+    requiresNote:
+      "You must have an impairment in physical or mental functions and have paid the expenses yourself so that you could work, attend school or carry out research. Only the person with the disability can claim this deduction — a family member cannot claim it for them. Some expenses need a certification from a medical practitioner. Keep every receipt.",
+    applyText: "Read the CRA guidance for line 21500",
+    applyUrl: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-21500-disability-supports-deduction.html",
+    source: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-21500-disability-supports-deduction.html",
+    detail: {
+      about:
+        "Line 21500 lets a person with an impairment in physical or mental functions deduct what they paid for supports that made work, school or research possible. Use Form T929, Disability Supports Deduction, to work out the amount, then enter the figure from line 12 of that form on line 21500 of your return, in Step 3, net income. CRA notes that the same medical expense can be claimed on line 21500 or on line 33099, or split between the two, as long as the total claimed is not more than the expense. Do not send Form T929 or the receipts with your return; keep them in case CRA asks.",
+      steps: [
+        "check the CRA list of eligible expenses for this deduction and whether any of yours need a medical practitioner's certification",
+        "complete Form T929, Disability Supports Deduction",
+        "enter the amount from line 12 of Form T929 on line 21500 of your return, and keep the form and receipts rather than sending them.",
+      ],
+      documents: [
+        "receipts for every expense claimed",
+        "Form T929, Disability Supports Deduction",
+        "any certification from a medical practitioner that a particular expense requires.",
+      ],
+      tips: [
+        "only the person with the disability can claim this, so it cannot be moved to a parent or spouse",
+        "decide whether each expense is better on line 21500 or as a medical expense on line 33099, because you can split them but not double-count",
+        "because it is a deduction it reduces taxable income, which can matter more than a credit at higher incomes.",
+      ],
+    },
+  },
+  {
+    id: "medical-expense-tax-credit",
+    name: "Medical Expense Tax Credit (lines 33099 and 33199)",
+    level: "Federal",
+    category: "Tax",
+    amount: "Claimable on the part of your medical expenses above the lesser of 3% of net income or $2,834",
+    requires: ["disabilityMedicalExpensesPaid"],
+    summary:
+      "The federal credit for out-of-pocket medical expenses. Disability-related costs are often the largest medical expenses a household has, and this is where most of them are claimed.",
+    note:
+      "Only the portion above a threshold counts. The threshold is the LESSER of 3% of net income or $2,834, so on a lower income the 3% figure usually applies and more of your expenses count. This amount is indexed and changes by tax year — confirm the figure for the year you are filing.",
+    requiresNote:
+      "You claim expenses you paid for yourself, your spouse or common-law partner, and your children under 18 on line 33099. Expenses for other dependants go on line 33199, where the same threshold is worked out separately using that dependant's net income. Keep all receipts.",
+    applyText: "Read the CRA guidance for lines 33099 and 33199",
+    applyUrl: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-33099-33199-eligible-medical-expenses-you-claim-on-your-tax-return.html",
+    source: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-33099-33199-eligible-medical-expenses-you-claim-on-your-tax-return.html",
+    detail: {
+      about:
+        "For line 33099 you total the eligible expenses, then subtract the lesser of 3% of your net income from line 23600 or $2,834, and the remainder is what the credit is calculated on. CRA's own worked example: Pauline's net income is $55,000, 3% of that is $1,650, and because $1,650 is less than $2,834 she subtracts $1,650 from the $6,300 of combined expenses. Expenses for children under 18 can be combined with the parents' expenses. For a dependant other than a spouse, partner or child under 18, use line 33199 and run the same lesser-of calculation against that dependant's own net income. The $2,834 figure is indexed and changes by tax year.",
+      steps: [
+        "collect receipts for every eligible medical expense for the year, for yourself, your spouse or partner and your children under 18",
+        "total them and subtract the lesser of 3% of your net income from line 23600 or $2,834",
+        "enter the result on line 33099",
+        "claim expenses for any other dependant separately on line 33199, running the same calculation against that dependant's net income.",
+      ],
+      documents: [
+        "receipts for every medical expense claimed",
+        "prescriptions or practitioner certifications where CRA requires them",
+        "your net income figure from line 23600.",
+      ],
+      tips: [
+        "the threshold is the LESSER of the two figures, so a lower income means a lower threshold and more of your expenses count",
+        "you can pick the 12-month period ending in the tax year that captures the most expenses, so check CRA's rule before choosing",
+        "if you also claim the disability supports deduction on line 21500, split each expense between the two rather than claiming it twice",
+        "the $2,834 threshold is indexed, so confirm the current figure for your filing year.",
+      ],
+    },
+  },
+  {
+    id: "canada-caregiver-credit",
+    name: "Canada Caregiver Credit (CCC)",
+    level: "Federal",
+    category: "Tax",
+    amount: "$2,687, and up to $8,601 depending on who you support and which line you claim",
+    requires: ["caregiverSupportClaim"],
+    summary:
+      "A federal non-refundable credit for someone who supports a spouse, common-law partner or dependant with a mental or physical impairment. It is claimed by the person giving the support, not by the person with the disability.",
+    note:
+      "These amounts are indexed and change by tax year, so confirm the current figures for the year you are filing. Which line you use, and how much you can claim, depends on your relationship to the person and on what other credits are already claimed for them.",
+    requiresNote:
+      "You must be supporting a spouse or common-law partner, or a dependant, who has a mental or physical impairment. The amount depends on who you are supporting and on whether other credits are being claimed for that person. This is claimed by the supporter on their own return.",
+    applyText: "Read the CRA guidance for the Canada caregiver credit",
+    applyUrl: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/canada-caregiver-amount.html",
+    source: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/canada-caregiver-amount.html",
+    detail: {
+      about:
+        "The Canada caregiver credit is a non-refundable credit for people supporting a family member with a mental or physical impairment. As CRA currently publishes it: for a spouse or common-law partner you may claim $2,687 on line 30300 and up to $8,601 on line 30425. For an eligible dependant aged 18 or older who qualifies for line 30400, you may claim $2,687 on line 30400 and up to $8,601 on line 30425. For an eligible dependant under 18 who qualifies for line 30400, you may claim $2,687 on either line 30400 or line 30500. For each of your own or your spouse's or partner's children under 18 at the end of the year, you may claim $2,687 on line 30500. For each dependant aged 18 or older who is not your spouse or partner and is not an eligible dependant claimed on line 30300 or line 30400, you may claim up to $8,601 on line 30450. All of these amounts are indexed and change by tax year.",
+      steps: [
+        "work out your relationship to the person you support and whether they have a mental or physical impairment",
+        "check which line applies to that relationship, and whether any other credit is already being claimed for them",
+        "claim the amount on the correct line of your own return and keep the supporting documents.",
+      ],
+      documents: [
+        "a signed statement from a medical practitioner describing the impairment, when it began and its expected duration, if CRA asks for it",
+        "records showing the support you provide.",
+      ],
+      tips: [
+        "this is claimed by the supporter, so it does not reduce the tax of the person with the disability",
+        "which line to use depends on the relationship and on other credits already claimed for that person, so read CRA's table before filing",
+        "the amounts are indexed and change each tax year, so do not rely on a figure you saw in a previous year.",
       ],
     },
   },

@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 156 links. The monitor checks a bounded rotating batch every
+// 160 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) URLs are skipped — they depend on the
@@ -53,6 +53,26 @@ export const LINKS = [
   {
     "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-31285-home-accessibility-expenses.html",
     "label": "Home Accessibility Tax Credit (HATC) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.canada.ca/en/services/benefits/dental/dental-care-plan.html",
+    "label": "Canadian Dental Care Plan (CDCP) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-21500-disability-supports-deduction.html",
+    "label": "Disability Supports Deduction (line 21500) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-33099-33199-eligible-medical-expenses-you-claim-on-your-tax-return.html",
+    "label": "Medical Expense Tax Credit (lines 33099 and 33199) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/canada-caregiver-amount.html",
+    "label": "Canada Caregiver Credit (CCC) — apply",
     "kind": "apply"
   },
   {
