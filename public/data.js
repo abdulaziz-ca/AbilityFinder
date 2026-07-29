@@ -203,6 +203,7 @@ const BENEFIT_VALUES = {
   "bc-fair-pharmacare": { kind: "coverage", excludeFromEstimate: true, note: "income-based drug coverage" },
   "bc-msp-supplementary-benefits": { kind: "coverage", excludeFromEstimate: true, note: "$23 per visit toward six covered services, up to a combined 10 visits each calendar year" },
   "bc-pharmacare-plan-c": { kind: "coverage", excludeFromEstimate: true, note: "100% of eligible drug costs for people on assistance" },
+  "bc-pharmacare-plan-g": { kind: "coverage", excludeFromEstimate: true, note: "100% of eligible costs for covered psychiatric medications" },
   "bc-pharmacare-plan-p": { kind: "coverage", excludeFromEstimate: true, note: "100% coverage of eligible costs for medications used in palliative care and in the Plan P formulary" },
   "bc-healthy-kids": { kind: "coverage", excludeFromEstimate: true, note: "children: dental (<=$2,000/2yr), glasses, hearing" },
   "bc-dental-supplement": { kind: "coverage", excludeFromEstimate: true, note: "basic dental for people on assistance" },
@@ -2550,6 +2551,26 @@ const BENEFITS = [
     }
   },
   {
+    "id": "bc-pharmacare-plan-g",
+    "name": "PharmaCare Plan G (Psychiatric Medications)",
+    "level": "British Columbia",
+    "category": "Health",
+    "amount": "100% of eligible costs for covered psychiatric medications",
+    "requires": ["bc", "psychiatricMedicationCandidate", "planGClinicalAndFinancialNeed"],
+    "summary": "Full coverage of certain psychiatric medications for B.C. residents of any age who have both clinical and financial need. Your prescriber applies on your behalf, and coverage has to be renewed every year.",
+    "note": "Coverage lasts up to one year and stops unless a new application is submitted. Know your renewal date and see a prescriber about a month before it, so the coverage does not lapse while you are still taking the medication.",
+    "requiresNote": "You must have both clinical and financial need. Your physician or nurse practitioner confirms the clinical side together with your local mental health and substance use location, or the Child and Youth Mental Health team. The financial test is an annual income lower than $42,000. If you are eligible, the prescriber submits the Application for PharmaCare Plan G form on your behalf — there is nothing for you to file. The plan covers certain psychiatric medications rather than all of them.",
+    "applyText": "See how to apply for Plan G",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover#plang",
+    "source": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover#plang",
+    "detail": {
+      "about": "Plan G pays 100% of eligible costs for certain psychiatric medications, for B.C. residents of any age who have both clinical and financial need. The province describes the financial test as an annual income lower than $42,000. Eligibility is confirmed by your physician or nurse practitioner together with your local mental health and substance use location, or the Child and Youth Mental Health team, and the prescriber then submits the Application for PharmaCare Plan G form for you. Coverage runs for up to one year and must be renewed if you still need it; the province advises knowing your renewal date and seeing a healthcare provider about a month ahead to submit the new application.",
+      "steps": ["Tell your physician or nurse practitioner that you have both clinical and financial need and ask about Plan G", "They confirm eligibility with your local mental health and substance use location, or the Child and Youth Mental Health team", "The prescriber submits the Application for PharmaCare Plan G form on your behalf", "Write down your renewal date and book an appointment about a month before it to submit a new application"],
+      "documents": ["Nothing for you to submit — your prescriber completes and sends the Application for PharmaCare Plan G form", "Bring anything your prescriber asks for to show income if they need it"],
+      "tips": ["The renewal is the thing that catches people out, because coverage simply stops after a year, so put the date somewhere you will see it and go in a month early", "The plan covers certain psychiatric medications and not every drug, so ask your prescriber or pharmacist whether the specific medication is on Plan G before you rely on it", "Substance use is covered by the same route, since eligibility is confirmed through the local mental health and substance use location", "Plan G's $42,000 test is on annual income, which is worded differently from the adjusted net income test used for MSP Supplementary Benefits — qualifying for one does not automatically mean qualifying for the other"]
+    }
+  },
+  {
     "id": "bc-pharmacare-plan-p",
     "name": "PharmaCare Plan P (BC Palliative Care Benefits)",
     "level": "British Columbia",
@@ -3626,7 +3647,7 @@ const BENEFIT_VERIFIED = {
   "bc-dental-supplement": "2026-07", "bc-disability-assistance-pwd": "2026-07",
   "bc-home-reno-tax-credit": "2026-07", "bc-learning-disability-assessment-bursary": "2026-07",
   "bc-medical-equipment-devices": "2026-07", "bc-monthly-nutritional-supplement": "2026-07",
-  "bc-msp-supplementary-benefits": "2026-07", "bc-optical-supplement": "2026-07", "bc-pharmacare-plan-p": "2026-07", "bc-supplemental-bursary-students-disabilities": "2026-07",
+  "bc-msp-supplementary-benefits": "2026-07", "bc-optical-supplement": "2026-07", "bc-pharmacare-plan-g": "2026-07", "bc-pharmacare-plan-p": "2026-07", "bc-supplemental-bursary-students-disabilities": "2026-07",
   "bc-work-able-internship": "2026-07", "bc-workbc-assistive-technology": "2026-07",
   "kamloops-arch": "2026-07", "sparc-parking-permit": "2026-07",
 };

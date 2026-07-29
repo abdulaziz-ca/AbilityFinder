@@ -236,6 +236,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://abilityfinder.ca/guides/bc-pharmacare-plan-g</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://abilityfinder.ca/guides/bc-pharmacare-plan-p</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

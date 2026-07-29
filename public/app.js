@@ -515,6 +515,16 @@ const REQS = {
     fixed: true,
     unmet: "This is for someone who has reached the end stage of a life-threatening disease or illness.",
   },
+  psychiatricMedicationCandidate: {
+    met: () => hasDisability("mental") || hasDisability("other"),
+    fixed: true,
+    unmet: "This plan covers psychiatric medications specifically.",
+  },
+  planGClinicalAndFinancialNeed: {
+    met: () => false,
+    fixed: false,
+    unmet: "You need both clinical and financial need: your prescriber confirms the clinical side with your local mental health and substance use team, and the financial test is an annual income lower than $42,000.",
+  },
   planPRegistration: {
     met: () => false,
     fixed: false,
