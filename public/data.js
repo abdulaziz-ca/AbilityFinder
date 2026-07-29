@@ -186,7 +186,10 @@ const BENEFIT_VALUES = {
   "bc-assistance-program-students-disabilities": { kind: "grant", excludeFromEstimate: true, annualMax: 10000, note: "student-only; up to $12,000 if an attendant is required" },
   "bc-learning-disability-assessment-bursary": { kind: "grant", excludeFromEstimate: true, annualMax: 3500, note: "one-time, toward a learning-disability assessment" },
   "bc-access-grant-deaf-students": { kind: "grant", excludeFromEstimate: true, annualMax: 30000, note: "up to $30,000 per program year, based on StudentAid BC-assessed financial need" },
+  "bc-additional-home-owner-grant": { kind: "grant", excludeFromEstimate: true, note: "reduces the property tax you owe; it is not a payment" },
+  "bc-raha": { kind: "grant", excludeFromEstimate: true, note: "lifetime maximum per household; adaptations completed before written approval are not eligible" },
   "bc-home-reno-tax-credit": { kind: "taxCredit", excludeFromEstimate: true, annualMax: 1000, note: "refundable; 10% of up to $10,000 in eligible renovations; conditional on spending" },
+  "home-accessibility-tax-credit": { kind: "taxCredit", excludeFromEstimate: true, note: "non-refundable; conditional on eligible renovation spending" },
   "bc-sales-tax-credit": { kind: "taxCredit", excludeFromEstimate: true, annualMax: 75, note: "income-tested refundable credit, up to $75/person" },
   "bc-property-tax-deferment-disabilities": { kind: "access", excludeFromEstimate: true, note: "a repayable low-interest loan, not a payment" },
   "bc-fair-pharmacare": { kind: "coverage", excludeFromEstimate: true, note: "income-based drug coverage" },
@@ -1296,6 +1299,45 @@ const BENEFITS = [
       ],
       time: "Assessed with your student aid application.",
       phone: "Alberta Student Aid: 1-855-606-2096",
+    },
+  },
+  {
+    id: "home-accessibility-tax-credit",
+    name: "Home Accessibility Tax Credit (HATC)",
+    level: "Federal",
+    category: "Tax",
+    amount: "Up to $20,000 per year in eligible expenses, claimed as a non-refundable tax credit",
+    summary:
+      "A federal non-refundable tax credit for renovations that make a home safer or easier to get around, for people approved for the Disability Tax Credit and for people 65 or older.",
+    requires: ["homeRenoCandidate", "homeowner"],
+    note:
+      "This is claimed on your tax return at line 31285, not applied for in advance. It is non-refundable, so it reduces tax you owe rather than producing a payment on its own.",
+    requiresNote:
+      "The person the renovation is for must be a qualifying individual — either eligible for the Disability Tax Credit at any time in the year, or 65 years of age or older at the end of the year. A spouse, common-law partner or certain other relatives may claim instead as an eligible individual. The renovation must be of an enduring nature and integral to the dwelling, and must either let the person get into, move around or function within the home, or reduce their risk of harm.",
+    applyText: "Read the CRA guidance for line 31285",
+    applyUrl:
+      "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-31285-home-accessibility-expenses.html",
+    source:
+      "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-31285-home-accessibility-expenses.html",
+    detail: {
+      about:
+        "The Home Accessibility Tax Credit is claimed at line 31285 of your federal return. A qualifying individual can claim up to $20,000 per year in eligible expenses. Where more than one qualifying individual lives in the same dwelling, the total for that dwelling is still $20,000, and where several people are entitled to claim, they can split it. The annual limit was $20,000 for 2022 through 2024, and $10,000 from 2015 through 2021. CRA states that an expense which also qualifies as a medical expense can be claimed both as a medical expense and as a home accessibility expense.",
+      steps: [
+        "keep every invoice and receipt, showing the vendor, their business address, their GST/HST number where applicable, a description of the work and the address, the amount, and proof of payment",
+        "complete the chart for line 31285 on the Federal Worksheet",
+        "enter the result on line 31285 of your federal return, and keep the documents rather than sending them",
+      ],
+      documents: [
+        "agreements, invoices and receipts identifying the vendor, the work, the address and the amount",
+        "proof of payment",
+        "for a condominium or co-operative, a signed statement from the corporation setting out the amounts and your share",
+      ],
+      tips: [
+        "you do not apply in advance, you claim it when you file",
+        "it is non-refundable, so it reduces tax owing rather than paying out on its own",
+        "costs that mainly raise the value of the home, routine repairs, appliances and financing costs are not eligible",
+        "an item you buy that does not become a permanent part of the home is generally not eligible",
+      ],
     },
   },
 
@@ -2959,6 +3001,27 @@ const BENEFITS = [
     }
   },
   {
+    "id": "bc-additional-home-owner-grant",
+    "name": "B.C. Home Owner Grant — additional grant for people with disabilities",
+    "level": "British Columbia",
+    "category": "Tax",
+    "amount": "For 2026, up to $845 in the Capital, Fraser Valley and Metro Vancouver regional districts, or up to $1,045 elsewhere in B.C.",
+    "summary": "A larger property tax grant for B.C. homeowners with a disability, or who live with a relative who has one. It reduces the property tax you owe; it is not a payment.",
+    "requires": ["bc", "homeowner", "bcHomeOwnerGrantDisabilityRoute"],
+    "requiresNote": "You must be the registered owner, a Canadian citizen or permanent resident, live in B.C., and occupy the property as your principal residence. You must also pay at least $100 in property taxes. You qualify on one of two routes: you receive provincial disability assistance, hardship assistance or a supplement under the Employment and Assistance for Persons with Disabilities Act; or you pay at least $150 a month for assistance with daily living activities, or have spent at least $2,000 on structural modifications to the home.",
+    "note": "The higher northern and rural amount ends on January 1, 2027. From that date the grant is $570 regular and $845 with the additional amount for every B.C. property, with no separate northern or rural top-up.",
+    "applyText": "Apply for the home owner grant",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/home-owner-grant/person-with-disabilities",
+    "source": "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/home-owner-grant/person-with-disabilities",
+    "detail": {
+      "about": "The home owner grant lowers the property tax on your principal residence. The regular grant for 2026 is up to $570 in the Capital, Fraser Valley and Metro Vancouver regional districts and up to $770 elsewhere. If you are a person with a disability, or you live with a relative who has one, the additional grant raises that to up to $845 and up to $1,045. The 2026 grant threshold is an assessed value of $2,075,000, and the grant is reduced by $5 for each $1,000 of assessed value above it. A health professional must certify on Form B (FIN 74) that the person has a severe mental or physical impairment likely to continue for at least two years. If your assessed value is above the threshold, a separate low income grant supplement may apply when adjusted net income is $32,000 or less.",
+      "steps": ["read the eligibility page for people with disabilities", "if you qualify through disability assistance, no health professional form is needed and you may optionally file Form FIN 81, Home Owner Grant Consent for Release of Information", "if you qualify on the daily-living or structural-modification route, have a health professional complete Form B (FIN 74), Certificate of Health Professional and Property Owner, with your first application", "apply for the grant each year, through the province rather than your municipality"],
+      "documents": ["Form B (FIN 74), Certificate of Health Professional and Property Owner, for the daily-living or structural-modification route on a first application", "optionally Form FIN 81, Home Owner Grant Consent for Release of Information", "your property tax notice"],
+      "tips": ["you must apply every year, the grant is not automatic", "you must still pay at least $100 in property taxes", "the higher northern and rural amount ends January 1, 2027"],
+      "phone": "Toll free 1-888-355-2700, or 250-387-0555"
+    }
+  },
+  {
     "id": "bc-home-reno-tax-credit",
     "name": "Home Renovation Tax Credit for Seniors and Persons with Disabilities",
     "level": "British Columbia",
@@ -2978,6 +3041,29 @@ const BENEFITS = [
       "tips": ["Family members who live with a senior or a person with a disability can claim the credit for work on the shared home.", "The renovation's main purpose cannot be increasing your property value — keep documentation showing the accessibility purpose.", "You can pair this with the federal Home Accessibility Tax Credit and Multigenerational Home Renovation Credit on the same expenses where rules allow — ask your tax preparer."],
       "time": "Claimed annually at tax time",
       "phone": "1-800-959-8281"
+    }
+  },
+  {
+    "id": "bc-raha",
+    "needsPractitioner": true,
+    "name": "B.C. Rebate for Accessible Home Adaptations (BC RAHA)",
+    "level": "British Columbia",
+    "category": "Health & equipment",
+    "amount": "Up to $20,000 in rebates, as a lifetime maximum per household",
+    "summary": "A B.C. rebate that pays back part of the cost of home adaptations for independent living, for lower-income households where someone has a permanent disability or loss of physical ability. Homeowners apply on their own; tenants apply together with their landlord.",
+    "requires": ["bc", "homeAccessNeed", "rahaEligibility"],
+    "requiresNote": "You or someone in your household must have a permanent disability or loss of physical ability, and you must be a resident of B.C. The program is for lower-income households and BC Housing applies income and asset limits, which it publishes in the application package rather than on its website — check the current application or call before you apply. Some adaptations need an assessment from an occupational therapist or physical therapist.",
+    "note": "Adaptations completed before BC Housing gives written approval are not eligible for a rebate. Once approved you have 180 days to finish the work.",
+    "applyText": "Apply for BC RAHA",
+    "applyUrl": "https://www.bchousing.org/housing-assistance/BC-RAHA",
+    "source": "https://www.bchousing.org/housing-assistance/BC-RAHA",
+    "detail": {
+      "about": "BC RAHA provides rebates so people can adapt their home for independent living. The lifetime maximum is $20,000 per household, and individual adaptations have their own caps set out in BC Housing.s Maximum Rebate Schedule. Applications are taken first-come, first-served until the funding for the year runs out, and the funding renews on April 1 each year. BC Housing aims to assess a completed application within 8 weeks, and pays within 3 weeks of receiving the final documents once the work is done.",
+      "steps": ["check the property and adaptation eligibility pages, and use the BC RAHA Calculator to see whether you might qualify", "get an occupational therapist or physical therapist assessment if your adaptation needs one", "submit the BC RAHA Homeowner Application, or the Landlord and Tenant Application if you rent, with the documents it lists", "wait for written approval from BC Housing BEFORE any work starts, then complete the work within 180 days"],
+      "documents": ["the BC RAHA Homeowner Application, or the Landlord and Tenant Application if you rent", "an occupational therapist or physical therapist assessment where the adaptation requires one", "contractor quotes", "proof of household income and assets as listed in the application"],
+      "tips": ["do not start work before written approval, because anything finished first is not eligible", "funding renews April 1 and applications are first-come first-served, so apply early in the year", "you have 180 days from written approval to finish", "the $20,000 is a lifetime maximum for the household, not per adaptation"],
+      "time": "BC Housing aims to assess completed applications within 8 weeks, and pays within 3 weeks after the work is done and documents are received.",
+      "phone": "604-433-2218 in the Lower Mainland, or toll free 1-800-257-7756"
     }
   },
   {

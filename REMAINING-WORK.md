@@ -60,7 +60,7 @@ completeness is not the blocker; the untested accessibility is.
 
 | ID | What is wrong | Notes |
 |---|---|---|
-| DATA-12 | Several in-scope programs absent (RAMP, BC Additional Home Owner Grant, BC Rebate for Accessible Home Adaptations, federal Home Accessibility Tax Credit) | Enhancement. ROADMAP allows expansion only program by program |
+| ~~DATA-12~~ | **Closed 2026-07-28.** All four programs are now in the catalogue: RAMP earlier, then `bc-additional-home-owner-grant`, `bc-raha` and `home-accessibility-tax-credit`. Every figure was verified against its official source that day. `canada.ca` returns 403 to automated fetch, so the CRA page was read in a real browser instead — do the same next time rather than trusting a search summary. **One gap remains, in the human-only table below: BC RAHA's income and asset limits.** Deliberately absent: no percentage rate or maximum dollar credit for the HATC, because the CRA page states neither and the lowest federal rate has moved recently — "$3,000" is a figure to refuse, not to copy |
 | ~~Other municipal percentages~~ | **Verification pass completed 2026-07-28 — see "Closed after verification" below.** |
 | UX-02 | Homepage still overpromises completeness/certainty | Mitigated only; needs a content pass + comprehension testing |
 | UX-03 | "Priority order" uses unexplained editorial weights | Mitigated only; formula still unexplained and unvalidated |
@@ -162,6 +162,7 @@ closed. Leave the absence visible until the AT testing actually happens.
 
 | ID | What is needed |
 |---|---|
+| **BC RAHA income and asset limits** | Added 2026-07-28. BC Housing publishes the household income limit, the liquid-asset limit and the home-value limit **only inside the application PDFs**, not on any page of `bchousing.org` — neither the program overview nor the FAQ states them, and the factsheet PDF triggers a download rather than rendering. Third-party sites (advocacy orgs, 211) do quote figures; **do not copy them**, they are unverified against BC Housing. The `bc-raha` record therefore says the program is income- and asset-tested with limits set by BC Housing and links the application, and the matcher never excludes anyone on income. To close this, open the BC RAHA Homeowner Application PDF or call **1-800-257-7756** |
 | BC-BC-15 | Kelowna KFAP post-secondary-student exclusion. `kelowna.ca` returns **403** to automated fetch; verify on the live page or call 250-469-8759 |
 | BC-BC-09 | SAET new-intake status unclear in current transition material — needs government clarification |
 | ABFED-16/17 | Easter Seals and Dog Guides entries present closed intakes as actionable — confirm current intake status with each organization |

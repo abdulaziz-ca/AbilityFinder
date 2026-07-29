@@ -16,7 +16,7 @@ with federal, provincial, and municipal guides. It answers five questions:
 5. How do I apply?
 
 **British Columbia is live.** `BC_ENABLED` in `public/app.js` is `true`, and the
-catalog holds **85 benefits** — 8 federal, 11 Alberta, 36 British Columbia, and the
+catalog holds **88 benefits** — 9 federal, 11 Alberta, 38 British Columbia, and the
 remainder municipal. The residency question offers Alberta, British Columbia, and
 "another province or territory"; the last of these still sees federal benefits only.
 

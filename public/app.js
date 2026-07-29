@@ -569,6 +569,18 @@ const REQS = {
     unmet: "You must have lived in B.C. for at least one year, be the registered owner of the property as your principal residence, keep at least 25% equity in it, and have paid all previous years' property taxes, utility fees, penalties and interest.",
     action: { text: "Review deferment eligibility", url: "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/property-tax-deferment-program/eligibility" },
   },
+  bcHomeOwnerGrantDisabilityRoute: {
+    met: () => false,
+    fixed: false,
+    unmet: "You must qualify on one of two routes: you receive provincial disability assistance, hardship assistance or a supplement under the Employment and Assistance for Persons with Disabilities Act; or you pay at least $150 a month for assistance with daily living activities, or have spent at least $2,000 on structural modifications to the home. The second route needs Form B (FIN 74) signed by a health professional.",
+    action: { text: "Check the grant criteria", url: "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/home-owner-grant/person-with-disabilities" },
+  },
+  rahaEligibility: {
+    met: () => false,
+    fixed: false,
+    unmet: "You or someone in your household must have a permanent disability or loss of physical ability, and the household must be within BC Housing income and asset limits. Adaptations finished before BC Housing gives written approval are not eligible.",
+    action: { text: "Check BC RAHA eligibility", url: "https://www.bchousing.org/housing-assistance/BC-RAHA" },
+  },
   bcHealthyKidsIncome: {
     met: () => false,
     fixed: false,

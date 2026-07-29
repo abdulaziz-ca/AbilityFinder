@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 153 links. The monitor checks a bounded rotating batch every
+// 156 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) URLs are skipped — they depend on the
@@ -49,6 +49,11 @@ export const LINKS = [
     "url": "https://www.canada.ca/en/employment-social-development/services/education/grants/disabilities.html",
     "label": "Canada Student Grant for Students with Disabilities — official source",
     "kind": "source"
+  },
+  {
+    "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-31285-home-accessibility-expenses.html",
+    "label": "Home Accessibility Tax Credit (HATC) — apply",
+    "kind": "apply"
   },
   {
     "url": "https://www.alberta.ca/aish-how-to-apply",
@@ -446,8 +451,18 @@ export const LINKS = [
     "kind": "apply"
   },
   {
+    "url": "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/home-owner-grant/person-with-disabilities",
+    "label": "B.C. Home Owner Grant — additional grant for people with disabilities — apply",
+    "kind": "apply"
+  },
+  {
     "url": "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/seniors-renovation",
     "label": "Home Renovation Tax Credit for Seniors and Persons with Disabilities — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.bchousing.org/housing-assistance/BC-RAHA",
+    "label": "B.C. Rebate for Accessible Home Adaptations (BC RAHA) — apply",
     "kind": "apply"
   },
   {

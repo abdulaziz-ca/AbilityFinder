@@ -51,6 +51,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://abilityfinder.ca/guides/home-accessibility-tax-credit</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://abilityfinder.ca/guides/aish</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -346,7 +351,17 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://abilityfinder.ca/guides/bc-additional-home-owner-grant</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://abilityfinder.ca/guides/bc-home-reno-tax-credit</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abilityfinder.ca/guides/bc-raha</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
