@@ -203,6 +203,7 @@ const BENEFIT_VALUES = {
   "bc-fair-pharmacare": { kind: "coverage", excludeFromEstimate: true, note: "income-based drug coverage" },
   "bc-msp-supplementary-benefits": { kind: "coverage", excludeFromEstimate: true, note: "$23 per visit toward six covered services, up to a combined 10 visits each calendar year" },
   "bc-pharmacare-plan-c": { kind: "coverage", excludeFromEstimate: true, note: "100% of eligible drug costs for people on assistance" },
+  "bc-pharmacare-plan-p": { kind: "coverage", excludeFromEstimate: true, note: "100% coverage of eligible costs for medications used in palliative care and in the Plan P formulary" },
   "bc-healthy-kids": { kind: "coverage", excludeFromEstimate: true, note: "children: dental (<=$2,000/2yr), glasses, hearing" },
   "bc-dental-supplement": { kind: "coverage", excludeFromEstimate: true, note: "basic dental for people on assistance" },
   "bc-optical-supplement": { kind: "coverage", excludeFromEstimate: true, note: "eye exam + glasses at ministry rates" },
@@ -2549,6 +2550,26 @@ const BENEFITS = [
     }
   },
   {
+    "id": "bc-pharmacare-plan-p",
+    "name": "PharmaCare Plan P (BC Palliative Care Benefits)",
+    "level": "British Columbia",
+    "category": "Health",
+    "amount": "100% of eligible costs for medications on the Plan P formulary",
+    "requires": ["bc", "palliativeCandidateCondition", "planPRegistration"],
+    "summary": "Full coverage of palliative care medications for B.C. residents of any age who have reached the end stage of a life-threatening illness and want to be cared for at home. A doctor or nurse practitioner registers the patient; there is nothing for the family to submit.",
+    "note": "The patient and family do not apply. A physician or nurse practitioner sends one registration form, and that same form notifies both PharmaCare and the local health authority. If palliative care at home is what you want, that is the conversation to have with the doctor or nurse practitioner.",
+    "requiresNote": "This is for B.C. residents of any age who have reached the end stage of a life-threatening disease or illness and who wish to receive palliative care at home. \"Home\" means wherever the person is living — their own home, a family member's or friend's home, a supportive or assisted living residence, or a hospice unit in a long-term care facility, such as a community hospice bed not covered under PharmaCare Plan B. Registration is made by a physician or nurse practitioner, not by the patient or family.",
+    "applyText": "Read the BC Palliative Care Benefits information sheet",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/pharmacare/pharmacare-publications/patient-information-sheets#planp",
+    "source": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover#planp",
+    "detail": {
+      "about": "Plan P covers 100% of eligible costs for medications used in palliative care that appear on the Plan P formulary. It is for B.C. residents of any age who have reached the end stage of a life-threatening disease or illness and who wish to receive palliative care at home, and \"home\" is read broadly: the person's own home, living with family or friends, a supportive or assisted living residence, or a hospice unit at a long-term care facility such as a community hospice bed that is not covered under PharmaCare Plan B. Medications are only part of it — eligible patients can also receive medical supplies and equipment through their local health authority. A physician or nurse practitioner submits the registration form to PharmaCare, and the single form notifies both PharmaCare and the health authority that the patient is eligible.",
+      "steps": ["Tell the doctor or nurse practitioner that palliative care at home is what the patient wants, and ask them to register the patient for BC Palliative Care Benefits", "Ask the same clinician, or the local health authority, about the medical supplies and equipment that come with eligibility, since those are arranged separately from the medications", "Ask for the BC Palliative Care Benefits patient information sheet, which is available in multiple languages"],
+      "documents": ["Nothing for the patient or family to submit — the registration form is completed and sent by the physician or nurse practitioner"],
+      "tips": ["The medications are covered at 100% when they are on the Plan P formulary, so ask the pharmacist to check the formulary if something is not covered", "Supplies and equipment come through the local health authority rather than PharmaCare, and are worth asking about separately", "A community hospice bed counts as home for this plan, as long as it is not already covered under PharmaCare Plan B", "Registration in Plan P is also one of the prescribed routes to B.C.'s Persons with Disabilities designation, which can matter if disability assistance is being applied for at the same time"]
+    }
+  },
+  {
     "id": "bc-healthy-kids",
     "name": "BC Healthy Kids Program",
     "level": "British Columbia",
@@ -3605,7 +3626,7 @@ const BENEFIT_VERIFIED = {
   "bc-dental-supplement": "2026-07", "bc-disability-assistance-pwd": "2026-07",
   "bc-home-reno-tax-credit": "2026-07", "bc-learning-disability-assessment-bursary": "2026-07",
   "bc-medical-equipment-devices": "2026-07", "bc-monthly-nutritional-supplement": "2026-07",
-  "bc-msp-supplementary-benefits": "2026-07", "bc-optical-supplement": "2026-07", "bc-supplemental-bursary-students-disabilities": "2026-07",
+  "bc-msp-supplementary-benefits": "2026-07", "bc-optical-supplement": "2026-07", "bc-pharmacare-plan-p": "2026-07", "bc-supplemental-bursary-students-disabilities": "2026-07",
   "bc-work-able-internship": "2026-07", "bc-workbc-assistive-technology": "2026-07",
   "kamloops-arch": "2026-07", "sparc-parking-permit": "2026-07",
 };

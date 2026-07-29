@@ -120,6 +120,18 @@ same-day verification of every figure before it ships:
   no award and no amount received, so a catalogue entry would need a fabricated applyUrl and
   would read as a benefit to apply for. Still open: PharmaCare Plan P (palliative); MSP
   Supplementary Benefits, which the matcher references via `bcMsp` but has no record for.
+- **B.C. PharmaCare has 13 plans and the catalogue carries three** (Fair PharmaCare, Plan C,
+  Plan P as of 2026-07-29). Found while adding Plan P. Several of the remaining ten are
+  squarely in scope for a disability audience, and each needs its own same-day verification:
+  **Plan G (Psychiatric Medications)** is the highest priority — `mental` is one of the twelve
+  disability categories the questionnaire offers and it has **no drug-coverage record attached
+  to it at all**. Then **Plan F (Children in the At Home Program)**, the drug counterpart to the
+  `bc-at-home-medical` record already in the catalogue, and **Plan B (Long-term Care)**.
+  Condition-specific plans worth assessing: Plan D (Cystic Fibrosis), Plan X (HIV/AIDS),
+  Plan Z (Assurance), Plan M (Medication Management). Also worth a look: Plan W (First Nations
+  Health Benefits), Plan NP (National Pharmacare) and Plan S (Smoking Cessation).
+  The list lives at `gov.bc.ca` → PharmaCare → who-we-cover. **Note the standalone per-plan URLs
+  are unreliable — the Plan P one 404s — so read the section anchors on that hub instead.**
 - **Alberta:** community access for people in continuing care (CAPCC); the Alberta
   service dog qualification and ID; special needs housing.
 - **Scope questions rather than gaps:** provincial child/family benefits such as the

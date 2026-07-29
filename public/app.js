@@ -510,6 +510,16 @@ const REQS = {
     unmet: "BC Autism Funding requires an autism diagnosis that meets B.C. standards.",
   },
   autismSelected: { met: () => hasDisability("autism"), fixed: true, unmet: "This funding is specifically for an autistic child or youth." },
+  palliativeCandidateCondition: {
+    met: () => hasDisability("chronic") || hasDisability("other"),
+    fixed: true,
+    unmet: "This is for someone who has reached the end stage of a life-threatening disease or illness.",
+  },
+  planPRegistration: {
+    met: () => false,
+    fixed: false,
+    unmet: "A physician or nurse practitioner registers the patient with PharmaCare — there is no form for the patient or family to submit. Ask the doctor or nurse practitioner to send the BC Palliative Care Benefits registration form.",
+  },
   bcMsp: {
     met: () => answers.msp === "yes",
     fixed: () => answers.msp === "no",
