@@ -1413,3 +1413,38 @@ test("renovation tax credits stay conditional on the work actually being done, n
     expect(benefit.needs.map((need) => need.text).join(" ")).toMatch(/only once the qualifying renovation has actually been done/i);
   }
 });
+
+test("Kelowna KFAP is refused for post-secondary students, who the City excludes", async ({ page }) => {
+  const asStudent = await evaluateProfile(page, {
+    forWho: "self",
+    ageBand: "19to59",
+    ageGroup: "adult",
+    province: "BC",
+    city: "Kelowna",
+    citizenPR: true,
+    income: "low",
+    situation: ["student"],
+    disabilities: ["physical"],
+    disabilityVerified: "yes",
+  });
+  const kfap = asStudent["kelowna-recreation-assistance"];
+  expect(kfap, "expected a result for kelowna-recreation-assistance").toBeTruthy();
+  expect(kfap.status, "the City publishes this exclusion, so it must be a hard no").toBe("no");
+  expect(kfap.reasons.join(" ")).toMatch(/post-secondary students/i);
+  expect(kfap.reasons.join(" ")).toMatch(/discounted student rate/i);
+
+  const notStudent = await evaluateProfile(page, {
+    forWho: "self",
+    ageBand: "19to59",
+    ageGroup: "adult",
+    province: "BC",
+    city: "Kelowna",
+    citizenPR: true,
+    income: "low",
+    situation: ["none"],
+    disabilities: ["physical"],
+    disabilityVerified: "yes",
+  });
+  const kfapOther = notStudent["kelowna-recreation-assistance"];
+  expect(kfapOther.reasons.join(" ")).not.toMatch(/post-secondary students/i);
+});

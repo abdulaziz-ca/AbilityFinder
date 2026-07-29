@@ -13,25 +13,28 @@ Update this file whenever a finding is closed, reopened, or found to be wrong.
 
 The audit's findings table has **65 rows**. Current state:
 
-> ⚠️ **These counts predate the 2026-07-28 session and are stale — trust the tables below, not this
-> summary.** Closed that day: **DATA-12** (all four programs shipped), **REL-06** (root-caused, no
-> longer a human task), **PERF-01**'s two measurable defects, and the BC RAHA limits. Nobody has
-> recounted the 65 rows since; do that before quoting a percentage anywhere.
+> ⚠️ **Trust the tables below, not this summary.** The status rows were updated for the
+> 2026-07-28 closures — **DATA-12**, **REL-06**, **BC-BC-09**, **BC-BC-15**, **ABFED-16/17**,
+> **DATA-11**, the BC RAHA limits, and PERF-01's two measurable defects. The **per-severity rows
+> below are deliberately NOT recounted**: closing a finding does not reveal its severity band
+> without re-reading the audit, and doing that arithmetic by assumption would be exactly the kind
+> of unverified number this file forbids everywhere else. Re-map the IDs before quoting any
+> percentage.
 
 | Status | Rows | Notes |
 |---|---|---|
 | **Fully closed and deployed** | **54+** | was ~83% before 2026-07-28; several more closed that day, not yet recounted |
-| Partly closed | 1 | BC-BC group (7 of 8 done, BC-BC-15 needs one URL). **DATA-12 is now fully closed** |
+| Partly closed | 0 | **BC-BC is now complete** (BC-BC-15 and BC-BC-09 both closed 2026-07-28) and **DATA-12 is fully closed** |
 | Mitigated, not closed | 3 | DATA-25, UX-02, UX-03 — all need product decisions or user testing |
-| Open | 4 | TEST-01, and 3 needing a human. **PERF-01** is now measured with its two real defects fixed; **REL-06** is root-caused |
+| Open | 2 | TEST-01, and the accessibility/user testing. **PERF-01** measured with its two real defects fixed; **REL-06**, **BC-BC-09/15**, **ABFED-16/17** and **DATA-11** all closed 2026-07-28 |
 
 By severity:
 
 | Severity | Closed | Total | |
 |---|---|---|---|
 | **High / P1** | **22** | 23 | only DATA-25 outstanding, and it is mitigated |
-| Medium / P1 | 12 | 18 | 2 mitigated, 4 need a human |
-| Medium / P2 | 9 | 12 | PERF-01, DATA-11, DATA-12 |
+| Medium / P1 | see note | 18 | 2 mitigated. The human-only clarifications (BC-BC-09/15, ABFED-16/17, DATA-11, REL-06) all closed 2026-07-28, but **nobody has re-mapped finding IDs to severities**, so no count is stated rather than an invented one |
+| Medium / P2 | see note | 12 | DATA-11 and DATA-12 closed 2026-07-28; only PERF-01's residual JS-gating remains. Count not restated for the same reason as the row above |
 | Low + Informational | 12 | 12 | complete |
 
 **Every High/P1 release blocker except DATA-25 is closed.** What remains is
@@ -41,8 +44,9 @@ UX-03, TEST-01) and work that needs a person (see the human-only table).
 The NO-GO has still not been lifted — see *Release status* at the end. Code
 completeness is not the blocker; the untested accessibility is.
 
-> **Treat the audit as a lead, not an authority.** Two of its findings have now been
-> disproved against primary sources (see *Closed as incorrect*). Always re-verify a
+> **Treat the audit as a lead, not an authority.** **Three** of its findings have now been
+> disproved against primary sources (see *Closed as incorrect*) — BC-BC-02 and ABFED-16/17 outright,
+> and PERF-01's headline LCP figure was simply stale. Always re-verify a
 > finding against the current official page before changing anything.
 
 ---
@@ -168,16 +172,16 @@ closed. Leave the absence visible until the AT testing actually happens.
 | ID | What is needed |
 |---|---|
 | ~~BC RAHA income and asset limits~~ | **Closed 2026-07-28.** Source found: BC Housing's own eligibility calculator at **`https://bcrahacalculator.bchousing.org`** (© 2026 BC Housing, Ver 1.01) — not linked from the program overview or FAQ, which is why it was missed. It states the thresholds directly, and **identically on the Homeowner and Landlord/Tenant paths**: combined household assets **under $100,000** excluding the home being adapted, and combined annual gross household income **under $146,270.00**. There is **no single home-value cutoff** — the calculator asks for the community *and* the assessed value and evaluates them together, so none is stated in the record. Note for the future: the third-party figure of **$134,140** that advocacy sites quote is **wrong** as a general limit; refusing to copy it was correct |
-| BC-BC-15 | Kelowna KFAP post-secondary-student exclusion. `kelowna.ca` **is now reachable** (2026-07-28) — the earlier 403 was fetcher-specific, and a real browser loads it. Still open only because the exact KFAP page URL is unknown; guessed paths return 404. **Needed: the URL of the live Kelowna Recreation Assistance / KFAP page**, then the student question can be answered from it. Or call 250-469-8759 |
-| BC-BC-09 | SAET new-intake status unclear in current transition material — needs government clarification. **Deferred by the owner 2026-07-28** — not dropped, to be picked up later |
-| ABFED-16/17 | **Still open 2026-07-28.** Contact routes gathered: Easter Seals Alberta head office **403-235-5662**, `info@easterseals.ab.ca`, contact form at `easterseals.ab.ca/contact-us`; Lions Foundation Dog Guides **1-800-768-3030**, client enquiries `client-services@dogguides.com`. Neither page states intake status, so the original question is unanswered — **ask each directly: "is intake currently open, and if not when does it reopen?"** |
+| ~~BC-BC-15~~ | **Closed 2026-07-28, and it was a live false positive.** The owner supplied the page URL; the FAQ accordion (Drupal, collapsed, which is why it was missed) states verbatim: *"Post-secondary students are not eligible for financial assistance. However, students can access a discounted student rate on passes."* The record had **no** student rule, so KFAP was being shown to people Kelowna explicitly excludes — mutation-tested and confirmed: without the fix a Kelowna post-secondary student got status **`"ready"`**. Now gated by `notPostSecondaryStudent` (`met: () => !isStudent()`, `fixed: true` — correct here because the wizard *does* ask "In post-secondary school", so this is an answered criterion, not an unasked one), and the message hands the person the student-rate alternative rather than dead-ending them. Also captured from the same FAQ: temporary residents including study/work permits, business-class/investor/entrepreneur immigrants, and anyone banned from City facilities are excluded; applicants must re-apply yearly, up to one month before the term expires; and the LICO table is the **2025** one |
+| ~~BC-BC-09~~ | **Closed 2026-07-28.** Answered from the official page the owner supplied (`gov.bc.ca` → Children and Youth with Support Needs): **new intake is open** — *"new families should continue using current pathways for assistance"*. SAET stays available until **March 31, 2027**, or until the child transitions to the new benefit, and all SAET authorizations are being aligned to that end date; the **BC Children and Youth Disability Benefit begins April 1, 2027**. The record's note is rewritten to say exactly that. It previously claimed SAET families moved "starting April 2026", which could **not** be re-verified today and sat awkwardly against the April 1 2027 start, so that date was removed rather than left standing |
+| ~~ABFED-16/17~~ | **Closed as incorrect 2026-07-28 — see *Closed as incorrect* below.** |
 | DATA-11 | Medicine Hat city page and 2026 PDF disagree ($630 vs $635) — needs program-owner clarification |
 | ~~REL-06~~ | **Root cause found 2026-07-28 — no longer needs a human.** The "contradictory API routing" was not network- or region-dependent at all: it is **request-mode** dependent. `/api/link-health` returns **200 `application/json`** to `curl`/`fetch`, and **404 `text/html`** (our own 404 page) to a top-level browser navigation. Bisected to a single header: **`Sec-Fetch-Mode: navigate`** alone flips it; `Sec-Fetch-Dest`, `Sec-Fetch-Site`, `Sec-Fetch-User` and `Upgrade-Insecure-Requests` do not. Our Worker never reads `Sec-Fetch-*`, and **`wrangler dev --local` reproduces it**, so this is Cloudflare's static-asset routing (`assets.not_found_handling: "404-page"` in `wrangler.jsonc`) answering navigations before the Worker runs. **Severity is low**: the app's own `/api/*` calls use `fetch`, which sends `Sec-Fetch-Mode: cors`/`same-origin` and is unaffected — only a human typing an API URL sees it. **Fix, to land on its own:** set `assets.run_worker_first` for `/api/*`. Deliberately NOT bundled with data changes, because a wrong assets config can break static serving for the whole site and needs the worker-project e2e run to itself |
 | A11Y-01/02/03/05/06 | **First real VoiceOver + Safari pass done 2026-07-28 — one unresolved finding, everything else reported fine.** On a guide page (`bc-csg-services-equipment`) VoiceOver read the full h1, then **jumped straight to "Good to know", skipping the `.detail-lede` summary and the whole "What it is" block**, then jumped far down the page. **Not explained by our markup**: the Chromium accessibility tree exposes every section as a `heading` plus its text in document order, with "What it is" present between the title and "Good to know", nothing `aria-hidden`, and heading order h1 → h2×10. So the content is in the tree. **What is still needed to resolve it:** how VoiceOver was being driven at the time — item-by-item (VO+Right / swipe right), by heading rotor, or by landmark rotor — because heading and landmark navigation legitimately skip body text, and only item-by-item navigation skipping it would be a defect. NVDA and TalkBack still not run |
 | Guide `<section>`s have no accessible name | **Observation, deliberately NOT changed 2026-07-28.** Each guide page has 10 `<section class="guide-block">` with no `aria-label`, no `aria-labelledby`, and no `id` on the `h2`s, so they map to `generic` rather than `region`. Adding `aria-labelledby` would turn them into 10 named landmarks per page, which is rotor **noise**, not help. Screen-reader users navigate long documents by heading, and the headings are correct and complete. Recorded so nobody "fixes" it reflexively |
 | **Safari keyboard reachability** | Found 2026-07-28 by the new WebKit project. Chromium tabs `A#skipLink → BUTTON#headerMenuToggle → A#brandHome…`; WebKit tabs `SELECT → INPUT → TEXTAREA → BODY`, skipping **links and buttons entirely**. That is Safari's default until the user enables Full Keyboard Access — not an app defect. But it means a Safari keyboard-only user cannot Tab to the skip link, and the accessibility dialog (which contains only `<button>`s) cannot be Tab-traversed at all. VoiceOver users are unaffected because they navigate with the VO cursor, not Tab. **Confirm this during the real AT testing** — it is exactly the kind of thing automated checks cannot settle |
 | Accessibility specialist | **Partly done 2026-07-28 by the owner: 200% text, 400% zoom/reflow and 320px portrait showed no cut-offs and no horizontal scrolling; forced-colours/contrast mode hid nothing; print and print-to-PDF both render correctly.** Still outstanding from this row: **touch-target sizing**, and a specialist's judgement rather than a spot check |
-| DATA-11 (see also below) | **Still unresolved as a source conflict.** The `medicinehat-fair-entry` record already states **$630**, so no edit was needed; the owner's instruction to "put $630" matches what is already shipped. What remains open is *which* figure is authoritative for 2026 — the city page says $630, the 2026 PDF says $635 — and that still needs the program owner. Do not treat the record's value as confirmation |
+| ~~DATA-11~~ | **Closed 2026-07-28.** The owner called Medicine Hat and confirmed **$630** is the correct 2026 figure. The record already stated $630, so no data edit was needed — but it is now *confirmed by the program owner* rather than merely matching one of two conflicting sources. The $635 in the 2026 PDF is superseded. |
 | Real disabled-user study | Keyboard/switch/voice, magnification, cognitive fatigue, pain, financial stress |
 | Production-only validation | AI quota exhaustion, adversarial assistant prompts, email header sanitation in a non-delivery environment, field Core Web Vitals without analytics |
 
@@ -273,6 +277,7 @@ sample count.
 
 | ID | Why |
 |---|---|
+| ABFED-16/17 | **Verified false positive, 2026-07-28.** The audit claims the Easter Seals and Dog Guides entries "present closed intakes as actionable". Neither entry states an intake status **at all** — both are directory records in `public/grants-data.js` that describe what the organisation offers and route to its own program pages (*"Program pages on their site explain each application"*, *"Apply through the Get a Dog Guide section on their site"*), which is the correct behaviour for a directory. The owner also confirmed directly that **both are currently accepting applications**. So there was nothing to fix; only the `verified` dates were refreshed to 2026-07-28. This is the **third** audit finding disproved against primary sources |
 | BC-BC-02 | **Verified false positive, 2026-07-27.** The audit claims four PWD prescribed classes excluding Indigenous Services Canada. The current BCEA policy page (effective 2021-10-05, page updated 2026-07-13) lists **five**, explicitly including "People who have been designated as a Person with Disabilities by Indigenous Services Canada (ISC) within the BC region", and routes prescribed-class applicants to **HR3642** — exactly what the record already says. The audit appears to have conflated this with the separate "moving on reserve" policy. ISC designations are adjudicated by BCANDS |
 
 ---

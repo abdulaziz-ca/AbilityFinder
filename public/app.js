@@ -289,6 +289,11 @@ const REQS = {
   },
 
   student: { met: () => isStudent(), fixed: true, unmet: "This is for post-secondary students." },
+  notPostSecondaryStudent: {
+    met: () => !isStudent(),
+    fixed: true,
+    unmet: "Kelowna does not accept post-secondary students for this program. Students can instead ask for the discounted student rate on passes, by showing a valid student ID plus proof of full-time enrolment with your name on it.",
+  },
   childcare: { met: () => has(answers.situation, "childcare"), fixed: true, unmet: "This support is for a child attending or seeking child care." },
   working: { met: () => isWorking(), fixed: true, unmet: "This is for people with employment income." },
   lookingOrTraining: {
