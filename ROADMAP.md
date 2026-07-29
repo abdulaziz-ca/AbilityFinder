@@ -167,8 +167,11 @@ same-day verification of every figure before it ships:
   **Plan Z (Assurance)** — no record: "automatic coverage for anyone with MSP coverage".
   **Plan NP (National Pharmacare)** — no record: "automatic coverage for anyone enrolled in
   MSP". Its content is still useful — full cost of many contraceptives, diabetes medications
-  and menopausal hormone therapy. **Still open:** that is worth a tip on
-  `bc-fair-pharmacare`, and has not been written.
+  and menopausal hormone therapy. **Done 2026-07-29** — written as four tips on
+  `bc-fair-pharmacare` rather than a record, since coverage is "automatic at the pharmacy"
+  with nothing to register for. The tip worth having is that Plan NP dispenses do not count
+  towards the Fair PharmaCare deductible or family maximum, which is not obvious from the
+  Fair PharmaCare record on its own.
   **Plan M (Medication Management)** — no record: "automatic coverage for B.C. residents".
   A tip at most.
   **Plan X (HIV/AIDS)** — no record, **not selected 2026-07-29** when the owner chose Plan W
