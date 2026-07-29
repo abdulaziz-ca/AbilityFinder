@@ -96,7 +96,7 @@ test("the record is dated and points at the official page", () => {
 });
 
 test("the catalogue has the expected size and ids stay unique", () => {
-  assert.equal(BENEFITS.length, 92);
+  assert.equal(BENEFITS.length, 93);
   const ids = BENEFITS.map((item) => item.id);
   assert.equal(new Set(ids).size, ids.length);
 });

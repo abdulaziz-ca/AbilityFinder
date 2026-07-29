@@ -516,6 +516,12 @@ const REQS = {
     unmet: "Confirm B.C. Medical Services Plan enrolment first.",
     action: { text: "Check or apply for MSP", url: "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents/eligibility-and-enrolment" },
   },
+  bcSupplementaryBenefitsEligibility: {
+    met: () => false,
+    fixed: false,
+    unmet: "You qualify one of three ways: your adjusted net income last year was less than $42,000, or you are enroled with MSP through the At Home Program, or you are enroled with MSP as a Mental Health Client.",
+    action: { text: "Apply for Supplementary Benefits", url: "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents/benefits/services-covered-by-msp/supplementary-benefits" },
+  },
   bcPwdStatus: {
     met: () => answers.bcAssistance === "pwd",
     fixed: false,
@@ -609,7 +615,7 @@ const REQS = {
   bcHealthyKidsIncome: {
     met: () => false,
     fixed: false,
-    unmet: "Your family must be eligible for MSP supplementary benefits, which means an adjusted net income of \$42,000 or less. Apply to Health Insurance BC for supplementary benefits first.",
+    unmet: "Your family must be eligible for MSP supplementary benefits, which means an adjusted net income of less than $42,000. Apply to Health Insurance BC for supplementary benefits first.",
     action: { text: "Apply for MSP supplementary benefits", url: "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents/benefits/premium-assistance" },
   },
   bcWorkBcRoute: {

@@ -226,6 +226,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://abilityfinder.ca/guides/bc-msp-supplementary-benefits</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://abilityfinder.ca/guides/bc-pharmacare-plan-c</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
