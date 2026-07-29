@@ -4,8 +4,24 @@ const SSE = (text) => `event: delta\ndata: ${JSON.stringify({ text })}\n\n`;
 
 async function openChat(page) {
   await page.locator("#askFab").click();
+
+  // The panel is revealed by toggling [hidden], which restarts its 0.22s `rise` animation, and
+  // isVisible() does NOT retry. Probing it in the same tick as the click can observe the panel
+  // before layout settles, return false, skip the consent click, and leave #askInput hidden for the
+  // rest of the test — on CI that showed as #askInput resolving to hidden 183 times across 90s.
+  //
+  // Both controls are always in the DOM (#askBody is merely [hidden]), so a combined locator
+  // is a strict-mode violation. Wait for whichever one is actually rendered instead.
+  await page.waitForFunction(() => {
+    const rendered = (id) => {
+      const el = document.getElementById(id);
+      return !!el && el.getClientRects().length > 0;
+    };
+    return rendered("askAccept") || rendered("askInput");
+  });
+
   const accept = page.locator("#askAccept");
-  if (await accept.isVisible().catch(() => false)) await accept.click();
+  if (await accept.isVisible()) await accept.click();
   await page.locator("#askInput").waitFor({ state: "visible" });
 }
 
