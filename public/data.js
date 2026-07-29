@@ -1309,7 +1309,7 @@ const BENEFITS = [
     amount: "Up to $20,000 per year in eligible expenses, claimed as a non-refundable tax credit",
     summary:
       "A federal non-refundable tax credit for renovations that make a home safer or easier to get around, for people approved for the Disability Tax Credit and for people 65 or older.",
-    requires: ["homeRenoCandidate", "homeowner"],
+    requires: ["homeRenoCandidate", "homeowner", "qualifyingRenovationSpend"],
     note:
       "This is claimed on your tax return at line 31285, not applied for in advance. It is non-refundable, so it reduces tax you owe rather than producing a payment on its own.",
     requiresNote:
@@ -3028,7 +3028,7 @@ const BENEFITS = [
     "category": "Tax",
     "amount": "Up to $1,000 per year (10% of up to $10,000 in eligible renovation costs), refundable",
     "summary": "A refundable B.C. tax credit worth 10% of up to $10,000 in accessibility renovations to your principal residence — up to $1,000 back per year — for people who qualify for the disability tax credit, seniors 65+, and family members who live with them.",
-    "requires": ["bc", "homeRenoCandidate", "homeowner"],
+    "requires": ["bc", "homeRenoCandidate", "homeowner", "qualifyingRenovationSpend"],
     "requiresNote": "You must be a B.C. resident at year end and either qualify for the federal disability tax credit (any age), be 65 or older, or be a family member living with (and claiming for) an eligible person.",
     "note": "Refundable means you get the money even if you owe no tax. Renovations must improve access, mobility or safety in the home — for example ramps, grab bars, walk-in tubs, widened doors, stair lifts — not general repairs or value-boosting upgrades. Active for the 2025 and 2026 tax years.",
     "applyText": "Claim on your tax return",

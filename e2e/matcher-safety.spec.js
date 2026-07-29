@@ -1390,3 +1390,26 @@ test("ready remains reachable while the Alberta child profile stays conditional"
   const bcReady = Object.values(bcPwdAdult).filter((r) => r.status === "ready");
   expect(bcReady.length).toBeGreaterThan(0);
 });
+
+test("renovation tax credits stay conditional on the work actually being done, never ready", async ({ page }) => {
+  const results = await evaluateProfile(page, {
+    forWho: "self",
+    ageBand: "19to59",
+    ageGroup: "adult",
+    province: "BC",
+    citizenPR: true,
+    dtc: "yes",
+    circumstances: ["homeowner"],
+    situation: ["none"],
+    disabilities: ["physical"],
+    disabilityVerified: "yes",
+  });
+
+  for (const id of ["home-accessibility-tax-credit", "bc-home-reno-tax-credit"]) {
+    const benefit = results[id];
+    expect(benefit, `expected a result for ${id}`).toBeTruthy();
+    expect(benefit.status, `${id} must not claim readiness before the work is done`).toBe("almost");
+    expect(benefit.status).not.toBe("ready");
+    expect(benefit.needs.map((need) => need.text).join(" ")).toMatch(/only once the qualifying renovation has actually been done/i);
+  }
+});

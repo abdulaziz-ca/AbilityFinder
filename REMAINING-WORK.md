@@ -275,6 +275,19 @@ sample count.
 Matcher safety (no unsupported "ready" verdict anywhere): **DATA-42/43/44 + ABFED-02** (`fc0a8f9`),
 **DATA-30/47/48/49/50 + BC-BC-05/14/16** (`eb0210d`), **DATA-33/35/36/37/39/40/41 + ABFED-08** (`f4bc205`).
 
+**Renovation tax credits, 2026-07-28.** `home-accessibility-tax-credit` and
+`bc-home-reno-tax-credit` could both reach "ready" from `homeRenoCandidate` + `homeowner`. Both are
+**reimbursements of money already spent**: with no renovation there is no credit and nothing to
+apply for, so "Ready to apply" was a false verdict about money. The questionnaire never asks
+whether a qualifying renovation happened, and that is not incidental — it is the whole substance of
+both credits. A shared `qualifyingRenovationSpend` predicate (`met: () => false`, `fixed: false`)
+now puts both at "One step away" instead. `fixed: false` matters: a hard "no" would wrongly drop the
+credit for people who simply have not done the work yet. The shared `unmet` text deliberately states
+**no program-specific rule**, because B.C.'s credit was not re-verified against its source that day;
+each record's own `requiresNote` carries its own definition. Guarded by "renovation tax credits stay
+conditional on the work actually being done, never ready" in `e2e/matcher-safety.spec.js`, which was
+mutation-tested — removing the gate fails it with `Expected: "almost" / Received: "ready"`.
+
 Data accuracy: DATA-01, DATA-02, DATA-03, DATA-05, DATA-06, DATA-07, DATA-08,
 DATA-09, DATA-10, DATA-14, DATA-15, DATA-46 (`a7c648d`), ABFED-05 (`f438915`),
 ABFED-07 (`3aa85cd`), ABFED-09 (`3ef9a32`), ABFED-A01 (`fdd6d25`),

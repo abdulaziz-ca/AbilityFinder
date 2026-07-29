@@ -569,6 +569,11 @@ const REQS = {
     unmet: "You must have lived in B.C. for at least one year, be the registered owner of the property as your principal residence, keep at least 25% equity in it, and have paid all previous years' property taxes, utility fees, penalties and interest.",
     action: { text: "Review deferment eligibility", url: "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/property-tax-deferment-program/eligibility" },
   },
+  qualifyingRenovationSpend: {
+    met: () => false,
+    fixed: false,
+    unmet: "This credit pays back part of what you spend, so it applies only once the qualifying renovation has actually been done and paid for. Keep your invoices and receipts.",
+  },
   bcHomeOwnerGrantDisabilityRoute: {
     met: () => false,
     fixed: false,
