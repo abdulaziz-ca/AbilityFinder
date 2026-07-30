@@ -215,6 +215,23 @@ Wrangler tests do not show the injection.
 injection in the Cloudflare dashboard if desired, and separate blocked edge-script
 warnings from real application errors during smoke tests.
 
+### Two link-monitor hosts are permanently inconclusive
+
+A full manual sweep of all 175 catalogue links on 2026-07-30 returned **zero broken links**.
+Three URLs did not return 200, and none of them was a catalogue problem:
+
+- `vancouver.ca` and `kelowna.ca` both serve Cloudflare's "Attention Required!" interstitial to
+  any automated request, including one sending a browser user agent. The pages are alive in a
+  real browser. These two will read as 403 to `/api/link-health` forever, so treat them as
+  inconclusive rather than chasing them.
+- `sprucegrove.org` was returning 502 and 504 site-wide that day, including on its own root, so
+  our URL was correct and their server was down. A link monitor cannot tell that apart from a
+  dead link without checking the origin's root, which is worth doing before reporting a break.
+
+The useful rule: before treating a monitor failure as a catalogue defect, check whether the
+host's root also fails, and check whether the body is a bot-protection interstitial rather than
+the site's own 404.
+
 ## Product decisions not to re-litigate casually
 
 - No accounts/server sync for disability and income state; use local export/import

@@ -2376,7 +2376,7 @@ const BENEFITS = [
     note:
       "Important: AISH and ADAP recipients are NOT part of the general Transit Access Program — you get your own, cheaper pass instead ($10.25 vs $37.13). Ask for the AISH pass by name at City Hall.",
     applyText: "Grande Prairie transit fares",
-    applyUrl: "https://cityofgp.com/roads-transportation/public-transit/fares",
+    applyUrl: "https://cityofgp.com/roads-transportation/public-transit/fares-superpass",
     source: "https://cityofgp.com/roads-transportation/public-transit/transit-access-program",
     detail: {
       about:
@@ -3591,7 +3591,7 @@ const BENEFITS = [
     "note": "Covers work-related needs only — not medical treatments or daily-living items. Delivered under contract to the province with regional offices in Burnaby, Kelowna, Nanaimo and Victoria.",
     "applyText": "Apply online",
     "applyUrl": "https://apply.workbc.ca/",
-    "source": "https://www.workbc.ca/discover-employment-services/assistive-technology-services",
+    "source": "https://www.workbc.ca/get-support/assistive-technology-pwd",
     "detail": {
       "about": "Assistive Technology Services (ATS) removes equipment barriers between you and employment. It funds assistive devices and technology, ergonomic supports like furniture and lighting, restorative supports, ASL interpreting and captioning, communication and hearing devices for work, workplace access modifications, and vehicle modifications needed for employment. How much is covered depends on your financial circumstances.",
       "steps": ["Apply through WorkBC Online Employment Services (apply.workbc.ca) or contact ATS directly.", "An ATS specialist works with you to understand your work barrier and equipment needs.", "Approved equipment and services are arranged fully or partially funded."],
@@ -3612,8 +3612,8 @@ const BENEFITS = [
     "requiresNote": "Check whether you are eligible by applying online at apply.workbc.ca. Staff can support you in completing your application.",
     "note": "For clients with disabilities, the job search service includes working with employers to carve or customize jobs to meet your needs. Assistive technology funding is covered separately in the related WorkBC Assistive Technology Services program already in this catalog.",
     "applyText": "Apply online at WorkBC",
-    "applyUrl": "https://www.workbc.ca/discover-employment-services/workbc-centres",
-    "source": "https://www.workbc.ca/discover-employment-services/workbc-centres",
+    "applyUrl": "https://www.workbc.ca/get-support/workbc-centre-services",
+    "source": "https://www.workbc.ca/get-support/workbc-centre-services",
     "detail": {
       "about": "WorkBC centres provide free employment services including job-search help, training, work experience, wage subsidies and practical disability-related supports. A WorkBC counsellor reviews eligibility and builds the plan with you.",
       "steps": ["Get a Basic BCeID or set up online access with a BC Services Card", "Register for Online Employment Services and select WorkBC Employment Services", "Complete the application, including work status, barriers and the WorkBC centre you want to use", "Upload requested documents and communicate with the centre through the secure portal", "Meet an employment counsellor to confirm eligibility and create a personal action plan"],
@@ -3741,8 +3741,8 @@ const BENEFITS = [
     "requiresNote": "You must be a Surrey resident and qualify one of these ways: applying with income tax documents against the family size and income table; as a client of the Ministry of Social Development; with a Disability Tax Credit; as a senior receiving the Guaranteed Income Supplement; as a client of the Ministry of Children and Family Development; or as a refugee.",
     "note": "Enrolment is valid for one year. If you apply with income tax documents, the family net income maximum (line 23600 of your Notice of Assessment) is $25,588 for a family of 1, $31,140 for 2, $38,777 for 3, $48,377 for 4, $55,089 for 5, $61,095 for 6, $67,099 for 7, and $6,006 more for each additional person.",
     "applyText": "Apply for the Leisure Access Program",
-    "applyUrl": "https://www.surrey.ca/activities-parks-recreation/admissions-passes/leisure-access-program",
-    "source": "https://www.surrey.ca/activities-parks-recreation/admissions-passes/leisure-access-program",
+    "applyUrl": "https://www.surrey.ca/parks-recreation/activities-registration/admissions-passes/leisure-access-program",
+    "source": "https://www.surrey.ca/parks-recreation/activities-registration/admissions-passes/leisure-access-program",
     "detail": {
       "about": "Surrey accepts several qualifying routes. Income-tax applicants must meet both the family-income table and the additional investment, rental, RRSP-deduction and capital-gain limits on the current City page.",
       "steps": ["Review the City's qualifying routes and select the one that applies", "Complete the Leisure Access Program application and copy the documents required for that route", "Submit online and wait for staff to schedule an appointment, or submit in person at a listed Surrey facility", "After approval, use the pass through the MySurrey account or call registration staff"],

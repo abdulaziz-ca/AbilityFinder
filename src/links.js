@@ -231,7 +231,7 @@ export const LINKS = [
     "kind": "source"
   },
   {
-    "url": "https://cityofgp.com/roads-transportation/public-transit/fares",
+    "url": "https://cityofgp.com/roads-transportation/public-transit/fares-superpass",
     "label": "Grande Prairie AISH Transit Pass & Recreation Access — apply",
     "kind": "apply"
   },
@@ -571,12 +571,12 @@ export const LINKS = [
     "kind": "apply"
   },
   {
-    "url": "https://www.workbc.ca/discover-employment-services/assistive-technology-services",
+    "url": "https://www.workbc.ca/get-support/assistive-technology-pwd",
     "label": "WorkBC Assistive Technology Services — official source",
     "kind": "source"
   },
   {
-    "url": "https://www.workbc.ca/discover-employment-services/workbc-centres",
+    "url": "https://www.workbc.ca/get-support/workbc-centre-services",
     "label": "WorkBC Employment Services — apply",
     "kind": "apply"
   },
@@ -601,7 +601,7 @@ export const LINKS = [
     "kind": "apply"
   },
   {
-    "url": "https://www.surrey.ca/activities-parks-recreation/admissions-passes/leisure-access-program",
+    "url": "https://www.surrey.ca/parks-recreation/activities-registration/admissions-passes/leisure-access-program",
     "label": "Leisure Access Program (LAP) — apply",
     "kind": "apply"
   },
