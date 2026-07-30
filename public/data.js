@@ -1190,9 +1190,9 @@ const BENEFITS = [
       "Claimed automatically on your annual tax return once your DTC is on file with the CRA.",
     applyText: "Canada Workers Benefit details",
     applyUrl:
-      "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-workers-benefit.html",
+      "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-45300-canada-workers-benefit-cwb.html",
     source:
-      "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-workers-benefit.html",
+      "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-45300-canada-workers-benefit-cwb.html",
     detail: {
       about:
         "A refundable tax credit that boosts the income of lower-earning workers, with an extra 'disability supplement' for those approved for the DTC.",
@@ -1646,7 +1646,7 @@ const BENEFITS = [
     note:
       "AISH is for a severe, permanent disability that prevents employment. Alberta now uses one application to assess both AISH and ADAP — submit it once, not separately for each program.",
     applyText: "Apply for Alberta disability income assistance",
-    applyUrl: "https://www.alberta.ca/aish-how-to-apply",
+    applyUrl: "https://www.alberta.ca/how-to-apply-for-aish-and-adap",
     source: "https://www.alberta.ca/aish-eligibility",
     detail: {
       about:
@@ -1660,12 +1660,19 @@ const BENEFITS = [
         "Medical report showing how a severe, permanent impairment prevents employment",
         "Proof of Alberta residency + Canadian citizenship / PR",
         "Financial details (income and assets)",
+        "Disability Income Assistance (DIA) application form, if you cannot apply online",
+        "Disability Assistance Medical Report, completed by your health professional",
       ],
       tips: [
         "The medical form should focus on how your condition permanently prevents employment, not just the diagnosis.",
         "The combined application assesses AISH and ADAP. Alberta, not this tool, decides the program and benefit amount.",
         "Use Alberta's AISH/ADAP benefit estimator for a household-specific estimate before relying on any amount.",
         "If you receive AISH or ADAP, report the outcome of your CDB and/or DTC application to Alberta, including the approved CDB amount or a denial. Alberta says that when no CDB decision had been made by February 28, 2026, $200 was reduced from April 2026 benefits.",
+        "Getting help with the online application: phone the Alberta Supports Contact Centre at 1-877-644-9992, or 780-644-9992 in Edmonton.",
+        "Your health professional may charge you a fee to complete the Disability Assistance Medical Report, and you are responsible for paying it. If you are on Income Support that cost may be covered — ask your Income Support worker.",
+        "Benefits are backdated to the month AISH or ADAP received all of the information needed to approve your application, so getting every document in sooner is worth real money.",
+        "To check where your application is, phone 587-759-6810 in the Edmonton area, or 1-877-759-6810 toll free within Alberta.",
+        "If you left AISH or ADAP less than 2 years ago, and not because your medical condition changed, your file may be reopened quickly rather than you having to reapply from scratch.",
       ],
       time: "Ask Alberta Supports for the current processing time.",
       phone: "DIA Application Processing Centre (applications and status): 1-877-759-6810",
@@ -1684,7 +1691,7 @@ const BENEFITS = [
     note:
       "The same combined application assesses ADAP and AISH. This guide can only flag that ADAP may be worth asking about — Alberta makes the eligibility decision.",
     applyText: "Apply for Alberta disability income assistance",
-    applyUrl: "https://www.alberta.ca/aish-how-to-apply",
+    applyUrl: "https://www.alberta.ca/how-to-apply-for-aish-and-adap",
     source: "https://www.alberta.ca/alberta-disability-assistance-program",
     detail: {
       about:
@@ -1698,12 +1705,19 @@ const BENEFITS = [
         "Medical report describing how the disability significantly impedes employment",
         "Proof of Alberta residency + Canadian citizenship / PR",
         "Financial details (income and assets)",
+        "Disability Income Assistance (DIA) application form, if you cannot apply online",
+        "Disability Assistance Medical Report, completed by your health professional",
       ],
       tips: [
         "Describe functional limits and fluctuating or episodic barriers — not only your diagnosis name.",
         "One application is enough: Alberta decides whether AISH or ADAP is the appropriate program.",
         "Use Alberta's AISH/ADAP benefit estimator for a household-specific estimate before relying on any amount.",
         "If you receive ADAP or AISH, report the outcome of your CDB and/or DTC application to Alberta, including the approved CDB amount or a denial. Alberta says that when no CDB decision had been made by February 28, 2026, $200 was reduced from April 2026 benefits.",
+        "Getting help with the online application: phone the Alberta Supports Contact Centre at 1-877-644-9992, or 780-644-9992 in Edmonton.",
+        "Your health professional may charge you a fee to complete the Disability Assistance Medical Report, and you are responsible for paying it. If you are on Income Support that cost may be covered — ask your Income Support worker.",
+        "Benefits are backdated to the month AISH or ADAP received all of the information needed to approve your application, so getting every document in sooner is worth real money.",
+        "To check where your application is, phone 587-759-6810 in the Edmonton area, or 1-877-759-6810 toll free within Alberta.",
+        "If you left AISH or ADAP less than 2 years ago, and not because your medical condition changed, your file may be reopened quickly rather than you having to reapply from scratch.",
       ],
       time: "Ask Alberta Supports for the current processing time.",
       phone: "DIA Application Processing Centre (applications and status): 1-877-759-6810",

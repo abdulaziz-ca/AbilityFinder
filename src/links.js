@@ -36,7 +36,7 @@ export const LINKS = [
     "kind": "apply"
   },
   {
-    "url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-workers-benefit.html",
+    "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-45300-canada-workers-benefit-cwb.html",
     "label": "Canada Workers Benefit — Disability Supplement — apply",
     "kind": "apply"
   },
@@ -96,7 +96,7 @@ export const LINKS = [
     "kind": "apply"
   },
   {
-    "url": "https://www.alberta.ca/aish-how-to-apply",
+    "url": "https://www.alberta.ca/how-to-apply-for-aish-and-adap",
     "label": "Assured Income for the Severely Handicapped (AISH) — apply",
     "kind": "apply"
   },
