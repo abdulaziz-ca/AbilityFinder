@@ -285,6 +285,38 @@ Evidence: **2 wizard stalls in 5 full runs before the fix, 0 in 4 after.** Sugge
 proof — but the mechanism is now understood rather than guessed, which matters more than the
 sample count.
 
+**The family recurred on CI, 2026-07-30, and it cost a release.** Run `30574672375` on
+`47bee58` was **cancelled at the 45-minute job cap**, so `deploy` was skipped and a good
+commit never reached production.
+
+It was **not** the 2026-07-28 browser-install problem. The Playwright cache hit and the
+install step was skipped; system dependencies took 3.8 min and unit tests 0.13 min. All
+**39.2 minutes** went into the single "Browser and Worker tests" step, and the public
+annotations show it was accumulating 90-second timeouts rather than merely running slowly:
+`bc-live.spec.js:194`, `:205` and `:366` (one failing on `locator.click`),
+`persistence.spec.js:184` failing inside `pick("I'm not sure…")`, and
+`reminder-calendar.spec.js:185`, `:214` and `:245`. **Every one was `[app-chromium]`.** With
+`retries: 0` by design each failure costs a full 90 seconds, which is how a single bad run
+reaches the cap.
+
+The commit is exonerated by re-running it unchanged. `47bee58` touched four URLs, one archive
+section and the asset version — nothing that can affect wizard interaction or calendar
+arithmetic — it was **420/420 green locally**, and an empty re-trigger commit (`f19fc23`) put
+the identical tree through CI in **16.5 minutes, green**, inside the 14.9–16.4 minute band of
+the seven runs before it. Same tree, same suite, opposite outcome: the run was the variable,
+not the code.
+
+**This is the second time the job cap has blocked a good release** — 30 minutes on 2026-07-28,
+45 minutes on 2026-07-30. Raising the cap treats the symptom. The open question is why
+`[app-chromium]` accumulates 90-second timeouts on CI and never locally, and the honest state
+of this family is **rarer, not eliminated**.
+
+**Correction to the TEST-02 closure written 2026-07-29:** that row notes the A11Y-03 flake had
+not recurred and that `retries: 0` would make one visible if it did. Both statements are still
+true, and the mechanism worked exactly as described — but the row read as more settled than the
+suite actually is. TEST-02's three planned items remain done; the flakiness they were meant to
+reduce is not gone.
+
 ---
 
 ## Closed as incorrect — do not "fix" these
