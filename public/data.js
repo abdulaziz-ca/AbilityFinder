@@ -162,6 +162,12 @@ const BENEFIT_VALUES = {
   "adult-health-benefit": { kind: "coverage", note: "prescriptions, dental, optical, ambulance and diabetes supplies — Alberta publishes no annual dollar value" },
   "child-health-benefit": { kind: "coverage", note: "free prescriptions, dental & optical for kids" },
   "parking-placard": { kind: "access", note: "low-cost accessible parking permit" },
+  "ab-service-dog-id-card": { kind: "access", excludeFromEstimate: true,
+    note: "Free provincial ID card for a qualified service dog team, mailed in about 2 weeks" },
+  "ab-capcc": { kind: "services", excludeFromEstimate: true,
+    note: "A community access coordinator and an individual service plan to reduce social isolation" },
+  "ab-special-needs-housing": { kind: "services", excludeFromEstimate: true,
+    note: "Subsidized housing applied for through a local housing provider" },
   "calgary-fair-entry": { kind: "discount", note: "transit $6.30–$63/mo by income band + lower-cost recreation" },
   "edmonton-fare-assistance": { kind: "discount", note: "$36/mo transit pass + low-cost recreation" },
   // Municipal programs researched 2026-07-15 — figures from each city's own page.
@@ -2042,6 +2048,113 @@ const BENEFITS = [
       phone: "Any Alberta registry agent",
     },
   },
+  {
+    id: "ab-service-dog-id-card",
+    name: "Alberta Service Dog Identification Card",
+    level: "Alberta",
+    category: "Daily living supports",
+    amount: "No fee to apply",
+    summary:
+      "The provincial identification card for a qualified service dog team in Alberta. There is no fee, and the card is mailed in about two weeks.",
+    requires: ["ab", "abServiceDogQualified"],
+    note:
+      "The card carries an expiration date, so check it and renew before it lapses. The Alberta.ca identification card page does not set out the renewal process — call the Service Dog Assessment team at 780-427-9136, or toll-free within Alberta at 310-0000.",
+    requiresNote:
+      "Your service dog must have passed an assessment from one of Alberta's approved service dog providers, graduated from a program accredited by Assistance Dogs International, or been qualified by an organization contracted by a provincial or territorial government in Canada to train or assess service dogs to standards equivalent to the Alberta Training Standard.",
+    applyUrl: "https://servicedogs.alberta.ca/",
+    source: "https://www.alberta.ca/service-dog-identification-card",
+    detail: {
+      about:
+        "Each card shows the handler's name, the dog's name, photos, a validation number and an expiration date. You apply online through the Service Dogs Portal, or you can ask the Service Dog Assessment team for a form. There is no fee, and the official identification card is mailed in approximately two weeks. The Alberta.ca identification card page does not itself set out the access rights the card confers, so do not assume the card is the whole legal picture.",
+      steps: [
+        "Make sure your dog has qualified by one of the three accepted routes: an assessment from one of Alberta's approved service dog providers, graduation from a program accredited by Assistance Dogs International, or qualification by an organization contracted by a provincial or territorial government in Canada to standards equivalent to the Alberta Training Standard",
+        "Take one photo that clearly shows you and your service dog, with no other dogs or people in it",
+        "Apply online at the Service Dogs Portal, servicedogs.alberta.ca, or contact the Service Dog Assessment team to request a form",
+        "Wait about two weeks for the card to arrive in the mail",
+      ],
+      documents: [
+        "One photo showing you and your service dog clearly, submitted in PDF format",
+        "The photo must be close-up portrait format, taken from a minimum of 6 feet away, with you facing the camera and your face clear and visible",
+        "Your dog's head and your head should be at approximately the same level in the photo",
+      ],
+      tips: [
+        "The photo rules are specific and are an easy thing to get wrong: portrait format, taken from at least six feet away, your face clear and facing the camera, no other people or dogs, and your dog's head at roughly the same height as yours.",
+        "The photo has to go in as a PDF, not a JPEG or a phone screenshot.",
+        "If you would rather use paper, phone 780-427-9136, or 310-0000 toll-free inside Alberta, and ask the Service Dog Assessment team for a form.",
+      ],
+      time: "The card is mailed in approximately 2 weeks.",
+    },
+  },
+  {
+    id: "ab-capcc",
+    name: "Community Access for People in Continuing Care (CAPCC)",
+    level: "Alberta",
+    category: "Daily living supports",
+    amount: "Support from a community access coordinator and an individual service plan",
+    summary:
+      "Help for adults with disabilities living in facility-based continuing care in Alberta to take part in their communities and reduce loneliness and social isolation. A community access coordinator works with you on an individual service plan.",
+    requires: ["ab", "adult", "abCapccContinuingCareHome"],
+    note:
+      "Alberta.ca does not publish an application form or a cost for this program. The route is to contact a community access coordinator directly, and the program page lists them with phone numbers.",
+    requiresNote:
+      "You must be an adult Albertan under the age of 65, living in a type A or type B continuing care home, and able to actively participate in setting and following through with your goals and to communicate your preferences.",
+    applyUrl: "https://www.alberta.ca/community-access-continuing-care",
+    source: "https://www.alberta.ca/community-access-continuing-care",
+    detail: {
+      about:
+        "CAPCC helps adults with disabilities in facility-based continuing care engage with their communities to reduce loneliness and social isolation. A community access coordinator helps you develop an individual service plan built around your own interests, which can include outings with family and friends, volunteer activities, church or spiritual activities, movies and continuing education. The program page lists the community access coordinators as Revolve Home Health Ltd. at 587-971-6779, Taproot Community Support Services at 780-439-5087, Catholic Social Services at 403-967-3533, and Calgary Alternative Support Services Inc. at 403-283-0611.",
+      steps: [
+        "Check that you are an adult Albertan under 65 living in a type A or type B continuing care home",
+        "Find your nearest community access coordinator from the list on the program page",
+        "Contact that coordinator directly, since Alberta.ca does not publish an application form for this program",
+        "Work with the coordinator to build an individual service plan around your own interests",
+      ],
+      documents: [
+        "Alberta.ca does not publish a document list for this program, so ask the community access coordinator what they need",
+      ],
+      tips: [
+        "This is one of the few supports aimed at isolation rather than at money or equipment, which is exactly why it is easy to miss.",
+        "It is limited to type A and type B continuing care homes. Supportive living and long-term care are not listed on the program page.",
+        "The under-65 limit is unusual for a continuing care program, so confirm it before spending time on this one.",
+      ],
+      time: "Alberta.ca does not publish a timeline; ask the coordinator when you contact them.",
+    },
+  },
+  {
+    id: "ab-special-needs-housing",
+    name: "Special Needs Housing",
+    level: "Alberta",
+    category: "Daily living supports",
+    amount: "Subsidized housing; no rent formula is published for this program type",
+    summary:
+      "Subsidized provincial housing for people with special housing needs, including people with developmental disabilities and people with physical challenges. There is no central application — you find a local housing provider and apply to them directly.",
+    requires: ["ab", "citizenPR", "abSpecialNeedsHousingPlacement"],
+    note:
+      "Applications are not centralized. Use the Find Housing tool to see what is available, then contact the local housing provider directly for their application. Income limits are set community by community and Alberta.ca does not publish a single figure, so check the limit where you actually live rather than assuming.",
+    requiresNote:
+      "Special Needs Housing is for individuals who have special housing needs, including people with developmental disabilities, people with physical challenges, victims of family violence, wards of the provincial government, the hard-to-house, and any other group with special housing needs. You must have an income below the local income limits as determined by the market for your community, and be a Canadian citizen or permanent resident, a refugee sponsored by the Government of Canada, or a privately sponsored refugee whose sponsorship has broken down. Ukrainian evacuees with a Canada-Ukraine Authorization for Emergency Travel also qualify.",
+    applyUrl: "https://findhousing.alberta.ca/",
+    source: "https://www.alberta.ca/affordable-housing-programs",
+    detail: {
+      about:
+        "Special Needs Housing is one of four provincial affordable housing program types, alongside Community Housing, Seniors apartments and Seniors Lodge. It serves individuals who have special housing needs and may include support services for residents. Applying takes three steps: use the Find Housing tool to see which options are available to meet your needs, choose a local housing provider offering a program that suits your situation, then contact that provider directly for their application. Two things people wrongly carry over from the other program types: the rent formula of 30% of total annual household income is stated for Community Housing and Seniors apartments, not for Special Needs Housing, and the requirement to be functionally independent is stated for the seniors programs. Alberta.ca refers to an income thresholds document rather than publishing a single income limit.",
+      steps: [
+        "Use the Find Housing tool at findhousing.alberta.ca and answer its questions",
+        "Look through the options it displays and choose a local housing provider offering a program that suits your situation",
+        "Contact that provider directly to get and submit their application",
+        "Check the income limit for your own community, because limits are set locally rather than province-wide",
+      ],
+      documents: [
+        "Alberta.ca does not publish a province-wide document list, so ask the local housing provider what their application requires",
+      ],
+      tips: [
+        "There is no single provincial application, so different providers may ask for different things and keep separate waiting lists. Applying to one does not put you on another's list.",
+        "The 30% of income rent formula Alberta publishes is for Community Housing and Seniors apartments. It is not stated for Special Needs Housing, so ask the provider how rent is worked out.",
+        "Special Needs Housing may include support services for residents, so ask what support comes with the unit rather than assuming it is housing only.",
+      ],
+      time: "Alberta.ca does not publish a wait time, and each provider keeps its own waiting list.",
+    },
+  },
 
   /* ------------------------------------------------------------- MUNICIPAL */
   {
@@ -3782,6 +3895,7 @@ const BENEFIT_VERIFIED = {
   "adult-health-benefit": "2026-07",
   ramp: "2026-07",
   "cpp-disability": "2026-07", "cpp-childrens-benefit": "2026-07", "parking-placard": "2026-07",
+  "ab-service-dog-id-card": "2026-07", "ab-capcc": "2026-07", "ab-special-needs-housing": "2026-07",
   "multigenerational-home-renovation-tax-credit": "2026-07", "excise-gasoline-tax-refund": "2026-07",
   "canmore-affordable-services": "2026-07", "cochrane-connect-card": "2026-07",
   "fortsask-access": "2026-07", "leduc-subsidies": "2026-07",

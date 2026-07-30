@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 170 links. The monitor checks a bounded rotating batch every
+// 175 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) URLs are skipped — they depend on the
@@ -168,6 +168,31 @@ export const LINKS = [
   {
     "url": "https://www.alberta.ca/parking-placard-disabilities",
     "label": "Disability Parking Placard — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://servicedogs.alberta.ca/",
+    "label": "Alberta Service Dog Identification Card — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.alberta.ca/service-dog-identification-card",
+    "label": "Alberta Service Dog Identification Card — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www.alberta.ca/community-access-continuing-care",
+    "label": "Community Access for People in Continuing Care (CAPCC) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://findhousing.alberta.ca/",
+    "label": "Special Needs Housing — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.alberta.ca/affordable-housing-programs",
+    "label": "Special Needs Housing — official source",
     "kind": "source"
   },
   {

@@ -110,8 +110,18 @@ that day (Canadian Dental Care Plan, disability supports deduction, medical expe
 tax credit, Canada caregiver credit). These remain **open and unbuilt**, each needing
 same-day verification of every figure before it ships:
 
-- **Federal:** excise gasoline tax refund; CPP children's benefits; multigenerational
-  home renovation tax credit.
+- ~~**Federal:** excise gasoline tax refund; CPP children's benefits; multigenerational home
+  renovation tax credit.~~ **All three built and deployed 2026-07-29.**
+  `cpp-childrens-benefit` — $307.81/month in 2026 for a child under 18 or a full-time student
+  18-25, $153.91 part-time; the disability is the PARENT's, so it is deliberately not gated on
+  the `child` predicate. `multigenerational-home-renovation-tax-credit` — 14.5% of up to
+  $50,000, max $7,250 for 2025; a search summary said 15% and third-party sources say $7,500,
+  and both are wrong. Once per qualifying individual per lifetime, and its expenses cannot also
+  be claimed under the home accessibility or medical expense credits. It was added to the
+  existing renovation-credit e2e guard, whose id list is enumerated.
+  `excise-gasoline-tax-refund` — states NO per-litre amount on purpose: three official pages
+  publish none and temporary federal fuel excise reductions are in effect, so the record gives
+  the CRA number 1-877-432-5472 instead.
 - **B.C.:** ~~the annual earnings exemption~~ **done 2026-07-28** — and my note above
   overstated it: the exemption was already in `bc-disability-assistance-pwd`'s note, not
   absent. Its figures were re-verified as still current ($16,200 single, $23,400 one PWD,
@@ -195,8 +205,21 @@ same-day verification of every figure before it ships:
   is a general-population program with nothing to apply for.
   The list lives at `gov.bc.ca` → PharmaCare → who-we-cover. **Note the standalone per-plan URLs
   are unreliable — the Plan P one 404s — so read the section anchors on that hub instead.**
-- **Alberta:** community access for people in continuing care (CAPCC); the Alberta
-  service dog qualification and ID; special needs housing.
+- ~~**Alberta:** community access for people in continuing care (CAPCC); the Alberta service
+  dog qualification and ID; special needs housing.~~
+  **All three built and deployed 2026-07-29.** `ab-service-dog-id-card` — no fee,
+  mailed in about 2 weeks; the fiddly part is the photo (PDF only, portrait, from at least 6
+  feet, dog's head level with yours).
+  `ab-capcc` — narrower than this entry implied: adult Albertans **under 65** in a **type A or
+  type B** continuing care home only, and alberta.ca publishes no form or cost, so the route is
+  phoning a listed community access coordinator. `ab-special-needs-housing` — no central
+  application; find a local provider through `findhousing.alberta.ca` and apply to them. Three
+  figures were deliberately refused because alberta.ca states them only for OTHER program
+  types: the 30%-of-income rent formula and the functional-independence rule both belong to
+  Community Housing / Seniors programs, and no dollar income limit is published at all.
+  Its `category` is "Daily living supports", not "Health & equipment": `public/app.js`
+  substring-matches category into a value bucket, so "equipment" would file housing as health
+  and a new "Housing" category would fall through to "income".
 - **Scope questions rather than gaps:** provincial child/family benefits such as the
   Alberta Child and Family Benefit and the B.C. Family Benefit are income-based rather
   than disability-based.

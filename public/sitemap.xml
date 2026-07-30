@@ -146,6 +146,21 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://abilityfinder.ca/guides/ab-service-dog-id-card</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abilityfinder.ca/guides/ab-capcc</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abilityfinder.ca/guides/ab-special-needs-housing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://abilityfinder.ca/guides/calgary-fair-entry</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

@@ -425,6 +425,21 @@ const REQS = {
     fixed: false,
     unmet: "Confirm PDD's citizenship and assessed intellectual/adaptive-function criteria.",
   },
+  abServiceDogQualified: {
+    met: () => false,
+    fixed: false,
+    unmet: "Your service dog must already be qualified — assessed by one of Alberta's approved service dog providers, graduated from an Assistance Dogs International accredited program, or qualified by an organization contracted by a provincial or territorial government in Canada to an equivalent standard.",
+  },
+  abCapccContinuingCareHome: {
+    met: () => false,
+    fixed: false,
+    unmet: "This is for people living in a type A or type B continuing care home in Alberta who can take part in setting their own goals and communicate their preferences. The questionnaire does not ask where you live.",
+  },
+  abSpecialNeedsHousingPlacement: {
+    met: () => false,
+    fixed: false,
+    unmet: "Income limits are set community by community, and you apply to a local housing provider rather than to the province, so that provider confirms eligibility and holds the waiting list.",
+  },
   fscdEligibility: {
     met: () => false,
     fixed: false,
