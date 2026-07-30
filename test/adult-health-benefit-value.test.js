@@ -114,7 +114,7 @@ test("legitimate dollar values on other benefits are untouched", () => {
     item.id.includes("dental-supplement")
   );
   const homeRenovationCredit = BENEFITS.find((item) =>
-    item.id.includes("home-reno")
+    item.id === "bc-home-reno-tax-credit"
   );
 
   assert.ok(rdsp, "expected to find the RDSP record");

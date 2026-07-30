@@ -617,6 +617,16 @@ const REQS = {
     fixed: false,
     unmet: "This credit pays back part of what you spend, so it applies only once the qualifying renovation has actually been done and paid for. Keep your invoices and receipts.",
   },
+  mhrtcSecondaryUnit: {
+    met: () => false,
+    fixed: false,
+    unmet: "This credit is only for creating a self-contained secondary unit with its own private entrance, kitchen, bathroom and sleeping area, so that a senior or an adult eligible for the Disability Tax Credit can live with a relative. Only one such renovation can ever be claimed for that person.",
+  },
+  excisePermanentMobilityCertified: {
+    met: () => false,
+    fixed: false,
+    unmet: "A qualified medical practitioner must certify that you have a permanent mobility impairment and cannot safely use public transportation.",
+  },
   cdcpRequirements: {
     met: () => false,
     fixed: false,

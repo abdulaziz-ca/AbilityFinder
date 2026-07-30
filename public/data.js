@@ -200,6 +200,8 @@ const BENEFIT_VALUES = {
   "bc-raha": { kind: "grant", excludeFromEstimate: true, note: "lifetime maximum per household; adaptations completed before written approval are not eligible" },
   "bc-home-reno-tax-credit": { kind: "taxCredit", excludeFromEstimate: true, annualMax: 1000, note: "refundable; 10% of up to $10,000 in eligible renovations; conditional on spending" },
   "home-accessibility-tax-credit": { kind: "taxCredit", excludeFromEstimate: true, note: "non-refundable; conditional on eligible renovation spending" },
+  "multigenerational-home-renovation-tax-credit": { kind: "taxCredit", excludeFromEstimate: true, note: "14.5% of up to $50,000 in eligible expenses, to a maximum of $7,250 for the 2025 tax year" },
+  "excise-gasoline-tax-refund": { kind: "taxCredit", excludeFromEstimate: true, note: "Part of the federal excise tax on gasoline you buy; no per-litre amount is published" },
   "bc-sales-tax-credit": { kind: "taxCredit", excludeFromEstimate: true, annualMax: 75, note: "income-tested refundable credit, up to $75/person" },
   "bc-property-tax-deferment-disabilities": { kind: "access", excludeFromEstimate: true, note: "a repayable low-interest loan, not a payment" },
   "bc-fair-pharmacare": { kind: "coverage", excludeFromEstimate: true, note: "income-based drug coverage" },
@@ -1393,6 +1395,86 @@ const BENEFITS = [
         "it is non-refundable, so it reduces tax owing rather than paying out on its own",
         "costs that mainly raise the value of the home, routine repairs, appliances and financing costs are not eligible",
         "an item you buy that does not become a permanent part of the home is generally not eligible",
+      ],
+    },
+  },
+  {
+    id: "multigenerational-home-renovation-tax-credit",
+    name: "Multigenerational Home Renovation Tax Credit (MHRTC)",
+    level: "Federal",
+    category: "Tax",
+    amount: "14.5% of up to $50,000 in eligible expenses, to a maximum of $7,250 (2025 tax year)",
+    summary:
+      "A refundable federal credit for building a self-contained secondary unit in a home so that a senior, or an adult eligible for the Disability Tax Credit, can live with a relative. It is worth 14.5% of up to $50,000 of eligible costs, to a maximum of $7,250 for the 2025 tax year.",
+    requires: ["homeRenoCandidate", "qualifyingRenovationSpend", "mhrtcSecondaryUnit"],
+    note:
+      "This is a once-in-a-lifetime claim for the person the unit is built for, so it is worth getting right before the work starts. Note the rate: for the 2025 tax year the credit is 14.5% to a maximum of $7,250 — figures of 15% and $7,500 are widely quoted but do not match the CRA's current page.",
+    requiresNote:
+      "The renovation must create a self-contained secondary unit. One of the people living in the existing home or in the new unit must be a qualifying individual: either 65 years of age or older at the end of the renovation period tax year, or 18 to 64 and eligible for the Disability Tax Credit at any time in that year. Only one renovation can be claimed for a qualifying individual during their lifetime. The person claiming must be an eligible individual: a resident of Canada from January 1 to December 31 of the claim year who either ordinarily resides, or intends to ordinarily reside, in the home within 12 months of the end of the renovation period and is the qualifying individual, their cohabiting spouse or common-law partner, or a qualifying relation of theirs; or who owns the home and is a qualifying relation of the qualifying individual. The home must be in Canada, owned by the qualifying individual or a qualifying relation during the renovation period tax year, and lived in by both the qualifying individual and a qualifying relation within 12 months after the renovation period ends.",
+    applyText: "Multigenerational Home Renovation Tax Credit (MHRTC)",
+    applyUrl:
+      "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-45355-mhrtc.html",
+    source:
+      "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-45355-mhrtc.html",
+    detail: {
+      about:
+        "The multigenerational home renovation tax credit is a refundable credit claimed on line 45355 of your income tax and benefit return for the 2024 and later tax years. A secondary unit is a self-contained housing unit with a private entrance, kitchen, bathroom and sleeping area. It must be newly constructed, or created from existing living space that did not already meet local requirements to be considered a secondary dwelling unit, and it must meet applicable local requirements, permits, codes and by-laws. A qualifying relation is someone 18 years of age or older at the end of the tax year being claimed who is a parent, grandparent, child, grandchild, brother, sister, aunt, uncle, niece or nephew of the qualifying individual, or of that individual's cohabiting spouse or common-law partner. You claim the renovation in the tax year in which the renovation period ended, even if the work took more than one year. The renovation period begins when the first qualifying expenditure is made or incurred, for example when you apply for a building permit, and ends when the renovation is completed, for example when it passes final inspection or proof of project completion is received. Where two or more people share the costs of the same qualifying renovation, the credit can be split between them, provided each is an eligible individual, the total claimed does not exceed the maximum, each claims only the expenditures they incurred, and no MHRTC was previously claimed for that qualifying individual.",
+      steps: [
+        "Confirm before starting that the person the unit is for is a qualifying individual, and that no MHRTC has ever been claimed for them",
+        "Check that the planned unit will be self-contained, with its own private entrance, kitchen, bathroom and sleeping area, and that it will meet local requirements, permits, codes and by-laws",
+        "Keep every invoice and proof of payment as the work proceeds",
+        "Claim it in the tax year in which the renovation period ended, on line 45355 of your income tax and benefit return",
+        "Use Schedule 12, Multigenerational Home Renovation Tax Credit, to report the expenses and calculate the credit",
+      ],
+      documents: [
+        "Schedule 12, Multigenerational Home Renovation Tax Credit",
+        "Invoices identifying the vendor or contractor, their business address and GST/HST registration number if any",
+        "A description of the goods and the date they were bought, and the date the goods were delivered or the work was performed",
+        "A description of the work done, including the address, and the amount of the invoice",
+        "Proof of payment: receipts or invoices showing payment in full, or other proof such as a credit card slip or cancelled cheque",
+      ],
+      tips: [
+        "You cannot claim the same expense under more than one credit. Expenses included in an MHRTC claim cannot also be claimed for the medical expense tax credit or the home accessibility tax credit.",
+        "Expenses have to be reduced by anything you were reimbursed for, including any form of assistance you receive or are entitled to receive, and related rebates such as GST/HST rebates.",
+        "The claim year is set by when the renovation period ENDED, not when it started, so a project spanning two years is claimed once, in the later year.",
+        "You may claim more than one qualifying renovation in the same year, but still only one per qualifying individual per lifetime.",
+      ],
+    },
+  },
+  {
+    id: "excise-gasoline-tax-refund",
+    name: "Excise Gasoline Tax Refund",
+    level: "Federal",
+    category: "Tax",
+    amount: "A refund of part of the federal excise tax on gasoline you buy; the CRA publishes no per-litre amount",
+    summary:
+      "If you have a permanent mobility impairment and cannot safely use public transportation, you can claim back part of the federal excise tax on the gasoline you buy. A qualified medical practitioner has to certify the impairment.",
+    requires: ["vehicleDisability", "excisePermanentMobilityCertified"],
+    note:
+      "None of the CRA's pages for this program — the program page, the Form XE8 page, or Guide RC4064 — publishes a refund amount per litre, and temporary reductions of the federal excise tax rates on certain types of fuel are in effect. Ask the CRA at 1-877-432-5472 what the current rate is rather than relying on a figure from anywhere else.",
+    requiresNote:
+      "You must have a permanent mobility impairment and be unable to safely use public transportation. A qualified medical practitioner must certify the impairment.",
+    applyText: "Form XE8, Application for Refund of Federal Excise Tax on Gasoline",
+    applyUrl: "https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/xe8.html",
+    source:
+      "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/excise-gasoline-tax-refund.html",
+    detail: {
+      about:
+        "This is a refund of part of the federal excise tax you pay on gasoline, for people with a permanent mobility impairment who cannot safely use public transportation. A qualified medical practitioner must certify the impairment. You claim it using Form XE8, Application for Refund of Federal Excise Tax on Gasoline, which can be filed electronically through My Account, My Business Account or Represent a Client in your CRA account, or downloaded and filled out. The same form is also used by registered Canadian amateur athletic associations and registered charities, so only part of it concerns an individual with a permanent mobility impairment. The CRA's pages for this program do not state the refund amount per litre, and the Form XE8 page notes that the government implemented temporary reductions of the federal excise tax rates on certain types of fuel.",
+      steps: [
+        "Ask a qualified medical practitioner to certify your permanent mobility impairment",
+        "Get Form XE8, Application for Refund of Federal Excise Tax on Gasoline",
+        "File it electronically through My Account, My Business Account or Represent a Client in your CRA account, or fill out the PDF and send it in",
+        "Call the CRA at 1-877-432-5472 if you need help with the form or want the current refund rate",
+      ],
+      documents: [
+        "Form XE8, Application for Refund of Federal Excise Tax on Gasoline",
+        "A qualified medical practitioner's certification of the permanent mobility impairment",
+      ],
+      tips: [
+        "Form XE8 comes as an accessible fillable PDF, a standard print PDF and a large print PDF, and the CRA will provide alternate formats including braille, electronic text, digital audio and large print on request.",
+        "Keep your gasoline receipts as you go, since the refund is based on gasoline you have already bought.",
+        "Do not budget using a per-litre figure from a third-party site. The CRA does not publish one here and fuel excise rates are under temporary reductions — call 1-877-432-5472.",
       ],
     },
   },
@@ -3700,6 +3782,7 @@ const BENEFIT_VERIFIED = {
   "adult-health-benefit": "2026-07",
   ramp: "2026-07",
   "cpp-disability": "2026-07", "cpp-childrens-benefit": "2026-07", "parking-placard": "2026-07",
+  "multigenerational-home-renovation-tax-credit": "2026-07", "excise-gasoline-tax-refund": "2026-07",
   "canmore-affordable-services": "2026-07", "cochrane-connect-card": "2026-07",
   "fortsask-access": "2026-07", "leduc-subsidies": "2026-07",
   "lloydminster-recreation-access": "2026-07", "okotoks-fee-assistance": "2026-07",

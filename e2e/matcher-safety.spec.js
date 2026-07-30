@@ -1405,7 +1405,7 @@ test("renovation tax credits stay conditional on the work actually being done, n
     disabilityVerified: "yes",
   });
 
-  for (const id of ["home-accessibility-tax-credit", "bc-home-reno-tax-credit"]) {
+  for (const id of ["home-accessibility-tax-credit", "bc-home-reno-tax-credit", "multigenerational-home-renovation-tax-credit"]) {
     const benefit = results[id];
     expect(benefit, `expected a result for ${id}`).toBeTruthy();
     expect(benefit.status, `${id} must not claim readiness before the work is done`).toBe("almost");

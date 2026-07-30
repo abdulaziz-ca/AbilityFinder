@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 167 links. The monitor checks a bounded rotating batch every
+// 170 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) URLs are skipped — they depend on the
@@ -59,6 +59,21 @@ export const LINKS = [
     "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-31285-home-accessibility-expenses.html",
     "label": "Home Accessibility Tax Credit (HATC) — apply",
     "kind": "apply"
+  },
+  {
+    "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-45355-mhrtc.html",
+    "label": "Multigenerational Home Renovation Tax Credit (MHRTC) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/xe8.html",
+    "label": "Excise Gasoline Tax Refund — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/excise-gasoline-tax-refund.html",
+    "label": "Excise Gasoline Tax Refund — official source",
+    "kind": "source"
   },
   {
     "url": "https://www.canada.ca/en/services/benefits/dental/dental-care-plan.html",
