@@ -40,6 +40,31 @@ browser/curl but reject Cloudflare Worker fetches.
 inconclusive. Inspect final URLs and confirm in a real browser before declaring a
 published source dead. Reports that cry wolf stop being useful.
 
+### Search and fetch summaries fabricate specifics
+
+Two occurrences on 2026-07-29 and 2026-07-30, both caught only because the official page
+was then read directly.
+
+- **Multigenerational home renovation tax credit.** A web-search summary reported the credit
+  as "15 per cent of eligible expenses or $50,000 (whichever amount is less)" — internally
+  garbled, and wrong. The CRA's live page states 14.5% of up to $50,000, to a maximum of
+  $7,250, for the 2025 tax year. Third-party sites almost universally quote 15% and $7,500.
+  Copying either would have overstated a refund that can only ever be claimed once for a
+  given qualifying individual.
+- **Alberta's Disability Assistance Medical Report.** A page-fetch summary reported the form
+  number as "DS2444B". That string appears nowhere on the live page. It was not recorded.
+
+The pattern is consistent: summaries are most confident and most specific exactly where they
+are least reliable — rates, dollar maximums, form numbers, deadlines — and they fill gaps
+rather than reporting an absence. A summary is a pointer to a page, never the source of a
+figure.
+
+The rule that follows: read the official page itself before recording any amount, rate, form
+number, phone number or date. `canada.ca` returns 403 to automated fetch, so it needs a real
+browser. And where a page publishes no figure — as the program page, the Form XE8 page and
+Guide RC4064 all do for the excise gasoline tax refund — record none rather than borrowing
+one from elsewhere.
+
 ## Rendering and CSS failures
 
 ### A persisted blank page
