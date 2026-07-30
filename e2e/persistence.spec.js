@@ -59,22 +59,40 @@ async function expectHealthy(page) {
 //
 // Only FINITE animations are awaited. The page also runs decorative infinite ones (the aurora
 // layers and .wiz-mountains drift) whose `finished` promise never resolves; awaiting those would
-// hang. The 1000ms race is a backstop for an animation that fails to settle under contention.
+// hang. The 5000ms race is generous headroom for a starved frame budget, and blowing it now throws
+// with the animation names rather than returning as if settled — a silent backstop hid exactly
+// the stalls this helper exists to prevent.
 async function settleWizardCard(page) {
   const card = page.locator(".wizard-card");
   if (!(await card.count())) return;
-  await card
-    .evaluate(async (el) => {
-      const finite = el.getAnimations().filter((animation) => {
-        const timing = animation.effect && animation.effect.getComputedTiming();
-        return !timing || timing.iterations !== Infinity;
-      });
-      await Promise.race([
-        Promise.all(finite.map((animation) => animation.finished.catch(() => {}))),
-        new Promise((resolve) => setTimeout(resolve, 1000)),
+  const result = await card
+    .evaluate(async (el, _unused) => {
+      const finiteOf = () =>
+        el.getAnimations().filter((animation) => {
+          const timing = animation.effect && animation.effect.getComputedTiming();
+          return !timing || timing.iterations !== Infinity;
+        });
+      const settled = await Promise.race([
+        Promise.all(finiteOf().map((animation) => animation.finished.catch(() => {}))).then(() => true),
+        new Promise((resolve) => setTimeout(() => resolve(false), 5000)),
       ]);
-    }, undefined, { timeout: 5000 })
-    .catch(() => {});
+      return {
+        settled,
+        still: finiteOf()
+          .filter((animation) => animation.playState === "running")
+          .map((animation) => animation.animationName || animation.constructor.name),
+      };
+    }, undefined, { timeout: 15000 })
+    .catch((error) => ({ settled: false, still: [], evaluateError: String((error && error.message) || error) }));
+  if (!result.settled) {
+    throw new Error(
+      "settleWizardCard: the wizard card was still animating after 5000ms" +
+        (result.still && result.still.length ? ` — still running: [${result.still.join(", ")}]` : "") +
+        (result.evaluateError ? ` — evaluate failed: ${result.evaluateError}` : "") +
+        ". A click dispatched now can land at stale coordinates and hit nothing, which surfaces " +
+        "later as an unexplained 90s timeout rather than as this message.",
+    );
+  }
 }
 
 async function pick(page, text) {
