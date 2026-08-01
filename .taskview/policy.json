@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "project_name": "AbilityFinder",
+  "project_id": 2,
+  "organization_slug": "org-fbbce12c",
+  "kanban_route_segment": -1401,
+  "project_url": "http://localhost:8888/org-fbbce12c/2/-1401",
+  "local_url": "http://localhost:8888",
+  "api_url": "http://localhost:1725",
+  "capture_state": "Inbox",
+  "project_statuses": [
+    "Backlog",
+    "Ready",
+    "In Progress",
+    "Blocked",
+    "Review",
+    "Verification",
+    "Done",
+    "Cancelled"
+  ],
+  "agent_tags": ["agent:claude", "agent:codex"],
+  "review": {
+    "substantial_work_requires_other_agent": true,
+    "self_approval_allowed": false,
+    "sequence": ["Review", "Verification", "Done"],
+    "challenge_areas": [
+      "requirements",
+      "diff",
+      "tests",
+      "security",
+      "accessibility",
+      "privacy",
+      "regression_risk"
+    ]
+  },
+  "human_gates": {
+    "delete_project": true,
+    "delete_task": true,
+    "workflow_changes": true,
+    "major_cancellations": true,
+    "production_deploy": true,
+    "security_sensitive_approvals": true,
+    "unclear_product_requirements": true,
+    "configurable_later_with_human_approval": true
+  },
+  "auto_next": false,
+  "offline_log": ".taskview/offline-log.md"
+}

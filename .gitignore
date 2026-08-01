@@ -14,3 +14,6 @@ playwright-report/
 
 # Temporary a11y audit tool — never ship
 public/axe.min.js
+# TaskView local state (shared policy and templates remain tracked)
+.taskview/offline-log.md
+.taskview/local.json
