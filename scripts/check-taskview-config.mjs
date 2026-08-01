@@ -257,7 +257,6 @@ function validatePolicy(policy) {
     // The whole path is compared, in order. Presence alone is not enough:
     // /2/org-slug/-1401 (reordered) and /decoy/org-slug/2/-1401 (extra prefix)
     // both contain the right values while addressing the wrong thing.
-    const segments = projectUrl.pathname.split("/").filter(Boolean);
     const expected = [
       String(policy.organization_slug),
       String(policy.project_id),
@@ -265,12 +264,16 @@ function validatePolicy(policy) {
     if (Number.isInteger(policy.kanban_route_segment)) {
       expected.push(String(policy.kanban_route_segment));
     }
-    const matches =
-      segments.length === expected.length &&
-      segments.every((s, i) => s === expected[i]);
-    if (!matches) {
+    // Compare the pathname itself rather than filtered segments. Splitting and
+    // dropping empty parts silently accepts //, /a//b and trailing runs of
+    // slashes, none of which address the same route.
+    const wanted = `/${expected.join("/")}`;
+    if (
+      projectUrl.pathname !== wanted &&
+      projectUrl.pathname !== `${wanted}/`
+    ) {
       errors.push(
-        `project_url path must be exactly /${expected.join("/")} (organization_slug/project_id/kanban_route_segment); received /${segments.join("/")}`,
+        `project_url path must be exactly ${wanted} (organization_slug/project_id/kanban_route_segment), with at most one trailing slash; received ${show(projectUrl.pathname)}`,
       );
     }
   }
