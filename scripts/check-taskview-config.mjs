@@ -42,7 +42,13 @@ const LIFECYCLE_ORDER = [
   "Verification",
   "Done",
 ];
+// A terminal alternative, not a success state. Its position is deliberately not
+// constrained: the workflow describes it as an alternative outcome rather than
+// a stage, so a board may place it anywhere.
 const TERMINAL_STATUS = "Cancelled";
+
+// The built-in untriaged capture area. Explicitly NOT a project board status.
+const CAPTURE_STATE = "Inbox";
 
 // "Identify the acting agent with exactly one identity tag: agent:claude or
 // agent:codex."
@@ -104,15 +110,24 @@ function requireInteger(errors, value, path, { positive = false } = {}) {
   return true;
 }
 
+// Returns the parsed URL, or null. Only http/https are accepted: `new URL()`
+// happily parses javascript:, data: and mailto:, which are never valid here.
 function requireUrl(errors, value, path) {
-  if (!requireNonEmptyString(errors, value, path)) return false;
+  if (!requireNonEmptyString(errors, value, path)) return null;
+  let parsed;
   try {
-    new URL(value);
-    return true;
+    parsed = new URL(value);
   } catch {
     errors.push(`${path} must be a valid absolute URL; received ${show(value)}`);
-    return false;
+    return null;
   }
+  if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+    errors.push(
+      `${path} must use http or https; received scheme ${show(parsed.protocol)}`,
+    );
+    return null;
+  }
+  return parsed;
 }
 
 function requirePlainObject(errors, value, path) {
@@ -145,6 +160,7 @@ function requireExactSet(errors, actual, expected, path) {
     errors.push(`${path} must be an array; received ${show(actual)}`);
     return;
   }
+  reportDuplicates(errors, actual, path);
   const missing = expected.filter((v) => !actual.includes(v));
   const unexpected = actual.filter((v) => !expected.includes(v));
   if (missing.length > 0) {
@@ -157,18 +173,47 @@ function requireExactSet(errors, actual, expected, path) {
   }
 }
 
+// A repeated entry is always a mistake, even where extras are otherwise allowed:
+// it makes "which one wins" ambiguous.
+function reportDuplicates(errors, values, path) {
+  const seen = new Set();
+  const dupes = new Set();
+  for (const v of values) {
+    if (seen.has(v)) dupes.add(v);
+    seen.add(v);
+  }
+  if (dupes.size > 0) {
+    errors.push(`${path} contains duplicate entries ${show([...dupes])}`);
+  }
+}
+
 // Superset check: every required entry must be present; extras are permitted.
 function requireContainsAll(errors, actual, required, path) {
   if (!Array.isArray(actual)) {
     errors.push(`${path} must be an array; received ${show(actual)}`);
     return false;
   }
+  reportDuplicates(errors, actual, path);
+  requireAllNonEmptyStrings(errors, actual, path);
   const missing = required.filter((v) => !actual.includes(v));
   if (missing.length > 0) {
     errors.push(`${path} is missing required ${show(missing)}`);
     return false;
   }
   return true;
+}
+
+// Extras are allowed, but an extra entry still has to be a usable name. A null
+// or blank column would render as an unnamed, unusable board column.
+function requireAllNonEmptyStrings(errors, values, path) {
+  const bad = values.filter(
+    (v) => typeof v !== "string" || v.trim() === "",
+  );
+  if (bad.length > 0) {
+    errors.push(
+      `${path} entries must all be non-empty strings; found ${show(bad)}`,
+    );
+  }
 }
 
 // --- Validation --------------------------------------------------------------
@@ -187,37 +232,66 @@ function validatePolicy(policy) {
   requireInteger(errors, policy.project_id, "project_id", { positive: true });
   requireNonEmptyString(errors, policy.organization_slug, "organization_slug");
   requireInteger(errors, policy.kanban_route_segment, "kanban_route_segment");
-  const projectUrlOk = requireUrl(errors, policy.project_url, "project_url");
-  requireUrl(errors, policy.local_url, "local_url");
+  const projectUrl = requireUrl(errors, policy.project_url, "project_url");
+  const localUrl = requireUrl(errors, policy.local_url, "local_url");
   requireUrl(errors, policy.api_url, "api_url");
 
-  // Self-consistency: the project URL should actually point at this project.
-  // Generic (derived from the same file), and catches copy-paste mistakes when
-  // bootstrapping a new project from an existing policy.
+  // The board link must live on the same origin as the UI. Without this, a
+  // policy can keep local_url on localhost while pointing project_url at an
+  // unrelated host, sending anyone who follows a ticket link off-site.
+  if (projectUrl && localUrl && projectUrl.origin !== localUrl.origin) {
+    errors.push(
+      `project_url must be on the same origin as local_url; received ${show(projectUrl.origin)} vs ${show(localUrl.origin)}`,
+    );
+  }
+
+  // Self-consistency: the project URL must actually address this project.
+  // Compared as exact path segments, not substrings - a substring match happily
+  // accepts an unrelated URL that merely contains the right text, and misses a
+  // route segment that no longer matches kanban_route_segment.
   if (
-    projectUrlOk &&
+    projectUrl &&
     typeof policy.organization_slug === "string" &&
     Number.isInteger(policy.project_id)
   ) {
-    if (!policy.project_url.includes(policy.organization_slug)) {
-      errors.push(
-        `project_url must contain organization_slug ${show(policy.organization_slug)}; received ${show(policy.project_url)}`,
-      );
+    // The whole path is compared, in order. Presence alone is not enough:
+    // /2/org-slug/-1401 (reordered) and /decoy/org-slug/2/-1401 (extra prefix)
+    // both contain the right values while addressing the wrong thing.
+    const segments = projectUrl.pathname.split("/").filter(Boolean);
+    const expected = [
+      String(policy.organization_slug),
+      String(policy.project_id),
+    ];
+    if (Number.isInteger(policy.kanban_route_segment)) {
+      expected.push(String(policy.kanban_route_segment));
     }
-    if (!policy.project_url.includes(String(policy.project_id))) {
+    const matches =
+      segments.length === expected.length &&
+      segments.every((s, i) => s === expected[i]);
+    if (!matches) {
       errors.push(
-        `project_url must contain project_id ${show(policy.project_id)}; received ${show(policy.project_url)}`,
+        `project_url path must be exactly /${expected.join("/")} (organization_slug/project_id/kanban_route_segment); received /${segments.join("/")}`,
       );
     }
   }
 
   // Universal contract.
-  requireExact(errors, policy.capture_state, "Inbox", "capture_state");
+  requireExact(errors, policy.capture_state, CAPTURE_STATE, "capture_state");
 
   // All lifecycle stages plus Cancelled must be present. Extra columns are
   // allowed (TaskView permits them), but the documented stages must appear in
   // the documented relative order.
   const requiredStatuses = [...LIFECYCLE_ORDER, TERMINAL_STATUS];
+  // TASKVIEW-WORKFLOW.md: the built-in Inbox "is the untriaged capture area
+  // only; it is separate from the project board and is not a project status."
+  if (
+    Array.isArray(policy.project_statuses) &&
+    policy.project_statuses.includes(CAPTURE_STATE)
+  ) {
+    errors.push(
+      `project_statuses must not include ${show(CAPTURE_STATE)}; it is the untriaged capture area, not a project board status`,
+    );
+  }
   if (
     requireContainsAll(
       errors,
@@ -269,11 +343,19 @@ function validatePolicy(policy) {
       requireExact(errors, policy.human_gates[gate], true, `human_gates.${gate}`);
     }
     // Additional gates are allowed, but must be explicit booleans so a gate is
-    // never left in an ambiguous state.
+    // never left in an ambiguous state - and a gate that is present may not be
+    // switched off. TASKVIEW-WORKFLOW.md: the defaults "may be configured later
+    // by an explicit human-approved policy change; agents must not relax them
+    // themselves." Optional here means "may be absent", never "may be false".
     for (const [key, value] of Object.entries(policy.human_gates)) {
-      if (!REQUIRED_HUMAN_GATES.includes(key) && typeof value !== "boolean") {
+      if (REQUIRED_HUMAN_GATES.includes(key)) continue;
+      if (typeof value !== "boolean") {
         errors.push(
           `human_gates.${key} must be a boolean; received ${show(value)}`,
+        );
+      } else if (value === false) {
+        errors.push(
+          `human_gates.${key} is present but disabled; a declared gate must be true (remove the key instead of setting it false)`,
         );
       }
     }
