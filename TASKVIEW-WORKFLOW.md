@@ -10,6 +10,12 @@ This is the authoritative shared workflow for Claude Code and Codex whenever wor
 - Use full, linked child tasks for independently assignable work. Use lightweight native subtasks only as checklists within one owner’s task; checklist items are not substitutes for ownership, status, dependencies, or evidence.
 - Identify the acting agent with exactly one identity tag: `agent:claude` or `agent:codex`. Keep identity separate from status, priority, and domain tags.
 
+## Creating tickets: search before you create
+
+Before creating any ticket, search the board for an existing one covering the same work, including completed and archived tasks. Retrying a failed creation is the usual cause of duplicates: if a create call errors or times out, re-read the board and confirm the ticket is genuinely absent before trying again. If a near-match exists, update or link it rather than creating a second copy.
+
+Child work is created with `parentId` set to the parent ticket. The dependency edge that makes the relationship visible on the Graph is created automatically from that parent link — do not hand-build a duplicate edge for a parent/child pair. Use explicit dependency links only for prerequisites that are *not* parent/child.
+
 ## Before editing: claim and isolate
 
 1. Read `AGENTS.md`, `REMAINING-WORK.md`, this file, and the full ticket, including dependencies and linked work.
