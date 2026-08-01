@@ -18,6 +18,17 @@ Backlog → Ready → In Progress → Blocked → Review → Verification → Do
   native **subtasks** only as a checklist inside one owner's task — checklist items
   are not a substitute for ownership, status, dependencies, or evidence.
 
+## Creating tickets: search first
+
+- **Search the board before creating anything**, including completed *and archived*
+  tasks. If a near-match exists, update or link it instead of creating a second copy.
+- If a create call errors or times out, **re-read the board before retrying**. A
+  retried create that actually succeeded the first time is how duplicates happen.
+- Create child work by setting `parentId` on the child. The dependency edge that
+  makes the relationship visible on the Graph is generated **automatically** from
+  that parent link — don't hand-build a second edge for a parent/child pair.
+- Use explicit dependency links only for prerequisites that are *not* parent/child.
+
 ## Before touching the repo: claim and isolate
 
 1. Read `AGENTS.md`, `REMAINING-WORK.md`, `TASKVIEW-WORKFLOW.md`, and the full ticket
@@ -58,6 +69,9 @@ Update TaskView only at these points — not routine command-by-command narratio
 - If discovered work *blocks* the current task: create/link it, record the exact
   dependency + evidence, move the current task to **Blocked**, and state what
   unblocks it. Use explicit TaskView dependency links, not just prose.
+- A blocker note must state all six: **what** is blocked, **why**, **evidence** or
+  reproduction, **safe mitigations already attempted**, the **owner/dependency**, and
+  the **next action** needed.
 - Before changing expected files, update the ticket. If scope starts to overlap
   another active task, stop and block — don't race or silently merge responsibilities.
 
