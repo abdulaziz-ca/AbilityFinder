@@ -6,8 +6,8 @@
     "goalId": 3,
     "goalName": "Ability Finder"
   },
-  "phase": 5,
-  "batch": 20,
+  "phase": 6,
+  "batch": 21,
   "keyToTaskId": {
     "AF-E01": 26,
     "AF-E02": 27,
@@ -114,6 +114,137 @@
     "AF-T14062": 128
   },
   "completed": [
+    {
+      "phase": 5,
+      "name": "Dependencies",
+      "status": "completed",
+      "date": "2026-08-02",
+      "created": {
+        "count": 16,
+        "edgeIdRange": "105-120"
+      },
+      "edges": [
+        {
+          "blocked": "AF-E07",
+          "blockedTaskId": 32,
+          "prerequisite": "AF-E03",
+          "prerequisiteTaskId": 28,
+          "edgeId": 105
+        },
+        {
+          "blocked": "AF-S0308",
+          "blockedTaskId": 58,
+          "prerequisite": "AF-S0301",
+          "prerequisiteTaskId": 51,
+          "edgeId": 106
+        },
+        {
+          "blocked": "AF-S0308",
+          "blockedTaskId": 58,
+          "prerequisite": "AF-S0302",
+          "prerequisiteTaskId": 52,
+          "edgeId": 107
+        },
+        {
+          "blocked": "AF-S0308",
+          "blockedTaskId": 58,
+          "prerequisite": "AF-S0303",
+          "prerequisiteTaskId": 53,
+          "edgeId": 108
+        },
+        {
+          "blocked": "AF-S0308",
+          "blockedTaskId": 58,
+          "prerequisite": "AF-S0304",
+          "prerequisiteTaskId": 54,
+          "edgeId": 109
+        },
+        {
+          "blocked": "AF-S0308",
+          "blockedTaskId": 58,
+          "prerequisite": "AF-S0305",
+          "prerequisiteTaskId": 55,
+          "edgeId": 110
+        },
+        {
+          "blocked": "AF-S0308",
+          "blockedTaskId": 58,
+          "prerequisite": "AF-S0306",
+          "prerequisiteTaskId": 56,
+          "edgeId": 111
+        },
+        {
+          "blocked": "AF-S0308",
+          "blockedTaskId": 58,
+          "prerequisite": "AF-S0307",
+          "prerequisiteTaskId": 57,
+          "edgeId": 112
+        },
+        {
+          "blocked": "AF-S0701",
+          "blockedTaskId": 71,
+          "prerequisite": "AF-S0307",
+          "prerequisiteTaskId": 57,
+          "edgeId": 113
+        },
+        {
+          "blocked": "AF-S0701",
+          "blockedTaskId": 71,
+          "prerequisite": "AF-S0308",
+          "prerequisiteTaskId": 58,
+          "edgeId": 114
+        },
+        {
+          "blocked": "AF-S0701",
+          "blockedTaskId": 71,
+          "prerequisite": "AF-S0702",
+          "prerequisiteTaskId": 72,
+          "edgeId": 115
+        },
+        {
+          "blocked": "AF-S0701",
+          "blockedTaskId": 71,
+          "prerequisite": "AF-S0703",
+          "prerequisiteTaskId": 73,
+          "edgeId": 116
+        },
+        {
+          "blocked": "AF-S0703",
+          "blockedTaskId": 73,
+          "prerequisite": "AF-S0807",
+          "prerequisiteTaskId": 80,
+          "edgeId": 117
+        },
+        {
+          "blocked": "AF-S1002",
+          "blockedTaskId": 87,
+          "prerequisite": "AF-S0501",
+          "prerequisiteTaskId": 66,
+          "edgeId": 118
+        },
+        {
+          "blocked": "AF-S1102",
+          "blockedTaskId": 91,
+          "prerequisite": "AF-S1101",
+          "prerequisiteTaskId": 90,
+          "edgeId": 119
+        },
+        {
+          "blocked": "AF-S1403",
+          "blockedTaskId": 98,
+          "prerequisite": "AF-S1402",
+          "prerequisiteTaskId": 97,
+          "edgeId": 120
+        }
+      ],
+      "evidence": {
+        "gate": "PASS. 104 total live edges = 88 parent/child + 16 spec. No missing, reversed, duplicate, parent/child or extra edge. Full graph acyclic.",
+        "direction": "Every edge is prerequisite -> blocked, matching add_task_dependency's contract (target is blocked by source). Verified per edge against dependsOnKeys.",
+        "idempotency": "Each edge was checked absent in the live graph before creation and each id was checkpointed immediately after its mutation. No edge was created twice; the gate confirms zero duplicate directed pairs.",
+        "nonDestructive": "Zero deletes. All 88 pre-existing parent/child edges (ids 17-104) are byte-identical and intact. All 103 keyToTaskId mappings preserved and unmodified.",
+        "mappings": "103 mappings unchanged; no task, note, tag, status or priority was touched during Phase 5."
+      }
+    },
     {
       "phase": 4,
       "name": "Subtask tickets",
@@ -599,7 +730,7 @@
         "priorityMedium": 21,
         "priorityLow": 52,
         "blockerRelease": 12,
-        "dependencyEdges": 7
+        "dependencyEdges": 16
       },
       "evidence": "Spec reviewed by the other agent identity across 5 slices against REMAINING-WORK.md, ROADMAP.md, WEBSITE-PROJECT-TRACKER.md, AGENTS.md and the build brief. 94 findings returned (17 high). All applied except one rejected as factually wrong (a reviewer claimed the stale board URL in TASKVIEW-WORKFLOW.md was invented; that file genuinely contains http://localhost:8888/org-fbbce12c/2/-1401). Re-verified by script: no duplicate keys, no orphan parents, all 7 dependency edges resolve, every ticket has a full context block and a non-empty doneWhen, and the banned invented-count strings return zero hits.",
       "ownerApproval": "Approved 2026-08-01. Nothing was created in TaskView during Phase 0."
@@ -629,7 +760,9 @@
     "PHASE 4 SPEC PROPOSED 2026-08-02, nothing created in TaskView: 9 subtasks under 4 parent stories appended to board-spec.json, which now holds 103 entries. Reviewed by the other agent identity - 14 findings, 13 applied, 1 rejected as factually wrong - and 5 of the 14 originally proposed subtasks were deleted for restating their parents. Awaiting owner approval before Phase 4 creates anything.",
     "PHASE 4 COMPLETE 2026-08-02: the 9 approved subtasks created as ids 120-128 under four parent stories - AF-S0103 (#43) 2, AF-S0805 (#78) 3, AF-S1404 (#99) 2, AF-S1406 (#101) 2. Pre-flight gate proved all 94 existing markers unique and all 9 AF-T keys absent before any create. Each id was persisted before the next API call. All 9 verified by direct get_task for marker, parentId, priority, status, tags, complete flag and note integrity; all are Backlog so the Done complete=true convention had no target. Child-index tables inserted additively into the four parents and confirmed by re-read. NEW API FINDING: list_tasks nests only one level, so depth-2 subtasks are invisible to it and require recursive get_task - the recursive resolver is now load-bearing, not just precautionary. Board now holds 103 tickets: 15 epics, 79 stories, 9 subtasks. Phase 5 (dependencies) not started; the 9 subtasks add no dependency edges.",
     "PHASE 4 CORRECTION 2026-08-02, owner-approved, note-text only: the stale '**Children:** none - subtasks are Phase 4' fragment in stories #43, #78, #99 and #101 was replaced with the real child ids and spec keys. Surgical substring replacement - exactly one line changed per note, everything else byte-identical, child-index tables and raw deep-link URLs retained. Verified by byte-exact readback of all four notes, by a before/after board diff showing those four as the ONLY changed notes with zero field drift elsewhere, and by get_task re-read confirming child arrays 2/3/2/2 = 9 unchanged. Nothing created or deleted; keyToTaskId still holds 103 mappings. Clickability ruling recorded: the native Subtasks panel is the click interface because TaskView shows notes in a raw textarea and does not render markdown. Phase 5 still not started.",
-    "PHASE 4 OWNER DECISIONS CLOSED 2026-08-02: the two remaining items are resolved, not open. (1) AF-S0805 gets no Core Web Vitals / field-INP subtask - it keeps its parent-level criteria and AF-S0602 stays the canonical field-INP record. (2) AF-S0401 and AF-S1401 are deliberately leaf stories, because every proposed child restated its parent. Phase 4 now carries zero open owner decisions."
+    "PHASE 4 OWNER DECISIONS CLOSED 2026-08-02: the two remaining items are resolved, not open. (1) AF-S0805 gets no Core Web Vitals / field-INP subtask - it keeps its parent-level criteria and AF-S0602 stays the canonical field-INP record. (2) AF-S0401 and AF-S1401 are deliberately leaf stories, because every proposed child restated its parent. Phase 4 now carries zero open owner decisions.",
+    "PHASE 5 BLOCKED 2026-08-02: add_task_dependency returns HTTP 403 for every edge, so 0 of the 16 spec dependency edges were created and NOTHING was mutated on the board. Preflight passed cleanly first: all 103 mappings preserved, 94 markers resolving with no duplicates, 16 edges derived solely from dependsOnKeys, direction confirmed as blocked-by-prerequisite, zero parent/child or unresolved edges, graph acyclic. KEY FINDING: the live 88-edge graph is EXACTLY TaskView's automatic materialisation of parentId - one row per child, zero hand-built edges - so parent/child links occupy the same dependency table Phase 5 writes to and must never be deleted or counted as spec edges. The 403 is endpoint-scoped (list_roles also 403; task reads and Phase 4 writes fine) and role 5 does hold graph_can_manage (permission 42), so the gap is the acting MCP principal's role assignment or token scope on goalId 3 - an owner action. Live graph re-read after the failures: still 88 edges, ids 17-104, unchanged. Phase 5 remains open and is fully resumable; the 16 resolved edge pairs are stored in phase5Progress.expectedEdges.",
+    "PHASE 5 COMPLETE 2026-08-02: all 16 non-parent/child dependency edges created as edge ids 105-120 after the new MCP token cleared the HTTP 403. Gate PASS with exact match - 104 live edges = 88 automatic parent/child + 16 spec edges, zero missing, reversed, duplicate, parent/child or extra, and the full graph is acyclic. Every edge runs prerequisite -> blocked per dependsOnKeys. Zero deletes; the 88 parentId edges and all 103 mappings are untouched. Phase 0's dependencyEdges count corrected from 7 to 16: 7 counted TICKETS with a non-empty dependsOnKeys array, but AF-S0308 carries 7 prerequisites and AF-S0701 carries 4, giving 16 edges across 7 tickets. Phase 6 (GitHub sync) not started."
   ],
   "conventions": {
     "doneTickets": {
@@ -784,5 +917,341 @@
     "nextPhase": 5,
     "nextPhaseNote": "Phase 5 is dependencies. Every one of the 9 subtasks has dependsOnKeys [], so Phase 5 concerns only the pre-existing story-level edges.",
     "correctionApplied": "2026-08-02 - parent Children relation lines now carry real child ids and spec keys; verified byte-exact with no collateral change."
+  },
+  "phase5Progress": {
+    "status": "COMPLETE - all 16 spec dependency edges created and verified; gate PASS.",
+    "date": "2026-08-02",
+    "expectedEdgeCount": 16,
+    "edgesCreated": 16,
+    "expectedEdges": [
+      {
+        "blocked": "AF-E07",
+        "blockedTaskId": 32,
+        "prerequisite": "AF-E03",
+        "prerequisiteTaskId": 28,
+        "call": "add_task_dependency(source=28, target=32)",
+        "state": "CREATED edgeId 105"
+      },
+      {
+        "blocked": "AF-S0308",
+        "blockedTaskId": 58,
+        "prerequisite": "AF-S0301",
+        "prerequisiteTaskId": 51,
+        "call": "add_task_dependency(source=51, target=58)",
+        "state": "CREATED edgeId 106"
+      },
+      {
+        "blocked": "AF-S0308",
+        "blockedTaskId": 58,
+        "prerequisite": "AF-S0302",
+        "prerequisiteTaskId": 52,
+        "call": "add_task_dependency(source=52, target=58)",
+        "state": "CREATED edgeId 107"
+      },
+      {
+        "blocked": "AF-S0308",
+        "blockedTaskId": 58,
+        "prerequisite": "AF-S0303",
+        "prerequisiteTaskId": 53,
+        "call": "add_task_dependency(source=53, target=58)",
+        "state": "CREATED edgeId 108"
+      },
+      {
+        "blocked": "AF-S0308",
+        "blockedTaskId": 58,
+        "prerequisite": "AF-S0304",
+        "prerequisiteTaskId": 54,
+        "call": "add_task_dependency(source=54, target=58)",
+        "state": "CREATED edgeId 109"
+      },
+      {
+        "blocked": "AF-S0308",
+        "blockedTaskId": 58,
+        "prerequisite": "AF-S0305",
+        "prerequisiteTaskId": 55,
+        "call": "add_task_dependency(source=55, target=58)",
+        "state": "CREATED edgeId 110"
+      },
+      {
+        "blocked": "AF-S0308",
+        "blockedTaskId": 58,
+        "prerequisite": "AF-S0306",
+        "prerequisiteTaskId": 56,
+        "call": "add_task_dependency(source=56, target=58)",
+        "state": "CREATED edgeId 111"
+      },
+      {
+        "blocked": "AF-S0308",
+        "blockedTaskId": 58,
+        "prerequisite": "AF-S0307",
+        "prerequisiteTaskId": 57,
+        "call": "add_task_dependency(source=57, target=58)",
+        "state": "CREATED edgeId 112"
+      },
+      {
+        "blocked": "AF-S0701",
+        "blockedTaskId": 71,
+        "prerequisite": "AF-S0307",
+        "prerequisiteTaskId": 57,
+        "call": "add_task_dependency(source=57, target=71)",
+        "state": "CREATED edgeId 113"
+      },
+      {
+        "blocked": "AF-S0701",
+        "blockedTaskId": 71,
+        "prerequisite": "AF-S0308",
+        "prerequisiteTaskId": 58,
+        "call": "add_task_dependency(source=58, target=71)",
+        "state": "CREATED edgeId 114"
+      },
+      {
+        "blocked": "AF-S0701",
+        "blockedTaskId": 71,
+        "prerequisite": "AF-S0702",
+        "prerequisiteTaskId": 72,
+        "call": "add_task_dependency(source=72, target=71)",
+        "state": "CREATED edgeId 115"
+      },
+      {
+        "blocked": "AF-S0701",
+        "blockedTaskId": 71,
+        "prerequisite": "AF-S0703",
+        "prerequisiteTaskId": 73,
+        "call": "add_task_dependency(source=73, target=71)",
+        "state": "CREATED edgeId 116"
+      },
+      {
+        "blocked": "AF-S0703",
+        "blockedTaskId": 73,
+        "prerequisite": "AF-S0807",
+        "prerequisiteTaskId": 80,
+        "call": "add_task_dependency(source=80, target=73)",
+        "state": "CREATED edgeId 117"
+      },
+      {
+        "blocked": "AF-S1002",
+        "blockedTaskId": 87,
+        "prerequisite": "AF-S0501",
+        "prerequisiteTaskId": 66,
+        "call": "add_task_dependency(source=66, target=87)",
+        "state": "CREATED edgeId 118"
+      },
+      {
+        "blocked": "AF-S1102",
+        "blockedTaskId": 91,
+        "prerequisite": "AF-S1101",
+        "prerequisiteTaskId": 90,
+        "call": "add_task_dependency(source=90, target=91)",
+        "state": "CREATED edgeId 119"
+      },
+      {
+        "blocked": "AF-S1403",
+        "blockedTaskId": 98,
+        "prerequisite": "AF-S1402",
+        "prerequisiteTaskId": 97,
+        "call": "add_task_dependency(source=97, target=98)",
+        "state": "CREATED edgeId 120"
+      }
+    ],
+    "preflight": {
+      "resolver": "Union of a showCompleted:false and showCompleted:true paged sweep, deduplicated by id and marker-indexed. 94 markers visible, zero duplicates, every one resolving to its checkpoint id with zero mismatches.",
+      "subtasks": "The 9 depth-2 subtask markers are invisible to list_tasks (the one-level nesting limit recorded in Phase 4). All 9 ids are confirmed present and correctly parented in the live dependency table (43->120,121; 78->122,123,124; 99->125,126; 101->127,128), and their markers were verified by direct get_task earlier in this session with no mutation since.",
+      "mappingsPreserved": "All 103 keyToTaskId mappings intact and unmodified.",
+      "edgeDerivation": "Expected edges derived exclusively from dependsOnKeys in board-spec.json: 16 edges. Direction convention confirmed as entry-blocked-by-prerequisite, mapping to add_task_dependency(source=prerequisite, target=blocked) per the tool contract 'Target task ID (blocked by source)'.",
+      "rejectionChecks": "Zero parent/child edges among the 16 (checked in BOTH directions: prerequisite-is-parent and prerequisite-is-child). Zero unresolved keys. Zero subtask-level edges. Graph acyclic.",
+      "liveGraphBaseline": "88 edges, ids 17-104. Proved to be EXACTLY the parentId materialisation: the set of live edges equals the set of (parent,child) pairs derived from the spec, with zero live edges outside it and zero parent/child pairs missing. So none of the 16 spec edges existed, and no hand-built edge existed either."
+    },
+    "blocker": {
+      "symptom": "mcp__taskview__add_task_dependency returns HTTP 403 for every attempt.",
+      "attempts": [
+        "source=28 (AF-E03) target=32 (AF-E07) -> 403",
+        "source=90 (AF-S1101) target=91 (AF-S1102) -> 403"
+      ],
+      "scope": "Not edge-specific: one epic-to-epic and one story-to-story attempt both failed identically. list_roles(goalId 3) also returns 403, while list_role_permissions_for_goal, list_permissions, list_tasks, get_task and list_task_dependencies all succeed. The 403 is endpoint-scoped, not a dead session.",
+      "notARegression": "create_task, update_task and toggle_task_tag all succeeded against this same board earlier today during Phase 4, so the MCP credential still has task-level write access.",
+      "permissionEvidence": "Permission id 42 is graph_can_manage ('User can manage graph (reorder, add, edit, delete nodes, edges)') and id 43 is graph_can_view. Role 5 on goal 3 IS granted both 42 and 43. The 403 therefore does not come from role 5 lacking the permission - it points at the acting MCP principal not being assigned that role on goal 3, or at the graph-edge and role-admin endpoints requiring an owner-level scope the MCP token does not carry.",
+      "nonMutation": "VERIFIED: the live dependency graph was re-read after both failures and is unchanged at 88 edges, ids 17-104, identical to the preflight baseline. Neither 403 performed a partial write. No task, tag, note, status or mapping was touched. No delete was attempted.",
+      "ownerActionNeeded": "This is a human gate: granting a permission or role is an owner action. Confirm the MCP principal holds a role carrying graph_can_manage (permission 42) on goalId 3, then re-run Phase 5. All 16 edges are precomputed above and the run is fully resumable with zero rework."
+    },
+    "createdEdges": [
+      {
+        "blocked": "AF-E07",
+        "blockedTaskId": 32,
+        "prerequisite": "AF-E03",
+        "prerequisiteTaskId": 28,
+        "edgeId": 105,
+        "from": 28,
+        "to": 32
+      },
+      {
+        "blocked": "AF-S0308",
+        "blockedTaskId": 58,
+        "prerequisite": "AF-S0301",
+        "prerequisiteTaskId": 51,
+        "edgeId": 106,
+        "from": 51,
+        "to": 58
+      },
+      {
+        "blocked": "AF-S0308",
+        "blockedTaskId": 58,
+        "prerequisite": "AF-S0302",
+        "prerequisiteTaskId": 52,
+        "edgeId": 107,
+        "from": 52,
+        "to": 58
+      },
+      {
+        "blocked": "AF-S0308",
+        "blockedTaskId": 58,
+        "prerequisite": "AF-S0303",
+        "prerequisiteTaskId": 53,
+        "edgeId": 108,
+        "from": 53,
+        "to": 58
+      },
+      {
+        "blocked": "AF-S0308",
+        "blockedTaskId": 58,
+        "prerequisite": "AF-S0304",
+        "prerequisiteTaskId": 54,
+        "edgeId": 109,
+        "from": 54,
+        "to": 58
+      },
+      {
+        "blocked": "AF-S0308",
+        "blockedTaskId": 58,
+        "prerequisite": "AF-S0305",
+        "prerequisiteTaskId": 55,
+        "edgeId": 110,
+        "from": 55,
+        "to": 58
+      },
+      {
+        "blocked": "AF-S0308",
+        "blockedTaskId": 58,
+        "prerequisite": "AF-S0306",
+        "prerequisiteTaskId": 56,
+        "edgeId": 111,
+        "from": 56,
+        "to": 58
+      },
+      {
+        "blocked": "AF-S0308",
+        "blockedTaskId": 58,
+        "prerequisite": "AF-S0307",
+        "prerequisiteTaskId": 57,
+        "edgeId": 112,
+        "from": 57,
+        "to": 58
+      },
+      {
+        "blocked": "AF-S0701",
+        "blockedTaskId": 71,
+        "prerequisite": "AF-S0307",
+        "prerequisiteTaskId": 57,
+        "edgeId": 113,
+        "from": 57,
+        "to": 71
+      },
+      {
+        "blocked": "AF-S0701",
+        "blockedTaskId": 71,
+        "prerequisite": "AF-S0308",
+        "prerequisiteTaskId": 58,
+        "edgeId": 114,
+        "from": 58,
+        "to": 71
+      },
+      {
+        "blocked": "AF-S0701",
+        "blockedTaskId": 71,
+        "prerequisite": "AF-S0702",
+        "prerequisiteTaskId": 72,
+        "edgeId": 115,
+        "from": 72,
+        "to": 71
+      },
+      {
+        "blocked": "AF-S0701",
+        "blockedTaskId": 71,
+        "prerequisite": "AF-S0703",
+        "prerequisiteTaskId": 73,
+        "edgeId": 116,
+        "from": 73,
+        "to": 71
+      },
+      {
+        "blocked": "AF-S0703",
+        "blockedTaskId": 73,
+        "prerequisite": "AF-S0807",
+        "prerequisiteTaskId": 80,
+        "edgeId": 117,
+        "from": 80,
+        "to": 73
+      },
+      {
+        "blocked": "AF-S1002",
+        "blockedTaskId": 87,
+        "prerequisite": "AF-S0501",
+        "prerequisiteTaskId": 66,
+        "edgeId": 118,
+        "from": 66,
+        "to": 87
+      },
+      {
+        "blocked": "AF-S1102",
+        "blockedTaskId": 91,
+        "prerequisite": "AF-S1101",
+        "prerequisiteTaskId": 90,
+        "edgeId": 119,
+        "from": 90,
+        "to": 91
+      },
+      {
+        "blocked": "AF-S1403",
+        "blockedTaskId": 98,
+        "prerequisite": "AF-S1402",
+        "prerequisiteTaskId": 97,
+        "edgeId": 120,
+        "from": 97,
+        "to": 98
+      }
+    ],
+    "gate": {
+      "result": "PASS - exact match",
+      "totalLiveEdges": 104,
+      "parentChildEdges": 88,
+      "specDependencyEdges": 16,
+      "duplicates": "none",
+      "missing": "none",
+      "reversed": "none",
+      "extra": "none",
+      "bidirectionalPairs": "none",
+      "specEdgesAlsoParentChild": "none",
+      "acyclic": "The full 104-edge live graph is acyclic.",
+      "method": "Live graph re-read with list_task_dependencies, then set-compared against two independently derived sets: the 88 (parent,child) pairs from spec parentKey, and the 16 (prerequisite,blocked) pairs from spec dependsOnKeys. Required L&pc==pc, L&expected==expected, L-pc-expected empty, no duplicate directed pair, no reversed pair, and no overlap between the spec edge set and the parent/child set.",
+      "edgeIdRange": "105-120 for the 16 spec edges; 17-104 unchanged for the parent/child materialisation."
+    },
+    "tokenNote": "The HTTP 403 that blocked the first Phase 5 attempt is cleared by the newly configured TaskView MCP token. Probe edge AF-E03 -> AF-E07 succeeded as edgeId 105 and was confirmed by an independent graph re-read (89 edges) before the remaining 15 were added.",
+    "phase0CountCorrection": {
+      "was": 7,
+      "now": 16,
+      "why": "7 was the number of TICKETS carrying a non-empty dependsOnKeys array, not the number of dependency EDGES. Several tickets carry multiple prerequisites - AF-S0308 has 7 and AF-S0701 has 4 - so the edge count is 16.",
+      "ticketsWithDependsOnKeys": [
+        "AF-E07",
+        "AF-S0308",
+        "AF-S0701",
+        "AF-S0703",
+        "AF-S1002",
+        "AF-S1102",
+        "AF-S1403"
+      ],
+      "arithmetic": "AF-E07 1 + AF-S0308 7 + AF-S0701 4 + AF-S0703 1 + AF-S1002 1 + AF-S1102 1 + AF-S1403 1 = 16 edges across 7 tickets.",
+      "fieldsCorrected": [
+        "/completed[4]/counts/dependencyEdges"
+      ]
+    }
   }
 }
