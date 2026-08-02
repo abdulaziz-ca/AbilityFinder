@@ -6,8 +6,8 @@
     "goalId": 3,
     "goalName": "Ability Finder"
   },
-  "phase": 6,
-  "batch": 21,
+  "phase": 7,
+  "batch": 27,
   "keyToTaskId": {
     "AF-E01": 26,
     "AF-E02": 27,
@@ -114,6 +114,322 @@
     "AF-T14062": 128
   },
   "completed": [
+    {
+      "phase": 6,
+      "name": "GitHub sync",
+      "status": "completed",
+      "date": "2026-08-02",
+      "created": {
+        "count": 58,
+        "issueRange": "#2-#59"
+      },
+      "mapping": [
+        {
+          "key": "AF-S0101",
+          "taskId": 41,
+          "issue": 2
+        },
+        {
+          "key": "AF-S0102",
+          "taskId": 42,
+          "issue": 3
+        },
+        {
+          "key": "AF-S0103",
+          "taskId": 43,
+          "issue": 4
+        },
+        {
+          "key": "AF-S0104",
+          "taskId": 44,
+          "issue": 5
+        },
+        {
+          "key": "AF-S0105",
+          "taskId": 45,
+          "issue": 6
+        },
+        {
+          "key": "AF-S0106",
+          "taskId": 46,
+          "issue": 7
+        },
+        {
+          "key": "AF-S0201",
+          "taskId": 47,
+          "issue": 8
+        },
+        {
+          "key": "AF-S0202",
+          "taskId": 48,
+          "issue": 9
+        },
+        {
+          "key": "AF-S0204",
+          "taskId": 50,
+          "issue": 10
+        },
+        {
+          "key": "AF-S0301",
+          "taskId": 51,
+          "issue": 11
+        },
+        {
+          "key": "AF-S0302",
+          "taskId": 52,
+          "issue": 12
+        },
+        {
+          "key": "AF-S0303",
+          "taskId": 53,
+          "issue": 13
+        },
+        {
+          "key": "AF-S0304",
+          "taskId": 54,
+          "issue": 14
+        },
+        {
+          "key": "AF-S0305",
+          "taskId": 55,
+          "issue": 15
+        },
+        {
+          "key": "AF-S0306",
+          "taskId": 56,
+          "issue": 16
+        },
+        {
+          "key": "AF-S0307",
+          "taskId": 57,
+          "issue": 17
+        },
+        {
+          "key": "AF-S0308",
+          "taskId": 58,
+          "issue": 18
+        },
+        {
+          "key": "AF-S0401",
+          "taskId": 61,
+          "issue": 19
+        },
+        {
+          "key": "AF-S0402",
+          "taskId": 62,
+          "issue": 20
+        },
+        {
+          "key": "AF-S0501",
+          "taskId": 66,
+          "issue": 21
+        },
+        {
+          "key": "AF-S0502",
+          "taskId": 67,
+          "issue": 22
+        },
+        {
+          "key": "AF-S0503",
+          "taskId": 68,
+          "issue": 23
+        },
+        {
+          "key": "AF-S0701",
+          "taskId": 71,
+          "issue": 24
+        },
+        {
+          "key": "AF-S0702",
+          "taskId": 72,
+          "issue": 25
+        },
+        {
+          "key": "AF-S0703",
+          "taskId": 73,
+          "issue": 26
+        },
+        {
+          "key": "AF-S0801",
+          "taskId": 74,
+          "issue": 27
+        },
+        {
+          "key": "AF-S0805",
+          "taskId": 78,
+          "issue": 28
+        },
+        {
+          "key": "AF-S0806",
+          "taskId": 79,
+          "issue": 29
+        },
+        {
+          "key": "AF-S0807",
+          "taskId": 80,
+          "issue": 30
+        },
+        {
+          "key": "AF-S0808",
+          "taskId": 81,
+          "issue": 31
+        },
+        {
+          "key": "AF-S0901",
+          "taskId": 82,
+          "issue": 32
+        },
+        {
+          "key": "AF-S0902",
+          "taskId": 83,
+          "issue": 33
+        },
+        {
+          "key": "AF-S0903",
+          "taskId": 84,
+          "issue": 34
+        },
+        {
+          "key": "AF-S1001",
+          "taskId": 86,
+          "issue": 35
+        },
+        {
+          "key": "AF-S1002",
+          "taskId": 87,
+          "issue": 36
+        },
+        {
+          "key": "AF-S1003",
+          "taskId": 88,
+          "issue": 37
+        },
+        {
+          "key": "AF-S1004",
+          "taskId": 89,
+          "issue": 38
+        },
+        {
+          "key": "AF-S1101",
+          "taskId": 90,
+          "issue": 39
+        },
+        {
+          "key": "AF-S1102",
+          "taskId": 91,
+          "issue": 40
+        },
+        {
+          "key": "AF-S1201",
+          "taskId": 92,
+          "issue": 41
+        },
+        {
+          "key": "AF-S1301",
+          "taskId": 94,
+          "issue": 42
+        },
+        {
+          "key": "AF-S1401",
+          "taskId": 96,
+          "issue": 43
+        },
+        {
+          "key": "AF-S1402",
+          "taskId": 97,
+          "issue": 44
+        },
+        {
+          "key": "AF-S1403",
+          "taskId": 98,
+          "issue": 45
+        },
+        {
+          "key": "AF-S1404",
+          "taskId": 99,
+          "issue": 46
+        },
+        {
+          "key": "AF-S1405",
+          "taskId": 100,
+          "issue": 47
+        },
+        {
+          "key": "AF-S1406",
+          "taskId": 101,
+          "issue": 48
+        },
+        {
+          "key": "AF-S1407",
+          "taskId": 102,
+          "issue": 49
+        },
+        {
+          "key": "AF-S1408",
+          "taskId": 103,
+          "issue": 50
+        },
+        {
+          "key": "AF-T01031",
+          "taskId": 120,
+          "issue": 51
+        },
+        {
+          "key": "AF-T01032",
+          "taskId": 121,
+          "issue": 52
+        },
+        {
+          "key": "AF-T08051",
+          "taskId": 122,
+          "issue": 53
+        },
+        {
+          "key": "AF-T08052",
+          "taskId": 123,
+          "issue": 54
+        },
+        {
+          "key": "AF-T08053",
+          "taskId": 124,
+          "issue": 55
+        },
+        {
+          "key": "AF-T14041",
+          "taskId": 125,
+          "issue": 56
+        },
+        {
+          "key": "AF-T14042",
+          "taskId": 126,
+          "issue": 57
+        },
+        {
+          "key": "AF-T14061",
+          "taskId": 127,
+          "issue": 58
+        },
+        {
+          "key": "AF-T14062",
+          "taskId": 128,
+          "issue": 59
+        }
+      ],
+      "evidence": {
+        "result": "PASS - Phase 6 complete, exact on every required condition",
+        "distinctSpecKeyMarkers": "58 (required 58)",
+        "distinctTaskIdMarkers": "58 (required 58)",
+        "markerSetEqualsEligibleSet": "true - the set of spec-key markers on GitHub is exactly the 58 eligible keys, no more and no less",
+        "duplicates": "none on either marker family",
+        "reciprocalLinks": "58/58. The 49 stories were checked against the live board sweep; the 9 depth-2 subtasks were checked against live get_task parent-subtree reads because list_tasks cannot see them.",
+        "noEpicIssues": "none - zero of the 15 epic keys appear as an issue marker",
+        "noDoneIssues": "none - zero of the 30 Done story/subtask keys appear as an issue marker",
+        "issueRange": "59 issues on the repo = 1 pre-existing closed integration test + 58 created, contiguous #2-#59",
+        "checkpointCrossCheck": "every (key, taskId, issueNumber) triple re-verified against live issue body markers: zero mismatches",
+        "parentIntegrity": "All four subtask parents (#43, #78, #99, #101) are byte-identical to their pre-batch baselines with their Phase 4 child-index tables intact. Board-wide, zero list_tasks-visible notes changed in the final batch because all eight edits were depth-2 subtasks.",
+        "noDrift": "zero board-wide drift in description, parentId, priorityId, statusId, complete or tags; 103 keyToTaskId mappings intact"
+      }
+    },
     {
       "phase": 5,
       "name": "Dependencies",
@@ -762,7 +1078,14 @@
     "PHASE 4 CORRECTION 2026-08-02, owner-approved, note-text only: the stale '**Children:** none - subtasks are Phase 4' fragment in stories #43, #78, #99 and #101 was replaced with the real child ids and spec keys. Surgical substring replacement - exactly one line changed per note, everything else byte-identical, child-index tables and raw deep-link URLs retained. Verified by byte-exact readback of all four notes, by a before/after board diff showing those four as the ONLY changed notes with zero field drift elsewhere, and by get_task re-read confirming child arrays 2/3/2/2 = 9 unchanged. Nothing created or deleted; keyToTaskId still holds 103 mappings. Clickability ruling recorded: the native Subtasks panel is the click interface because TaskView shows notes in a raw textarea and does not render markdown. Phase 5 still not started.",
     "PHASE 4 OWNER DECISIONS CLOSED 2026-08-02: the two remaining items are resolved, not open. (1) AF-S0805 gets no Core Web Vitals / field-INP subtask - it keeps its parent-level criteria and AF-S0602 stays the canonical field-INP record. (2) AF-S0401 and AF-S1401 are deliberately leaf stories, because every proposed child restated its parent. Phase 4 now carries zero open owner decisions.",
     "PHASE 5 BLOCKED 2026-08-02: add_task_dependency returns HTTP 403 for every edge, so 0 of the 16 spec dependency edges were created and NOTHING was mutated on the board. Preflight passed cleanly first: all 103 mappings preserved, 94 markers resolving with no duplicates, 16 edges derived solely from dependsOnKeys, direction confirmed as blocked-by-prerequisite, zero parent/child or unresolved edges, graph acyclic. KEY FINDING: the live 88-edge graph is EXACTLY TaskView's automatic materialisation of parentId - one row per child, zero hand-built edges - so parent/child links occupy the same dependency table Phase 5 writes to and must never be deleted or counted as spec edges. The 403 is endpoint-scoped (list_roles also 403; task reads and Phase 4 writes fine) and role 5 does hold graph_can_manage (permission 42), so the gap is the acting MCP principal's role assignment or token scope on goalId 3 - an owner action. Live graph re-read after the failures: still 88 edges, ids 17-104, unchanged. Phase 5 remains open and is fully resumable; the 16 resolved edge pairs are stored in phase5Progress.expectedEdges.",
-    "PHASE 5 COMPLETE 2026-08-02: all 16 non-parent/child dependency edges created as edge ids 105-120 after the new MCP token cleared the HTTP 403. Gate PASS with exact match - 104 live edges = 88 automatic parent/child + 16 spec edges, zero missing, reversed, duplicate, parent/child or extra, and the full graph is acyclic. Every edge runs prerequisite -> blocked per dependsOnKeys. Zero deletes; the 88 parentId edges and all 103 mappings are untouched. Phase 0's dependencyEdges count corrected from 7 to 16: 7 counted TICKETS with a non-empty dependsOnKeys array, but AF-S0308 carries 7 prerequisites and AF-S0701 carries 4, giving 16 edges across 7 tickets. Phase 6 (GitHub sync) not started."
+    "PHASE 5 COMPLETE 2026-08-02: all 16 non-parent/child dependency edges created as edge ids 105-120 after the new MCP token cleared the HTTP 403. Gate PASS with exact match - 104 live edges = 88 automatic parent/child + 16 spec edges, zero missing, reversed, duplicate, parent/child or extra, and the full graph is acyclic. Every edge runs prerequisite -> blocked per dependsOnKeys. Zero deletes; the 88 parentId edges and all 103 mappings are untouched. Phase 0's dependencyEdges count corrected from 7 to 16: 7 counted TICKETS with a non-empty dependsOnKeys array, but AF-S0308 carries 7 prerequisites and AF-S0701 carries 4, giving 16 edges across 7 tickets. Phase 6 (GitHub sync) not started.",
+    "PHASE 6 BLOCKED AT PREFLIGHT 2026-08-02: no authenticated GitHub write channel, so 0 of 58 eligible issues were created and nothing was mutated in GitHub or TaskView. Checked and ruled out: gh not installed, no gh credentials on disk, GH_TOKEN/GITHUB_TOKEN/GITHUB_PAT/GH_ENTERPRISE_TOKEN all unset, no GitHub MCP connector registered, zero connected Chrome instances, and the in-app browser loads the repo anonymously (no user-login meta, Sign in offered). KEY NUANCE: ssh -T git@github.com DOES authenticate as abdulaziz-ca via ~/.ssh/id_ed25519, but SSH covers only the git transport and cannot create issues - a working git remote is not an issue-write channel. Eligible set confirmed at 58 = 49 open stories + 9 subtasks, all Backlog; 15 epics and 30 Done entries correctly excluded. The first 10 targets and the resume key AF-S0302 (#52) are stored in phase6Progress so a resume needs no recomputation. NOTE: AF-T14011 'Resolve GitHub tooling access' was deleted in the Phase 4 triage, and the blocker it described is exactly what now stops Phase 6.",
+    "PHASE 6 PARTIAL 2026-08-02: gh preflight passed (gh 2.97.0, abdulaziz-ca, 'repo' scope) and the first 10 of 58 eligible issues were created as GitHub #2-#11 against abdulaziz-ca/AbilityFinder. Reciprocal-link gate PASS in both directions: every issue carries the spec-key marker, taskview-task-id marker, deep link, branch and doneWhen checkboxes; every ticket carries its issue URL and branch. Each TaskView note changed by EXACTLY ONE line, the GitHub line, proven by diff against the pre-Phase-6 sweep, and exactly the 10 target tickets moved with zero field drift board-wide. Duplicate prevention searched open AND closed issues by marker, key and task id before every create; zero duplicate markers exist on the repo. 48 eligible entries remain; resume at AF-S0302 (#52), position 11 of 58. Repo is PUBLIC and the owner reaffirmed Phase 6 after that was flagged. Phase 7 not started; no repository commit made or pushed.",
+    "PHASE 6 BATCH 2 COMPLETE 2026-08-02: issues 11-20 of 58 created as GitHub #12-#21 (AF-S0302..AF-S0501). Gate PASS both directions for all 20 cumulative pairs. Each TaskView note changed by EXACTLY ONE line, the GitHub line, proven by diff against the post-batch-1 sweep; exactly the 10 batch-2 tickets moved with zero field drift board-wide and 103 mappings intact. Duplicate prevention searched open AND closed issues by marker, spec key and task-id before every create, and the tooling now RECONCILES an existing issue instead of aborting - the path was exercised 10 times and found nothing pre-existing. 21 issues on the repo = 1 pre-existing closed test + 20 created, with 20 distinct markers and zero duplicates. 38 eligible entries remain; resume at AF-S0502 (#67), position 21 of 58. Phase 7 not started; no commit made or pushed.",
+    "PHASE 6 BATCH 3 COMPLETE 2026-08-02: issues 21-30 of 58 created as GitHub #22-#31 (AF-S0502..AF-S0808). Gate PASS both directions for all 30 cumulative pairs, with cumulative marker uniqueness verified on BOTH marker families - 30 distinct spec-key markers and 30 distinct taskview-task-id markers, zero duplicates, issue numbers contiguous #2-#31. Each note changed by EXACTLY ONE line; exactly the 10 batch-3 tickets moved; zero field drift; 103 mappings intact. AF-S0805 (#78) was the first synced ticket carrying a Phase 4 child-index table and it survived the single-line patch with all three child deep links intact. INCIDENT, recovered: a sed edit to a cosmetic progress label broke an f-string, so AF-S0502's issue #22 was created but its checkpoint write aborted. The script was repaired, #22 was re-read from GitHub and checkpointed before any further work, and a marker query confirmed exactly one AF-S0502 issue exists - no duplicate. 28 eligible entries remain; resume at AF-S0901 (#82), position 31 of 58. Phase 7 not started; no commit made or pushed.",
+    "PHASE 6 BATCH 4 COMPLETE 2026-08-02: issues 31-40 of 58 created as GitHub #32-#41 (AF-S0901..AF-S1201). Gate PASS both directions for all 40 cumulative pairs. Cumulative uniqueness holds on both marker families - 40 distinct spec-key markers and 40 distinct taskview-task-id markers, zero duplicates, issue numbers contiguous #2-#41 - and every checkpoint (key, taskId, issueNumber) triple was cross-checked against the live issue body with zero mismatches. Each note changed by EXACTLY ONE line; exactly the 10 batch-4 tickets moved; zero field drift; 103 mappings intact. Per instruction the creation script was left untouched this batch, proven by an md5 recorded before the first create and re-verified after the last. 18 eligible entries remain ({'story': 9, 'subtask': 9}); resume at AF-S1301 (#94), position 41 of 58. Phase 7 not started; no commit made or pushed.",
+    "PHASE 6 BATCH 5 COMPLETE 2026-08-02: issues 41-50 of 58 created as GitHub #42-#51. MILESTONE - all 49 eligible STORIES now have issues; the remaining 8 entries are all Phase 4 subtasks. First subtask synced: AF-T01031 (#120) -> issue #51, whose body carries a Parent story line plus <!-- taskview-parent-key: AF-S0103 --> and <!-- taskview-parent-task-id: 43 -->. Two subtask-specific findings recorded: subtasks are depth-2 and INVISIBLE to list_tasks, so their notes must come from get_task, not the board sweep; and the parent must not be touched - proven for #43, whose note is byte-identical before and after with its child-index table and both child deep links intact. Gate PASS both directions for all 50 cumulative pairs: 50 distinct spec-key markers and 50 distinct task-id markers, zero duplicates, issues contiguous #2-#51, zero checkpoint/GitHub mismatches, zero field drift, 103 mappings intact. NOTE for the owner: AF-S1408 requires WEBSITE-PROJECT-TRACKER.md stay untracked, which confirms excluding it from both milestone commits was correct. 8 subtasks remain; resume at AF-T01032 (#121), position 51 of 58 - the final batch. Phase 7 not started; no commit made or pushed.",
+    "PHASE 6 COMPLETE 2026-08-02: all 58 eligible entries (49 open stories + 9 subtasks) now have GitHub issues #2-#59 on abdulaziz-ca/AbilityFinder, created across six batches. Gate PASS on every required condition: exactly 58 distinct spec-key markers and 58 distinct taskview-task-id markers with zero duplicates; the marker set equals the eligible set exactly; reciprocal links verified on all 58 tickets; ZERO issues for any of the 15 epics or any of the 30 Done tickets; issues contiguous #2-#59; zero checkpoint/GitHub mismatches. The final 8 were depth-2 subtasks fetched with get_task because list_tasks cannot see them, and all four parents (#43,#78,#99,#101) are byte-identical to baseline with child-index tables intact. All 9 subtask issues carry parent identification via a Parent story line and two parent markers. Zero board-wide field drift; 103 mappings intact. Phase 8 correction item P8-01 recorded, NOT actioned: AF-S1401's constraint text still says gh is not installed, which is stale now that gh 2.97.0 is authenticated and was used for this entire phase. Checkpoint advanced to Phase 7 (Slack notifications); Phase 7 NOT started, no commit made, nothing pushed."
   ],
   "conventions": {
     "doneTickets": {
@@ -1253,5 +1576,635 @@
         "/completed[4]/counts/dependencyEdges"
       ]
     }
-  }
+  },
+  "phase6Progress": {
+    "status": "COMPLETE - all 58 eligible entries have GitHub issues with verified reciprocal links.",
+    "date": "2026-08-02",
+    "repo": "abdulaziz-ca/AbilityFinder",
+    "repoVisibility": "public (anonymous API GET returns HTTP 200)",
+    "eligibleCount": 58,
+    "eligibleBreakdown": {
+      "story": 49,
+      "subtask": 9
+    },
+    "excluded": {
+      "epics": 15,
+      "doneStoriesAndSubtasks": 30,
+      "rule": "Epics and Done entries never receive issues, per the build brief."
+    },
+    "issuesCreated": 58,
+    "firstTenTargets": [
+      {
+        "n": 1,
+        "key": "AF-S0101",
+        "taskId": 41,
+        "level": "story",
+        "title": "[DATA] Establish the /api/link-health review cadence",
+        "deepLink": "http://localhost:8888/org-fbbce12c/3/-1401/41"
+      },
+      {
+        "n": 2,
+        "key": "AF-S0102",
+        "taskId": 42,
+        "level": "story",
+        "title": "[DATA] Re-verify benefit figures before their freshness dates age out",
+        "deepLink": "http://localhost:8888/org-fbbce12c/3/-1401/42"
+      },
+      {
+        "n": 3,
+        "key": "AF-S0103",
+        "taskId": 43,
+        "level": "story",
+        "title": "[DATA] Re-verify GRANTS_DIRECTORY and ORGS_DIRECTORY entries",
+        "deepLink": "http://localhost:8888/org-fbbce12c/3/-1401/43"
+      },
+      {
+        "n": 4,
+        "key": "AF-S0104",
+        "taskId": 44,
+        "level": "story",
+        "title": "[DATA] Keep the data-change procedure enforced",
+        "deepLink": "http://localhost:8888/org-fbbce12c/3/-1401/44"
+      },
+      {
+        "n": 5,
+        "key": "AF-S0105",
+        "taskId": 45,
+        "level": "story",
+        "title": "[DATA] Re-check Camrose and other municipalities one program at a time",
+        "deepLink": "http://localhost:8888/org-fbbce12c/3/-1401/45"
+      },
+      {
+        "n": 6,
+        "key": "AF-S0106",
+        "taskId": 46,
+        "level": "story",
+        "title": "[DATA] Hold AISH/ADAP signer guidance until Alberta publishes an official list",
+        "deepLink": "http://localhost:8888/org-fbbce12c/3/-1401/46"
+      },
+      {
+        "n": 7,
+        "key": "AF-S0201",
+        "taskId": 47,
+        "level": "story",
+        "title": "[SCOPE] Decide where the PharmaCare Plan B long-term-care warning belongs",
+        "deepLink": "http://localhost:8888/org-fbbce12c/3/-1401/47"
+      },
+      {
+        "n": 8,
+        "key": "AF-S0202",
+        "taskId": 48,
+        "level": "story",
+        "title": "[SCOPE] Decide whether provincial child/family benefits are in scope",
+        "deepLink": "http://localhost:8888/org-fbbce12c/3/-1401/48"
+      },
+      {
+        "n": 9,
+        "key": "AF-S0204",
+        "taskId": 50,
+        "level": "story",
+        "title": "[PROCESS] Check the catalogue by record id before recording a coverage gap",
+        "deepLink": "http://localhost:8888/org-fbbce12c/3/-1401/50"
+      },
+      {
+        "n": 10,
+        "key": "AF-S0301",
+        "taskId": 51,
+        "level": "story",
+        "title": "[A11Y] Repeat the VoiceOver guide test with item-by-item navigation",
+        "deepLink": "http://localhost:8888/org-fbbce12c/3/-1401/51"
+      }
+    ],
+    "resumeKeyAfterTen": {
+      "key": "AF-S0302",
+      "taskId": 52
+    },
+    "preflight": {
+      "ghCli": "NOT INSTALLED (command -v gh finds nothing), matching the build brief's recorded state.",
+      "ghCredentialsOnDisk": "None. No ~/.config/gh/hosts.yml and no github entry in ~/.netrc.",
+      "envTokens": "GH_TOKEN, GITHUB_TOKEN, GITHUB_PAT and GH_ENTERPRISE_TOKEN are all unset.",
+      "mcpConnector": "No GitHub MCP connector is registered in this session; a tool search for GitHub issue creation returned only unrelated tools.",
+      "claudeInChrome": "list_connected_browsers returned an empty array - zero Chrome extension instances connected, so there is no authenticated real-browser session to borrow.",
+      "inAppBrowser": "Loaded https://github.com/abdulaziz-ca/AbilityFinder/issues successfully but ANONYMOUS: the user-login meta tag is absent and the page offers Sign in / Sign up. Read-only access only.",
+      "sshKey": "IMPORTANT NUANCE: ssh -T git@github.com authenticates successfully as abdulaziz-ca using ~/.ssh/id_ed25519. This covers the git transport only (clone, fetch, push). It CANNOT create issues - issues require the REST/GraphQL API or an authenticated web session. A working git remote is therefore not evidence of an issue-write channel.",
+      "conclusion": "Read access is available; write access is not. Preflight stopped before any creation, per instruction.",
+      "retry2026-08-02": "PASSED. gh 2.97.0, logged in as abdulaziz-ca via keyring, token scopes admin:public_key/gist/read:org/repo - 'repo' grants issue write. Issues enabled. Repo PUBLIC."
+    },
+    "setupOptionsForOwner": [
+      "Install the gh CLI and run 'gh auth login' interactively. Authentication requires the owner's own credentials, so the owner must run it; the agent must not enter credentials.",
+      "Create a fine-grained personal access token scoped to abdulaziz-ca/AbilityFinder with Issues: Read and write, and export it as GH_TOKEN in the shell that launches this session. The token value must never be pasted into a ticket, commit, PR, log or command line - see AF-S0801, which exists precisely because a token was once pasted into a chat transcript.",
+      "Register a GitHub MCP connector with issue-write scope.",
+      "Sign in to github.com in Chrome with the Claude in Chrome extension connected, so an authenticated browser session becomes available."
+    ],
+    "ownerDecisionsOpen": [
+      "The repository is PUBLIC. Phase 6 will publish 58 issues containing full ticket context and acceptance criteria to a publicly visible tracker. Confirm that is intended before the bulk run proceeds.",
+      "The enabling ticket for exactly this blocker, AF-T14011 'Resolve GitHub tooling access', was DELETED during the Phase 4 subtask triage as setup for a deleted ticket. The blocker it described is now the live obstacle to Phase 6. Owner may want to reinstate it under AF-S1401, or record the chosen route directly in AF-S1401's note."
+    ],
+    "createdIssues": [
+      {
+        "key": "AF-S0101",
+        "taskId": 41,
+        "issueNumber": 2,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/2",
+        "branch": "taskview-41-establish-the-api-link-health-review"
+      },
+      {
+        "key": "AF-S0102",
+        "taskId": 42,
+        "issueNumber": 3,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/3",
+        "branch": "taskview-42-re-verify-benefit-figures-before-their"
+      },
+      {
+        "key": "AF-S0103",
+        "taskId": 43,
+        "issueNumber": 4,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/4",
+        "branch": "taskview-43-re-verify-grants-directory-and-orgs"
+      },
+      {
+        "key": "AF-S0104",
+        "taskId": 44,
+        "issueNumber": 5,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/5",
+        "branch": "taskview-44-keep-the-data-change-procedure-enforced"
+      },
+      {
+        "key": "AF-S0105",
+        "taskId": 45,
+        "issueNumber": 6,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/6",
+        "branch": "taskview-45-re-check-camrose-and-other-municipalities"
+      },
+      {
+        "key": "AF-S0106",
+        "taskId": 46,
+        "issueNumber": 7,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/7",
+        "branch": "taskview-46-hold-aish-adap-signer-guidance-until"
+      },
+      {
+        "key": "AF-S0201",
+        "taskId": 47,
+        "issueNumber": 8,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/8",
+        "branch": "taskview-47-decide-where-the-pharmacare-plan-b"
+      },
+      {
+        "key": "AF-S0202",
+        "taskId": 48,
+        "issueNumber": 9,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/9",
+        "branch": "taskview-48-decide-whether-provincial-child-family-benefits"
+      },
+      {
+        "key": "AF-S0204",
+        "taskId": 50,
+        "issueNumber": 10,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/10",
+        "branch": "taskview-50-check-the-catalogue-by-record-id"
+      },
+      {
+        "key": "AF-S0301",
+        "taskId": 51,
+        "issueNumber": 11,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/11",
+        "branch": "taskview-51-repeat-the-voiceover-guide-test-with"
+      },
+      {
+        "key": "AF-S0302",
+        "taskId": 52,
+        "issueNumber": 12,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/12",
+        "branch": "taskview-52-run-a-real-nvda-pass"
+      },
+      {
+        "key": "AF-S0303",
+        "taskId": 53,
+        "issueNumber": 13,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/13",
+        "branch": "taskview-53-run-a-real-talkback-pass"
+      },
+      {
+        "key": "AF-S0304",
+        "taskId": 54,
+        "issueNumber": 14,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/14",
+        "branch": "taskview-54-confirm-safari-behaviour-with-full-keyboard"
+      },
+      {
+        "key": "AF-S0305",
+        "taskId": 55,
+        "issueNumber": 15,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/15",
+        "branch": "taskview-55-complete-the-touch-target-sizing-review"
+      },
+      {
+        "key": "AF-S0306",
+        "taskId": 56,
+        "issueNumber": 16,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/16",
+        "branch": "taskview-56-obtain-an-accessibility-specialist-s-judgement"
+      },
+      {
+        "key": "AF-S0307",
+        "taskId": 57,
+        "issueNumber": 17,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/17",
+        "branch": "taskview-57-run-the-disabled-user-study"
+      },
+      {
+        "key": "AF-S0308",
+        "taskId": 58,
+        "issueNumber": 18,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/18",
+        "branch": "taskview-58-disposition-every-finding-from-at-and"
+      },
+      {
+        "key": "AF-S0401",
+        "taskId": 61,
+        "issueNumber": 19,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/19",
+        "branch": "taskview-61-test-01-build-the-eligibility-oracle"
+      },
+      {
+        "key": "AF-S0402",
+        "taskId": 62,
+        "issueNumber": 20,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/20",
+        "branch": "taskview-62-root-cause-the-app-chromium-90"
+      },
+      {
+        "key": "AF-S0501",
+        "taskId": 66,
+        "issueNumber": 21,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/21",
+        "branch": "taskview-66-data-25-replace-mitigated-dtc-readiness"
+      },
+      {
+        "key": "AF-S0502",
+        "taskId": 67,
+        "issueNumber": 22,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/22",
+        "branch": "taskview-67-ux-02-stop-the-homepage-overpromising"
+      },
+      {
+        "key": "AF-S0503",
+        "taskId": 68,
+        "issueNumber": 23,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/23",
+        "branch": "taskview-68-ux-03-explain-or-replace-the"
+      },
+      {
+        "key": "AF-S0701",
+        "taskId": 71,
+        "issueNumber": 24,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/24",
+        "branch": "taskview-71-lift-the-no-go-only-when"
+      },
+      {
+        "key": "AF-S0702",
+        "taskId": 72,
+        "issueNumber": 25,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/25",
+        "branch": "taskview-72-run-the-full-release-candidate-test"
+      },
+      {
+        "key": "AF-S0703",
+        "taskId": 73,
+        "issueNumber": 26,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/26",
+        "branch": "taskview-73-clean-production-smoke-test-after-the"
+      },
+      {
+        "key": "AF-S0801",
+        "taskId": 74,
+        "issueNumber": 27,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/27",
+        "branch": "taskview-74-rotate-the-cloudflare-api-token"
+      },
+      {
+        "key": "AF-S0805",
+        "taskId": 78,
+        "issueNumber": 28,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/28",
+        "branch": "taskview-78-production-only-validation-sweep"
+      },
+      {
+        "key": "AF-S0806",
+        "taskId": 79,
+        "issueNumber": 29,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/29",
+        "branch": "taskview-79-confirm-cloudflare-edge-injection-stays-disabled"
+      },
+      {
+        "key": "AF-S0807",
+        "taskId": 80,
+        "issueNumber": 30,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/30",
+        "branch": "taskview-80-post-deploy-verification-routine"
+      },
+      {
+        "key": "AF-S0808",
+        "taskId": 81,
+        "issueNumber": 31,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/31",
+        "branch": "taskview-81-review-search-appearance-after-major-content"
+      },
+      {
+        "key": "AF-S0901",
+        "taskId": 82,
+        "issueNumber": 32,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/32",
+        "branch": "taskview-82-finish-alberta-polish"
+      },
+      {
+        "key": "AF-S0902",
+        "taskId": 83,
+        "issueNumber": 33,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/33",
+        "branch": "taskview-83-build-the-trust-and-credibility-artifacts"
+      },
+      {
+        "key": "AF-S0903",
+        "taskId": 84,
+        "issueNumber": 34,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/34",
+        "branch": "taskview-84-improve-discovery-only-when-evidence-supports"
+      },
+      {
+        "key": "AF-S1001",
+        "taskId": 86,
+        "issueNumber": 35,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/35",
+        "branch": "taskview-86-adviser-facing-quick-reference"
+      },
+      {
+        "key": "AF-S1002",
+        "taskId": 87,
+        "issueNumber": 36,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/36",
+        "branch": "taskview-87-dtc-t2201-appointment-preparation-sheets"
+      },
+      {
+        "key": "AF-S1003",
+        "taskId": 88,
+        "issueNumber": 37,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/37",
+        "branch": "taskview-88-for-professionals-page"
+      },
+      {
+        "key": "AF-S1004",
+        "taskId": 89,
+        "issueNumber": 38,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/38",
+        "branch": "taskview-89-keep-practitioner-relationships-legally-clean"
+      },
+      {
+        "key": "AF-S1101",
+        "taskId": 90,
+        "issueNumber": 39,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/39",
+        "branch": "taskview-90-write-the-province-source-audit-checklist"
+      },
+      {
+        "key": "AF-S1102",
+        "taskId": 91,
+        "issueNumber": 40,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/40",
+        "branch": "taskview-91-re-integrate-the-first-additional-province"
+      },
+      {
+        "key": "AF-S1201",
+        "taskId": 92,
+        "issueNumber": 41,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/41",
+        "branch": "taskview-92-choose-and-scope-the-first-additional"
+      },
+      {
+        "key": "AF-S1301",
+        "taskId": 94,
+        "issueNumber": 42,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/42",
+        "branch": "taskview-94-scope-the-paid-agency-portal-as"
+      },
+      {
+        "key": "AF-S1401",
+        "taskId": 96,
+        "issueNumber": 43,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/43",
+        "branch": "taskview-96-github-issue-sync-for-every-open"
+      },
+      {
+        "key": "AF-S1402",
+        "taskId": 97,
+        "issueNumber": 44,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/44",
+        "branch": "taskview-97-stable-https-callback-for-the-local"
+      },
+      {
+        "key": "AF-S1403",
+        "taskId": 98,
+        "issueNumber": 45,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/45",
+        "branch": "taskview-98-slack-notifications-for-blocked-review-verification"
+      },
+      {
+        "key": "AF-S1404",
+        "taskId": 99,
+        "issueNumber": 46,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/46",
+        "branch": "taskview-99-update-the-taskview-docs-for-the"
+      },
+      {
+        "key": "AF-S1405",
+        "taskId": 100,
+        "issueNumber": 47,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/47",
+        "branch": "taskview-100-repoint-taskview-policy-json-to-the"
+      },
+      {
+        "key": "AF-S1406",
+        "taskId": 101,
+        "issueNumber": 48,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/48",
+        "branch": "taskview-101-reconcile-the-stale-rows-in-the"
+      },
+      {
+        "key": "AF-S1407",
+        "taskId": 102,
+        "issueNumber": 49,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/49",
+        "branch": "taskview-102-board-hygiene-sweep"
+      },
+      {
+        "key": "AF-S1408",
+        "taskId": 103,
+        "issueNumber": 50,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/50",
+        "branch": "taskview-103-keep-website-project-tracker-md-untracked"
+      },
+      {
+        "key": "AF-T01031",
+        "taskId": 120,
+        "issueNumber": 51,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/51",
+        "branch": "taskview-120-re-verify-grants-directory-entries-in",
+        "level": "subtask",
+        "parentKey": "AF-S0103",
+        "parentTaskId": 43
+      },
+      {
+        "key": "AF-T01032",
+        "taskId": 121,
+        "issueNumber": 52,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/52",
+        "branch": "taskview-121-re-verify-orgs-directory-entries-in",
+        "level": "subtask",
+        "parentKey": "AF-S0103",
+        "parentTaskId": 43
+      },
+      {
+        "key": "AF-T08051",
+        "taskId": 122,
+        "issueNumber": 53,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/53",
+        "branch": "taskview-122-exercise-ai-quota-exhaustion-behaviour",
+        "level": "subtask",
+        "parentKey": "AF-S0805",
+        "parentTaskId": 78
+      },
+      {
+        "key": "AF-T08052",
+        "taskId": 123,
+        "issueNumber": 54,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/54",
+        "branch": "taskview-123-exercise-adversarial-assistant-prompts",
+        "level": "subtask",
+        "parentKey": "AF-S0805",
+        "parentTaskId": 78
+      },
+      {
+        "key": "AF-T08053",
+        "taskId": 124,
+        "issueNumber": 55,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/55",
+        "branch": "taskview-124-exercise-feedback-email-header-sanitation-in",
+        "level": "subtask",
+        "parentKey": "AF-S0805",
+        "parentTaskId": 78
+      },
+      {
+        "key": "AF-T14041",
+        "taskId": 125,
+        "issueNumber": 56,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/56",
+        "branch": "taskview-125-repoint-taskview-workflow-md-to-goalid",
+        "level": "subtask",
+        "parentKey": "AF-S1404",
+        "parentTaskId": 99
+      },
+      {
+        "key": "AF-T14042",
+        "taskId": 126,
+        "issueNumber": 57,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/57",
+        "branch": "taskview-126-carry-the-note-template-and-handoff",
+        "level": "subtask",
+        "parentKey": "AF-S1404",
+        "parentTaskId": 99
+      },
+      {
+        "key": "AF-T14061",
+        "taskId": 127,
+        "issueNumber": 58,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/58",
+        "branch": "taskview-127-correct-the-stale-website-project-tracker",
+        "level": "subtask",
+        "parentKey": "AF-S1406",
+        "parentTaskId": 101
+      },
+      {
+        "key": "AF-T14062",
+        "taskId": 128,
+        "issueNumber": 59,
+        "issueUrl": "https://github.com/abdulaziz-ca/AbilityFinder/issues/59",
+        "branch": "taskview-128-correct-the-stale-roadmap-md-rows",
+        "level": "subtask",
+        "parentKey": "AF-S1406",
+        "parentTaskId": 101
+      }
+    ],
+    "issuesRemaining": 0,
+    "resumeKey": null,
+    "nextTenTargets": [],
+    "gate": {
+      "result": "PASS - Phase 6 complete, exact on every required condition",
+      "distinctSpecKeyMarkers": "58 (required 58)",
+      "distinctTaskIdMarkers": "58 (required 58)",
+      "markerSetEqualsEligibleSet": "true - the set of spec-key markers on GitHub is exactly the 58 eligible keys, no more and no less",
+      "duplicates": "none on either marker family",
+      "reciprocalLinks": "58/58. The 49 stories were checked against the live board sweep; the 9 depth-2 subtasks were checked against live get_task parent-subtree reads because list_tasks cannot see them.",
+      "noEpicIssues": "none - zero of the 15 epic keys appear as an issue marker",
+      "noDoneIssues": "none - zero of the 30 Done story/subtask keys appear as an issue marker",
+      "issueRange": "59 issues on the repo = 1 pre-existing closed integration test + 58 created, contiguous #2-#59",
+      "checkpointCrossCheck": "every (key, taskId, issueNumber) triple re-verified against live issue body markers: zero mismatches",
+      "parentIntegrity": "All four subtask parents (#43, #78, #99, #101) are byte-identical to their pre-batch baselines with their Phase 4 child-index tables intact. Board-wide, zero list_tasks-visible notes changed in the final batch because all eight edits were depth-2 subtasks.",
+      "noDrift": "zero board-wide drift in description, parentId, priorityId, statusId, complete or tags; 103 keyToTaskId mappings intact"
+    },
+    "scopeNote": "The GitHub line now carries BOTH the issue URL and the concrete branch name, replacing the literal 'taskview-<id>-<slug>' placeholder. Both live inside the single GitHub line that was authorised for update; no other byte of any note changed.",
+    "batches": [
+      {
+        "batch": 1,
+        "issues": "#2-#11"
+      },
+      {
+        "batch": 2,
+        "issues": "#12-#21"
+      },
+      {
+        "batch": 3,
+        "issues": "#22-#31"
+      },
+      {
+        "batch": 4,
+        "issues": "#32-#41"
+      },
+      {
+        "batch": 5,
+        "issues": "#42-#51"
+      },
+      {
+        "batch": 6,
+        "issues": "#52-#59"
+      }
+    ],
+    "incident": {
+      "date": "2026-08-02",
+      "severity": "recovered, no data loss, no duplicate",
+      "what": "A sed edit intended to correct a cosmetic '/10' progress label in the creation script introduced double quotes inside an already double-quoted f-string, producing a SyntaxError. The GitHub issue for AF-S0502 was created as #22, then the checkpoint step in the same script aborted before writing.",
+      "impact": "Issue #22 existed on GitHub for one turn without a checkpoint entry. Nothing else was affected; the failure was fail-closed - the checkpoint write simply did not happen rather than writing something wrong.",
+      "recovery": "The script was repaired, #22's URL was re-read from GitHub with gh issue view and written to the checkpoint before any further work. A marker query then confirmed EXACTLY ONE issue carries <!-- taskview-spec-key: AF-S0502 -->, so no duplicate was created.",
+      "lesson": "Never rewrite a quoted f-string with sed. The checkpoint-immediately discipline is what bounded the blast radius to a single recoverable entry."
+    },
+    "remainingBreakdown": {},
+    "milestone": "ALL 49 ELIGIBLE STORIES NOW HAVE ISSUES. The remaining 8 entries are all Phase 4 subtasks.",
+    "subtaskConvention": {
+      "issueBody": "A subtask issue additionally carries a '**Parent story:**' line naming the parent spec key, parent TaskView id, parent deep link and parent issue URL, plus two extra markers: <!-- taskview-parent-key: KEY --> and <!-- taskview-parent-task-id: N -->.",
+      "noteSource": "Subtasks sit at depth 2 and are INVISIBLE to list_tasks (the one-level nesting limit found in Phase 4/5), so a subtask's current note must be fetched with get_task rather than from the board sweep.",
+      "parentUntouched": "Writing a subtask's GitHub line must not touch the parent. Proven for #43: its note is byte-identical before and after this batch, its Phase 4 child-index table and both child deep links are intact, and it still points at its own issue #4.",
+      "appliedToAllNine": "All 9 subtask issues carry the Parent story line plus <!-- taskview-parent-key --> and <!-- taskview-parent-task-id --> markers, and every subtask note was sourced from get_task rather than the board sweep."
+    }
+  },
+  "phase8CorrectionItems": [
+    {
+      "id": "P8-01",
+      "raisedBy": "Phase 6, 2026-08-02",
+      "target": "AF-S1401 (TaskView #96, issue #43)",
+      "issue": "Its Constraints line still reads 'gh CLI is not installed - use the Codex agent's browser, or install gh and ask the owner to authenticate'. That is now stale: gh 2.97.0 is installed and authenticated as abdulaziz-ca with the 'repo' scope, and Phase 6 used it to create all 58 issues.",
+      "action": "Correct the constraint text in both the TaskView note and GitHub issue #43 to record the actual tooling route used.",
+      "deferredBecause": "Phase 6's authorised note edit was the GitHub line only. Recorded here rather than changed now, per owner instruction.",
+      "status": "OPEN"
+    }
+  ]
 }
