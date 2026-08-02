@@ -1,0 +1,640 @@
+[
+  {
+    "key": "AF-S0701",
+    "level": "story",
+    "parentKey": "AF-E07",
+    "title": "[REL] Lift the NO-GO only when all four conditions have evidence",
+    "area": "ops",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops",
+      "blocker:release"
+    ],
+    "note": {
+      "summary": "The audit's original NO-GO has not been formally lifted. All four conditions need evidence; the official-clarifications condition is met, but the remaining code qualification and real disabled-user and assistive-technology testing are not.",
+      "goal": "Lift the NO-GO only after all four release conditions carry evidence and the owner changes the release status.",
+      "whyItMatters": "This is the release gate, and untested accessibility rather than code completeness remains the blocker.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, and REMAINING-WORK.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Require evidence that remaining code findings are fixed or visibly qualified, manual disabled-user and assistive-technology testing happened, outstanding official clarifications are resolved, and a clean production smoke test followed the final release candidate.",
+      "doneWhen": [
+        "all four conditions carry evidence",
+        "the owner changes the release status"
+      ],
+      "priorityRationale": "High priority because the original NO-GO has never been formally lifted.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [
+      "AF-S0307",
+      "AF-S0308",
+      "AF-S0702",
+      "AF-S0703"
+    ],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0702",
+    "level": "story",
+    "parentKey": "AF-E07",
+    "title": "[REL] Run the full release-candidate test and generation checklist",
+    "area": "ops",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops",
+      "blocker:release"
+    ],
+    "note": {
+      "summary": "The final release candidate needs the complete diff, generation, unit, six-project Playwright, whitespace and Wrangler dry-run checklist recorded. The current baseline is 110 unit and 420 e2e across six projects.",
+      "goal": "Run every release-candidate checklist item and record its output, totals, date and commit candidate.",
+      "whyItMatters": "The release gate needs reviewable evidence that source, generated output, assets and tests agree before production.",
+      "filesToTouch": "public/data.js, src/benefits-context.js, and browser-loaded assets carrying `?v=N`",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, public/data.js, src/benefits-context.js, and the complete local diff",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Review the complete local diff and separate intentional source changes from generated changes. Run `npm run gen:context`, `npm run gen:guides`, `npm test`, `npm run test:e2e`, `git diff --check`, and `npx wrangler deploy --dry-run`; commit, push or deploy only with explicit owner authorization.",
+      "doneWhen": [
+        "every checklist item has recorded output",
+        "the test totals are written down"
+      ],
+      "priorityRationale": "High priority because this checklist is part of the release gate.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0703",
+    "level": "story",
+    "parentKey": "AF-E07",
+    "title": "[REL] Clean production smoke test after the final release candidate",
+    "area": "ops",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops",
+      "blocker:release"
+    ],
+    "note": {
+      "summary": "A `deploy` job reporting success does not prove it deployed, and a successful deploy does not prove the edge is serving it yet. Production must be checked against the live asset `?v=N`, with inconsistent post-deploy results re-run before any conclusion.",
+      "goal": "Complete a clean production smoke test against the live site after the final release candidate.",
+      "whyItMatters": "The final release must be proven live without mistaking a skipped deploy or propagation window for success or failure.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, REMAINING-WORK.md, and the live site",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not trust the deploy job conclusion alone, do not report propagation zeros as a failure, and do not explain them away. Re-run inconsistent checks, and do not push a second change while the first still needs live verification.",
+      "doneWhen": [
+        "the smoke test is clean on a re-run",
+        "the test is against the live site",
+        "the test is on the final RC"
+      ],
+      "priorityRationale": "High priority because a clean production smoke test is a release-blocking NO-GO condition.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0801",
+    "level": "story",
+    "parentKey": "AF-E08",
+    "title": "[SEC] Rotate the Cloudflare API token",
+    "area": "deploy",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:deploy",
+      "human-only",
+      "needs-owner-decision"
+    ],
+    "note": {
+      "summary": "The Cloudflare API token in GitHub has not been rotated after its value was pasted into a chat transcript. It is live, Workers-edit scoped, demonstrably able to deploy, and CI is the only path to production.",
+      "goal": "Have the owner rotate the token, update the repository secret and prove a release after rotation.",
+      "whyItMatters": "The unrotated live deployment credential remains exposed in a chat transcript.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, and REMAINING-WORK.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Never put the token value in a ticket, branch, commit, PR, log or command line. The rotation is the owner's call.",
+      "doneWhen": [
+        "the token is rotated by the owner",
+        "the repository secret is updated",
+        "a release is proven after the rotation"
+      ],
+      "priorityRationale": "High priority because the live Workers-edit token has not been rotated after its value was pasted into a chat transcript.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0802",
+    "level": "story",
+    "parentKey": "AF-E08",
+    "title": "[OPS] Keep the CI deploy gate intact and prove releases against the live site",
+    "area": "ops",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "The CI deploy gate is live and proven rather than advisory: `.github/workflows/ci.yml` runs unit and six-project Playwright tests on every push to `main`, and `deploy` has `needs: test`. Red and cancelled test jobs block deployment, while every claimed release still needs live-site confirmation.",
+      "goal": "Keep the CI deploy gate intact and confirm every release against the live site.",
+      "whyItMatters": "The gate physically prevents red or cancelled test runs from reaching production and live verification proves what actually shipped.",
+      "filesToTouch": ".github/workflows/ci.yml",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, .github/workflows/ci.yml, and the live site",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Keep Workers Builds disconnected and preserve `needs: test` and `concurrency: cancel-in-progress`. Treat a cancelled test job like a red one, and do not use the job conclusion as proof that a release is live.",
+      "doneWhen": [
+        "the gate is unchanged",
+        "every release is confirmed against the live site"
+      ],
+      "priorityRationale": "High priority because this gate prevents failed or cancelled test runs from reaching production.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0803",
+    "level": "story",
+    "parentKey": "AF-E08",
+    "title": "[OPS] Preserve the Playwright browser cache conditions",
+    "area": "ops",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "After an `Install Playwright browsers` step took **16m37s**, the job hit its then-30-minute cap and blocked a good release. Browsers are now cached at `~/.cache/ms-playwright`, keyed on the resolved `@playwright/test` version, and the condition must compare the `cache-hit` string with quoted `'true'`.",
+      "goal": "Preserve the Playwright browser cache conditions and confirm that the cache hits.",
+      "whyItMatters": "The cache prevents slow browser installation from consuming the CI job cap and blocking good releases.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, REMAINING-WORK.md, and the workflow containing `~/.cache/ms-playwright`",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Keep `cache-hit` comparisons against quoted `'true'`; do not use unquoted `== true` or `!= true`. Keep the cache keyed on the resolved `@playwright/test` version.",
+      "doneWhen": [
+        "the conditions stay quoted",
+        "the cache is observed to hit"
+      ],
+      "priorityRationale": "Low priority because the cache is already in place and this ticket preserves its working conditions.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0804",
+    "level": "story",
+    "parentKey": "AF-E08",
+    "title": "[OPS] REL-06 stays WON'T FIX on zero-spend grounds",
+    "area": "ops",
+    "priority": 1,
+    "status": "Done",
+    "tags": [
+      "type:story",
+      "area:ops",
+      "type:decision"
+    ],
+    "note": {
+      "summary": "This decision is already closed 2026-07-28 after the request-mode-dependent root cause was found. `assets.run_worker_first: [\"/api/*\"]` works, but it remains forbidden because Worker invocations count against the daily request limit while static-asset requests are free, and the app's own `/api/*` fetch calls are unaffected.",
+      "goal": "Keep REL-06 closed unless the owner explicitly decides to relax the zero-spend guard.",
+      "whyItMatters": "The rejected fix would spend Worker invocations to correct a low-severity top-level navigation behaviour that does not affect the app.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, REMAINING-WORK.md, wrangler.jsonc, and test/worker-transport.test.js",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not add `assets.run_worker_first: [\"/api/*\"]` or weaken the assertion matching `/run_worker_first/` without an explicit owner decision to relax the zero-spend guard.",
+      "doneWhen": [
+        "REL-06 remains closed as WON'T FIX",
+        "the zero-spend guard remains intact"
+      ],
+      "priorityRationale": "Low priority because the behaviour is low severity and the zero-spend decision is already closed.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0805",
+    "level": "story",
+    "parentKey": "AF-E08",
+    "title": "[OPS] Production-only validation sweep",
+    "area": "ops",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "Three behaviours require production or a safe non-delivery environment: AI quota exhaustion, adversarial assistant prompts and feedback email header sanitation. Existing safeguards keep the assistant narrow and grounded, keep model output on `textContent`, pin feedback to one verified destination and reject oversized declared bodies before any binding is touched.",
+      "goal": "Exercise all three production-only behaviours and record evidence without exposing a secret.",
+      "whyItMatters": "These behaviours cannot be fully validated in ordinary local delivery and protect assistant, email and quota boundaries.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, and REMAINING-WORK.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not widen the assistant without a demonstrably stronger model and a new safety review. It must not state dollar figures or eligibility verdicts; never render model output as HTML; do not replace explicit null/undefined checks with truthiness checks; preserve `MAX_BODY_BYTES` (64 KB).",
+      "doneWhen": [
+        "AI quota-exhaustion behaviour is exercised with recorded evidence",
+        "adversarial assistant prompts are exercised with recorded evidence",
+        "feedback email header sanitation is exercised with recorded evidence",
+        "no secret appears in any log"
+      ],
+      "priorityRationale": "Medium priority because the three behaviours can only be validated in production or a safe non-delivery environment.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0806",
+    "level": "story",
+    "parentKey": "AF-E08",
+    "title": "[OPS] Confirm Cloudflare edge injection stays disabled",
+    "area": "ops",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "Cloudflare may inject Browser Insights or challenge scripts at the edge, and the strict CSP blocks them with `transferSize` 0, confirmed 2026-07-30. No analytics is an intentional privacy decision rather than missing work.",
+      "goal": "Confirm the Cloudflare dashboard setting disables edge injection while leaving the CSP unchanged.",
+      "whyItMatters": "Disabling injection at the edge removes console noise without weakening the privacy-preserving CSP.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, REMAINING-WORK.md, and the Cloudflare dashboard setting",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not weaken CSP to allow analytics; disable injection in the Cloudflare dashboard instead.",
+      "doneWhen": [
+        "the dashboard setting is confirmed",
+        "the CSP is unchanged"
+      ],
+      "priorityRationale": "Low priority because the strict CSP already blocks the injected scripts.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0807",
+    "level": "story",
+    "parentKey": "AF-E08",
+    "title": "[OPS] Post-deploy verification routine",
+    "area": "ops",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "Every deployment needs a recorded routine covering propagation, cache version and changed assets, fresh-start and IndexedDB restore journeys, changed Worker endpoints, page and console errors, the intended commit and CI completion. Privacy contract checks must be re-run whenever a data flow changes.",
+      "goal": "Write down the post-deploy verification routine and follow it on the next deployment with recorded output.",
+      "whyItMatters": "The routine distinguishes real release problems from propagation and verifies browser, Worker, commit and privacy behaviour together.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, REMAINING-WORK.md, /api/link-health, every changed Worker endpoint, origin/main, and the custom domain",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Wait for propagation and repeat inconsistent smoke results before declaring success or failure. Do not weaken CSP for Cloudflare injection, and re-run privacy contract checks whenever a data flow changes.",
+      "doneWhen": [
+        "the routine is written down",
+        "the routine is followed on the next deploy with recorded output"
+      ],
+      "priorityRationale": "Medium priority because every deployment needs recorded live verification.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0808",
+    "level": "story",
+    "parentKey": "AF-E08",
+    "title": "[SEO] Review search appearance after major content or scope changes",
+    "area": "content",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:content"
+    ],
+    "note": {
+      "summary": "Canonical `abilityfinder.ca` metadata, title and description, Open Graph and Twitter metadata, a social sharing image, `robots.txt`, a generated `sitemap.xml`, static guide pages, a searchable guide index and a custom `404.html` are live. Their wording must stay synchronized if the domain or supported provinces change.",
+      "goal": "Review search appearance after the next major content or scope change and confirm the wording remains consistent.",
+      "whyItMatters": "Synchronized canonical, social, robot, sitemap, guide and embed wording keeps search and sharing surfaces aligned with the product scope.",
+      "filesToTouch": "robots.txt, sitemap.xml, and 404.html",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, robots.txt, sitemap.xml, 404.html, and the live metadata and guide surfaces",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Keep canonical, social, robot, sitemap, guide and embed wording synchronized if the domain or supported provinces change.",
+      "doneWhen": [
+        "the review happens after the next major content or scope change",
+        "the wording is confirmed consistent"
+      ],
+      "priorityRationale": "Low priority because the search and sharing surfaces are already live and need review after a future major change.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0901",
+    "level": "story",
+    "parentKey": "AF-E09",
+    "title": "[CONTENT] Finish Alberta polish",
+    "area": "content",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:content"
+    ],
+    "note": {
+      "summary": "This is owner horizon 1, set 2026-07-19: make the Alberta disability service so complete that organizations and clinics have no comparable alternative. Feature additions remain in the comparative research backlog and the owner picks them.",
+      "goal": "Ship the owner's chosen additions to the Alberta/B.C. depth bar.",
+      "whyItMatters": "The Alberta service is intended to be complete enough that organizations and clinics have no comparable alternative.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, WEBSITE-PROJECT-TRACKER.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Feature additions must come from the comparative research backlog, and the owner picks them.",
+      "doneWhen": [
+        "The owner's chosen additions are shipped to the Alberta/B.C. depth bar."
+      ],
+      "priorityRationale": "Priority 2 because this is owner horizon 1 and sets the Alberta/B.C. depth bar.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "WEBSITE-PROJECT-TRACKER.md"
+    ]
+  },
+  {
+    "key": "AF-S0902",
+    "level": "story",
+    "parentKey": "AF-E09",
+    "title": "[CONTENT] Build the trust and credibility artifacts for outreach",
+    "area": "content",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:content"
+    ],
+    "note": {
+      "summary": "Horizon 1 explicitly includes trust/credibility artifacts for organization outreach. Revenue sequencing is credibility → partnerships/grants (e.g. VAD) → sponsorships → agency licensing, so credibility comes first.",
+      "goal": "Create trust and credibility artifacts that are usable in an outreach conversation.",
+      "whyItMatters": "Credibility comes before partnerships/grants (e.g. VAD), sponsorships and agency licensing.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, WEBSITE-PROJECT-TRACKER.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Keep the revenue sequence credibility → partnerships/grants (e.g. VAD) → sponsorships → agency licensing.",
+      "doneWhen": [
+        "The artifacts exist and are usable in an outreach conversation."
+      ],
+      "priorityRationale": "Priority 2 because trust and credibility are the first step in the stated revenue sequencing.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "WEBSITE-PROJECT-TRACKER.md"
+    ]
+  },
+  {
+    "key": "AF-S0903",
+    "level": "story",
+    "parentKey": "AF-E09",
+    "title": "[UX] Improve discovery only when evidence supports it",
+    "area": "content",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:content"
+    ],
+    "note": {
+      "summary": "Potential low-risk enhancements are per-disability browse sorting/filtering backed by explicit benefit tags, safe guide deep links containing only a guide ID, and client-side export/import if users demonstrate a real need for cross-device transfer. None is yet justified.",
+      "goal": "Ship a discovery enhancement only after user or outreach evidence justifies it.",
+      "whyItMatters": "Discovery can improve without exposing sensitive wizard or profile data.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, WEBSITE-PROJECT-TRACKER.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Never put sensitive wizard or profile data in a URL; guide deep links may contain only a guide ID; export/import stays client-side and requires demonstrated user need.",
+      "doneWhen": [
+        "An enhancement ships only after user or outreach evidence justifies it."
+      ],
+      "priorityRationale": "Priority 1 because the potential enhancements are not yet justified.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "WEBSITE-PROJECT-TRACKER.md"
+    ]
+  },
+  {
+    "key": "AF-S0904",
+    "level": "story",
+    "parentKey": "AF-E09",
+    "title": "[CONTENT] French stays paused",
+    "area": "content",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:content",
+      "type:decision"
+    ],
+    "note": {
+      "summary": "French stays paused until there is capacity to translate and maintain the benefit catalog, not only the interface. French strings already exist in places, including the French e2e assertion \"Jusqu'à ~$4,500 / an\", but that is interface-level only.",
+      "goal": "Keep French paused until benefit-catalog maintenance capacity exists.",
+      "whyItMatters": "Interface-level French without translated and maintained benefit content does not cover the benefit catalog.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not re-open French for interface translation alone; re-open only when there is capacity to translate and maintain the benefit catalog.",
+      "doneWhen": [
+        "Already decided.",
+        "Re-open when catalogue-maintenance capacity exists."
+      ],
+      "priorityRationale": "Priority 1 because French remains paused pending catalogue-maintenance capacity.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "WEBSITE-PROJECT-TRACKER.md"
+    ]
+  },
+  {
+    "key": "AF-S1001",
+    "level": "story",
+    "parentKey": "AF-E10",
+    "title": "[CONTENT] Adviser-facing quick reference",
+    "area": "content",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:content"
+    ],
+    "note": {
+      "summary": "This is owner horizon 2, For Professionals v1. The adviser-facing quick reference remains to be shipped.",
+      "goal": "Ship the adviser-facing quick reference with every figure verified same-day like any other benefit content.",
+      "whyItMatters": "It is part of the owner horizon 2 For Professionals v1 material.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, WEBSITE-PROJECT-TRACKER.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Every figure must be verified same-day like any other benefit content.",
+      "doneWhen": [
+        "Shipped, with every figure verified same-day like any other benefit content."
+      ],
+      "priorityRationale": "Priority 1 because this is owner horizon 2.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "WEBSITE-PROJECT-TRACKER.md"
+    ]
+  },
+  {
+    "key": "AF-S1002",
+    "level": "story",
+    "parentKey": "AF-E10",
+    "title": "[CONTENT] DTC / T2201 appointment-preparation sheets",
+    "area": "content",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:content"
+    ],
+    "note": {
+      "summary": "This is owner horizon 2. DATA-25's DTC readiness is mitigated, not closed, so the appointment-preparation sheets must not imply a verdict the matcher cannot support.",
+      "goal": "Ship DTC / T2201 appointment-preparation sheets that are consistent with whatever DATA-25 settles.",
+      "whyItMatters": "The sheets must support appointment preparation without implying an unsupported DTC readiness verdict.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, REMAINING-WORK.md, WEBSITE-PROJECT-TRACKER.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not imply a verdict the matcher cannot support; keep the sheets consistent with whatever DATA-25 settles.",
+      "doneWhen": [
+        "Shipped, and consistent with whatever DATA-25 settles."
+      ],
+      "priorityRationale": "Priority 1 because this is owner horizon 2 and must remain consistent with DATA-25's outcome.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "WEBSITE-PROJECT-TRACKER.md",
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S1003",
+    "level": "story",
+    "parentKey": "AF-E10",
+    "title": "[CONTENT] \"For professionals\" page",
+    "area": "content",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:content"
+    ],
+    "note": {
+      "summary": "This is owner horizon 2. The \"For professionals\" page remains to be shipped.",
+      "goal": "Ship the \"For professionals\" page.",
+      "whyItMatters": "It is part of owner horizon 2.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, WEBSITE-PROJECT-TRACKER.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "TBD — verify against official source on the day",
+      "doneWhen": [
+        "Shipped."
+      ],
+      "priorityRationale": "Priority 1 because this is owner horizon 2.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "WEBSITE-PROJECT-TRACKER.md"
+    ]
+  },
+  {
+    "key": "AF-S1004",
+    "level": "story",
+    "parentKey": "AF-E10",
+    "title": "[LEGAL] Keep practitioner relationships legally clean",
+    "area": "ops",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops",
+      "needs-owner-decision"
+    ],
+    "note": {
+      "summary": "Practitioner involvement must use legally clean structures only: transparent directories and disclosed sponsorships. NO paid referral inducements: physician referral payments risk violating CPSA standards and fee-splitting rules.",
+      "goal": "Verify every practitioner arrangement against CPSA standards before entering into it.",
+      "whyItMatters": "Physician referral payments risk violating CPSA standards and fee-splitting rules.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, WEBSITE-PROJECT-TRACKER.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Use transparent directories and disclosed sponsorships only; NO paid referral inducements; verify before any clinic arrangement.",
+      "doneWhen": [
+        "Any practitioner arrangement is verified against CPSA standards before it is entered into, with the verification recorded."
+      ],
+      "priorityRationale": "Priority 3 because practitioner arrangements must avoid CPSA standards and fee-splitting violations.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "WEBSITE-PROJECT-TRACKER.md"
+    ]
+  }
+]

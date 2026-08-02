@@ -1,0 +1,788 @@
+{
+  "schemaVersion": 1,
+  "board": {
+    "organizationSlug": "org-fbbce12c",
+    "organizationId": 1,
+    "goalId": 3,
+    "goalName": "Ability Finder"
+  },
+  "phase": 5,
+  "batch": 20,
+  "keyToTaskId": {
+    "AF-E01": 26,
+    "AF-E02": 27,
+    "AF-E03": 28,
+    "AF-E04": 29,
+    "AF-E05": 30,
+    "AF-E06": 31,
+    "AF-E07": 32,
+    "AF-E08": 33,
+    "AF-E09": 34,
+    "AF-E10": 35,
+    "AF-E11": 36,
+    "AF-E12": 37,
+    "AF-E13": 38,
+    "AF-E14": 39,
+    "AF-E15": 40,
+    "AF-S0101": 41,
+    "AF-S0102": 42,
+    "AF-S0103": 43,
+    "AF-S0104": 44,
+    "AF-S0105": 45,
+    "AF-S0106": 46,
+    "AF-S0201": 47,
+    "AF-S0202": 48,
+    "AF-S0203": 49,
+    "AF-S0204": 50,
+    "AF-S0301": 51,
+    "AF-S0302": 52,
+    "AF-S0303": 53,
+    "AF-S0304": 54,
+    "AF-S0305": 55,
+    "AF-S0306": 56,
+    "AF-S0307": 57,
+    "AF-S0308": 58,
+    "AF-S0309": 59,
+    "AF-S0310": 60,
+    "AF-S0401": 61,
+    "AF-S0402": 62,
+    "AF-S0403": 63,
+    "AF-S0404": 64,
+    "AF-S0405": 65,
+    "AF-S0501": 66,
+    "AF-S0502": 67,
+    "AF-S0503": 68,
+    "AF-S0601": 69,
+    "AF-S0602": 70,
+    "AF-S0701": 71,
+    "AF-S0702": 72,
+    "AF-S0703": 73,
+    "AF-S0801": 74,
+    "AF-S0802": 75,
+    "AF-S0803": 76,
+    "AF-S0804": 77,
+    "AF-S0805": 78,
+    "AF-S0806": 79,
+    "AF-S0807": 80,
+    "AF-S0808": 81,
+    "AF-S0901": 82,
+    "AF-S0902": 83,
+    "AF-S0903": 84,
+    "AF-S0904": 85,
+    "AF-S1001": 86,
+    "AF-S1002": 87,
+    "AF-S1003": 88,
+    "AF-S1004": 89,
+    "AF-S1101": 90,
+    "AF-S1102": 91,
+    "AF-S1201": 92,
+    "AF-S1202": 93,
+    "AF-S1301": 94,
+    "AF-S1302": 95,
+    "AF-S1401": 96,
+    "AF-S1402": 97,
+    "AF-S1403": 98,
+    "AF-S1404": 99,
+    "AF-S1405": 100,
+    "AF-S1406": 101,
+    "AF-S1407": 102,
+    "AF-S1408": 103,
+    "AF-S1501": 104,
+    "AF-S1502": 105,
+    "AF-S1503": 106,
+    "AF-S1504": 107,
+    "AF-S1505": 108,
+    "AF-S1506": 109,
+    "AF-S1507": 110,
+    "AF-S1508": 111,
+    "AF-S1509": 112,
+    "AF-S1510": 113,
+    "AF-S1511": 114,
+    "AF-S1512": 115,
+    "AF-S1513": 116,
+    "AF-S1514": 117,
+    "AF-S1515": 118,
+    "AF-S1516": 119,
+    "AF-T01031": 120,
+    "AF-T01032": 121,
+    "AF-T08051": 122,
+    "AF-T08052": 123,
+    "AF-T08053": 124,
+    "AF-T14041": 125,
+    "AF-T14042": 126,
+    "AF-T14061": 127,
+    "AF-T14062": 128
+  },
+  "completed": [
+    {
+      "phase": 4,
+      "name": "Subtask tickets",
+      "status": "completed",
+      "date": "2026-08-02",
+      "created": {
+        "count": 9,
+        "idRange": "120-128",
+        "map": {
+          "AF-T01031": 120,
+          "AF-T01032": 121,
+          "AF-T08051": 122,
+          "AF-T08052": 123,
+          "AF-T08053": 124,
+          "AF-T14041": 125,
+          "AF-T14042": 126,
+          "AF-T14061": 127,
+          "AF-T14062": 128
+        }
+      },
+      "perParent": {
+        "AF-S0103 (#43)": [
+          120,
+          121
+        ],
+        "AF-S0805 (#78)": [
+          122,
+          123,
+          124
+        ],
+        "AF-S1404 (#99)": [
+          125,
+          126
+        ],
+        "AF-S1406 (#101)": [
+          127,
+          128
+        ]
+      },
+      "evidence": {
+        "preflightGate": "Union of a showCompleted:false and a showCompleted:true paged list_tasks pass, deduplicated by id, then marker-indexed: 94 distinct spec-key markers, each appearing exactly once, zero duplicates, zero board keys outside the spec. Exactly the 9 AF-T keys were absent, so all 9 were safe to create and none was a re-create.",
+        "creationOrder": "Each subtask was created with its story parentId, and its id written into keyToTaskId BEFORE any subsequent API call. No create errored or timed out, so no retry-after-error path was taken.",
+        "directVerification": "All 9 verified by individual get_task: exact trailing <!-- spec-key: KEY --> marker, correct parentId (43/78/99/101), priorityId (2 for 120-124, 1 for 125-128), statusId 18 (Backlog), tags [type:subtask + parent area] read from the child itself and not from a parent subtasks payload, complete=false, and full note content intact (Summary, Context block with all eight fields, empty Detailed activity and Handoff).",
+        "doneConvention": "NOT EXERCISED: all 9 approved subtasks are status Backlog. No Phase 4 entry has status Done, so the complete=true + get_task re-read convention had no applicable target. All 9 correctly read back complete=false.",
+        "tags": "18 toggle_task_tag calls, all returning action=add: type:subtask (id 6) on all nine, area:data (id 10) on 120-121, area:ops (id 17) on 122-128.",
+        "childIndexes": "A child-index table was inserted into the Detailed activity section of each of the four parents. The patch was proved purely additive before it was sent: removing the inserted block from the new note restores the previous note byte-for-byte. No other line of any parent note was touched.",
+        "childIndexClickability": "The TaskView SPA router is /:orgSlug/:projectId?/:listId?/:taskId?, read from the app bundle and confirmed live: http://localhost:8888/org-fbbce12c/3/-1401/43 deep-links straight to AF-S0103. The observed list route segment is -1401, matching policy.json and this checkpoint. Each child-index row therefore carries a real deep link. NOTE: TaskView renders a ticket note in a raw <textarea>, so markdown is not rendered and the link is not clickable inside the note field itself; in-UI click-through to a child comes from the native Subtasks panel that parentId already produces.",
+        "parentReread": "All four parents re-read with get_task after the update: each note carries its child-index table, each subtasks array has the expected children - #43 -> [120,121], #78 -> [122,123,124], #99 -> [125,126], #101 -> [127,128]. Total 9.",
+        "structuralGate": "A fresh post-creation union sweep re-confirmed 94 distinct markers with zero duplicates among everything list_tasks can see. Re-measured TaskView API behaviour: list_tasks nests only ONE level (top-level epics plus their story children, max depth 1), so the 9 depth-2 subtasks are invisible to it entirely and are reachable only through recursive get_task. This is the same class as the previously recorded child-discovery defect and it now demonstrably extends to the subtask level.",
+        "idempotency": "keyToTaskId now holds 103 mappings covering all 103 spec entries with no id collisions: epics 26-40, stories 41-119, subtasks 120-128. A re-run resolves every entry by checkpoint id first, so it would create 0 tasks.",
+        "scope": "Nothing was created, updated or deleted outside Phase 4. The 94 pre-existing epic and story entries are unchanged except for the four approved child-index insertions, which are additive only. Zero deletes. Phase 5 not started."
+      },
+      "ownerDecisionsOpen": [],
+      "correction": {
+        "date": "2026-08-02",
+        "scope": "Phase 4 correction only - note text on four existing parent stories. Nothing created, nothing deleted, no status/priority/tag/parent change, Phase 5 not begun.",
+        "authorisation": "Owner approved on 2026-08-02, resolving the open decision recorded at Phase 4 close.",
+        "what": "In stories #43, #78, #99 and #101 the stale relation-line fragment '**Children:** none - subtasks are Phase 4' was replaced with the real child ids and spec keys.",
+        "replacements": {
+          "43": "- **Parent:** #26 (AF-E01) · **Children:** #120 (AF-T01031), #121 (AF-T01032) · **Blocked by:** none",
+          "78": "- **Parent:** #33 (AF-E08) · **Children:** #122 (AF-T08051), #123 (AF-T08052), #124 (AF-T08053) · **Blocked by:** none",
+          "99": "- **Parent:** #39 (AF-E14) · **Children:** #125 (AF-T14041), #126 (AF-T14042) · **Blocked by:** none",
+          "101": "- **Parent:** #39 (AF-E14) · **Children:** #127 (AF-T14061), #128 (AF-T14062) · **Blocked by:** none"
+        },
+        "method": "Surgical substring replacement of the '**Children:** none - subtasks are Phase 4' fragment only, so the '**Parent:**' and '**Blocked by:**' halves of the same line were preserved verbatim. Each patch was validated before it was sent: exactly one line differs, line counts are identical, reversing the fragment restores the previous note byte-for-byte, the child-index table and every raw deep-link URL survive, and the note still ends with its spec-key marker.",
+        "evidence": {
+          "byteExactReadback": "A post-correction board sweep was compared against the locally built patches: #43 2660 bytes, #78 2692, #99 2001, #101 3643 - all four EXACT MATCH.",
+          "staleFragmentGone": "Occurrences of 'none - subtasks are Phase 4' across the four parents: 0.",
+          "noteIntegrity": "All four notes still carry 4/4 sections (Summary, Context block, Detailed activity, Handoff), their '### Child index - Phase 4, created 2026-08-02' table, their deep-link URLs (#43 -> 120,121; #78 -> 122,123,124; #99 -> 125,126; #101 -> 127,128), and their trailing spec-key marker (AF-S0103, AF-S0805, AF-S1404, AF-S1406).",
+          "collateral": "Diffing the before and after sweeps, the ONLY tasks whose note changed are exactly [43, 78, 99, 101]. Zero drift in description, parentId, priorityId, statusId, complete or tags anywhere on the board. Task count unchanged.",
+          "childArrays": "All four parents re-read with get_task after the correction: #43 -> [120,121], #78 -> [122,123,124], #99 -> [125,126], #101 -> [127,128]. Counts 2/3/2/2, total 9, unchanged. Every child still reads parentId back to its own parent, statusId 18, complete false.",
+          "idempotency": "keyToTaskId untouched at 103 mappings. No create, no delete, no id allocated."
+        },
+        "clickabilityRuling": "OWNER RULING: TaskView's native Subtasks panel is the clickable interface, because TaskView renders a ticket note in a raw <textarea> and does not render markdown. The child-index tables keep their raw deep-link URLs (http://localhost:8888/org-fbbce12c/3/-1401/<taskId>, route /:orgSlug/:projectId?/:listId?/:taskId? read from the app bundle and confirmed live) as copyable text for use outside the note field, not as an in-note click target."
+      },
+      "ownerDecisionsResolved": [
+        {
+          "decision": "AF-S0805 receives no Core Web Vitals / field-INP subtask.",
+          "ruling": "Owner decision 2, 2026-08-02: do not add one. AF-S0805 retains its existing parent-level criteria (the dated manual Core Web Vitals assessment when practical, and the record that field INP is unavailable without real-user measurement). AF-S0602 remains the canonical field-INP record.",
+          "status": "RESOLVED - no board change required; the reviewer's deferred finding is closed, not outstanding.",
+          "supersedes": "AF-S0805 still has no Core Web Vitals / field-INP child, per owner decision 2. AF-S0602 remains the canonical INP record and AF-S0805 keeps its parent-level criteria."
+        },
+        {
+          "decision": "AF-S0401 and AF-S1401 receive zero subtasks.",
+          "ruling": "Owner decision 3, 2026-08-02: intentional. The proposed children were rejected on review because they merely restated their parents - AF-T04011 was AF-S0401 rewritten as a child, AF-T04012 imported a TEST-02 procedure that does not govern TEST-01, and AF-T14011/12/13 collapsed once AF-T14012 was found to be AF-S1401's whole deliverable restated. AF-S1401's documented gh-not-installed fallback and the branch/PR convention stay in the parent's own constraints, which already carry them.",
+          "status": "RESOLVED - both stories are deliberately leaf stories. Reopening either needs a documented work-breakdown that does not restate the parent's acceptance criteria.",
+          "supersedes": "AF-S0401 and AF-S1401 remain deliberately without subtasks."
+        }
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Stories",
+      "status": "completed",
+      "date": "2026-08-02",
+      "created": {
+        "count": 79,
+        "idRange": "41-119",
+        "map": {
+          "AF-S0101": 41,
+          "AF-S0102": 42,
+          "AF-S0103": 43,
+          "AF-S0104": 44,
+          "AF-S0105": 45,
+          "AF-S0106": 46,
+          "AF-S0201": 47,
+          "AF-S0202": 48,
+          "AF-S0203": 49,
+          "AF-S0204": 50,
+          "AF-S0301": 51,
+          "AF-S0302": 52,
+          "AF-S0303": 53,
+          "AF-S0304": 54,
+          "AF-S0305": 55,
+          "AF-S0306": 56,
+          "AF-S0307": 57,
+          "AF-S0308": 58,
+          "AF-S0309": 59,
+          "AF-S0310": 60,
+          "AF-S0401": 61,
+          "AF-S0402": 62,
+          "AF-S0403": 63,
+          "AF-S0404": 64,
+          "AF-S0405": 65,
+          "AF-S0501": 66,
+          "AF-S0502": 67,
+          "AF-S0503": 68,
+          "AF-S0601": 69,
+          "AF-S0602": 70,
+          "AF-S0701": 71,
+          "AF-S0702": 72,
+          "AF-S0703": 73,
+          "AF-S0801": 74,
+          "AF-S0802": 75,
+          "AF-S0803": 76,
+          "AF-S0804": 77,
+          "AF-S0805": 78,
+          "AF-S0806": 79,
+          "AF-S0807": 80,
+          "AF-S0808": 81,
+          "AF-S0901": 82,
+          "AF-S0902": 83,
+          "AF-S0903": 84,
+          "AF-S0904": 85,
+          "AF-S1001": 86,
+          "AF-S1002": 87,
+          "AF-S1003": 88,
+          "AF-S1004": 89,
+          "AF-S1101": 90,
+          "AF-S1102": 91,
+          "AF-S1201": 92,
+          "AF-S1202": 93,
+          "AF-S1301": 94,
+          "AF-S1302": 95,
+          "AF-S1401": 96,
+          "AF-S1402": 97,
+          "AF-S1403": 98,
+          "AF-S1404": 99,
+          "AF-S1405": 100,
+          "AF-S1406": 101,
+          "AF-S1407": 102,
+          "AF-S1408": 103,
+          "AF-S1501": 104,
+          "AF-S1502": 105,
+          "AF-S1503": 106,
+          "AF-S1504": 107,
+          "AF-S1505": 108,
+          "AF-S1506": 109,
+          "AF-S1507": 110,
+          "AF-S1508": 111,
+          "AF-S1509": 112,
+          "AF-S1510": 113,
+          "AF-S1511": 114,
+          "AF-S1512": 115,
+          "AF-S1513": 116,
+          "AF-S1514": 117,
+          "AF-S1515": 118,
+          "AF-S1516": 119
+        }
+      },
+      "verification": "E01 x6 - creation responses returned parentId=26, correct priorityId, statusId=18 and the spec-key marker in each note. E02 x4 - independently re-read via get_task(27), whose subtasks array returned all four with parentId=27, correct priorityId, statusId, complete flags and markers. AF-S0203 Done verified by dedicated re-read: complete=true, statusId=20, dateComplete=2026-08-02T06:08:40.936Z. 23 tag toggles all returned action=add; tags spot-verified directly on task 47 as [5,18,7,21]. No duplicate spec-key across the 13 top-level tasks returned by the full listing.",
+      "haltReason": "BLOCKING DEFECT 3 found during verification - see openIssues. Halted at a clean epic boundary with every id persisted.",
+      "openIssues": [
+        "TASKVIEW API DEFECT 3 (BLOCKING, found 2026-08-02): list_tasks returns ONLY top-level tasks. A full listing of goal 3 returned 13 items, every one with parentId=null, and ZERO of the 10 child stories. This also explains DEFECT 2: searchText does not merely ignore note bodies, it silently fails to match child tasks - searchText for a bracket and for DATA both returned empty despite 10 matching child descriptions. CONSEQUENCE: the spec-key marker scan in scripts/taskview-sync-board.mjs cannot see ANY story or subtask, so resolution step 2 is unusable for the 79 stories and for all of Phase 4. A resumed run that lost keyToTaskId would re-create every story as a duplicate. The checkpoint keyToTaskId is currently the ONLY reliable resolution path for child tickets and must not be lost.",
+        "REMEDIATION - IMPLEMENTED AND VERIFIED 2026-08-02, repair-only, no tickets created, updated or deleted. scripts/taskview-sync-board.mjs now pages list_tasks for the TOP-LEVEL roster only, then calls get_task on every discovered id and walks the returned subtasks array recursively to arbitrary depth, indexing each descendant's marker from its own note. Cycle-guarded with a visited-id Set and a WeakSet. searchText is no longer used anywhere in the script.",
+        "TASKVIEW API DEFECT 4: the subtasks array embedded in a parent get_task reports tags as an empty array even when tags are set. Task 47 appeared with no tags inside get_task(27) but a direct get_task(47) returned [5,18,7,21]. Never verify a child's tags from the parent payload; re-read the child.",
+        "The earlier pre-create existence check using searchText for a bracket was a FALSE NEGATIVE, not evidence of absence. No duplicates resulted, because the board was independently confirmed free of stories by the full 15-epic listing and because ids incremented cleanly 41-50, but the check itself was invalid and must not be reused.",
+        "DEFECT 3 is now MITIGATED in the resolver. It remains a real TaskView API limitation - list_tasks still cannot see child tasks - but the script no longer depends on that path for children.",
+        "DEFECT 4 is now guarded in code: fetchChildTags(client, childId) re-reads a child with get_task and is the only tag-reading path. Verified by inspection that .subtasks is referenced solely for traversal and that no code reads tags from a parent payload.",
+        "TASKVIEW API DEFECT 5 (BLOCKING for Phase 4/5, found 2026-08-02 during the Phase 3 gate): list_tasks showCompleted is an EXCLUSIVE filter, not an inclusive one. showCompleted:false returns ONLY incomplete top-level tasks (13 on goal 3); showCompleted:true returns ONLY complete top-level tasks (2 on goal 3). Neither call returns all 15 epics. The union of both is required. CONSEQUENCE: the repaired scripts/taskview-sync-board.mjs pages the top-level roster with showCompleted:true, so it would see only the 2 completed epics, call get_task on those 2 alone, and miss 13 epics and all 63 of their stories. Its marker index would be almost entirely empty and a resumed run would re-create nearly the whole board. The script MUST be repaired again - page both showCompleted values and merge - before Phase 4 or Phase 5 runs with --apply. STATUS: MITIGATED IN THE RESOLVER 2026-08-02. The script now pages the top-level roster TWICE - once with showCompleted:false and once with showCompleted:true - then unions and deduplicates by task id before any recursion. The underlying API behaviour is unchanged; the script simply no longer depends on a single call returning everything."
+      ],
+      "batches": [
+        {
+          "date": "2026-08-02",
+          "epic": "AF-E03",
+          "stories": 10,
+          "ids": "51-60",
+          "preCreateCheck": "get_task(28) returned subtasks: [] before any create, using the repaired resolver's own method rather than list_tasks or searchText. All 10 were genuinely absent, so nothing was skipped or duplicated.",
+          "verification": "get_task(28) re-read after the batch returned EXACTLY 10 children, ids 51-60, every one parentId=28, each carrying its own marker AF-S0301 through AF-S0310, with no extra and no duplicate. Priorities: 51-58 = 3, 59-60 = 1. Statuses: 51-58 = 18 Backlog, 59-60 = 20 Done. Done handling verified by direct re-read on both: task 59 complete=true statusId=20 dateComplete=2026-08-02T06:26:20.237Z, task 60 complete=true statusId=20 dateComplete=2026-08-02T06:26:26.937Z. Tags verified by DIRECT get_task on the children, never from the parent payload: 59 and 60 = [5,11,20,7], 54 = [5,11,20], 57 = [5,11,20,19]. Those four cover all three distinct tag shapes in this batch. The other six rest on their 36 toggle responses, all action=add.",
+          "defect4Reconfirmed": "get_task(28) again reported every child's tags as [] while direct child reads returned the real tags. Defect 4 is stable and the never-trust-the-parent-payload rule held."
+        },
+        {
+          "date": "2026-08-02",
+          "epics": [
+            "AF-E04",
+            "AF-E05",
+            "AF-E06"
+          ],
+          "stories": 10,
+          "ids": "61-70",
+          "preCreateCheck": "get_task(29), get_task(30) and get_task(31) each returned subtasks: [] before any create, using the repaired resolver's own method. All 10 were genuinely absent.",
+          "verification": "Parent rosters re-read: get_task(30) returned exactly 3 children 66-68 all parentId=30 with priorities 3/2/2 and statusId 18; get_task(31) returned exactly 2 children 69-70 all parentId=31, both complete=true statusId=20. AF-E04's five children were each verified individually rather than by re-listing parent 29: 61 from its creation response (parentId=29, priority 2, statusId 18) and 62, 63, 64, 65 by direct get_task. Done handling verified by direct re-read on all five Done stories in this batch: 63, 64, 65 complete=true statusId=20 tags [5,12,7]; 69, 70 complete=true statusId=20 tags [5,13,7]; every dateComplete stamped and recorded. Representative Backlog tags read directly from the children: 62 = [5,12], 66 = [5,15].",
+          "note": "AF-S0401 was created at priority 2, not 3, applying the Phase 0 review ruling G11 that TEST-01 is not itself the active release blocker."
+        },
+        {
+          "date": "2026-08-02",
+          "epics": [
+            "AF-E07 (complete)",
+            "AF-E08 (7 of 8)"
+          ],
+          "stories": 10,
+          "ids": "71-80",
+          "preCreateCheck": "get_task(32) and get_task(33) each returned subtasks: [] before any create, using the repaired resolver's own method.",
+          "verification": "AF-E07 parent roster re-read: get_task(32) returned exactly 3 children 71-73, all parentId=32, all priority 3 and statusId 18, each carrying its own marker. AF-E08's seven children were verified individually rather than by re-listing parent 33, because that epic is still mid-population and its roster will be re-checked when AF-S0808 lands. Done handling verified by direct re-read on all three Done stories: 75 and 76 complete=true statusId=20 tags [5,17]; 77 complete=true statusId=20 tags [5,17,7]; every dateComplete stamped. Representative Backlog tags read directly from children: 72 = [5,17,19] (E07 shape), 74 = [5,14,20,21] (the SEC token story shape).",
+          "crossReferences": "AF-S0703 records Blocked by AF-S0807 and AF-S0701 records Blocked by AF-S0307, AF-S0308, AF-S0702, AF-S0703, per the Phase 0 ruling G4 that AF-S0807 owns the reusable post-deploy checklist and AF-S0703 is the finite final-RC execution. All four referenced keys now exist. These are prose references only; the actual dependency edges are Phase 5 work."
+        },
+        {
+          "date": "2026-08-02",
+          "epics": [
+            "AF-E08 (completed 8 of 8)",
+            "AF-E09 (complete)",
+            "AF-E10 (complete)"
+          ],
+          "stories": 9,
+          "ids": "81-89",
+          "preCreateCheck": "get_task(34) and get_task(35) both returned subtasks: [] before any create. get_task(33) returned exactly its 7 existing children 74-80 with markers AF-S0801 through AF-S0807 and no AF-S0808, confirming the ninth story was genuinely absent. That same call also discharged the AF-E08 roster verification deferred from the previous batch: 7 children, all parentId=33, priorities 3/3/1/1/2/1/2, statuses 18/20/20/20/18/18/18, complete=true on 75, 76 and 77.",
+          "verification": "AF-E10 parent roster re-read: get_task(35) returned exactly 4 children 86-89, all parentId=35, all priority 1 and statusId 18, each carrying its own marker. AF-E09's four children were verified individually rather than by re-listing parent 34: 82 and 85 by direct get_task, 83 and 84 from their creation responses. Done handling verified by direct re-read on the single Done story in this batch: 85 complete=true statusId=20 dateComplete=2026-08-02T06:52:38.367Z tags [5,16,7]. Representative tags read directly from children: 82 = [5,16,7,21], 89 = [5,17,21] (the only area:ops story in AF-E10).",
+          "crossReferences": "AF-S1002 records Blocked by AF-S0501, applying the Phase 0 ruling G8 that the DTC/T2201 sheets depend on DATA-25's outcome. AF-S0501 exists as task 66. Prose reference only; the edge itself is Phase 5 work."
+        },
+        {
+          "date": "2026-08-02",
+          "epics": [
+            "AF-E11 (complete)",
+            "AF-E12 (complete)",
+            "AF-E13 (complete)"
+          ],
+          "stories": 6,
+          "ids": "90-95",
+          "preCreateCheck": "get_task(36), get_task(37) and get_task(38) each returned subtasks: [] before any create, using the repaired resolver's own method.",
+          "verification": "AF-E11 parent roster re-read: get_task(36) returned exactly 2 children 90 and 91, both parentId=36, priorities 2 and 1, both statusId 18, each carrying its own marker. AF-E12 and AF-E13 children were verified individually rather than by re-listing parents 37 and 38: 92, 93 and 95 by direct get_task, 94 from its creation response. Done handling verified by direct re-read on both Done stories: 93 complete=true statusId=20 dateComplete=2026-08-02T06:59:02.846Z tags [5,18,7]; 95 complete=true statusId=20 dateComplete=2026-08-02T06:59:08.462Z tags [5,18,7]. Representative Backlog tags read directly from a child: 92 = [5,18,21].",
+          "crossReferences": "AF-S1102 records Blocked by AF-S1101, which is the Phase 0 deviation the owner approved: the brief asked for AF-E11 to be blocked by the province source-audit checklist, but that checklist is E11's own child, so an epic-to-own-child edge would be circular. Both keys now exist as tasks 91 and 90. Prose reference only; the edge is Phase 5 work."
+        },
+        {
+          "date": "2026-08-02",
+          "epics": [
+            "AF-E14 (complete)"
+          ],
+          "stories": 8,
+          "ids": "96-103",
+          "preCreateCheck": "get_task(39) returned subtasks: [] before any create, using the repaired resolver's own method. All 8 were genuinely absent.",
+          "verification": "AF-E14 parent roster re-read: get_task(39) returned exactly 8 children 96-103, all parentId=39, each carrying its own marker AF-S1401 through AF-S1408, all statusId 18, priorities 2/2/2/1/2/1/2/1 matching the spec. No Done stories in this batch, so no complete flag was set. Representative tags read directly from children: 98 = [5,17] and 103 = [5,17]; every AF-E14 story carries the identical [type:story, area:ops] pair.",
+          "crossReferences": "AF-S1403 records Blocked by AF-S1402, per the Phase 0 ruling that Slack notifications need the stable HTTPS callback first. Both keys now exist as tasks 98 and 97. Prose reference only; the edge is Phase 5 work.",
+          "ownerAttention": "AF-S1405 (task 100) describes repointing .taskview/policy.json to the Ability Finder board. That work was already completed during Phase 1 on 2026-08-01: project_id 2 -> 3 and project_url updated, with kanban_route_segment confirmed at -1401 by the owner. The ticket was created as specified because the spec is the source of truth for Phase 3, but it is born already satisfied and should be moved to Done, or updated to record the Phase 1 evidence, at the owner's discretion."
+        },
+        {
+          "date": "2026-08-02",
+          "epics": [
+            "AF-E15 (8 of 16)"
+          ],
+          "stories": 8,
+          "ids": "104-111",
+          "interruption": "The host machine slept mid-batch, after all 8 creates, all 8 id flushes and all 8 complete:true updates had landed, and after tagging task 104. Work resumed by re-reading the checkpoint to confirm 86 mappings, then continuing tags from task 105. Nothing was created twice.",
+          "preCreateCheck": "get_task(40) returned subtasks: [] before any create, using the repaired resolver's own method. All 8 were genuinely absent.",
+          "verification": "AF-E15 parent roster re-read: get_task(40) returned exactly 8 children 104-111, all parentId=40, all priority 1, all statusId 20, all complete=true, each carrying its own marker AF-S1501 through AF-S1508, and each with a distinct dateComplete between 07:11:26.085Z and 07:12:04.996Z. Done handling additionally verified by direct re-read on a sample: 104 tags [5,17], 109 tags [5,17,7], 111 tags [5,17]. Every AF-E15 story carries [type:story, area:ops]; AF-S1506 alone adds type:decision.",
+          "contentNote": "These history tickets deliberately carry no per-severity audit count. AF-S1505 records only that the working record's table labels Low + Informational complete and preserves the requirement to re-map finding IDs to severities before quoting any total, per the Phase 0 review ruling G10."
+        },
+        {
+          "date": "2026-08-02",
+          "epics": [
+            "AF-E15 (completed 16 of 16)"
+          ],
+          "stories": 8,
+          "ids": "112-119",
+          "verification": "AF-E15 parent roster re-read: get_task(40) returned exactly 16 children 104-119, all parentId=40, all priority 1, all statusId 20, all complete=true, each carrying its own marker AF-S1501 through AF-S1516, each with a distinct dateComplete. Tags applied to all 8; AF-S1515 alone adds type:decision."
+        }
+      ],
+      "phase3Gate": {
+        "date": "2026-08-02",
+        "totals": {
+          "specEntries": 94,
+          "mapped": 94,
+          "epics": 15,
+          "stories": 79,
+          "doneEntries": 32,
+          "backlogEntries": 62,
+          "idRange": "26-119",
+          "contiguous": true,
+          "duplicateIds": false,
+          "unmapped": []
+        },
+        "epicGate": "PASS. All 15 epics read live from the board as the union of two list_tasks calls (see DEFECT 5). 15 returned, 15 distinct spec-keys, zero duplicates, every parentId null. Every epic's id matches the checkpoint, and every priority, statusId, complete flag and tag set matches board-spec.json exactly. Zero mismatches. Done epics are exactly 31 and 40, as specified.",
+        "storyGateFresh": "AF-E15 fully re-rostered this turn: 16 children, ids 104-119, all fields correct.",
+        "storyGateFromBatches": "Parent rosters were re-listed at creation time for AF-E02, AF-E03, AF-E05, AF-E06, AF-E07, AF-E08, AF-E10, AF-E11 and AF-E14, each returning exactly its expected children with correct parentId, priority, statusId and markers. For AF-E01, AF-E04, AF-E09, AF-E12 and AF-E13 the children were verified individually instead - every one by a server-returned creation response carrying its parentId, plus direct get_task tag reads on representative children. Those five parent rosters were NOT re-listed in a single pass.",
+        "residualGap": "The one check never performed in a single pass is a full-tree sweep confirming no unexpected extra child exists under AF-E01, AF-E04, AF-E09, AF-E12 or AF-E13. Every child's parentage is server-confirmed and ids 26-119 are contiguous with no duplicates and a 1:1 spec-key mapping, so an extra child would require a create that was never issued. This is precisely the work AF-S1407 (board hygiene sweep, task 102) exists to do, and it is blocked until DEFECT 5 is fixed.",
+        "tagsAndFlags": "All 94 tickets tagged during their batch, every toggle returning action=add. Tags were verified by direct get_task on representative children in every batch, never from a parent payload (DEFECT 4). All 32 Done entries carry complete=true and statusId=20, each verified by a get_task re-read after the update."
+      }
+    },
+    {
+      "phase": 2,
+      "name": "Epics",
+      "status": "completed",
+      "date": "2026-08-01",
+      "created": {
+        "count": 15,
+        "idRange": "26-40",
+        "map": {
+          "AF-E01": 26,
+          "AF-E02": 27,
+          "AF-E03": 28,
+          "AF-E04": 29,
+          "AF-E05": 30,
+          "AF-E06": 31,
+          "AF-E07": 32,
+          "AF-E08": 33,
+          "AF-E09": 34,
+          "AF-E10": 35,
+          "AF-E11": 36,
+          "AF-E12": 37,
+          "AF-E13": 38,
+          "AF-E14": 39,
+          "AF-E15": 40
+        }
+      },
+      "idempotency": "Board confirmed empty before any create (list_tasks and a spec-key search both returned zero). Created in 3 batches of 5, with ids flushed to keyToTaskId immediately after each batch and before any further API call. No create errored, so no retry path was exercised.",
+      "verification": "Re-listed goal 3 after all creates: all 15 present with correct statusId (18 Backlog for 13, 20 Done for AF-E06 and AF-E15), correct priorityId, and correct tag sets including AF-E03 [type:epic, area:a11y, blocker:release, human-only] and AF-E07 [type:epic, area:ops, blocker:release]. 33 tag toggles all returned action=add.",
+      "openIssues": [
+        "TASKVIEW API DEFECT 1: list_tasks with the default sortBy=\"date\" returns [] on goal 3 even though 15 tasks exist. sortBy=\"priority\" returns all 15. Any listing or pagination must pass sortBy=\"priority\" until this is understood.",
+        "TASKVIEW API DEFECT 2: list_tasks searchText matches the task DESCRIPTION only, not the note body. Searching for \"AF-E01\" or \"spec-key\" returns []; searching \"Deploy\" returns the matching epic. The <!-- spec-key: KEY --> marker therefore CANNOT be found with searchText.",
+        "CONSEQUENCE (RESOLVED 2026-08-01 in the repair step): scripts/taskview-sync-board.mjs step-2 resolution was broken as written. Now pages the whole goal with sortBy=\"priority\" and showCompleted=true and scans note bodies client-side for the exact marker. Verified 19/19 against a fixture built from the real epic notes plus adversarial traps; all 15 epics resolve to ids 26-40 and would not be re-created.",
+        "DONE vs COMPLETE - MEASURED 2026-08-01 on epic 31 (AF-E06), owner-approved single-ticket test. update_task({id:31, complete:true}) yielded complete=true, statusId=20 (unchanged), dateComplete=\"2026-08-02T05:54:36.416Z\". THREE FINDINGS: (a) dateComplete IS auto-stamped, confirming the earlier inference; (b) the update_task RESPONSE echoed dateComplete=null while the subsequent get_task showed the stamped value - never trust the write response for this field, always re-read; (c) the stamp is a UTC instant that fell on 2026-08-02 even though the local session date was 2026-08-01, and it bears no relation to the true closure date of 2026-07-30. Filtering confirmed in both directions: with complete=true, a searchText listing with showCompleted=false returns [] and the same query with showCompleted=true returns the task. So complete - not the kanban column - is what the API filters on. Epic 31 is now complete=true. Epic 40 (AF-E15) deliberately left complete=false pending the owner decision, so the board currently holds one of each state.",
+        "DONE vs COMPLETE - RESOLVED by owner decision. Both Done epics now carry complete=true, each verified by get_task re-read: task 31 (AF-E06) dateComplete=2026-08-02T05:54:36.416Z, task 40 (AF-E15) dateComplete=2026-08-02T05:57:04.430Z. Both kept statusId=20. The update_task response echoed dateComplete=null in BOTH cases while the re-read showed the stamp, confirming the write-response quirk is systematic rather than a one-off. Neither ticket note was altered: AF-E06 still records the true PERF-01 closure of 2026-07-30."
+      ],
+      "doneFlagApplied": {
+        "AF-E06": {
+          "taskId": 31,
+          "complete": true,
+          "statusId": 20,
+          "dateComplete": "2026-08-02T05:54:36.416Z"
+        },
+        "AF-E15": {
+          "taskId": 40,
+          "complete": true,
+          "statusId": 20,
+          "dateComplete": "2026-08-02T05:57:04.430Z"
+        }
+      }
+    },
+    {
+      "phase": 1,
+      "name": "Scaffolding",
+      "status": "completed",
+      "date": "2026-08-01",
+      "columns": {
+        "method": "renamed and added only; no column was deleted",
+        "final": [
+          {
+            "id": 18,
+            "name": "Backlog",
+            "viewOrder": 1,
+            "action": "renamed from TODO"
+          },
+          {
+            "id": 21,
+            "name": "Ready",
+            "viewOrder": 2,
+            "action": "created"
+          },
+          {
+            "id": 19,
+            "name": "In Progress",
+            "viewOrder": 3,
+            "action": "kept"
+          },
+          {
+            "id": 22,
+            "name": "Blocked",
+            "viewOrder": 4,
+            "action": "created"
+          },
+          {
+            "id": 23,
+            "name": "Review",
+            "viewOrder": 5,
+            "action": "created"
+          },
+          {
+            "id": 24,
+            "name": "Verification",
+            "viewOrder": 6,
+            "action": "created"
+          },
+          {
+            "id": 20,
+            "name": "Done",
+            "viewOrder": 7,
+            "action": "kept"
+          },
+          {
+            "id": 25,
+            "name": "Cancelled",
+            "viewOrder": 8,
+            "action": "created"
+          }
+        ]
+      },
+      "tags": {
+        "goalId": 3,
+        "created": 18,
+        "idRange": "4-21",
+        "names": [
+          "type:epic",
+          "type:story",
+          "type:subtask",
+          "type:decision",
+          "agent:claude",
+          "agent:codex",
+          "area:data",
+          "area:a11y",
+          "area:testing",
+          "area:perf",
+          "area:deploy",
+          "area:ux",
+          "area:content",
+          "area:ops",
+          "area:research",
+          "blocker:release",
+          "human-only",
+          "needs-owner-decision"
+        ],
+        "note": "Goal 2's three existing tags (ids 1-3) were left untouched. type:subtask was created now because Phase 4 will need it."
+      },
+      "policyJson": {
+        "changed": [
+          "project_id 2 -> 3",
+          "project_url .../org-fbbce12c/2/-1401 -> .../org-fbbce12c/3/-1401"
+        ],
+        "unchanged": [
+          "kanban_route_segment stays -1401 - VERIFIED by the owner 2026-08-01",
+          "every rule, gate and status list untouched"
+        ],
+        "caveat": "RESOLVED 2026-08-01: the owner confirmed the live board URL as http://localhost:8888/org-fbbce12c/3/-1401. The value already written to policy.json matches, so no further file change was needed. The earlier inference (goals 2 and 3 both have zero lists, yet board 2 carried -1401, so it behaves as a constant sentinel) was correct."
+      },
+      "script": {
+        "path": "scripts/taskview-sync-board.mjs",
+        "verified": "node --check passes; contains zero HTTP DELETE calls; defaults to dry-run and mutates only with --apply; exits 1 with a token message when TASKVIEW_TOKEN is unset; flushes the checkpoint after every single create.",
+        "openIssue": "The script needs a TASKVIEW_TOKEN the owner has not provided. Phases 2-5 can alternatively run through the MCP tools in-session, which are already authenticated."
+      }
+    },
+    {
+      "phase": 0,
+      "name": "Recon & spec",
+      "status": "completed",
+      "date": "2026-08-01",
+      "artifacts": [
+        ".taskview/board-spec.json",
+        ".taskview/board-spec-source.md",
+        ".taskview/spec-json-contract.md",
+        ".taskview/review/findings1.json",
+        ".taskview/review/findings2.json",
+        ".taskview/review/findings3.json",
+        ".taskview/review/findings4.json",
+        ".taskview/review/findings5.json",
+        ".taskview/review/triage.md"
+      ],
+      "counts": {
+        "entries": 94,
+        "epics": 15,
+        "stories": 79,
+        "subtasks": 0,
+        "statusBacklog": 62,
+        "statusDone": 32,
+        "priorityHigh": 21,
+        "priorityMedium": 21,
+        "priorityLow": 52,
+        "blockerRelease": 12,
+        "dependencyEdges": 7
+      },
+      "evidence": "Spec reviewed by the other agent identity across 5 slices against REMAINING-WORK.md, ROADMAP.md, WEBSITE-PROJECT-TRACKER.md, AGENTS.md and the build brief. 94 findings returned (17 high). All applied except one rejected as factually wrong (a reviewer claimed the stale board URL in TASKVIEW-WORKFLOW.md was invented; that file genuinely contains http://localhost:8888/org-fbbce12c/2/-1401). Re-verified by script: no duplicate keys, no orphan parents, all 7 dependency edges resolve, every ticket has a full context block and a non-empty doneWhen, and the banned invented-count strings return zero hits.",
+      "ownerApproval": "Approved 2026-08-01. Nothing was created in TaskView during Phase 0."
+    }
+  ],
+  "notes": [
+    "TaskView creations so far: 8 kanban columns (5 new, 1 renamed, 2 kept), 18 tags on goal 3, and 15 epics (ids 26-40). No stories or subtasks yet.",
+    "Brief epic-set corrections carried into the spec: AF-E06 reframed and set Done because PERF-01 closed WON'T FIX 2026-07-30 and the 'residual JS gating' work does not exist; AF-E05 lost the money-band and conditional-results items, both closed 2026-07-30 in commit 00fb18f; AF-E02 lost six coverage gaps built and deployed 2026-07-29.",
+    "Dependency deviation approved by the owner: the brief asks for AF-E11 blocked by the province source-audit checklist, but that checklist is E11's own child, so an epic-to-own-child edge would be circular. Modelled as AF-S1102 dependsOn AF-S1101.",
+    "OPEN GAP for Phase 4: the spec has no level:subtask entries. It covers epics and stories only. Phase 4 needs a spec extension before it can create subtask tickets.",
+    "63 'TBD - owner to specify' markers across 42 tickets are deliberate. They mark thresholds, participant counts and artifact names that the ground-truth docs do not state and that were not invented.",
+    "Idempotency anchor: every ticket note ends with an HTML comment <!-- spec-key: KEY -->. Resolve in order: keyToTaskId here, then a board search for that marker including completed tasks, then create. Write each new id into keyToTaskId BEFORE the next create call. If a create errors or times out, re-read the board and confirm absence before retrying.",
+    "Repair step 2026-08-01, no tickets created or mutated: taskview-sync-board.mjs resolver rewritten (546 -> 639 lines), new --self-test mode that needs no token and mutates nothing, new fixture .taskview/test/resolver-fixture.json. Re-checked invariants: zero HTTP DELETE, dry-run default, token guard intact for non-self-test modes, duplicate spec-key aborts with exit 1 naming both task ids, searchText now referenced only in a comment.",
+    "Sync script updated for the Done decision (639 -> 863 lines): after creating any Done entry it calls update_task complete:true, re-reads with get_task, asserts complete===true and statusId===Done, stores the observed dateComplete in the checkpoint, and aborts the run naming the key and task id if the assertion fails. New --fix-done repair pass resolves Done entries through the marker index and creates nothing; it reports what it WOULD change under the default dry-run and mutates only with --apply, and it aborts if a Done entry is not in the Done column. Regression: resolver self-test still 19/19, zero HTTP DELETE, token guard intact for --fix-done.",
+    "PHASE 3 READY: 79 stories to create, 30 of them status Done requiring the complete=true + re-read sequence. Batches of 10 with a checkpoint flush after each. Parent ids for all 15 epics are already in keyToTaskId.",
+    "PHASE 3 HALTED PARTIAL at 10 of 79 stories, at the AF-E01/AF-E02 boundary, because list_tasks cannot see child tasks (DEFECT 3). Fix the resolver to enumerate children via get_task on each epic id before creating the remaining 69, otherwise the idempotency contract is unenforceable for every story and subtask.",
+    "RESOLVER REPAIRED 2026-08-02: child tickets are now discovered through get_task recursion instead of list_tasks. Verified 31/31 that all 10 existing stories resolve to ids 41-50 from markers alone with keyToTaskId ignored, so a resumed Phase 3 skips rather than duplicates them. The remaining 69 stories can be created safely. Phase 3 is still PARTIAL at 10 of 79; resume at AF-E03 / AF-S0301.",
+    "PHASE 3 batch 3 complete 2026-08-02: AF-E03 fully created as ids 51-60 with tags and both Done stories verified. 20 of 79 stories done, 59 remaining. Resume at AF-E04 / AF-S0401. Phase 4 not started.",
+    "PHASE 3 batch 4 complete 2026-08-02: AF-E04, AF-E05 and AF-E06 created as ids 61-70 with tags, and all five Done stories in the batch verified by re-read. 30 of 79 stories done, 49 remaining. Six of fifteen epics now fully populated. Resume at AF-E07 / AF-S0701. Phase 4 not started.",
+    "PHASE 3 batch 5 complete 2026-08-02: AF-E07 fully created (71-73) and AF-E08 seven-eighths created (74-80), with tags and all three Done stories verified by re-read. 40 of 79 stories done, 39 remaining. This is the halfway point. Resume at AF-E08 / AF-S0808, which is the single remaining child of that epic. Phase 4 not started.",
+    "PHASE 3 batch 6 complete 2026-08-02: AF-E08 finished (81), AF-E09 (82-85) and AF-E10 (86-89) fully created with tags, and the single Done story verified by re-read. 49 of 79 stories done, 30 remaining. Ten of fifteen epics are now fully populated. Resume at AF-E11 / AF-S1101. Phase 4 not started.",
+    "PHASE 3 batch 7 complete 2026-08-02: AF-E11 (90-91), AF-E12 (92-93) and AF-E13 (94-95) fully created with tags, and both Done stories verified by re-read. 55 of 79 stories done, 24 remaining. Thirteen of fifteen epics are now fully populated; only AF-E14 (8) and AF-E15 (16) remain. Resume at AF-E14 / AF-S1401. Phase 4 not started.",
+    "PHASE 3 batch 8 complete 2026-08-02: AF-E14 fully created as ids 96-103 with tags. 63 of 79 stories done, 16 remaining. FOURTEEN of fifteen epics are now fully populated; only AF-E15 remains and every one of its 16 stories is Done. Resume at AF-E15 / AF-S1501. Phase 4 not started.",
+    "PHASE 3 batch 9 complete 2026-08-02: AF-E15 half created as ids 104-111, all Done, all verified complete=true by parent-roster re-read. 71 of 79 stories done, 8 remaining. The host slept mid-batch; resumed from the checkpoint with no duplicate creates. Resume at AF-E15 / AF-S1509 - the final 8 stories close Phase 3.",
+    "PHASE 3 COMPLETE 2026-08-02: all 94 tickets exist on goal 3 - 15 epics (26-40) and 79 stories (41-119), ids contiguous, no duplicate ids, every spec key mapped exactly once. Epic gate passed against the live board with zero mismatches. 32 Done entries all carry complete=true and statusId=20. A fifth TaskView API defect was found during the gate and is BLOCKING: list_tasks showCompleted is exclusive, which breaks the sync script's top-level roster. Fix that before Phase 4. Phase 4 also still needs the subtask-level spec extension flagged in Phase 0.",
+    "RESOLVER REPAIRED AGAIN 2026-08-02 for DEFECT 5: the top-level roster is now the deduplicated union of a showCompleted:false pass and a showCompleted:true pass. Roster self-test 107/107, including proof that all 94 markers resolve to ids 26-119 without consulting keyToTaskId and that a resumed apply run would create exactly 0 tasks. Phase 4 remains blocked only on the subtask-level spec extension flagged in Phase 0.",
+    "PHASE 4 SPEC PROPOSED 2026-08-02, nothing created in TaskView: 9 subtasks under 4 parent stories appended to board-spec.json, which now holds 103 entries. Reviewed by the other agent identity - 14 findings, 13 applied, 1 rejected as factually wrong - and 5 of the 14 originally proposed subtasks were deleted for restating their parents. Awaiting owner approval before Phase 4 creates anything.",
+    "PHASE 4 COMPLETE 2026-08-02: the 9 approved subtasks created as ids 120-128 under four parent stories - AF-S0103 (#43) 2, AF-S0805 (#78) 3, AF-S1404 (#99) 2, AF-S1406 (#101) 2. Pre-flight gate proved all 94 existing markers unique and all 9 AF-T keys absent before any create. Each id was persisted before the next API call. All 9 verified by direct get_task for marker, parentId, priority, status, tags, complete flag and note integrity; all are Backlog so the Done complete=true convention had no target. Child-index tables inserted additively into the four parents and confirmed by re-read. NEW API FINDING: list_tasks nests only one level, so depth-2 subtasks are invisible to it and require recursive get_task - the recursive resolver is now load-bearing, not just precautionary. Board now holds 103 tickets: 15 epics, 79 stories, 9 subtasks. Phase 5 (dependencies) not started; the 9 subtasks add no dependency edges.",
+    "PHASE 4 CORRECTION 2026-08-02, owner-approved, note-text only: the stale '**Children:** none - subtasks are Phase 4' fragment in stories #43, #78, #99 and #101 was replaced with the real child ids and spec keys. Surgical substring replacement - exactly one line changed per note, everything else byte-identical, child-index tables and raw deep-link URLs retained. Verified by byte-exact readback of all four notes, by a before/after board diff showing those four as the ONLY changed notes with zero field drift elsewhere, and by get_task re-read confirming child arrays 2/3/2/2 = 9 unchanged. Nothing created or deleted; keyToTaskId still holds 103 mappings. Clickability ruling recorded: the native Subtasks panel is the click interface because TaskView shows notes in a raw textarea and does not render markdown. Phase 5 still not started.",
+    "PHASE 4 OWNER DECISIONS CLOSED 2026-08-02: the two remaining items are resolved, not open. (1) AF-S0805 gets no Core Web Vitals / field-INP subtask - it keeps its parent-level criteria and AF-S0602 stays the canonical field-INP record. (2) AF-S0401 and AF-S1401 are deliberately leaf stories, because every proposed child restated its parent. Phase 4 now carries zero open owner decisions."
+  ],
+  "conventions": {
+    "doneTickets": {
+      "rule": "OWNER DECISION: every spec entry with status \"Done\" must have BOTH statusId=20 (Done column) AND complete=true. create_task has no complete parameter, so this is always a second call followed by a get_task re-read.",
+      "dateComplete": "dateComplete is the TaskView import/recording timestamp, auto-stamped by the server at mutation time and not settable through update_task. It is NOT the true historical closure date. The true closure date lives in the ticket note and must never be rewritten to match dateComplete.",
+      "verification": "Never trust the update_task response for dateComplete - it echoes null even when the value was stamped. Measured twice: task 31 and task 40. Always re-read with get_task and assert complete===true and statusId===20."
+    }
+  },
+  "phase3Progress": {
+    "status": "COMPLETE - all 79 stories created, tagged and verified",
+    "epicsComplete": [
+      "AF-E01",
+      "AF-E02",
+      "AF-E03",
+      "AF-E04",
+      "AF-E05",
+      "AF-E06",
+      "AF-E07",
+      "AF-E08",
+      "AF-E09",
+      "AF-E10",
+      "AF-E11",
+      "AF-E12",
+      "AF-E13",
+      "AF-E14",
+      "AF-E15"
+    ],
+    "storiesCreated": 79,
+    "storiesRemaining": 0,
+    "nextEpic": null,
+    "nextStoryKey": null,
+    "idRange": "41-119",
+    "doneStoriesCreated": 30,
+    "doneStoriesRemaining": 0
+  },
+  "repairs": [
+    {
+      "date": "2026-08-02",
+      "scope": "repair-only; no TaskView ticket created, updated or deleted; checkpoint mappings preserved",
+      "file": "scripts/taskview-sync-board.mjs",
+      "lines": "863 -> 1034",
+      "changes": [
+        "paged list_tasks used for the top-level epic roster only, with sortBy=priority and showCompleted=true",
+        "get_task called per discovered id; subtasks array walked recursively to arbitrary depth so Phase 4 subtasks nested beneath stories are discoverable",
+        "cycle protection via visited-id Set plus WeakSet; each id visited once",
+        "duplicate marker on two different ids aborts naming both",
+        "fetchChildTags(client, childId) added and exported; child tags are never read from a parent's subtasks payload",
+        "searchText removed from the script entirely",
+        "new --self-test-tree mode builds a stub client from a fixture and exercises the real traversal code path"
+      ],
+      "evidence": {
+        "flatSelfTest": "19/19 PASS (regression, unchanged behaviour)",
+        "treeSelfTest": "31/31 PASS against .taskview/test/resolver-tree-fixture.json, a fixture built from the real board: 15 top-level epics with ZERO children visible to list_tasks, 27 tasks reachable only through get_task, one grandchild at depth 2.",
+        "storiesResolved": "All 10 existing stories resolved to their true ids 41-50 from note markers alone: AF-S0101=41, AF-S0102=42, AF-S0103=43, AF-S0104=44, AF-S0105=45, AF-S0106=46, AF-S0201=47, AF-S0202=48, AF-S0203=49, AF-S0204=50.",
+        "checkpointIgnored": "The tree self-test asserts keyToTaskId is NOT consulted, and that assertion passed. Resolution came purely from the marker index.",
+        "recursion": "Grandchild AF-T0101 at depth 2 resolved to #9200, proving Phase 4 subtask discovery works.",
+        "negatives": "A prose-only child mentioning AF-S0101 with no marker did not match. mustNotMatch keys AF-S0107, AF-S010, AF-E016 and AF-T0102 all resolved null, so no prefix or near-miss false positives.",
+        "duplicateAbort": "Injecting a second task id carrying <!-- spec-key: AF-S0101 --> aborted with exit 1 and the message DUPLICATE spec-key AF-S0101: task ids #41 and #9300.",
+        "resumeBehaviour": "resolveExisting resolves checkpoint id first, then the marker index, and returns before createOnce is reached on any hit. Combined with the tree test resolving all 10 stories with the checkpoint ignored, a resumed Phase 3 skips ids 41-50 rather than recreating them - it would skip them even if keyToTaskId were lost entirely.",
+        "invariants": "node --check passes; zero HTTP DELETE; dry-run still the default with mutation only under --apply; token still required for every mode except the two self-tests; Done entries still get complete:true then a get_task re-read and assertion.",
+        "nonMutation": "No TaskView write call was made during this repair. Checkpoint still holds all 25 mappings with AF-S0101=41 and AF-S0204=50 unchanged."
+      }
+    },
+    {
+      "date": "2026-08-02",
+      "scope": "repair-only; no TaskView ticket created, updated or deleted; all 94 checkpoint mappings preserved",
+      "file": "scripts/taskview-sync-board.mjs",
+      "lines": "1034 -> 1289",
+      "changes": [
+        "top-level roster discovery now runs two full paged passes, showCompleted:false and showCompleted:true, each with sortBy:priority",
+        "the two passes are unioned and deduplicated by task id before the recursive get_task child traversal",
+        "an id appearing in both passes is collapsed to one entry and is NOT treated as a duplicate-marker error",
+        "each pass count and the unioned count are logged",
+        "duplicate-marker detection preserved: two DIFFERENT ids carrying one spec-key still aborts naming both",
+        "cycle guard, exact-marker match, fetchChildTags, no-delete rule, dry-run default and token guard all preserved",
+        "new --self-test-roster mode with a stub client whose listTasks honours the exclusive showCompleted filter"
+      ],
+      "fixture": ".taskview/test/resolver-roster-fixture.json",
+      "evidence": {
+        "rosterSelfTest": "107/107 PASS",
+        "passCounts": "incomplete pass 13, complete pass 2, unioned 15 - and the test asserts the union strictly exceeds either pass alone",
+        "regressionProved": "18 children live behind the complete-only page, under epics 31 (AF-E06, 2 children) and 40 (AF-E15, 16 children). The test asserts 18/18 of them are indexed. Under the old single-pass code those 18, plus 13 epics and their 61 stories, were unreachable.",
+        "allMarkersResolve": "All 94 epic and story markers resolved to their true ids, verified individually: AF-E01=26 through AF-S1516=119, a contiguous 26-119 range.",
+        "checkpointNotConsulted": "The test asserts keyToTaskId was not consulted and reports 0 reads. Resolution came purely from the marker index built off the fixture.",
+        "resumeCreatesNothing": "Simulated resume iterated every entry of board-spec.json through the marker index alone and asserted the create count is exactly 0. Result: would create 0.",
+        "negatives": "mustNotMatch keys AF-E16, AF-S1517, AF-S050, AF-E0 and AF-S15160 all resolved null - no prefix, suffix or near-miss false positives.",
+        "duplicateAbort": "Injecting a second task id carrying <!-- spec-key: AF-S1501 --> aborted with exit 1 and the message DUPLICATE spec-key AF-S1501: task ids #9500 and #104.",
+        "overlapTolerated": "Injecting the same top-level id into BOTH passes kept the union at 15 from 13+3 raw entries and raised no duplicate error, confirming dedup by id. The single assertion that failed in that probe was the hard-coded 18/18 child expectation, which the fixture edit itself changed to 24/24 - an artifact of the probe, not a resolver defect.",
+        "regressionSuite": "The two earlier self-tests still pass unchanged: flat 19/19 and tree 31/31. node --check passes. Zero HTTP DELETE. Dry-run remains the default. The token guard still exits 1 for --phase=4.",
+        "nonMutation": "No TaskView write call was made during this repair. The checkpoint still holds all 94 mappings and phase 4."
+      }
+    }
+  ],
+  "phase4Spec": {
+    "status": "EXECUTED 2026-08-02 - all 9 subtasks created and verified as ids 120-128.",
+    "date": "2026-08-02",
+    "subtaskCount": 9,
+    "perParent": {
+      "AF-S0103": 2,
+      "AF-S0805": 3,
+      "AF-S1404": 2,
+      "AF-S1406": 2
+    },
+    "keyConvention": "AF-T<parent story's four digits><index>, e.g. AF-T01031 is the first subtask of AF-S0103. AF-T is unused elsewhere, so no collision with AF-E* or AF-S*.",
+    "selection": "49 Backlog stories were considered; 4 qualified. The 30 Done stories are closed history and ineligible. A story earned subtasks only where the source documents show separately assignable work - different files, different environments, different tools. Restating a parent's doneWhen lines as children was treated as duplication, not decomposition.",
+    "storiesDeliberatelyWithoutSubtasks": "AF-S0401 and AF-S1401 were proposed with subtasks and then stripped to zero on review. AF-S0702 (12 doneWhen lines) was rejected up front because those lines ARE the acceptance criteria. AF-S0102 was rejected as a standing duty no document breaks into units. AF-S0402 is one investigation. AF-S0703/AF-S0807 are already decomposed by ruling G4. AF-E03's stories are already one per assistive technology. Every story carrying a TBD cannot be decomposed until the owner supplies the scope.",
+    "review": {
+      "reviewer": "other agent identity, high effort, against REMAINING-WORK, ROADMAP, WEBSITE-PROJECT-TRACKER, AGENTS and the build brief; forbidden from reading the author's outline",
+      "findings": 14,
+      "high": 6,
+      "medium": 8,
+      "accepted": 13,
+      "rejected": 1,
+      "deleted": [
+        "AF-T04011 - was AF-S0401 rewritten as a child; goal and all three doneWhen lines restated the parent",
+        "AF-T04012 - imported REMAINING-WORK's 'small separate landings' and 'first red run' procedure, which sits under the TEST-02 heading and describes the browser matrix, not TEST-01; also pre-created triage for failures that do not exist",
+        "AF-T14012 - was AF-S1401's entire deliverable restated",
+        "AF-T14011 - setup for the deleted AF-T14012",
+        "AF-T14013 - a single surviving child adds nothing over its parent"
+      ],
+      "rejectedFinding": "The claim that AF-T14013's separate-git-worktree rule was invented is factually wrong: TASKVIEW-WORKFLOW.md, which was in the reviewer's own read list, states 'Every concurrently active task uses a separate git worktree and branch.' Moot, since AF-T14013 was deleted for a different reason.",
+      "fixesApplied": "T1 every TBD removed from filesToTouch and readExactly. T2 AF-T01032 rewritten self-contained instead of 'same shape as AF-T01031'. T3 both AF-S0103 children carry the full data workflow directly - same-day source check, retained source, gen:context, gen:guides, generated-diff review, DATA_CHANGELOG, ?v=N bump, npm test, npm run test:e2e. T4 AF-T08053 stripped of the 64 KB MAX_BODY_BYTES clauses, which are SEC-04, a different closed control. T5 AF-T14041 expanded to carry the note template and handoff convention into TASKVIEW-WORKFLOW.md so the two children together satisfy the parent. T6 AF-T14041 no longer asserts the -1401 route segment as a documented fact; it cites the owner's 2026-08-01 confirmation recorded in this checkpoint and requires reading the live board URL first."
+    },
+    "processNote": "The reviewer's findings file transiently contained an empty array while the agent was still running. Waiting for the process to exit revealed the real result of 14 findings. A premature read would have reported a clean review.",
+    "validation": "Merged preview validated before writing: 103 entries total (15 epics, 79 stories, 9 subtasks), 103 distinct keys, all 94 pre-existing entries byte-identical, every subtask parent resolves to a story and never to an epic, every subtask carries type:subtask, status Backlog, a legal priority, a non-empty doneWhen, a complete context block, non-empty sources, and empty detailedActivity/handoff. Dependency graph across the whole spec is acyclic with every edge resolving; the 9 subtasks add no edges. No subtask key collides with the 94 checkpoint mappings.",
+    "ownerDecisionsOpen": [
+      "AF-S0805 has no Core Web Vitals / field-INP child. The reviewer proposed either adding one or removing those criteria from the parent. Not acted on: the parent already carries the manual assessment and INP criteria, AF-S0602 is the standing field-INP record, and modifying an existing entry was out of scope. Owner to choose.",
+      "AF-S0401 (TEST-01) and AF-S1401 (GitHub issue sync) now have zero subtasks. If the owner wants either broken down, it needs a documented work-breakdown that does not restate the parent's acceptance criteria.",
+      "Phase 4 execution also writes each parent's child-index table into its Detailed activity section, per the build brief. That is execution, not spec, and is not part of this proposal."
+    ],
+    "filesWritten": [
+      ".taskview/subtask-spec-source.md",
+      ".taskview/parts/subtasks.json",
+      ".taskview/parts/subtasks-fixed.json",
+      ".taskview/review/findings-subtasks.json",
+      ".taskview/review/triage-subtasks.md",
+      ".taskview/review/parent-stories.json",
+      ".taskview/board-spec.json (9 subtasks appended; the 94 existing entries untouched)"
+    ]
+  },
+  "phase4Progress": {
+    "status": "COMPLETE - 9 of 9 subtasks created, tagged and verified",
+    "subtasksCreated": 9,
+    "subtasksRemaining": 0,
+    "idRange": "120-128",
+    "parentsWithChildIndex": [
+      43,
+      78,
+      99,
+      101
+    ],
+    "nextPhase": 5,
+    "nextPhaseNote": "Phase 5 is dependencies. Every one of the 9 subtasks has dependsOnKeys [], so Phase 5 concerns only the pre-existing story-level edges.",
+    "correctionApplied": "2026-08-02 - parent Children relation lines now carry real child ids and spec keys; verified byte-exact with no collateral change."
+  }
+}

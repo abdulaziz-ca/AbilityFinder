@@ -1,0 +1,162 @@
+[
+  {
+    "key": "AF-S0302",
+    "severity": "medium",
+    "category": "INVENTED FACTS",
+    "finding": "The ticket asserts that no screen-reader user has completed a journey through the product. The ground-truth documents do not establish that negative claim; they establish only that NVDA and TalkBack have not been run and that a VoiceOver guide-page pass did occur.",
+    "evidence": "REMAINING-WORK.md says: \"First real VoiceOver + Safari pass done 2026-07-28\" and later \"NVDA and TalkBack still not run\". No ground-truth line says that no screen-reader user has completed any journey.",
+    "fix": "Replace the unsupported claim with the documented facts: NVDA has not been run, TalkBack has not been run, and the existing VoiceOver evidence is limited to the recorded guide-page pass with an unresolved navigation-mode question."
+  },
+  {
+    "key": "AF-S0304",
+    "severity": "medium",
+    "category": "INVENTED FACTS",
+    "finding": "The ticket invents a product-communication decision about whether to tell Safari keyboard users about Full Keyboard Access. The source documents require behavioural confirmation during real testing, not a messaging decision.",
+    "evidence": "REMAINING-WORK.md says: \"Confirm this during the real AT testing\". WEBSITE-PROJECT-TRACKER.md says: \"Confirm Safari behavior with Full Keyboard Access enabled and disabled.\" Neither document asks for a product communication decision.",
+    "fix": "Remove the messaging-decision goal and acceptance criterion, or create a separately sourced owner-decision ticket only after testing produces evidence that communication is needed."
+  },
+  {
+    "key": "AF-S0305",
+    "severity": "high",
+    "category": "WRONG PRIORITY",
+    "finding": "Touch-target review is assigned Medium on the rationale that it is not a release blocker, but it is included in the remaining accessibility work that constitutes the formal NO-GO condition.",
+    "evidence": "WEBSITE-PROJECT-TRACKER.md says formal launch readiness is NO-GO on \"the remaining human accessibility and assistive-technology testing\"; its Remaining accessibility list includes \"Complete touch-target sizing review\"; and the launch gate says \"Complete the human accessibility and disabled-user testing listed above.\" BOARD-BUILD-PROMPT.md maps release blockers to High (3).",
+    "fix": "Set priority to 3, add `blocker:release`, and justify it as part of the explicit remaining launch gate rather than claiming it is not a blocker."
+  },
+  {
+    "key": "AF-S0306",
+    "severity": "medium",
+    "category": "DUPLICATES AND OVERLAP",
+    "finding": "This story requires every specialist finding to be dispositioned, while AF-S0308 separately owns dispositioning every AT and user-testing finding. Both tickets can claim or block the same follow-through work.",
+    "evidence": "AF-S0306 doneWhen says \"the specialist's findings are dispositioned\". AF-S0308's goal is \"Resolve or disposition every issue found during AT and user testing\" and its doneWhen covers each finding. WEBSITE-PROJECT-TRACKER.md separates conducting testing from \"Resolve or disposition every issue found during that testing.\"",
+    "fix": "Limit AF-S0306 to conducting the specialist review and recording reproducible findings. Make AF-S0308 solely responsible for fix/won't-fix disposition and add AF-S0306 as a prerequisite of AF-S0308."
+  },
+  {
+    "key": "AF-S0307",
+    "severity": "high",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "The doneWhen can pass after an unspecified study even if most of the required modalities and stress conditions in the ticket were never exercised. It does not objectively close the scope described by the story.",
+    "evidence": "The ticket constraints require keyboard, switch, voice, magnification, assistive technology, cognitive fatigue, pain, financial stress, full-journey keyboard use, 200–400% zoom/reflow, reduced motion, scroll reveals, and plain-language comprehension. Its doneWhen only says the study happened with real disabled participants and findings were written reproducibly. ROADMAP.md lists those testing surfaces, and WEBSITE-PROJECT-TRACKER.md lists the modalities and stress conditions as remaining work.",
+    "fix": "Add a checkable test matrix showing evidence for each required modality and condition, plus recorded outcomes for full-journey completion, zoom/reflow, motion, and comprehension. Do not allow the ticket to close while any listed cell is untested or explicitly deferred without owner approval."
+  },
+  {
+    "key": "AF-S0309",
+    "severity": "medium",
+    "category": "STALE WORK",
+    "finding": "A settled do-not-change decision is incorrectly represented as Backlog work. Its acceptance criteria merely say the already-recorded decision remains recorded, so there is no unfinished deliverable.",
+    "evidence": "REMAINING-WORK.md labels this \"Observation, deliberately NOT changed 2026-07-28\" and explains that named landmarks would create rotor noise. WEBSITE-PROJECT-TRACKER.md says: \"Do not add ten named section landmarks to every guide without evidence that this helps screen-reader navigation.\"",
+    "fix": "Move this to Done as a historical `type:decision` record, preferably under the shipped/closed history structure, or fold it into the constraints of the real AT-testing ticket. Reopen only if user evidence changes the decision."
+  },
+  {
+    "key": "AF-S0310",
+    "severity": "high",
+    "category": "INVENTED FACTS",
+    "finding": "The summary repeats the stale claim that no human using a screen reader has ever used the product, even though the working record later documents a real VoiceOver + Safari pass.",
+    "evidence": "REMAINING-WORK.md's earlier axe discussion says \"no human using a screen reader has ever used this product\", but the later, more specific human-only row says: \"First real VoiceOver + Safari pass done 2026-07-28\" and records the guide-page result. The ticket copied the stale sentence instead of the updated evidence.",
+    "fix": "State that human screen-reader coverage remains incomplete and cannot be replaced by axe; specifically note the limited VoiceOver pass and the unrun NVDA/TalkBack passes. Do not claim zero human screen-reader use."
+  },
+  {
+    "key": "AF-S0310",
+    "severity": "medium",
+    "category": "STALE WORK",
+    "finding": "The deliberate axe exclusion is already a documented decision, but the spec leaves it in Backlog with no finite work product.",
+    "evidence": "REMAINING-WORK.md has a section titled \"Deliberately excluded: automated axe\" and says to skip it for now. AGENTS.md and BOARD-BUILD-PROMPT.md already preserve the binding rule that automated axe does not substitute for real disabled-user testing.",
+    "fix": "Record this as Done decision history or as a constraint on the human-testing epic, not as an open story. If axe is later proposed as supplemental tooling, create new work without weakening the human-testing gate."
+  },
+  {
+    "key": "AF-S0401",
+    "severity": "high",
+    "category": "WRONG PRIORITY",
+    "finding": "TEST-01 is marked High solely because it is one of the remaining audit findings. That is not a High-priority condition under the board's mapping, and the working record identifies DATA-25—not TEST-01—as the remaining High/P1 release blocker.",
+    "evidence": "BOARD-BUILD-PROMPT.md maps High to security/privacy risk, data loss, production outage, a release blocker, or work blocking multiple tickets; normal engineering is Medium. REMAINING-WORK.md says: \"Every High/P1 release blocker except DATA-25 is closed\" and lists TEST-01 as an open regression-suite gap, not as the remaining release blocker.",
+    "fix": "Set TEST-01 to Medium unless the spec supplies evidence that it currently blocks release or multiple named tickets. Replace the audit-count rationale with the user-impact rationale that it is meaningful testing infrastructure preventing false-ready regressions."
+  },
+  {
+    "key": "AF-S0401",
+    "severity": "medium",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "The criterion \"a plausible mutation makes the suite fail\" is subjective, and \"every program has asserted outcome sets\" does not define the catalogue-to-test completeness check. A reviewer cannot objectively decide whether the oracle is complete.",
+    "evidence": "REMAINING-WORK.md defines the gap as \"No systematic eligibility oracle across all programs\". The ticket adds no enumerated program-ID coverage report, required personas/outcome states, or named mutation that must fail.",
+    "fix": "Require a machine-generated comparison showing every current catalogue program ID is covered, define the outcome states/persona dimensions asserted, and name at least one concrete matcher mutation whose expected failing test is recorded. Make the separate-ticket rule conditional on actual findings rather than assuming a first red run."
+  },
+  {
+    "key": "AF-S0402",
+    "severity": "high",
+    "category": "INVENTED FACTS",
+    "finding": "The ticket says this timeout family blocked a good release twice. The working record says the job cap blocked a good release twice overall, but the first incident was a slow Playwright browser-install mirror, not the later `[app-chromium]` 90-second-timeout family.",
+    "evidence": "REMAINING-WORK.md says the 2026-07-28 block occurred when \"Install Playwright browsers\" took 16m37s and hit the then-30-minute cap. It separately says run `30574672375` on 2026-07-30 accumulated `[app-chromium]` 90-second timeouts, and calls that \"the second time the job cap has blocked a good release\". Only the second documented block belongs to this timeout family.",
+    "fix": "Say the job cap has blocked two good releases for two different causes, and that the `[app-chromium]` timeout family caused the 2026-07-30 block. Keep High priority because the active family has demonstrated that it can block a release, not because it did so twice."
+  },
+  {
+    "key": "AF-S0402",
+    "severity": "medium",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "\"A full CI run is reproducibly inside the normal band\" has no defined number of runs or pass threshold. One lucky green rerun—the exact existing evidence—could satisfy it without showing reproducibility.",
+    "evidence": "REMAINING-WORK.md says the identical tree passed once in 16.5 minutes after the failed run and explicitly concludes the family is \"rarer, not eliminated\". It gives a prior seven-run band of 14.9–16.4 minutes, but the ticket's doneWhen does not state how many consecutive or sampled runs are required or how timeouts are ruled out.",
+    "fix": "Define the evidence threshold, such as a specified number of full CI runs with zero 90-second timeout annotations and durations within an explicitly stated tolerance, while retaining measurement of the root cause as a separate required criterion."
+  },
+  {
+    "key": "AF-S0403",
+    "severity": "low",
+    "category": "STALE WORK",
+    "finding": "This is already-settled workflow policy, not unfinished Backlog work. Its doneWhen is perpetual maintenance and cannot produce a discrete completion event.",
+    "evidence": "REMAINING-WORK.md says `retries: 0` is deliberate and instructs agents to read Playwright results with `grep -E 'passed|failed|flaky'`, never a truncated tail. The ticket asks only that those existing rules remain unchanged and continue to be followed.",
+    "fix": "Move it to Done decision history or place the rule in testing-ticket constraints/workflow documentation. Do not leave a no-op policy-preservation ticket in Backlog."
+  },
+  {
+    "key": "AF-S0404",
+    "severity": "low",
+    "category": "STALE WORK",
+    "finding": "The reduced-motion default was already considered and rejected, so this Backlog story recreates a closed decision with no new action.",
+    "evidence": "REMAINING-WORK.md says reduced motion was \"Deliberately not\" used as the suite default because that would delete a real accessibility surface, and the Firefox race was already closed without it. The ticket's only doneWhen is that the existing default remains unchanged.",
+    "fix": "Mark it Done as decision history or keep it as a constraint on future test-infrastructure work; do not track it as open implementation work."
+  },
+  {
+    "key": "AF-S0405",
+    "severity": "medium",
+    "category": "STALE WORK",
+    "finding": "The listed mutation-tested guards already exist and the ticket proposes no change beyond never weakening them. This is a perpetual rule disguised as Backlog work, with an acceptance criterion that is true at board creation time.",
+    "evidence": "REMAINING-WORK.md documents the guards as already implemented and mutation-tested, including `test/requires-note-rendered.test.js`, `test/guide-note-heading.test.js`, `e2e/matcher-safety.spec.js`, `test/worker-transport.test.js`, and `test/docs-consistency.test.js`. The ticket's only doneWhen is \"no guard is weakened or deleted to make a change pass\".",
+    "fix": "Put these guard-preservation rules into the constraints of tickets that touch the guarded code, or record the completed guard suite in Done history. Remove the standalone Backlog story."
+  },
+  {
+    "key": "AF-S0501",
+    "severity": "high",
+    "category": "INVENTED COUNTS",
+    "finding": "The ticket restates a per-severity audit count by claiming DATA-25 is the only High/P1 finding still outstanding. The working record explicitly warns not to restate per-severity totals without remapping the audit IDs.",
+    "evidence": "REMAINING-WORK.md says: \"The per-severity rows below are deliberately NOT recounted\" and \"Re-map the IDs before quoting any percentage.\" BOARD-BUILD-PROMPT.md says: \"Do not invent counts\" because nobody re-mapped finding IDs to severities. \"The only High/P1 finding\" is a severity-band count of one.",
+    "fix": "Remove all severity-count wording from the summary and rationale. Justify High using the documented release-blocking eligibility-safety impact of DATA-25, without claiming how many High/P1 findings remain."
+  },
+  {
+    "key": "AF-S0501",
+    "severity": "high",
+    "category": "RULE VIOLATIONS",
+    "finding": "The acceptance criteria for changing DTC eligibility questions omit the required benefit/data-change workflow: retained official-source evidence, generated outputs, DATA_CHANGELOG discipline, browser asset versioning, and regression checks. The ticket can be marked done after editing questions and preventing one false-ready path while leaving generated/deployed artifacts stale.",
+    "evidence": "BOARD-BUILD-PROMPT.md section 7 requires same-day official verification with every benefit retaining its source, `npm run gen:context`, `npm run gen:guides`, a `DATA_CHANGELOG` entry, and a `?v=N` bump for changed browser assets. REMAINING-WORK.md also says browser asset versions must be bumped and guides regenerated whenever `public/app.js` changes. AF-S0501's doneWhen mentions only current CRA criteria and no unasked criterion producing `ready`.",
+    "fix": "Add explicit criteria for recording the same-day official CRA source; retaining all applicable source links; updating DATA_CHANGELOG when benefit facts change; running and reviewing the required generators; bumping consistent `?v=N` references for changed browser assets; and passing relevant unit and Playwright matcher regressions."
+  },
+  {
+    "key": "AF-S0502",
+    "severity": "medium",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "\"Comprehension testing confirms readers do not infer completeness or certainty\" is not objectively checkable because the ticket defines no protocol, evidence artifact, participant criteria, questions, or pass condition.",
+    "evidence": "REMAINING-WORK.md says UX-02 needs \"a content pass + comprehension testing\" but does not define success. The ticket repeats that requirement without making it measurable.",
+    "fix": "Specify the comprehension-test script, the exact inference questions, where anonymized results are recorded, and the pass/fail rule. Require a follow-up ticket or owner disposition for any response that still demonstrates the prohibited inference."
+  },
+  {
+    "key": "AF-S0503",
+    "severity": "medium",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "The criterion that ordering be \"validated against real profiles\" is undefined. It gives no profile set, expected outcomes, validation method, or success threshold, so almost any informal review could be called validation.",
+    "evidence": "REMAINING-WORK.md says UX-03's formula is \"still unexplained and unvalidated\". The ticket does not define what would turn that state into validated evidence.",
+    "fix": "Define a versioned representative profile set, the ordering hypotheses or expected rationale for each profile, the review/test method, and an objective result required for acceptance. If this is an owner product decision, tag and gate it accordingly rather than calling unspecified profile review validation."
+  },
+  {
+    "key": "AF-S0602",
+    "severity": "medium",
+    "category": "STALE WORK",
+    "finding": "The ticket asks to record that field INP is unmeasurable, but that limitation is already recorded repeatedly in the working documents and in the ticket itself. Creating it as Backlog leaves already-completed documentation work open.",
+    "evidence": "REMAINING-WORK.md says: \"INP stays unmeasurable in the field, because that needs real users and there is no analytics by design.\" WEBSITE-PROJECT-TRACKER.md says: \"Record that field INP remains unavailable without real-user measurement.\" The proposed ticket summary and constraints already preserve the same fact before any future action occurs.",
+    "fix": "Mark this as Done decision/history when created, or fold it into the PERF-01 WON'T-FIX record and privacy constraints. Do not leave it as an open story unless a specific additional documentation location and concrete edit are named."
+  }
+]

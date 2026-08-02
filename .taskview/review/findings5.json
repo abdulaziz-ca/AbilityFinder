@@ -1,0 +1,34 @@
+[
+  {
+    "key": "AF-S1505",
+    "severity": "high",
+    "category": "INVENTED COUNTS",
+    "finding": "The ticket promotes the stale Low + Informational severity tally into an authoritative board fact (\"12 closed of 12\") and invents an exception that this is safe to quote because the row is complete. The working record explicitly says the per-severity rows were not recounted, so this count must not be carried forward as verified.",
+    "evidence": "REMAINING-WORK.md says: \"The per-severity rows below are deliberately NOT recounted\" and \"Re-map the IDs before quoting any percentage.\" WEBSITE-PROJECT-TRACKER.md also says: \"Recount all 65 audit rows and remap their severity/status totals; the current summary intentionally contains stale totals.\" No ground-truth document states the ticket's claimed exception that the Low + Informational tally is safe to restate merely because it is labelled complete.",
+    "fix": "Remove \"12 closed of 12\" from the constraints and doneWhen. Record only that the existing table labels Low + Informational complete, while explicitly requiring an ID-to-severity recount before quoting any severity total."
+  },
+  {
+    "key": "AF-S1516",
+    "severity": "high",
+    "category": "INVENTED COUNTS",
+    "finding": "The ticket repeats the stale \"~83%\" closure percentage even though its own doneWhen claims the record is made \"without deriving a percentage.\" Carrying an explicitly unrecounted percentage into the board turns a caveated stale estimate into durable project history.",
+    "evidence": "REMAINING-WORK.md labels the figure \"was ~83% before 2026-07-28; several more closed that day, not yet recounted\" and instructs: \"Re-map the IDs before quoting any percentage.\" WEBSITE-PROJECT-TRACKER.md says the current severity/status totals are intentionally stale and must be recounted.",
+    "fix": "Delete the \"~83%\" text from the constraints. Keep the verified 65-row audit-table count and the rule that no closure percentage may be quoted until the rows are recounted and remapped."
+  },
+  {
+    "key": "AF-S1512",
+    "severity": "medium",
+    "category": "INVENTED FACTS",
+    "finding": "The ticket incorrectly attributes the evidence that disproved ABFED-16/17 to the organization and practitioner directories, then generalizes the two records' lack of intake claims to directory records as a whole. The documented records are in the grants directory, not `public/orgs-data.js` or `PRACTITIONER_FORMS`, and the ground truth establishes this behavior only for Easter Seals and Dog Guides.",
+    "evidence": "REMAINING-WORK.md says specifically: \"both are directory records in `public/grants-data.js`\" and \"Neither entry states an intake status at all.\" It does not say that `public/orgs-data.js`, `PRACTITIONER_FORMS`, or every directory record follows a universal no-intake-status rule.",
+    "fix": "Either remove the ABFED-16/17 claim from this organization/practitioner history ticket, or expand the ticket explicitly to include the grants directory. Add `public/grants-data.js` to readExactly and narrow the intake-status statement to the Easter Seals and Dog Guides records."
+  },
+  {
+    "key": "AF-S1514",
+    "severity": "medium",
+    "category": "INVENTED FACTS",
+    "finding": "The ticket conflates two PharmaCare facts by saying all 13 assessed plans produced \"one new record, not seven.\" The one-record-not-seven conclusion applies only to the seven remaining plans, not to the full set of 13; the catalogue already carried or separately added several other plan routes.",
+    "evidence": "ROADMAP.md separately states: \"B.C. PharmaCare has 13 plans, and as of 2026-07-29 all 13 have been assessed\" and later: \"All seven remaining plans were assessed 2026-07-29 ... and the result is one record, not seven.\" The spec merges these statements and changes their meaning.",
+    "fix": "Replace the sentence with: \"All 13 PharmaCare plans were assessed. For the seven remaining plans, the assessment produced one new record, not seven.\""
+  }
+]

@@ -1,0 +1,234 @@
+[
+  {
+    "key": "ALL",
+    "severity": "high",
+    "category": "invented facts",
+    "finding": "All 15 epic records cite `.taskview/board-spec-source.md` as their only source. That file is the author's own notes, not ground truth, so the epic facts have circular and unreviewable provenance.",
+    "evidence": "BOARD-BUILD-PROMPT.md section 0 labels AGENTS.md, TASKVIEW-WORKFLOW.md, REMAINING-WORK.md, ROADMAP.md, WEBSITE-PROJECT-TRACKER.md, HANDOFF.md, DEPLOY.md and related repository files as source-of-truth documents. `.taskview/board-spec-source.md` appears nowhere in the five ground-truth documents read for this review and was explicitly excluded from review because checking against it would be circular.",
+    "fix": "Replace each epic's `sources` array with the exact ground-truth document or documents that substantiate its claims; do not cite `.taskview/board-spec-source.md` anywhere in the board spec."
+  },
+  {
+    "key": "ALL",
+    "severity": "medium",
+    "category": "invented facts",
+    "finding": "Multiple implementation and testing epics falsely say `filesToTouch: none — decision ticket` even though their own goals require code, content, test, deployment or integration work. This would send a fresh agent down the wrong workflow.",
+    "evidence": "Examples include AF-E01 ('Keep every published amount... true'), AF-E03 ('Have real screen-reader users... complete journeys'), AF-E04 ('Give eligibility outcomes a systematic regression net'), AF-E08 ('Keep production correct...'), AF-E09 ('chosen additions are shipped'), AF-E10 ('Build For Professionals v1'), AF-E11 ('Additional provinces ship'), AF-E12 ('Add additional audience streams') and AF-E14 ('Make the board, GitHub and Slack one coherent system'). BOARD-BUILD-PROMPT.md section 4 requires explicit paths, or `none — decision ticket` for a decision ticket.",
+    "fix": "For implementation epics, use `varies by child ticket; parent note only` and require each child to list explicit paths, or list the known paths. Reserve `none — decision ticket` for genuine decision-only tickets."
+  },
+  {
+    "key": "AF-E01",
+    "severity": "medium",
+    "category": "wrong priority",
+    "finding": "The ongoing data-freshness epic is assigned High solely because stale facts can harm users. That is serious, but it is not one of the board's defined High conditions unless a specific stale fact is a release blocker or causes a listed security/privacy, data-loss or outage condition.",
+    "evidence": "BOARD-BUILD-PROMPT.md section 4: `High (3) — security/privacy risk, data loss, production outage, release blocker, or work blocking multiple other tickets`; `Medium (2) — active user-facing features, meaningful bugs, dependencies, normal engineering work.` ROADMAP.md calls data accuracy an ongoing priority, not a current release blocker.",
+    "fix": "Set AF-E01 to Medium. Escalate a specific child to High only when evidence shows it meets a defined High condition."
+  },
+  {
+    "key": "AF-E01",
+    "severity": "medium",
+    "category": "missing or uncheckable acceptance criteria",
+    "finding": "The only doneWhen requires every fact to be true 'on the day a user reads it.' That is a perpetual aspiration, not an objectively completable board condition, and it cannot be proven for future visits.",
+    "evidence": "REMAINING-WORK.md requires verification against the current official source `on the day of the change`; ROADMAP.md requires re-verification before freshness dates age out. Neither document claims the team can continuously prove truth on every user's reading date.",
+    "fix": "Define a checkable snapshot: no record is past its configured verification date at review time, the latest link-health report is dispositioned, and every changed fact has same-day official-source evidence plus required generated outputs."
+  },
+  {
+    "key": "AF-E02",
+    "severity": "medium",
+    "category": "wrong priority",
+    "finding": "The coverage/scope epic is Medium even though its remaining children are optional future scope decisions and one already-closed decision, not active user-facing work or a dependency blocking current delivery.",
+    "evidence": "WEBSITE-PROJECT-TRACKER.md labels Plan B and provincial child/family scope under `Optional coverage backlog — not a launch blocker`. BOARD-BUILD-PROMPT.md maps future ideas to Low.",
+    "fix": "Set AF-E02 to Low unless the owner promotes a specific scope decision into active delivery or it becomes a real dependency."
+  },
+  {
+    "key": "AF-E03",
+    "severity": "medium",
+    "category": "invented facts",
+    "finding": "The summary says human accessibility and usability testing 'has not yet happened,' erasing human and owner-run checks already recorded as completed.",
+    "evidence": "REMAINING-WORK.md says `First real VoiceOver + Safari pass done 2026-07-28` and records completed owner checks at 200% text, 400% zoom/reflow, 320px portrait, forced colours and print. The remaining gap is full disabled-user journey testing and unresolved assistive-technology checks, not an absence of all human testing.",
+    "fix": "Rewrite the summary to distinguish completed owner/VoiceOver checks from the still-missing disabled-user journey study, NVDA/TalkBack work, Safari keyboard confirmation, touch-target review and specialist judgment."
+  },
+  {
+    "key": "AF-E03",
+    "severity": "high",
+    "category": "missing or uncheckable acceptance criteria",
+    "finding": "The release-blocking accessibility epic can be closed after unspecified 'human accessibility and usability testing' with every resulting finding dispositioned. It does not require the concrete outstanding test matrix, so a small partial session could satisfy the wording without closing the documented NO-GO gap.",
+    "evidence": "WEBSITE-PROJECT-TRACKER.md specifically requires item-by-item VoiceOver retesting, NVDA, TalkBack, Safari Full Keyboard Access on/off, touch-target review, specialist judgment, and disabled-user testing using keyboard, switch, voice, magnification and assistive technology, including cognitive fatigue, pain and financial stress. AGENTS.md says automated axe does not replace real-person testing.",
+    "fix": "Enumerate each required platform and modality and require a dated test record with participant context, reproducible findings, disposition for every finding, and evidence that unresolved release-blocking issues are closed or explicitly accepted by the owner."
+  },
+  {
+    "key": "AF-E04",
+    "severity": "medium",
+    "category": "missing or uncheckable acceptance criteria",
+    "finding": "The doneWhen phrases 'systematic regression net' and 'CI flakiness no longer blocks good releases' are undefined and the latter cannot be proved as an absolute.",
+    "evidence": "REMAINING-WORK.md says the CI timeout family is `rarer, not eliminated` and TEST-02 remains done while flakiness remains. TEST-01 is described as a missing systematic eligibility oracle, but no objective matrix is defined in this ticket.",
+    "fix": "Specify the oracle's required program/profile coverage and assertions, and define bounded flake acceptance using reproducible diagnostics and a stated run sample while preserving `retries: 0` and real motion coverage."
+  },
+  {
+    "key": "AF-E05",
+    "severity": "medium",
+    "category": "missing or uncheckable acceptance criteria",
+    "finding": "The epic says DATA-25, UX-02 and UX-03 close with 'their stated validation,' but the ticket never states that validation. A decision alone could be marked done without the required content, criteria or user-validation work.",
+    "evidence": "REMAINING-WORK.md says UX-02 needs a content pass plus comprehension testing, UX-03's formula remains unexplained and unvalidated, and DATA-25 needs real CRA functional-criteria questions.",
+    "fix": "Add separate objective completion lines for DATA-25's verified CRA functional questions and matcher tests, UX-02's revised claims plus documented comprehension results, and UX-03's documented weighting formula plus validation evidence."
+  },
+  {
+    "key": "AF-E06",
+    "severity": "medium",
+    "category": "stale work",
+    "finding": "AF-E06 is Backlog even though its own summary says the underlying PERF-01 work is closed as WON'T FIX. The working record explicitly says not to re-attempt the rejected first-load change without a new owner decision.",
+    "evidence": "REMAINING-WORK.md: `Closed 2026-07-30 as WON'T FIX, by owner decision, after measuring production directly.` It also says the only first-paint change was rejected and field INP is unavailable by design without analytics.",
+    "fix": "Do not keep this as an active Backlog epic. Move the PERF-01 decision into Done history; create a separate Low ticket only if there is a concrete, newly approved measurement task."
+  },
+  {
+    "key": "AF-E06",
+    "severity": "medium",
+    "category": "duplicates and overlap",
+    "finding": "AF-E06 duplicates the purpose of AF-E15 by recording the closed PERF-01 decision and preserving it against re-attempts.",
+    "evidence": "BOARD-BUILD-PROMPT.md section 5 explicitly requires the AF-E15 history epic to include `PERF-01` and its stale headline LCP outcome. AF-E15 in this slice already claims rolled-up shipped, disproved and rejected outcomes.",
+    "fix": "Consolidate the closed PERF-01 record under AF-E15 and remove the duplicate active epic, or narrow AF-E06 to a genuinely open performance deliverable supported by the working record."
+  },
+  {
+    "key": "AF-E07",
+    "severity": "high",
+    "category": "missing or uncheckable acceptance criteria",
+    "finding": "The NO-GO epic's doneWhen is only 'all release conditions carry evidence and the owner changes the release status.' It neither enumerates nor links the complete current gate, so it is not independently checkable.",
+    "evidence": "WEBSITE-PROJECT-TRACKER.md lists the remaining gates: complete human testing; resolve or disposition every issue found; review and verify current uncommitted changes; run the complete release-candidate test and generation checklist; and complete a clean production smoke test before changing NO-GO. The ticket's constraint omits issue disposition and uncommitted-change verification.",
+    "fix": "Copy the current release-gate checklist into doneWhen, require links to evidence for each line, and require explicit owner approval for the status change."
+  },
+  {
+    "key": "AF-E08",
+    "severity": "high",
+    "category": "missing or uncheckable acceptance criteria",
+    "finding": "The epic calls out an unrotated live deploy credential but its doneWhen never requires rotation or revocation. It could be marked done while the documented credential exposure remains.",
+    "evidence": "REMAINING-WORK.md says the token was pasted into a chat transcript and remains live, Workers-edit scoped and able to deploy. WEBSITE-PROJECT-TRACKER.md explicitly requires rotating it. AF-E08's doneWhen only says production is kept correct/free and link-monitor findings are acted on.",
+    "fix": "Add acceptance criteria that the exposed token is revoked, a replacement repository secret is configured without exposing its value, the gated deployment path is re-proven, and the latest link-health and smoke-test evidence is linked."
+  },
+  {
+    "key": "AF-E11",
+    "severity": "high",
+    "category": "rule violations",
+    "finding": "The province-expansion constraint softens the source-audit gate from completing an audit to merely having a checklist that exists.",
+    "evidence": "AF-E11 says `Do not ship a province before the province source-audit checklist exists.` ROADMAP.md requires reintegration `only after a province-specific source audit and metadata pass` and says each province needs a full source audit. BOARD-BUILD-PROMPT.md section 7 additionally requires same-day official verification, retained sources, generators, DATA_CHANGELOG and asset-version discipline.",
+    "fix": "Require the province-specific source audit and metadata pass to be completed and evidenced before shipping, and carry the same-day source, retained-source, generator, changelog and `?v=N` requirements into doneWhen."
+  },
+  {
+    "key": "AF-E12",
+    "severity": "medium",
+    "category": "missing or uncheckable acceptance criteria",
+    "finding": "The title and goal promise adding audience streams, but doneWhen stops after one audience is merely chosen and scoped. That criterion does not close the implementation work the epic describes.",
+    "evidence": "ROADMAP.md says the horizon is to add audience streams one at a time with verified-depth treatment. AF-E12's doneWhen requires only that one audience be chosen and scoped before expansion proceeds.",
+    "fix": "Either retitle this as a scoping and owner-decision epic, or require the chosen audience's verified catalogue, matching, user journeys, privacy review and tests to ship before the epic is Done."
+  },
+  {
+    "key": "AF-E15",
+    "severity": "medium",
+    "category": "invented facts",
+    "finding": "The summary invents a single 'closing date' for a roll-up epic and says that project-history date must be verified against an official benefit source.",
+    "evidence": "The sentence `its closing date is TBD — verify against official source on the day` appears nowhere in the ground-truth documents. AF-E15 rolls up many shipped, disproved and rejected outcomes with different dates; there is no single official-source closing date to verify.",
+    "fix": "Delete the template-leak sentence. Preserve dated evidence on each history child or cluster and use repository/project evidence for closure dates; reserve same-day official-source verification for benefit facts."
+  },
+  {
+    "key": "AF-S0101",
+    "severity": "medium",
+    "category": "duplicates and overlap",
+    "finding": "This story owns regular `/api/link-health` review, while AF-E08 independently owns keeping the link monitor acted on. The same operational work has two planning homes.",
+    "evidence": "AF-S0101 goal: `Establish and complete a regular review cadence for /api/link-health reports.` AF-E08 goal: `keep the link monitor acted on.` BOARD-BUILD-PROMPT.md makes no duplicates a non-negotiable outcome.",
+    "fix": "Give link monitoring one owner, preferably reparent AF-S0101 under AF-E08, and narrow AF-E01 to factual freshness work that consumes confirmed link findings."
+  },
+  {
+    "key": "AF-S0101",
+    "severity": "medium",
+    "category": "missing or uncheckable acceptance criteria",
+    "finding": "The story accepts any 'stated review cadence' without defining frequency, evidence location, report identity or ownership. It therefore cannot prove that a recurring cadence was actually established.",
+    "evidence": "ROADMAP.md says to review `/api/link-health` regularly and replace genuinely broken or soft-404 links, while WEBSITE-PROJECT-TRACKER.md requires confirming the latest report. The ticket supplies no interval or durable review artifact.",
+    "fix": "State the recurrence interval and owner, identify where each review is recorded, and require the latest report timestamp or ID plus a disposition for every non-healthy result."
+  },
+  {
+    "key": "AF-S0102",
+    "severity": "medium",
+    "category": "wrong priority",
+    "finding": "Routine freshness-date re-verification is assigned High without evidence that this specific standing backlog story is a current release blocker or meets another defined High condition.",
+    "evidence": "BOARD-BUILD-PROMPT.md maps normal engineering and active user-facing maintenance to Medium; High is limited to security/privacy, data loss, production outage, release blockers, or work blocking multiple tickets. ROADMAP.md presents re-verification as recurring maintenance, not a current release gate.",
+    "fix": "Set the standing maintenance story to Medium and create or escalate a specific High ticket only when an expired or false fact creates a defined High condition."
+  },
+  {
+    "key": "AF-S0102",
+    "severity": "high",
+    "category": "rule violations",
+    "finding": "The acceptance criteria allow benefit fact changes to close with only a source URL and DATA_CHANGELOG entry. They omit the required generators and browser asset version bump, softening the mandatory data-change discipline.",
+    "evidence": "BOARD-BUILD-PROMPT.md section 7: `Data changes require npm run gen:context and npm run gen:guides, a DATA_CHANGELOG entry, and a ?v=N bump for changed browser assets.` ROADMAP.md specifies the generator triggers. AF-S0102's doneWhen does not require either generator or version evidence.",
+    "fix": "Add doneWhen lines for `npm run gen:context`, `npm run gen:guides` when BENEFITS changes, reviewed generated diffs, DATA_CHANGELOG, and the shared `?v=N` bump for every changed browser-loaded data asset."
+  },
+  {
+    "key": "AF-S0103",
+    "severity": "high",
+    "category": "rule violations",
+    "finding": "Directory fact edits can be marked done after refreshing a date or correcting a record. The doneWhen omits generator evidence, DATA_CHANGELOG and browser asset versioning; mentioning only `gen:context` in constraints does not make it a completion gate.",
+    "evidence": "ROADMAP.md requires directory re-verification and `npm run gen:context` after `public/grants-data.js` or `public/orgs-data.js` changes. BOARD-BUILD-PROMPT.md section 7 requires generator, DATA_CHANGELOG and `?v=N` discipline to survive into ticket acceptance criteria.",
+    "fix": "Require same-day official-source evidence, `gen:context` output review, a DATA_CHANGELOG entry for factual changes, tests, and a shared asset-version bump when these browser-loaded files change."
+  },
+  {
+    "key": "AF-S0104",
+    "severity": "medium",
+    "category": "missing or uncheckable acceptance criteria",
+    "finding": "The first criterion ('the procedure is stated in the ticket') is already satisfied by the ticket itself, and the remaining criteria refer to 'every data landing' with no finite scope or enforcement mechanism. This does not establish that the procedure is enforced.",
+    "evidence": "The story title and goal promise enforcement, but doneWhen only asks for prose and unspecified evidence on future landings. BOARD-BUILD-PROMPT.md requires checkable acceptance criteria.",
+    "fix": "Define an actual enforcement deliverable, such as a documented PR checklist plus automated tests or CI assertions for generated-file drift, changelog presence where detectable, and asset-version consistency, with named files and passing commands."
+  },
+  {
+    "key": "AF-S0105",
+    "severity": "medium",
+    "category": "missing or uncheckable acceptance criteria",
+    "finding": "The scope 'Camrose and other municipalities' is unbounded. There is no named municipality/program list, so nobody can objectively determine when 'each municipality' has been researched.",
+    "evidence": "ROADMAP.md says to re-check Camrose and other municipalities one program at a time, but it does not define an exhaustive set. The ticket repeats that open-ended wording as its completion condition.",
+    "fix": "Name the exact municipality/program batch for this ticket and require a dated official-source research record and disposition for each. Create later tickets for newly selected municipalities instead of using an endless catch-all."
+  },
+  {
+    "key": "AF-S0106",
+    "severity": "medium",
+    "category": "stale work",
+    "finding": "This Backlog ticket's first doneWhen is already complete: the hold is already recorded in both ROADMAP.md and AGENTS.md. Its second line is a movement rule, not unfinished work or a closure condition.",
+    "evidence": "ROADMAP.md already says not to publish an exhaustive AISH/ADAP signer list until Alberta provides one. AGENTS.md repeats the same current priority. The ticket itself also records the hold.",
+    "fix": "Store the settled hold as a Done decision/history ticket. If active monitoring is desired, create a separate Low research trigger with a concrete review date or source event and objective output."
+  },
+  {
+    "key": "AF-S0201",
+    "severity": "low",
+    "category": "wrong priority",
+    "finding": "The Plan B placement decision is Medium even though the tracker explicitly classifies it as optional coverage backlog and not a launch blocker.",
+    "evidence": "WEBSITE-PROJECT-TRACKER.md places `Decide where the useful Plan B long-term-care registration warning belongs` under `Optional coverage backlog — not a launch blocker`. BOARD-BUILD-PROMPT.md maps future ideas to Low.",
+    "fix": "Set AF-S0201 to Low unless the owner activates it as current user-facing work or a dependency."
+  },
+  {
+    "key": "AF-S0202",
+    "severity": "low",
+    "category": "wrong priority",
+    "finding": "The provincial child/family scope decision is Medium despite being an optional future scope question, not active delivery or a launch dependency.",
+    "evidence": "WEBSITE-PROJECT-TRACKER.md lists `Decide whether general provincial child/family benefits belong in scope` under optional coverage backlog. ROADMAP.md calls these `Scope questions rather than gaps`. BOARD-BUILD-PROMPT.md maps future ideas to Low.",
+    "fix": "Set AF-S0202 to Low until the owner promotes it into active delivery."
+  },
+  {
+    "key": "AF-S0203",
+    "severity": "medium",
+    "category": "duplicates and overlap",
+    "finding": "The closed Plan X decision is represented under AF-E02 even though AF-E15 is specifically required to hold rejected and do-not-reopen history. Keeping both creates duplicate historical coverage.",
+    "evidence": "BOARD-BUILD-PROMPT.md section 5 says AF-E15 must record `PharmaCare Plan X closed as out of scope by owner decision — do not reopen.` AF-S0203 repeats exactly that outcome as a Done story under AF-E02.",
+    "fix": "Keep one canonical Done history story under AF-E15 and let AF-E02 contain only genuinely open scope decisions; reference the history ticket rather than duplicating it."
+  },
+  {
+    "key": "AF-S0204",
+    "severity": "high",
+    "category": "invented facts",
+    "finding": "The ticket falsely includes PharmaCare Plan S among five gaps allegedly written without checking an existing record that already covered them. The working roadmap says Plan S was genuinely absent when re-audited, then was verified and deliberately added as a tip.",
+    "evidence": "ROADMAP.md says Plan S was `verified in detail 2026-07-29, no record, written as a tip on bc-fair-pharmacare.` It also says the re-audited open items, including Plan S, were `genuinely absent`; incidental tip mentions were not records. This contradicts AF-S0204's claim that Plan S was an existing covered record missed before declaring a gap.",
+    "fix": "Remove Plan S from the list of false gap entries. Re-state only examples directly supported by the working record, and do not retain the count of five unless every member of that count is documented and correct."
+  },
+  {
+    "key": "AF-S0204",
+    "severity": "medium",
+    "category": "missing or uncheckable acceptance criteria",
+    "finding": "The story is Backlog but its sole doneWhen is already satisfied by the story text itself: it states that record-id and keyword checking is required. Nothing requires the process to be put into a durable workflow or verified.",
+    "evidence": "AF-S0204 doneWhen is `the record-id and keyword check is stated as a required step before any new coverage-gap entry`, and the goal and constraints already state exactly that. BOARD-BUILD-PROMPT.md requires objective criteria that close the work, not self-fulfilling prose.",
+    "fix": "Require the check to be added to the authoritative workflow or checklist, name the file, and require evidence from a sample coverage-gap review or an automated duplicate-record guard. Otherwise mark the decision record Done."
+  }
+]

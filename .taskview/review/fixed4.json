@@ -1,0 +1,519 @@
+[
+  {
+    "key": "AF-S1101",
+    "level": "story",
+    "parentKey": "AF-E11",
+    "title": "[RESEARCH] Write the province source-audit checklist",
+    "area": "research",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:research"
+    ],
+    "note": {
+      "summary": "The Alberta and B.C. depth bar is the standard, and provinces are re-integrated from archive/data-provinces-later.js, which sits outside the deployed public/ directory and is not served. National-but-shallow (the Disability Benefits Compass approach) is explicitly rejected.",
+      "goal": "Create a reusable province source-audit checklist artifact covering source audit, metadata pass, matcher gating and generator runs.",
+      "whyItMatters": "No additional province should ship below the Alberta and B.C. verified-depth standard.",
+      "filesToTouch": "TBD — owner to specify",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, archive/data-provinces-later.js",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Check the catalogue by record id before recording a gap; grep every field of a record, not just note; filter hub pages that are out of scope rather than harvesting them; per-plan or per-program URLs can 404 while the hub anchor is correct; a third-party figure is not a source; reject national-but-shallow expansion; AF-S1102 cannot ship until every checklist section has passing evidence.",
+      "doneWhen": [
+        "The authoritative province source-audit checklist artifact is stored at TBD — owner to specify.",
+        "The artifact has separately reviewable sections for source audit, metadata pass, matcher gating and generator runs.",
+        "The artifact states that province expansion cannot ship until every checklist section has passing evidence."
+      ],
+      "priorityRationale": "Priority 2 because the checklist is the prerequisite for re-integrating an additional province.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "WEBSITE-PROJECT-TRACKER.md",
+      "ROADMAP.md",
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S1102",
+    "level": "story",
+    "parentKey": "AF-E11",
+    "title": "[RESEARCH] Re-integrate the first additional province",
+    "area": "research",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:research"
+    ],
+    "note": {
+      "summary": "Expansion proceeds one province at a time, each with a full source audit. B.C. is done and live, and the first additional province is blocked on the province source-audit checklist. archive/data-provinces-later.js is read-only source material outside the deployed public/ directory and is not served.",
+      "goal": "Ship the first additional province after it passes the checklist end to end and every benefit fact is verified against the current official source on the day.",
+      "whyItMatters": "The province-by-province approach preserves the full source-audit and verified-depth treatment.",
+      "filesToTouch": "public/data.js, public/changelog.js, public/index.html, src/benefits-context.js, src/links.js, public/guides/**, plus TBD — owner to specify for matcher files",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, archive/data-provinces-later.js",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Work one province at a time; complete a full source audit; use archive/data-provinces-later.js only as read-only source material; verify every benefit fact against the current official source on the day; do not ship before AF-S1101 exists and every checklist section has passing evidence.",
+      "doneWhen": [
+        "The province is included in the deployed catalogue in public/data.js and passes every section of the AF-S1101 checklist.",
+        "Every benefit fact was verified against the current official source on the day.",
+        "Every changed record retains its source.",
+        "npm run gen:context was run where applicable.",
+        "npm run gen:guides was run where applicable.",
+        "The generated diffs in src/benefits-context.js and src/links.js were reviewed.",
+        "A DATA_CHANGELOG entry was appended in public/changelog.js.",
+        "The shared ?v=N in public/index.html was bumped for any changed browser-loaded asset.",
+        "npm test passes.",
+        "npm run test:e2e passes.",
+        "Matcher evidence shows the province is gated as specified by the checklist; the exact profiles are TBD — owner to specify.",
+        "Deployment evidence shows the province is served from public/.",
+        "Production smoke evidence confirms that the applicable routes and personas load without a blank page; the exact route and persona set is TBD — owner to specify."
+      ],
+      "priorityRationale": "Priority 1 because the first additional province follows the source-audit checklist prerequisite.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [
+      "AF-S1101"
+    ],
+    "sources": [
+      "WEBSITE-PROJECT-TRACKER.md"
+    ]
+  },
+  {
+    "key": "AF-S1201",
+    "level": "story",
+    "parentKey": "AF-E12",
+    "title": "[RESEARCH] Choose and scope the first additional audience stream",
+    "area": "research",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:research",
+      "needs-owner-decision"
+    ],
+    "note": {
+      "summary": "Owner horizon 4 considers audience streams beyond disability, using starting points like Benefits Wayfinder's starting points: newcomers, seniors, veterans, job loss, caregivers, Indigenous peoples, housing, education, emergency money. Work must proceed one audience at a time with the same verified-depth treatment, and only after the disability service is mature.",
+      "goal": "Record the owner-approved scope for one additional audience, the verified-depth bar and the evidence that the disability service is mature enough to begin this horizon.",
+      "whyItMatters": "Additional streams must receive the same verified-depth treatment rather than dilute the disability service.",
+      "filesToTouch": "TBD — owner to specify",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, WEBSITE-PROJECT-TRACKER.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "One audience at a time, same verified-depth treatment, and only after the disability service is mature.",
+      "doneWhen": [
+        "The owner records the choice of one additional audience in the scoping artifact at TBD — owner to specify.",
+        "The artifact limits the work to one audience and states the same verified-depth treatment required for that audience.",
+        "The artifact records the scope boundaries and required deliverables; the minimum fields are TBD — owner to specify.",
+        "The artifact records evidence that the disability service is mature enough to begin this horizon; the maturity threshold is TBD — owner to specify."
+      ],
+      "priorityRationale": "Priority 1 because owner horizon 4 begins only after the disability service is mature.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "WEBSITE-PROJECT-TRACKER.md"
+    ]
+  },
+  {
+    "key": "AF-S1202",
+    "level": "story",
+    "parentKey": "AF-E12",
+    "title": "[SCOPE] VAC disability benefits stay out of scope",
+    "area": "research",
+    "priority": 1,
+    "status": "Done",
+    "tags": [
+      "type:story",
+      "area:research",
+      "type:decision"
+    ],
+    "note": {
+      "summary": "This decision is already closed: VAC disability benefits were decided out of scope 2026-07-28. VAC is a parallel federal system with service-related eligibility, its own adjudication and its own vocabulary; covering it partially would imply this catalogue speaks for a population it has never verified anything for.",
+      "goal": "Keep VAC disability benefits out of scope unless they are revisited as a deliberate, separately scoped expansion.",
+      "whyItMatters": "Covering VAC partially would imply verified coverage for a population the catalogue has never verified anything for.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Point veterans at VAC's own Benefits Browser instead; revisit only as a deliberate, separately scoped expansion.",
+      "doneWhen": [
+        "Already done: VAC disability benefits were decided out of scope 2026-07-28."
+      ],
+      "priorityRationale": "Priority 1 because the out-of-scope decision is already closed and retained to prevent partial coverage.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "WEBSITE-PROJECT-TRACKER.md",
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S1301",
+    "level": "story",
+    "parentKey": "AF-E13",
+    "title": "[SCOPE] Scope the paid agency portal as a separate product",
+    "area": "research",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:research",
+      "needs-owner-decision"
+    ],
+    "note": {
+      "summary": "Owner horizon 5 is a separate, paid portal for organizations and agents managing multiple clients: caseloads, saved scenarios, reports, white-label. Accounts and server-side state are a deliberate, scoped revisit of the free site's no-accounts privacy rule, applying to the separate product only, and this is the first genuine paid-infrastructure need.",
+      "goal": "Produce an owner-approved separate-product scope with privacy and infrastructure reviews while leaving the public site's guarantees unchanged.",
+      "whyItMatters": "The agency portal requires accounts and server-side state without moving the public site's privacy and zero-spend rules.",
+      "filesToTouch": "TBD — owner to specify",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, WEBSITE-PROJECT-TRACKER.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Treat the portal as a separate product with a new privacy and infrastructure review; keep the public site's rules at no accounts, no analytics, no remote storage of wizard answers, zero spend.",
+      "doneWhen": [
+        "The separate-product scoping artifact exists at TBD — owner to specify.",
+        "The artifact contains separate sections for product scope, privacy review, infrastructure review, accounts and server-side state.",
+        "The artifact scopes caseloads, saved scenarios, reports and white-label for the separate paid product.",
+        "The owner records an explicit decision on the proposed separate-product scope.",
+        "A repository diff and architecture and data-flow review record that the public site introduces no accounts, analytics, remote storage of wizard answers, paid bindings, plan changes or shared data flows.",
+        "The same review records that the public site remains zero spend."
+      ],
+      "priorityRationale": "Priority 1 because this is owner horizon 5 and the first genuine paid-infrastructure need.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "WEBSITE-PROJECT-TRACKER.md"
+    ]
+  },
+  {
+    "key": "AF-S1302",
+    "level": "story",
+    "parentKey": "AF-E13",
+    "title": "[SCOPE] Revenue sequencing stays credibility-first",
+    "area": "research",
+    "priority": 1,
+    "status": "Done",
+    "tags": [
+      "type:story",
+      "area:research",
+      "type:decision"
+    ],
+    "note": {
+      "summary": "This decision is already closed and recorded: revenue sequencing remains credibility → partnerships/grants (e.g. VAD) → sponsorships → agency licensing. The decision is retained so a later monetisation idea is sequenced rather than inserted.",
+      "goal": "Keep monetisation work in the agreed credibility-first sequence.",
+      "whyItMatters": "A later monetisation idea must be sequenced, not inserted.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, WEBSITE-PROJECT-TRACKER.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Keep the sequence credibility → partnerships/grants (e.g. VAD) → sponsorships → agency licensing.",
+      "doneWhen": [
+        "Closure condition met: the credibility → partnerships/grants (e.g. VAD) → sponsorships → agency licensing sequence is recorded.",
+        "Re-open trigger: a later monetisation idea is proposed for insertion outside the recorded sequence."
+      ],
+      "priorityRationale": "Priority 1 because this records the unchanged revenue sequence.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "WEBSITE-PROJECT-TRACKER.md"
+    ]
+  },
+  {
+    "key": "AF-S1401",
+    "level": "story",
+    "parentKey": "AF-E14",
+    "title": "[OPS] GitHub issue sync for every open ticket",
+    "area": "ops",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "GitHub is the permanent engineering record — issues, branches, commits, PRs, reviews. Every open story and subtask in repo abdulaziz-ca/AbilityFinder needs a matching issue with two-way TaskView linking; rolled-up history tickets do not get issues.",
+      "goal": "Give every open ticket a GitHub issue URL and every matching issue a link back to its ticket.",
+      "whyItMatters": "GitHub is the permanent engineering record while TaskView coordinates the work.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, .taskview/BOARD-BUILD-PROMPT.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Every open story and subtask gets a matching issue whose body carries the TaskView id and URL, and whose ticket note carries the issue URL; branch convention taskview-<id>-<slug>; the PR says Closes #N; no issues for the rolled-up history tickets; gh CLI is not installed — use the Codex agent's browser, or install gh and ask the owner to authenticate; mark Done only after the PR is merged and verification passes.",
+      "doneWhen": [
+        "Every open ticket has an issue URL.",
+        "Every issue maps back to a ticket."
+      ],
+      "priorityRationale": "Priority 2 because every open ticket must map to GitHub's permanent engineering record.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "AGENTS.md",
+      "TASKVIEW-WORKFLOW.md",
+      ".taskview/BOARD-BUILD-PROMPT.md"
+    ]
+  },
+  {
+    "key": "AF-S1402",
+    "level": "story",
+    "parentKey": "AF-E14",
+    "title": "[OPS] Stable HTTPS callback for the local TaskView",
+    "area": "ops",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "TaskView runs locally — UI http://localhost:8888, API/MCP http://localhost:1725. Slack notifications require a stable HTTPS callback, and whether one already exists must be verified before any solution is created or configured.",
+      "goal": "Verify whether a stable HTTPS callback already reaches the local TaskView, then configure a zero-spend solution if needed or record the owner's decision that it is not worth it.",
+      "whyItMatters": "Slack notifications cannot reach the local TaskView without a stable HTTPS callback.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, .taskview/BOARD-BUILD-PROMPT.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "First verify whether a stable HTTPS callback already exists; any solution must respect zero spend.",
+      "doneWhen": [
+        "Recorded evidence states whether a stable HTTPS callback already exists.",
+        "A stable HTTPS callback is shown reaching the local TaskView, or the owner records a decision that it is not worth it."
+      ],
+      "priorityRationale": "Priority 2 because the callback is required for Slack notifications.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "TASKVIEW-WORKFLOW.md",
+      ".taskview/BOARD-BUILD-PROMPT.md"
+    ]
+  },
+  {
+    "key": "AF-S1403",
+    "level": "story",
+    "parentKey": "AF-E14",
+    "title": "[OPS] Slack notifications for Blocked / Review / Verification / Done",
+    "area": "ops",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "Slack is the notification layer only and must never hold essential project context. Notifications are needed for Blocked, Review, Verification and Done for this board only, after a stable HTTPS callback exists.",
+      "goal": "Configure and observe Slack notifications for Blocked, Review, Verification and Done on this board only.",
+      "whyItMatters": "Slack can notify without becoming the store for essential project context.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, .taskview/BOARD-BUILD-PROMPT.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Slack is the notification layer only; never store essential project context in Slack; notify on Blocked, Review, Verification and Done for this board only; do not proceed without AF-S1402; if AF-S1402 is unresolved, keep this ticket Blocked rather than treating blocker evidence as completion.",
+      "doneWhen": [
+        "A Blocked notification for this board is observed and recorded.",
+        "A Review notification for this board is observed and recorded.",
+        "A Verification notification for this board is observed and recorded.",
+        "A Done notification for this board is observed and recorded.",
+        "The recorded notification evidence contains no essential project context stored only in Slack."
+      ],
+      "priorityRationale": "Priority 2 because this is required board-integration work that must be configured and verified after the callback prerequisite is met.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [
+      "AF-S1402"
+    ],
+    "sources": [
+      "TASKVIEW-WORKFLOW.md",
+      ".taskview/BOARD-BUILD-PROMPT.md"
+    ]
+  },
+  {
+    "key": "AF-S1404",
+    "level": "story",
+    "parentKey": "AF-E14",
+    "title": "[DOCS] Update the TaskView docs for the new board",
+    "area": "ops",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "TASKVIEW-WORKFLOW.md still points at http://localhost:8888/org-fbbce12c/2/-1401, which is now the scratch board. It and TASKVIEW-QUICK-REFERENCE.md need goalId 3, the note template and the handoff convention without altering any rule.",
+      "goal": "Update both TaskView docs to name goalId 3 and carry the note and handoff conventions without changing workflow rules.",
+      "whyItMatters": "The TaskView coordination docs must point to the new board and remain consistent with the authoritative workflow.",
+      "filesToTouch": "TASKVIEW-WORKFLOW.md, TASKVIEW-QUICK-REFERENCE.md",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, TASKVIEW-QUICK-REFERENCE.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "TASKVIEW-WORKFLOW.md is authoritative for TaskView-tracked coordination and AGENTS.md for everything else; if they conflict, stop and ask the owner; changing this workflow is a human gate — a doc-pointer update is not a workflow change, but any rule change is.",
+      "doneWhen": [
+        "Both docs name goalId 3 and carry the note and handoff conventions, with no rule altered."
+      ],
+      "priorityRationale": "Priority 1 because this is documentation cleanup for the new board pointer, note template and handoff convention.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "TASKVIEW-WORKFLOW.md",
+      "TASKVIEW-QUICK-REFERENCE.md",
+      "AGENTS.md",
+      ".taskview/BOARD-BUILD-PROMPT.md"
+    ]
+  },
+  {
+    "key": "AF-S1405",
+    "level": "story",
+    "parentKey": "AF-E14",
+    "title": "[OPS] Repoint .taskview/policy.json to the Ability Finder board",
+    "area": "ops",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "policy.json has \"project_id\": 2 and \"project_url\": \"http://localhost:8888/org-fbbce12c/2/-1401\". Board 2 is now the scratch board, so the three pointer fields need a factual correction to the Ability Finder board, with kanban_route_segment read from the real URL.",
+      "goal": "Correct the three board pointer fields in .taskview/policy.json and report the isolated diff to the owner.",
+      "whyItMatters": "The policy currently points at the scratch board rather than the Ability Finder board.",
+      "filesToTouch": ".taskview/policy.json",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, .taskview/policy.json",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Repoint project_id to 3, project_url to the Ability Finder board, and read kanban_route_segment from the real URL; this is a factual pointer correction, not a workflow change — do not edit any rule, gate or status list in that file.",
+      "doneWhen": [
+        "The three pointer fields are correct, the diff shows nothing else changed, and the diff is reported to the owner."
+      ],
+      "priorityRationale": "Priority 2 because the current policy pointer targets the scratch board.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "TASKVIEW-WORKFLOW.md",
+      ".taskview/BOARD-BUILD-PROMPT.md"
+    ]
+  },
+  {
+    "key": "AF-S1406",
+    "level": "story",
+    "parentKey": "AF-E14",
+    "title": "[DOCS] Reconcile the stale rows in the tracker and roadmap",
+    "area": "ops",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "WEBSITE-PROJECT-TRACKER.md and ROADMAP.md disagree with REMAINING-WORK.md, which is the working record. The stale rows include the money-band prominence decision and conditional-results framing, both closed 2026-07-30 (`00fb18f`); PERF-01 closed 2026-07-30 as WON'T FIX; six research items built and deployed 2026-07-29; Plan S verified in detail 2026-07-29 and written as tips on bc-fair-pharmacare; and the Plan X scope row, closed out of scope 2026-07-29 by owner decision and not to be reopened.",
+      "goal": "Correct or date each stale tracker and roadmap row without stating a new unverified number.",
+      "whyItMatters": "The project docs must reflect the working record and must not repeat the unverified-number habit they forbid.",
+      "filesToTouch": "WEBSITE-PROJECT-TRACKER.md, ROADMAP.md",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, WEBSITE-PROJECT-TRACKER.md, ROADMAP.md, REMAINING-WORK.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Correct the two decisions closed 2026-07-30 (`00fb18f`), the PERF-01 row, the excise gasoline tax refund, CPP children's benefits, multigenerational home renovation tax credit, Alberta CAPCC, Alberta service-dog qualification and ID, Alberta special-needs housing, Plan S, and the ‘Decide whether B.C. PharmaCare Plan X fits the product scope’ row; record Plan X as closed out of scope 2026-07-29 by owner decision and do not reopen it; tracker §9's recount of all 65 audit rows is real work, and until it is done no per-severity number may be stated.",
+      "doneWhen": [
+        "The money-band prominence row is dated as closed 2026-07-30 (`00fb18f`).",
+        "The conditional-results framing row is dated as closed 2026-07-30 (`00fb18f`).",
+        "The first-load dependency and asynchronous IndexedDB restore row records that PERF-01 closed 2026-07-30 as WON'T FIX.",
+        "The excise gasoline tax refund row records that it was built and deployed 2026-07-29.",
+        "The CPP children's benefits row records that it was built and deployed 2026-07-29.",
+        "The multigenerational home renovation tax credit row records that it was built and deployed 2026-07-29.",
+        "The Alberta CAPCC row records that it was built and deployed 2026-07-29.",
+        "The Alberta service-dog qualification and ID row records that it was built and deployed 2026-07-29.",
+        "The Alberta special-needs housing row records that it was built and deployed 2026-07-29.",
+        "The Plan S row records that it was verified in detail 2026-07-29 and written as tips on bc-fair-pharmacare.",
+        "The ‘Decide whether B.C. PharmaCare Plan X fits the product scope’ row records that Plan X closed out of scope 2026-07-29 by owner decision and must not be reopened.",
+        "No per-severity number is stated unless the 65 audit rows have been recounted and finding IDs remapped to severity and status."
+      ],
+      "priorityRationale": "Priority 1 because reconciling stale tracker and roadmap prose is documentation cleanup.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "WEBSITE-PROJECT-TRACKER.md",
+      "ROADMAP.md",
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S1407",
+    "level": "story",
+    "parentKey": "AF-E14",
+    "title": "[OPS] Board hygiene sweep",
+    "area": "ops",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "The board's own integrity contract requires no duplicate spec-key, a priority with a one-line rationale and a full context block for every ticket, no orphan parents, and a graph matching the spec. Mistakes and duplicates move to Cancelled with a note and are reported to the owner; only the owner permanently deletes.",
+      "goal": "Complete a board sweep reporting zero duplicates, zero orphans, full priority and context coverage, and exact graph parity with the spec.",
+      "whyItMatters": "The board, its parent graph and its ticket context must remain coherent and reviewable.",
+      "filesToTouch": "TBD — owner to specify",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, .taskview/BOARD-BUILD-PROMPT.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "add_task_dependency is used only for non-parent/child prerequisites; mistakes and duplicates move to Cancelled with a note and are reported to the owner; agents may not delete tickets, merge duplicates, overwrite user content, change board configuration, or alter another agent's work without explicit approval.",
+      "doneWhen": [
+        "A recorded sweep reports zero duplicate spec-key values.",
+        "A recorded sweep reports zero orphan parents.",
+        "A recorded sweep reports that every ticket has a priority and a one-line priority rationale.",
+        "A recorded sweep reports that every ticket has a complete context block with every required note section present.",
+        "A recorded sweep reports exact parent and non-parent/child dependency parity with the spec.",
+        "A recorded sweep reports that no parent-child relationship is duplicated with a manual dependency edge."
+      ],
+      "priorityRationale": "Priority 2 because the board's integrity contract requires duplicate, orphan and priority checks.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "AGENTS.md",
+      "TASKVIEW-WORKFLOW.md",
+      ".taskview/BOARD-BUILD-PROMPT.md"
+    ]
+  },
+  {
+    "key": "AF-S1408",
+    "level": "story",
+    "parentKey": "AF-E14",
+    "title": "[OPS] Keep WEBSITE-PROJECT-TRACKER.md untracked",
+    "area": "ops",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "As of 2026-07-30 main and origin/main are both at 622bf35, the working tree is clean, and WEBSITE-PROJECT-TRACKER.md is the only untracked file — keep it that way. FABSOL-RESUME-PROMPT.md was deleted 2026-07-30 as stale because it described HEAD 68b8dfc and a baseline of 44 unit / 33 e2e against a current 110 / 420, and it stays untracked and never committed.",
+      "goal": "Keep WEBSITE-PROJECT-TRACKER.md untracked and keep FABSOL-RESUME-PROMPT.md deleted and uncommitted.",
+      "whyItMatters": "The stale resume prompt must not return, and the tracker is intentionally kept out of the repository.",
+      "filesToTouch": "WEBSITE-PROJECT-TRACKER.md",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, WEBSITE-PROJECT-TRACKER.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Keep WEBSITE-PROJECT-TRACKER.md untracked; FABSOL-RESUME-PROMPT.md stays untracked and never committed.",
+      "doneWhen": [
+        "The tracker is still untracked and no resume prompt has been committed."
+      ],
+      "priorityRationale": "Priority 1 because this preserves the stated untracked-file decision and prevents a stale resume prompt from returning.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "WEBSITE-PROJECT-TRACKER.md",
+      "REMAINING-WORK.md"
+    ]
+  }
+]

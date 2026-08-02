@@ -1,0 +1,229 @@
+[
+  {
+    "key": "AF-S0103",
+    "level": "story",
+    "parentKey": "AF-E01",
+    "title": "[DATA] Re-verify GRANTS_DIRECTORY and ORGS_DIRECTORY entries",
+    "area": "data",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:data"
+    ],
+    "note": {
+      "summary": "This backlog story re-checks directory entries as their verified dates age out. Directory records correctly describe what an organisation offers and route to its own program pages; they do not claim current intake status.",
+      "goal": "Re-check every expired directory entry against the organisation's own page and refresh or correct it.",
+      "whyItMatters": "Aging directory facts can misroute users even when the directory's intake-status behaviour is correct.",
+      "filesToTouch": "public/grants-data.js; public/orgs-data.js",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, public/grants-data.js, public/orgs-data.js",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Both directories carry verified dates that age out. Changes to `public/grants-data.js` and `public/orgs-data.js` require `npm run gen:context`. Preserve the conclusion from ABFED-16/17, disproved: routing to an organisation's own program pages is correct directory behaviour and is not an intake-status claim.",
+      "doneWhen": [
+        "Every directory entry past its verified date is re-checked against the organisation's own page on the day and is refreshed, corrected or recorded as unchanged.",
+        "Every benefit fact changed by this ticket is verified against the current official source on the day.",
+        "Every changed record retains its `source`.",
+        "`npm run gen:context` is run where applicable.",
+        "`npm run gen:guides` is run where applicable.",
+        "The generated diffs in `src/benefits-context.js` and `src/links.js` are reviewed.",
+        "A `DATA_CHANGELOG` entry is appended in `public/changelog.js` for every benefit-fact change.",
+        "The shared `?v=N` in `public/index.html` is bumped for every changed browser-loaded asset.",
+        "`npm test` and `npm run test:e2e` pass."
+      ],
+      "priorityRationale": "Medium because directory facts require recurring verification but the intake-status concern was disproved.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0401",
+    "level": "story",
+    "parentKey": "AF-E04",
+    "title": "[TEST] TEST-01 — build the eligibility oracle and regression suite",
+    "area": "testing",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:testing"
+    ],
+    "note": {
+      "summary": "TEST-01 is one of the two genuinely open audit findings. There is no systematic eligibility oracle across all programs, and the false-ready cluster was fixed only as individual findings.",
+      "goal": "Build an eligibility oracle and regression suite that asserts outcome sets across every program.",
+      "whyItMatters": "The missing systematic regression net allowed false-ready outcomes to ship.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, and REMAINING-WORK.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not mix new test infrastructure with fixes for findings it surfaces. Treat the first red run as findings to triage separately rather than forcing it green in the same change.",
+      "doneWhen": [
+        "a machine-generated comparison shows that every current catalogue program ID is covered by the oracle",
+        "a versioned test specification records the outcome states and persona dimensions asserted; TBD — owner to specify any required dimensions not stated in the working record",
+        "removing the qualifyingRenovationSpend gate makes the matcher-safety test fail with Expected: \"almost\" / Received: \"ready\", and the failing result is recorded",
+        "if the comparison or first red run identifies a gap, each finding is triaged as a separate ticket rather than fixed in the oracle change"
+      ],
+      "priorityRationale": "Medium because this testing infrastructure prevents false-ready regressions but is not itself identified as the active release blocker.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0805",
+    "level": "story",
+    "parentKey": "AF-E08",
+    "title": "[OPS] Production-only validation sweep",
+    "area": "ops",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "Three behaviours require production or a safe non-delivery environment: AI quota exhaustion, adversarial assistant prompts and feedback email header sanitation. The sweep also records a manual Core Web Vitals assessment when practical and that field INP remains unavailable without real-user measurement because analytics is intentionally absent.",
+      "goal": "Exercise the three production-only behaviours, assess Core Web Vitals when practical and record the field-INP limitation without exposing a secret.",
+      "whyItMatters": "These checks protect assistant, email and quota boundaries while keeping the unavailable field metric visible without adding analytics by default.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, and REMAINING-WORK.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not widen the assistant without a demonstrably stronger model and a new safety review. It must not state dollar figures or eligibility verdicts; never render model output as HTML; do not replace explicit null/undefined checks with truthiness checks; preserve `MAX_BODY_BYTES` (64 KB).",
+      "doneWhen": [
+        "AI quota-exhaustion behaviour is exercised with recorded evidence",
+        "adversarial assistant prompts are exercised with recorded evidence",
+        "feedback email header sanitation is exercised with recorded evidence",
+        "a dated manual Core Web Vitals assessment is recorded when practical",
+        "the record states that field INP remains unavailable without real-user measurement and analytics is not added by default",
+        "no secret appears in any log"
+      ],
+      "priorityRationale": "Medium priority because the production-only behaviours and field-performance limitation require recorded validation.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S1401",
+    "level": "story",
+    "parentKey": "AF-E14",
+    "title": "[OPS] GitHub issue sync for every open ticket",
+    "area": "ops",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "GitHub is the permanent engineering record — issues, branches, commits, PRs, reviews. Every open story and subtask in repo abdulaziz-ca/AbilityFinder needs a matching issue with two-way TaskView linking; rolled-up history tickets do not get issues.",
+      "goal": "Give every open ticket a GitHub issue URL and every matching issue a link back to its ticket.",
+      "whyItMatters": "GitHub is the permanent engineering record while TaskView coordinates the work.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, .taskview/BOARD-BUILD-PROMPT.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Every open story and subtask gets a matching issue whose body carries the TaskView id and URL, and whose ticket note carries the issue URL; branch convention taskview-<id>-<slug>; the PR says Closes #N; no issues for the rolled-up history tickets; gh CLI is not installed — use the Codex agent's browser, or install gh and ask the owner to authenticate; mark Done only after the PR is merged and verification passes.",
+      "doneWhen": [
+        "Every open ticket has an issue URL.",
+        "Every issue maps back to a ticket."
+      ],
+      "priorityRationale": "Priority 2 because every open ticket must map to GitHub's permanent engineering record.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "AGENTS.md",
+      "TASKVIEW-WORKFLOW.md",
+      ".taskview/BOARD-BUILD-PROMPT.md"
+    ]
+  },
+  {
+    "key": "AF-S1404",
+    "level": "story",
+    "parentKey": "AF-E14",
+    "title": "[DOCS] Update the TaskView docs for the new board",
+    "area": "ops",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "TASKVIEW-WORKFLOW.md still points at http://localhost:8888/org-fbbce12c/2/-1401, which is now the scratch board. It and TASKVIEW-QUICK-REFERENCE.md need goalId 3, the note template and the handoff convention without altering any rule.",
+      "goal": "Update both TaskView docs to name goalId 3 and carry the note and handoff conventions without changing workflow rules.",
+      "whyItMatters": "The TaskView coordination docs must point to the new board and remain consistent with the authoritative workflow.",
+      "filesToTouch": "TASKVIEW-WORKFLOW.md, TASKVIEW-QUICK-REFERENCE.md",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, TASKVIEW-QUICK-REFERENCE.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "TASKVIEW-WORKFLOW.md is authoritative for TaskView-tracked coordination and AGENTS.md for everything else; if they conflict, stop and ask the owner; changing this workflow is a human gate — a doc-pointer update is not a workflow change, but any rule change is.",
+      "doneWhen": [
+        "Both docs name goalId 3 and carry the note and handoff conventions, with no rule altered."
+      ],
+      "priorityRationale": "Priority 1 because this is documentation cleanup for the new board pointer, note template and handoff convention.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "TASKVIEW-WORKFLOW.md",
+      "TASKVIEW-QUICK-REFERENCE.md",
+      "AGENTS.md",
+      ".taskview/BOARD-BUILD-PROMPT.md"
+    ]
+  },
+  {
+    "key": "AF-S1406",
+    "level": "story",
+    "parentKey": "AF-E14",
+    "title": "[DOCS] Reconcile the stale rows in the tracker and roadmap",
+    "area": "ops",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "WEBSITE-PROJECT-TRACKER.md and ROADMAP.md disagree with REMAINING-WORK.md, which is the working record. The stale rows include the money-band prominence decision and conditional-results framing, both closed 2026-07-30 (`00fb18f`); PERF-01 closed 2026-07-30 as WON'T FIX; six research items built and deployed 2026-07-29; Plan S verified in detail 2026-07-29 and written as tips on bc-fair-pharmacare; and the Plan X scope row, closed out of scope 2026-07-29 by owner decision and not to be reopened.",
+      "goal": "Correct or date each stale tracker and roadmap row without stating a new unverified number.",
+      "whyItMatters": "The project docs must reflect the working record and must not repeat the unverified-number habit they forbid.",
+      "filesToTouch": "WEBSITE-PROJECT-TRACKER.md, ROADMAP.md",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, WEBSITE-PROJECT-TRACKER.md, ROADMAP.md, REMAINING-WORK.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Correct the two decisions closed 2026-07-30 (`00fb18f`), the PERF-01 row, the excise gasoline tax refund, CPP children's benefits, multigenerational home renovation tax credit, Alberta CAPCC, Alberta service-dog qualification and ID, Alberta special-needs housing, Plan S, and the ‘Decide whether B.C. PharmaCare Plan X fits the product scope’ row; record Plan X as closed out of scope 2026-07-29 by owner decision and do not reopen it; tracker §9's recount of all 65 audit rows is real work, and until it is done no per-severity number may be stated.",
+      "doneWhen": [
+        "The money-band prominence row is dated as closed 2026-07-30 (`00fb18f`).",
+        "The conditional-results framing row is dated as closed 2026-07-30 (`00fb18f`).",
+        "The first-load dependency and asynchronous IndexedDB restore row records that PERF-01 closed 2026-07-30 as WON'T FIX.",
+        "The excise gasoline tax refund row records that it was built and deployed 2026-07-29.",
+        "The CPP children's benefits row records that it was built and deployed 2026-07-29.",
+        "The multigenerational home renovation tax credit row records that it was built and deployed 2026-07-29.",
+        "The Alberta CAPCC row records that it was built and deployed 2026-07-29.",
+        "The Alberta service-dog qualification and ID row records that it was built and deployed 2026-07-29.",
+        "The Alberta special-needs housing row records that it was built and deployed 2026-07-29.",
+        "The Plan S row records that it was verified in detail 2026-07-29 and written as tips on bc-fair-pharmacare.",
+        "The ‘Decide whether B.C. PharmaCare Plan X fits the product scope’ row records that Plan X closed out of scope 2026-07-29 by owner decision and must not be reopened.",
+        "No per-severity number is stated unless the 65 audit rows have been recounted and finding IDs remapped to severity and status."
+      ],
+      "priorityRationale": "Priority 1 because reconciling stale tracker and roadmap prose is documentation cleanup.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "WEBSITE-PROJECT-TRACKER.md",
+      "ROADMAP.md",
+      "REMAINING-WORK.md"
+    ]
+  }
+]

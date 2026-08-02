@@ -1,0 +1,114 @@
+[
+  {
+    "key": "AF-S1101",
+    "severity": "medium",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "The checklist ticket never identifies the checklist artifact. `filesToTouch` is `TBD`, and the sole doneWhen only says that a checklist 'exists', so a reviewer cannot determine which file is authoritative or verify that the ticket produced the intended reusable gate.",
+    "evidence": "BOARD-BUILD-PROMPT.md section 4 requires `Files to touch: <explicit paths, or none — decision ticket>` and checkable acceptance criteria. The slice instead says `filesToTouch: TBD — verify against official source on the day` and `The checklist exists...` without a path or named artifact.",
+    "fix": "Name the exact checklist file to create or update, and make doneWhen verify that file's required sections and its use as the prerequisite for province expansion."
+  },
+  {
+    "key": "AF-S1102",
+    "severity": "high",
+    "category": "RULE VIOLATIONS",
+    "finding": "The province-shipping criteria soften the benefit-data rules to 'every figure verified same-day' and omit required source retention, both generators, DATA_CHANGELOG, and cache-version discipline. Passing AF-S1101 would not cure this because that checklist ticket itself mentions only generator runs, not the other non-negotiables.",
+    "evidence": "AGENTS.md says: `Verify every amount, cutoff, eligibility rule, form, phone number, date, and municipal detail on an official source before changing public/data.js. Every benefit must retain its source.` BOARD-BUILD-PROMPT.md section 7 says: `Data changes require npm run gen:context and npm run gen:guides, a DATA_CHANGELOG entry, and a ?v=N bump for changed browser assets.` AF-S1102 only requires a full source audit and that `every figure` be verified same-day.",
+    "fix": "Replace 'every figure' with the full same-day official-source rule for every benefit fact, require every record to retain its source, and add explicit doneWhen lines for gen:context, gen:guides, DATA_CHANGELOG, applicable ?v=N bumps, tests, and route/persona blank-page checks."
+  },
+  {
+    "key": "AF-S1102",
+    "severity": "high",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "The ticket claims the province will 'ship' while listing only `archive/data-provinces-later.js` as a file to touch. That file is not deployed, and doneWhen contains no deployed catalogue artifact, generated output, test evidence, or production verification.",
+    "evidence": "ROADMAP.md says `archive/data-provinces-later.js` `sits outside the deployed public/ directory and is not served.` AGENTS.md says `public/` is the only deployed static directory. AF-S1102 nevertheless lists only the archive file and says done when the province `ships` after passing an unspecified checklist.",
+    "fix": "Treat the archive file as read-only source material, identify the deployed catalogue and generated files that will change, and define objective completion checks for catalogue inclusion, official sources, matcher behavior, generated artifacts, tests, cache version, deployment, and production smoke verification."
+  },
+  {
+    "key": "AF-S1201",
+    "severity": "medium",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "This owner-decision ticket can be marked done merely because an audience was 'chosen and scoped'. It names no scoping artifact, required scope fields, dependency on disability-service maturity evidence, or recorded owner approval despite carrying `needs-owner-decision`.",
+    "evidence": "The slice has `filesToTouch: TBD`, tag `needs-owner-decision`, and only `One audience is chosen and scoped, with the depth bar stated.` BOARD-BUILD-PROMPT.md requires self-contained tickets with explicit paths and checkable doneWhen criteria; it also lists unclear product requirements as a human gate.",
+    "fix": "Name the decision/scoping artifact, require a recorded owner choice, define the minimum scope contents and verified-depth bar, and state the evidence showing the disability service is mature enough to begin this horizon."
+  },
+  {
+    "key": "AF-S1301",
+    "severity": "medium",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "The agency-product scope ticket does not define where the scoping document lives or what its privacy and infrastructure review must contain. 'The public site's guarantees are demonstrably untouched' is not an objective test and the `needs-owner-decision` tag has no corresponding approval criterion.",
+    "evidence": "AF-S1301 uses `filesToTouch: TBD` and doneWhen lines `A scoping document exists...` and `The public site's guarantees are demonstrably untouched.` BOARD-BUILD-PROMPT.md section 4 requires explicit paths and checkable criteria.",
+    "fix": "Specify the artifact path and required sections, require an explicit owner decision, and replace 'demonstrably untouched' with concrete checks that no public-site accounts, analytics, remote wizard storage, paid bindings, plan changes, or shared data flows are introduced."
+  },
+  {
+    "key": "AF-S1302",
+    "severity": "medium",
+    "category": "STALE WORK",
+    "finding": "This is an already-made decision presented as Backlog work. Its own summary says the sequence 'remains unchanged' and its doneWhen literally says `Already decided`, so there is no unfinished outcome to complete.",
+    "evidence": "ROADMAP.md states `Revenue sequencing unchanged: credibility → partnerships/grants (e.g. VAD) → sponsorships → agency licensing.` AF-S1302 is status `Backlog` while its acceptance criterion is `Already decided.`",
+    "fix": "Mark it Done as a recorded decision, preferably in the rolled-up decision/history area, or reframe it as a concrete future review ticket with a trigger, artifact, and unresolved decision."
+  },
+  {
+    "key": "AF-S1402",
+    "severity": "medium",
+    "category": "INVENTED FACTS",
+    "finding": "The statement that a stable HTTPS callback 'does not exist yet' is asserted as fact without support in the allowed ground-truth documents.",
+    "evidence": "BOARD-BUILD-PROMPT.md only says Slack needs a stable HTTPS callback and conditionally instructs: `if that does not exist yet, create the enabling ticket`. None of REMAINING-WORK.md, ROADMAP.md, WEBSITE-PROJECT-TRACKER.md, AGENTS.md, or BOARD-BUILD-PROMPT.md confirms that current absence. The unconditional claim appears nowhere in the ground truth.",
+    "fix": "Change the summary to an unverified prerequisite and make the first acceptance step verify whether a stable callback already exists; only then create/configure a solution or record the owner decision."
+  },
+  {
+    "key": "AF-S1403",
+    "severity": "medium",
+    "category": "WRONG PRIORITY",
+    "finding": "Slack notification setup is assigned Low solely because it depends on the callback. Dependency does not make work Low; this is an active required board-integration phase and normal engineering work.",
+    "evidence": "BOARD-BUILD-PROMPT.md section 4 maps Medium to `dependencies, normal engineering work` and Low to `cleanup, documentation, optimization, archival work, experiments, future ideas`. Phase 7 explicitly requires configuring these notifications. AF-S1403 assigns priority 1 because it depends on AF-S1402.",
+    "fix": "Set priority to Medium (2) and use a rationale based on required board integration and verification, not merely the existence of a dependency."
+  },
+  {
+    "key": "AF-S1403",
+    "severity": "high",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "The doneWhen incorrectly treats being Blocked as a completion outcome. A ticket whose notifications are not configured must remain Blocked; evidence of the blocker does not close the work.",
+    "evidence": "AF-S1403 says done when `Configured and observed firing, or correctly Blocked on AF-S1402 with evidence.` BOARD-BUILD-PROMPT.md Phase 7 says that if the callback is absent, mark the Slack story `Blocked` and report it—not Done. The workflow hard rule also reserves Done for completed and verified work.",
+    "fix": "Make doneWhen require observed notifications for all four statuses on this board. Put the AF-S1402 evidence in a separate blocking/status instruction, not in acceptance criteria."
+  },
+  {
+    "key": "AF-S1404",
+    "severity": "medium",
+    "category": "INVENTED FACTS",
+    "finding": "The ticket attributes the exact scratch-board URL to TASKVIEW-WORKFLOW.md, but the ground truth only establishes that exact stale URL for `.taskview/policy.json`.",
+    "evidence": "BOARD-BUILD-PROMPT.md section 0 says `.taskview/policy.json` has `project_url: .../org-fbbce12c/2/-1401`. Its Phase 8 says the TaskView docs must be updated with the new goalId, but none of the allowed ground-truth documents says TASKVIEW-WORKFLOW.md currently contains that exact URL. The attribution appears nowhere.",
+    "fix": "Do not state the current workflow-file URL as fact until that file is directly verified. Reword the ticket around the documented Phase 8 requirement, or cite the actual verified line from TASKVIEW-WORKFLOW.md."
+  },
+  {
+    "key": "AF-S1404",
+    "severity": "low",
+    "category": "WRONG PRIORITY",
+    "finding": "A documentation pointer/template update is classified Medium even though the priority mapping explicitly puts documentation work at Low, and the rationale does not show security, outage, release-blocker, or multi-ticket blocking impact.",
+    "evidence": "BOARD-BUILD-PROMPT.md maps Low to `cleanup, documentation...`. AF-S1404 is a `[DOCS]` ticket to update two documentation files and assigns priority 2 because a document allegedly points at the scratch board.",
+    "fix": "Set priority to Low (1), unless concrete evidence is added that this stale documentation is actively blocking multiple tickets or a release."
+  },
+  {
+    "key": "AF-S1406",
+    "severity": "low",
+    "category": "WRONG PRIORITY",
+    "finding": "Reconciling stale roadmap/tracker prose is documentation cleanup, but it is assigned Medium without evidence that it blocks multiple tickets or a release.",
+    "evidence": "BOARD-BUILD-PROMPT.md maps `cleanup, documentation` to Low. AF-S1406 only edits WEBSITE-PROJECT-TRACKER.md and ROADMAP.md and gives priority 2 because they disagree with the working record.",
+    "fix": "Set priority to Low (1), or document a specific blocking dependency that justifies Medium or High under the stated mapping."
+  },
+  {
+    "key": "AF-S1406",
+    "severity": "medium",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "The ticket's explicit stale-row list omits the tracker item that still asks whether PharmaCare Plan X fits scope, even though the working record says Plan X was closed out of scope and must not be reopened. The broad phrase 'each stale row' is not self-contained enough to prevent this known stale item surviving.",
+    "evidence": "WEBSITE-PROJECT-TRACKER.md still has `[ ] Decide whether B.C. PharmaCare Plan X fits the product scope.` REMAINING-WORK.md says `Plan X ... closed as out of scope 2026-07-29, by owner decision` and `Do not re-open it as a coverage gap.` AF-S1406's constraints enumerate the rows to fix but do not mention Plan X.",
+    "fix": "Add the Plan X tracker row explicitly and require it to be marked or worded as the closed owner decision, including the do-not-reopen caveat. Enumerate every required stale row in doneWhen rather than relying on 'each'."
+  },
+  {
+    "key": "AF-S1407",
+    "severity": "medium",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "The board-hygiene acceptance criterion checks duplicates, orphans, and priorities but omits two outcomes described by the same ticket: every ticket having a full context block and the dependency graph matching the spec. The ticket can therefore pass while its stated integrity contract still fails.",
+    "evidence": "AF-S1407's summary requires `a full context block for every ticket` and `a graph matching the spec`, but doneWhen only says `zero duplicates, zero orphans and full priority coverage.` BOARD-BUILD-PROMPT.md Phase 8 separately requires both context-block and graph verification.",
+    "fix": "Add objective doneWhen lines for complete context blocks and note sections on every ticket and exact graph/dependency parity with the spec, including no parent-child dependency edges duplicated manually."
+  }
+]

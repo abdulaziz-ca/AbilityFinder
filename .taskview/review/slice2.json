@@ -1,0 +1,684 @@
+[
+  {
+    "key": "AF-S0301",
+    "level": "story",
+    "parentKey": "AF-E03",
+    "title": "[A11Y] Repeat the VoiceOver guide test with item-by-item navigation",
+    "area": "a11y",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:a11y",
+      "human-only",
+      "blocker:release"
+    ],
+    "note": {
+      "summary": "This backlog story repeats the VoiceOver + Safari guide test with the navigation mode recorded. The first real pass on 2026-07-28 appeared to skip content, but the current evidence does not show a markup defect.",
+      "goal": "Determine whether item-by-item VoiceOver navigation reproduces the reported guide-content skip.",
+      "whyItMatters": "This is part of the sole remaining NO-GO condition and distinguishes a real defect from expected rotor behaviour.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "On guide page `bc-csg-services-equipment`, VoiceOver read the full h1, then jumped straight to \"Good to know\", skipping the `.detail-lede` summary and the whole \"What it is\" block, then jumped far down the page. The Chromium accessibility tree exposes every section as a heading plus its text in document order, with \"What it is\" present between the title and \"Good to know\", nothing `aria-hidden`, heading order h1 → h2×10. Record whether VoiceOver is driven item-by-item (VO+Right / swipe right), by heading rotor, or by landmark rotor. Heading and landmark navigation legitimately skip body text; only item-by-item navigation skipping it would be a defect.",
+      "doneWhen": [
+        "the test is repeated with the navigation mode recorded",
+        "the finding is reproduced as a defect or closed as expected rotor behaviour"
+      ],
+      "priorityRationale": "High because this human screen-reader test blocks release readiness.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0302",
+    "level": "story",
+    "parentKey": "AF-E03",
+    "title": "[A11Y] Run a real NVDA pass",
+    "area": "a11y",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:a11y",
+      "human-only",
+      "blocker:release"
+    ],
+    "note": {
+      "summary": "This backlog story runs NVDA for the first time. Automated axe is deliberately excluded and cannot substitute for a real pass through the product.",
+      "goal": "Complete and document a real NVDA pass across the wizard, results and a guide.",
+      "whyItMatters": "No screen-reader user has completed a journey through the product, making human assistive-technology testing a release blocker.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, ROADMAP.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "ROADMAP priority 2 asks for VoiceOver/NVDA and meaningful reading order. Cover the wizard, a results page and a guide page. Write findings as reproducible issues rather than broad redesign requests.",
+      "doneWhen": [
+        "a real NVDA pass covers the wizard, a results page and a guide page",
+        "findings are written as reproducible issues rather than broad redesign requests"
+      ],
+      "priorityRationale": "High because a real NVDA pass is part of the unresolved release-blocking accessibility work.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md",
+      "ROADMAP.md"
+    ]
+  },
+  {
+    "key": "AF-S0303",
+    "level": "story",
+    "parentKey": "AF-E03",
+    "title": "[A11Y] Run a real TalkBack pass",
+    "area": "a11y",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:a11y",
+      "human-only",
+      "blocker:release"
+    ],
+    "note": {
+      "summary": "This backlog story runs TalkBack for the first time. The pass must exercise the same core journey on Android and record reproducible findings.",
+      "goal": "Complete and document a real TalkBack pass on Android.",
+      "whyItMatters": "Human mobile screen-reader coverage is part of the unresolved accessibility release gate.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "TalkBack has never been run. Cover the wizard, a results page and a guide page on Android, with findings written as reproducible issues rather than broad redesign requests.",
+      "doneWhen": [
+        "a real TalkBack pass covers the wizard, a results page and a guide page on Android",
+        "findings are written as reproducible issues rather than broad redesign requests"
+      ],
+      "priorityRationale": "High because TalkBack testing is part of the release-blocking human accessibility work.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0304",
+    "level": "story",
+    "parentKey": "AF-E03",
+    "title": "[A11Y] Confirm Safari behaviour with Full Keyboard Access on and off",
+    "area": "a11y",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:a11y",
+      "human-only"
+    ],
+    "note": {
+      "summary": "This backlog story confirms Safari keyboard behaviour with Full Keyboard Access enabled and disabled. The 2026-07-28 WebKit finding reflects Safari's default rather than an app defect, but it creates a product communication decision.",
+      "goal": "Record Safari keyboard behaviour in both FKA states and decide whether to tell Safari keyboard users about it.",
+      "whyItMatters": "Without Full Keyboard Access, a keyboard-only Safari user cannot reach links, buttons, the skip link or the button-only accessibility dialog by Tab.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Chromium tabs `A#skipLink → BUTTON#headerMenuToggle → A#brandHome…`; WebKit tabs `SELECT → INPUT → TEXTAREA → BODY`, skipping links and buttons entirely. That is Safari's default until the user enables Full Keyboard Access — not an app defect. VoiceOver users are unaffected because they navigate with the VO cursor, not Tab.",
+      "doneWhen": [
+        "behaviour is recorded with FKA enabled",
+        "behaviour is recorded with FKA disabled",
+        "a decision is recorded on whether the product says anything to Safari keyboard users"
+      ],
+      "priorityRationale": "High because Safari's default can block keyboard-only access to core controls even though it is not an app defect.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0305",
+    "level": "story",
+    "parentKey": "AF-E03",
+    "title": "[A11Y] Complete the touch-target sizing review",
+    "area": "a11y",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:a11y",
+      "human-only"
+    ],
+    "note": {
+      "summary": "This backlog story completes the touch-target review left outstanding from the 2026-07-28 owner pass. That pass already covered 200% text, 400% zoom/reflow, 320px portrait, forced-colours and print/print-to-PDF without cut-offs, horizontal scrolling or hidden content.",
+      "goal": "Measure every interactive target and resolve every undersized target.",
+      "whyItMatters": "Adequate touch targets are necessary for people using touch with limited dexterity or precision.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not repeat already completed checks as a substitute for the outstanding sizing review. Measure every interactive target; fix or record each undersized target.",
+      "doneWhen": [
+        "every interactive target is measured",
+        "any undersized target is fixed or recorded"
+      ],
+      "priorityRationale": "Medium because this manual accessibility check remains outstanding but is not tagged as a release blocker.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0306",
+    "level": "story",
+    "parentKey": "AF-E03",
+    "title": "[A11Y] Obtain an accessibility specialist's judgement",
+    "area": "a11y",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:a11y",
+      "human-only",
+      "blocker:release"
+    ],
+    "note": {
+      "summary": "This backlog story obtains an accessibility specialist's judgement. The 2026-07-28 owner pass was only a spot check, so specialist review is still outstanding.",
+      "goal": "Have an accessibility specialist review the product and disposition every finding.",
+      "whyItMatters": "A specialist judgement is required to replace a limited spot check before the release gate can be lifted.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Contrast must clear 4.5:1 on every background including semantic soft tints. Record the specialist's findings and their dispositions.",
+      "doneWhen": [
+        "a specialist has reviewed the product",
+        "the specialist's findings are dispositioned"
+      ],
+      "priorityRationale": "High because specialist accessibility review remains a release blocker.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0307",
+    "level": "story",
+    "parentKey": "AF-E03",
+    "title": "[A11Y] Run the disabled-user study",
+    "area": "a11y",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:a11y",
+      "human-only",
+      "blocker:release"
+    ],
+    "note": {
+      "summary": "This backlog story runs the disabled-user study with real participants. It must cover assistive methods and the realities of cognitive fatigue, pain and financial stress, then turn observations into reproducible issues.",
+      "goal": "Complete a real disabled-user study and document every finding reproducibly.",
+      "whyItMatters": "The study is part of the sole remaining NO-GO condition and tests experiences automated checks cannot cover.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, ROADMAP.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Cover keyboard, switch, voice, magnification and assistive technology, plus cognitive fatigue, pain and financial stress. Users may be tired, in pain, short on money, or experiencing cognitive fatigue. ROADMAP priority 2 also asks for keyboard-only completion of the full journey, 200–400% zoom and reflow, reduced-motion behaviour and scroll reveals, and plain-language comprehension. Document findings as reproducible issues, not broad redesign requests.",
+      "doneWhen": [
+        "the study has actually happened with real disabled participants",
+        "every finding is written up reproducibly"
+      ],
+      "priorityRationale": "High because real disabled-user testing is a direct release blocker.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md",
+      "ROADMAP.md"
+    ]
+  },
+  {
+    "key": "AF-S0308",
+    "level": "story",
+    "parentKey": "AF-E03",
+    "title": "[A11Y] Disposition every finding from AT and user testing",
+    "area": "a11y",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:a11y",
+      "human-only",
+      "blocker:release"
+    ],
+    "note": {
+      "summary": "This backlog story is the release-gate follow-through for assistive-technology and disabled-user testing. Every resulting issue must be fixed or explicitly dispositioned.",
+      "goal": "Resolve or disposition every issue found during AT and user testing.",
+      "whyItMatters": "Testing alone does not lift the release gate while findings remain unaddressed or unexplained.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Release gate item — \"resolve or disposition every issue found during that testing\". Do not leave a finding without either a fix or an explicit reason for not fixing.",
+      "doneWhen": [
+        "each finding is fixed, or recorded with an explicit reason for not fixing"
+      ],
+      "priorityRationale": "High because dispositioning every test finding is an explicit release-gate item.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0309",
+    "level": "story",
+    "parentKey": "AF-E03",
+    "title": "[A11Y] Guide sections stay without accessible names",
+    "area": "a11y",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:a11y",
+      "human-only",
+      "type:decision"
+    ],
+    "note": {
+      "summary": "This backlog decision records an observation deliberately not changed 2026-07-28. Guide sections remain unnamed because turning all of them into named landmarks would create rotor noise rather than help.",
+      "goal": "Preserve unnamed guide sections unless real screen-reader users provide evidence to change the decision.",
+      "whyItMatters": "The record prevents a reflexive accessibility change that would make long guide pages noisier for screen-reader navigation.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Each guide page has 10 `<section class=\"guide-block\">` with no `aria-label`, no `aria-labelledby` and no `id` on the `h2`s, so they map to `generic` rather than `region`. Adding `aria-labelledby` would turn them into 10 named landmarks per page, which is rotor noise, not help. Screen-reader users navigate long documents by heading, and the headings are correct and complete. Confirm the decision during real AT testing; do not \"fix\" it reflexively.",
+      "doneWhen": [
+        "the existing decision remains recorded",
+        "the decision is re-opened only with evidence from real screen-reader users"
+      ],
+      "priorityRationale": "Low because the behaviour is already deliberately decided and only needs confirmation during real AT testing.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0310",
+    "level": "story",
+    "parentKey": "AF-E03",
+    "title": "[A11Y] Automated axe stays deliberately excluded",
+    "area": "a11y",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:a11y",
+      "human-only",
+      "type:decision"
+    ],
+    "note": {
+      "summary": "This backlog decision keeps automated axe deliberately excluded for now. The actual gap is that no human using a screen reader has ever used the product, and a green automated check could make that gap feel closed.",
+      "goal": "Keep axe excluded until the real assistive-technology testing has happened.",
+      "whyItMatters": "Automated tooling catches roughly a third of real accessibility problems and cannot replace the missing human evidence.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "The audit lists axe as supplemental and the recommendation is to skip it for now. Do not use a passing axe run to imply the product is accessible while the documented human screen-reader gap remains open. Revisit only after the AT testing has happened.",
+      "doneWhen": [
+        "the deliberate exclusion remains recorded",
+        "axe is revisited only after the AT testing has happened"
+      ],
+      "priorityRationale": "Low because this is an already-decided guard against substituting automation for human testing.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0401",
+    "level": "story",
+    "parentKey": "AF-E04",
+    "title": "[TEST] TEST-01 — build the eligibility oracle and regression suite",
+    "area": "testing",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:testing"
+    ],
+    "note": {
+      "summary": "TEST-01 is one of the two genuinely open audit findings. There is no systematic eligibility oracle across all programs, and the false-ready cluster was fixed only as individual findings.",
+      "goal": "Build an eligibility oracle and regression suite that asserts outcome sets across every program.",
+      "whyItMatters": "The missing systematic regression net allowed false-ready outcomes to ship.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, and REMAINING-WORK.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not mix new test infrastructure with fixes for findings it surfaces. Treat the first red run as findings to triage separately rather than forcing it green in the same change.",
+      "doneWhen": [
+        "every program has asserted outcome sets",
+        "a plausible mutation makes the suite fail",
+        "the first red run's findings are triaged as separate tickets"
+      ],
+      "priorityRationale": "High priority because TEST-01 is one of the two genuinely open audit findings.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0402",
+    "level": "story",
+    "parentKey": "AF-E04",
+    "title": "[TEST] Root-cause the [app-chromium] 90-second timeouts that only appear on CI",
+    "area": "testing",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:testing"
+    ],
+    "note": {
+      "summary": "Run `30574672375` on `47bee58` was cancelled at the 45-minute job cap after the single \"Browser and Worker tests\" step accumulated 90-second `[app-chromium]` timeouts, so `deploy` was skipped. An empty re-trigger commit (`f19fc23`) put the identical tree through CI in **16.5 minutes, green**, showing that the run was the variable and the family is rarer, not eliminated.",
+      "goal": "Root-cause the CI-only `[app-chromium]` timeouts by measurement and return full CI runs reproducibly to the normal band.",
+      "whyItMatters": "This timeout family has blocked a good release twice.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, REMAINING-WORK.md, bc-live.spec.js:194, bc-live.spec.js:205, bc-live.spec.js:366, persistence.spec.js:184, reminder-calendar.spec.js:185, reminder-calendar.spec.js:214, and reminder-calendar.spec.js:245",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not raise the job cap as the fix. Keep `retries: 0`; distinguish this family from the already fixed wizard `rise` animation race.",
+      "doneWhen": [
+        "the mechanism is understood by measurement rather than guessed",
+        "the cap is not raised as the fix",
+        "a full CI run is reproducibly inside the normal band"
+      ],
+      "priorityRationale": "High priority because the job cap has blocked a good release twice.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0403",
+    "level": "story",
+    "parentKey": "AF-E04",
+    "title": "[TEST] Keep retries:0 and read results with grep -E \"passed|failed|flaky\"",
+    "area": "testing",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:testing",
+      "type:decision"
+    ],
+    "note": {
+      "summary": "`retries: 0` is deliberate so a flake surfaces instead of being laundered into a pass. Playwright results must be read with `grep -E \"passed|failed|flaky\"`; a truncated tail produced a wrong report once already.",
+      "goal": "Keep zero retries and the complete Playwright result-reading command as settled testing policy.",
+      "whyItMatters": "The policy keeps flakes visible and prevents another incorrect report from truncated output.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, and REMAINING-WORK.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not add retries for convenience and never use a truncated tail to report Playwright results.",
+      "doneWhen": [
+        "`retries: 0` remains unchanged",
+        "Playwright results are read with `grep -E \"passed|failed|flaky\"`"
+      ],
+      "priorityRationale": "Low priority because the decision is already made and this ticket preserves it.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0404",
+    "level": "story",
+    "parentKey": "AF-E04",
+    "title": "[TEST] Reduced-motion stays out of the suite default",
+    "area": "testing",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:testing",
+      "type:decision"
+    ],
+    "note": {
+      "summary": "The suite deliberately does not default to `reducedMotion: \"reduce\"`. That approach would delete a real accessibility surface from the tests, while `e2e/a11y-batch.spec.js:103` opts into `no-preference` precisely to exercise it.",
+      "goal": "Keep reduced motion out of the suite default.",
+      "whyItMatters": "The tests must continue exercising motion rather than buying green by removing that accessibility surface.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, REMAINING-WORK.md, e2e/a11y-batch.spec.js:103, and wizard-accessibility.spec.js:38",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not default the suite to `reducedMotion: \"reduce\"` and do not add `reducedMotion` to the Firefox `wizard-accessibility.spec.js:38` fix.",
+      "doneWhen": [
+        "the suite does not default to `reducedMotion: \"reduce\"`"
+      ],
+      "priorityRationale": "Low priority because this is an already-decided guard against a rejected approach.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0405",
+    "level": "story",
+    "parentKey": "AF-E04",
+    "title": "[TEST] Preserve the mutation-tested guards",
+    "area": "testing",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:testing"
+    ],
+    "note": {
+      "summary": "The listed guards exist because something went dark or shipped broken. The `mb.upTo` branch is unreachable from any real catalogue profile — 540 were probed — but it is not dead code because deleting it would break a passing test and remove correct behaviour.",
+      "goal": "Preserve every listed mutation-tested guard without weakening or deleting it to make another change pass.",
+      "whyItMatters": "These guards prevent regressions in rendered requirements, guide headings, matcher safety, Worker transport and documentation consistency.",
+      "filesToTouch": "test/requires-note-rendered.test.js, test/guide-note-heading.test.js, e2e/matcher-safety.spec.js, test/worker-transport.test.js, test/docs-consistency.test.js",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, test/requires-note-rendered.test.js, test/guide-note-heading.test.js, e2e/matcher-safety.spec.js, test/worker-transport.test.js, and test/docs-consistency.test.js",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Preserve the guards, including the `mb.upTo` case asserting `\"Jusqu'à ~$4,500 / an\"`; do not treat the unreachable branch as dead code.",
+      "doneWhen": [
+        "no guard is weakened or deleted to make a change pass"
+      ],
+      "priorityRationale": "Low priority because the guards already exist and must be preserved.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0501",
+    "level": "story",
+    "parentKey": "AF-E05",
+    "title": "[DATA] DATA-25 — replace mitigated DTC readiness with verified CRA criteria",
+    "area": "ux",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ux"
+    ],
+    "note": {
+      "summary": "DATA-25 is mitigated, not closed, and is the only High/P1 finding still outstanding. The DTC readiness questions still need properly verified CRA functional criteria.",
+      "goal": "Replace mitigated DTC readiness with questions verified against the current CRA functional criteria on the day of the change.",
+      "whyItMatters": "Eligibility is about functional limitation rather than diagnosis, and unsupported readiness verdicts can misstate official eligibility.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, REMAINING-WORK.md, and the current CRA functional criteria verified that day",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Never imply that a diagnosis alone guarantees a benefit or that a universal list of qualifying disabilities exists. Never turn an unasked or lay questionnaire answer into an official eligibility verdict.",
+      "doneWhen": [
+        "the DTC questions come from the current CRA functional criteria verified that day",
+        "no unasked criterion produces a \"ready\" verdict"
+      ],
+      "priorityRationale": "High priority because DATA-25 is the only High/P1 finding still outstanding.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0502",
+    "level": "story",
+    "parentKey": "AF-E05",
+    "title": "[UX] UX-02 — stop the homepage overpromising completeness or certainty",
+    "area": "ux",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ux"
+    ],
+    "note": {
+      "summary": "UX-02 is mitigated only. It needs a content pass plus comprehension testing, while `renderSafely()` continues to cover every route.",
+      "goal": "Change the homepage copy so it no longer overpromises completeness or certainty, then confirm comprehension with readers.",
+      "whyItMatters": "Readers must not infer completeness or certainty, and every route must remain protected from a blank page.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, and REMAINING-WORK.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Keep `renderSafely()` covering every route and never allow a blank page.",
+      "doneWhen": [
+        "the copy no longer claims completeness or certainty",
+        "comprehension testing confirms readers do not infer completeness or certainty"
+      ],
+      "priorityRationale": "Medium priority because UX-02 remains mitigated rather than closed.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0503",
+    "level": "story",
+    "parentKey": "AF-E05",
+    "title": "[UX] UX-03 — explain or replace the editorial priority-order weights",
+    "area": "ux",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:ux"
+    ],
+    "note": {
+      "summary": "UX-03 is mitigated only. \"Priority order\" still uses unexplained editorial weights, and the formula remains unexplained and unvalidated.",
+      "goal": "Explain the ordering in plain language or replace it with an ordering that can be justified and validated against real profiles.",
+      "whyItMatters": "Users need an ordering whose basis can be understood and justified.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, and REMAINING-WORK.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not leave the editorial weights unexplained or unvalidated.",
+      "doneWhen": [
+        "the ordering is explained to the user in plain language or replaced with one that can be justified",
+        "the ordering is validated against real profiles"
+      ],
+      "priorityRationale": "Medium priority because UX-03 remains mitigated rather than closed.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0601",
+    "level": "story",
+    "parentKey": "AF-E06",
+    "title": "[PERF] PERF-01 stays WON'T FIX — do not re-attempt the rejected optimisations",
+    "area": "perf",
+    "priority": 1,
+    "status": "Done",
+    "tags": [
+      "type:story",
+      "area:perf",
+      "type:decision"
+    ],
+    "note": {
+      "summary": "This decision is already closed 2026-07-30 as WON'T FIX by owner decision after measuring production directly. Live measurement showed `app.js` is the critical path, the earlier throttled LCP was inside the \"good\" band, and the only change that would move first paint was rejected because it conflicts with restore-before-first-meaningful-render and duplicates `renderLanding`.",
+      "goal": "Keep PERF-01 closed unless an owner decision and new measurement justify re-opening it.",
+      "whyItMatters": "Recording the measured rejection prevents agents from re-attempting optimisations that do not move first paint or that recreate the persisted-blank-page failure mode.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, REMAINING-WORK.md, https://abilityfinder.ca/, public/styles.css:371, and ARCHIVAL_KNOWLEDGE_BASE.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not defer or split the catalogue as a first-paint fix. Do not add real above-the-fold markup in `<main id=\"app\">` without an owner decision and new measurement; preserve the rule that restore must complete before the first meaningful render.",
+      "doneWhen": [
+        "PERF-01 remains closed as WON'T FIX",
+        "it is re-opened only with an owner decision and new measurement"
+      ],
+      "priorityRationale": "Low priority because the work is already closed and the ticket exists to preserve the decision.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0602",
+    "level": "story",
+    "parentKey": "AF-E06",
+    "title": "[PERF] Record that field INP stays unmeasurable",
+    "area": "perf",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:perf"
+    ],
+    "note": {
+      "summary": "Field INP stays unmeasurable because it needs real users and there is no analytics by design. Real-user Core Web Vitals may be assessed manually when practical.",
+      "goal": "Record the field-INP limitation where future agents will see it before proposing analytics.",
+      "whyItMatters": "The limitation must remain visible without reversing the intentional no-analytics decision.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, and REMAINING-WORK.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not add analytics by default.",
+      "doneWhen": [
+        "the limitation is recorded where a future agent will see it before proposing analytics"
+      ],
+      "priorityRationale": "Low priority because INP is unmeasurable under the intentional no-analytics design.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  }
+]

@@ -1,0 +1,114 @@
+[
+  {
+    "key": "ALL",
+    "severity": "high",
+    "category": "NOT INDEPENDENTLY ACTIONABLE",
+    "finding": "Ten of the fourteen proposed subtasks are not self-contained: AF-T01031, AF-T01032, AF-T04011, AF-T04012, AF-T08051, AF-T08052, AF-T08053, AF-T14011, AF-T14012 and AF-T14013 leave either `filesToTouch`, `readExactly`, or both as `TBD — owner to specify`. A fresh assignee cannot start these tickets from their notes.",
+    "evidence": ".taskview/BOARD-BUILD-PROMPT.md requires: ‘Every ticket is self-contained’ and the template requires ‘Files to touch: <explicit paths, or none — decision ticket>’ plus an exact read list. The listed subtasks instead defer those required fields to the owner.",
+    "fix": "Before creation, replace every TBD with explicit paths (or `none — validation/decision ticket`) and an exact minimal read list. Do not create any of these tickets while those fields remain unresolved."
+  },
+  {
+    "key": "ALL",
+    "severity": "medium",
+    "category": "RULE VIOLATIONS",
+    "finding": "AF-T01031 and AF-T01032 soften the parent’s mandatory data-change discipline. They omit source retention, `npm run gen:guides` where applicable, `DATA_CHANGELOG` handling for benefit-fact changes, and the shared `?v=N` bump for changed browser-loaded assets; AF-T01032 does not even state the required `npm run gen:context` acceptance criterion directly.",
+    "evidence": "AF-S0103 doneWhen explicitly requires current official-source verification, retained `source`, `npm run gen:context`, `npm run gen:guides` where applicable, generated-diff review, `DATA_CHANGELOG`, `?v=N`, and tests. .taskview/BOARD-BUILD-PROMPT.md §7 says these rules ‘must survive into the tickets themselves.’",
+    "fix": "Add the full applicable data workflow to each directory subtask, stated directly and self-contained; do not rely on the parent or sibling to supply non-negotiable criteria."
+  },
+  {
+    "key": "AF-T01032",
+    "severity": "high",
+    "category": "NOT INDEPENDENTLY ACTIONABLE",
+    "finding": "Its only doneWhen item is `same shape as AF-T01031, against public/orgs-data.js.` That is a cross-reference, not an acceptance criterion, and makes the ticket impossible to execute or verify on its own.",
+    "evidence": ".taskview/BOARD-BUILD-PROMPT.md says every ticket is self-contained and requires checkable acceptance criteria ‘one per line.’ AF-T01032 contains no checkable criteria of its own.",
+    "fix": "Replace the sibling reference with complete ORGS_DIRECTORY-specific acceptance criteria, generated-output paths, source/date rules, cache-version discipline, and test commands."
+  },
+  {
+    "key": "AF-T04011",
+    "severity": "high",
+    "category": "DUPLICATED ACCEPTANCE CRITERIA",
+    "finding": "This subtask is the parent story rewritten as a child. Its goal and all three doneWhen lines repeat AF-S0401’s oracle-coverage, separate-fixes, and mutation-test criteria; it does not isolate a separately assignable component of the oracle.",
+    "evidence": "AF-S0401 goal is ‘Build an eligibility oracle and regression suite that asserts outcome sets across every program,’ and its doneWhen requires the machine-generated program-ID comparison and the exact `qualifyingRenovationSpend` mutation. AF-T04011 repeats those same outputs as the whole subtask.",
+    "fix": "DELETE THIS SUBTASK"
+  },
+  {
+    "key": "AF-T04011",
+    "severity": "medium",
+    "category": "INVENTED IMPLEMENTATION DETAIL",
+    "finding": "The prescribed `qualifyingRenovationSpend` mutation does not validate the new oracle and is already satisfied by an existing matcher-safety test. It is unrelated completed evidence repurposed as an implementation requirement for TEST-01.",
+    "evidence": "REMAINING-WORK.md says the renovation-credit gate is already ‘Guarded by ... `e2e/matcher-safety.spec.js`, which was mutation-tested — removing the gate fails it with `Expected: almost / Received: ready`.’ The TEST-01 row says only: ‘No systematic eligibility oracle across all programs.’ It does not prescribe reusing that already-completed mutation as the oracle design.",
+    "fix": "Remove this criterion. Any mutation check must target a newly added oracle assertion and prove that the new suite, rather than the pre-existing matcher-safety test, detects the mutation."
+  },
+  {
+    "key": "AF-T04012",
+    "severity": "medium",
+    "category": "INVENTED IMPLEMENTATION DETAIL",
+    "finding": "The ticket imports the ‘first red run’ and ‘separate landing’ procedure from the closed TEST-02 browser-matrix work and applies it to TEST-01 without ground-truth support. It also pre-creates speculative triage work before any oracle failure exists.",
+    "evidence": "REMAINING-WORK.md’s separate-landing procedure is under ‘Planned procedure — deploy gate and TEST-02,’ and its ‘treat the first red run as findings to triage separately’ sentence describes the browser matrix. The open TEST-01 row states only that there is no systematic eligibility oracle across all programs.",
+    "fix": "DELETE THIS SUBTASK. Build TEST-01 without mixing surfaced fixes into its change, then create concrete finding tickets only for failures that actually exist."
+  },
+  {
+    "key": "AF-T08053",
+    "severity": "medium",
+    "category": "INVENTED IMPLEMENTATION DETAIL",
+    "finding": "The header-sanitation subtask adds a mandatory 64 KB oversized-body/binding-touch test that is a different, already-closed control. Header injection sanitation and body-size rejection are not one independently prescribed validation item.",
+    "evidence": "REMAINING-WORK.md lists the open production-only item as ‘email header sanitation in a non-delivery environment.’ Separately, its Done section says SEC-04 already closed the `MAX_BODY_BYTES` 64 KB rejection before any binding is touched.",
+    "fix": "Remove the 64 KB rejection clauses from this subtask. Scope it only to reproducible feedback-header sanitation in a safe non-delivery environment, without credential values in evidence."
+  },
+  {
+    "key": "ALL",
+    "severity": "medium",
+    "category": "MISSING SUBTASKS",
+    "finding": "AF-S0805 has separately assignable performance-recording work but no child for it. The three children cover quota exhaustion, adversarial prompts and email sanitation only; none covers the parent’s manual Core Web Vitals assessment or field-INP record.",
+    "evidence": "AF-S0805 doneWhen includes ‘a dated manual Core Web Vitals assessment is recorded when practical’ and ‘the record states that field INP remains unavailable without real-user measurement and analytics is not added by default.’ WEBSITE-PROJECT-TRACKER.md likewise lists manual Core Web Vitals assessment and recording unavailable field INP as remaining verification.",
+    "fix": "Add one self-contained performance-validation subtask for the dated manual assessment and INP/no-analytics record, or remove those criteria from AF-S0805 if they are intentionally outside this story."
+  },
+  {
+    "key": "AF-T14011",
+    "severity": "medium",
+    "category": "OVER-DECOMPOSITION",
+    "finding": "Resolving GitHub tooling is setup for issue creation, not durable independently assignable work. The ticket invents a demonstration by reading one existing item and forces an owner route-selection record even though the ground truth already specifies the fallback routes.",
+    "evidence": ".taskview/BOARD-BUILD-PROMPT.md says: ‘gh CLI is not installed. Use the Codex agent's browser for GitHub, or install gh first and ask the user to authenticate,’ and Phase 6 performs issue sync using one of those routes. It does not define a separate tooling-access deliverable or a read-one-item proof.",
+    "fix": "DELETE THIS SUBTASK. Put the browser/gh fallback and no-credential rule in the issue-sync ticket’s constraints."
+  },
+  {
+    "key": "AF-T14012",
+    "severity": "high",
+    "category": "INVENTED FACTS",
+    "finding": "The ticket hard-codes ‘32 entries with status Done’ as the history-ticket population. No allowed ground-truth document states that count, and it can become stale before issue reconciliation runs.",
+    "evidence": ".taskview/BOARD-BUILD-PROMPT.md says only that open stories/subtasks get issues and rolled-up history tickets do not; it gives no count of 32. REMAINING-WORK.md explicitly warns against inventing or restating counts that have not been verified.",
+    "fix": "Remove every reference to 32. Select exclusions by current status and history scope/spec keys at execution time, then report the observed count as evidence."
+  },
+  {
+    "key": "AF-T14012",
+    "severity": "high",
+    "category": "DUPLICATED ACCEPTANCE CRITERIA",
+    "finding": "This child is the parent story’s entire deliverable: create one issue for every open ticket, link both directions, exclude history, and reconcile one-to-one. It adds no smaller independently assignable unit.",
+    "evidence": "AF-S1401 goal is ‘Give every open ticket a GitHub issue URL and every matching issue a link back to its ticket,’ with doneWhen ‘Every open ticket has an issue URL’ and ‘Every issue maps back to a ticket.’ AF-T14012 repeats exactly that scope and completion condition.",
+    "fix": "DELETE THIS SUBTASK"
+  },
+  {
+    "key": "AF-T14013",
+    "severity": "medium",
+    "category": "INVENTED IMPLEMENTATION DETAIL",
+    "finding": "It adds a mandatory separate-git-worktree rule for every concurrently active task. None of the allowed ground-truth documents prescribes worktrees.",
+    "evidence": ".taskview/BOARD-BUILD-PROMPT.md prescribes the branch pattern `taskview-<id>-<slug>`, `Closes #N`, and merged-plus-verified Done semantics. AGENTS.md says not to commit, push or deploy without a user request. Neither document requires a worktree.",
+    "fix": "Remove the worktree requirement. Retain only the documented branch, PR-closing, and Done conventions."
+  },
+  {
+    "key": "AF-T14041",
+    "severity": "high",
+    "category": "INVENTED FACTS",
+    "finding": "The ticket asserts that `http://localhost:8888/org-fbbce12c/3/-1401` is an owner-confirmed URL. Goal ID 3 is confirmed, but the `-1401` route segment for that board is not established in the allowed ground truth.",
+    "evidence": ".taskview/BOARD-BUILD-PROMPT.md identifies the old scratch URL as `.../2/-1401`, then explicitly requires the new `kanban_route_segment` to be ‘read from the real URL.’ It does not say the new board also uses `-1401` or call that URL owner-confirmed.",
+    "fix": "Do not hard-code the route. Change the ticket to require reading the actual goal-3 URL first and then updating the docs with the observed route segment."
+  },
+  {
+    "key": "ALL",
+    "severity": "medium",
+    "category": "MISSING SUBTASKS",
+    "finding": "AF-S1404 requires both TaskView documents to carry the note template and handoff convention, but no child updates those sections in TASKVIEW-WORKFLOW.md. AF-T14041 only repoints that file; AF-T14042 updates only TASKVIEW-QUICK-REFERENCE.md.",
+    "evidence": "AF-S1404 doneWhen says: ‘Both docs name goalId 3 and carry the note and handoff conventions.’ .taskview/BOARD-BUILD-PROMPT.md Phase 8 likewise requires updating both `TASKVIEW-QUICK-REFERENCE.md` and `TASKVIEW-WORKFLOW.md` with the new goalId, note template and handoff convention. AF-T14041’s doneWhen mentions only goalId/URL and no rule changes.",
+    "fix": "Expand AF-T14041 to carry the note template and handoff convention into TASKVIEW-WORKFLOW.md, or add a separate child for that work."
+  }
+]

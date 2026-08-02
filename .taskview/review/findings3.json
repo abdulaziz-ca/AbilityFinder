@@ -1,0 +1,154 @@
+[
+  {
+    "key": "AF-S0702",
+    "severity": "high",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "The ticket calls itself the full release-candidate checklist, but its acceptance criteria can pass without several checklist requirements: confirming generated guides match public/data.js, confirming generated context matches the data and generator, confirming all browser asset versions agree, reviewing generated diffs after generation, and recording the date and commit candidate.",
+    "evidence": "WEBSITE-PROJECT-TRACKER.md lines 246-258 require all of those checks, including: `Confirm generated guides match public/data.js`, `Confirm src/benefits-context.js matches the data and generator output`, `Confirm browser asset ?v=N references are consistent`, `Review generated diffs after the generators run`, and `Record test totals, date, and the commit candidate.` The ticket's doneWhen only says every unspecified checklist item has output and test totals are written down, while its readExactly list omits WEBSITE-PROJECT-TRACKER.md.",
+    "fix": "Put every required checklist item explicitly in doneWhen, including generated-guide/context agreement, asset-version consistency, post-generator diff review, and recording totals, date, and commit candidate; or require reading the tracker section and name that section precisely."
+  },
+  {
+    "key": "AF-S0703",
+    "severity": "high",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "“The smoke test is clean” has no defined test scope, so a homepage-only check could satisfy this release blocker while omitting the required production journeys and endpoint checks.",
+    "evidence": "WEBSITE-PROJECT-TRACKER.md lines 181-185 require confirmation of the deployed cache version and changed assets, a fresh wizard start/reload/IndexedDB restore, `/api/link-health` and every changed Worker endpoint, page and console errors, and the intended commit plus completed CI deploy. The ticket's doneWhen only requires a clean live-site test on the final RC and a re-run.",
+    "fix": "Enumerate the required smoke checks in doneWhen, or make this ticket depend on and explicitly execute an approved post-deploy checklist that contains every required check."
+  },
+  {
+    "key": "ALL",
+    "severity": "medium",
+    "category": "DUPLICATES AND OVERLAP",
+    "finding": "AF-S0703, AF-S0802, and AF-S0807 substantially duplicate live-release verification. The final RC smoke test is also a release and a deployment, so the same live cache, propagation, endpoint, commit, and CI checks can satisfy all three tickets without a clear boundary.",
+    "evidence": "WEBSITE-PROJECT-TRACKER.md lines 177-185 describe one post-deployment verification set, and lines 227-228 apply the release-candidate checklist and clean production smoke test to the final release. AF-S0703 asks for the final live smoke test; AF-S0802 asks to confirm every release against the live site; AF-S0807 asks to follow the post-deploy routine on the next deployment.",
+    "fix": "Keep one reusable post-deploy checklist ticket, make AF-S0703 the finite final-RC execution ticket that depends on it, and remove live-release verification from AF-S0802 so that ticket covers only the CI gate invariant or is moved to Done history."
+  },
+  {
+    "key": "AF-S0802",
+    "severity": "medium",
+    "category": "STALE WORK",
+    "finding": "The concrete work to build and prove the CI deploy gate is already completed, but this is a Backlog story whose summary restates that completed result and whose perpetual “every release” criterion can never be closed.",
+    "evidence": "REMAINING-WORK.md lines 86-94 say `Pre-deploy gate — DONE and PROVEN, 2026-07-28` and `The gate is live and no longer advisory. Do not describe it as inert.` WEBSITE-PROJECT-TRACKER.md lines 170-173 also mark the CI matrix, gated deploy job, disconnected Workers Builds path, and proven production deployment complete.",
+    "fix": "Move the gate implementation/proof to Done history. If an open ticket is needed, define one finite audit or regression check with a date/event boundary rather than “every release.”"
+  },
+  {
+    "key": "AF-S0803",
+    "severity": "medium",
+    "category": "STALE WORK",
+    "finding": "This Backlog ticket asks to preserve and observe a cache configuration that the working record says is already installed and has already produced a cache hit.",
+    "evidence": "REMAINING-WORK.md lines 122-127 say the Playwright browsers `are now cached at ~/.cache/ms-playwright`, keyed on the resolved Playwright version, and specify the quoted-string condition. Lines 292-294 later state `The Playwright cache hit and the install step was skipped.` Both doneWhen conditions are therefore already evidenced.",
+    "fix": "Mark this as Done/history, or replace it with a finite regression test only if the current workflow lacks one; do not leave the completed cache setup as open work."
+  },
+  {
+    "key": "AF-S0804",
+    "severity": "medium",
+    "category": "INVENTED FACTS",
+    "finding": "The summary invents a precise WON'T-FIX closure date of 2026-07-28. The docs separate the 2026-07-28 root-cause date from the 2026-07-29 attempted-and-reverted fix and do not state that the decision was closed on July 28.",
+    "evidence": "REMAINING-WORK.md line 193 says `Root cause found 2026-07-28` and later `WON'T FIX — attempted 2026-07-29 and reverted.` No ground-truth text states `closed 2026-07-28` for the WON'T-FIX decision.",
+    "fix": "State the two supported dates separately—root cause found 2026-07-28; fix attempted and reverted / WON'T FIX recorded 2026-07-29—or omit a closure date."
+  },
+  {
+    "key": "AF-S0805",
+    "severity": "medium",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "The “Production-only validation sweep” omits field Core Web Vitals and the required record that field INP is unavailable, so it does not sweep the full production-only validation row it cites.",
+    "evidence": "REMAINING-WORK.md line 200 lists `AI quota exhaustion, adversarial assistant prompts, email header sanitation in a non-delivery environment, field Core Web Vitals without analytics.` WEBSITE-PROJECT-TRACKER.md lines 207-209 also require manual real-user Core Web Vitals assessment when practical and recording that field INP remains unavailable. The ticket lists only the first three.",
+    "fix": "Add manual Core Web Vitals assessment when practical and an explicit record that field INP is unavailable without real-user measurement, or narrow the title and create/link the missing performance validation ticket."
+  },
+  {
+    "key": "AF-S0806",
+    "severity": "medium",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "The doneWhen merely requires that “the dashboard setting is confirmed”; it does not require the setting to be disabled, so confirming that injection is enabled would technically pass the ticket.",
+    "evidence": "AGENTS.md lines 153-155 say `Disable injection in the Cloudflare dashboard instead if console noise needs removal.` WEBSITE-PROJECT-TRACKER.md lines 199-202 require confirming Browser Insights or other automatic injection `remains disabled in the dashboard.`",
+    "fix": "Change doneWhen to require evidence that Browser Insights/automatic edge injection is disabled and that the strict CSP remains unchanged."
+  },
+  {
+    "key": "AF-S0808",
+    "severity": "medium",
+    "category": "INVENTED FACTS",
+    "finding": "The explicit file paths `robots.txt`, `sitemap.xml`, and `404.html` are written as repository-root paths, but deployed static files live under `public/`; the sitemap is also generated rather than a normal hand-edited file.",
+    "evidence": "AGENTS.md lines 61-76 state `public/` is the only deployed static directory and root documentation is not deployed. REMAINING-WORK.md lines 61-62 explicitly name generated `public/guides/**` and `public/sitemap.xml` and say generated files are regenerated through scripts, never hand-edited. The root paths in this ticket appear nowhere as valid deployed paths.",
+    "fix": "Use `public/robots.txt`, `public/sitemap.xml`, and `public/404.html` as the explicit paths, and state that generated sitemap/guide output must be regenerated through its script rather than hand-edited."
+  },
+  {
+    "key": "AF-S0901",
+    "severity": "medium",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "The ticket is not executable or objectively closable because neither the owner's selected additions nor the meaning of the “Alberta/B.C. depth bar” is specified.",
+    "evidence": "ROADMAP.md lines 71-74 say feature additions come from the comparative research backlog and `owner picks`; they do not define a selected package in the current docs. The ticket's sole doneWhen is `The owner's chosen additions are shipped to the Alberta/B.C. depth bar`, with no chosen additions or measurable bar.",
+    "fix": "Make this an owner-decision ticket first. After selection, list the exact additions and define per-item acceptance criteria such as official-source verification, matching behavior, generated outputs, changelog, tests, and live verification."
+  },
+  {
+    "key": "AF-S0902",
+    "severity": "medium",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "“Artifacts exist and are usable in an outreach conversation” is subjective and does not identify the artifacts, required content, reviewer, or evidence of usability.",
+    "evidence": "ROADMAP.md lines 71-74 only establish that Horizon 1 includes trust/credibility artifacts for organization outreach. WEBSITE-PROJECT-TRACKER.md line 279 likewise says to finish trust materials `chosen by the owner`; neither document supplies a concrete artifact list. The ticket supplies none either.",
+    "fix": "Require owner selection of named deliverables, then define objective completion for each deliverable and an explicit owner/outreach-review sign-off criterion."
+  },
+  {
+    "key": "AF-S0903",
+    "severity": "low",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "The acceptance criterion depends on unspecified evidence that “justifies” an enhancement, with no evidence threshold, decision owner, selected enhancement, or success measure.",
+    "evidence": "ROADMAP.md lines 60-67 labels the three items only as `Potential low-risk enhancements`; WEBSITE-PROJECT-TRACKER.md line 155 says improve discovery only when user or outreach evidence supports the work. Neither document says that evidence currently exists or defines what is sufficient.",
+    "fix": "Make the current ticket a decision/research gate with a named decision owner and evidence threshold. Create a separate implementation ticket only after one enhancement is selected, with measurable acceptance criteria."
+  },
+  {
+    "key": "AF-S0904",
+    "severity": "medium",
+    "category": "STALE WORK",
+    "finding": "This is an already-made scope decision placed in Backlog even though its own doneWhen says `Already decided.` There is no unfinished implementation to perform until a future capacity trigger occurs.",
+    "evidence": "ROADMAP.md lines 57-58 state `Keep French paused until there is capacity to translate and maintain the benefit catalog, not only the interface.` That is an active decision, not open work. The ticket repeats the decision and says it is already decided.",
+    "fix": "Set it to Done as a `type:decision` history/guard ticket. Open a new decision ticket only if catalogue-translation maintenance capacity later exists."
+  },
+  {
+    "key": "AF-S1001",
+    "severity": "high",
+    "category": "RULE VIOLATIONS",
+    "finding": "The ticket softens the factual-safety rule from all benefit facts to only “every figure.” A quick reference could ship unverified eligibility rules, cutoffs, forms, phone numbers, dates, or municipal details and still satisfy its doneWhen.",
+    "evidence": "AGENTS.md lines 43-45 require same-day official-source verification of `every amount, cutoff, eligibility rule, form, phone number, date, and municipal detail`, with every benefit retaining its source. BOARD-BUILD-PROMPT.md lines 334-336 says this rule must survive into ticket acceptance criteria. The ticket checks only figures.",
+    "fix": "Require same-day official-source verification for every factual claim, including amounts, cutoffs, rules, forms, phone numbers, dates, and municipal details; require source citations and the applicable generator/changelog/cache-version workflow."
+  },
+  {
+    "key": "AF-S1002",
+    "severity": "high",
+    "category": "RULE VIOLATIONS",
+    "finding": "The DTC/T2201 content ticket has no acceptance criterion requiring same-day official-source verification of CRA functional criteria or source retention. “Consistent with whatever DATA-25 settles” is not a substitute for the non-negotiable fact-verification rule.",
+    "evidence": "AGENTS.md lines 43-45 require same-day official verification for every benefit fact, and lines 53-55 require eligibility to be about functional limitation rather than diagnosis. BOARD-BUILD-PROMPT.md lines 334-343 requires these rules to survive into tickets. The ticket only prohibits an unsupported verdict and requires consistency with DATA-25.",
+    "fix": "Add acceptance criteria that every DTC/T2201 factual statement is verified against current official CRA material on the day, sources are retained, and the sheets describe functional limitations rather than diagnosis-based qualification."
+  },
+  {
+    "key": "AF-S1002",
+    "severity": "medium",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "The sole completion test—being consistent with “whatever DATA-25 settles”—cannot be checked while DATA-25 is unresolved, and the ticket declares no dependency on the DATA-25 decision/work ticket.",
+    "evidence": "REMAINING-WORK.md lines 74-77 says DATA-25 is `Mitigated, not closed — needs real CRA functional-criteria questions.` The spec gives AF-S1002 an empty dependsOnKeys array and does not state the eventual DATA-25 outcome that must be matched.",
+    "fix": "Block this ticket on the DATA-25 ticket, then replace the placeholder criterion with explicit requirements derived from the approved DATA-25 outcome."
+  },
+  {
+    "key": "AF-S1003",
+    "severity": "high",
+    "category": "MISSING OR UNCHECKABLE ACCEPTANCE CRITERIA",
+    "finding": "A one-word doneWhen of `Shipped.` does not define what the “For professionals” page must contain or how to verify that it works, is accessible, preserves privacy, and cannot blank the app.",
+    "evidence": "ROADMAP.md lines 75-80 identifies a `For professionals` page as part of Horizon 2 but does not supply a page specification. BOARD-BUILD-PROMPT.md lines 136-145 requires an unambiguous goal, constraints, and checkable acceptance criteria. AGENTS.md lines 111-121 requires route/persona/theme and fail-visible checks for shared UI/routing changes. The ticket leaves constraints as `TBD` and doneWhen as only `Shipped.`",
+    "fix": "Obtain owner-approved page scope, then enumerate required sections/content, route behavior, keyboard/screen-reader checks, self/child/family route regression checks where applicable, theme checks, renderSafely/no-blank-page behavior, tests, and deployment verification."
+  },
+  {
+    "key": "AF-S1004",
+    "severity": "medium",
+    "category": "WRONG PRIORITY",
+    "finding": "Priority 3 is unsupported by the owner's mapping. This is a Horizon 2 future-policy guard with no active arrangement, release block, outage, data-loss threat, security/privacy incident, or evidence that it blocks multiple tickets.",
+    "evidence": "BOARD-BUILD-PROMPT.md lines 187-194 limits High to security/privacy risk, data loss, production outage, release blockers, or work blocking multiple tickets; future ideas are Low. ROADMAP.md lines 75-80 places practitioner arrangements in Horizon 2 and says to verify before any clinic arrangement, not that an arrangement is currently active or blocking release.",
+    "fix": "Set it to Low while it remains a future Horizon 2 guard. Raise it to Medium if a concrete arrangement becomes active; use High only if evidence establishes one of the defined High conditions."
+  },
+  {
+    "key": "AF-S1004",
+    "severity": "medium",
+    "category": "INVENTED FACTS",
+    "finding": "The priority rationale says practitioner arrangements must “avoid CPSA standards,” which reverses the documented requirement. The project must avoid violating the standards, not avoid the standards themselves.",
+    "evidence": "ROADMAP.md lines 77-80 says paid referral inducements risk `violating CPSA standards / fee-splitting rules; verify before any clinic arrangement.` WEBSITE-PROJECT-TRACKER.md lines 281-283 says relationships must be transparent and legally clean and must not use paid referral inducements. No source says to avoid CPSA standards.",
+    "fix": "Change the rationale to `avoid violating CPSA standards and fee-splitting rules` or `comply with applicable CPSA standards`."
+  }
+]

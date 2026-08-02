@@ -1,0 +1,827 @@
+[
+  {
+    "key": "AF-E01",
+    "level": "epic",
+    "parentKey": null,
+    "title": "EPIC — Data accuracy and freshness",
+    "area": "data",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:epic",
+      "area:data"
+    ],
+    "note": {
+      "summary": "This epic keeps every published amount, rule, form, phone number and date true on the day a user reads it. Its current outcome is Backlog because factual freshness is ongoing work.",
+      "goal": "Keep every published amount, rule, form, phone number and date true on the day a user reads it.",
+      "whyItMatters": "The product's largest ongoing risk is silent factual decay, not a missing feature; a wrong figure costs a disabled person money or a scarce appointment.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Use an actual official-source review before updating freshness, and do not add facts that are not verified.",
+      "doneWhen": [
+        "Every published amount, rule, form, phone number and date is true on the day a user reads it."
+      ],
+      "priorityRationale": "High because silent factual decay can cost a disabled person money or a scarce appointment.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      ".taskview/board-spec-source.md"
+    ]
+  },
+  {
+    "key": "AF-E02",
+    "level": "epic",
+    "parentKey": null,
+    "title": "EPIC — Coverage gaps and scope decisions",
+    "area": "research",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:epic",
+      "area:research"
+    ],
+    "note": {
+      "summary": "This epic closes the remaining catalogue coverage questions that are genuinely scope decisions rather than research tasks. It also keeps already decided questions from being re-opened.",
+      "goal": "Close the remaining catalogue coverage questions that are genuinely scope decisions rather than research tasks.",
+      "whyItMatters": "Settled scope decisions must remain settled so completed coverage work is not repeatedly treated as a gap.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Treat Plan B placement and provincial child/family scope as the remaining questions, and keep Plan X closed.",
+      "doneWhen": [
+        "The remaining catalogue scope questions are decided and already decided questions are not re-opened."
+      ],
+      "priorityRationale": "Medium because the remaining work is limited to genuine catalogue scope decisions.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      ".taskview/board-spec-source.md"
+    ]
+  },
+  {
+    "key": "AF-E03",
+    "level": "epic",
+    "parentKey": null,
+    "title": "EPIC — Human accessibility and usability testing",
+    "area": "a11y",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:epic",
+      "area:a11y",
+      "blocker:release",
+      "human-only"
+    ],
+    "note": {
+      "summary": "This epic covers the human accessibility and usability testing that has not yet happened. It is the sole remaining NO-GO condition.",
+      "goal": "Have real screen-reader users and disabled participants complete journeys through the product and disposition the findings.",
+      "whyItMatters": "No screen-reader user has ever completed a journey through this product, and automated checks cover roughly a third of real problems.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Human testing cannot be replaced by automated checks, and findings must be written as reproducible issues rather than broad redesign requests.",
+      "doneWhen": [
+        "Human accessibility and usability testing has happened and every finding is dispositioned."
+      ],
+      "priorityRationale": "High because this is the sole remaining NO-GO condition.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      ".taskview/board-spec-source.md"
+    ]
+  },
+  {
+    "key": "AF-E04",
+    "level": "epic",
+    "parentKey": null,
+    "title": "EPIC — Testing and quality infrastructure",
+    "area": "testing",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:epic",
+      "area:testing"
+    ],
+    "note": {
+      "summary": "This epic adds a systematic regression net for eligibility outcomes and addresses CI flakiness. The current outcome is Backlog because good releases can still be blocked.",
+      "goal": "Give eligibility outcomes a systematic regression net and stop CI flakiness from blocking good releases.",
+      "whyItMatters": "Eligibility outcomes need systematic regression coverage, and CI flakiness has blocked good releases.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Keep retries: 0, do not default the suite to reduced motion, and do not weaken mutation-tested guards.",
+      "doneWhen": [
+        "Eligibility outcomes have a systematic regression net and CI flakiness no longer blocks good releases."
+      ],
+      "priorityRationale": "High because the regression gap and CI timeout family can block good releases.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      ".taskview/board-spec-source.md"
+    ]
+  },
+  {
+    "key": "AF-E05",
+    "level": "epic",
+    "parentKey": null,
+    "title": "EPIC — Open product decisions",
+    "area": "ux",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:epic",
+      "area:ux"
+    ],
+    "note": {
+      "summary": "This epic covers DATA-25, UX-02 and UX-03. All three audit findings are mitigated rather than closed and need product decisions rather than more code alone.",
+      "goal": "Close DATA-25, UX-02 and UX-03 through explicit product decisions.",
+      "whyItMatters": "Three mitigated audit findings remain open until their product decisions are made and validated.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not re-open money-band prominence or conditional-results framing; both closed 2026-07-30 (`00fb18f`).",
+      "doneWhen": [
+        "DATA-25, UX-02 and UX-03 are closed with explicit product decisions and their stated validation."
+      ],
+      "priorityRationale": "Medium because three mitigated findings remain open and require product decisions.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      ".taskview/board-spec-source.md"
+    ]
+  },
+  {
+    "key": "AF-E06",
+    "level": "epic",
+    "parentKey": null,
+    "title": "EPIC — Performance and first load",
+    "area": "perf",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:epic",
+      "area:perf"
+    ],
+    "note": {
+      "summary": "This epic records why first-load work is closed and keeps the unmeasurable field metric visible. PERF-01 closed 2026-07-30 as WON'T FIX by owner decision after live measurement.",
+      "goal": "Record why first-load work is closed and keep the unmeasurable field metric visible.",
+      "whyItMatters": "The record prevents rejected optimisations from being re-attempted while preserving the field INP limitation.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not re-attempt the rejected optimisations without an owner decision and new measurement, and do not add analytics by default.",
+      "doneWhen": [
+        "The closed first-load decision and the unmeasurable field INP limitation are both visible."
+      ],
+      "priorityRationale": "Low because first-load work is closed and the remaining work is to preserve the decision record and metric limitation.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      ".taskview/board-spec-source.md"
+    ]
+  },
+  {
+    "key": "AF-E07",
+    "level": "epic",
+    "parentKey": null,
+    "title": "EPIC — Release readiness and NO-GO lift",
+    "area": "ops",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:epic",
+      "area:ops",
+      "blocker:release"
+    ],
+    "note": {
+      "summary": "This epic is the gate everything else feeds. The audit's original NO-GO has never been formally lifted.",
+      "goal": "Lift the NO-GO only when all release conditions carry evidence.",
+      "whyItMatters": "The product cannot be treated as release-ready until the original NO-GO is formally lifted.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not lift the NO-GO before the human accessibility testing, release-candidate checklist and clean production smoke test have evidence.",
+      "doneWhen": [
+        "All release conditions carry evidence and the owner changes the release status."
+      ],
+      "priorityRationale": "High because this epic is the release gate.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [
+      "AF-E03"
+    ],
+    "sources": [
+      ".taskview/board-spec-source.md"
+    ]
+  },
+  {
+    "key": "AF-E08",
+    "level": "epic",
+    "parentKey": null,
+    "title": "EPIC — Deploy, ops, and link monitoring",
+    "area": "deploy",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:epic",
+      "area:deploy"
+    ],
+    "note": {
+      "summary": "This epic keeps production correct, free and provably released while keeping the link monitor acted on. It also includes the un-rotated Cloudflare API token.",
+      "goal": "Keep production correct, free and provably released, and keep the link monitor acted on.",
+      "whyItMatters": "Production releases, monitoring and the live deploy credential must remain controlled and verifiable.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Preserve the CI deploy gate and zero-spend guard, verify releases against the live site, and never put the token value in a ticket, branch, commit, PR, log or command line.",
+      "doneWhen": [
+        "Production is kept correct, free and provably released, and link-monitor findings are acted on."
+      ],
+      "priorityRationale": "High because the epic includes production correctness, release proof and an un-rotated live deploy credential.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      ".taskview/board-spec-source.md"
+    ]
+  },
+  {
+    "key": "AF-E09",
+    "level": "epic",
+    "parentKey": null,
+    "title": "EPIC — Horizon 1: Alberta polish",
+    "area": "content",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:epic",
+      "area:content"
+    ],
+    "note": {
+      "summary": "This epic is owner horizon 1. It focuses on making the Alberta service complete enough that organizations and clinics have no comparable alternative.",
+      "goal": "Make the Alberta service complete enough that organizations and clinics have no comparable alternative.",
+      "whyItMatters": "Alberta polish supports a service with verified depth and trust and credibility artifacts for outreach.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Feature additions come from the comparative research backlog and the owner picks them.",
+      "doneWhen": [
+        "The owner's chosen additions are shipped to the Alberta/B.C. depth bar."
+      ],
+      "priorityRationale": "Medium because this is owner horizon 1.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      ".taskview/board-spec-source.md"
+    ]
+  },
+  {
+    "key": "AF-E10",
+    "level": "epic",
+    "parentKey": null,
+    "title": "EPIC — Horizon 2: For Professionals v1",
+    "area": "content",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:epic",
+      "area:content"
+    ],
+    "note": {
+      "summary": "This epic is owner horizon 2. It covers adviser-facing material built only through legally clean practitioner structures.",
+      "goal": "Build For Professionals v1 with adviser-facing material and legally clean practitioner structures.",
+      "whyItMatters": "Professional-facing material must support practitioners without paid referral inducements or unverified clinic arrangements.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Use transparent directories and disclosed sponsorships only, with no paid referral inducements, and verify before any clinic arrangement.",
+      "doneWhen": [
+        "The adviser-facing material is shipped and every practitioner arrangement is verified before it is entered into."
+      ],
+      "priorityRationale": "Low because this is owner horizon 2.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      ".taskview/board-spec-source.md"
+    ]
+  },
+  {
+    "key": "AF-E11",
+    "level": "epic",
+    "parentKey": null,
+    "title": "EPIC — Horizon 3: Canada-wide, province by province",
+    "area": "research",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:epic",
+      "area:research"
+    ],
+    "note": {
+      "summary": "This epic is owner horizon 3. It expands one province at a time to the Alberta/B.C. depth bar, while national-but-shallow is explicitly rejected.",
+      "goal": "Expand one province at a time to the Alberta/B.C. depth bar.",
+      "whyItMatters": "Province-by-province verified depth avoids a national-but-shallow catalogue.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not ship a province before the province source-audit checklist exists, and do not use an epic-to-own-child dependency.",
+      "doneWhen": [
+        "Additional provinces ship one at a time at the Alberta/B.C. depth bar."
+      ],
+      "priorityRationale": "Low because this is owner horizon 3.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      ".taskview/board-spec-source.md"
+    ]
+  },
+  {
+    "key": "AF-E12",
+    "level": "epic",
+    "parentKey": null,
+    "title": "EPIC — Horizon 4: Multi-audience streams",
+    "area": "research",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:epic",
+      "area:research"
+    ],
+    "note": {
+      "summary": "This epic is owner horizon 4. It adds audience streams one at a time with the same verified-depth treatment.",
+      "goal": "Add additional audience streams one at a time with the same verified-depth treatment.",
+      "whyItMatters": "Each additional audience needs deliberate scope and verified depth rather than partial coverage.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Choose one audience at a time, apply the same verified-depth treatment, and proceed only after the disability service is mature.",
+      "doneWhen": [
+        "One audience is chosen and scoped with the depth bar stated before expansion proceeds."
+      ],
+      "priorityRationale": "Low because this is owner horizon 4.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      ".taskview/board-spec-source.md"
+    ]
+  },
+  {
+    "key": "AF-E13",
+    "level": "epic",
+    "parentKey": null,
+    "title": "EPIC — Horizon 5: Agency product",
+    "area": "research",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:epic",
+      "area:research"
+    ],
+    "note": {
+      "summary": "This epic is owner horizon 5. It scopes a separate paid agency portal as the deliberate revisit of the no-accounts rule for that product only.",
+      "goal": "Scope a separate paid agency portal with its own privacy and infrastructure review.",
+      "whyItMatters": "The separate product requires accounts and server-side state without moving the public site's privacy and zero-spend guarantees.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Treat the portal as a separate product, and leave the public site's rules unchanged: no accounts, no analytics, no remote storage of wizard answers, zero spend.",
+      "doneWhen": [
+        "A scoping document exists with its own privacy and infrastructure review, and the public site's guarantees are demonstrably untouched."
+      ],
+      "priorityRationale": "Low because this is owner horizon 5.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      ".taskview/board-spec-source.md"
+    ]
+  },
+  {
+    "key": "AF-E14",
+    "level": "epic",
+    "parentKey": null,
+    "title": "EPIC — Agent ops and board integration",
+    "area": "ops",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:epic",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "This epic makes the board, GitHub and Slack one coherent system. It also keeps the project docs honest.",
+      "goal": "Make the board, GitHub and Slack one coherent system and keep the project docs honest.",
+      "whyItMatters": "Coherent coordination prevents duplicate tickets, orphan parents, stale pointers and essential context being stored only in Slack.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "GitHub is the permanent engineering record, Slack is the notification layer only, workflow changes are a human gate, and only the owner permanently deletes tickets.",
+      "doneWhen": [
+        "The board, GitHub and Slack operate as one coherent system and the project docs match the working record."
+      ],
+      "priorityRationale": "Medium because board integration and honest project docs are active coordination work.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      ".taskview/board-spec-source.md"
+    ]
+  },
+  {
+    "key": "AF-E15",
+    "level": "epic",
+    "parentKey": null,
+    "title": "EPIC — Shipped and closed (history)",
+    "area": "ops",
+    "priority": 1,
+    "status": "Done",
+    "tags": [
+      "type:epic",
+      "area:ops"
+    ],
+    "note": {
+      "summary": "This epic is already closed; its closing date is TBD — verify against official source on the day. It rolls up shipped, disproved and rejected outcomes so settled work is not repeated or re-opened.",
+      "goal": "Keep rolled-up history, including disproved and rejected outcomes, discoverable.",
+      "whyItMatters": "The history prevents an agent from re-doing or re-opening settled work.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not state a per-severity count, and preserve disproved, rejected and do-not-reopen outcomes.",
+      "doneWhen": [
+        "Rolled-up history exists for shipped, disproved and rejected outcomes."
+      ],
+      "priorityRationale": "Low because this epic is already closed history.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      ".taskview/board-spec-source.md"
+    ]
+  },
+  {
+    "key": "AF-S0101",
+    "level": "story",
+    "parentKey": "AF-E01",
+    "title": "[DATA] Establish the /api/link-health review cadence",
+    "area": "data",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:data"
+    ],
+    "note": {
+      "summary": "This backlog story establishes regular review of `/api/link-health`. The link monitor already runs on a cron with KV report storage, but every reported source still needs a disposition.",
+      "goal": "Establish and complete a regular review cadence for `/api/link-health` reports.",
+      "whyItMatters": "Regular review prevents genuinely broken or soft-404 links from silently remaining in published guidance.",
+      "filesToTouch": "src/link-check.js; src/links.js",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, ROADMAP.md, src/link-check.js, src/links.js",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Review `/api/link-health` regularly and replace genuinely broken or soft-404 links using official destinations. The rotating monitor lives in `src/link-check.js`; `src/links.js` is generated and never hand-edited.",
+      "doneWhen": [
+        "a stated review cadence exists",
+        "the latest report has been reviewed",
+        "every broken, redirected, stale, unreachable or inconclusive source has a disposition"
+      ],
+      "priorityRationale": "Medium because ROADMAP priority 1 requires recurring source-link review.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md",
+      "ROADMAP.md"
+    ]
+  },
+  {
+    "key": "AF-S0102",
+    "level": "story",
+    "parentKey": "AF-E01",
+    "title": "[DATA] Re-verify benefit figures before their freshness dates age out",
+    "area": "data",
+    "priority": 3,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:data"
+    ],
+    "note": {
+      "summary": "This backlog story keeps `BENEFIT_VERIFIED` tied to an actual official-source review. Every amount, cutoff, rule, form, phone number, processing time, application status and municipal detail must be checked against the current official page on the day of the change.",
+      "goal": "Ensure no benefit record ages past its verification date without a same-day official-source review.",
+      "whyItMatters": "A stale or unsupported figure can cost a disabled person money or a scarce appointment.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "`BENEFIT_VERIFIED` is updated only after an actual official-source review. `canada.ca` returns 403 to automated fetch — read the CRA page in a real browser rather than trusting a search summary. Refuse a figure the official page does not state: the HATC has no percentage rate or maximum dollar credit in the record on purpose, and \"$3,000\" is a figure to refuse, not copy; `excise-gasoline-tax-refund` states no per-litre amount on purpose and gives the CRA number 1-877-432-5472 instead. Third-party figures have been wrong: BC RAHA's widely quoted $134,140 limit, the multigenerational credit's \"15%\" and \"$7,500\".",
+      "doneWhen": [
+        "no record is past its verification date without a same-day official-source check",
+        "every changed figure has its source URL",
+        "a `DATA_CHANGELOG` entry exists for each fact change"
+      ],
+      "priorityRationale": "High because silent factual decay is the product's largest ongoing risk.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0103",
+    "level": "story",
+    "parentKey": "AF-E01",
+    "title": "[DATA] Re-verify GRANTS_DIRECTORY and ORGS_DIRECTORY entries",
+    "area": "data",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:data"
+    ],
+    "note": {
+      "summary": "This backlog story re-checks directory entries as their verified dates age out. Directory records correctly describe what an organisation offers and route to its own program pages; they do not claim current intake status.",
+      "goal": "Re-check every expired directory entry against the organisation's own page and refresh or correct it.",
+      "whyItMatters": "Aging directory facts can misroute users even when the directory's intake-status behaviour is correct.",
+      "filesToTouch": "public/grants-data.js; public/orgs-data.js",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, public/grants-data.js, public/orgs-data.js",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Both directories carry verified dates that age out. Changes to `public/grants-data.js` and `public/orgs-data.js` require `npm run gen:context`. Preserve the conclusion from ABFED-16/17, disproved: routing to an organisation's own program pages is correct directory behaviour and is not an intake-status claim.",
+      "doneWhen": [
+        "every entry past its verified date is re-checked against the organisation's own page",
+        "each checked entry has its date refreshed or its record corrected"
+      ],
+      "priorityRationale": "Medium because directory facts require recurring verification but the intake-status concern was disproved.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0104",
+    "level": "story",
+    "parentKey": "AF-E01",
+    "title": "[DATA] Keep the data-change procedure enforced",
+    "area": "data",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:data"
+    ],
+    "note": {
+      "summary": "This backlog story keeps every data landing coupled to its required generators, changelog entry and browser-asset versioning. Generated files must continue to be produced by scripts rather than hand-edited.",
+      "goal": "Enforce the complete data-change procedure on every relevant landing.",
+      "whyItMatters": "The procedure prevents catalogue, guides, context, browser assets and documentation from drifting apart.",
+      "filesToTouch": "public/grants-data.js; public/orgs-data.js; public/changelog.js; public/index.html; public/styles.css; src/**; public/guides/**; public/sitemap.xml; test/docs-consistency.test.js",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, public/changelog.js, public/index.html, public/styles.css, test/docs-consistency.test.js",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "After `BENEFITS`, `HELP_ORGS`, `PRACTITIONER_FORMS`, `public/grants-data.js` or `public/orgs-data.js` change, run `npm run gen:context`; after `BENEFITS` changes run `npm run gen:guides`; append a `DATA_CHANGELOG` entry in `public/changelog.js`; bump the shared `?v=N` in `public/index.html` when a browser-loaded asset changes and update matching font URLs in `public/styles.css`. Generated files (`src/**`, `public/guides/**`, `public/sitemap.xml`) are regenerated by their scripts, never hand-edited. `test/docs-consistency.test.js` fails if the docs drift from the catalogue.",
+      "doneWhen": [
+        "the procedure is stated in the ticket",
+        "every data landing shows the generator runs in its evidence",
+        "every data landing shows the version bump in its evidence when a browser-loaded asset changes"
+      ],
+      "priorityRationale": "Medium because every data change must preserve generated outputs and browser consistency.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0105",
+    "level": "story",
+    "parentKey": "AF-E01",
+    "title": "[DATA] Re-check Camrose and other municipalities one program at a time",
+    "area": "data",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:data"
+    ],
+    "note": {
+      "summary": "This backlog story researches Camrose and other municipalities one program at a time. Local transit and recreation rules must remain distinct because similar programs can differ materially.",
+      "goal": "Verify each municipality program against that city's own official source without carrying over another city's rules.",
+      "whyItMatters": "Cloned municipal assumptions can invent benefits, exclusions, prices or coverage that do not exist.",
+      "filesToTouch": "TBD — verify against official source on the day",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, ROADMAP.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "ROADMAP priority 3. Never clone another city's policy. Calgary's \"75% off recreation\" was invented and the 2026-07-28 sweep proved Calgary was the outlier, not the pattern — `medicinehat-fair-entry`, `grandeprairie-aish-pass`, `airdrie-fair-access`, `surrey-leisure-access` and `aadl` were all correct; `woodbuffalo-lift` had one error fixed (official is \"10 and 25-ride passes\", the record said 20-ride in `detail.about` while its own tip already said 25).",
+      "doneWhen": [
+        "each municipality is researched program by program against its own city source",
+        "no rule is carried over from another city"
+      ],
+      "priorityRationale": "Low because ROADMAP places this municipal sweep at priority 3.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md",
+      "ROADMAP.md"
+    ]
+  },
+  {
+    "key": "AF-S0106",
+    "level": "story",
+    "parentKey": "AF-E01",
+    "title": "[DATA] Hold AISH/ADAP signer guidance until Alberta publishes an official list",
+    "area": "data",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:data",
+      "type:decision"
+    ],
+    "note": {
+      "summary": "This backlog decision records a hold on exhaustive AISH/ADAP signer-profession guidance. Existing CPP-D and parking-placard guidance may remain because those lists have official support.",
+      "goal": "Keep exhaustive AISH/ADAP signer-profession guidance unpublished until Alberta provides an official list.",
+      "whyItMatters": "The hold prevents unsupported professional guidance from being presented as official.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Do not publish an exhaustive AISH/ADAP signer-profession list until Alberta provides one. AGENTS.md priority 3 states the same. Move the ticket only when Alberta publishes an official list.",
+      "doneWhen": [
+        "the ticket records the hold",
+        "the ticket moves only when Alberta publishes an official list"
+      ],
+      "priorityRationale": "Low because AGENTS.md places the hold at priority 3.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md",
+      "AGENTS.md"
+    ]
+  },
+  {
+    "key": "AF-S0201",
+    "level": "story",
+    "parentKey": "AF-E02",
+    "title": "[SCOPE] Decide where the PharmaCare Plan B long-term-care warning belongs",
+    "area": "research",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:research",
+      "type:decision",
+      "needs-owner-decision"
+    ],
+    "note": {
+      "summary": "This backlog decision concerns Plan B, which was verified 2026-07-29 but deliberately not built. The unresolved question is where to place the warning that a facility's Plan B registration should be checked before moving in.",
+      "goal": "Record an owner decision on where the Plan B warning lives or that it is not carried.",
+      "whyItMatters": "The questionnaire does not ask whether someone lives in long-term care, and no existing record provides a natural attachment point.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Verified facts: 100% of eligible prescription drugs and medical supplies for permanent residents of licensed long-term care facilities registered with Plan B; coverage is automatic on becoming a permanent resident, so like Plan F it has no application of its own; not all facilities are registered and the province suggests asking before moving in; it does not apply to extended-care, acute-care, multi-level or assisted-living facilities, nor to short-term or respite stays. The questionnaire never asks whether someone lives in long-term care, and there is no existing record to attach this to the way Plan F attached to `bc-at-home-medical`. Do not build before the scope decision.",
+      "doneWhen": [
+        "an owner decision records where the warning lives, or that it is not carried"
+      ],
+      "priorityRationale": "Medium because the content is verified but needs an owner scope decision before it is built.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0202",
+    "level": "story",
+    "parentKey": "AF-E02",
+    "title": "[SCOPE] Decide whether provincial child/family benefits are in scope",
+    "area": "research",
+    "priority": 2,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:research",
+      "type:decision",
+      "needs-owner-decision"
+    ],
+    "note": {
+      "summary": "This backlog decision asks whether the Alberta Child and Family Benefit and the B.C. Family Benefit belong in the catalogue. Both are income-based rather than disability-based, so ROADMAP treats them as scope questions rather than gaps.",
+      "goal": "Record an owner decision on whether provincial child/family benefits are in scope.",
+      "whyItMatters": "A clear decision prevents income-based family benefits from being repeatedly treated as missing disability coverage.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, ROADMAP.md",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Treat the Alberta Child and Family Benefit and the B.C. Family Benefit as scope questions rather than confirmed gaps until the owner decides.",
+      "doneWhen": [
+        "an owner decision is recorded either way",
+        "ROADMAP's \"Scope questions rather than gaps\" entry reflects the decision"
+      ],
+      "priorityRationale": "Medium because the remaining work is an owner scope choice, not additional research.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md",
+      "ROADMAP.md"
+    ]
+  },
+  {
+    "key": "AF-S0203",
+    "level": "story",
+    "parentKey": "AF-E02",
+    "title": "[SCOPE] PharmaCare Plan X stays closed — do not re-open",
+    "area": "research",
+    "priority": 1,
+    "status": "Done",
+    "tags": [
+      "type:story",
+      "area:research",
+      "type:decision"
+    ],
+    "note": {
+      "summary": "This decision story is already closed as out of scope 2026-07-29 by owner decision. It remains on the board so Plan X is not re-opened on the mistaken premise that its enrolment route is unclear.",
+      "goal": "Keep PharmaCare Plan X closed unless condition-specific records deliberately enter scope.",
+      "whyItMatters": "The record preserves the actual scope reason and prevents settled work from being repeated.",
+      "filesToTouch": "none — decision ticket",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "Plan X has a real enrolment route: PharmaCare \"cannot determine eligibility for the program or enrol individuals in it\", and the BC Centre for Excellence in HIV/AIDS Drug Treatment Program does. It was excluded because it is condition-specific rather than disability-based, not because the route is unclear. If condition-specific records ever come into scope, re-verify against `bccfe.ca` — the `gov.bc.ca` page is a 2012 policy-manual entry last updated March 2025.",
+      "doneWhen": [
+        "the owner's out-of-scope decision from 2026-07-29 remains discoverable from the board"
+      ],
+      "priorityRationale": "Low because the scope decision is already closed and exists only to prevent re-opening.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  },
+  {
+    "key": "AF-S0204",
+    "level": "story",
+    "parentKey": "AF-E02",
+    "title": "[PROCESS] Check the catalogue by record id before recording a coverage gap",
+    "area": "research",
+    "priority": 1,
+    "status": "Backlog",
+    "tags": [
+      "type:story",
+      "area:research"
+    ],
+    "note": {
+      "summary": "This backlog story makes catalogue lookup a required step before recording any new coverage gap. A 2026-07-29 re-audit found that five gap entries had been written without first reading the record that already covered them.",
+      "goal": "Require record-id and keyword checks in `public/data.js` before any new coverage-gap entry.",
+      "whyItMatters": "The check prevents duplicate research and false gap claims about coverage that already exists.",
+      "filesToTouch": "public/data.js",
+      "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, public/data.js",
+      "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
+      "constraints": "The five mistaken gaps were B.C. MSP Supplementary Benefits (shipped 2026-07-28 in `7b8e9db`), PharmaCare Plan P (shipped 2026-07-29), Plan F (no application of its own; MCFD submits the information, so it arrives with At Home Program enrolment), the B.C. annual earnings exemption (already in `bc-disability-assistance-pwd`'s note), and Plan S. The 2026-07-29 re-audit checked every remaining open item against `public/data.js` by record id and by keyword. Standalone per-plan PharmaCare URLs are unreliable — the Plan P one 404s — so read the section anchors on the `who-we-cover` hub instead.",
+      "doneWhen": [
+        "the record-id and keyword check is stated as a required step before any new coverage-gap entry"
+      ],
+      "priorityRationale": "Low because this is a preventive process rule after the existing false gaps were identified.",
+      "detailedActivity": "",
+      "handoff": ""
+    },
+    "dependsOnKeys": [],
+    "sources": [
+      "REMAINING-WORK.md"
+    ]
+  }
+]
