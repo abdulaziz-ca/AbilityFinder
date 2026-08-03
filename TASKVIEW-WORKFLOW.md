@@ -4,11 +4,34 @@ This is the authoritative shared workflow for Claude Code and Codex whenever wor
 
 ## Project and lifecycle
 
-- TaskView project: **AbilityFinder** at `http://localhost:8888/org-fbbce12c/2/-1401`. The local UI is `http://localhost:8888`; the API/MCP URL is `http://localhost:1725`.
+- TaskView project: **Ability Finder**, `goalId = 3`, at `http://localhost:8888/org-fbbce12c/3/-1401`. The local UI is `http://localhost:8888`; the API/MCP URL is `http://localhost:1725`. (`goalId = 2` is the retired "Kanban Setup" scratch board — leave it alone.)
 - TaskView’s built-in **Inbox** is the untriaged capture area only; it is separate from the project board and is not a project status.
 - Project board lifecycle, in order: **Backlog → Ready → In Progress → Blocked → Review → Verification → Done**. **Cancelled** is a terminal alternative, not a success state.
 - Use full, linked child tasks for independently assignable work. Use lightweight native subtasks only as checklists within one owner’s task; checklist items are not substitutes for ownership, status, dependencies, or evidence.
 - Identify the acting agent with exactly one identity tag: `agent:claude` or `agent:codex`. Keep identity separate from status, priority, and domain tags.
+
+## Board composition and integrations (verified 2026-08-02)
+
+- Board: project **Ability Finder**, `goalId = 3`, `http://localhost:8888/org-fbbce12c/3/-1401`.
+- Composition: **15 epics + 79 stories + 9 subtasks = 103 tickets**. Every ticket carries a `<!-- spec-key: AF-… -->` marker; it is the idempotency anchor and must never be edited or removed.
+- Graph: **104 edges = 88 automatic parent/child edges + 16 explicit dependency edges**. Parent/child edges are generated from `parentId`; `add_task_dependency` is used only for prerequisites that are *not* parent/child.
+- GitHub: the **58 eligible tickets** (49 stories + 9 subtasks, none of them Done) are linked reciprocally to issues **#2–#59** in `abdulaziz-ca/AbilityFinder`. Epics and rolled-up history (Done) tickets deliberately have no issues. Each ticket note carries its issue URL and branch `taskview-<id>-<slug>`; each issue body carries `<!-- taskview-spec-key: KEY -->` and `<!-- taskview-task-id: N -->`, and its PR says `Closes #N`.
+- Tooling: the `gh` CLI (2.97.0) is installed and authenticated as `abdulaziz-ca`. It is the supported route for GitHub work on this board.
+- Slack: connected to `goalId 3`, channel `#ability-finder`, with exactly two lifecycle events enabled — **Task status changed** and **Task completed** — and all other lifecycle events disabled. **PRODUCT-LIMIT-01 (owner-accepted 2026-08-02):** TaskView exposes lifecycle-event toggles, not per-workflow-state toggles, so notifications **cannot** be filtered to only Blocked / Review / Verification / Done. The enabled pair is a deliberately accepted superset that also fires on Backlog, Ready, In Progress and Cancelled transitions. End-to-end delivery is **unverified** and stays so until a real lifecycle event occurs naturally.
+
+### Reading the board programmatically
+
+- `list_tasks` returns **top-level tickets only** — on this board, the 15 epics. Stories and subtasks are reached through their parent, so a full roster requires **recursive `get_task` traversal**; depth-2 subtasks are visible no other way.
+- `showCompleted` is **exclusive, not additive**: the `false` pass and the `true` pass return disjoint sets. A complete roster is the **union of both passes**, de-duplicated by task id.
+- A parent's `get_task` payload reports child tags as `[]`. Re-read the child to get its real tags.
+
+### Note template (every ticket, in this order)
+
+`## Summary` → `## Context block — a fresh agent starts here` → `## Detailed activity` → `## Handoff` → the `<!-- spec-key: AF-… -->` marker last.
+
+The context block carries, in order: **Goal**, **Why it matters**, **Files to touch**, **Read exactly this and nothing more**, **Do NOT read**, **Constraints**, **Done when**, **Priority** plus a one-line rationale, **Parent / Children / Blocked by**, and **GitHub** (issue URL · branch · PR).
+
+**Handoff convention:** an agent appends `## Handoff` when it finishes *or* when it is running low on context, written so the next chat needs nothing else — **Done so far**, **Left to do**, **Next concrete command / step**, **Gotchas found**, **Revision** (git SHA / branch), and **Board state**.
 
 ## Creating tickets: search before you create
 

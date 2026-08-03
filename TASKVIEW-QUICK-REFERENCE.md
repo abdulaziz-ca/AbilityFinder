@@ -5,6 +5,23 @@ which remains authoritative — if anything here ever disagrees with it (or with
 `AGENTS.md` for product/safety/architecture matters), the source document wins,
 not this one. When in doubt, open `TASKVIEW-WORKFLOW.md`.
 
+## Board at a glance (verified 2026-08-02)
+
+| Thing | Value |
+|---|---|
+| Board | **Ability Finder**, `goalId = 3` — http://localhost:8888/org-fbbce12c/3/-1401 |
+| Tickets | 15 epics + 79 stories + 9 subtasks = **103** |
+| Graph edges | 88 automatic parent/child + 16 explicit = **104** |
+| GitHub | 58 eligible tickets ↔ issues **#2–#59** in `abdulaziz-ca/AbilityFinder` (no issues for epics or Done tickets) |
+| `gh` CLI | **2.97.0, installed and authenticated** as `abdulaziz-ca` |
+| Slack | `#ability-finder`, exactly **Task status changed** + **Task completed**; delivery **unverified** |
+
+**PRODUCT-LIMIT-01:** TaskView's Slack integration toggles *lifecycle events*, not workflow states, so it **cannot** be filtered to only Blocked / Review / Verification / Done. The two enabled events are an owner-accepted superset that also fires on Backlog, Ready, In Progress and Cancelled.
+
+**Reading the board:** `list_tasks` returns top-level tickets only (the epics) — full rosters need **recursive `get_task`** for depth-2 subtasks. `showCompleted` is **exclusive**, so union the `false` and `true` passes and de-duplicate by id.
+
+**Note template order:** `## Summary` → `## Context block` → `## Detailed activity` → `## Handoff` → `<!-- spec-key: AF-… -->` last. Handoff records Done so far / Left to do / Next concrete step / Gotchas / Revision + board state, and is appended on finish **or** when running low on context.
+
 ## Board lifecycle
 
 ```

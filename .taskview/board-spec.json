@@ -2562,7 +2562,7 @@
       "filesToTouch": "TBD — verify against official source on the day",
       "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, .taskview/BOARD-BUILD-PROMPT.md",
       "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
-      "constraints": "Every open story and subtask gets a matching issue whose body carries the TaskView id and URL, and whose ticket note carries the issue URL; branch convention taskview-<id>-<slug>; the PR says Closes #N; no issues for the rolled-up history tickets; gh CLI is not installed — use the Codex agent's browser, or install gh and ask the owner to authenticate; mark Done only after the PR is merged and verification passes.",
+      "constraints": "Every open story and subtask gets a matching issue whose body carries the TaskView id and URL, and whose ticket note carries the issue URL; branch convention taskview-<id>-<slug>; the PR says Closes #N; no issues for the rolled-up history tickets; the gh CLI 2.97.0 is installed and authenticated as abdulaziz-ca, and Phase 6 used it to create all 58 issues; mark Done only after the PR is merged and verification passes.",
       "doneWhen": [
         "Every open ticket has an issue URL.",
         "Every issue maps back to a ticket."
@@ -2625,18 +2625,19 @@
       "area:ops"
     ],
     "note": {
-      "summary": "Slack is the notification layer only and must never hold essential project context. Notifications are needed for Blocked, Review, Verification and Done for this board only, after a stable HTTPS callback exists.",
-      "goal": "Configure and observe Slack notifications for Blocked, Review, Verification and Done on this board only.",
+      "summary": "Slack is the notification layer only and must never hold essential project context. Configured 2026-08-02 on goalId 3, posting to #ability-finder with exactly two lifecycle events enabled — Task status changed and Task completed. Per PRODUCT-LIMIT-01 TaskView cannot filter to Blocked / Review / Verification / Done, so this two-event set is an owner-accepted superset; end-to-end delivery remains unverified.",
+      "goal": "Configure Slack notifications for this board only, approximating Blocked / Review / Verification / Done with the two lifecycle events TaskView actually supports.",
       "whyItMatters": "Slack can notify without becoming the store for essential project context.",
       "filesToTouch": "TBD — verify against official source on the day",
       "readExactly": "AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket, .taskview/BOARD-BUILD-PROMPT.md",
       "doNotRead": "AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/",
-      "constraints": "Slack is the notification layer only; never store essential project context in Slack; notify on Blocked, Review, Verification and Done for this board only; do not proceed without AF-S1402; if AF-S1402 is unresolved, keep this ticket Blocked rather than treating blocker evidence as completion.",
+      "constraints": "Slack is the notification layer only; never store essential project context in Slack; configure notifications for this board only; PRODUCT-LIMIT-01 (accepted by owner 2026-08-02) — TaskView's Slack integration exposes lifecycle-event toggles, not per-workflow-state toggles, so notifications cannot be filtered to only Blocked, Review, Verification and Done: \"Task status changed\" fires on every transition including Backlog, Ready, In Progress and Cancelled, and the enabled two-event set is a deliberately accepted superset; end-to-end Slack delivery is not claimed and stays unverified until a real lifecycle event occurs naturally; do not proceed without AF-S1402; if AF-S1402 is unresolved, keep this ticket Blocked rather than treating blocker evidence as completion.",
       "doneWhen": [
-        "A Blocked notification for this board is observed and recorded.",
-        "A Review notification for this board is observed and recorded.",
-        "A Verification notification for this board is observed and recorded.",
-        "A Done notification for this board is observed and recorded.",
+        "The Slack integration is connected to goalId 3 and posts to channel #ability-finder.",
+        "Exactly two lifecycle events are enabled — Task status changed and Task completed — and every other lifecycle event in TaskView's 30-event catalogue is disabled.",
+        "The configuration persists after a full page reload.",
+        "PRODUCT-LIMIT-01 is recorded on this ticket: TaskView cannot filter these events to only Blocked, Review, Verification and Done.",
+        "UNVERIFIED — a real transition into Blocked, Review, Verification or Done is observed producing a message in #ability-finder. End-to-end delivery is not claimed and remains unverified until such a lifecycle event occurs naturally.",
         "The recorded notification evidence contains no essential project context stored only in Slack."
       ],
       "priorityRationale": "Priority 2 because this is required board-integration work that must be configured and verified after the callback prerequisite is met.",

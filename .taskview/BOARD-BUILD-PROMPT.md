@@ -25,7 +25,7 @@ the read-list for your phase.
 | Existing columns on goal 3 | `18 TODO`, `19 In Progress`, `20 Done` |
 | Old scratch board | "Kanban Setup", `goalId = 2` — **leave it entirely alone.** Do not read, copy, move, or delete anything on it |
 | TaskView UI | `http://localhost:8888` · API/MCP `http://localhost:1725` |
-| `gh` CLI | **not installed.** Use the Codex agent's browser for GitHub, or install `gh` first and ask the user to authenticate |
+| `gh` CLI | **2.97.0, installed and authenticated** as `abdulaziz-ca`. It is the supported route for GitHub work on this board |
 
 **Known stale pointer:** `.taskview/policy.json` has `"project_id": 2` and
 `"project_url": ".../org-fbbce12c/2/-1401"`. Board 2 is now the scratch board.

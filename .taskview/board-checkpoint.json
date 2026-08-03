@@ -6,8 +6,8 @@
     "goalId": 3,
     "goalName": "Ability Finder"
   },
-  "phase": 7,
-  "batch": 27,
+  "phase": 8,
+  "batch": 29,
   "keyToTaskId": {
     "AF-E01": 26,
     "AF-E02": 27,
@@ -114,6 +114,41 @@
     "AF-T14062": 128
   },
   "completed": [
+    {
+      "phase": 7,
+      "name": "Slack notifications",
+      "status": "completed",
+      "date": "2026-08-02",
+      "configured": {
+        "channel": "#ability-finder",
+        "goalId": 3,
+        "events": [
+          "Task status changed",
+          "Task completed"
+        ],
+        "eventCount": 2
+      },
+      "evidence": {
+        "result": "PASS on every verifiable condition; ONE condition unverifiable by product limitation.",
+        "slackConnected": "PASS - integration present and enabled on the Project tab.",
+        "goalId3": "PASS - the page's own request is GET /module/messaging/project?goalId=3.",
+        "channel": "PASS - #ability-finder.",
+        "exactlyTwoEvents": "PASS - verified across the FULL 30-event catalogue (all five categories expanded) immediately before Save, and re-verified after a full page reload: exactly 'Task status changed' and 'Task completed' are ON, all 28 others OFF. Badge reads '2 events'.",
+        "persistence": "PASS - the 2-event state survived a fresh page load, so it is saved server-side and not merely local UI state.",
+        "callbackReachable": "PASS - https://taskview.abilityfinder.ca/module/messaging/slack/oauth/callback returns HTTP 302 with x-taskview-gateway-route: callback. Negative control unchanged: /org-fbbce12c/3/-1401 still 404s publicly, so the board stays private.",
+        "stackHealth": "PASS - all four containers healthy, cloudflared PID 52753 running.",
+        "testMessageArrives": "NOT VERIFIED - see integrationNativeTest below. This is the single unmet acceptance item and is NOT being claimed as passed."
+      },
+      "limitation": {
+        "id": "PRODUCT-LIMIT-01",
+        "statement": "TaskView's Slack integration exposes LIFECYCLE-EVENT toggles, not per-workflow-state toggles. Its catalogue is 30 events across Tasks, Sprints, Members, Time tracking and Recurring rules, and contains no Blocked, Review, Verification or Done switch.",
+        "consequence": "Notifications CANNOT be filtered to exactly Blocked, Review, Verification and Done. 'Task status changed' fires on EVERY transition, including Backlog, Ready, In Progress and Cancelled; 'Task completed' tracks the complete flag.",
+        "approvedApproximation": "Enable only Task status changed + Task completed. This is a superset of the four target states, deliberately accepted by the owner.",
+        "explicitlyNotClaimed": "It is NOT claimed that TaskView filters to the four states. No Slack-side workflow filter was added, per owner instruction, so no unverified downstream filtering is asserted either.",
+        "status": "ACCEPTED BY OWNER 2026-08-02"
+      },
+      "unverified": "End-to-end Slack delivery was never observed - TaskView has no native test and status changes were forbidden."
+    },
     {
       "phase": 6,
       "name": "GitHub sync",
@@ -1050,6 +1085,26 @@
       },
       "evidence": "Spec reviewed by the other agent identity across 5 slices against REMAINING-WORK.md, ROADMAP.md, WEBSITE-PROJECT-TRACKER.md, AGENTS.md and the build brief. 94 findings returned (17 high). All applied except one rejected as factually wrong (a reviewer claimed the stale board URL in TASKVIEW-WORKFLOW.md was invented; that file genuinely contains http://localhost:8888/org-fbbce12c/2/-1401). Re-verified by script: no duplicate keys, no orphan parents, all 7 dependency edges resolve, every ticket has a full context block and a non-empty doneWhen, and the banned invented-count strings return zero hits.",
       "ownerApproval": "Approved 2026-08-01. Nothing was created in TaskView during Phase 0."
+    },
+    {
+      "phase": 8,
+      "name": "Verify & document",
+      "status": "completed",
+      "date": "2026-08-02",
+      "correctionsApplied": [
+        "P8-01",
+        "P8-02"
+      ],
+      "auditResult": "PASS on all eight checks",
+      "counts": {
+        "tickets": 103,
+        "epics": 15,
+        "stories": 79,
+        "subtasks": 9,
+        "graphEdges": 104,
+        "gitHubIssues": 58
+      },
+      "boardUrl": "http://localhost:8888/org-fbbce12c/3/-1401"
     }
   ],
   "notes": [
@@ -1085,7 +1140,12 @@
     "PHASE 6 BATCH 3 COMPLETE 2026-08-02: issues 21-30 of 58 created as GitHub #22-#31 (AF-S0502..AF-S0808). Gate PASS both directions for all 30 cumulative pairs, with cumulative marker uniqueness verified on BOTH marker families - 30 distinct spec-key markers and 30 distinct taskview-task-id markers, zero duplicates, issue numbers contiguous #2-#31. Each note changed by EXACTLY ONE line; exactly the 10 batch-3 tickets moved; zero field drift; 103 mappings intact. AF-S0805 (#78) was the first synced ticket carrying a Phase 4 child-index table and it survived the single-line patch with all three child deep links intact. INCIDENT, recovered: a sed edit to a cosmetic progress label broke an f-string, so AF-S0502's issue #22 was created but its checkpoint write aborted. The script was repaired, #22 was re-read from GitHub and checkpointed before any further work, and a marker query confirmed exactly one AF-S0502 issue exists - no duplicate. 28 eligible entries remain; resume at AF-S0901 (#82), position 31 of 58. Phase 7 not started; no commit made or pushed.",
     "PHASE 6 BATCH 4 COMPLETE 2026-08-02: issues 31-40 of 58 created as GitHub #32-#41 (AF-S0901..AF-S1201). Gate PASS both directions for all 40 cumulative pairs. Cumulative uniqueness holds on both marker families - 40 distinct spec-key markers and 40 distinct taskview-task-id markers, zero duplicates, issue numbers contiguous #2-#41 - and every checkpoint (key, taskId, issueNumber) triple was cross-checked against the live issue body with zero mismatches. Each note changed by EXACTLY ONE line; exactly the 10 batch-4 tickets moved; zero field drift; 103 mappings intact. Per instruction the creation script was left untouched this batch, proven by an md5 recorded before the first create and re-verified after the last. 18 eligible entries remain ({'story': 9, 'subtask': 9}); resume at AF-S1301 (#94), position 41 of 58. Phase 7 not started; no commit made or pushed.",
     "PHASE 6 BATCH 5 COMPLETE 2026-08-02: issues 41-50 of 58 created as GitHub #42-#51. MILESTONE - all 49 eligible STORIES now have issues; the remaining 8 entries are all Phase 4 subtasks. First subtask synced: AF-T01031 (#120) -> issue #51, whose body carries a Parent story line plus <!-- taskview-parent-key: AF-S0103 --> and <!-- taskview-parent-task-id: 43 -->. Two subtask-specific findings recorded: subtasks are depth-2 and INVISIBLE to list_tasks, so their notes must come from get_task, not the board sweep; and the parent must not be touched - proven for #43, whose note is byte-identical before and after with its child-index table and both child deep links intact. Gate PASS both directions for all 50 cumulative pairs: 50 distinct spec-key markers and 50 distinct task-id markers, zero duplicates, issues contiguous #2-#51, zero checkpoint/GitHub mismatches, zero field drift, 103 mappings intact. NOTE for the owner: AF-S1408 requires WEBSITE-PROJECT-TRACKER.md stay untracked, which confirms excluding it from both milestone commits was correct. 8 subtasks remain; resume at AF-T01032 (#121), position 51 of 58 - the final batch. Phase 7 not started; no commit made or pushed.",
-    "PHASE 6 COMPLETE 2026-08-02: all 58 eligible entries (49 open stories + 9 subtasks) now have GitHub issues #2-#59 on abdulaziz-ca/AbilityFinder, created across six batches. Gate PASS on every required condition: exactly 58 distinct spec-key markers and 58 distinct taskview-task-id markers with zero duplicates; the marker set equals the eligible set exactly; reciprocal links verified on all 58 tickets; ZERO issues for any of the 15 epics or any of the 30 Done tickets; issues contiguous #2-#59; zero checkpoint/GitHub mismatches. The final 8 were depth-2 subtasks fetched with get_task because list_tasks cannot see them, and all four parents (#43,#78,#99,#101) are byte-identical to baseline with child-index tables intact. All 9 subtask issues carry parent identification via a Parent story line and two parent markers. Zero board-wide field drift; 103 mappings intact. Phase 8 correction item P8-01 recorded, NOT actioned: AF-S1401's constraint text still says gh is not installed, which is stale now that gh 2.97.0 is authenticated and was used for this entire phase. Checkpoint advanced to Phase 7 (Slack notifications); Phase 7 NOT started, no commit made, nothing pushed."
+    "PHASE 6 COMPLETE 2026-08-02: all 58 eligible entries (49 open stories + 9 subtasks) now have GitHub issues #2-#59 on abdulaziz-ca/AbilityFinder, created across six batches. Gate PASS on every required condition: exactly 58 distinct spec-key markers and 58 distinct taskview-task-id markers with zero duplicates; the marker set equals the eligible set exactly; reciprocal links verified on all 58 tickets; ZERO issues for any of the 15 epics or any of the 30 Done tickets; issues contiguous #2-#59; zero checkpoint/GitHub mismatches. The final 8 were depth-2 subtasks fetched with get_task because list_tasks cannot see them, and all four parents (#43,#78,#99,#101) are byte-identical to baseline with child-index tables intact. All 9 subtask issues carry parent identification via a Parent story line and two parent markers. Zero board-wide field drift; 103 mappings intact. Phase 8 correction item P8-01 recorded, NOT actioned: AF-S1401's constraint text still says gh is not installed, which is stale now that gh 2.97.0 is authenticated and was used for this entire phase. Checkpoint advanced to Phase 7 (Slack notifications); Phase 7 NOT started, no commit made, nothing pushed.",
+    "PHASE 7 BLOCKED AT AUTHORIZATION 2026-08-02: infrastructure preflight PASSED but nothing was configured and nothing was mutated. Verified: TaskView UI 200, all four Docker containers healthy, cloudflared PID 52753 supervised by launchd as com.abilityfinder.taskview-tunnel, and https://taskview.abilityfinder.ca live. IMPORTANT CORRECTION: the public root's HTTP 404 is intentional, not a fault - nginx/gateway.conf is a deliberate allowlist exposing ONLY the Slack and GitHub OAuth/callback/command routes, so the board and app shell stay private; probes of /, /org-fbbce12c/3/-1401 and /module/tasks all correctly 404 while the three Slack routes answer 401/302/401 with an x-taskview-gateway-route:callback header. The Slack callback route is https://taskview.abilityfinder.ca/module/messaging/slack/oauth/callback. AF-S1402 (#97/issue #44) and AF-S1403 (#98/issue #45) confirmed as the existing enabling stories - no new ticket created - and the tunnel now demonstrably satisfies AF-S1402's criteria, though its status was deliberately left unchanged. BLOCKER: TaskView's own web session expired and /org-fbbce12c/3/messaging redirects to sign-in; Slack config lives only in that UI and the TaskView MCP server exposes no messaging/integration tools, so there is no API path. No credentials were entered. Availability limitation recorded: the callback only works while the Mac is awake, Docker is running and the tunnel is up - the host already slept mid-run once in Phase 3 - so Slack delivery is best-effort and messages raised while offline may be lost rather than queued. All 103 mappings and all 58 Phase 6 GitHub links preserved and unmodified. Checkpoint NOT advanced; Phase 8 not started.",
+    "PHASE 7 VERIFICATION FAILED 2026-08-02: the owner reported Slack authorized, but the integration does not exist on goal 3. The TaskView sign-in blocker IS cleared - the Messengers page now renders as the signed-in owner - but with the Project tab selected it reads 'No project integrations yet', and the page's own GET /module/messaging/project?goalId=3 returned HTTP 200 with an EMPTY list, which is positive confirmation of absence. Corroborating: 6h of gateway access logs show every hit to the Slack oauth start/callback routes came from this session's own curl probes or the Claude Electron browser - there is no OAuth traffic from an ordinary browser and none from Slack, so no authorization round-trip ever reached this instance. Noted honestly: the api container logs no HTTP requests, so its silence was NOT used as evidence. Most likely the Slack app was created/installed in Slack's admin UI without completing TaskView's Connect flow, which is the step that writes the project integration. The Connect button was deliberately not clicked - starting OAuth is the owner's action. Phase 7 remains INCOMPLETE, checkpoint NOT advanced, nothing mutated, no credential touched. All 103 mappings and 58 Phase 6 links intact.",
+    "PHASE 7 RE-VERIFICATION 2026-08-02: Slack IS now connected on goal 3 - channel #ability-finder, provider Slack, connection enabled, bound to goalId 3, callback unchanged and reachable. BUT the phase gate CANNOT pass as specified. Blocking finding: TaskView's Slack integration fires on TASK LIFECYCLE EVENTS, not workflow states. The full catalogue is 30 events across Tasks/Sprints/Members/Time tracking/Recurring rules, and it contains NO Blocked, Review, Verification or Done toggle. The nearest primitives are 'Task status changed', which fires on every transition including Backlog/Ready/In Progress/Cancelled, and 'Task completed'. So 'exactly these four workflow states' is not expressible in this product; a four-state restriction must be done Slack-side or accepted as broader than spec. Current state is 5 events ON - created, assigned, status changed, completed, deleted - of which created, assigned and deleted are outside anything requested. Left exactly as found: the dialog was opened read-only, expanded to enumerate the catalogue, then Cancelled and Escaped; Save was never pressed and the badge still reads 5 events. No integration-native test was run because it would post to #ability-finder under an unapproved configuration. No ticket status was changed to force a test. Checkpoint NOT advanced; four options recorded for owner decision. 103 mappings and 58 Phase 6 links intact.",
+    "PHASE 7 COMPLETE 2026-08-02 (owner-approved approximation): the Slack connection on goal 3 / #ability-finder was narrowed from 5 events to exactly 2 - Task status changed and Task completed - by disabling Task created, Task assigned and Task deleted. Verified across the FULL 30-event catalogue with all five categories expanded immediately before Save, and re-verified after a full page reload, so the state is persisted server-side, not local UI state. Callback still returns 302 with x-taskview-gateway-route: callback, the board still 404s publicly, all four containers healthy, cloudflared PID 52753 up. OWNER-APPROVED LIMITATION PRODUCT-LIMIT-01 recorded: TaskView exposes lifecycle-event toggles, not per-workflow-state toggles, so notifications are a deliberate SUPERSET that also fires on Backlog, Ready, In Progress and Cancelled; it is explicitly NOT claimed that TaskView filters to the four states, and no unverified Slack-side filter was added. ONE ACCEPTANCE ITEM IS UNMET AND NOT CLAIMED: end-to-end delivery was never observed. TaskView provides no integration-native test - the card has only Events/Disconnect/two switches and the messaging chunk contains zero test/ping/preview references and one endpoint - and triggering a real event would have required a forbidden status change. Outbound delivery goes straight to slack.com and never traverses the tunnel, so the gateway log can never evidence it; the next genuine transition will. Phase 8 correction item P8-02 added with exact replacement wording for AF-S1403's four unsatisfiable doneWhen items, to be synchronised across board-spec.json, task #98 and issue #45. Checkpoint advanced to Phase 8; Phase 8 NOT started, no ticket status changed, no credential exposed, nothing pushed.",
+    "PHASE 8 COMPLETE 2026-08-02: applied corrections P8-01 (gh CLI 2.97.0 is installed and authenticated; stale 'not installed' claim removed) and P8-02 (four impossible per-workflow-state Slack criteria replaced with six achievable lifecycle-event criteria, PRODUCT-LIMIT-01 retained, end-to-end delivery recorded as UNVERIFIED) consistently across board-spec.json, TaskView tasks 96 and 98, and GitHub issues 43 and 45. Updated TASKVIEW-WORKFLOW.md (repointed goalId 2 -> 3 and added the board composition/integrations section) and TASKVIEW-QUICK-REFERENCE.md (board-at-a-glance table). Final read-only audit against the live board, GitHub, the spec and this checkpoint PASSED all eight checks: 103 unique mappings; 15/79/9 hierarchy with correct parentage; no duplicate keys, orphan parents or unresolved dependencies; 32 Done tickets all with complete=true, Done column and dateComplete; 104 graph edges = 88 parent/child + 16 explicit; 58 reciprocal GitHub mappings over issues #2-#59 with none on epics or Done tickets; priorities, statuses, tags, notes, context, doneWhen, markers and links all intact. Slack is represented honestly as configured but delivery-unverified. No credential or token value was printed, inspected, logged or stored at any point."
   ],
   "conventions": {
     "doneTickets": {
@@ -2204,7 +2264,245 @@
       "issue": "Its Constraints line still reads 'gh CLI is not installed - use the Codex agent's browser, or install gh and ask the owner to authenticate'. That is now stale: gh 2.97.0 is installed and authenticated as abdulaziz-ca with the 'repo' scope, and Phase 6 used it to create all 58 issues.",
       "action": "Correct the constraint text in both the TaskView note and GitHub issue #43 to record the actual tooling route used.",
       "deferredBecause": "Phase 6's authorised note edit was the GitHub line only. Recorded here rather than changed now, per owner instruction.",
-      "status": "OPEN"
+      "status": "APPLIED",
+      "appliedDate": "2026-08-02",
+      "appliedTo": [
+        "board-spec.json entry AF-S1401 note.constraints",
+        "TaskView task 96 note",
+        "GitHub issue 43 body"
+      ],
+      "correction": "Removed the stale claim that the gh CLI is not installed. Replaced with: the gh CLI 2.97.0 is installed and authenticated as abdulaziz-ca, and Phase 6 used it to create all 58 issues. No credential or token value was printed, inspected, logged or stored at any point."
+    },
+    {
+      "id": "P8-02",
+      "raisedBy": "Phase 7, 2026-08-02",
+      "target": "AF-S1403 (TaskView #98, GitHub issue #45) and its board-spec.json entry",
+      "issue": "AF-S1403's acceptance criteria require observing a Blocked, a Review, a Verification and a Done notification as four separately recorded events. TaskView cannot emit per-state notifications, so those criteria can never be satisfied literally.",
+      "exactWordingCorrection": {
+        "replaceTheseFourDoneWhenItems": [
+          "A Blocked notification for this board is observed and recorded.",
+          "A Review notification for this board is observed and recorded.",
+          "A Verification notification for this board is observed and recorded.",
+          "A Done notification for this board is observed and recorded."
+        ],
+        "withTheseThree": [
+          "The Slack connection for goal 3 posts to #ability-finder with exactly two lifecycle events enabled: Task status changed and Task completed.",
+          "A recorded observation confirms that a real transition into Blocked, Review, Verification or Done produced a message in #ability-finder.",
+          "The ticket records the accepted product limitation: TaskView exposes lifecycle-event toggles rather than per-workflow-state toggles, so notifications are a superset that also fires on Backlog, Ready, In Progress and Cancelled transitions."
+        ],
+        "keepUnchanged": "The recorded notification evidence contains no essential project context stored only in Slack."
+      },
+      "synchronisationTargets": [
+        "`.taskview/board-spec.json` entry AF-S1403",
+        "TaskView note on task #98",
+        "GitHub issue #45 body"
+      ],
+      "status": "APPLIED",
+      "appliedDate": "2026-08-02",
+      "appliedTo": [
+        "board-spec.json entry AF-S1403 note.summary, note.goal, note.constraints and note.doneWhen",
+        "TaskView task 98 note",
+        "GitHub issue 45 body"
+      ],
+      "correction": "Replaced the four impossible per-workflow-state acceptance criteria with six achievable lifecycle-event criteria: integration connected to goalId 3; channel #ability-finder; exactly Task status changed and Task completed enabled with all other lifecycle events disabled; configuration persists after reload; PRODUCT-LIMIT-01 recorded; and an explicitly UNVERIFIED end-to-end delivery criterion. PRODUCT-LIMIT-01 is retained verbatim in intent: TaskView cannot filter these events to only Blocked, Review, Verification and Done. End-to-end Slack delivery is NOT claimed as verified and stays unverified until a real lifecycle event occurs naturally."
     }
-  ]
+  ],
+  "phase7Progress": {
+    "status": "CONFIGURED AND VERIFIED (owner-approved approximation). One acceptance item - end-to-end delivery proof - is NOT achievable in this product and is recorded as unverified.",
+    "date": "2026-08-02",
+    "credentialPolicy": "OWNER DECISION: existing Slack credentials are accepted and must NOT be rotated. No credential value was printed, logged, inspected or stored at any point in this phase. All diagnostic output was passed through redaction filters.",
+    "preflight": {
+      "result": "PASS - all four infrastructure checks green",
+      "taskviewLocal": "UI http://localhost:8888 -> HTTP 200. Docker stack all healthy: taskview-local-web-1 (8888), taskview-local-api-1 (1725->1401), taskview-local-gateway-1 (8889->80), taskview-local-postgres-1.",
+      "tunnelSupervised": "cloudflared PID 52753 running `tunnel run abilityfinder-taskview`, supervised by launchd as com.abilityfinder.taskview-tunnel (exit status 0). Config /Users/abdulaziz/.cloudflared/config.yml, tunnel c2b7ac40-8036-4b2a-ad3a-126b6631751e, ingress hostname taskview.abilityfinder.ca -> http://localhost:8889, catch-all http_status:404.",
+      "publicEndpoint": "https://taskview.abilityfinder.ca resolves through Cloudflare and is LIVE.",
+      "importantCorrection": "The public root returning HTTP 404 is CORRECT AND INTENTIONAL, not a fault. nginx/gateway.conf is a deliberate allowlist: it proxies ONLY the exact OAuth/callback/command routes and returns 404 for everything else, so the tunnel never exposes the TaskView app shell, board or API to the internet. An initial reading of the 404 as a misconfiguration was wrong and is corrected here.",
+      "allowlistedPublicRoutes": [
+        "GET  /module/messaging/slack/oauth/start      -> live (HTTP 401, auth required)",
+        "GET  /module/messaging/slack/oauth/callback   -> live (HTTP 302, redirecting)",
+        "POST /module/messaging/slack/commands         -> live (HTTP 401, signature required)",
+        "GET  /module/integrations/oauth/github, /callback and POST /module/integrations/webhook/github -> also allowlisted",
+        "GET  /gateway-health -> 200 only for local Host headers"
+      ],
+      "negativeControl": "Public probes of /, /org-fbbce12c/3/-1401 and /module/tasks all return 404, confirming the board and app shell stay private.",
+      "routeProof": "Responses carry `x-taskview-gateway-route: callback`, proving nginx matched the allowlist rather than falling through to the catch-all.",
+      "slackCallbackRoute": "https://taskview.abilityfinder.ca/module/messaging/slack/oauth/callback - this IS the public TaskView callback route and corresponds to the gateway allowlist entry.",
+      "enablingStories": "CONFIRMED existing, no new ticket created: AF-S1402 'Stable HTTPS callback for the local TaskView' = TaskView #97 / issue #44; AF-S1403 'Slack notifications for Blocked / Review / Verification / Done' = TaskView #98 / issue #45. AF-S1403 dependsOn AF-S1402, matching the Phase 5 edge #97 -> #98.",
+      "af1402Evidence": "The tunnel demonstrably satisfies AF-S1402's acceptance criteria - a stable HTTPS callback now reaches the local TaskView, evidenced above. Its status was deliberately NOT changed, per the instruction not to move ticket statuses away from the spec. Recommend the owner close AF-S1402 with this evidence."
+    },
+    "blocker": {
+      "what": "TaskView's own web session has expired. http://localhost:8888/org-fbbce12c/3/messaging redirects to the TaskView sign-in screen.",
+      "whyBlocking": "Slack integration configuration exists ONLY in the TaskView web UI at route /:projectId/messaging. A tool search confirmed the TaskView MCP server exposes NO messaging or integration configuration tools - only notification read/mark tools - so there is no API path available to this session.",
+      "notAttempted": "No credentials were entered. Signing in on the owner's behalf is out of bounds, and this is the same class of stop as a Slack OAuth screen.",
+      "nothingMutated": "Zero writes were made in Phase 7. No task, note, status, tag, dependency or integration was created or changed."
+    },
+    "ownerHandoff": {
+      "step1": "Sign in to TaskView in a browser at http://localhost:8888 (owner credentials, entered by the owner).",
+      "step2": "Go to http://localhost:8888/org-fbbce12c/3/messaging - the Messengers page for goal 3 / Ability Finder.",
+      "step3": "Use the Slack connect / authorize control there. It will hand off to Slack's workspace-authorization screen; approve the workspace and target channel.",
+      "step4": "If the Slack app's own settings need the redirect URL, it is exactly https://taskview.abilityfinder.ca/module/messaging/slack/oauth/callback ; the slash-command request URL is https://taskview.abilityfinder.ca/module/messaging/slack/commands",
+      "step5": "Select exactly four notification states: Blocked, Review, Verification, Done. Do not enable others.",
+      "step6": "Tell this session when authorization is complete; it will then re-read the integration config and verify workspace/channel, callback, goal and the four event states, using an integration-native test only.",
+      "correction": "Steps 1 and 2 are now DONE - the session is valid and the Messengers page is reachable. The outstanding work begins at step 3: on http://localhost:8888/org-fbbce12c/3/messaging, with the PROJECT tab selected, press Connect and complete the Slack workspace authorization so the OAuth round-trip actually reaches https://taskview.abilityfinder.ca/module/messaging/slack/oauth/callback. Then select exactly Blocked, Review, Verification, Done."
+    },
+    "availabilityLimitation": {
+      "recorded": "This callback is only reachable while the owner's Mac is awake AND Docker Desktop is running the four TaskView containers AND the launchd-supervised cloudflared tunnel is up. Any of the three going down silently breaks Slack delivery.",
+      "priorEvidence": "The host already slept mid-run once during Phase 3, which is a demonstrated failure mode for this stack.",
+      "consequence": "Slack notifications are best-effort, not durable. Slack retries are finite, so notifications raised while the Mac is asleep may be lost entirely rather than queued. This should be recorded on AF-S1403 as a known operating limitation."
+    },
+    "verificationAttempt": {
+      "date": "2026-08-02",
+      "trigger": "Owner reported 'Slack is authorized'.",
+      "result": "FAILED VERIFICATION - the integration does not exist on goal 3 / Ability Finder.",
+      "taskviewSessionNowValid": "Yes. The earlier sign-in blocker is cleared; http://localhost:8888/org-fbbce12c/3/messaging now renders as the signed-in owner (a.azizedmonton@gmail.com).",
+      "primaryEvidence": "The Messengers page for goal 3 loaded with the PROJECT tab selected (aria-selected=true) and rendered exactly: 'No project integrations yet. Connect a group to post project events.' A 'Connect' button is present and unused.",
+      "apiEvidence": "The page's own request GET http://localhost:1725/module/messaging/project?goalId=3 returned HTTP 200 - a successful response carrying an EMPTY integration list. This is a positive confirmation of absence, not a failed lookup.",
+      "oauthTrafficEvidence": "Gateway access logs over 6h show only 3 hits to /module/messaging/slack/oauth/start and 3 to /oauth/callback, and EVERY one carries either curl/8.7.1 (this session's preflight probes) or the Claude Electron browser user-agent (this session's navigation). There is NO OAuth traffic from an ordinary browser and none from Slack. No Slack authorization round-trip ever reached this TaskView instance.",
+      "logCoverageCaveat": "The api container does not emit HTTP access logs - only perf lines - so absence of oauth entries there is weak evidence and was NOT relied upon. The gateway access log and the 200-with-empty-list are the load-bearing evidence, and both point the same way. A localhost-direct OAuth would bypass the gateway, but it would still have created a project integration row, and the project endpoint shows none.",
+      "likelyExplanation": "The Slack app was most probably created or installed inside Slack's own admin UI without completing TaskView's Connect flow, which is the step that performs the OAuth round-trip and writes the project integration. Authorizing in Slack alone does not connect TaskView.",
+      "notAttempted": "The Connect button was NOT clicked. Starting the OAuth round-trip is the owner's action, per the standing instruction not to drive authorization screens.",
+      "nothingMutated": "Zero writes in this verification pass. No task, note, status, tag, dependency, integration or credential was created, changed or inspected. No credential value was printed or logged at any point."
+    },
+    "verificationAttempt2": {
+      "date": "2026-08-02",
+      "trigger": "Owner reported 'Slack Connect is complete on goal 3'.",
+      "result": "PARTIAL - connection verified, event scoping does not and cannot match the spec.",
+      "connectionVerified": {
+        "present": "Yes. The Messengers page, Project tab, goal 3 / Ability Finder now shows a live Slack integration.",
+        "channel": "#ability-finder",
+        "provider": "Slack",
+        "enabled": "Connection toggle ON; 'Send task description to the channel' ON.",
+        "goal": "Bound to goal 3 - the page's own request was GET /module/messaging/project?goalId=3.",
+        "callback": "Unchanged and still correct: https://taskview.abilityfinder.ca/module/messaging/slack/oauth/callback, allowlisted at the gateway and reachable."
+      },
+      "blockingFinding": {
+        "headline": "TaskView's Slack integration fires on TASK LIFECYCLE EVENTS, not on workflow states. It cannot be scoped to Blocked / Review / Verification / Done.",
+        "fullCatalogue": "30 events in 5 categories: TASKS (7: created, assigned, status changed, completed, edited, added to sprint, deleted); SPRINTS (8); MEMBERS (3); TIME TRACKING (5); RECURRING RULES (7).",
+        "noStateEvents": "There is NO per-status toggle anywhere in the catalogue - no Blocked, no Review, no Verification, no Done. The nearest primitives are 'Task status changed', which fires on EVERY transition including Backlog, Ready, In Progress and Cancelled, and 'Task completed', which tracks the complete flag.",
+        "consequence": "The Phase 7 instruction to enable 'exactly these four workflow states' is not satisfiable in this product. Any four-state restriction must happen downstream (a Slack-side workflow/filter) or be accepted as broader-than-spec."
+      },
+      "currentEventState": {
+        "enabled5": [
+          "Task created",
+          "Task assigned",
+          "Task status changed",
+          "Task completed",
+          "Task deleted"
+        ],
+        "disabled": [
+          "Task edited",
+          "Task added to sprint",
+          "and all 23 Sprint/Member/Time-tracking/Recurrence events"
+        ],
+        "assessment": "Three of the five enabled events are outside anything the owner asked for: Task created, Task assigned and Task deleted. Left as found - not changed."
+      },
+      "options": [
+        "A. Closest faithful subset: enable ONLY 'Task status changed' + 'Task completed' and turn off created/assigned/deleted. Covers every transition into Blocked, Review and Verification plus Done, but also fires on Backlog, Ready, In Progress and Cancelled. Broader than spec, no state-level filtering possible in TaskView.",
+        "B. Keep as-is (5 events) and accept the extra created/assigned/deleted noise.",
+        "C. Apply option A in TaskView and add a Slack-side workflow filter to drop transitions other than the four states, achieving the spec's intent outside TaskView.",
+        "D. Record on AF-S1403 that its acceptance criteria are not literally achievable and have the owner restate them in event terms."
+      ],
+      "nothingMutated": "The events dialog was opened READ-ONLY, expanded via 'Show more events' to enumerate the catalogue, then closed with Cancel and Escape. No toggle was changed, Save was never pressed, and the badge still reads '5 events'. No task status was altered to trigger a test. No credential was printed, logged or inspected.",
+      "integrationNativeTest": "Not run. A send-test would have been the correct native check, but running one before the event scoping is agreed would push a message to #ability-finder under a configuration the owner has not approved. Deferred to the same decision."
+    },
+    "appliedConfiguration": {
+      "date": "2026-08-02",
+      "authorisation": "Owner-approved supported approximation.",
+      "change": "Disabled Task created, Task assigned and Task deleted. Left Task status changed and Task completed enabled. Net: 5 events -> 2 events.",
+      "beforeAfter": {
+        "before": [
+          "Task created",
+          "Task assigned",
+          "Task status changed",
+          "Task completed",
+          "Task deleted"
+        ],
+        "after": [
+          "Task status changed",
+          "Task completed"
+        ]
+      },
+      "safety": "The Events dialog was opened via the control identified by aria-label 'Events' and its sliders SVG path; the adjacent Disconnect/trash control was explicitly located and avoided. Toggles were set by exact label match, never by index."
+    },
+    "gate": {
+      "result": "PASS on every verifiable condition; ONE condition unverifiable by product limitation.",
+      "slackConnected": "PASS - integration present and enabled on the Project tab.",
+      "goalId3": "PASS - the page's own request is GET /module/messaging/project?goalId=3.",
+      "channel": "PASS - #ability-finder.",
+      "exactlyTwoEvents": "PASS - verified across the FULL 30-event catalogue (all five categories expanded) immediately before Save, and re-verified after a full page reload: exactly 'Task status changed' and 'Task completed' are ON, all 28 others OFF. Badge reads '2 events'.",
+      "persistence": "PASS - the 2-event state survived a fresh page load, so it is saved server-side and not merely local UI state.",
+      "callbackReachable": "PASS - https://taskview.abilityfinder.ca/module/messaging/slack/oauth/callback returns HTTP 302 with x-taskview-gateway-route: callback. Negative control unchanged: /org-fbbce12c/3/-1401 still 404s publicly, so the board stays private.",
+      "stackHealth": "PASS - all four containers healthy, cloudflared PID 52753 running.",
+      "testMessageArrives": "NOT VERIFIED - see integrationNativeTest below. This is the single unmet acceptance item and is NOT being claimed as passed."
+    },
+    "integrationNativeTest": {
+      "attempted": "Yes - searched for one exhaustively.",
+      "finding": "TaskView provides NO integration-native test. The connection card exposes only Events (sliders), Disconnect (trash) and two switches - no Send test / Test / Preview control. The messaging UI chunk (assets/messaging-CLPcQ8j0.js, 16875 bytes) contains zero occurrences of test/ping/preview/verify/sample and references exactly one endpoint, /module/messaging/slack/oauth/start. There is no test route to call.",
+      "notFaked": "No test was simulated or asserted. Triggering a real event would have required changing a ticket status, which the owner forbade, so it was not done.",
+      "consequence": "Slack message delivery to #ability-finder has NEVER been observed end-to-end. Configuration correctness is proven; delivery is not.",
+      "howToProveLater": "The next genuine Blocked/Review/Verification/Done transition made in the normal course of work will exercise it. Watch #ability-finder at that moment. Note that outbound delivery goes directly from TaskView to slack.com and does NOT traverse the Cloudflare tunnel, so the gateway access log can never evidence it - the tunnel is inbound-only, for OAuth and slash commands."
+    },
+    "ownerApprovedLimitation": {
+      "id": "PRODUCT-LIMIT-01",
+      "statement": "TaskView's Slack integration exposes LIFECYCLE-EVENT toggles, not per-workflow-state toggles. Its catalogue is 30 events across Tasks, Sprints, Members, Time tracking and Recurring rules, and contains no Blocked, Review, Verification or Done switch.",
+      "consequence": "Notifications CANNOT be filtered to exactly Blocked, Review, Verification and Done. 'Task status changed' fires on EVERY transition, including Backlog, Ready, In Progress and Cancelled; 'Task completed' tracks the complete flag.",
+      "approvedApproximation": "Enable only Task status changed + Task completed. This is a superset of the four target states, deliberately accepted by the owner.",
+      "explicitlyNotClaimed": "It is NOT claimed that TaskView filters to the four states. No Slack-side workflow filter was added, per owner instruction, so no unverified downstream filtering is asserted either.",
+      "status": "ACCEPTED BY OWNER 2026-08-02"
+    }
+  },
+  "phase8Progress": {
+    "status": "COMPLETE - final audit PASS on all eight checks",
+    "date": "2026-08-02",
+    "board": {
+      "goalId": 3,
+      "url": "http://localhost:8888/org-fbbce12c/3/-1401"
+    },
+    "correctionsApplied": [
+      "P8-01",
+      "P8-02"
+    ],
+    "documentationUpdated": {
+      "TASKVIEW-WORKFLOW.md": "Repointed the project line from the retired goalId 2 board to Ability Finder goalId 3, and added a 'Board composition and integrations (verified 2026-08-02)' section covering the 103-ticket composition, the 104 graph edges, the 58 reciprocal GitHub links, gh 2.97.0, the Slack two-event approximation and PRODUCT-LIMIT-01, the recursive get_task / showCompleted-union reading rules, the note template order, and the handoff convention.",
+      "TASKVIEW-QUICK-REFERENCE.md": "Added a 'Board at a glance (verified 2026-08-02)' table plus condensed PRODUCT-LIMIT-01, board-reading and note-template/handoff notes."
+    },
+    "audit": {
+      "method": "Read-only audit run against the live TaskView board, the live GitHub repo via the gh CLI, board-spec.json and board-checkpoint.json. Top-level roster taken as the union of the showCompleted=0 and showCompleted=1 passes; stories and subtasks discovered by recursive get_task traversal; child tags re-read from each child because parent payloads report child tags as empty. All calls were GET only; no credential value was printed, logged or stored.",
+      "result": "PASS",
+      "checks": {
+        "mappings": "PASS - 103 unique spec-key markers live, equal to the 103 spec keys and the 103 checkpoint keyToTaskId entries; no duplicates",
+        "hierarchy": "PASS - 15 epics, 79 stories, 9 subtasks = 103; every live parent matches the spec parentKey",
+        "integrity": "PASS - 0 duplicate keys, 0 orphan parents, 0 unresolved dependencies",
+        "doneSemantics": "PASS - 32 Done tickets checked (2 epics + 30 stories/subtasks); all have complete=true, statusId=20 (Done column) and a non-null dateComplete; 0 violations",
+        "edges": "PASS - 104 total graph edges = 88 automatic parent/child + 16 explicit dependency edges, matching the spec dependsOnKeys exactly with no missing and no extra",
+        "github": "PASS - exactly 58 issues carry a taskview-spec-key marker; the marker set equals the eligible set (49 stories + 9 subtasks); every taskview-task-id marker matches the checkpoint id; reciprocity holds in both directions; issues #2-#59 contiguous and all OPEN; no issue exists for any epic or any Done ticket",
+        "fieldIntegrity": "PASS - 103 tickets checked, 0 violations; priorities, statuses, tags, note sections, context blocks, doneWhen, spec-key markers and GitHub links all intact",
+        "correctionsApplied": "PASS - 18 assertions, 0 violations; the corrected text is present and the stale text absent on all six surfaces (spec, TaskView 96/98, GitHub 43/45)"
+      },
+      "finalCounts": {
+        "specEntries": 103,
+        "liveTickets": 103,
+        "epics": 15,
+        "stories": 79,
+        "subtasks": 9,
+        "doneTickets": 32,
+        "graphEdgesTotal": 104,
+        "parentChildEdges": 88,
+        "explicitEdges": 16,
+        "gitHubEligibleTickets": 58,
+        "gitHubIssuesLinked": 58,
+        "gitHubIssueRange": "#2-#59"
+      }
+    },
+    "remainingLimitations": [
+      "PRODUCT-LIMIT-01 (owner-accepted 2026-08-02): TaskView's Slack integration exposes lifecycle-event toggles, not per-workflow-state toggles. Notifications CANNOT be filtered to only Blocked, Review, Verification and Done. The enabled pair - Task status changed and Task completed - is a deliberately accepted superset that also fires on Backlog, Ready, In Progress and Cancelled transitions.",
+      "Slack end-to-end delivery is UNVERIFIED. TaskView provides no integration-native test control, so delivery cannot be proven without waiting for a real lifecycle event. This stays unverified until such an event occurs naturally; it is recorded as an open acceptance criterion on AF-S1403, not as a passed one.",
+      "Slack delivery availability depends on the owner's Mac being awake, Docker Desktop running the four TaskView containers, and the launchd-supervised cloudflared tunnel being up. Any of the three going down silently breaks delivery.",
+      "`.taskview/BOARD-BUILD-PROMPT.md` section 0 still records 'gh CLI: not installed'. That line is now stale for the same reason as P8-01, but the authorised P8-01 scope was board-spec.json, TaskView 96 and GitHub 43 only, so the brief was deliberately left unchanged. Flagged for the owner.",
+      "`phase6Progress.preflight.ghCli` still reads 'NOT INSTALLED'. That was accurate at the moment Phase 6 ran its preflight; gh was installed afterwards and then used for all 58 issues. Retained as an accurate historical record rather than rewritten.",
+      "AF-S1403 keeps its original title, which still names the four workflow states. Renaming it would ripple into the GitHub issue title and the established branch name, so the approximation is recorded in the note, criteria and constraints instead."
+    ],
+    "notCompleted": [],
+    "gate": "PASS - Phase 8 complete. No check failed."
+  }
 }
