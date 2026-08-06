@@ -2504,5 +2504,442 @@
     ],
     "notCompleted": [],
     "gate": "PASS - Phase 8 complete. No check failed."
+  },
+  "maintenance": {
+    "schemaVersion": 1,
+    "records": [
+      {
+        "id": "M-01",
+        "name": "Post-Phase-8 integration repair and Kanban Setup cleanup",
+        "date": "2026-08-03",
+        "status": "COMPLETE - all three objectives done: GitHub integration disabled, both stale Slack connections disabled, and all 58 Kanban Setup mirror tasks deleted. Final gate PASS.",
+        "separateFrom": "Phase 8. This is post-build maintenance and does not alter any Phase 8 result.",
+        "applied": {
+          "slack": {
+            "change": "Disabled the user-level (personal) Slack connection id 2 'Slack (Ability Finder)' via the supported UI toggle. It had 7 events enabled including task.created, task.edited and task.deleted, and fired for every project including goal 3.",
+            "before": "is_active=true, events=[task.created, task.assigned, task.statusChanged, task.completed, task.deleted, task.addedToSprint, task.edited]",
+            "after": "is_active=false, events list unchanged and preserved for rollback",
+            "preserved": "Project-level connection id 3 (goal 3, #ability-finder) unchanged: is_active=true, events=[task.statusChanged, task.completed]. Verified after a full page reload.",
+            "untouched": "Project-level connection id 1 (goal 2) left exactly as found: is_active=true, 5 events."
+          },
+          "githubIntegration": {
+            "date": "2026-08-03",
+            "change": "Disabled GitHub integration id 1 (abdulaziz-ca/AbilityFinder) on Kanban Setup goal 2 using the supported UI toggle (PATCH /module/integrations/toggle with isActive=false).",
+            "before": "project_id=2, is_active=true",
+            "after": "project_id=2, is_active=false",
+            "metadataPreserved": "webhook_id, repo_external_id, repo_full_name, created_at and last_synced_at all retained. Only is_active and updated_at changed.",
+            "noSyncProof": "toggle() calls syncIssues() only when switching ON, never when switching OFF. Confirmed empirically: last_synced_at stayed at 2026-07-31T07:01:40.954, task counts stayed 80/103, integration_task_map stayed 59 rows, and the API log recorded no syncIssues, registerWebhook, select-repo or oauth activity.",
+            "recreationStopped": "handleGitHubWebhook resolves integrations via fetchAllActiveByRepoFullName, so an inactive integration matches nothing and returns 404. Deleted mirrors cannot reappear while it stays disabled.",
+            "persistence": "Verified after a full page reload: the integration is still listed and its toggle is off."
+          },
+          "kanbanSetupSlack": {
+            "date": "2026-08-03",
+            "change": "Disabled project-level Slack connection id 1 (goal 2, #ability-finder) using the supported UI toggle.",
+            "before": "is_active=true, 5 events, post_content=true",
+            "after": "is_active=false, event list and post_content preserved unchanged for rollback",
+            "persistence": "Verified after a full page reload: connection toggle reads false, the 'Send task description to the channel' switch is untouched at true, and the row still reports 5 events."
+          },
+          "mirrorDeletion": {
+            "date": "2026-08-03",
+            "method": "Supported TaskView HTTP API only - GET /module/tasks/{id} to verify, then DELETE /module/tasks with body {taskId}. No direct database deletion. No bulk or range delete: one verified DELETE per task.",
+            "credential": "A temporary owner-created cleanup token with unrestricted goal scope and task_can_delete plus component_can_watch_content. No token value was printed, logged, hashed, stored or written anywhere.",
+            "preDeletionGuards": "Manifest frozen to a file before the run and asserted: exactly 58 entries, ids exactly 129-186, sha256 8136758a6bcd1ab92442b2ab683bdcd9f5413f66965908ce15a762ca11561c06, task 13 absent. A full dry run verified all 58 before any deletion.",
+            "perTaskVerification": "Immediately before each DELETE the task was re-read and required to match its manifest row on: id, goalId==2, the exact taskview-spec-key marker, presence of a taskview-task-id marker, sourceUrl ending /issues/<expected number>, and description starting with the spec key. Any mismatch aborted the entire remaining run.",
+            "postDeletionVerification": "After each DELETE the task was re-read and required to be gone.",
+            "batches": {
+              "batch1": [
+                129,
+                130,
+                131,
+                132,
+                133,
+                134,
+                135,
+                136,
+                137,
+                138
+              ],
+              "batch2": [
+                139,
+                140,
+                141,
+                142,
+                143,
+                144,
+                145,
+                146,
+                147,
+                148
+              ],
+              "batch3": [
+                149,
+                150,
+                151,
+                152,
+                153,
+                154,
+                155,
+                156,
+                157,
+                158
+              ],
+              "batch4": [
+                159,
+                160,
+                161,
+                162,
+                163,
+                164,
+                165,
+                166,
+                167,
+                168
+              ],
+              "batch5": [
+                169,
+                170,
+                171,
+                172,
+                173,
+                174,
+                175,
+                176,
+                177,
+                178
+              ],
+              "batch6": [
+                179,
+                180,
+                181,
+                182,
+                183,
+                184,
+                185,
+                186
+              ]
+            },
+            "totalDeleted": 58,
+            "aborts": 0,
+            "issuesCovered": "#2-#59",
+            "note": "The creation-timestamp comparison was skipped because the API payload does not expose a creation-date field; all six other per-task checks passed for every task."
+          }
+        },
+        "blocked": {
+          "githubIntegrationRepoint": {
+            "verdict": "BLOCKED - no safe supported operation exists. No mutation was attempted.",
+            "evidence": [
+              "The integrations router exposes only: GET /module/integrations, POST (create via OAuth), DELETE, PATCH /toggle, PATCH /select-repo, POST /sync, GET /repos, OAuth init/callback and the provider webhooks. There is no move/rebind/change-project operation.",
+              "Project binding is fixed at OAuth time: getOAuthUrl(provider, projectId, userId) signs projectId into the OAuth state JWT and handleOAuthCallback reads it back. Rebinding therefore requires a brand-new OAuth authorisation, which needs the owner's own GitHub credentials.",
+              "selectRepo() calls syncIssues() and registerWebhook() immediately on repo selection (log line: 'repo selected, starting sync and webhook registration'). syncIssues imports repository issues as TaskView tasks, which would create roughly 59 duplicate tickets on goal 3 and break the 103-ticket invariant.",
+              "toggle() also calls syncIssues() whenever it is switched ON, so re-enabling is equally unsafe on a goal-3-bound integration.",
+              "registerWebhook() creates a NEW webhook on the GitHub repository, a GitHub-side settings mutation."
+            ],
+            "ownerConditionThatFailed": "Repoint only if it can be done without creating, closing, editing or duplicating GitHub issues, and without duplicating goal 3 tickets. It cannot."
+          },
+          "mirrorDeletion": {
+            "verdict": "RESOLVED - completed 2026-08-03 via a temporary owner-created token with the required permissions.",
+            "historicalBlockers": "Token id 6 is scoped to goal 3 and its scope is immutable (the api-tokens router has no PATCH or PUT). Token id 5 had unrestricted goal scope but zero delete permissions. A first replacement token had task_can_delete but lacked component_can_watch_content, which CanFetchTask requires, so per-task pre-verification was impossible and the run was correctly halted before any mutation.",
+            "resolution": "The owner created a further token adding component_can_watch_content. The read preflight then passed and the run completed with zero aborts."
+          }
+        },
+        "manifest": {
+          "mirrorTaskCount": 58,
+          "mirrorTaskIdRange": "129-186",
+          "githubIssueRange": "#2-#59",
+          "manifestChecksumSha256": "8136758a6bcd1ab92442b2ab683bdcd9f5413f66965908ce15a762ca11561c06",
+          "checksumInput": "comma-joined ascending list of the 58 mirror task ids",
+          "criteria": "goal_id=2 AND integration-mapped AND issue_number between 2 and 59 AND created 2026-08-02 19:18:05-20:21:38 AND note carries a taskview-spec-key marker AND task id <> 13",
+          "criticalExclusion": "Task 13 is integration-mapped to issue #1 but was created 2026-07-31 during the original integration test. It is a GENUINE Kanban Setup task. A naive 'delete everything in the integration map' would have destroyed it. 59 mapped rows = 58 mirrors + 1 genuine.",
+          "genuineTasksPreserved": 22,
+          "genuineTaskIds": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            22,
+            25
+          ],
+          "relationsOnMirrors": 0,
+          "tagsOnMirrors": 0
+        },
+        "rollbackSnapshot": {
+          "path": ".taskview/backup/maintenance-integration-cleanup-20260803T044654Z.json",
+          "sha256": "5ecb5f60b1f7bc756e68df7756b954b33442cf28b8da8051acc63bf286e2f8ee",
+          "contains": "full records for the 58 mirror tasks and their integration-map rows, their (zero) relations and tags, the pre-change GitHub integration configuration, the pre-change Slack connection configuration, and baseline counts",
+          "credentialScan": "0 hits across GitHub tokens, Slack tokens, JWTs, private keys, long hex and base64 blobs, and encrypted/secret field names. No token hash, OAuth secret, Slack secret or environment value is present."
+        },
+        "verification": {
+          "date": "2026-08-03",
+          "gate": "PASS - every condition met",
+          "kanbanSetup": {
+            "goalId": 2,
+            "active": true,
+            "tasks": 22,
+            "remainingIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              22,
+              25
+            ],
+            "anyOf129To186Remaining": 0,
+            "relations": 13,
+            "tags": 3,
+            "columns": 8,
+            "task13Intact": true,
+            "integrationMapRows": 1,
+            "integrationMapDetail": "task 13 <-> issue #1 only; the 58 mirror mappings were removed by normal deletion cascading",
+            "abilityFinderMirrorKeysRemaining": 0
+          },
+          "abilityFinder": {
+            "auditResult": "PASS on all eight checks",
+            "tasks": 103,
+            "hierarchy": "15 epics / 79 stories / 9 subtasks",
+            "edges": "104 = 88 parent/child + 16 explicit",
+            "gitHubReciprocalLinks": 58,
+            "fieldDrift": "none - 103 tickets checked, 0 violations"
+          },
+          "github": {
+            "issues": "58 open + 1 closed - identical to baseline",
+            "mutations": "none - no issue created, edited, closed, reopened, deleted, labelled or reassigned; no webhook created, deleted or modified; no repository setting changed",
+            "integration": "id 1 still project_id=2, is_active=false, webhook metadata intact"
+          },
+          "slack": {
+            "id1_project_goal2": "inactive - events preserved",
+            "id2_personal": "inactive - events preserved",
+            "id3_project_goal3": "active with exactly task.statusChanged and task.completed",
+            "messagesTriggered": "none - connections 1 and 2 were disabled before the deletion run, and connection 3 is scoped to goal 3"
+          },
+          "rollbackSnapshot": {
+            "path": ".taskview/backup/maintenance-integration-cleanup-20260803T044654Z.json",
+            "sha256": "5ecb5f60b1f7bc756e68df7756b954b33442cf28b8da8051acc63bf286e2f8ee",
+            "revalidatedAfterDeletion": true
+          },
+          "tokens": "token id 6 unchanged and still scoped {3}; token id 5 unchanged; temporary cleanup tokens remain and MUST be deleted by the owner, and the goal-3 token restored in the MCP config"
+        },
+        "notTouched": [
+          ".taskview/board-spec.json",
+          "epic, story and subtask notes",
+          "AGENTS.md, CLAUDE.md, WEBSITE-PROJECT-TRACKER.md, .taskview/parts/",
+          "origin/taskview-board-complete",
+          "the agent API token scope"
+        ],
+        "outstandingOwnerActions": [
+          "Restore token id 6 as mcpServers.taskview.env.TASKVIEW_TOKEN in ~/.claude.json (and ~/.codex/config.toml, which holds the same token).",
+          "Delete the temporary cleanup tokens in the TaskView UI.",
+          "Keep the Kanban Setup GitHub integration disabled permanently - re-enabling runs syncIssues and would recreate all 58 mirrors."
+        ]
+      }
+    ]
+  },
+  "epicNoteFormat": {
+    "schemaVersion": 1,
+    "appliedDate": "2026-08-03",
+    "status": "COMPLETE - all 15 Ability Finder epic notes migrated to TaskView-safe HTML. Eight-check audit PASS.",
+    "scope": "Superseded by noteFormatAllLevels: the HTML format now covers all 103 tickets, not only the 15 epics.",
+    "whyNeeded": "TaskView renders the note field through a TipTap/ProseMirror editor that parses stored content as HTML. Markdown was displayed literally and every newline collapsed, so each epic note rendered as one unreadable paragraph.",
+    "format": {
+      "elements": "Only <p>, <strong> and <br> - the three elements proven to survive both API storage and a UI edit.",
+      "sections": [
+        "SUMMARY",
+        "GOAL",
+        "WHY IT MATTERS",
+        "FILES TO TOUCH",
+        "READ EXACTLY THIS",
+        "DO NOT READ",
+        "CONSTRAINTS",
+        "DONE WHEN",
+        "PRIORITY",
+        "LINKS",
+        "CHILD STORIES (n)",
+        "DETAILED ACTIVITY",
+        "HANDOFF"
+      ],
+      "childIndex": "Each epic lists every child story as '<id> - <title>', one per line.",
+      "specKeyMarkers": "Dual. The hidden trailing <!-- spec-key: KEY --> is preserved, and a visible '<p>spec-key: KEY</p>' fallback line was added immediately before it.",
+      "escaping": "All text interpolated from the specification is HTML-escaped, so literal angle brackets such as taskview-<id>-<slug> cannot corrupt the note.",
+      "noMarkdown": "No '## ' and no '**' remain in any epic note."
+    },
+    "roundTripProof": {
+      "method": "Disposable ticket created on goal 3 via the API, inspected in the signed-in UI, edited in the UI, then deleted.",
+      "apiStorage": "Stored byte-identical to what was sent, including the HTML comment.",
+      "uiRender": "8 separate paragraphs, 5 bold labels, 5 line breaks, visible spec-key line shown, HTML comment correctly invisible.",
+      "afterRealUiEdit": "<p>, <strong> and <br> all survived and the VISIBLE spec-key line survived. Only the HTML comment was destroyed - which is precisely why the visible fallback exists.",
+      "disposableTicketsDeleted": true
+    },
+    "batches": {
+      "batch1": [
+        "AF-E01",
+        "AF-E02",
+        "AF-E03",
+        "AF-E04",
+        "AF-E05"
+      ],
+      "batch2": [
+        "AF-E06",
+        "AF-E07",
+        "AF-E08",
+        "AF-E09",
+        "AF-E10"
+      ],
+      "batch3": [
+        "AF-E11",
+        "AF-E12",
+        "AF-E13",
+        "AF-E14",
+        "AF-E15"
+      ]
+    },
+    "perEpicVerification": "Before each update the task was re-read and required to be goal 3 with its existing hidden spec-key marker. After each update the note was re-read and required to equal the generated note exactly, with description, priorityId, statusId, complete, parentId and tags all unchanged. Only the id and note fields were ever sent.",
+    "backup": {
+      "path": ".taskview/backup/epic-notes-before-20260803T055321Z.json",
+      "sha256": "398db4248725d069aeba39a3f454f22cced3376f115106be251887ef6a5e8456",
+      "contents": "All 15 original epic notes with title, priority, status, complete flag, parentId, tags and the full child list."
+    },
+    "rollback": "For each epic in the backup file, send a single update_task with the stored 'note' string. No other field was modified by this phase, so nothing else needs reverting.",
+    "specificationDivergence": {
+      "boardSpecJsonChanged": false,
+      "rationale": "board-spec.json stores the epic note as SEMANTIC FIELDS (summary, goal, whyItMatters, filesToTouch, readExactly, doNotRead, constraints, doneWhen, priorityRationale). Those values are unchanged and remain the source of truth; the HTML note on the board is a rendering of exactly those fields, generated from the spec. The specification and the board therefore do not diverge in meaning.",
+      "auditContractUpdated": "The audit's note-sections check is now format-aware: stories and subtasks keep the original Markdown requirements unchanged, while epics are checked against the HTML section labels, the visible spec-key fallback, the trailing hidden marker, and the absence of Markdown leftovers."
+    },
+    "verification": {
+      "auditResult": "PASS on all eight checks",
+      "tickets": 103,
+      "hierarchy": "15 epics / 79 stories / 9 subtasks",
+      "edges": "104 = 88 parent/child + 16 explicit",
+      "gitHubReciprocalLinks": 58,
+      "epicsInHtml": 15,
+      "hiddenMarkers": 103,
+      "visibleFallbacks": 15,
+      "storiesAndSubtasksUntouched": 88,
+      "kanbanSetupTasks": 22
+    }
+  },
+  "noteFormatAllLevels": {
+    "schemaVersion": 1,
+    "appliedDate": "2026-08-05",
+    "status": "COMPLETE - all 103 Ability Finder notes are TaskView-safe HTML. Audit PASS on all eight checks.",
+    "why": "The epic-only pass left the 79 stories and 9 subtasks rendering as one collapsed paragraph of literal Markdown, because TaskView parses the note field as HTML.",
+    "coverage": {
+      "epics": 15,
+      "stories": 79,
+      "subtasks": 9,
+      "total": 103
+    },
+    "format": {
+      "elements": "Only <p>, <strong> and <br> - proven to survive API storage and a UI edit.",
+      "sections": [
+        "SUMMARY",
+        "GOAL",
+        "WHY IT MATTERS",
+        "FILES TO TOUCH",
+        "READ EXACTLY THIS",
+        "DO NOT READ",
+        "CONSTRAINTS",
+        "DONE WHEN",
+        "PRIORITY",
+        "LINKS",
+        "GITHUB",
+        "CHILD TICKETS (when present)",
+        "DETAILED ACTIVITY",
+        "HANDOFF"
+      ],
+      "specKeyMarkers": "Dual - hidden <!-- spec-key: KEY --> last, plus a visible '<p>spec-key: KEY</p>' fallback.",
+      "liveOnlyFieldsPreserved": "The GitHub issue/branch line and the Parent/Children/Blocked-by line were written in Phases 4 and 6 and do not exist in board-spec.json, so they were lifted from each live note.",
+      "globSafety": "Markdown emphasis is stripped only when it opens after whitespace and closes before punctuation, so glob patterns such as src/** and public/guides/** are preserved. 6 globs preserved, 1 real emphasis span stripped, 0 leftovers."
+    },
+    "batches": "9 batches of at most 10; 88 story/subtask notes updated; 0 aborts",
+    "perTicketVerification": "Re-read before write (goal 3 + hidden marker required), only id and note sent, re-read after write requiring an exact note match and unchanged description, priorityId, statusId, complete, parentId and tags.",
+    "backups": {
+      "epics": {
+        "path": ".taskview/backup/epic-notes-before-20260803T055321Z.json",
+        "sha256": "398db4248725d069aeba39a3f454f22cced3376f115106be251887ef6a5e8456"
+      },
+      "storiesAndSubtasks": {
+        "path": ".taskview/backup/story-subtask-notes-before-20260805T235117Z.json",
+        "sha256": "6f096cbdcda3c4f286e7d577e3af85f5ca43bfb0f11b5d1979c78ff7281fc135"
+      }
+    },
+    "rollback": "Per ticket, one update_task with the stored note. No other field was modified.",
+    "verification": {
+      "auditResult": "PASS on all eight checks",
+      "tickets": 103,
+      "hierarchy": "15 epics / 79 stories / 9 subtasks",
+      "edges": "104 = 88 parent/child + 16 explicit",
+      "gitHubReciprocal": 58,
+      "htmlNotes": 103,
+      "hiddenMarkers": 103,
+      "visibleFallbacks": 103,
+      "markdownLeftovers": 0
+    },
+    "auditHarness": "Rebuilt as scripts/taskview-audit.mjs and committed, replacing the throwaway scratchpad copy that was lost when the scratchpad was cleared. Run with TASKVIEW_TOKEN set."
+  },
+  "graphFrontend": {
+    "schemaVersion": 1,
+    "appliedDate": "2026-08-05",
+    "status": "DEPLOYED - hierarchical graph and child-task navigation live on a locally built image.",
+    "rootCauseFixed": "The stock Graph view sources nodes from the top-level task endpoint, so only the 15 epics became nodes and 103 of the 104 edges had a missing endpoint and could not render.",
+    "features": [
+      "Progressive disclosure: 15 epics initially, expand an epic for its stories, lazily load a story's depth-2 subtasks",
+      "Focus epic / clear focus / fit-visible / expand-all / collapse-all",
+      "Hierarchy edges solid, muted, non-animated; dependency edges dashed, amber, animated, labelled 'Blocked by'",
+      "Ancestor-preserving filters; dagre ranks on hierarchy edges only; cycle detection with a grid fallback",
+      "Accessible 'Open task' button on every child row using the existing openTask() route"
+    ],
+    "source": {
+      "upstream": "github.com/Gimanh/taskview-community",
+      "pinnedTag": "v1.50.2",
+      "revision": "6c990aff4fba364506f58878b1699e433eaa2bf2",
+      "vendoredAt": "taskview-local/vendor/taskview-community",
+      "licence": "TaskView Source-Available License v1.0 - self-hosting and internal modification permitted",
+      "filesChanged": 11
+    },
+    "deployment": {
+      "image": "taskview-local-web:graph-nav",
+      "build": "docker compose build web (full in-container source build incl. vue-tsc typecheck)",
+      "composeChange": "web service gained build: {context: ., dockerfile: Dockerfile.web} and pull_policy: never",
+      "updateScript": "scripts/update.sh moved web from 'pull' to 'build --pull api web'",
+      "rollback": "cp docker-compose.yml.pre-graphnav.bak docker-compose.yml && docker compose up -d web"
+    },
+    "verification": {
+      "runtimeChecks": "13 of 14 PASS",
+      "unverified": "Keyboard Tab+Enter activation - the browser tooling delivers no key events at all (a focused textarea received zero keydown), so it could not be exercised. Static evidence: native <button type=button>, tabIndex 0, focus-visible ring, and the parent textarea's Enter handler no longer steals focus from the button.",
+      "typecheck": "0 errors",
+      "notRun": "Playwright/browser regression suite"
+    },
+    "correction": "An earlier report claimed 35 pre-existing useToast typecheck errors as an accepted baseline. That was wrong - they were an artefact of typechecking before the workspace packages and auto-import types were built. A clean typecheck reports 0 errors."
   }
 }

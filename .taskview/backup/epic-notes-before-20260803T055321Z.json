@@ -1,0 +1,803 @@
+{
+  "schemaVersion": 1,
+  "kind": "epic-notes-before-html-rewrite",
+  "capturedAt": "2026-08-03T05:53:21.745313Z",
+  "epics": [
+    {
+      "key": "AF-E01",
+      "taskId": 26,
+      "title": "EPIC — Data accuracy and freshness",
+      "note": "## Summary\nThis epic keeps every published amount, rule, form, phone number and date true on the day a user reads it. Its current outcome is Backlog because factual freshness is ongoing work.\n\n## Context block — a fresh agent starts here\n- **Goal:** Keep every published amount, rule, form, phone number and date true on the day a user reads it.\n- **Why it matters:** The product's largest ongoing risk is silent factual decay, not a missing feature; a wrong figure costs a disabled person money or a scarce appointment.\n- **Files to touch:** none — decision ticket\n- **Read exactly this and nothing more:** AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket\n- **Do NOT read:** AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/\n- **Constraints:** Use an actual official-source review before updating freshness, and do not add facts that are not verified.\n- **Done when:**\n  - Every published amount, rule, form, phone number and date is true on the day a user reads it.\n- **Priority: High** — High because silent factual decay can cost a disabled person money or a scarce appointment.\n- **Parent:** none — top-level epic · **Children:** populated in Phase 3 · **Blocked by:** none\n- **GitHub:** issue pending Phase 6 · branch `taskview-<id>-<slug>` · PR pending\n\n## Detailed activity\n\n## Handoff\n\n<!-- spec-key: AF-E01 -->",
+      "priorityId": 3,
+      "statusId": 18,
+      "complete": false,
+      "parentId": null,
+      "tags": [
+        4,
+        10
+      ],
+      "children": [
+        {
+          "id": 41,
+          "title": "[DATA] Establish the /api/link-health review cadence",
+          "statusId": 18,
+          "priorityId": 2,
+          "complete": false
+        },
+        {
+          "id": 42,
+          "title": "[DATA] Re-verify benefit figures before their freshness dates age out",
+          "statusId": 18,
+          "priorityId": 3,
+          "complete": false
+        },
+        {
+          "id": 43,
+          "title": "[DATA] Re-verify GRANTS_DIRECTORY and ORGS_DIRECTORY entries",
+          "statusId": 18,
+          "priorityId": 2,
+          "complete": false
+        },
+        {
+          "id": 44,
+          "title": "[DATA] Keep the data-change procedure enforced",
+          "statusId": 18,
+          "priorityId": 2,
+          "complete": false
+        },
+        {
+          "id": 45,
+          "title": "[DATA] Re-check Camrose and other municipalities one program at a time",
+          "statusId": 18,
+          "priorityId": 1,
+          "complete": false
+        },
+        {
+          "id": 46,
+          "title": "[DATA] Hold AISH/ADAP signer guidance until Alberta publishes an official list",
+          "statusId": 18,
+          "priorityId": 1,
+          "complete": false
+        }
+      ]
+    },
+    {
+      "key": "AF-E02",
+      "taskId": 27,
+      "title": "EPIC — Coverage gaps and scope decisions",
+      "note": "## Summary\nThis epic closes the remaining catalogue coverage questions that are genuinely scope decisions rather than research tasks. It also keeps already decided questions from being re-opened.\n\n## Context block — a fresh agent starts here\n- **Goal:** Close the remaining catalogue coverage questions that are genuinely scope decisions rather than research tasks.\n- **Why it matters:** Settled scope decisions must remain settled so completed coverage work is not repeatedly treated as a gap.\n- **Files to touch:** none — decision ticket\n- **Read exactly this and nothing more:** AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket\n- **Do NOT read:** AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/\n- **Constraints:** Treat Plan B placement and provincial child/family scope as the remaining questions, and keep Plan X closed.\n- **Done when:**\n  - The remaining catalogue scope questions are decided and already decided questions are not re-opened.\n- **Priority: Medium** — Medium because the remaining work is limited to genuine catalogue scope decisions.\n- **Parent:** none — top-level epic · **Children:** populated in Phase 3 · **Blocked by:** none\n- **GitHub:** issue pending Phase 6 · branch `taskview-<id>-<slug>` · PR pending\n\n## Detailed activity\n\n## Handoff\n\n<!-- spec-key: AF-E02 -->",
+      "priorityId": 2,
+      "statusId": 18,
+      "complete": false,
+      "parentId": null,
+      "tags": [
+        4,
+        18
+      ],
+      "children": [
+        {
+          "id": 47,
+          "title": "[SCOPE] Decide where the PharmaCare Plan B long-term-care warning belongs",
+          "statusId": 18,
+          "priorityId": 2,
+          "complete": false
+        },
+        {
+          "id": 48,
+          "title": "[SCOPE] Decide whether provincial child/family benefits are in scope",
+          "statusId": 18,
+          "priorityId": 1,
+          "complete": false
+        },
+        {
+          "id": 49,
+          "title": "[SCOPE] PharmaCare Plan X stays closed — do not re-open",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 50,
+          "title": "[PROCESS] Check the catalogue by record id before recording a coverage gap",
+          "statusId": 18,
+          "priorityId": 1,
+          "complete": false
+        }
+      ]
+    },
+    {
+      "key": "AF-E03",
+      "taskId": 28,
+      "title": "EPIC — Human accessibility and usability testing",
+      "note": "## Summary\nThis epic builds on a real VoiceOver + Safari pass and owner spot checks completed 2026-07-28. It remains Backlog and the sole remaining NO-GO condition because the unresolved VoiceOver navigation-mode question, NVDA and TalkBack passes, Safari Full Keyboard Access confirmation, touch-target review, specialist judgement and disabled-user study are still outstanding.\n\n## Context block — a fresh agent starts here\n- **Goal:** Complete the outstanding assistive-technology, keyboard, visual-adaptation, specialist and disabled-user journey testing and disposition every finding.\n- **Why it matters:** The completed VoiceOver and owner spot checks do not replace the outstanding NVDA, TalkBack, specialist and disabled-user evidence needed to lift the NO-GO.\n- **Files to touch:** none — decision ticket\n- **Read exactly this and nothing more:** AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket\n- **Do NOT read:** AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/\n- **Constraints:** Human testing cannot be replaced by automated checks. Preserve the 2026-07-28 evidence: a real VoiceOver + Safari pass occurred with one unresolved navigation-mode question, and the owner completed 200% text, 400% zoom/reflow, 320px portrait, forced-colours and print/print-to-PDF spot checks with no defects found. NVDA and TalkBack have never been run; touch-target sizing, a specialist judgement and the disabled-user study remain outstanding. Findings must be written as reproducible issues rather than broad redesign requests.\n- **Done when:**\n  - A dated record repeats the VoiceOver + Safari test with item-by-item navigation and records whether the unresolved reading-order observation is a defect or expected rotor behaviour.\n  - A dated NVDA test record covers the wizard, a results page and a guide page, with each finding written reproducibly.\n  - A dated TalkBack test record covers the wizard, a results page and a guide page on Android, with each finding written reproducibly.\n  - A dated Safari keyboard record covers Full Keyboard Access both enabled and disabled and records the product decision for Safari keyboard users.\n  - The 2026-07-28 owner record remains attached for 200% text, 400% zoom/reflow, 320px portrait, forced-colours and print/print-to-PDF spot checks with no defects found.\n  - A dated touch-target record measures every interactive target and records each undersized target as fixed, explicitly accepted, deferred with owner approval, or otherwise dispositioned.\n  - A dated reduced-motion and scroll-reveal test record states the tested behaviours and records each finding reproducibly.\n  - A dated specialist review records the specialist judgement and reproducible findings, including whether contrast clears 4.5:1 on every background including semantic soft tints.\n  - A dated disabled-user study record covers keyboard, switch, voice, magnification and assistive technology, plus cognitive fatigue, pain and financial stress; participant count and protocol are TBD — owner to specify.\n  - Every finding from these records is fixed, explicitly accepted, deferred with owner approval, or otherwise dispositioned before the epic closes.\n- **Priority: High** — High because this is the sole remaining NO-GO condition.\n- **Parent:** none — top-level epic · **Children:** populated in Phase 3 · **Blocked by:** none\n- **GitHub:** issue pending Phase 6 · branch `taskview-<id>-<slug>` · PR pending\n\n## Detailed activity\n\n## Handoff\n\n<!-- spec-key: AF-E03 -->",
+      "priorityId": 3,
+      "statusId": 18,
+      "complete": false,
+      "parentId": null,
+      "tags": [
+        4,
+        11,
+        19,
+        20
+      ],
+      "children": [
+        {
+          "id": 51,
+          "title": "[A11Y] Repeat the VoiceOver guide test with item-by-item navigation",
+          "statusId": 18,
+          "priorityId": 3,
+          "complete": false
+        },
+        {
+          "id": 52,
+          "title": "[A11Y] Run a real NVDA pass",
+          "statusId": 18,
+          "priorityId": 3,
+          "complete": false
+        },
+        {
+          "id": 53,
+          "title": "[A11Y] Run a real TalkBack pass",
+          "statusId": 18,
+          "priorityId": 3,
+          "complete": false
+        },
+        {
+          "id": 54,
+          "title": "[A11Y] Confirm Safari behaviour with Full Keyboard Access on and off",
+          "statusId": 18,
+          "priorityId": 3,
+          "complete": false
+        },
+        {
+          "id": 55,
+          "title": "[A11Y] Complete the touch-target sizing review",
+          "statusId": 18,
+          "priorityId": 3,
+          "complete": false
+        },
+        {
+          "id": 56,
+          "title": "[A11Y] Obtain an accessibility specialist's judgement",
+          "statusId": 18,
+          "priorityId": 3,
+          "complete": false
+        },
+        {
+          "id": 57,
+          "title": "[A11Y] Run the disabled-user study",
+          "statusId": 18,
+          "priorityId": 3,
+          "complete": false
+        },
+        {
+          "id": 58,
+          "title": "[A11Y] Disposition every finding from AT and user testing",
+          "statusId": 18,
+          "priorityId": 3,
+          "complete": false
+        },
+        {
+          "id": 59,
+          "title": "[A11Y] Guide sections stay without accessible names",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 60,
+          "title": "[A11Y] Automated axe stays deliberately excluded",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "key": "AF-E04",
+      "taskId": 29,
+      "title": "EPIC — Testing and quality infrastructure",
+      "note": "## Summary\nThis epic adds a systematic eligibility oracle across every catalogue program and reaches a bounded disposition for CI flakiness. It remains Backlog because the oracle is missing and the CI family is rarer, not eliminated.\n\n## Context block — a fresh agent starts here\n- **Goal:** Give every catalogue program asserted ready, almost and no outcome sets, and reach a measured, regression-guarded disposition for CI flakiness under the job cap.\n- **Why it matters:** Eligibility outcomes need systematic regression coverage, and CI flakiness has blocked good releases.\n- **Files to touch:** none — decision ticket\n- **Read exactly this and nothing more:** AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket\n- **Do NOT read:** AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/\n- **Constraints:** Keep retries: 0, do not default the suite to reduced motion, and do not weaken mutation-tested guards. Do not claim future CI flakiness is eliminated; use a bounded verification set approved by the owner, with its run count TBD — owner to specify.\n- **Done when:**\n  - Every catalogue program has asserted expected ready, almost and no outcome sets in the eligibility oracle.\n  - A plausible mutation makes the eligibility oracle fail, and the first red run is triaged into separate findings rather than forced green in the same change.\n  - The CI timeout mechanism is reproduced and fixed, or instrumented and root-caused with an explicit owner-approved disposition.\n  - A regression guard fails when the identified CI mechanism is reintroduced and passes after restoration.\n  - The full CI suite completes under the existing job cap for an owner-approved bounded set of runs; the run count is TBD — owner to specify, and the dated outputs are recorded.\n- **Priority: High** — High because the regression gap and CI timeout family can block good releases.\n- **Parent:** none — top-level epic · **Children:** populated in Phase 3 · **Blocked by:** none\n- **GitHub:** issue pending Phase 6 · branch `taskview-<id>-<slug>` · PR pending\n\n## Detailed activity\n\n## Handoff\n\n<!-- spec-key: AF-E04 -->",
+      "priorityId": 3,
+      "statusId": 18,
+      "complete": false,
+      "parentId": null,
+      "tags": [
+        4,
+        12
+      ],
+      "children": [
+        {
+          "id": 61,
+          "title": "[TEST] TEST-01 — build the eligibility oracle and regression suite",
+          "statusId": 18,
+          "priorityId": 2,
+          "complete": false
+        },
+        {
+          "id": 62,
+          "title": "[TEST] Root-cause the [app-chromium] 90-second timeouts that only appear on CI",
+          "statusId": 18,
+          "priorityId": 3,
+          "complete": false
+        },
+        {
+          "id": 63,
+          "title": "[TEST] Keep retries:0 and read results with grep -E \"passed|failed|flaky\"",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 64,
+          "title": "[TEST] Reduced-motion stays out of the suite default",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 65,
+          "title": "[TEST] Preserve the mutation-tested guards",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "key": "AF-E05",
+      "taskId": 30,
+      "title": "EPIC — Open product decisions",
+      "note": "## Summary\nThis epic covers DATA-25, UX-02 and UX-03. All three audit findings are mitigated rather than closed and need product decisions rather than more code alone.\n\n## Context block — a fresh agent starts here\n- **Goal:** Close DATA-25, UX-02 and UX-03 through explicit product decisions.\n- **Why it matters:** Three mitigated audit findings remain open until their product decisions are made and validated.\n- **Files to touch:** none — decision ticket\n- **Read exactly this and nothing more:** AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket\n- **Do NOT read:** AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/\n- **Constraints:** Do not re-open money-band prominence or conditional-results framing; both closed 2026-07-30 (`00fb18f`).\n- **Done when:**\n  - DATA-25, UX-02 and UX-03 are closed with explicit product decisions and their stated validation.\n- **Priority: Medium** — Medium because three mitigated findings remain open and require product decisions.\n- **Parent:** none — top-level epic · **Children:** populated in Phase 3 · **Blocked by:** none\n- **GitHub:** issue pending Phase 6 · branch `taskview-<id>-<slug>` · PR pending\n\n## Detailed activity\n\n## Handoff\n\n<!-- spec-key: AF-E05 -->",
+      "priorityId": 2,
+      "statusId": 18,
+      "complete": false,
+      "parentId": null,
+      "tags": [
+        4,
+        15
+      ],
+      "children": [
+        {
+          "id": 66,
+          "title": "[DATA] DATA-25 — replace mitigated DTC readiness with verified CRA criteria",
+          "statusId": 18,
+          "priorityId": 3,
+          "complete": false
+        },
+        {
+          "id": 67,
+          "title": "[UX] UX-02 — stop the homepage overpromising completeness or certainty",
+          "statusId": 18,
+          "priorityId": 2,
+          "complete": false
+        },
+        {
+          "id": 68,
+          "title": "[UX] UX-03 — explain or replace the editorial priority-order weights",
+          "statusId": 18,
+          "priorityId": 2,
+          "complete": false
+        }
+      ]
+    },
+    {
+      "key": "AF-E06",
+      "taskId": 31,
+      "title": "EPIC — Performance and first load",
+      "note": "## Summary\nThis epic is already closed: the first-load work closed 2026-07-30 as WON'T FIX by owner decision after live measurement, and the field INP limitation is recorded. It preserves those outcomes without reopening PERF-01 or adding analytics by default.\n\n## Context block — a fresh agent starts here\n- **Goal:** Record why first-load work is closed and keep the unmeasurable field metric visible.\n- **Why it matters:** The record prevents rejected optimisations from being re-attempted while preserving the field INP limitation.\n- **Files to touch:** none — decision ticket\n- **Read exactly this and nothing more:** AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket\n- **Do NOT read:** AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/\n- **Constraints:** Do not re-attempt the rejected optimisations without an owner decision and new measurement, and do not add analytics by default.\n- **Done when:**\n  - The 2026-07-30 owner decision closing first-load work as WON'T FIX remains discoverable.\n  - The field INP limitation remains recorded as unmeasurable without real users and analytics.\n  - The epic re-opens only with an owner decision and new measurement; recording the field limitation does not add analytics by default.\n- **Priority: Low** — Low because first-load work is closed and the remaining work is to preserve the decision record and metric limitation.\n- **Parent:** none — top-level epic · **Children:** populated in Phase 3 · **Blocked by:** none\n- **GitHub:** issue pending Phase 6 · branch `taskview-<id>-<slug>` · PR pending\n\n## Detailed activity\n\n## Handoff\n\n<!-- spec-key: AF-E06 -->",
+      "priorityId": 1,
+      "statusId": 20,
+      "complete": true,
+      "parentId": null,
+      "tags": [
+        4,
+        13
+      ],
+      "children": [
+        {
+          "id": 69,
+          "title": "[PERF] PERF-01 stays WON'T FIX — do not re-attempt the rejected optimisations",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 70,
+          "title": "[PERF] Record that field INP stays unmeasurable",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "key": "AF-E07",
+      "taskId": 32,
+      "title": "EPIC — Release readiness and NO-GO lift",
+      "note": "## Summary\nThis epic is the gate everything else feeds. The audit's original NO-GO has never been formally lifted.\n\n## Context block — a fresh agent starts here\n- **Goal:** Lift the NO-GO only when all release conditions carry evidence.\n- **Why it matters:** The product cannot be treated as release-ready until the original NO-GO is formally lifted.\n- **Files to touch:** none — decision ticket\n- **Read exactly this and nothing more:** AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket\n- **Do NOT read:** AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/\n- **Constraints:** Do not lift the NO-GO before all four launch-gate items have evidence: completed human accessibility and usability testing with every issue dispositioned; review and verification of the complete current repository diff; the full release-candidate test and generation checklist; and a clean production smoke test after the final release candidate.\n- **Done when:**\n  - Dated human accessibility and usability test records exist and every finding is fixed, explicitly accepted, deferred with owner approval, or otherwise dispositioned.\n  - A review record identifies the complete current repository diff and separates intentional source changes from generated changes.\n  - The release-candidate record contains output for every required test, generation, diff and dry-run checklist command, plus its date and commit candidate.\n  - A dated production smoke-test record is clean on a re-run against the live site after the final release candidate.\n  - Only after the other four criteria are met, the owner records the release-status change.\n- **Priority: High** — High because this epic is the release gate.\n- **Parent:** none — top-level epic · **Children:** populated in Phase 3 · **Blocked by:** AF-E03\n- **GitHub:** issue pending Phase 6 · branch `taskview-<id>-<slug>` · PR pending\n\n## Detailed activity\n\n## Handoff\n\n<!-- spec-key: AF-E07 -->",
+      "priorityId": 3,
+      "statusId": 18,
+      "complete": false,
+      "parentId": null,
+      "tags": [
+        4,
+        17,
+        19
+      ],
+      "children": [
+        {
+          "id": 71,
+          "title": "[REL] Lift the NO-GO only when all four conditions have evidence",
+          "statusId": 18,
+          "priorityId": 3,
+          "complete": false
+        },
+        {
+          "id": 72,
+          "title": "[REL] Run the full release-candidate test and generation checklist",
+          "statusId": 18,
+          "priorityId": 3,
+          "complete": false
+        },
+        {
+          "id": 73,
+          "title": "[REL] Clean production smoke test after the final release candidate",
+          "statusId": 18,
+          "priorityId": 3,
+          "complete": false
+        }
+      ]
+    },
+    {
+      "key": "AF-E08",
+      "taskId": 33,
+      "title": "EPIC — Deploy, ops, and link monitoring",
+      "note": "## Summary\nThis epic keeps production correct, free and provably released through the deploy gate, release proof, credential handling and edge configuration. It also includes the live Cloudflare API token that has not been rotated.\n\n## Context block — a fresh agent starts here\n- **Goal:** Keep deploys gated, production releases proven, credentials controlled and edge configuration consistent with the zero-spend and privacy rules.\n- **Why it matters:** Production releases and the live deploy credential must remain controlled and verifiable.\n- **Files to touch:** none — decision ticket\n- **Read exactly this and nothing more:** AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket\n- **Do NOT read:** AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/\n- **Constraints:** Preserve the CI deploy gate and zero-spend guard, verify releases against the live site, and never put a credential value in a ticket, branch, commit, PR, log or command line.\n- **Done when:**\n  - The exposed Cloudflare API token is revoked or rotated by the owner.\n  - The replacement token is stored only as the approved repository secret.\n  - A gated deployment succeeds after rotation and the release is proven against the live site.\n  - No credential value appears in ticket or engineering records.\n  - The CI deploy gate, zero-spend guard and required edge configuration remain verified.\n- **Priority: High** — High because the epic includes production correctness, release proof and an un-rotated live deploy credential.\n- **Parent:** none — top-level epic · **Children:** populated in Phase 3 · **Blocked by:** none\n- **GitHub:** issue pending Phase 6 · branch `taskview-<id>-<slug>` · PR pending\n\n## Detailed activity\n\n## Handoff\n\n<!-- spec-key: AF-E08 -->",
+      "priorityId": 3,
+      "statusId": 18,
+      "complete": false,
+      "parentId": null,
+      "tags": [
+        4,
+        14
+      ],
+      "children": [
+        {
+          "id": 74,
+          "title": "[SEC] Rotate the Cloudflare API token",
+          "statusId": 18,
+          "priorityId": 3,
+          "complete": false
+        },
+        {
+          "id": 75,
+          "title": "[OPS] Keep the CI deploy gate intact and prove releases against the live site",
+          "statusId": 20,
+          "priorityId": 3,
+          "complete": true
+        },
+        {
+          "id": 76,
+          "title": "[OPS] Preserve the Playwright browser cache conditions",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 77,
+          "title": "[OPS] REL-06 stays WON'T FIX on zero-spend grounds",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 78,
+          "title": "[OPS] Production-only validation sweep",
+          "statusId": 18,
+          "priorityId": 2,
+          "complete": false
+        },
+        {
+          "id": 79,
+          "title": "[OPS] Confirm Cloudflare edge injection stays disabled",
+          "statusId": 18,
+          "priorityId": 1,
+          "complete": false
+        },
+        {
+          "id": 80,
+          "title": "[OPS] Post-deploy verification routine",
+          "statusId": 18,
+          "priorityId": 2,
+          "complete": false
+        },
+        {
+          "id": 81,
+          "title": "[SEO] Review search appearance after major content or scope changes",
+          "statusId": 18,
+          "priorityId": 1,
+          "complete": false
+        }
+      ]
+    },
+    {
+      "key": "AF-E09",
+      "taskId": 34,
+      "title": "EPIC — Horizon 1: Alberta polish",
+      "note": "## Summary\nThis epic is owner horizon 1. It focuses on making the Alberta service complete enough that organizations and clinics have no comparable alternative.\n\n## Context block — a fresh agent starts here\n- **Goal:** Make the Alberta service complete enough that organizations and clinics have no comparable alternative.\n- **Why it matters:** Alberta polish supports a service with verified depth and trust and credibility artifacts for outreach.\n- **Files to touch:** none — decision ticket\n- **Read exactly this and nothing more:** AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket\n- **Do NOT read:** AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/\n- **Constraints:** Feature additions come from the comparative research backlog and the owner picks them.\n- **Done when:**\n  - The owner's chosen Alberta additions are shipped to the Alberta/B.C. depth bar.\n  - The owner-selected trust and credibility artifacts for organization outreach are named as TBD — owner to specify, published, and linked from the epic evidence.\n  - Any benefit facts in those artifacts retain their sources and are reviewed against the current official source on the day of publication.\n  - The owner records acceptance that the published artifacts are usable in an organization-outreach conversation.\n- **Priority: Medium** — Medium because this is owner horizon 1.\n- **Parent:** none — top-level epic · **Children:** populated in Phase 3 · **Blocked by:** none\n- **GitHub:** issue pending Phase 6 · branch `taskview-<id>-<slug>` · PR pending\n\n## Detailed activity\n\n## Handoff\n\n<!-- spec-key: AF-E09 -->",
+      "priorityId": 2,
+      "statusId": 18,
+      "complete": false,
+      "parentId": null,
+      "tags": [
+        4,
+        16
+      ],
+      "children": [
+        {
+          "id": 82,
+          "title": "[CONTENT] Finish Alberta polish",
+          "statusId": 18,
+          "priorityId": 2,
+          "complete": false
+        },
+        {
+          "id": 83,
+          "title": "[CONTENT] Build the trust and credibility artifacts for outreach",
+          "statusId": 18,
+          "priorityId": 2,
+          "complete": false
+        },
+        {
+          "id": 84,
+          "title": "[UX] Improve discovery only when evidence supports it",
+          "statusId": 18,
+          "priorityId": 1,
+          "complete": false
+        },
+        {
+          "id": 85,
+          "title": "[CONTENT] French stays paused",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "key": "AF-E10",
+      "taskId": 35,
+      "title": "EPIC — Horizon 2: For Professionals v1",
+      "note": "## Summary\nThis epic is owner horizon 2. It covers adviser-facing material built only through legally clean practitioner structures.\n\n## Context block — a fresh agent starts here\n- **Goal:** Ship the adviser-facing quick reference, DTC/T2201 appointment-preparation sheets and a For professionals page through legally clean practitioner structures.\n- **Why it matters:** Professional-facing material must support practitioners without paid referral inducements or unverified clinic arrangements.\n- **Files to touch:** none — decision ticket\n- **Read exactly this and nothing more:** AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket\n- **Do NOT read:** AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/\n- **Constraints:** Use transparent directories and disclosed sponsorships only, with no paid referral inducements, and verify before any clinic arrangement.\n- **Done when:**\n  - The adviser-facing quick reference is factually reviewed, accessibility-checked and published.\n  - The DTC/T2201 appointment-preparation sheets are factually reviewed, accessibility-checked and published without implying an eligibility verdict the matcher cannot support.\n  - The For professionals page is factually reviewed, accessibility-checked and published.\n  - Every practitioner arrangement has documented verification against CPSA standards before it is entered into.\n- **Priority: Low** — Low because this is owner horizon 2.\n- **Parent:** none — top-level epic · **Children:** populated in Phase 3 · **Blocked by:** none\n- **GitHub:** issue pending Phase 6 · branch `taskview-<id>-<slug>` · PR pending\n\n## Detailed activity\n\n## Handoff\n\n<!-- spec-key: AF-E10 -->",
+      "priorityId": 1,
+      "statusId": 18,
+      "complete": false,
+      "parentId": null,
+      "tags": [
+        4,
+        16
+      ],
+      "children": [
+        {
+          "id": 86,
+          "title": "[CONTENT] Adviser-facing quick reference",
+          "statusId": 18,
+          "priorityId": 1,
+          "complete": false
+        },
+        {
+          "id": 87,
+          "title": "[CONTENT] DTC / T2201 appointment-preparation sheets",
+          "statusId": 18,
+          "priorityId": 1,
+          "complete": false
+        },
+        {
+          "id": 88,
+          "title": "[CONTENT] \"For professionals\" page",
+          "statusId": 18,
+          "priorityId": 1,
+          "complete": false
+        },
+        {
+          "id": 89,
+          "title": "[LEGAL] Keep practitioner relationships legally clean",
+          "statusId": 18,
+          "priorityId": 1,
+          "complete": false
+        }
+      ]
+    },
+    {
+      "key": "AF-E11",
+      "taskId": 36,
+      "title": "EPIC — Horizon 3: Canada-wide, province by province",
+      "note": "## Summary\nThis epic is owner horizon 3. It expands one province at a time to the Alberta/B.C. depth bar, while national-but-shallow is explicitly rejected.\n\n## Context block — a fresh agent starts here\n- **Goal:** Expand one province at a time to the Alberta/B.C. depth bar.\n- **Why it matters:** Province-by-province verified depth avoids a national-but-shallow catalogue.\n- **Files to touch:** none — decision ticket\n- **Read exactly this and nothing more:** AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket\n- **Do NOT read:** AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/\n- **Constraints:** Do not ship a province until its province-specific source audit and metadata pass are completed and evidenced, and do not use an epic-to-own-child dependency. National-but-shallow remains rejected.\n- **Done when:**\n  - The province-specific source audit is completed and its evidence is attached before shipment.\n  - The province-specific metadata pass is completed and its evidence is attached before shipment.\n  - Every benefit fact is verified against the current official source on the day.\n  - Every changed record retains its source.\n  - `npm run gen:context` is run where applicable.\n  - `npm run gen:guides` is run where applicable.\n  - Generated diffs in `src/benefits-context.js` and `src/links.js` are reviewed.\n  - A `DATA_CHANGELOG` entry is appended in `public/changelog.js` for each benefit-fact change.\n  - The shared `?v=N` in `public/index.html` is bumped for every changed browser-loaded asset.\n  - `npm test` and `npm run test:e2e` pass.\n  - The additional province ships at the Alberta/B.C. depth bar only after the preceding criteria pass.\n- **Priority: Low** — Low because this is owner horizon 3.\n- **Parent:** none — top-level epic · **Children:** populated in Phase 3 · **Blocked by:** none\n- **GitHub:** issue pending Phase 6 · branch `taskview-<id>-<slug>` · PR pending\n\n## Detailed activity\n\n## Handoff\n\n<!-- spec-key: AF-E11 -->",
+      "priorityId": 1,
+      "statusId": 18,
+      "complete": false,
+      "parentId": null,
+      "tags": [
+        4,
+        18
+      ],
+      "children": [
+        {
+          "id": 90,
+          "title": "[RESEARCH] Write the province source-audit checklist",
+          "statusId": 18,
+          "priorityId": 2,
+          "complete": false
+        },
+        {
+          "id": 91,
+          "title": "[RESEARCH] Re-integrate the first additional province",
+          "statusId": 18,
+          "priorityId": 1,
+          "complete": false
+        }
+      ]
+    },
+    {
+      "key": "AF-E12",
+      "taskId": 37,
+      "title": "EPIC — Horizon 4: Multi-audience streams",
+      "note": "## Summary\nThis epic is owner horizon 4. It adds audience streams one at a time with the same verified-depth treatment.\n\n## Context block — a fresh agent starts here\n- **Goal:** Add additional audience streams one at a time with the same verified-depth treatment.\n- **Why it matters:** Each additional audience needs deliberate scope and verified depth rather than partial coverage.\n- **Files to touch:** none — decision ticket\n- **Read exactly this and nothing more:** AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket\n- **Do NOT read:** AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/\n- **Constraints:** Choose one audience at a time, apply the same verified-depth treatment, and proceed only after the disability service is mature.\n- **Done when:**\n  - The owner selects one additional audience only after the disability service is mature, and records the audience and depth bar.\n  - Official-source research for the selected audience is completed and evidenced at the stated depth bar.\n  - The selected audience stream is implemented with its source metadata retained.\n  - `npm test` and `npm run test:e2e` pass for the implemented audience stream.\n  - The selected audience stream is shipped before the epic closes.\n- **Priority: Low** — Low because this is owner horizon 4.\n- **Parent:** none — top-level epic · **Children:** populated in Phase 3 · **Blocked by:** none\n- **GitHub:** issue pending Phase 6 · branch `taskview-<id>-<slug>` · PR pending\n\n## Detailed activity\n\n## Handoff\n\n<!-- spec-key: AF-E12 -->",
+      "priorityId": 1,
+      "statusId": 18,
+      "complete": false,
+      "parentId": null,
+      "tags": [
+        4,
+        18
+      ],
+      "children": [
+        {
+          "id": 92,
+          "title": "[RESEARCH] Choose and scope the first additional audience stream",
+          "statusId": 18,
+          "priorityId": 1,
+          "complete": false
+        },
+        {
+          "id": 93,
+          "title": "[SCOPE] VAC disability benefits stay out of scope",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "key": "AF-E13",
+      "taskId": 38,
+      "title": "EPIC — Horizon 5: Agency product",
+      "note": "## Summary\nThis epic is owner horizon 5. It scopes a separate paid agency portal as the deliberate revisit of the no-accounts rule for that product only.\n\n## Context block — a fresh agent starts here\n- **Goal:** Scope a separate paid agency portal with its own privacy and infrastructure review.\n- **Why it matters:** The separate product requires accounts and server-side state without moving the public site's privacy and zero-spend guarantees.\n- **Files to touch:** none — decision ticket\n- **Read exactly this and nothing more:** AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket\n- **Do NOT read:** AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/\n- **Constraints:** Treat the portal as a separate product, and leave the public site's rules unchanged: no accounts, no analytics, no remote storage of wizard answers, zero spend.\n- **Done when:**\n  - A scoping document exists with its own privacy and infrastructure review, and the public site's guarantees are demonstrably untouched.\n- **Priority: Low** — Low because this is owner horizon 5.\n- **Parent:** none — top-level epic · **Children:** populated in Phase 3 · **Blocked by:** none\n- **GitHub:** issue pending Phase 6 · branch `taskview-<id>-<slug>` · PR pending\n\n## Detailed activity\n\n## Handoff\n\n<!-- spec-key: AF-E13 -->",
+      "priorityId": 1,
+      "statusId": 18,
+      "complete": false,
+      "parentId": null,
+      "tags": [
+        4,
+        18
+      ],
+      "children": [
+        {
+          "id": 94,
+          "title": "[SCOPE] Scope the paid agency portal as a separate product",
+          "statusId": 18,
+          "priorityId": 1,
+          "complete": false
+        },
+        {
+          "id": 95,
+          "title": "[SCOPE] Revenue sequencing stays credibility-first",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "key": "AF-E14",
+      "taskId": 39,
+      "title": "EPIC — Agent ops and board integration",
+      "note": "## Summary\nThis epic makes the board, GitHub and Slack one coherent system. It also keeps the project docs honest.\n\n## Context block — a fresh agent starts here\n- **Goal:** Make the board, GitHub and Slack one coherent system and keep the project docs honest.\n- **Why it matters:** Coherent coordination prevents duplicate tickets, orphan parents, stale pointers and essential context being stored only in Slack.\n- **Files to touch:** none — decision ticket\n- **Read exactly this and nothing more:** AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket\n- **Do NOT read:** AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/\n- **Constraints:** GitHub is the permanent engineering record, Slack is the notification layer only, workflow changes are a human gate, and only the owner permanently deletes tickets.\n- **Done when:**\n  - The board, GitHub and Slack operate as one coherent system and the project docs match the working record.\n- **Priority: Medium** — Medium because board integration and honest project docs are active coordination work.\n- **Parent:** none — top-level epic · **Children:** populated in Phase 3 · **Blocked by:** none\n- **GitHub:** issue pending Phase 6 · branch `taskview-<id>-<slug>` · PR pending\n\n## Detailed activity\n\n## Handoff\n\n<!-- spec-key: AF-E14 -->",
+      "priorityId": 2,
+      "statusId": 18,
+      "complete": false,
+      "parentId": null,
+      "tags": [
+        4,
+        17
+      ],
+      "children": [
+        {
+          "id": 96,
+          "title": "[OPS] GitHub issue sync for every open ticket",
+          "statusId": 18,
+          "priorityId": 2,
+          "complete": false
+        },
+        {
+          "id": 97,
+          "title": "[OPS] Stable HTTPS callback for the local TaskView",
+          "statusId": 18,
+          "priorityId": 2,
+          "complete": false
+        },
+        {
+          "id": 98,
+          "title": "[OPS] Slack notifications for Blocked / Review / Verification / Done",
+          "statusId": 18,
+          "priorityId": 2,
+          "complete": false
+        },
+        {
+          "id": 99,
+          "title": "[DOCS] Update the TaskView docs for the new board",
+          "statusId": 18,
+          "priorityId": 1,
+          "complete": false
+        },
+        {
+          "id": 100,
+          "title": "[OPS] Repoint .taskview/policy.json to the Ability Finder board",
+          "statusId": 18,
+          "priorityId": 2,
+          "complete": false
+        },
+        {
+          "id": 101,
+          "title": "[DOCS] Reconcile the stale rows in the tracker and roadmap",
+          "statusId": 18,
+          "priorityId": 1,
+          "complete": false
+        },
+        {
+          "id": 102,
+          "title": "[OPS] Board hygiene sweep",
+          "statusId": 18,
+          "priorityId": 2,
+          "complete": false
+        },
+        {
+          "id": 103,
+          "title": "[OPS] Keep WEBSITE-PROJECT-TRACKER.md untracked",
+          "statusId": 18,
+          "priorityId": 1,
+          "complete": false
+        }
+      ]
+    },
+    {
+      "key": "AF-E15",
+      "taskId": 40,
+      "title": "EPIC — Shipped and closed (history)",
+      "note": "## Summary\nThis epic is already closed. It rolls up shipped, disproved and rejected outcomes so settled work is not repeated or re-opened, while each history child preserves its own dated repository or project evidence.\n\n## Context block — a fresh agent starts here\n- **Goal:** Keep rolled-up history, including disproved and rejected outcomes, discoverable.\n- **Why it matters:** The history prevents an agent from re-doing or re-opening settled work.\n- **Files to touch:** none — decision ticket\n- **Read exactly this and nothing more:** AGENTS.md, TASKVIEW-WORKFLOW.md, this ticket\n- **Do NOT read:** AUDIT_REPORT_2026-07-22.md whole, AUDIT_EVIDENCE_2026-07-22/, archive/\n- **Constraints:** Do not state a per-severity count, and preserve disproved, rejected and do-not-reopen outcomes.\n- **Done when:**\n  - Rolled-up history exists for shipped, disproved and rejected outcomes.\n- **Priority: Low** — Low because this epic is already closed history.\n- **Parent:** none — top-level epic · **Children:** populated in Phase 3 · **Blocked by:** none\n- **GitHub:** issue pending Phase 6 · branch `taskview-<id>-<slug>` · PR pending\n\n## Detailed activity\n\n## Handoff\n\n<!-- spec-key: AF-E15 -->",
+      "priorityId": 1,
+      "statusId": 20,
+      "complete": true,
+      "parentId": null,
+      "tags": [
+        4,
+        17
+      ],
+      "children": [
+        {
+          "id": 104,
+          "title": "[HISTORY] Audit closures — DATA family",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 105,
+          "title": "[HISTORY] Audit closures — BC-BC family (complete)",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 106,
+          "title": "[HISTORY] Audit closures — ABFED family",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 107,
+          "title": "[HISTORY] Audit closures — reliability, security, deploy, AI, calendar, supply, docs",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 108,
+          "title": "[HISTORY] Audit closures — Low and Informational (complete)",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 109,
+          "title": "[HISTORY] Disproved and stale findings — do not \"fix\" these",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 110,
+          "title": "[HISTORY] Shipped — B.C. launch and the benefit catalogue",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 111,
+          "title": "[HISTORY] Shipped — wizard, functional-limitation matching, and matcher safety",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 112,
+          "title": "[HISTORY] Shipped — guides, progress tracking, printable reports, .ics reminders",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 113,
+          "title": "[HISTORY] Shipped — IndexedDB persistence and recovery",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 114,
+          "title": "[HISTORY] Shipped — grounded assistant and feedback endpoint",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 115,
+          "title": "[HISTORY] Shipped — organization and practitioner directories",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 116,
+          "title": "[HISTORY] Shipped — the six-project Playwright matrix (TEST-02)",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 117,
+          "title": "[HISTORY] Shipped — the 2026-07-29 federal, Alberta and B.C. additions",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 118,
+          "title": "[HISTORY] The deliberately-rejected list",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        },
+        {
+          "id": 119,
+          "title": "[HISTORY] The audit row count, and why the severity totals are not restated",
+          "statusId": 20,
+          "priorityId": 1,
+          "complete": true
+        }
+      ]
+    }
+  ]
+}
