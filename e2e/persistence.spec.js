@@ -552,7 +552,10 @@ test("the app fails visible with clean defaults when IndexedDB is unavailable", 
   const page = await context.newPage();
   await page.goto("/");
   await expect(page.locator("#app h1")).toBeVisible();
-  await expect(page.locator("#app h1")).toContainText("Every benefit");
+  // This guards against a blank page, not a particular headline; literals make unrelated copy changes fail.
+  const expectedTitle = await page.evaluate(() => t("land.title"));
+  expect(expectedTitle).toEqual(expect.stringMatching(/\S/));
+  await expect(page.locator("#app h1")).toContainText(expectedTitle);
   await expectHealthy(page);
   await context.close();
 });

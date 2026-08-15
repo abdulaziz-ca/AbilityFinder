@@ -195,7 +195,7 @@ const I18N = {
     "benefitsEnglishNote": "",
 
     "land.eyebrow": "{scopeBenefits}",
-    "land.title": "Every benefit you're owed, found in one minute.",
+    "land.title": "Answer a few questions. See which disability benefits you may qualify for.",
     "land.sub": "Government disability supports are scattered across dozens of confusing pages. AbilityFinder asks a few simple questions, screens out known conflicts, and gives you a cautious list to verify, with plain-language guides and direct official links.",
     "land.find": "Find my benefits",
     "land.how": "See how it works",
@@ -582,7 +582,7 @@ const I18N = {
     "benefitsEnglishNote": "",
 
     "land.eyebrow": "{scopeBenefits}",
-    "land.title": "Toutes les prestations qui vous reviennent, trouvées en une minute.",
+    "land.title": "Répondez à quelques questions. Voyez les prestations d'invalidité auxquelles vous pourriez être admissible.",
     "land.sub": "Les mesures de soutien gouvernementales liées au handicap sont éparpillées sur des dizaines de pages déroutantes. AbilityFinder pose quelques questions simples, écarte les incompatibilités connues et vous remet une liste prudente à vérifier, avec des guides clairs et des liens officiels.",
     "land.find": "Trouver mes prestations",
     "land.how": "Voir comment ça marche",
@@ -814,7 +814,8 @@ function t(key) {
   const bc = typeof BC_ENABLED !== "undefined" && BC_ENABLED;
   const scope = LANG === "fr"
     ? {
-        scopeBenefits: bc ? "Alberta · C.-B. + prestations fédérales" : "Alberta · C.-B. · Ontario · Québec",
+        // The previous fallback claimed Ontario and Québec, which the product has never covered.
+        scopeBenefits: bc ? "Alberta · C.-B. + prestations fédérales" : "Alberta + prestations fédérales",
         scopeResidents: bc ? "Albertains et Britanno-Colombiens" : "Albertains",
         scopeResidentsPrep: bc ? "de l’Alberta et de la Colombie-Britannique" : "de l’Alberta",
         scopeProgramList: bc ? "albertains, britanno-colombiens, fédéraux et municipaux" : "albertains, fédéraux et municipaux",
