@@ -155,7 +155,46 @@ async function pick(page, text) {
   // a `.js-start` click, or a previous pick — only the last of those left the card settled, so
   // waiting here rather than only at the end is what makes every entry path safe.
   await settleWizardCard(page);
-  await page.locator(".opt", { hasText: text }).click();
+  // The bounds in pick() are sequential, not overlapping: settleWizardCard can spend
+  // 15s in its evaluate before this click starts, the click can spend 30s, the fatal
+  // post-click waitForFunction can then spend 20s, and the trailing settleWizardCard
+  // can spend another 15s. That pathological case, with all four bounds maxing out
+  // simultaneously, caps the path at 80s against the 90s CI test timeout and leaves
+  // roughly 10s of margin; it is not the expected path. The point of the bound is that
+  // even this pathological path fails with a diagnostic message instead of a bare test
+  // timeout. The adjacent 20s bound does NOT justify this one; they are separate
+  // sequential budgets. An earlier revision wrongly argued they were the same, and
+  // preserving the review's correction here keeps the next reader from re-deriving
+  // that reasoning. The earlier arithmetic also under-counted the path by omitting the
+  // trailing settle.
+  //
+  // A legitimate click takes only low hundreds of milliseconds locally, while CI is
+  // roughly 1.75x slower, so 30s sits far above plausible actionability delay while
+  // cutting a genuine stall from 90 silent seconds to 30 diagnosed ones. No job cap
+  // is raised and retries: 0 is untouched: this is strictly more patient than the
+  // unbounded click it replaces and strictly less patient than the 90s test timeout
+  // it stops that click from consuming.
+  await page
+    .locator(".opt", { hasText: text })
+    .click({ timeout: 30000 })
+    .catch(async (error) => {
+      const now = await page
+        .evaluate(() => ({
+          view,
+          stepId: (visibleSteps()[stepIndex] || {}).id,
+          opts: [...document.querySelectorAll("label.opt")].map((el) =>
+            el.textContent.replace(/\s+/g, " ").trim(),
+          ),
+        }))
+        .catch(() => null);
+      throw new Error(
+        `pick(${JSON.stringify(text)}): the click did not land within 30000ms. ` +
+          `At expiry the wizard was on step ${JSON.stringify(now && now.stepId)} ` +
+          `(view="${now && now.view}") showing [${now ? now.opts.join(" | ") : "unreadable"}]. ` +
+          `Step at check time was ${JSON.stringify(onScreen.id)}. If those differ, the card ` +
+          `re-rendered between the check and the click. Original: ${error.message}`,
+      );
+    });
   // Single-answer steps auto-advance (goNext on a 150-200 ms timer); multi-answer
   // steps stay put and enable Continue. Wait for whichever actually happens rather
   // than sleeping past the longest timer.

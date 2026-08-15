@@ -32,7 +32,9 @@ module.exports = defineConfig({
   // outside. The built-in "github" reporter emits ::error:: annotations that
   // carry the file, line and message, and those ARE readable through the public
   // check-runs annotations API. Keep "line" alongside it for the log itself.
-  reporter: process.env.CI ? [["github"], ["line"]] : "line",
+  reporter: process.env.CI
+    ? [["github"], ["line"], ["./e2e/failure-context-reporter.js"]]
+    : [["line"], ["./e2e/failure-context-reporter.js"]],
   // Never retry. A retried flake reads as a pass and hides exactly the timing
   // fragility TEST-02 exists to remove.
   retries: 0,
