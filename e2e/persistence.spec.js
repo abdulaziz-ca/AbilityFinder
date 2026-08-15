@@ -158,15 +158,17 @@ async function pick(page, text) {
   // The bounds in pick() are sequential, not overlapping: settleWizardCard can spend
   // 15s in its evaluate before this click starts, the click can spend 30s, the fatal
   // post-click waitForFunction can then spend 20s, and the trailing settleWizardCard
-  // can spend another 15s. That pathological case, with all four bounds maxing out
-  // simultaneously, caps the path at 80s against the 90s CI test timeout and leaves
-  // roughly 10s of margin; it is not the expected path. The point of the bound is that
-  // even this pathological path fails with a diagnostic message instead of a bare test
-  // timeout. The adjacent 20s bound does NOT justify this one; they are separate
-  // sequential budgets. An earlier revision wrongly argued they were the same, and
-  // preserving the review's correction here keeps the next reader from re-deriving
-  // that reasoning. The earlier arithmetic also under-counted the path by omitting the
-  // trailing settle.
+  // can spend another 15s. The 80s total is only the maximum of those four explicitly
+  // bounded phases; it is NOT an end-to-end cap on pick(). Before them, the preflight
+  // textContent() and evaluate() have no explicit bounds and inherit the 90s test timeout,
+  // so a browser/CDP wedge during preflight is still uncapped by this budget. Bounding
+  // those two calls is a candidate follow-up, not something this change does. The earlier
+  // claim of an end-to-end path cap was itself an overclaim. For the four bounded phases,
+  // the point is to fail a stall with a diagnostic message instead of a bare test timeout.
+  // The adjacent 20s bound does NOT justify this one; they are separate sequential
+  // budgets. An earlier revision wrongly argued they were the same, and preserving the
+  // review's correction here keeps the next reader from re-deriving that reasoning. The
+  // earlier arithmetic also under-counted the path by omitting the trailing settle.
   //
   // A legitimate click takes only low hundreds of milliseconds locally, while CI is
   // roughly 1.75x slower, so 30s sits far above plausible actionability delay while
