@@ -334,114 +334,28 @@ export const BENEFIT_COUNT = ${benefits.length};
 `;
 }
 
-function changelogArraySource(source) {
-  const declaration = /\bconst\s+DATA_CHANGELOG\s*=\s*\[/.exec(source);
-  assert.ok(declaration, "public/changelog.js must declare const DATA_CHANGELOG = [");
-  const arrayStart = source.indexOf("[", declaration.index);
-  let depth = 0;
-  let quote = null;
-  let escaped = false;
-  let lineComment = false;
-  let blockComment = false;
-
-  // WHY: the entry regex must never see lookalike objects in comments or unrelated
-  // arrays. Scan JavaScript's strings and comments while finding this array's own
-  // matching bracket, then strip comments from only that slice before parsing.
-  for (let index = arrayStart; index < source.length; index++) {
-    const char = source[index];
-    const next = source[index + 1];
-    if (lineComment) {
-      if (char === "\n") lineComment = false;
-      continue;
-    }
-    if (blockComment) {
-      if (char === "*" && next === "/") {
-        blockComment = false;
-        index++;
-      }
-      continue;
-    }
-    if (quote) {
-      if (escaped) escaped = false;
-      else if (char === "\\") escaped = true;
-      else if (char === quote) quote = null;
-      continue;
-    }
-    if (char === "/" && next === "/") {
-      lineComment = true;
-      index++;
-      continue;
-    }
-    if (char === "/" && next === "*") {
-      blockComment = true;
-      index++;
-      continue;
-    }
-    if (char === '"' || char === "'" || char === "`") {
-      quote = char;
-      continue;
-    }
-    if (char === "[") depth++;
-    if (char === "]") {
-      depth--;
-      if (depth === 0) return source.slice(arrayStart, index + 1);
-    }
+function extractChangelogEntries(source, label = "public/changelog.js") {
+  let changelog;
+  try {
+    // WHY: these are repository-controlled classic-script files. Evaluating them in
+    // an isolated function scope is acceptable here and reads actual array elements,
+    // which is more robust than pattern-matching object-like text in comments/strings.
+    changelog = new Function(`"use strict";\n${source}\nreturn DATA_CHANGELOG;`)();
+  } catch (error) {
+    assert.fail(`${label} changelog could not be parsed: ${error.message}`);
   }
-  assert.fail("public/changelog.js DATA_CHANGELOG array has no matching closing bracket");
-}
+  assert.ok(Array.isArray(changelog), `${label} changelog could not be parsed: DATA_CHANGELOG is not an array`);
 
-function withoutJavaScriptComments(source) {
-  let output = "";
-  let quote = null;
-  let escaped = false;
-  let lineComment = false;
-  let blockComment = false;
-  for (let index = 0; index < source.length; index++) {
-    const char = source[index];
-    const next = source[index + 1];
-    if (lineComment) {
-      if (char === "\n") {
-        lineComment = false;
-        output += char;
-      }
-      continue;
-    }
-    if (blockComment) {
-      if (char === "*" && next === "/") {
-        blockComment = false;
-        index++;
-      }
-      continue;
-    }
-    if (quote) {
-      output += char;
-      if (escaped) escaped = false;
-      else if (char === "\\") escaped = true;
-      else if (char === quote) quote = null;
-      continue;
-    }
-    if (char === "/" && next === "/") {
-      lineComment = true;
-      index++;
-      continue;
-    }
-    if (char === "/" && next === "*") {
-      blockComment = true;
-      index++;
-      continue;
-    }
-    output += char;
-    if (char === '"' || char === "'" || char === "`") quote = char;
-  }
-  return output;
-}
-
-function extractChangelogEntries(source) {
-  const changelog = withoutJavaScriptComments(changelogArraySource(source));
   return new Set(
-    [...changelog.matchAll(/\{\s*date:\s*"(\d{4}-\d{2}-\d{2})"\s*,\s*text:\s*"((?:\\.|[^"\\])*)"\s*\}/g)].map(
-      (match) => `${match[1]}\u0000${JSON.parse(`"${match[2]}"`)}`
-    )
+    changelog
+      .filter(
+        (entry) =>
+          entry &&
+          typeof entry === "object" &&
+          /^\d{4}-\d{2}-\d{2}$/.test(entry.date) &&
+          typeof entry.text === "string"
+      )
+      .map((entry) => JSON.stringify([entry.date, entry.text]))
   );
 }
 
@@ -474,7 +388,10 @@ test.describe("data-change procedure stays enforced", () => {
     // edit used to satisfy this gate while the required public record was absent.
     // Compare parsed entry identities so the current array must retain every old
     // entry and add at least one genuinely new dated entry.
-    const baselineEntries = extractChangelogEntries(baselineChangelog.stdout);
+    const baselineEntries = extractChangelogEntries(
+      baselineChangelog.stdout,
+      "baseline public/changelog.js"
+    );
     const currentEntries = extractChangelogEntries(readRepoFile("public", "changelog.js"));
     const retainedBaseline = [...baselineEntries].every((entry) => currentEntries.has(entry));
     assert.ok(
