@@ -1,5 +1,6 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
+  { date: "2026-08-15", text: "Updated the results list description to say programs are ordered by likely value and ease of applying, rather than by ease alone." },
   { date: "2026-08-15", text: "Updated the homepage headline and supporting copy to describe answering questions, seeing possible benefit matches to verify, and getting next steps instead of promising every benefit, and corrected French coverage labels that listed provinces outside the catalog." },
   { date: "2026-08-15", text: "Disability Tax Credit guidance now explains the CRA's three eligibility routes and their thresholds, with short prompts to help people discuss affected activities, duration and combined limitations with a medical practitioner." },
   { date: "2026-08-14", text: "Repointed the Easter Seals Alberta directory link to the organisation's main site after its equipment-programs page stopped working." },

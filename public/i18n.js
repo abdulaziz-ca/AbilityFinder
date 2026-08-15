@@ -237,7 +237,7 @@ const I18N = {
     "prob.bad4": "Half the benefits you're entitled to, you never hear about.",
     "prob.goodH": "With AbilityFinder",
     "prob.good1": "Answer a few checkboxes — no reading required.",
-    "prob.good2": "Get a personal list of programs to verify, sorted by ease.",
+    "prob.good2": "Get a personal list of programs to verify, ordered by likely value and how easy each one is to apply for.",
     "prob.good3": "Each one comes with a plain-English “how to apply” guide.",
     "prob.good4": "See possible matches to verify and the next step for each.",
 
@@ -622,7 +622,7 @@ const I18N = {
     "prob.bad4": "La moitié des prestations auxquelles vous avez droit, vous n'en entendez jamais parler.",
     "prob.goodH": "Avec AbilityFinder",
     "prob.good1": "Cochez quelques cases — aucune lecture requise.",
-    "prob.good2": "Obtenez une liste personnelle de programmes à vérifier, triée du plus simple au plus complexe.",
+    "prob.good2": "Obtenez une liste personnelle de programmes à vérifier, classée selon la valeur probable et la simplicité de la demande.",
     "prob.good3": "Chacune vient avec un guide « comment faire la demande » en langage clair.",
     "prob.good4": "Des correspondances possibles à vérifier, avec la prochaine étape pour chaque demande.",
 

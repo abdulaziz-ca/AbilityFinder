@@ -892,8 +892,33 @@ function metaRow(b) {
     ${meta.wait ? `<span class="bm"><b>Wait:</b> ${meta.wait}</span>` : ""}
   </div>`;
 }
-/* Editorial ordering aid based on structured value and application difficulty.
-   It is not an official recommendation or a substitute for urgency/deadlines. */
+/*
+ * This is an editorial ordering aid, not an official recommendation or a
+ * substitute for urgency or deadlines. The score combines an ease term derived
+ * from BENEFIT_META.difficulty (the documented scale is 1 for easy through 5
+ * for hard) with a value term derived from BENEFIT_VALUES. The final calculation
+ * is value * 1.4 + ease.
+ *
+ * All eight constants in that calculation and its inputs — 6, 1000, 14, 100,
+ * 12000, 8, 3 and 1.4 — are editorial. They were chosen by hand, no rationale
+ * for them is recorded anywhere in this repository, and they have never been
+ * validated against representative user profiles.
+ *
+ * That choice has a visible consequence in the current catalogue. Ease spans
+ * only 1–5, while the weighted value contribution reaches about 19.6, so any
+ * programme with a dollar value outranks programmes scored on ease alone. 86%
+ * of the catalogue scores on ease alone, which means the former ease-only claim
+ * describes the bulk of the list but not its top. cpp-disability is the worked
+ * example: it has the hardest difficulty (5), giving it ease 1, yet ranks third
+ * overall.
+ *
+ * Validating or replacing these weights is the remaining work for TaskView #68.
+ * Before any re-weighting, the owner must specify a representative profile set,
+ * recorded hypotheses, a validation method and an objective threshold. The
+ * DATA-51 guard inside the function is part of this boundary: values flagged
+ * excludeFromEstimate are display-only and deliberately do not shift ordering,
+ * and wiring value into priority was deferred to this work.
+ */
 function priorityScore(b) {
   const v = BENEFIT_VALUES[b.id] || {};
   const meta = BENEFIT_META[b.id] || {};
