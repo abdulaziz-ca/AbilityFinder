@@ -190,6 +190,8 @@ const METRO_VANCOUVER_CITIES = [
    ========================================================================== */
 const DTC_URL =
   "https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/t2201.html";
+const DTC_ELIGIBILITY_URL =
+  "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/eligible-dtc.html";
 const DRES_URL = "https://www.alberta.ca/disability-related-employment-supports";
 const ACHB_URL = "https://www.alberta.ca/alberta-child-health-benefit";
 const ACHB_DEPENDENT_DECLARATION_URL = "https://cfr.forms.gov.ab.ca/Form/AEHB3654";
@@ -202,16 +204,19 @@ const REQS = {
     action: { text: "Start the DTC (T2201)", url: DTC_URL },
   },
   prolonged: {
-    // The questionnaire does not collect the CRA's marked-restriction,
-    // cumulative-effects, or life-sustaining-therapy evidence. Keep this
-    // unresolved instead of turning every completed profile into DTC-ready.
+    // The questionnaire does not collect the CRA's practitioner-certified,
+    // comparative marked-restriction, cumulative-effect, or life-sustaining-
+    // therapy evidence. Keep this unresolved instead of turning a lay answer
+    // into DTC readiness. Verified against the CRA eligibility page 2026-08-14.
     met: () => false,
     fixed: false,
-    unmet: "Confirm that the functional impact meets the CRA's severe and prolonged criteria.",
+    unmet: "Ask a medical practitioner to decide with you whether you meet a CRA route: a marked restriction in one category, combined limitations in two or more categories, or life-sustaining therapy. Read the full criteria.",
+    action: { text: "Read the CRA's eligibility criteria", url: DTC_ELIGIBILITY_URL },
   },
   certifier: {
-    // Documentation in the profile is not the same as an authorized
-    // practitioner certifying the program's application form.
+    // This requirement is shared by DTC and parking placards, so its copy must
+    // stay program-neutral. Documentation in the profile is not the same as an
+    // authorized practitioner certifying the program's application form.
     met: () => false,
     fixed: false,
     unmet: "Have an authorized practitioner certify the program's required form.",

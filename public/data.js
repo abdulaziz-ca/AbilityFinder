@@ -393,11 +393,12 @@ const BENEFIT_EXTRA = {
      * (verified 2026-07-15) — see `source` links on this benefit:
      *  - markedly restricted = unable OR takes an inordinate amount of time,
      *    EVEN WITH therapy, devices and medication
-     *  - all or substantially all of the time = CRA reads this as 90%+
+     *  - all or almost all of the time = generally at least 90%
      *  - prolonged = has lasted, or is expected to last, 12+ continuous months
-     *  - cumulative effect = limitations in 2+ categories that together are as
-     *    severe as one marked restriction (CRA's own example: always slow to
-     *    both walk and dress)
+     *  - cumulative effect = limitations in 2+ categories that exist together
+     *    all or almost all of the time and, even with appropriate therapy,
+     *    devices and medication, combine to equal one marked restriction;
+     *    life-sustaining therapy is a separate route
      * Do not add a criterion here that isn't on a CRA page. */
     plainTest: {
       lead:
@@ -416,12 +417,12 @@ const BENEFIT_EXTRA = {
           p: "“Markedly restricted” means unable to do something <b>or</b> taking an <b>inordinate amount of time</b> to do it. CRA's own yardstick is roughly three times longer than someone without the impairment. Taking forever to dress, walk, or organise your day is the thing being measured, not failure to do it at all.",
         },
         {
-          h: "“All or substantially all of the time” = about 90%",
-          p: "This is where fluctuating conditions get lost. If you have good days, the question is not “are you always like this?” — it's whether the restriction is there roughly 90% of the time. Describe your typical day, not your best one, and say plainly how often the bad days come.",
+          h: "“All or almost all of the time” (generally at least 90%)",
+          p: "This is where fluctuating conditions get lost. If you have good days, the question is not “are you always like this?” — it's whether the restriction is present all or almost all of the time (generally at least 90%). Describe your typical pattern, including good and bad days.",
         },
         {
           h: "Two smaller limits can add up to one big one",
-          p: "This is the route most people miss. If you're significantly limited in <b>two or more</b> categories and the combined effect is as severe as one marked restriction, you can qualify on <b>cumulative effect</b>. CRA's own example: always slow to walk <i>and</i> always slow to dress. Ask your practitioner about it by name.",
+          p: "For the <b>cumulative-effect</b> route, significant limitations in <b>two or more</b> categories must exist together all or almost all of the time (generally at least 90%). Even with appropriate therapy, devices and medication, their combined effect must be equivalent to being unable, or taking three times longer than someone of similar age without the impairment, to do an activity in one category, and must be present all or substantially all of the time (generally interpreted as 90% or more). Life-sustaining therapy is a separate route, not part of cumulative effect. Ask your practitioner about this route by name.",
         },
         {
           h: "“Prolonged” just means 12 months",
@@ -429,14 +430,14 @@ const BENEFIT_EXTRA = {
         },
       ],
       foot:
-        "The CRA considers walking, dressing, feeding, speaking, hearing, vision, eliminating (bladder or bowel), mental functions, and life-sustaining therapy. Your practitioner documents the impairment and its effects; the CRA decides eligibility.",
+        "The CRA's eight functional categories are walking, dressing, feeding, speaking, hearing, vision, eliminating (bladder or bowel), and mental functions. Life-sustaining therapy is a separate route. Your practitioner documents the impairment and its effects; the CRA decides eligibility.",
     },
     confirm: "CRA approval after an authorized practitioner certifies that the impairment is prolonged and its effects meet an official DTC route",
     taxNote: "The DTC is non-refundable — it only reduces income tax you owe. If your income is low, you can transfer it to a supporting spouse or parent instead, and it still unlocks the RDSP and Canada Disability Benefit.",
     denials: [
       "The practitioner described the diagnosis instead of your day-to-day limitations.",
       "A section of Form T2201 was left incomplete.",
-      "Limitations weren't shown to be present 'all or substantially all of the time' (about 90%+).",
+      "Limitations weren't shown to be present all or almost all of the time (generally at least 90%).",
       "Not enough detail on how much longer everyday tasks take you than others.",
     ],
     appeal: "Read the CRA decision letter and ask what information was missing. You may send additional medical information, request a review, or file a Notice of Objection within 90 days.",
@@ -1042,7 +1043,7 @@ const BENEFITS = [
       "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit.html",
     detail: {
       about:
-        "A non-refundable federal tax credit for people whose impairment and functional effects meet the CRA's severe and prolonged rules. It may reduce income tax payable and is also a requirement for several related federal programs, but it is not required for every disability benefit.",
+        "A non-refundable federal tax credit that may reduce income tax payable. A medical practitioner must certify that you have a severe and prolonged impairment and meet one of three routes. For the marked-restriction route, you must be unable to do an activity, or take three times longer than someone of similar age without the impairment, even with appropriate therapy, medication and devices. The restriction must affect walking, mental functions, dressing, feeding, eliminating (bowel or bladder functions), hearing, speaking or vision; be present all or almost all of the time (generally at least 90%); and have lasted or be expected to last for a continuous period of at least 12 months. For the cumulative-effect route, significant limitations in two or more of those categories must exist together all or almost all of the time (generally at least 90%). Their combined effect must be equivalent to being unable, or taking three times longer than someone of similar age without the impairment, to do an activity in one category, and must be present all or substantially all of the time (generally interpreted as 90% or more), even with appropriate therapy, devices and medication. Life-sustaining therapy is excluded from the cumulative-effect route; receiving therapy to support a vital function is a separate third route. For this route, the therapy must be needed at least 2 times per week for an average of at least 14 hours per week, taking time away from everyday activities, and the impairment must have lasted or be expected to last for a continuous period of at least 12 months. DTC approval is a prerequisite for several related federal programs, but not for every disability benefit.",
       steps: [
         "Sign in to (or create) CRA My Account — or use the paper form.",
         "Fill Part A (your personal information).",
@@ -1059,6 +1060,15 @@ const BENEFITS = [
         "The medical practitioner's section decides most approvals — ask them to be specific and give concrete examples of your limitations.",
         "You do NOT need to pay a private company a percentage of your refund. Applying directly is free.",
         "Denied? Read the decision letter, ask what information was missing, and use the CRA review or objection process that applies to your case.",
+        "List the everyday activities affected and whether they fall under walking, mental functions, dressing, feeding, eliminating, hearing, speaking or vision.",
+        "Discuss whether the difficulty persists even with appropriate therapy, medication and devices.",
+        "Compare how long affected tasks take with someone of similar age without the impairment.",
+        "Describe whether the restriction is present all or almost all of the time and how long it has lasted or is expected to last.",
+        "If no single category is markedly restricted, ask whether two or more limitations together create an equivalent effect.",
+        "Ask how many times per week the therapy is needed and how many hours it takes, including setup, monitoring and dosage work.",
+        "Ask which activities count toward the 14 hours, since travel does not count and recovery counts only when medically required.",
+        "The CRA states people with Type 1 diabetes meet the life-sustaining-therapy criteria and practitioners no longer need to provide therapy details for 2021 and later years, but a practitioner must still certify the application.",
+        "These questions do not determine eligibility; only the certifying practitioner and the CRA do.",
       ],
       time: "Processing time varies; check the CRA processing-times tool for a current estimate.",
       phone: "CRA: 1-800-959-8281",
