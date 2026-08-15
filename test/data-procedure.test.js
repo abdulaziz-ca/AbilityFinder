@@ -1,0 +1,651 @@
+"use strict";
+
+const test = require("node:test");
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const vm = require("node:vm");
+const { execFileSync } = require("node:child_process");
+const { redactGroundingNarrative } = require("../scripts/benefits-context-safety");
+
+const ROOT = path.join(__dirname, "..");
+const DATA_FILES = [
+  "public/data.js",
+  "public/grants-data.js",
+  "public/orgs-data.js",
+];
+
+function runGit(args) {
+  try {
+    return {
+      ok: true,
+      stdout: execFileSync("git", args, {
+        cwd: ROOT,
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "pipe"],
+      }).trim(),
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      reason: error.stderr?.toString().trim() || error.message,
+    };
+  }
+}
+
+function changedPaths(stdout) {
+  return new Set(stdout.split(/\r?\n/).filter(Boolean));
+}
+
+function resolveChangeContext() {
+  // WHY: uncommitted ticket work is the normal local workflow. This diff needs no
+  // comparison branch, so it also lets the baseline-free checks keep protecting a
+  // data edit when a shallow checkout cannot supply the older file contents.
+  const worktreeDiff = runGit(["diff", "--name-only", "HEAD"]);
+  if (!worktreeDiff.ok) {
+    const gitAvailable = runGit(["--version"]);
+    return gitAvailable.ok
+      ? { resolutionError: `git diff --name-only HEAD failed: ${worktreeDiff.reason}` }
+      : { skipReason: `data-change procedure guard cannot run because Git is unavailable: ${gitAvailable.reason}` };
+  }
+  if (worktreeDiff.stdout) {
+    return {
+      baseline: "HEAD",
+      changed: changedPaths(worktreeDiff.stdout),
+    };
+  }
+
+  // WHY: CI usually has a clean worktree, so discover its comparison branch from
+  // Git metadata rather than assuming that the remote is origin or the branch is
+  // named main. Remote HEAD symbolic refs cover main, master, trunk, and any other
+  // default name; the nearest local ancestor supports clones without that ref.
+  const candidates = [];
+  const remoteHeads = runGit([
+    "for-each-ref",
+    "--format=%(symref:short)",
+    "refs/remotes",
+  ]);
+  if (remoteHeads.ok) candidates.push(...remoteHeads.stdout.split(/\r?\n/).filter(Boolean));
+
+  const refs = runGit([
+    "for-each-ref",
+    "--format=%(refname:short)",
+    "refs/heads",
+    "refs/remotes",
+  ]);
+  const ancestorCandidates = [];
+  if (refs.ok) {
+    for (const ref of refs.stdout.split(/\r?\n/).filter(Boolean)) {
+      const mergeBase = runGit(["merge-base", "HEAD", ref]);
+      if (!mergeBase.ok || !mergeBase.stdout) continue;
+      const distance = runGit(["rev-list", "--count", `${mergeBase.stdout}..HEAD`]);
+      if (distance.ok && Number(distance.stdout) > 0) {
+        ancestorCandidates.push({ ref, distance: Number(distance.stdout) });
+      }
+    }
+  }
+  ancestorCandidates.sort((left, right) => left.distance - right.distance);
+  candidates.push(...ancestorCandidates.map(({ ref }) => ref));
+
+  const failures = [];
+  for (const branch of [...new Set(candidates)]) {
+    const mergeBase = runGit(["merge-base", "HEAD", branch]);
+    if (!mergeBase.ok || !mergeBase.stdout || mergeBase.stdout === runGit(["rev-parse", "HEAD"]).stdout) {
+      failures.push(`${branch}: ${mergeBase.reason || "no earlier merge-base returned"}`);
+      continue;
+    }
+    const branchDiff = runGit(["diff", "--name-only", `${mergeBase.stdout}...HEAD`]);
+    if (branchDiff.ok) {
+      return {
+        baseline: mergeBase.stdout,
+        changed: changedPaths(branchDiff.stdout),
+      };
+    }
+    failures.push(`${branch}: ${branchDiff.reason}`);
+  }
+
+  // WHY: in a shallow CI checkout HEAD can look like a root commit. diff-tree is
+  // still enough to notice a data file in that visible commit, so do not silently
+  // skip the gate; run baseline-free checks and make baseline-dependent checks
+  // fail closed with checkout advice.
+  const headChange = runGit(["diff-tree", "--root", "--no-commit-id", "--name-only", "-r", "HEAD"]);
+  const changed = headChange.ok ? changedPaths(headChange.stdout) : new Set();
+  return {
+    changed,
+    baselineError:
+      "enforcement could not be completed because the git baseline is unavailable. " +
+      "CI should check out with full history (for example, fetch-depth: 0). " +
+      `Baseline attempts: ${failures.join(" | ") || "no comparison refs were available"}`,
+  };
+}
+
+function dataChangeContext(t) {
+  const resolved = resolveChangeContext();
+  if (resolved.skipReason) {
+    t.skip(resolved.skipReason);
+    return null;
+  }
+  if (resolved.resolutionError) assert.fail(resolved.resolutionError);
+
+  const changedDataFiles = DATA_FILES.filter((file) => resolved.changed.has(file));
+  return { ...resolved, changedDataFiles };
+}
+
+function extractAssetMarkers(source) {
+  return [...source.matchAll(/\?v(?==|[\s"'&<>#)])(?:=([^\s"'&<>)]*))?/g)].map((match) => ({
+    raw: match[0],
+    hasEquals: match[0].startsWith("?v="),
+    value: match[1],
+  }));
+}
+
+function loadLinkSources() {
+  const context = { window: {}, document: {}, console };
+  vm.createContext(context);
+  vm.runInContext(
+    `${readRepoFile("public", "data.js")}\n` +
+      `${readRepoFile("public", "grants-data.js")}\n` +
+      `${readRepoFile("public", "orgs-data.js")}\n` +
+      "globalThis.__benefits = BENEFITS; globalThis.__bcCities = BC_CITIES; " +
+      "globalThis.__help = HELP_ORGS; globalThis.__grants = GRANTS_DIRECTORY; " +
+      "globalThis.__orgs = ORGS_DIRECTORY;",
+    context
+  );
+  return context;
+}
+
+function expectedGeneratedLinks() {
+  const sources = loadLinkSources();
+  const bcEnabled = /\bconst BC_ENABLED = true;\s*$/m.test(readRepoFile("public", "app.js"));
+  const benefits = bcEnabled
+    ? sources.__benefits
+    : sources.__benefits.filter(
+        (benefit) =>
+          benefit.level !== "British Columbia" &&
+          benefit.level !== "Metro Vancouver" &&
+          !sources.__bcCities.includes(benefit.level)
+      );
+  const clean = (value) => String(value ?? "").replace(/\s+/g, " ").trim();
+  const tuples = [];
+  const seen = new Set();
+  let skippedDynamic = 0;
+  const addLink = (url, label, kind) => {
+    const staticUrl = typeof url === "function" ? url.staticUrl : url;
+    if (typeof url === "function" && (typeof staticUrl !== "string" || !staticUrl.startsWith("http"))) {
+      skippedDynamic++;
+      return;
+    }
+    if (typeof staticUrl !== "string" || !staticUrl.startsWith("http") || seen.has(staticUrl)) return;
+    seen.add(staticUrl);
+    tuples.push([staticUrl, clean(label), kind]);
+  };
+
+  for (const benefit of benefits) {
+    addLink(benefit.applyUrl, `${clean(benefit.name)} — apply`, "apply");
+    addLink(benefit.source, `${clean(benefit.name)} — official source`, "source");
+  }
+  const helpOrgs = Array.isArray(sources.__help)
+    ? sources.__help
+    : Object.values(sources.__help || {}).flat();
+  for (const org of helpOrgs) {
+    if (org?.url) addLink(org.url, `Help — ${clean(org.name || org.url)}`, "help");
+  }
+  for (const grant of sources.__grants || []) {
+    if (grant?.url) addLink(grant.url, `grant:${clean(grant.id)} — ${clean(grant.name || grant.url)}`, "grant");
+  }
+  for (const org of sources.__orgs || []) {
+    if (org?.url) addLink(org.url, `org:${clean(org.id)} — ${clean(org.name || org.url)}`, "org");
+  }
+  return { tuples, skippedDynamic };
+}
+
+function generatedLinks() {
+  const source = readRepoFile("src", "links.js");
+  const match = source.match(
+    /export const LINKS = (\[[\s\S]*?\]);\s*\n\s*export const SKIPPED_DYNAMIC = (\d+);/
+  );
+  assert.ok(match, "src/links.js must export its generated LINKS array and SKIPPED_DYNAMIC count");
+  return {
+    tuples: JSON.parse(match[1]).map(({ url, label, kind }) => [url, label, kind]),
+    skippedDynamic: Number(match[2]),
+  };
+}
+
+function expectedBenefitsContextSource() {
+  const sources = loadLinkSources();
+  const appSource = readRepoFile("public", "app.js");
+  const bcEnabledMatch = /^const BC_ENABLED = (true|false);\s*$/m.exec(appSource);
+  assert.ok(bcEnabledMatch, "public/app.js must declare a literal BC_ENABLED value");
+  const bcEnabled = bcEnabledMatch[1] === "true";
+  const benefits = bcEnabled
+    ? sources.__benefits
+    : sources.__benefits.filter(
+        (benefit) =>
+          benefit.level !== "British Columbia" &&
+          benefit.level !== "Metro Vancouver" &&
+          !sources.__bcCities.includes(benefit.level)
+      );
+  const clean = (value) => String(value ?? "").replace(/\s+/g, " ").trim();
+  const byId = new Map(benefits.map((benefit) => [benefit.id, benefit]));
+  const formsMatch = /const PRACTITIONER_FORMS = (\{[\s\S]*?\});/.exec(appSource);
+  assert.ok(formsMatch, "public/app.js must contain PRACTITIONER_FORMS for generated context");
+  const forms = vm.runInNewContext(`(${formsMatch[1]})`);
+
+  const body = benefits
+    .map((benefit) => {
+      const where = [benefit.level, benefit.category].filter(Boolean).join(" · ");
+      return (
+        `- ${redactGroundingNarrative(clean(benefit.name))} [${where}] — ` +
+        redactGroundingNarrative(clean(benefit.summary))
+      );
+    })
+    .join("\n");
+  const formContext = Object.entries(forms)
+    .filter(([id]) => byId.has(id))
+    .map(([id, label]) => `- ${clean(byId.get(id).name)}: a practitioner signs ${clean(label)}.`)
+    .join("\n");
+
+  const keysFor = (benefit) => {
+    const keys = new Set();
+    const id = String(benefit.id || "");
+    if (id) {
+      keys.add(id.toLowerCase());
+      if (id.includes("-")) keys.add(id.replace(/-/g, " ").toLowerCase());
+    }
+    const name = clean(benefit.name);
+    const parenthetical = /\(([^)]+)\)/.exec(name);
+    if (parenthetical && parenthetical[1].length >= 3) keys.add(parenthetical[1].toLowerCase());
+    const bare = name.replace(/\s*\([^)]*\)\s*/g, " ").trim().toLowerCase();
+    if (bare.length >= 6) keys.add(bare);
+    const form = forms[benefit.id];
+    if (form) {
+      for (const match of String(form).matchAll(/\b([A-Z]\d{3,})\b/g)) keys.add(match[1].toLowerCase());
+    }
+    return [...keys].filter((key) => key.length >= 3);
+  };
+
+  const details = {};
+  for (const benefit of benefits) {
+    const detail = benefit.detail || {};
+    const parts = [];
+    if (detail.about) parts.push(`What it is: ${redactGroundingNarrative(clean(detail.about))}`);
+    if (detail.steps?.length) {
+      parts.push(
+        `How to apply:\n${detail.steps
+          .map((step, index) => `  ${index + 1}. ${redactGroundingNarrative(clean(step))}`)
+          .join("\n")}`
+      );
+    }
+    if (detail.documents?.length) {
+      parts.push(
+        `What you need:\n${detail.documents
+          .map((document) => `  - ${redactGroundingNarrative(clean(document))}`)
+          .join("\n")}`
+      );
+    }
+    if (detail.tips?.length) {
+      parts.push(
+        `Practical tips:\n${detail.tips
+          .map((tip) => `  - ${redactGroundingNarrative(clean(tip))}`)
+          .join("\n")}`
+      );
+    }
+    if (detail.time) {
+      parts.push(`How long it takes (verified — you may state this): ${redactGroundingNarrative(clean(detail.time))}`);
+    }
+    if (!parts.length) continue;
+    details[benefit.id] = {
+      name: redactGroundingNarrative(clean(benefit.name)),
+      keys: keysFor(benefit),
+      text: parts.join("\n"),
+      ...(detail.phone ? { phone: clean(detail.phone) } : {}),
+    };
+  }
+
+  const scope = {
+    bcEnabled,
+    label: bcEnabled
+      ? "Alberta, British Columbia, and federal Canada"
+      : "Alberta and federal Canada",
+    provinces: bcEnabled ? ["Alberta", "British Columbia"] : ["Alberta"],
+  };
+
+  return `// GENERATED FILE — DO NOT EDIT BY HAND.
+// Regenerate with:  npm run gen:context
+// Sources of truth: public/data.js (BENEFITS) + public/app.js (PRACTITIONER_FORMS)
+//
+// ${benefits.length} benefits. Figures are redacted on purpose — the assistant is
+// told never to state an amount, and the surest way to hold a small model to
+// that is to never show it one. It explains the concept and points at the guide.
+
+/** Always injected: the catalog of what exists + the verified form names. */
+export const BENEFITS_CONTEXT = ${JSON.stringify(body)};
+
+/** Allowed exact form facts are kept separate from redacted narrative text. */
+export const PRACTITIONER_FORM_CONTEXT = ${JSON.stringify(formContext)};
+
+/** Injected only when the question matches — see retrieveDetails() in index.js. */
+export const BENEFIT_DETAILS = ${JSON.stringify(details, null, 2)};
+
+/** Generated from the same BC_ENABLED switch that controls catalogue inclusion. */
+export const BENEFITS_SCOPE = Object.freeze(${JSON.stringify(scope)});
+
+export const BENEFIT_COUNT = ${benefits.length};
+`;
+}
+
+function changelogArraySource(source) {
+  const declaration = /\bconst\s+DATA_CHANGELOG\s*=\s*\[/.exec(source);
+  assert.ok(declaration, "public/changelog.js must declare const DATA_CHANGELOG = [");
+  const arrayStart = source.indexOf("[", declaration.index);
+  let depth = 0;
+  let quote = null;
+  let escaped = false;
+  let lineComment = false;
+  let blockComment = false;
+
+  // WHY: the entry regex must never see lookalike objects in comments or unrelated
+  // arrays. Scan JavaScript's strings and comments while finding this array's own
+  // matching bracket, then strip comments from only that slice before parsing.
+  for (let index = arrayStart; index < source.length; index++) {
+    const char = source[index];
+    const next = source[index + 1];
+    if (lineComment) {
+      if (char === "\n") lineComment = false;
+      continue;
+    }
+    if (blockComment) {
+      if (char === "*" && next === "/") {
+        blockComment = false;
+        index++;
+      }
+      continue;
+    }
+    if (quote) {
+      if (escaped) escaped = false;
+      else if (char === "\\") escaped = true;
+      else if (char === quote) quote = null;
+      continue;
+    }
+    if (char === "/" && next === "/") {
+      lineComment = true;
+      index++;
+      continue;
+    }
+    if (char === "/" && next === "*") {
+      blockComment = true;
+      index++;
+      continue;
+    }
+    if (char === '"' || char === "'" || char === "`") {
+      quote = char;
+      continue;
+    }
+    if (char === "[") depth++;
+    if (char === "]") {
+      depth--;
+      if (depth === 0) return source.slice(arrayStart, index + 1);
+    }
+  }
+  assert.fail("public/changelog.js DATA_CHANGELOG array has no matching closing bracket");
+}
+
+function withoutJavaScriptComments(source) {
+  let output = "";
+  let quote = null;
+  let escaped = false;
+  let lineComment = false;
+  let blockComment = false;
+  for (let index = 0; index < source.length; index++) {
+    const char = source[index];
+    const next = source[index + 1];
+    if (lineComment) {
+      if (char === "\n") {
+        lineComment = false;
+        output += char;
+      }
+      continue;
+    }
+    if (blockComment) {
+      if (char === "*" && next === "/") {
+        blockComment = false;
+        index++;
+      }
+      continue;
+    }
+    if (quote) {
+      output += char;
+      if (escaped) escaped = false;
+      else if (char === "\\") escaped = true;
+      else if (char === quote) quote = null;
+      continue;
+    }
+    if (char === "/" && next === "/") {
+      lineComment = true;
+      index++;
+      continue;
+    }
+    if (char === "/" && next === "*") {
+      blockComment = true;
+      index++;
+      continue;
+    }
+    output += char;
+    if (char === '"' || char === "'" || char === "`") quote = char;
+  }
+  return output;
+}
+
+function extractChangelogEntries(source) {
+  const changelog = withoutJavaScriptComments(changelogArraySource(source));
+  return new Set(
+    [...changelog.matchAll(/\{\s*date:\s*"(\d{4}-\d{2}-\d{2})"\s*,\s*text:\s*"((?:\\.|[^"\\])*)"\s*\}/g)].map(
+      (match) => `${match[1]}\u0000${JSON.parse(`"${match[2]}"`)}`
+    )
+  );
+}
+
+function readBaselineFile(baseline, file) {
+  const listing = runGit(["ls-tree", "--name-only", baseline, "--", file]);
+  if (!listing.ok) return { ok: false, reason: listing.reason };
+  if (!listing.stdout) return { ok: true, newFile: true, stdout: "" };
+  return runGit(["show", `${baseline}:${file}`]);
+}
+
+function readRepoFile(...parts) {
+  return fs.readFileSync(path.join(ROOT, ...parts), "utf8");
+}
+
+test.describe("data-change procedure stays enforced", () => {
+  test("a data change adds a DATA_CHANGELOG entry", (t) => {
+    const context = dataChangeContext(t);
+    if (!context || context.changedDataFiles.length === 0) return;
+
+    if (context.baselineError) assert.fail(context.baselineError);
+    const baselineChangelog = readBaselineFile(context.baseline, "public/changelog.js");
+    assert.ok(
+      baselineChangelog.ok,
+      `enforcement could not be completed because the git baseline is unavailable: ` +
+        `${baselineChangelog.reason}. CI should check out with full history ` +
+        "(for example, fetch-depth: 0)."
+    );
+
+    // WHY: merely touching changelog.js proves nothing: an unrelated whitespace
+    // edit used to satisfy this gate while the required public record was absent.
+    // Compare parsed entry identities so the current array must retain every old
+    // entry and add at least one genuinely new dated entry.
+    const baselineEntries = extractChangelogEntries(baselineChangelog.stdout);
+    const currentEntries = extractChangelogEntries(readRepoFile("public", "changelog.js"));
+    const retainedBaseline = [...baselineEntries].every((entry) => currentEntries.has(entry));
+    assert.ok(
+      retainedBaseline && currentEntries.size > baselineEntries.size,
+      "public/changelog.js changed but no new DATA_CHANGELOG entry was added. " +
+        'Prepend an entry in this format: { date: "YYYY-MM-DD", text: "..." }'
+    );
+  });
+
+  test("a data change keeps the shared asset version valid everywhere", (t) => {
+    const context = dataChangeContext(t);
+    if (!context || context.changedDataFiles.length === 0) return;
+
+    // WHY: this is deliberately baseline-free. A shallow checkout can prevent us
+    // from proving that the number moved, but it cannot prevent us from checking
+    // the files that will actually deploy. Every generated guide is expected, no
+    // empty directory is acceptable, and every guide must carry exactly one valid
+    // marker rather than disappearing from the comparison when its marker breaks.
+    const guidesDir = path.join(ROOT, "public", "guides");
+    const guideFiles = fs
+      .readdirSync(guidesDir, { withFileTypes: true })
+      .filter((entry) => entry.isFile())
+      .map((entry) => `public/guides/${entry.name}`)
+      .sort();
+    assert.ok(guideFiles.length > 0, "public/guides must contain generated guide files");
+
+    const indexMarkers = extractAssetMarkers(readRepoFile("public", "index.html"));
+    const numericIndexVersions = indexMarkers
+      .filter((marker) => marker.hasEquals && /^\d+$/.test(marker.value || ""))
+      .map((marker) => marker.value);
+    const currentVersions = [...new Set(numericIndexVersions)];
+    assert.ok(
+      indexMarkers.length > 0 &&
+        indexMarkers.every((marker) => marker.hasEquals && /^\d+$/.test(marker.value || "")) &&
+        currentVersions.length === 1,
+      `public/index.html must contain one shared numeric ?v=N value; found ` +
+        `${indexMarkers.map((marker) => marker.raw).join(", ") || "no markers"}`
+    );
+    const currentVersion = currentVersions[0];
+
+    const filesToCheck = ["public/styles.css", ...guideFiles];
+    const markerProblems = [];
+    for (const file of filesToCheck) {
+      const markers = extractAssetMarkers(readRepoFile(...file.split("/")));
+      if (markers.length === 0) {
+        markerProblems.push(`${file} (missing ?v=N marker)`);
+        continue;
+      }
+      if (markers.some((marker) => !marker.hasEquals)) {
+        markerProblems.push(`${file} (malformed marker: ${markers.map((marker) => marker.raw).join(", ")})`);
+        continue;
+      }
+      if (markers.some((marker) => marker.value === "")) {
+        markerProblems.push(`${file} (empty ?v= marker)`);
+        continue;
+      }
+      if (markers.some((marker) => !/^\d+$/.test(marker.value))) {
+        markerProblems.push(`${file} (non-numeric marker: ${markers.map((marker) => marker.raw).join(", ")})`);
+        continue;
+      }
+      if (file.startsWith("public/guides/") && markers.length !== 1) {
+        markerProblems.push(`${file} (expected exactly one marker; found ${markers.length})`);
+        continue;
+      }
+      const versions = new Set(markers.map((marker) => marker.value));
+      if (versions.size !== 1 || !versions.has(currentVersion)) {
+        markerProblems.push(`${file} (${markers.map((marker) => marker.raw).join(", ")})`);
+      }
+    }
+
+    assert.deepEqual(
+      markerProblems,
+      [],
+      `shared asset version must be ?v=${currentVersion} in styles.css and every guide. ` +
+        `Offending files: ${markerProblems.join(", ") || "none"}. ` +
+        "Run npm run gen:guides after bumping index.html."
+    );
+  });
+
+  test("a data change moves the index asset version", (t) => {
+    const context = dataChangeContext(t);
+    if (!context || context.changedDataFiles.length === 0) return;
+
+    if (context.baselineError) assert.fail(context.baselineError);
+    const baselineIndex = readBaselineFile(context.baseline, "public/index.html");
+    assert.ok(
+      baselineIndex.ok,
+      `enforcement could not be completed because the git baseline is unavailable: ` +
+        `${baselineIndex.reason}. CI should check out with full history ` +
+        "(for example, fetch-depth: 0)."
+    );
+    // WHY: a newly added index has no previous asset version and therefore already
+    // satisfies "moved". This is distinct from failing to read an existing file,
+    // which must fail closed rather than weakening a deploy gate.
+    if (baselineIndex.newFile) return;
+
+    const oldVersions = [
+      ...new Set(
+        extractAssetMarkers(baselineIndex.stdout)
+          .filter((marker) => marker.hasEquals && /^\d+$/.test(marker.value || ""))
+          .map((marker) => marker.value)
+      ),
+    ];
+    const currentVersions = [
+      ...new Set(
+        extractAssetMarkers(readRepoFile("public", "index.html"))
+          .filter((marker) => marker.hasEquals && /^\d+$/.test(marker.value || ""))
+          .map((marker) => marker.value)
+      ),
+    ];
+    assert.equal(
+      oldVersions.length,
+      1,
+      `baseline public/index.html must contain one shared ?v=N value; found ${oldVersions.join(", ") || "none"}`
+    );
+    assert.equal(
+      currentVersions.length,
+      1,
+      `public/index.html must contain one shared ?v=N value; found ${currentVersions.join(", ") || "none"}`
+    );
+    assert.notEqual(
+      currentVersions[0],
+      oldVersions[0],
+      `${context.changedDataFiles.join(", ")} changed, but the shared asset version ` +
+        `in public/index.html is still ?v=${oldVersions[0]}. Bump ?v=N for browser-loaded data files.`
+    );
+  });
+
+  test("a data change keeps generated context and link output in step", (t) => {
+    const context = dataChangeContext(t);
+    if (!context || context.changedDataFiles.length === 0) return;
+
+    // WHY: the generator has two outputs. Checking links.js alone allowed a benefit
+    // rename or summary edit to ship with stale assistant grounding. Reproduce the
+    // complete benefits-context rendering in memory so names, summaries, IDs,
+    // details, practitioner forms, scope, and count all have to match without ever
+    // executing a generator that writes files during the test.
+    assert.equal(
+      readRepoFile("src", "benefits-context.js"),
+      expectedBenefitsContextSource(),
+      "src/benefits-context.js is stale compared with public/data.js and public/app.js. " +
+        "This check mirrors the complete generated file, including catalogue text, benefit IDs and details, " +
+        "practitioner forms, scope, and BENEFIT_COUNT. Run npm run gen:context and review the diff."
+    );
+
+    // WHY: URL membership alone misses changed labels, kinds, and ordering. The
+    // SKIPPED_DYNAMIC value is deterministic too: the generator increments it once
+    // for each function URL that has no monitorable staticUrl, so compare that count
+    // rather than trusting an unvalidated generated constant.
+    const expected = expectedGeneratedLinks();
+    const generated = generatedLinks();
+    const differingIndex = Array.from(
+      { length: Math.max(expected.tuples.length, generated.tuples.length) },
+      (_, index) => index
+    ).find(
+      (index) => JSON.stringify(expected.tuples[index]) !== JSON.stringify(generated.tuples[index])
+    );
+
+    assert.equal(
+      differingIndex,
+      undefined,
+      `generated link catalogue is stale at tuple ${differingIndex}. ` +
+        `Expected: ${JSON.stringify(expected.tuples[differingIndex])}. ` +
+        `src/links.js: ${JSON.stringify(generated.tuples[differingIndex])}. ` +
+        "Run npm run gen:context and review the diff in src/links.js."
+    );
+    assert.equal(
+      generated.skippedDynamic,
+      expected.skippedDynamic,
+      `src/links.js SKIPPED_DYNAMIC is ${generated.skippedDynamic}, but the data sources contain ` +
+        `${expected.skippedDynamic} unmonitorable function URLs. Run npm run gen:context.`
+    );
+  });
+});
