@@ -1,6 +1,7 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
   { date: "2026-08-15", text: "Disability Tax Credit guidance now explains the CRA's three eligibility routes and their thresholds, with short prompts to help people discuss affected activities, duration and combined limitations with a medical practitioner." },
+  { date: "2026-08-14", text: "Repointed the Easter Seals Alberta directory link to the organisation's main site after its equipment-programs page stopped working." },
   { date: "2026-07-22", text: "Updated the Canada Disability Benefit maximum for July 2026–June 2027 and its separate September 2026 supplement, added the required AISH/ADAP reporting action, distinguished the no-fee PWD Bus Pass from the $45 senior stream, and documented the 50% final-period Autism Funding equipment, travel and training exception." },
   { date: "2026-07-22", text: "Corrected Disability Tax Credit guidance: removed the disability amount and unsupported back-pay estimate from value totals, replaced universal practitioner suggestions with the current CRA certification matrix, and removed automatic first-place ranking." },
   { date: "2026-07-21", text: "Restored the quicker tap-to-select age question with eight eligibility-relevant ranges. Exact ages are no longer collected or stored, while existing questionnaire progress remains compatible." },

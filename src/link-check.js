@@ -10,10 +10,6 @@ import { LINKS, SKIPPED_DYNAMIC } from "./links.js";
  * external requests. That leaves headroom below 50 without checking fewer
  * links overall.
  *
- * Cron invokes this every three hours. Each run checks the next deterministic
- * batch and merges it into a KV-backed report, so the published report remains
- * useful while a larger catalog is being swept. At today's 43 links every URL
- * is checked within 15 hours; even 500 links complete within 6¼ days.
  */
 
 const TIMEOUT_MS = 10_000;
@@ -22,6 +18,80 @@ const LINKS_PER_RUN = 10;
 const MAX_FETCHES_PER_LINK = 4;
 const EXTERNAL_SUBREQUEST_LIMIT = 50;
 const REPORT_SCHEMA = 2;
+
+/**
+ * wrangler.jsonc schedules this monitor at `0 *\/3 * * *`, so one
+ * deterministic batch runs every three hours. With LINKS_PER_RUN fixed at 10,
+ * the current catalogue of 175 links occupies 18 batches. Eighteen batches ×
+ * 3 hours means a full sweep completes about every 54 hours, or about 2.25
+ * days. Reviewing /api/link-health at least weekly guarantees the latest
+ * cumulative report is
+ * seen at least once every seven days, but it does not review every individual
+ * sweep. Anyone who needs per-sweep granularity must review about every 54
+ * hours. Looking more often than a sweep mostly re-reads links whose result has
+ * not changed, while looking less often can leave a genuinely dead link sitting
+ * in published guidance.
+ *
+ * The report's own `coverage.lastFullSweepAt` is the authority for whether a
+ * fresh sweep has landed. Anything counted in `coverage.linksPendingThisSweep`
+ * has no result yet in the current sweep: its status is unknown, not good.
+ * Most importantly, a non-200 from the Worker is not evidence that a link is
+ * dead. Cloudflare bot challenges, WAFs, and origin TLS blips can all produce a
+ * 403, 526, or timeout for the monitor while the page serves normally to a real
+ * browser. Confirm every flagged link by hand in a real browser before touching
+ * any data file, because replacing a working URL can cost a disabled person the
+ * page they needed.
+ */
+
+/**
+ * Link-health review disposition, 2026-08-14. Report snapshot checkedAt
+ * 2026-08-15T00:00:56Z: 175 links, 169 ok, 4 broken, 2 unreachable,
+ * 0 inconclusive, 8 redirected, 5 skipped-dynamic, and 35 pending in the
+ * current sweep. The 169 ok figure is cumulative and includes results retained
+ * from earlier sweeps; those 35 pending links had no result in the current
+ * sweep and were unknown, not confirmed healthy. Fourteen items were
+ * dispositioned; thirteen needed no data change.
+ *
+ * FALSE ALARMS — verified live by hand, no data change:
+ * - vancouver.ca leisure-access-card.aspx: the monitor received 403. A real
+ *   browser reached Cloudflare's “Performing security verification” bot
+ *   challenge, proving the site is live and gating bots. The challenge was not
+ *   completed; its presence is the evidence.
+ * - kelowna.ca financial-assistance-recreation: the monitor received 403. It
+ *   loads normally in a real browser as “Financial assistance for recreation |
+ *   City of Kelowna”; its published LICO thresholds and “Canadian citizens or
+ *   permanent residents currently residing in Kelowna” criterion still match
+ *   our record.
+ * - neilsquire.ca/individual-programs-services/: the monitor received 526 from
+ *   Cloudflare origin TLS. It returns 200 now, so this was a transient
+ *   origin-side blip.
+ * - airdrie.ca index.cfm?serviceID=2414 and ?serviceID=2157: the monitor timed
+ *   out at 10000ms, but both return 200 to a browser user agent. This is the
+ *   case described by the monitor payload itself: some sites answer browsers
+ *   but refuse the Worker.
+ *
+ * REDIRECTS — all eight resolve 200 in one hop and were deliberately not
+ * rewritten. Seven are host or trailing-slash canonicalisations:
+ * www.fnha.ca/benefits → fnha.ca/benefits/; cpalberta.com → www.cpalberta.com;
+ * www.hopeair.ca → hopeair.ca/; alsab.ca → www.alsab.ca/;
+ * kidscancercare.ab.ca → www.kidscancercare.ab.ca/; www.sci-ab.ca → sci-ab.ca/;
+ * and www.betweenfriends.ab.ca → betweenfriends.ab.ca/. The eighth,
+ * www.translink.ca/handydart, is an intentional shortlink that adds TransLink's
+ * own utm_source, utm_medium, and utm_campaign parameters. It remains
+ * unrewritten because those parameters are supplied by TransLink itself, not by
+ * us. Chasing an organisation's current canonical form creates churn and can
+ * break when it flips back; rewriting any of these would be an unnecessary data
+ * change. This is a decision, not an oversight: the next reviewer should not
+ * “fix” them.
+ *
+ * GENUINE BREAK — one. easterseals.ab.ca/equipment-programs/ returns a hard 404
+ * titled “Page Not Found - Easter Seals Alberta” to a real browser user agent,
+ * not only to the Worker. Easter Seals Alberta's own homepage navigation still
+ * advertises “Equipment Programs” and still links to that dead URL, while its
+ * own site search for “equipment” returns no program page. The break is on
+ * their side; the directory URL was therefore repointed to the confirmed-live
+ * site root, with the unresolved equipment-funding claim left untouched.
+ */
 
 export const REPORT_KEY = "latest";
 

@@ -716,7 +716,7 @@ export const LINKS = [
     "kind": "grant"
   },
   {
-    "url": "https://easterseals.ab.ca/equipment-programs/",
+    "url": "https://easterseals.ab.ca/",
     "label": "grant:easter-seals-ab — Equipment programs, camp and scholarships",
     "kind": "grant"
   },
