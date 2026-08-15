@@ -222,7 +222,7 @@ const I18N = {
     "aside.title": "Why we ask",
     "aside.1": "<b>Only what matters.</b> A few quick questions decide which programs fit you.",
     "aside.2": "<b>Stored only on this device.</b> Your answers live in this browser.",
-    "aside.3": "<b>No wrong answers.</b> We'll show what you're missing and how to get it.",
+    "aside.3": "<b>No wrong answers.</b> We'll show possible matches to verify and the next step for each.",
     // "your answers" not "everything": assistant and feedback text can be sent
     // through their separate opt-in actions.
     "trust.private": "Private — your answers stay in your browser",
@@ -239,7 +239,7 @@ const I18N = {
     "prob.good1": "Answer a few checkboxes — no reading required.",
     "prob.good2": "Get a personal list of programs to verify, sorted by ease.",
     "prob.good3": "Each one comes with a plain-English “how to apply” guide.",
-    "prob.good4": "We tell you what you're missing and how to unlock it.",
+    "prob.good4": "See possible matches to verify and the next step for each.",
 
     "how.title": "How it works",
     "how.1h": "Answer a few questions",
@@ -609,7 +609,7 @@ const I18N = {
     "aside.title": "Pourquoi ces questions",
     "aside.1": "<b>Seulement l'essentiel.</b> Quelques questions déterminent les programmes qui vous conviennent.",
     "aside.2": "<b>Enregistré seulement sur cet appareil.</b> Vos réponses restent dans ce navigateur.",
-    "aside.3": "<b>Aucune mauvaise réponse.</b> On vous montre ce qui manque et comment l'obtenir.",
+    "aside.3": "<b>Aucune mauvaise réponse.</b> On vous présente des correspondances possibles à vérifier et, pour chacune, la prochaine étape afin de faire une demande.",
     "trust.private": "Privé — vos réponses restent dans votre navigateur",
     "trust.free": "Gratuit, sans compte",
     "trust.official": "Liens vers les sources officielles",
@@ -624,7 +624,7 @@ const I18N = {
     "prob.good1": "Cochez quelques cases — aucune lecture requise.",
     "prob.good2": "Obtenez une liste personnelle de programmes à vérifier, triée du plus simple au plus complexe.",
     "prob.good3": "Chacune vient avec un guide « comment faire la demande » en langage clair.",
-    "prob.good4": "On vous dit ce qui manque et comment y accéder.",
+    "prob.good4": "Des correspondances possibles à vérifier, avec la prochaine étape pour chaque demande.",
 
     "how.title": "Comment ça marche",
     "how.1h": "Répondez à quelques questions",

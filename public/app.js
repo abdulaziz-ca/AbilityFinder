@@ -17,7 +17,8 @@ const SCOPE_DESTINATION = BC_ENABLED ? "Alberta or British Columbia" : "Alberta"
 const SCOPE_RESIDENCY_HELP = `Federal benefits apply anywhere in Canada. ${SCOPE_LABEL_LONG}${BC_ENABLED ? " provincial programs are" : "'s provincial programs are"} fully built out right now — other provinces are coming soon.`;
 const SCOPE_RESIDENCY_HELP_FR = BC_ENABLED
   ? "Les prestations fédérales s'appliquent partout ; les programmes provinciaux et municipaux dépendent de votre lieu de résidence. Nous couvrons l'AB et la C.-B. en détail."
-  : "Les prestations fédérales s'appliquent partout ; les programmes provinciaux et municipaux dépendent de votre lieu de résidence. Nous couvrons l'AB, la C.-B., l'Ontario et le Québec en détail.";
+  // The previous fallback claimed Ontario and Québec, which the product has never covered.
+  : "Les prestations fédérales s'appliquent partout au Canada. Les programmes provinciaux de l'Alberta sont entièrement couverts pour le moment — les autres provinces viendront bientôt.";
 
 /* -------------------------------------------------- answer state (defaults) */
 const BLANK = () => ({
