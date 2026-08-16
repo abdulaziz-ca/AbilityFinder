@@ -3,7 +3,7 @@
 **Purpose:** the single place to see what is actually finished and what still needs doing.
 Update this file whenever a finding is closed, reopened, or found to be wrong.
 
-**Last updated:** 2026-07-28 · **Source of findings:** `AUDIT_REPORT_2026-07-22.md`
+**Last updated:** 2026-08-16 · **Source of findings:** `AUDIT_REPORT_2026-07-22.md`
 
 > **Start here.** This file is the working record. `AUDIT_REPORT_2026-07-22.md` is
 > 120 KB — do not load it whole. Grep it for a specific finding ID when you need the
@@ -20,26 +20,30 @@ The audit's findings table has **65 rows**. Current state:
 > without re-reading the audit, and doing that arithmetic by assumption would be exactly the kind
 > of unverified number this file forbids everywhere else. Re-map the IDs before quoting any
 > percentage.
+>
+> **One exception, 2026-08-16:** the High/P1 row now reads 23/23. That is not a recount — the row
+> already identified DATA-25 as the *sole* outstanding High/P1, so closing it completes the band
+> without re-mapping anything. The other severity rows are still uncounted.
 
 | Status | Rows | Notes |
 |---|---|---|
 | **Fully closed and deployed** | **54+** | was ~83% before 2026-07-28; several more closed that day, not yet recounted |
 | Partly closed | 0 | **BC-BC is now complete** (BC-BC-15 and BC-BC-09 both closed 2026-07-28) and **DATA-12 is fully closed** |
-| Mitigated, not closed | 3 | DATA-25, UX-02, UX-03 — all need product decisions or user testing |
-| Open | 2 | TEST-01, and the accessibility/user testing. **PERF-01** measured with its two real defects fixed. **BC-BC-09/15**, **ABFED-16/17** and **DATA-11** closed 2026-07-28. **REL-06 is root-caused but WON'T FIX** — the behaviour still exists in production; the fix was declined on zero-spend grounds, see its row below |
+| Mitigated, not closed | 2 | UX-02 and UX-03 — **both had their code landed and deployed 2026-08-16**, and both still need reader/profile testing before they close. **DATA-25 closed 2026-08-16** |
+| Open | 1 | the accessibility/user testing. **TEST-01 closed 2026-08-16** — the eligibility oracle is built, landed and running in CI. **PERF-01** measured with its two real defects fixed. **BC-BC-09/15**, **ABFED-16/17** and **DATA-11** closed 2026-07-28. **REL-06 is root-caused but WON'T FIX** — the behaviour still exists in production; the fix was declined on zero-spend grounds, see its row below |
 
 By severity:
 
 | Severity | Closed | Total | |
 |---|---|---|---|
-| **High / P1** | **22** | 23 | only DATA-25 outstanding, and it is mitigated |
+| **High / P1** | **23** | 23 | **complete — DATA-25 closed and deployed 2026-08-16.** No High/P1 release blocker remains |
 | Medium / P1 | see note | 18 | 2 mitigated. The human-only clarifications (BC-BC-09/15, ABFED-16/17, DATA-11) closed 2026-07-28; **REL-06 is root-caused but WON'T FIX, not fixed**. **Nobody has re-mapped finding IDs to severities**, so no count is stated rather than an invented one |
 | Medium / P2 | see note | 12 | DATA-11 and DATA-12 closed 2026-07-28; only PERF-01's residual JS-gating remains. Count not restated for the same reason as the row above |
 | Low + Informational | 12 | 12 | complete |
 
-**Every High/P1 release blocker except DATA-25 is closed.** What remains is
-concentrated in two places: work that needs a product decision (DATA-25, UX-02,
-UX-03, TEST-01) and work that needs a person (see the human-only table).
+**Every High/P1 release blocker is now closed**, DATA-25 last, on 2026-08-16. What
+remains needs a person, not code: comprehension testing for UX-02, profile
+validation for UX-03, and the accessibility/AT testing (see the human-only table).
 
 The NO-GO has still not been lifted — see *Release status* at the end. Code
 completeness is not the blocker; the untested accessibility is.
@@ -71,10 +75,10 @@ completeness is not the blocker; the untested accessibility is.
 |---|---|---|
 | ~~DATA-12~~ | **Closed 2026-07-28.** All four programs are now in the catalogue: RAMP earlier, then `bc-additional-home-owner-grant`, `bc-raha` and `home-accessibility-tax-credit`. Every figure was verified against its official source that day. `canada.ca` returns 403 to automated fetch, so the CRA page was read in a real browser instead — do the same next time rather than trusting a search summary. **One gap remains, in the human-only table below: BC RAHA's income and asset limits.** Deliberately absent: no percentage rate or maximum dollar credit for the HATC, because the CRA page states neither and the lowest federal rate has moved recently — "$3,000" is a figure to refuse, not to copy |
 | ~~Other municipal percentages~~ | **Verification pass completed 2026-07-28 — see "Closed after verification" below.** |
-| UX-02 | Homepage still overpromises completeness/certainty | Mitigated only; needs a content pass + comprehension testing |
-| UX-03 | "Priority order" uses unexplained editorial weights | Mitigated only; formula still unexplained and unvalidated |
-| DATA-25 | DTC readiness | Mitigated, not closed — needs real CRA functional-criteria questions |
-| TEST-01 | No systematic eligibility oracle across all programs | The gap that allowed the false-ready cluster |
+| UX-02 | Homepage still overpromises completeness/certainty | **Content pass landed and deployed 2026-08-16 (`37b3215`, `?v=101`); comprehension testing still outstanding.** The headline *"Every benefit you're owed, found in one minute"* made three claims in eight words — completeness, entitlement and a time — and the French *"qui vous reviennent"* carried the entitlement sense too. Both now describe answering questions and seeing possible matches. The entitlement claim was quantifiably wrong: #61's oracle shows **59 of 102 programs can never return "ready"**. Two further completeness claims (`aside.3`, `prob.good4`, both languages) said the tool shows "what you're missing", which asserts knowledge of the complete set a person is not receiving — arguably stronger than the headline. Two **false coverage labels** were also corrected: the French scope fallback and `SCOPE_RESIDENCY_HELP_FR` both advertised **Ontario and Québec**, which the catalogue has never covered. **Still open, and it is the whole remaining substance:** four owner TBDs — the comprehension-test script and its location, the inference questions, the results artifact, and the pass/fail rule — then the test itself with real readers. Do not mark UX-02 closed on the copy change alone; the audit's complaint was about what readers *infer*, which is unmeasured |
+| UX-03 | "Priority order" uses unexplained editorial weights | **Explained and deployed 2026-08-16 (`b7f2274`, `?v=102`); the weights are still unvalidated.** The actionable defect was a false claim, not the formula: `prob.good2` said results are "sorted by ease" (French more strongly, "du plus simple au plus complexe"). Measured against the real catalogue, **88 of 102 programs (86%) score on ease alone**, so the claim was exact for most of the list — but **14 carry a value component and in 10 of those value outweighs ease**, and since ease spans only 1–5 while the weighted value term reaches 19.6, any program with a dollar figure jumps the queue. The consequence lands where users look: `cpp-disability` has `difficulty: 5` — the hardest on the scale — and still ranks **third**. Both languages now describe `value * 1.4 + ease` honestly. `priorityScore()`'s body is **byte-identical**; only its comment changed, and that comment now records that all eight constants are editorial, hand-chosen, unjustified anywhere in the repo, and never validated. **Replacing the weights was deliberately refused** — substituting one unvalidated editorial judgement for another would read as progress while reproducing the exact defect, in the code that decides what a disabled person sees first. **Still open:** four owner TBDs — a representative profile set, the expected ordering recorded *before* validation, the method, and an objective threshold |
+| ~~DATA-25~~ | DTC readiness | **Closed and deployed 2026-08-16 (`8be02fe`, `?v=99`) — the last outstanding High/P1 release blocker.** The `dtc` record now states the CRA's three eligibility routes with their real thresholds: marked restriction (unable, or **3 times longer** than someone of similar age, **even with therapy, medication and devices**, present **all or almost all of the time (generally at least 90%)**, lasting **at least 12 months**); cumulative effect (2+ limitations, with the explicit exclusion of life-sustaining therapy); and life-sustaining therapy (**at least 2 times per week**, averaging **at least 14 hours per week**, 12 months). Six practitioner-discussion prompts live in `detail.tips` — **that location is the safety property**: tips are display-only, cannot reach the matcher, cannot change `met`, readiness or ranking, and store no answer. **The gates stay unprovable on purpose:** `prolonged` and `certifier` remain `met: () => false`, because CRA's own clause is "if a medical practitioner certifies" and the thresholds are comparative in a way no lay person can self-assess. The DTC still returns "almost" for everyone. **A trap in the source:** that CRA page contradicts itself — its embedded video transcript says 3 times per week, its operative eligibility checklist says **2**. Writing 3 would have turned away people who genuinely qualify. Verified live after deploy: 0 occurrences of "3 times per week" |
+| ~~TEST-01~~ | No systematic eligibility oracle across all programs | **Closed and deployed 2026-08-16 (`01de333`).** The oracle is a versioned **specification**, never a snapshot — a snapshot would agree with the false-ready cluster and be worthless against the regression TEST-01 names. Each of the **150 gates** carries a hand-declared `evidence` classification, "answers" or "external"; **66 are external**, and from that one classification the invariant follows that a program with any external gate can never legitimately return ready. **59 programs are in that class; the other 43 must stay reachable** and are asserted too — an oracle proving only that nothing is ever ready would pass against a matcher returning "almost" for everything. A frozen baseline of all 102 outcomes forces **declared == derived == actual** every run, because derivation alone cannot catch a gate being *deleted*. **387 asserted outcomes — ready 43, almost 119, no 225.** The matrix runs 441 tests. No production file was changed at any point |
 | ~~TEST-02~~ | **Closed 2026-07-29.** All three planned items are implemented, and the row above was stale on every count. **Sleeps:** zero `waitForTimeout` remain in `e2e/` or `test/` — replaced by 22 `waitForFunction`, 51 `toBeVisible` and 12 `settleWizardCard`. **Engines:** `playwright.config.js` builds six projects from an ENGINES array of chromium, firefox and webkit. **Wrangler:** the three `worker-*` projects run against `npx wrangler dev --port 8788 --local`, so `_headers`, the production CSP and the real `/api/*` contracts are now exercised — the blind spot that let REL-05 ship. The three `app-*` projects still use the python3 static server, which is correct and faster for product journeys. `retries: 0` is deliberate, so a flake surfaces instead of being laundered into a pass. Green at 420/420 across all six projects on repeated full runs on 2026-07-29. The 2026-07-27 `a11y-batch.spec.js` A11Y-03 flake noted here has not recurred, but with `retries: 0` it would be visible if it did |
 | ~~PERF-01~~ | **Closed 2026-07-30 as WON'T FIX, by owner decision, after measuring production directly.** Live measurement of `https://abilityfinder.ca/`: TTFB **168 ms**, domInteractive **754 ms**, load **759 ms**, total script transfer **212 KB**. `data.js` is 96 KB and finishes at 636 ms; `app.js` is 76 KB and finishes at **751 ms**, so **`app.js` is the critical path and deferring or splitting the catalogue would not move first paint** — the obvious optimisation does not pay. The earlier throttled re-measurement already had LCP **2364 ms**, inside the "good" band, with CLS **0** and long tasks **0 ms**. The only change that would actually move first paint is real above-the-fold markup in `<main id="app">` instead of the loading placeholder, and it was rejected on risk: it duplicates `renderLanding` as a second, language-less copy, and it would flash the landing hero at any returning user whose restore routes them to a saved wizard step — against the "restore must complete before the first meaningful render" rule and the persisted-blank-page incident in `ARCHIVAL_KNOWLEDGE_BASE.md`. **INP stays unmeasurable in the field**, because that needs real users and there is no analytics by design. Confirmed in passing: Cloudflare still injects its beacon at the edge and the CSP still blocks it, `transferSize` 0, exactly as `AGENTS.md` documents |
 
@@ -307,9 +311,46 @@ the seven runs before it. Same tree, same suite, opposite outcome: the run was t
 not the code.
 
 **This is the second time the job cap has blocked a good release** — 30 minutes on 2026-07-28,
-45 minutes on 2026-07-30. Raising the cap treats the symptom. The open question is why
-`[app-chromium]` accumulates 90-second timeouts on CI and never locally, and the honest state
-of this family is **rarer, not eliminated**.
+45 minutes on 2026-07-30. Raising the cap treats the symptom, and the honest state of this
+family is **rarer, not eliminated**.
+
+**Root-caused 2026-08-15, and this section's own explanation was wrong.** The paragraphs above
+frame the open question as why *`[app-chromium]`* accumulates 90-second timeouts. That framing
+is a false lead and should not be inherited. The family was **reproduced locally three times**
+and the mechanism reclassified as a **browser / CDP connection wedge under resource
+exhaustion**, not a wizard, locator or animation problem: the errors are **not assertions** but
+`page.goto`, `page.evaluate`, `page.route`, `locator.click` and decisively `browserContext.close`
+and "Target page, context or browser has been closed". No product code runs during a context
+close. It is **not engine-specific** — the third reproduction hit all three engines (3 chromium,
+3 firefox, 7 webkit). CI most plausibly reported chromium because chromium runs first and
+longest, so it is likeliest to be running when the machine degrades. Machine state at one wedge:
+**load average 146 on a 15-core machine, swap 79% used**. Note that the causal resource is still
+**unidentified** — an earlier "CPU contention is ruled out" experiment ran at only ~1.6×
+oversubscription against measured wedge conditions of ~10×, so it was about six times too weak
+to test what it claimed.
+
+Two palliatives landed with it (`0f3f9a4`), and they are **palliative, not causal**: the
+`pick()` click is bounded at 30s and reports live wizard state on expiry, and
+`e2e/failure-context-reporter.js` prints a `FAILCTX` line per non-passing test carrying free/total
+memory, load average, RSS and elapsed time. The next CI failure should be read straight off its
+FAILCTX annotation — low `freeMemMb` at failure moves memory from correlation toward evidence.
+
+**Reproducibility sample, completed 2026-08-16: 6 consecutive green CI runs on `main` — one more
+than the agreed sample of 5 — zero 90-second-timeout annotations, all inside tolerance.** The
+trailing median of the seven runs before the bad one was ~15.4 min, so the agreed 1.5× band is
+≈23.1 min; the bad run was 39.2 min. Measured, in landing order from the commit that carried the
+instrumentation: **15.5, 15.6, 15.5, 13.5, 15.2, 15.0 min** — every one inside the band, and the
+spread (13.5–15.6) is tighter than the pre-existing 14.9–15.8 band. Two observations kept deliberately: free memory
+hit **57–71 MB** at the low-water mark on *green* local runs of 441 tests, and one local full run
+during this sequence failed a single oracle test and then passed 441/441 on a re-run of the
+identical tree — so the family is demonstrably still present, just rare. Its FAILCTX line was not
+captured before the re-run, which was a missed observation.
+
+**A wedge also poisons the next run.** A killed run leaves orphaned servers holding 8766 and 8788
+(a python http.server and a half-dead `workerd`), and the following suite then fails to start at
+all with "Process from config.webServer was not able to start". On CI that surfaces as an
+unexplained infrastructure error on a *later* build with no visible link to the wedge. Clear both
+ports before re-running.
 
 **Correction to the TEST-02 closure written 2026-07-29:** that row notes the A11Y-03 flake had
 not recurred and that `retries: 0` would make one visible if it did. Both statements are still
@@ -329,6 +370,38 @@ reduce is not gone.
 ---
 
 ## Done and deployed
+
+**The 2026-08-16 landing sequence.** Seven TaskView tickets had been built, reviewed and pushed to
+feature branches but **nothing had reached `main`**, so none of it was deployed — a feature-branch
+push triggers no CI and no release. They were landed one at a time, each gated on a green CI run
+and verified against the live site, because the repo's own rule is small separate landings and
+`concurrency: cancel-in-progress` means a second push cancels an in-flight run. Order and result:
+board chores (canary, no `public/` change), **#61** TEST-01 oracle (`01de333`), **#62** test
+infrastructure (`0f3f9a4`), **#44** data-procedure guard (`5181b9e`), **#66** DATA-25 (`8be02fe`,
+`?v=99`), **#41** link-health cadence (`af90387`, `?v=100`), **#67** UX-02 copy (`37b3215`,
+`?v=101`), **#68** UX-03 ordering (`b7f2274`, `?v=102`). Every landing was verified live, not from
+the deploy job's own conclusion.
+
+Two things worth keeping from that sequence. **The four data/copy branches could not be merged in
+parallel**: each independently bumped `?v=98→99` and regenerated the same 102 guides. Sequential
+landing forced 99 → 100 → 101 → 102, and the guides had to be *regenerated* at each step rather
+than merge-resolved — the only genuine conflict each time was `public/changelog.js`, where each
+branch appends its own entry. **And #44's guard was inert in CI as delivered**: `actions/checkout`
+defaults to depth 1, and the guard resolves a git baseline to prove a data change also moved the
+shared `?v=N` and appended a changelog entry. Proven three ways before changing anything — shallow
+checkout fails closed with "the git baseline is unavailable"; full history passes 4/4 on a correct
+change; full history fails the *right* test (`a data change moves the index asset version`) when
+`grants-data.js` changes but the version does not. `fetch-depth: 0` was added to the test job in
+the same landing. Without it the guard would have gone red on #66 and blocked that deploy.
+
+**#41 — the link-health review cadence.** Stated beside the constants that produce it: cron
+`0 */3 * * *` × 18 batches × `LINKS_PER_RUN` 10 over 175 links = a full sweep about every **54
+hours**. Weekly review sees the latest cumulative report within seven days but does **not** review
+every sweep. Of 14 flagged sources, **13 were noise** — five false alarms confirmed live in a real
+browser (two `403` bot challenges, a transient `526`, two Worker timeouts) and eight single-hop
+redirect canonicalisations deliberately not rewritten. One genuine break: the Easter Seals
+equipment-programs page, repointed to the verified-200 root. *Had the monitor been trusted at face
+value, the two 403s would have "fixed" two live municipal pages disabled users rely on.*
 
 Matcher safety (no unsupported "ready" verdict anywhere): **DATA-42/43/44 + ABFED-02** (`fc0a8f9`),
 **DATA-30/47/48/49/50 + BC-BC-05/14/16** (`eb0210d`), **DATA-33/35/36/37/39/40/41 + ABFED-08** (`f4bc205`).
@@ -375,9 +448,23 @@ API, with HSTS `max-age=15552000`. **PRIV-01** — self-only CSP, zero analytics
 ## Release status
 
 The audit's original **NO-GO** has not been formally lifted. Before claiming the audit is
-closed, all of the following must be true, and none of them is yet:
+closed, all of the following must be true. As of 2026-08-16, **three of the four are**:
 
-1. The remaining code findings above are fixed or visibly qualified.
-2. Manual disabled-user and assistive-technology testing has actually happened.
-3. The outstanding official clarifications (BC-BC-09/15, ABFED-16/17, DATA-11) are resolved.
-4. A clean production smoke test follows the final release candidate.
+1. ~~The remaining code findings above are fixed or visibly qualified.~~ **Met 2026-08-16.**
+   DATA-25 and TEST-01 closed and deployed; UX-02 and UX-03 have their code landed and are
+   visibly qualified here as awaiting reader/profile testing; REL-06 and PERF-01 are recorded
+   as WON'T FIX with reasons.
+2. **Manual disabled-user and assistive-technology testing has actually happened. — NOT MET.
+   This is now the sole barrier to lifting the NO-GO.** One VoiceOver + Safari pass happened
+   2026-07-28 with one finding still unresolved; NVDA and TalkBack have never been run, and no
+   real disabled-user study has taken place.
+3. ~~The outstanding official clarifications (BC-BC-09/15, ABFED-16/17, DATA-11) are resolved.~~
+   **Met 2026-07-28** — all four closed, two of them as verified false positives.
+4. ~~A clean production smoke test follows the final release candidate.~~ **Met 2026-08-16** —
+   each of the eight landings was verified against the live site after its deploy, including the
+   DTC criteria and the corrected headline in both languages. Re-run this against whatever the
+   final release candidate turns out to be.
+
+**Code completeness is no longer the blocker, and has not been for some time.** Do not let the
+closed rows above read as readiness: the product still has not been used by a single person
+navigating it with a screen reader.
