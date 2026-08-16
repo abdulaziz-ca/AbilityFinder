@@ -126,7 +126,11 @@ test.describe("all-day reminder calendar dates", () => {
     //
     // A legitimate click takes only low hundreds of milliseconds locally, while CI is
     // roughly 1.75x slower, so 30s sits far above plausible actionability delay while
-    // cutting a genuine stall from 90 silent seconds to 30 diagnosed ones. No job cap
+    // cutting a genuine stall from 90 silent seconds to about 35 diagnosed ones — 30s
+    // for the click plus at most 5s for the bounded diagnostic below. It was 30s only
+    // on paper before that diagnostic was bounded: the same wedge that expires the
+    // click could hang the evaluate collecting the failure context, taking the whole
+    // 90s anyway and losing the message. No job cap
     // is raised and retries: 0 is untouched: this is strictly more patient than the
     // unbounded click it replaces and strictly less patient than the 90s test timeout
     // it stops that click from consuming.
@@ -134,19 +138,33 @@ test.describe("all-day reminder calendar dates", () => {
       .locator(".opt", { hasText: text })
       .click({ timeout: 30000 })
       .catch(async (error) => {
-        const now = await page
-          .evaluate(() => ({
+        // WHY bounded: the wedge that makes the click time out can equally hang this
+        // diagnostic evaluate, which would consume the rest of the 90s test timeout and
+        // destroy the very context the 30s bound exists to capture. 5s is ample for a
+        // healthy page and short enough that the failure stays a ~35s diagnosed failure.
+        const DIAG_MS = 5000;
+        let diagTimer;
+        const now = await Promise.race([
+          page
+            .evaluate(() => ({
             view,
             stepId: (visibleSteps()[stepIndex] || {}).id,
             opts: [...document.querySelectorAll("label.opt")].map((el) =>
               el.textContent.replace(/\s+/g, " ").trim(),
             ),
-          }))
-          .catch(() => null);
+            }))
+            .catch(() => null),
+          new Promise((resolve) => {
+            diagTimer = setTimeout(() => resolve("timeout"), DIAG_MS);
+          }),
+        ]).finally(() => clearTimeout(diagTimer));
+        const readable = now && now !== "timeout";
         throw new Error(
           `pick(${JSON.stringify(text)}): the click did not land within 30000ms. ` +
-            `At expiry the wizard was on step ${JSON.stringify(now && now.stepId)} ` +
-            `(view="${now && now.view}") showing [${now ? now.opts.join(" | ") : "unreadable"}]. ` +
+            `At expiry the wizard was on step ${JSON.stringify(readable ? now.stepId : undefined)} ` +
+            `(view="${readable ? now.view : "unreadable"}") showing [${
+              readable ? now.opts.join(" | ") : now === "timeout" ? `diagnostic timed out after ${DIAG_MS}ms — the browser connection is likely wedged` : "unreadable"
+            }]. ` +
             `Step at check time was ${JSON.stringify(onScreen.id)}. If those differ, the card ` +
             `re-rendered between the check and the click. Original: ${error.message}`,
         );

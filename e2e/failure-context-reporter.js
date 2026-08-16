@@ -1,4 +1,14 @@
 const os = require("os");
+const path = require("path");
+
+// WHY stderr rather than stdout, and why paths are made repo-relative: this line has
+// to survive to be read, and must not carry runner identity. Playwright's `line`
+// reporter is registered alongside this one and rewrites the terminal with
+// cursor-up/erase sequences as each following test finishes, which can erase a
+// FAILCTX line written to stdout in a terminal-rendered CI log. stderr is not
+// cursor-cleared. Test locations are absolute paths, so they leak the runner's
+// workspace and home directory into public annotations; the built-in github reporter
+// relativises for the same reason.
 
 // CI run 30574672375 left its trace behind an authenticated download, so the
 // public annotation itself has to carry enough context to diagnose the next
@@ -20,8 +30,9 @@ class FailureContextReporter {
     this.minFreeMb = Infinity;
   }
 
-  onBegin() {
+  onBegin(config) {
     try {
+      this.rootDir = (config && config.rootDir) || process.cwd();
       this.startedAt = Date.now();
       this.total = 0;
       this.passed = 0;
@@ -47,7 +58,9 @@ class FailureContextReporter {
       this.failed += 1;
       const project = (test.parent.project() || {}).name || "unknown";
       const location = test.location || {};
-      const file = location.file || "unknown";
+      const file = location.file
+        ? path.relative(this.rootDir || process.cwd(), location.file).split(path.sep).join("/")
+        : "unknown";
       const line = location.line || 0;
       const title = String(test.title || "unknown").replace(/\s+/g, " ");
       const error = result.error || (result.errors && result.errors[0]);
@@ -56,12 +69,12 @@ class FailureContextReporter {
         .replace(/\x1b\[[0-?]*[ -/]*[@-~]/g, "")
         .replace(/\s+/g, " ");
       const elapsedMs = Date.now() - this.startedAt;
-      console.log(
+      process.stderr.write(
         `FAILCTX project=${JSON.stringify(project)} test=${JSON.stringify(`${file}:${line}`)} ` +
           `title=${JSON.stringify(title)} durationMs=${result.duration} status=${result.status} ` +
           `error=${JSON.stringify(errorLine)} freeMemMb=${freeMb.toFixed(1)} ` +
           `totalMemMb=${totalMb.toFixed(1)} loadavg=[${load}] rssMb=${rssMb.toFixed(1)} ` +
-          `elapsedMs=${elapsedMs}`,
+          `elapsedMs=${elapsedMs}\n`,
       );
     } catch (_) {}
   }
@@ -70,9 +83,9 @@ class FailureContextReporter {
     try {
       const wallMs = Date.now() - this.startedAt;
       const minFree = Number.isFinite(this.minFreeMb) ? this.minFreeMb.toFixed(1) : "n/a";
-      console.log(
+      process.stderr.write(
         `FAILCTX-SUMMARY total=${this.total} passed=${this.passed} failed=${this.failed} ` +
-          `wallMs=${wallMs} minFreeMemMb=${minFree}`,
+          `wallMs=${wallMs} minFreeMemMb=${minFree}\n`,
       );
     } catch (_) {}
   }
