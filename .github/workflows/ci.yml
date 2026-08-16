@@ -40,6 +40,17 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
+        with:
+          # WHY 0: test/data-procedure.test.js resolves a git baseline to prove a data
+          # change also bumped the shared ?v=N and appended a DATA_CHANGELOG entry.
+          # actions/checkout defaults to depth 1, where no comparison ref exists and
+          # HEAD looks like a root commit, so the guard fails closed with
+          # "the git baseline is unavailable" and blocks the deploy through
+          # `needs: test`. Verified 2026-08-16 by running the guard against a
+          # `clone --depth 1` of a correctly-executed data change: 2 of 4 tests fail
+          # shallow and all 4 pass with full history. Do not reintroduce a shallow
+          # checkout here without making that guard baseline-free.
+          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v4
