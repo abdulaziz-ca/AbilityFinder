@@ -110,6 +110,18 @@ jobs:
 
       - name: Unit tests
         run: npm test
+        env:
+          # WHY: test/data-procedure.test.js needs a baseline commit to prove a data
+          # change also moved the shared ?v=N and appended a DATA_CHANGELOG entry.
+          # Declare it from the event rather than letting the test guess from refs:
+          # on a push, actions/checkout points origin/main at the pushed commit, so
+          # merge-base(HEAD, origin/main) == HEAD and that candidate is rejected. The
+          # guess then survives only on leftover merged feature branches, so deleting
+          # them would silently start failing every data deploy. github.event.before
+          # is the previous tip of this ref; pull_request.base.sha is the PR base.
+          # An empty value (e.g. workflow_dispatch) falls back to the ref scan; an
+          # all-zero or non-ancestor value fails closed rather than guessing.
+          DATA_PROCEDURE_BASELINE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
 
       # Two Playwright projects run here. "app" uses a static server; "worker"
       # boots `wrangler dev --local`, which is what makes the production CSP,

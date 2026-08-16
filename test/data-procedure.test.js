@@ -38,6 +38,73 @@ function changedPaths(stdout) {
 }
 
 function resolveChangeContext() {
+  // WHY: CI declares its baseline explicitly instead of letting this resolver guess
+  // from whichever refs happen to exist. The ref scan below is a heuristic, and on a
+  // real push it is rescued only by luck: `actions/checkout` points origin/main at the
+  // pushed commit, so `merge-base HEAD origin/main == HEAD` and that candidate is
+  // rejected. What saved it in practice was leftover *merged feature branches* still
+  // present on the remote, which supplied a nearer ancestor. Delete those branches —
+  // ordinary hygiene — and the scan finds nothing and this guard fails closed on every
+  // data change, blocking the deploy through `needs: test`.
+  //
+  // Verified 2026-08-16 by reproducing the CI checkout shape (HEAD == origin/main,
+  // fetch-depth: 0): with the feature refs present the guard resolved the true parent
+  // and caught a real omission; with only origin/main present it reported
+  // "no comparison refs were available" and failed 2 of 4 tests.
+  //
+  // A wrong baseline is worse than none: it would silently drop the data file from the
+  // change set and pass all four checks vacuously. So an explicitly supplied baseline is
+  // validated and, if unusable, fails closed rather than falling back to the guess.
+  const declared = (process.env.DATA_PROCEDURE_BASELINE || "").trim();
+  if (declared) {
+    // WHY every failure path below claims all data files changed: the four tests
+    // return early when no data file is in the change set, and only *then* consult
+    // baselineError. Failing closed with an empty (or merely HEAD-derived) set is
+    // therefore a silent pass — the exact vacuous-guard failure this file exists to
+    // prevent. Both variants were caught by this file's own fail-closed checks on
+    // 2026-08-16: an empty set passed 4/0, and a HEAD-derived set still passed 4/0
+    // whenever HEAD's own commit touched no data file, which is the ordinary case
+    // for a force-push mid-series. When the baseline cannot be trusted we cannot know
+    // whether data changed, so assume it did and let baselineError surface.
+    const assumeDataChanged = () => new Set([...DATA_FILES]);
+
+    // GitHub sends the all-zero SHA for the first push of a ref: there is genuinely
+    // no previous commit to compare against, so say so instead of guessing.
+    if (/^0+$/.test(declared)) {
+      return {
+        changed: assumeDataChanged(),
+        baselineError:
+          "enforcement could not be completed because DATA_PROCEDURE_BASELINE is the all-zero SHA, " +
+          "which means this is the first push of this ref and no previous commit exists to compare against. " +
+          "Re-run after a second commit, or supply an explicit ancestor SHA.",
+      };
+    }
+
+    const exists = runGit(["cat-file", "-e", `${declared}^{commit}`]);
+    const isAncestor = exists.ok && runGit(["merge-base", "--is-ancestor", declared, "HEAD"]).ok;
+    if (!isAncestor) {
+      return {
+        changed: assumeDataChanged(),
+        baselineError:
+          `enforcement could not be completed because DATA_PROCEDURE_BASELINE (${declared}) ` +
+          (exists.ok
+            ? "is not an ancestor of HEAD. A force-push or an unrelated SHA can cause this."
+            : "does not exist in this checkout. CI must check out with enough history to contain it (fetch-depth: 0).") +
+          " Refusing to fall back to ref guessing, because a wrong baseline would pass this guard vacuously.",
+      };
+    }
+    const declaredDiff = runGit(["diff", "--name-only", `${declared}...HEAD`]);
+    if (declaredDiff.ok) {
+      return { baseline: declared, changed: changedPaths(declaredDiff.stdout) };
+    }
+    return {
+      changed: assumeDataChanged(),
+      baselineError:
+        `enforcement could not be completed because diffing against DATA_PROCEDURE_BASELINE (${declared}) ` +
+        `failed: ${declaredDiff.reason}`,
+    };
+  }
+
   // WHY: uncommitted ticket work is the normal local workflow. This diff needs no
   // comparison branch, so it also lets the baseline-free checks keep protecting a
   // data edit when a shallow checkout cannot supply the older file contents.
