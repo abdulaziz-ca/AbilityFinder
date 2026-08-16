@@ -14,11 +14,15 @@ const SCOPE_GOVERNMENTS = BC_ENABLED ? "Canada, Alberta, or British Columbia" : 
 const SCOPE_ORGANIZATIONS = BC_ENABLED ? "Alberta, British Columbia, and national" : "Alberta and national";
 const SCOPE_REGION_LABEL = BC_ENABLED ? "Alberta + BC" : "Canada";
 const SCOPE_DESTINATION = BC_ENABLED ? "Alberta or British Columbia" : "Alberta";
-const SCOPE_RESIDENCY_HELP = `Federal benefits apply anywhere in Canada. ${SCOPE_LABEL_LONG}${BC_ENABLED ? " provincial programs are" : "'s provincial programs are"} fully built out right now — other provinces are coming soon.`;
+// "selected ... ones" rather than "fully built out": the catalogue holds chosen
+// programs, not every provincial or municipal benefit. Both languages keep the
+// residency explanation, which is the whole point of help on a residency question
+// and was never a completeness claim.
+const SCOPE_RESIDENCY_HELP = `The federal benefits in our catalog apply anywhere in Canada. Provincial and municipal programs depend on where you live — our catalog includes selected ${SCOPE_LABEL_LONG} ones.`;
 const SCOPE_RESIDENCY_HELP_FR = BC_ENABLED
-  ? "Les prestations fédérales s'appliquent partout ; les programmes provinciaux et municipaux dépendent de votre lieu de résidence. Nous couvrons l'AB et la C.-B. en détail."
+  ? "Les prestations fédérales du catalogue s'appliquent partout au Canada. Les programmes provinciaux et municipaux dépendent de votre lieu de résidence ; le catalogue en comprend une sélection pour l'Alberta et la Colombie-Britannique."
   // The previous fallback claimed Ontario and Québec, which the product has never covered.
-  : "Les prestations fédérales s'appliquent partout au Canada. Les programmes provinciaux de l'Alberta sont entièrement couverts pour le moment — les autres provinces viendront bientôt.";
+  : "Les prestations fédérales du catalogue s'appliquent partout au Canada. Les programmes provinciaux et municipaux dépendent de votre lieu de résidence ; le catalogue en comprend une sélection pour l'Alberta.";
 
 /* -------------------------------------------------- answer state (defaults) */
 const BLANK = () => ({
@@ -2237,7 +2241,7 @@ const HELP_PAGES = {
       },
       {
         h: "So what should you pick?",
-        p: `Whatever is closest. If two fit, pick both — it's a multi-select. If nothing fits, pick <b>“Something else / not listed”</b> and carry on; you'll still get the full ${SCOPE_LABEL} list, because most benefits don't depend on the category at all.`,
+        p: `Whatever is closest. If two fit, pick both — it's a multi-select. If nothing fits, pick <b>“Something else / not listed”</b> and carry on; that choice will not disqualify you, because most programs don't depend on the category at all.`,
       },
       {
         h: "If you don't have a diagnosis yet",
@@ -2483,7 +2487,7 @@ function renderAbout() {
     <h1 class="legal-title">Clear help, checked against official sources</h1>
     <p class="legal-lede">AbilityFinder makes it easier to find disability benefits and understand what to do next.</p>
 
-    ${block("What AbilityFinder is", `<p>AbilityFinder is a free, independent tool that helps ${SCOPE_RESIDENTS} with disabilities find every government benefit they may qualify for. It is not affiliated with any government. There is no login and there are no ads.</p>`)}
+    ${block("What AbilityFinder is", `<p>AbilityFinder is a free, independent tool that helps ${SCOPE_RESIDENTS} with disabilities find benefits in our catalog that may match their situation. It is not affiliated with any government. There is no login and there are no ads.</p>`)}
     ${block("How we verify facts", `<p>Every benefit links to an official government source. The whole catalog was last fully reviewed in July 2026; each guide shows that date, and any benefit we re-check later shows its own.</p><p>Automated link monitoring checks official links around the clock and flags pages that break or move, and each guide warns when its review is getting old and the numbers are worth re-confirming.</p>`)}
     ${block("What we never do", `<p>We do not create accounts, show ads, or use third-party trackers. Your answers stay on your device. We never sell or share your data.</p>`)}
     ${block("Found a mistake?", `<p>Please tell us through the <button class="linklike js-feedback">feedback form</button>. Corrections help everyone who uses AbilityFinder.</p>`)}
@@ -4332,7 +4336,7 @@ function renderBrowse() {
   <section class="browse">
     <button class="back-link" id="b-back">${icon("arrowLeft")} Home</button>
     <div class="browse-head">
-      <h1>Browse every benefit</h1>
+      <h1>Browse benefits in our catalog</h1>
       <p>Explore all ${catalog.length} programs in our ${SCOPE_LABEL} catalog — no questionnaire needed. Want a list tailored to you?
         <button class="linklike" id="b-start">Get my personalized results ${icon("arrowRight")}</button></p>
     </div>
