@@ -181,13 +181,23 @@ hand-edited.**
       not be.** The maps are consumed through answer-dependent functions
       (`link: (a) => TWO_ELEVEN[a.province] || NATIONAL_211`), and
       `gen-benefits-context.js` skips a function URL unless it exposes a `staticUrl` —
-      it counts them as "dynamic URLs skipped". Alberta's and B.C.'s map URLs *do*
-      appear in `src/links.js` today, but only **incidentally**, because those same
-      URLs are also static `source` or `applyUrl` values on other records. A new
-      province's URL that appears **only** in one of these maps gets no link-monitor
-      coverage at all. After adding them, grep `src/links.js` for each of the three;
-      any that is absent is unmonitored and must be re-checked by hand in a browser
-      on the schedule the monitor would otherwise have covered.
+      it counts them as "dynamic URLs skipped". **Half of the existing map values are
+      already unmonitored**, measured by exact match against `src/links.js` on
+      2026-08-17: `studentaidbc.ca/apply/...`, `bc.211.ca/` and
+      `alberta.ca/disability-related-employment-supports` are present, because those
+      exact URLs also appear as a static `source` or `applyUrl` elsewhere;
+      `studentaid.alberta.ca/`, `ab.211.ca/` and
+      `workbc.ca/plan-career/resources/people-disabilities` are **absent**. Coverage
+      is incidental, not designed, and it is already patchy.
+      **Match exactly, not by substring.** A substring search for
+      `studentaid.alberta.ca` "finds" a hit that is really a different, much deeper
+      policy URL — which is how this line was wrong in an earlier revision:
+      ```sh
+      grep -cF '"https://ab.211.ca/"' src/links.js   # 0 means unmonitored
+      ```
+      Check each of the province's three values that way. Any absent value gets no
+      link-monitor coverage and must be re-checked by hand in a browser on the
+      schedule the monitor would otherwise have covered.
 - [ ] Update `COVERED_PROVINCES`, `CITIES_BY_PROVINCE` and the city arrays — and
       then re-check every scope string. Coverage wording appears in the landing copy,
       the About page, the residency help, the meta description, the Open Graph and
@@ -217,8 +227,8 @@ serves.**
       only; it must introduce no new persistence and no new server submission. State
       that in the evidence rather than leaving it unexamined.
 - [ ] **Scope wording across search and social surfaces** — the meta description, the
-      Open Graph and Twitter titles, the guide-index description, the 404 page and the
-      embed all name the covered jurisdictions. A province that ships without them
+      Open Graph and Twitter **descriptions** (the titles deliberately do not name
+      jurisdictions), the guide-index description, the 404 page and the embed. A province that ships without them
       advertises coverage it does not have, or hides coverage it does.
 
 ---
