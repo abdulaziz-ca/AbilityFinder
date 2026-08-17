@@ -39,6 +39,15 @@ vm.runInContext(
     '\n;globalThis.__B = typeof BENEFITS !== "undefined" ? BENEFITS : null;' +
     '\n;globalThis.__BC_CITIES = typeof BC_CITIES !== "undefined" ? BC_CITIES : null;' +
     '\n;globalThis.__HELP = typeof HELP_ORGS !== "undefined" ? HELP_ORGS : null;' +
+    // Province fallback maps. These are reached only through answer-dependent link
+    // functions, so addLink() never saw them and skipped them silently — three of the six
+    // values were unmonitored. They are a small fixed set of already-written URLs, so they
+    // are registered directly rather than by evaluating a function with invented answers.
+    '\n;globalThis.__STUDENT_AID = typeof STUDENT_AID !== "undefined" ? STUDENT_AID : null;' +
+    '\n;globalThis.__TWO_ELEVEN = typeof TWO_ELEVEN !== "undefined" ? TWO_ELEVEN : null;' +
+    '\n;globalThis.__EMPLOYMENT = typeof EMPLOYMENT !== "undefined" ? EMPLOYMENT : null;' +
+    '\n;globalThis.__FED_STUDENT_AID = typeof FED_STUDENT_AID !== "undefined" ? FED_STUDENT_AID : null;' +
+    '\n;globalThis.__NATIONAL_211 = typeof NATIONAL_211 !== "undefined" ? NATIONAL_211 : null;' +
     "\n" + fs.readFileSync(GRANTS_SRC, "utf8") +
     '\n;globalThis.__GRANTS = typeof GRANTS_DIRECTORY !== "undefined" ? GRANTS_DIRECTORY : null;' +
     "\n" + fs.readFileSync(ORGS_SRC, "utf8") +
@@ -237,6 +246,22 @@ for (const grant of ctx.__GRANTS || []) {
 for (const org of ctx.__ORGS || []) {
   if (org && org.url) addLink(org.url, `org:${clean(org.id)} — ${clean(org.name || org.url)}`, "org");
 }
+
+// Province fallback routes: student aid, 2-1-1 and employment supports, plus the
+// national defaults the chain falls back to. Registered per value, so a province added
+// later is covered automatically, and labelled so a flagged link is identifiable as a
+// fallback during the link-health review.
+for (const [mapName, map] of [
+  ["student aid", ctx.__STUDENT_AID],
+  ["2-1-1", ctx.__TWO_ELEVEN],
+  ["employment supports", ctx.__EMPLOYMENT],
+]) {
+  for (const [province, url] of Object.entries(map || {})) {
+    addLink(url, `Province fallback — ${mapName} (${clean(province)})`, "help");
+  }
+}
+addLink(ctx.__FED_STUDENT_AID, "Province fallback — student aid (national default)", "help");
+addLink(ctx.__NATIONAL_211, "Province fallback — 2-1-1 (national default)", "help");
 
 const linksOut = `// GENERATED FILE — DO NOT EDIT BY HAND.
 // Regenerate with:  npm run gen:context

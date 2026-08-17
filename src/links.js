@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 176 links. The monitor checks a bounded rotating batch every
+// 180 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) URLs are skipped — they depend on the
@@ -889,6 +889,26 @@ export const LINKS = [
     "url": "https://bc.211.ca",
     "label": "org:bc-211 — 211 British Columbia",
     "kind": "org"
+  },
+  {
+    "url": "https://studentaid.alberta.ca/",
+    "label": "Province fallback — student aid (AB)",
+    "kind": "help"
+  },
+  {
+    "url": "https://ab.211.ca/",
+    "label": "Province fallback — 2-1-1 (AB)",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.workbc.ca/plan-career/resources/people-disabilities",
+    "label": "Province fallback — employment supports (BC)",
+    "kind": "help"
+  },
+  {
+    "url": "https://211.ca/",
+    "label": "Province fallback — 2-1-1 (national default)",
+    "kind": "help"
   }
 ];
 
