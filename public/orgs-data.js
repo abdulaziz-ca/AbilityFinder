@@ -15,6 +15,18 @@ const ORGS_DIRECTORY = [
   { id: "calgary-legal-guidance", name: "Calgary Legal Guidance", url: "https://clg.ab.ca", region: "Calgary", coverage: ["AB"], whatTheyDo: "Free legal information, advice and assistance for people who cannot afford a lawyer, including social benefits and other civil-law matters", focus: "legal", verified: "2026-07-20" },
   { id: "between-friends", name: "Between Friends", url: "https://www.betweenfriends.ab.ca", region: "Calgary", coverage: ["AB"], whatTheyDo: "Social, recreation and camp programs where people with disabilities build friendships and community", focus: "recreation", verified: "2026-07-20" },
 
+  /* Camrose has no municipal disability or low-income benefit (verified against camrose.ca
+     2026-08-16), so this entry is how a Camrose resident finds local accessible transport.
+     The society has no working site of its own: its page at camroseseniorcentre.com is a soft
+     404 and that host serves a self-signed certificate, so `url` points at the City of Camrose
+     page that documents the service. That departs from this file's usual "the organisation's
+     own site" rule, which is why whatTheyDo names the phone number and says where the link
+     goes — the card labels every url "Website", and an unexplained city link would imply the
+     city page IS their website. Owner decision, 2026-08-16. Every fact below is stated on
+     camrose.ca; nothing about fares, eligibility, booking or service area is claimed, because
+     the City does not publish those and the society publishes nothing. */
+  { id: "rose-city-handi-van", name: "Rose City Handi-Van Society", url: "https://www.camrose.ca/roads-transportation/public-transit/camrose-community-bus/", region: "Camrose", coverage: ["AB"], whatTheyDo: "Accessible transport in Camrose: the society runs the Camrose Community Bus, a fixed route Tuesday to Saturday from 9am to 5pm with ramps and securement for wheelchairs, walkers and strollers, and it is a participating provider for the City's transit tokens. Phone 780.672.8777 \u2014 the link opens the City of Camrose page describing the service", focus: "transport", verified: "2026-08-16" },
+
   { id: "dabc", name: "Disability Alliance BC", url: "https://disabilityalliancebc.org", region: "British Columbia-wide", coverage: ["BC"], whatTheyDo: "Cross-disability advocacy, benefits-navigation programs, plain-language help sheets, tax and DTC resources, and direct support through its Advocacy Access programs", focus: "navigation-advocacy", verified: "2026-07-21" },
   { id: "dabc-law-clinic", name: "Disability Law Clinic", url: "https://disabilityalliancebc.org/program/disability-law-clinic/", region: "British Columbia-wide", coverage: ["BC"], whatTheyDo: "Free confidential summary legal advice and referrals on selected disability-rights issues including discrimination, accommodations, services, transportation and post-secondary education", focus: "legal", verified: "2026-07-21" },
   { id: "fsi-bc", name: "Family Support Institute of BC", url: "https://familysupportbc.com", region: "British Columbia-wide", coverage: ["BC"], whatTheyDo: "Free family-to-family support, information, training, resource navigation and interpretation for families of people of any age or disability; no diagnosis is required", focus: "advocacy-family", verified: "2026-07-21" },
