@@ -1,5 +1,6 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
+  { date: "2026-08-16", text: "The browse buttons on the landing page and in the footer now follow the interface language instead of always showing English." },
   { date: "2026-08-16", text: "Finished matching the browse wording across the app, corrected the embed to say every benefit links to its official source rather than every fact, and made the search descriptions say Alberta and British Columbia plus Canada-wide federal programs." },
   { date: "2026-08-16", text: "Corrected the search and sharing text so it matches the site: the page description, social share titles, 404 page and program-guide calls to action no longer promise every benefit or say benefits are owed to you." },
   { date: "2026-08-16", text: "Replaced a homepage line that claimed half of the benefits you are entitled to go unheard. The fraction had no source and the wording asserted entitlement the tool never establishes; both languages now say programs you could qualify for never come up." },
