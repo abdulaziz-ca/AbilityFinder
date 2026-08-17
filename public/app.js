@@ -1158,7 +1158,7 @@ const STEPS = [
     options: [
       { value: "AB", label: BC_ENABLED ? "Alberta" : "Yes, I live in Alberta" },
       ...(BC_ENABLED ? [{ value: "BC", label: "British Columbia" }] : []),
-      { value: "other", label: BC_ENABLED ? "Another province or territory" : "No, another province or territory", sub: "you'll still see all Canada-wide benefits" },
+      { value: "other", label: BC_ENABLED ? "Another province or territory" : "No, another province or territory", sub: "you'll still see the Canada-wide programs in our catalog" },
     ],
     onPick(v) {
       // a city from another province is no longer valid
@@ -4336,7 +4336,7 @@ function renderBrowse() {
   <section class="browse">
     <button class="back-link" id="b-back">${icon("arrowLeft")} Home</button>
     <div class="browse-head">
-      <h1>Browse benefits in our catalog</h1>
+      <h1>${t("menu.browse")}</h1>
       <p>Explore all ${catalog.length} programs in our ${SCOPE_LABEL} catalog — no questionnaire needed. Want a list tailored to you?
         <button class="linklike" id="b-start">Get my personalized results ${icon("arrowRight")}</button></p>
     </div>
