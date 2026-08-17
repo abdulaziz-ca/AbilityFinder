@@ -232,7 +232,7 @@ const I18N = {
     "prob.title": "Searching “what benefits can I get?” doesn't work.",
     "prob.badH": "The usual way",
     "prob.bad1": "You Google your disability and get 40 tabs of policy pages.",
-    "prob.bad2": "Every program hides its rules behind walls of text.",
+    "prob.bad2": "Many programs hide their rules behind walls of text.",
     "prob.bad3": "You never actually find out what <b>you</b> qualify for.",
     // No fraction and no "entitled to": the old line asserted that half of an unknown
     // total goes unheard, which is a statistic this project cannot source, and claimed
@@ -620,7 +620,7 @@ const I18N = {
     "prob.title": "Chercher « quelles prestations puis-je obtenir ? » ne fonctionne pas.",
     "prob.badH": "La méthode habituelle",
     "prob.bad1": "Vous cherchez votre handicap sur Google et obtenez 40 onglets de pages de politiques.",
-    "prob.bad2": "Chaque programme cache ses règles derrière des murs de texte.",
+    "prob.bad2": "De nombreux programmes cachent leurs règles derrière des murs de texte.",
     "prob.bad3": "Vous ne découvrez jamais vraiment ce à quoi <b>vous</b> êtes admissible.",
     // "pourriez être admissible" (might be eligible), never "auxquelles vous avez droit"
     // (entitled to) — the same distinction the landing headline turns on.

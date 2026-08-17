@@ -1,5 +1,6 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
+  { date: "2026-08-16", text: "Softened a homepage line that said every program hides its rules behind walls of text; it now says many programs do." },
   { date: "2026-08-16", text: "Added Rose City Handi-Van Society to the organization directory so Camrose residents can find local accessible transport, with the Camrose Community Bus details and phone number taken from the City of Camrose." },
   { date: "2026-08-16", text: "The out-of-province option no longer says you will see all Canada-wide benefits, since the catalog holds selected federal programs, and the browse page heading now follows the interface language." },
   { date: "2026-08-16", text: "The browse buttons on the landing page and in the footer now follow the interface language instead of always showing English." },
