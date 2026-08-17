@@ -128,13 +128,19 @@ accepted.** "I looked" is not a search result.
    grep -rn '"bc-pharmacare-plan-x"' public/data.js public/grants-data.js public/orgs-data.js
    ```
 
-2. **By keyword.** Search the program name, the body that administers it, and the
-   plain-language term a user would use. A record often exists under a different id
+2. **By keyword.** Search the program name, the body you believe administers it, and
+   the plain-language term a user would use. A record often exists under a different id
    than the one you would have chosen, which is exactly how these get missed:
 
    ```sh
-   grep -rin 'pharmacare\|plan x\|deductible' public/data.js public/grants-data.js public/orgs-data.js
+   grep -rin 'pharmacare\|plan x\|ministry of health\|deductible' public/data.js public/grants-data.js public/orgs-data.js
    ```
+
+   All three categories go in the proposal, each with its own result. In the example
+   above `pharmacare` and `deductible` match while `plan x` and `ministry of health`
+   return nothing — **a category that matches nothing is a result, not a search you
+   can leave out.** Copying only the terms you expect to hit reproduces the miss this
+   section exists to prevent.
 
 3. **Record both**, including a genuine `no match` — that is the result, not the
    absence of one. State the commands, the terms, and the output.
