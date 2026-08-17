@@ -55,8 +55,20 @@ function resolveChangeContext() {
   // A wrong baseline is worse than none: it would silently drop the data file from the
   // change set and pass all four checks vacuously. So an explicitly supplied baseline is
   // validated and, if unusable, fails closed rather than falling back to the guess.
+  // WHY every untrusted-baseline path below claims all data files changed: the four
+  // tests return early when no data file is in the change set, and only *then* consult
+  // baselineError. Failing closed with an empty (or merely HEAD-derived) set is
+  // therefore a silent pass — the exact vacuous-guard failure this file exists to
+  // prevent. Both variants were caught by this file's own fail-closed checks on
+  // 2026-08-16: an empty set passed 4/0, and a HEAD-derived set still passed 4/0
+  // whenever HEAD's own commit touched no data file. When the baseline cannot be
+  // trusted we cannot know whether data changed, so assume it did and let the error
+  // surface.
+  const assumeDataChanged = () => new Set([...DATA_FILES]);
+
   const declared = (process.env.DATA_PROCEDURE_BASELINE || "").trim();
   if (declared) {
+    // (historical note, kept because it explains the shape of every branch below)
     // WHY every failure path below claims all data files changed: the four tests
     // return early when no data file is in the change set, and only *then* consult
     // baselineError. Failing closed with an empty (or merely HEAD-derived) set is
@@ -66,7 +78,6 @@ function resolveChangeContext() {
     // whenever HEAD's own commit touched no data file, which is the ordinary case
     // for a force-push mid-series. When the baseline cannot be trusted we cannot know
     // whether data changed, so assume it did and let baselineError surface.
-    const assumeDataChanged = () => new Set([...DATA_FILES]);
 
     // GitHub sends the all-zero SHA for the first push of a ref: there is genuinely
     // no previous commit to compare against, so say so instead of guessing.
@@ -81,13 +92,27 @@ function resolveChangeContext() {
     }
 
     const exists = runGit(["cat-file", "-e", `${declared}^{commit}`]);
-    const isAncestor = exists.ok && runGit(["merge-base", "--is-ancestor", declared, "HEAD"]).ok;
+    // WHY "strictly older" and not merely "an ancestor": git counts a commit as its own
+    // ancestor, so `--is-ancestor HEAD HEAD` succeeds and `HEAD...HEAD` is an empty diff.
+    // A declared baseline of HEAD would then find no changed data file and every check
+    // would return early — passing without inspecting anything. Confirmed 2026-08-16:
+    // DATA_PROCEDURE_BASELINE=HEAD passed 4/0 before this rejection existed.
+    const resolvedDeclared = runGit(["rev-parse", `${declared}^{commit}`]);
+    const headSha = runGit(["rev-parse", "HEAD"]);
+    const isSameAsHead =
+      resolvedDeclared.ok && headSha.ok && resolvedDeclared.stdout === headSha.stdout;
+    const isAncestor =
+      exists.ok &&
+      !isSameAsHead &&
+      runGit(["merge-base", "--is-ancestor", declared, "HEAD"]).ok;
     if (!isAncestor) {
       return {
         changed: assumeDataChanged(),
         baselineError:
           `enforcement could not be completed because DATA_PROCEDURE_BASELINE (${declared}) ` +
-          (exists.ok
+          (isSameAsHead
+            ? "resolves to HEAD itself, so there is nothing earlier to compare against."
+            : exists.ok
             ? "is not an ancestor of HEAD. A force-push or an unrelated SHA can cause this."
             : "does not exist in this checkout. CI must check out with enough history to contain it (fetch-depth: 0).") +
           " Refusing to fall back to ref guessing, because a wrong baseline would pass this guard vacuously.",
@@ -103,6 +128,38 @@ function resolveChangeContext() {
         `enforcement could not be completed because diffing against DATA_PROCEDURE_BASELINE (${declared}) ` +
         `failed: ${declaredDiff.reason}`,
     };
+  }
+
+  // WHY CI never reaches the ref scan below: that scan is a heuristic over whatever refs
+  // happen to exist, which is exactly how this guard came to depend on leftover merged
+  // feature branches for its baseline. push and pull_request always declare one from the
+  // event. workflow_dispatch does not, and it is an enabled trigger here — manual re-runs
+  // are a real capability on this project — so failing it outright would cost something
+  // rather than protect anything. Its baseline is not a guess either: a manual run asks
+  // "what did this commit change", which is HEAD's first parent. That is deterministic,
+  // and unlike the old diff-tree fallback it gives the changelog and asset-version checks
+  // a real commit to read the previous file contents from.
+  if (process.env.GITHUB_ACTIONS === "true") {
+    const parent = runGit(["rev-parse", "HEAD^{commit}^"]);
+    if (!parent.ok || !parent.stdout) {
+      return {
+        changed: assumeDataChanged(),
+        baselineError:
+          "enforcement could not be completed because no DATA_PROCEDURE_BASELINE was supplied " +
+          "and HEAD has no parent commit to fall back to. Re-run from a push or pull request, " +
+          "or supply an explicit ancestor SHA.",
+      };
+    }
+    const parentDiff = runGit(["diff", "--name-only", `${parent.stdout}...HEAD`]);
+    if (!parentDiff.ok) {
+      return {
+        changed: assumeDataChanged(),
+        baselineError:
+          "enforcement could not be completed because no DATA_PROCEDURE_BASELINE was supplied " +
+          `and diffing against HEAD's parent failed: ${parentDiff.reason}`,
+      };
+    }
+    return { baseline: parent.stdout, changed: changedPaths(parentDiff.stdout) };
   }
 
   // WHY: uncommitted ticket work is the normal local workflow. This diff needs no

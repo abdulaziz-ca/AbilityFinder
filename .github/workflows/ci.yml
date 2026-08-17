@@ -119,8 +119,11 @@ jobs:
           # guess then survives only on leftover merged feature branches, so deleting
           # them would silently start failing every data deploy. github.event.before
           # is the previous tip of this ref; pull_request.base.sha is the PR base.
-          # An empty value (e.g. workflow_dispatch) falls back to the ref scan; an
-          # all-zero or non-ancestor value fails closed rather than guessing.
+          # workflow_dispatch supplies neither, so the value is empty there; the guard
+          # then uses HEAD's first parent, which is the right question for a manual run
+          # ("what did this commit change") and is deterministic rather than a ref guess.
+          # An all-zero, non-ancestor, missing, or HEAD-equal value fails closed instead
+          # of guessing, because a wrong baseline passes the guard vacuously.
           DATA_PROCEDURE_BASELINE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
 
       # Two Playwright projects run here. "app" uses a static server; "worker"
