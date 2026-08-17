@@ -1,4 +1,5 @@
 const { test, expect } = require("@playwright/test");
+const { settleWizardCard } = require("./wizard-helpers");
 
 // Ordinary use must load only from AbilityFinder's own origin. User-initiated
 // official/Maps links are covered separately and are not opened in this journey.
@@ -62,38 +63,6 @@ async function expectHealthy(page) {
 // hang. The 5000ms race is generous headroom for a starved frame budget, and blowing it now throws
 // with the animation names rather than returning as if settled — a silent backstop hid exactly
 // the stalls this helper exists to prevent.
-async function settleWizardCard(page) {
-  const card = page.locator(".wizard-card");
-  if (!(await card.count())) return;
-  const result = await card
-    .evaluate(async (el, _unused) => {
-      const finiteOf = () =>
-        el.getAnimations().filter((animation) => {
-          const timing = animation.effect && animation.effect.getComputedTiming();
-          return !timing || timing.iterations !== Infinity;
-        });
-      const settled = await Promise.race([
-        Promise.all(finiteOf().map((animation) => animation.finished.catch(() => {}))).then(() => true),
-        new Promise((resolve) => setTimeout(() => resolve(false), 5000)),
-      ]);
-      return {
-        settled,
-        still: finiteOf()
-          .filter((animation) => animation.playState === "running")
-          .map((animation) => animation.animationName || animation.constructor.name),
-      };
-    }, undefined, { timeout: 15000 })
-    .catch((error) => ({ settled: false, still: [], evaluateError: String((error && error.message) || error) }));
-  if (!result.settled) {
-    throw new Error(
-      "settleWizardCard: the wizard card was still animating after 5000ms" +
-        (result.still && result.still.length ? ` — still running: [${result.still.join(", ")}]` : "") +
-        (result.evaluateError ? ` — evaluate failed: ${result.evaluateError}` : "") +
-        ". A click dispatched now can land at stale coordinates and hit nothing, which surfaces " +
-        "later as an unexplained 90s timeout rather than as this message.",
-    );
-  }
-}
 
 async function pick(page, text) {
   const questionBefore = await page
@@ -155,20 +124,26 @@ async function pick(page, text) {
   // a `.js-start` click, or a previous pick — only the last of those left the card settled, so
   // waiting here rather than only at the end is what makes every entry path safe.
   await settleWizardCard(page);
-  // The bounds in pick() are sequential, not overlapping: settleWizardCard can spend
-  // 15s in its evaluate before this click starts, the click can spend 30s, the fatal
-  // post-click waitForFunction can then spend 20s, and the trailing settleWizardCard
-  // can spend another 15s. The 80s total is only the maximum of those four explicitly
-  // bounded phases; it is NOT an end-to-end cap on pick(). Before them, the preflight
-  // textContent() and evaluate() have no explicit bounds and inherit the 90s test timeout,
-  // so a browser/CDP wedge during preflight is still uncapped by this budget. Bounding
-  // those two calls is a candidate follow-up, not something this change does. The earlier
-  // claim of an end-to-end path cap was itself an overclaim. For the four bounded phases,
-  // the point is to fail a stall with a diagnostic message instead of a bare test timeout.
+  // The bounds in pick() are sequential, not overlapping: the leading settleWizardCard
+  // can spend up to ~25s (10s proving the card exists, then 15s in its evaluate), the
+  // click can spend 30s, the fatal post-click waitForFunction can then spend 20s, and the
+  // trailing settleWizardCard another ~25s. That is ~100s of explicitly bounded phases
+  // against a 90s test timeout, which is deliberate: the phases are alternatives in
+  // practice, and the aim is that whichever one stalls fails with a diagnostic message
+  // instead of a bare test timeout. It is NOT an end-to-end cap on pick().
+  //
+  // What is still uncapped: pick()'s own preflight textContent() and evaluate() take no
+  // explicit bounds and inherit the 90s test timeout, so a browser/CDP wedge during
+  // preflight remains outside this budget. Bounding those two is still a candidate
+  // follow-up. Everything settleWizardCard does IS now bounded - it used to open with a
+  // bare card.count(), a third un-timed call that a 2026-08-17 review caught and that the
+  // shared helper in e2e/wizard-helpers.js replaced with a timed waitFor.
+  //
   // The adjacent 20s bound does NOT justify this one; they are separate sequential
   // budgets. An earlier revision wrongly argued they were the same, and preserving the
   // review's correction here keeps the next reader from re-deriving that reasoning. The
-  // earlier arithmetic also under-counted the path by omitting the trailing settle.
+  // earlier arithmetic also under-counted the path by omitting the trailing settle, and
+  // then under-counted each settle by ignoring its existence check.
   //
   // A legitimate click takes only low hundreds of milliseconds locally, while CI is
   // roughly 1.75x slower, so 30s sits far above plausible actionability delay while
