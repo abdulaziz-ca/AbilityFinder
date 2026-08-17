@@ -81,13 +81,19 @@ field has been read.**
       grep across all fields would have caught it immediately.
 - [ ] Every record keeps its **`source`**, and an **`applyUrl`** that resolves.
 - [ ] Every record has a **`detail`** block. Archived records predate the current
-      shape: they carry `about` and `needsPractitioner` but **lack `requiresNote`,
-      `phone` and `time`**, so an archived record is structurally incomplete even
-      when its facts are right.
+      shape: all 16 carry `detail.phone` and `detail.time`, but **none carries
+      `requiresNote`** — 0 occurrences across the whole archive file. That single
+      missing field is what makes an archived record structurally incomplete against
+      the current bar, even when its facts are right. (Count it yourself rather than
+      sampling one record: `grep -c requiresNote archive/data-provinces-later.js`.)
 - [ ] **`requiresNote`** is written wherever the program has an eligibility rule the
-      user must meet. It renders as "What you must meet" on the guide and in the app
-      and is guarded by `test/requires-note-rendered.test.js`; a record without one
-      hides eligibility detail available nowhere else.
+      user must meet. It renders as "What you must meet" on the guide and in the app;
+      a record without one hides eligibility detail available nowhere else.
+      **Nothing catches its absence automatically.** `test/requires-note-rendered.test.js`
+      filters to records that *already* have one, asserts at least 40 exist, and checks
+      those render — so a new record shipped without `requiresNote` passes. This is a
+      human check; treat the test as protection against the field going dark, not
+      against forgetting it.
 - [ ] A per-record **freshness date** is added to the verified map in
       `public/data.js`, so the guide can show when the figures were last confirmed.
 - [ ] `b.note` is **"Good to know"**, not eligibility. Most notes are caveats,
@@ -141,7 +147,7 @@ hand-edited.**
 - [ ] Bump the shared **`?v=N`** in `public/index.html` and `public/styles.css`, then
       re-run `gen:guides` so all guides carry it. Verify none is left behind:
       ```sh
-      version=NNN   # the ?v you committed
+      version=$(grep -oE 'styles\.css\?v=[0-9]+' public/index.html | head -1 | grep -oE '[0-9]+')
       grep -rL "?v=$version" public/guides   # must print nothing
       ```
 - [ ] `npm test` and `npm run test:e2e` pass. `test/data-procedure.test.js` fires
@@ -149,14 +155,60 @@ hand-edited.**
       landing if the changelog entry, the version bump or the generated output is
       missing.
 - [ ] Restore the province in the residency step and the per-province `REQS` keys.
-      The keys already exist in `app.js`; only the residency options and the data
-      need restoring.
+      The keys already exist in `app.js`.
+- [ ] **Do not believe the archive's "only residency options + data" instruction.**
+      Its header lists four re-integration steps and implies the code is ready. It is
+      not: province handling is **hard-coded to Alberta and B.C. in five places**, and
+      a province added without them ships broken in ways the tests will not catch.
+      Verified on 2026-08-17; re-check each before trusting this list:
+      - `scripts/gen-guide-pages.js` — provincial vs municipal classification. An
+        Ontario record would be grouped under **Municipal** on the guide pages.
+      - `scripts/gen-benefits-context.js` — the assistant's grounding scope.
+      - `src/index.js` — the Worker's scope prompt. The assistant would tell an
+        Ontario user that provincial programs are **not covered**, which is worse
+        than silence: it is a confident wrong answer to someone who needs help.
+      - `public/app.js` — browse classification and the impact statistics.
+      - the scope strings listed in the next item.
+- [ ] **Merge the province-specific fallback maps**, which the archive header names
+      as step 2 and which this checklist previously omitted: **`STUDENT_AID`,
+      `TWO_ELEVEN` and `EMPLOYMENT`**. Runtime code in `public/data.js` uses them to
+      route a user to their province's student-aid office, 2-1-1 service and
+      employment supports. Without them a new province's users silently get the
+      generic national link instead of their own official route — a quiet wrong
+      answer, not a visible failure. Record each new province's three values and
+      confirm the generated links.
 - [ ] Update `COVERED_PROVINCES`, `CITIES_BY_PROVINCE` and the city arrays — and
       then re-check every scope string. Coverage wording appears in the landing copy,
       the About page, the residency help, the meta description, the Open Graph and
       Twitter titles, the guide-index description and the embed. A province that
       ships without those updated will advertise coverage it does not have, or hide
       coverage it does.
+
+## 5. Accessibility, language and privacy
+
+**Gate: the surfaces a province changes are re-checked for the audience this product
+serves.**
+
+- [ ] **Both languages.** A province adds residency options, city names and scope
+      strings. Check `public/i18n.js` for English and French, and confirm the French
+      scope wording does not fall back to something stale — a French scope label once
+      advertised Ontario and Québec, which the catalogue has never covered. Note that
+      **`AF-S0904` keeps French paused**: do not write new French benefit content, but
+      existing interface strings that name provinces must not become wrong.
+- [ ] **Keyboard and screen reader** on the changed residency step and results, per
+      the accessibility gates in `AGENTS.md`. Automated checks do not substitute.
+- [ ] **200–400% zoom and reflow**, reduced motion, and forced-colours, since a longer
+      province or city list changes layout.
+- [ ] **Cognitive load.** A longer residency list is harder to scan for a tired or
+      pain-affected user. Confirm the list stays ordered and the "another province"
+      option still reads honestly about what they will see.
+- [ ] **Privacy is unchanged, and say so explicitly.** A province adds catalogue data
+      only; it must introduce no new persistence and no new server submission. State
+      that in the evidence rather than leaving it unexamined.
+- [ ] **Scope wording across search and social surfaces** — the meta description, the
+      Open Graph and Twitter titles, the guide-index description, the 404 page and the
+      embed all name the covered jurisdictions. A province that ships without them
+      advertises coverage it does not have, or hides coverage it does.
 
 ---
 
