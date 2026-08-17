@@ -125,6 +125,26 @@ is to tell a real release problem apart from propagation — most confusing resu
 latter, and three of the checks below exist because a plausible-looking failure was
 reported that turned out to be the tooling, not the release.
 
+**Run the mechanical checks first, then read the rest of this section.**
+
+```sh
+npm run verify:deploy -- --asset data.js --present "text the change added" --absent "text it removed"
+```
+
+`scripts/verify-deploy.js` executes the mechanical half of this routine against the live
+site and exits non-zero if a check fails: **step 2** entirely (the live `?v` on `/` and on
+a guide, and zero stale guides locally), **step 3's mechanics** (`--present` / `--absent`
+against a named live asset — omit both to skip it), **steps 5 and 7's endpoint contract**
+(`/api/link-health` answers a fetch with 200 `application/json`, and its `total` and
+`skippedDynamic` match the committed `src/links.js`), and **step 6's headers**. It reports
+`coverage.lastFullSweepAt` without gating on it, because a `null` there is correct right
+after a catalogue change.
+
+**It does not cover, and cannot:** step 1 (which commit was *meant* to ship), step 4 (the
+wizard, reload and IndexedDB restore), step 8 (privacy), step 9 (keyboard, theme, print,
+mobile), and the reading rule at the end of this section. A green script is not a verified
+release — it is the boring half done consistently. Do the rest by hand.
+
 **Before you start:** do not push a second change while this one still needs verifying.
 CI uses `concurrency: cancel-in-progress`, so a newer push cancels the in-flight run, and
 between that push and the next green deploy the earlier commit's new pages 404 in

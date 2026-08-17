@@ -2,12 +2,13 @@
   "name": "abilityfinder",
   "version": "1.0.0",
   "private": true,
-  "description": "AbilityFinder — every disability benefit you can get in Alberta",
+  "description": "AbilityFinder \u2014 every disability benefit you can get in Alberta",
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
     "gen:context": "node scripts/gen-benefits-context.js",
     "gen:guides": "node scripts/gen-guide-pages.js",
+    "verify:deploy": "node scripts/verify-deploy.js",
     "test": "node --test test/*.test.js",
     "test:e2e": "playwright test"
   },
