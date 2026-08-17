@@ -144,10 +144,18 @@ entries as "the **fourth and fifth** gap entries written from a hub sweep withou
 first reading the record that already covered it" — both were already in the
 catalogue, one of them complete with `requiresNote`, `detail`, `applyUrl` and
 `source`. And on 2026-08-16 a ticket asked to "re-check Camrose", which a record-id
-search answered in one command: Camrose appears **once** in `public/data.js`, inside
-the `ALBERTA_CITIES` dropdown, and has no benefit record at all. That single search
-turned a re-check into a coverage question and produced a different, correct outcome.
-The search is cheap; the research it prevents is not.
+search answered in one command: in `public/data.js` Camrose appears **only** inside
+the `ALBERTA_CITIES` dropdown, so there is **no Camrose municipal benefit record**.
+That single search turned a re-check into a coverage question and produced a
+different, correct outcome — an organisation entry rather than an invented municipal
+benefit.
+
+Run that same search today and `public/orgs-data.js` also returns the
+`rose-city-handi-van` entry it produced. That is the point, not a contradiction:
+searching all three files distinguishes **"no benefit record"** from **"no coverage
+at all"**. A Camrose resident *is* served — just not by a benefit — and a proposal
+has to say which of those it means. The search is cheap; the research it prevents is
+not.
 
 ### Shared UI, routing, or CSS
 
