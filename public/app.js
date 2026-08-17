@@ -1904,7 +1904,7 @@ function renderLanding() {
         <p class="hero-sub">${t("land.sub")}</p>
         <div class="hero-cta">
           <button class="btn btn-primary js-start">${t("land.find")} ${icon("arrowRight")}</button>
-          <button class="btn btn-ghost js-browse">${icon("search")} Browse all benefits</button>
+          <button class="btn btn-ghost js-browse">${icon("search")} Browse benefits in our catalog</button>
         </div>
         <div class="trust">
           <span>${icon("lock")}${t("trust.private")}</span>
@@ -2054,7 +2054,7 @@ function renderLanding() {
         <button class="linklike" type="button" data-info-nav="professionals">${t("footer.professionals")}</button>
         <button class="linklike" type="button" data-info-nav="grants">${t("footer.grants")}</button>
         <button class="linklike" type="button" data-info-nav="organizations">${t("footer.organizations")}</button>
-        <button class="linklike js-browse">Browse all benefits</button>
+        <button class="linklike js-browse">Browse benefits in our catalog</button>
         <span class="sf-note">${SCOPE_LABEL} · Info verified ${DATA_VERIFIED} · Not government-affiliated</span>
       </div>
     </footer>

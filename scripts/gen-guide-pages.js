@@ -228,7 +228,7 @@ const guideIndex = `<!DOCTYPE html>
 <html lang="en">
 ${head({
   title: "Disability benefit program guides — AbilityFinder",
-  desc: "Plain-language guides to federal, Alberta, British Columbia, and municipal disability benefits, with eligibility, value, application steps, and official sources.",
+  desc: "Plain-language guides to disability benefits for Alberta and British Columbia, plus Canada-wide federal programs and selected municipal programs, with eligibility, value, application steps, and official sources.",
   canonical: "https://abilityfinder.ca/guides/",
 })}
   <body>
