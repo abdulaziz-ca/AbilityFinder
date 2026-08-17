@@ -39,7 +39,7 @@ npm run test:e2e
 git diff --check
 npx wrangler deploy --dry-run
 git commit -m "..."
-git push origin main        # Workers Builds deploys main
+git push origin main        # CI deploys main, but only if the suite is green
 ```
 
 An explicit deployment is also supported:
@@ -120,15 +120,56 @@ Cloudflare dashboard if clean-console verification requires it.
 
 ## Post-deploy verification
 
-1. Confirm the deployed HTML references the new cache version.
-2. Compare a changed asset with the local file or inspect its deployed content.
-3. Complete a fresh wizard start, reload, and IndexedDB restore on the custom domain.
-4. Test `/api/link-health` and any changed Worker endpoint.
-5. Check browser page errors and application console errors. Distinguish CSP-blocked
-   Cloudflare injections from application failures; do not hide real errors.
-6. Verify `origin/main` matches the intended commit and Workers Builds succeeded.
-7. Test keyboard navigation, dark/light theme, print, and a mobile viewport when the
+Run this against the custom domain after every deploy, and record the output. The point
+is to tell a real release problem apart from propagation — most confusing results are the
+latter, and three of the checks below exist because a plausible-looking failure was
+reported that turned out to be the tooling, not the release.
+
+**Before you start:** do not push a second change while this one still needs verifying.
+CI uses `concurrency: cancel-in-progress`, so a newer push cancels the in-flight run, and
+between that push and the next green deploy the earlier commit's new pages 404 in
+production. Verify, then push again.
+
+1. **Confirm the release actually happened.** `origin/main` matches the intended commit,
+   and the CI run for that commit completed green. **A `deploy` job reporting success does
+   not prove it deployed** — it exits 0 either way, warning and skipping when the token is
+   absent, so confirm against the live site rather than the job's own conclusion.
+   Workers Builds is disconnected; CI is the only path to production. Do not look for a
+   Workers Builds result.
+2. **Confirm the deployed HTML references the new cache version**, on `/` and on a guide
+   page, and that no guide is left on the old one:
+   `curl -s https://abilityfinder.ca/ | grep -o 'styles\.css?v=[0-9]*'`
+   A guide still on the previous `?v` means `npm run gen:guides` was not run or not
+   committed — the 102 guides carry their own copy of the marker.
+3. **Inspect the changed content itself, not just the version string.** A correct `?v`
+   only proves `index.html` shipped. Grep the live asset for the specific text or value the
+   change introduced, and for anything it was supposed to remove.
+   **Guide URLs 307-redirect** from `/guides/<id>.html` to `/guides/<id>`, so `curl`
+   without `-L` returns 0 bytes and looks exactly like a failed deploy. Always use
+   `curl -sL` on a guide.
+4. **Complete a fresh wizard start, a reload, and an IndexedDB restore** on the custom
+   domain. Restore must finish before the first meaningful render; the persisted-blank-page
+   incident is why this is not optional.
+5. **Test `/api/link-health` and any changed Worker endpoint with `curl` or `fetch`.**
+   Do **not** judge them by typing the URL into a browser: `/api/*` returns 200 JSON to
+   `fetch` and **404 HTML to a top-level navigation**, because Cloudflare's static-asset
+   routing answers navigations before the Worker runs. That is REL-06, it is understood,
+   and it is WON'T FIX on zero-spend grounds — a 404 from a browser address bar is **not**
+   a regression and must not be reported as one.
+6. **Check browser page errors and application console errors.** Cloudflare injects a
+   Browser Insights beacon that the strict CSP blocks; that console noise is expected.
+   Distinguish it from application failures, do not hide real errors, and never weaken the
+   CSP to silence it — disable injection in the Cloudflare dashboard instead.
+7. **Re-run the privacy contract checks whenever a data flow changed** — that no wizard or
+   profile data leaves the device, that only `/api/ask` and `/api/feedback` carry
+   user-entered content, and that nothing sensitive entered a URL.
+8. **Test keyboard navigation, dark/light theme, print, and a mobile viewport** when the
    change touches them.
+
+**Reading the results.** If two checks disagree — new URLs live but the old version
+string, or 200s with missing content — that is propagation mid-flight, not a failure.
+**Re-run before concluding anything.** Do not report the zeros as a failure, and do not
+explain them away either; wait, repeat, and only then decide.
 
 ## Domain and recovery
 
@@ -136,7 +177,7 @@ The canonical domain, social metadata, robots file, and sitemap already use
 `abilityfinder.ca`. If the domain changes, update all of them together.
 
 A direct `npx wrangler deploy` can restore the last known-good working tree even if
-Workers Builds is unavailable. Cloudflare deployment/version history provides
+CI is unavailable or blocked. It bypasses the test gate, so use it only to recover. Cloudflare deployment/version history provides
 rollback options; verify the custom domain after any rollback.
 
 ## Province launch checklist
