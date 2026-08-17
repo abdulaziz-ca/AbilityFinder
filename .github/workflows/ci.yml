@@ -165,17 +165,22 @@ jobs:
           if-no-files-found: ignore
 
   # ---------------------------------------------------------------------------
-  # THE GATE — live since 2026-07-28. This job is the only path to production.
+  # THE GATE — live since 2026-07-28. This job is the only AUTOMATED push-to-main
+  # path to production. It is not the only path at all: `npx wrangler deploy` still
+  # deploys directly from a working tree and bypasses this gate entirely, which
+  # DEPLOY.md documents as a recovery route.
   #
   # `needs: test` makes the deploy conditional on the full suite passing, so a red
-  # suite cannot reach production through this workflow.
+  # suite cannot reach production *through this workflow*.
   #
-  # Two of the three enabling facts are provable from this repository: `needs:
-  # test` below, and that deploys really do happen (the live asset ?v moves on
-  # every green run). The third — that Workers Builds' git integration is
-  # DISCONNECTED — is Cloudflare dashboard state that no file here can assert.
-  # It was disconnected by the owner on 2026-07-28 and the effect was observed:
-  # two red runs shipped nothing afterwards, where an earlier red run had shipped.
+  # Only the gate WIRING is provable from this repository — `needs: test` below.
+  # The other two enabling facts are owner-observed external conditions, recorded
+  # in REMAINING-WORK.md, that no file here can assert: that CLOUDFLARE_API_TOKEN
+  # exists as a repository secret, and that Workers Builds' git integration is
+  # DISCONNECTED. It was disconnected by the owner on 2026-07-28 and the effect was
+  # observed: two red runs shipped nothing afterwards, where an earlier red run had
+  # shipped. Successful deploys have since been observed repeatedly, most recently
+  # on 2026-08-16, but observation is not proof the token is still present.
   #
   # That third step is not optional and must stay done. If Workers Builds is ever
   # reconnected while the secret exists, BOTH deploy on every push: this job after
@@ -211,7 +216,7 @@ jobs:
           WRANGLER_SEND_METRICS: 'false'
         run: |
           if [ -z "${CLOUDFLARE_API_TOKEN}" ]; then
-            echo "::warning::CLOUDFLARE_API_TOKEN is not set, so this job deployed nothing. Workers Builds is still deploying on push, which means CI reports but does not gate. See the comment above this job in .github/workflows/ci.yml for the three steps to activate it."
+            echo "::warning::CLOUDFLARE_API_TOKEN is not set, so this job deployed nothing. Workers Builds' git integration was disconnected on 2026-07-28, so this push most likely produced NO RELEASE AT ALL despite the green run — confirm against the live site before assuming otherwise. Restore the secret (repo Settings -> Secrets and variables -> Actions -> CLOUDFLARE_API_TOKEN), or deploy manually with npx wrangler deploy, which bypasses this gate."
             exit 0
           fi
           npx wrangler deploy

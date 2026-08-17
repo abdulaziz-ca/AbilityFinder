@@ -21,11 +21,13 @@ const ORGS_DIRECTORY = [
      404 and that host serves a self-signed certificate, so `url` points at the City of Camrose
      page that documents the service. That departs from this file's usual "the organisation's
      own site" rule, which is why whatTheyDo names the phone number and says where the link
-     goes — the card labels every url "Website", and an unexplained city link would imply the
-     city page IS their website. Owner decision, 2026-08-16. Every fact below is stated on
+     goes. `urlLabel` also renames the link itself: every other card says "Website", and a
+     screen-reader user navigating by link name would otherwise hear "Website" for a page
+     that is not theirs — prose in the description cannot fix a link's accessible name.
+     Owner decision, 2026-08-16. Every fact below is stated on
      camrose.ca; nothing about fares, eligibility, booking or service area is claimed, because
      the City does not publish those and the society publishes nothing. */
-  { id: "rose-city-handi-van", name: "Rose City Handi-Van Society", url: "https://www.camrose.ca/roads-transportation/public-transit/camrose-community-bus/", region: "Camrose", coverage: ["AB"], whatTheyDo: "Accessible transport in Camrose: the society runs the Camrose Community Bus, a fixed route Tuesday to Saturday from 9am to 5pm with ramps and securement for wheelchairs, walkers and strollers, and it is a participating provider for the City's transit tokens. Phone 780.672.8777 \u2014 the link opens the City of Camrose page describing the service", focus: "transport", verified: "2026-08-16" },
+  { id: "rose-city-handi-van", name: "Rose City Handi-Van Society", url: "https://www.camrose.ca/roads-transportation/public-transit/camrose-community-bus/", region: "Camrose", coverage: ["AB"], whatTheyDo: "Accessible transport in Camrose: the society runs the Camrose Community Bus, a fixed route Tuesday to Saturday from 9am to 5pm with ramps and securement for wheelchairs, walkers and strollers, and it is a participating provider for the City's transit tokens. Phone 780.672.8777 \u2014 the link opens the City of Camrose page describing the service", urlLabel: "City of Camrose service page", focus: "transport", verified: "2026-08-16" },
 
   { id: "dabc", name: "Disability Alliance BC", url: "https://disabilityalliancebc.org", region: "British Columbia-wide", coverage: ["BC"], whatTheyDo: "Cross-disability advocacy, benefits-navigation programs, plain-language help sheets, tax and DTC resources, and direct support through its Advocacy Access programs", focus: "navigation-advocacy", verified: "2026-07-21" },
   { id: "dabc-law-clinic", name: "Disability Law Clinic", url: "https://disabilityalliancebc.org/program/disability-law-clinic/", region: "British Columbia-wide", coverage: ["BC"], whatTheyDo: "Free confidential summary legal advice and referrals on selected disability-rights issues including discrimination, accommodations, services, transportation and post-secondary education", focus: "legal", verified: "2026-07-21" },

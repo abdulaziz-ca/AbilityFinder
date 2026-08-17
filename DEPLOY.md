@@ -130,14 +130,18 @@ CI uses `concurrency: cancel-in-progress`, so a newer push cancels the in-flight
 between that push and the next green deploy the earlier commit's new pages 404 in
 production. Verify, then push again.
 
-1. **Confirm the release actually happened.** `origin/main` matches the intended commit,
-   and the CI run for that commit completed green. **A `deploy` job reporting success does
-   not prove it deployed** — it exits 0 either way, warning and skipping when the token is
-   absent, so confirm against the live site rather than the job's own conclusion.
-   Do not look for a Workers Builds result: its git integration was disconnected on
-   2026-07-28, so CI is the deploy path. That is Cloudflare dashboard state, not
-   something this repository can prove — if it is ever reconnected, pushes deploy
-   regardless of tests and this gate becomes decorative.
+1. **Confirm the release actually happened**, in whichever of the two ways it shipped.
+   *Normal push to `main`:* `origin/main` matches the intended commit and the CI run for
+   that commit completed green. **A `deploy` job reporting success does not prove it
+   deployed** — it exits 0 either way, warning and skipping when the token is absent, so
+   confirm against the live site rather than the job's own conclusion.
+   *Direct `npx wrangler deploy` recovery:* there is no CI run and `origin/main` may not
+   match, which is expected — that path deliberately **bypasses the test gate**, so record
+   what tree was deployed and treat the rest of this routine as the only verification you
+   get. Do not look for a Workers Builds result either way: its git integration was
+   disconnected on 2026-07-28. That is Cloudflare dashboard state this repository cannot
+   prove — if it is ever reconnected, pushes deploy regardless of tests and the gate
+   becomes decorative.
 2. **If the change touched a browser-loaded asset, confirm the new cache version** on
    `/` and on a guide. A docs-only or Worker-only deploy correctly moves nothing, so skip
    this rather than reporting a false failure:
@@ -147,9 +151,14 @@ production. Verify, then push again.
    ```
    Both must equal the `?v=N` you committed. One guide is representative because
    `gen:guides` writes all of them in a single pass — but the exhaustive check is local,
-   before pushing: `grep -rL '?v=N' public/guides` (files *missing* the new version) must
-   be empty. A guide left on the previous `?v` means `npm run gen:guides` was not run or
-   not committed.
+   before pushing — substitute the version you actually committed, because the literal
+   string `?v=N` matches nothing and would report all 102 guides as stale:
+   ```sh
+   version=110   # the ?v you committed
+   grep -rL "?v=$version" public/guides   # must print nothing
+   ```
+   A guide left on the previous `?v` means `npm run gen:guides` was not run or not
+   committed.
 3. **Inspect the changed content itself, not just the version string.** A correct `?v`
    only proves `index.html` shipped. Grep the live asset for the specific text or value the
    change introduced, and for anything it was supposed to remove.
