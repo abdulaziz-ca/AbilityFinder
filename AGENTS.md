@@ -109,6 +109,44 @@ When a browser-loaded CSS, JavaScript, font, or icon asset changes, bump the sha
 Never hand-copy municipal rules. Programs that look similar have materially
 different AISH exclusions, transit prices, and recreation coverage.
 
+### Coverage-gap proposals
+
+Before recording anywhere — a ticket, `ROADMAP.md`, a research note — that the
+catalogue is **missing** a program, run both searches below and put their results in
+the proposal. **A gap proposal without both searches and their output is not
+accepted.** "I looked" is not a search result.
+
+1. **By record id.** Try the id you would assign, plus obvious variants:
+
+   ```sh
+   grep -rn '"bc-pharmacare-plan-x"' public/data.js public/grants-data.js public/orgs-data.js
+   ```
+
+2. **By keyword.** Search the program name, the body that administers it, and the
+   plain-language term a user would use. A record often exists under a different id
+   than the one you would have chosen, which is exactly how these get missed:
+
+   ```sh
+   grep -rin 'pharmacare\|plan x\|deductible' public/data.js public/grants-data.js public/orgs-data.js
+   ```
+
+3. **Record both**, including a genuine `no match` — that is the result, not the
+   absence of one. State the commands, the terms, and the output.
+
+A match does not automatically mean there is no gap: the record may be present but
+wrong, incomplete, or gated so it never surfaces. It does mean the proposal must
+describe **that record** rather than claim absence.
+
+*Why this is required rather than advised.* ROADMAP records two BC PharmaCare
+entries as "the **fourth and fifth** gap entries written from a hub sweep without
+first reading the record that already covered it" — both were already in the
+catalogue, one of them complete with `requiresNote`, `detail`, `applyUrl` and
+`source`. And on 2026-08-16 a ticket asked to "re-check Camrose", which a record-id
+search answered in one command: Camrose appears **once** in `public/data.js`, inside
+the `ALBERTA_CITIES` dropdown, and has no benefit record at all. That single search
+turned a re-check into a coverage question and produced a different, correct outcome.
+The search is cheap; the research it prevents is not.
+
 ### Shared UI, routing, or CSS
 
 - Exercise every route for `self`, `child`, and `family`; persisted broken routes
