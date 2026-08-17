@@ -9,6 +9,8 @@ task needs it:
 - `DEPLOY.md` — Cloudflare bindings, zero-spend constraints, and release checks.
 - `ROADMAP.md` — active priorities and deliberately rejected features.
 - `ARCHIVAL_KNOWLEDGE_BASE.md` — failures and decisions that must not be re-learned.
+- `PROVINCE-EXPANSION-CHECKLIST.md` — the bar an additional province must clear.
+  Read only when adding one.
 - `README.md` — short public/project overview.
 - `archive/` — superseded handoffs, kept for history. Do not read unless digging
   into why an old decision was made.
