@@ -1,5 +1,6 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
+  { date: "2026-08-16", text: "Replaced a homepage line that claimed half of the benefits you are entitled to go unheard. The fraction had no source and the wording asserted entitlement the tool never establishes; both languages now say programs you could qualify for never come up." },
   { date: "2026-08-16", text: "Removed remaining copy that implied the questionnaire decides eligibility, that provincial coverage is complete, or that the tool lists every government benefit. Both languages now describe a catalog of selected programs and possible matches to verify." },
   { date: "2026-08-15", text: "Updated the results list description to say programs are ordered by likely value and ease of applying, rather than by ease alone." },
   { date: "2026-08-15", text: "Updated the homepage headline and supporting copy to describe answering questions, seeing possible benefit matches to verify, and getting next steps instead of promising every benefit, and corrected French coverage labels that listed provinces outside the catalog." },

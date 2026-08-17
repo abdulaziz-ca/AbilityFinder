@@ -234,7 +234,10 @@ const I18N = {
     "prob.bad1": "You Google your disability and get 40 tabs of policy pages.",
     "prob.bad2": "Every program hides its rules behind walls of text.",
     "prob.bad3": "You never actually find out what <b>you</b> qualify for.",
-    "prob.bad4": "Half the benefits you're entitled to, you never hear about.",
+    // No fraction and no "entitled to": the old line asserted that half of an unknown
+    // total goes unheard, which is a statistic this project cannot source, and claimed
+    // entitlement the tool never establishes. The point survives without either.
+    "prob.bad4": "Programs you could qualify for never come up at all.",
     "prob.goodH": "With AbilityFinder",
     "prob.good1": "Answer a few checkboxes — no reading required.",
     "prob.good2": "Get a personal list of programs to verify, ordered by likely value and how easy each one is to apply for.",
@@ -619,7 +622,9 @@ const I18N = {
     "prob.bad1": "Vous cherchez votre handicap sur Google et obtenez 40 onglets de pages de politiques.",
     "prob.bad2": "Chaque programme cache ses règles derrière des murs de texte.",
     "prob.bad3": "Vous ne découvrez jamais vraiment ce à quoi <b>vous</b> êtes admissible.",
-    "prob.bad4": "La moitié des prestations auxquelles vous avez droit, vous n'en entendez jamais parler.",
+    // "pourriez être admissible" (might be eligible), never "auxquelles vous avez droit"
+    // (entitled to) — the same distinction the landing headline turns on.
+    "prob.bad4": "Des programmes auxquels vous pourriez être admissible ne vous sont jamais présentés.",
     "prob.goodH": "Avec AbilityFinder",
     "prob.good1": "Cochez quelques cases — aucune lecture requise.",
     "prob.good2": "Obtenez une liste personnelle de programmes à vérifier, classée selon la valeur probable et la simplicité de la demande.",
