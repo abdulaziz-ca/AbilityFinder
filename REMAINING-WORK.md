@@ -395,7 +395,7 @@ change; full history fails the *right* test (`a data change moves the index asse
 the same landing. Without it the guard would have gone red on #66 and blocked that deploy.
 
 **#41 — the link-health review cadence.** Stated beside the constants that produce it: cron
-`0 */3 * * *` × 18 batches × `LINKS_PER_RUN` 10 over 175 links = a full sweep about every **54
+`0 */3 * * *` × 18 batches × `LINKS_PER_RUN` 10 over 180 links = a full sweep about every **54
 hours**. Weekly review sees the latest cumulative report within seven days but does **not** review
 every sweep. Of 14 flagged sources, **13 were noise** — five false alarms confirmed live in a real
 browser (two `403` bot challenges, a transient `526`, two Worker timeouts) and eight single-hop

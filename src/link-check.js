@@ -22,7 +22,7 @@ const REPORT_SCHEMA = 2;
 /**
  * wrangler.jsonc schedules this monitor at `0 *\/3 * * *`, so one
  * deterministic batch runs every three hours. With LINKS_PER_RUN fixed at 10,
- * the current catalogue of 175 links occupies 18 batches. Eighteen batches ×
+ * the current catalogue of 180 links occupies 18 batches. Eighteen batches ×
  * 3 hours means a full sweep completes about every 54 hours, or about 2.25
  * days. Reviewing /api/link-health at least weekly guarantees the latest
  * cumulative report is

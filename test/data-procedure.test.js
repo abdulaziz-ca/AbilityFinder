@@ -272,7 +272,13 @@ function loadLinkSources() {
       `${readRepoFile("public", "orgs-data.js")}\n` +
       "globalThis.__benefits = BENEFITS; globalThis.__bcCities = BC_CITIES; " +
       "globalThis.__help = HELP_ORGS; globalThis.__grants = GRANTS_DIRECTORY; " +
-      "globalThis.__orgs = ORGS_DIRECTORY;",
+      "globalThis.__orgs = ORGS_DIRECTORY; " +
+      // Province fallback maps. This mirror must expose exactly what
+      // scripts/gen-benefits-context.js exposes, or the expected and generated link lists
+      // drift and this guard blocks the next data deploy for the wrong reason.
+      "globalThis.__studentAid = STUDENT_AID; globalThis.__twoEleven = TWO_ELEVEN; " +
+      "globalThis.__employment = EMPLOYMENT; globalThis.__fedStudentAid = FED_STUDENT_AID; " +
+      "globalThis.__national211 = NATIONAL_211;",
     context
   );
   return context;
@@ -320,6 +326,20 @@ function expectedGeneratedLinks() {
   for (const org of sources.__orgs || []) {
     if (org?.url) addLink(org.url, `org:${clean(org.id)} — ${clean(org.name || org.url)}`, "org");
   }
+  // Must stay in the same ORDER and use the same LABELS as the generator: the guard
+  // compares ordered (url, label, kind) tuples, so a reordering fails as loudly as an
+  // omission.
+  for (const [mapName, map] of [
+    ["student aid", sources.__studentAid],
+    ["2-1-1", sources.__twoEleven],
+    ["employment supports", sources.__employment],
+  ]) {
+    for (const [province, url] of Object.entries(map || {})) {
+      addLink(url, `Province fallback — ${mapName} (${clean(province)})`, "help");
+    }
+  }
+  addLink(sources.__fedStudentAid, "Province fallback — student aid (national default)", "help");
+  addLink(sources.__national211, "Province fallback — 2-1-1 (national default)", "help");
   return { tuples, skippedDynamic };
 }
 
