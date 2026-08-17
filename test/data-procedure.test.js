@@ -252,7 +252,33 @@ function dataChangeContext(t) {
   if (resolved.resolutionError) assert.fail(resolved.resolutionError);
 
   const changedDataFiles = DATA_FILES.filter((file) => resolved.changed.has(file));
+
+  // WHY: the four tests below return early when no data file is in the change set, so
+  // "4 pass / 0 fail" is the signature of a genuine enforced run AND of a vacuous one.
+  // The log could not tell them apart, which is the failure this file exists to prevent
+  // — applied to itself. Timing is not a usable substitute: measured 2026-08-17, an
+  // explicit DATA_PROCEDURE_BASELINE fires in ~163ms because it does one diff, while the
+  // no-baseline path takes ~2427ms walking every ref and can still return early. The
+  // fast run was the one that fired. So say so explicitly instead of inferring it.
+  const where = resolved.baseline ? `baseline=${shortSha(resolved.baseline)}` : "baseline=unresolved";
+  if (changedDataFiles.length === 0) {
+    t.diagnostic(`data-procedure guard: NOT APPLICABLE — no data file in the change set (${where})`);
+  } else if (resolved.baselineError) {
+    t.diagnostic(
+      `data-procedure guard: FIRED — ${changedDataFiles.join(", ")} changed, but ${where}, ` +
+        "so baseline-dependent checks fail closed"
+    );
+  } else {
+    t.diagnostic(`data-procedure guard: FIRED — ${where}, changed: ${changedDataFiles.join(", ")}`);
+  }
+
   return { ...resolved, changedDataFiles };
+}
+
+// "HEAD" is a legitimate baseline value here (the working-tree-diff path), so only
+// abbreviate something that actually looks like an object name.
+function shortSha(value) {
+  return /^[0-9a-f]{40}$/i.test(value) ? value.slice(0, 7) : value;
 }
 
 function extractAssetMarkers(source) {
