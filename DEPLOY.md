@@ -134,13 +134,22 @@ production. Verify, then push again.
    and the CI run for that commit completed green. **A `deploy` job reporting success does
    not prove it deployed** — it exits 0 either way, warning and skipping when the token is
    absent, so confirm against the live site rather than the job's own conclusion.
-   Workers Builds is disconnected; CI is the only path to production. Do not look for a
-   Workers Builds result.
-2. **Confirm the deployed HTML references the new cache version**, on `/` and on a guide
-   page, and that no guide is left on the old one:
-   `curl -s https://abilityfinder.ca/ | grep -o 'styles\.css?v=[0-9]*'`
-   A guide still on the previous `?v` means `npm run gen:guides` was not run or not
-   committed — the 102 guides carry their own copy of the marker.
+   Do not look for a Workers Builds result: its git integration was disconnected on
+   2026-07-28, so CI is the deploy path. That is Cloudflare dashboard state, not
+   something this repository can prove — if it is ever reconnected, pushes deploy
+   regardless of tests and this gate becomes decorative.
+2. **If the change touched a browser-loaded asset, confirm the new cache version** on
+   `/` and on a guide. A docs-only or Worker-only deploy correctly moves nothing, so skip
+   this rather than reporting a false failure:
+   ```sh
+   curl -s  https://abilityfinder.ca/            | grep -o 'styles\.css?v=[0-9]*'
+   curl -sL https://abilityfinder.ca/guides/dtc  | grep -o 'styles\.css?v=[0-9]*'
+   ```
+   Both must equal the `?v=N` you committed. One guide is representative because
+   `gen:guides` writes all of them in a single pass — but the exhaustive check is local,
+   before pushing: `grep -rL '?v=N' public/guides` (files *missing* the new version) must
+   be empty. A guide left on the previous `?v` means `npm run gen:guides` was not run or
+   not committed.
 3. **Inspect the changed content itself, not just the version string.** A correct `?v`
    only proves `index.html` shipped. Grep the live asset for the specific text or value the
    change introduced, and for anything it was supposed to remove.
@@ -156,20 +165,32 @@ production. Verify, then push again.
    routing answers navigations before the Worker runs. That is REL-06, it is understood,
    and it is WON'T FIX on zero-spend grounds — a 404 from a browser address bar is **not**
    a regression and must not be reported as one.
-6. **Check browser page errors and application console errors.** Cloudflare injects a
-   Browser Insights beacon that the strict CSP blocks; that console noise is expected.
-   Distinguish it from application failures, do not hide real errors, and never weaken the
-   CSP to silence it — disable injection in the Cloudflare dashboard instead.
-7. **Re-run the privacy contract checks whenever a data flow changed** — that no wizard or
+6. **Check browser page errors and application console errors**, and confirm the
+   security headers still ship: `curl -I https://abilityfinder.ca` must still show CSP,
+   `x-frame-options: DENY`, `x-content-type-options: nosniff`, referrer and permissions
+   policy. Cloudflare **may** inject a Browser Insights beacon that the strict CSP blocks;
+   if present, that console noise is expected. Distinguish it from application failures,
+   do not hide real errors, and never weaken the CSP to silence it — disable injection in
+   the Cloudflare dashboard instead.
+7. **Check the bindings the change actually touched.** `/api/link-health` returning 200
+   proves only that KV can be read, not that the three-hour cron has run recently — after
+   a cron or monitor change, inspect `coverage.lastFullSweepAt` in the payload for
+   freshness. After an AI change, smoke-test `/api/ask` once, without exhausting the free
+   allocation. After an email or routing change, send one non-sensitive `/api/feedback`
+   submission and confirm receipt, per the Feedback section above; a successful deploy
+   proves the binding exists, not that mail arrived.
+8. **Re-run the privacy contract checks whenever a data flow changed** — that no wizard or
    profile data leaves the device, that only `/api/ask` and `/api/feedback` carry
    user-entered content, and that nothing sensitive entered a URL.
-8. **Test keyboard navigation, dark/light theme, print, and a mobile viewport** when the
+9. **Test keyboard navigation, dark/light theme, print, and a mobile viewport** when the
    change touches them.
 
 **Reading the results.** If two checks disagree — new URLs live but the old version
-string, or 200s with missing content — that is propagation mid-flight, not a failure.
-**Re-run before concluding anything.** Do not report the zeros as a failure, and do not
-explain them away either; wait, repeat, and only then decide.
+string, or 200s with missing content — that **may** be propagation mid-flight. Do not
+classify it before retrying: wait a minute and re-run. A mismatch that **persists** is a
+real release failure, not propagation, and a stale guide marker is usually a
+generated-file mistake rather than the edge. Report neither the zeros as failure nor the
+retry as proof; decide only after the repeat.
 
 ## Domain and recovery
 

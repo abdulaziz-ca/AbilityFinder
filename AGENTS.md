@@ -86,9 +86,10 @@ npx wrangler deploy
 ```
 
 `git push origin main` deploys through GitHub Actions, and only if the test suite is
-green — the `deploy` job has `needs: test`, so a red suite physically cannot reach
-production. Workers Builds is disconnected; CI is the only path. Do not commit, push,
-or deploy unless the user asks.
+green — the `deploy` job has `needs: test`. Workers Builds' git integration was
+disconnected on 2026-07-28, which is Cloudflare dashboard state no file here can
+assert; if it were ever reconnected, pushes would deploy regardless of tests. Do not
+commit, push, or deploy unless the user asks.
 
 When a browser-loaded CSS, JavaScript, font, or icon asset changes, bump the shared
 `?v=N` references in `public/index.html`; update matching font URLs in

@@ -1,15 +1,15 @@
 name: CI
 
-# Why this exists: git push to main triggers a Cloudflare Workers Build directly.
-# Before this workflow, nothing ran the test suite on the way to production, so a
-# red suite could ship — and on 2026-07-27 it did, twice, because a truncated
-# terminal read hid Playwright's "N failed" header. This makes the result visible
-# on every push regardless of what any human reads.
+# Why this exists: before this workflow, nothing ran the test suite on the way to
+# production, so a red suite could ship — and on 2026-07-27 it did, twice, because
+# a truncated terminal read hid Playwright's "N failed" header.
 #
-# NOTE: this reports status only. It does not yet BLOCK the deploy, because
-# Workers Builds deploys straight off the push. Closing that gap needs a
-# Cloudflare API token stored as a repository secret so `wrangler deploy` can move
-# into this workflow — see REMAINING-WORK.md, "Planned procedure", step 0.
+# STATUS: the gate is LIVE. It is no longer report-only. All three enabling steps
+# were completed on 2026-07-28 and all three outcomes were observed — red+skipped
+# while Workers Builds still shipped, red+skipped with nothing shipped, and
+# green+deployed verified live. See REMAINING-WORK.md, "Pre-deploy gate".
+# The comment that used to sit here said the gate was inert; that was true when
+# written and is now wrong. Do not reintroduce it.
 
 on:
   push:
@@ -165,29 +165,26 @@ jobs:
           if-no-files-found: ignore
 
   # ---------------------------------------------------------------------------
-  # THE GATE — inert until the owner completes two steps they alone can do.
+  # THE GATE — live since 2026-07-28. This job is the only path to production.
   #
-  # Right now this job does nothing but warn. CI reports; it does not block.
-  # Workers Builds still deploys straight off the push, which is how three red
-  # runs reached production on 2026-07-27/28.
+  # `needs: test` makes the deploy conditional on the full suite passing, so a red
+  # suite cannot reach production through this workflow.
   #
-  # To turn this into a real gate:
+  # Two of the three enabling facts are provable from this repository: `needs:
+  # test` below, and that deploys really do happen (the live asset ?v moves on
+  # every green run). The third — that Workers Builds' git integration is
+  # DISCONNECTED — is Cloudflare dashboard state that no file here can assert.
+  # It was disconnected by the owner on 2026-07-28 and the effect was observed:
+  # two red runs shipped nothing afterwards, where an earlier red run had shipped.
   #
-  #   1. Cloudflare dashboard -> My Profile -> API Tokens -> Create Token.
-  #      Use the "Edit Cloudflare Workers" template, or a custom token scoped to
-  #      Account / Workers Scripts / Edit for THIS account only. Nothing broader.
-  #   2. GitHub -> repo Settings -> Secrets and variables -> Actions ->
-  #      New repository secret, named exactly CLOUDFLARE_API_TOKEN.
-  #   3. Cloudflare dashboard -> Workers & Pages -> abilityfinder -> Settings ->
-  #      Build -> DISCONNECT the git integration.
+  # That third step is not optional and must stay done. If Workers Builds is ever
+  # reconnected while the secret exists, BOTH deploy on every push: this job after
+  # the tests pass, and Workers Builds immediately regardless of them — which is
+  # worse than no gate, because it looks gated while a red build still ships.
   #
-  # Step 3 is not optional. If the secret is added while Workers Builds is still
-  # connected, BOTH will deploy on every push: this job after the tests pass, and
-  # Workers Builds immediately regardless of them. That is worse than today,
-  # because it looks gated while a red build still ships.
-  #
-  # Once all three are done, `needs: test` makes the deploy conditional on the
-  # full suite passing, and a red suite can no longer reach production.
+  # If the CLOUDFLARE_API_TOKEN secret is absent this job warns and exits 0 without
+  # deploying, so a green run is not by itself proof that a release happened.
+  # Confirm against the live site. See DEPLOY.md, "Post-deploy verification".
   # ---------------------------------------------------------------------------
   deploy:
     name: Deploy to Cloudflare
