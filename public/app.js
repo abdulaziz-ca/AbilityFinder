@@ -2787,7 +2787,7 @@ function renderOrganizations() {
         <div><dt>${t("orgs.region")}</dt><dd>${ttsEscape(organization.region)}</dd></div>
         <div><dt>${t("orgs.what")}</dt><dd>${ttsEscape(organization.whatTheyDo)}</dd></div>
       </dl>
-      <a class="org-link" href="${ttsEscape(organization.url)}" target="_blank" rel="noopener noreferrer">${organization.urlLabel ? ttsEscape(organization.urlLabel) : t("orgs.website")} ${icon("external")}</a>
+      <a class="org-link" href="${ttsEscape(organization.url)}" target="_blank" rel="noopener noreferrer">${t("orgs.website")} ${icon("external")}</a>
       ${orgVerifiedLabel(organization) ? `<p class="org-verified">${icon("check")}${t("orgs.verified").replace("{date}", orgVerifiedLabel(organization))}</p>` : ""}
     </article>`).join("");
   const rules = Array.from({ length: 6 }, (_, index) => {

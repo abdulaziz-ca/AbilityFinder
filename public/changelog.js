@@ -1,5 +1,6 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
+  { date: "2026-08-17", text: "Removed the Rose City Handi-Van Society listing from the organization directory. The society is real and runs the Camrose Community Bus, but it has no working website of its own, so the listing pointed at a City of Camrose page instead. This directory tells you every listing must have a verifiable official website, and we would rather honour that than quietly make an exception. If you need accessible transport in Camrose, call the City of Camrose or 2-1-1 Alberta. We will list the society again if it puts up a working site." },
   { date: "2026-08-16", text: "The Rose City Handi-Van listing now names its link as the City of Camrose service page instead of the generic Website label, so it is clear the link goes to the City rather than the society." },
   { date: "2026-08-16", text: "Softened a homepage line that said every program hides its rules behind walls of text; it now says many programs do." },
   { date: "2026-08-16", text: "Added Rose City Handi-Van Society to the organization directory so Camrose residents can find local accessible transport, with the Camrose Community Bus details and phone number taken from the City of Camrose." },

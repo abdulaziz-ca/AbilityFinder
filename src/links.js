@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 180 links. The monitor checks a bounded rotating batch every
+// 179 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) URLs are skipped — they depend on the
@@ -848,11 +848,6 @@ export const LINKS = [
   {
     "url": "https://www.betweenfriends.ab.ca",
     "label": "org:between-friends — Between Friends",
-    "kind": "org"
-  },
-  {
-    "url": "https://www.camrose.ca/roads-transportation/public-transit/camrose-community-bus/",
-    "label": "org:rose-city-handi-van — Rose City Handi-Van Society",
     "kind": "org"
   },
   {

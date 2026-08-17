@@ -15,19 +15,18 @@ const ORGS_DIRECTORY = [
   { id: "calgary-legal-guidance", name: "Calgary Legal Guidance", url: "https://clg.ab.ca", region: "Calgary", coverage: ["AB"], whatTheyDo: "Free legal information, advice and assistance for people who cannot afford a lawyer, including social benefits and other civil-law matters", focus: "legal", verified: "2026-07-20" },
   { id: "between-friends", name: "Between Friends", url: "https://www.betweenfriends.ab.ca", region: "Calgary", coverage: ["AB"], whatTheyDo: "Social, recreation and camp programs where people with disabilities build friendships and community", focus: "recreation", verified: "2026-07-20" },
 
-  /* Camrose has no municipal disability or low-income benefit (verified against camrose.ca
-     2026-08-16), so this entry is how a Camrose resident finds local accessible transport.
-     The society has no working site of its own: its page at camroseseniorcentre.com is a soft
-     404 and that host serves a self-signed certificate, so `url` points at the City of Camrose
-     page that documents the service. That departs from this file's usual "the organisation's
-     own site" rule, which is why whatTheyDo names the phone number and says where the link
-     goes. `urlLabel` also renames the link itself: every other card says "Website", and a
-     screen-reader user navigating by link name would otherwise hear "Website" for a page
-     that is not theirs — prose in the description cannot fix a link's accessible name.
-     Owner decision, 2026-08-16. Every fact below is stated on
-     camrose.ca; nothing about fares, eligibility, booking or service area is claimed, because
-     the City does not publish those and the society publishes nothing. */
-  { id: "rose-city-handi-van", name: "Rose City Handi-Van Society", url: "https://www.camrose.ca/roads-transportation/public-transit/camrose-community-bus/", region: "Camrose", coverage: ["AB"], whatTheyDo: "Accessible transport in Camrose: the society runs the Camrose Community Bus, a fixed route Tuesday to Saturday from 9am to 5pm with ramps and securement for wheelchairs, walkers and strollers, and it is a participating provider for the City's transit tokens. Phone 780.672.8777 \u2014 the link opens the City of Camrose page describing the service", urlLabel: "City of Camrose service page", focus: "transport", verified: "2026-08-16" },
+  /* NO CAMROSE ENTRY, AND THAT IS DELIBERATE — owner decision 2026-08-17, ticket #192.
+     Rose City Handi-Van Society was added here on 2026-08-16 and removed the next day.
+     The society is real and is named on City of Camrose pages, but it has no working site
+     of its own: camroseseniorcentre.com is a soft 404 served over a self-signed certificate.
+     The entry therefore pointed at the City's page instead, which is the only listing here
+     that would not have been the organisation's own domain — and this directory *publishes*
+     "must have a verifiable official website" to users in its "How this list works" block.
+     A source comment cannot make a published claim true, so the choice was to weaken the
+     published rule or to honour it. The owner chose to honour it.
+     Re-add the entry the day the society has a working https site of its own; the facts
+     verified on camrose.ca 2026-08-16 are in DATA_CHANGELOG and in git history at aa5ddf2.
+     Do NOT re-add it pointing at a municipal page without changing rule 4 first. */
 
   { id: "dabc", name: "Disability Alliance BC", url: "https://disabilityalliancebc.org", region: "British Columbia-wide", coverage: ["BC"], whatTheyDo: "Cross-disability advocacy, benefits-navigation programs, plain-language help sheets, tax and DTC resources, and direct support through its Advocacy Access programs", focus: "navigation-advocacy", verified: "2026-07-21" },
   { id: "dabc-law-clinic", name: "Disability Law Clinic", url: "https://disabilityalliancebc.org/program/disability-law-clinic/", region: "British Columbia-wide", coverage: ["BC"], whatTheyDo: "Free confidential summary legal advice and referrals on selected disability-rights issues including discrimination, accommodations, services, transportation and post-secondary education", focus: "legal", verified: "2026-07-21" },

@@ -160,12 +160,15 @@ That single search turned a re-check into a coverage question and produced a
 different, correct outcome — an organisation entry rather than an invented municipal
 benefit.
 
-Run that same search today and `public/orgs-data.js` also returns the
-`rose-city-handi-van` entry it produced. That is the point, not a contradiction:
-searching all three files distinguishes **"no benefit record"** from **"no coverage
-at all"**. A Camrose resident *is* served — just not by a benefit — and a proposal
-has to say which of those it means. The search is cheap; the research it prevents is
-not.
+That entry has since been **removed** (2026-08-17, owner decision, #192): the
+organisation had no working site of its own, so its listing pointed at a municipal
+page, and this directory publishes "must have a verifiable official website" to
+users. Searching all three files today therefore returns **no Camrose record of any
+kind** — and that is still the point, not a contradiction. The searches distinguish
+**"no benefit record"** from **"no coverage at all"**, and a proposal has to say
+which it means. Here the honest answer turned out to be the second, which is a
+finding worth stating plainly rather than papering over with a listing that broke a
+published rule. The search is cheap; the research it prevents is not.
 
 ### Shared UI, routing, or CSS
 
