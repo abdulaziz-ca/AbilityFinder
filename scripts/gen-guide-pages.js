@@ -134,7 +134,7 @@ function header() {
         <a class="brand" href="https://abilityfinder.ca/" aria-label="AbilityFinder home"><span class="brand-name">AbilityFinder</span></a>
         <div class="nav-right">
           <span class="nav-tag">Alberta + BC</span>
-          <a class="guide-link" href="https://abilityfinder.ca/">All benefits</a>
+          <a class="guide-link" href="https://abilityfinder.ca/">Find benefits</a>
           <a class="guide-link" href="https://abilityfinder.ca/guides/">Program guides</a>
         </div>
       </div>
@@ -196,7 +196,7 @@ ${header()}
 ${links.map((x) => `              <li><a class="guide-link" href="${esc(x.url)}">${esc(x.label)}</a></li>`).join("\n")}
             </ul>
             <p class="detail-foot">Benefit rules and amounts can change. Confirm the current details before applying.</p>
-            <p><a class="btn btn-primary" href="https://abilityfinder.ca/">Answer a few questions to see every benefit you may qualify for</a></p>
+            <p><a class="btn btn-primary" href="https://abilityfinder.ca/">Answer a few questions to see benefits you may qualify for</a></p>
             </div>
           </aside>
         </div>
@@ -238,8 +238,8 @@ ${header()}
         <header class="browse-head">
           <p class="eyebrow">Alberta, BC + federal benefits</p>
           <h1>Program guides</h1>
-          <p>Browse plain-language guides to every benefit in the AbilityFinder catalog.</p>
-          <p><a class="btn btn-primary" href="https://abilityfinder.ca/">Answer a few questions to see every benefit you may qualify for</a></p>
+          <p>Browse plain-language guides to the programs in the AbilityFinder catalog.</p>
+          <p><a class="btn btn-primary" href="https://abilityfinder.ca/">Answer a few questions to see benefits you may qualify for</a></p>
         </header>
 ${[...groups].map(([name, items]) => `        <section class="section">
           <h2 class="section-title">${name}</h2>

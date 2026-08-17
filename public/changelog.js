@@ -1,5 +1,6 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
+  { date: "2026-08-16", text: "Corrected the search and sharing text so it matches the site: the page description, social share titles, 404 page and program-guide calls to action no longer promise every benefit or say benefits are owed to you." },
   { date: "2026-08-16", text: "Replaced a homepage line that claimed half of the benefits you are entitled to go unheard. The fraction had no source and the wording asserted entitlement the tool never establishes; both languages now say programs you could qualify for never come up." },
   { date: "2026-08-16", text: "Removed remaining copy that implied the questionnaire decides eligibility, that provincial coverage is complete, or that the tool lists every government benefit. Both languages now describe a catalog of selected programs and possible matches to verify." },
   { date: "2026-08-15", text: "Updated the results list description to say programs are ordered by likely value and ease of applying, rather than by ease alone." },
