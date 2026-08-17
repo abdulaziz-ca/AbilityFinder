@@ -7,12 +7,13 @@ may ship below.
 
 **A province cannot ship until every section below has passing evidence recorded.**
 Not "looks fine", not "was verified during the original build" — evidence, dated, in
-the ticket. Four sections, each separately reviewable, each with its own gate:
+the ticket. Five sections, each separately reviewable, each with its own gate:
 
 1. Source audit
 2. Metadata pass
 3. Matcher gating
 4. Generator runs
+5. Accessibility, language and privacy
 
 **National-but-shallow is rejected.** Covering every province with thin, unverified
 records is explicitly not the goal; the Disability Benefits Compass approach was
@@ -175,8 +176,18 @@ hand-edited.**
       route a user to their province's student-aid office, 2-1-1 service and
       employment supports. Without them a new province's users silently get the
       generic national link instead of their own official route — a quiet wrong
-      answer, not a visible failure. Record each new province's three values and
-      confirm the generated links.
+      answer, not a visible failure. Record each new province's three values.
+- [ ] **Then check whether those three URLs are actually monitored, because they may
+      not be.** The maps are consumed through answer-dependent functions
+      (`link: (a) => TWO_ELEVEN[a.province] || NATIONAL_211`), and
+      `gen-benefits-context.js` skips a function URL unless it exposes a `staticUrl` —
+      it counts them as "dynamic URLs skipped". Alberta's and B.C.'s map URLs *do*
+      appear in `src/links.js` today, but only **incidentally**, because those same
+      URLs are also static `source` or `applyUrl` values on other records. A new
+      province's URL that appears **only** in one of these maps gets no link-monitor
+      coverage at all. After adding them, grep `src/links.js` for each of the three;
+      any that is absent is unmonitored and must be re-checked by hand in a browser
+      on the schedule the monitor would otherwise have covered.
 - [ ] Update `COVERED_PROVINCES`, `CITIES_BY_PROVINCE` and the city arrays — and
       then re-check every scope string. Coverage wording appears in the landing copy,
       the About page, the residency help, the meta description, the Open Graph and
@@ -222,5 +233,6 @@ Each section is signed off separately, in the ticket, with:
 - anything deliberately **not** done, and why.
 
 A section without recorded evidence is not passing — it is unstarted. The province
-ships only when all four are passing, and `AF-S1102` (re-integrate the first
-additional province) cannot ship before that.
+ships only when **every section above** is passing — all five, including
+accessibility and language — and `AF-S1102` (re-integrate the first additional
+province) cannot ship before that.
