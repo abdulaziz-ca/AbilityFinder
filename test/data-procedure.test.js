@@ -120,7 +120,14 @@ function resolveChangeContext() {
     }
     const declaredDiff = runGit(["diff", "--name-only", `${declared}...HEAD`]);
     if (declaredDiff.ok) {
-      return { baseline: declared, changed: changedPaths(declaredDiff.stdout) };
+      // WHY the resolved SHA rather than `declared`: DATA_PROCEDURE_BASELINE accepts any
+      // object name git accepts — an abbreviation, a tag, a ref — so echoing it back left
+      // the diagnostic showing whatever was typed. Reporting the canonical 40-char SHA
+      // makes the baseline unambiguous in a CI log and lets shortSha() actually shorten it.
+      return {
+        baseline: resolvedDeclared.ok ? resolvedDeclared.stdout : declared,
+        changed: changedPaths(declaredDiff.stdout),
+      };
     }
     return {
       changed: assumeDataChanged(),
@@ -232,8 +239,19 @@ function resolveChangeContext() {
   // still enough to notice a data file in that visible commit, so do not silently
   // skip the gate; run baseline-free checks and make baseline-dependent checks
   // fail closed with checkout advice.
+  //
+  // WHY the union with every data file, added 2026-08-18: the visible commit is NOT the
+  // change set. A shallow checkout of depth > 1 can show a tip that touches no data file
+  // while an earlier, invisible commit in the same push changed all of them — reproduced
+  // against `main` at 1428eba, where a depth-2 clone reported "NOT APPLICABLE ...
+  // (baseline=unresolved)" and passed 4/0 even though ee0afbe, three commits back, had
+  // rewritten all three data files. That is this guard failing OPEN in the one situation
+  // it cannot see, and it contradicted the rule every other failure path here already
+  // follows: when the baseline cannot be trusted we do not know whether data changed, so
+  // assume it did and let baselineError surface.
   const headChange = runGit(["diff-tree", "--root", "--no-commit-id", "--name-only", "-r", "HEAD"]);
-  const changed = headChange.ok ? changedPaths(headChange.stdout) : new Set();
+  const visible = headChange.ok ? changedPaths(headChange.stdout) : new Set();
+  const changed = new Set([...visible, ...assumeDataChanged()]);
   return {
     changed,
     baselineError:
@@ -242,6 +260,8 @@ function resolveChangeContext() {
       `Baseline attempts: ${failures.join(" | ") || "no comparison refs were available"}`,
   };
 }
+
+let reportedGuardState = false;
 
 function dataChangeContext(t) {
   const resolved = resolveChangeContext();
@@ -260,16 +280,21 @@ function dataChangeContext(t) {
   // explicit DATA_PROCEDURE_BASELINE fires in ~163ms because it does one diff, while the
   // no-baseline path takes ~2427ms walking every ref and can still return early. The
   // fast run was the one that fired. So say so explicitly instead of inferring it.
-  const where = resolved.baseline ? `baseline=${shortSha(resolved.baseline)}` : "baseline=unresolved";
-  if (changedDataFiles.length === 0) {
-    t.diagnostic(`data-procedure guard: NOT APPLICABLE — no data file in the change set (${where})`);
-  } else if (resolved.baselineError) {
-    t.diagnostic(
-      `data-procedure guard: FIRED — ${changedDataFiles.join(", ")} changed, but ${where}, ` +
-        "so baseline-dependent checks fail closed"
-    );
-  } else {
-    t.diagnostic(`data-procedure guard: FIRED — ${where}, changed: ${changedDataFiles.join(", ")}`);
+  // Emitted once per run rather than once per test: all four tests call this, and four
+  // identical lines is noise that makes the one line anyone needs harder to find.
+  if (!reportedGuardState) {
+    reportedGuardState = true;
+    const where = resolved.baseline ? `baseline=${shortSha(resolved.baseline)}` : "baseline=unresolved";
+    if (changedDataFiles.length === 0) {
+      t.diagnostic(`data-procedure guard: NOT APPLICABLE — no data file in the change set (${where})`);
+    } else if (resolved.baselineError) {
+      t.diagnostic(
+        `data-procedure guard: FIRED — ${changedDataFiles.join(", ")} changed, but ${where}, ` +
+          "so baseline-dependent checks fail closed"
+      );
+    } else {
+      t.diagnostic(`data-procedure guard: FIRED — ${where}, changed: ${changedDataFiles.join(", ")}`);
+    }
   }
 
   return { ...resolved, changedDataFiles };
