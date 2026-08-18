@@ -23,11 +23,21 @@ const path = require("path");
 const ROOT = path.join(__dirname, "..");
 const DEFAULT_ORIGIN = "https://abilityfinder.ca";
 const DEFAULT_GUIDE = "dtc";
+const REQUEST_TIMEOUT_MS = 10_000;
 
 // WHY these five: /api/* returns 404 text/html to a top-level navigation and 200 JSON to
 // a fetch, because Cloudflare's static-asset routing answers navigations before the Worker
 // runs (REL-06, WON'T FIX on zero-spend grounds). Node's fetch sends no Sec-Fetch-Mode at
 // all, which is the safe side of that behaviour — do not add one.
+// Values, not just names. DEPLOY.md's step 6 names the exact policy for two of these,
+// and a header present with a weakened value (x-frame-options: SAMEORIGIN) is the failure
+// worth catching — checking only for presence would call that a pass.
+const EXPECTED_HEADER_VALUES = {
+  "x-frame-options": "deny",
+  "x-content-type-options": "nosniff",
+};
+// Presence-only: their values are long and legitimately evolve. A CSP regression is caught
+// by test/worker-transport.test.js, which asserts the directives themselves.
 const REQUIRED_HEADERS = [
   "content-security-policy",
   "x-frame-options",
@@ -62,17 +72,36 @@ function parseArgs(argv) {
 }
 
 const results = [];
+let inconclusive = 0;
 function record(ok, name, detail) {
   results.push({ ok, name, detail });
   console.log(`${ok ? "PASS" : "FAIL"}  ${name}\n        ${detail}`);
 }
 
+/**
+ * Every `?v=N` marker in a document, deduplicated. NOT just styles.css: index.html carries
+ * 14 distinct versioned assets (app.js, data.js, i18n.js, the fonts, the icons, …) and each
+ * is fetched independently by the browser. Checking one of them was a real hole — a deploy
+ * that shipped styles.css?v=112 while app.js stayed at ?v=111 would have been reported
+ * healthy, which is exactly the stale-asset release this check exists to catch.
+ */
+function versionMarkers(html) {
+  const all = [...html.matchAll(/\?v=(\d+)/g)].map((match) => match[1]);
+  return { all, distinct: [...new Set(all)] };
+}
+
 /** The committed asset version. Everything live is compared against this, never guessed. */
 function committedVersion() {
   const index = fs.readFileSync(path.join(ROOT, "public", "index.html"), "utf8");
-  const match = index.match(/styles\.css\?v=(\d+)/);
-  if (!match) throw new Error("could not read a styles.css?v=N marker from public/index.html");
-  return match[1];
+  const { distinct } = versionMarkers(index);
+  if (distinct.length === 0) throw new Error("could not read any ?v=N marker from public/index.html");
+  if (distinct.length > 1) {
+    throw new Error(
+      `public/index.html is internally inconsistent: it carries ?v=${distinct.join(", ?v=")}. ` +
+        "Bump every browser-loaded asset together."
+    );
+  }
+  return distinct[0];
 }
 
 /**
@@ -98,7 +127,22 @@ function committedLinkCounts() {
 // from /guides/<id>.html to /guides/<id>, and a non-following request returns 0 bytes, which
 // looks exactly like a failed deploy. This cost real debugging time once already.
 async function get(url) {
-  const response = await fetch(url, { redirect: "follow" });
+  // WHY a timeout: without one a connection that never settles hangs the release path
+  // forever. src/link-check.js already sets this precedent at 10s with an AbortController;
+  // matching it keeps one number in the reader's head.
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+  let response;
+  try {
+    response = await fetch(url, { redirect: "follow", signal: controller.signal });
+  } catch (error) {
+    if (error && error.name === "AbortError") {
+      throw new Error(`${url} did not respond within ${REQUEST_TIMEOUT_MS}ms`);
+    }
+    throw error;
+  } finally {
+    clearTimeout(timer);
+  }
   return {
     status: response.status,
     contentType: response.headers.get("content-type") || "",
@@ -111,9 +155,7 @@ async function get(url) {
 // UTF-16 code units, so the live data.js reads 363,844 here against 364,608 from
 // `curl | wc -c`. Both numbers are right about different things — labelling this "bytes"
 // would have someone chasing a 764-byte phantom diff on a healthy release.
-function versionsIn(html) {
-  return [...new Set([...html.matchAll(/styles\.css\?v=(\d+)/g)].map((match) => match[1]))];
-}
+
 
 /**
  * Step 2, local half: every guide carries the committed version.
@@ -123,6 +165,12 @@ function checkGuidesLocal(version) {
   const dir = path.join(ROOT, "public", "guides");
   const guides = fs.readdirSync(dir).filter((name) => name.endsWith(".html"));
   const stale = guides.filter((name) => !fs.readFileSync(path.join(dir, name), "utf8").includes(`?v=${version}`));
+  // An empty directory would otherwise report "all 0 guides carry ?v=N" and pass — true but
+  // vacuous, and the same silent-pass shape the data-procedure guard was just fixed for.
+  if (guides.length === 0) {
+    record(false, "local guides exist to check", `public/guides contains no .html files; expected ~102`);
+    return;
+  }
   record(
     stale.length === 0,
     `all ${guides.length} local guides carry ?v=${version}`,
@@ -142,11 +190,13 @@ async function checkLiveVersion(origin, guide, version) {
     [`/guides/${guide}`, `${origin}/guides/${guide}`],
   ]) {
     const response = await get(url);
-    const found = versionsIn(response.body);
+    const { all, distinct } = versionMarkers(response.body);
+    const wrong = distinct.filter((value) => value !== version);
     record(
-      response.status === 200 && found.length === 1 && found[0] === version,
-      `live ${label} serves ?v=${version}`,
-      `HTTP ${response.status}, ${response.body.length} chars, versions found: ${found.join(", ") || "none"}`
+      response.status === 200 && all.length > 0 && wrong.length === 0,
+      `live ${label} serves ?v=${version} on all ${all.length} versioned reference(s)`,
+      `HTTP ${response.status}, ${response.body.length} chars, distinct versions: ${distinct.join(", ") || "none"}` +
+        (wrong.length ? ` — STALE: ?v=${wrong.join(", ?v=")}` : "")
     );
   }
 }
@@ -206,12 +256,22 @@ async function checkLinkHealth(origin, counts) {
         `committed total=${counts.total} skippedDynamic=${counts.skippedDynamic}`
     );
   } else {
+    // WHY this is INCONCLUSIVE and not a pass: a differing signature is *consistent with*
+    // the propagation window above, but the script cannot tell that case apart from an
+    // older production deployment, a production catalogue built from something we never
+    // committed, or permanent drift. Saying "predates this deploy" would be asserting a
+    // cause we have not established. It stays non-fatal because the benign case is the
+    // common one right after a link-changing deploy — but it is a check that did NOT run,
+    // and the reader has to close it by hand.
     const liveTotal = (report.catalogSignature || "").split("\n").filter(Boolean).length;
     console.log(
-      `INFO  link-health report predates this deploy — it describes ${liveTotal} links, the ` +
-        `committed catalogue has ${counts.total}. Not a failure: the report is the last cron ` +
-        "snapshot and refreshes within ~3 hours, when the changed signature starts a new sweep."
+      `INCONCLUSIVE  live link catalogue could not be compared: the live report describes ` +
+        `${liveTotal} links, the committed catalogue has ${counts.total}, and their signatures differ.\n` +
+        "        Expected within ~3h of a link-changing deploy, because /api/link-health serves the\n" +
+        "        last cron snapshot and only re-sweeps once the signature changes. If it persists\n" +
+        "        beyond one sweep, treat it as real drift and investigate by hand."
     );
+    inconclusive += 1;
   }
 
   // Reported, never asserted. A null lastFullSweepAt is correct right after the catalogue
@@ -233,6 +293,17 @@ async function checkHeaders(origin) {
     "security headers present on the custom domain",
     missing.length === 0 ? REQUIRED_HEADERS.join(", ") : `missing: ${missing.join(", ")}`
   );
+
+  const wrong = Object.entries(EXPECTED_HEADER_VALUES)
+    .map(([name, expected]) => [name, expected, (response.headers.get(name) || "").trim().toLowerCase()])
+    .filter(([, expected, actual]) => actual !== expected);
+  record(
+    wrong.length === 0,
+    "value-sensitive security headers carry their documented values",
+    wrong.length === 0
+      ? Object.entries(EXPECTED_HEADER_VALUES).map(([name, value]) => `${name}: ${value}`).join(", ")
+      : wrong.map(([name, expected, actual]) => `${name}: expected "${expected}", got "${actual || "none"}"`).join("; ")
+  );
 }
 
 async function main() {
@@ -251,7 +322,10 @@ async function main() {
   await checkHeaders(args.origin);
 
   const failed = results.filter((result) => !result.ok);
-  console.log(`\n${results.length - failed.length}/${results.length} checks passed.`);
+  console.log(
+    `\n${results.length - failed.length}/${results.length} checks passed` +
+      (inconclusive ? `, ${inconclusive} inconclusive (see above — not verified, verify by hand).` : ".")
+  );
   if (failed.length) {
     console.log("A failure here is not automatically a bad release: re-run once before");
     console.log("classifying it, because propagation mid-flight looks the same. A mismatch");

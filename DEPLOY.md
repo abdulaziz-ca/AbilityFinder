@@ -132,13 +132,23 @@ npm run verify:deploy -- --asset data.js --present "text the change added" --abs
 ```
 
 `scripts/verify-deploy.js` executes the mechanical half of this routine against the live
-site and exits non-zero if a check fails: **step 2** entirely (the live `?v` on `/` and on
-a guide, and zero stale guides locally), **step 3's mechanics** (`--present` / `--absent`
-against a named live asset — omit both to skip it), **steps 5 and 7's endpoint contract**
-(`/api/link-health` answers a fetch with 200 `application/json`, and its `total` and
-`skippedDynamic` match the committed `src/links.js`), and **step 6's headers**. It reports
-`coverage.lastFullSweepAt` without gating on it, because a `null` there is correct right
-after a catalogue change.
+site and exits non-zero if a check fails: **step 2** entirely (every `?v` marker on `/` and
+on a guide — 14 of them on the homepage, not just `styles.css` — and zero stale guides
+locally), **step 3's mechanics** (`--present` / `--absent` against a named live asset —
+omit both to skip it), **steps 5 and 7's endpoint contract** (`/api/link-health` answers a
+fetch with 200 `application/json`, and its `total` and `skippedDynamic` match the committed
+`src/links.js`), and **step 6's headers**, asserting the documented *values* for
+`x-frame-options` and `x-content-type-options` rather than mere presence. Every request is
+bounded at 10s. It reports `coverage.lastFullSweepAt` without gating on it, because a
+`null` there is correct right after a catalogue change.
+
+**One check can come back INCONCLUSIVE rather than pass or fail**, and it exits 0 when it
+does. If the live report's `catalogSignature` differs from the committed one, the link
+catalogue cannot be compared: that is expected within ~3h of a link-changing deploy, since
+the endpoint serves the last cron snapshot and only re-sweeps once the signature changes —
+but it is indistinguishable from an older deployment or real production drift. **A green
+run with an INCONCLUSIVE line has not verified the catalogue.** If it persists beyond one
+sweep, investigate by hand.
 
 **It does not cover, and cannot:** step 1 (which commit was *meant* to ship), step 4 (the
 wizard, reload and IndexedDB restore), step 8 (privacy), step 9 (keyboard, theme, print,
