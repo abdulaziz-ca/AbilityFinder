@@ -7,6 +7,7 @@ const path = require("node:path");
 const vm = require("node:vm");
 const { execFileSync } = require("node:child_process");
 const { redactGroundingNarrative } = require("../scripts/benefits-context-safety");
+const { buildLinkCatalogue, benefitsInScope } = require("../scripts/link-sources");
 
 const ROOT = path.join(__dirname, "..");
 const DATA_FILES = [
@@ -357,62 +358,32 @@ function loadLinkSources() {
 }
 
 function expectedGeneratedLinks() {
+  // Derived through scripts/link-sources.js, the SAME module the generator uses. This
+  // function used to restate that logic, and in #193 the two fell out of step: the
+  // province fallback maps were added to the generator only, so the next data change
+  // would have compared 176 expected against 180 generated and blocked a good deploy for
+  // an unrelated reason. One definition cannot drift from itself.
+  //
+  // What this comparison still proves, and it is the thing that matters: src/links.js is
+  // a COMMITTED artifact, and this derives a fresh one from the current data files. A
+  // stale artifact — someone edited data and did not re-run gen:context — still fails
+  // here. What it no longer proves is that two hand-written implementations agree; that
+  // second opinion is replaced by test/link-sources.test.js, which tests the module's own
+  // semantics directly instead of deriving them from the source it is checking.
   const sources = loadLinkSources();
   const bcEnabled = /\bconst BC_ENABLED = true;\s*$/m.test(readRepoFile("public", "app.js"));
-  const benefits = bcEnabled
-    ? sources.__benefits
-    : sources.__benefits.filter(
-        (benefit) =>
-          benefit.level !== "British Columbia" &&
-          benefit.level !== "Metro Vancouver" &&
-          !sources.__bcCities.includes(benefit.level)
-      );
-  const clean = (value) => String(value ?? "").replace(/\s+/g, " ").trim();
-  const tuples = [];
-  const seen = new Set();
-  let skippedDynamic = 0;
-  const addLink = (url, label, kind) => {
-    const staticUrl = typeof url === "function" ? url.staticUrl : url;
-    if (typeof url === "function" && (typeof staticUrl !== "string" || !staticUrl.startsWith("http"))) {
-      skippedDynamic++;
-      return;
-    }
-    if (typeof staticUrl !== "string" || !staticUrl.startsWith("http") || seen.has(staticUrl)) return;
-    seen.add(staticUrl);
-    tuples.push([staticUrl, clean(label), kind]);
-  };
-
-  for (const benefit of benefits) {
-    addLink(benefit.applyUrl, `${clean(benefit.name)} — apply`, "apply");
-    addLink(benefit.source, `${clean(benefit.name)} — official source`, "source");
-  }
-  const helpOrgs = Array.isArray(sources.__help)
-    ? sources.__help
-    : Object.values(sources.__help || {}).flat();
-  for (const org of helpOrgs) {
-    if (org?.url) addLink(org.url, `Help — ${clean(org.name || org.url)}`, "help");
-  }
-  for (const grant of sources.__grants || []) {
-    if (grant?.url) addLink(grant.url, `grant:${clean(grant.id)} — ${clean(grant.name || grant.url)}`, "grant");
-  }
-  for (const org of sources.__orgs || []) {
-    if (org?.url) addLink(org.url, `org:${clean(org.id)} — ${clean(org.name || org.url)}`, "org");
-  }
-  // Must stay in the same ORDER and use the same LABELS as the generator: the guard
-  // compares ordered (url, label, kind) tuples, so a reordering fails as loudly as an
-  // omission.
-  for (const [mapName, map] of [
-    ["student aid", sources.__studentAid],
-    ["2-1-1", sources.__twoEleven],
-    ["employment supports", sources.__employment],
-  ]) {
-    for (const [province, url] of Object.entries(map || {})) {
-      addLink(url, `Province fallback — ${mapName} (${clean(province)})`, "help");
-    }
-  }
-  addLink(sources.__fedStudentAid, "Province fallback — student aid (national default)", "help");
-  addLink(sources.__national211, "Province fallback — 2-1-1 (national default)", "help");
-  return { tuples, skippedDynamic };
+  const { links, skippedDynamic } = buildLinkCatalogue({
+    benefits: benefitsInScope(sources.__benefits, sources.__bcCities, bcEnabled),
+    helpOrgs: sources.__help,
+    grants: sources.__grants || [],
+    orgs: sources.__orgs || [],
+    studentAid: sources.__studentAid,
+    twoEleven: sources.__twoEleven,
+    employment: sources.__employment,
+    fedStudentAid: sources.__fedStudentAid,
+    national211: sources.__national211,
+  });
+  return { tuples: links.map(({ url, label, kind }) => [url, label, kind]), skippedDynamic };
 }
 
 function generatedLinks() {

@@ -23,6 +23,7 @@ const {
   assertGroundingNarrativeSafe,
   redactGroundingNarrative,
 } = require("./benefits-context-safety");
+const { buildLinkCatalogue } = require("./link-sources");
 
 const ROOT = path.join(__dirname, "..");
 const SRC = path.join(ROOT, "public", "data.js");
@@ -209,59 +210,20 @@ console.log(
    without inventing a user, so it is skipped and counted rather than silently
    dropped.
 --------------------------------------------------------------------------- */
-const links = [];
-const seen = new Set();
-let skippedDynamic = 0;
-
-const addLink = (url, label, kind) => {
-  const staticUrl = typeof url === "function" ? url.staticUrl : url;
-  if (typeof url === "function" && (typeof staticUrl !== "string" || !staticUrl.startsWith("http"))) {
-    skippedDynamic++;
-    return;
-  }
-  if (typeof staticUrl !== "string" || !staticUrl.startsWith("http")) return;
-  if (seen.has(staticUrl)) return;
-  seen.add(staticUrl);
-  links.push({ url: staticUrl, label: clean(label), kind });
-};
-
-for (const b of benefits) {
-  addLink(b.applyUrl, `${clean(b.name)} — apply`, "apply");
-  addLink(b.source, `${clean(b.name)} — official source`, "source");
-}
-
-// Help orgs are the "talk to a human" escape hatch; a dead one is just as bad.
-const help = ctx.__HELP;
-if (help) {
-  const orgs = Array.isArray(help) ? help : Object.values(help).flat();
-  for (const o of orgs) if (o && o.url) addLink(o.url, `Help — ${clean(o.name || o.url)}`, "help");
-}
-
-// Directory links use stable ID-prefixed labels so monitor reports can be traced
-// directly back to their source records. addLink() deduplicates them against all
-// catalog/help URLs already collected above.
-for (const grant of ctx.__GRANTS || []) {
-  if (grant && grant.url) addLink(grant.url, `grant:${clean(grant.id)} — ${clean(grant.name || grant.url)}`, "grant");
-}
-for (const org of ctx.__ORGS || []) {
-  if (org && org.url) addLink(org.url, `org:${clean(org.id)} — ${clean(org.name || org.url)}`, "org");
-}
-
-// Province fallback routes: student aid, 2-1-1 and employment supports, plus the
-// national defaults the chain falls back to. Registered per value, so a province added
-// later is covered automatically, and labelled so a flagged link is identifiable as a
-// fallback during the link-health review.
-for (const [mapName, map] of [
-  ["student aid", ctx.__STUDENT_AID],
-  ["2-1-1", ctx.__TWO_ELEVEN],
-  ["employment supports", ctx.__EMPLOYMENT],
-]) {
-  for (const [province, url] of Object.entries(map || {})) {
-    addLink(url, `Province fallback — ${mapName} (${clean(province)})`, "help");
-  }
-}
-addLink(ctx.__FED_STUDENT_AID, "Province fallback — student aid (national default)", "help");
-addLink(ctx.__NATIONAL_211, "Province fallback — 2-1-1 (national default)", "help");
+// Link derivation lives in scripts/link-sources.js so this generator and the guard in
+// test/data-procedure.test.js cannot disagree about it. They used to keep separate copies
+// and drifted in #193.
+const { links, skippedDynamic } = buildLinkCatalogue({
+  benefits,
+  helpOrgs: ctx.__HELP,
+  grants: ctx.__GRANTS || [],
+  orgs: ctx.__ORGS || [],
+  studentAid: ctx.__STUDENT_AID,
+  twoEleven: ctx.__TWO_ELEVEN,
+  employment: ctx.__EMPLOYMENT,
+  fedStudentAid: ctx.__FED_STUDENT_AID,
+  national211: ctx.__NATIONAL_211,
+});
 
 const linksOut = `// GENERATED FILE — DO NOT EDIT BY HAND.
 // Regenerate with:  npm run gen:context
