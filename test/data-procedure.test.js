@@ -135,6 +135,7 @@ function resolveChangeContext() {
       // makes the baseline unambiguous in a CI log and lets shortSha() actually shorten it.
       return {
         baseline: resolvedDeclared.ok ? resolvedDeclared.stdout : declared,
+        trust: "declared",
         changed: new Set([...changedPaths(declaredDiff.stdout), ...earlyWorktreePaths]),
       };
     }
@@ -241,6 +242,11 @@ function resolveChangeContext() {
     if (branchDiff.ok) {
       return {
         baseline: mergeBase.stdout,
+        // "inferred", not declared: the nearest ref that happens to exist in this checkout,
+        // not the range actually being pushed. A stale local branch sitting after a data
+        // commit makes this baseline skip straight over it. The baseline-FREE checks below
+        // no longer depend on this being right.
+        trust: "inferred",
         changed: new Set([...changedPaths(branchDiff.stdout), ...worktreePaths]),
       };
     }
@@ -296,7 +302,10 @@ function dataChangeContext(t) {
   // identical lines is noise that makes the one line anyone needs harder to find.
   if (!reportedGuardState) {
     reportedGuardState = true;
-    const where = resolved.baseline ? `baseline=${shortSha(resolved.baseline)}` : "baseline=unresolved";
+    const trust = resolved.trust || "none";
+    const where = resolved.baseline
+      ? `baseline=${shortSha(resolved.baseline)}${trust === "inferred" ? " (inferred, not declared)" : ""}`
+      : "baseline=unresolved";
     if (changedDataFiles.length === 0) {
       t.diagnostic(`data-procedure guard: NOT APPLICABLE — no data file in the change set (${where})`);
     } else if (resolved.baselineError) {
@@ -610,7 +619,13 @@ test.describe("data-change procedure stays enforced", () => {
 
   test("a data change keeps the shared asset version valid everywhere", (t) => {
     const context = dataChangeContext(t);
-    if (!context || context.changedDataFiles.length === 0) return;
+    // Runs on EVERY test run, not only when a data file is in the change set. It needs no
+    // baseline at all, so gating it behind the baseline resolver meant a wrong or heuristic
+    // baseline could suppress it — and this pair catches the failures that actually happen
+    // (a stale generated artifact, a guide left on an old ?v). Four fail-opens in that
+    // resolver across three review rounds is the argument: never let a check that needs no
+    // guess depend on one.
+    if (!context) return;
 
     // WHY: this is deliberately baseline-free. A shallow checkout can prevent us
     // from proving that the number moved, but it cannot prevent us from checking
@@ -729,7 +744,13 @@ test.describe("data-change procedure stays enforced", () => {
 
   test("a data change keeps generated context and link output in step", (t) => {
     const context = dataChangeContext(t);
-    if (!context || context.changedDataFiles.length === 0) return;
+    // Runs on EVERY test run, not only when a data file is in the change set. It needs no
+    // baseline at all, so gating it behind the baseline resolver meant a wrong or heuristic
+    // baseline could suppress it — and this pair catches the failures that actually happen
+    // (a stale generated artifact, a guide left on an old ?v). Four fail-opens in that
+    // resolver across three review rounds is the argument: never let a check that needs no
+    // guess depend on one.
+    if (!context) return;
 
     // WHY: the generator has two outputs. Checking links.js alone allowed a benefit
     // rename or summary edit to ship with stale assistant grounding. Reproduce the
