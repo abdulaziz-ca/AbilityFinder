@@ -163,12 +163,18 @@ benefit.
 That entry has since been **removed** (2026-08-17, owner decision, #192): the
 organisation had no working site of its own, so its listing pointed at a municipal
 page, and this directory publishes "must have a verifiable official website" to
-users. Searching all three files today therefore returns **no Camrose record of any
-kind** — and that is still the point, not a contradiction. The searches distinguish
-**"no benefit record"** from **"no coverage at all"**, and a proposal has to say
-which it means. Here the honest answer turned out to be the second, which is a
-finding worth stating plainly rather than papering over with a listing that broke a
-published rule. The search is cheap; the research it prevents is not.
+users. So there is now **no Camrose benefit record and no Camrose organisation
+record** — and that is still the point, not a contradiction. The searches
+distinguish **"no benefit record"** from **"no coverage at all"**, and a proposal
+has to say which it means. Here the honest answer turned out to be the second.
+
+**Read the hits before concluding anything, because this search returns five of
+them and not one is a record.** `grep -rin 'camrose'` across the three files matches
+`"Camrose"` in the `ALBERTA_CITIES` dropdown in `public/data.js` (1 line) and the
+removal comment left in `public/orgs-data.js` where the entry used to be (4 lines).
+A bare count of 5 would suggest coverage that does not exist. That is exactly why this
+section asks for the output rather than a number: a hit is a lead to read, not a
+record to count. The search is cheap; the research it prevents is not.
 
 ### Shared UI, routing, or CSS
 
