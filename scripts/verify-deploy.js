@@ -42,16 +42,28 @@ const EXPECTED_HEADER_VALUES = {
   "permissions-policy": "geolocation=(self), camera=(), microphone=()",
 };
 
-// Substrings that must appear in the live CSP. Not whole-string equality: the header is
-// long and its directive order is not contractual, but these five carry the guarantees —
-// scripts and connections confined to our own origin, no framing, no base-tag injection.
-const REQUIRED_CSP_DIRECTIVES = [
-  "default-src 'self'",
-  "script-src 'self'",
-  "connect-src 'self'",
-  "frame-ancestors 'none'",
-  "base-uri 'self'",
-];
+// Directive name -> the EXACT source list it must carry. Compared as token sets after
+// splitting the header on ";", never as substrings: `csp.includes("script-src 'self'")`
+// happily passes `script-src 'self' https://evil.example`, which is the precise attack
+// this check exists to notice. Directive ORDER is not contractual, so the header is
+// parsed rather than compared whole.
+const REQUIRED_CSP_DIRECTIVES = {
+  "default-src": ["'self'"],
+  "script-src": ["'self'"],
+  "connect-src": ["'self'"],
+  "frame-ancestors": ["'none'"],
+  "base-uri": ["'self'"],
+};
+
+function parseCsp(header) {
+  const directives = new Map();
+  for (const clause of String(header || "").split(";")) {
+    const tokens = clause.trim().split(/\s+/).filter(Boolean);
+    if (!tokens.length) continue;
+    directives.set(tokens[0].toLowerCase(), tokens.slice(1).map((t) => t.toLowerCase()));
+  }
+  return directives;
+}
 // WHY these are asserted live rather than trusted to a test, corrected 2026-08-18: an
 // earlier version of this comment said the directives were "already asserted by
 // test/worker-transport.test.js". That was false — that file asserts HSTS, location and
@@ -111,6 +123,18 @@ function record(ok, name, detail) {
 function versionMarkers(html) {
   const all = [...html.matchAll(/\?v=(\d+)/g)].map((match) => match[1]);
   return { all, distinct: [...new Set(all)] };
+}
+
+/**
+ * The versioned asset PATHS a document references, e.g. "app.js", "fonts/inter-latin.woff2".
+ * Needed because checking only that every marker found has the right value says nothing
+ * about markers that are missing: a live homepage serving one correct `?v=112` and having
+ * dropped the other thirteen script and font tags passed the old predicate. Completeness is
+ * the property that matters — a release that loses app.js is exactly the failure this
+ * script exists to catch.
+ */
+function versionedAssets(html) {
+  return [...html.matchAll(/([A-Za-z0-9._/-]+)\?v=\d+/g)].map((m) => m[1].replace(/^\.?\//, "")).sort();
 }
 
 /** The committed asset version. Everything live is compared against this, never guessed. */
@@ -192,7 +216,13 @@ async function get(url) {
 function checkGuidesLocal(version) {
   const dir = path.join(ROOT, "public", "guides");
   const guides = fs.readdirSync(dir).filter((name) => name.endsWith(".html"));
-  const stale = guides.filter((name) => !fs.readFileSync(path.join(dir, name), "utf8").includes(`?v=${version}`));
+  // WHY not `.includes(`?v=${version}`)`: that substring matches `?v=1120` when the
+  // version is 112, so a guide a full release behind would read as current. Extract the
+  // markers and compare values exactly.
+  const stale = guides.filter((name) => {
+    const { all, distinct } = versionMarkers(fs.readFileSync(path.join(dir, name), "utf8"));
+    return all.length === 0 || distinct.some((value) => value !== version);
+  });
   // An empty directory would otherwise report "all 0 guides carry ?v=N" and pass — true but
   // vacuous, and the same silent-pass shape the data-procedure guard was just fixed for.
   if (guides.length === 0) {
@@ -213,6 +243,13 @@ function checkGuidesLocal(version) {
  * failure on every docs deploy — the exact trap DEPLOY.md step 2 warns about.
  */
 async function checkLiveVersion(origin, guide, version) {
+  // Expected asset references come from the COMMITTED documents, so "the live page is
+  // missing an asset it should have" is detectable rather than invisible.
+  const guideFile = path.join(ROOT, "public", "guides", `${guide}.html`);
+  const expected = {
+    "/": versionedAssets(fs.readFileSync(path.join(ROOT, "public", "index.html"), "utf8")),
+    [`/guides/${guide}`]: fs.existsSync(guideFile) ? versionedAssets(fs.readFileSync(guideFile, "utf8")) : [],
+  };
   for (const [label, url] of [
     ["/", `${origin}/`],
     [`/guides/${guide}`, `${origin}/guides/${guide}`],
@@ -220,11 +257,18 @@ async function checkLiveVersion(origin, guide, version) {
     const response = await get(url);
     const { all, distinct } = versionMarkers(response.body);
     const wrong = distinct.filter((value) => value !== version);
+    const liveAssets = versionedAssets(response.body);
+    const expectedAssets = expected[label] || [];
+    const missing = expectedAssets.filter((a) => !liveAssets.includes(a));
+    const extra = liveAssets.filter((a) => !expectedAssets.includes(a));
     record(
-      response.status === 200 && all.length > 0 && wrong.length === 0,
-      `live ${label} serves ?v=${version} on all ${all.length} versioned reference(s)`,
-      `HTTP ${response.status}, ${response.body.length} chars, distinct versions: ${distinct.join(", ") || "none"}` +
-        (wrong.length ? ` — STALE: ?v=${wrong.join(", ?v=")}` : "")
+      response.status === 200 && all.length > 0 && wrong.length === 0 && missing.length === 0 && extra.length === 0,
+      `live ${label} serves ?v=${version} on all ${expectedAssets.length} committed versioned asset(s)`,
+      `HTTP ${response.status}, ${response.body.length} chars, ${all.length} reference(s), distinct versions: ` +
+        `${distinct.join(", ") || "none"}` +
+        (wrong.length ? ` — STALE: ?v=${wrong.join(", ?v=")}` : "") +
+        (missing.length ? ` — MISSING: ${missing.join(", ")}` : "") +
+        (extra.length ? ` — UNEXPECTED: ${extra.join(", ")}` : "")
     );
   }
 }
@@ -347,14 +391,26 @@ async function checkHeaders(origin) {
   const wrong = Object.entries(EXPECTED_HEADER_VALUES)
     .map(([name, expected]) => [name, expected, (response.headers.get(name) || "").trim().toLowerCase()])
     .filter(([, expected, actual]) => actual !== expected);
-  const csp = (response.headers.get("content-security-policy") || "").toLowerCase();
-  const missingDirectives = REQUIRED_CSP_DIRECTIVES.filter((d) => !csp.includes(d.toLowerCase()));
+  const cspHeader = response.headers.get("content-security-policy") || "";
+  const csp = parseCsp(cspHeader);
+  const cspProblems = [];
+  for (const [name, expected] of Object.entries(REQUIRED_CSP_DIRECTIVES)) {
+    if (!csp.has(name)) {
+      cspProblems.push(`${name}: absent`);
+      continue;
+    }
+    const actual = csp.get(name);
+    const same = actual.length === expected.length && expected.every((token) => actual.includes(token));
+    if (!same) cspProblems.push(`${name}: expected [${expected.join(" ")}], got [${actual.join(" ") || "(empty)"}]`);
+  }
   record(
-    csp.length > 0 && missingDirectives.length === 0,
-    "live CSP still carries its load-bearing directives",
-    missingDirectives.length === 0 && csp.length > 0
-      ? REQUIRED_CSP_DIRECTIVES.join("; ")
-      : `missing: ${missingDirectives.join("; ") || "(no CSP header at all)"}`
+    cspHeader.length > 0 && cspProblems.length === 0,
+    "live CSP directives carry exactly their documented sources",
+    cspHeader.length === 0
+      ? "no CSP header at all"
+      : cspProblems.length === 0
+      ? Object.entries(REQUIRED_CSP_DIRECTIVES).map(([n, v]) => `${n} ${v.join(" ")}`).join("; ")
+      : cspProblems.join("; ")
   );
 
   record(

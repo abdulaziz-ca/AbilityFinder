@@ -142,7 +142,10 @@ fetch with 200 `application/json`, and its `total` and `skippedDynamic` match th
 bounded at 10s. It reports `coverage.lastFullSweepAt` without gating on it, because a
 `null` there is correct right after a catalogue change.
 
-**One check can come back INCONCLUSIVE rather than pass or fail**, and it exits 0 when it
+**Exit codes: 0 = every check was verified. 1 = a check failed. 2 = nothing failed, but
+something could not be evaluated.** A run that exits 2 is **not** a green verification.
+
+**One check can come back INCONCLUSIVE rather than pass or fail**, and it exits 2 when it
 does. If the live report's `catalogSignature` differs from the committed one, the link
 catalogue cannot be compared: that is expected within ~3h of a link-changing deploy, since
 the endpoint serves the last cron snapshot and only re-sweeps once the signature changes —
