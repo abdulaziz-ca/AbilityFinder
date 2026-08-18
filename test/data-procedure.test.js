@@ -179,12 +179,15 @@ function resolveChangeContext() {
       ? { resolutionError: `git diff --name-only HEAD failed: ${worktreeDiff.reason}` }
       : { skipReason: `data-change procedure guard cannot run because Git is unavailable: ${gitAvailable.reason}` };
   }
-  if (worktreeDiff.stdout) {
-    return {
-      baseline: "HEAD",
-      changed: changedPaths(worktreeDiff.stdout),
-    };
-  }
+  // WHY this no longer returns early, fixed 2026-08-18: it used to, and that hid every
+  // committed data change behind any unrelated dirty file. A tree with public/data.js
+  // changed in an earlier commit and one scratch edit to some other tracked file resolved
+  // to baseline=HEAD with only the scratch path in the change set, so the guard reported
+  // NOT APPLICABLE and passed 4/0 without ever inspecting the committed data change.
+  // Reproduced on 6cac97e. The uncommitted paths are still collected — they are the normal
+  // local workflow — but they are now UNIONED with whatever the comparison baseline shows,
+  // rather than replacing it.
+  const worktreePaths = changedPaths(worktreeDiff.stdout);
 
   // WHY: CI usually has a clean worktree, so discover its comparison branch from
   // Git metadata rather than assuming that the remote is origin or the branch is
@@ -229,7 +232,7 @@ function resolveChangeContext() {
     if (branchDiff.ok) {
       return {
         baseline: mergeBase.stdout,
-        changed: changedPaths(branchDiff.stdout),
+        changed: new Set([...changedPaths(branchDiff.stdout), ...worktreePaths]),
       };
     }
     failures.push(`${branch}: ${branchDiff.reason}`);
@@ -251,7 +254,7 @@ function resolveChangeContext() {
   // assume it did and let baselineError surface.
   const headChange = runGit(["diff-tree", "--root", "--no-commit-id", "--name-only", "-r", "HEAD"]);
   const visible = headChange.ok ? changedPaths(headChange.stdout) : new Set();
-  const changed = new Set([...visible, ...assumeDataChanged()]);
+  const changed = new Set([...visible, ...worktreePaths, ...assumeDataChanged()]);
   return {
     changed,
     baselineError:
