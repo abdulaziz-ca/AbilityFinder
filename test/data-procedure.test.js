@@ -66,6 +66,15 @@ function resolveChangeContext() {
   // surface.
   const assumeDataChanged = () => new Set([...DATA_FILES]);
 
+  // Collected up front so EVERY successful comparison below can union it in. A dirty
+  // tracked data file is part of the tree being tested no matter which baseline is in
+  // play: an explicit DATA_PROCEDURE_BASELINE says which revision to compare against, it
+  // does not say "ignore what is sitting uncommitted in front of you". Before this, a
+  // valid declared baseline plus an uncommitted edit to public/orgs-data.js reported NOT
+  // APPLICABLE and passed 4/0.
+  const earlyWorktreeDiff = runGit(["diff", "--name-only", "HEAD"]);
+  const earlyWorktreePaths = earlyWorktreeDiff.ok ? changedPaths(earlyWorktreeDiff.stdout) : new Set();
+
   const declared = (process.env.DATA_PROCEDURE_BASELINE || "").trim();
   if (declared) {
     // (historical note, kept because it explains the shape of every branch below)
@@ -126,7 +135,7 @@ function resolveChangeContext() {
       // makes the baseline unambiguous in a CI log and lets shortSha() actually shorten it.
       return {
         baseline: resolvedDeclared.ok ? resolvedDeclared.stdout : declared,
-        changed: changedPaths(declaredDiff.stdout),
+        changed: new Set([...changedPaths(declaredDiff.stdout), ...earlyWorktreePaths]),
       };
     }
     return {
