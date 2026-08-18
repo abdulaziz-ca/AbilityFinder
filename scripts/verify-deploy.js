@@ -15,7 +15,10 @@
  *   node scripts/verify-deploy.js --absent "3 times per week" --asset data.js
  *   node scripts/verify-deploy.js --origin https://abilityfinder.ca --guide dtc
  *
- * Exits 0 only when every check that ran passed.
+ * Exit codes: 0 = every check passed. 1 = a check failed. 2 = nothing failed, but at least
+ * one check could not be evaluated (see INCONCLUSIVE below) — the catalogue was NOT
+ * verified, and a human has to close it. 2 exists because exit 0 told release tooling that
+ * an unverified catalogue was a success.
  */
 const fs = require("fs");
 const path = require("path");
@@ -35,9 +38,29 @@ const REQUEST_TIMEOUT_MS = 10_000;
 const EXPECTED_HEADER_VALUES = {
   "x-frame-options": "deny",
   "x-content-type-options": "nosniff",
+  "referrer-policy": "strict-origin-when-cross-origin",
+  "permissions-policy": "geolocation=(self), camera=(), microphone=()",
 };
-// Presence-only: their values are long and legitimately evolve. A CSP regression is caught
-// by test/worker-transport.test.js, which asserts the directives themselves.
+
+// Substrings that must appear in the live CSP. Not whole-string equality: the header is
+// long and its directive order is not contractual, but these five carry the guarantees —
+// scripts and connections confined to our own origin, no framing, no base-tag injection.
+const REQUIRED_CSP_DIRECTIVES = [
+  "default-src 'self'",
+  "script-src 'self'",
+  "connect-src 'self'",
+  "frame-ancestors 'none'",
+  "base-uri 'self'",
+];
+// WHY these are asserted live rather than trusted to a test, corrected 2026-08-18: an
+// earlier version of this comment said the directives were "already asserted by
+// test/worker-transport.test.js". That was false — that file asserts HSTS, location and
+// cache-control, and NO test in this repository asserts a CSP directive at all
+// (`grep -rn "default-src" test/` returns nothing). So a live policy of
+// `default-src *`, `Referrer-Policy: unsafe-url` or `Permissions-Policy: geolocation=*`
+// would have passed every check we have. The values below come from public/_headers, and
+// the CSP is spot-checked on the directives that carry the privacy and anti-injection
+// guarantees rather than by whole-string equality, which would break on harmless reordering.
 const REQUIRED_HEADERS = [
   "content-security-policy",
   "x-frame-options",
@@ -130,11 +153,22 @@ async function get(url) {
   // WHY a timeout: without one a connection that never settles hangs the release path
   // forever. src/link-check.js already sets this precedent at 10s with an AbortController;
   // matching it keeps one number in the reader's head.
+  // WHY the timer spans the body read too, corrected 2026-08-18: fetch() resolves as soon
+  // as the response HEADERS arrive. Clearing the timer there left response.text() unbounded,
+  // so a server that sent headers and then stalled mid-body could hang the release path
+  // indefinitely — the exact failure this timeout was added to prevent, just moved one step
+  // later. The deadline now covers both phases and is cleared only once the body is in hand.
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-  let response;
   try {
-    response = await fetch(url, { redirect: "follow", signal: controller.signal });
+    const response = await fetch(url, { redirect: "follow", signal: controller.signal });
+    const body = await response.text();
+    return {
+      status: response.status,
+      contentType: response.headers.get("content-type") || "",
+      headers: response.headers,
+      body,
+    };
   } catch (error) {
     if (error && error.name === "AbortError") {
       throw new Error(`${url} did not respond within ${REQUEST_TIMEOUT_MS}ms`);
@@ -143,12 +177,6 @@ async function get(url) {
   } finally {
     clearTimeout(timer);
   }
-  return {
-    status: response.status,
-    contentType: response.headers.get("content-type") || "",
-    headers: response.headers,
-    body: await response.text(),
-  };
 }
 
 // Sizes below are reported in CHARACTERS, not bytes, and say so: response.body.length counts
@@ -248,6 +276,28 @@ async function checkLinkHealth(origin, counts) {
   // So: compare signatures first. Matching signature means the report describes THIS
   // catalogue, and then the totals must agree — a mismatch there is real. A differing
   // signature means the report predates this deploy; say so and move on.
+  // FAIL CLOSED on a malformed payload. Without this, a 200 application/json body of `{}`
+  // has no catalogSignature, compares unequal, and slides into the INCONCLUSIVE branch —
+  // reporting a benign propagation window for what is actually a broken or incompatible
+  // endpoint. A missing signature is not a mismatch; it is an answer we cannot read.
+  const wellFormed =
+    report !== null &&
+    typeof report === "object" &&
+    !Array.isArray(report) &&
+    typeof report.catalogSignature === "string" &&
+    report.catalogSignature.length > 0 &&
+    Number.isInteger(report.total) &&
+    Number.isInteger(report.skippedDynamic);
+  if (!wellFormed) {
+    record(
+      false,
+      "/api/link-health returns a well-formed report",
+      "expected an object with a non-empty string catalogSignature and integer total/skippedDynamic; " +
+        `got ${JSON.stringify(report).slice(0, 120)}`
+    );
+    return;
+  }
+
   if (report.catalogSignature === counts.signature) {
     record(
       report.total === counts.total && report.skippedDynamic === counts.skippedDynamic,
@@ -297,6 +347,16 @@ async function checkHeaders(origin) {
   const wrong = Object.entries(EXPECTED_HEADER_VALUES)
     .map(([name, expected]) => [name, expected, (response.headers.get(name) || "").trim().toLowerCase()])
     .filter(([, expected, actual]) => actual !== expected);
+  const csp = (response.headers.get("content-security-policy") || "").toLowerCase();
+  const missingDirectives = REQUIRED_CSP_DIRECTIVES.filter((d) => !csp.includes(d.toLowerCase()));
+  record(
+    csp.length > 0 && missingDirectives.length === 0,
+    "live CSP still carries its load-bearing directives",
+    missingDirectives.length === 0 && csp.length > 0
+      ? REQUIRED_CSP_DIRECTIVES.join("; ")
+      : `missing: ${missingDirectives.join("; ") || "(no CSP header at all)"}`
+  );
+
   record(
     wrong.length === 0,
     "value-sensitive security headers carry their documented values",
@@ -331,6 +391,10 @@ async function main() {
     console.log("classifying it, because propagation mid-flight looks the same. A mismatch");
     console.log("that persists is real. See DEPLOY.md, \"Reading the results\".");
     process.exitCode = 1;
+  } else if (inconclusive) {
+    console.log("Exiting 2: nothing failed, but the run did not verify everything it set out");
+    console.log("to. Re-run after the next sweep, or close it by hand.");
+    process.exitCode = 2;
   }
 }
 
