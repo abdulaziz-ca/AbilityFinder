@@ -177,7 +177,16 @@ function resolveChangeContext() {
           `and diffing against HEAD's parent failed: ${parentDiff.reason}`,
       };
     }
-    return { baseline: parent.stdout, changed: changedPaths(parentDiff.stdout) };
+    // Same union and provenance as every other successful comparison. This path was the
+    // fifth fail-open found in this resolver: it returned the parent range alone, so a
+    // dirty data file in a manual/dispatch run was invisible and the two baseline-dependent
+    // checks skipped. "inferred" because HEAD's parent is a guess at the pushed range in
+    // exactly the way ref discovery is — a dispatch run has no declared base.
+    return {
+      baseline: parent.stdout,
+      trust: "inferred",
+      changed: new Set([...changedPaths(parentDiff.stdout), ...earlyWorktreePaths]),
+    };
   }
 
   // WHY: uncommitted ticket work is the normal local workflow. This diff needs no
