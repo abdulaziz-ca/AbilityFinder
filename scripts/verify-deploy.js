@@ -53,7 +53,17 @@ const REQUIRED_CSP_DIRECTIVES = {
   "connect-src": ["'self'"],
   "frame-ancestors": ["'none'"],
   "base-uri": ["'self'"],
+  // form-action does NOT fall back to default-src. It is in the shipped policy
+  // (public/_headers) and was going unverified, so a live `form-action *` would have
+  // passed every other check while permitting form submission to any destination.
+  "form-action": ["'self'"],
 };
+
+// Directives that DO fall back to default-src, and therefore need no entry above — but an
+// EXPLICIT weaker value overrides that fallback silently. We ship none of them, so the rule
+// is: absent is fine, present must be 'self' or 'none'. Same shape as the script-src-elem
+// override rule, generalised to the rest of the fallback chain.
+const FALLBACK_OVERRIDE_DIRECTIVES = ["object-src", "worker-src", "child-src", "frame-src", "media-src", "manifest-src"];
 
 /**
  * Parse a CSP header into directives, and report duplicates rather than silently resolving
@@ -225,6 +235,19 @@ async function get(url) {
 
 
 /**
+ * The guide slugs the generated sitemap declares. sitemap.xml and the guide pages are
+ * written by the same gen:guides run, so it is the manifest — and comparing against it
+ * catches what a directory-not-empty check cannot: 101 of 102 guides missing while
+ * dtc.html survives. Both are generated together, so a mismatch means one was not written.
+ */
+function sitemapGuideSlugs(xml) {
+  return [...xml.matchAll(/<loc>[^<]*\/guides\/([A-Za-z0-9._-]+?)(?:\.html)?<\/loc>/g)]
+    .map((m) => m[1])
+    .filter((slug) => slug && slug !== "index")
+    .sort();
+}
+
+/**
  * Step 2, local half: every guide carries the committed version.
  * A guide left behind means gen:guides was not run or not committed.
  */
@@ -240,10 +263,23 @@ function checkGuidesLocal(version) {
   });
   // An empty directory would otherwise report "all 0 guides carry ?v=N" and pass — true but
   // vacuous, and the same silent-pass shape the data-procedure guard was just fixed for.
-  if (guides.length === 0) {
-    record(false, "local guides exist to check", `public/guides contains no .html files; expected ~102`);
-    return;
-  }
+  // Compare the directory against the sitemap manifest, not merely "is it non-empty".
+  const sitemapPath = path.join(ROOT, "public", "sitemap.xml");
+  const declared = fs.existsSync(sitemapPath) ? sitemapGuideSlugs(fs.readFileSync(sitemapPath, "utf8")) : [];
+  const present = guides.map((name) => name.replace(/\.html$/, "")).filter((slug) => slug !== "index").sort();
+  const absent = declared.filter((slug) => !present.includes(slug));
+  const unexpected = present.filter((slug) => !declared.includes(slug));
+  record(
+    declared.length > 0 && absent.length === 0 && unexpected.length === 0,
+    `local guides match the ${declared.length} the sitemap declares`,
+    declared.length === 0
+      ? "sitemap.xml declares no guide URLs — cannot establish the expected set"
+      : absent.length === 0 && unexpected.length === 0
+      ? `${present.length} present, none missing`
+      : `${absent.length ? `MISSING: ${absent.slice(0, 8).join(", ")}${absent.length > 8 ? ` (+${absent.length - 8})` : ""}` : ""}` +
+        `${unexpected.length ? ` UNEXPECTED: ${unexpected.slice(0, 8).join(", ")}` : ""}`
+  );
+  if (declared.length === 0 || absent.length || unexpected.length) return;
   record(
     stale.length === 0,
     `all ${guides.length} local guides carry ?v=${version}`,
@@ -417,6 +453,12 @@ async function checkHeaders(origin) {
     const actual = csp.get(override);
     const ok = actual.length === 1 && actual[0] === "'self'";
     if (!ok) cspProblems.push(`${override}: overrides script-src with [${actual.join(" ") || "(empty)"}]`);
+  }
+  for (const name of FALLBACK_OVERRIDE_DIRECTIVES) {
+    if (!csp.has(name)) continue;
+    const actual = csp.get(name);
+    const ok = actual.length === 1 && (actual[0] === "'self'" || actual[0] === "'none'");
+    if (!ok) cspProblems.push(`${name}: overrides the default-src fallback with [${actual.join(" ") || "(empty)"}]`);
   }
   for (const [name, expected] of Object.entries(REQUIRED_CSP_DIRECTIVES)) {
     if (!csp.has(name)) {
