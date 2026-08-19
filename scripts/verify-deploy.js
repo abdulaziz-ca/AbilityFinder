@@ -518,7 +518,11 @@ async function checkHeaders(origin) {
     if (!ok) cspProblems.push(`${override}: overrides script-src with [${actual.join(" ") || "(empty)"}]`);
   }
   for (const name of csp.keys()) {
-    if (name in REQUIRED_CSP_DIRECTIVES) continue;
+    // Object.hasOwn, NOT `in`: `in` walks the prototype chain, so "constructor",
+    // "toString", "hasOwnProperty", "valueOf" and "__proto__" were all treated as
+    // documented directives and skipped — five names silently exempt from a check whose
+    // whole contract is "anything not in this set fails".
+    if (Object.hasOwn(REQUIRED_CSP_DIRECTIVES, name)) continue;
     if (name === "script-src-elem" || name === "script-src-attr") continue; // handled above
     const actual = csp.get(name);
     cspProblems.push(
