@@ -1,5 +1,7 @@
 # AbilityFinder — AI entry point
 
+> For any TaskView-tracked work, read and follow `TASKVIEW-WORKFLOW.md` before claiming or editing.
+
 Read this file first, then `REMAINING-WORK.md`. Load anything else only when the
 task needs it:
 
