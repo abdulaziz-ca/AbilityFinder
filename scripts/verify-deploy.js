@@ -518,10 +518,18 @@ async function checkHeaders(origin) {
     if (!ok) cspProblems.push(`${override}: overrides script-src with [${actual.join(" ") || "(empty)"}]`);
   }
   for (const name of csp.keys()) {
-    // Object.hasOwn, NOT `in`: `in` walks the prototype chain, so "constructor",
-    // "toString", "hasOwnProperty", "valueOf" and "__proto__" were all treated as
-    // documented directives and skipped — five names silently exempt from a check whose
-    // whole contract is "anything not in this set fails".
+    // Object.hasOwn, NOT `in`: `in` walks the prototype chain, so a directive name that
+    // exists on Object.prototype was treated as documented and skipped — silently exempt
+    // from a check whose whole contract is "anything not in this set fails".
+    //
+    // Exactly TWO names were reachable, not five. parseCsp lowercases the directive name
+    // (see above), so only the all-lowercase Object.prototype members survive the round
+    // trip: `constructor` and `__proto__`. "toString", "hasOwnProperty" and "valueOf"
+    // become "tostring", "hasownproperty" and "valueof", which are not on the prototype
+    // and always failed correctly. Restricted further to valid CSP directive-name syntax,
+    // `constructor` is the only one an actual policy could carry. Corrected 2026-08-19
+    // after the first version of this comment claimed five — the same overstatement this
+    // ticket kept finding elsewhere.
     if (Object.hasOwn(REQUIRED_CSP_DIRECTIVES, name)) continue;
     if (name === "script-src-elem" || name === "script-src-attr") continue; // handled above
     const actual = csp.get(name);
