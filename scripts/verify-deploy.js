@@ -67,16 +67,16 @@ const REQUIRED_CSP_DIRECTIVES = {
   "font-src": ["'self'"],
 };
 
-// Directives that DO fall back to default-src, and therefore need no entry above — but an
-// EXPLICIT weaker value overrides that fallback silently. We ship none of them, so the rule
-// is: absent is fine, present must be 'self' or 'none'. Same shape as the script-src-elem
-// override rule, generalised to the rest of the fallback chain.
-const FALLBACK_OVERRIDE_DIRECTIVES = [
-  "object-src", "worker-src", "child-src", "frame-src", "media-src", "manifest-src",
-  // style-src-elem / style-src-attr override style-src the way script-src-elem overrides
-  // script-src. prefetch-src is deprecated but would still be honoured where supported.
-  "style-src-elem", "style-src-attr", "prefetch-src",
-];
+// CLOSED SET, not a blocklist. Anything present in the live CSP that is not a key of
+// REQUIRED_CSP_DIRECTIVES fails.
+//
+// WHY inverted, 2026-08-19: three review rounds each found one more directive missing from
+// a blocklist — script-src-elem, then object-src/worker-src/child-src/frame-src, then
+// style-src-elem/prefetch-src, then navigate-to. Enumerating what is dangerous is unbounded:
+// CSP gains directives, and every one that falls back to default-src can override it
+// silently. Enumerating what we SHIP is bounded — it is nine directives in public/_headers.
+// So an unrecognised directive is now a failure by default, and adding one to _headers
+// deliberately means updating this contract, which is exactly the review that should happen.
 
 /**
  * Parse a CSP header into directives, and report duplicates rather than silently resolving
@@ -517,11 +517,14 @@ async function checkHeaders(origin) {
     const ok = actual.length === 1 && actual[0] === "'self'";
     if (!ok) cspProblems.push(`${override}: overrides script-src with [${actual.join(" ") || "(empty)"}]`);
   }
-  for (const name of FALLBACK_OVERRIDE_DIRECTIVES) {
-    if (!csp.has(name)) continue;
+  for (const name of csp.keys()) {
+    if (name in REQUIRED_CSP_DIRECTIVES) continue;
+    if (name === "script-src-elem" || name === "script-src-attr") continue; // handled above
     const actual = csp.get(name);
-    const ok = actual.length === 1 && (actual[0] === "'self'" || actual[0] === "'none'");
-    if (!ok) cspProblems.push(`${name}: overrides the default-src fallback with [${actual.join(" ") || "(empty)"}]`);
+    cspProblems.push(
+      `${name}: not part of the documented policy (value [${actual.join(" ") || "(empty)"}]) — ` +
+        "add it to REQUIRED_CSP_DIRECTIVES with its expected sources if it is intended"
+    );
   }
   for (const [name, expected] of Object.entries(REQUIRED_CSP_DIRECTIVES)) {
     if (!csp.has(name)) {
