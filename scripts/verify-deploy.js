@@ -55,14 +55,29 @@ const REQUIRED_CSP_DIRECTIVES = {
   "base-uri": ["'self'"],
 };
 
+/**
+ * Parse a CSP header into directives, and report duplicates rather than silently resolving
+ * them. WHY duplicates are an error and not a merge: CSP uses the FIRST occurrence of a
+ * repeated directive and ignores the rest, while a Map keyed by name keeps the LAST. So
+ * `script-src https://evil.example; script-src 'self'` would have been read as `'self'`
+ * and passed, while the policy the browser actually enforces allows the external origin.
+ * A duplicate is never something we ship, so treating it as a failure is both safe and
+ * simpler than emulating the precedence rule.
+ */
 function parseCsp(header) {
   const directives = new Map();
+  const duplicates = [];
   for (const clause of String(header || "").split(";")) {
     const tokens = clause.trim().split(/\s+/).filter(Boolean);
     if (!tokens.length) continue;
-    directives.set(tokens[0].toLowerCase(), tokens.slice(1).map((t) => t.toLowerCase()));
+    const name = tokens[0].toLowerCase();
+    if (directives.has(name)) {
+      duplicates.push(name);
+      continue;
+    }
+    directives.set(name, tokens.slice(1).map((t) => t.toLowerCase()));
   }
-  return directives;
+  return { directives, duplicates };
 }
 // WHY these are asserted live rather than trusted to a test, corrected 2026-08-18: an
 // earlier version of this comment said the directives were "already asserted by
@@ -392,8 +407,17 @@ async function checkHeaders(origin) {
     .map(([name, expected]) => [name, expected, (response.headers.get(name) || "").trim().toLowerCase()])
     .filter(([, expected, actual]) => actual !== expected);
   const cspHeader = response.headers.get("content-security-policy") || "";
-  const csp = parseCsp(cspHeader);
-  const cspProblems = [];
+  const { directives: csp, duplicates } = parseCsp(cspHeader);
+  const cspProblems = duplicates.map((name) => `${name}: repeated (CSP honours the FIRST, so this is unsafe)`);
+  // script-src-elem and script-src-attr override script-src for their contexts, so a policy
+  // could satisfy `script-src 'self'` and still permit an external script element. We ship
+  // neither; require them absent, or identical to script-src if they ever appear.
+  for (const override of ["script-src-elem", "script-src-attr"]) {
+    if (!csp.has(override)) continue;
+    const actual = csp.get(override);
+    const ok = actual.length === 1 && actual[0] === "'self'";
+    if (!ok) cspProblems.push(`${override}: overrides script-src with [${actual.join(" ") || "(empty)"}]`);
+  }
   for (const [name, expected] of Object.entries(REQUIRED_CSP_DIRECTIVES)) {
     if (!csp.has(name)) {
       cspProblems.push(`${name}: absent`);

@@ -137,9 +137,15 @@ on a guide — 14 of them on the homepage, not just `styles.css` — and zero st
 locally), **step 3's mechanics** (`--present` / `--absent` against a named live asset —
 omit both to skip it), **steps 5 and 7's endpoint contract** (`/api/link-health` answers a
 fetch with 200 `application/json`, and its `total` and `skippedDynamic` match the committed
-`src/links.js`), and **step 6's headers**, asserting the documented *values* for
-`x-frame-options` and `x-content-type-options` rather than mere presence. Every request is
-bounded at 10s. It reports `coverage.lastFullSweepAt` without gating on it, because a
+`src/links.js`), and **step 6's headers**. Four headers are asserted by *value*, not mere
+presence — `x-frame-options`, `x-content-type-options`, `referrer-policy` and
+`permissions-policy` — and the CSP is parsed into directives and compared as exact token
+sets, because `csp.includes("script-src 'self'")` is satisfied by
+`script-src 'self' https://evil.example`. A repeated directive fails outright (CSP honours
+the first occurrence, a Map keeps the last), and `script-src-elem` / `script-src-attr` are
+rejected unless they match `script-src`, since either can override it. No test asserts
+these live values, which is exactly why they are asserted here. Every request is bounded
+at 10s. It reports `coverage.lastFullSweepAt` without gating on it, because a
 `null` there is correct right after a catalogue change.
 
 **Exit codes: 0 = every check was verified. 1 = a check failed. 2 = nothing failed, but
