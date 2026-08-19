@@ -73,8 +73,29 @@ function resolveChangeContext() {
   // does not say "ignore what is sitting uncommitted in front of you". Before this, a
   // valid declared baseline plus an uncommitted edit to public/orgs-data.js reported NOT
   // APPLICABLE and passed 4/0.
+  // WHY a failure here is fatal rather than "nothing is dirty": every successful return
+  // below unions these paths in. Substituting an empty set on failure would let a declared
+  // or parent baseline return a clean-looking change set while an uncommitted data edit sat
+  // in the tree unseen — the same substitution-for-silence this resolver keeps being bitten by.
   const earlyWorktreeDiff = runGit(["diff", "--name-only", "HEAD"]);
-  const earlyWorktreePaths = earlyWorktreeDiff.ok ? changedPaths(earlyWorktreeDiff.stdout) : new Set();
+  if (!earlyWorktreeDiff.ok) {
+    // Distinguish "git is absent" from "git is here and the diff failed". Absence is an
+    // environment limitation and skips with a reason, as it always has; a failure with git
+    // present means we cannot see uncommitted work, which is a reason to fail closed.
+    // Conflating them made `npm test` fail outright on a machine without git — a
+    // regression this fix introduced and this branch removes.
+    const gitAvailable = runGit(["--version"]);
+    if (!gitAvailable.ok) {
+      return { skipReason: `data-change procedure guard cannot run because Git is unavailable: ${gitAvailable.reason}` };
+    }
+    return {
+      changed: assumeDataChanged(),
+      baselineError:
+        "enforcement could not be completed because the working-tree diff failed: " +
+        `${earlyWorktreeDiff.reason}. Uncommitted changes cannot be seen, so no baseline can be trusted.`,
+    };
+  }
+  const earlyWorktreePaths = changedPaths(earlyWorktreeDiff.stdout);
 
   const declared = (process.env.DATA_PROCEDURE_BASELINE || "").trim();
   if (declared) {
@@ -294,8 +315,12 @@ let reportedGuardState = false;
 function dataChangeContext(t) {
   const resolved = resolveChangeContext();
   if (resolved.skipReason) {
-    t.skip(resolved.skipReason);
-    return null;
+    // WHY this no longer returns null: the two baseline-FREE checks read only current
+    // files and need git for nothing. Returning null skipped all four, so "the
+    // baseline-free pair runs unconditionally" — the whole point of the 065014a redesign —
+    // was false whenever git was missing. They now run; only the baseline-dependent pair
+    // skips, and it says why.
+    return { changed: new Set(), changedDataFiles: [], baseline: null, trust: "none", gitUnavailable: resolved.skipReason };
   }
   if (resolved.resolutionError) assert.fail(resolved.resolutionError);
 
@@ -317,7 +342,12 @@ function dataChangeContext(t) {
       ? `baseline=${shortSha(resolved.baseline)}${trust === "inferred" ? " (inferred, not declared)" : ""}`
       : "baseline=unresolved";
     if (changedDataFiles.length === 0) {
-      t.diagnostic(`data-procedure guard: NOT APPLICABLE — no data file in the change set (${where})`);
+      t.diagnostic(
+        trust === "inferred"
+          ? `data-procedure guard: NOT CONFIRMED — no data file in the inferred range (${where}); ` +
+            "baseline-dependent checks skipped, baseline-free checks still ran"
+          : `data-procedure guard: NOT APPLICABLE — no data file in the change set (${where})`
+      );
     } else if (resolved.baselineError) {
       t.diagnostic(
         `data-procedure guard: FIRED — ${changedDataFiles.join(", ")} changed, but ${where}, ` +
@@ -569,7 +599,25 @@ function readRepoFile(...parts) {
 test.describe("data-change procedure stays enforced", () => {
   test("a data change adds a DATA_CHANGELOG entry", (t) => {
     const context = dataChangeContext(t);
-    if (!context || context.changedDataFiles.length === 0) return;
+    if (!context) return;
+    // Baseline-DEPENDENT check. Two states must not be confused with a pass:
+    //   * git unavailable — nothing can be resolved at all;
+    //   * an INFERRED baseline that shows no data change — the nearest ref that happens to
+    //     exist may sit AFTER a real data commit, so "no data change" is unproven, not true.
+    // Both now skip with a reason instead of returning silently, because a silent return
+    // reads as a verified pass in every report. A DECLARED baseline showing no data change
+    // is a genuine no-op and still returns quietly.
+    if (context.gitUnavailable) return void t.skip(context.gitUnavailable);
+    if (context.changedDataFiles.length === 0) {
+      if (context.trust === "inferred") {
+        return void t.skip(
+          `cannot confirm: baseline ${shortSha(context.baseline)} was inferred from the nearest ref, ` +
+            "not declared, and an inferred range can skip over an earlier data commit. " +
+            "Set DATA_PROCEDURE_BASELINE to check this properly. (CI always declares one.)"
+        );
+      }
+      return;
+    }
 
     if (context.baselineError) assert.fail(context.baselineError);
     const baselineChangelog = readBaselineFile(context.baseline, "public/changelog.js");
@@ -675,7 +723,25 @@ test.describe("data-change procedure stays enforced", () => {
 
   test("a data change moves the index asset version", (t) => {
     const context = dataChangeContext(t);
-    if (!context || context.changedDataFiles.length === 0) return;
+    if (!context) return;
+    // Baseline-DEPENDENT check. Two states must not be confused with a pass:
+    //   * git unavailable — nothing can be resolved at all;
+    //   * an INFERRED baseline that shows no data change — the nearest ref that happens to
+    //     exist may sit AFTER a real data commit, so "no data change" is unproven, not true.
+    // Both now skip with a reason instead of returning silently, because a silent return
+    // reads as a verified pass in every report. A DECLARED baseline showing no data change
+    // is a genuine no-op and still returns quietly.
+    if (context.gitUnavailable) return void t.skip(context.gitUnavailable);
+    if (context.changedDataFiles.length === 0) {
+      if (context.trust === "inferred") {
+        return void t.skip(
+          `cannot confirm: baseline ${shortSha(context.baseline)} was inferred from the nearest ref, ` +
+            "not declared, and an inferred range can skip over an earlier data commit. " +
+            "Set DATA_PROCEDURE_BASELINE to check this properly. (CI always declares one.)"
+        );
+      }
+      return;
+    }
 
     if (context.baselineError) assert.fail(context.baselineError);
     const baselineIndex = readBaselineFile(context.baseline, "public/index.html");
