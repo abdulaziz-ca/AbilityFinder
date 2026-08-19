@@ -57,13 +57,26 @@ const REQUIRED_CSP_DIRECTIVES = {
   // (public/_headers) and was going unverified, so a live `form-action *` would have
   // passed every other check while permitting form submission to any destination.
   "form-action": ["'self'"],
+  // These fall back to default-src, so an EXPLICIT weaker value overrides the fallback
+  // silently — `style-src https://evil.example` would otherwise pass every other check.
+  // Pinned to what public/_headers actually ships, including the two deliberate relaxations:
+  // inline styles (the app sets them from JS for the progress bar, text size and reading
+  // guide) and data: images.
+  "style-src": ["'self'", "'unsafe-inline'"],
+  "img-src": ["'self'", "data:"],
+  "font-src": ["'self'"],
 };
 
 // Directives that DO fall back to default-src, and therefore need no entry above — but an
 // EXPLICIT weaker value overrides that fallback silently. We ship none of them, so the rule
 // is: absent is fine, present must be 'self' or 'none'. Same shape as the script-src-elem
 // override rule, generalised to the rest of the fallback chain.
-const FALLBACK_OVERRIDE_DIRECTIVES = ["object-src", "worker-src", "child-src", "frame-src", "media-src", "manifest-src"];
+const FALLBACK_OVERRIDE_DIRECTIVES = [
+  "object-src", "worker-src", "child-src", "frame-src", "media-src", "manifest-src",
+  // style-src-elem / style-src-attr override style-src the way script-src-elem overrides
+  // script-src. prefetch-src is deprecated but would still be honoured where supported.
+  "style-src-elem", "style-src-attr", "prefetch-src",
+];
 
 /**
  * Parse a CSP header into directives, and report duplicates rather than silently resolving
@@ -216,6 +229,8 @@ async function get(url) {
       status: response.status,
       contentType: response.headers.get("content-type") || "",
       headers: response.headers,
+      redirected: response.redirected,
+      finalUrl: response.url,
       body,
     };
   } catch (error) {
@@ -241,9 +256,13 @@ async function get(url) {
  * dtc.html survives. Both are generated together, so a mismatch means one was not written.
  */
 function sitemapGuideSlugs(xml) {
-  return [...xml.matchAll(/<loc>[^<]*\/guides\/([A-Za-z0-9._-]+?)(?:\.html)?<\/loc>/g)]
+  // The grammar is the generator's own slugify(): lowercase alphanumerics and hyphens.
+  // Nothing else is accepted — a "." or ".." in a committed sitemap would otherwise be
+  // interpolated into /guides/<slug> and normalise to the site root, so a crafted manifest
+  // could make the sweep fetch "/" and count it as a served guide.
+  return [...xml.matchAll(/<loc>[^<]*\/guides\/([^<\/]+?)(?:\.html)?<\/loc>/g)]
     .map((m) => m[1])
-    .filter((slug) => slug && slug !== "index")
+    .filter((slug) => /^[a-z0-9-]+$/.test(slug) && slug !== "index")
     .sort();
 }
 
@@ -361,7 +380,12 @@ async function checkAllGuidesLive(origin, version, slugs) {
       try {
         const response = await get(`${origin}/guides/${slug}`);
         const { all, distinct } = versionMarkers(response.body);
-        if (response.status !== 200) failures.push(`${slug}: HTTP ${response.status}`);
+        // WHY a redirect fails here: /guides/<slug> serves 200 directly (only the .html
+        // form 307s). A guide that redirects has been removed or renamed, and following it
+        // to a 200 landing page with correct markers would record the missing guide as
+        // served — the site root satisfies every other condition in this predicate.
+        if (response.redirected) failures.push(`${slug}: redirected to ${response.finalUrl}`);
+        else if (response.status !== 200) failures.push(`${slug}: HTTP ${response.status}`);
         else if (all.length === 0) failures.push(`${slug}: no ?v marker`);
         else if (distinct.some((value) => value !== version)) failures.push(`${slug}: ?v=${distinct.join(",")}`);
       } catch (error) {
