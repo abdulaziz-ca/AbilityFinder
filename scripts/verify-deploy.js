@@ -252,6 +252,7 @@ function sitemapGuideSlugs(xml) {
  * A guide left behind means gen:guides was not run or not committed.
  */
 function checkGuidesLocal(version) {
+  // returns the guide slugs when the local set is trustworthy, so the live sweep can use them
   const dir = path.join(ROOT, "public", "guides");
   const guides = fs.readdirSync(dir).filter((name) => name.endsWith(".html"));
   // WHY not `.includes(`?v=${version}`)`: that substring matches `?v=1120` when the
@@ -279,12 +280,13 @@ function checkGuidesLocal(version) {
       : `${absent.length ? `MISSING: ${absent.slice(0, 8).join(", ")}${absent.length > 8 ? ` (+${absent.length - 8})` : ""}` : ""}` +
         `${unexpected.length ? ` UNEXPECTED: ${unexpected.slice(0, 8).join(", ")}` : ""}`
   );
-  if (declared.length === 0 || absent.length || unexpected.length) return;
+  if (declared.length === 0 || absent.length || unexpected.length) return null;
   record(
     stale.length === 0,
     `all ${guides.length} local guides carry ?v=${version}`,
     stale.length === 0 ? "0 stale" : `stale: ${stale.slice(0, 10).join(", ")}${stale.length > 10 ? " …" : ""}`
   );
+  return stale.length === 0 ? declared : null;
 }
 
 /**
@@ -338,6 +340,43 @@ async function checkContent(origin, asset, version, present, absent) {
     const count = response.body.split(needle).length - 1;
     record(count === 0, `live ${asset} does not contain "${needle}"`, `${count} occurrence(s)`);
   }
+}
+
+/**
+ * Every generated guide is actually served, at the committed version.
+ *
+ * WHY all of them and not a sample: the local manifest check proves the 102 guides exist in
+ * the repository, which says nothing about what the deploy uploaded. Checking one guide
+ * (the old behaviour) would pass a release that shipped only that one — and a missing guide
+ * is a disabled person reaching a 404 for the benefit they were sent to read. Sampling is
+ * the same bet with better odds, and this project's own rule is to count rather than
+ * sample. 102 requests at concurrency 8 costs a couple of seconds on a check that runs once
+ * per release.
+ */
+async function checkAllGuidesLive(origin, version, slugs) {
+  const failures = [];
+  const queue = [...slugs];
+  const worker = async () => {
+    for (let slug = queue.pop(); slug !== undefined; slug = queue.pop()) {
+      try {
+        const response = await get(`${origin}/guides/${slug}`);
+        const { all, distinct } = versionMarkers(response.body);
+        if (response.status !== 200) failures.push(`${slug}: HTTP ${response.status}`);
+        else if (all.length === 0) failures.push(`${slug}: no ?v marker`);
+        else if (distinct.some((value) => value !== version)) failures.push(`${slug}: ?v=${distinct.join(",")}`);
+      } catch (error) {
+        failures.push(`${slug}: ${String((error && error.message) || error).slice(0, 60)}`);
+      }
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(8, slugs.length) }, worker));
+  record(
+    failures.length === 0,
+    `all ${slugs.length} guides served live at ?v=${version}`,
+    failures.length === 0
+      ? `${slugs.length} fetched, all 200 and current`
+      : `${failures.length} bad: ${failures.slice(0, 6).join("; ")}${failures.length > 6 ? ` (+${failures.length - 6})` : ""}`
+  );
 }
 
 /** Steps 5 and 7: the endpoint contract, and that the live catalogue matches what shipped. */
@@ -497,8 +536,9 @@ async function main() {
   console.log("IndexedDB journey, privacy, keyboard/theme/print/mobile, and reading a");
   console.log("disagreement as propagation before calling it a failure.\n");
 
-  checkGuidesLocal(version);
+  const guideSlugs = checkGuidesLocal(version);
   await checkLiveVersion(args.origin, args.guide, version);
+  if (guideSlugs) await checkAllGuidesLive(args.origin, version, guideSlugs);
   if (args.asset) await checkContent(args.origin, args.asset, version, args.present, args.absent);
   await checkLinkHealth(args.origin, counts);
   await checkHeaders(args.origin);
