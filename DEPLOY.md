@@ -216,10 +216,30 @@ production. Verify, then push again.
 6. **Check browser page errors and application console errors**, and confirm the
    security headers still ship: `curl -I https://abilityfinder.ca` must still show CSP,
    `x-frame-options: DENY`, `x-content-type-options: nosniff`, referrer and permissions
-   policy. Cloudflare **may** inject a Browser Insights beacon that the strict CSP blocks;
-   if present, that console noise is expected. Distinguish it from application failures,
-   do not hide real errors, and never weaken the CSP to silence it — disable injection in
-   the Cloudflare dashboard instead.
+   policy. Cloudflare **is currently injecting two scripts**, both blocked by the strict
+   CSP, so two console errors on every page load are expected. Distinguish them from
+   application failures, do not hide real errors, and never weaken the CSP to silence them
+   — disable injection in the Cloudflare dashboard instead (#79, owner-only).
+
+   **`curl` will not show you one of them unless you ask for HTML.** Measured 2026-08-20:
+   the Browser Insights beacon is injected server-side only when the request sends an
+   `Accept` header advertising HTML — 8/8 fetches with it, 0/8 without, and the
+   User-Agent makes no difference either way. So a bare `curl | grep` reports a clean page
+   that no real browser receives. Both are visible from a script with the right header:
+
+   ```sh
+   # Browser Insights beacon — needs Accept; expect 0 once #79 is resolved
+   curl -s -H 'Accept: text/html' https://abilityfinder.ca/ | grep -c 'static.cloudflareinsights.com'
+   # JavaScript Detections injector — present on every request, Accept or not
+   curl -s https://abilityfinder.ca/ | grep -c 'cdn-cgi/challenge-platform'
+   ```
+
+   This matters beyond the console check: **comparing the live HTML against the committed
+   tree gives a different answer depending on that header.** Without `Accept` there is one
+   injected hunk; with it there are two. `scripts/verify-deploy.js` sends no `Accept`, so
+   its ten checks read the non-browser variant — harmless for what it asserts, since the
+   `?v` markers and headers are identical either way, but do not read its silence as proof
+   that nothing else is injected.
 7. **Check the bindings the change actually touched.** `/api/link-health` returning 200
    proves only that KV can be read, not that the three-hour cron has run recently — after
    a cron or monitor change, inspect `coverage.lastFullSweepAt` in the payload for
