@@ -13,40 +13,60 @@ async function tabReachesButtonsAndLinks(page) {
   });
 }
 
-// Establish a DETERMINISTIC starting point before asserting where Tab lands.
+// Give A11Y-03 an explicit focus origin before asserting where Tab lands, and make a
+// failure say WHAT had focus instead of only that the skip link did not.
 //
-// WHY, measured 2026-08-20 (#198): A11Y-03 pressed Tab straight after page.goto()
-// without re-establishing a focus origin, unlike tabReachesButtonsAndLinks() three
-// lines above it, which always calls document.body.focus() first. Pressing Tab while
-// the document is still parsing does NOT land on the skip link — it leaves
-// activeElement on BODY. Probed on firefox: with the document not yet ready, 16 of 20
-// runs ended on BODY instead of #skipLink, which is exactly the CI symptom; once the
-// document was ready, 40 of 40 landed on #skipLink.
+// THE MECHANISM BEHIND #198 IS NOT PROVEN. Read this before trusting the fix.
 //
-// toBeFocused() then retries futilely, because focus does not move on its own — which
-// is why the CI failures burned ~7-8s of a 90s budget rather than timing out at 90s.
+// An earlier version of this comment claimed a parser race: that Tab was landing before
+// the document was ready. That explanation is WRONG, and the correction matters because
+// someone will otherwise stop looking. page.goto() defaults to waiting for "load", so
+// readyState is already "complete" when the Tab is pressed, and #skipLink is static
+// markup (public/index.html:43) rather than rendered by app.js. The measurement offered
+// as proof used waitUntil:"commit", a state this test never enters — it varied the
+// navigation timing and the focus setup at the same time and isolated neither.
 //
-// This does NOT weaken the assertion. "The skip link is the first focusable element"
-// is a claim about tabbing from the start of the document, so starting from a known
-// origin on a settled page is the precondition the claim needs, not a relaxation of it.
-// No retry, no sleep, and no raised timeout.
+// What is actually established, holding navigation at the real default and varying ONLY
+// the focus setup, on firefox:
+//
+//   without body.focus(), idle          40/40 landed on #skipLink
+//   with    body.focus(), idle          40/40
+//   without body.focus(), under load    40/40
+//   with    body.focus(), under load    40/40
+//
+// So the CI failure did NOT reproduce locally, and this change shows no measurable
+// effect on the path the test actually takes. It is defensible on its own terms — it
+// removes a real inconsistency, since tabReachesButtonsAndLinks() above always
+// establishes an origin with document.body.focus() and this assertion did not — but it
+// is NOT demonstrated to fix the two CI failures, and #198 stays open for that reason.
+//
+// The durable value here is the diagnostic below. The two existing captures could prove
+// #skipLink was not focused but not what was; the next occurrence will name it.
+//
+// Constraints kept: retries stays 0 (#63), no sleep was added, no timeout was raised,
+// and the assertion is not weakened — "first focusable element" is a claim about tabbing
+// from the start of a settled document, so establishing that origin is the precondition
+// the claim needs. A focusable element ahead of the skip link still fails the test.
+//
+// KNOWN LIMIT of normalizing focus: if application code ever moved focus during startup,
+// body.focus() would overwrite that and hide it. No such startup focus exists today, and
+// that would be a different assertion (initial focus, not first tab stop) — but if this
+// test ever starts passing while real keyboard users report trouble, suspect this line.
 async function settleFocusOrigin(page) {
+  // Redundant under page.goto's default "load" wait, and kept deliberately as an
+  // explicit precondition rather than an implicit dependency on that default. It is
+  // NOT the fix; the body.focus() below is the only behavioural change.
   await page.waitForFunction(
     () => document.readyState === "complete" && !!document.getElementById("skipLink")
   );
   await page.evaluate(() => document.body.focus());
 }
 
-// Report WHAT actually has focus, so a failure names the element instead of only
-// saying the expected one was not focused. The earlier CI captures could prove the
-// skip link was not focused but not what was, which is the difference between an
-// undiagnosable flake and a lead.
-//
 // NOTE the timing: this snapshot is taken immediately after the Tab keypress, BEFORE
-// toBeFocused() opens its retry window. That is deliberate — what Tab actually
-// produced is the informative moment — but it means the message describes t=0, not
-// the state after the retries expired. If those two ever disagree, that disagreement
-// is itself the finding.
+// toBeFocused() opens its retry window. That is deliberate — what Tab actually produced
+// is the informative moment — but it means the message describes t=0, not the state
+// after the retries expired. If those two ever disagree, that disagreement is the
+// finding.
 async function describeActiveElement(page) {
   return page.evaluate(() => {
     const a = document.activeElement;
