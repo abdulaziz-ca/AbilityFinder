@@ -83,6 +83,20 @@ jobs:
           key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}
 
       # On a cache miss, fetch the browsers AND their apt dependencies.
+      #
+      # DELIBERATELY UNBOUNDED, and that is a known residual gap, not an oversight.
+      # This path only runs on a @playwright/test version bump or a cache eviction: it
+      # did not execute once in the 40 most recent runs, so there is nothing to set a
+      # bound from, and a guessed one would most likely fire on exactly the rare version
+      # bump it was meant to protect.
+      #
+      # BUDGET WARNING for whoever hits a cache miss: this path may already be close to
+      # the 45-minute job cap WITHOUT anything hanging. The recorded browser download is
+      # 16m37s (2026-07-28) and the apt half has been observed at 13m11s — 29m48s
+      # together, plus the ~13-minute three-engine matrix is 42m48s, leaving 2m12s for
+      # checkout, Node setup and npm ci, which exceed that. If a cache-miss run is
+      # cancelled at the cap, suspect this arithmetic before suspecting the commit, and
+      # capture the step durations: they are the measurement needed to bound this step.
       - name: Install Playwright browsers and system dependencies
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium firefox webkit
@@ -100,11 +114,14 @@ jobs:
       # WHY 20 AND NOT LESS: this step is apt-only, but it is NOT fast. Measured across
       # the 12 runs of 2026-08-18/19, all successful: 0m25s, 0m39s, 0m40s, 0m57s, 1m15s,
       # 2m14s, 4m48s, 6m17s, 7m01s, 7m23s, 9m00s, 13m11s. 20 minutes sits ~52% above the
-      # slowest success, so it should not fire on a legitimate run, and it still leaves
-      # 25 of the job's 45 minutes for a suite that normally lands near 14.
+      # slowest success and still leaves 25 of the job's 45 minutes for a suite that
+      # normally lands near 14.
       #
-      # If a legitimate run ever exceeds this, RAISE the bound and record the new
-      # measurement. Do not delete it — that restores the 45-minute silent failure.
+      # READ 20 AS "reasonable on current evidence", NOT as "proven safe". Twelve
+      # samples from a two-day window say nothing about the long tail, and apt duration
+      # here is mirror-dominated. If a legitimate run ever exceeds it, RAISE the bound
+      # and record the new measurement. Do not delete it — that restores the 45-minute
+      # silent failure this exists to prevent.
       - name: Install Playwright system dependencies
         if: steps.playwright-cache.outputs.cache-hit == 'true'
         timeout-minutes: 20
