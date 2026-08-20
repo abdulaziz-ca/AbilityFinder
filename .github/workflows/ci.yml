@@ -90,8 +90,24 @@ jobs:
       # On a cache hit the binaries are restored but the apt packages are NOT — they
       # live outside ~/.cache/ms-playwright. WebKit in particular will not launch
       # without them, so install just the system dependencies.
+      # BOUNDED because an unbounded apt can consume the whole job. On 2026-08-19 this
+      # step stalled after fetching the InRelease files and emitted nothing for 44
+      # minutes, until the job-level timeout-minutes: 45 cancelled the job. A cancelled
+      # test job blocks the deploy exactly like a red one (needs: test), so a healthy
+      # commit did not release, and the failure showed up as a bare cancellation with no
+      # error naming a cause.
+      #
+      # WHY 20 AND NOT LESS: this step is apt-only, but it is NOT fast. Measured across
+      # the 12 runs of 2026-08-18/19, all successful: 0m25s, 0m39s, 0m40s, 0m57s, 1m15s,
+      # 2m14s, 4m48s, 6m17s, 7m01s, 7m23s, 9m00s, 13m11s. 20 minutes sits ~52% above the
+      # slowest success, so it should not fire on a legitimate run, and it still leaves
+      # 25 of the job's 45 minutes for a suite that normally lands near 14.
+      #
+      # If a legitimate run ever exceeds this, RAISE the bound and record the new
+      # measurement. Do not delete it — that restores the 45-minute silent failure.
       - name: Install Playwright system dependencies
         if: steps.playwright-cache.outputs.cache-hit == 'true'
+        timeout-minutes: 20
         run: npx playwright install-deps chromium firefox webkit
 
       # Generated files must reproduce from their scripts. If a generated artifact
