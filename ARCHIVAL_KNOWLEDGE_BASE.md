@@ -215,6 +215,21 @@ Wrangler tests do not show the injection.
 injection in the Cloudflare dashboard if desired, and separate blocked edge-script
 warnings from real application errors during smoke tests.
 
+### A cached dependency step still stalled the whole CI job
+
+Caching the Playwright browsers fixed a 2026-07-28 job cancellation caused by a slow
+browser download. On 2026-08-19 the job was cancelled again at its 45-minute cap — with
+the cache **working**. The two install steps are mutually exclusive, so a cache *hit* is
+exactly what routes execution into the apt-only `install-deps` step, which stalled and
+emitted nothing for 44 minutes. A cancelled test job blocks the deploy identically to a
+red one through `needs: test`, so a healthy commit did not release.
+
+**Decision:** bound long-running install steps at the *step* level, not only the job.
+More generally: when a mitigation removes a failure from one branch of a conditional,
+check whether it has moved that failure onto the other branch — especially when the
+other branch is the common path. See `REMAINING-WORK.md` for the measured durations and
+for why the cache-miss path is deliberately left unbounded.
+
 ### Two link-monitor hosts are permanently inconclusive
 
 A full manual sweep of all 175 catalogue links on 2026-07-30 returned **zero broken links**.
@@ -231,6 +246,36 @@ Three URLs did not return 200, and none of them was a catalogue problem:
 The useful rule: before treating a monitor failure as a catalogue defect, check whether the
 host's root also fails, and check whether the body is a bot-protection interstitial rather than
 the site's own 404.
+
+## Diagnosis failures
+
+### A reproduction the system cannot reach is not evidence
+
+Investigating the A11Y-03 firefox flake (#198) on 2026-08-20, a probe reproduced the exact
+symptom — Tab landing on `BODY` instead of `#skipLink`, 16 of 20 runs — by navigating with
+`waitUntil: "commit"`. A root cause was written up and committed on that basis. It was
+**wrong**: the test uses `page.goto()`, which defaults to waiting for `load`, so the
+document is always ready by then, and `#skipLink` is static markup rather than rendered.
+The probe had created a state the test can never enter, and had changed two variables at
+once. The correct experiment — holding navigation at the real default and varying only the
+focus setup — showed 40/40 either way, idle and under load. Review caught this, not the
+author.
+
+**Decision:** when an experiment reproduces a symptom, before believing it, ask whether the
+condition it created is one the system can actually reach, and whether only one variable
+moved. Retract a published root cause loudly rather than quietly — a plausible wrong
+explanation is worse than an open question, because it stops the next person looking.
+
+### An unmeasured "normally" nearly broke half the builds
+
+#199 was specified with the claim that a CI step "normally takes well under one minute" and
+a proposed timeout of "a few minutes". Neither figure had been measured. The step's real
+range across 12 successful runs was 25s to 13m11s, so implementing the ticket as written
+would have failed roughly half of all legitimate builds.
+
+**Decision:** a threshold that gates a build is a measurement, not an estimate. Take the
+distribution first, record it next to the number, and state the sample size so the next
+reader knows what the number does and does not prove.
 
 ## Product decisions not to re-litigate casually
 

@@ -130,6 +130,32 @@ mirror. The browsers are now cached at `~/.cache/ms-playwright`, keyed on the re
 `@playwright/test` version so a bump invalidates it automatically, and the cap is **45 minutes**.
 Normal runs land near 14 minutes.
 
+**That fix moved the exposure rather than removing it — proven on 2026-08-19 (#199).** Run
+`32234329014` was cancelled at the 45-minute cap with `npx playwright install-deps` stalled inside
+`apt`: it fetched the InRelease files and then emitted **nothing for 44 minutes**. The suite never
+ran, and the deploy was blocked on a comment-only commit. The cache had **worked**. That is the
+point: the two install steps are mutually exclusive, and a cache **hit** is precisely what routes
+execution into the apt-only step, i.e. onto the common path. The apt packages live outside
+`~/.cache/ms-playwright` and WebKit will not launch without them, so that step cannot be dropped.
+It now carries `timeout-minutes: 20`, so a stall fails in 20 minutes naming the step instead of
+consuming the budget silently.
+
+**Why 20 and not less, and do not "tidy" it downwards:** that step is apt-only but it is *not* fast.
+Measured across the 12 runs of 2026-08-18/19, every one successful: 0m25s, 0m39s, 0m40s, 0m57s,
+1m15s, 2m14s, 4m48s, 6m17s, 7m01s, 7m23s, 9m00s, 13m11s. A "few minutes" bound — which the ticket
+originally proposed on an unmeasured assumption — would have failed about half of all legitimate
+builds. Read 20 as *reasonable on current evidence*, not *proven safe*; if a real run exceeds it,
+**raise** the bound and record the measurement rather than deleting it.
+
+**The cache-MISS path is still unbounded, deliberately, and may already be over budget.** It did not
+execute once in the 40 most recent runs — it only runs on a `@playwright/test` bump or an eviction —
+so there is nothing to set a bound from, and a guess would fire on exactly that rare, important run.
+But note the arithmetic before assuming a cancelled cache-miss run means a bad commit: the recorded
+16m37s browser download plus the observed 13m11s apt half is 29m48s, plus the ~13-minute engine
+matrix is 42m48s, leaving **2m12s** for checkout, Node setup and `npm ci`, which exceed that. If you
+ever get a cache-miss run, **capture the step durations** — they are the measurement needed to bound
+it.
+
 If you ever touch those cache conditions: `cache-hit` is a **string**, so they must compare against
 a quoted `'true'`. GitHub coerces mixed-type comparisons to numbers — `"true"` → NaN, `true` → 1 —
 so an unquoted `== true` is *always false* and `!= true` *always true*. Written unquoted, the cache
