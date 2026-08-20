@@ -266,6 +266,30 @@ condition it created is one the system can actually reach, and whether only one 
 moved. Retract a published root cause loudly rather than quietly — a plausible wrong
 explanation is worse than an open question, because it stops the next person looking.
 
+### Instrumentation that breaks what it measures
+
+Investigating whether `page.goto()` can return before `public/app.js` has attached its
+listeners (#200), a probe wrapped `indexedDB.open` and deferred its callbacks with
+`setTimeout` to simulate a slow IndexedDB. It appeared to reproduce the failure 15 times
+out of 15. It was **invalid**: an IndexedDB callback deferred out of its transaction
+invalidates that transaction, so the probe did not *slow* `loadState()`, it *broke* it.
+The measurement showed only that breaking IndexedDB breaks the app.
+
+**The tell was that the fix failed too.** The corrected variant, which should have
+succeeded, hung for the full 30s timeout. A control that fails in a way the hypothesis
+cannot explain means the harness is wrong, not the subject.
+
+The honest measurement needed no tampering at all: `history.replaceState()` runs after
+`wireAccessibility()` in that handler, so `history.state === null` at the moment `goto`
+resolves proves the listeners are not yet attached. Cold context, 40 loads per engine:
+firefox 0/40, chromium 2/40, webkit **17/40**. The window is ~30ms — enough for a test
+driver, far too short for a human, which is why this is test integrity and not an
+accessibility defect. See #200.
+
+**Decision:** before believing a probe, ask what it actually changed. Prefer a passive
+observation of existing state over simulating a condition, and treat an unexplained
+control failure as evidence against the instrument.
+
 ### An unmeasured "normally" nearly broke half the builds
 
 #199 was specified with the claim that a CI step "normally takes well under one minute" and
