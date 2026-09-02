@@ -12,12 +12,21 @@
 
 ## 1. Methodology
 
-Swept all **79 benefit records** in `public/data.js` for list/table/step signals:
-enumerators ("First, Second, Third, Fourth", "all N requirements"), coordinated
-conditions ("either…or", "both…and", comma/semicolon series), numeric tiers
-(income bands, percentages, `$NN,000` thresholds), and sequential instructions.
-Cross-checked how each carrier field renders in `renderGuideBody()`
-(`public/app.js`; the function's exact line shifts between branches).
+> **Correction (2026-09-02).** An earlier version of this audit reported 79
+> benefit records / 12 requiresNote, derived by `grep` over `public/data.js`.
+> That undercounted badly — `grep` missed records whose fields don't sit on a
+> matching line (notably the entire B.C. block). Re-run **programmatically** by
+> evaluating `public/data.js` in a `vm` context (the same way the test suite
+> loads it), the real figures are **102 benefit records** and **61 with
+> `requiresNote`**. All numbers below are the corrected, node-evaluated counts.
+
+Evaluated all **102 benefit records** in `public/data.js` for list/table/step
+signals: enumerators ("First, Second, Third, Fourth", "all N requirements"),
+coordinated conditions ("either…or", "both…and", comma/semicolon series),
+multiple sentences/clauses joined by and/or, numeric tiers (income bands,
+percentages, `$NN,000` thresholds), and sequential instructions. Cross-checked
+how each carrier field renders in `renderGuideBody()` (`public/app.js`; the
+function's exact line shifts between branches).
 
 ## 2. How each content field renders TODAY (capability baseline)
 
@@ -41,8 +50,11 @@ ticket asked us to find *before* mass-editing.
 
 ## 3. Findings — eligibility prose that is semantically a list
 
-12 records use `requiresNote`; **~10 are multi-condition ALL/ANY lists** rendered
-as one paragraph. These are the primary conversion targets:
+**61 records use `requiresNote`; ~55 are multi-condition ALL/ANY lists** rendered
+as one paragraph (node-evaluated, up from the earlier grep undercount of ~10).
+The scope is therefore **site-wide across federal, Alberta, and the full B.C.
+catalogue** — not a handful of pages. A representative sample of the primary
+conversion targets:
 
 | Benefit id | Shape | Lead-in should be |
 |---|---|---|
@@ -66,22 +78,27 @@ lead-in on every converted list — not left implicit.
 
 ## 4. Findings — amounts/tiers that are semantically a table
 
-- **17** `amount` strings carry multiple tiers/ranges (percentages, `$NN,000`
-  bands, dashes). **CDCP** is the clearest table: three income bands × (plan
-  covers / you pay).
+- **~39** `amount` strings carry multiple tiers/ranges (percentages, `$NN,000`
+  bands, dashes) — again larger than the earlier grep estimate. **CDCP** is the
+  clearest table: three income bands × (plan covers / you pay).
 - **18** municipal `amount` strings are "transit + recreation" combos
   (e.g. `medicinehat-fair-entry`: "75% off transit (up to $630/yr) + $200/yr
   recreation & arts"). These are 2-part facts better shown as a small list or
   mini-table than a run-on string.
-- Overlap makes the realistic **table/mini-table candidate set ≈ 20 records**.
+- Overlap with the tiered set above keeps the realistic **table/mini-table
+  candidate set in the low-to-mid tens**.
 
-## 5. Scale estimate
+## 5. Scale estimate (corrected)
 
-Of 79 benefits: **~10 eligibility-list conversions + ~20 amount table/mini-table
-conversions**, some overlapping → **≈ 25–30 benefit records** would be touched by
-the full site-wide fix. The egregious dense-enumeration pattern
-("First…Second…Third…Fourth") is **rare — CDCP is the only true wall**; most cases
-are 2–4 coordinated conditions or a tier string.
+Of **102 benefits**: **~55 eligibility-list conversions + ~39 amount
+table/mini-table conversions**, with overlap → on the order of **60–70 benefit
+records** touched by the full site-wide fix. This is materially larger than the
+first grep-based estimate (~25–30) and reinforces the core conclusion: at this
+volume the conversions must be driven by a **structured schema**, not hand-edited
+prose — a per-record manual rewrite of 60+ records is both error-prone and
+exactly where verbatim-accuracy mistakes creep in. The dense
+"First…Second…Third…Fourth" wall is still rare (CDCP is the clearest), but
+multi-condition eligibility prose is the norm, not the exception.
 
 ## 6. Schema recommendation (the change that must land before mass edits)
 
