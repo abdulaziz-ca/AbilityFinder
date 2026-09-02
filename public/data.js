@@ -3039,6 +3039,14 @@ const BENEFITS = [
     "amount": "Every trip is a 1-Zone fare — $2.85 adult / $2.30 concession with Compass stored value, $3.50 adult / $2.30 concession in cash",
     "summary": "Door-to-door shared-ride transit across Metro Vancouver for people who cannot use conventional public transit for all trips without assistance. Any distance, always a 1-Zone fare.",
     "requires": ["bc", "metroVancouver", "transitBarrier"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You live in Metro Vancouver.",
+        "You have a physical, sensory or cognitive disability that means you cannot use conventional public transit for all trips without assistance.",
+      ],
+      note: "TransLink states there is no age or income test.",
+    },
     "requiresNote": "You live in Metro Vancouver and have a physical, sensory or cognitive disability that means you cannot use conventional public transit for all trips without assistance. TransLink states no age or income test.",
     "note": "This is a Metro Vancouver service. Outside Metro Vancouver, look for BC Transit handyDART instead. Fares shown are current as of July 1, 2026 — TransLink usually changes fares on July 1.",
     "applyText": "Download the HandyDART & HandyCard application",
@@ -3105,6 +3113,13 @@ const BENEFITS = [
     "amount": "Registration is free; attendants ride free",
     "summary": "Door-to-door shared-ride transit in BC Transit communities outside Metro Vancouver, for people whose disability prevents them from using fixed-route transit without assistance.",
     "requires": ["bc", "outsideMetroVancouver", "transitBarrier"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You live in a BC Transit community that has handyDART service.",
+        "You have a permanent or temporary disability that prevents you from using fixed-route transit without assistance.",
+      ],
+    },
     "requiresNote": "You live in a BC Transit community that has handyDART service, and you have a permanent or temporary disability that prevents you from using fixed-route transit without assistance.",
     "note": "Attendants ride free and must board and exit at the same stop as you. Each region has its own handyDART page, contact and booking office — start from your community's page on bctransit.com.",
     "applyText": "Register with your region's handyDART office",
@@ -3127,6 +3142,14 @@ const BENEFITS = [
     "amount": "Half-price taxi coupons — in the Victoria region, $40 buys an $80 package, one package per month",
     "summary": "Half-price taxi coupons for permanently registered handyDART riders, for one-off trips when handyDART does not work.",
     "requires": ["bc", "outsideMetroVancouver", "age12plus", "transitBarrier", "bcTransitHandyDart"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You are a permanently registered handyDART customer.",
+        "You are 12 years of age or older.",
+        "You have a handyPASS.",
+      ],
+    },
     "requiresNote": "You are a permanently registered handyDART customer, 12 years of age or older, and you have a handyPASS.",
     "note": "Coupons come in $1, $2 and $5 values and taxi drivers do not give change for them — pay any remainder in cash. Coupons cannot be transferred or used as a tip. The $40 for $80 package and the one-per-month limit are confirmed for the Victoria region; other BC Transit regions run their own versions, so check your region's page.",
     "applyText": "Check your region's Taxi Saver page",
@@ -3839,6 +3862,13 @@ const BENEFITS = [
     "amount": "Up to $500 per calendar year for a registered vehicle, plus a 25% discount off ICBC basic Autoplan insurance",
     "summary": "Refunds provincial fuel tax on a vehicle you own, lease or have an ownership interest in — and registering also unlocks a 25% discount on your basic ICBC insurance.",
     "requires": ["bc", "vehicleDisability", "vehicleOwner", "bcFuelTaxRoute"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You own or lease a vehicle, or have an ownership interest in a vehicle.",
+        "You confirm your disability one of these ways: a B.C. Disability Assistance Certification; a letter from BCANDS for Social Assistance for Persons with Disability; a Veterans' Affairs letter confirming a 100% disability pension; a CNIB letter confirming permanent sight impairment; or medical certification of loss of a limb, wheelchair dependence, loss of function in a lower limb, a movement impairment that makes public transit hazardous, a mental disability that makes public transit hazardous, or sight impairment that prevents you from holding a driver's licence.",
+      ],
+    },
     "requiresNote": "You must own or lease a vehicle, or have an ownership interest in a vehicle, and confirm your disability one of these ways: a B.C. Disability Assistance Certification; a letter from BCANDS for Social Assistance for Persons with Disability; a Veterans' Affairs letter confirming a 100% disability pension; a CNIB letter confirming permanent sight impairment; or medical certification of loss of a limb, wheelchair dependence, loss of function in a lower limb, a movement impairment that makes public transit hazardous, a mental disability that makes public transit hazardous, or sight impairment that prevents you from holding a driver's licence.",
     "note": "Register FIRST — you can apply for a refund only after your registration is confirmed. You register with the Ministry of Finance online or by downloadable form, then receive a registration confirmation letter, then claim refunds.",
     "applyText": "Register for the fuel tax refund",
@@ -3882,6 +3912,13 @@ const BENEFITS = [
     "amount": "A low-interest provincial loan that pays your annual property taxes; interest is 2% above the prime rate, plus a $60 application fee and a $10 annual renewal fee",
     "summary": "Instead of paying your property taxes each year, the province pays them and registers a loan against your home. You repay when you sell or transfer it.",
     "requires": ["bc", "age18plus", "dailyLivingLimit", "bcPwdStatus", "homeowner", "citizenPR", "bcDefermentProperty"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You are designated as a person with disabilities under the Employment and Assistance for Persons with Disabilities Act — a severe mental or physical impairment likely to continue at least two years that directly and significantly restricts your ability to perform daily living activities and requires an assistive device, supervision, or the services of an assistance animal.",
+        "You have and maintain a minimum equity of 25 percent of the property's assessed value.",
+      ],
+    },
     "requiresNote": "You must be designated as a person with disabilities under the Employment and Assistance for Persons with Disabilities Act — a severe mental or physical impairment likely to continue at least two years that directly and significantly restricts your ability to perform daily living activities and requires an assistive device, supervision, or the services of an assistance animal. You must also have and maintain a minimum equity of 25 percent of the property's assessed value.",
     "note": "The 25 percent equity rule means your charges plus deferred taxes cannot exceed 75 percent of the BC Assessment value of your home. Interest compounds monthly for taxes deferred for the 2026 and later tax years. You are not charged interest on the application or renewal fees.",
     "applyText": "Check eligibility and apply",
@@ -3903,6 +3940,13 @@ const BENEFITS = [
     "amount": "Up to $75 for yourself and $75 for a cohabiting spouse or common-law partner",
     "summary": "A small refundable credit you claim on your tax return. It is not a disability program, but it is easy money for people on a low income who file.",
     "requires": ["bc", "age19plus", "lowIncome"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You were a B.C. resident on December 31.",
+        "You were 19 or older, or had a spouse or common-law partner, or were a parent.",
+      ],
+    },
     "requiresNote": "You were a B.C. resident on December 31 and were either 19 or older, or had a spouse or common-law partner, or were a parent.",
     "note": "The credit is reduced by 2% of your net income over $15,000 if you are single, or 2% of family net income over $18,000 for couples, so it phases out at a low income. It is refundable to the extent it exceeds the income tax you owe, which means you can get it even if you owe no tax.",
     "applyText": "See how to claim it",
