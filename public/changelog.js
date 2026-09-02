@@ -1,5 +1,6 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
+  { date: "2026-09-02", text: "Employment supports and four municipal recreation-access programs (Vancouver, Surrey, Burnaby, Richmond) now list their eligibility as a checklist. The requirements are unchanged." },
   { date: "2026-09-02", text: "Six more British Columbia benefit guides — HandyDART and taxi programs, the fuel tax refund, property tax deferment, and the sales tax credit — now list their eligibility as a checklist. The requirements are unchanged." },
   { date: "2026-09-02", text: "Six British Columbia student-aid disability grants and bursaries now list their eligibility as a checklist instead of a paragraph. The requirements are unchanged." },
   { date: "2026-09-02", text: "Three more British Columbia benefit guides — MSP Supplementary Benefits, the At Home Program medical benefits, and the Child and Youth Disability Benefit — now list their eligibility as a checklist instead of a paragraph. The requirements are unchanged." },

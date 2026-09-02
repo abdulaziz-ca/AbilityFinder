@@ -3797,6 +3797,14 @@ const BENEFITS = [
     "amount": "Paid BC Public Service internship of up to 24 months",
     "summary": "A paid internship program in the BC Public Service for recent post-secondary graduates who self-identify as having a disability — any physical, sensory, neurological, visible or invisible disability.",
     "requires": ["bc", "age18plus", "employmentActive", "disabilityDoc", "recentGraduate"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You are a recent post-secondary graduate — graduation within 3 years of the program start date.",
+        "You self-identify as having a disability.",
+      ],
+      note: "You do not have to disclose your specific diagnosis.",
+    },
     "requiresNote": "You must be a recent post-secondary graduate (graduation within 3 years of the program start date) who self-identifies as having a disability. You do not have to disclose your specific diagnosis.",
     "note": "Intake runs annually. Applications for the 2026/27 cohort are closed — the next intake for the 2027/28 cohort opens in spring 2027. Graduates keep access to internal BC Public Service job postings for 24 months after completing the program.",
     "applyText": "Check intake dates and apply",
@@ -3818,6 +3826,16 @@ const BENEFITS = [
     "amount": "Equipment and supports funded fully or partially, based on your financial circumstances",
     "summary": "Funding for assistive technology you need to get or keep a job: devices and equipment, ergonomic furniture, communication and hearing devices, ASL interpreting and captioning, workplace modifications — even vehicle modifications for getting to work.",
     "requires": ["bc", "age16plus", "employmentActive", "disabilityDoc"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You are 16 or older.",
+        "You are a B.C. resident legally eligible to work.",
+        "You are not a full-time student, unless you are in your final year.",
+        "You have a work-related barrier due to a disability or functional limitation.",
+      ],
+      note: "Volunteering toward an employment goal and self-employment count.",
+    },
     "requiresNote": "You must be 16 or older, a B.C. resident legally eligible to work, not a full-time student (unless in your final year), and have a work-related barrier due to a disability or functional limitation. Volunteering toward an employment goal and self-employment count.",
     "note": "Covers work-related needs only — not medical treatments or daily-living items. Delivered under contract to the province with regional offices in Burnaby, Kelowna, Nanaimo and Victoria.",
     "applyText": "Apply online",
@@ -3969,6 +3987,13 @@ const BENEFITS = [
     "amount": "Free admission to pools and rinks, 50% off fitness centres and lessons, and a pass now valid for 3 years",
     "summary": "Vancouver's low-income recreation pass. Swimming and skating admission are free, and most other Park Board recreation is half price.",
     "requires": ["bc", "vancouver", "lowIncome"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You are a resident of the City of Vancouver.",
+        "You qualify one of these ways: you are a family with a child up to 17 who qualifies for the Child Disability Benefit; or you, your spouse or partner, or a dependent aged 18 or older qualifies for the Disability Tax Credit; or you receive income assistance or another listed provincial or federal subsidy; or you are a client of a non-profit or government agency that can refer you; or you are an asylum seeker or temporary foreign worker; or you are a low-income resident who does not receive income assistance and cannot be referred; or you are receiving Employment Insurance benefits in 2026/2027.",
+      ],
+    },
     "requiresNote": "You must be a resident of the City of Vancouver. You qualify if you are a family with a child up to 17 who qualifies for the Child Disability Benefit, or if you, your spouse or partner, or a dependent aged 18 or older qualifies for the Disability Tax Credit. You can also qualify if you receive income assistance or another listed provincial or federal subsidy; are a client of a non-profit or government agency that can refer you; are an asylum seeker or temporary foreign worker; are a low-income resident who does not receive income assistance and cannot be referred; or are receiving Employment Insurance benefits in 2026/2027.",
     "note": "Starting January 1, 2026, Leisure Access passes are valid for 3 years — a pass issued in 2026 does not expire until 2029. Note that UBC and the University Endowment Lands are not in the City of Vancouver.",
     "applyText": "Apply for a Leisure Access pass",
@@ -3990,6 +4015,13 @@ const BENEFITS = [
     "amount": "Free 1-year pass for ages 0-18 and 60+, or 75% off for adults 19-59, plus 75% off registered courses",
     "summary": "Surrey's recreation subsidy. Children, youth and seniors get a free year-long pass to every City recreation facility; adults get three quarters off.",
     "requires": ["bc", "surrey", "lowIncome"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You are a Surrey resident.",
+        "You qualify one of these ways: applying with income tax documents against the family size and income table; as a client of the Ministry of Social Development; with a Disability Tax Credit; as a senior receiving the Guaranteed Income Supplement; as a client of the Ministry of Children and Family Development; or as a refugee.",
+      ],
+    },
     "requiresNote": "You must be a Surrey resident and qualify one of these ways: applying with income tax documents against the family size and income table; as a client of the Ministry of Social Development; with a Disability Tax Credit; as a senior receiving the Guaranteed Income Supplement; as a client of the Ministry of Children and Family Development; or as a refugee.",
     "note": "Enrolment is valid for one year. If you apply with income tax documents, the family net income maximum (line 23600 of your Notice of Assessment) is $25,588 for a family of 1, $31,140 for 2, $38,777 for 3, $48,377 for 4, $55,089 for 5, $61,095 for 6, $67,099 for 7, and $6,006 more for each additional person.",
     "applyText": "Apply for the Leisure Access Program",
@@ -4012,6 +4044,13 @@ const BENEFITS = [
     "amount": "$250 credit per youth, adult or senior, $500 per child, plus an annual Be Active Pass for each family member",
     "summary": "Burnaby gives every eligible family member a recreation credit AND a free annual Be Active Pass — the pass is on top of the credit, not paid for out of it.",
     "requires": ["bc", "burnaby", "lowIncome"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You live in Burnaby.",
+        "You meet one of these: you receive federal or provincial government income assistance; you meet the income criteria; you are a child with a disability; you are a government or privately sponsored refugee; or you have an approved agency referral.",
+      ],
+    },
     "requiresNote": "You must live in Burnaby and meet one of these: you receive federal or provincial government income assistance; you meet the income criteria; you are a child with a disability; you are a government or privately sponsored refugee; or you have an approved agency referral.",
     "note": "You can apply once a year and the credit is valid for a year. Unused credit is removed when it expires and has no cash value. The FAIR Play Program replaced the older Recreation Credit Program on March 1, 2024.",
     "applyText": "Apply for FAIR Play",
@@ -4033,6 +4072,13 @@ const BENEFITS = [
     "amount": "Unlimited free drop-in admission plus 90% off registered programs, up to $300 a year for children and youth or $100 a year for adults and seniors",
     "summary": "Richmond's recreation subsidy for residents in financial hardship — free drop-ins with no cap, and nine tenths off most registered programs.",
     "requires": ["bc", "richmondbc", "lowIncome"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You live in Richmond.",
+        "You are in financial hardship — the City defines this as having difficulty paying for basic living costs such as food, clothing and housing, without savings or other financial resources.",
+      ],
+    },
     "requiresNote": "You must live in Richmond and be in financial hardship, which the City defines as having difficulty paying for basic living costs such as food, clothing and housing, without savings or other financial resources.",
     "note": "The 90% discount on registered programs is capped at $300 per year in subsidy for children and youth 18 and under, and $100 per year for adults and seniors 19 and over. Free drop-in admission is not capped.",
     "applyText": "Apply for the Recreation Fee Subsidy",
