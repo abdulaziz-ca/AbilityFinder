@@ -3474,6 +3474,14 @@ const BENEFITS = [
     "amount": "$2,800 per program year",
     "summary": "A non-repayable grant of $2,800 per program year (August 1 to July 31) for post-secondary students with a permanent, or persistent or prolonged, disability. Administered in B.C. through your StudentAid BC application.",
     "requires": ["bc", "student", "disabilityDoc"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You qualify for federal student aid.",
+        "You are enrolled full-time or part-time at a designated post-secondary institution.",
+        "You have a permanent disability, or a persistent or prolonged disability (lasting at least 12 months) verified by a qualified medical assessor.",
+      ],
+    },
     "requiresNote": "You must qualify for federal student aid, be enrolled full-time or part-time at a designated post-secondary institution, and have a permanent disability or a persistent or prolonged disability (lasting at least 12 months) verified by a qualified medical assessor.",
     "note": "The current amount reflects a temporary 40% federal increase that runs until July 31, 2027. Once StudentAid BC verifies your disability status you are automatically considered for the province's other disability grants too. Note: StudentAid BC changed its process in June 2026 — new applicants use the online Disability status application instead of the old Appendix 8 form. This amount is a temporary increase in place until July 31, 2027 — check the current figure before you count on it.",
     "applyText": "Apply through StudentAid BC",
@@ -3497,6 +3505,15 @@ const BENEFITS = [
     "amount": "Up to $20,000 per loan year",
     "summary": "Up to $20,000 per year for disability-related education services and equipment — notetakers, tutors, interpreters and technical aids — for post-secondary students with disabilities, delivered through StudentAid BC.",
     "requires": ["bc", "student", "disabilityDoc"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You qualify for a federal student loan.",
+        "You study full-time or part-time at a designated institution.",
+        "You have a verified permanent or persistent/prolonged disability.",
+        "You have exceptional education-related costs caused by your disability.",
+      ],
+    },
     "requiresNote": "You must qualify for a federal student loan, study full-time or part-time at a designated institution, have a verified permanent or persistent/prolonged disability, and have exceptional education-related costs caused by your disability.",
     "note": "This grant is on top of the $2,800 Canada Student Grant for Students with Disabilities. If you use up the full $20,000 and still have costs, the B.C. Assistance Program for Students with Disabilities can add up to $10,000-$12,000 more.",
     "applyText": "Apply through StudentAid BC",
@@ -3520,6 +3537,14 @@ const BENEFITS = [
     "amount": "Up to $1,560 per program year ($30 per week of study)",
     "summary": "Non-repayable grant money that replaces B.C. student loans for full-time students with a disability, so you borrow less.",
     "requires": ["bc", "student", "disabilityDoc"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You are a full-time student at a B.C. public post-secondary school.",
+        "You qualify for federal and provincial student financial aid.",
+        "You have a permanent disability, or a persistent or prolonged disability as defined by the Canada Student Financial Assistance Program.",
+      ],
+    },
     "requiresNote": "You are a full-time student at a B.C. public post-secondary school, you qualify for federal and provincial student financial aid, and you have a permanent disability, or a persistent or prolonged disability as defined by the Canada Student Financial Assistance Program.",
     "note": "B.C. public post-secondary schools only. It replaces B.C. student loan funding with grant funding, so it lowers what you have to pay back.",
     "applyText": "See how to apply for disability funding",
@@ -3566,6 +3591,14 @@ const BENEFITS = [
     "amount": "Up to $10,000, or up to $12,000 if an attendant is required at school",
     "summary": "Funding for exceptional education-related services and adaptive equipment — the top-up you turn to once the federal services and equipment grant runs out.",
     "requires": ["bc", "student", "disabilityDoc"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You are enrolled at a designated private or public post-secondary institution in B.C.",
+        "You have a permanent disability, or a persistent or prolonged disability.",
+      ],
+      note: "It also covers students in developmental programs or courses.",
+    },
     "requiresNote": "You are enrolled at a designated private or public post-secondary institution in B.C. and have a permanent disability, or a persistent or prolonged disability. It also covers students in developmental programs or courses.",
     "note": "You can only receive this grant once you have used up all available funds through the Canada Student Grant for Services and Equipment – Students with Disabilities. Apply for that federal grant first. The page does not say whether these amounts are per year or a lifetime limit.",
     "applyText": "See how to apply for disability funding",
@@ -3589,6 +3622,14 @@ const BENEFITS = [
     "amount": "Up to $3,500",
     "summary": "Covers the up-front cost of a learning disability assessment — the assessment that unlocks disability funding and academic accommodations in the first place.",
     "requires": ["bc", "student", "disabilityDoc", "learningDisability"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You qualify for student funding through StudentAid BC.",
+        "You are enrolled full-time or part-time in post-secondary level courses at a designated public post-secondary institution in B.C.",
+        "The accessibility services office at your school has recommended that you have a learning disability assessment.",
+      ],
+    },
     "requiresNote": "You qualify for student funding through StudentAid BC, you are enrolled full-time or part-time in post-secondary level courses at a designated public post-secondary institution in B.C., and the accessibility services office at your school has recommended that you have a learning disability assessment.",
     "note": "The recommendation from your school's accessibility services office is part of the eligibility, so start there — contact the accessibility services office at the school you plan to attend.",
     "applyText": "Contact your school's accessibility services office",
@@ -3612,6 +3653,17 @@ const BENEFITS = [
     "amount": "Up to $30,000 per program year, based on financial need assessed by StudentAid BC",
     "summary": "Helps deaf and hard of hearing students with the extra cost of attending a specialized school that teaches in American Sign Language. It applies only to Gallaudet University in Washington, D.C. and the National Technical Institute for the Deaf in Rochester, New York — both in the United States.",
     "requires": ["bc", "student", "disabilityDoc", "hearingDisability"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You are deaf or hard of hearing.",
+        "Your disability status is verified by StudentAid BC.",
+        "You demonstrate financial need.",
+        "You are enrolled in a full-time course load of 60% or more.",
+        "You are attending an eligible school.",
+      ],
+      note: "The only eligible schools are Gallaudet University in Washington, D.C. and the National Technical Institute for the Deaf in Rochester, New York.",
+    },
     "requiresNote": "You are deaf or hard of hearing, your disability status is verified by StudentAid BC, you demonstrate financial need, you are enrolled in a full-time course load of 60% or more, and you are attending an eligible school. The only eligible schools are Gallaudet University in Washington, D.C. and the National Technical Institute for the Deaf in Rochester, New York.",
     "note": "There is no separate application. If StudentAid BC has verified your disability status and you are attending one of the two eligible schools, they assess your eligibility automatically.",
     "applyText": "Learn more at StudentAid BC",
