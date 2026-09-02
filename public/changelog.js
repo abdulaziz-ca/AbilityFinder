@@ -1,5 +1,6 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
+  { date: "2026-09-02", text: "Five more British Columbia benefit guides now list their eligibility as a checklist instead of a paragraph, including which programs accept any one of several routes. The requirements are unchanged." },
   { date: "2026-09-02", text: "Four more Alberta benefit guides — Disability Related Employment Supports, the Client and Family Support continuing-care benefit, the service dog ID card, and Special Needs Housing — now list their eligibility as a checklist instead of a paragraph. The requirements are unchanged." },
   { date: "2026-09-02", text: "Three more benefit guides — the Excise Gasoline Tax Refund, the Home Accessibility Tax Credit, and the CPP children's benefit — now list their eligibility requirements as a checklist instead of a paragraph. The requirements and wording are unchanged." },
   { date: "2026-09-02", text: "The Canadian Dental Care Plan guide now lists its four eligibility requirements as a checklist under a clear \"You must meet all of these\" heading, instead of a single dense paragraph, so you can scan whether you qualify. The requirements, wording of the exceptions, and the T4/T4A coverage-code note are unchanged." },

@@ -2815,6 +2815,14 @@ const BENEFITS = [
     "amount": "No direct payment on its own — it is the designation that unlocks disability assistance, the transportation supplement and the ministry health supplements.",
     "summary": "BC's provincial disability status for adults 18 and over with a severe impairment expected to last at least two years. It is the credential behind most other BC disability programs.",
     "requires": ["bc", "age18plus", "dailyLivingLimit", "bcPwdMedical", "bcPwdDesignationFinancial"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You are 18 or older.",
+        "You are financially eligible, or likely to be within six months.",
+        "You have a severe mental or physical impairment likely to continue for at least two years that significantly restricts daily living and requires an assistive device, significant help or supervision, an assistance animal, or similar support.",
+      ],
+    },
     "requiresNote": "You are 18 or older; are financially eligible or likely to be within six months; and have a severe mental or physical impairment likely to continue for at least two years that significantly restricts daily living and requires an assistive device, significant help or supervision, an assistance animal, or similar support.",
     "note": "The test is functional, not diagnostic. The impairment must directly and significantly restrict your ability to perform daily living activities, AND you must need an assistive device, the significant help or supervision of another person, or the services of an assistance animal.",
     "applyText": "Start on My Self Serve",
@@ -2961,6 +2969,14 @@ const BENEFITS = [
     "amount": "Up to $2,000 in basic dental every two years per child, prescription glasses once a year, plus hearing instruments",
     "summary": "Free basic dental care, glasses and hearing help for children under 19 in low-income working families that are not on income, disability or hardship assistance.",
     "requires": ["bc", "under19", "bcMsp", "notBcAssistance", "bcHealthyKidsIncome"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "Your family qualifies for MSP supplementary benefits — an adjusted net income of less than $42,000.",
+        "You are not receiving income assistance, disability assistance or hardship assistance.",
+      ],
+      note: "Children in families on assistance get equivalent dental and optical coverage through the ministry supplements instead.",
+    },
     "requiresNote": "Your family qualifies for MSP supplementary benefits — that means an adjusted net income of less than $42,000 — and you are NOT receiving income assistance, disability assistance or hardship assistance. Children in families on assistance get equivalent dental and optical coverage through the ministry supplements instead.",
     "note": "Coverage stays active until the end of the month of your child's 19th birthday. If your child reaches the $2,000 dental limit, emergency treatment is still available, but only for the immediate relief of pain.",
     "applyText": "Apply for health & drug coverage",
@@ -2983,6 +2999,16 @@ const BENEFITS = [
     "amount": "$0.36 per kilometre by private vehicle, plus bus, ferry, air or train fares, accommodation for overnight travel, and an escort where required",
     "summary": "Pays your travel costs to get to essential medical treatment, using the least expensive appropriate way of getting there.",
     "requires": ["bc", "bcPwdStatus", "medicalTravelNeed"],
+    eligibility: {
+      mode: "any",
+      items: [
+        "You are on disability assistance.",
+        "You are on income assistance in the Persons with Persistent Multiple Barriers category.",
+        "You are in a special care facility.",
+        "You are on Medical Services Only.",
+      ],
+      note: "The supplement is not available if you are only receiving income assistance.",
+    },
     "requiresNote": "For people on disability assistance, people on income assistance in the Persons with Persistent Multiple Barriers category, people in special care facilities, and people on Medical Services Only. The supplement is not available if you are only receiving income assistance.",
     "note": "Ask for pre-approval before you travel. The ministry can consider a request afterwards in exceptional circumstances where you could not get funding beforehand, but do not count on it. Ambulance bills and the cost to buy, maintain, repair or insure a vehicle are not covered, and neither are trips for non-essential services.",
     "applyText": "Submit form HR3320",
@@ -3249,6 +3275,15 @@ const BENEFITS = [
     "amount": "No annual fee for PWD recipients; $45/year for eligible low-income seniors",
     "summary": "Annual bus pass for people on BC disability assistance and low-income seniors, valid on scheduled BC Transit services provincewide and issued as a Compass Card for Metro Vancouver.",
     "requires": ["bc", "bcBusPassStatus"],
+    eligibility: {
+      mode: "any",
+      items: [
+        "You receive BC disability assistance (PWD designation).",
+        "You are a low-income senior who receives the Guaranteed Income Supplement (GIS).",
+        "You are 60 to 64 and on provincial income assistance.",
+        "You are 65 or older and would get the GIS but for residency rules.",
+      ],
+    },
     "requiresNote": "For people receiving BC disability assistance (PWD designation). Low-income seniors also qualify: GIS recipients, 60-64 year olds on provincial income assistance, and 65+ who would get GIS but for residency rules.",
     "note": "PWD recipients pay no annual fee and choose the bus pass instead of the $52 monthly cash transportation supplement. The separate eligible low-income-senior stream costs $45 per year.",
     "applyText": "Request via My Self Serve or call 1-866-866-0800",
@@ -3384,6 +3419,14 @@ const BENEFITS = [
     "amount": "Individually planned funded services — residential, employment, community inclusion, respite",
     "summary": "Provincial agency funding lifelong supports for adults 19+ with developmental disabilities — home sharing and staffed living, employment services, community inclusion, respite and family support. Youth can apply from age 16 to have services ready at 19.",
     "requires": ["bc", "age16plus", "developmental", "disabilityDoc"],
+    eligibility: {
+      mode: "any",
+      items: [
+        "You are an adult 19 or older with significantly impaired intellectual and adaptive functioning that began before age 18.",
+        "Under the PSI stream, you are an adult with an FASD or autism spectrum diagnosis plus significant adaptive-functioning limitations.",
+      ],
+      note: "You can apply from age 16, and supports continue beyond 65.",
+    },
     "requiresNote": "Adults 19+ with significantly impaired intellectual AND adaptive functioning that began before age 18; or, under the PSI stream, adults with an FASD or autism spectrum diagnosis plus significant adaptive-functioning limitations. Apply from age 16; supports continue beyond 65",
     "note": "Two eligibility streams: Developmental Disability (needs a psychologist's cognitive and adaptive assessments) and the Personalized Supports Initiative (FASD or ASD diagnosis plus significant daily-living limitations, no intellectual disability required). School-era assessments can often be reused.",
     "applyText": "Check CLBC eligibility",
