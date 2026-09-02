@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=112") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=113") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=112") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=113") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -642,6 +642,15 @@ body.a11y-nomotion .scenario-toggle .ic:last-child { transition: none; }
 .amount-tag { display: inline-block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); background: var(--panel-2); border: 1px solid var(--hair); border-radius: 5px; padding: 2px 6px; margin-right: 8px; vertical-align: middle; }
 .amount-sub { display: block; margin-top: 3px; font-size: 0.83rem; font-weight: 500; color: var(--text-dim); }
 .detail-amount-sub { margin: 4px 0 20px; font-size: 0.92rem; color: var(--text-dim); }
+/* Structured amount breakdown (see renderGuideBody's tiersSection). A small,
+   scannable table for benefits whose value has income bands or coverage tiers.
+   Uses the existing design tokens so it reads correctly in light, dark, and
+   high-contrast themes; wrapped in .tier-scroll so wide tables never force the
+   page to scroll sideways. */
+.tier-scroll { overflow-x: auto; margin-top: 10px; }
+.amount-tiers { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+.amount-tiers th, .amount-tiers td { border: 1px solid var(--hair); padding: 8px 10px; text-align: left; vertical-align: top; }
+.amount-tiers th { background: var(--panel-2); color: var(--text); font-weight: 700; }
 .benefit.almost .amount { color: var(--warn); }
 .benefit .summary { margin: 5px 0 0; color: var(--text); font-size: 0.95rem; line-height: 1.5; }
 

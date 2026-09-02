@@ -4554,6 +4554,17 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   const valueHead = `<div class="detail-amount">${v.est ? `<span class="amount-tag">Est. value</span>` : ""}${v.head}</div>${v.sub ? `<div class="detail-amount-sub">${v.sub}</div>` : ""}`;
   const valueSection = b.amount ? `<section class="guide-block guide-value"><h2 class="guide-h">${icon("info")} What it can provide</h2>${valueHead}</section>` : "";
 
+  // Optional structured amount breakdown. When a benefit's value has bands or
+  // tiers (income thresholds, coverage rates), `amountTiers` renders them as a
+  // small table so a user can find their row at a glance instead of parsing a
+  // run-on sentence. The prose `amount` string above stays as the headline; the
+  // table only appears when the structured field is present. Cells are authored
+  // catalogue content (not model output), interpolated like every other benefit
+  // field here; the guide generator escapes the same cells for the static pages.
+  const tiersSection = b.amountTiers && b.amountTiers.rows && b.amountTiers.rows.length
+    ? `<section class="guide-block guide-tiers"><h2 class="guide-h">${icon("info")} ${b.amountTiers.caption || "How the amount is worked out"}</h2><div class="tier-scroll"><table class="amount-tiers"><thead><tr>${b.amountTiers.headers.map((h) => `<th scope="col">${h}</th>`).join("")}</tr></thead><tbody>${b.amountTiers.rows.map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join("")}</tr>`).join("")}</tbody></table></div></section>`
+    : "";
+
   // "At a glance" facts for the sticky sidebar
   const mm = BENEFIT_META[b.id] || {};
   const di = difficultyInfo(mm.difficulty);
@@ -4601,6 +4612,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
         ${b.note ? `<section class="guide-block"><h2 class="guide-h">${t("guide.goodToKnow")}</h2><div class="note">${b.note}</div></section>` : ""}
         ${b.requiresNote ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="detail-about">${b.requiresNote}</p></section>` : ""}
         ${valueSection}
+        ${tiersSection}
         ${b.id === "dtc" ? `<div class="dtc-prep-guide-cta"><button class="apply" type="button" data-open-dtc-prep>${icon("print")}${t("dtcPrep.guideButton")}</button></div>` : ""}
         ${p2.tax}
         ${/* Before "how to apply" on purpose: knowing you might actually

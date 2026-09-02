@@ -181,6 +181,7 @@ ${header()}
             ${b.note ? `<section class="guide-block"><h2 class="guide-h">Good to know</h2><p class="detail-about">${esc(b.note)}</p></section>` : ""}
             ${b.requiresNote ? `<section class="guide-block"><h2 class="guide-h">What you must meet</h2><p class="detail-about">${esc(b.requiresNote)}</p></section>` : ""}
             ${b.amount ? `<section class="guide-block"><h2 class="guide-h">Amount or value</h2><p class="detail-amount">${esc(b.amount)}</p></section>` : ""}
+            ${b.amountTiers && b.amountTiers.rows && b.amountTiers.rows.length ? `<section class="guide-block"><h2 class="guide-h">${esc(b.amountTiers.caption || "How the amount is worked out")}</h2><div class="tier-scroll"><table class="amount-tiers"><thead><tr>${b.amountTiers.headers.map((h) => `<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${b.amountTiers.rows.map((row) => `<tr>${row.map((cell) => `<td>${esc(cell)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></section>` : ""}
             ${difficulty || meta.effort || meta.wait ? `<section class="guide-block"><h2 class="guide-h">At a glance</h2><dl class="guide-list">${difficulty ? `<div><dt>Difficulty</dt><dd>${esc(difficulty)}</dd></div>` : ""}${meta.effort ? `<div><dt>Application</dt><dd>${esc(meta.effort)}</dd></div>` : ""}${meta.wait ? `<div><dt>Decision timing</dt><dd>${esc(meta.wait)}</dd></div>` : ""}</dl></section>` : ""}
             ${list("How to apply", steps, true)}
             ${list("What you may need", detail.documents)}

@@ -1500,6 +1500,15 @@ const BENEFITS = [
     level: "Federal",
     category: "Health",
     amount: "Covers 100% of eligible costs at CDCP established fees under $70,000 family income, 60% from $70,000 to $79,999, and 40% from $80,000 to $89,999",
+    amountTiers: {
+      caption: "What the plan pays by adjusted family net income",
+      headers: ["Adjusted family net income", "Plan covers", "You pay"],
+      rows: [
+        ["Under $70,000", "100% of eligible costs at CDCP established fees", "None of those fees"],
+        ["$70,000 to $79,999", "60%", "40%"],
+        ["$80,000 to $89,999", "40%", "60%"],
+      ],
+    },
     requires: ["cdcpRequirements"],
     summary:
       "A federal plan that pays part of the cost of dental care for people without private dental coverage whose adjusted family net income is under $90,000. It is income-based rather than disability-based, but Canada lists it among its disability benefits because so many disabled people have no workplace dental coverage.",
