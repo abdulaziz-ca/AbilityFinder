@@ -2845,6 +2845,15 @@ const BENEFITS = [
     "amount": "Income-based drug coverage. Family net income of $13,750 or less: PharmaCare pays 100 percent of eligible costs from the first prescription. Up to $30,000: no deductible, with a family maximum between $100 and $800. Above that a deductible applies, then PharmaCare pays 70 percent, and 100 percent once you reach your family maximum.",
     "summary": "BC's main drug plan for anyone enrolled in MSP. It pays a share of your eligible prescriptions based on family net income — the lower your income, the sooner and the more it pays. Free to register.",
     "requires": ["bc", "bcMsp"],
+    amountTiers: {
+      caption: "What PharmaCare pays by family net income",
+      headers: ["Family net income", "What PharmaCare pays"],
+      rows: [
+        ["$13,750 or less", "100% of eligible costs from the first prescription"],
+        ["Up to $30,000", "No deductible, with a family maximum between $100 and $800"],
+        ["Above $30,000", "A deductible applies, then PharmaCare pays 70%, and 100% once you reach your family maximum"],
+      ],
+    },
     "requiresNote": "Any MSP-enrolled BC resident or family can register. Your assistance level is scaled to family net income from two years earlier, verified with the CRA.",
     "note": "Return the consent form within 30 days of registering. If you do not, temporary coverage ends and your family's deductible is set at $10,000.",
     "applyText": "Register online",
