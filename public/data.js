@@ -1895,6 +1895,17 @@ const BENEFITS = [
       "dresDisabilityBarrier",
       "dresEmploymentRoute",
     ],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You are 16 or older.",
+        "You reside in Alberta.",
+        "You are legally entitled to work or train in Canada.",
+        "You are a Canadian citizen, permanent resident, or Convention Refugee.",
+        "You are employed or employment destined.",
+        "A documented permanent or long-term disability creates a barrier to education, training, or employment.",
+      ],
+    },
     requiresNote:
       "You must be 16 or older, reside in Alberta, be legally entitled to work or train in Canada, and be a Canadian citizen, permanent resident, or Convention Refugee. You must be employed or employment destined, and a documented permanent or long-term disability must create a barrier to education, training, or employment.",
     note:
@@ -2125,6 +2136,14 @@ const BENEFITS = [
     summary:
       "The provincial identification card for a qualified service dog team in Alberta. There is no fee, and the card is mailed in about two weeks.",
     requires: ["ab", "abServiceDogQualified"],
+    eligibility: {
+      mode: "any",
+      items: [
+        "Your service dog passed an assessment from one of Alberta's approved service dog providers.",
+        "Your service dog graduated from a program accredited by Assistance Dogs International.",
+        "Your service dog was qualified by an organization contracted by a provincial or territorial government in Canada to train or assess service dogs to standards equivalent to the Alberta Training Standard.",
+      ],
+    },
     note:
       "The card carries an expiration date, so check it and renew before it lapses. The Alberta.ca identification card page does not set out the renewal process — call the Service Dog Assessment team at 780-427-9136, or toll-free within Alberta at 310-0000.",
     requiresNote:
@@ -2162,6 +2181,14 @@ const BENEFITS = [
     summary:
       "Help for adults with disabilities living in facility-based continuing care in Alberta to take part in their communities and reduce loneliness and social isolation. A community access coordinator works with you on an individual service plan.",
     requires: ["ab", "adult", "abCapccContinuingCareHome"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You are an adult Albertan under the age of 65.",
+        "You live in a type A or type B continuing care home.",
+        "You are able to actively participate in setting and following through with your goals, and to communicate your preferences.",
+      ],
+    },
     note:
       "Alberta.ca does not publish an application form or a cost for this program. The route is to contact a community access coordinator directly, and the program page lists them with phone numbers.",
     requiresNote:
@@ -2197,6 +2224,14 @@ const BENEFITS = [
     summary:
       "Subsidized provincial housing for people with special housing needs, including people with developmental disabilities and people with physical challenges. There is no central application — you find a local housing provider and apply to them directly.",
     requires: ["ab", "citizenPR", "abSpecialNeedsHousingPlacement"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You have special housing needs. This includes people with developmental disabilities, people with physical challenges, victims of family violence, wards of the provincial government, the hard-to-house, and any other group with special housing needs.",
+        "Your income is below the local income limits as determined by the market for your community.",
+        "You are a Canadian citizen or permanent resident, a refugee sponsored by the Government of Canada, or a privately sponsored refugee whose sponsorship has broken down. Ukrainian evacuees with a Canada-Ukraine Authorization for Emergency Travel also qualify.",
+      ],
+    },
     note:
       "Applications are not centralized. Use the Find Housing tool to see what is available, then contact the local housing provider directly for their application. Income limits are set community by community and Alberta.ca does not publish a single figure, so check the limit where you actually live rather than assuming.",
     requiresNote:
