@@ -17,8 +17,12 @@ disclosure. It is grounded in the research in `RESEARCH.md`.
    everything needed to decide and act. Only *supporting* detail (full rules,
    fine print, FAQs, appeals) sits behind expand/collapse. Eligibility, amount,
    deadlines and the apply link are NEVER collapsed.
-3. **Degrade to visible.** Collapsed sections use native `<details>`; with no
-   JS and no CSS they render fully open. Disclosure is an enhancement, not a gate.
+3. **Degrade gracefully.** Collapsed sections use native `<details>`, which stays
+   fully keyboard-operable with **no JS** (an unopened `<details>` is closed by
+   default — disabling JS/CSS does *not* auto-open it). Disclosure is an
+   enhancement, not a JS gate. If any *critical* content would otherwise sit
+   inside a collapsed block, give that block the `open` attribute (or keep the
+   content in the always-visible default view) so it is visible without scripting.
 4. **Structure over prose.** Multi-part eligibility → a list with an explicit
    "you must meet ALL / ANY of these" lead-in. Amount tiers → a table. Steps →
    an ordered list. (This is exactly what #196 produces as structured content.)
@@ -118,9 +122,10 @@ links the three.
 - Implement the CDCP eligibility as an ALL-of list (its 4 requirements) and the
   income tiers as a 3-row table (Family income / Plan covers / You pay), taken
   verbatim from the record.
-- Collapsed detail uses native `<details>`. Confirm the page is fully readable
-  with JavaScript disabled (details render open) — add a short `<noscript>`-safe
-  note is not needed; `<details>` already degrades.
+- Collapsed detail uses native `<details>`, which stays keyboard-operable with
+  JavaScript disabled (it does not auto-open — it simply remains a working
+  native disclosure). Keep every *critical* fact in the always-visible view, not
+  inside a closed `<details>`.
 - Light + dark via `prefers-color-scheme`; both must clear 4.5:1 contrast.
 - Add a visible FR stress-test note on the summary card (a commented or toggled
   longer French string) to show it doesn't break — or simply size cells to wrap.

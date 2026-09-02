@@ -59,19 +59,27 @@ W3C, *Understanding SC 3.1.5 Reading Level*
 - Sufficient techniques include *"providing a text summary"* and *"making the
   text easier to read."*
 
-**Implication for us:** the answer-first summary card is not just UX polish — it
-is a recognised WCAG technique. A short, plain summary on top of complex rules is
-exactly what 3.1.5 asks for. Target the lower-secondary reading level.
+**Implication for us:** SC 3.1.5 is *conditional* — it applies when the text
+requires reading ability above the lower-secondary level, and it is satisfied by
+providing a supplemental version or summary that does not. So an answer-first
+summary is **aligned with a recognised 3.1.5 technique** ("providing a text
+summary") and is good practice regardless; it is not *automatic* conformance —
+claiming conformance would require actually measuring the source text's reading
+level and showing the summary is an adequate alternative. Target the
+lower-secondary reading level.
 
-### 2.3 Canada.ca Content Style Guide **[verbatim]**
-Canada.ca / design.canada.ca style guide (https://design.canada.ca/style-guide/):
+### 2.3 Canada.ca Content Style Guide **[quoted and summarized]**
+Canada.ca / design.canada.ca style guide (https://design.canada.ca/style-guide/).
+The figures below are the guide's stated *targets/averages* — a reviewer should
+confirm exact wording against the live guide before quoting any as a hard limit:
 
 - Plain language is **mandatory** under the Directive on the Management of
   Communications; audiences must *"find what they need, understand what they
   find, use the information."*
-- **Sentence length:** keep sentences *"under 15 to 20 words."*
-- **Lists:** *"maximum of seven items in your list."*
-- **Paragraphs:** *"one main idea and no more than three sentences."*
+- **Sentence length:** aim for an **average** of roughly **15–20 words** (a
+  guidance target, not a per-sentence cap).
+- **Lists:** aim for a **maximum of ~7 items**.
+- **Paragraphs:** one main idea, ideally no more than ~3 sentences.
 - **Headings:** roughly every ~200 words.
 - **Inverted pyramid:** most important information first, then prioritized
   details, then supporting links.
@@ -124,9 +132,10 @@ inverted pyramid (Canada.ca) and a WCAG 3.1.5 summary in one move. Details in
   behind an unlabelled control, and nothing hover-only.
 
 ### 3.3 Reading-level & sentence targets — and CI
-Adopt Canada.ca's concrete targets as house style:
-- Sentences **< 15–20 words**; paragraphs **one idea, ≤ 3 sentences**.
-- Lists **≤ 7 items**; headings roughly every ~200 words.
+Adopt Canada.ca's targets as house-style *guidance* (averages/aims, not hard
+per-sentence caps — benefit rules sometimes need one long precise clause):
+- **Average** sentence length ~15–20 words; paragraphs one idea, ~≤ 3 sentences.
+- Lists ~≤ 7 items; headings roughly every ~200 words.
 - Reading level at/**below lower-secondary** (WCAG 3.1.5); aim ~grade 8.
 
 **CI enforcement — recommend YES, but as a *warning gate*, not a hard fail.**
@@ -174,5 +183,5 @@ structured content model and this template is reviewed.
 ## 5. Sources
 - Nielsen Norman Group — Progressive Disclosure: https://www.nngroup.com/articles/progressive-disclosure/ **[fetched, verbatim]**
 - W3C — Understanding WCAG 2.1 SC 3.1.5 Reading Level: https://www.w3.org/WAI/WCAG21/Understanding/reading-level.html **[fetched, verbatim]**
-- Canada.ca Content Style Guide: https://design.canada.ca/style-guide/ **[fetched, verbatim]**
+- Canada.ca Content Style Guide: https://design.canada.ca/style-guide/ **[fetched; quoted + summarized — confirm hard limits against live guide]**
 - GOV.UK style guide / content design manual: https://www.gov.uk/guidance/style-guide **[paraphrased — confirm exact wording before quoting]**

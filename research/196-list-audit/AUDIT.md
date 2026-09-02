@@ -17,17 +17,20 @@ enumerators ("First, Second, Third, Fourth", "all N requirements"), coordinated
 conditions ("either…or", "both…and", comma/semicolon series), numeric tiers
 (income bands, percentages, `$NN,000` thresholds), and sequential instructions.
 Cross-checked how each carrier field renders in `renderGuideBody()`
-(`public/app.js:4481`).
+(`public/app.js`; the function's exact line shifts between branches).
 
 ## 2. How each content field renders TODAY (capability baseline)
 
 | Field | Renders as | List-capable today? |
 |---|---|---|
-| `detail.steps` | ordered list via `listBlock(...)` (`app.js:4575`) | **Yes** — already a real list |
-| `detail.documents` | bulleted list via `listBlock` (`app.js:4577`) | **Yes** |
-| `detail.tips` | bulleted list via `listBlock` (`app.js:4578`) | **Yes** |
-| `requiresNote` (eligibility) | **single `<p>`** (`app.js:4567`) | **No** — prose only |
-| `amount` (value / tiers) | single string in `valueSection` (`app.js:4520`) | **No** — no table |
+| `detail.steps` | ordered list via `listBlock(...)` (`renderGuideBody`, ~`app.js:4610` on `main`; `listBlock` defined ~`4421`) | **Yes** — already a real list |
+| `detail.documents` | bulleted list via `listBlock` (~`app.js:4611`) | **Yes** |
+| `detail.tips` | bulleted list via `listBlock` (~`app.js:4612`) | **Yes** |
+| `requiresNote` (eligibility) | **single `<p class="detail-about">`** (~`app.js:4602`) | **No** — prose only |
+| `amount` (value / tiers) | prose value via `valueParts` → `detail-amount` (~`app.js:4553`) | **No** — no table |
+
+*(Line numbers are for the current `main`; they shift between branches — trust the
+function names. The behaviour was independently confirmed by the Codex review.)*
 | `note` / `taxNote` | single-paragraph callout | prose (usually fine) |
 
 **Verdict: PARTIAL support.** Steps/documents/tips are already structured and
@@ -120,17 +123,23 @@ Both are small, additive, and independently testable. Steps/docs/tips unchanged.
 - *(Check:* code **1** in the dental box on your T4/T4A means no access; **2, 3,
   4 or 5** means you have some coverage.*)*
 
-**AFTER** — `amountTiers` (verbatim from the record):
+**AFTER** — `amountTiers` (figures verbatim from the record; the "You pay" column
+uses the record's own wording, not a derived percentage):
 
 | Family income | Plan covers | You pay |
 |---|---|---|
-| Under $70,000 | 100% | 0% |
+| under $70,000 | 100% | none of those fees |
 | $70,000 to $79,999 | 60% | 40% |
 | $80,000 to $89,999 | 40% | 60% |
 
-Every figure, threshold, date, and the T4/T4A code wording is copied
-character-for-character. Meaning unchanged; only shape changes. A live rendering
-of this AFTER state is in `../197-info-density/prototypes/cdcp.html`.
+**Honesty note (per review).** This AFTER state is a **meaning-preserving
+editorial rewrite**, *not* a character-for-character copy: every dollar amount,
+income threshold, percentage, date, and the T4/T4A dental-code *meaning* is
+preserved, but sentence wording is adapted for the list format (e.g. the "First,
+… Second, …" scaffolding is dropped). Where a value has no percentage in the
+source ("you cover none of those fees"), the table shows that phrase rather than
+inventing "0%". A live rendering of this AFTER state is in
+`../197-info-density/prototypes/cdcp.html`.
 
 ## 8. Blocked-by-schema flag (per Deliverable)
 
