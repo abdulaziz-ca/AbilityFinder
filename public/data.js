@@ -2867,6 +2867,14 @@ const BENEFITS = [
     "amount": "$23 per visit toward acupuncture, chiropractic, massage therapy, naturopathy, physical therapy or non-surgical podiatry, up to a combined 10 visits each calendar year",
     "summary": "Partial MSP coverage for six kinds of practitioner visits, for lower-income B.C. residents and for people enroled with MSP through the At Home Program or as Mental Health Clients. It also unlocks the Healthy Kids Program for children in the family.",
     "requires": ["bc", "bcMsp", "bcSupplementaryBenefitsEligibility"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You (and your spouse, if you have one) are enrolled in MSP.",
+        "You qualify one of three ways: your adjusted net income last year was less than $42,000; or you are enrolled with MSP through the At Home Program; or you are enrolled with MSP as a Mental Health Client.",
+      ],
+      note: "Adjusted net income is last year's net income confirmed by CRA — combined with your spouse's if you have one — after certain deductions. There is no cost to apply. Coverage does not apply to treatment received outside British Columbia.",
+    },
     "requiresNote": "You must be enroled in MSP, and your spouse too if you have one, before Supplementary Benefits can be approved. You then qualify one of three ways: your adjusted net income last year was less than $42,000; or you are enroled with MSP through the At Home Program; or you are enroled with MSP as a Mental Health Client. Adjusted net income is last year's net income confirmed by CRA — combined with your spouse's if you have one — after certain deductions. There is no cost to apply. Coverage does not apply to treatment received outside British Columbia.",
     "note": "The $23 is a contribution, not the full fee — most practitioners charge more, and you pay the difference. Ask what the visit costs and what MSP covers before you book. The 10 visits are a COMBINED limit across all six service types, not 10 of each.",
     "applyText": "Apply for Supplementary Benefits",
@@ -3210,6 +3218,13 @@ const BENEFITS = [
     "amount": "$6,500 or $17,000/year",
     "summary": "New direct-funding benefit for children and youth up to age 19 with significant disabilities of any diagnosis (autism, Down syndrome, cerebral palsy, intellectual disability and more) — replacing Autism Funding and the School-Aged Extended Therapies stream.",
     "requires": ["bc", "under19", "childHighNeeds", "bcCydbIntake"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "The child is aged 0 to 19.",
+        "The child has a long-term disability causing significant and complex developmental support needs, based on diagnosis and/or functional impact.",
+      ],
+    },
     "requiresNote": "Ages 0-19 with a long-term disability causing significant and complex developmental support needs, based on diagnosis and/or functional impact",
     "note": "Starts April 1, 2026 for families already receiving ministry services for children and youth with support needs; they do not need to apply. The benefit will be available province-wide by April 1, 2027.",
     "applyText": "Learn about the Disability Benefit",
@@ -3352,6 +3367,15 @@ const BENEFITS = [
     "amount": "Per-item coverage — wheelchair seating to $9,000, lifts to $8,000, hospital bed to $4,000, scooter to $3,700, dental $700 a year, optical $150 a year, plus 100% of eligible prescription drugs and designated medical supplies through PharmaCare Plan F",
     "summary": "Covers medical equipment, therapies, dental and optical care, medical travel and PharmaCare Plan F for children with severe disabilities who live at home and are dependent in most daily living activities.",
     "requires": ["bc", "child", "bcMsp", "childThreeAdls"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "Your child is 17 or younger.",
+        "Your child is a BC resident enrolled in the Medical Services Plan.",
+        "Your child lives at home with a parent or guardian, or with an Extended Family Program caregiver.",
+        "Your child has been assessed as dependent in at least three of the four activities of daily living — eating, dressing, toileting and washing.",
+      ],
+    },
     "requiresNote": "Your child is 17 or younger, is a BC resident enrolled in the Medical Services Plan, lives at home with a parent or guardian or with an Extended Family Program caregiver, and has been assessed as dependent in at least three of the four activities of daily living — eating, dressing, toileting and washing.",
     "note": "Benefits run until the last day of the month your child turns 18, and PharmaCare Plan F coverage ends the same day. Start the adult disability assistance application about six months before that birthday — young people enrolled in the program get a streamlined route into it. New families can still apply until March 2027.",
     "applyText": "See eligibility and apply",
