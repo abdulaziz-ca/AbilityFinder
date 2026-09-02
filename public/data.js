@@ -2916,6 +2916,15 @@ const BENEFITS = [
     "category": "Health",
     "amount": "100% of eligible costs for covered psychiatric medications",
     "requires": ["bc", "psychiatricMedicationCandidate", "planGClinicalAndFinancialNeed"],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have both clinical and financial need.",
+        "Your physician or nurse practitioner confirms the clinical side, together with your local mental health and substance use location, or the Child and Youth Mental Health team.",
+        "Your annual income is lower than $42,000."
+      ],
+      "note": "If you are eligible, the prescriber submits the Application for PharmaCare Plan G form on your behalf — there is nothing for you to file. The plan covers certain psychiatric medications rather than all of them."
+    },
     "summary": "Full coverage of certain psychiatric medications for B.C. residents of any age who have both clinical and financial need. Your prescriber applies on your behalf, and coverage has to be renewed every year.",
     "note": "Coverage lasts up to one year and stops unless a new application is submitted. Know your renewal date and see a prescriber about a month before it, so the coverage does not lapse while you are still taking the medication.",
     "requiresNote": "You must have both clinical and financial need. Your physician or nurse practitioner confirms the clinical side together with your local mental health and substance use location, or the Child and Youth Mental Health team. The financial test is an annual income lower than $42,000. If you are eligible, the prescriber submits the Application for PharmaCare Plan G form on your behalf — there is nothing for you to file. The plan covers certain psychiatric medications rather than all of them.",
@@ -3731,6 +3740,14 @@ const BENEFITS = [
     "amount": "For 2026, up to $845 in the Capital, Fraser Valley and Metro Vancouver regional districts, or up to $1,045 elsewhere in B.C.",
     "summary": "A larger property tax grant for B.C. homeowners with a disability, or who live with a relative who has one. It reduces the property tax you owe; it is not a payment.",
     "requires": ["bc", "homeowner", "bcHomeOwnerGrantDisabilityRoute"],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are the registered owner, a Canadian citizen or permanent resident, live in B.C., and occupy the property as your principal residence.",
+        "You pay at least $100 in property taxes.",
+        "You qualify on one of two routes: you receive provincial disability assistance, hardship assistance or a supplement under the Employment and Assistance for Persons with Disabilities Act; or you pay at least $150 a month for assistance with daily living activities, or have spent at least $2,000 on structural modifications to the home."
+      ]
+    },
     "requiresNote": "You must be the registered owner, a Canadian citizen or permanent resident, live in B.C., and occupy the property as your principal residence. You must also pay at least $100 in property taxes. You qualify on one of two routes: you receive provincial disability assistance, hardship assistance or a supplement under the Employment and Assistance for Persons with Disabilities Act; or you pay at least $150 a month for assistance with daily living activities, or have spent at least $2,000 on structural modifications to the home.",
     "note": "The higher northern and rural amount ends on January 1, 2027. From that date the grant is $570 regular and $845 with the additional amount for every B.C. property, with no separate northern or rural top-up.",
     "applyText": "Apply for the home owner grant",
@@ -3752,6 +3769,13 @@ const BENEFITS = [
     "amount": "Up to $1,000 per year (10% of up to $10,000 in eligible renovation costs), refundable",
     "summary": "A refundable B.C. tax credit worth 10% of up to $10,000 in accessibility renovations to your principal residence — up to $1,000 back per year — for people who qualify for the disability tax credit, seniors 65+, and family members who live with them.",
     "requires": ["bc", "homeRenoCandidate", "homeowner", "qualifyingRenovationSpend"],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a B.C. resident at year end.",
+        "You either qualify for the federal disability tax credit (any age), are 65 or older, or are a family member living with (and claiming for) an eligible person."
+      ]
+    },
     "requiresNote": "You must be a B.C. resident at year end and either qualify for the federal disability tax credit (any age), be 65 or older, or be a family member living with (and claiming for) an eligible person.",
     "note": "Refundable means you get the money even if you owe no tax. Renovations must improve access, mobility or safety in the home — for example ramps, grab bars, walk-in tubs, widened doors, stair lifts — not general repairs or value-boosting upgrades. Active for the 2025 and 2026 tax years.",
     "applyText": "Claim on your tax return",
@@ -3775,6 +3799,17 @@ const BENEFITS = [
     "amount": "Up to $20,000 in rebates, as a lifetime maximum per household",
     "summary": "A B.C. rebate that pays back part of the cost of home adaptations for independent living, for lower-income households where someone has a permanent disability or loss of physical ability. Homeowners apply on their own; tenants apply together with their landlord.",
     "requires": ["bc", "homeAccessNeed", "rahaEligibility"],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You or someone in your household has a permanent disability or loss of physical ability.",
+        "The home is the principal residence of the owner(s) and of the person needing the adaptations.",
+        "Your combined household assets are less than $100,000, not counting the value of the home being adapted.",
+        "Your combined annual gross household income is less than $146,270.00.",
+        "Everyone who owns the home, and the person needing the adaptations, is a Canadian citizen, authorized to take up permanent residence in Canada, or a Convention refugee, and not under private sponsorship."
+      ],
+      "note": "BC Housing also checks your community together with the assessed value of the home, so there is no single home-value cutoff. For this program \"household\" means the owner(s) plus any relative permanently living in the home. Some adaptations need an assessment from an occupational therapist or physical therapist."
+    },
     "requiresNote": "You or someone in your household must have a permanent disability or loss of physical ability, and the home must be the principal residence of the owner(s) and of the person needing the adaptations. Your combined household assets must be less than $100,000, not counting the value of the home being adapted, and your combined annual gross household income must be less than $146,270.00. BC Housing also checks your community together with the assessed value of the home, so there is no single home-value cutoff. Everyone who owns the home, and the person needing the adaptations, must be a Canadian citizen, authorized to take up permanent residence in Canada, or a Convention refugee, and not under private sponsorship. For this program \"household\" means the owner(s) plus any relative permanently living in the home. Some adaptations need an assessment from an occupational therapist or physical therapist.",
     "note": "Adaptations completed before BC Housing gives written approval are not eligible for a rebate. Once approved you have 180 days to finish the work.",
     "applyText": "Apply for BC RAHA",
@@ -4142,6 +4177,14 @@ const BENEFITS = [
     "amount": "Two years of free drop-ins at Saanich facilities plus a one-time grant of $80 to $120 toward registered programs",
     "summary": "Saanich's version of the regional L.I.F.E. program. Approval lasts two years and you pick one of two benefit options.",
     "requires": ["bc", "saanich", "lowIncome"],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have proof of Saanich residency — a utility or phone bill dated within the last three months, a current signed rental agreement, or a current driver's licence or BC identification card. One proof covers the whole family.",
+        "You have a Canada Revenue Agency Proof of Income Statement for every household member 19 and over, even those who will not use the program. Thresholds are based on their combined gross income."
+      ],
+      "note": "Newcomers to Canada without that statement can apply with landing papers showing a landing date within one year of applying."
+    },
     "requiresNote": "You need proof of Saanich residency — a utility or phone bill dated within the last three months, a current signed rental agreement, or a current driver's licence or BC identification card. One proof covers the whole family. You also need a Canada Revenue Agency Proof of Income Statement for every household member 19 and over, even those who will not use the program; thresholds are based on their combined gross income. Newcomers to Canada without that statement can apply with landing papers showing a landing date within one year of applying.",
     "note": "Approval is valid for two years from the date of approval, and the grant amounts below are for that whole two-year term — there are no further funds once the initial grant is used. Saanich only accepts CRA Proof of Income Statements, not Notices of Assessment. Allow at least 5 days between approval and registering, because grants take up to 5 days to appear on your account.",
     "applyText": "Apply online for L.I.F.E.",
