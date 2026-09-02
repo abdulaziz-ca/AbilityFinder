@@ -1272,6 +1272,15 @@ const BENEFITS = [
     summary:
       "A monthly payment for the dependent child of someone receiving a CPP disability benefit. The disability is the parent's, not the child's — the child does not need to have a disability at all. A child can be paid a maximum of two children's benefits.",
     requires: ["cppDisabilityContributorLink"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "A parent or guardian is receiving a CPP disability benefit or a post-retirement disability benefit.",
+        "The child is under 18, or age 18 to 25 and in full-time or part-time attendance at a recognized school or university.",
+        "The child is the natural child of the contributor, a child adopted legally or in fact by the contributor while under the age of 21, or a child legally or in fact living with and under the contributor's decision-making responsibility while under the age of 21.",
+      ],
+      note: "If the disabled contributor is over the age of 65 and the child stops attending school, the child's eligibility for the disabled contributor's child's benefit ends.",
+    },
     note:
       "Apply as soon as you can. The Canada Pension Plan can only make back payments for up to 12 months — 11 months plus the month you apply. You do not have to wait for the parent's CPP disability benefit to be approved before applying for the child's benefit.",
     requiresNote:
@@ -1384,6 +1393,14 @@ const BENEFITS = [
     summary:
       "A federal non-refundable tax credit for renovations that make a home safer or easier to get around, for people approved for the Disability Tax Credit and for people 65 or older.",
     requires: ["homeRenoCandidate", "homeowner", "qualifyingRenovationSpend"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "The person the renovation is for is a qualifying individual — either eligible for the Disability Tax Credit at any time in the year, or 65 years of age or older at the end of the year.",
+        "A spouse, common-law partner or certain other relatives may claim instead as an eligible individual.",
+        "The renovation is of an enduring nature and integral to the dwelling, and either lets the person get into, move around or function within the home, or reduces their risk of harm.",
+      ],
+    },
     note:
       "This is claimed on your tax return at line 31285, not applied for in advance. It is non-refundable, so it reduces tax you owe rather than producing a payment on its own.",
     requiresNote:
@@ -1466,6 +1483,14 @@ const BENEFITS = [
     summary:
       "If you have a permanent mobility impairment and cannot safely use public transportation, you can claim back part of the federal excise tax on the gasoline you buy. A qualified medical practitioner has to certify the impairment.",
     requires: ["vehicleDisability", "excisePermanentMobilityCertified"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You have a permanent mobility impairment.",
+        "You are unable to safely use public transportation.",
+        "A qualified medical practitioner certifies the impairment.",
+      ],
+    },
     note:
       "None of the CRA's pages for this program — the program page, the Form XE8 page, or Guide RC4064 — publishes a refund amount per litre, and temporary reductions of the federal excise tax rates on certain types of fuel are in effect. Ask the CRA at 1-877-432-5472 what the current rate is rather than relying on a figure from anywhere else.",
     requiresNote:
