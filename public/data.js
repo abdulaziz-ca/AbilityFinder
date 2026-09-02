@@ -1510,6 +1510,16 @@ const BENEFITS = [
       ],
     },
     requires: ["cdcpRequirements"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You have no access to private dental insurance or coverage, including a health spending account that covers dental costs. The only exception is if you retired and opted out of dental coverage through your pension plan before December 11, 2023 and cannot opt back in.",
+        "You and your spouse or common-law partner have filed your Canadian tax returns for the previous year.",
+        "Your adjusted family net income is less than $90,000.",
+        "You are a Canadian resident.",
+      ],
+      note: "You can check the coverage question on your T4 or T4A: code 1 in the dental box means you do not have access, while 2, 3, 4 or 5 means your work or pension plan offers some dental coverage for you or your family.",
+    },
     summary:
       "A federal plan that pays part of the cost of dental care for people without private dental coverage whose adjusted family net income is under $90,000. It is income-based rather than disability-based, but Canada lists it among its disability benefits because so many disabled people have no workplace dental coverage.",
     note:

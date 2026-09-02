@@ -4610,7 +4610,9 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
 
         ${d.about && d.about !== b.summary ? `<p class="detail-about">${d.about}</p>` : ""}
         ${b.note ? `<section class="guide-block"><h2 class="guide-h">${t("guide.goodToKnow")}</h2><div class="note">${b.note}</div></section>` : ""}
-        ${b.requiresNote ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="detail-about">${b.requiresNote}</p></section>` : ""}
+        ${b.eligibility && b.eligibility.items && b.eligibility.items.length
+          ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="eligibility-lead">${b.eligibility.mode === "any" ? t("guide.mustMeetAny") : t("guide.mustMeetAll")}</p><ul class="eligibility-list">${b.eligibility.items.map((it) => `<li>${it}</li>`).join("")}</ul>${b.eligibility.note ? `<p class="detail-about eligibility-note">${b.eligibility.note}</p>` : ""}</section>`
+          : b.requiresNote ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="detail-about">${b.requiresNote}</p></section>` : ""}
         ${valueSection}
         ${tiersSection}
         ${b.id === "dtc" ? `<div class="dtc-prep-guide-cta"><button class="apply" type="button" data-open-dtc-prep>${icon("print")}${t("dtcPrep.guideButton")}</button></div>` : ""}

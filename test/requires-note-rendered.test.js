@@ -51,11 +51,33 @@ test("requiresNote stays populated, rendered, searchable, and present in generat
     const guideHtml = fs.readFileSync(guidePath, "utf8");
     if (guideHtml.includes("What you must meet")) foundHeading = true;
     const normalizedGuide = clean(unescapeGuideHtml(guideHtml));
-    const normalizedNote = clean(benefit.requiresNote);
-    assert.ok(
-      normalizedGuide.includes(normalizedNote),
-      `Generated guide for ${benefit.id} does not contain its requiresNote: ${guidePath}`
-    );
+
+    // A record may express its eligibility either as prose (`requiresNote`) or as
+    // a structured list (`eligibility.items`). Whichever form it uses, the
+    // eligibility information must still appear verbatim in the generated guide —
+    // the point of this guard is that eligibility content is never silently
+    // dropped when a record is converted from prose to a list.
+    if (benefit.eligibility && Array.isArray(benefit.eligibility.items) && benefit.eligibility.items.length) {
+      for (const item of benefit.eligibility.items) {
+        const normalizedItem = clean(item);
+        assert.ok(
+          normalizedGuide.includes(normalizedItem),
+          `Generated guide for ${benefit.id} is missing eligibility item "${normalizedItem.slice(0, 60)}…": ${guidePath}`
+        );
+      }
+      if (benefit.eligibility.note) {
+        assert.ok(
+          normalizedGuide.includes(clean(benefit.eligibility.note)),
+          `Generated guide for ${benefit.id} does not contain its eligibility note: ${guidePath}`
+        );
+      }
+    } else {
+      const normalizedNote = clean(benefit.requiresNote);
+      assert.ok(
+        normalizedGuide.includes(normalizedNote),
+        `Generated guide for ${benefit.id} does not contain its requiresNote: ${guidePath}`
+      );
+    }
   }
 
   assert.ok(foundHeading, 'Expected "What you must meet" in at least one generated guide page');
