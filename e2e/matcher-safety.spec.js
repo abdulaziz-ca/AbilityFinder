@@ -424,7 +424,16 @@ test("DRES copy contains only published examples, exclusions and official action
     "dresDisabilityBarrier",
     "dresEmploymentRoute",
   ]);
-  expect(dres.meta).toBeNull();
+  // DRES now carries the at-a-glance meta row (owner-requested, ticket #202/#203).
+  // The safety intent here is that DRES meta stays controlled, plain, and free of
+  // unpublished-value / marketing copy — so assert the exact vetted shape rather
+  // than forbidding meta outright. `extra` (denials/appeal/faqs marketing copy)
+  // remains deliberately absent.
+  expect(dres.meta).toEqual({
+    difficulty: 3,
+    effort: "Application + disability documentation",
+    wait: "varies",
+  });
   expect(dres.extra).toBeNull();
 });
 

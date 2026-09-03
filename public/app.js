@@ -4559,6 +4559,29 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
     ? `<section class="guide-block"><h2 class="guide-h">${icon("info")} ${t("guide.covers")}</h2>${coversList.lead ? `<p class="eligibility-lead">${coversList.lead}</p>` : ""}<ul class="eligibility-list">${coversList.items.map((it) => `<li>${it}</li>`).join("")}</ul></section>`
     : "";
 
+  // Progressive disclosure (#201): secondary content sits inside labelled native
+  // <details> so the page leads with the essentials instead of a wall of text —
+  // but nothing is removed, and each expander is keyboard-operable and fully
+  // readable without JS. Proportionate: a SHORT description stays visible (we do
+  // not add a click to reach a one-liner); only a long one collapses. A benefit
+  // with little content therefore shows it all directly, with no expanders.
+  const aboutText = d.about && d.about !== b.summary ? d.about : "";
+  const aboutLong = aboutText.length > 240;
+  const aboutVisible = aboutText && !aboutLong ? `<p class="detail-about">${aboutText}</p>` : "";
+  const moreList = (summary, items, extraCls) => (items && items.length)
+    ? `<details class="guide-more"><summary>${summary}</summary><ul class="guide-list${extraCls ? " " + extraCls : ""}">${items.map((it) => `<li>${it}</li>`).join("")}</ul></details>`
+    : "";
+  const aboutMore = (aboutLong || p2.plainTest)
+    ? `<details class="guide-more"><summary>${t("guide.moreAbout")}</summary>${aboutLong ? `<p class="detail-about">${aboutText}</p>` : ""}${p2.plainTest}</details>`
+    : "";
+  const documentsMore = moreList(t("guide.need"), d.documents);
+  const tipsMore = moreList(t("guide.tips"), d.tips);
+  const denialsMore = moreList(t("guide.denials"), x.denials, "warn-list");
+  const appealMore = x.appeal ? `<details class="guide-more"><summary>${t("guide.appeal")}</summary><p class="p2-text">${x.appeal}</p></details>` : "";
+  const faqsMore = (x.faqs && x.faqs.length)
+    ? `<details class="guide-more"><summary>${t("guide.faqs")}</summary><div class="faqs">${x.faqs.map((f) => `<details class="faq"><summary>${f.q}</summary><p>${f.a}</p></details>`).join("")}</div></details>`
+    : "";
+
   // "At a glance" facts for the sticky sidebar
   const mm = BENEFIT_META[b.id] || {};
   const di = difficultyInfo(mm.difficulty);
@@ -4596,7 +4619,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   const answerFirst = inline ? "" : `<section class="answer-first" aria-label="${t("af.aria")}">
         <div class="af-cell"><span class="af-q">${t("af.eligible")}</span>${afEligible}</div>
         ${b.amount ? `<div class="af-cell"><span class="af-q">${t("af.howMuch")}</span><span class="af-a">${v.head}</span></div>` : ""}
-        <div class="af-cell"><span class="af-q">${t("af.howApply")}</span><a class="apply af-apply" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.applyText} ${icon("external")}</a>${d.time ? `<span class="af-meta">${t("meta.time")}: ${d.time}</span>` : ""}</div>
+        <div class="af-cell"><span class="af-q">${t("af.howApply")}</span><a class="af-apply-link" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.applyText} ${icon("external")}</a>${d.time ? `<span class="af-meta">${t("meta.time")}: ${d.time}</span>` : ""}</div>
       </section>`;
 
   return `
@@ -4617,7 +4640,9 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
         ${answerFirst}
         ${enNote}
 
-        ${d.about && d.about !== b.summary ? `<p class="detail-about">${d.about}</p>` : ""}
+        ${/* Essentials stay visible; secondary detail moves into the labelled
+              "More …" expanders below so the page isn't a wall of text (#201). */ ""}
+        ${aboutVisible}
         ${b.note ? `<section class="guide-block"><h2 class="guide-h">${t("guide.goodToKnow")}</h2><div class="note">${b.note}</div></section>` : ""}
         ${b.eligibility && b.eligibility.items && b.eligibility.items.length
           ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="eligibility-lead">${b.eligibility.mode === "any" ? t("guide.mustMeetAny") : t("guide.mustMeetAll")}</p><ul class="eligibility-list">${b.eligibility.items.map((it) => `<li>${it}</li>`).join("")}</ul>${b.eligibility.note ? `<p class="detail-about eligibility-note">${b.eligibility.note}</p>` : ""}</section>`
@@ -4627,18 +4652,15 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
         ${coversSection}
         ${b.id === "dtc" ? `<div class="dtc-prep-guide-cta"><button class="apply" type="button" data-open-dtc-prep>${icon("print")}${t("dtcPrep.guideButton")}</button></div>` : ""}
         ${p2.tax}
-        ${/* Before "how to apply" on purpose: knowing you might actually
-              qualify is what gets someone to read the steps at all. */ ""}
-        ${p2.plainTest}
-
         ${listBlock(t("guide.how"), "compass", guideSteps, true)}
         ${b.needsPractitioner && !inline ? practitionerFinder(b) : ""}
-        ${listBlock(t("guide.need"), "check", d.documents, false)}
-        ${listBlock(t("guide.tips"), "info", d.tips, false)}
-        ${p2.denials}
-        ${p2.appeal}
-        ${p2.faqs}
         ${p2.related}
+        ${aboutMore}
+        ${documentsMore}
+        ${tipsMore}
+        ${denialsMore}
+        ${appealMore}
+        ${faqsMore}
         ${inline ? `<div class="inline-guide-full"><button class="inline-guide-full-link" type="button" data-open-full-guide="${b.id}">${t("guide.openFull")} ${icon("arrowRight")}</button></div>` : ""}
       </div>
 

@@ -285,6 +285,7 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "dres": { difficulty: 3, effort: "Application + disability documentation", wait: "varies" },
   "cpp-childrens-benefit": { difficulty: 2, effort: "Apply with the parent's CPP-D", wait: "monthly once approved" },
   "home-accessibility-tax-credit": { difficulty: 2, effort: "Claimed on your tax return", wait: "at tax time" },
   "multigenerational-home-renovation-tax-credit": { difficulty: 3, effort: "Claimed on your tax return", wait: "at tax time" },

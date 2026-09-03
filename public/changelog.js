@@ -1,5 +1,6 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
+  { date: "2026-09-03", text: "Benefit pages now lead with the essentials and tuck secondary detail (full description, documents, tips, denial reasons, FAQs) into labelled expand sections, so pages are less overwhelming; short descriptions stay visible. The apply action in the quick-answers card is now a link, and DRES shows the at-a-glance row." },
   { date: "2026-09-03", text: "The Disability Related Employment Supports (DRES) guide is intentionally kept without the at-a-glance difficulty/apply/wait row, so that row was removed there; it covers the other 17 recently updated benefits." },
   { date: "2026-09-02", text: "Added the at-a-glance difficulty, apply-time and wait row to 18 benefits that were missing it." },
   { date: "2026-09-02", text: "The Community Living BC and Autism Funding (under 6 / 6–18) guides now show what they cover as a bulleted list instead of a long run-on sentence. The covered items and amounts are unchanged." },

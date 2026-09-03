@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=129") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=130") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=129") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=130") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -656,6 +656,19 @@ body.a11y-nomotion .scenario-toggle .ic:last-child { transition: none; }
 .eligibility-list li { margin: 6px 0; }
 .eligibility-note { margin-top: 10px; }
 .tier-scroll { overflow-x: auto; margin-top: 10px; }
+/* Progressive-disclosure "More …" expanders (ticket #201): secondary benefit
+   content behind a labelled, keyboard-operable native <details>. Existing tokens
+   (theme/contrast-safe); degrades to a normal expander with no JS. */
+.guide-more { border: 1px solid var(--hair); border-radius: var(--r-sm); margin: 12px 0 0; background: var(--panel); overflow: hidden; }
+.guide-more > summary { cursor: pointer; padding: 13px 16px; font-weight: 600; color: var(--accent); list-style: none; display: flex; align-items: center; gap: 9px; }
+.guide-more > summary::-webkit-details-marker { display: none; }
+.guide-more > summary::before { content: "\25B8"; font-size: 0.95em; transition: transform 0.15s ease; }
+.guide-more[open] > summary::before { transform: rotate(90deg); }
+.guide-more > summary:hover { text-decoration: underline; }
+.guide-more > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.guide-more > *:not(summary) { margin: 0 16px 14px; }
+.guide-more .faq { margin: 8px 16px; }
+@media (prefers-reduced-motion: reduce) { .guide-more > summary::before { transition: none; } }
 .amount-tiers { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
 .amount-tiers th, .amount-tiers td { border: 1px solid var(--hair); padding: 8px 10px; text-align: left; vertical-align: top; }
 .amount-tiers th { background: var(--panel-2); color: var(--text); font-weight: 700; }
@@ -756,7 +769,13 @@ details.notmatch summary::-webkit-details-marker { display: none; }
 .af-a.af-status.ready { color: var(--ok); font-weight: 600; }
 .af-a.af-status.almost, .af-a.af-status.maybe { color: var(--warn); font-weight: 600; }
 .af-meta { font-size: 0.82rem; color: var(--text-dim); }
-.answer-first .af-apply { align-self: flex-start; margin: 2px 0 0; }
+/* Answer-card apply action is a text link, not a pill button (ticket #203):
+   the pill ballooned in the narrow cell and duplicated the sidebar's primary
+   Apply button. */
+.answer-first .af-apply-link { align-self: flex-start; margin: 4px 0 0; color: var(--accent); font-weight: 600; text-decoration: none; display: inline-flex; align-items: baseline; gap: 5px; overflow-wrap: anywhere; }
+.answer-first .af-apply-link:hover { text-decoration: underline; }
+.answer-first .af-apply-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.answer-first .af-apply-link .ic { width: 14px; height: 14px; flex: none; }
 .af-check { align-self: flex-start; text-align: left; padding: 0; }
 @media (max-width: 680px) { .answer-first { grid-template-columns: 1fr; } }
 .status-banner { padding: 12px 0 12px 15px; margin-bottom: 22px; font-size: 0.92rem; border-left: 2px solid var(--ok); display: flex; gap: 9px; }
