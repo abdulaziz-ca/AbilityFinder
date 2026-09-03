@@ -4525,23 +4525,8 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   const vFresh = verifiedFor(b); // Per-benefit freshness.
 
   const x = BENEFIT_EXTRA[b.id] || {};
-  let statusBanner = "";
-  if (!wizardDone()) {
-    statusBanner = `
-      <div class="status-banner maybe">${icon("compass")}<div><b>Want to know if you qualify?</b>
-        Answer a few quick questions and we'll tell you — and tailor this guide to you.
-        <button class="linklike" data-guide-check>Check my eligibility ${icon("arrowRight")}</button></div>
-      </div>`;
-  } else if (r.status === "almost") {
-    // The approved action card owns this state. Keeping the same long message in
-    // both columns made the guide feel repetitive and was especially cramped on
-    // smaller screens.
-    statusBanner = "";
-  } else if (x.confirm) {
-    statusBanner = `<div class="status-banner maybe">${icon("info")}<div><b>Possible match</b> — confirm ${x.confirm}; the program makes the final decision.</div></div>`;
-  } else {
-    statusBanner = `<div class="status-banner ready">${icon("check")}<span>${t("det.eligible")}</span></div>`;
-  }
+  // The old top status-banner is replaced by the answer-first summary card
+  // (ticket #197), built below once sideStatus and the value are known.
   const p2 = p2Sections(b);
 
   const nextAction = wizardDone() ? r.needs.find((n) => n.action) : null;
@@ -4590,6 +4575,21 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
       ? `<div class="side-next"><h2>Before you can apply</h2><ul>${unmet.map((n) => `<li>${n.text}</li>`).join("")}</ul></div>`
       : `<div class="side-next"><h2>Next step</h2><p>Confirm the current rules, then use the official application.</p></div>`;
 
+  // Answer-first summary (ticket #197): the three questions a benefit user
+  // arrives with — am I eligible? / how much? / how do I apply? — surfaced above
+  // the prose so they are scannable in seconds without reading the page. SPA
+  // only; the static guide pages remain the no-JS/SEO fallback and already
+  // front-load these facts. The eligibility cell keeps the [data-guide-check]
+  // wizard trigger (wired in wireGuideInteractions) when the wizard isn't done.
+  const afEligible = !wizardDone()
+    ? `<span class="af-a">${t("af.eligiblePrompt")}</span><button class="linklike af-check" data-guide-check>${t("af.check")} ${icon("arrowRight")}</button>`
+    : `<span class="af-a af-status ${sideStatus.cls}">${sideStatus.txt}</span>`;
+  const answerFirst = inline ? "" : `<section class="answer-first" aria-label="${t("af.aria")}">
+        <div class="af-cell"><span class="af-q">${t("af.eligible")}</span>${afEligible}</div>
+        ${b.amount ? `<div class="af-cell"><span class="af-q">${t("af.howMuch")}</span><span class="af-a">${v.head}</span></div>` : ""}
+        <div class="af-cell"><span class="af-q">${t("af.howApply")}</span><a class="apply af-apply" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.applyText} ${icon("external")}</a>${d.time ? `<span class="af-meta">${t("meta.time")}: ${d.time}</span>` : ""}</div>
+      </section>`;
+
   return `
   ${inline ? "" : `<div class="detail">
     ${backBtn("d-back")}
@@ -4605,7 +4605,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
 
     <div class="detail-body${inline ? " inline-guide-body" : ""}">
       <div class="detail-main">
-        ${statusBanner}
+        ${answerFirst}
         ${enNote}
 
         ${d.about && d.about !== b.summary ? `<p class="detail-about">${d.about}</p>` : ""}

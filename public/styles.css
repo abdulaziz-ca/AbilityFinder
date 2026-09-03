@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=124") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=125") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=124") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=125") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -745,6 +745,20 @@ details.notmatch summary::-webkit-details-marker { display: none; }
 .detail-title { font-family: var(--font-display); font-optical-sizing: auto; font-size: clamp(1.8rem, 4.6vw, 2.5rem); font-weight: 400; letter-spacing: -0.02em; line-height: 1.08; margin: 0 0 6px; }
 .detail-amount { color: var(--accent-hi); font-weight: 600; font-size: 1.1rem; letter-spacing: -0.02em; margin-bottom: 20px; }
 
+/* Answer-first summary card (ticket #197): three cells — eligible? / how much? /
+   how to apply? — above the prose. Three columns on desktop, stacks on narrow
+   screens; uses existing tokens so it reads correctly in light, dark, and
+   high-contrast. */
+.answer-first { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0 0 22px; }
+.answer-first .af-cell { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border: 1px solid var(--hair); border-radius: var(--r-sm); background: var(--panel-2); min-width: 0; }
+.af-q { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-dim); }
+.af-a { font-size: 0.98rem; color: var(--text); overflow-wrap: anywhere; }
+.af-a.af-status.ready { color: var(--ok); font-weight: 600; }
+.af-a.af-status.almost, .af-a.af-status.maybe { color: var(--warn); font-weight: 600; }
+.af-meta { font-size: 0.82rem; color: var(--text-dim); }
+.answer-first .af-apply { align-self: flex-start; margin: 2px 0 0; }
+.af-check { align-self: flex-start; text-align: left; padding: 0; }
+@media (max-width: 680px) { .answer-first { grid-template-columns: 1fr; } }
 .status-banner { padding: 12px 0 12px 15px; margin-bottom: 22px; font-size: 0.92rem; border-left: 2px solid var(--ok); display: flex; gap: 9px; }
 .status-banner.almost { border-left-color: var(--warn); }
 .status-banner.maybe { border-left-color: var(--warn); }
