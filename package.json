@@ -9,6 +9,7 @@
     "gen:context": "node scripts/gen-benefits-context.js",
     "gen:guides": "node scripts/gen-guide-pages.js",
     "verify:deploy": "node scripts/verify-deploy.js",
+    "check:readability": "node scripts/check-readability.js",
     "test": "node --test test/*.test.js",
     "test:e2e": "playwright test"
   },
