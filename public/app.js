@@ -4569,17 +4569,17 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   const aboutLong = aboutText.length > 240;
   const aboutVisible = aboutText && !aboutLong ? `<p class="detail-about">${aboutText}</p>` : "";
   const moreList = (summary, items, extraCls) => (items && items.length)
-    ? `<details class="guide-more"><summary>${summary}</summary><ul class="guide-list${extraCls ? " " + extraCls : ""}">${items.map((it) => `<li>${it}</li>`).join("")}</ul></details>`
+    ? `<section class="guide-block"><h2 class="guide-h">${summary}</h2><ul class="guide-list${extraCls ? " " + extraCls : ""}">${items.map((it) => `<li>${it}</li>`).join("")}</ul></section>`
     : "";
   const aboutMore = (aboutLong || p2.plainTest)
-    ? `<details class="guide-more"><summary>${t("guide.moreAbout")}</summary>${aboutLong ? `<p class="detail-about">${aboutText}</p>` : ""}${p2.plainTest}</details>`
+    ? `<section class="guide-block"><h2 class="guide-h">${t("guide.moreAbout")}</h2>${aboutLong ? `<p class="detail-about">${aboutText}</p>` : ""}${p2.plainTest}</section>`
     : "";
   const documentsMore = moreList(t("guide.need"), d.documents);
   const tipsMore = moreList(t("guide.tips"), d.tips);
   const denialsMore = moreList(t("guide.denials"), x.denials, "warn-list");
-  const appealMore = x.appeal ? `<details class="guide-more"><summary>${t("guide.appeal")}</summary><p class="p2-text">${x.appeal}</p></details>` : "";
+  const appealMore = x.appeal ? `<section class="guide-block"><h2 class="guide-h">${t("guide.appeal")}</h2><p class="p2-text">${x.appeal}</p></section>` : "";
   const faqsMore = (x.faqs && x.faqs.length)
-    ? `<details class="guide-more"><summary>${t("guide.faqs")}</summary><div class="faqs">${x.faqs.map((f) => `<details class="faq"><summary>${f.q}</summary><p>${f.a}</p></details>`).join("")}</div></details>`
+    ? `<section class="guide-block"><h2 class="guide-h">${t("guide.faqs")}</h2><div class="faqs">${x.faqs.map((f) => `<div class="faq-item"><p class="faq-q">${f.q}</p><p class="faq-a">${f.a}</p></div>`).join("")}</div></section>`
     : "";
 
   // "At a glance" facts for the sticky sidebar
@@ -4619,7 +4619,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   const answerFirst = inline ? "" : `<section class="answer-first" aria-label="${t("af.aria")}">
         <div class="af-cell"><span class="af-q">${t("af.eligible")}</span>${afEligible}</div>
         ${b.amount ? `<div class="af-cell"><span class="af-q">${t("af.howMuch")}</span><span class="af-a">${v.head}</span></div>` : ""}
-        <div class="af-cell"><span class="af-q">${t("af.howApply")}</span><a class="af-apply-link" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.applyText} ${icon("external")}</a>${d.time ? `<span class="af-meta">${t("meta.time")}: ${d.time}</span>` : ""}</div>
+        <div class="af-cell"><span class="af-q">${t("af.howApply")}</span>${b.applyUrl ? `<a class="af-apply-link" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.applyText || t("af.applyGeneric")} ${icon("external")}</a>` : `<span class="af-a">${b.applyText || t("af.applyGeneric")}</span>`}${d.time ? `<span class="af-meta">${t("meta.time")}: ${d.time}</span>` : ""}</div>
       </section>`;
 
   return `
@@ -4671,7 +4671,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
           ${nextAction ? `<a class="apply side-next-action" href="${nextAction.action.url}" target="_blank" rel="noopener noreferrer" data-ext>${nextAction.action.text} ${icon("external")}</a>` : ""}
           <dl class="side-facts">${factsHtml}</dl>
           <div class="side-actions">
-            <a class="apply" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.applyText} ${icon("external")}</a>
+            ${b.applyUrl ? `<a class="apply" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.applyText || t("af.applyGeneric")} ${icon("external")}</a>` : ""}
             ${b.declarationUrl ? `<a class="source-link" href="${resolveUrl(b.declarationUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.declarationText || "Required dependent declaration"} ${icon("external")}</a>` : ""}
             <a class="source-link" href="${resolveUrl(b.source)}" target="_blank" rel="noopener noreferrer" data-ext>${t("det.official")} ${icon("external")}</a>
           </div>
