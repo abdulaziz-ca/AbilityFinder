@@ -1,6 +1,6 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
-  { date: "2026-09-02", text: "Added the at-a-glance difficulty, apply-time and wait row to 18 benefits that were missing it, so every benefit now shows it." },
+  { date: "2026-09-02", text: "Added the at-a-glance difficulty, apply-time and wait row to 17 benefits that were missing it." },
   { date: "2026-09-02", text: "The Community Living BC and Autism Funding (under 6 / 6–18) guides now show what they cover as a bulleted list instead of a long run-on sentence. The covered items and amounts are unchanged." },
   { date: "2026-09-02", text: "Split several long run-on sentences in benefit descriptions into shorter ones for easier reading. Only punctuation changed — no amounts, dates, or eligibility wording were altered." },
   { date: "2026-09-02", text: "The Fair PharmaCare guide now shows what the plan pays at each family-net-income band in a table, instead of a run-on sentence. The income bands and coverage are unchanged." },

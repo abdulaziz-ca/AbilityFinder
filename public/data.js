@@ -293,7 +293,6 @@ const BENEFIT_META = {
   "disability-supports-deduction": { difficulty: 3, effort: "Claimed on your tax return", wait: "at tax time" },
   "medical-expense-tax-credit": { difficulty: 2, effort: "Claimed on your tax return", wait: "at tax time" },
   "canada-caregiver-credit": { difficulty: 2, effort: "Claimed on your tax return", wait: "at tax time" },
-  "dres": { difficulty: 3, effort: "Application + disability documentation", wait: "varies" },
   "ab-service-dog-id-card": { difficulty: 2, effort: "Application + proof of assessment", wait: "varies" },
   "ab-capcc": { difficulty: 3, effort: "Application through continuing care", wait: "varies" },
   "ab-special-needs-housing": { difficulty: 3, effort: "Housing application + income verification", wait: "waitlists vary" },
