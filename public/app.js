@@ -4559,6 +4559,25 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
     ? `<section class="guide-block"><h2 class="guide-h">${icon("info")} ${t("guide.covers")}</h2>${coversList.lead ? `<p class="eligibility-lead">${coversList.lead}</p>` : ""}<ul class="eligibility-list">${coversList.items.map((it) => `<li>${it}</li>`).join("")}</ul></section>`
     : "";
 
+  // Progressive disclosure (#201): secondary content sits inside labelled native
+  // <details> expanders so the page leads with the essentials instead of a wall
+  // of text — but nothing is removed. Each expander is keyboard-operable and
+  // fully readable without JS (a native <details>), and critical info
+  // (eligibility, amount, how to apply, the key callout) stays visible above.
+  const moreList = (summary, items, extraCls) => (items && items.length)
+    ? `<details class="guide-more"><summary>${summary}</summary><ul class="guide-list${extraCls ? " " + extraCls : ""}">${items.map((it) => `<li>${it}</li>`).join("")}</ul></details>`
+    : "";
+  const aboutMore = ((d.about && d.about !== b.summary) || p2.plainTest)
+    ? `<details class="guide-more"><summary>${t("guide.moreAbout")}</summary>${d.about && d.about !== b.summary ? `<p class="detail-about">${d.about}</p>` : ""}${p2.plainTest}</details>`
+    : "";
+  const documentsMore = moreList(t("guide.need"), d.documents);
+  const tipsMore = moreList(t("guide.tips"), d.tips);
+  const denialsMore = moreList(t("guide.denials"), x.denials, "warn-list");
+  const appealMore = x.appeal ? `<details class="guide-more"><summary>${t("guide.appeal")}</summary><p class="p2-text">${x.appeal}</p></details>` : "";
+  const faqsMore = (x.faqs && x.faqs.length)
+    ? `<details class="guide-more"><summary>${t("guide.faqs")}</summary><div class="faqs">${x.faqs.map((f) => `<details class="faq"><summary>${f.q}</summary><p>${f.a}</p></details>`).join("")}</div></details>`
+    : "";
+
   // "At a glance" facts for the sticky sidebar
   const mm = BENEFIT_META[b.id] || {};
   const di = difficultyInfo(mm.difficulty);
@@ -4617,7 +4636,9 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
         ${answerFirst}
         ${enNote}
 
-        ${d.about && d.about !== b.summary ? `<p class="detail-about">${d.about}</p>` : ""}
+        ${/* Essentials stay visible: the key callout, who qualifies, how much,
+              what it covers, and how to apply. Secondary detail moves into the
+              labelled "More …" expanders below (ticket #201). */ ""}
         ${b.note ? `<section class="guide-block"><h2 class="guide-h">${t("guide.goodToKnow")}</h2><div class="note">${b.note}</div></section>` : ""}
         ${b.eligibility && b.eligibility.items && b.eligibility.items.length
           ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="eligibility-lead">${b.eligibility.mode === "any" ? t("guide.mustMeetAny") : t("guide.mustMeetAll")}</p><ul class="eligibility-list">${b.eligibility.items.map((it) => `<li>${it}</li>`).join("")}</ul>${b.eligibility.note ? `<p class="detail-about eligibility-note">${b.eligibility.note}</p>` : ""}</section>`
@@ -4627,18 +4648,15 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
         ${coversSection}
         ${b.id === "dtc" ? `<div class="dtc-prep-guide-cta"><button class="apply" type="button" data-open-dtc-prep>${icon("print")}${t("dtcPrep.guideButton")}</button></div>` : ""}
         ${p2.tax}
-        ${/* Before "how to apply" on purpose: knowing you might actually
-              qualify is what gets someone to read the steps at all. */ ""}
-        ${p2.plainTest}
-
         ${listBlock(t("guide.how"), "compass", guideSteps, true)}
         ${b.needsPractitioner && !inline ? practitionerFinder(b) : ""}
-        ${listBlock(t("guide.need"), "check", d.documents, false)}
-        ${listBlock(t("guide.tips"), "info", d.tips, false)}
-        ${p2.denials}
-        ${p2.appeal}
-        ${p2.faqs}
         ${p2.related}
+        ${aboutMore}
+        ${documentsMore}
+        ${tipsMore}
+        ${denialsMore}
+        ${appealMore}
+        ${faqsMore}
         ${inline ? `<div class="inline-guide-full"><button class="inline-guide-full-link" type="button" data-open-full-guide="${b.id}">${t("guide.openFull")} ${icon("arrowRight")}</button></div>` : ""}
       </div>
 
