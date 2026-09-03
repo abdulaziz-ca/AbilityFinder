@@ -247,3 +247,8 @@ console.log(
   `  ${links.length} checkable links (rotating monitor batches them safely)` +
     `\n  ${skippedDynamic} dynamic URLs skipped (no safe static URL)`
 );
+for (const id of ["canada-caregiver-credit", "canadian-dental-care-plan", "ab-capcc", "medical-expense-tax-credit", "bc-csg-students-disabilities", "ab-service-dog-id-card", "ab-grant-disability", "bc-fair-pharmacare"]) {
+  const b = allBenefits.find((x) => x.id === id);
+  const al = b.detail.aboutList;
+  console.log(id, al ? ("lead=" + (al.lead ? "y" : "n") + " items=" + al.items.length) : "MISSING", "about=" + (b.detail.about ? "kept" : "LOST"));
+}
