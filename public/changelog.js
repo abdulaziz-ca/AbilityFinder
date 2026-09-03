@@ -1,5 +1,6 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
+  { date: "2026-09-02", text: "Split several long run-on sentences in benefit descriptions into shorter ones for easier reading. Only punctuation changed — no amounts, dates, or eligibility wording were altered." },
   { date: "2026-09-02", text: "The Fair PharmaCare guide now shows what the plan pays at each family-net-income band in a table, instead of a run-on sentence. The income bands and coverage are unchanged." },
   { date: "2026-09-02", text: "Five more BC benefit guides (Saanich recreation, the home renovation tax credit, the additional home owner grant, the Home Adaptations rebate, and PharmaCare Plan G) now list their eligibility as a checklist. The requirements are unchanged." },
   { date: "2026-09-02", text: "Three municipal recreation-access programs (Victoria, Kelowna, Coquitlam) now show their eligibility as a checklist and their low-income thresholds as a table by household size, instead of a run-on paragraph. The thresholds are unchanged." },
