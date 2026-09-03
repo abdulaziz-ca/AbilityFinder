@@ -1451,6 +1451,7 @@ const BENEFITS = [
   },
   {
     id: "multigenerational-home-renovation-tax-credit",
+    eligibility: { mode: "all", items: ["The renovation must create a self-contained secondary unit.", "One of the people living in the existing home or in the new unit must be a qualifying individual: either 65 years of age or older at the end of the renovation period tax year, or 18 to 64 and eligible for the Disability Tax Credit at any time in that year.", "Only one renovation can be claimed for a qualifying individual during their lifetime.", "The person claiming must be an eligible individual: a resident of Canada from January 1 to December 31 of the claim year who either ordinarily resides, or intends to ordinarily reside, in the home within 12 months of the end of the renovation period and is the qualifying individual, their cohabiting spouse or common-law partner, or a qualifying relation of theirs; or who owns the home and is a qualifying relation of the qualifying individual.", "The home must be in Canada, owned by the qualifying individual or a qualifying relation during the renovation period tax year, and lived in by both the qualifying individual and a qualifying relation within 12 months after the renovation period ends."] },
     name: "Multigenerational Home Renovation Tax Credit (MHRTC)",
     level: "Federal",
     category: "Tax",
@@ -1596,6 +1597,7 @@ const BENEFITS = [
   },
   {
     id: "disability-supports-deduction",
+    eligibility: { mode: "all", items: ["You must have an impairment in physical or mental functions and have paid the expenses yourself so that you could work, attend school or carry out research.", "Only the person with the disability can claim this deduction — a family member cannot claim it for them."], note: "Some expenses need a certification from a medical practitioner. Keep every receipt." },
     name: "Disability Supports Deduction (line 21500)",
     level: "Federal",
     category: "Tax",
@@ -1670,6 +1672,7 @@ const BENEFITS = [
   },
   {
     id: "canada-caregiver-credit",
+    eligibility: { mode: "all", items: ["You must be supporting a spouse or common-law partner, or a dependant, who has a mental or physical impairment."], note: "The amount depends on who you are supporting and on whether other credits are being claimed for that person. This is claimed by the supporter on their own return." },
     name: "Canada Caregiver Credit (CCC)",
     level: "Federal",
     category: "Tax",
@@ -2967,6 +2970,7 @@ const BENEFITS = [
   },
   {
     "id": "bc-pharmacare-plan-p",
+    "eligibility": { "mode": "all", "items": ["This is for B.C. residents of any age who have reached the end stage of a life-threatening disease or illness and who wish to receive palliative care at home."], "note": "\"Home\" means wherever the person is living — their own home, a family member's or friend's home, a supportive or assisted living residence, or a hospice unit in a long-term care facility, such as a community hospice bed not covered under PharmaCare Plan B. Registration is made by a physician or nurse practitioner, not by the patient or family." },
     "name": "PharmaCare Plan P (BC Palliative Care Benefits)",
     "level": "British Columbia",
     "category": "Health",
@@ -2987,6 +2991,7 @@ const BENEFITS = [
   },
   {
     "id": "bc-fnha-health-benefits",
+    "eligibility": { "mode": "all", "items": ["You must be a First Nations person with Indian status living in British Columbia."], "note": "Infants up to 24 months are covered if at least one parent is eligible. You are not eligible if you have health insurance provided by the federal government, or by a First Nations organization as part of a self-government agreement with Canada. The pharmacy coverage, which B.C. calls PharmaCare Plan W, also requires active Medical Services Plan enrolment." },
     "name": "First Nations Health Benefits (FNHA)",
     "level": "British Columbia",
     "category": "Health",
@@ -3376,6 +3381,7 @@ const BENEFITS = [
   },
   {
     "id": "sparc-parking-permit",
+    "eligibility": { "mode": "all", "items": ["Mobility limitation confirmed by a medical professional — for example you use a wheelchair or a mobility aid like a cane or crutches, or your health prevents you from walking far."], "note": "You don't need to own a vehicle." },
     "needsPractitioner": true,
     "name": "Accessible Parking Permit (SPARC BC)",
     "level": "British Columbia",
@@ -3742,6 +3748,7 @@ const BENEFITS = [
   },
   {
     "id": "bc-dental-supplement",
+    "eligibility": { "mode": "any", "items": ["Adults qualify for routine dental if they receive disability assistance, have the PPMB designation, or otherwise qualify for general health supplements.", "Children under 19 in families on any assistance are covered."], "note": "Adults on plain income assistance get emergency dental only." },
     "name": "Dental Supplements (Income & Disability Assistance)",
     "level": "British Columbia",
     "category": "Health",
