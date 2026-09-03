@@ -4550,6 +4550,15 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
     ? `<section class="guide-block guide-tiers"><h2 class="guide-h">${icon("info")} ${b.amountTiers.caption || "How the amount is worked out"}</h2><div class="tier-scroll"><table class="amount-tiers"><thead><tr>${b.amountTiers.headers.map((h) => `<th scope="col">${h}</th>`).join("")}</tr></thead><tbody>${b.amountTiers.rows.map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join("")}</tr>`).join("")}</tbody></table></div></section>`
     : "";
 
+  // "What it covers" — a benefit's list of covered services/items, held as a
+  // structured list (detail.coversList) instead of a comma run-on buried in the
+  // description prose, so users can scan what's covered. Optional lead line
+  // keeps the record's own framing ("CLBC funds and coordinates:").
+  const coversList = d.coversList && d.coversList.items && d.coversList.items.length ? d.coversList : null;
+  const coversSection = coversList
+    ? `<section class="guide-block"><h2 class="guide-h">${icon("info")} ${t("guide.covers")}</h2>${coversList.lead ? `<p class="eligibility-lead">${coversList.lead}</p>` : ""}<ul class="eligibility-list">${coversList.items.map((it) => `<li>${it}</li>`).join("")}</ul></section>`
+    : "";
+
   // "At a glance" facts for the sticky sidebar
   const mm = BENEFIT_META[b.id] || {};
   const di = difficultyInfo(mm.difficulty);
@@ -4615,6 +4624,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
           : b.requiresNote ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="detail-about">${b.requiresNote}</p></section>` : ""}
         ${valueSection}
         ${tiersSection}
+        ${coversSection}
         ${b.id === "dtc" ? `<div class="dtc-prep-guide-cta"><button class="apply" type="button" data-open-dtc-prep>${icon("print")}${t("dtcPrep.guideButton")}</button></div>` : ""}
         ${p2.tax}
         ${/* Before "how to apply" on purpose: knowing you might actually
