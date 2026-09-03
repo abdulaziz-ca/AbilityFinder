@@ -5080,6 +5080,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   wireHeaderMenu();
   const skipLink = document.getElementById("skipLink");
   if (skipLink) skipLink.addEventListener("click", (e) => { e.preventDefault(); const main = document.getElementById("app"); if (main) { main.setAttribute("tabindex", "-1"); main.focus(); } });
+  // e2e readiness (#200): tests treat a non-null history.state as "app fully
+  // wired" (see e2e/app-ready.js waitForAppReady). This MUST stay AFTER
+  // wireAccessibility() above; test/app-init-order.test.js guards the order so a
+  // future reorder cannot silently disarm the readiness wait.
   history.replaceState({ view, stepIndex, detailId }, "");
   render();
 

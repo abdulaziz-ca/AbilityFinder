@@ -1,4 +1,5 @@
 const { test, expect } = require("@playwright/test");
+const { gotoReady } = require("./app-ready");
 
 // Safari/WebKit only tabs between form controls unless the user turns on Full
 // Keyboard Access; links and buttons are skipped. That is engine policy, not a
@@ -84,12 +85,12 @@ async function describeActiveElement(page) {
 // CI) instead of asserting an arbitrary one.
 
 test("A11Y-03: skip link is first focusable, visible on focus, and moves focus to main", async ({ page }) => {
-  await page.goto("/");
+  await gotoReady(page);
   const skip = page.locator("#skipLink");
 
   // Engine-specific: only assert Tab lands on it where the engine tabs to links.
   if (await tabReachesButtonsAndLinks(page)) {
-    await page.goto("/");
+    await gotoReady(page);
     await settleFocusOrigin(page);
     await page.keyboard.press("Tab");
     await expect(skip, `Tab from a settled page should focus #skipLink, but ${await describeActiveElement(page)}`)
@@ -110,9 +111,9 @@ test("A11Y-03: skip link is first focusable, visible on focus, and moves focus t
 });
 
 test("A11Y-03: accessibility dialog is modal (focus, trap, Escape, restore, inert)", async ({ page }) => {
-  await page.goto("/");
+  await gotoReady(page);
   const tabsToButtonsAndLinks = await tabReachesButtonsAndLinks(page);
-  await page.goto("/");
+  await gotoReady(page);
   const fab = page.locator("#a11yFab");
   const panel = page.locator("#a11yPanel");
   await fab.focus();
@@ -141,7 +142,7 @@ test("A11Y-03: accessibility dialog is modal (focus, trap, Escape, restore, iner
 });
 
 test("A11Y-03: feedback empty submit marks invalid, associates + announces, preserves + recovers", async ({ page }) => {
-  await page.goto("/");
+  await gotoReady(page);
   const msg = page.locator("#fb-msg");
   await expect(msg).toHaveAttribute("aria-describedby", "fb-status");
   await expect(page.locator("#fb-status")).toHaveAttribute("role", "status");
@@ -162,7 +163,7 @@ test("A11Y-05: OS reduced-motion suppresses motion equivalently to in-app no-mot
   const probe = () => page.evaluate(() => { const el = document.querySelector(".ask-fab") || document.body; const cs = getComputedStyle(el); return { anim: cs.animationName, tdur: cs.transitionDuration }; });
   // OS setting
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
+  await gotoReady(page);
   const os = await probe();
   expect(os.anim === "none" && os.tdur === "0s").toBe(true);
   // in-app setting (no OS preference)
@@ -175,7 +176,7 @@ test("A11Y-05: OS reduced-motion suppresses motion equivalently to in-app no-mot
 });
 
 test("A11Y-06: language control accessible name contains the visible EN/FR token", async ({ page }) => {
-  await page.goto("/");
+  await gotoReady(page);
   const langBtn = page.locator("#langBtn");
   const visEn = (await page.locator("#langLabel").textContent()).trim();
   expect(await langBtn.getAttribute("aria-label")).toContain(visEn); // contains "EN"
