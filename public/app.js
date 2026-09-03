@@ -4567,12 +4567,13 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   // with little content therefore shows it all directly, with no expanders.
   const aboutText = d.about && d.about !== b.summary ? d.about : "";
   const aboutLong = aboutText.length > 240;
-  const aboutVisible = aboutText && !aboutLong ? `<p class="detail-about">${aboutText}</p>` : "";
+  const aboutListData = d.aboutList && d.aboutList.items && d.aboutList.items.length ? d.aboutList : null;
+  const aboutVisible = aboutText && !aboutLong && !aboutListData ? `<p class="detail-about">${aboutText}</p>` : "";
   const moreList = (summary, items, extraCls) => (items && items.length)
     ? `<section class="guide-block"><h2 class="guide-h">${summary}</h2><ul class="guide-list${extraCls ? " " + extraCls : ""}">${items.map((it) => `<li>${it}</li>`).join("")}</ul></section>`
     : "";
-  const aboutMore = (aboutLong || p2.plainTest)
-    ? `<section class="guide-block"><h2 class="guide-h">${t("guide.moreAbout")}</h2>${aboutLong ? `<p class="detail-about">${aboutText}</p>` : ""}${p2.plainTest}</section>`
+  const aboutMore = (aboutListData || aboutLong || p2.plainTest)
+    ? `<section class="guide-block"><h2 class="guide-h">${t("guide.moreAbout")}</h2>${aboutListData ? `${aboutListData.lead ? `<p class="detail-about">${aboutListData.lead}</p>` : ""}<ul class="eligibility-list">${aboutListData.items.map((it) => `<li>${it}</li>`).join("")}</ul>` : (aboutLong ? `<p class="detail-about">${aboutText}</p>` : "")}${p2.plainTest}</section>`
     : "";
   const documentsMore = moreList(t("guide.need"), d.documents);
   const tipsMore = moreList(t("guide.tips"), d.tips);

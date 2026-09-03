@@ -177,7 +177,9 @@ ${header()}
         </header>
         <div class="detail-body">
           <div class="detail-main">
-            ${detail.about ? `<section class="guide-block"><h2 class="guide-h">What it is</h2><p class="detail-about">${esc(detail.about)}</p></section>` : ""}
+            ${detail.aboutList && detail.aboutList.items && detail.aboutList.items.length
+              ? `<section class="guide-block"><h2 class="guide-h">What it is</h2>${detail.aboutList.lead ? `<p class="detail-about">${esc(detail.aboutList.lead)}</p>` : ""}<ul class="eligibility-list">${detail.aboutList.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul></section>`
+              : detail.about ? `<section class="guide-block"><h2 class="guide-h">What it is</h2><p class="detail-about">${esc(detail.about)}</p></section>` : ""}
             ${b.note ? `<section class="guide-block"><h2 class="guide-h">Good to know</h2><p class="detail-about">${esc(b.note)}</p></section>` : ""}
             ${b.eligibility && b.eligibility.items && b.eligibility.items.length
               ? `<section class="guide-block"><h2 class="guide-h">What you must meet</h2><p class="eligibility-lead">${b.eligibility.mode === "any" ? "You qualify if any of these apply:" : "You must meet all of these:"}</p><ul class="eligibility-list">${b.eligibility.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul>${b.eligibility.note ? `<p class="detail-about eligibility-note">${esc(b.eligibility.note)}</p>` : ""}</section>`
