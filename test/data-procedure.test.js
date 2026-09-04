@@ -383,6 +383,7 @@ function loadLinkSources() {
       `${readRepoFile("public", "grants-data.js")}\n` +
       `${readRepoFile("public", "orgs-data.js")}\n` +
       "globalThis.__benefits = BENEFITS; globalThis.__bcCities = BC_CITIES; " +
+      "globalThis.__onCities = typeof ON_CITIES !== 'undefined' ? ON_CITIES : []; " +
       "globalThis.__help = HELP_ORGS; globalThis.__grants = GRANTS_DIRECTORY; " +
       "globalThis.__orgs = ORGS_DIRECTORY; " +
       // Province fallback maps. This mirror must expose exactly what
@@ -410,9 +411,11 @@ function expectedGeneratedLinks() {
   // second opinion is replaced by test/link-sources.test.js, which tests the module's own
   // semantics directly instead of deriving them from the source it is checking.
   const sources = loadLinkSources();
-  const bcEnabled = /\bconst BC_ENABLED = true;\s*$/m.test(readRepoFile("public", "app.js"));
+  const appSource = readRepoFile("public", "app.js");
+  const bcEnabled = /\bconst BC_ENABLED = true;\s*$/m.test(appSource);
+  const onEnabled = /^const ON_ENABLED = true;\s*$/m.test(appSource);
   const { links, skippedDynamic } = buildLinkCatalogue({
-    benefits: benefitsInScope(sources.__benefits, sources.__bcCities, bcEnabled),
+    benefits: benefitsInScope(sources.__benefits, sources.__bcCities, bcEnabled, sources.__onCities, onEnabled),
     helpOrgs: sources.__help,
     grants: sources.__grants || [],
     orgs: sources.__orgs || [],
@@ -443,14 +446,16 @@ function expectedBenefitsContextSource() {
   const bcEnabledMatch = /^const BC_ENABLED = (true|false);\s*$/m.exec(appSource);
   assert.ok(bcEnabledMatch, "public/app.js must declare a literal BC_ENABLED value");
   const bcEnabled = bcEnabledMatch[1] === "true";
-  const benefits = bcEnabled
-    ? sources.__benefits
-    : sources.__benefits.filter(
-        (benefit) =>
-          benefit.level !== "British Columbia" &&
-          benefit.level !== "Metro Vancouver" &&
-          !sources.__bcCities.includes(benefit.level)
-      );
+  const onEnabledMatch = /^const ON_ENABLED = (true|false);\s*$/m.exec(appSource);
+  assert.ok(onEnabledMatch, "public/app.js must declare a literal ON_ENABLED value");
+  const onEnabled = onEnabledMatch[1] === "true";
+  const benefits = benefitsInScope(
+    sources.__benefits,
+    sources.__bcCities,
+    bcEnabled,
+    sources.__onCities,
+    onEnabled
+  );
   const clean = (value) => String(value ?? "").replace(/\s+/g, " ").trim();
   const byId = new Map(benefits.map((benefit) => [benefit.id, benefit]));
   const formsMatch = /const PRACTITIONER_FORMS = (\{[\s\S]*?\});/.exec(appSource);

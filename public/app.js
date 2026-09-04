@@ -7,7 +7,8 @@
    ========================================================================== */
 
 const BC_ENABLED = true;
-const ON_ENABLED = false; // Ontario rollout — dark until launch (ticket #91)
+// Ontario rollout — dark until launch (ticket #91)
+const ON_ENABLED = false;
 // Scope labels compose from the enabled-province set, so flipping a flag updates them everywhere.
 // Invariant: with ON_ENABLED=false (and BC_ENABLED=true) these produce exactly the prior Alberta+BC strings.
 const _SCOPE_FULL = ["Alberta", ...(BC_ENABLED ? ["British Columbia"] : []), ...(ON_ENABLED ? ["Ontario"] : [])];
@@ -3835,6 +3836,7 @@ const PRACTITIONER_FORMS = {
   aish: "the Disability Assistance Medical Report (for the combined AISH/ADAP application)",
   adap: "the Disability Assistance Medical Report (for the combined AISH/ADAP application)",
   "parking-placard": "the accessible parking placard form",
+  "on-parking-permit": "the Accessible Parking Permit application",
 };
 
 /* "Find a/an <type>" with the correct article */

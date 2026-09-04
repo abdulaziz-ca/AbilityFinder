@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.0.0";
+const SPEC_VERSION = "1.1.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -194,6 +194,7 @@ const GATES = {
   /* ---------------------------------------------------------- jurisdiction */
   ab: province("AB"),
   bc: province("BC"),
+  on: province("ON"),
   provinceCovered: {
     evidence: "answers",
     satisfy: { set: { province: "AB" } },
@@ -637,6 +638,7 @@ const PROGRAM_BEST_CASE = {
   "bc-optical-supplement":                         "ready",
   "bc-bus-pass":                                   "ready",
   "sparc-parking-permit":                          "ready",
+  "on-parking-permit":                             "ready",
   "bc-medical-equipment-devices":                  "ready",
   "bc-at-home-medical":                            "ready",
   "bc-supported-child-development":                "ready",

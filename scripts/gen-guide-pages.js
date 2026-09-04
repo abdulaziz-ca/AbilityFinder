@@ -19,7 +19,8 @@ vm.runInContext(
   fs.readFileSync(DATA, "utf8") +
     '\n;globalThis.__B = typeof BENEFITS !== "undefined" ? BENEFITS : null;' +
     '\n;globalThis.__M = typeof BENEFIT_META !== "undefined" ? BENEFIT_META : null;' +
-    '\n;globalThis.__BC_CITIES = typeof BC_CITIES !== "undefined" ? BC_CITIES : null;',
+    '\n;globalThis.__BC_CITIES = typeof BC_CITIES !== "undefined" ? BC_CITIES : null;' +
+    '\n;globalThis.__ON_CITIES = typeof ON_CITIES !== "undefined" ? ON_CITIES : null;',
   ctx
 );
 const allBenefits = ctx.__B;
@@ -39,13 +40,23 @@ const bcCities = ctx.__BC_CITIES;
 if (!Array.isArray(bcCities)) {
   throw new Error("gen:guides — could not read BC_CITIES from data.js");
 }
+const onEnabledMatch = /^const ON_ENABLED = (true|false);\s*$/m.exec(appSource);
+if (!onEnabledMatch) {
+  throw new Error("gen:guides — could not find literal const ON_ENABLED = true/false in public/app.js");
+}
+const onEnabled = onEnabledMatch[1] === "true";
+const onCities = ctx.__ON_CITIES;
+if (!Array.isArray(onCities)) {
+  throw new Error("gen:guides — could not read ON_CITIES from data.js");
+}
 const benefitIsBritishColumbia = (b) =>
   b.level === "British Columbia" || b.level === "Metro Vancouver" || bcCities.includes(b.level);
-const benefits = bcEnabled ? allBenefits : allBenefits.filter((b) => !benefitIsBritishColumbia(b));
-const excludedBenefits = allBenefits.length - benefits.length;
+const benefitIsOntario = (b) => b.level === "Ontario" || onCities.includes(b.level);
+let benefits = allBenefits;
+if (!bcEnabled) benefits = benefits.filter((b) => !benefitIsBritishColumbia(b));
+if (!onEnabled) benefits = benefits.filter((b) => !benefitIsOntario(b));
 console.log(
-  `BC_ENABLED=${bcEnabled} - excluded ${excludedBenefits} British Columbia entries, ` +
-    `generating ${benefits.length} ${bcEnabled ? "Alberta, British Columbia, and federal" : "Alberta and federal"} entries.`
+  `BC_ENABLED=${bcEnabled} ON_ENABLED=${onEnabled} — excluded ${allBenefits.length - benefits.length} dark-province entries; generating ${benefits.length} entries.`
 );
 
 const indexHtml = fs.readFileSync(INDEX, "utf8");
@@ -225,7 +236,7 @@ const groups = new Map([["Federal", []], ["Provincial", []], ["Municipal", []]])
 for (const b of publishableBenefits) {
   const group = b.level === "Federal"
     ? "Federal"
-    : ["Alberta", "British Columbia"].includes(b.level)
+    : ["Alberta", "British Columbia", "Ontario"].includes(b.level)
       ? "Provincial"
       : "Municipal";
   groups.get(group).push(b);

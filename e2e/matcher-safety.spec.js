@@ -1457,3 +1457,13 @@ test("Kelowna KFAP is refused for post-secondary students, who the City excludes
   const kfapOther = notStudent["kelowna-recreation-assistance"];
   expect(kfapOther.reasons.join(" ")).not.toMatch(/post-secondary students/i);
 });
+
+test("Ontario accessible parking permit is province-gated and ready for a mobility profile", async ({ page }) => {
+  // Ontario resident with a qualifying mobility limitation → ready to apply.
+  const onMobility = await evaluateProfile(page, { province: "ON", disabilities: ["vision"] });
+  expect(onMobility["on-parking-permit"].status).toBe("ready");
+
+  // Same permit must never surface for a non-Ontario resident.
+  const abResident = await evaluateProfile(page, { province: "AB", disabilities: ["vision"] });
+  expect(abResident["on-parking-permit"].status).toBe("no");
+});

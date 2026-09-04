@@ -105,3 +105,20 @@ test("benefitsInScope drops BC entries only when BC is disabled", () => {
   assert.equal(benefitsInScope(benefits, cities, true).length, 4);
   assert.deepEqual(benefitsInScope(benefits, cities, false).map((b) => b.name), ["fed"]);
 });
+
+test("benefitsInScope drops Ontario entries only when Ontario is disabled", () => {
+  const benefits = [
+    { name: "fed", level: "Federal" },
+    { name: "bc", level: "British Columbia" },
+    { name: "on", level: "Ontario" },
+    { name: "onCity", level: "Toronto" },
+  ];
+  const onCities = ["Toronto"];
+  // BC enabled, ON enabled (default): nothing dropped.
+  assert.equal(benefitsInScope(benefits, [], true).length, 4);
+  // BC enabled, ON disabled: Ontario province + Ontario city dropped, BC kept.
+  assert.deepEqual(
+    benefitsInScope(benefits, [], true, onCities, false).map((b) => b.name),
+    ["fed", "bc"]
+  );
+});

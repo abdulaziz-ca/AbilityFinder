@@ -121,6 +121,7 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "on-parking-permit": { kind: "access", excludeFromEstimate: true, note: "accessible parking permit; free to get, renew, or replace" },
   // ---- federal ----
   // The annual disability amount is not cash and is not the tax reduction.
   // Actual federal/provincial tax relief depends on tax payable, transfers,
@@ -286,6 +287,7 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "on-parking-permit": { difficulty: 2, effort: "Application + a regulated health professional certifies your condition", wait: "Up to 3 weeks (online or mail); about 7 weeks (in person)" },
   "dres": { difficulty: 3, effort: "Application + disability documentation", wait: "varies" },
   "cpp-childrens-benefit": { difficulty: 2, effort: "Apply with the parent's CPP-D", wait: "monthly once approved" },
   "home-accessibility-tax-credit": { difficulty: 2, effort: "Claimed on your tax return", wait: "at tax time" },
@@ -1042,6 +1044,66 @@ const HELP_ORGS = [
 ];
 
 const BENEFITS = [
+  {
+    id: "on-parking-permit",
+    needsPractitioner: true,
+    name: "Accessible Parking Permit (Ontario)",
+    level: "Ontario",
+    category: "Parking",
+    amount: "Free",
+    summary:
+      "A free permit to park in designated accessible spaces. It is issued to a person, not a vehicle, so it can only be used when the permit holder is driving or riding in the vehicle. A regulated health professional certifies your condition on the application.",
+    note: "The permit belongs to the person, not the car — it can only be used when the permit holder is in the vehicle, and misuse can bring a fine of up to $5,000. Each municipality sets its own parking privileges through local bylaws, so follow the rules where you park.",
+    requires: ["on", "mobility"],
+    eligibility: {
+      mode: "any",
+      items: [
+        "Cannot walk without the help of a brace, cane, crutch, lower-limb prosthetic, wheelchair, or another person",
+        "Lung disease severe enough that forced expiratory volume is under one litre in one second",
+        "Portable oxygen is a medical necessity",
+        "Cardiovascular disease at Class III or Class IV functional capacity",
+        "Severely limited in the ability to walk by an arthritic, neurological, musculoskeletal, or orthopaedic condition",
+        "Visual acuity of 20/200 or poorer in the better eye with corrective lenses, or a field of vision of 20 degrees or less",
+        "Mobility is severely limited by one or more conditions or functional impairments",
+      ],
+      note:
+        "A regulated health professional must certify one of these on your application: a physician, nurse practitioner (Extended Class), physiotherapist, occupational therapist, chiropractor, or podiatrist (chiropodist).",
+    },
+    applyText: "Apply through ServiceOntario",
+    applyUrl: "https://www.ontario.ca/page/get-accessible-parking-permit",
+    source: "https://www.ontario.ca/page/get-accessible-parking-permit",
+    detail: {
+      about:
+        "The Ontario Accessible Parking Permit (APP) lets you park in designated accessible spaces. It is issued to a person, not a vehicle, so the named holder must be the driver or a passenger. There is no cost to get, renew, or replace it. Each municipality sets its own parking privileges through local bylaws, so always follow the rules where you park.",
+      aboutList: {
+        lead: "The Ontario Accessible Parking Permit (APP) lets you park in designated accessible spaces.",
+        items: [
+          "It is issued to a person, not a vehicle, so it can only be used when the permit holder is driving or riding in the vehicle.",
+          "There is no cost to get, renew, or replace it.",
+          "Each municipality sets its own parking privileges through local bylaws, so always follow the rules where you park.",
+          "Using the permit when the holder is not present can bring a fine of up to $5,000 and loss of the permit.",
+        ],
+      },
+      steps: [
+        "Check the eligible conditions to see whether you may qualify",
+        "Get the application form at any ServiceOntario centre or download it from ontario.ca",
+        "Complete the applicant section and have a regulated health professional certify your condition",
+        "Submit online with a ServiceOntario Account, by mail, or in person at a ServiceOntario centre",
+        "Display the permit with its number and expiry date visible on the dashboard or sun visor when parked",
+      ],
+      documents: [
+        "A completed application with both the applicant section and the health-professional certification section",
+        "Acceptable identification",
+      ],
+      tips: [
+        "There is no fee to get, renew, or replace the permit.",
+        "A permanent permit is valid for 5 years and renews without needing to be re-certified; temporary and subject-to-change permits require re-certification to renew.",
+        "The permit belongs to the person, not the car — it can only be used when the permit holder is in the vehicle.",
+        "Municipalities set their own privileges (for example free or extended metered parking), so check your city's bylaws.",
+        "Travelling outside Ontario? If you hold a valid permit, you can get a traveller's permit to park the car you leave behind (for example at an Ontario airport or train station) while you take your regular permit with you on the trip.",
+      ],
+    },
+  },
   /* ---------------------------------------------------------------- FEDERAL */
   {
     id: "dtc",

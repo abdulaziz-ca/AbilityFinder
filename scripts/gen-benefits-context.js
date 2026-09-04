@@ -39,6 +39,7 @@ vm.runInContext(
   fs.readFileSync(SRC, "utf8") +
     '\n;globalThis.__B = typeof BENEFITS !== "undefined" ? BENEFITS : null;' +
     '\n;globalThis.__BC_CITIES = typeof BC_CITIES !== "undefined" ? BC_CITIES : null;' +
+    '\n;globalThis.__ON_CITIES = typeof ON_CITIES !== "undefined" ? ON_CITIES : null;' +
     '\n;globalThis.__HELP = typeof HELP_ORGS !== "undefined" ? HELP_ORGS : null;' +
     // Province fallback maps. These are reached only through answer-dependent link
     // functions, so addLink() never saw them and skipped them silently — three of the six
@@ -72,13 +73,23 @@ const bcCities = ctx.__BC_CITIES;
 if (!Array.isArray(bcCities)) {
   throw new Error("gen:context — could not read BC_CITIES from data.js");
 }
+const onEnabledMatch = /^const ON_ENABLED = (true|false);\s*$/m.exec(appSource);
+if (!onEnabledMatch) {
+  throw new Error("gen:context — could not find literal const ON_ENABLED = true/false in public/app.js");
+}
+const onEnabled = onEnabledMatch[1] === "true";
+const onCities = ctx.__ON_CITIES;
+if (!Array.isArray(onCities)) {
+  throw new Error("gen:context — could not read ON_CITIES from data.js");
+}
 const benefitIsBritishColumbia = (b) =>
   b.level === "British Columbia" || b.level === "Metro Vancouver" || bcCities.includes(b.level);
-const benefits = bcEnabled ? allBenefits : allBenefits.filter((b) => !benefitIsBritishColumbia(b));
-const excludedBenefits = allBenefits.length - benefits.length;
+const benefitIsOntario = (b) => b.level === "Ontario" || onCities.includes(b.level);
+let benefits = allBenefits;
+if (!bcEnabled) benefits = benefits.filter((b) => !benefitIsBritishColumbia(b));
+if (!onEnabled) benefits = benefits.filter((b) => !benefitIsOntario(b));
 console.log(
-  `BC_ENABLED=${bcEnabled} - excluded ${excludedBenefits} British Columbia entries, ` +
-    `generating ${benefits.length} ${bcEnabled ? "Alberta, British Columbia, and federal" : "Alberta and federal"} entries.`
+  `BC_ENABLED=${bcEnabled} ON_ENABLED=${onEnabled} — excluded ${allBenefits.length - benefits.length} dark-province entries; generating ${benefits.length} entries.`
 );
 
 const clean = (s) => String(s ?? "").replace(/\s+/g, " ").trim();

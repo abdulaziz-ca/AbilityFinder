@@ -89,14 +89,22 @@ function buildLinkCatalogue({ benefits, helpOrgs, grants, orgs, studentAid, twoE
 }
 
 /** Benefits filtered exactly as the generator filters them when BC is disabled. */
-function benefitsInScope(benefits, bcCities, bcEnabled) {
-  if (bcEnabled) return benefits;
-  return (benefits || []).filter(
-    (benefit) =>
-      benefit.level !== "British Columbia" &&
-      benefit.level !== "Metro Vancouver" &&
-      !(bcCities || []).includes(benefit.level)
-  );
+function benefitsInScope(benefits, bcCities, bcEnabled, onCities = [], onEnabled = true) {
+  let list = benefits || [];
+  if (!bcEnabled) {
+    list = list.filter(
+      (benefit) =>
+        benefit.level !== "British Columbia" &&
+        benefit.level !== "Metro Vancouver" &&
+        !(bcCities || []).includes(benefit.level)
+    );
+  }
+  if (!onEnabled) {
+    list = list.filter(
+      (benefit) => benefit.level !== "Ontario" && !(onCities || []).includes(benefit.level)
+    );
+  }
+  return list;
 }
 
 module.exports = { buildLinkCatalogue, benefitsInScope, CLEAN };
