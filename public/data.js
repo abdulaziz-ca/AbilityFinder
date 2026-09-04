@@ -121,6 +121,8 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "on-adp": { kind: "coverage", excludeFromEstimate: true, note: "ADP pays up to 75% of the approved amount, depending on the device's funding model; may be the full amount if you receive ODSP, Ontario Works or ACSD" },
+  "ontario-autism-program": { kind: "services", excludeFromEstimate: true, note: "needs-based services; no published dollar amount" },
   odsp: { kind: "cash", excludeFromEstimate: true, monthlyMax: 1436, note: "income-tested; single-person maximum for basic needs and shelter (July 2026)" },
   "on-parking-permit": { kind: "access", excludeFromEstimate: true, note: "accessible parking permit; free to get, renew, or replace" },
   // ---- federal ----
@@ -288,6 +290,8 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "on-adp": { difficulty: 3, effort: "Assessment by a registered authorizer, then purchase through a registered vendor", wait: "Not published" },
+  "ontario-autism-program": { difficulty: 2, effort: "Create an AccessOAP account and register with the written diagnosis", wait: "Not published" },
   odsp: { difficulty: 4, effort: "Online, phone or in-person application + a Disability Determination Package", wait: "A few months" },
   "on-parking-permit": { difficulty: 2, effort: "Application + a regulated health professional certifies your condition", wait: "Up to 3 weeks (online or mail); about 7 weeks (in person)" },
   "dres": { difficulty: 3, effort: "Application + disability documentation", wait: "varies" },
@@ -1046,6 +1050,116 @@ const HELP_ORGS = [
 ];
 
 const BENEFITS = [
+  {
+    id: "on-adp",
+    needsPractitioner: true,
+    name: "Assistive Devices Program (Ontario)",
+    level: "Ontario",
+    category: "Equipment",
+    amount: "Up to 75% of the approved amount (may be the full amount if you receive ODSP, Ontario Works or ACSD)",
+    summary:
+      "Helps pay for customized equipment and specialized supplies for a long-term physical disability — wheelchairs and other mobility aids, hearing aids, visual aids, prosthetics, respiratory and ventilator equipment, diabetic and ostomy supplies. Your income is not considered.",
+    note: "ADP does not pay for repairs — care and maintenance are yours. It also does not cover many common items, including bath and shower aids, grab-bars, stair or chair lifts, hospital beds, incontinence supplies, home renovations such as ramps, or batteries, even for equipment originally bought through ADP.",
+    requires: ["on", "equipmentNeed", "adpClinical"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "An Ontario resident with a valid Ontario health card",
+        "A physical disability requiring the equipment or supplies for 6 months or longer",
+        "Meet the clinical criteria specific to the device you are applying for",
+        "Not already receiving support for the same equipment from the Workplace Safety and Insurance Board, or as a Group \"A\" veteran from Veterans Affairs Canada",
+      ],
+      note: "Your income is not considered.",
+    },
+    applyText: "See how to apply by device type",
+    applyUrl: "https://www.ontario.ca/page/assistive-devices-program",
+    source: "https://www.ontario.ca/page/assistive-devices-program",
+    detail: {
+      about:
+        "The Assistive Devices Program (ADP) helps people with long-term physical disabilities pay for customized equipment, like wheelchairs and hearing aids, and for specialized supplies such as those used with ostomies. Income is not considered. How much you get depends on the device: ADP may pay 75% of an approved fixed price, up to 75% of an approved maximum contribution, or a set grant amount paid directly to you. If you receive Ontario Works, ODSP or Assistance for Children with Severe Disabilities, ADP may cover the full approved price, the full maximum contribution, or the full grant amount.",
+      aboutList: {
+        lead: "The Assistive Devices Program (ADP) helps pay for customized equipment and specialized supplies for a long-term physical disability.",
+        items: [
+          "Covers things like mobility aids, hearing aids, visual aids, prosthetics, respiratory and ventilator equipment, home oxygen therapy, communication aids, and diabetic, ostomy and enteral-feeding supplies.",
+          "Your income is not considered.",
+          "ADP may pay 75% of an approved fixed price, up to 75% of an approved maximum contribution, or a grant paid directly to you.",
+          "If you receive Ontario Works, ODSP or Assistance for Children with Severe Disabilities, ADP may cover the full amount.",
+          "Repairs are not covered, and many common items are excluded.",
+        ],
+      },
+      steps: [
+        "Check that the equipment or supplies you need are a category ADP funds",
+        "See a registered authorizer for your device type, who assesses you and confirms you meet the clinical criteria for it",
+        "Buy the device from an ADP-registered vendor, who usually bills ADP for its share directly",
+        "Pay your share of the cost, plus any optional accessories or services you choose",
+      ],
+      documents: [
+        "A valid Ontario health card",
+        "The application form for your device type, completed by a registered authorizer",
+      ],
+      tips: [
+        "Income is not part of the test — ADP does not look at what you earn.",
+        "The equipment must be needed for 6 months or longer.",
+        "ADP does not cover repairs, and you are responsible for care and maintenance.",
+        "If you cannot afford your share, Easter Seals Ontario, The War Amps and Lions Clubs may be able to help.",
+        "Replacement may be funded if your condition changes, or if the equipment is out of warranty and cannot be repaired at a reasonable cost.",
+      ],
+      phone: "1-800-268-6021 (TTY 1-800-387-5559)",
+    },
+  },
+  {
+    id: "ontario-autism-program",
+    name: "Ontario Autism Program",
+    level: "Ontario",
+    category: "Children",
+    amount: "Needs-based services and supports",
+    summary:
+      "Services and supports for children and youth on the autism spectrum in Ontario, until they turn 18 — including foundational family services, caregiver-mediated early years programs, core clinical services, an entry to school program, and urgent response services.",
+    note: "Register once through AccessOAP, the program's independent intake organization. Do not register again if you already registered with the Ontario Autism Program or already submitted a registration form to the Ministry of Children, Community and Social Services.",
+    requires: ["on", "child", "autismSelected", "oapDiagnosis"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "The child is under 18 years old",
+        "The child currently lives in Ontario",
+        "The child has a written diagnosis of autism from a qualified professional",
+      ],
+      note: "The written diagnosis must include the child's full name and date of birth, the date of the assessment, a statement that the child meets the diagnostic criteria for autism spectrum disorder, and the qualified professional's name and credentials.",
+    },
+    applyText: "Register through AccessOAP",
+    applyUrl: "https://www.ontario.ca/page/ontario-autism-program",
+    source: "https://www.ontario.ca/page/ontario-autism-program",
+    detail: {
+      about:
+        "The Ontario Autism Program (OAP) supports families of children and youth on the autism spectrum. Children receive services and supports until they turn 18. Registration goes through AccessOAP, the program's independent intake organization, whose care coordinators answer questions, explain your service options, and help you find needs-based services in your community.",
+      aboutList: {
+        lead: "The Ontario Autism Program (OAP) supports families of children and youth on the autism spectrum.",
+        items: [
+          "Children receive services and supports until they turn 18.",
+          "Foundational family services are available to everyone registered.",
+          "Caregiver-mediated early years programs are for children between 12 and 48 months.",
+          "There are also core clinical services, an entry to school program for children starting kindergarten or Grade 1, and urgent response services.",
+          "AccessOAP care coordinators help you understand your options and find services near you.",
+        ],
+      },
+      steps: [
+        "Get a written autism diagnosis from a qualified professional, with the details the program requires",
+        "Create an AccessOAP account",
+        "Register your child through AccessOAP and provide all the supporting documentation they ask for",
+        "Work with an AccessOAP care coordinator to understand your service options",
+      ],
+      documents: [
+        "The written autism diagnosis, showing the child's full name and date of birth, the assessment date, a statement that the child meets the diagnostic criteria for autism spectrum disorder, and the professional's name and credentials",
+      ],
+      tips: [
+        "Register once — do not register again if you already registered with the OAP or already sent a form to the ministry.",
+        "If you registered before April 2021, ask about interim one-time funding and childhood budgets.",
+        "Behaviour plans are no longer part of the program; they have been replaced by other services.",
+        "Your child may also qualify for Special Services at Home or the Assistance for Children with Severe Disabilities program.",
+      ],
+      phone: "1-833-425-2445",
+    },
+  },
   {
     id: "odsp",
     needsPractitioner: true,

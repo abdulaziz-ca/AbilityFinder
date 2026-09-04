@@ -1478,3 +1478,26 @@ test("ODSP is province-gated and never auto-ready", async ({ page }) => {
   const abResident = await evaluateProfile(page, { province: "AB" });
   expect(abResident["odsp"].status).toBe("no");
 });
+
+test("Ontario ADP and the Ontario Autism Program are province-gated", async ({ page }) => {
+  // ADP always needs a registered authorizer to confirm device-specific clinical criteria.
+  const onEquipment = await evaluateProfile(page, { province: "ON", functionalNeeds: ["equipment"] });
+  expect(onEquipment["on-adp"].status).toBe("almost");
+  expect(onEquipment["on-adp"].needs.length).toBeGreaterThan(0);
+
+  // An autistic child in Ontario with a written diagnosis is ready to register.
+  const onAutisticChild = await evaluateProfile(page, {
+    province: "ON",
+    forWho: "child",
+    ageBand: "6to11",
+    ageGroup: "child",
+    disabilities: ["autism"],
+    autismDiagnosis: "yes",
+  });
+  expect(onAutisticChild["ontario-autism-program"].status).toBe("ready");
+
+  // Neither may surface outside Ontario.
+  const abResident = await evaluateProfile(page, { province: "AB", functionalNeeds: ["equipment"] });
+  expect(abResident["on-adp"].status).toBe("no");
+  expect(abResident["ontario-autism-program"].status).toBe("no");
+});

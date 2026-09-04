@@ -259,6 +259,18 @@ const REQS = {
       "ODSP decides whether you meet its definition of a person with a disability: a substantial mental or physical impairment that is continuous or recurrent and expected to last a year or more, where the direct and cumulative effect results in a substantial restriction in your ability to work, care for yourself, or take part in community life, verified by an approved health care professional. Your caseworker gives you a Disability Determination Package to complete and return within 90 days. If you receive CPP-D or QPP-D you are in a prescribed class and skip this step.",
     action: { text: "Review ODSP eligibility", url: "https://www.ontario.ca/page/ontario-disability-support-program-eligibility-income-support" },
   },
+  adpClinical: {
+    met: () => false,
+    fixed: false,
+    unmet:
+      "Each ADP device category has its own clinical criteria. A registered authorizer for that device type must assess you and confirm you meet them, and that the equipment is needed for 6 months or longer.",
+    action: { text: "See how to apply by device type", url: "https://www.ontario.ca/page/assistive-devices-program" },
+  },
+  oapDiagnosis: {
+    met: () => answers.autismDiagnosis === "yes",
+    fixed: false,
+    unmet: "The Ontario Autism Program requires a written autism diagnosis from a qualified professional.",
+  },
   odspFinancial: {
     met: () => false,
     fixed: false,
@@ -3852,6 +3864,7 @@ const PRACTITIONER_FORMS = {
   "parking-placard": "the accessible parking placard form",
   "on-parking-permit": "the Accessible Parking Permit application",
   odsp: "the ODSP Disability Determination Package",
+  "on-adp": "the ADP application form for your device type",
 };
 
 /* "Find a/an <type>" with the correct article */
