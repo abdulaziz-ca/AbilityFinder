@@ -1,5 +1,6 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
+  { date: "2026-09-04", text: "Further groundwork for future provincial coverage, including the data plumbing and tests behind it. Nothing shown on the site today has changed, and every published benefit is unchanged." },
   { date: "2026-09-04", text: "More behind-the-scenes groundwork for future provincial coverage. Nothing shown on the site today has changed." },
   { date: "2026-09-04", text: "Behind-the-scenes groundwork to support adding more provinces in the future. Nothing the site shows today has changed, and every published benefit is unchanged." },
   { date: "2026-09-03", text: "The Fair PharmaCare guide now adds a note for people moving into long-term care: check the facility is enrolled in PharmaCare Plan B before moving in — Plan B gives permanent residents of enrolled facilities full coverage of eligible drugs and pharmacy services (supplies up to a maximum), automatically, but not all facilities are enrolled and it excludes assisted-living, extended-care, acute-care and temporary respite/hospice stays. Verified against the official BC PharmaCare Plan B page 2026-09-03." },

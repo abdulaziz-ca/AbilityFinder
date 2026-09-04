@@ -121,6 +121,7 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  odsp: { kind: "cash", excludeFromEstimate: true, monthlyMax: 1436, note: "income-tested; single-person maximum for basic needs and shelter (July 2026)" },
   "on-parking-permit": { kind: "access", excludeFromEstimate: true, note: "accessible parking permit; free to get, renew, or replace" },
   // ---- federal ----
   // The annual disability amount is not cash and is not the tax reduction.
@@ -287,6 +288,7 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  odsp: { difficulty: 4, effort: "Online, phone or in-person application + a Disability Determination Package", wait: "A few months" },
   "on-parking-permit": { difficulty: 2, effort: "Application + a regulated health professional certifies your condition", wait: "Up to 3 weeks (online or mail); about 7 weeks (in person)" },
   "dres": { difficulty: 3, effort: "Application + disability documentation", wait: "varies" },
   "cpp-childrens-benefit": { difficulty: 2, effort: "Apply with the parent's CPP-D", wait: "monthly once approved" },
@@ -1044,6 +1046,69 @@ const HELP_ORGS = [
 ];
 
 const BENEFITS = [
+  {
+    id: "odsp",
+    needsPractitioner: true,
+    name: "Ontario Disability Support Program (ODSP) — income support",
+    level: "Ontario",
+    category: "Income support",
+    amount: "Up to $1,436/mo for a single person",
+    summary:
+      "Monthly income support for Ontario adults with a disability who are in financial need — money toward basic needs and shelter, plus health benefits including prescription drugs and vision care. The amount depends on your family size, shelter costs and other income.",
+    note: "If you already receive CPP-D or QPP-D you are in a \"prescribed class\", so you skip the disability determination process — but you must still apply and meet all the other rules. The federal Canada Disability Benefit is exempt as income and does not reduce your ODSP payment.",
+    requires: ["on", "age18plus", "odspMedical", "odspFinancial"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "At least 18 years old (you can start applying up to six months before your 18th birthday)",
+        "An Ontario resident",
+        "Non-exempt assets at or under $40,000 for a single person, or $50,000 for a couple",
+        "In financial need, based on your income, assets, living expenses, family size and shelter costs",
+        "Meet the ODSP definition of a person with a disability, or be a member of a prescribed class",
+      ],
+      note:
+        "The ODSP definition of disability: a substantial mental or physical impairment that is continuous or recurrent and is expected to last one year or more, whose direct and cumulative effect substantially restricts your ability to work, care for yourself, or take part in community life — verified by an approved health care professional.",
+    },
+    applyText: "Apply for ODSP",
+    applyUrl: "https://www.ontario.ca/page/ontario-disability-support-program",
+    source: "https://www.ontario.ca/page/ontario-disability-support-program",
+    detail: {
+      about:
+        "ODSP is Ontario's disability income support program. It pays monthly money toward basic needs and shelter and comes with health benefits such as prescription drugs and vision care. A single person can receive up to $1,436 a month for basic needs and shelter; you may receive more for a spouse or children, or for benefits such as transportation to medical appointments. Eligibility has two parts: you must be in financial need, and you must meet the program's definition of a person with a disability (decided through the Disability Determination Process) unless you are in a prescribed class.",
+      aboutList: {
+        lead: "ODSP is Ontario's disability income support program.",
+        items: [
+          "Pays monthly money toward basic needs and shelter — up to $1,436 a month for a single person.",
+          "You may receive more for a spouse or children, or for benefits such as transportation to medical appointments.",
+          "Comes with health benefits, including prescription drugs and vision care.",
+          "Eligibility has two parts: financial need, and either meeting the program's definition of a person with a disability or being a member of a prescribed class.",
+          "Rates are tied to inflation and adjusted each July; they rose 1.9% on July 1, 2026.",
+        ],
+      },
+      steps: [
+        "Check the basic rules: 18 or older, an Ontario resident, in financial need, and within the asset limits",
+        "Apply online with one application covering you and the immediate family who live with you (about 20 to 30 minutes), by phone at 1-888-999-1142, or in person at your local ODSP office",
+        "A caseworker reviews your application and calls within 15 business days to book a verification appointment",
+        "Meet the caseworker to verify your information and provide your documents",
+        "Complete the Disability Determination Package with your health care professional and return it within 90 days — unless you are in a prescribed class",
+      ],
+      documents: [
+        "Social insurance numbers (SIN) for everyone on the application",
+        "OHIP cards and birth certificates",
+        "Immigration papers, if they apply to you",
+        "Tax returns and banking information",
+        "Your housing costs and other expenses, such as child care and disability-related expenses",
+      ],
+      tips: [
+        "If you need money now, one application covers both Ontario Works and ODSP. Ontario Works is assessed first and can support you while your ODSP application is reviewed.",
+        "The application process may take a few months.",
+        "Return the completed Disability Determination Package to the Disability Adjudication Unit within 90 days, or the application is treated as withdrawn unless you make a written request for an extension and it is approved.",
+        "If you receive CPP-D or QPP-D you are in a prescribed class and skip the disability adjudication step.",
+        "The Canada Disability Benefit does not count as income for ODSP.",
+      ],
+      phone: "1-888-999-1142 (TTY 1-800-387-5559)",
+    },
+  },
   {
     id: "on-parking-permit",
     needsPractitioner: true,

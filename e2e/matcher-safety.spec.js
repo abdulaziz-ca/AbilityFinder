@@ -1467,3 +1467,14 @@ test("Ontario accessible parking permit is province-gated and ready for a mobili
   const abResident = await evaluateProfile(page, { province: "AB", disabilities: ["vision"] });
   expect(abResident["on-parking-permit"].status).toBe("no");
 });
+
+test("ODSP is province-gated and never auto-ready", async ({ page }) => {
+  // An Ontario adult still has to clear disability adjudication and the financial test.
+  const onAdult = await evaluateProfile(page, { province: "ON" });
+  expect(onAdult["odsp"].status).toBe("almost");
+  expect(onAdult["odsp"].needs.length).toBeGreaterThan(0);
+
+  // ODSP must never surface for a resident of another province.
+  const abResident = await evaluateProfile(page, { province: "AB" });
+  expect(abResident["odsp"].status).toBe("no");
+});

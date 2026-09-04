@@ -252,6 +252,20 @@ const REQS = {
   ab: { met: () => answers.province === "AB", fixed: true, unmet: "This is an Alberta program." },
   bc: { met: () => answers.province === "BC", fixed: true, unmet: "This is a British Columbia program." },
   on: { met: () => answers.province === "ON", fixed: true, unmet: "This is an Ontario program." },
+  odspMedical: {
+    met: () => false,
+    fixed: false,
+    unmet:
+      "ODSP decides whether you meet its definition of a person with a disability: a substantial mental or physical impairment that is continuous or recurrent and expected to last a year or more, where the direct and cumulative effect results in a substantial restriction in your ability to work, care for yourself, or take part in community life, verified by an approved health care professional. Your caseworker gives you a Disability Determination Package to complete and return within 90 days. If you receive CPP-D or QPP-D you are in a prescribed class and skip this step.",
+    action: { text: "Review ODSP eligibility", url: "https://www.ontario.ca/page/ontario-disability-support-program-eligibility-income-support" },
+  },
+  odspFinancial: {
+    met: () => false,
+    fixed: false,
+    unmet:
+      "ODSP looks at your income, assets, living expenses, family size and shelter costs to decide financial need. Non-exempt assets must stay at or under $40,000 for a single person or $50,000 for a couple. Some income and assets are exempt, including child support, the Ontario Child Benefit, RDSP payments, and the home you own and live in.",
+    action: { text: "Review ODSP eligibility", url: "https://www.ontario.ca/page/ontario-disability-support-program-eligibility-income-support" },
+  },
   notBcStudentAidDuplicate: { met: () => answers.province !== "BC", fixed: true, unmet: "Use the StudentAid BC version of this federal grant; it is the same program with B.C.-specific application steps." },
   qc: { met: () => answers.province === "QC", fixed: true, unmet: "This is a Quebec program." },
   mb: { met: () => answers.province === "MB", fixed: true, unmet: "This is a Manitoba program." },
@@ -3837,6 +3851,7 @@ const PRACTITIONER_FORMS = {
   adap: "the Disability Assistance Medical Report (for the combined AISH/ADAP application)",
   "parking-placard": "the accessible parking placard form",
   "on-parking-permit": "the Accessible Parking Permit application",
+  odsp: "the ODSP Disability Determination Package",
 };
 
 /* "Find a/an <type>" with the correct article */

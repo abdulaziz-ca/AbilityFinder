@@ -56,6 +56,14 @@ Document findings as reproducible issues, not broad redesign requests.
   deployed `public/` directory and is not served.
 - Keep French paused until there is capacity to translate and maintain the benefit
   catalog, not only the interface.
+- **Ontario go-live gate (#91).** Ontario records are being staged in `public/data.js`
+  behind `ON_ENABLED=false`. Before flipping the flag: harden the render path so
+  `renderResults()` and `renderDetail()` read the flag-filtered catalog
+  (`browseCatalog()`) rather than the raw `BENEFITS` array. The wizard cannot offer
+  Ontario while the flag is off, so a staged record is not reachable through normal
+  use, but manually injected or previously persisted state would bypass the filter.
+  Keep `evaluateAnswers()` reading the full array — the matcher-safety tests assert
+  staged records' outcomes through it.
 
 ### 4. Improve discovery only when evidence supports it
 

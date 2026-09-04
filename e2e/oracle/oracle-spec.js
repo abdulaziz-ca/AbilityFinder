@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.1.0";
+const SPEC_VERSION = "1.2.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -472,6 +472,8 @@ const GATES = {
   excisePermanentMobilityCertified: external("Requires a practitioner to certify permanent mobility impairment and inability to use public transport safely."),
 
   /* Alberta — caseworker adjudication and program registration */
+  odspMedical: external("ODSP adjudicates the Disability Determination Package; the wizard cannot know the outcome."),
+  odspFinancial: external("ODSP assesses income, assets, shelter costs and family size; the wizard cannot compute financial need."),
   aishMedical: external("AISH medical eligibility is adjudicated by the program from medical evidence."),
   aishFinancial: external("AISH applies its own income and asset test to the household."),
   adapMedical: external("ADAP medical eligibility is adjudicated by the program."),
@@ -639,6 +641,7 @@ const PROGRAM_BEST_CASE = {
   "bc-bus-pass":                                   "ready",
   "sparc-parking-permit":                          "ready",
   "on-parking-permit":                             "ready",
+  "odsp":                                          "almost",
   "bc-medical-equipment-devices":                  "ready",
   "bc-at-home-medical":                            "ready",
   "bc-supported-child-development":                "ready",
