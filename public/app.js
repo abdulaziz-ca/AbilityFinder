@@ -259,6 +259,27 @@ const REQS = {
       "ODSP decides whether you meet its definition of a person with a disability: a substantial mental or physical impairment that is continuous or recurrent and expected to last a year or more, where the direct and cumulative effect results in a substantial restriction in your ability to work, care for yourself, or take part in community life, verified by an approved health care professional. Your caseworker gives you a Disability Determination Package to complete and return within 90 days. If you receive CPP-D or QPP-D you are in a prescribed class and skip this step.",
     action: { text: "Review ODSP eligibility", url: "https://www.ontario.ca/page/ontario-disability-support-program-eligibility-income-support" },
   },
+  ssahDocumentation: {
+    met: () => false,
+    fixed: false,
+    unmet:
+      "SSAH needs a regulated health professional to document your child's functional limitations, and it is a discretionary program — funding is provided according to available resources, so meeting the rules does not guarantee an amount.",
+    action: { text: "See how to apply for SSAH", url: "https://www.ontario.ca/page/special-services-home" },
+  },
+  acsdSeverity: {
+    met: () => false,
+    fixed: false,
+    unmet:
+      "ACSD assesses how severe your child's disability is, along with the extraordinary costs related to it, to decide both eligibility and the amount.",
+    action: { text: "Review ACSD eligibility", url: "https://www.ontario.ca/page/assistance-children-severe-disabilities-program" },
+  },
+  acsdIncome: {
+    met: () => false,
+    fixed: false,
+    unmet:
+      "ACSD is for families with a total household income of $77,640 or less. The amount also depends on the size of your family and your child's disability-related costs.",
+    action: { text: "Review ACSD eligibility", url: "https://www.ontario.ca/page/assistance-children-severe-disabilities-program" },
+  },
   adpClinical: {
     met: () => false,
     fixed: false,
@@ -3865,6 +3886,7 @@ const PRACTITIONER_FORMS = {
   "on-parking-permit": "the Accessible Parking Permit application",
   odsp: "the ODSP Disability Determination Package",
   "on-adp": "the ADP application form for your device type",
+  ssah: "the SSAH documentation of your child's functional limitations",
 };
 
 /* "Find a/an <type>" with the correct article */

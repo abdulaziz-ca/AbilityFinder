@@ -1501,3 +1501,23 @@ test("Ontario ADP and the Ontario Autism Program are province-gated", async ({ p
   expect(abResident["on-adp"].status).toBe("no");
   expect(abResident["ontario-autism-program"].status).toBe("no");
 });
+
+test("SSAH and ACSD are province-gated and never auto-ready", async ({ page }) => {
+  const childProfile = {
+    province: "ON",
+    forWho: "child",
+    ageBand: "6to11",
+    ageGroup: "child",
+  };
+  const onChild = await evaluateProfile(page, childProfile);
+  // Both are assessed by the ministry, so neither can ever be "ready" from answers alone.
+  expect(onChild["ssah"].status).toBe("almost");
+  expect(onChild["ssah"].needs.length).toBeGreaterThan(0);
+  expect(onChild["acsd"].status).toBe("almost");
+  expect(onChild["acsd"].needs.length).toBeGreaterThan(0);
+
+  // Neither may surface outside Ontario.
+  const abChild = await evaluateProfile(page, { ...childProfile, province: "AB" });
+  expect(abChild["ssah"].status).toBe("no");
+  expect(abChild["acsd"].status).toBe("no");
+});

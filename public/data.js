@@ -121,6 +121,8 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  ssah: { kind: "grant", excludeFromEstimate: true, note: "discretionary funding for respite and support services; no published amount" },
+  acsd: { kind: "cash", excludeFromEstimate: true, monthlyMax: 678, note: "income-tested; $25 to $678 a month depending on income, family size and disability costs (July 2026)" },
   "on-adp": { kind: "coverage", excludeFromEstimate: true, note: "ADP pays up to 75% of the approved amount, depending on the device's funding model; may be the full amount if you receive ODSP, Ontario Works or ACSD" },
   "ontario-autism-program": { kind: "services", excludeFromEstimate: true, note: "needs-based services; no published dollar amount" },
   odsp: { kind: "cash", excludeFromEstimate: true, monthlyMax: 1436, note: "income-tested; single-person maximum for basic needs and shelter (July 2026)" },
@@ -290,6 +292,8 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  ssah: { difficulty: 3, effort: "Application with medical documentation, sent to your local Ministry regional office", wait: "Not published" },
+  acsd: { difficulty: 3, effort: "Online or paper application reviewed by a special agreements officer", wait: "Not published" },
   "on-adp": { difficulty: 3, effort: "Assessment by a registered authorizer, then purchase through a registered vendor", wait: "Not published" },
   "ontario-autism-program": { difficulty: 2, effort: "Create an AccessOAP account and register with the written diagnosis", wait: "Not published" },
   odsp: { difficulty: 4, effort: "Online, phone or in-person application + a Disability Determination Package", wait: "A few months" },
@@ -1050,6 +1054,120 @@ const HELP_ORGS = [
 ];
 
 const BENEFITS = [
+  {
+    id: "ssah",
+    needsPractitioner: true,
+    name: "Special Services at Home (SSAH)",
+    level: "Ontario",
+    category: "Children",
+    amount: "Funding for respite and support services (no published amount)",
+    summary:
+      "Funding for families caring for a child under 18 with a physical and/or developmental disability. It buys respite for caregivers, support for the child's day-to-day activities, and activities that help the child grow and develop.",
+    note: "SSAH is a discretionary program — funding is provided according to available resources, so meeting the eligibility rules does not guarantee an amount. It is meant to complement other services a child receives, and will not reimburse anything already funded by another government program, including devices paid for by the Assistive Devices Program and home or vehicle changes covered by the Home and Vehicle Modification Program.",
+    requires: ["on", "child", "ssahDocumentation"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "The child needs extra support, beyond what is expected for their age, because of a physical and/or developmental disability, so they can take part in daily activities at home and in the community",
+        "The child is under 18 years old",
+        "The child is a resident of Ontario and legally entitled to live in Canada",
+        "The child lives at home with their main caregiver, or lives separately without support from other government-funded out-of-home (residential) services",
+      ],
+      note: "\"Legally entitled to live in Canada\" includes a citizen, a permanent resident, a holder of a Canadian Temporary Resident Permit, or a refugee entitled to live in Canada. Visitors are not eligible. Only one person with decision-making responsibility for the child can apply.",
+    },
+    applyText: "See how to apply for SSAH",
+    applyUrl: "https://www.ontario.ca/page/special-services-home",
+    source: "https://www.ontario.ca/page/special-services-home",
+    detail: {
+      about:
+        "Special Services at Home (SSAH) helps families taking care of a child with a developmental and/or physical disability. It provides funding to buy services and supports that help parents care for their child, or that help the child join activities at home and in the community. SSAH is meant to complement other services the child is already receiving, including clinical services. It is a discretionary program, so funding is provided according to available resources.",
+      aboutList: {
+        lead: "Special Services at Home (SSAH) funds services and supports for a family caring for a child with a physical and/or developmental disability.",
+        items: [
+          "Support for the child to take part in day-to-day activities — help with daily routines and self-care, sensory items, tutoring, and support that keeps the child safe.",
+          "Support for the child's growth and development — building a skill, joining family and social activities, fitness, and planning for the future.",
+          "Respite for main caregivers — a respite worker, camp fees, overnight or daytime respite, before and after school care, care on PA days and during March and summer breaks, household help while you care for your child, and training to support your child.",
+          "It complements other services rather than replacing them, and it is discretionary — funding depends on available resources.",
+        ],
+      },
+      steps: [
+        "Gather documentation of your child's functional limitations from a regulated health professional",
+        "Gather proof of the child's Ontario residency, proof they are legally entitled to live in Canada, and proof of age",
+        "Complete the SSAH application form — only one person with decision-making responsibility for the child applies",
+        "Send the application to your local Ministry regional office",
+        "If approved, choose whether to manage the funding yourself or have an agency manage it for you, then submit your expenses to be reimbursed",
+      ],
+      documents: [
+        "Documentation from a regulated health professional of the child's functional limitations resulting from a physical or developmental disability",
+        "Proof of the child's residency in Ontario, such as a school registration document, your valid Ontario driver's licence, or a utility bill",
+        "Proof the child is legally entitled to live in Canada, such as a Canadian passport or birth certificate, Certificate of Indian Status, Permanent Resident card, immigration documents, or a Canadian Temporary Resident Permit",
+        "Proof of the child's age, such as a birth or baptismal certificate, Ontario health card, or passport",
+      ],
+      tips: [
+        "A regulated health professional documents the functional limitations — that can be a physician, psychologist, psychological associate, nurse practitioner, registered nurse or registered practical nurse, ophthalmologist, optometrist, audiologist, physiotherapist, occupational therapist, psychotherapist, social worker, speech language pathologist, or behaviour analyst.",
+        "You can hire someone yourself, work through an agency, or pay a family member over 18 who is not the main caregiver, parent, step-parent or spouse. A parent, step-parent or spouse can never be paid.",
+        "SSAH will not reimburse things another government program already funds, including devices paid for by the Assistive Devices Program and home or vehicle changes covered by the Home and Vehicle Modification Program.",
+        "It also does not cover basic living expenses, transportation, dental care, private school tuition, or hands-on therapy and assessments such as ABA, speech-language therapy, occupational or physical therapy, and psychotherapy.",
+        "You have one year from your funding end date to submit expenses. Funding received between April 1, 2025 and March 31, 2026 must be claimed by March 31, 2027.",
+        "For an infant without a definitive diagnosis, the professional describes the probability of delay and risk of further delay; eligibility is then decided again at about age 6.",
+      ],
+    },
+  },
+  {
+    id: "acsd",
+    name: "Assistance for Children with Severe Disabilities (ACSD)",
+    level: "Ontario",
+    category: "Children",
+    amount: "$25 to $678 a month",
+    summary:
+      "A monthly payment helping families with the extra costs of caring for a child under 18 who has a severe disability — travel to appointments, special shoes and clothes, and parental relief such as respite. Children with severe disabilities may also receive drug, dental and vision coverage.",
+    note: "The federal Canada Disability Benefit is exempt as income for ACSD and will not affect your eligibility or your payment. The maximum monthly payment is tied to inflation and adjusted each July; it rose 1.9% on July 1, 2026.",
+    requires: ["on", "child", "acsdSeverity", "acsdIncome"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You are the parent or guardian of a child under 18 (17 and under) who has a severe disability",
+        "The child lives at home",
+        "Your total household income is $77,640 or less",
+      ],
+      note: "Your eligibility and the amount you receive also depend on the size of your family, the severity of your child's disability, and the extraordinary costs related to that disability.",
+    },
+    applyText: "Apply for ACSD",
+    applyUrl: "https://www.ontario.ca/page/assistance-children-severe-disabilities-program",
+    source: "https://www.ontario.ca/page/assistance-children-severe-disabilities-program",
+    detail: {
+      about:
+        "The Assistance for Children with Severe Disabilities program (ACSD) gives parents and guardians financial support toward the extra costs of caring for a child with a severe disability. Eligible families receive between $25 and $678 a month, depending on household income, family size, and the child's disability-related costs. Alongside the monthly payment, children with severe disabilities may also receive coverage for an assistive-device assessment and/or the consumer contribution for a device under the Assistive Devices Program, prescription drugs, dental care, hearing aids and vision care.",
+      aboutList: {
+        lead: "ACSD gives parents and guardians money toward the extra costs of caring for a child with a severe disability.",
+        items: [
+          "Between $25 and $678 a month, depending on your household income, the size of your family, and your child's disability-related costs.",
+          "Helps with travel to doctors' appointments, hospitals and other appointments related to the child's disability, special shoes and clothes, and parental relief such as respite.",
+          "Children with severe disabilities may also receive coverage for an assessment for an assistive device and/or the consumer contribution for a device provided under the Assistive Devices Program, plus batteries and repairs for mobility devices.",
+          "They may also receive coverage for prescription drugs through OHIP+, dental care through Healthy Smiles Ontario, and hearing aids and vision care including eyeglasses.",
+          "The maximum is tied to inflation and adjusted each July; it rose 1.9% on July 1, 2026.",
+        ],
+      },
+      steps: [
+        "Check that your child is under 18, lives at home, has a severe disability, and that your household income is $77,640 or less",
+        "Apply online — you can save, edit and submit later, but you have 90 days before the application expires",
+        "Or download the paper application and send it to your local ministry regional office",
+        "Submit one application per child; duplicate applications for the same child delay processing",
+        "A special agreements officer reviews your application and may contact you for more information, then you receive a decision letter",
+      ],
+      documents: [
+        "Information about your total household income",
+        "Information about your child's disability and the extraordinary costs related to it",
+      ],
+      tips: [
+        "Children with severe disabilities may also receive coverage for batteries and repairs for mobility devices — something the Assistive Devices Program itself does not fund.",
+        "If you have more than one child with a severe disability, submit a separate application for each.",
+        "You have 90 days to finish and submit an online application; after that you have to start a new one.",
+        "If you need help with the application, a community agency, health care professional, social worker, family member or friend can help you complete it.",
+        "If you disagree with the decision, you can ask for an internal review within 30 days of receiving the decision letter.",
+      ],
+    },
+  },
   {
     id: "on-adp",
     needsPractitioner: true,
