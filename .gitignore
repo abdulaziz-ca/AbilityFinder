@@ -17,3 +17,7 @@ public/axe.min.js
 # TaskView local state (shared policy and templates remain tracked)
 .taskview/offline-log.md
 .taskview/local.json
+
+# Owner-local project docs — intentionally untracked (ticket #103); never commit
+WEBSITE-PROJECT-TRACKER.md
+FABSOL-RESUME-PROMPT.md
