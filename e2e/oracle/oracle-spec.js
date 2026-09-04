@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.4.0";
+const SPEC_VERSION = "1.5.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -472,6 +472,21 @@ const GATES = {
   excisePermanentMobilityCertified: external("Requires a practitioner to certify permanent mobility impairment and inability to use public transport safely."),
 
   /* Alberta — caseworker adjudication and program registration */
+  passportDevelopmental: {
+    evidence: "answers",
+    satisfy: { add: { disabilities: ["intellectual"] } },
+    violations: [{ name: "no developmental category", fragment: { drop: { disabilities: ["intellectual", "autism"] } }, expect: "no" }],
+  },
+  passportDso: external("Developmental Services Ontario confirms eligibility for provincially funded adult developmental services; the developmental disability should be determined by a psychologist or psychological associate registered with the College of Psychologists of Ontario or an equivalent body."),
+  hvmpMobility: {
+    evidence: "answers",
+    satisfy: { add: { disabilities: ["physical"] }, set: { canWalkFar: false } },
+    violations: [
+      { name: "no mobility-restricting disability", fragment: { drop: { disabilities: ["physical", "vision"] }, set: { canWalkFar: true } }, expect: "almost" },
+    ],
+  },
+  hvmpIncome: external("Depends on household income against the program's established threshold, which the wizard cannot evaluate."),
+  hvmpCoordinator: external("The program's service coordinator determines eligibility, and other available funding must be accessed first."),
   ssahDocumentation: external("A regulated health professional must document the child's functional limitations, and the program is discretionary."),
   acsdSeverity: external("The ministry assesses the severity of the child's disability and the extraordinary costs related to it."),
   acsdIncome: external("Depends on total household income against a $77,640 threshold, plus family size and disability-related costs."),
@@ -652,6 +667,8 @@ const PROGRAM_BEST_CASE = {
   "on-parking-permit":                             "ready",
   "odsp":                                          "almost",
   "on-adp":                                        "almost",
+  "passport-program":                              "almost",
+  "hvmp":                                          "almost",
   "ssah":                                          "almost",
   "acsd":                                          "almost",
   "ontario-autism-program":                        "ready",

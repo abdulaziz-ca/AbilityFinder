@@ -121,6 +121,8 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "passport-program": { kind: "grant", excludeFromEstimate: true, note: "$5,500 a year minimum; up to $44,275 based on assessed need" },
+  hvmp: { kind: "grant", excludeFromEstimate: true, note: "funds approved home or vehicle modifications; no published maximum" },
   ssah: { kind: "grant", excludeFromEstimate: true, note: "discretionary funding for respite and support services; no published amount" },
   acsd: { kind: "cash", excludeFromEstimate: true, monthlyMax: 678, note: "income-tested; $25 to $678 a month depending on income, family size and disability costs (July 2026)" },
   "on-adp": { kind: "coverage", excludeFromEstimate: true, note: "ADP pays up to 75% of the approved amount, depending on the device's funding model; may be the full amount if you receive ODSP, Ontario Works or ACSD" },
@@ -292,6 +294,8 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "passport-program": { difficulty: 4, effort: "Apply through Developmental Services Ontario, then work with a local Passport agency", wait: "Not published" },
+  hvmp: { difficulty: 3, effort: "Application details via the March of Dimes website; eligibility assessed by the program's service coordinator", wait: "Not published" },
   ssah: { difficulty: 3, effort: "Application with medical documentation, sent to your local Ministry regional office", wait: "Not published" },
   acsd: { difficulty: 3, effort: "Online or paper application reviewed by a special agreements officer", wait: "Not published" },
   "on-adp": { difficulty: 3, effort: "Assessment by a registered authorizer, then purchase through a registered vendor", wait: "Not published" },
@@ -1054,6 +1058,117 @@ const HELP_ORGS = [
 ];
 
 const BENEFITS = [
+  {
+    id: "passport-program",
+    needsPractitioner: true,
+    name: "Passport program (adults with a developmental disability)",
+    level: "Ontario",
+    category: "Community supports",
+    amount: "$5,500 a year, up to $44,275 based on assessed need",
+    summary:
+      "Funding for adults 18 or older with a developmental disability to take part in their community and live as independently as possible, and to give their caregivers a break. It is a reimbursement program — you submit receipts and are repaid up to your annual allocation.",
+    note: "Every Passport recipient receives at least $5,500 a year. More than that is possible, up to $44,275, but it depends on your assessed level of need and on funding becoming available — Passport agencies keep a waiting list for the additional amounts.",
+    requires: ["on", "age18plus", "passportDevelopmental", "passportDso"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "Has a developmental disability",
+        "Is 18 years old or older",
+        "Is a resident of Ontario",
+        "Either needs support to participate in the community while still in school, or has left school and is living with family or independently in a supportive living arrangement",
+      ],
+      note: "A developmental disability should be determined by a psychologist or psychological associate registered with the College of Psychologists of Ontario, or the equivalent body in another province.",
+    },
+    applyText: "Apply through Developmental Services Ontario",
+    applyUrl: "https://www.ontario.ca/page/passport-program-adults-developmental-disability",
+    source: "https://www.ontario.ca/page/passport-program-adults-developmental-disability",
+    detail: {
+      about:
+        "Passport helps adults 18 or older with a developmental disability take part in their communities and live as independently as possible, and it helps their caregivers take a break from caregiving. It is a reimbursement program: you submit invoices and receipts for admissible expenses and are reimbursed up to your annual funding allocation. Passport is funded by the Ontario government and administered by local Passport agencies. All recipients receive a minimum of $5,500 a year, and it is possible to receive more, up to a maximum of $44,275, based on assessed need.",
+      aboutList: {
+        lead: "Passport funds services and supports for adults with a developmental disability.",
+        items: [
+          "Pays for taking part in community classes or recreational programs, developing work, volunteer and daily life skills, hiring a support worker, person-directed planning, and temporary respite for caregivers.",
+          "It is a reimbursement program — you submit invoices and receipts and are repaid up to your annual allocation.",
+          "Every recipient receives a minimum of $5,500 a year.",
+          "More is possible, up to a maximum of $44,275, based on your assessed level of need and as funding becomes available.",
+          "Funded by the Ontario government and administered by local Passport agencies.",
+        ],
+      },
+      steps: [
+        "Contact your local Developmental Services Ontario (DSO) office, which manages applications for provincially funded adult developmental services",
+        "DSO confirms whether you are eligible for government-funded adult developmental services",
+        "Once confirmed, DSO connects you with your local Passport agency for $5,500 a year in funding",
+        "To seek more than $5,500, complete an application package so DSO can fully assess your needs; your information then goes to your local Passport agency",
+        "Submit invoices and receipts for admissible expenses to be reimbursed up to your allocation",
+      ],
+      documents: [
+        "The developmental disability should be determined by a psychologist or psychological associate registered with the College of Psychologists of Ontario, or the equivalent body in another province",
+        "Invoices and receipts for admissible expenses, to claim reimbursement",
+      ],
+      tips: [
+        "Tell DSO if anything in your application changes, so they can reassess and re-prioritize you on the most up-to-date information.",
+        "If you are approved for more than $5,500 and accept between April and September, you receive a full 12-month amount in the first year; accept between October and March and you receive a 6-month amount in the first year and a full year after that. Either way you receive at least $5,500 in your first year.",
+        "Passport agencies keep the list of people waiting to receive additional funding above $5,500.",
+        "Claims for a service or product received on or before March 31, 2026 must be submitted by March 31, 2027.",
+        "From March 31, 2027 onward, you have 12 months after the end of each fiscal year (which ends March 31) to submit claims for anything bought on or after April 1, 2026.",
+      ],
+    },
+  },
+  {
+    id: "hvmp",
+    name: "Home and Vehicle Modification Program",
+    level: "Ontario",
+    category: "Home",
+    amount: "Funding for approved home or vehicle modifications (no published maximum)",
+    summary:
+      "Pays for modifications to your home or vehicle so that children, adults and seniors with a disability that restricts mobility can keep living safely at home, take part in their community, and avoid losing a job. The Ontario page directs applicants to March of Dimes for eligibility and application details.",
+    note: "You must first access any other sources of available public or private funding before you can be considered eligible. If your household income is over $38,000 you may be required to contribute toward the cost of the modification.",
+    requires: ["on", "hvmpMobility", "hvmpIncome", "hvmpCoordinator"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "A permanent Ontario resident",
+        "A household income that does not exceed the established threshold",
+        "A disability that impedes mobility and results in substantial restriction in activities of daily living, such as personal care or accessing medical care or community services",
+      ],
+      note: "Applicants must also meet other criteria set out in the Home and Vehicle Modification Program Guidelines. The program's service coordinator decides whether an applicant is eligible and approves expenditures.",
+    },
+    applyText: "See how to apply",
+    applyUrl: "https://www.ontario.ca/page/home-and-vehicle-modification-program",
+    source: "https://www.ontario.ca/page/home-and-vehicle-modification-program",
+    detail: {
+      about:
+        "The Home and Vehicle Modification Program provides home or vehicle modifications so that children, adults and seniors with disabilities that restrict mobility can continue living safely in their homes, participate in their communities, and avoid job loss. It is intended to serve individuals and families most in need of assistance. Applicants must first access any other sources of available public or private funding before being considered eligible, and applicants with a household income over $38,000 may be required to contribute toward the cost.",
+      aboutList: {
+        lead: "The Home and Vehicle Modification Program pays for changes to a home or vehicle for a person whose disability restricts their mobility.",
+        items: [
+          "Home changes can include ramps, platform and stairway lifts, elevating devices, widening doors, rearranging a bathroom or kitchen for safe use, environmental controls, and a wet room using universal design.",
+          "Vehicle, garage and carport changes can include hand or foot controls, lifts, specialized seating, remote garage-door openers, raising a roof or lowering a floor, and barrier-free garage modifications.",
+          "Funding can also cover an assessment completed after you apply, professional fees for planning the work, equipment and warranties, installation and labour, and training on how to use the equipment.",
+          "You must first access any other available public or private funding.",
+          "With a household income over $38,000 you may be required to contribute toward the cost.",
+        ],
+      },
+      steps: [
+        "Check that you are a permanent Ontario resident with a disability that restricts mobility and substantially limits your daily activities",
+        "Access any other sources of public or private funding available to you first",
+        "Visit the March of Dimes website to learn about eligibility and how to apply",
+        "The program's service coordinator determines eligibility and approves expenditures, and may assess your home or vehicle if more information is needed",
+      ],
+      documents: [
+        "Information about your household income",
+        "Information about your disability and how it restricts your mobility and daily activities",
+      ],
+      tips: [
+        "You must access other available public or private funding before the program will consider you eligible.",
+        "A household income over $38,000 may mean contributing toward the cost of the modification.",
+        "If a specialized adapted appliance is only sold as a whole item, the program funds the difference between its cost and the market value of a similar non-specialized appliance.",
+        "Equipment such as hand controls and lifts should be fully convertible where possible, so it can move to another vehicle later.",
+        "Special Services at Home will not reimburse structural home or vehicle changes that this program covers.",
+      ],
+    },
+  },
   {
     id: "ssah",
     needsPractitioner: true,

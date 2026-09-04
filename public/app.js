@@ -259,6 +259,42 @@ const REQS = {
       "ODSP decides whether you meet its definition of a person with a disability: a substantial mental or physical impairment that is continuous or recurrent and expected to last a year or more, where the direct and cumulative effect results in a substantial restriction in your ability to work, care for yourself, or take part in community life, verified by an approved health care professional. Your caseworker gives you a Disability Determination Package to complete and return within 90 days. If you receive CPP-D or QPP-D you are in a prescribed class and skip this step.",
     action: { text: "Review ODSP eligibility", url: "https://www.ontario.ca/page/ontario-disability-support-program-eligibility-income-support" },
   },
+  passportDevelopmental: {
+    met: () => hasDisability("intellectual") || hasDisability("autism"),
+    fixed: true,
+    unmet: "Passport is for an adult with a developmental disability.",
+  },
+  passportDso: {
+    met: () => false,
+    fixed: false,
+    unmet:
+      "Developmental Services Ontario confirms whether you are eligible for government-funded adult developmental services, and a psychologist or psychological associate registered with the College of Psychologists of Ontario should have determined the developmental disability.",
+    action: { text: "Apply through Developmental Services Ontario", url: "https://www.ontario.ca/page/passport-program-adults-developmental-disability" },
+  },
+  hvmpMobility: {
+    // HVMP's criterion is broader than the parking-oriented `mobility` gate, and the
+    // service coordinator decides it. fixed:false so a profile that does not obviously
+    // match is told the criterion rather than being refused outright.
+    met: () =>
+      hasDisability("physical") || hasDisability("vision") || answers.canWalkFar === false,
+    fixed: false,
+    unmet:
+      "This is for a disability that impedes mobility and results in substantial restriction in activities of daily living, such as personal care or getting to medical care and community services.",
+  },
+  hvmpIncome: {
+    met: () => false,
+    fixed: false,
+    unmet:
+      "Your household income must not exceed the program's established threshold. With a household income over $38,000 you may be required to contribute toward the cost of the modification.",
+    action: { text: "See how to apply", url: "https://www.ontario.ca/page/home-and-vehicle-modification-program" },
+  },
+  hvmpCoordinator: {
+    met: () => false,
+    fixed: false,
+    unmet:
+      "You must first access any other sources of available public or private funding, and the program's service coordinator decides whether you meet the eligibility criteria and approves expenditures that comply with the program guidelines.",
+    action: { text: "See how to apply", url: "https://www.ontario.ca/page/home-and-vehicle-modification-program" },
+  },
   ssahDocumentation: {
     met: () => false,
     fixed: false,
@@ -3887,6 +3923,7 @@ const PRACTITIONER_FORMS = {
   odsp: "the ODSP Disability Determination Package",
   "on-adp": "the ADP application form for your device type",
   ssah: "the SSAH documentation of your child's functional limitations",
+  "passport-program": "the determination of a developmental disability by a psychologist or psychological associate",
 };
 
 /* "Find a/an <type>" with the correct article */

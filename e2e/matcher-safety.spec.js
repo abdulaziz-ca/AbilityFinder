@@ -1521,3 +1521,39 @@ test("SSAH and ACSD are province-gated and never auto-ready", async ({ page }) =
   expect(abChild["ssah"].status).toBe("no");
   expect(abChild["acsd"].status).toBe("no");
 });
+
+test("Passport and HVMP are province-gated and never auto-ready", async ({ page }) => {
+  const onAdult = await evaluateProfile(page, {
+    province: "ON",
+    disabilities: ["intellectual", "physical"],
+    canWalkFar: false,
+  });
+  // Both are assessed by a third party, so neither can be "ready" from answers alone.
+  expect(onAdult["passport-program"].status).toBe("almost");
+  expect(onAdult["passport-program"].needs.length).toBeGreaterThan(0);
+  expect(onAdult["hvmp"].status).toBe("almost");
+  expect(onAdult["hvmp"].needs.length).toBeGreaterThan(0);
+
+  // Neither may surface outside Ontario.
+  const abResident = await evaluateProfile(page, {
+    province: "AB",
+    disabilities: ["intellectual", "physical"],
+    canWalkFar: false,
+  });
+  expect(abResident["passport-program"].status).toBe("no");
+  expect(abResident["hvmp"].status).toBe("no");
+
+  // Regression guard: HVMP's criterion is "a disability that impedes mobility AND results
+  // in substantial restriction in activities of daily living", which the program's service
+  // coordinator decides. An earlier draft reused the parking-oriented `mobility` gate,
+  // which is fixed and keyed on not walking ~50m — that hard-refused Ontarians who are
+  // substantially restricted but can walk that far. HVMP must never return "no" to an
+  // Ontario resident on mobility grounds alone.
+  const onWalksFar = await evaluateProfile(page, {
+    province: "ON",
+    disabilities: ["chronic"],
+    canWalkFar: true,
+  });
+  expect(onWalksFar["hvmp"].status).not.toBe("no");
+  expect(onWalksFar["hvmp"].needs.length).toBeGreaterThan(0);
+});
