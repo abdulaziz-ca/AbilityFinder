@@ -1,5 +1,6 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
+  { date: "2026-09-04", text: "Final round of behind-the-scenes groundwork for future provincial coverage. Nothing shown on the site today has changed, and every published benefit is unchanged." },
   { date: "2026-09-04", text: "Continued behind-the-scenes groundwork for future provincial coverage. Nothing shown on the site today has changed, and every published benefit is unchanged." },
   { date: "2026-09-04", text: "More groundwork for future provincial coverage. Nothing shown on the site today has changed, and every published benefit is unchanged." },
   { date: "2026-09-04", text: "Continued groundwork for future provincial coverage. Nothing shown on the site today has changed, and every published benefit is unchanged." },

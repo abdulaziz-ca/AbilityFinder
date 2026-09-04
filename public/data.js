@@ -121,6 +121,7 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "trillium-drug-program": { kind: "coverage", excludeFromEstimate: true, note: "for most people the deductible is about 4% of after-tax household income, then up to $2 for each drug filled or refilled" },
   "passport-program": { kind: "grant", excludeFromEstimate: true, note: "$5,500 a year minimum; up to $44,275 based on assessed need" },
   hvmp: { kind: "grant", excludeFromEstimate: true, note: "funds approved home or vehicle modifications; no published maximum" },
   ssah: { kind: "grant", excludeFromEstimate: true, note: "discretionary funding for respite and support services; no published amount" },
@@ -294,6 +295,7 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "trillium-drug-program": { difficulty: 2, effort: "Household application, online or on paper", wait: "Not published" },
   "passport-program": { difficulty: 4, effort: "Apply through Developmental Services Ontario, then work with a local Passport agency", wait: "Not published" },
   hvmp: { difficulty: 3, effort: "Application details via the March of Dimes website; eligibility assessed by the program's service coordinator", wait: "Not published" },
   ssah: { difficulty: 3, effort: "Application with medical documentation, sent to your local Ministry regional office", wait: "Not published" },
@@ -1059,6 +1061,64 @@ const HELP_ORGS = [
 
 const BENEFITS = [
   {
+    id: "trillium-drug-program",
+    name: "Trillium Drug Program",
+    level: "Ontario",
+    category: "Health",
+    amount: "Covers eligible drugs above a deductible that for most people is about 4% of after-tax household income, then up to $2 for each drug filled or refilled",
+    summary:
+      "Helps Ontario households with high prescription-drug costs compared with their income. For most people the deductible is about 4% of after-tax household income; once you have paid it, you pay up to $2 for each drug filled or refilled for the rest of the program year.",
+    note: "Your household income for the deductible is the net income you reported to the Canada Revenue Agency for the previous tax year — the amount on line 23600 of your Notice of Assessment — minus any amount you withdrew from a Canadian Registered Disability Savings Plan, shown on line 12500 of your tax return. Only money your household actually pays out of pocket counts toward the deductible — amounts covered by private insurance, a drug company or a discount card do not.",
+    requires: ["on", "tdpDeductible"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You live in Ontario and have a valid Ontario health card number",
+        "You do not already qualify for the Ontario Drug Benefit program (for example, you are not enrolled in a program such as Ontario Works)",
+        "You do not have an insurance plan that pays for 100% of your drugs",
+        "You spend about 4% or more of your after-tax household income on prescription-drug costs",
+      ],
+      note: "You apply as a household. That includes your spouse, and it can include another person you live with where one of you is a parent, grandparent or legal guardian of the other and one is dependent on the other for support.",
+    },
+    applyText: "Apply to the Trillium Drug Program",
+    applyUrl: "https://www.ontario.ca/page/get-help-high-prescription-drug-costs",
+    source: "https://www.ontario.ca/page/get-help-high-prescription-drug-costs",
+    detail: {
+      about:
+        "The Trillium Drug Program helps Ontarians pay for high prescription-drug costs relative to their household income. It covers the cost of more than 5,900 medications available through the Ontario Drug Benefit program, plus almost 1,500 additional drug products that meet specific criteria through the Exceptional Access Program. You pay a deductible first — for most people about 4% of household income after taxes — and once it is paid you pay up to $2 for each drug filled or refilled until the end of the program year.",
+      aboutList: {
+        lead: "The Trillium Drug Program helps Ontario households with high prescription-drug costs relative to their income.",
+        items: [
+          "Covers more than 5,900 medications available through the Ontario Drug Benefit program, plus almost 1,500 more through the Exceptional Access Program.",
+          "For most people the deductible is about 4% of household income after taxes.",
+          "Once the deductible is paid, you pay up to $2 for each drug filled or refilled until the end of the program year.",
+          "The deductible is divided into four equal quarterly amounts across the four quarters of the program year.",
+          "The program year runs from August 1 to July 31.",
+        ],
+      },
+      steps: [
+        "Check that you live in Ontario, have a valid Ontario health card, do not already qualify for the Ontario Drug Benefit, and do not have insurance covering 100% of your drugs",
+        "Complete the Trillium Drug Program application on the Ontario Drug Benefit Program Online Applications and Forms website, applying as a household",
+        "If you do not have a computer, request a paper form and guide by phone or email",
+        "Once enrolled you receive a confirmation letter telling you your deductible for the year and listing everyone covered",
+        "Tell your pharmacist, doctor or nurse practitioner that you have applied, so they can prescribe drugs covered by the Ontario Drug Benefit Program",
+      ],
+      documents: [
+        "Your Ontario health card number",
+        "Your household's income information from the previous tax year, including line 23600 of your Notice of Assessment",
+        "Receipts for eligible drugs your household has paid for out of pocket",
+      ],
+      tips: [
+        "Apply by September 30 to be reimbursed for eligible drugs you received in the previous program year, which runs August 1 to July 31.",
+        "Your enrolment renews automatically every year if you file your income taxes on time, and you receive an annual confirmation letter.",
+        "Money withdrawn from a Canadian Registered Disability Savings Plan is subtracted from the income used to calculate your deductible.",
+        "Only what your household pays out of pocket counts toward the deductible — not amounts paid by private insurance, a drug company or a drug discount card.",
+        "Rather than paying the whole deductible at once, it is split into four equal quarterly amounts across the program year.",
+      ],
+      phone: "1-800-575-5386",
+    },
+  },
+  {
     id: "passport-program",
     needsPractitioner: true,
     name: "Passport program (adults with a developmental disability)",
@@ -1452,6 +1512,11 @@ const BENEFITS = [
         "Return the completed Disability Determination Package to the Disability Adjudication Unit within 90 days, or the application is treated as withdrawn unless you make a written request for an extension and it is approved.",
         "If you receive CPP-D or QPP-D you are in a prescribed class and skip the disability adjudication step.",
         "The Canada Disability Benefit does not count as income for ODSP.",
+        "The Disability Adjudication Unit sends you a letter within 90 business days telling you whether your disability qualified.",
+        "If no extra information is needed, your caseworker tells you whether you are financially eligible within 15 business days. If you are found not financially eligible, you have 30 days to ask ODSP to review your information again.",
+        "If you left ODSP and need to come back for financial help, you may be eligible for rapid reinstatement, which can make it faster and easier to start receiving ODSP again without going through a disability assessment. Contact your local ODSP office to find out if you are eligible.",
+        "Income support is paid monthly, on the last business day of each month. December payments may be available earlier in the month.",
+        "If you are interested in working, ask ODSP staff about employment-related supports in your community; Employment Ontario also offers training, skills and experience help.",
       ],
       phone: "1-888-999-1142 (TTY 1-800-387-5559)",
     },

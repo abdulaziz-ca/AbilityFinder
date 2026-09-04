@@ -271,6 +271,13 @@ const REQS = {
       "Developmental Services Ontario confirms whether you are eligible for government-funded adult developmental services, and a psychologist or psychological associate registered with the College of Psychologists of Ontario should have determined the developmental disability.",
     action: { text: "Apply through Developmental Services Ontario", url: "https://www.ontario.ca/page/passport-program-adults-developmental-disability" },
   },
+  tdpDeductible: {
+    met: () => false,
+    fixed: false,
+    unmet:
+      "The Trillium Drug Program is for households spending about 4% or more of their after-tax income on prescription drugs, who do not already qualify for the Ontario Drug Benefit and do not have insurance covering 100% of their drugs.",
+    action: { text: "Apply to the Trillium Drug Program", url: "https://www.ontario.ca/page/get-help-high-prescription-drug-costs" },
+  },
   hvmpMobility: {
     // HVMP's criterion is broader than the parking-oriented `mobility` gate, and the
     // service coordinator decides it. fixed:false so a profile that does not obviously

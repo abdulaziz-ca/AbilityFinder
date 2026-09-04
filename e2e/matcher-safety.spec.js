@@ -1557,3 +1557,14 @@ test("Passport and HVMP are province-gated and never auto-ready", async ({ page 
   expect(onWalksFar["hvmp"].status).not.toBe("no");
   expect(onWalksFar["hvmp"].needs.length).toBeGreaterThan(0);
 });
+
+test("the Trillium Drug Program is province-gated and never auto-ready", async ({ page }) => {
+  // Whether a household spends ~4% of after-tax income on drugs is not something the
+  // wizard asks, so this can never be "ready" from answers alone.
+  const onResident = await evaluateProfile(page, { province: "ON" });
+  expect(onResident["trillium-drug-program"].status).toBe("almost");
+  expect(onResident["trillium-drug-program"].needs.length).toBeGreaterThan(0);
+
+  const abResident = await evaluateProfile(page, { province: "AB" });
+  expect(abResident["trillium-drug-program"].status).toBe("no");
+});

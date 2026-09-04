@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.5.0";
+const SPEC_VERSION = "1.6.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -478,6 +478,7 @@ const GATES = {
     violations: [{ name: "no developmental category", fragment: { drop: { disabilities: ["intellectual", "autism"] } }, expect: "no" }],
   },
   passportDso: external("Developmental Services Ontario confirms eligibility for provincially funded adult developmental services; the developmental disability should be determined by a psychologist or psychological associate registered with the College of Psychologists of Ontario or an equivalent body."),
+  tdpDeductible: external("Depends on what the household actually spends on prescription drugs against about 4% of its after-tax income, and on existing drug coverage."),
   hvmpMobility: {
     evidence: "answers",
     satisfy: { add: { disabilities: ["physical"] }, set: { canWalkFar: false } },
@@ -667,6 +668,7 @@ const PROGRAM_BEST_CASE = {
   "on-parking-permit":                             "ready",
   "odsp":                                          "almost",
   "on-adp":                                        "almost",
+  "trillium-drug-program":                         "almost",
   "passport-program":                              "almost",
   "hvmp":                                          "almost",
   "ssah":                                          "almost",
