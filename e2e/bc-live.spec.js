@@ -47,17 +47,34 @@ async function deleteAppStorage(page) {
 // with the animation names rather than returning as if settled — a silent backstop hid exactly
 // the stalls this helper exists to prevent.
 
+const PREFLIGHT_TIMEOUT_MS = 10000;
+// Bound a promise that has no native Playwright timeout (page.evaluate) so a browser/CDP
+// wedge during pick()'s preflight fails fast with a diagnostic instead of silently eating
+// the 90s test budget (ticket #62 follow-up).
+function withTimeout(promise, ms, label) {
+  let timer;
+  return Promise.race([
+    Promise.resolve(promise).finally(() => clearTimeout(timer)),
+    new Promise((_, reject) => {
+      timer = setTimeout(
+        () => reject(new Error(`pick preflight (${label}) exceeded ${ms}ms — the browser connection is likely wedged.`)),
+        ms,
+      );
+    }),
+  ]);
+}
+
 async function pick(page, text) {
   const questionBefore = await page
     .locator("#wizard-question")
-    .textContent()
+    .textContent({ timeout: PREFLIGHT_TIMEOUT_MS })
     .catch(() => null);
   // The wizard is adaptive (skipIf() keys off answers.disabilities) and hasText
   // is a SUBSTRING match, so a stalled advance used to let the next pick() click
   // a plausible-looking option on the WRONG step — surfacing one or two steps
   // later as a zero-match locator that ate the full test timeout. Assert the
   // option belongs to the step actually on screen, so divergence fails HERE.
-  const onScreen = await page.evaluate((wanted) => {
+  const onScreen = await withTimeout(page.evaluate((wanted) => {
     const norm = (s) => String(s).replace(/\s+/g, " ").trim().toLowerCase();
     if (view !== "wizard") return { view };
     const step = visibleSteps()[stepIndex];
@@ -80,7 +97,7 @@ async function pick(page, text) {
       alreadySelected: !!(pairedInput && pairedInput.checked),
       question: (document.getElementById("wizard-question") || {}).textContent || null,
     };
-  }, text);
+  }, text), PREFLIGHT_TIMEOUT_MS, "onScreen step-identity check");
   if (onScreen.view !== "wizard") {
     throw new Error(`pick(${JSON.stringify(text)}): not in the wizard (view="${onScreen.view}")`);
   }
@@ -115,12 +132,14 @@ async function pick(page, text) {
   // practice, and the aim is that whichever one stalls fails with a diagnostic message
   // instead of a bare test timeout. It is NOT an end-to-end cap on pick().
   //
-  // What is still uncapped: pick()'s own preflight textContent() and evaluate() take no
-  // explicit bounds and inherit the 90s test timeout, so a browser/CDP wedge during
-  // preflight remains outside this budget. Bounding those two is still a candidate
-  // follow-up. Everything settleWizardCard does IS now bounded - it used to open with a
-  // bare card.count(), a third un-timed call that a 2026-08-17 review caught and that the
-  // shared helper in e2e/wizard-helpers.js replaced with a timed waitFor.
+  // pick()'s preflight is now bounded too (ticket #62 follow-up): the #wizard-question
+  // textContent carries an explicit PREFLIGHT_TIMEOUT_MS, and the step-identity
+  // page.evaluate — which has no native Playwright timeout — is wrapped in withTimeout()
+  // so a browser/CDP wedge during preflight fails fast with a diagnostic instead of
+  // silently consuming the 90s test budget. Everything settleWizardCard does was already
+  // bounded (it used to open with a bare card.count(), a third un-timed call that a
+  // 2026-08-17 review caught and the shared helper in e2e/wizard-helpers.js replaced with
+  // a timed waitFor).
   //
   // The adjacent 20s bound does NOT justify this one; they are separate sequential
   // budgets. An earlier revision wrongly argued they were the same, and preserving the
