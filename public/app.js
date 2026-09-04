@@ -4461,7 +4461,7 @@ function verifiedFor(b) {
   const [y, m] = raw.split("-").map(Number);
   const now = new Date();
   const months = (now.getUTCFullYear() - y) * 12 + (now.getUTCMonth() - (m - 1));
-  return { label: `${MONTHS_EN[m - 1]} ${y}`, months: Math.max(0, months), stale: months >= STALE_MONTHS, perBenefit: !!(b && BENEFIT_VERIFIED[b.id]) };
+  return { label: `${MONTHS_EN[m - 1]} ${y}`, months: Math.max(0, months), stale: months >= STALE_MONTHS };
 }
 
 /* Phase-2 detail sections: tax warning, denial reasons, appeals, FAQs, related */
