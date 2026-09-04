@@ -2896,7 +2896,7 @@ const BENEFITS = [
       ],
     },
     "requiresNote": "Any MSP-enrolled BC resident or family can register. Your assistance level is scaled to family net income from two years earlier, verified with the CRA.",
-    "note": "Return the consent form within 30 days of registering. If you do not, temporary coverage ends and your family's deductible is set at $10,000.",
+    "note": "Return the consent form within 30 days of registering. If you do not, temporary coverage ends and your family's deductible is set at $10,000. Separately: if you're moving into a long-term care facility, ask whether it is enrolled in PharmaCare Plan B before you move in — Plan B gives permanent residents of enrolled facilities 100% coverage of eligible prescription drugs and pharmacy services (and eligible medical supplies up to a maximum), automatically with no application, but not all facilities are enrolled and it does not apply to assisted-living, extended-care, acute-care or temporary respite or hospice stays.",
     "applyText": "Register online",
     "applyUrl": "https://my.gov.bc.ca/ahdc",
     "source": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/fair-pharmacare-plan",

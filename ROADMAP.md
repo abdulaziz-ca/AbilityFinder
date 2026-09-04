@@ -222,7 +222,11 @@ same-day verification of every figure before it ships:
   and a new "Housing" category would fall through to "income".
 - **Scope questions rather than gaps:** provincial child/family benefits such as the
   Alberta Child and Family Benefit and the B.C. Family Benefit are income-based rather
-  than disability-based.
+  than disability-based. **Decided OUT of scope 2026-09-03 (owner decision, TaskView #48):**
+  AbilityFinder is a disability-benefits finder, so these general income-tested family
+  benefits are not carried. Families with a disabled child are already served by the
+  disability-specific records (FSCD, the Child Disability Benefit, autism funding, the
+  Alberta/B.C. child health benefits). Do not re-file them as missing coverage.
 
 **Remaining entries re-audited against the catalogue, 2026-07-29.** After the two stale
 entries above, every other open item in this section was checked against `public/data.js`

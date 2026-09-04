@@ -4675,6 +4675,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
             ${b.applyUrl ? `<a class="apply" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.applyText || t("af.applyGeneric")} ${icon("external")}</a>` : ""}
             ${b.declarationUrl ? `<a class="source-link" href="${resolveUrl(b.declarationUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.declarationText || "Required dependent declaration"} ${icon("external")}</a>` : ""}
             <a class="source-link" href="${resolveUrl(b.source)}" target="_blank" rel="noopener noreferrer" data-ext>${t("det.official")} ${icon("external")}</a>
+            ${inline ? "" : `<button class="source-link copy-link" type="button" data-copy-guide-link="${b.id}">Copy link to this guide</button>`}
           </div>
           <p class="side-foot"><span class="verified${vFresh.stale ? " stale" : ""}">${icon(vFresh.stale ? "info" : "check")} Info verified ${vFresh.label}</span></p>
           ${vFresh.stale ? `<p class="side-stale">${icon("info")} <span>That was about ${vFresh.months} months ago. Amounts and income rules usually change each year, so <b>check the official page above</b> before you count on a number here.</span></p>` : ""}
@@ -4706,6 +4707,20 @@ function wireDetail() {
 function wireGuideInteractions(root) {
   if (!root || root.dataset.guideWired === "true") return;
   root.dataset.guideWired = "true";
+  root.querySelectorAll("[data-copy-guide-link]").forEach((btn) => btn.addEventListener("click", async () => {
+    const gid = btn.getAttribute("data-copy-guide-link");
+    if (!gid) return;
+    const url = `https://abilityfinder.ca/guides/${gid}`; // id-only canonical guide URL — no wizard/profile data
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error("no clipboard");
+      await navigator.clipboard.writeText(url);
+      if (!btn.dataset.label) btn.dataset.label = btn.textContent;
+      btn.textContent = "Link copied";
+      window.setTimeout(() => { btn.textContent = btn.dataset.label; }, 1800);
+    } catch (_) {
+      btn.textContent = url;
+    }
+  }));
   // "check my eligibility" CTA (shown when the wizard isn't done yet)
   root.querySelectorAll("[data-guide-check]").forEach((check) =>
     check.addEventListener("click", () => setState("wizard", { stepIndex: 0 }))
