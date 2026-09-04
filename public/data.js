@@ -96,7 +96,8 @@ resolveBcTransitHandyDartUrl.staticUrl = BC_TRANSIT_HANDYDART_CHOOSER;
 
 /* Province scaffolding can land before its catalog. Visibility is gated in app.js. */
 const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES };
-const COVERED_PROVINCES = ["AB", "BC"];
+const COVERED_PROVINCES = ["AB", "BC", "ON"];
+const ON_CITIES = []; // Ontario municipalities — none in the province-level MVP; populated in the municipal stage
 
 /* national fallbacks (used when a jurisdiction isn't in the maps yet) */
 const FED_STUDENT_AID = "https://www.canada.ca/en/employment-social-development/services/education/grants/disabilities.html";

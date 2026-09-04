@@ -7,13 +7,22 @@
    ========================================================================== */
 
 const BC_ENABLED = true;
-const SCOPE_LABEL = BC_ENABLED ? "Alberta, BC + federal" : "Alberta + federal";
-const SCOPE_LABEL_LONG = BC_ENABLED ? "Alberta and British Columbia" : "Alberta";
-const SCOPE_RESIDENTS = BC_ENABLED ? "Albertans and British Columbians" : "Albertans";
-const SCOPE_GOVERNMENTS = BC_ENABLED ? "Canada, Alberta, or British Columbia" : "Canada or Alberta";
-const SCOPE_ORGANIZATIONS = BC_ENABLED ? "Alberta, British Columbia, and national" : "Alberta and national";
-const SCOPE_REGION_LABEL = BC_ENABLED ? "Alberta + BC" : "Canada";
-const SCOPE_DESTINATION = BC_ENABLED ? "Alberta or British Columbia" : "Alberta";
+const ON_ENABLED = false; // Ontario rollout — dark until launch (ticket #91)
+// Scope labels compose from the enabled-province set, so flipping a flag updates them everywhere.
+// Invariant: with ON_ENABLED=false (and BC_ENABLED=true) these produce exactly the prior Alberta+BC strings.
+const _SCOPE_FULL = ["Alberta", ...(BC_ENABLED ? ["British Columbia"] : []), ...(ON_ENABLED ? ["Ontario"] : [])];
+const _SCOPE_DEMONYM = ["Albertans", ...(BC_ENABLED ? ["British Columbians"] : []), ...(ON_ENABLED ? ["Ontarians"] : [])];
+const _SCOPE_ABBR = ["Alberta", ...(BC_ENABLED ? ["BC"] : []), ...(ON_ENABLED ? ["ON"] : [])];
+const _joinAnd = (a) => (a.length <= 1 ? (a[0] || "") : `${a.slice(0, -1).join(", ")} and ${a[a.length - 1]}`);
+const _joinOrComma = (a) => (a.length <= 1 ? (a[0] || "") : `${a.slice(0, -1).join(", ")}, or ${a[a.length - 1]}`);
+const _joinOr = (a) => (a.length <= 1 ? (a[0] || "") : `${a.slice(0, -1).join(", ")} or ${a[a.length - 1]}`);
+const SCOPE_LABEL = `Alberta${BC_ENABLED ? ", BC" : ""}${ON_ENABLED ? ", ON" : ""} + federal`;
+const SCOPE_LABEL_LONG = _joinAnd(_SCOPE_FULL);
+const SCOPE_RESIDENTS = _joinAnd(_SCOPE_DEMONYM);
+const SCOPE_GOVERNMENTS = `Canada, ${_joinOrComma(_SCOPE_FULL)}`;
+const SCOPE_ORGANIZATIONS = `${_SCOPE_FULL.join(", ")}, and national`;
+const SCOPE_REGION_LABEL = _SCOPE_ABBR.join(" + ");
+const SCOPE_DESTINATION = _joinOr(_SCOPE_FULL);
 // "selected ... ones" rather than "fully built out": the catalogue holds chosen
 // programs, not every provincial or municipal benefit. Both languages keep the
 // residency explanation, which is the whole point of help on a residency question
@@ -241,8 +250,8 @@ const REQS = {
   under60: { met: () => ageIn("under6", "6to11", "12to15", "16to17", "18", "19to59"), fixed: true, unmet: "You must be under 60 to open this." },
   ab: { met: () => answers.province === "AB", fixed: true, unmet: "This is an Alberta program." },
   bc: { met: () => answers.province === "BC", fixed: true, unmet: "This is a British Columbia program." },
-  notBcStudentAidDuplicate: { met: () => answers.province !== "BC", fixed: true, unmet: "Use the StudentAid BC version of this federal grant; it is the same program with B.C.-specific application steps." },
   on: { met: () => answers.province === "ON", fixed: true, unmet: "This is an Ontario program." },
+  notBcStudentAidDuplicate: { met: () => answers.province !== "BC", fixed: true, unmet: "Use the StudentAid BC version of this federal grant; it is the same program with B.C.-specific application steps." },
   qc: { met: () => answers.province === "QC", fixed: true, unmet: "This is a Quebec program." },
   mb: { met: () => answers.province === "MB", fixed: true, unmet: "This is a Manitoba program." },
   sk: { met: () => answers.province === "SK", fixed: true, unmet: "This is a Saskatchewan program." },
@@ -837,7 +846,7 @@ const resolveUrl = (u) => (typeof u === "function" ? u(answers) : u);
    journey (or vice versa). National entries use CA and remain visible in both. */
 function coverageApplies(record, province = answers.province) {
   const coverage = Array.isArray(record && record.coverage) ? record.coverage : [];
-  if (!province || !["AB", "BC"].includes(province)) return true;
+  if (!province || !["AB", "BC", "ON"].includes(province)) return true;
   return coverage.includes("CA") || coverage.includes(province);
 }
 
@@ -845,6 +854,7 @@ function coverageLabel(record) {
   const coverage = Array.isArray(record && record.coverage) ? record.coverage : [];
   if (coverage.includes("CA")) return "Canada-wide";
   if (coverage.includes("BC")) return "British Columbia";
+  if (coverage.includes("ON")) return "Ontario";
   if (coverage.includes("AB")) return "Alberta";
   return "Check service area";
 }
@@ -1158,6 +1168,7 @@ const STEPS = [
     options: [
       { value: "AB", label: BC_ENABLED ? "Alberta" : "Yes, I live in Alberta" },
       ...(BC_ENABLED ? [{ value: "BC", label: "British Columbia" }] : []),
+      ...(ON_ENABLED ? [{ value: "ON", label: "Ontario" }] : []),
       { value: "other", label: BC_ENABLED ? "Another province or territory" : "No, another province or territory", sub: "you'll still see the Canada-wide programs in our catalog" },
     ],
     onPick(v) {
@@ -1347,8 +1358,8 @@ const PERSISTENCE_SELECTIONS = {
   functionalNeeds: ["childHighNeeds", "childThreeAdls", "dailyLiving", "transitBarrier", "equipment", "nutrition", "medicalTravel", "communication", "memorySafety", "sensory", "homeAccess", "careCoordination", "fatiguePain", "none", "unsure"],
   circumstances: ["homeowner", "vehicleOwner", "recentGraduate", "none", "unsure"],
   provinces: STEPS.find((step) => step.key === "province").options.map((item) => item.value),
-  cities: [...ALBERTA_CITIES, ...(BC_ENABLED ? BC_CITIES : [])],
-  citiesByProvince: { AB: ALBERTA_CITIES, BC: BC_ENABLED ? BC_CITIES : [] },
+  cities: [...ALBERTA_CITIES, ...(BC_ENABLED ? BC_CITIES : []), ...(ON_ENABLED ? ON_CITIES : [])],
+  citiesByProvince: { AB: ALBERTA_CITIES, BC: BC_ENABLED ? BC_CITIES : [], ON: ON_ENABLED ? ON_CITIES : [] },
   browseLevels: BROWSE_LEVELS.map((level) => level.key),
   benefitIds: BENEFITS.map((benefit) => benefit.id),
   progressStages: STAGES.map((stage) => stage.key),
@@ -4212,13 +4223,19 @@ function printResults() {
    BROWSE / SEARCH — explore every benefit without doing the wizard
    ========================================================================== */
 function benefitIsLocal(b) {
-  return !["Federal", "Alberta", "British Columbia"].includes(b.level);
+  return !["Federal", "Alberta", "British Columbia", "Ontario"].includes(b.level);
 }
 function benefitIsBritishColumbia(b) {
   return b.level === "British Columbia" || b.level === "Metro Vancouver" || BC_CITIES.includes(b.level);
 }
+function benefitIsOntario(b) {
+  return b.level === "Ontario" || ON_CITIES.includes(b.level);
+}
 function browseCatalog() {
-  return BC_ENABLED ? BENEFITS : BENEFITS.filter((b) => !benefitIsBritishColumbia(b));
+  let list = BENEFITS;
+  if (!BC_ENABLED) list = list.filter((b) => !benefitIsBritishColumbia(b));
+  if (!ON_ENABLED) list = list.filter((b) => !benefitIsOntario(b));
+  return list;
 }
 function benefitSearchText(b) {
   const d = b.detail || {};
