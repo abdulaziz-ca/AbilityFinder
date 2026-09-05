@@ -4927,6 +4927,11 @@ const BENEFITS = [
 ];
 
 const BENEFIT_VERIFIED = {
+  // Ontario province-level records, each verified against its official ontario.ca
+  // page on 2026-09-04. Month granularity only — no fabricated day.
+  "on-parking-permit": "2026-09", odsp: "2026-09", "on-adp": "2026-09",
+  "ontario-autism-program": "2026-09", ssah: "2026-09", acsd: "2026-09",
+  "passport-program": "2026-09", hvmp: "2026-09", "trillium-drug-program": "2026-09",
   dtc: "2026-07", "cdb-adult": "2026-07", aish: "2026-07", adap: "2026-07",
   "adult-health-benefit": "2026-07",
   ramp: "2026-07",

@@ -93,6 +93,43 @@ const REPORT_SCHEMA = 2;
  * site root, with the unresolved equipment-funding claim left untouched.
  */
 
+/**
+ * Link-health review disposition, 2026-09-04. Report snapshot checkedAt
+ * 2026-09-05T00:00:47Z: 179 links, 172 ok, 5 broken, 2 unreachable,
+ * 0 inconclusive, 9 redirected, 5 skipped-dynamic. All seven flagged links were
+ * confirmed by hand in a real browser. NONE needed a data change; every one of
+ * them serves normally to a browser. No URL was touched.
+ *
+ * NEW FALSE ALARMS — not covered by the 2026-08-14 disposition:
+ * - leduc.ca .../housing-financial-support: monitor received 403. Loads normally
+ *   in a real browser as "Housing and Financial Navigation | City of Leduc".
+ * - bccerebralpalsy.com/programs/equipment-funding-program/: monitor could not
+ *   reach it. Loads normally as "Equipment Subsidy - CPABC Financial Aids", with
+ *   the CPABC minors-with-cerebral-palsy assistive-device criteria still matching
+ *   our directory entry.
+ *
+ * TRANSIENT OUTAGE, NOT A MOVED PAGE — the important one:
+ * - edmonton.ca/ets/fare-assistance: monitor received 502. A real browser also
+ *   received 502 Bad Gateway, but so did https://www.edmonton.ca/ itself, so the
+ *   whole host was down during this review rather than the page having moved.
+ *   The URL is therefore correct and was deliberately left alone. Re-check it on
+ *   the next sweep; if edmonton.ca is up and only this path 502s, that is a
+ *   genuine break worth chasing. Checking the site root is the cheap way to tell
+ *   a dead page from a dead host, and is worth doing before any 5xx is treated
+ *   as a broken link.
+ *
+ * STILL FINE — the four already dispositioned on 2026-08-14 were re-confirmed
+ * live and unchanged: vancouver.ca leisure-access-card.aspx (403 to the monitor),
+ * kelowna.ca financial-assistance-recreation (403), neilsquire.ca
+ * individual-programs-services (526), airdrie.ca index.cfm?serviceID=2157
+ * (monitor timeout). The nine redirects remain deliberately unrewritten for the
+ * reasons given in the 2026-08-14 block.
+ *
+ * Bottom line for the next reviewer: seven flagged, seven fine. A non-200 from
+ * the Worker is weak evidence. Confirm in a real browser before editing data —
+ * replacing a working URL costs a disabled person the page they needed.
+ */
+
 export const REPORT_KEY = "latest";
 
 const SOFT_DEAD_URL = /\/(not-?found|404|page-?not-?found|error)(\/|\.|$)/;

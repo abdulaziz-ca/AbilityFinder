@@ -25,12 +25,30 @@ function loadDataForTest() {
 
 const { BENEFITS, BENEFIT_VERIFIED, HELP_ORGS } = loadDataForTest();
 
+/* Every month in here corresponds to an actual substantive official-source review.
+   DATA-10's rule is that a review date "advances only after substantive
+   official-source review", and its regression requirement is a test that
+   generation cannot advance dates. An allowlist keeps that tripwire: a date in a
+   month not listed here fails until someone consciously adds the month, which is
+   the moment to ask whether a real review actually happened. It is deliberately
+   NOT a free-form "any past month" check — that would let a date drift forward
+   silently, which is the exact defect DATA-10 was raised about.
+
+   - 2026-07: the catalog-wide review sweep (also DATA_VERIFIED_MONTH in app.js).
+   - 2026-09: the nine Ontario province-level records, each read against its
+     official ontario.ca page on 2026-09-04 while being written. */
+const REVIEWED_MONTHS = new Set(["2026-07", "2026-09"]);
+
 test("benefit review dates use month granularity", () => {
   assert.equal(typeof BENEFIT_VERIFIED, "object");
   assert.notEqual(BENEFIT_VERIFIED, null);
-  for (const value of Object.values(BENEFIT_VERIFIED)) {
+  for (const [id, value] of Object.entries(BENEFIT_VERIFIED)) {
     assert.match(value, /^[0-9]{4}-[0-9]{2}$/);
-    assert.equal(value, "2026-07");
+    assert.ok(
+      REVIEWED_MONTHS.has(value),
+      `${id} claims review month ${value}, which is not a recorded review sweep. ` +
+        "Add the month to REVIEWED_MONTHS only if an actual official-source review happened."
+    );
   }
 });
 
