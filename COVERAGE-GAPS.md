@@ -2,7 +2,7 @@
 
 TaskView #206. Last reviewed 2026-09-05.
 
-The catalogue holds **113 records**: 16 federal, 14 Alberta, 42 British Columbia,
+The catalogue holds **117 records**: 16 federal, 14 Alberta, 42 British Columbia,
 9 Ontario, and the rest municipal. This file is about everything else.
 
 **Why this file exists.** A user or a partner organization currently cannot tell the
@@ -32,12 +32,20 @@ Ontario went live 2026-09-04 with province-level records and, initially, no muni
 coverage at all. This is where the largest gaps are.
 
 ### NOT YET BUILT
-- **Municipal programs for 41 of the 42 listed Ontario cities.** Only Toronto has any.
-  Ottawa, Mississauga, Brampton, Hamilton, London, Markham, Vaughan, Kitchener and
-  Windsor each run their own recreation and transit subsidies. For comparison, Alberta
-  and B.C. have 27 cities with programs between them. **This is the single largest gap
-  on the site.** Being listed in `ON_CITIES` only means a resident can pick the city; it
-  does not mean the city has programs — `CITIES_WITH_PROGRAMS` is that list.
+- **Municipal programs for 37 of the 42 listed Ontario cities.** Five are built —
+  Toronto (Fair Pass, Welcome Policy), Ottawa (Hand in Hand), Mississauga
+  (ActiveAssist), Brampton (ActiveAssist) and Hamilton (HSR Fare Assist), together
+  reaching roughly 5 million people. Still unbuilt and known to run their own
+  recreation or transit subsidies: London, Markham, Vaughan, Kitchener, Windsor, and
+  the rest of the list. For comparison, Alberta and B.C. have 27 cities with programs
+  between them. **This remains the single largest gap on the site.** Being listed in
+  `ON_CITIES` only means a resident can pick the city; it does not mean the city has
+  programs — `CITIES_WITH_PROGRAMS` is that list.
+  Every one of the five built so far had materially different rules from its
+  neighbours, so none of the remaining cities can be inferred from a built one. The
+  clearest case: Brampton and Mississauga share the program name "ActiveAssist" AND
+  the same $275 per-person figure, but Brampton approves for two years and pays a
+  lump sum while Mississauga runs one year and is reapplied for annually.
 - **Ontario organizations: zero.** `ORGS_DIRECTORY` covers Alberta (13) and B.C. (9).
   An Ontario resident opens the organizations directory and sees nothing. The page now
   says so honestly rather than telling them to pick a province, but the content gap is
