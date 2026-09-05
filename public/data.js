@@ -49,6 +49,7 @@ const CITIES_WITH_PROGRAMS = [
   "Kelowna", "Coquitlam", "Kamloops",
   "Toronto", "Ottawa", "Mississauga", "Brampton", "Hamilton", "London",
   "Aurora", "Markham", "Newmarket", "Richmond Hill", "Vaughan",
+  "Cambridge", "Kitchener", "North Dumfries", "Waterloo", "Wellesley", "Wilmot", "Woolwich",
 ];
 
 /* ---------------------------------------------- Alberta communities (pop >5,000)
@@ -103,16 +104,16 @@ resolveBcTransitHandyDartUrl.staticUrl = BC_TRANSIT_HANDYDART_CHOOSER;
 /* Ontario regional municipalities that deliver programs on behalf of their member cities.
    These are NOT city options in the questionnaire — nobody selects "York Region" — but a
    record can carry one as its `level`, so the province filter has to know about them. */
-const ON_REGIONS = ["York Region"];
+const ON_REGIONS = ["York Region", "Region of Waterloo"];
 
 const ON_CITIES = [
   "Ajax", "Aurora", "Barrie", "Belleville", "Brampton", "Brantford", "Burlington",
   "Cambridge", "Chatham-Kent", "Clarington", "Cornwall", "Greater Sudbury", "Guelph",
   "Hamilton", "Kingston", "Kitchener", "London", "Markham", "Milton", "Mississauga",
-  "Newmarket", "Niagara Falls", "North Bay", "Oakville", "Oshawa", "Ottawa",
+  "Newmarket", "Niagara Falls", "North Bay", "North Dumfries", "Oakville", "Oshawa", "Ottawa",
   "Peterborough", "Pickering", "Richmond Hill", "Sarnia", "Sault Ste. Marie",
   "St. Catharines", "Stratford", "Thunder Bay", "Timmins", "Toronto", "Vaughan",
-  "Waterloo", "Welland", "Whitby", "Windsor", "Woodstock",
+  "Waterloo", "Welland", "Wellesley", "Whitby", "Wilmot", "Windsor", "Woolwich", "Woodstock",
 ];
 /* Every province in COVERED_PROVINCES gets a key here, even when its list is still
    empty, so callers can tell "covered, no municipalities yet" from "not covered".
@@ -142,6 +143,11 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "grt-affordable-transit": { kind: "discount", note: "$47 monthly pass vs $104 regular; $1.35 stored value per ride vs $3 regular and $4 cash; $6.75 for 5 MobilityPLUS tickets vs $15 regular" },
+  "grt-cnib-pass": { kind: "access", excludeFromEstimate: true, note: "free annual pass for unlimited conventional GRT bus and ION light rail travel" },
+  "grt-mobilityplus": { kind: "access", excludeFromEstimate: true, note: "specialized transit; $15 for 5 tickets or $104 monthly, with ATP tickets $6.75 for 5" },
+  "grt-taxi-coupons": { kind: "discount", note: "$60 coupon book for $30, up to 30 books between January 1 and December 31" },
+  "grt-support-person": { kind: "access", excludeFromEstimate: true, note: "a support person travels free while assisting the customer" },
   "york-region-homemakers": { kind: "services", excludeFromEstimate: true, note: "help with the cost of an in-home homemaker; no published amount" },
   "york-region-recreation-subsidies": { kind: "discount", excludeFromEstimate: true, note: "recreation, day camp and youth overnight camp subsidies; no published amount" },
   "ottawa-community-pass": { kind: "discount", note: "$43.25/month or $1.75/ride, all routes including Para Transpo with no top-up" },
@@ -329,6 +335,11 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "grt-affordable-transit": { difficulty: 2, effort: "Online application with household income information and supporting documents", wait: "Not published" },
+  "grt-cnib-pass": { difficulty: 1, effort: "Call GRT to arrange a special CNIB EasyGO fare card", wait: "Not published" },
+  "grt-mobilityplus": { difficulty: 3, effort: "Two-part application, including a Health/Disability Professional form", wait: "Not published" },
+  "grt-taxi-coupons": { difficulty: 1, effort: "Order by phone, buy in person, or mail a cheque with your MobilityPLUS ID", wait: "Not published" },
+  "grt-support-person": { difficulty: 2, effort: "Online or paper application, usually completed by a registered health professional", wait: "Not published" },
   "york-region-homemakers": { difficulty: 2, effort: "Phone York Region and go through a financial need assessment", wait: "Not published" },
   "york-region-recreation-subsidies": { difficulty: 2, effort: "Apply through York Region, then register with your municipal recreation department", wait: "Not published" },
   "ottawa-community-pass": { difficulty: 2, effort: "Set the discount at a Customer Service Centre with your ODSP number and Presto card", wait: "Not published" },
@@ -1107,6 +1118,256 @@ const HELP_ORGS = [
 ];
 
 const BENEFITS = [
+  {
+    id: "grt-affordable-transit",
+    name: "Affordable Transit Program (Grand River Transit)",
+    level: "Region of Waterloo",
+    category: "Transit",
+    amount: "$47 monthly pass, $1.35 stored value per ride, or $6.75 for 5 MobilityPLUS tickets",
+    amountTiers: {
+      caption: "Household net income at or below this limit",
+      headers: ["Household size", "Net income limit"],
+      rows: [
+        ["1 person", "$31,875"],
+        ["2 people", "$45,078"],
+        ["3 people", "$55,208"],
+        ["4 people", "$63,749"],
+        ["5 people", "$71,724"],
+        ["6 people", "$78,077"],
+      ],
+    },
+    summary:
+      "The Affordable Transit Program offers discounted GRT fare products to Waterloo Region residents living with low income. Eligibility is based on total household income.",
+    note: "ATP costs $47 for a monthly pass instead of $104. Stored value is $1.35 per ride instead of the regular $3 stored-value fare or $4 cash fare. A strip of 5 ATP MobilityPLUS tickets costs $6.75 instead of $15.",
+    requires: ["waterlooRegion", "lowIncome", "atpApproval"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You are 18 or older",
+        "You live in the Region of Waterloo",
+        "You are NOT a full-time college or university student",
+        "Your household net income is at or below the limit",
+      ],
+      note: "Income is household NET income: add line 23600 from each member's tax return. A household includes people you live with, are related to and financially support. Everyone counts even if they do not need a pass, and members over 18 must provide income information. If approved, ALL household members can buy the discounted fares, including all children 17 or younger.",
+    },
+    applyText: "Apply for the Affordable Transit Program",
+    applyUrl: "https://www.grt.ca/fares-and-payment/affordable-transit-program/",
+    source: "https://www.grt.ca/fares-and-payment/affordable-transit-program/",
+    detail: {
+      about:
+        "The Affordable Transit Program offers a discount on the price of GRT fare products for Waterloo Region residents living with low income. Eligibility is based on total household income and is managed by the Region of Waterloo Department of Community Services. The ATP monthly pass is $47 compared with the $104 regular monthly pass. ATP stored value is $1.35 per ride compared with $3 regular stored value and a $4 cash fare. ATP MobilityPLUS tickets are $6.75 for a strip of 5 compared with $15 regular.",
+      aboutList: {
+        lead: "ATP discounts GRT fares for Waterloo Region households living with low income.",
+        items: [
+          "$47 for an ATP monthly pass, compared with $104 for a regular monthly pass.",
+          "$1.35 ATP stored value per ride, compared with $3 regular stored value and a $4 cash fare.",
+          "$6.75 for a strip of 5 ATP MobilityPLUS tickets, compared with $15 regular.",
+          "Eligibility is managed by the Region of Waterloo Department of Community Services.",
+          "If approved, ALL household members can buy discounted fares, including all children 17 or younger.",
+        ],
+      },
+      steps: [
+        "Add line 23600 from each household member's tax return and compare the total with the table",
+        "Gather the documents for your household's route",
+        "Complete the online application at https://webapps.regionofwaterloo.ca/ATP/ApplicationWizard/Step/Info",
+        "Ask for help at a Community Service Welcome Space if you need help completing the application",
+      ],
+      documents: [
+        "If you receive Ontario Works or ODSP: your date of birth and your SAMS Member ID or SIN",
+        "If you do not receive Ontario Works or ODSP: proof of address — a valid driver's licence, Ontario photo ID card, government-issued mail, current utility bill, rent receipt or lease, or mortgage document",
+        "If you do not receive Ontario Works or ODSP: proof of income for each income-earning household member — a CRA Notice of Assessment showing line 23600, CRA Proof of income statement (Option C), or a letter from a Registered Social Worker",
+      ],
+      tips: [
+        "A household includes people you live with, are related to and financially support. Count everyone even if they do not need a pass.",
+        "Household members over 18 must provide income information.",
+        "If you are a registered MobilityPLUS customer on a low income, apply for ATP too because it discounts MobilityPLUS tickets.",
+      ],
+    },
+  },
+  {
+    id: "grt-cnib-pass",
+    name: "CNIB pass (Grand River Transit)",
+    level: "Region of Waterloo",
+    category: "Transit",
+    amount: "Free unlimited travel on conventional GRT buses and ION light rail",
+    summary:
+      "An annual pass for CNIB customers for unlimited use of conventional GRT buses and ION light rail. CNIB customers can ride free with a special CNIB EasyGO fare card.",
+    note: "The source names conventional GRT buses and ION light rail. It does not say the pass includes MobilityPLUS.",
+    requires: ["waterlooRegion", "cnibCustomer"],
+    eligibility: {
+      mode: "all",
+      items: ["You are a CNIB customer"],
+      note: "The CNIB pass is listed at no cost.",
+    },
+    applyText: "See the CNIB pass",
+    applyUrl: "https://www.grt.ca/fares-and-payment/tickets-and-passes/passes/cnib-pass/",
+    source: "https://www.grt.ca/fares-and-payment/tickets-and-passes/passes/cnib-pass/",
+    detail: {
+      about:
+        "The annual CNIB pass gives CNIB customers unlimited use of conventional GRT buses and ION light rail at no cost through a special CNIB EasyGO fare card. The card has Braille and a small notch in its side to make it easier to identify by touch.",
+      aboutList: {
+        lead: "CNIB customers can ride conventional GRT buses and ION light rail free with a special EasyGO fare card.",
+        items: [
+          "The pass is annual and costs nothing.",
+          "It provides unlimited use of conventional GRT buses and ION light rail.",
+          "The card has Braille and a small notch in the side to make it easier to identify by touch.",
+          "The source does not say MobilityPLUS is included.",
+        ],
+      },
+      steps: ["Contact GRT at 519-585-7597 to arrange to get your EasyGO fare card"],
+      documents: [],
+      tips: ["The tactile Braille and side notch help distinguish this card by touch."],
+      phone: "519-585-7597",
+    },
+  },
+  {
+    id: "grt-mobilityplus",
+    name: "MobilityPLUS specialized transit (Grand River Transit)",
+    level: "Region of Waterloo",
+    category: "Transit",
+    amount: "$15 for 5 tickets or $104 for a monthly pass; $6.75 for 5 tickets with ATP approval",
+    summary:
+      "MobilityPLUS operates within the urban areas of Waterloo Region for eligible, registered customers whose disability impacts their ability to travel on GRT buses or ION trains.",
+    note: "This application is for residents of Cambridge, Kitchener and Waterloo. A separate specialized service exists for township residents.",
+    requires: ["waterlooUrban", "transitBarrier"],
+    needsPractitioner: true,
+    eligibility: {
+      mode: "any",
+      items: [
+        "Unconditional — a disability prevents you from using conventional transit",
+        "Conditional — environmental or physical barriers limit your ability to consistently use conventional transit; you may be able to use conventional transit for all or part of a trip but may qualify for specialized transit under specific circumstances for some or all of your trip",
+        "Temporary — a temporary disability that prevents you from using conventional transit and requires specialized transit for a defined period of time",
+      ],
+      note: "MobilityPLUS is only available to people who are eligible and registered.",
+    },
+    applyText: "Apply for MobilityPLUS",
+    applyUrl: "https://www.grt.ca/mobilityplus/apply-for-mobilityplus/",
+    source: "https://www.grt.ca/mobilityplus/apply-for-mobilityplus/",
+    detail: {
+      about:
+        "Grand River Transit MobilityPLUS operates within the urban areas of Waterloo Region. It provides specialized transit to eligible, registered customers who have a disability that impacts their ability to travel on GRT buses or ION trains. Eligibility may be unconditional, conditional or temporary. The application is for Cambridge, Kitchener and Waterloo residents; a separate specialized service exists for township residents.",
+      aboutList: {
+        lead: "MobilityPLUS is specialized transit for eligible, registered Cambridge, Kitchener and Waterloo residents.",
+        items: [
+          "Unconditional eligibility is for a person with a disability that prevents them from using conventional transit.",
+          "Conditional eligibility is for a person whose disability means environmental or physical barriers limit their ability to consistently use conventional transit. They may use conventional transit for all or part of a trip but qualify for specialized transit under specific circumstances for some or all of their trip.",
+          "Temporary eligibility is for a person with a temporary disability that prevents them from using conventional transit and requires specialized transit for a defined period of time.",
+          "MobilityPLUS tickets cost $15 for a strip of 5 and a monthly pass costs $104.",
+          "With ATP approval, a strip of 5 MobilityPLUS tickets costs $6.75.",
+        ],
+      },
+      steps: [
+        "Complete Part A yourself or have your delegate complete it",
+        "Have a professional who can speak to your disability and ability to take conventional transit complete the Part B Health/Disability Professional form",
+        "Submit the two-part application",
+      ],
+      documents: [
+        "Part A, completed by you or your delegate",
+        "Part B Health/Disability Professional form, completed by an accepted professional",
+      ],
+      tips: [
+        "Listed professionals are a physician, nurse practitioner, psychiatrist, psychologist, optometrist, physiotherapist, occupational therapist, social worker, orientation and mobility specialist, kinesiologist, managers from pre-approved adult day programs or long-term care centres, and other professionals approved by the Region.",
+        "Township residents use a separate specialized service; this page does not provide its rules.",
+        "If you live on a low income, apply for ATP too because it reduces a strip of 5 MobilityPLUS tickets from $15 to $6.75.",
+      ],
+    },
+  },
+  {
+    id: "grt-taxi-coupons",
+    name: "MobilityPLUS taxi coupons (Grand River Transit)",
+    level: "Region of Waterloo",
+    category: "Transit",
+    amount: "$60 coupon book for $30, up to 30 books a year",
+    summary:
+      "MobilityPLUS customers can buy a taxi coupon book containing $60 in $5, $2 and $1 coupons for $30. The coupons have punched holes to identify each value.",
+    note: "Coupons are for the MobilityPLUS customer's personal use. They cannot be resold or transferred. Proven abuse results in privileges being revoked, and lost or stolen coupons are not reimbursed. Coupons do not expire and are not refundable.",
+    requires: ["waterlooUrban", "mobilityplusRegistered"],
+    eligibility: {
+      mode: "all",
+      items: ["You are a MobilityPLUS customer"],
+      note: "Customers may purchase up to 30 coupon books between January 1 and December 31. Customers with seasonal eligibility may only buy during active registration periods.",
+    },
+    applyText: "See MobilityPLUS taxi coupons",
+    applyUrl: "https://www.grt.ca/mobilityplus/taxi-coupons/",
+    source: "https://www.grt.ca/mobilityplus/taxi-coupons/",
+    detail: {
+      about:
+        "A taxi coupon book contains $5, $2 and $1 coupons adding up to $60 and is sold to MobilityPLUS customers for $30. Holes are punched to identify each value. Coupons do not expire and are not refundable. Customers may purchase up to 30 books between January 1 and December 31; customers with seasonal eligibility may only buy during active registration periods.",
+      aboutList: {
+        lead: "MobilityPLUS customers can buy $60 of taxi coupons for $30.",
+        items: [
+          "Each book contains $5, $2 and $1 coupons, with holes punched to identify each value.",
+          "Coupons do not expire and are not refundable.",
+          "Up to 30 books may be purchased between January 1 and December 31.",
+          "Seasonal customers may buy only during active registration periods.",
+          "Coupons are personal, cannot be resold or transferred, and lost or stolen coupons are not reimbursed. Proven abuse results in privileges being revoked.",
+        ],
+      },
+      steps: [
+        "Buy by phone at 519-585-7597 ext. 7347, Monday to Friday from 8:30 a.m. to 4 p.m.; a credit card is required",
+        "Or buy in person at a GRT customer service location",
+        "Or mail a cheque payable to Region of Waterloo to 250 Strasburg Rd., Kitchener, ON N2E 3M6, write your MobilityPLUS ID number on the front, and allow two weeks",
+        "When booking a taxi, tell the company you are using taxi coupons and say if you use a mobility device so it can arrange a suitable vehicle",
+      ],
+      documents: [
+        "Your MobilityPLUS ID number for mail orders",
+        "A credit card for telephone orders, or a cheque payable to Region of Waterloo for mail orders",
+      ],
+      tips: [
+        "Orders of three books or fewer go by Canada Post. Four or more go by courier between 9 a.m. and 5 p.m., and you must be home to accept the delivery.",
+        "Named companies are Golden Triangle Taxi in Cambridge, and City Cabs, United Taxi and Waterloo Taxi in Kitchener and Waterloo.",
+        "Keep the coupons secure: lost or stolen coupons are not reimbursed.",
+      ],
+      phone: "519-585-7597 ext. 7347",
+    },
+  },
+  {
+    id: "grt-support-person",
+    name: "Transit Support Person program (Grand River Transit)",
+    level: "Region of Waterloo",
+    category: "Transit",
+    amount: "A support person travels free while providing assistance",
+    summary:
+      "For people who, because of disability, require regular or occasional assistance while travelling on GRT conventional buses, MobilityPLUS buses and/or ION trains. The support person providing assistance does not pay a fare.",
+    note: "The support person travels free and can be a family member, friend, paid attendant or volunteer — anyone 13 years of age or older who travels with you to assist you in using transit.",
+    requires: ["waterlooRegion", "supportPersonApproval"],
+    eligibility: {
+      mode: "all",
+      items: ["Due to a disability, you cannot travel independently on conventional or specialized transit service"],
+      note: "The assistance may be regular or occasional.",
+    },
+    applyText: "Apply for the Transit Support Person program",
+    applyUrl: "https://www.grt.ca/rider-information/transit-support-person-program/",
+    source: "https://www.grt.ca/rider-information/transit-support-person-program/",
+    detail: {
+      about:
+        "The Transit Support Person program is for people who, because of disability, require regular or occasional assistance while travelling on GRT conventional buses, MobilityPLUS buses and/or ION trains. It is open to anyone who, due to a disability, cannot travel independently on conventional or specialized transit service. The support person providing assistance does not pay a fare.",
+      aboutList: {
+        lead: "A support person travels free while assisting a customer who cannot travel independently because of disability.",
+        items: [
+          "The program covers GRT conventional buses, MobilityPLUS buses and/or ION trains.",
+          "Assistance can be regular or occasional.",
+          "The support person can be a family member, friend, paid attendant or volunteer.",
+          "The support person must be 13 years of age or older and travel with you to assist you in using transit.",
+        ],
+      },
+      steps: [
+        "Complete the online application",
+        "Or call GRT customer service to have a form mailed to you",
+        "Or pick up a form at any GRT customer service location",
+        "Unless the PAL shortcut applies, have a registered health professional complete the application",
+      ],
+      documents: [
+        "A completed Transit Support Person application",
+        "If you are currently enrolled in the Personal Assistant for Leisure Activities program through the City of Kitchener, City of Waterloo or City of Cambridge: your PAL card number",
+        "Otherwise: the part of the application completed by a registered health professional",
+      ],
+      tips: [
+        "If you are currently enrolled in the Personal Assistant for Leisure Activities (PAL) program through the City of Kitchener, City of Waterloo or City of Cambridge, your health care professional does not have to fill out the application. Provide your PAL card number instead.",
+        "Your support person can be anyone 13 or older who travels with you to assist, including a family member, friend, paid attendant or volunteer.",
+      ],
+    },
+  },
   {
     id: "york-region-homemakers",
     name: "Homemakers Services (York Region)",
@@ -5651,6 +5912,9 @@ const BENEFITS = [
 ];
 
 const BENEFIT_VERIFIED = {
+  "grt-affordable-transit": "2026-09", "grt-cnib-pass": "2026-09",
+  "grt-mobilityplus": "2026-09", "grt-taxi-coupons": "2026-09",
+  "grt-support-person": "2026-09",
   // Toronto municipal records, verified against the City of Toronto's own pages
   // on 2026-09-04.
   "toronto-fair-pass": "2026-09", "toronto-welcome-policy": "2026-09",

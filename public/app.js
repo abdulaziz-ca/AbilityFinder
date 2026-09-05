@@ -906,6 +906,16 @@ const REQS = {
     fixed: true,
     unmet: "This is a York Region program.",
   },
+  waterlooRegion: {
+    met: () => ["Cambridge", "Kitchener", "North Dumfries", "Waterloo", "Wellesley", "Wilmot", "Woolwich"].includes(answers.city),
+    fixed: true,
+    unmet: "This is a Region of Waterloo program.",
+  },
+  waterlooUrban: {
+    met: () => ["Cambridge", "Kitchener", "Waterloo"].includes(answers.city),
+    fixed: true,
+    unmet: "This part of the service covers Cambridge, Kitchener and Waterloo; townships have a separate specialized service.",
+  },
   yorkHomemakersNeed: {
     met: () => false,
     fixed: false,
@@ -930,6 +940,26 @@ const REQS = {
     fixed: false,
     unmet: "You need to be registered as a Para Transpo customer, and you will be asked for your Para Transpo registration number.",
     action: { text: "See reduced fares", url: "https://www.octranspo.com/en/fares/reduced-fares/" },
+  },
+  atpApproval: {
+    met: () => false,
+    fixed: false,
+    unmet: "You need to be approved for the Affordable Transit Program, which is based on household net income from line 23600 of each household member's tax return.",
+  },
+  mobilityplusRegistered: {
+    met: () => false,
+    fixed: false,
+    unmet: "You need to be registered with MobilityPLUS.",
+  },
+  cnibCustomer: {
+    met: () => false,
+    fixed: false,
+    unmet: "You need to be a CNIB customer.",
+  },
+  supportPersonApproval: {
+    met: () => false,
+    fixed: false,
+    unmet: "You need to apply to the Transit Support Person program.",
   },
   aCardProof: {
     met: () => false,

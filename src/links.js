@@ -3,13 +3,38 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 198 links. The monitor checks a bounded rotating batch every
+// 203 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) URLs are skipped — they depend on the
 // user's answers and expose no safe static URL to check.
 
 export const LINKS = [
+  {
+    "url": "https://www.grt.ca/fares-and-payment/affordable-transit-program/",
+    "label": "Affordable Transit Program (Grand River Transit) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.grt.ca/fares-and-payment/tickets-and-passes/passes/cnib-pass/",
+    "label": "CNIB pass (Grand River Transit) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.grt.ca/mobilityplus/apply-for-mobilityplus/",
+    "label": "MobilityPLUS specialized transit (Grand River Transit) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.grt.ca/mobilityplus/taxi-coupons/",
+    "label": "MobilityPLUS taxi coupons (Grand River Transit) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.grt.ca/rider-information/transit-support-person-program/",
+    "label": "Transit Support Person program (Grand River Transit) — apply",
+    "kind": "apply"
+  },
   {
     "url": "https://www.york.ca/support/financial-assistance/homemakers-services",
     "label": "Homemakers Services (York Region) — apply",
