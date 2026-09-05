@@ -47,7 +47,7 @@ const CITIES_WITH_PROGRAMS = [
   "Cochrane", "Okotoks", "Canmore", "Lloydminster", "Fort Saskatchewan",
   "Vancouver", "Surrey", "Burnaby", "Richmond", "Victoria", "Saanich",
   "Kelowna", "Coquitlam", "Kamloops",
-  "Toronto", "Ottawa", "Mississauga",
+  "Toronto", "Ottawa", "Mississauga", "Brampton",
 ];
 
 /* ---------------------------------------------- Alberta communities (pop >5,000)
@@ -136,6 +136,7 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "brampton-activeassist": { kind: "discount", note: "$275 per eligible family member as one lump sum; approval lasts two years" },
   "mississauga-activeassist": { kind: "discount", note: "$275 per eligible family member per year, non-refundable" },
   "ottawa-hand-in-hand": { kind: "discount", note: "$185 per person per year toward City recreation and culture programs" },
   "toronto-fair-pass": { kind: "discount", note: "36% off adult single TTC fares — $2.10 instead of $3.30, monthly cap $98.70" },
@@ -314,6 +315,7 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "brampton-activeassist": { difficulty: 2, effort: "Application online, in person at a recreation centre, or by mail, with supporting documents", wait: "Not published — the City has noted longer waits" },
   "mississauga-activeassist": { difficulty: 2, effort: "Application at a community centre or online with original supporting documents", wait: "Within 15 business days" },
   "ottawa-hand-in-hand": { difficulty: 2, effort: "Application form, approved in person at a recreation or cultural facility", wait: "Not published" },
   "toronto-fair-pass": { difficulty: 2, effort: "Online application with a PRESTO card number, plus proof of income or an OW/ODSP member ID", wait: "Not published" },
@@ -1083,6 +1085,61 @@ const HELP_ORGS = [
 ];
 
 const BENEFITS = [
+  {
+    id: "brampton-activeassist",
+    name: "ActiveAssist fee subsidy (Brampton)",
+    level: "Brampton",
+    category: "Recreation",
+    amount: "$275 for each eligible family member, as one lump sum — a family of four receives $1,100",
+    summary:
+      "A City of Brampton fee subsidy helping low-income families and individuals take part in recreation programs. The subsidy arrives as a credit on your account, and once approved you qualify for two years.",
+    note: "An expired ActiveAssist allocation is not renewed automatically — you have to re-apply. The City has noted an influx of applications and longer wait times for approvals.",
+    requires: ["brampton", "lowIncome"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You live in Brampton and can show proof of residency, such as a utility bill, lease agreement or driver's licence",
+        "You can provide proof of total family net income",
+        "You can provide proof of legal responsibility for every dependant listed on the application",
+      ],
+      note: "The City describes the program as being for low-income families and individuals but does not publish an income threshold on this page. Confidentiality is always maintained.",
+    },
+    applyText: "Apply for ActiveAssist",
+    applyUrl: "https://www.brampton.ca/EN/residents/Recreation/Active-Assist/",
+    source: "https://www.brampton.ca/EN/residents/Recreation/Active-Assist/",
+    detail: {
+      about:
+        "ActiveAssist is a fee subsidy program offered by the City of Brampton, designed to help low-income families and individuals in Brampton participate in recreation programs. The assistance is given as a credit to your account. Once your application is approved, staff apply $275 for each eligible member of the family to the primary account holder as a single lump sum — so an approved family of four receives $1,100. Once approved, you qualify for the program for two years.",
+      aboutList: {
+        lead: "ActiveAssist is Brampton's recreation fee subsidy for low-income families and individuals.",
+        items: [
+          "$275 for each eligible family member, paid to the primary account holder as one lump sum.",
+          "An approved family of four receives $1,100.",
+          "Once approved, you qualify for two years.",
+          "Credits can be used toward most registered programs, drop-in programs and memberships, though some exclusions apply.",
+          "Confidentiality is always maintained.",
+        ],
+      },
+      steps: [
+        "Gather proof of Brampton residency, proof of total family net income, and proof of legal responsibility for each dependant on the application",
+        "Apply online, attaching the required documentation",
+        "Or pick up and drop off an application form at any Brampton Recreation Centre",
+        "Or mail it to ActiveAssist Brampton, 2 Wellington St. W., Brampton, ON L6Y 4R2",
+        "A member of the team contacts you once the completed application is received",
+      ],
+      documents: [
+        "Proof of residency, such as a utility bill, lease agreement or driver's licence",
+        "Proof of total family net income",
+        "Proof of legal responsibility for all dependants listed on the application",
+      ],
+      tips: [
+        "The subsidy lasts two years, longer than most municipal recreation subsidies — but it does not renew itself, so re-apply once it expires.",
+        "Each eligible family member adds $275 to the lump sum, so list everyone who qualifies.",
+        "Some exclusions apply to what credits can be spent on; ask at your recreation centre before registering.",
+        "The City has flagged longer approval wait times because of an influx of applications. Questions go to recreation@brampton.ca.",
+      ],
+    },
+  },
   {
     id: "mississauga-activeassist",
     name: "ActiveAssist fee assistance (Mississauga)",
@@ -5175,6 +5232,7 @@ const BENEFIT_VERIFIED = {
   // on 2026-09-04.
   "toronto-fair-pass": "2026-09", "toronto-welcome-policy": "2026-09",
   "ottawa-hand-in-hand": "2026-09", "mississauga-activeassist": "2026-09",
+  "brampton-activeassist": "2026-09",
   // Ontario province-level records, each verified against its official ontario.ca
   // page on 2026-09-04. Month granularity only — no fabricated day.
   "on-parking-permit": "2026-09", odsp: "2026-09", "on-adp": "2026-09",

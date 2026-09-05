@@ -1676,3 +1676,15 @@ test("Mississauga ActiveAssist is city-gated", async ({ page }) => {
   const inOttawa = await evaluateProfile(page, { ...base, city: "Ottawa" });
   expect(inOttawa["mississauga-activeassist"].status).toBe("no");
 });
+
+test("Brampton and Mississauga ActiveAssist are separate programs", async ({ page }) => {
+  // Same program name and same $275 per person, but different cities and different terms.
+  const base = { province: "ON", income: "low", ageBand: "19to59", ageGroup: "adult" };
+  const inBrampton = await evaluateProfile(page, { ...base, city: "Brampton" });
+  expect(inBrampton["brampton-activeassist"].status).toBe("ready");
+  expect(inBrampton["mississauga-activeassist"].status).toBe("no");
+
+  const inMississauga = await evaluateProfile(page, { ...base, city: "Mississauga" });
+  expect(inMississauga["mississauga-activeassist"].status).toBe("ready");
+  expect(inMississauga["brampton-activeassist"].status).toBe("no");
+});

@@ -3,13 +3,18 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 192 links. The monitor checks a bounded rotating batch every
+// 193 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) URLs are skipped — they depend on the
 // user's answers and expose no safe static URL to check.
 
 export const LINKS = [
+  {
+    "url": "https://www.brampton.ca/EN/residents/Recreation/Active-Assist/",
+    "label": "ActiveAssist fee subsidy (Brampton) — apply",
+    "kind": "apply"
+  },
   {
     "url": "https://www.mississauga.ca/recreation-and-sports/sports-and-activities/assistance-programs/active-assist/",
     "label": "ActiveAssist fee assistance (Mississauga) — apply",
