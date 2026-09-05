@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.6.0";
+const SPEC_VERSION = "1.7.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -103,10 +103,10 @@ const BASE_PERSONA = {
 /* Default community per province, chosen so it carries no municipal program of
    its own — a persona should never satisfy a city gate it did not ask for. Both
    are real entries in CITIES_BY_PROVINCE. */
-const DEFAULT_CITY = { AB: "Camrose", BC: "Nanaimo" };
+const DEFAULT_CITY = { AB: "Camrose", BC: "Nanaimo", ON: "Kingston" };
 
 /* Cities used to violate a city gate: same province, different community. */
-const OTHER_CITY = { AB: "Wetaskiwin", BC: "Prince George" };
+const OTHER_CITY = { AB: "Wetaskiwin", BC: "Prince George", ON: "Guelph" };
 
 /* --------------------------------------------------------------------------
    FRAGMENTS
@@ -227,6 +227,7 @@ const GATES = {
   /* ------------------------------------------------------------ Alberta municipalities */
   calgary: municipality("Calgary", "AB"),
   edmonton: municipality("Edmonton", "AB"),
+  toronto: municipality("Toronto", "ON"),
   reddeer: municipality("Red Deer", "AB"),
   lethbridge: municipality("Lethbridge", "AB"),
   medicinehat: municipality("Medicine Hat", "AB"),
@@ -668,6 +669,8 @@ const PROGRAM_BEST_CASE = {
   "on-parking-permit":                             "ready",
   "odsp":                                          "almost",
   "on-adp":                                        "almost",
+  "toronto-fair-pass":                             "ready",
+  "toronto-welcome-policy":                        "ready",
   "trillium-drug-program":                         "almost",
   "passport-program":                              "almost",
   "hvmp":                                          "almost",

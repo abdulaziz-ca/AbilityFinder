@@ -3,13 +3,23 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 188 links. The monitor checks a bounded rotating batch every
+// 190 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) URLs are skipped — they depend on the
 // user's answers and expose no safe static URL to check.
 
 export const LINKS = [
+  {
+    "url": "https://www.toronto.ca/community-people/employment-social-support/support-for-people-in-financial-need/assistance-through-ontario-works/transit-discount/",
+    "label": "Fair Pass Transit Discount (Toronto) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.toronto.ca/community-people/employment-social-support/child-family-support/welcome-policy-recreation-fee-subsidy/",
+    "label": "Welcome Policy recreation fee subsidy (Toronto) — apply",
+    "kind": "apply"
+  },
   {
     "url": "https://www.ontario.ca/page/get-help-high-prescription-drug-costs",
     "label": "Trillium Drug Program — apply",

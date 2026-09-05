@@ -1634,3 +1634,19 @@ test("the city question is never asked when the province has no city list", asyn
     }
   }
 });
+
+test("Toronto municipal programs are city-gated", async ({ page }) => {
+  const torontonian = { province: "ON", city: "Toronto", income: "low", ageBand: "19to59", ageGroup: "adult" };
+  const inToronto = await evaluateProfile(page, torontonian);
+  expect(inToronto["toronto-fair-pass"].status).toBe("ready");
+  expect(inToronto["toronto-welcome-policy"].status).toBe("ready");
+
+  // A different Ontario city must not see them.
+  const inOttawa = await evaluateProfile(page, { ...torontonian, city: "Ottawa" });
+  expect(inOttawa["toronto-fair-pass"].status).toBe("no");
+  expect(inOttawa["toronto-welcome-policy"].status).toBe("no");
+
+  // Nor may another province.
+  const inCalgary = await evaluateProfile(page, { ...torontonian, province: "AB", city: "Calgary" });
+  expect(inCalgary["toronto-fair-pass"].status).toBe("no");
+});

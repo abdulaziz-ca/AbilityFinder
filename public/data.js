@@ -47,6 +47,7 @@ const CITIES_WITH_PROGRAMS = [
   "Cochrane", "Okotoks", "Canmore", "Lloydminster", "Fort Saskatchewan",
   "Vancouver", "Surrey", "Burnaby", "Richmond", "Victoria", "Saanich",
   "Kelowna", "Coquitlam", "Kamloops",
+  "Toronto",
 ];
 
 /* ---------------------------------------------- Alberta communities (pop >5,000)
@@ -95,7 +96,18 @@ const resolveBcTransitHandyDartUrl = (a) =>
 resolveBcTransitHandyDartUrl.staticUrl = BC_TRANSIT_HANDYDART_CHOOSER;
 
 /* Province scaffolding can land before its catalog. Visibility is gated in app.js. */
-const ON_CITIES = []; // Ontario municipalities — none yet; populated in the municipal stage
+/* Ontario municipalities offered in the questionnaire. Listing a city here does NOT
+   mean it has its own programs — CITIES_WITH_PROGRAMS is that list. Alberta works the
+   same way: 51 cities offered, 27 with programs. */
+const ON_CITIES = [
+  "Ajax", "Aurora", "Barrie", "Belleville", "Brampton", "Brantford", "Burlington",
+  "Cambridge", "Chatham-Kent", "Clarington", "Cornwall", "Greater Sudbury", "Guelph",
+  "Hamilton", "Kingston", "Kitchener", "London", "Markham", "Milton", "Mississauga",
+  "Newmarket", "Niagara Falls", "North Bay", "Oakville", "Oshawa", "Ottawa",
+  "Peterborough", "Pickering", "Richmond Hill", "Sarnia", "Sault Ste. Marie",
+  "St. Catharines", "Stratford", "Thunder Bay", "Timmins", "Toronto", "Vaughan",
+  "Waterloo", "Welland", "Whitby", "Windsor", "Woodstock",
+];
 /* Every province in COVERED_PROVINCES gets a key here, even when its list is still
    empty, so callers can tell "covered, no municipalities yet" from "not covered".
    app.js skips the city question whenever the chosen province's list is empty. */
@@ -124,6 +136,8 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "toronto-fair-pass": { kind: "discount", note: "36% off adult single TTC fares — $2.10 instead of $3.30, monthly cap $98.70" },
+  "toronto-welcome-policy": { kind: "discount", note: "$683.04/year up to age 24; $314.60/year at 25 and over" },
   "trillium-drug-program": { kind: "coverage", excludeFromEstimate: true, note: "for most people the deductible is about 4% of after-tax household income, then up to $2 for each drug filled or refilled" },
   "passport-program": { kind: "grant", excludeFromEstimate: true, note: "$5,500 a year minimum; up to $44,275 based on assessed need" },
   hvmp: { kind: "grant", excludeFromEstimate: true, note: "funds approved home or vehicle modifications; no published maximum" },
@@ -298,6 +312,8 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "toronto-fair-pass": { difficulty: 2, effort: "Online application with a PRESTO card number, plus proof of income or an OW/ODSP member ID", wait: "Not published" },
+  "toronto-welcome-policy": { difficulty: 2, effort: "Application with documents for each family member", wait: "Not published" },
   "trillium-drug-program": { difficulty: 2, effort: "Household application, online or on paper", wait: "Not published" },
   "passport-program": { difficulty: 4, effort: "Apply through Developmental Services Ontario, then work with a local Passport agency", wait: "Not published" },
   hvmp: { difficulty: 3, effort: "Application details via the March of Dimes website; eligibility assessed by the program's service coordinator", wait: "Not published" },
@@ -1063,6 +1079,118 @@ const HELP_ORGS = [
 ];
 
 const BENEFITS = [
+  {
+    id: "toronto-fair-pass",
+    name: "Fair Pass Transit Discount (Toronto)",
+    level: "Toronto",
+    category: "Transit",
+    amount: "36% off adult single fares — $2.10 instead of $3.30, capped at $98.70 a month",
+    summary:
+      "A discount on TTC and Wheel-Trans fares for lower-income Toronto residents, loaded straight onto your PRESTO card for 12 months. If you receive ODSP or Ontario Works you already meet the income test.",
+    note: "Amounts are set by the TTC and are subject to change; they are based on paying with PRESTO. From August 1, 2026 the program runs annual eligibility reviews, and active Ontario Works, ODSP and Child Care Fee Subsidy clients are reviewed for renewal — if eligibility cannot be verified from City records you will be contacted with next steps.",
+    requires: ["toronto", "adult", "lowIncome"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "Between 20 and 64 years of age",
+        "Live in the City of Toronto",
+        "Have a PRESTO card number",
+        "Total after-tax family income, counting every family member over 18, below 75% of the Low-Income Measure After-Tax threshold",
+      ],
+      note: "Residents already receiving Ontario Works, Emergency Assistance or ODSP meet the financial eligibility criteria. If you are 13 to 19 or 65 and over, ask the TTC about youth, student and seniors fares instead.",
+    },
+    applyText: "Apply for Fair Pass",
+    applyUrl: "https://www.toronto.ca/community-people/employment-social-support/support-for-people-in-financial-need/assistance-through-ontario-works/transit-discount/",
+    source: "https://www.toronto.ca/community-people/employment-social-support/support-for-people-in-financial-need/assistance-through-ontario-works/transit-discount/",
+    detail: {
+      about:
+        "The Fair Pass Transit Discount Program gives a full year of savings on TTC and Wheel-Trans trips by taking 36 per cent off adult single fares, applied directly to your PRESTO card. The discount is programmed onto the card for 12 months and reduces each adult single ride by $1.20. Once you have paid for 47 trips in the same month you pay no more for TTC travel that month, so the most you pay is $98.70.",
+      aboutList: {
+        lead: "Fair Pass takes 36 per cent off adult single TTC fares for lower-income Toronto residents.",
+        items: [
+          "Covers both TTC and Wheel-Trans trips.",
+          "A regular adult single fare of $3.30 costs you $2.10, saving $1.20 a ride.",
+          "After 47 paid trips in the same month you pay nothing more that month — a cap of $98.70.",
+          "The discount is loaded onto your PRESTO card and lasts 12 months.",
+          "Receiving Ontario Works, Emergency Assistance or ODSP means you already meet the income test.",
+        ],
+      },
+      steps: [
+        "Get a PRESTO card and note its card number",
+        "Gather proof of income for yourself and every family member 18 or older, or your Ontario Works, ODSP or Child Care Fee Subsidy program identification number instead",
+        "Apply online, or call 416-338-8888 for a paper application, help by phone, or language interpretation",
+        "Once approved, the discount is programmed onto your PRESTO card for 12 months",
+      ],
+      documents: [
+        "Your PRESTO card number",
+        "An email address and your Toronto address",
+        "Information for yourself and each family member living with you",
+        "Your Ontario Works member ID, ODSP member ID, or Child Care Fee Subsidy household or client file number — or proof of income documents instead",
+      ],
+      tips: [
+        "Receiving Ontario Works, Emergency Assistance or ODSP means you meet the financial criteria without providing income documents.",
+        "The discount covers Wheel-Trans as well as regular TTC service.",
+        "The Human Services Integration Office supports applications by phone for social assistance recipients, and offers language interpretation and paper applications on request.",
+        "Existing clients do not need to reapply; from August 1, 2026 eligibility is reviewed annually.",
+      ],
+      phone: "416-338-8888",
+    },
+  },
+  {
+    id: "toronto-welcome-policy",
+    name: "Welcome Policy recreation fee subsidy (Toronto)",
+    level: "Toronto",
+    category: "Recreation",
+    amount: "$683.04 a year for a child or youth up to 24; $314.60 a year at 25 and over",
+    summary:
+      "A yearly credit toward City of Toronto recreation programs for lower-income residents — registered programs, instructional swim and sport, camps, after-school care, memberships and multi-use passes.",
+    note: "The credit is valid for 12 months from the date your application is approved, does not carry over into the next year, and is not transferable between family members. You must re-apply and submit documents each year.",
+    requires: ["toronto", "lowIncome"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "The main applicant is 18 years of age or older",
+        "You live in the city of Toronto",
+        "Total after-tax family income, counting every family member over 18, is below the Low-Income Measure After-Tax threshold",
+      ],
+      note: "The Welcome Policy income thresholds were last updated on February 25, 2026 using Statistics Canada's LIM-AT 2023 data: $30,255 for 1 person, $42,787 for 2, $52,403 for 3, $60,510 for 4, $67,652 for 5, $74,109 for 6 and $80,047 for 7. Statistics Canada updates LIM-AT annually.",
+    },
+    applyText: "Apply for the Welcome Policy",
+    applyUrl: "https://www.toronto.ca/community-people/employment-social-support/child-family-support/welcome-policy-recreation-fee-subsidy/",
+    source: "https://www.toronto.ca/community-people/employment-social-support/child-family-support/welcome-policy-recreation-fee-subsidy/",
+    detail: {
+      about:
+        "The Welcome Policy gives lower-income Toronto residents a financial credit toward City-operated recreation programs. The credit is valid for 12 months from the date an application is approved and is set per person per year: $683.04 for a child or youth up to age 24, and $314.60 for an adult or older adult aged 25 and over. Credits are not transferable between family members and do not carry over, so you re-apply each year. It is administered by the Human Services Integration Office.",
+      aboutList: {
+        lead: "The Welcome Policy is a yearly credit toward City of Toronto recreation programs for lower-income residents.",
+        items: [
+          "$683.04 a year for a child or youth up to age 24.",
+          "$314.60 a year for an adult or older adult aged 25 and over.",
+          "Can be used for registered recreation programs, instructional swim and sport programs, camps and after-school care.",
+          "Also covers memberships and multi-use passes, including Junior Golf and Ski memberships.",
+          "Valid 12 months from approval, not transferable between family members, and does not carry over.",
+        ],
+      },
+      steps: [
+        "Check your total after-tax family income against the Welcome Policy threshold for your family size",
+        "Gather the required documents for each family member",
+        "Apply through the City of Toronto, or call 416-338-8888 for help",
+        "Once approved, use the credit toward recreation registrations for the next 12 months",
+        "Re-apply and submit documents again the following year",
+      ],
+      documents: [
+        "Proof of income for each family member 18 or older",
+        "Documents for each family member included in the application",
+      ],
+      tips: [
+        "Amounts are per person per year and cannot be moved between family members.",
+        "The credit does not carry over, so use it within the 12 months.",
+        "To add new family members or children in your temporary care to an existing file, call the Human Services Integration Office at 416-338-8888.",
+        "Only income for family members aged 18 and over counts toward the threshold.",
+      ],
+      phone: "416-338-8888",
+    },
+  },
   {
     id: "trillium-drug-program",
     name: "Trillium Drug Program",
@@ -4930,6 +5058,9 @@ const BENEFITS = [
 ];
 
 const BENEFIT_VERIFIED = {
+  // Toronto municipal records, verified against the City of Toronto's own pages
+  // on 2026-09-04.
+  "toronto-fair-pass": "2026-09", "toronto-welcome-policy": "2026-09",
   // Ontario province-level records, each verified against its official ontario.ca
   // page on 2026-09-04. Month granularity only — no fabricated day.
   "on-parking-permit": "2026-09", odsp: "2026-09", "on-adp": "2026-09",
