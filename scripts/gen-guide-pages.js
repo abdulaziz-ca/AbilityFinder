@@ -20,7 +20,8 @@ vm.runInContext(
     '\n;globalThis.__B = typeof BENEFITS !== "undefined" ? BENEFITS : null;' +
     '\n;globalThis.__M = typeof BENEFIT_META !== "undefined" ? BENEFIT_META : null;' +
     '\n;globalThis.__BC_CITIES = typeof BC_CITIES !== "undefined" ? BC_CITIES : null;' +
-    '\n;globalThis.__ON_CITIES = typeof ON_CITIES !== "undefined" ? ON_CITIES : null;',
+    '\n;globalThis.__ON_CITIES = typeof ON_CITIES !== "undefined" ? ON_CITIES : null;' +
+    '\n;globalThis.__ON_REGIONS = typeof ON_REGIONS !== "undefined" ? ON_REGIONS : [];',
   ctx
 );
 const allBenefits = ctx.__B;
@@ -51,7 +52,9 @@ if (!Array.isArray(onCities)) {
 }
 const benefitIsBritishColumbia = (b) =>
   b.level === "British Columbia" || b.level === "Metro Vancouver" || bcCities.includes(b.level);
-const benefitIsOntario = (b) => b.level === "Ontario" || onCities.includes(b.level);
+const onRegions = ctx.__ON_REGIONS || [];
+const benefitIsOntario = (b) =>
+  b.level === "Ontario" || onCities.includes(b.level) || onRegions.includes(b.level);
 
 /* Public-facing copy composes from the enabled provinces, so flipping a province flag
    updates the guides index without anyone remembering to hand-edit the description.

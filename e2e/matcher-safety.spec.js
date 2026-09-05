@@ -1736,3 +1736,24 @@ test("Ottawa transit discounts are city-gated and honest about proof", async ({ 
     expect(inToronto[id].status).toBe("no");
   }
 });
+
+test("York Region programs reach every member city, and stop at the boundary", async ({ page }) => {
+  // The Region funds these and the municipalities deliver them, so all five member
+  // cities in our list must see them — this is why searching a city site found nothing.
+  for (const city of ["Aurora", "Markham", "Newmarket", "Richmond Hill", "Vaughan"]) {
+    const inCity = await evaluateProfile(page, {
+      province: "ON", city, income: "low", ageBand: "6to11", ageGroup: "child", forWho: "child",
+    });
+    expect(inCity["york-region-recreation-subsidies"].status, `${city} should see the York subsidy`).toBe("ready");
+  }
+
+  // And a city outside York Region must not.
+  const outside = await evaluateProfile(page, {
+    province: "ON", city: "Guelph", income: "low", ageBand: "6to11", ageGroup: "child", forWho: "child",
+  });
+  expect(outside["york-region-recreation-subsidies"].status).toBe("no");
+
+  // Homemakers depends on an unpublished need assessment, so it can never be "ready".
+  const adult = await evaluateProfile(page, { province: "ON", city: "Vaughan", income: "low" });
+  expect(adult["york-region-homemakers"].status).toBe("almost");
+});

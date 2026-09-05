@@ -48,6 +48,7 @@ const CITIES_WITH_PROGRAMS = [
   "Vancouver", "Surrey", "Burnaby", "Richmond", "Victoria", "Saanich",
   "Kelowna", "Coquitlam", "Kamloops",
   "Toronto", "Ottawa", "Mississauga", "Brampton", "Hamilton", "London",
+  "Aurora", "Markham", "Newmarket", "Richmond Hill", "Vaughan",
 ];
 
 /* ---------------------------------------------- Alberta communities (pop >5,000)
@@ -99,6 +100,11 @@ resolveBcTransitHandyDartUrl.staticUrl = BC_TRANSIT_HANDYDART_CHOOSER;
 /* Ontario municipalities offered in the questionnaire. Listing a city here does NOT
    mean it has its own programs — CITIES_WITH_PROGRAMS is that list. Alberta works the
    same way: 51 cities offered, 27 with programs. */
+/* Ontario regional municipalities that deliver programs on behalf of their member cities.
+   These are NOT city options in the questionnaire — nobody selects "York Region" — but a
+   record can carry one as its `level`, so the province filter has to know about them. */
+const ON_REGIONS = ["York Region"];
+
 const ON_CITIES = [
   "Ajax", "Aurora", "Barrie", "Belleville", "Brampton", "Brantford", "Burlington",
   "Cambridge", "Chatham-Kent", "Clarington", "Cornwall", "Greater Sudbury", "Guelph",
@@ -136,6 +142,8 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "york-region-homemakers": { kind: "services", excludeFromEstimate: true, note: "help with the cost of an in-home homemaker; no published amount" },
+  "york-region-recreation-subsidies": { kind: "discount", excludeFromEstimate: true, note: "recreation, day camp and youth overnight camp subsidies; no published amount" },
   "ottawa-community-pass": { kind: "discount", note: "$43.25/month or $1.75/ride, all routes including Para Transpo with no top-up" },
   "ottawa-access-pass": { kind: "discount", note: "$43.25/month, unlimited O-Train and non-Para buses, $2.75 top-up per Para Transpo ride" },
   "ottawa-equipass": { kind: "discount", note: "$58.25/month or $1.75/ride, about half the adult fare" },
@@ -321,6 +329,8 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "york-region-homemakers": { difficulty: 2, effort: "Phone York Region and go through a financial need assessment", wait: "Not published" },
+  "york-region-recreation-subsidies": { difficulty: 2, effort: "Apply through York Region, then register with your municipal recreation department", wait: "Not published" },
   "ottawa-community-pass": { difficulty: 2, effort: "Set the discount at a Customer Service Centre with your ODSP number and Presto card", wait: "Not published" },
   "ottawa-access-pass": { difficulty: 2, effort: "Register with Para Transpo, then set the discount at a Customer Service Centre", wait: "Not published" },
   "ottawa-equipass": { difficulty: 2, effort: "Application and consent form plus a CRA Notice of Assessment", wait: "Not published" },
@@ -1097,6 +1107,101 @@ const HELP_ORGS = [
 ];
 
 const BENEFITS = [
+  {
+    id: "york-region-homemakers",
+    name: "Homemakers Services (York Region)",
+    level: "York Region",
+    category: "Daily living supports",
+    amount: "Help with the cost of an in-home homemaker",
+    summary:
+      "York Region can help cover the cost of an in-home homemaker for people who are temporarily or permanently ill or disabled. A homemaker helps with laundry, meals and light housekeeping.",
+    note: "This is delivered by York Region rather than your city, so it is the same program whether you live in Markham, Vaughan, Richmond Hill, Newmarket or Aurora.",
+    requires: ["yorkRegion", "yorkHomemakersNeed"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You are temporarily or permanently ill or disabled",
+        "You meet the financial need requirements",
+      ],
+      note: "York Region does not publish the financial need thresholds or the amount of help on this page — ask when you call.",
+    },
+    applyText: "Call York Region to apply",
+    applyUrl: "https://www.york.ca/support/financial-assistance/homemakers-services",
+    source: "https://www.york.ca/support/financial-assistance/homemakers-services",
+    detail: {
+      about:
+        "York Region can help cover the cost of an in-home homemaker for people who have a temporary or permanent illness or disability. Homemakers help with laundry, meals and light housekeeping. To be eligible you must be temporarily or permanently ill or disabled and meet financial need requirements.",
+      aboutList: {
+        lead: "York Region helps pay for an in-home homemaker if illness or disability makes housework hard.",
+        items: [
+          "A homemaker can help with laundry, meals and light housekeeping.",
+          "It covers temporary illness as well as permanent disability.",
+          "You need to meet financial need requirements.",
+          "It is a regional program, so it works the same across York Region's municipalities.",
+        ],
+      },
+      steps: [
+        "Call York Region at 1-877-464-9675, or email ContactUs@york.ca",
+        "Ask about the financial need requirements, which are not published online",
+      ],
+      documents: [
+        "Information about your illness or disability",
+        "Information about your finances, for the financial need assessment",
+      ],
+      tips: [
+        "Temporary illness counts, not only permanent disability — worth asking about while recovering from surgery or a hospital stay.",
+        "Neither the amount of help nor the financial thresholds are published, so calling is the only way to find out where you stand.",
+      ],
+      phone: "1-877-464-9675",
+    },
+  },
+  {
+    id: "york-region-recreation-subsidies",
+    name: "Recreation subsidies (York Region)",
+    level: "York Region",
+    category: "Recreation",
+    amount: "Subsidies for recreation programs, day camps and youth overnight camps",
+    summary:
+      "York Region funds subsidies that let children from low-income families join recreation programs and camps run by their municipality, plus overnight camp funding for youth aged 12 to 17.",
+    note: "York Region does not guarantee space in programs or camps — a subsidy is not a place. Search on your city's site will not find this, because the Region funds it and the municipal recreation departments run the programs.",
+    requires: ["yorkRegion", "child", "lowIncome"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "The child is from a family with low income",
+        "You live in a York Region municipality",
+      ],
+      note: "Three subsidies are offered: Positive Leisure Activities for Youth (PLAY), summer day camp funding, and youth overnight camp funding for eligible youth aged 12 to 17.",
+    },
+    applyText: "See York Region recreation subsidies",
+    applyUrl: "https://www.york.ca/support/financial-assistance/recreation-subsidies",
+    source: "https://www.york.ca/support/financial-assistance/recreation-subsidies",
+    detail: {
+      about:
+        "York Region offers subsidies for recreation programs, day camps and youth overnight camps. The recreation program and day camp subsidies let children from families with low income take part in programs offered by the municipal recreation departments. The youth overnight camp funding helps eligible youth aged 12 to 17 attend an approved overnight camp.",
+      aboutList: {
+        lead: "York Region funds recreation and camp subsidies for children from low-income families.",
+        items: [
+          "Positive Leisure Activities for Youth, known as PLAY.",
+          "Summer day camp funding.",
+          "Youth overnight camp funding for eligible youth aged 12 to 17.",
+          "The programs themselves are run by your municipal recreation department.",
+          "A subsidy does not guarantee a space in a program or camp.",
+        ],
+      },
+      steps: [
+        "Check which of the three subsidies fits — PLAY, summer day camp, or youth overnight camp",
+        "Apply through York Region",
+        "Register with your municipal recreation department for the program or camp itself",
+      ],
+      documents: ["Information about your family's income"],
+      tips: [
+        "Looking on your city's website will not turn this up — York Region funds it and the city delivers the programs.",
+        "The subsidy does not hold a spot for you, so register for the program early as well.",
+        "It covers Aurora, East Gwillimbury, Georgina, King, Newmarket, Markham, Richmond Hill, Vaughan and Whitchurch-Stouffville.",
+      ],
+    },
+  },
   {
     id: "ottawa-community-pass",
     name: "Community Pass — OC Transpo discount for ODSP recipients (Ottawa)",
@@ -5554,6 +5659,7 @@ const BENEFIT_VERIFIED = {
   "london-ontario-renovates": "2026-09",
   "ottawa-community-pass": "2026-09", "ottawa-access-pass": "2026-09",
   "ottawa-equipass": "2026-09", "ottawa-a-card": "2026-09",
+  "york-region-homemakers": "2026-09", "york-region-recreation-subsidies": "2026-09",
   // Ontario province-level records, each verified against its official ontario.ca
   // page on 2026-09-04. Month granularity only — no fabricated day.
   "on-parking-permit": "2026-09", odsp: "2026-09", "on-adp": "2026-09",

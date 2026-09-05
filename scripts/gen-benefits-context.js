@@ -40,6 +40,7 @@ vm.runInContext(
     '\n;globalThis.__B = typeof BENEFITS !== "undefined" ? BENEFITS : null;' +
     '\n;globalThis.__BC_CITIES = typeof BC_CITIES !== "undefined" ? BC_CITIES : null;' +
     '\n;globalThis.__ON_CITIES = typeof ON_CITIES !== "undefined" ? ON_CITIES : null;' +
+    '\n;globalThis.__ON_REGIONS = typeof ON_REGIONS !== "undefined" ? ON_REGIONS : [];' +
     '\n;globalThis.__HELP = typeof HELP_ORGS !== "undefined" ? HELP_ORGS : null;' +
     // Province fallback maps. These are reached only through answer-dependent link
     // functions, so addLink() never saw them and skipped them silently — three of the six
@@ -84,7 +85,9 @@ if (!Array.isArray(onCities)) {
 }
 const benefitIsBritishColumbia = (b) =>
   b.level === "British Columbia" || b.level === "Metro Vancouver" || bcCities.includes(b.level);
-const benefitIsOntario = (b) => b.level === "Ontario" || onCities.includes(b.level);
+const onRegions = ctx.__ON_REGIONS || [];
+const benefitIsOntario = (b) =>
+  b.level === "Ontario" || onCities.includes(b.level) || onRegions.includes(b.level);
 let benefits = allBenefits;
 if (!bcEnabled) benefits = benefits.filter((b) => !benefitIsBritishColumbia(b));
 if (!onEnabled) benefits = benefits.filter((b) => !benefitIsOntario(b));

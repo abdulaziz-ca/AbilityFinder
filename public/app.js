@@ -901,6 +901,18 @@ const REQS = {
   brampton: { met: () => answers.city === "Brampton", fixed: true, unmet: "This is a City of Brampton program." },
   hamilton: { met: () => answers.city === "Hamilton", fixed: true, unmet: "This is a City of Hamilton program." },
   london: { met: () => answers.city === "London", fixed: true, unmet: "This is a City of London program." },
+  yorkRegion: {
+    met: () => ["Aurora", "Markham", "Newmarket", "Richmond Hill", "Vaughan"].includes(answers.city),
+    fixed: true,
+    unmet: "This is a York Region program.",
+  },
+  yorkHomemakersNeed: {
+    met: () => false,
+    fixed: false,
+    unmet:
+      "York Region checks that you are temporarily or permanently ill or disabled and that you meet its financial need requirements. The thresholds are not published, so you need to call.",
+    action: { text: "Call York Region to apply", url: "https://www.york.ca/support/financial-assistance/homemakers-services" },
+  },
   visionDisability: {
     met: () => hasDisability("vision"),
     fixed: true,
@@ -4390,7 +4402,10 @@ function benefitIsBritishColumbia(b) {
   return b.level === "British Columbia" || b.level === "Metro Vancouver" || BC_CITIES.includes(b.level);
 }
 function benefitIsOntario(b) {
-  return b.level === "Ontario" || ON_CITIES.includes(b.level);
+  // Regions count too. A record delivered by York Region carries "York Region" as its
+  // level, which is neither "Ontario" nor a city, so without ON_REGIONS it would slip
+  // past the province filter if Ontario were ever staged dark again.
+  return b.level === "Ontario" || ON_CITIES.includes(b.level) || ON_REGIONS.includes(b.level);
 }
 function browseCatalog() {
   let list = BENEFITS;
