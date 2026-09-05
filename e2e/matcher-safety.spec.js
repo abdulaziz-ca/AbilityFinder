@@ -1597,3 +1597,40 @@ test("a dark province's records cannot be browsed or rendered", async ({ page })
     expect(probe.renderableOntario).toEqual([]);
   }
 });
+
+test("the city question is never asked when the province has no city list", async ({ page }) => {
+  // Ontario went live with province-level records only, so CITIES_BY_PROVINCE.ON is
+  // empty. Before this guard, COVERED_PROVINCES included ON so the step rendered with
+  // an empty dropdown and an Ontario resident could not answer it. The rule is keyed on
+  // the list being empty, not on a province name, so the step returns by itself once
+  // Ontario municipalities are added.
+  await gotoReadyApp(page);
+  const byProvince = await page.evaluate(() => {
+    const out = {};
+    const real = answers.province;
+    try {
+      // Iterate COVERED_PROVINCES, not Object.keys(CITIES_BY_PROVINCE). An earlier
+      // draft of this test used the latter and was vacuous: a province missing from
+      // that map is exactly the broken case, so keying off it skipped the province
+      // the test exists to protect.
+      for (const p of COVERED_PROVINCES) {
+        answers.province = p;
+        out[p] = {
+          shown: visibleSteps().some((s) => s.id === "city"),
+          options: (CITIES_BY_PROVINCE[p] || []).length,
+        };
+      }
+    } finally {
+      answers.province = real;
+    }
+    return out;
+  });
+
+  for (const [province, state] of Object.entries(byProvince)) {
+    if (state.options === 0) {
+      expect(state.shown, `${province} has no cities, so the city step must be skipped`).toBe(false);
+    } else {
+      expect(state.shown, `${province} has ${state.options} cities, so the step must be asked`).toBe(true);
+    }
+  }
+});

@@ -1418,7 +1418,15 @@ const STEPS = [
     help: "Unlocks local transit and recreation discounts. Start typing to find yours.",
     key: "city",
     placeholder: "Choose your city or town…",
-    skipIf: () => !COVERED_PROVINCES.includes(answers.province) || (answers.province === "BC" && !BC_ENABLED),
+    /* Skip when the province has no municipal list yet. Ontario went live with
+       province-level records only, so CITIES_BY_PROVINCE.ON is empty; without this
+       an Ontario resident was asked to choose a city from an empty dropdown and
+       could not answer. Keyed on the list being empty rather than on the province
+       name, so the step reappears by itself once Ontario municipalities are added. */
+    skipIf: () =>
+      !COVERED_PROVINCES.includes(answers.province) ||
+      (answers.province === "BC" && !BC_ENABLED) ||
+      (CITIES_BY_PROVINCE[answers.province] || []).length === 0,
     options: ALBERTA_CITIES, // replaced at render time by the province's list
   },
 ];

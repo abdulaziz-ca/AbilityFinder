@@ -95,9 +95,12 @@ const resolveBcTransitHandyDartUrl = (a) =>
 resolveBcTransitHandyDartUrl.staticUrl = BC_TRANSIT_HANDYDART_CHOOSER;
 
 /* Province scaffolding can land before its catalog. Visibility is gated in app.js. */
-const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES };
+const ON_CITIES = []; // Ontario municipalities — none yet; populated in the municipal stage
+/* Every province in COVERED_PROVINCES gets a key here, even when its list is still
+   empty, so callers can tell "covered, no municipalities yet" from "not covered".
+   app.js skips the city question whenever the chosen province's list is empty. */
+const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES, ON: ON_CITIES };
 const COVERED_PROVINCES = ["AB", "BC", "ON"];
-const ON_CITIES = []; // Ontario municipalities — none in the province-level MVP; populated in the municipal stage
 
 /* national fallbacks (used when a jurisdiction isn't in the maps yet) */
 const FED_STUDENT_AID = "https://www.canada.ca/en/employment-social-development/services/education/grants/disabilities.html";
