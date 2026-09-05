@@ -1568,3 +1568,32 @@ test("the Trillium Drug Program is province-gated and never auto-ready", async (
   const abResident = await evaluateProfile(page, { province: "AB" });
   expect(abResident["trillium-drug-program"].status).toBe("no");
 });
+
+test("a dark province's records cannot be browsed or rendered", async ({ page }) => {
+  // The Ontario records live in public/data.js so the matcher can be tested against them,
+  // but while ON_ENABLED is false they must not be reachable through any user-facing
+  // surface. renderResults, renderDetail, printResults, the public counts and the router
+  // guard all read the flag-filtered catalogue for exactly this reason.
+  await gotoReadyApp(page);
+  const probe = await page.evaluate(() => {
+    const ontarioIds = BENEFITS.filter((b) => b.level === "Ontario").map((b) => b.id);
+    const browsableIds = browseCatalog().map((b) => b.id);
+    return {
+      onEnabled: ON_ENABLED,
+      ontarioCount: ontarioIds.length,
+      browsableOntario: ontarioIds.filter((id) => browsableIds.includes(id)),
+      renderableOntario: ontarioIds.filter((id) => !/Not found/.test(renderDetail(id))),
+    };
+  });
+
+  // The staged records must exist in the data file either way, or this proves nothing.
+  expect(probe.ontarioCount).toBeGreaterThan(0);
+
+  if (probe.onEnabled) {
+    // After go-live the same records must be reachable.
+    expect(probe.browsableOntario.length).toBe(probe.ontarioCount);
+  } else {
+    expect(probe.browsableOntario).toEqual([]);
+    expect(probe.renderableOntario).toEqual([]);
+  }
+});

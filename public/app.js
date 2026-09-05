@@ -1520,7 +1520,7 @@ async function loadState() {
 
   // Drop unknown tracker stages and invalid guide IDs before either can render.
   for (const id in progress) if (!STAGE[progress[id]]) delete progress[id];
-  if (view === "detail" && !BENEFITS.some((b) => b.id === detailId)) view = "results";
+  if (view === "detail" && !browseCatalog().some((b) => b.id === detailId)) view = "results";
   // Older snapshots may not contain the current age band and functional answers.
   // Never render broad results from an incomplete legacy questionnaire.
   if (view === "results" && !wizardDone()) {
@@ -2685,7 +2685,7 @@ function renderProfessionals() {
 }
 
 function renderPartnerOverview() {
-  const programCount = Array.isArray(BENEFITS) ? BENEFITS.length : 0;
+  const programCount = browseCatalog().length;
   const municipalityCount = Array.isArray(CITIES_WITH_PROGRAMS) ? new Set(CITIES_WITH_PROGRAMS).size : 0;
   return `<article class="partner-overview" id="partnerOverview">
     <header class="partner-head">
@@ -2921,7 +2921,7 @@ function wireOrganizations() {
 }
 
 function impactCatalogStats() {
-  const programs = Array.isArray(BENEFITS) ? BENEFITS : [];
+  const programs = browseCatalog();
   const levels = programs.reduce((counts, benefit) => {
     if (benefit.level === "Federal") counts.federal += 1;
     else if (["Alberta", "British Columbia"].includes(benefit.level)) counts.provincial += 1;
@@ -3021,7 +3021,7 @@ function plainEnglishMonth(monthDate) {
 }
 
 function recentlyVerifiedBenefits() {
-  const programs = Array.isArray(BENEFITS) ? BENEFITS : [];
+  const programs = browseCatalog();
   const verifiedDates = typeof BENEFIT_VERIFIED === "object" && BENEFIT_VERIFIED ? BENEFIT_VERIFIED : {};
   const catalogMonth = typeof DATA_VERIFIED_MONTH === "string" ? DATA_VERIFIED_MONTH : "";
   return programs.filter((benefit) => benefit && typeof benefit === "object").map((benefit, catalogIndex) => {
@@ -3395,7 +3395,7 @@ function renderScenarioPanel(currentEvaluated) {
 }
 
 function renderResults() {
-  const evaluated = BENEFITS.map((b) => ({ b, r: evaluate(b) }));
+  const evaluated = browseCatalog().map((b) => ({ b, r: evaluate(b) }));
   const ready = evaluated.filter((e) => e.r.status === "ready");
   const almost = evaluated.filter((e) => e.r.status === "almost");
   // "not a match" excludes programs that belong to a DIFFERENT province
@@ -4174,7 +4174,7 @@ function renderPrintActionPlan(matched) {
   const listed = matched.map((e) => e.b);
   // Keep an explicitly tracked benefit in the plan even if later answer edits
   // mean it is no longer in the current match set.
-  BENEFITS.forEach((b) => {
+  browseCatalog().forEach((b) => {
     if (progress[b.id] && !listed.some((item) => item.id === b.id)) listed.push(b);
   });
   const printDate = new Date().toLocaleDateString(undefined, {
@@ -4228,7 +4228,7 @@ function reportAnnualTotal(ready) {
 }
 function printResults() {
   const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
-  const evaluated = BENEFITS.map((b) => ({ b, r: evaluate(b) }));
+  const evaluated = browseCatalog().map((b) => ({ b, r: evaluate(b) }));
   const ready = evaluated.filter((e) => e.r.status === "ready").sort((a, b) => priorityScore(b.b) - priorityScore(a.b));
   const almost = evaluated.filter((e) => e.r.status === "almost").sort((a, b) => priorityScore(b.b) - priorityScore(a.b));
 
@@ -4619,7 +4619,7 @@ function p2Sections(b) {
   let related = "";
   if (x.related && x.related.length) {
     const chips = x.related
-      .map((rid) => { const rb = BENEFITS.find((z) => z.id === rid); return rb ? `<button class="related-chip" data-related-id="${rid}">${rb.name} ${icon("arrowRight")}</button>` : ""; })
+      .map((rid) => { const rb = browseCatalog().find((z) => z.id === rid); return rb ? `<button class="related-chip" data-related-id="${rid}">${rb.name} ${icon("arrowRight")}</button>` : ""; })
       .join("");
     if (chips) related = `<div class="guide-block"><div class="guide-h">${icon("key")} Works well with</div><div class="related-chips">${chips}</div></div>`;
   }
@@ -4800,7 +4800,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
 }
 
 function renderDetail(id) {
-  const b = BENEFITS.find((x) => x.id === id);
+  const b = browseCatalog().find((x) => x.id === id);
   if (!b) return `<div class="card">Not found. <button class="back-link" id="d-back">${icon("arrowLeft")} ${t("det.back")}</button></div>`;
   return renderGuideBody(b, evaluate(b));
 }

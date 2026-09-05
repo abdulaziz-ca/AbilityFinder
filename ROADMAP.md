@@ -56,14 +56,16 @@ Document findings as reproducible issues, not broad redesign requests.
   deployed `public/` directory and is not served.
 - Keep French paused until there is capacity to translate and maintain the benefit
   catalog, not only the interface.
-- **Ontario go-live gate (#91).** Ontario records are being staged in `public/data.js`
-  behind `ON_ENABLED=false`. Before flipping the flag: harden the render path so
-  `renderResults()` and `renderDetail()` read the flag-filtered catalog
-  (`browseCatalog()`) rather than the raw `BENEFITS` array. The wizard cannot offer
-  Ontario while the flag is off, so a staged record is not reachable through normal
-  use, but manually injected or previously persisted state would bypass the filter.
-  Keep `evaluateAnswers()` reading the full array — the matcher-safety tests assert
-  staged records' outcomes through it.
+- **Ontario staging (#91).** Nine Ontario records are staged in `public/data.js` behind
+  `ON_ENABLED=false`. The render-path hardening that gated go-live is **done**: the
+  router guard, `renderResults()`, `renderDetail()`, `printResults()`, the printable
+  action plan, the public program counts, the recently-verified list and the
+  related-benefit chips all read the flag-filtered catalog (`browseCatalog()`) rather
+  than the raw `BENEFITS` array. `evaluateAnswers()` deliberately still reads the full
+  array — every matcher-safety assertion for the staged records runs through it, and
+  filtering there would silently drop that coverage. A flag-aware e2e test
+  ("a dark province's records cannot be browsed or rendered") pins both halves and was
+  verified to fail without the hardening.
 
 ### 4. Improve discovery only when evidence supports it
 
