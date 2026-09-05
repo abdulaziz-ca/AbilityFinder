@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.12.0";
+const SPEC_VERSION = "1.13.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -233,6 +233,10 @@ const GATES = {
   brampton: municipality("Brampton", "ON"),
   hamilton: municipality("Hamilton", "ON"),
   london: municipality("London", "ON"),
+  visionDisability: disabilityGate("vision"),
+  ottawaOdspReceipt: external("Depends on actually receiving ODSP benefits and holding an ODSP identification number."),
+  paraTranspoRegistered: external("Depends on being registered as a Para Transpo customer, which the wizard never asks."),
+  aCardProof: external("Depends on holding a CNIB card or an Attorney-General of Ontario Guide Dog photo ID card."),
   londonRenovatesEligibility: external("Depends on household income, liquid assets and the home's property tax assessment value, none of which the wizard asks about."),
   reddeer: municipality("Red Deer", "AB"),
   lethbridge: municipality("Lethbridge", "AB"),
@@ -675,6 +679,10 @@ const PROGRAM_BEST_CASE = {
   "on-parking-permit":                             "ready",
   "odsp":                                          "almost",
   "on-adp":                                        "almost",
+  "ottawa-community-pass":                         "almost",
+  "ottawa-access-pass":                            "almost",
+  "ottawa-equipass":                               "ready",
+  "ottawa-a-card":                                 "almost",
   "london-ontario-renovates":                      "almost",
   "hamilton-fare-assist":                          "ready",
   "brampton-activeassist":                         "ready",

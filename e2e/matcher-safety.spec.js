@@ -1713,3 +1713,26 @@ test("London Ontario Renovates is city-gated and never auto-ready", async ({ pag
   const moderate = await evaluateProfile(page, { ...base, city: "London", income: "moderate" });
   expect(moderate["london-ontario-renovates"].status).not.toBe("no");
 });
+
+test("Ottawa transit discounts are city-gated and honest about proof", async ({ page }) => {
+  const base = { province: "ON", city: "Ottawa", income: "low", ageBand: "19to59", ageGroup: "adult" };
+  const inOttawa = await evaluateProfile(page, base);
+
+  // EquiPass turns on income alone, which the wizard does ask.
+  expect(inOttawa["ottawa-equipass"].status).toBe("ready");
+  // The rest depend on proof the wizard never collects.
+  expect(inOttawa["ottawa-community-pass"].status).toBe("almost");
+  expect(inOttawa["ottawa-access-pass"].status).toBe("almost");
+
+  // The a-card additionally needs a vision disability.
+  const sighted = await evaluateProfile(page, { ...base, disabilities: ["physical"] });
+  expect(sighted["ottawa-a-card"].status).toBe("no");
+  const blind = await evaluateProfile(page, { ...base, disabilities: ["vision"] });
+  expect(blind["ottawa-a-card"].status).toBe("almost");
+
+  // None of them may surface for another city.
+  const inToronto = await evaluateProfile(page, { ...base, city: "Toronto" });
+  for (const id of ["ottawa-community-pass", "ottawa-access-pass", "ottawa-equipass", "ottawa-a-card"]) {
+    expect(inToronto[id].status).toBe("no");
+  }
+});

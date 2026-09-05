@@ -136,6 +136,10 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "ottawa-community-pass": { kind: "discount", note: "$43.25/month or $1.75/ride, all routes including Para Transpo with no top-up" },
+  "ottawa-access-pass": { kind: "discount", note: "$43.25/month, unlimited O-Train and non-Para buses, $2.75 top-up per Para Transpo ride" },
+  "ottawa-equipass": { kind: "discount", note: "$58.25/month or $1.75/ride, about half the adult fare" },
+  "ottawa-a-card": { kind: "access", excludeFromEstimate: true, note: "free travel on all routes except Para Transpo" },
   "london-ontario-renovates": { kind: "grant", excludeFromEstimate: true, note: "10-year forgivable loan up to $25,000; first $5,000 a grant for accessibility modifications" },
   "hamilton-fare-assist": { kind: "discount", note: "50% off single-ride PRESTO fares for one year; does not apply to monthly or annual passes" },
   "brampton-activeassist": { kind: "discount", note: "$275 per eligible family member as one lump sum; approval lasts two years" },
@@ -317,6 +321,10 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "ottawa-community-pass": { difficulty: 2, effort: "Set the discount at a Customer Service Centre with your ODSP number and Presto card", wait: "Not published" },
+  "ottawa-access-pass": { difficulty: 2, effort: "Register with Para Transpo, then set the discount at a Customer Service Centre", wait: "Not published" },
+  "ottawa-equipass": { difficulty: 2, effort: "Application and consent form plus a CRA Notice of Assessment", wait: "Not published" },
+  "ottawa-a-card": { difficulty: 1, effort: "Bring a CNIB or Guide Dog photo ID card to a Customer Service Centre", wait: "Not published" },
   "london-ontario-renovates": { difficulty: 3, effort: "Application package with income, property and asset documents plus three repair estimates", wait: "Not published — first come, first served until funds run out" },
   "hamilton-fare-assist": { difficulty: 2, effort: "Application with proof of total household income", wait: "Not published" },
   "brampton-activeassist": { difficulty: 2, effort: "Application online, in person at a recreation centre, or by mail, with supporting documents", wait: "Not published — the City has noted longer waits" },
@@ -1089,6 +1097,194 @@ const HELP_ORGS = [
 ];
 
 const BENEFITS = [
+  {
+    id: "ottawa-community-pass",
+    name: "Community Pass — OC Transpo discount for ODSP recipients (Ottawa)",
+    level: "Ottawa",
+    category: "Transit",
+    amount: "$43.25 a month, or $1.75 a ride",
+    summary:
+      "A discounted OC Transpo pass for Ottawa residents receiving ODSP. It covers every route including Para Transpo with no top-up charge, which is what sets it apart from the Access pass at the same price.",
+    note: "Community and Access passes both cost $43.25 a month, but Access holders pay a $2.75 top-up for every Para Transpo ride while the Community Pass includes Para Transpo with no top-up. If you receive ODSP and use Para Transpo, the Community Pass is the cheaper of the two. The rural fare is not included in either.",
+    requires: ["ottawa", "ottawaOdspReceipt"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You are an Ottawa resident",
+        "You receive benefits under the Ontario Disability Support Program",
+      ],
+      note: "To prove it you need your ODSP number — the 9-digit identification number on an ODSP document — together with a Presto card number or a Para Transpo ID number. Discounted fares cannot be used when paying cash; you need a Presto card.",
+    },
+    applyText: "See reduced fares",
+    applyUrl: "https://www.octranspo.com/en/fares/reduced-fares/",
+    source: "https://www.octranspo.com/en/fares/reduced-fares/",
+    detail: {
+      about:
+        "The Community Pass is OC Transpo's discounted fare for Ottawa residents who receive ODSP benefits. It costs $43.25 a month, or $1.75 per ride, and lets you ride on all routes including Para Transpo without paying a top-up. The rural fare is not included.",
+      aboutList: {
+        lead: "The Community Pass is OC Transpo's ODSP discount.",
+        items: [
+          "$43.25 for a monthly pass, or $1.75 per ride.",
+          "Valid on all routes, including Para Transpo, with no top-up charge.",
+          "The Para Transpo rural fare is not included.",
+          "You must use a Presto card — discounted fares are not available when paying cash.",
+          "For comparison, the regular adult fare is $4.10 a ride and $138.50 a month.",
+        ],
+      },
+      steps: [
+        "Get your ODSP identification number from an ODSP document",
+        "Get a Presto card, or have your Para Transpo ID number to hand",
+        "Set the Community discount on your card at an OC Transpo Customer Service Centre, or by calling OC Transpo Customer Service — discounted monthly passes cannot be set anywhere else",
+        "Buy monthly passes up to 14 days before the month starts; a pass is valid only for the calendar month it is bought for",
+      ],
+      documents: [
+        "Your 9-digit ODSP identification number from an ODSP document",
+        "A Presto card number, or a Para Transpo ID number",
+      ],
+      tips: [
+        "If you use Para Transpo and receive ODSP, take the Community Pass over the Access pass — same $43.25, but no $2.75 per-ride Para Transpo top-up.",
+        "Discounted monthly passes have to be set at a Customer Service Centre or over the phone, not at a store.",
+        "A lawyer, notary, registered social worker, or a member of one of the regulated health colleges can act as a guarantor if verification is needed.",
+      ],
+    },
+  },
+  {
+    id: "ottawa-access-pass",
+    name: "Access pass — OC Transpo discount for Para Transpo customers (Ottawa)",
+    level: "Ottawa",
+    category: "Transit",
+    amount: "$43.25 a month, plus a $2.75 top-up per Para Transpo ride",
+    summary:
+      "A discounted monthly OC Transpo pass for registered Para Transpo customers. It gives unlimited travel on the O-Train and all non-Para Transpo buses, and takes about a third off the cash fare on Para Transpo trips.",
+    note: "Access pass holders pay a $2.75 top-up charge for each Para Transpo ride. If you also receive ODSP, compare this with the Community Pass, which costs the same $43.25 and includes Para Transpo with no top-up.",
+    requires: ["ottawa", "paraTranspoRegistered"],
+    eligibility: {
+      mode: "all",
+      items: ["You are registered as a Para Transpo customer"],
+      note: "You will be asked for your Para Transpo registration number. Discounted fares cannot be used when paying cash.",
+    },
+    applyText: "See reduced fares",
+    applyUrl: "https://www.octranspo.com/en/fares/reduced-fares/",
+    source: "https://www.octranspo.com/en/fares/reduced-fares/",
+    detail: {
+      about:
+        "The Access pass is a discounted monthly pass for people registered as Para Transpo customers. At $43.25 a month it gives unlimited rides on the O-Train and all buses that are not Para Transpo, and saves one third of the cash-fare price on each Para Transpo trip. Access pass holders pay a $2.75 top-up charge per ride to use Para Transpo.",
+      aboutList: {
+        lead: "The Access pass is OC Transpo's discounted monthly pass for Para Transpo customers.",
+        items: [
+          "$43.25 a month.",
+          "Unlimited travel on the O-Train and all non-Para Transpo buses.",
+          "Saves one third of the cash-fare price on each Para Transpo trip.",
+          "A $2.75 top-up is charged for each Para Transpo ride.",
+          "ParaPay and ParaPass cannot be used on OC Transpo buses or the O-Train.",
+        ],
+      },
+      steps: [
+        "Register as a Para Transpo customer and note your registration number",
+        "Set the Access discount at an OC Transpo Customer Service Centre, or by calling OC Transpo Customer Service",
+        "Buy the monthly pass up to 14 days before the month begins",
+      ],
+      documents: ["Your Para Transpo registration number"],
+      tips: [
+        "If you receive ODSP as well, check the Community Pass first — it is the same price and has no Para Transpo top-up.",
+        "Fare capping means that paying as you go with Presto never costs more than $12.25 in a day or more than the monthly pass price in a month.",
+      ],
+    },
+  },
+  {
+    id: "ottawa-equipass",
+    name: "EquiPass — OC Transpo low-income discount (Ottawa)",
+    level: "Ottawa",
+    category: "Transit",
+    amount: "$58.25 a month, or $1.75 a ride — about half an adult pass",
+    summary:
+      "A discounted OC Transpo pass for Ottawa residents whose family income is below the federal low income threshold, provided they do not already receive transportation benefits from Social Services.",
+    note: "You cannot get EquiPass if you receive transportation benefits from Social Services. If you receive ODSP, look at the Community Pass instead — it is cheaper at $43.25 and includes Para Transpo.",
+    requires: ["ottawa", "lowIncome"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "Your family income is below the low income threshold set by the Government of Canada",
+        "You do NOT receive transportation benefits from Social Services",
+      ],
+      note: "You apply with a completed EquiPass Application and Consent Form plus a Notice of Assessment from the Canada Revenue Agency for the most recent taxation year. If you do not have a Notice of Assessment, other documentation can be used instead.",
+    },
+    applyText: "See reduced fares",
+    applyUrl: "https://www.octranspo.com/en/fares/reduced-fares/",
+    source: "https://www.octranspo.com/en/fares/reduced-fares/",
+    detail: {
+      about:
+        "EquiPass is OC Transpo's fare discount for people on a low income. A monthly EquiPass costs $58.25, roughly half the $138.50 adult monthly pass, and the per-ride EquiPass fare is $1.75 against an adult fare of $4.10.",
+      aboutList: {
+        lead: "EquiPass is OC Transpo's low-income fare discount.",
+        items: [
+          "$58.25 for a monthly pass, about half the $138.50 adult pass.",
+          "$1.75 per ride, against $4.10 for an adult.",
+          "You must not be receiving transportation benefits from Social Services.",
+          "You must use a Presto card — discounted fares are not available when paying cash.",
+        ],
+      },
+      steps: [
+        "Complete the EquiPass Application and Consent Form",
+        "Include your Canada Revenue Agency Notice of Assessment for the most recent taxation year, or other accepted documentation if you do not have one",
+        "Set the EquiPass discount at an OC Transpo Customer Service Centre, or by calling OC Transpo Customer Service",
+        "Buy the monthly pass up to 14 days before the month begins",
+      ],
+      documents: [
+        "A completed EquiPass Application and Consent Form",
+        "A Canada Revenue Agency Notice of Assessment for the most recent taxation year, or other accepted documentation",
+      ],
+      tips: [
+        "If you receive ODSP, the Community Pass is cheaper at $43.25 and covers Para Transpo without a top-up.",
+        "A lawyer, notary, registered social worker or a member of a regulated health college can act as a guarantor on the application.",
+        "Paying per ride with Presto is capped at $12.25 a day and at the monthly pass price over a month.",
+      ],
+    },
+  },
+  {
+    id: "ottawa-a-card",
+    name: "a-card — free OC Transpo travel if you are blind or partially sighted (Ottawa)",
+    level: "Ottawa",
+    category: "Transit",
+    amount: "Free travel on all routes except Para Transpo",
+    summary:
+      "The a-card lets people who are blind or partially sighted ride OC Transpo free on every route except Para Transpo. You qualify with a CNIB card or an Attorney-General of Ontario Guide Dog photo ID card.",
+    note: "The a-card does not cover Para Transpo. If you use Para Transpo, look at the Access pass, or the Community Pass if you also receive ODSP.",
+    requires: ["ottawa", "visionDisability", "aCardProof"],
+    eligibility: {
+      mode: "any",
+      items: [
+        "You hold a CNIB card",
+        "You hold an Attorney-General of Ontario Guide Dog photo ID card",
+      ],
+      note: "Proof is a CNIB one-piece photo ID card, or the Attorney-General of Ontario Guide Dog photo ID card.",
+    },
+    applyText: "See reduced fares",
+    applyUrl: "https://www.octranspo.com/en/fares/reduced-fares/",
+    source: "https://www.octranspo.com/en/fares/reduced-fares/",
+    detail: {
+      about:
+        "The a-card gives free travel on all OC Transpo routes except Para Transpo to people who are blind or partially sighted. Eligibility is by holding a CNIB card or an Attorney-General of Ontario Guide Dog photo ID card.",
+      aboutList: {
+        lead: "The a-card is free OC Transpo travel for people who are blind or partially sighted.",
+        items: [
+          "Free on all routes except Para Transpo.",
+          "Qualify with a CNIB card or an Attorney-General of Ontario Guide Dog photo ID card.",
+          "Para Transpo trips are not covered by the a-card.",
+        ],
+      },
+      steps: [
+        "Have your CNIB one-piece photo ID card, or your Attorney-General of Ontario Guide Dog photo ID card",
+        "Take it to an OC Transpo Customer Service Centre to get the a-card",
+      ],
+      documents: [
+        "A CNIB one-piece photo ID card, or an Attorney-General of Ontario Guide Dog photo ID card",
+      ],
+      tips: [
+        "The a-card does not cover Para Transpo — the Access pass or, for ODSP recipients, the Community Pass does.",
+      ],
+    },
+  },
   {
     id: "london-ontario-renovates",
     name: "Ontario Renovates home repair and accessibility funding (London)",
@@ -5356,6 +5552,8 @@ const BENEFIT_VERIFIED = {
   "ottawa-hand-in-hand": "2026-09", "mississauga-activeassist": "2026-09",
   "brampton-activeassist": "2026-09", "hamilton-fare-assist": "2026-09",
   "london-ontario-renovates": "2026-09",
+  "ottawa-community-pass": "2026-09", "ottawa-access-pass": "2026-09",
+  "ottawa-equipass": "2026-09", "ottawa-a-card": "2026-09",
   // Ontario province-level records, each verified against its official ontario.ca
   // page on 2026-09-04. Month granularity only — no fabricated day.
   "on-parking-permit": "2026-09", odsp: "2026-09", "on-adp": "2026-09",

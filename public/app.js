@@ -901,6 +901,31 @@ const REQS = {
   brampton: { met: () => answers.city === "Brampton", fixed: true, unmet: "This is a City of Brampton program." },
   hamilton: { met: () => answers.city === "Hamilton", fixed: true, unmet: "This is a City of Hamilton program." },
   london: { met: () => answers.city === "London", fixed: true, unmet: "This is a City of London program." },
+  visionDisability: {
+    met: () => hasDisability("vision"),
+    fixed: true,
+    unmet: "This is for people who are blind or partially sighted.",
+  },
+  ottawaOdspReceipt: {
+    met: () => false,
+    fixed: false,
+    unmet:
+      "You need to be an Ottawa resident receiving ODSP benefits. Proving it takes your 9-digit ODSP identification number from an ODSP document, plus either a Presto card number or a Para Transpo ID number.",
+    action: { text: "See reduced fares", url: "https://www.octranspo.com/en/fares/reduced-fares/" },
+  },
+  paraTranspoRegistered: {
+    met: () => false,
+    fixed: false,
+    unmet: "You need to be registered as a Para Transpo customer, and you will be asked for your Para Transpo registration number.",
+    action: { text: "See reduced fares", url: "https://www.octranspo.com/en/fares/reduced-fares/" },
+  },
+  aCardProof: {
+    met: () => false,
+    fixed: false,
+    unmet:
+      "You need either a CNIB one-piece photo ID card or an Attorney-General of Ontario Guide Dog photo ID card.",
+    action: { text: "See reduced fares", url: "https://www.octranspo.com/en/fares/reduced-fares/" },
+  },
   londonRenovatesEligibility: {
     // Deliberately NOT the lowIncome gate: the ceiling is $95,000, which is moderate
     // rather than low, so a fixed low-income gate would refuse eligible households. The

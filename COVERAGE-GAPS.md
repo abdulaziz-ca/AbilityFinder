@@ -76,13 +76,15 @@ coverage at all. This is where the largest gaps are.
   Employment Ontario. There is nothing actionable to build a record on, so it is a tip
   on the `odsp` record instead. Revisit only if Ontario publishes real criteria.
 
-### COULD NOT READ — blocked by the source site
-- **Ottawa's EquiPass, Community Pass and Para Transpo.** All three live on
-  octranspo.com, which returns 403 to automated fetches, including from a real browser
-  session. Their fares and eligibility could not be read on 2026-09-05, so no transit
-  record was written for Ottawa rather than guessing at figures. The Community Pass
-  matters most here: it is the discounted pass for ODSP recipients specifically.
-  Needs a human, or a different tool, to read and verify.
+### RESOLVED — was blocked by the source site
+- **Ottawa's OC Transpo reduced fares — now built.** octranspo.com returns 403 to
+  automated fetch, including from a browser session driven by automation, so these could
+  not be read on 2026-09-05. The owner opened the official Fares and Reduced fares pages
+  themselves and supplied them, and four records were built from those pages: the
+  Community Pass for ODSP recipients, the Access pass for Para Transpo customers,
+  EquiPass for low income, and the a-card for people who are blind or partially sighted.
+  The lesson generalises: when a source blocks automation, a person reading the page is a
+  valid verification path, and it is worth asking rather than leaving the gap open.
 
 ### NOT YET SWEPT
 - No systematic sweep of which of the 42 listed Ontario cities run disability or
