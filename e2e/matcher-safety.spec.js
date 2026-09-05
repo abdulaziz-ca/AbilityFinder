@@ -1688,3 +1688,13 @@ test("Brampton and Mississauga ActiveAssist are separate programs", async ({ pag
   expect(inMississauga["mississauga-activeassist"].status).toBe("ready");
   expect(inMississauga["brampton-activeassist"].status).toBe("no");
 });
+
+test("Hamilton Fare Assist is city-gated", async ({ page }) => {
+  const base = { province: "ON", income: "low", ageBand: "19to59", ageGroup: "adult" };
+  const inHamilton = await evaluateProfile(page, { ...base, city: "Hamilton" });
+  expect(inHamilton["hamilton-fare-assist"].status).toBe("ready");
+  expect(inHamilton["toronto-fair-pass"].status).toBe("no");
+
+  const inToronto = await evaluateProfile(page, { ...base, city: "Toronto" });
+  expect(inToronto["hamilton-fare-assist"].status).toBe("no");
+});
