@@ -49,6 +49,10 @@ Document findings as reproducible issues, not broad redesign requests.
 
 ### 3. Carefully expand verified coverage
 
+- **What we do NOT cover is written down in `COVERAGE-GAPS.md`** (TaskView #206), split
+  into not-yet-built, cannot-model, out-of-scope and not-yet-swept. Add to it at the
+  moment a decision is made, so silence is never mistaken for coverage.
+
 - Re-check Camrose and other municipalities one program at a time.
 - Keep local transit/recreation rules distinct; never clone another city's policy.
 - Re-integrate other provinces from `archive/data-provinces-later.js` only after a
@@ -56,18 +60,21 @@ Document findings as reproducible issues, not broad redesign requests.
   deployed `public/` directory and is not served.
 - Keep French paused until there is capacity to translate and maintain the benefit
   catalog, not only the interface.
-- **Ontario staging (#91).** The switch-on sequence is written up in `ONTARIO-GO-LIVE.md`,
-  and was rehearsed end to end on 2026-09-04 (flag flipped on locally, regenerated, tested,
-  flipped back byte-identical). Nine Ontario records are staged in `public/data.js` behind
-  `ON_ENABLED=false`. The render-path hardening that gated go-live is **done**: the
-  router guard, `renderResults()`, `renderDetail()`, `printResults()`, the printable
-  action plan, the public program counts, the recently-verified list and the
-  related-benefit chips all read the flag-filtered catalog (`browseCatalog()`) rather
-  than the raw `BENEFITS` array. `evaluateAnswers()` deliberately still reads the full
-  array — every matcher-safety assertion for the staged records runs through it, and
-  filtering there would silently drop that coverage. A flag-aware e2e test
-  ("a dark province's records cannot be browsed or rendered") pins both halves and was
-  verified to fail without the hardening.
+- **Ontario is live (#91), 2026-09-04.** Nine province-level records plus Toronto's two
+  municipal programs. The staged-dark rollout and its rehearsal are written up in
+  `ONTARIO-GO-LIVE.md`, kept for the next province: flag off, records verified dark,
+  flipped on locally, regenerated, tested, flipped back byte-identical, then shipped.
+  The rehearsal caught a real blocker (`gen:context` crashed with the flag on), which is
+  the argument for doing it again next time.
+  Two lessons worth carrying forward. First, the render path reads the flag-filtered
+  catalog (`browseCatalog()`) everywhere a user can see a record — router guard,
+  results, detail, print, action plan, public counts, recently-verified, related chips —
+  while `evaluateAnswers()` deliberately still reads the full `BENEFITS` array, because
+  every matcher-safety assertion for a staged record runs through it. Second, launching a
+  province exposes every two-province assumption frozen into a literal: the city question,
+  the browse level filter, the provincial/municipal stat bucket and both directory ledes
+  all had to be fixed after go-live. Prefer deriving from `COVERED_PROVINCES` over adding
+  a third province name by hand.
 
 ### 4. Improve discovery only when evidence supports it
 
