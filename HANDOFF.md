@@ -17,7 +17,7 @@ Ontario, with federal, provincial, and municipal guides. It answers five questio
 
 **British Columbia is live, and Ontario went live in September 2026.** `BC_ENABLED` and
 `ON_ENABLED` in `public/app.js` are both `true`, and the
-catalog holds **114 benefits** — 16 federal, 14 Alberta, 42 British Columbia, 9 Ontario,
+catalog holds **115 benefits** — 16 federal, 14 Alberta, 42 British Columbia, 9 Ontario,
 and the remainder municipal. The residency question offers Alberta, British Columbia,
 Ontario, and "another province or territory"; the last of these still sees federal
 benefits only.

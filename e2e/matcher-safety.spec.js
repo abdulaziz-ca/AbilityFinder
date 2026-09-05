@@ -1664,3 +1664,15 @@ test("Ottawa Hand in Hand is city-gated", async ({ page }) => {
   });
   expect(inToronto["ottawa-hand-in-hand"].status).toBe("no");
 });
+
+test("Mississauga ActiveAssist is city-gated", async ({ page }) => {
+  const base = { province: "ON", income: "low", ageBand: "19to59", ageGroup: "adult" };
+  const inMississauga = await evaluateProfile(page, { ...base, city: "Mississauga" });
+  expect(inMississauga["mississauga-activeassist"].status).toBe("ready");
+
+  // The three Ontario cities' programs must not cross over.
+  expect(inMississauga["ottawa-hand-in-hand"].status).toBe("no");
+  expect(inMississauga["toronto-welcome-policy"].status).toBe("no");
+  const inOttawa = await evaluateProfile(page, { ...base, city: "Ottawa" });
+  expect(inOttawa["mississauga-activeassist"].status).toBe("no");
+});

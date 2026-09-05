@@ -47,7 +47,7 @@ const CITIES_WITH_PROGRAMS = [
   "Cochrane", "Okotoks", "Canmore", "Lloydminster", "Fort Saskatchewan",
   "Vancouver", "Surrey", "Burnaby", "Richmond", "Victoria", "Saanich",
   "Kelowna", "Coquitlam", "Kamloops",
-  "Toronto", "Ottawa",
+  "Toronto", "Ottawa", "Mississauga",
 ];
 
 /* ---------------------------------------------- Alberta communities (pop >5,000)
@@ -136,6 +136,7 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "mississauga-activeassist": { kind: "discount", note: "$275 per eligible family member per year, non-refundable" },
   "ottawa-hand-in-hand": { kind: "discount", note: "$185 per person per year toward City recreation and culture programs" },
   "toronto-fair-pass": { kind: "discount", note: "36% off adult single TTC fares — $2.10 instead of $3.30, monthly cap $98.70" },
   "toronto-welcome-policy": { kind: "discount", note: "$683.04/year up to age 24; $314.60/year at 25 and over" },
@@ -313,6 +314,7 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "mississauga-activeassist": { difficulty: 2, effort: "Application at a community centre or online with original supporting documents", wait: "Within 15 business days" },
   "ottawa-hand-in-hand": { difficulty: 2, effort: "Application form, approved in person at a recreation or cultural facility", wait: "Not published" },
   "toronto-fair-pass": { difficulty: 2, effort: "Online application with a PRESTO card number, plus proof of income or an OW/ODSP member ID", wait: "Not published" },
   "toronto-welcome-policy": { difficulty: 2, effort: "Application with documents for each family member", wait: "Not published" },
@@ -1081,6 +1083,61 @@ const HELP_ORGS = [
 ];
 
 const BENEFITS = [
+  {
+    id: "mississauga-activeassist",
+    name: "ActiveAssist fee assistance (Mississauga)",
+    level: "Mississauga",
+    category: "Recreation",
+    amount: "$275 a year for each eligible family member",
+    summary:
+      "Fee assistance that gives Mississauga residents in low-income households, and newcomers with refugee status, access to City recreation and culture programs. Each eligible person on the application gets a credit for the year.",
+    note: "The credit is non-refundable and valid for one year, and you reapply with supporting documents every year. You cannot receive ActiveAssist at the same time as another City fee assistance program such as the Jerry Love Children's Fund.",
+    requires: ["mississauga", "lowIncome"],
+    eligibility: {
+      mode: "any",
+      items: [
+        "An individual or family without dependants under 18, with net individual or combined family income below the Low Income Cut Off",
+        "A family with dependants under 18, with combined net family income below the Low Income Cut Off, shown with documentation such as Canada Child Benefits forms",
+        "A newcomer with refugee status, shown with a Confirmation of Permanent Residency, a Refugee Protection Claimant Document, or a document issued under a special IRCC program such as a CUAET visa, issued within the past year",
+      ],
+      note: "You are not eligible if you are a child under 18 applying alone — a parent or legal guardian must apply with you — if you are a full-time college or university student with no dependants, or if you already receive another City fee assistance program. Low Income Cut Off amounts, updated May 1, 2026: $26,440 for 1 person, $32,179 for 2, $40,071 for 3, $49,991 for 4, $56,925 for 5, $63,131 for 6, and $69,337 for 7 or more.",
+    },
+    applyText: "Apply for ActiveAssist",
+    applyUrl: "https://www.mississauga.ca/recreation-and-sports/sports-and-activities/assistance-programs/active-assist/",
+    source: "https://www.mississauga.ca/recreation-and-sports/sports-and-activities/assistance-programs/active-assist/",
+    detail: {
+      about:
+        "ActiveAssist is the City of Mississauga's fee assistance program. It gives residents in low-income households, and newcomers with refugee status, access to recreation and culture programs. Each eligible family member listed on the application receives a non-refundable credit of $275 valid for one year, and applicants reapply with supporting documents annually.",
+      aboutList: {
+        lead: "ActiveAssist helps Mississauga residents afford City recreation and culture programs.",
+        items: [
+          "$275 for each eligible family member listed on the application.",
+          "The credit is non-refundable and valid for one year.",
+          "Open to low-income households and to newcomers with refugee status.",
+          "You reapply and provide supporting documents every year.",
+          "You cannot combine it with another City fee assistance program such as the Jerry Love Children's Fund.",
+        ],
+      },
+      steps: [
+        "Check your net income against the Low Income Cut Off amount for your family size, or gather your refugee status document if that is your route",
+        "Complete the Fee Assistance Program Application at your local community centre, or apply online",
+        "Provide one or more original current supporting documents when you submit",
+        "The City processes applications within 15 business days",
+        "Once approved you receive an email with your account start date and registration information",
+      ],
+      documents: [
+        "Documentation showing net individual or combined family income below the Low Income Cut Off",
+        "For a family with dependants under 18, documentation indicating those dependants, such as Canada Child Benefits forms",
+        "For a newcomer with refugee status, a Confirmation of Permanent Residency, Refugee Protection Claimant Document, or a document under a special IRCC program such as a CUAET visa, issued within the past year",
+      ],
+      tips: [
+        "A child under 18 cannot apply alone — a parent or legal guardian completes the application with them.",
+        "Full-time college and university students with no dependants are not eligible.",
+        "Bring original current documents, not photocopies, when you submit the application.",
+        "Each eligible family member on the application gets their own $275, so list everyone who qualifies.",
+      ],
+    },
+  },
   {
     id: "ottawa-hand-in-hand",
     name: "Ottawa Hand in Hand recreation fee support",
@@ -5117,7 +5174,7 @@ const BENEFIT_VERIFIED = {
   // Toronto municipal records, verified against the City of Toronto's own pages
   // on 2026-09-04.
   "toronto-fair-pass": "2026-09", "toronto-welcome-policy": "2026-09",
-  "ottawa-hand-in-hand": "2026-09",
+  "ottawa-hand-in-hand": "2026-09", "mississauga-activeassist": "2026-09",
   // Ontario province-level records, each verified against its official ontario.ca
   // page on 2026-09-04. Month granularity only — no fabricated day.
   "on-parking-permit": "2026-09", odsp: "2026-09", "on-adp": "2026-09",

@@ -63,6 +63,14 @@ coverage at all. This is where the largest gaps are.
   Employment Ontario. There is nothing actionable to build a record on, so it is a tip
   on the `odsp` record instead. Revisit only if Ontario publishes real criteria.
 
+### COULD NOT READ — blocked by the source site
+- **Ottawa's EquiPass, Community Pass and Para Transpo.** All three live on
+  octranspo.com, which returns 403 to automated fetches, including from a real browser
+  session. Their fares and eligibility could not be read on 2026-09-05, so no transit
+  record was written for Ottawa rather than guessing at figures. The Community Pass
+  matters most here: it is the discounted pass for ODSP recipients specifically.
+  Needs a human, or a different tool, to read and verify.
+
 ### NOT YET SWEPT
 - No systematic sweep of which of the 42 listed Ontario cities run disability or
   low-income programs. The nine largest are the obvious starting point, since reach

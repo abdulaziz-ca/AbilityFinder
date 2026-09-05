@@ -897,6 +897,7 @@ const REQS = {
   edmonton: { met: () => answers.city === "Edmonton", fixed: true, unmet: "This is a City of Edmonton program." },
   toronto: { met: () => answers.city === "Toronto", fixed: true, unmet: "This is a City of Toronto program." },
   ottawa: { met: () => answers.city === "Ottawa", fixed: true, unmet: "This is a City of Ottawa program." },
+  mississauga: { met: () => answers.city === "Mississauga", fixed: true, unmet: "This is a City of Mississauga program." },
   // Municipalities with their own verified programs (researched 2026-07-15).
   reddeer: { met: () => answers.city === "Red Deer", fixed: true, unmet: "This is a City of Red Deer program." },
   lethbridge: { met: () => answers.city === "Lethbridge", fixed: true, unmet: "This is a City of Lethbridge program." },
