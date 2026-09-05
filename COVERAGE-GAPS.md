@@ -89,10 +89,22 @@ coverage at all. This is where the largest gaps are.
   for Cambridge, Kitchener and Waterloo. That separate service was not read and is not
   built; `grt-mobilityplus` sits behind the `waterlooUrban` gate for exactly this reason.
 
-- **Ontario organizations: zero.** `ORGS_DIRECTORY` covers Alberta (13) and B.C. (9).
-  An Ontario resident opens the organizations directory and sees nothing. The page now
-  says so honestly rather than telling them to pick a province, but the content gap is
-  real.
+- **Ontario organizations: 8, and the gap in focus areas is the remaining work.**
+  `ORGS_DIRECTORY` now covers Alberta (13), B.C. (9) and Ontario (8), added 2026-09-05.
+  The Ontario eight cover legal (ARCH, Steps to Justice), autism, physical disability
+  (SCI Ontario, March of Dimes), family (Easter Seals), sensory (Canadian Hearing
+  Services) and navigation (211 Ontario). **Not yet covered for Ontario:** employment,
+  financial empowerment, community living, developmental disability and recreation — all
+  of which Alberta has. Those are the shape of the next Ontario organizations sweep.
+
+  **Community Living Ontario is deliberately absent, and should be added when its site is
+  back.** It is the obvious candidate for the developmental-disability gap, but
+  communitylivingontario.ca returned a Cloudflare 502 on every attempt on 2026-09-05,
+  including at the site root, which is the diagnostic that distinguishes a real outage
+  from a bad path. This directory publishes to users that every organization must have a
+  verifiable official website of its own, and the Camrose precedent recorded at the top of
+  `public/orgs-data.js` settled that the rule is honoured rather than weakened. Re-check
+  the site and add the entry then.
 - **Ontario-specific grants: zero.** `GRANTS_DIRECTORY` has 6 Alberta, 7 B.C. and 5
   Canada-wide entries. The 5 Canada-wide ones do apply to Ontario residents.
 - **Toronto beyond the first two programs.** The City's own Programs & Benefits
