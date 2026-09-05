@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 208 links. The monitor checks a bounded rotating batch every
+// 216 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) URLs are skipped — they depend on the
@@ -1028,6 +1028,46 @@ export const LINKS = [
   {
     "url": "https://bc.211.ca",
     "label": "org:bc-211 — 211 British Columbia",
+    "kind": "org"
+  },
+  {
+    "url": "https://archdisabilitylaw.ca",
+    "label": "org:arch-disability-law — ARCH Disability Law Centre",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.autismontario.com",
+    "label": "org:autism-ontario — Autism Ontario",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.sciontario.org",
+    "label": "org:sci-ontario — Spinal Cord Injury Ontario",
+    "kind": "org"
+  },
+  {
+    "url": "https://services.easterseals.org",
+    "label": "org:easter-seals-ontario — Easter Seals Ontario",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.marchofdimes.ca/en-ca",
+    "label": "org:march-of-dimes-canada — March of Dimes Canada",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.chs.ca",
+    "label": "org:canadian-hearing-services — Canadian Hearing Services",
+    "kind": "org"
+  },
+  {
+    "url": "https://211ontario.ca",
+    "label": "org:211-ontario — 211 Ontario",
+    "kind": "org"
+  },
+  {
+    "url": "https://stepstojustice.ca",
+    "label": "org:steps-to-justice — Steps to Justice",
     "kind": "org"
   },
   {

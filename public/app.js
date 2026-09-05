@@ -3008,6 +3008,11 @@ function renderOrganizations() {
     ? ORGS_DIRECTORY
     : [];
   const visible = directory.filter((organization) => coverageApplies(organization));
+  const directoryProvinceNames = _joinAnd(
+    [...new Set(directory.flatMap((organization) => Array.isArray(organization.coverage) ? organization.coverage : []))]
+      .map((code) => PROVINCE_NAME[code])
+      .filter(Boolean)
+  );
   const cards = visible.map((organization) => `
     <article class="org-card" data-org-id="${ttsEscape(organization.id)}">
       <header>
@@ -3032,9 +3037,9 @@ function renderOrganizations() {
     <p class="legal-lede">${t("orgs.lede")} ${
       !COVERED_PROVINCES.includes(answers.province)
         ? "Choose a province in the questionnaire to narrow this directory."
-        : ORGS_DIRECTORY.some((organization) => coverageApplies(organization))
+        : visible.length
           ? `Showing organizations that serve ${PROVINCE_NAME[answers.province]}.`
-          : `No organizations listed for ${PROVINCE_NAME[answers.province]} yet. The directory currently covers Alberta and British Columbia.`
+          : `No organizations listed for ${PROVINCE_NAME[answers.province]} yet. The directory currently covers ${directoryProvinceNames || "no provinces"}.`
     }</p>
     <div class="orgs-grid">${cards}</div>
     <section class="orgs-rules" aria-labelledby="orgs-rules-title">
