@@ -2,7 +2,7 @@
 
 TaskView #206. Last reviewed 2026-09-05.
 
-The catalogue holds **117 records**: 16 federal, 14 Alberta, 42 British Columbia,
+The catalogue holds **122 records**: 16 federal, 14 Alberta, 42 British Columbia,
 9 Ontario, and the rest municipal. This file is about everything else.
 
 **Why this file exists.** A user or a partner organization currently cannot tell the
@@ -32,20 +32,35 @@ Ontario went live 2026-09-04 with province-level records and, initially, no muni
 coverage at all. This is where the largest gaps are.
 
 ### NOT YET BUILT
-- **Municipal programs for 37 of the 42 listed Ontario cities.** Five are built —
-  Toronto (Fair Pass, Welcome Policy), Ottawa (Hand in Hand), Mississauga
-  (ActiveAssist), Brampton (ActiveAssist) and Hamilton (HSR Fare Assist), together
-  reaching roughly 5 million people. Still unbuilt and known to run their own
-  recreation or transit subsidies: London, Markham, Vaughan, Kitchener, Windsor, and
-  the rest of the list. For comparison, Alberta and B.C. have 27 cities with programs
-  between them. **This remains the single largest gap on the site.** Being listed in
-  `ON_CITIES` only means a resident can pick the city; it does not mean the city has
-  programs — `CITIES_WITH_PROGRAMS` is that list.
-  Every one of the five built so far had materially different rules from its
-  neighbours, so none of the remaining cities can be inferred from a built one. The
-  clearest case: Brampton and Mississauga share the program name "ActiveAssist" AND
-  the same $275 per-person figure, but Brampton approves for two years and pays a
-  lump sum while Mississauga runs one year and is reapplied for annually.
+- **Municipal programs for 36 of the 42 listed Ontario cities.** Six are built — Toronto
+  (Fair Pass, Welcome Policy), Ottawa (Hand in Hand plus four OC Transpo fare programs),
+  Mississauga (ActiveAssist), Brampton (ActiveAssist), Hamilton (HSR Fare Assist) and
+  London (Ontario Renovates) — together reaching roughly 6 million people. **This remains
+  the largest gap on the site.** Being listed in `ON_CITIES` only means a resident can pick
+  the city; `CITIES_WITH_PROGRAMS` is the list that actually has programs.
+
+  Every city built so far had materially different rules from its neighbours, so none of
+  the remaining cities can be inferred from a built one. The clearest case: Brampton and
+  Mississauga share the program name "ActiveAssist" AND the same $275 per-person figure,
+  but Brampton approves for two years and pays a lump sum while Mississauga runs one year
+  and is reapplied for annually.
+
+### SWEPT, NOTHING FOUND YET — Ontario cities looked at on 2026-09-05
+  These were searched and no municipal program was located. That is NOT the same as "no
+  program exists" — record it as an unfinished search, because the likely explanation is
+  structural rather than absence:
+  - **Markham** — searched markham.ca recreation pages and site search; nothing surfaced.
+  - **Windsor** — searched citywindsor.ca recreation section; nothing surfaced.
+  - **Vaughan, Kitchener** — not yet attempted.
+
+  **The structural hypothesis to test next.** In Ontario's two-tier municipalities, social
+  services and fee subsidies are often delivered by the REGION rather than the city.
+  Markham and Vaughan sit in York Region; Kitchener sits in the Region of Waterloo. So the
+  next search for those should be the region, not the city. Note this is genuinely mixed
+  and cannot be assumed: Mississauga and Brampton are both in Peel Region and each runs
+  its own municipal ActiveAssist. Windsor is single-tier and also serves as service manager
+  for Windsor-Essex, so its subsidy may sit under social services rather than recreation.
+
 - **Ontario organizations: zero.** `ORGS_DIRECTORY` covers Alberta (13) and B.C. (9).
   An Ontario resident opens the organizations directory and sees nothing. The page now
   says so honestly rather than telling them to pick a province, but the content gap is
