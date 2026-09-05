@@ -2,8 +2,10 @@
 
 TaskView #206. Last reviewed 2026-09-05.
 
-The catalogue holds **122 records**: 16 federal, 14 Alberta, 42 British Columbia,
-9 Ontario, and the rest municipal. This file is about everything else.
+The catalogue holds **134 records**: 16 federal, 14 Alberta, 42 British Columbia,
+9 Ontario, and the rest municipal or regional. Ontario's municipal and regional coverage
+is now 23 of those, across Toronto, Ottawa, Mississauga, Brampton, Hamilton, London,
+Windsor, York Region and the Region of Waterloo. This file is about everything else.
 
 **Why this file exists.** A user or a partner organization currently cannot tell the
 difference between three very different things: a benefit that does not exist, one we
@@ -32,12 +34,15 @@ Ontario went live 2026-09-04 with province-level records and, initially, no muni
 coverage at all. This is where the largest gaps are.
 
 ### NOT YET BUILT
-- **Municipal programs for 36 of the 42 listed Ontario cities.** Six are built — Toronto
-  (Fair Pass, Welcome Policy), Ottawa (Hand in Hand plus four OC Transpo fare programs),
-  Mississauga (ActiveAssist), Brampton (ActiveAssist), Hamilton (HSR Fare Assist) and
-  London (Ontario Renovates) — together reaching roughly 6 million people. **This remains
-  the largest gap on the site.** Being listed in `ON_CITIES` only means a resident can pick
-  the city; `CITIES_WITH_PROGRAMS` is the list that actually has programs.
+- **Municipal programs for 27 of the 46 listed Ontario cities.** Nineteen now route to
+  at least one program: Toronto (Fair Pass, Welcome Policy), Ottawa (Hand in Hand plus
+  four OC Transpo fare programs), Mississauga and Brampton (each its own ActiveAssist),
+  Hamilton (HSR Fare Assist), London (Ontario Renovates), Windsor (two Pathway to
+  Potential programs), the five York Region municipalities, and the seven Region of
+  Waterloo municipalities. **This is still the largest gap on the site**, but it is now a
+  minority of the list rather than a large majority. Being listed in `ON_CITIES` only
+  means a resident can pick the city; `CITIES_WITH_PROGRAMS` is the list that actually has
+  programs, and a regional record only reaches a resident if their city is in both.
 
   Every city built so far had materially different rules from its neighbours, so none of
   the remaining cities can be inferred from a built one. The clearest case: Brampton and
@@ -45,21 +50,44 @@ coverage at all. This is where the largest gaps are.
   but Brampton approves for two years and pays a lump sum while Mississauga runs one year
   and is reapplied for annually.
 
-### SWEPT, NOTHING FOUND YET — Ontario cities looked at on 2026-09-05
-  These were searched and no municipal program was located. That is NOT the same as "no
-  program exists" — record it as an unfinished search, because the likely explanation is
-  structural rather than absence:
-  - **Markham** — searched markham.ca recreation pages and site search; nothing surfaced.
-  - **Windsor** — searched citywindsor.ca recreation section; nothing surfaced.
-  - **Vaughan, Kitchener** — not yet attempted.
+### SWEPT — the "nothing found" list from 2026-09-05 is now RESOLVED
+  Markham, Vaughan, Kitchener and Windsor were all recorded as searched-but-empty. Every
+  one of them was a search in the wrong place, not an absence. **The structural hypothesis
+  was tested and held in all four cases**, so the entries are cleared:
 
-  **The structural hypothesis to test next.** In Ontario's two-tier municipalities, social
-  services and fee subsidies are often delivered by the REGION rather than the city.
-  Markham and Vaughan sit in York Region; Kitchener sits in the Region of Waterloo. So the
-  next search for those should be the region, not the city. Note this is genuinely mixed
-  and cannot be assumed: Mississauga and Brampton are both in Peel Region and each runs
-  its own municipal ActiveAssist. Windsor is single-tier and also serves as service manager
-  for Windsor-Essex, so its subsidy may sit under social services rather than recreation.
+  - **Markham and Vaughan** — nothing on markham.ca because the money is York Region's.
+    York Region's own page says its subsidies let children "take part in programs offered
+    by the municipal recreation departments". Built as `york-region-*`, covering Aurora,
+    Markham, Newmarket, Richmond Hill and Vaughan.
+  - **Kitchener** — nothing on kitchener.ca because it is the Region of Waterloo and Grand
+    River Transit. Built as `grt-*` and `waterloo-*`, eight records.
+  - **Windsor** — nothing in citywindsor.ca's recreation section because Windsor is
+    single-tier AND the service manager for Windsor-Essex, so both subsidies sit under
+    Social Services in the Pathway to Potential strategy. Built as `windsor-*`.
+
+  **The rule this produced, worth applying to every remaining Ontario city.** When a city
+  search comes up empty, the search was probably in the wrong place. Check, in order:
+  the upper-tier region; the transit operator's own site, which is often a separate domain
+  (grt.ca, not regionofwaterloo.ca); and the city's social-services section rather than its
+  recreation section. Only after all three should a city be recorded as genuinely having
+  nothing. It remains genuinely mixed and must never be assumed either way — Mississauga
+  and Brampton are both in Peel Region and each runs its own municipal ActiveAssist.
+
+  **Still not swept at all:** the remaining Ontario cities in `ON_CITIES` with no programs.
+
+### NOT YET BUILT — Windsor-Essex and Waterloo, beyond the seat city
+- **Essex County's seven other municipalities.** Windsor's two Pathway to Potential
+  programs are Windsor-Essex-wide, jointly funded by the City of Windsor and the County of
+  Essex, and delivered by each local municipal department. Amherstburg, Essex, Kingsville,
+  Lakeshore, LaSalle, Leamington and Tecumseh are none of them in `ON_CITIES`, so a
+  resident of any of them cannot reach these records. Adding them means verifying each
+  municipality's own delivery — the source says "eligibility criteria may differ across
+  municipalities", so their terms must NOT be cloned from Windsor's. The APP prices held
+  in `windsor-affordable-pass` are Transit Windsor's specifically.
+- **MobilityPLUS for Region of Waterloo township residents.** GRT says "We also offer
+  specialized service for township residents", separate from the MobilityPLUS application
+  for Cambridge, Kitchener and Waterloo. That separate service was not read and is not
+  built; `grt-mobilityplus` sits behind the `waterlooUrban` gate for exactly this reason.
 
 - **Ontario organizations: zero.** `ORGS_DIRECTORY` covers Alberta (13) and B.C. (9).
   An Ontario resident opens the organizations directory and sees nothing. The page now
@@ -180,3 +208,21 @@ coverage at all. This is where the largest gaps are.
    `innerText` skips — that is how Toronto's Fair Pass fare table was read.
 4. **Do not infer one municipality's policy from another.** It is a repo rule and the
    reason Ontario Renovates cannot be a province-level record.
+5. **Read the linked PDF, not just the web page.** The Region of Waterloo's Ontario
+   Renovates page prints its home-value cap as "$600,00" — a typo — and says nothing about
+   an accessibility grant. Its linked fact sheet gives the real cap, $600,000, and
+   describes a grant portion of up to $5,000 that never has to be repaid. A record built
+   from the page alone would have carried a mistyped figure and understated what people
+   can get. Where a programme page links a fact sheet, guidelines or application PDF, that
+   document is the better source.
+6. **When two official sources disagree, say so in the record.** Waterloo's fact sheet
+   says apply by November 15 with a signed agreement by December 15; its own programme
+   page says apply before December 1. `waterloo-ontario-renovates` leads with the dated
+   fact sheet and tells the reader the page shows a different date, rather than silently
+   picking one and presenting it as settled.
+7. **Send the review agent the full page text, not a summary.** Codex review of the two
+   Waterloo batches produced findings that looked like inventions but were real facts my
+   own abridged excerpt had left out — the ATP application URL and the Community Service
+   Welcome Spaces. The Windsor batch, reviewed against complete page text, returned four
+   findings and zero false positives. Abridging the source manufactures false positives
+   and wastes a review round.
