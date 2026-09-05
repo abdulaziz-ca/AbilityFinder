@@ -47,7 +47,7 @@ const CITIES_WITH_PROGRAMS = [
   "Cochrane", "Okotoks", "Canmore", "Lloydminster", "Fort Saskatchewan",
   "Vancouver", "Surrey", "Burnaby", "Richmond", "Victoria", "Saanich",
   "Kelowna", "Coquitlam", "Kamloops",
-  "Toronto", "Ottawa", "Mississauga", "Brampton", "Hamilton",
+  "Toronto", "Ottawa", "Mississauga", "Brampton", "Hamilton", "London",
 ];
 
 /* ---------------------------------------------- Alberta communities (pop >5,000)
@@ -136,6 +136,7 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "london-ontario-renovates": { kind: "grant", excludeFromEstimate: true, note: "10-year forgivable loan up to $25,000; first $5,000 a grant for accessibility modifications" },
   "hamilton-fare-assist": { kind: "discount", note: "50% off single-ride PRESTO fares for one year; does not apply to monthly or annual passes" },
   "brampton-activeassist": { kind: "discount", note: "$275 per eligible family member as one lump sum; approval lasts two years" },
   "mississauga-activeassist": { kind: "discount", note: "$275 per eligible family member per year, non-refundable" },
@@ -316,6 +317,7 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "london-ontario-renovates": { difficulty: 3, effort: "Application package with income, property and asset documents plus three repair estimates", wait: "Not published — first come, first served until funds run out" },
   "hamilton-fare-assist": { difficulty: 2, effort: "Application with proof of total household income", wait: "Not published" },
   "brampton-activeassist": { difficulty: 2, effort: "Application online, in person at a recreation centre, or by mail, with supporting documents", wait: "Not published — the City has noted longer waits" },
   "mississauga-activeassist": { difficulty: 2, effort: "Application at a community centre or online with original supporting documents", wait: "Within 15 business days" },
@@ -1087,6 +1089,70 @@ const HELP_ORGS = [
 ];
 
 const BENEFITS = [
+  {
+    id: "london-ontario-renovates",
+    name: "Ontario Renovates home repair and accessibility funding (London)",
+    level: "London",
+    category: "Home",
+    amount: "A 10-year forgivable loan up to $25,000 — the first $5,000 is a grant for accessibility work",
+    summary:
+      "Federal and provincial funding, delivered by the City of London, to help lower- and moderate-income homeowners who are seniors 60 or older or people with disabilities make their home accessible or complete essential repairs.",
+    note: "Funding is limited and applications are processed first come, first served until the money is gone, so applying early matters. Additional documentation such as a medical form may be requested when assessing accessibility modifications.",
+    requires: ["london", "londonRenovatesEligibility"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "A senior aged 60 or older, or a person with a disability",
+        "Annual gross household income at or below $95,000, from line 15000 of last year's Notice of Assessment",
+        "Total household liquid assets at or below $30,000, counting TFSAs, GICs, bonds, mutual funds and savings accounts",
+        "The home is your sole and principal residence in London or Middlesex County",
+        "Property tax assessment value at or below $320,000 — the assessed value, not the resale value",
+        "Mortgage payments and property taxes are up to date, and the home is insured for its full value",
+      ],
+      note: "You are not eligible if you have received Ontario Renovates funding before, or if your household previously received funding from the Affordable Housing Program or the Off-Reserve Aboriginal Housing (Trust) Program. Community or social housing as defined under the Housing Services Act 2011 is excluded.",
+    },
+    applyText: "See how to apply",
+    applyUrl: "https://london.ca/living-london/building-renovating/home-repair-accessibility-funding",
+    source: "https://london.ca/living-london/building-renovating/home-repair-accessibility-funding",
+    detail: {
+      about:
+        "The Ontario Renovates Program is funded by the federal and provincial governments and delivered locally by the City of London. It gives financial assistance to low-to-moderate income seniors aged 60 or older and to people with disabilities, to increase accessibility or complete essential repairs in their home. Assistance is a one-time 10-year forgivable loan of up to $25,000. If you are approved for accessibility modifications, the first $5,000 of that is a one-time grant rather than a loan.",
+      aboutList: {
+        lead: "Ontario Renovates helps London homeowners make their home accessible or carry out essential repairs.",
+        items: [
+          "A one-time 10-year forgivable loan of up to $25,000.",
+          "For accessibility modifications, the first $5,000 is a grant, not a loan.",
+          "For seniors aged 60 or older and people with disabilities.",
+          "Accessibility work can include ramps, chair and bath lifts, handrails, grab bars, raised toilets, levered handles, accessible shower stalls, personal emergency response systems, height adjustable countertops and fire alarms.",
+          "Essential repairs can include heating systems, roofs, walls, floors, foundations, chimneys, doors and windows, electrical, plumbing, septic systems and vents.",
+        ],
+      },
+      steps: [
+        "Check the income, liquid asset and property assessment limits before applying",
+        "Get three estimates for the proposed repairs or modifications, and take photographs of the work areas",
+        "Complete the 2026 Homeowner Application with supporting documentation",
+        "Include photo ID for every adult homeowner, your CRA Notice of Assessment, property tax assessment, and confirmation of mortgage and insurance",
+        "Apply as early as you can — funding is limited and processed first come, first served",
+      ],
+      documents: [
+        "Completed and signed Ontario Renovates application forms with supporting documentation",
+        "Government-issued photo ID for all homeowners, such as a driver's licence, passport, citizenship document or Ontario photo card",
+        "Your CRA Notice of Assessment",
+        "Property tax assessment showing the assessed value and that payments are up to date",
+        "Confirmation of mortgage and of insurance coverage",
+        "A list of liquid assets for every household member aged 18 and over",
+        "Three estimates for the proposed repairs or modifications, plus pictures of the proposed work",
+      ],
+      tips: [
+        "Do not start the work before approval — anything started or completed beforehand is ineligible.",
+        "Cosmetic work is excluded, including driveway paving, painting and flooring, as are landscaping, central air conditioning and solar panels.",
+        "A medical form may be requested when assessing accessibility modifications.",
+        "You can only receive Ontario Renovates funding once.",
+        "Questions go to housingprograms@london.ca or 519-661-2489 extension 7831.",
+      ],
+      phone: "519-661-2489 ext. 7831",
+    },
+  },
   {
     id: "hamilton-fare-assist",
     name: "HSR Fare Assist (Hamilton)",
@@ -5289,6 +5355,7 @@ const BENEFIT_VERIFIED = {
   "toronto-fair-pass": "2026-09", "toronto-welcome-policy": "2026-09",
   "ottawa-hand-in-hand": "2026-09", "mississauga-activeassist": "2026-09",
   "brampton-activeassist": "2026-09", "hamilton-fare-assist": "2026-09",
+  "london-ontario-renovates": "2026-09",
   // Ontario province-level records, each verified against its official ontario.ca
   // page on 2026-09-04. Month granularity only — no fabricated day.
   "on-parking-permit": "2026-09", odsp: "2026-09", "on-adp": "2026-09",

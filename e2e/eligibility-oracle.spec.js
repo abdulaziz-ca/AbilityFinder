@@ -45,7 +45,7 @@ async function readCatalogue(page) {
 }
 
 /* Evaluate many personas in one page call. Returns, for each persona, only the
-   status of the program it is about — the full result set is 117 entries per
+   status of the program it is about — the full result set is 118 entries per
    persona and serialising all of it would be the slow part. */
 async function evaluateBatch(page, personas) {
   return page.evaluate((cases) =>

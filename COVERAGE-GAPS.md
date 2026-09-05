@@ -58,12 +58,17 @@ coverage at all. This is where the largest gaps are.
   provincially — that needs assessing rather than assuming, in either direction.
 
 ### CANNOT MODEL
-- **Ontario Renovates.** Delivered by municipal service managers under the Ontario
-  Priorities Housing Initiative. Income limits, maximum forgivable loan amounts and
-  eligible work all vary by service manager, so a single province-level record would
-  have to state amounts that are not province-wide. Belongs in a future municipal
-  stage, verified one service manager at a time. The repo rule against inferring one
-  municipality's policy from another applies directly.
+- **Ontario Renovates, as a single province-wide record.** Delivered by municipal
+  service managers under the Ontario Priorities Housing Initiative. Income limits,
+  maximum forgivable loan amounts and eligible work all vary by service manager, so one
+  province-level record would have to state amounts that are not province-wide.
+  CONFIRMED by building it: London publishes its own figures — a 10-year forgivable loan
+  up to $25,000, the first $5,000 a grant for accessibility work, a $95,000 household
+  income ceiling, $30,000 liquid assets and a $320,000 property assessment cap, limited
+  to London and Middlesex County. Those numbers are London's, not Ontario's. So this
+  moves from "cannot model" to "build it per service manager": `london-ontario-renovates`
+  is the first. Every other service manager delivering Ontario Renovates is now a
+  NOT YET BUILT item rather than an impossibility.
 
 ### OUT OF SCOPE
 - **ODSP Employment Supports.** The official section states no eligibility criteria, no

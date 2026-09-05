@@ -900,6 +900,18 @@ const REQS = {
   mississauga: { met: () => answers.city === "Mississauga", fixed: true, unmet: "This is a City of Mississauga program." },
   brampton: { met: () => answers.city === "Brampton", fixed: true, unmet: "This is a City of Brampton program." },
   hamilton: { met: () => answers.city === "Hamilton", fixed: true, unmet: "This is a City of Hamilton program." },
+  london: { met: () => answers.city === "London", fixed: true, unmet: "This is a City of London program." },
+  londonRenovatesEligibility: {
+    // Deliberately NOT the lowIncome gate: the ceiling is $95,000, which is moderate
+    // rather than low, so a fixed low-income gate would refuse eligible households. The
+    // test also covers liquid assets and property assessment value, which the wizard
+    // never asks about, so it stays unresolved and the record reads "One step away".
+    met: () => false,
+    fixed: false,
+    unmet:
+      "London checks that your gross household income is at or below $95,000, your household liquid assets are at or below $30,000, and your home's property tax assessment value is at or below $320,000, and that it is your sole and principal residence in London or Middlesex County.",
+    action: { text: "See how to apply", url: "https://london.ca/living-london/building-renovating/home-repair-accessibility-funding" },
+  },
   // Municipalities with their own verified programs (researched 2026-07-15).
   reddeer: { met: () => answers.city === "Red Deer", fixed: true, unmet: "This is a City of Red Deer program." },
   lethbridge: { met: () => answers.city === "Lethbridge", fixed: true, unmet: "This is a City of Lethbridge program." },

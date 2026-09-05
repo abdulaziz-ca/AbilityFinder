@@ -1698,3 +1698,18 @@ test("Hamilton Fare Assist is city-gated", async ({ page }) => {
   const inToronto = await evaluateProfile(page, { ...base, city: "Toronto" });
   expect(inToronto["hamilton-fare-assist"].status).toBe("no");
 });
+
+test("London Ontario Renovates is city-gated and never auto-ready", async ({ page }) => {
+  const base = { province: "ON", income: "low", ageBand: "19to59", ageGroup: "adult" };
+  const inLondon = await evaluateProfile(page, { ...base, city: "London" });
+  // The financial test covers assets and property value, which the wizard never asks.
+  expect(inLondon["london-ontario-renovates"].status).toBe("almost");
+  expect(inLondon["london-ontario-renovates"].needs.length).toBeGreaterThan(0);
+
+  const inToronto = await evaluateProfile(page, { ...base, city: "Toronto" });
+  expect(inToronto["london-ontario-renovates"].status).toBe("no");
+
+  // A moderate-income Londoner must NOT be refused outright: the ceiling is $95,000.
+  const moderate = await evaluateProfile(page, { ...base, city: "London", income: "moderate" });
+  expect(moderate["london-ontario-renovates"].status).not.toBe("no");
+});
