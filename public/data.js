@@ -143,6 +143,9 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "waterloo-ontario-renovates": { kind: "grant", excludeFromEstimate: true, note: "maximum $25,000 per dwelling for homeowner repairs as a fully forgivable loan and/or up to $25,000 for eligible accessibility modifications; accessibility funding includes a grant portion up to $5,000; maximum funding limits may be subject to change" },
+  "waterloo-homemaking-support": { kind: "services", excludeFromEstimate: true, note: "light housekeeping, meal planning and preparation, and laundry; waitlist currently approximately 2–3 years except under special circumstances" },
+  "waterloo-curbside-waste-support": { kind: "services", excludeFromEstimate: true, note: "assisted black and green cart set-out, or 30 garbage bag tags per year at no charge for approved medical-waste applicants" },
   "grt-affordable-transit": { kind: "discount", note: "$47 monthly pass vs $104 regular; $1.35 stored value per ride vs $3 regular and $4 cash; $6.75 for 5 MobilityPLUS tickets vs $15 regular" },
   "grt-cnib-pass": { kind: "access", excludeFromEstimate: true, note: "free annual pass for unlimited conventional GRT bus and ION light rail travel" },
   "grt-mobilityplus": { kind: "access", excludeFromEstimate: true, note: "specialized transit; $15 for 5 tickets or $104 monthly, with ATP tickets $6.75 for 5" },
@@ -335,6 +338,9 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "waterloo-ontario-renovates": { difficulty: 3, effort: "Application with identification, income, property, tax, mortgage and insurance documents", wait: "First come first serve; eligible households are contacted by phone to arrange a home inspection" },
+  "waterloo-homemaking-support": { difficulty: 2, effort: "Apply through Caredove, then provide full financial and health information when you reach the top of the waitlist", wait: "Currently approximately 2–3 years, except under special circumstances" },
+  "waterloo-curbside-waste-support": { difficulty: 2, effort: "Apply to the Region for assisted cart collection or the medical exemption", wait: "Ask the Region about current processing time" },
   "grt-affordable-transit": { difficulty: 2, effort: "Online application with household income information and supporting documents", wait: "Not published" },
   "grt-cnib-pass": { difficulty: 1, effort: "Call GRT to arrange a special CNIB EasyGO fare card", wait: "Not published" },
   "grt-mobilityplus": { difficulty: 3, effort: "Two-part application, including a Health/Disability Professional form", wait: "Not published" },
@@ -1118,6 +1124,183 @@ const HELP_ORGS = [
 ];
 
 const BENEFITS = [
+  {
+    id: "waterloo-ontario-renovates",
+    name: "Ontario Renovates home repair and accessibility funding (Region of Waterloo)",
+    level: "Region of Waterloo",
+    category: "Housing",
+    amount: "Maximum $25,000 for homeowner repairs and/or up to $25,000 for eligible accessibility modifications — limits may be subject to change",
+    amountTiers: {
+      caption: "Maximum income by family size — All income maximums updated annually",
+      headers: ["Family size", "Maximum income"],
+      rows: [
+        ["One person", "$41,210"],
+        ["Two persons", "$51,204"],
+        ["Three persons", "$63,072"],
+        ["Four persons", "$76,577"],
+        ["Five persons", "$86,853"],
+        ["Six persons", "$97,956"],
+        ["Seven+ persons", "$109,060"],
+      ],
+    },
+    summary:
+      "Limited funding for qualified low- to moderate-income homeowners in Waterloo Region to complete eligible home repairs, or accessibility modifications for persons with disabilities. Funding is a fully forgivable loan over 10 years, and where accessibility modifications are required the loan includes a grant portion up to $5,000 that does not require repayment.",
+    note: "For the 2026 program, the dated fact sheet says to apply before November 15, 2026 and have a signed agreement by December 15, 2026. Eligible households are placed on the Ontario Renovates List on a first come first serve basis. The program page instead says to apply before December 1 to receive a loan this year; confirm the current deadline with the Region before relying on either date.",
+    requires: ["waterlooRegion", "homeowner", "lowIncome", "waterlooRenovatesEligibility"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You own an existing home in Waterloo Region as your sole and principal residence; you cannot own other property, including a cottage, or have partial ownership of a property",
+        "The home has a maximum value of $600,000",
+        "Your household meets the maximum income for its family size",
+        "Property taxes and mortgage payments are up to date",
+        "Insurance coverage is in place for the full value of the home",
+      ],
+      note: "All income maximums updated annually. If applicable, a household with disabled members can deduct the applicable Canada Revenue Agency tax credit for Persons with Disabilities for the previous year, from line 316 or 318.",
+    },
+    applyText: "See funding and application details",
+    applyUrl: "https://www.regionofwaterloo.ca/programs-and-services/employment-and-financial-supports/financial-support-for-renters-and-homeowners/funding-for-home-repairs/",
+    source: "https://www.regionofwaterloo.ca/programs-and-services/employment-and-financial-supports/financial-support-for-renters-and-homeowners/funding-for-home-repairs/",
+    detail: {
+      about:
+        "The Region of Waterloo delivers Ontario Renovates with funding from the federal and provincial governments through the Ontario Priorities Housing Initiative. There is a maximum of $25,000 per dwelling for homeowner repairs as a fully forgivable loan and/or up to $25,000 for eligible accessibility modifications for persons with disabilities; the maximum funding limits may be subject to change. Repairs and accessibility modifications up to and including $25,000 must be secured by a promissory note. If funding exceeds $25,000, a mortgage registered on title is required. The Ontario Renovates loan is forgivable over 10 years and does not need to be repaid if the homeowner remains the owner, lives in the home and does not default during that period. The maximum loan amount for accessibility modifications, if required, includes a grant portion up to $5,000 that does not require repayment.",
+      aboutList: {
+        lead: "Limited Ontario Renovates funding helps qualified Waterloo Region homeowners with eligible repairs and accessibility modifications.",
+        items: [
+          "Maximum $25,000 per dwelling for homeowner repairs as a fully forgivable loan and/or up to $25,000 for eligible accessibility modifications; maximum funding limits may be subject to change.",
+          "Up to and including $25,000 must be secured by a promissory note; if funding exceeds $25,000, a mortgage registered on title is required.",
+          "The forgivable-loan period is 10 years. No repayment is needed if the homeowner remains the owner, lives in the home and does not default during those 10 years.",
+          "Accessibility funding, if required, includes a grant portion up to $5,000 that does not require repayment.",
+          "Eligible repairs include building exteriors such as roofs, walls or foundations; doors and windows; plumbing; fire safety; electrical systems; heating systems; and mold remediation.",
+          "Eligible accessibility modifications include ramps; handrails; chair and bath lifts; height adjustments to counter tops; cues for doorbells or fire alarms; and bathroom modifications.",
+        ],
+      },
+      steps: [
+        "Check your family size against the income table and confirm the home-value, ownership, tax, mortgage and insurance requirements",
+        "Gather every required document — the application will not be processed unless ALL required documents are received",
+        "Submit the application by email, fax, mail or in person",
+        "If eligible, wait for the Region to contact you by phone to arrange a home inspection",
+        "For the 2026 program, use the fact sheet's November 15 application date and December 15 signed-agreement date as the lead dates, but confirm them because the program page gives December 1 instead",
+      ],
+      documents: [
+        "Photo identification",
+        "Income verification",
+        "A recent property assessment notice or property tax bill",
+        "Proof of home insurance",
+        "Proof that property taxes and mortgage payments are up to date",
+      ],
+      tips: [
+        "ALL required documents must be received or the application will not be processed.",
+        "The fact sheet says applications are accepted on an ongoing basis, with 2026 funding available starting after April 1, 2026 once confirmed by the province.",
+        "The dated fact sheet says apply before November 15, 2026; the program page says apply before December 1 to receive a loan this year. Confirm the current deadline with the Region before relying on either.",
+        "For emergencies such as heating issues or an urgent plumbing leak, call 519-575-4400.",
+        "Apply by email at OntarioRenovates@regionofwaterloo.ca, by fax at 519-575-4026, or by mail or in person at 20 Weber St. E., Kitchener; 150 Main St., Cambridge; or 99 Regina St. S., Waterloo.",
+      ],
+      phone: "519-575-4400",
+    },
+  },
+  {
+    id: "waterloo-homemaking-support",
+    name: "Homemaking Support Services Program (Region of Waterloo)",
+    level: "Region of Waterloo",
+    category: "Home support",
+    amount: "Light housekeeping, meal planning and preparation, and laundry",
+    summary:
+      "The Region funds agencies to help eligible people live independently with light housekeeping, meal planning and preparation, and laundry. The waitlist is currently approximately 2–3 years, except under special circumstances.",
+    note: "Once you reach the top of the waitlist, full disclosure of financial and health information is required to confirm eligibility. Crisis cleans may be considered when there is a serious and immediate threat to a household's safety and/or housing stability, such as severe unsanitary conditions, infestation or hoarding.",
+    requires: ["waterlooRegion", "lowIncome", "waterlooHomemakingNeed"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You live in Waterloo Region",
+        "You meet the financial criteria through low income or social support",
+        "You have significant functional impairments that affect your ability to complete homemaking tasks",
+        "You need help at home due to illness, recovery from injury, aging or disability",
+      ],
+      note: "Full financial and health information is required to confirm eligibility once you reach the top of the waitlist.",
+    },
+    applyText: "Apply through Caredove",
+    applyUrl: "https://www.regionofwaterloo.ca/programs-and-services/seniors-and-long-term-care/community-programs-for-older-adults/homemaking-support/",
+    source: "https://www.regionofwaterloo.ca/programs-and-services/seniors-and-long-term-care/community-programs-for-older-adults/homemaking-support/",
+    detail: {
+      about:
+        "The Region of Waterloo funds agencies to provide support to people who need assistance to live independently. Services are light housekeeping, meal planning and preparation, and laundry. The program is fully funded through the Ministry of Health and the Region of Waterloo. The waitlist is currently approximately 2–3 years, except under special circumstances.",
+      aboutList: {
+        lead: "Homemaking support helps eligible Waterloo Region residents live independently at home.",
+        items: [
+          "Light housekeeping.",
+          "Meal planning and preparation.",
+          "Laundry.",
+          "The waitlist is currently approximately 2–3 years, except under special circumstances.",
+          "Full financial and health information is required to confirm eligibility when you reach the top of the waitlist.",
+        ],
+      },
+      steps: [
+        "Open the Homemaking Support Services Program application through Caredove",
+        "If you have trouble, choose “I'm signing up for myself, a family member or a friend” without requiring login credentials",
+        "Join the waitlist",
+        "When you reach the top, provide full financial and health information so the program can confirm eligibility",
+      ],
+      documents: [
+        "Financial information when you reach the top of the waitlist",
+        "Health information when you reach the top of the waitlist",
+      ],
+      tips: [
+        "The waitlist is currently approximately 2–3 years, except under special circumstances.",
+        "Crisis cleans may be considered when there is a serious and immediate threat to household safety and/or housing stability, including severe unsanitary conditions, infestation or hoarding; they are not an automatic entitlement.",
+        "For help, call the Homemaking Coordinator at 519-893-8494 extension 6342.",
+      ],
+      phone: "519-893-8494 ext. 6342",
+    },
+  },
+  {
+    id: "waterloo-curbside-waste-support",
+    name: "Curbside waste support programs (Region of Waterloo)",
+    level: "Region of Waterloo",
+    category: "Home support",
+    amount: "Assisted cart collection, or 30 garbage bag tags a year at no charge for approved applicants",
+    summary:
+      "Two supports for Waterloo Region residents who create extra medical-related waste and/or have a disability or physical limitation that makes it difficult to place black and green carts at the curb: assisted cart set-out and a medical exemption with 30 free garbage bag tags per year for approved applicants.",
+    note: "Assisted Waste Collection is only for moving Region-issued black garbage and green organics carts from an agreed set-out location to the curb. Staff do not empty indoor containers, move carts from another location, collect outside the regular schedule, or enter homes or garages.",
+    requires: ["waterlooRegion", "waterlooWasteSupportApproval"],
+    eligibility: {
+      mode: "any",
+      items: [
+        "For Assisted Waste Collection: you live with a disability or physical limitation, need help placing Region-issued black and green carts at the curb, and do not have someone available to help",
+        "For the Medical Exemption Program: medical needs create extra garbage, such as packaging, incontinence products or unrecyclable medical waste",
+      ],
+      note: "The Region presents these as two support programs on one page. Approval depends on the requirements for the program you apply to.",
+    },
+    applyText: "See both waste support programs",
+    applyUrl: "https://www.regionofwaterloo.ca/programs-and-services/garbage-and-organics/garbage/curbside-waste-support/",
+    source: "https://www.regionofwaterloo.ca/programs-and-services/garbage-and-organics/garbage/curbside-waste-support/",
+    detail: {
+      about:
+        "The Region of Waterloo offers two support programs for residents who create extra medical-related waste and/or live with a disability or physical limitation that makes it difficult to place black and green carts at the curb for collection. Assisted Waste Collection helps eligible residents move Region-issued black garbage and green organics carts to the curb when no one is available to help. The Medical Exemption Program gives approved applicants 30 garbage bag tags per year at no charge for extra garbage created by medical needs.",
+      aboutList: {
+        lead: "One page covers two different curbside waste supports.",
+        items: [
+          "Assisted Waste Collection is for residents with a disability or physical limitation who need help placing Region-issued black garbage and green organics carts at the curb and do not have someone available to help.",
+          "It does not include emptying indoor containers into carts, moving carts from anywhere other than the agreed set-out location, or collecting waste outside the regular schedule.",
+          "Collection staff will not enter homes or garages.",
+          "The Medical Exemption Program is for medical needs that create extra garbage, such as packaging, incontinence products or unrecyclable medical waste.",
+          "Approved Medical Exemption applicants receive 30 garbage bag tags per year at no charge.",
+          "Extra garbage bags must be tagged and placed beside the garbage cart.",
+        ],
+      },
+      steps: [
+        "Choose Assisted Waste Collection if you need help moving the Region-issued carts, or the Medical Exemption Program if medical needs create extra garbage",
+        "Review and apply through the Region's curbside waste support page",
+        "For the assisted service, agree on the cart set-out location",
+        "For the medical exemption, tag each extra garbage bag and place it beside the garbage cart",
+      ],
+      documents: [],
+      tips: [
+        "The assisted service does not include indoor waste handling, a different cart location, extra collection days, or entry into a home or garage.",
+        "Medical Exemption approval provides 30 garbage bag tags per year at no charge; extra bags still have to be tagged and set beside the garbage cart.",
+      ],
+    },
+  },
   {
     id: "grt-affordable-transit",
     name: "Affordable Transit Program (Grand River Transit)",
@@ -5912,6 +6095,8 @@ const BENEFITS = [
 ];
 
 const BENEFIT_VERIFIED = {
+  "waterloo-ontario-renovates": "2026-09", "waterloo-homemaking-support": "2026-09",
+  "waterloo-curbside-waste-support": "2026-09",
   "grt-affordable-transit": "2026-09", "grt-cnib-pass": "2026-09",
   "grt-mobilityplus": "2026-09", "grt-taxi-coupons": "2026-09",
   "grt-support-person": "2026-09",

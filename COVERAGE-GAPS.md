@@ -85,6 +85,25 @@ coverage at all. This is where the largest gaps are.
   is the first. Every other service manager delivering Ontario Renovates is now a
   NOT YET BUILT item rather than an impossibility.
 
+  CONFIRMED AGAIN by the Region of Waterloo, 2026-09-05: same programme name, different
+  numbers. Waterloo's income ceilings run by family size from $41,210 for one person to
+  $109,060 for seven or more; the home must be a sole and principal residence worth at
+  most $600,000, with no other property owned anywhere; and the deadline is its own.
+  None of those figures resemble London's. The two records share only the $25,000 ceiling
+  and the 10-year term. Anyone tempted to generalise these should read both records
+  side by side first.
+
+- **A forgivable loan, as a distinct value kind.** `BENEFIT_VALUES.kind` offers cash,
+  access, taxCredit, grant, coverage, services and discount — there is no loan. Both
+  Ontario Renovates records are therefore `grant`, which is the closest fit but overstates
+  the thing: the money is a forgivable loan that only stops being repayable after ten
+  years of continued ownership and occupancy, and only the accessibility grant portion of
+  up to $5,000 is genuinely never repaid. Codex flagged this on the Waterloo record and it
+  is a fair flag; the record text says "fully forgivable loan" in the summary, amount and
+  detail, so the user is not misled, but the machine-readable kind is a compromise. If a
+  loan kind is ever added, these two records and any future Ontario Renovates record are
+  the ones to reclassify. Do not reclassify only one of them.
+
 ### OUT OF SCOPE
 - **ODSP Employment Supports.** The official section states no eligibility criteria, no
   amounts and no application process — only "ask ODSP staff" and a pointer to

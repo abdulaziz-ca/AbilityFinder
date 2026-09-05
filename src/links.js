@@ -3,13 +3,28 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 203 links. The monitor checks a bounded rotating batch every
+// 206 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) URLs are skipped — they depend on the
 // user's answers and expose no safe static URL to check.
 
 export const LINKS = [
+  {
+    "url": "https://www.regionofwaterloo.ca/programs-and-services/employment-and-financial-supports/financial-support-for-renters-and-homeowners/funding-for-home-repairs/",
+    "label": "Ontario Renovates home repair and accessibility funding (Region of Waterloo) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.regionofwaterloo.ca/programs-and-services/seniors-and-long-term-care/community-programs-for-older-adults/homemaking-support/",
+    "label": "Homemaking Support Services Program (Region of Waterloo) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.regionofwaterloo.ca/programs-and-services/garbage-and-organics/garbage/curbside-waste-support/",
+    "label": "Curbside waste support programs (Region of Waterloo) — apply",
+    "kind": "apply"
+  },
   {
     "url": "https://www.grt.ca/fares-and-payment/affordable-transit-program/",
     "label": "Affordable Transit Program (Grand River Transit) — apply",

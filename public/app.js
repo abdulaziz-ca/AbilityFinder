@@ -916,6 +916,27 @@ const REQS = {
     fixed: true,
     unmet: "This part of the service covers Cambridge, Kitchener and Waterloo; townships have a separate specialized service.",
   },
+  waterlooRenovatesEligibility: {
+    met: () => false,
+    fixed: false,
+    unmet:
+      "The Region must confirm the family-size income maximum, the home's maximum $600,000 value, sole and principal residence with no other property ownership, up-to-date property taxes and mortgage payments, and full-value home insurance.",
+    action: { text: "See funding and application details", url: "https://www.regionofwaterloo.ca/programs-and-services/employment-and-financial-supports/financial-support-for-renters-and-homeowners/funding-for-home-repairs/" },
+  },
+  waterlooHomemakingNeed: {
+    met: () => false,
+    fixed: false,
+    unmet:
+      "The program confirms that significant functional impairments affect your homemaking tasks, that you need help at home due to illness, recovery from injury, aging or disability, and that you meet its financial criteria. Full financial and health information is required when you reach the top of the waitlist.",
+    action: { text: "Apply through Caredove", url: "https://www.regionofwaterloo.ca/programs-and-services/seniors-and-long-term-care/community-programs-for-older-adults/homemaking-support/" },
+  },
+  waterlooWasteSupportApproval: {
+    met: () => false,
+    fixed: false,
+    unmet:
+      "Assisted collection is for a disability or physical limitation when nobody is available to help; the medical exemption's bag tags go to approved applicants. Either way you apply to the Region first.",
+    action: { text: "See both waste support programs", url: "https://www.regionofwaterloo.ca/programs-and-services/garbage-and-organics/garbage/curbside-waste-support/" },
+  },
   yorkHomemakersNeed: {
     met: () => false,
     fixed: false,
