@@ -8,7 +8,7 @@
 
 const BC_ENABLED = true;
 // Ontario rollout — dark until launch (ticket #91)
-const ON_ENABLED = false;
+const ON_ENABLED = true;
 // Scope labels compose from the enabled-province set, so flipping a flag updates them everywhere.
 // Invariant: with ON_ENABLED=false (and BC_ENABLED=true) these produce exactly the prior Alberta+BC strings.
 const _SCOPE_FULL = ["Alberta", ...(BC_ENABLED ? ["British Columbia"] : []), ...(ON_ENABLED ? ["Ontario"] : [])];

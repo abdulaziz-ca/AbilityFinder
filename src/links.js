@@ -3,13 +3,58 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 179 links. The monitor checks a bounded rotating batch every
+// 188 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) URLs are skipped — they depend on the
 // user's answers and expose no safe static URL to check.
 
 export const LINKS = [
+  {
+    "url": "https://www.ontario.ca/page/get-help-high-prescription-drug-costs",
+    "label": "Trillium Drug Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/passport-program-adults-developmental-disability",
+    "label": "Passport program (adults with a developmental disability) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/home-and-vehicle-modification-program",
+    "label": "Home and Vehicle Modification Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/special-services-home",
+    "label": "Special Services at Home (SSAH) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/assistance-children-severe-disabilities-program",
+    "label": "Assistance for Children with Severe Disabilities (ACSD) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/assistive-devices-program",
+    "label": "Assistive Devices Program (Ontario) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/ontario-autism-program",
+    "label": "Ontario Autism Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/ontario-disability-support-program",
+    "label": "Ontario Disability Support Program (ODSP) — income support — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/get-accessible-parking-permit",
+    "label": "Accessible Parking Permit (Ontario) — apply",
+    "kind": "apply"
+  },
   {
     "url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/t2201.html",
     "label": "Disability Tax Credit (DTC) — apply",

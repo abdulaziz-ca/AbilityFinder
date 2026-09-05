@@ -15,11 +15,12 @@ with federal, provincial, and municipal guides. It answers five questions:
 4. What should I apply for first?
 5. How do I apply?
 
-**British Columbia is live.** `BC_ENABLED` in `public/app.js` is `true`, and the
-catalog holds **111 benefits** — 16 federal, 14 Alberta, 42 British Columbia, 9 Ontario
-(held dark behind `ON_ENABLED=false`, so it does not surface on the site, in generated
-guides, the sitemap, or the assistant grounding), and the remainder municipal. The residency question offers Alberta, British Columbia, and
-"another province or territory"; the last of these still sees federal benefits only.
+**British Columbia is live, and Ontario went live in September 2026.** `BC_ENABLED` and
+`ON_ENABLED` in `public/app.js` are both `true`, and the
+catalog holds **111 benefits** — 16 federal, 14 Alberta, 42 British Columbia, 9 Ontario,
+and the remainder municipal. The residency question offers Alberta, British Columbia,
+Ontario, and "another province or territory"; the last of these still sees federal
+benefits only.
 
 Provinces beyond Alberta and B.C. are parked in `archive/data-provinces-later.js`,
 which is **outside the deployed directory** and is not loaded or served (it was moved
