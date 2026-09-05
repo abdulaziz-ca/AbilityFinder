@@ -56,7 +56,9 @@ Document findings as reproducible issues, not broad redesign requests.
   deployed `public/` directory and is not served.
 - Keep French paused until there is capacity to translate and maintain the benefit
   catalog, not only the interface.
-- **Ontario staging (#91).** Nine Ontario records are staged in `public/data.js` behind
+- **Ontario staging (#91).** The switch-on sequence is written up in `ONTARIO-GO-LIVE.md`,
+  and was rehearsed end to end on 2026-09-04 (flag flipped on locally, regenerated, tested,
+  flipped back byte-identical). Nine Ontario records are staged in `public/data.js` behind
   `ON_ENABLED=false`. The render-path hardening that gated go-live is **done**: the
   router guard, `renderResults()`, `renderDetail()`, `printResults()`, the printable
   action plan, the public program counts, the recently-verified list and the
