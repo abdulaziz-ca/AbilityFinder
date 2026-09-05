@@ -1447,6 +1447,7 @@ const BROWSE_LEVELS = [
   { key: "Federal", label: "Federal" },
   { key: "Alberta", label: "Alberta" },
   { key: "British Columbia", label: "British Columbia" },
+  ...(ON_ENABLED ? [{ key: "Ontario", label: "Ontario" }] : []),
   { key: "local", label: "Local / city" },
 ];
 
@@ -1817,6 +1818,14 @@ const PROVINCE_NAME = {
   NL: "Newfoundland & Labrador", PE: "Prince Edward Island",
   YT: "Yukon", NT: "Northwest Territories", NU: "Nunavut",
 };
+
+/* The `level` string a provincial record carries, for every province we cover.
+   Derived rather than written out, so a newly covered province is counted as
+   provincial instead of silently falling through to the municipal bucket — which
+   is exactly what happened to Ontario's nine records on launch day. */
+const PROVINCE_LEVEL_NAMES = new Set(
+  COVERED_PROVINCES.map((code) => PROVINCE_NAME[code]).filter(Boolean)
+);
 function updateNavTag() {
   const tag = document.getElementById("navTag");
   if (tag) tag.textContent = PROVINCE_NAME[answers.province] || SCOPE_REGION_LABEL;
@@ -2860,7 +2869,7 @@ function renderGrants() {
     <button class="back-link" type="button" data-grants-back>${icon("arrowLeft")} ${t("grants.back")}</button>
     <p class="section-label">${t("grants.kicker")}</p>
     <h1 class="legal-title">${t("grants.title")}</h1>
-    <p class="legal-lede">${t("grants.lede")} ${["AB", "BC"].includes(answers.province) ? `Showing ${answers.province === "BC" ? "British Columbia" : "Alberta"} and Canada-wide funds.` : "Choose a province in the questionnaire to narrow this directory."}</p>
+    <p class="legal-lede">${t("grants.lede")} ${COVERED_PROVINCES.includes(answers.province) ? `Showing ${PROVINCE_NAME[answers.province]} and Canada-wide funds.` : "Choose a province in the questionnaire to narrow this directory."}</p>
     <div class="grants-filters" role="group" aria-label="${t("grants.filter.label")}">${filters}</div>
     <div class="grants-grid">${cards}</div>
     <aside class="grants-suggest">
@@ -2908,7 +2917,13 @@ function renderOrganizations() {
     <button class="back-link" type="button" data-orgs-back>${icon("arrowLeft")} ${t("orgs.back")}</button>
     <p class="section-label">${t("orgs.kicker")}</p>
     <h1 class="legal-title">${t("orgs.title")}</h1>
-    <p class="legal-lede">${t("orgs.lede")} ${["AB", "BC"].includes(answers.province) ? `Showing organizations that serve ${answers.province === "BC" ? "British Columbia" : "Alberta"}.` : "Choose a province in the questionnaire to narrow this directory."}</p>
+    <p class="legal-lede">${t("orgs.lede")} ${
+      !COVERED_PROVINCES.includes(answers.province)
+        ? "Choose a province in the questionnaire to narrow this directory."
+        : ORGS_DIRECTORY.some((organization) => coverageApplies(organization))
+          ? `Showing organizations that serve ${PROVINCE_NAME[answers.province]}.`
+          : `No organizations listed for ${PROVINCE_NAME[answers.province]} yet. The directory currently covers Alberta and British Columbia.`
+    }</p>
     <div class="orgs-grid">${cards}</div>
     <section class="orgs-rules" aria-labelledby="orgs-rules-title">
       <h2 id="orgs-rules-title">${icon("check")}${t("orgs.rules.h")}</h2>
@@ -2932,7 +2947,7 @@ function impactCatalogStats() {
   const programs = browseCatalog();
   const levels = programs.reduce((counts, benefit) => {
     if (benefit.level === "Federal") counts.federal += 1;
-    else if (["Alberta", "British Columbia"].includes(benefit.level)) counts.provincial += 1;
+    else if (PROVINCE_LEVEL_NAMES.has(benefit.level)) counts.provincial += 1;
     else counts.municipal += 1;
     return counts;
   }, { federal: 0, provincial: 0, municipal: 0 });
