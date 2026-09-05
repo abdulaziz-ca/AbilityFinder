@@ -901,6 +901,7 @@ const REQS = {
   brampton: { met: () => answers.city === "Brampton", fixed: true, unmet: "This is a City of Brampton program." },
   hamilton: { met: () => answers.city === "Hamilton", fixed: true, unmet: "This is a City of Hamilton program." },
   london: { met: () => answers.city === "London", fixed: true, unmet: "This is a City of London program." },
+  windsor: { met: () => answers.city === "Windsor", fixed: true, unmet: "This is a City of Windsor program." },
   yorkRegion: {
     met: () => ["Aurora", "Markham", "Newmarket", "Richmond Hill", "Vaughan"].includes(answers.city),
     fixed: true,
@@ -999,6 +1000,12 @@ const REQS = {
     unmet:
       "London checks that your gross household income is at or below $95,000, your household liquid assets are at or below $30,000, and your home's property tax assessment value is at or below $320,000, and that it is your sole and principal residence in London or Middlesex County.",
     action: { text: "See how to apply", url: "https://london.ca/living-london/building-renovating/home-repair-accessibility-funding" },
+  },
+  p2pIncomeTest: {
+    met: () => false,
+    fixed: false,
+    unmet:
+      "Eligibility depends on your household's combined income being at or below the Market Basket Measure threshold for its family size. The programme page does not list those thresholds and directs applicants to contact their local municipal transit or recreation department for them.",
   },
   // Municipalities with their own verified programs (researched 2026-07-15).
   reddeer: { met: () => answers.city === "Red Deer", fixed: true, unmet: "This is a City of Red Deer program." },

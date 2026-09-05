@@ -86,6 +86,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://abilityfinder.ca/guides/windsor-affordable-pass</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://abilityfinder.ca/guides/windsor-recreation-assistance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://abilityfinder.ca/guides/hamilton-fare-assist</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

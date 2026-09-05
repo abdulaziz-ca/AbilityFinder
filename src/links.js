@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 206 links. The monitor checks a bounded rotating batch every
+// 208 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) URLs are skipped — they depend on the
@@ -68,6 +68,16 @@ export const LINKS = [
   {
     "url": "https://london.ca/living-london/building-renovating/home-repair-accessibility-funding",
     "label": "Ontario Renovates home repair and accessibility funding (London) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.citywindsor.ca/residents/social-services/social-policy-and-pathway-to-potential/pathway-to-potential/p2p-programs/affordable-pass-program",
+    "label": "Affordable Pass Program (Windsor) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.citywindsor.ca/residents/social-services/social-policy-and-pathway-to-potential/pathway-to-potential/p2p-programs/recreation-assistance-program",
+    "label": "90% Recreation Discount (Windsor) — apply",
     "kind": "apply"
   },
   {

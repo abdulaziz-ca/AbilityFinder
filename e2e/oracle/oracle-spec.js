@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.14.0";
+const SPEC_VERSION = "1.15.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -233,6 +233,7 @@ const GATES = {
   brampton: municipality("Brampton", "ON"),
   hamilton: municipality("Hamilton", "ON"),
   london: municipality("London", "ON"),
+  windsor: municipality("Windsor", "ON"),
   yorkRegion: {
     evidence: "answers",
     satisfy: { set: { city: "Markham" } },
@@ -261,6 +262,7 @@ const GATES = {
   supportPersonApproval: external("Depends on applying to the Transit Support Person program."),
   aCardProof: external("Depends on holding a CNIB card or an Attorney-General of Ontario Guide Dog photo ID card."),
   londonRenovatesEligibility: external("Depends on household income, liquid assets and the home's property tax assessment value, none of which the wizard asks about."),
+  p2pIncomeTest: external("Depends on combined household income being at or below the Market Basket Measure threshold for family size; Windsor does not publish those thresholds, so the applicant must ask the local municipal transit or recreation department."),
   reddeer: municipality("Red Deer", "AB"),
   lethbridge: municipality("Lethbridge", "AB"),
   medicinehat: municipality("Medicine Hat", "AB"),
@@ -717,6 +719,8 @@ const PROGRAM_BEST_CASE = {
   "ottawa-equipass":                               "ready",
   "ottawa-a-card":                                 "almost",
   "london-ontario-renovates":                      "almost",
+  "windsor-affordable-pass":                       "almost",
+  "windsor-recreation-assistance":                 "almost",
   "hamilton-fare-assist":                          "ready",
   "brampton-activeassist":                         "ready",
   "mississauga-activeassist":                      "ready",
