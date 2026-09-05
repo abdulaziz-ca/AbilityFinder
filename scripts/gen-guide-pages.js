@@ -52,6 +52,20 @@ if (!Array.isArray(onCities)) {
 const benefitIsBritishColumbia = (b) =>
   b.level === "British Columbia" || b.level === "Metro Vancouver" || bcCities.includes(b.level);
 const benefitIsOntario = (b) => b.level === "Ontario" || onCities.includes(b.level);
+
+/* Public-facing copy composes from the enabled provinces, so flipping a province flag
+   updates the guides index without anyone remembering to hand-edit the description.
+   With BC on and Ontario off this produces exactly the prior "Alberta and British
+   Columbia" wording, so a dark rollout leaves the generated output byte-identical. */
+const enabledProvinceNames = [
+  "Alberta",
+  ...(bcEnabled ? ["British Columbia"] : []),
+  ...(onEnabled ? ["Ontario"] : []),
+];
+const provinceProse =
+  enabledProvinceNames.length <= 1
+    ? enabledProvinceNames[0] || ""
+    : `${enabledProvinceNames.slice(0, -1).join(", ")} and ${enabledProvinceNames[enabledProvinceNames.length - 1]}`;
 let benefits = allBenefits;
 if (!bcEnabled) benefits = benefits.filter((b) => !benefitIsBritishColumbia(b));
 if (!onEnabled) benefits = benefits.filter((b) => !benefitIsOntario(b));
@@ -245,7 +259,7 @@ const guideIndex = `<!DOCTYPE html>
 <html lang="en">
 ${head({
   title: "Disability benefit program guides — AbilityFinder",
-  desc: "Plain-language guides to disability benefits for Alberta and British Columbia, plus Canada-wide federal programs and selected municipal programs, with eligibility, value, application steps, and official sources.",
+  desc: `Plain-language guides to disability benefits for ${provinceProse}, plus Canada-wide federal programs and selected municipal programs, with eligibility, value, application steps, and official sources.`,
   canonical: "https://abilityfinder.ca/guides/",
 })}
   <body>

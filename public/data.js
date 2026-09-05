@@ -1267,7 +1267,7 @@ const BENEFITS = [
       },
       steps: [
         "Gather documentation of your child's functional limitations from a regulated health professional",
-        "Gather proof of the child's Ontario residency, proof they are legally entitled to live in Canada, and proof of age",
+        "Gather proof of the child's Ontario residency, proof they are legally entitled to live in Canada, and a document confirming their date of birth",
         "Complete the SSAH application form — only one person with decision-making responsibility for the child applies",
         "Send the application to your local Ministry regional office",
         "If approved, choose whether to manage the funding yourself or have an agency manage it for you, then submit your expenses to be reimbursed",
