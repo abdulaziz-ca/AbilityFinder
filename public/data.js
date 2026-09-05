@@ -47,7 +47,7 @@ const CITIES_WITH_PROGRAMS = [
   "Cochrane", "Okotoks", "Canmore", "Lloydminster", "Fort Saskatchewan",
   "Vancouver", "Surrey", "Burnaby", "Richmond", "Victoria", "Saanich",
   "Kelowna", "Coquitlam", "Kamloops",
-  "Toronto",
+  "Toronto", "Ottawa",
 ];
 
 /* ---------------------------------------------- Alberta communities (pop >5,000)
@@ -136,6 +136,7 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "ottawa-hand-in-hand": { kind: "discount", note: "$185 per person per year toward City recreation and culture programs" },
   "toronto-fair-pass": { kind: "discount", note: "36% off adult single TTC fares — $2.10 instead of $3.30, monthly cap $98.70" },
   "toronto-welcome-policy": { kind: "discount", note: "$683.04/year up to age 24; $314.60/year at 25 and over" },
   "trillium-drug-program": { kind: "coverage", excludeFromEstimate: true, note: "for most people the deductible is about 4% of after-tax household income, then up to $2 for each drug filled or refilled" },
@@ -312,6 +313,7 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "ottawa-hand-in-hand": { difficulty: 2, effort: "Application form, approved in person at a recreation or cultural facility", wait: "Not published" },
   "toronto-fair-pass": { difficulty: 2, effort: "Online application with a PRESTO card number, plus proof of income or an OW/ODSP member ID", wait: "Not published" },
   "toronto-welcome-policy": { difficulty: 2, effort: "Application with documents for each family member", wait: "Not published" },
   "trillium-drug-program": { difficulty: 2, effort: "Household application, online or on paper", wait: "Not published" },
@@ -1079,6 +1081,60 @@ const HELP_ORGS = [
 ];
 
 const BENEFITS = [
+  {
+    id: "ottawa-hand-in-hand",
+    name: "Ottawa Hand in Hand recreation fee support",
+    level: "Ottawa",
+    category: "Recreation",
+    amount: "$185 a year per person toward City recreation and culture programs",
+    summary:
+      "Fee support for City of Ottawa recreation and culture programs, for residents with a low income, a family member with a disability, or who already take part in a community or social service agency program. Receiving ODSP or Assistance for Children with Severe Disabilities counts as proof of financial need.",
+    note: "A parent or guardian can transfer all or part of their fee support to a child in their household. Applicants are encouraged to pay a minimum of 25 per cent of the program cost themselves.",
+    requires: ["ottawa", "lowIncome"],
+    eligibility: {
+      mode: "all",
+      items: [
+        "You live in the City of Ottawa",
+        "You are applying for yourself or for a dependant",
+        "You can show proof of identity, residency and financial need",
+      ],
+      note: "Residents of all ages are eligible. Financial need can be shown by evidence of receiving Essential Health and Social Supports, the Ontario Disability Support Program, Assistance for Children with Severe Disabilities, or the Guaranteed Income Supplement; by a means test using the Low Income Cut-Off; or by a T451E Notice of Assessment or Child Tax Benefit form. Special circumstances may also be considered.",
+    },
+    applyText: "See how to apply for Hand in Hand",
+    applyUrl: "https://ottawa.ca/en/recreation-and-parks/register-courses-and-camps/registration-terms-and-cancellations/financial-support-ottawa-hand-hand",
+    source: "https://ottawa.ca/en/recreation-and-parks/register-courses-and-camps/registration-terms-and-cancellations/financial-support-ottawa-hand-hand",
+    detail: {
+      about:
+        "Ottawa Hand in Hand is the City of Ottawa's recreation and culture fee support program. Each qualifying individual, or member of a family, is eligible for an annual amount of fee support of $185 per person, which can be used toward programs and activities offered by the Recreation, Cultural and Facility Services Department. Only City of Ottawa residents may apply, on their own behalf or for a dependant.",
+      aboutList: {
+        lead: "Ottawa Hand in Hand helps with the cost of City recreation and culture programs.",
+        items: [
+          "$185 a year for each qualifying person, including each member of a family.",
+          "Covers programs and activities run by the City's Recreation, Cultural and Facility Services Department.",
+          "Residents of all ages are eligible.",
+          "A parent or guardian can transfer all or part of their entitlement to a child in their household.",
+          "Applicants are encouraged to pay at least 25 per cent of the program cost themselves.",
+        ],
+      },
+      steps: [
+        "Gather proof of identity, residency and financial need — be ready to provide copies of formal documentation",
+        "If you receive Ontario Works, ask your case worker to complete the application for you",
+        "Otherwise complete the application form, or pick one up at most staffed recreation facilities or at a Client Service Centre",
+        "Bring the completed form to your local recreation or cultural facility, where a supervisor reviews it for approval",
+        "Apply as early as you can, before the program registration period opens",
+      ],
+      documents: [
+        "Proof of identity and of Ottawa residency",
+        "Proof of financial need — for example evidence of receiving ODSP, Assistance for Children with Severe Disabilities, Essential Health and Social Supports or the Guaranteed Income Supplement, a Low Income Cut-Off means test, a T451E Notice of Assessment, or a Child Tax Benefit form",
+      ],
+      tips: [
+        "Applications can only be approved in person at a recreation or cultural facility, not online.",
+        "Apply as early as possible before registration opens — popular programs fill up.",
+        "Being on ODSP or Assistance for Children with Severe Disabilities is itself accepted as proof of financial need.",
+        "Unlike some other cities' subsidies, a parent or guardian can move their entitlement to a child in the household.",
+      ],
+    },
+  },
   {
     id: "toronto-fair-pass",
     name: "Fair Pass Transit Discount (Toronto)",
@@ -5061,6 +5117,7 @@ const BENEFIT_VERIFIED = {
   // Toronto municipal records, verified against the City of Toronto's own pages
   // on 2026-09-04.
   "toronto-fair-pass": "2026-09", "toronto-welcome-policy": "2026-09",
+  "ottawa-hand-in-hand": "2026-09",
   // Ontario province-level records, each verified against its official ontario.ca
   // page on 2026-09-04. Month granularity only — no fabricated day.
   "on-parking-permit": "2026-09", odsp: "2026-09", "on-adp": "2026-09",

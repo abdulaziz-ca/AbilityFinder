@@ -6,8 +6,8 @@ rules. Use `ROADMAP.md` for active work, `DEPLOY.md` for production operations, 
 
 ## Scope
 
-AbilityFinder is a disability-benefit finder covering Alberta and British Columbia,
-with federal, provincial, and municipal guides. It answers five questions:
+AbilityFinder is a disability-benefit finder covering Alberta, British Columbia and
+Ontario, with federal, provincial, and municipal guides. It answers five questions:
 
 1. What can I get?
 2. What may it be worth?
@@ -17,7 +17,7 @@ with federal, provincial, and municipal guides. It answers five questions:
 
 **British Columbia is live, and Ontario went live in September 2026.** `BC_ENABLED` and
 `ON_ENABLED` in `public/app.js` are both `true`, and the
-catalog holds **113 benefits** — 16 federal, 14 Alberta, 42 British Columbia, 9 Ontario,
+catalog holds **114 benefits** — 16 federal, 14 Alberta, 42 British Columbia, 9 Ontario,
 and the remainder municipal. The residency question offers Alberta, British Columbia,
 Ontario, and "another province or territory"; the last of these still sees federal
 benefits only.

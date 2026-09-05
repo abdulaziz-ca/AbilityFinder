@@ -1650,3 +1650,17 @@ test("Toronto municipal programs are city-gated", async ({ page }) => {
   const inCalgary = await evaluateProfile(page, { ...torontonian, province: "AB", city: "Calgary" });
   expect(inCalgary["toronto-fair-pass"].status).toBe("no");
 });
+
+test("Ottawa Hand in Hand is city-gated", async ({ page }) => {
+  const inOttawa = await evaluateProfile(page, {
+    province: "ON", city: "Ottawa", income: "low", ageBand: "19to59", ageGroup: "adult",
+  });
+  expect(inOttawa["ottawa-hand-in-hand"].status).toBe("ready");
+
+  // Toronto's programs and Ottawa's must not cross over.
+  expect(inOttawa["toronto-fair-pass"].status).toBe("no");
+  const inToronto = await evaluateProfile(page, {
+    province: "ON", city: "Toronto", income: "low", ageBand: "19to59", ageGroup: "adult",
+  });
+  expect(inToronto["ottawa-hand-in-hand"].status).toBe("no");
+});
