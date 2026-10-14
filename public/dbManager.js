@@ -192,7 +192,8 @@
       }
 
       let state = {};
-      try { state = JSON.parse(legacy["abilityfinder.v2"] || "{}") || {}; } catch (error) {}
+      try { state = JSON.parse(legacy["abilityfinder.v2"] || "{}"); } catch (error) {}
+      if (!state || typeof state !== "object" || Array.isArray(state)) state = {};
       if (state.applied && typeof state.applied === "object") {
         state.progress = Object.assign({}, state.progress || {});
         Object.keys(state.applied).forEach((id) => {
@@ -203,7 +204,9 @@
       const ui = {};
       try {
         const restoredA11y = JSON.parse(legacy["abilityfinder.a11y"] || "null");
-        if (restoredA11y) ui.a11y = restoredA11y;
+        if (restoredA11y && typeof restoredA11y === "object" && !Array.isArray(restoredA11y)) {
+          ui.a11y = restoredA11y;
+        }
       } catch (error) {}
       if (legacy["abilityfinder.theme"] !== null) ui.theme = legacy["abilityfinder.theme"];
       if (legacy["abilityfinder.lang"] !== null) ui.lang = legacy["abilityfinder.lang"];
