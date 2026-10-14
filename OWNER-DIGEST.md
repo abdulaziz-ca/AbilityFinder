@@ -17,6 +17,16 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
   has separate recreation and Esplanade amounts; Lethbridge's $150 is a per-person, per-season maximum.
 - **OC Transpo link** (#218): not broken. Its firewall blocks our monitor but serves browsers.
 
+- **Kelowna recreation assistance income limits** — `93d1655`, `?v=174`. All seven family-size limits
+  were higher than the City's own "LICO 2025" table (1 person: we said $31,264, the City says $26,926), so
+  some people were told they were under the limit when they weren't. Fixed straight away because it was
+  misleading people; built and reviewed by Claude while Codex was out of usage (Codex review owed).
+- **Batch 3 checked, fixes waiting for Codex** — 17 records (taxi savers, Victoria, Wood Buffalo, AADL,
+  Airdrie, ICBC, PharmaCare Plan C, PWD designation, WorkBC, child health, CWB, DRES, HandyDART, Red Deer…).
+  A Claude reviewer decided 37 exact fixes (`research/reverify/DECISIONS-2026-10-15-batch3.md`), e.g. ICBC
+  "may receive 25%" not a flat 25%; PWD's closed list of three supports; two wrong phone numbers (child
+  health, Red Deer). Codex builds them when its usage resets.
+
 ### Verified how
 - Every difference went through three steps: Codex found it, a Claude reviewer confirmed it against the
   full official page text and decided the fix, Codex applied it, and a second Claude review checked the
