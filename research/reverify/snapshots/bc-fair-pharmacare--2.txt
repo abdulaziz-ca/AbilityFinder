@@ -1,2 +1,2 @@
-URL: https://my.gov.bc.ca/ahdc | fetched: 2026-10-14T05:51:02.943Z | status: 200
+URL: https://my.gov.bc.ca/ahdc | fetched: 2026-10-14T17:59:51.575Z | status: 200
 JHA We're sorry but this app doesn't work properly without JavaScript enabled. Please enable it to continue.

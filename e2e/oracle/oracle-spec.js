@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.16.0";
+const SPEC_VERSION = "1.18.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -299,7 +299,6 @@ const GATES = {
   age12plus: ageGate("19to59", "under6"),
   age16plus: ageGate("19to59", "under6"),
   age18plus: ageGate("19to59", "under6"),
-  age19plus: ageGate("19to59", "under6"),
   adult: ageGate("19to59", "under6"),
   workingAge: ageGate("19to59", "under6"),
   under60: ageGate("19to59", "65plus"),
@@ -395,7 +394,20 @@ const GATES = {
   equipmentNeed: needGate("equipment"),
   transitBarrier: needGate("transitBarrier"),
   nutritionNeed: needGate("nutrition"),
-  medicalTravelNeed: needGate("medicalTravel"),
+  // Snapshot corrections 2026-10-15: absent answers leave alternative routes open.
+  bcMedTransportNeed: {
+    evidence: "answers",
+    satisfy: { add: { functionalNeeds: ["medicalTravel"] } },
+    violations: [{ name: "daily or local travel route not asked", fragment: { drop: { functionalNeeds: ["medicalTravel"] } }, expect: "almost" }],
+  },
+  bcMedTransportRoute: external("Receiving assistance or another approved route requires external confirmation; the PWD designation-or-assistance answer does not establish receipt."),
+  bcStcAgeOrFamily: {
+    evidence: "answers",
+    satisfy: { set: { ageBand: "19to59" } },
+    violations: [{ name: "younger spouse or parent route not asked", fragment: { set: { ageBand: "under6" } }, expect: "almost" }],
+  },
+  burnabyFairPlayRoute: external("FAIR Play requires an established application route; the PWD designation-or-assistance answer does not establish receiving government income assistance."),
+  bcAtHomeMedicalRoute: external("Requires assessed ADL dependence, Nursing Support Services direct nursing care eligibility, or a palliative condition with physician- or nurse-practitioner-indicated life expectancy of up to six months; self-reported dependence establishes none of these."),
   homeAccessNeed: needGate("homeAccess"),
   childHighNeeds: needGate("childHighNeeds"),
   childThreeAdls: needGate("childThreeAdls"),
@@ -689,7 +701,7 @@ const PROGRAM_BEST_CASE = {
   "bc-pharmacare-plan-p":                          "almost",
   "bc-fnha-health-benefits":                       "almost",
   "bc-healthy-kids":                               "almost",
-  "bc-medical-transportation":                     "ready",
+  "bc-medical-transportation":                     "almost",
   "handydart-translink":                           "ready",
   "handycard-translink":                           "ready",
   "taxisaver-translink":                           "almost",
@@ -736,7 +748,7 @@ const PROGRAM_BEST_CASE = {
   "acsd":                                          "almost",
   "ontario-autism-program":                        "ready",
   "bc-medical-equipment-devices":                  "ready",
-  "bc-at-home-medical":                            "ready",
+  "bc-at-home-medical":                            "almost",
   "bc-supported-child-development":                "ready",
   "bc-at-home-saet":                               "almost",
   "bc-clbc":                                       "ready",
@@ -760,7 +772,7 @@ const PROGRAM_BEST_CASE = {
   "bc-sales-tax-credit":                           "ready",
   "vancouver-leisure-access":                      "ready",
   "surrey-leisure-access":                         "ready",
-  "burnaby-fair-play":                             "ready",
+  "burnaby-fair-play":                             "almost",
   "richmond-rec-fee-subsidy":                      "ready",
   "victoria-life":                                 "ready",
   "saanich-life":                                  "ready",
@@ -779,6 +791,12 @@ const PROGRAM_BEST_CASE = {
    somebody has to defend at review.
    -------------------------------------------------------------------------- */
 const PROGRAM_NOTES = {
+  "burnaby-fair-play": { bestCase: "almost", why: "Review F1: PWD designation does not establish receiving assistance; eligibility route needs external confirmation." },
+  "bc-medical-transportation": { bestCase: "almost", why: "Review F1: PWD designation does not establish receiving assistance; eligibility route needs external confirmation." },
+  "bc-at-home-medical": {
+    bestCase: "almost",
+    why: "TaskView #219, snapshot bc-at-home-medical--2: assessed ADL dependence and the assessment-free direct-nursing-care and certified palliative routes are alternatives. The wizard establishes none of the required assessment or clinical eligibility facts.",
+  },
   "child-health-benefit": {
     bestCase: "almost",
     why: "Alberta Child Health Benefit must stay conditional for a child under 18 — family residency status and coverage coordination are ministry facts. Asserted in e2e/matcher-safety.spec.js and required by the working record.",

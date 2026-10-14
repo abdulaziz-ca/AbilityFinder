@@ -769,6 +769,43 @@ const REQS = {
     unmet: "This program is for First Nations people with Indian status living in B.C. The questionnaire does not ask about status, so check directly with FNHA Health Benefits.",
     action: { text: "Check FNHA Health Benefits eligibility", url: "https://www.fnha.ca/benefits/eligibility" },
   },
+  // Benefit-specific alternatives: do not narrow other users of the shared gates.
+  bcMedTransportRoute: {
+    short: "Check which medical transportation eligibility route may apply",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "You may be eligible if you receive disability assistance; income assistance in the PPMB category; income assistance while residing in a special care facility; or Medical Services Only. Other routes are Transitional Health Services after income assistance in PPMB or while residing in a special care facility; a person or child approved as facing a life-threatening health need with a direct and immediate life-threatening need for medical transportation; or a child in a family receiving income assistance, disability assistance, hardship assistance, MSO or Transitional Health Services.",
+  },
+  bcMedTransportNeed: {
+    short: "Check extraordinary travel costs for essential medical treatment",
+    who: ["you", "professional", "program"],
+    met: () => hasFunctionalNeed("medicalTravel"),
+    fixed: false,
+    unmet: "You do not have resources available to cover your medical transportation costs. You must have extraordinary medical transportation costs for essential medical treatment. This includes daily appointments or a need to travel out of town. If local treatment is not available within a reasonable timeframe or due to extenuating circumstances, provide verification that you require essential medical treatment outside your community with a medical practitioner, nurse practitioner, specialist and/or at a hospital.",
+  },
+  bcStcAgeOrFamily: {
+    short: "Check the age, spouse or common-law partner, or parent route",
+    who: ["you"],
+    met: () => ageIn("19to59", "60to64", "65plus"),
+    fixed: false,
+    unmet: "For the tax year, you were nineteen or older, had a spouse or common-law partner, or were a parent.",
+  },
+  burnabyFairPlayRoute: {
+    short: "Check which FAIR Play application route may apply",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "You must meet one FAIR Play route: federal or provincial government income assistance; combined family income within the FAIR Play income scale; applying for a child with a disability while currently receiving the Child Disability Benefit (this application is only for your child); government or privately sponsored refugee status or current Canadian Ukraine Emergency Travel Authorization (CUAET); or an approved agency referral. The agency-referral route uses a FAIR Play Agency Referral Form submitted by your approved referral agency worker, not a household application.",
+  },
+  bcAtHomeMedicalRoute: {
+    short: "Check assessed daily-living, direct nursing or palliative eligibility",
+    who: ["you", "professional", "program"],
+    // Self-reported dependence is not the program's eligibility assessment.
+    met: () => false,
+    fixed: false,
+    unmet: "Medical-benefit routes are alternatives: assessed dependence in at least three of eating, dressing, toileting and washing; eligibility for Nursing Support Services direct nursing care, without an eligibility assessment; or a palliative condition with life expectancy of up to six months as indicated by a physician or nurse practitioner, without an eligibility assessment. The questionnaire cannot establish the assessment, nursing eligibility or palliative certification.",
+  },
   bcPwdStatus: {
     short: "Check your B.C. PWD designation or disability assistance status",
     who: ["you"],
@@ -908,7 +945,7 @@ const REQS = {
     who: ["you", "program"],
     met: () => false,
     fixed: false,
-    unmet: "Your family must be eligible for MSP supplementary benefits, which means an adjusted net income of less than $42,000. Apply to Health Insurance BC for supplementary benefits first.",
+    unmet: "Your family must be eligible for MSP supplementary benefits, which means an adjusted net income of $42,000 or less. Apply to Health Insurance BC for supplementary benefits first.",
     action: { text: "Apply for MSP supplementary benefits", url: "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents/benefits/premium-assistance" },
   },
   bcWorkBcRoute: {

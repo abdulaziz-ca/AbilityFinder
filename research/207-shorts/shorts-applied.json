@@ -1,4 +1,29 @@
 {
+  "bcMedTransportRoute": {
+    "short": "Check which medical transportation eligibility route may apply",
+    "who": ["you", "program"],
+    "reason": "Keeps may and all published assistance, transitional, life-threatening and child routes in full; unasked routes stay soft"
+  },
+  "bcMedTransportNeed": {
+    "short": "Check extraordinary travel costs for essential medical treatment",
+    "who": ["you", "professional", "program"],
+    "reason": "Keeps extraordinary costs, daily appointments, out-of-town travel and verified local-availability exceptions in full"
+  },
+  "bcStcAgeOrFamily": {
+    "short": "Check the age, spouse or common-law partner, or parent route",
+    "who": ["you"],
+    "reason": "Retains age, spouse or common-law partner, and parent alternatives; no mandatory age-only cue"
+  },
+  "burnabyFairPlayRoute": {
+    "short": "Check which FAIR Play application route may apply",
+    "who": ["you", "program"],
+    "reason": "Keeps income assistance, income scale, current CDB child-only application, refugee or current CUAET and approved agency alternatives in full"
+  },
+  "bcAtHomeMedicalRoute": {
+    "short": "Check assessed daily-living, direct nursing or palliative eligibility",
+    "who": ["you", "professional", "program"],
+    "reason": "Retains assessed ADL dependence, Nursing Support Services direct nursing care eligibility, and certified palliative life expectancy alternatives without claiming self-report is an assessment"
+  },
   "prolonged": {
     "short": "Ask a medical practitioner which CRA route to check",
     "who": [

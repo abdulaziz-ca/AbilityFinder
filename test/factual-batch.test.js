@@ -113,6 +113,113 @@ test("DATA-09: the AISH/ADAP number is labelled as Alberta labels it", () => {
   }
 });
 
+// TaskView #219: only the supplied October snapshots are factual evidence.
+const { extractReqs } = require("../scripts/lib/dense-surfaces");
+const snapshotReqs = extractReqs(ROOT);
+
+test("snapshot item one retains the reviewer's conservative grant amount", () => {
+  assert.match(benefitById("csg-disability").amount, /^Up to \$2,800/);
+});
+
+test("Healthy Kids helps with costs and includes the income boundary", () => {
+  const b = benefitById("bc-healthy-kids");
+  assert.match(b.summary, /Helps pay/);
+  assert.doesNotMatch(b.summary, /Free/);
+  for (const text of [b.requiresNote, b.eligibility.items[0], snapshotReqs.bcHealthyKidsIncome.unmet]) {
+    assert.match(text, /\$42,000 or less/);
+    assert.doesNotMatch(text, /less than \$42,000/);
+  }
+  // This gate collects no numeric income, so there is no numeric boundary to test.
+  assert.equal(snapshotReqs.bcHealthyKidsIncome.met(), false);
+});
+
+test("medical transportation retains conditions and conditional escort help", () => {
+  const b = benefitById("bc-medical-transportation");
+  assert.deepEqual(Array.from(b.requires), ["bc", "bcMedTransportRoute", "bcMedTransportNeed"]);
+  assert.match(b.summary, /Helps pay for extraordinary transportation costs to and from essential medical treatment/);
+  assert.match(b.eligibility.items.join(" "), /income assistance and reside in a special care facility/);
+  assert.match(b.requiresNote, /income assistance while residing in a special care facility/);
+  for (const text of [b.detail.about, b.detail.aboutList.items.join(" ")]) {
+    assert.match(text, /escort costs may be paid if required/);
+    assert.match(text, /may only be considered/);
+    assert.match(text, /child under 19/);
+    assert.match(text, /verified medical reasons/);
+    assert.doesNotMatch(text, /Escort costs are covered/);
+  }
+  for (const text of [b.requiresNote, snapshotReqs.bcMedTransportNeed.unmet]) {
+    assert.match(text, /You do not have resources available to cover your medical transportation costs/);
+  }
+  assert.match(snapshotReqs.bcMedTransportNeed.unmet, /daily appointments/);
+  assert.match(snapshotReqs.bcMedTransportNeed.unmet, /reasonable timeframe/);
+  assert.match(snapshotReqs.bcMedTransportRoute.unmet, /Medical Services Only/);
+});
+
+test("At Home Medical routes retain assessment and nursing or palliative alternatives", () => {
+  const b = benefitById("bc-at-home-medical");
+  assert.ok(b.requires.includes("bcAtHomeMedicalRoute"));
+  assert.ok(!b.requires.includes("childThreeAdls"));
+  for (const text of [b.requiresNote, b.detail.aboutList.items.join(" "), snapshotReqs.bcAtHomeMedicalRoute.unmet]) {
+    assert.match(text, /[Aa]ssessed dependence in at least three/);
+    assert.match(text, /eating, dressing, toileting and washing/);
+    assert.match(text, /Nursing Support Services direct nursing care/);
+    assert.match(text, /palliative condition with life expectancy of up to six months/);
+    assert.match(text, /physician or nurse practitioner/);
+    assert.match(text, /[Nn]o eligibility assessment|without an eligibility assessment/);
+  }
+  assert.equal(snapshotReqs.bcAtHomeMedicalRoute.met(), false);
+  assert.ok(benefitById("bc-at-home-saet").requires.includes("childThreeAdls"));
+});
+
+test("home owner grant health-professional certification is specific to Option B", () => {
+  const b = benefitById("bc-additional-home-owner-grant");
+  assert.match(b.detail.about, /For Option B.*health professional must certify/);
+  assert.match(b.detail.aboutList.items.join(" "), /For Option B, Form B/);
+});
+
+test("fuel tax medical routes retain permanent and complete qualifiers", () => {
+  const b = benefitById("bc-fuel-tax-refund-disabilities");
+  for (const text of [b.requiresNote, b.eligibility.items.join(" ")]) {
+    for (const phrase of ["permanent dependence on a wheelchair", "complete and permanent functional loss of lower limbs", "permanent impairment of movement", "permanent mental disability", "permanent sight impairment", "whether or not it is available"]) {
+      assert.ok(text.includes(phrase), phrase);
+    }
+    assert.doesNotMatch(text, /loss of function in a lower limb/);
+  }
+  assert.equal(b.eligibility.mode, "any");
+  assert.match(b.eligibility.note, /also own or lease a vehicle/);
+});
+
+test("benefit-specific alternative gates stay soft and have short nondigit cues", () => {
+  for (const key of ["bcMedTransportRoute", "bcMedTransportNeed", "bcStcAgeOrFamily", "burnabyFairPlayRoute", "bcAtHomeMedicalRoute"]) {
+    const gate = snapshotReqs[key];
+    assert.equal(gate.fixed, false, key);
+    assert.ok(gate.short.length <= 80, key);
+    assert.doesNotMatch(gate.short, /\d/);
+    assert.ok(gate.who.length > 0, key);
+  }
+  for (const key of ["bcMedTransportRoute", "burnabyFairPlayRoute"]) {
+    assert.equal(snapshotReqs[key].met(), false);
+    assert.match(snapshotReqs[key].met.toString(), /=> false/);
+  }
+  assert.ok(benefitById("bc-sales-tax-credit").requires.includes("bcStcAgeOrFamily"));
+  assert.match(snapshotReqs.bcStcAgeOrFamily.unmet, /spouse or common-law partner, or were a parent/);
+});
+
+test("FAIR Play keeps CDB, CUAET and agency-referral alternatives on all surfaces", () => {
+  const b = benefitById("burnaby-fair-play");
+  assert.ok(b.requires.includes("burnabyFairPlayRoute"));
+  assert.ok(!b.requires.includes("lowIncome"));
+  for (const text of [b.requiresNote, b.eligibility.items.join(" "), snapshotReqs.burnabyFairPlayRoute.unmet]) {
+    assert.match(text, /currently receiv\w* the Child Disability Benefit/);
+    assert.match(text, /[Tt]his application is only for your child/);
+    assert.match(text, /current Canadian Ukraine Emergency Travel Authorization/);
+  }
+  for (const text of [b.detail.steps.join(" "), b.detail.documents.join(" ")]) {
+    assert.match(text, /household application/);
+    assert.match(text, /FAIR Play Agency Referral Form/);
+    assert.match(text, /approved referral agency worker/);
+  }
+});
+
 test("no other record's figures were disturbed", () => {
   const medicineHat = benefitById("medicinehat-fair-entry");
   assert.ok(medicineHat, "medicinehat-fair-entry record was found");
