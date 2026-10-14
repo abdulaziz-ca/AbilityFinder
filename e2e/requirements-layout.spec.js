@@ -74,7 +74,8 @@ test("mixed pilot detail keeps every need, fallback prose and print wording", as
   await expect(section.locator(".req-group-title").first()).toBeVisible();
   await expect(section.locator("details")).toHaveCount(1);
   const texts = await page.evaluate(() => evaluate(BENEFITS.find(b => b.id === "rdsp")).needs.map(n => n.text));
-  expect(texts.length).toBeGreaterThan(2);
+  // #216 moved grant/bond context off the checklist; both real checks remain.
+  expect(texts.length).toBe(2);
   for (const text of texts) expect(await section.textContent()).toContain(text);
   await expect(page.locator(".side-status")).toHaveText(`${texts.length} requirements not yet confirmed`);
   await page.emulateMedia({ media: "print" });

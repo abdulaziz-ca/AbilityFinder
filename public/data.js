@@ -2930,7 +2930,7 @@ const BENEFITS = [
     amount: "Up to $204.20 / month for July 2026–June 2027",
     summary:
       "A monthly payment for working-age adults with a disability and lower income.",
-    requires: ["dtc", "workingAge", "cdbTaxFiling", "cdbStatus", "cdbAmountCalculation"],
+    requires: ["dtc", "workingAge", "cdbTaxFiling", "cdbStatus"],
     note:
       "The amount is reassessed each year from adjusted family net income. July 2026–June 2027 payments use the 2025 federal tax return. You must be approved for the DTC first.",
     applyText: "Learn how to apply",
@@ -2941,6 +2941,14 @@ const BENEFITS = [
     detail: {
       about:
         "A new federal income top-up (started July 2025) for low-income adults aged 18–64 who are approved for the Disability Tax Credit.",
+      aboutList: {
+        lead: "A new federal income top-up (started July 2025) for low-income adults aged 18–64 who are approved for the Disability Tax Credit.",
+        items: [
+          "If your adjusted family net income is considerably above that threshold, your benefit amount will be $0.",
+          "Benefit amounts are based on your adjusted family net income.",
+          "The benefit amount will start to decrease after your adjusted family net income reaches a certain threshold. <a href=\"https://www.canada.ca/en/services/benefits/disability/canada-disability-benefit/amount.html\">Estimate your benefit amount</a>.",
+        ],
+      },
       steps: [
         "Make sure your DTC is approved and your taxes are filed.",
         "Apply online, by phone, by mail, or in person once applications are open to you.",
@@ -3005,7 +3013,7 @@ const BENEFITS = [
     amount: "Up to $3,500 grant + $1,000 bond per year (free government money)",
     summary:
       "A savings account where the government adds matching grants (up to 300%) and bonds — you don't even need to contribute to get the bond if your income is low.",
-    requires: ["dtc", "under60", "rdspOpening", "rdspContributionWindow", "rdspGrantWindow"],
+    requires: ["dtc", "under60", "rdspOpening", "rdspContributionWindow"],
     note:
       "One of the best-value benefits available. Open one at most banks or credit unions after you're approved for the DTC.",
     applyText: "How to open an RDSP",
@@ -3016,6 +3024,15 @@ const BENEFITS = [
     detail: {
       about:
         "A long-term savings account for people approved for the DTC. The government pays in grants (matching what you put in) and bonds (free money for lower incomes) — potentially tens of thousands of dollars over time.",
+      aboutList: {
+        lead: "A long-term savings account for people approved for the DTC. The government pays in grants (matching what you put in) and bonds (free money for lower incomes) — potentially tens of thousands of dollars over time.",
+        items: [
+          "Grants and bonds follow a different, earlier deadline than contributions.",
+          "A beneficiary's RDSP can receive a grant on contributions made until December 31 of the year in which the beneficiary turns 49.",
+          "A bond can be paid into an RDSP until the year in which the beneficiary turns 49.",
+          "Check which of the two windows applies to you. <a href=\"https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/registered-disability-savings-plan-rdsp/canada-disability-savings-grant-canada-disability-savings-bond.html\">Grant and bond rules</a>.",
+        ],
+      },
       steps: [
         "Get approved for the DTC first.",
         "Choose a bank or credit union that offers RDSPs.",
@@ -6216,6 +6233,9 @@ const BENEFITS = [
 ];
 
 const BENEFIT_VERIFIED = {
+  // #216: amount calculation (CDB) and grant/bond window (RDSP) re-checked
+  // against the supplied official pages on 2026-10-14; month granularity.
+  "cdb-adult": "2026-07",
   "waterloo-ontario-renovates": "2026-09", "waterloo-homemaking-support": "2026-09",
   "waterloo-curbside-waste-support": "2026-09",
   "grt-affordable-transit": "2026-09", "grt-cnib-pass": "2026-09",
@@ -6236,7 +6256,7 @@ const BENEFIT_VERIFIED = {
   "on-parking-permit": "2026-09", odsp: "2026-09", "on-adp": "2026-09",
   "ontario-autism-program": "2026-09", ssah: "2026-09", acsd: "2026-09",
   "passport-program": "2026-09", hvmp: "2026-09", "trillium-drug-program": "2026-09",
-  dtc: "2026-07", "cdb-adult": "2026-07", aish: "2026-07", adap: "2026-07",
+  dtc: "2026-07", aish: "2026-07", adap: "2026-07",
   "adult-health-benefit": "2026-07",
   ramp: "2026-07",
   "cpp-disability": "2026-07", "cpp-childrens-benefit": "2026-07", "parking-placard": "2026-07",

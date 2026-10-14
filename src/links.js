@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 216 links. The monitor checks a bounded rotating batch every
+// 218 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 5 dynamic (function) URLs are skipped — they depend on the
@@ -171,6 +171,11 @@ export const LINKS = [
     "kind": "apply"
   },
   {
+    "url": "https://www.canada.ca/en/services/benefits/disability/canada-disability-benefit/amount.html",
+    "label": "Canada Disability Benefit — Estimate your benefit amount",
+    "kind": "source"
+  },
+  {
     "url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/child-disability-benefit.html",
     "label": "Child Disability Benefit — apply",
     "kind": "apply"
@@ -179,6 +184,11 @@ export const LINKS = [
     "url": "https://www.canada.ca/en/employment-social-development/programs/disability/savings.html",
     "label": "Registered Disability Savings Plan (RDSP) — apply",
     "kind": "apply"
+  },
+  {
+    "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/registered-disability-savings-plan-rdsp/canada-disability-savings-grant-canada-disability-savings-bond.html",
+    "label": "Registered Disability Savings Plan (RDSP) — Grant and bond rules",
+    "kind": "source"
   },
   {
     "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-45300-canada-workers-benefit-cwb.html",

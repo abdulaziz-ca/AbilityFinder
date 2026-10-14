@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.15.0";
+const SPEC_VERSION = "1.16.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -490,14 +490,12 @@ const GATES = {
   certifier: external("Requires a named qualified practitioner to complete and sign the form."),
   cdbTaxFiling: external("Depends on filed tax returns for the person and their spouse or partner."),
   cdbStatus: external("Depends on CRA's own approval status for the benefit."),
-  cdbAmountCalculation: external("Depends on adjusted family net income CRA calculates from filed returns."),
   ccbEligibility: external("Depends on existing Canada Child Benefit entitlement, which CRA determines."),
   cppContrib: external("Depends on the CPP contribution record held by Service Canada."),
   cppDisabilityContributorLink: external("Depends on a parent's approved CPP disability benefit, a Service Canada determination."),
   cwbEligibility: external("Depends on working income and adjusted family net income from a filed return."),
   rdspOpening: external("Depends on an RDSP actually being opened with a participating financial institution."),
   rdspContributionWindow: external("Depends on contribution room and the beneficiary's contribution history."),
-  rdspGrantWindow: external("Depends on grant and bond entitlement years the government tracks, not the user."),
   csgNeedAndProgram: external("Depends on an assessed financial need and an approved program of study."),
   csgServicesEquipment: external("Depends on an assessment of the specific services or equipment required."),
   cdcpRequirements: external("Depends on absence of private dental coverage, filed returns and adjusted family net income."),
@@ -630,6 +628,10 @@ const GATES = {
 
     Both mutations were reverted; git diff on public/ is empty.
 */
+// #216 (2026-10-14): CDB amount calculation and RDSP grant/bond age window
+// moved to guide context; neither is an application prerequisite for its record.
+// No status changes: CDB retains tax/status checks; RDSP retains opening and
+// contribution checks. BC intake is unchanged. See research/216-misfiled/PROPOSAL.md.
 const PROGRAM_BEST_CASE = {
   "dtc":                                           "almost",
   "cdb-adult":                                     "almost",

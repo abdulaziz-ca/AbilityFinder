@@ -122,3 +122,14 @@ test("benefitsInScope drops Ontario entries only when Ontario is disabled", () =
     ["fed", "bc"]
   );
 });
+
+test("More about anchors enter the catalogue with their visible labels", () => {
+  const { links } = buildLinkCatalogue(only({ benefits: [{ name: "Benefit", detail: {
+    aboutList: { items: ['Text <a href="https://example.org/estimate">Estimate your benefit amount</a>.',
+      '<a href="https://example.org/rules">Grant and bond rules</a>.'] }
+  } }] }));
+  assert.deepEqual(links, [
+    { url: "https://example.org/estimate", label: "Benefit — Estimate your benefit amount", kind: "source" },
+    { url: "https://example.org/rules", label: "Benefit — Grant and bond rules", kind: "source" },
+  ]);
+});

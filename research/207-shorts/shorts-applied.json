@@ -153,14 +153,6 @@
     ],
     "reason": "Leaves each accepted status, residence duration, sentence length and first/last-month exception in full"
   },
-  "cdbAmountCalculation": {
-    "short": "Ask Service Canada how family income may affect your payment",
-    "who": [
-      "you",
-      "program"
-    ],
-    "reason": "Leaves adjusted family net income calculation and the possibility of no payment in full; eligibility alone promises no money"
-  },
   "ccbEligibility": {
     "short": "Check Canada Child Benefit rules and yearly tax filing",
     "who": [
@@ -176,18 +168,11 @@
     "reason": "Leaves the beneficiary's valid social insurance number and Canada residence at opening and each contribution in full"
   },
   "rdspContributionWindow": {
-    "short": "Check the age deadline for opening an RDSP and adding money",
+    "short": "Check the age deadline for adding money to an RDSP",
     "who": [
       "you"
     ],
     "reason": "Leaves the age/year window, absence of an annual limit and lifetime contribution limit in full"
-  },
-  "rdspGrantWindow": {
-    "short": "Check the RDSP grant and bond window, not just the savings window",
-    "who": [
-      "you"
-    ],
-    "reason": "Leaves the earlier grant/bond age and calendar cutoff, distinct from contributions, in full"
   },
   "cwbEligibility": {
     "short": "Check CWB residence, family, income rules and exclusions",

@@ -477,14 +477,6 @@ const REQS = {
     unmet: "You must be a Canadian citizen, a permanent resident, a protected person, a temporary resident who has lived in Canada throughout the previous 18 months, or registered or entitled to be registered under the Indian Act. If you are serving a sentence of 2 years or more in a federal penitentiary you are not eligible, except for the first and last month of that sentence.",
     action: { text: "Review Canada Disability Benefit eligibility", url: "https://www.canada.ca/en/services/benefits/disability/canada-disability-benefit/eligibility.html" },
   },
-  cdbAmountCalculation: {
-    short: "Ask Service Canada how family income may affect your payment",
-    who: ["you", "program"],
-    met: () => false,
-    fixed: false,
-    unmet: "Meeting the other conditions does not by itself mean you receive money. Service Canada calculates your payment from adjusted family net income, and that calculation can reduce the benefit, in some cases to zero.",
-    action: { text: "Estimate your benefit amount", url: "https://www.canada.ca/en/services/benefits/disability/canada-disability-benefit/amount.html" },
-  },
   ccbEligibility: {
     short: "Check Canada Child Benefit rules and yearly tax filing",
     who: ["you"],
@@ -502,20 +494,12 @@ const REQS = {
     action: { text: "Review RDSP eligibility", url: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/registered-disability-savings-plan-rdsp/eligibility-contributions.html" },
   },
   rdspContributionWindow: {
-    short: "Check the age deadline for opening an RDSP and adding money",
+    short: "Check the age deadline for adding money to an RDSP",
     who: ["you"],
     met: () => false,
     fixed: false,
-    unmet: "A plan can be opened and contributions made until the end of the year the beneficiary turns 59. There is no annual contribution limit, but the lifetime contribution limit for a beneficiary is \$200,000.",
+    unmet: "Contributions are permitted until the end of the year in which the beneficiary turns 59. There is no annual contribution limit, but the lifetime contribution limit for a beneficiary is \$200,000.",
     action: { text: "Review RDSP contribution limits", url: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/registered-disability-savings-plan-rdsp/rdsp-limits-transfers-rollovers.html" },
-  },
-  rdspGrantWindow: {
-    short: "Check the RDSP grant and bond window, not just the savings window",
-    who: ["you"],
-    met: () => false,
-    fixed: false,
-    unmet: "Grants and bonds follow a different, earlier deadline than contributions. The Canada Disability Savings Grant and the Canada Disability Savings Bond are only paid until December 31 of the year the beneficiary turns 49. Check which of the two windows applies to you.",
-    action: { text: "Review grant and bond rules", url: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/registered-disability-savings-plan-rdsp/canada-disability-savings-grant-canada-disability-savings-bond.html" },
   },
   cwbEligibility: {
     short: "Check CWB residence, family, income rules and exclusions",
@@ -834,7 +818,7 @@ const REQS = {
   bcCydbIntake: {
     met: () => false,
     fixed: false,
-    unmet: "Support is available now: new families apply through the existing pathways — Autism Funding or the At Home Program — and current recipients are being moved to this benefit automatically as their transition completes. Direct applications for this benefit open April 1, 2027.",
+    unmet: "Support is available now: new families apply through the existing pathways — Autism Funding or the At Home Program. Children and youth receiving CYSN services before March 31, 2027 will transition to the Disability Benefit if they are eligible. New applicants after April 1, 2027 will apply directly for the Disability Benefit.",
     action: { text: "Read the transition guidance", url: "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/financial-supports/disability-benefit" },
   },
   bcFuelTaxRoute: {

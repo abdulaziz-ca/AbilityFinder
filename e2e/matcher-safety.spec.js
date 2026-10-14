@@ -1184,9 +1184,13 @@ test("federal needs carry the official wording", async ({ page }) => {
     /temporary resident who has lived in Canada throughout the previous 18 months/,
   );
   expect(needsText(adult, "cdb-adult")).toMatch(/federal penitentiary/);
-  expect(needsText(adult, "cdb-adult")).toMatch(
-    /reduce the benefit, in some cases to zero/,
-  );
+  // #216: amount calculation is guide context, not an application check.
+  expect(needsText(adult, "cdb-adult")).not.toMatch(/reduce the benefit/);
+  const context = await page.evaluate(() => Object.fromEntries(
+    BENEFITS.filter(b => ["cdb-adult", "rdsp"].includes(b.id))
+      .map(b => [b.id, b.detail.aboutList.items.join(" ")])
+  ));
+  expect(context["cdb-adult"]).toMatch(/your benefit amount will be \$0/);
   expect(needsText(child, "child-disability-benefit")).toMatch(
     /paid together with the Canada Child Benefit/,
   );
@@ -1194,7 +1198,8 @@ test("federal needs carry the official wording", async ({ page }) => {
   expect(needsText(adult, "rdsp")).toMatch(/social insurance number/);
   expect(needsText(adult, "rdsp")).toMatch(/turns 59/);
   expect(needsText(adult, "rdsp")).toMatch(/\$200,000/);
-  expect(needsText(adult, "rdsp")).toMatch(/turns 49/);
+  expect(needsText(adult, "rdsp")).not.toMatch(/turns 49/);
+  expect(context.rdsp).toMatch(/turns 49/);
   expect(needsText(adult, "cwb-disability")).toMatch(
     /full-time student for more than 13 weeks/,
   );
@@ -1226,12 +1231,14 @@ test("RDSP keeps contributions and grants as separate deadlines", async ({ page 
   const grantsIndex = needs.findIndex((need) => /turns 49/.test(need.text));
 
   expect(contributionsIndex).toBeGreaterThanOrEqual(0);
-  expect(grantsIndex).toBeGreaterThanOrEqual(0);
-  expect(contributionsIndex).not.toBe(grantsIndex);
+  // #216: grant/bond deadline is retained as context, not a plan prerequisite.
+  expect(grantsIndex).toBe(-1);
   expect(needs[contributionsIndex].text).toMatch(/\$200,000/);
   expect(needs[contributionsIndex].text).not.toMatch(/grant|bond/i);
-  expect(needs[grantsIndex].text).toMatch(/Grant|Bond/);
-  expect(needs[grantsIndex].text).not.toMatch(/\$200,000/);
+  const grantContext = await page.evaluate(() => BENEFITS.find(b => b.id === "rdsp").detail.aboutList.items.join(" "));
+  expect(grantContext).toMatch(/Grant.*turns 49/);
+  expect(grantContext).toMatch(/A bond can be paid into an RDSP until the year in which the beneficiary turns 49/);
+  expect(grantContext).not.toMatch(/\$200,000/);
 });
 
 test("no federal answer combination reaches ready", async ({ page }) => {
