@@ -4,6 +4,37 @@ The one place to see what Claude and Codex did while you were away. Newest entry
 Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisions we made for you**
 (all reversible) · **Needs you** (only things an agent may not decide).
 
+## 2026-10-15
+
+### Shipped
+- **Re-verification batch 1** (#219) — `b608154`, `?v=172` (CI 723/723, live). 17 records checked against
+  their official pages: 415 facts, 223 confirmed, 20 differed, 19 fixed. Examples: BC Healthy Kids now says
+  "$42,000 or less"; the BC fuel-tax refund's routes say "permanent" again; Medical Transportation "helps pay"
+  instead of promising to pay. BC sales tax credit, Burnaby and Medical Transportation no longer
+  shut out people on routes the official page lists.
+- **Re-verification batch 2** — `4c0f4e4`, `?v=173`. 11 more records: 219 facts, 128 confirmed, 24 differed,
+  all 24 fixed. Examples: Edmonton fare assistance is $35 or $50 by income (we said $36); Medicine Hat
+  has separate recreation and Esplanade amounts; Lethbridge's $150 is a per-person, per-season maximum.
+- **OC Transpo link** (#218): not broken. Its firewall blocks our monitor but serves browsers.
+
+### Verified how
+- Every difference went through three steps: Codex found it, a Claude reviewer confirmed it against the
+  full official page text and decided the fix, Codex applied it, and a second Claude review checked the
+  edit. One Codex-suggested fix was rejected: the MSP Supplementary page itself says "less than
+  $42,000", while the Healthy Kids page says "or less". The two official pages disagree, so each record
+  follows its own page.
+- Verified dates were NOT moved forward: each record still has facts the page doesn't state, which
+  need a different page to confirm.
+
+### Decisions we made for you
+- "Up to $2,800" kept on the student grant even though the page says "$2,800", because it's the
+  more cautious wording.
+- Having a PWD designation is not treated as proof someone *receives* assistance (Burnaby, Medical
+  Transportation, Richmond). Those programs show "More to check" instead of "Matches your answers".
+
+### Needs you
+- Nothing.
+
 ## 2026-10-14 (evening)
 
 ### Shipped

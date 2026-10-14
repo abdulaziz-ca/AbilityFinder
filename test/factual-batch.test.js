@@ -316,3 +316,17 @@ test("no other record's figures were disturbed", () => {
     `expected at least 5 records containing 75%, found ${recreationPercentageRecords.length}`
   );
 });
+
+test("Kelowna recreation assistance LICO table equals the City's 2025 page", () => {
+  const benefit = benefitById("kelowna-recreation-assistance");
+  assert.ok(benefit, "kelowna-recreation-assistance record was found");
+  const page = [["1", "$26,926"], ["2", "$33,519"], ["3", "$41,208"], ["4", "$50,032"], ["5", "$56,744"], ["6", "$64,000"], ["7", "$71,254"]];
+  assert.equal(JSON.stringify(benefit.amountTiers.rows), JSON.stringify(page));
+  assert.equal(benefit.amountTiers.headers[1], "Family net income");
+  const note = benefit.requiresNote;
+  for (const [, value] of page) assert.ok(note.includes(value), `requiresNote mentions ${value}`);
+  assert.doesNotMatch(JSON.stringify(benefit), /31,264|38,922|47,851|58,096|65,892|74,315|82,739/);
+  assert.match(benefit.detail.time, /may take up to two weeks from the date of submission, provided all required information is received/);
+  assert.match(benefit.requiresNote, /income verification requirements and have all the necessary documentation/);
+  assert.doesNotMatch(benefit.requiresNote, /\bqualify\b/);
+});

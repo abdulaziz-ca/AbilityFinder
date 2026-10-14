@@ -471,7 +471,7 @@ const BENEFIT_META = {
   "richmond-rec-fee-subsidy": { difficulty: 2, effort: "Application + residency and income proof", wait: "Confirm with the City" },
   "victoria-life": { difficulty: 2, effort: "Application + residency and income proof", wait: "Confirm with the City" },
   "saanich-life": { difficulty: 2, effort: "Online application + CRA income statements for most households, or documents for an alternative route", wait: "Allow time before registering" },
-  "kelowna-recreation-assistance": { difficulty: 2, effort: "Email application + income assessment", wait: "Up to 2 weeks once complete" },
+  "kelowna-recreation-assistance": { difficulty: 2, effort: "Email application + income assessment", wait: "Up to 2 weeks from submission, if all information is received" },
   "coquitlam-far": { difficulty: 2, effort: "Application + residency and income proof", wait: "Confirm with the City" },
   "kamloops-arch": { difficulty: 2, effort: "Annual ARCH/KamPASS application", wait: "Confirm with the City" },
 };
@@ -6177,25 +6177,25 @@ const BENEFITS = [
       "mode": "all",
       "items": [
         "You are a Canadian citizen or permanent resident currently residing in Kelowna as a full-time resident.",
-        "You meet the family net income threshold based on the after-tax Low Income Cut-off (see the table below). People receiving government financial assistance qualify, as do people who do not receive it but are experiencing financial hardship and meet the guidelines.",
+        "You meet the family net income threshold based on the after-tax Low Income Cut-off (see the table below). You must also meet income verification requirements and have all the necessary documentation. People receiving government financial assistance are eligible to apply, as are people who do not receive it but are experiencing financial hardship and meet the guidelines.",
       ],
       "note": "Post-secondary students are NOT eligible, though they can ask for the discounted student rate on passes instead. Also not eligible: temporary residents and visitors, including anyone on a study or work permit; immigrants classified as business class, investor or entrepreneur; and anyone banned from City recreation facilities, including Parkinson Recreation Centre and the Kelowna-area YMCAs.",
     },
     "amountTiers": {
-      "caption": "Income eligibility — City of Kelowna 2025 after-tax LICO table",
-      "headers": ["Family size", "Family net income at or below"],
+      "caption": "City of Kelowna — Low Income Cut-Offs (LICO) 2025 (family net income after tax)",
+      "headers": ["Family size", "Family net income"],
       "rows": [
-        ["1", "$31,264"],
-        ["2", "$38,922"],
-        ["3", "$47,851"],
-        ["4", "$58,096"],
-        ["5", "$65,892"],
-        ["6", "$74,315"],
-        ["7", "$82,739"],
+        ["1", "$26,926"],
+        ["2", "$33,519"],
+        ["3", "$41,208"],
+        ["4", "$50,032"],
+        ["5", "$56,744"],
+        ["6", "$64,000"],
+        ["7", "$71,254"],
       ],
     },
-    "requiresNote": "You must be a Canadian citizen or permanent resident currently residing in Kelowna as a full-time resident, and meet the family net income threshold based on the after-tax Low Income Cut-off published by Statistics Canada. The City 2025 LICO table lists $31,264 for a family of 1, $38,922 for 2, $47,851 for 3, $58,096 for 4, $65,892 for 5, $74,315 for 6 and $82,739 for 7. People receiving government financial assistance qualify, as do people who do not receive it but are experiencing financial hardship and meet the guidelines. Post-secondary students are NOT eligible, though they can ask for the discounted student rate on passes instead. Also not eligible: temporary residents and visitors, including anyone on a study or work permit; immigrants classified as business class, investor or entrepreneur; and anyone banned from City recreation facilities, including Parkinson Recreation Centre and the Kelowna-area YMCAs.",
-    "note": "Apply by emailing the Access to Recreation Department. Assessment can take up to two weeks once all information is received. The income assessment counts income from all sources, including disability benefits and workers' compensation as well as employment, investments, pensions, child and foster child support, rental income and funds held in trust.",
+    "requiresNote": "You must be a Canadian citizen or permanent resident currently residing in Kelowna as a full-time resident, and meet the family net income threshold based on the after-tax Low Income Cut-off published by Statistics Canada. The City 2025 LICO table lists $26,926 for a family of 1, $33,519 for 2, $41,208 for 3, $50,032 for 4, $56,744 for 5, $64,000 for 6 and $71,254 for 7. You must also meet income verification requirements and have all the necessary documentation. People receiving government financial assistance are eligible to apply, as are people who do not receive it but are experiencing financial hardship and meet the guidelines. Post-secondary students are NOT eligible, though they can ask for the discounted student rate on passes instead. Also not eligible: temporary residents and visitors, including anyone on a study or work permit; immigrants classified as business class, investor or entrepreneur; and anyone banned from City recreation facilities, including Parkinson Recreation Centre and the Kelowna-area YMCAs.",
+    "note": "Apply by emailing the Access to Recreation Department. The assessment may take up to two weeks from the date of submission, provided all required information is received. The income assessment counts income from all sources, including disability benefits and workers' compensation as well as employment, investments, pensions, child and foster child support, rental income and funds held in trust.",
     "applyText": "Email Access to Recreation to apply",
     "applyUrl": "https://www.kelowna.ca/parks-recreation/recreation-sport/recreation-programs-registration/financial-assistance-recreation",
     "source": "https://www.kelowna.ca/parks-recreation/recreation-sport/recreation-programs-registration/financial-assistance-recreation",
@@ -6204,7 +6204,7 @@ const BENEFITS = [
       "steps": ["Email the Access to Recreation Department to request the current application process", "Gather proof of a Kelowna address from the last three months", "Get a CRA Income Statement (Option C print, not Notice of Assessment) for each household member who contributes income or expenses", "Submit the completed application and all supporting documents", "Wait for approval before buying a pass or program; approved credit can then be used during registration"],
       "documents": ["Recent utility, cable or internet bill, rental agreement, or government document showing a Kelowna address", "CRA Income Statement for contributing household members", "Government-assistance confirmation when using that qualifying route", "Citizenship or permanent-resident information requested by the form"],
       "tips": ["Previous purchases are not covered, so wait for approval", "All income sources count, including disability benefits and income outside Canada", "A clerk at Parkinson Recreation Centre can check whether processing is complete", "You must re-apply every year. You can resubmit up to one month before your current term expires.", "If you are a post-secondary student you cannot use this program, but you can still get the discounted student rate on a pass by showing a valid student ID and proof of full-time enrolment."],
-      "time": "Up to two weeks after all required information is received"
+      "time": "The assessment may take up to two weeks from the date of submission, provided all required information is received."
     }
   },
   {
