@@ -235,8 +235,17 @@ test.describe('persistence chaos — restore before first meaningful render', ()
     // Distinct from a future payload schemaVersion (currently no version gate).
     await seedBeforeBoot(page, { dbVersion: 2, payload: { view: 'wizard' } });
     const warnings = [];
-    page.on('console', (message) => { if (message.type() === 'warning') warnings.push(message.text()); });
+    const warningPromises = [];
+    page.on('console', (message) => {
+      if (message.type() === 'warning') {
+        warningPromises.push((async () => {
+          const parts = await Promise.all(message.args().map(a => a.evaluate(v => v && v.name ? v.name + ': ' + v.message : String(v)).catch(() => '')));
+          warnings.push([message.text(), ...parts].join(' '));
+        })());
+      }
+    });
     await expectUsable(page, errors);
+    await Promise.all(warningPromises);
     expect(warnings.join('\n')).toMatch(/VersionError|version.*(lower|less)|higher version/i);
   });
 });
