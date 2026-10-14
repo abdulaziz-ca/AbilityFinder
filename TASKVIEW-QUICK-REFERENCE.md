@@ -149,13 +149,21 @@ By default, only a human may authorize or perform:
 - resolving unclear product requirements.
 
 Stop at the gate, document the decision needed and the options, and ask the user.
-Agents must not relax these defaults themselves.
+Agents must not relax these defaults themselves. Production deployment and workflow
+refinement inside the envelope were delegated by the owner on 2026-10-13 — see
+`TASKVIEW-WORKFLOW.md`.
 
 ## Task selection
 
-No automatic next-task pickup. After completing or blocking the current task, ask
-the user what to do next and continue only with explicit approval — don't claim the
-next Ready item just because it's available.
+Automatic, within the owner-approved operating envelope (2026-10-13) — full text in
+`TASKVIEW-WORKFLOW.md`. In short:
+
+1. Finish Review/Verification first, then owner-reported complaints, then Ready, then Backlog by priority.
+2. Skip `human-only` / `needs-owner-decision` tickets; list them in `OWNER-DIGEST.md`.
+3. `[IDEA]` tickets of S/M size may be built; L or new scope waits for the owner.
+4. Cross-agent review stays mandatory; unresolved disagreements go to the user-conservative option.
+5. Push to `main` without asking, then do the full `DEPLOY.md` post-push check.
+6. Report through `OWNER-DIGEST.md`; agents may refine the envelope, never widen it.
 
 ## Offline operation and reconciliation
 

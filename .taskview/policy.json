@@ -43,6 +43,6 @@
     "unclear_product_requirements": true,
     "configurable_later_with_human_approval": true
   },
-  "auto_next": false,
+  "auto_next": true,
   "offline_log": ".taskview/offline-log.md"
 }

@@ -364,7 +364,7 @@ function validatePolicy(policy) {
     }
   }
 
-  requireExact(errors, policy.auto_next, false, "auto_next");
+  requireExact(errors, policy.auto_next, true, "auto_next"); // owner-approved 2026-10-13, TASKVIEW-WORKFLOW.md "Operating envelope"
   requireExact(
     errors,
     policy.offline_log,

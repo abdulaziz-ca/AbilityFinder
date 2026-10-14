@@ -1,6 +1,9 @@
 # AbilityFinder — AI entry point
 
 > For any TaskView-tracked work, read and follow `TASKVIEW-WORKFLOW.md` before claiming or editing.
+>
+> Claude and Codex run this project inside the owner-approved **operating envelope**
+> (`TASKVIEW-WORKFLOW.md`, 2026-10-13) and report to the owner through `OWNER-DIGEST.md`.
 
 Read this file first, then `REMAINING-WORK.md`. Load anything else only when the
 task needs it:
