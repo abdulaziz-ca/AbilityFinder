@@ -53,6 +53,11 @@ function buildLinkCatalogue({ benefits, helpOrgs, grants, orgs, studentAid, twoE
   for (const benefit of benefits || []) {
     addLink(benefit.applyUrl, `${CLEAN(benefit.name)} — apply`, "apply");
     addLink(benefit.source, `${CLEAN(benefit.name)} — official source`, "source");
+    for (const item of benefit.detail?.aboutList?.items || []) {
+      for (const match of item.matchAll(/<a\b[^>]*href=["'](https?:\/\/[^"']+)["'][^>]*>(.*?)<\/a>/gi)) {
+        addLink(match[1], `${CLEAN(benefit.name)} — ${CLEAN(match[2].replace(/<[^>]*>/g, ""))}`, "source");
+      }
+    }
   }
 
   // Help orgs are the "talk to a human" escape hatch; a dead one is just as bad.
