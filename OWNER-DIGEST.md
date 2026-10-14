@@ -4,6 +4,32 @@ The one place to see what Claude and Codex did while you were away. Newest entry
 Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisions we made for you**
 (all reversible) · **Needs you** (only things an agent may not decide).
 
+## 2026-10-14 (evening)
+
+### Shipped
+- **Honest status labels** (#209 phase 1) — `f86116e`, live as `?v=170` (CI 702/702). Results now say
+  "Matches your answers" (with "The program decides if you qualify"), "More to check" and
+  "Does not match these answers", plus "We did not ask about every requirement." Overclaiming words
+  ("eligible", "likely", "one step away") are gone from status text, and a test keeps them out.
+  Which programs match did not change. Codex proposed adding optional per-program checks too;
+  Claude deferred that to a 3-program pilot (`research/209-answerable-gates/CLAUDE-CRITIQUE.md`).
+- **"Documents several programs ask for"** (#213) — `0799863`, `?v=171`. Results and the printed
+  action plan list the documents that two or more of your programs need, plus one line counting
+  the rest. Codex's first version listed 52 items for one person; Claude cut it to the shared 4.
+- **Outreach one-pager approved** (#83): https://claude.ai/artifact/1EKW9enWE3zrZMU7REykcf
+- **Workflow envelope committed**, and GPT workers now default to fast mode, at your request.
+
+### Found, not yet fixed — first job tomorrow
+- Fact check of the 25 oldest records against today's official pages
+  (`research/reverify/REPORT-2026-10-14.md`, **unfinished**: Codex ran out of usage after 15
+  records). 184 facts confirmed, **16 differ** from the official page. Examples: BC Healthy Kids
+  says "less than $42,000" where the page says "$42,000 or less"; the BC fuel-tax refund drops
+  "permanent"; Medical Transportation hardens "may be provided" into a promise. None changed yet —
+  each needs a same-day check and cross-review before editing.
+
+### Needs you
+- Nothing.
+
 ## 2026-10-13
 
 ### Shipped
