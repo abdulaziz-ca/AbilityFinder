@@ -85,4 +85,10 @@ function extractReqs(rootDir) {
   return vm.runInContext(`(${objectLiteral(fs.readFileSync(path.join(rootDir, 'public/app.js'), 'utf8'))})`,
     vm.createContext(globals), { timeout: 1000 });
 }
-module.exports = { collectDenseSurfaces, extractReqs, isFlagged, SURFACES };
+function cueCoverage(rootDir) {
+  const gates = extractReqs(rootDir);
+  const flagged = collectDenseSurfaces(rootDir).filter(item => item.surface === 'gate.unmet' && isFlagged(item));
+  const withShort = flagged.filter(item => !!gates[item.id.split('.')[0]].short).length;
+  return { withShort, flagged: flagged.length, withoutShort: flagged.length - withShort };
+}
+module.exports = { cueCoverage, collectDenseSurfaces, extractReqs, isFlagged, SURFACES };

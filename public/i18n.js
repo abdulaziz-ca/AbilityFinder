@@ -19,6 +19,7 @@ const I18N = {
     "req.other": "Other checks",
     "req.full": "Read full requirements for {name}",
     "req.guide": "See all requirements for {name}",
+    "req.otherChecks": "and {n} other checks",
     "req.more.one": "— 1 more",
     "req.more.other": "— {n} more",
     "nav.tag": "Canada",

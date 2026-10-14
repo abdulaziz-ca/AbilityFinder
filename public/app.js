@@ -219,6 +219,8 @@ const REQS = {
     action: { text: "Start the DTC (T2201)", url: DTC_URL },
   },
   prolonged: {
+    short: "Ask a medical practitioner which CRA route to check",
+    who: ["you", "professional"],
     // The questionnaire does not collect the CRA's practitioner-certified,
     // comparative marked-restriction, cumulative-effect, or life-sustaining-
     // therapy evidence. Keep this unresolved instead of turning a lay answer
@@ -267,6 +269,8 @@ const REQS = {
     unmet: "Passport is for an adult with a developmental disability.",
   },
   passportDso: {
+    short: "Ask Developmental Services Ontario about its review and the assessment",
+    who: ["you", "professional", "program"],
     met: () => false,
     fixed: false,
     unmet:
@@ -274,6 +278,8 @@ const REQS = {
     action: { text: "Apply through Developmental Services Ontario", url: "https://www.ontario.ca/page/passport-program-adults-developmental-disability" },
   },
   tdpDeductible: {
+    short: "Check household drug costs, insurance and other drug coverage",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet:
@@ -281,6 +287,8 @@ const REQS = {
     action: { text: "Apply to the Trillium Drug Program", url: "https://www.ontario.ca/page/get-help-high-prescription-drug-costs" },
   },
   hvmpMobility: {
+    short: "Check how your disability limits movement and daily tasks",
+    who: ["you"],
     // HVMP's criterion is broader than the parking-oriented `mobility` gate, and the
     // service coordinator decides it. fixed:false so a profile that does not obviously
     // match is told the criterion rather than being refused outright.
@@ -291,6 +299,8 @@ const REQS = {
       "This is for a disability that impedes mobility and results in substantial restriction in activities of daily living, such as personal care or getting to medical care and community services.",
   },
   hvmpIncome: {
+    short: "Check the income limit and whether you may need to pay a share",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet:
@@ -298,6 +308,8 @@ const REQS = {
     action: { text: "See how to apply", url: "https://www.ontario.ca/page/home-and-vehicle-modification-program" },
   },
   hvmpCoordinator: {
+    short: "Check other funding first and ask the coordinator about approval",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet:
@@ -305,6 +317,8 @@ const REQS = {
     action: { text: "See how to apply", url: "https://www.ontario.ca/page/home-and-vehicle-modification-program" },
   },
   ssahDocumentation: {
+    short: "A health professional documents your child's limits; funding is not guaranteed",
+    who: ["you", "professional", "program"],
     met: () => false,
     fixed: false,
     unmet:
@@ -312,6 +326,8 @@ const REQS = {
     action: { text: "See how to apply for SSAH", url: "https://www.ontario.ca/page/special-services-home" },
   },
   acsdSeverity: {
+    short: "Ask ACSD how it reviews your child's disability and extra costs",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet:
@@ -319,6 +335,8 @@ const REQS = {
     action: { text: "Review ACSD eligibility", url: "https://www.ontario.ca/page/assistance-children-severe-disabilities-program" },
   },
   acsdIncome: {
+    short: "Check family income, family size and disability costs with ACSD",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet:
@@ -326,6 +344,8 @@ const REQS = {
     action: { text: "Review ACSD eligibility", url: "https://www.ontario.ca/page/assistance-children-severe-disabilities-program" },
   },
   adpClinical: {
+    short: "Ask an ADP authorizer about the assessment for your device",
+    who: ["you", "professional"],
     met: () => false,
     fixed: false,
     unmet:
@@ -338,13 +358,17 @@ const REQS = {
     unmet: "The Ontario Autism Program requires a written autism diagnosis from a qualified professional.",
   },
   odspFinancial: {
+    short: "Check with ODSP about income, assets and what does not count",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet:
       "ODSP looks at your income, assets, living expenses, family size and shelter costs to decide financial need. Non-exempt assets must stay at or under $40,000 for a single person or $50,000 for a couple. Some income and assets are exempt, including child support, the Ontario Child Benefit, RDSP payments, and the home you own and live in.",
     action: { text: "Review ODSP eligibility", url: "https://www.ontario.ca/page/ontario-disability-support-program-eligibility-income-support" },
   },
-  notBcStudentAidDuplicate: { met: () => answers.province !== "BC", fixed: true, unmet: "Use the StudentAid BC version of this federal grant; it is the same program with B.C.-specific application steps." },
+  notBcStudentAidDuplicate: {
+    short: "In B.C., apply for this federal grant through StudentAid BC",
+    who: ["you"], met: () => answers.province !== "BC", fixed: true, unmet: "Use the StudentAid BC version of this federal grant; it is the same program with B.C.-specific application steps." },
   qc: { met: () => answers.province === "QC", fixed: true, unmet: "This is a Quebec program." },
   mb: { met: () => answers.province === "MB", fixed: true, unmet: "This is a Manitoba program." },
   sk: { met: () => answers.province === "SK", fixed: true, unmet: "This is a Saskatchewan program." },
@@ -358,6 +382,8 @@ const REQS = {
   provinceCovered: { met: () => COVERED_PROVINCES.includes(answers.province), fixed: true, unmet: "Available across the covered provinces & territories." },
   citizenPR: { met: () => answers.citizenPR === true, fixed: true, unmet: "You must be a Canadian citizen or permanent resident." },
   achbAge: {
+    short: "Check the child's age and high school rules for coverage",
+    who: ["you"],
     met: () => isUnder18() || (ageIn("18", "19to59") && has(answers.situation, "secondary")),
     fixed: true,
     unmet: "Ordinary Alberta Child Health Benefit coverage is for children under 18. An 18- or 19-year-old must still be attending high school through grade 12.",
@@ -374,12 +400,16 @@ const REQS = {
     action: { text: "Open declaration AEHB3654", url: ACHB_DEPENDENT_DECLARATION_URL },
   },
   achbFamilyResidencyStatus: {
+    short: "Check where each family member lives and their status in Canada",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "Confirm the applicant and every family member included in the application live in Alberta and are Canadian citizens or permanent residents.",
     action: { text: "Review Alberta Child Health Benefit eligibility", url: ACHB_URL },
   },
   achbCoverageCoordination: {
+    short: "Check government health coverage first; other plans are used before ACHB",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet: "Confirm the family is not receiving government health-benefit coverage through Income Support, AISH, the Child and Youth Support Program, or Non-Insured Health Benefits for First Nations and Inuit. Private or other health plans are not exclusions: use them first and ACHB may cover remaining eligible costs. Use the Canadian Dental Care Plan first too; ACHB may cover remaining eligible dental costs.",
@@ -402,6 +432,8 @@ const REQS = {
 
   student: { met: () => isStudent(), fixed: true, unmet: "This is for post-secondary students." },
   notPostSecondaryStudent: {
+    short: "Check Kelowna's student rule and ask about student pass rates",
+    who: ["you"],
     met: () => !isStudent(),
     fixed: true,
     unmet: "Kelowna does not accept post-secondary students for this program. Students can instead ask for the discounted student rate on passes, by showing a valid student ID plus proof of full-time enrolment with your name on it.",
@@ -422,12 +454,16 @@ const REQS = {
     unmet: "Check your CPP Statement of Contributions for the required contribution history.",
   },
   cppDisabilityContributorLink: {
+    short: "Check the parent gets a CPP disability benefit, and the child's age and school",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "This is paid because of a parent's disability rather than the child's: a parent or guardian must be receiving a CPP disability benefit or a post-retirement disability benefit, and the child must be under 18, or 18 to 25 and attending a recognized school or university.",
     action: { text: "Check CPP children's benefit eligibility", url: "https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-childrens-benefit.html" },
   },
   cdbTaxFiling: {
+    short: "Check tax residency and tax returns for you and your partner",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "You must be a Canadian resident for income tax purposes, and you and your spouse or common-law partner must have filed your 2025 federal income tax return before payments can start.",
@@ -442,12 +478,16 @@ const REQS = {
     action: { text: "Review Canada Disability Benefit eligibility", url: "https://www.canada.ca/en/services/benefits/disability/canada-disability-benefit/eligibility.html" },
   },
   cdbAmountCalculation: {
+    short: "Ask Service Canada how family income may affect your payment",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet: "Meeting the other conditions does not by itself mean you receive money. Service Canada calculates your payment from adjusted family net income, and that calculation can reduce the benefit, in some cases to zero.",
     action: { text: "Estimate your benefit amount", url: "https://www.canada.ca/en/services/benefits/disability/canada-disability-benefit/amount.html" },
   },
   ccbEligibility: {
+    short: "Check Canada Child Benefit rules and yearly tax filing",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "The Child Disability Benefit is paid together with the Canada Child Benefit, so you must already be eligible for the CCB — living with the child, being primarily responsible for their care and upbringing, and a resident of Canada for tax purposes — and you must file your taxes every year.",
@@ -462,12 +502,16 @@ const REQS = {
     action: { text: "Review RDSP eligibility", url: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/registered-disability-savings-plan-rdsp/eligibility-contributions.html" },
   },
   rdspContributionWindow: {
+    short: "Check the age deadline for opening an RDSP and adding money",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "A plan can be opened and contributions made until the end of the year the beneficiary turns 59. There is no annual contribution limit, but the lifetime contribution limit for a beneficiary is \$200,000.",
     action: { text: "Review RDSP contribution limits", url: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/registered-disability-savings-plan-rdsp/rdsp-limits-transfers-rollovers.html" },
   },
   rdspGrantWindow: {
+    short: "Check the RDSP grant and bond window, not just the savings window",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "Grants and bonds follow a different, earlier deadline than contributions. The Canada Disability Savings Grant and the Canada Disability Savings Bond are only paid until December 31 of the year the beneficiary turns 49. Check which of the two windows applies to you.",
@@ -482,18 +526,24 @@ const REQS = {
     action: { text: "Check CWB eligibility", url: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-45300-canada-workers-benefit-cwb/who-is-eligible.html" },
   },
   csgNeedAndProgram: {
+    short: "Check need, school and disability records; some provinces run their own aid",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet: "You must have an assessed financial need, be enrolled in a qualified program at a designated school, have a disability recognized by the Canada Student Financial Assistance Program, and include documentation of your disability with your application. The Northwest Territories, Nunavut and Quebec run their own student aid programs; if you live there, apply through that program instead.",
     action: { text: "Review the grant's eligibility", url: "https://www.canada.ca/en/employment-social-development/services/education/grants/disabilities.html" },
   },
   csgServicesEquipment: {
+    short: "Ask a qualified person to confirm school support needs and costs",
+    who: ["you", "professional"],
     met: () => false,
     fixed: false,
     unmet: "You must also send written confirmation from a qualified person — a rehabilitation caseworker, an official from a centre for students with disabilities, a guidance counsellor, or your school's financial aid administrator — that you need the education-related services or equipment, plus a document confirming their cost.",
     action: { text: "Review the services and equipment grant", url: "https://www.canada.ca/en/services/benefits/education/student-aid/grants-loans/disabilities-service-equipment.html" },
   },
   abGrantStudyAidEligibility: {
+    short: "Check Alberta student aid rules, course load and assessed need",
+    who: ["you", "program"],
     // Course-load percentage, Alberta funding eligibility, and Alberta's
     // calculated-need result are not collected by the questionnaire.
     met: () => false,
@@ -502,6 +552,8 @@ const REQS = {
     action: { text: "Review Alberta grant eligibility", url: "https://studentaid.alberta.ca/policy/student-aid-policy-manual/eligibility-for-student-loans-and-grants/alberta-student-grants/" },
   },
   abGrantCurrentCostRequest: {
+    short: "Check approved cost records and what is left after federal funding",
+    who: ["you", "program"],
     // A disability document does not establish a current approved Schedule 4
     // request, current costs, or a gap after the federal grant is allocated first.
     met: () => false,
@@ -515,6 +567,8 @@ const REQS = {
     unmet: "Have a qualified professional verify the disability or functional limitation first.",
   },
   dresResidencyAndStatus: {
+    short: "Check Alberta residency and your right to work or train in Canada",
+    who: ["you"],
     // The questionnaire's citizen/PR answer cannot rule out a Convention Refugee,
     // and it does not establish current Alberta residency or legal work status.
     met: () => false,
@@ -523,6 +577,8 @@ const REQS = {
     action: { text: "Review DRES eligibility", url: DRES_URL },
   },
   dresDisabilityBarrier: {
+    short: "Check records of how your disability affects school or work",
+    who: ["you"],
     // A general documentation answer does not establish DRES's duration and
     // barrier tests. Keep both unresolved even when unsupported fields appear.
     met: () => false,
@@ -546,16 +602,22 @@ const REQS = {
     unmet: "Confirm PDD's citizenship and assessed intellectual/adaptive-function criteria.",
   },
   abServiceDogQualified: {
+    short: "Check your service dog's training and records against the accepted routes",
+    who: ["you", "professional"],
     met: () => false,
     fixed: false,
     unmet: "Your service dog must already be qualified — assessed by one of Alberta's approved service dog providers, graduated from an Assistance Dogs International accredited program, or qualified by an organization contracted by a provincial or territorial government in Canada to an equivalent standard.",
   },
   abCapccContinuingCareHome: {
+    short: "Check whether you live in a type A or B care home and can share your goals",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "This is for people living in a type A or type B continuing care home in Alberta who can take part in setting their own goals and communicate their preferences. The questionnaire does not ask where you live.",
   },
   abSpecialNeedsHousingPlacement: {
+    short: "Ask your local housing provider about its rules and waiting list",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet: "Income limits are set community by community, and you apply to a local housing provider rather than to the province, so that provider confirms eligibility and holds the waiting list.",
@@ -566,24 +628,32 @@ const REQS = {
     unmet: "Confirm guardianship, the child's status, and medical documentation of disability or an awaiting-diagnosis assessment.",
   },
   aishMedical: {
+    short: "Ask about AISH's disability review and your doctor's report",
+    who: ["you", "professional", "program"],
     met: () => false,
     fixed: false,
     unmet: "AISH decides whether you have a severe disability that permanently prevents employment. A doctor must complete the medical report, and AISH reviews the treatments, therapies, rehabilitation and training that might improve your condition.",
     action: { text: "Review AISH eligibility", url: "https://www.alberta.ca/aish-eligibility" },
   },
   aishFinancial: {
+    short: "Check income, assets and other benefits you may need to apply for",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet: "AISH counts your income and your spouse or partner's income, and your combined non-exempt assets must stay at or under $100,000. You must also apply for other income you may qualify for, such as CPP-D, the Canada Disability Benefit, EI or WCB.",
     action: { text: "Review AISH eligibility", url: "https://www.alberta.ca/aish-eligibility" },
   },
   adapMedical: {
+    short: "Check Alberta's disability review for AISH and ADAP",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet: "Alberta decides whether your disability significantly impedes employment, continuously or episodically. One application assesses both AISH and ADAP.",
     action: { text: "Review ADAP eligibility", url: "https://www.alberta.ca/adap-eligibility" },
   },
   adapFinancial: {
+    short: "Check ADAP income reviews, assets and other possible benefits",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet: "ADAP reviews your income monthly and your non-exempt assets must stay at or under $100,000. You must also apply for other income you may qualify for, such as CPP-D, the Canada Disability Benefit, EI or WCB.",
@@ -596,12 +666,16 @@ const REQS = {
     action: { text: "Check AHCIP registration", url: "https://www.alberta.ca/ahcip-how-to-apply" },
   },
   aadlAssessment: {
+    short: "Ask an authorized health professional about assessment and AADL-listed items",
+    who: ["you", "professional"],
     met: () => false,
     fixed: false,
     unmet: "An authorized health professional must assess you, and the item must be an AADL-listed benefit bought from an approved vendor. The condition must be expected to last 6 months or longer.",
     action: { text: "Review AADL eligibility", url: "https://www.alberta.ca/aadl-eligibility-and-application-for-benefits" },
   },
   aadlOtherPayer: {
+    short: "Check whether another plan already covers the item",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "AADL does not cover items already covered by Veterans Affairs, Workers' Compensation Board, Non-Insured Health Benefits, or a private insurance plan.",
@@ -612,29 +686,39 @@ const REQS = {
     unmet: "This is for someone who needs disability-related changes to the home for access or safety.",
   },
   rampMobilityRoute: {
+    short: "Check RAMP's routes for mobility aids or listed conditions",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "RAMP is for an Albertan of any age who uses a wheelchair, a senior 65 or older who uses a 4-wheel walker on an ongoing basis, or someone living with one of the listed progressive conditions: multiple sclerosis, muscular dystrophy, ALS, COPD, Parkinson's disease, Alzheimer's disease, spina bifida, a spinal cord injury, or a non-recovering stroke.",
     action: { text: "Review RAMP eligibility", url: "https://www.alberta.ca/residential-access-modification-program" },
   },
   rampIncomeAndResidency: {
+    short: "Check RAMP's family income and Alberta residency rules",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "Maximum family income runs from \$36,900 for a single adult to \$94,500 for a couple with five children, with \$7,131 added when a child permanently uses a wheelchair. You must also have lived in Alberta for 90 continuous days.",
     action: { text: "Check the RAMP income table", url: "https://www.alberta.ca/residential-access-modification-program" },
   },
   adultHealthIncome: {
+    short: "Check your family size against Alberta's current income table",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "Alberta sets a maximum income by family size — $16,580 for a single adult and $23,212 for a couple with no children, rising with each child. Check your family size against the current table.",
     action: { text: "Check the income table", url: "https://www.alberta.ca/alberta-adult-health-benefit" },
   },
   adultHealthGateway: {
+    short: "Check the health benefit routes and other coverage exclusions",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "Confirm pregnancy, high ongoing prescription drug needs, or the qualifying AISH/Income Support transition route. You cannot already be receiving Income Support, AISH, the Child and Youth Support Program, Non-Insured Health Benefits or another federal First Nations or Inuit program, or the Alberta Seniors Benefit.",
   },
   abPlacardMobility: {
+    short: "Check the parking permit rules for walking or vision limits",
+    who: ["you"],
     met: () => hasDisability("physical") && answers.canWalkFar === false,
     fixed: () =>
       !hasDisability("physical") &&
@@ -646,6 +730,8 @@ const REQS = {
     },
   },
   autismDiagnosis: {
+    short: "Check whether the autism diagnosis meets B.C. standards",
+    who: ["you", "professional"],
     met: () => answers.autismDiagnosis === "yes",
     fixed: false,
     unmet: "BC Autism Funding requires an autism diagnosis that meets B.C. standards.",
@@ -662,62 +748,84 @@ const REQS = {
     unmet: "This plan covers psychiatric medications specifically.",
   },
   planGClinicalAndFinancialNeed: {
+    short: "Your prescriber confirms health need with a care team; check the income test",
+    who: ["you", "professional"],
     met: () => false,
     fixed: false,
     unmet: "You need both clinical and financial need: your prescriber confirms the clinical side with your local mental health and substance use team, and the financial test is an annual income lower than $42,000.",
   },
   planPRegistration: {
+    short: "Ask a doctor or nurse practitioner to send the registration form",
+    who: ["you", "professional"],
     met: () => false,
     fixed: false,
     unmet: "A physician or nurse practitioner registers the patient with PharmaCare — there is no form for the patient or family to submit. Ask the doctor or nurse practitioner to send the BC Palliative Care Benefits registration form.",
   },
   bcMsp: {
+    short: "Check your Medical Services Plan enrolment",
+    who: ["you"],
     met: () => answers.msp === "yes",
     fixed: () => answers.msp === "no",
     unmet: "Confirm B.C. Medical Services Plan enrolment first.",
     action: { text: "Check or apply for MSP", url: "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents/eligibility-and-enrolment" },
   },
   bcSupplementaryBenefitsEligibility: {
+    short: "Check the income, At Home or Mental Health Client routes",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "You qualify one of three ways: your adjusted net income last year was less than $42,000, or you are enroled with MSP through the At Home Program, or you are enroled with MSP as a Mental Health Client.",
     action: { text: "Apply for Supplementary Benefits", url: "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents/benefits/services-covered-by-msp/supplementary-benefits" },
   },
   firstNationsStatus: {
+    short: "Ask FNHA Health Benefits about status and B.C. residency rules",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet: "This program is for First Nations people with Indian status living in B.C. The questionnaire does not ask about status, so check directly with FNHA Health Benefits.",
     action: { text: "Check FNHA Health Benefits eligibility", url: "https://www.fnha.ca/benefits/eligibility" },
   },
   bcPwdStatus: {
+    short: "Check your B.C. PWD designation or disability assistance status",
+    who: ["you"],
     met: () => answers.bcAssistance === "pwd",
     fixed: false,
     unmet: "This requires B.C. PWD designation or disability assistance first.",
     action: { text: "Start through My Self Serve", url: "https://myselfserve.gov.bc.ca/" },
   },
   bcAssistanceStatus: {
+    short: "Check the guide for accepted B.C. assistance or status categories",
+    who: ["you"],
     met: () => ["pwd", "other"].includes(answers.bcAssistance),
     fixed: () => answers.bcAssistance === "none",
     unmet: "This requires a qualifying B.C. assistance, care, or protected-status category; check the guide first.",
   },
   bcBusPassStatus: {
+    short: "Check the bus pass routes for disability assistance or senior status",
+    who: ["you"],
     met: () => answers.bcAssistance === "pwd" || (isSeniorAge() && lowIncome()),
     fixed: false,
     unmet: "This requires B.C. disability assistance/PWD status or one of the listed low-income senior categories.",
   },
   bcPwdMedical: {
+    short: "Ask about the ministry review and the health reports it needs",
+    who: ["you", "professional", "program"],
     met: () => false,
     fixed: false,
     unmet: "The ministry decides whether your impairment is severe and likely to continue for at least two years. A doctor or nurse practitioner completes the medical report and a prescribed professional completes the assessor report.",
     action: { text: "Review the PWD designation criteria", url: "https://www2.gov.bc.ca/gov/content/family-social-supports/services-for-people-with-disabilities/disability-assistance" },
   },
   bcPwdDesignationFinancial: {
+    short: "Check the usual PWD application path and routes that may skip it",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet: "The standard designation application is generally reached through a financial eligibility screen for assistance. An existing designation is not automatically lost if you later become financially ineligible, and prescribed-class routes — including CPP disability benefits, the At Home Program, Community Living BC support services and PharmaCare palliative care benefits — can lead to designation without the standard application.",
     action: { text: "Review the PWD designation criteria", url: "https://www2.gov.bc.ca/gov/content/family-social-supports/services-for-people-with-disabilities/disability-assistance" },
   },
   bcDisabilityAssistanceFinancial: {
+    short: "Ask the ministry about its family income and asset test",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet: "Disability assistance depends on the ministry's own family-unit income and asset test. Exempt asset limits are \$100,000 for a single person, couple or family where one person has the PWD designation, and \$200,000 for a couple where both adults have the designation.",
@@ -730,49 +838,67 @@ const REQS = {
     action: { text: "Read the transition guidance", url: "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/financial-supports/disability-benefit" },
   },
   bcFuelTaxRoute: {
+    short: "Check which disability proof the fuel tax refund program accepts",
+    who: ["you", "professional", "program"],
     met: () => false,
     fixed: false,
     unmet: "You must confirm your disability through one of the program's accepted routes — a B.C. Disability Assistance Certification, a BCANDS letter, a Veterans Affairs 100% disability pension letter, a CNIB letter, or a medical certification of one of the six listed conditions.",
     action: { text: "Review the fuel tax refund routes", url: "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities" },
   },
   bcFuelTaxRegistered: {
+    short: "Check your fuel tax refund registration approval before claiming",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet: "This discount requires an approved registration in the Fuel Tax Refund Program for Persons with Disabilities. You can claim only after your registration is confirmed.",
     action: { text: "Register for the fuel tax refund program", url: "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities" },
   },
   bcDefermentProperty: {
+    short: "Check residency, home ownership, equity and unpaid property bills",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "You must have lived in B.C. for at least one year, be the registered owner of the property as your principal residence, keep at least 25% equity in it, and have paid all previous years' property taxes, utility fees, penalties and interest.",
     action: { text: "Review deferment eligibility", url: "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/property-tax-deferment-program/eligibility" },
   },
   qualifyingRenovationSpend: {
+    short: "Check the renovation is done and paid for, and keep the receipts",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "This credit pays back part of what you spend, so it applies only once the qualifying renovation has actually been done and paid for. Keep your invoices and receipts.",
   },
   mhrtcSecondaryUnit: {
+    short: "Check the separate-unit rules and who the renovation is for",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "This credit is only for creating a self-contained secondary unit with its own private entrance, kitchen, bathroom and sleeping area, so that a senior or an adult eligible for the Disability Tax Credit can live with a relative. Only one such renovation can ever be claimed for that person.",
   },
   excisePermanentMobilityCertified: {
+    short: "Ask a medical practitioner about certifying your mobility limits",
+    who: ["you", "professional"],
     met: () => false,
     fixed: false,
     unmet: "A qualified medical practitioner must certify that you have a permanent mobility impairment and cannot safely use public transportation.",
   },
   cdcpRequirements: {
+    short: "Check dental coverage, tax returns, family income and residency",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "You must meet all four CDCP requirements: you have no access to private dental insurance or coverage, you and your spouse or partner have filed your Canadian tax returns, your adjusted family net income is under $90,000, and you are a Canadian resident.",
   },
   disabilityMedicalExpensesPaid: {
+    short: "Check paid medical costs and receipts for your tax return",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "This is claimed on your tax return for money you have already spent, so it applies once you have paid the expenses and have the receipts.",
   },
   caregiverSupportClaim: {
+    short: "Check who gives support and who claims it on their tax return",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "This is claimed by the person providing support, on their own tax return, for a spouse, partner or dependant with a mental or physical impairment.",
@@ -786,36 +912,48 @@ const REQS = {
     action: { text: "Check the grant criteria", url: "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/home-owner-grant/person-with-disabilities" },
   },
   rahaEligibility: {
+    short: "Check income and asset limits; wait for written approval before work starts",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet: "You or someone in your household must have a permanent disability or loss of physical ability, and the household must be within BC Housing income and asset limits. Adaptations finished before BC Housing gives written approval are not eligible.",
     action: { text: "Check BC RAHA eligibility", url: "https://www.bchousing.org/housing-assistance/BC-RAHA" },
   },
   bcHealthyKidsIncome: {
+    short: "Check income rules and apply for MSP supplementary benefits first",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet: "Your family must be eligible for MSP supplementary benefits, which means an adjusted net income of less than $42,000. Apply to Health Insurance BC for supplementary benefits first.",
     action: { text: "Apply for MSP supplementary benefits", url: "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents/benefits/premium-assistance" },
   },
   bcWorkBcRoute: {
+    short: "Check which WorkBC route fits your work or school situation",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet: "WorkBC serves people who are unemployed or underemployed. People with disabilities who are employed also qualify if they are at significant risk of losing a job, or work more than 20 hours a week and are seeking more hours. Final-year high-school and post-secondary students with disabilities qualify too. Confirm which route applies to you.",
     action: { text: "Check WorkBC eligibility", url: "https://www.workbc.ca/discover-employment-services/workbc-centres/employment-services/employment-services-eligibility" },
   },
   coquitlamStatus: {
+    short: "Check Coquitlam's residency and immigration status rules",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "Coquitlam serves Canadian citizens, permanent residents and refugees who have settled in Coquitlam. Temporary residents — including visitors and study or work permit holders — and business-class, investor or entrepreneur immigrants are not eligible.",
     action: { text: "Review Coquitlam's eligibility", url: "https://www.coquitlam.ca/499/Financial-Assistance-for-Recreation" },
   },
   coquitlamIncome: {
+    short: "Check your household size against Coquitlam's income table",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet: "Coquitlam verifies household income against the Low Income Cut-off for your household size, which ranges from \$27,478 for one person to \$72,715 for seven or more. Check your household size against the current table.",
     action: { text: "Review Coquitlam's eligibility", url: "https://www.coquitlam.ca/499/Financial-Assistance-for-Recreation" },
   },
   archIncomeOrAssistance: {
+    short: "Check Kamloops' assistance, income or pension routes",
+    who: ["you"],
     // ARCH accepts any ONE of three official routes. The questionnaire can
     // suggest none of them: the income band is far below the City's
     // household-size Low Income Guidelines, and an assistance status is not the
@@ -827,6 +965,8 @@ const REQS = {
     action: { text: "Check ARCH eligibility", url: "https://www.kamloops.ca/recreation-culture/programs-activities/accessible-recreation/arch-program" },
   },
   notBcAssistance: {
+    short: "Check whether Healthy Kids or ministry coverage is the right route",
+    who: ["you"],
     met: () => answers.bcAssistance === "none",
     fixed: () => ["pwd", "other"].includes(answers.bcAssistance),
     unmet: "BC Healthy Kids is for eligible lower-income families not already receiving ministry assistance; those on assistance receive equivalent ministry coverage.",
@@ -847,6 +987,8 @@ const REQS = {
     unmet: "This is for someone who needs disability-related medical equipment or supplies.",
   },
   dailyLivingLimit: {
+    short: "Check daily living limits and the help or supports you need",
+    who: ["you"],
     met: () => hasFunctionalNeed("dailyLiving"),
     fixed: () => !functionalNeedUnknown(),
     unmet: "PWD requires significant restrictions in daily living plus help, supervision, an assistive device, service animal, or similar support.",
@@ -877,7 +1019,9 @@ const REQS = {
     unmet: "This is for essential medical travel that cannot be obtained in the home community.",
   },
   metroVancouver: { met: () => METRO_VANCOUVER_CITIES.includes(answers.city), fixed: true, unmet: "This TransLink program is for Metro Vancouver residents." },
-  outsideMetroVancouver: { met: () => !!answers.city && !METRO_VANCOUVER_CITIES.includes(answers.city), fixed: true, unmet: "Use the TransLink program in Metro Vancouver; this listing is for B.C. Transit communities." },
+  outsideMetroVancouver: {
+    short: "Check whether to use B.C. Transit or TransLink for your area",
+    who: ["you"], met: () => !!answers.city && !METRO_VANCOUVER_CITIES.includes(answers.city), fixed: true, unmet: "Use the TransLink program in Metro Vancouver; this listing is for B.C. Transit communities." },
   translinkHandyCard: { met: () => false, fixed: false, unmet: "Register for TransLink HandyDART/HandyCard first." },
   bcTransitHandyDart: { met: () => false, fixed: false, unmet: "Register as a permanent handyDART customer and obtain a handyPASS first." },
   atHomeProgram: { met: () => false, fixed: false, unmet: "The child must first be enrolled in the At Home Program." },
@@ -930,6 +1074,8 @@ const REQS = {
     unmet: "This part of the service covers Cambridge, Kitchener and Waterloo; townships have a separate specialized service.",
   },
   waterlooRenovatesEligibility: {
+    short: "Ask the Region to check income, home value and home records",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet:
@@ -937,6 +1083,8 @@ const REQS = {
     action: { text: "See funding and application details", url: "https://www.regionofwaterloo.ca/programs-and-services/employment-and-financial-supports/financial-support-for-renters-and-homeowners/funding-for-home-repairs/" },
   },
   waterlooHomemakingNeed: {
+    short: "Ask about the program's home help review and the records it needs",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet:
@@ -944,6 +1092,8 @@ const REQS = {
     action: { text: "Apply through Caredove", url: "https://www.regionofwaterloo.ca/programs-and-services/seniors-and-long-term-care/community-programs-for-older-adults/homemaking-support/" },
   },
   waterlooWasteSupportApproval: {
+    short: "Ask the Region which waste support route you can apply for",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet:
@@ -951,6 +1101,8 @@ const REQS = {
     action: { text: "See both waste support programs", url: "https://www.regionofwaterloo.ca/programs-and-services/garbage-and-organics/garbage/curbside-waste-support/" },
   },
   yorkHomemakersNeed: {
+    short: "Call York Region to ask about health and financial need rules",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet:
@@ -963,6 +1115,8 @@ const REQS = {
     unmet: "This is for people who are blind or partially sighted.",
   },
   ottawaOdspReceipt: {
+    short: "Check your Ottawa residency and ODSP and transit proof",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet:
@@ -976,6 +1130,8 @@ const REQS = {
     action: { text: "See reduced fares", url: "https://www.octranspo.com/en/fares/reduced-fares/" },
   },
   atpApproval: {
+    short: "Ask about transit program approval and household tax records",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet: "You need to be approved for the Affordable Transit Program, which is based on household net income from line 23600 of each household member's tax return.",
@@ -1003,6 +1159,8 @@ const REQS = {
     action: { text: "See reduced fares", url: "https://www.octranspo.com/en/fares/reduced-fares/" },
   },
   londonRenovatesEligibility: {
+    short: "Ask London to check income, assets, home value and residency",
+    who: ["you", "program"],
     // Deliberately NOT the lowIncome gate: the ceiling is $95,000, which is moderate
     // rather than low, so a fixed low-income gate would refuse eligible households. The
     // test also covers liquid assets and property assessment value, which the wizard
@@ -1014,6 +1172,8 @@ const REQS = {
     action: { text: "See how to apply", url: "https://london.ca/living-london/building-renovating/home-repair-accessibility-funding" },
   },
   p2pIncomeTest: {
+    short: "Ask local transit or recreation staff for your family's income limit",
+    who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet:
@@ -1024,7 +1184,9 @@ const REQS = {
   lethbridge: { met: () => answers.city === "Lethbridge", fixed: true, unmet: "This is a City of Lethbridge program." },
   medicinehat: { met: () => answers.city === "Medicine Hat", fixed: true, unmet: "This is a City of Medicine Hat program." },
   grandeprairie: { met: () => answers.city === "Grande Prairie", fixed: true, unmet: "This is a City of Grande Prairie program." },
-  stalbert: { met: () => answers.city === "St. Albert", fixed: true, unmet: "This is a City of St. Albert program." },
+  stalbert: {
+    short: "Check whether the City of St. Albert program is for your area",
+    who: ["you"], met: () => answers.city === "St. Albert", fixed: true, unmet: "This is a City of St. Albert program." },
   strathcona: { met: () => answers.city === "Sherwood Park", fixed: true, unmet: "This is a Strathcona County program." },
   airdrie: { met: () => answers.city === "Airdrie", fixed: true, unmet: "This is a City of Airdrie program." },
   woodbuffalo: { met: () => answers.city === "Fort McMurray", fixed: true, unmet: "This is a Wood Buffalo (Fort McMurray) program." },
@@ -4013,7 +4175,7 @@ function reqPrint(needs) {
   return needs.length ? `<section lang="en"><h2>${t("req.heading")}</h2><ul>${needs.map(n => `<li>${reqEscape(n.text)}</li>`).join("")}</ul></section>` : "";
 }
 function renderRequirements(b, needs, surface = "detail", nextAction = null) {
-  const heading = `req-${surface}-${b.id}`;
+  const heading = reqEscape(`req-${surface}-${b.id}`);
   const level = surface === "inline" ? 4 : 2;
   const groups = ["you", "professional", "program", "shared", "other"];
   const groupFor = n => !n.short ? "other" : n.who.length > 1 ? "shared" : n.who[0];
@@ -4024,23 +4186,20 @@ function renderRequirements(b, needs, surface = "detail", nextAction = null) {
     ? `<a class="req-action" lang="en" href="${reqEscape(n.action.url)}" target="_blank" rel="noopener noreferrer" data-ext>${reqEscape(n.action.text)}</a>` : "";
   return `<section class="side-next req-checks" lang="en" aria-labelledby="${heading}">
     <h${level} id="${heading}" tabindex="-1">${t("req.heading")}</h${level}>
-    <p class="req-count">${reqCount(needs.length)}</p>
     <p class="req-context">${t("req.context")}</p>
-    ${LANG !== "en" ? `<p lang="${LANG}">${t("det.enNote")}</p>` : ""}
     ${groups.map(g => {
       const rows = ordered.filter(n => groupFor(n) === g);
-      return rows.length ? `<div class="req-group${g === "other" ? " req-fallback" : ""}"><h${level + 1} class="req-group-title">${t(`req.${g}`)}</h${level + 1}><ul class="req-list" lang="en">${rows.map(n => `<li class="req-cue" data-req-key="${n.key}">${reqEscape(n.short || n.text)}${!n.short || direct ? action(n) : ""}</li>`).join("")}</ul></div>` : "";
+      return rows.length ? `<div class="req-group${g === "other" ? " req-fallback" : ""}"><h${level + 1} class="req-group-title">${t(`req.${g}`)}</h${level + 1}><ul class="req-list" lang="en">${rows.map(n => `<li class="req-cue" data-req-key="${reqEscape(n.key)}">${reqEscape(n.short || n.text)}${!n.short || direct ? action(n) : ""}</li>`).join("")}</ul></div>` : "";
     }).join("")}
-    ${migrated.length && !direct ? `<details class="req-full"><summary>${reqEscape(t("req.full").replace("{name}", b.name))}</summary><ol class="req-full-list" lang="en">${migrated.map(n => `<li data-req-key="${n.key}"><p class="req-cue">${reqEscape(n.short)}</p><p class="req-wording">${reqEscape(n.text)}</p>${action(n)}</li>`).join("")}</ol></details>` : ""}
+    ${migrated.length && !direct ? `<details class="req-full"><summary>${reqEscape(t("req.full").replace("{name}", () => b.name))}</summary><ol class="req-full-list" lang="en">${migrated.map(n => `<li data-req-key="${reqEscape(n.key)}"><p class="req-cue">${reqEscape(n.short)}</p><p class="req-wording">${reqEscape(n.text)}</p>${action(n)}</li>`).join("")}</ol></details>` : ""}
   </section>`;
 }
 function reqPreview(b, needs) {
-  const allCues = needs.every(n => n.short);
-  const shown = allCues ? needs.slice(0, 3) : [];
-  const more = allCues ? needs.length - shown.length : 0;
-  const suffix = more ? " " + t(more === 1 ? "req.more.one" : "req.more.other").replace("{n}", more) : "";
+  const shown = needs.filter(n => n.short).slice(0, 3);
+  if (needs.length === 1 && !needs[0].short && [...needs[0].text].length <= 120) shown.push(needs[0]);
+  const more = needs.length - shown.length;
   const slug = b.id.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-  return `<section class="needs req-preview" lang="en" aria-labelledby="req-card-${b.id}"><h4 class="needs-h" id="req-card-${b.id}">${t("req.heading")}</h4><p class="req-count">${reqCount(needs.length)}</p>${shown.length ? `<ul class="req-list" lang="en">${shown.map(n => `<li class="req-cue">${reqEscape(n.short)}</li>`).join("")}</ul>` : ""}<a class="req-guide-link js-req-guide" href="/guides/${slug}" data-id="${b.id}">${reqEscape(t("req.guide").replace("{name}", b.name) + suffix)}</a></section>`;
+  return `<section class="needs req-preview" lang="en" aria-labelledby="req-card-${reqEscape(b.id)}"><h4 class="needs-h" id="req-card-${reqEscape(b.id)}">${t("req.heading")}</h4><p class="req-count">${reqCount(needs.length)}</p>${shown.length ? `<ul class="req-list" lang="en">${shown.map(n => `<li class="req-cue">${reqEscape(n.short || n.text)}</li>`).join("")}</ul>` : ""}${more ? `<p class="req-other">${t("req.otherChecks").replace("{n}", more)}</p>` : ""}<a class="req-guide-link js-req-guide" href="/guides/${reqEscape(slug)}" data-id="${reqEscape(b.id)}">${reqEscape(t("req.guide").replace("{name}", () => b.name))}</a></section>`;
 }
 
 function benefitCard(b, r, rank) {
@@ -4281,7 +4440,11 @@ function wireResults() {
       event.preventDefault();
       detailFrom = "results";
       setState("detail", { detailId: link.dataset.id });
-      document.getElementById(`req-detail-${link.dataset.id}`)?.focus();
+      const el = document.getElementById(`req-detail-${link.dataset.id}`);
+      if (el) {
+        el.focus({ preventScroll: true });
+        el.scrollIntoView({ block: "start", behavior: a11y.motion ? "auto" : "smooth" });
+      }
     })
   );
   document.querySelectorAll(".js-detail").forEach((btn) =>
@@ -5002,7 +5165,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
       </aside>
     </div>
 
-    ${inline ? "" : `${backBtn("d-back2")}</div><article class="print-action-plan" aria-hidden="true" lang="en"><h1>${reqEscape(b.name)}</h1>${reqPrint(unmet)}</article>`}`;
+    ${inline ? "" : `${backBtn("d-back2")}</div>${unmet.length ? `<article class="print-action-plan" aria-hidden="true" lang="en"><h1>${reqEscape(b.name)}</h1><p>${reqEscape(b.summary)}</p><p><b>Official link:</b> ${reqEscape(resolveUrl(b.applyUrl || b.source))}</p>${reqPrint(unmet)}</article>` : ""}`}`;
 }
 
 function renderDetail(id) {

@@ -420,7 +420,9 @@ test("one-step-away guide uses a compact direct-action card without clipping", a
   });
 
   const card = page.locator(".side-card");
-  await expect(card.getByText("Before you can apply", { exact: true })).toBeVisible();
+  await expect(card.getByRole("heading", { name: "Requirements to check", exact: true })).toBeVisible();
+  await expect(card.locator('.req-group .req-cue')).toHaveText("Check your Medical Services Plan enrolment");
+  await card.locator('.req-full summary').click();
   await expect(card.getByText("Confirm B.C. Medical Services Plan enrolment first.", { exact: true })).toBeVisible();
   await expect(card.getByRole("link", { name: /Check or apply for MSP/ })).toHaveAttribute("href", /eligibility-and-enrolment/);
   await expect(page.getByRole("heading", { name: "What it can provide", exact: true })).toBeVisible();

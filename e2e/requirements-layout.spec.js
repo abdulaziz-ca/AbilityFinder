@@ -19,6 +19,9 @@ test("pilot cue preview opens personalized requirements; full list has a keyboar
   await expect(link).toHaveAttribute("href", `/guides/${id}`);
   await link.click();
   await expect(page.locator(`#req-detail-${id}`)).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(page.locator(`#req-detail-${id}`)).not.toBeFocused();
+  expect(await page.evaluate(() => document.activeElement.matches('a, summary'))).toBe(true);
   const section = page.locator(".req-checks");
   await expect(section).toHaveAttribute("lang", "en");
   await expect(section.locator("details")).toHaveCount(1);
@@ -68,7 +71,7 @@ test("mixed pilot detail keeps every need, fallback prose and print wording", as
   await page.evaluate(() => { detailFrom = "results"; setState("detail", { detailId: "rdsp" }); });
   const section = page.locator(".req-checks");
   await expect(section.locator(".req-cue").first()).toContainText("Check SIN and residency");
-  await expect(section.getByRole("heading", { name: "Other checks" })).toBeVisible();
+  await expect(section.locator(".req-group-title").first()).toBeVisible();
   await expect(section.locator("details")).toHaveCount(1);
   const texts = await page.evaluate(() => evaluate(BENEFITS.find(b => b.id === "rdsp")).needs.map(n => n.text));
   expect(texts.length).toBeGreaterThan(2);
@@ -121,7 +124,10 @@ test("inline headings, shared actors and EN fallback keep their presentation con
   });
   const section = page.locator(".req-checks");
   await expect(section.getByRole("heading", { name: "Shared checks" })).toBeVisible();
-  await expect(section.locator('[lang="fr"]')).toHaveCount(1);
+  await expect(section.locator('[lang="fr"]')).toHaveCount(0);
+  expect(await page.locator('#app').textContent()).toContain(await page.evaluate(() => t('det.enNote')));
+  const noteCount = await page.evaluate(() => document.getElementById('app').textContent.split(t('det.enNote')).length - 1);
+  expect(noteCount).toBe(1);
   await expect(section.locator("details")).toHaveCount(1);
   const inline = await page.evaluate(() => {
     const b = BENEFITS.find(b => b.id === "odsp");
@@ -165,4 +171,58 @@ for (const forWho of ["self", "child", "family"]) {
       expect(routeFailures).toEqual([]);
     });
   }
+}
+
+test("fully matched detail keeps its content when printing, and status labels reflect need count", async ({ page }) => {
+  await results(page);
+  const report = await page.evaluate(() => {
+    const b = BENEFITS.find(b => b.id === "rdsp");
+    const ready = renderGuideBody(b, { status: "ready", needs: [], reasons: [] });
+    const single = renderGuideBody(b, { status: "almost", needs: [{ key: "a", text: "A" }], reasons: [] });
+    const many = renderGuideBody(b, { status: "almost", needs: [{ key: "a", text: "A" }, { key: "b", text: "B" }], reasons: [] });
+    const status = html => { const host = document.createElement('div'); host.innerHTML = html; return host.querySelector('.side-status').textContent; };
+    document.getElementById('app').innerHTML = ready;
+    return { ready, single: status(single), many: status(many) };
+  });
+  expect(report.ready).not.toContain('class="print-action-plan"');
+  expect(report.single).toBe('One step away');
+  expect(report.many).toBe('2 requirements not yet confirmed');
+  await page.emulateMedia({ media: "print" });
+  await expect(page.locator('#app h1')).toBeVisible();
+});
+
+for (const theme of ['light', 'dark', 'contrast']) {
+  test(`requirement links use accessible link tokens in ${theme}`, async ({ page }) => {
+    await results(page);
+    await page.evaluate(theme => {
+      document.body.classList.add('a11y-nomotion');
+      document.body.style.transition = 'none';
+      document.documentElement.dataset.theme = theme === 'contrast' ? 'dark' : theme;
+      document.body.classList.toggle('a11y-contrast', theme === 'contrast');
+      const b = BENEFITS.find(b => b.id === 'rdsp');
+      document.getElementById('app').innerHTML = '<div class="card">' + reqPreview(b, [{ key: 'x', text: 'Full', short: 'Cue', who: ['you'] }]) + renderRequirements(b, [{ key: 'x', text: 'Full', short: 'Cue', who: ['you'], action: { text: 'Official', url: 'https://example.com' } }]) + '</div>';
+      document.querySelector('details').open = true;
+    }, theme);
+    const colors = await page.locator('.req-checks a, .req-preview a').evaluateAll(links => links.map(el => {
+      const style = getComputedStyle(el);
+      const token = document.createElement('span'); token.style.color = 'var(--accent-hi)'; el.parentElement.append(token);
+      const expected = getComputedStyle(token).color; token.remove();
+      let node = el.parentElement, bg;
+      while (node) { bg = getComputedStyle(node).backgroundColor; if (bg !== 'rgba(0, 0, 0, 0)') break; node = node.parentElement; }
+      return { actual: style.color, expected, bg, underline: style.textDecorationLine };
+    }));
+    expect(colors.length).toBe(2);
+    const luminance = rgb => {
+      const c = rgb.match(/[\d.]+/g).slice(0, 3).map(Number).map(x => { x /= 255; return x <= .04045 ? x / 12.92 : ((x + .055) / 1.055) ** 2.4; });
+      return .2126 * c[0] + .7152 * c[1] + .0722 * c[2];
+    };
+    for (const color of colors) {
+      expect(color.actual).toBe(color.expected);
+      expect(color.actual).not.toBe('rgb(0, 0, 238)');
+      expect(color.actual).not.toBe('rgb(85, 26, 139)');
+      expect(color.underline).toContain('underline');
+      const a = luminance(color.actual), b = luminance(color.bg);
+      expect((Math.max(a, b) + .05) / (Math.min(a, b) + .05)).toBeGreaterThanOrEqual(4.5);
+    }
+  });
 }

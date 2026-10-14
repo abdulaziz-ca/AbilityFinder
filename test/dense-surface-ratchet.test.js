@@ -1,7 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const path = require('node:path');
-const { collectDenseSurfaces, isFlagged, SURFACES } = require('../scripts/lib/dense-surfaces');
+const { collectDenseSurfaces, isFlagged, SURFACES, cueCoverage } = require('../scripts/lib/dense-surfaces');
 const baseline = require('../research/197-info-density/dense-surface-baseline.json');
 const items = collectDenseSurfaces(path.join(__dirname, '..'));
 
@@ -18,3 +18,8 @@ for (const surface of SURFACES) {
       `${surface}: flagged count ${actual} exceeds baseline ${allowed}; shorten the new text or move the official wording behind the expander; never delete a qualifier`);
   });
 }
+
+test('flagged unmet entries without a short cue never increase', () => {
+  assert.ok(Number.isInteger(baseline.flaggedWithoutShort));
+  assert.ok(cueCoverage(path.join(__dirname, '..')).withoutShort <= baseline.flaggedWithoutShort);
+});
