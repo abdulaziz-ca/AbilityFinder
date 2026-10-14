@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=170") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=171") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=170") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=171") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -1458,6 +1458,13 @@ body.a11y-contrast .wizard-card, body.a11y-contrast .opt, body.a11y-contrast .ca
 }
 
 /* ---------------------------------------------------------------- print */
+.document-checklist-details { margin: 24px 0; padding: 18px; border: 1px solid var(--hair); border-radius: var(--r-sm); background: var(--panel); color: var(--text); }
+.document-checklist-details > summary { cursor: pointer; font-weight: 600; }
+.document-checklist-content { color: inherit; overflow-wrap: anywhere; }
+.document-checklist { list-style: none; padding: 0; }
+.document-checklist li { position: relative; padding-left: 1.8em; margin: 16px 0; break-inside: avoid; }
+.document-checklist-box { position: absolute; left: 0; top: 0.25em; width: 1em; height: 1em; border: 1px solid currentColor; }
+.document-checklist li p { margin: 4px 0 0; font-size: 0.9em; }
 .print-action-plan { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .hero-bloom, .preview, .hero-ridges, .hero-atmos::after,
@@ -1491,6 +1498,9 @@ body.a11y-nomotion .wiz-mountains .wm { animation: none !important; }
   .print-documents ul { list-style: none; margin: 4pt 0 0; padding: 0; }
   .print-documents li { margin: 3pt 0; padding-left: 18pt; position: relative; }
   .print-documents li::before { border: 1.5px solid #000; box-sizing: border-box; content: ""; height: 10pt; left: 0; position: absolute; top: 2pt; width: 10pt; }
+  .print-document-checklist { color: #000; }
+  .print-document-checklist h2 { color: #000; font: 700 16pt/1.25 Arial, sans-serif; }
+  .print-document-checklist p { color: #000; }
   .print-action-plan footer { border-top: 1px solid #000; color: #000; font-size: 9pt; margin-top: 18pt; padding-top: 8pt; }
 
   /* Grants directory prints as a clean black-on-white reference. */
