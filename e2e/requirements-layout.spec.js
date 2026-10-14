@@ -9,6 +9,64 @@ async function results(page) {
   await page.evaluate(model => { answers = { ...BLANK(), ...model }; setState("results"); }, persona);
 }
 
+test("mixed results render all three answer-based labels and the acknowledgement", async ({ page }) => {
+  await results(page);
+  const counts = await page.evaluate(() => {
+    const statuses = browseCatalog().map(b => evaluate(b).status);
+    return ['ready', 'almost', 'no'].map(status => statuses.filter(s => s === status).length);
+  });
+  for (const count of counts) expect(count).toBeGreaterThan(0);
+  await expect(page.locator('.group-title.ready')).toContainText('Matches your answers');
+  await expect(page.locator('.group-title.almost')).toContainText('More to check');
+  await expect(page.locator('.benefit.ready .match-status').first()).toHaveText('Matches your answers');
+  await expect(page.locator('.benefit.almost .match-status').first()).toHaveText('More to check');
+  await expect(page.locator('.benefit.ready .match-note').first()).toHaveText('Based on what you told us. The program decides if you qualify.');
+  await expect(page.locator('.notmatch summary')).toContainText('Does not match these answers');
+  await expect(page.locator('#app')).toContainText('We did not ask about every requirement. You can still read how to apply.');
+  // Category grouping and a user-saved card must retain the same status copy.
+  await page.evaluate(() => {
+    const b = browseCatalog().find(b => evaluate(b).status === 'ready');
+    progress[b.id] = 'saved';
+    groupMode = 'category';
+    setState('results');
+  });
+  await expect(page.locator('.benefit.stage-saved .match-status')).toHaveText('Matches your answers');
+  await expect(page.locator('.benefit.stage-saved .benefit-main > .match-note')).toHaveText('Based on what you told us. The program decides if you qualify.');
+});
+
+test("detail and printed plan keep match copy separate from recorded application progress", async ({ page }) => {
+  await results(page);
+  const report = await page.evaluate(() => {
+    const selected = ['ready', 'almost', 'no'].map(status => browseCatalog().find(b => evaluate(b).status === status));
+    const details = selected.map(b => {
+      const host = document.createElement('div');
+      host.innerHTML = renderGuideBody(b, evaluate(b));
+      return {
+        answer: host.querySelector('.af-status').textContent,
+        side: host.querySelector('.side-status').textContent,
+        note: host.querySelector('.af-cell .match-note')?.textContent || '',
+      };
+    });
+    progress[selected[0].id] = 'approved';
+    let printed = '';
+    const open = window.open;
+    window.open = () => ({ document: { write: html => { printed = html; }, close() {} }, focus() {}, print() {} });
+    try { printResults(); } finally { window.open = open; }
+    const host = document.createElement('div');
+    host.innerHTML = printed;
+    return { details, badges: [...host.querySelectorAll('.badge')].map(el => el.textContent), text: host.textContent };
+  });
+  expect(report.details.map(d => d.answer)).toEqual(['Matches your answers', 'More to check', 'Does not match these answers']);
+  expect(report.details.map(d => d.side)).toEqual(['Matches your answers', 'More to check', 'Does not match these answers']);
+  expect(report.details[0].note).toBe('Based on what you told us. The program decides if you qualify.');
+  expect(report.badges).toContain('Matches your answers');
+  expect(report.badges).toContain('More to check');
+  expect(report.badges.join(' ')).not.toMatch(/eligible|approved|guaranteed|likely|one step away/i);
+  expect(report.text).toContain('Application progress: Approved');
+  expect(report.text).toContain('Based on what you told us. The program decides if you qualify.');
+  expect(report.text).toContain('We did not ask about every requirement. You can still read how to apply.');
+});
+
 test("pilot cue preview opens personalized requirements; full list has a keyboard-operable name", async ({ page }) => {
   await results(page);
   const id = await page.evaluate(() => BENEFITS.find(b => b.requires.includes("cwbEligibility")).id);
@@ -77,7 +135,7 @@ test("mixed pilot detail keeps every need, fallback prose and print wording", as
   // #216 moved grant/bond context off the checklist; both real checks remain.
   expect(texts.length).toBe(2);
   for (const text of texts) expect(await section.textContent()).toContain(text);
-  await expect(page.locator(".side-status")).toHaveText(`${texts.length} requirements not yet confirmed`);
+  await expect(page.locator(".side-status")).toHaveText('More to check');
   await page.emulateMedia({ media: "print" });
   const printed = page.locator(".print-action-plan");
   await expect(printed).toBeVisible();
@@ -174,7 +232,7 @@ for (const forWho of ["self", "child", "family"]) {
   }
 }
 
-test("fully matched detail keeps its content when printing, and status labels reflect need count", async ({ page }) => {
+test("fully matched detail keeps its content when printing, and status labels do not imply qualification", async ({ page }) => {
   await results(page);
   const report = await page.evaluate(() => {
     const b = BENEFITS.find(b => b.id === "rdsp");
@@ -186,8 +244,10 @@ test("fully matched detail keeps its content when printing, and status labels re
     return { ready, single: status(single), many: status(many) };
   });
   expect(report.ready).not.toContain('class="print-action-plan"');
-  expect(report.single).toBe('One step away');
-  expect(report.many).toBe('2 requirements not yet confirmed');
+  expect(report.single).toBe('More to check');
+  expect(report.many).toBe('More to check');
+  expect(report.ready).toContain('Matches your answers');
+  expect(report.ready).toContain('Based on what you told us. The program decides if you qualify.');
   await page.emulateMedia({ media: "print" });
   await expect(page.locator('#app h1')).toBeVisible();
 });

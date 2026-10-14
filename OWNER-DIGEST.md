@@ -56,9 +56,5 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
   #211–#217.
 
 ### Needs you
-- **Commit the workflow change.** `TASKVIEW-WORKFLOW.md` now contains the operating envelope you
-  approved, but Claude Code's safety classifier would not let Claude commit it (or edit
-  `.taskview/policy.json`, `TASKVIEW-QUICK-REFERENCE.md` and the pointer in `AGENTS.md`). The edit
-  is sitting uncommitted in `.taskview-worktrees/oct-resume`. Commit it yourself, or allow those
-  edits in your Claude Code permission settings. Ticket #217.
-- #83 (outreach one-pager) still awaits your sign-off from September.
+- ~~Commit the workflow change~~ — done 2026-10-14 after your approval (`fe2c5e3`, `9748e3a`).
+- ~~#83 outreach one-pager~~ — refreshed (134 programs, 46 municipalities, AB · BC · ON) and approved by you 2026-10-14: https://claude.ai/artifact/1EKW9enWE3zrZMU7REykcf (private until you share it).

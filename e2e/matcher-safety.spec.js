@@ -598,11 +598,11 @@ test("money band covers empty, ready, mixed, zero-total, and RDSP states", async
   expect(model.mixedAnnualTotal).toBe(4300);
   expect(model.mixed).toContain("Up to ~$4,300 / year");
   expect(model.mixed).not.toContain("$90,000");
-  expect(model.zeroTotal).toContain("Ready to apply — value varies by program");
+  expect(model.zeroTotal).toContain("Matches your answers — value varies by program");
   expect(model.zeroTotal).not.toMatch(/\$[\d,]+/);
-  expect(model.almostOnly).toContain("Your next step is to confirm one thing");
+  expect(model.almostOnly).toContain("More to check");
   expect(model.almostOnly).not.toMatch(/\$[\d,]+/);
-  expect(model.almostRdsp).toContain("Your next step is to confirm one thing");
+  expect(model.almostRdsp).toContain("More to check");
   expect(model.almostRdsp).not.toContain("$90,000");
   expect(model.almostRdsp).not.toContain("$4,500");
   expect(model.readyRdsp).toContain("Up to ~$4,500 / year");
@@ -646,13 +646,13 @@ test("money and all-conditional result copy is complete in English and French", 
     }
   });
 
-  expect(copy.en.one).toContain("This program is not ruled out");
+  expect(copy.en.one).toBe("We did not ask about every requirement. You can still read how to apply.");
   expect(copy.en.one).not.toContain("These 1 programs");
-  expect(copy.en.many).toContain("These 2 programs are not ruled out");
-  expect(copy.en.almost).toContain("Your next step is to confirm one thing");
+  expect(copy.en.many).toBe("We did not ask about every requirement. You can still read how to apply.");
+  expect(copy.en.almost).toContain("More to check");
   expect(copy.en.ready).toContain("Up to ~$4,500 / year");
   expect(copy.en.group).toMatch(/group-title almost primary/);
-  expect(copy.en.group).toContain("Programs to confirm");
+  expect(copy.en.group).toContain("More to check");
 
   expect(copy.fr.one).toContain("Ce programme n’est pas écarté");
   expect(copy.fr.many).toContain("Ces 2 programmes ne sont pas écartés");

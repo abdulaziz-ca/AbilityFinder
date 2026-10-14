@@ -16,6 +16,44 @@ function renderer() {
   return ctx;
 }
 
+test("English match-status surfaces never claim eligibility, approval or likelihood", () => {
+  const ctx = vm.createContext({});
+  vm.runInContext(i18n + '\nglobalThis.copy = I18N.en;', ctx);
+  const forbidden = /\b(?:eligible|approved|guaranteed|likely|one step away)\b/i;
+  const keys = Object.keys(ctx.copy).filter(key =>
+    /^(?:mb\.|grp\.|nm\.|af\.|res\.|det\.(?:eligible|almostH|almostSub)$|scenario\.(?:newReady|noReady)$|pv\.qualify$|how\.2[hp]$|prob\.good2$)/.test(key));
+  assert.ok(keys.length >= 30, "audit must cover the status-copy inventory");
+  for (const key of keys) assert.doesNotMatch(ctx.copy[key], forbidden, key);
+  assert.equal(ctx.copy['grp.ready'], 'Matches your answers');
+  assert.equal(ctx.copy['grp.almost'], 'More to check');
+  assert.equal(ctx.copy['nm.summary'], 'Does not match these answers');
+  assert.equal(ctx.copy['det.eligible'], 'Based on what you told us. The program decides if you qualify.');
+  // Audit only status-surface renderers, not REQS, application-progress stages,
+  // or benefit prose (official rules can legitimately say "eligible"). Keys are
+  // not displayed text: det.eligible remains an API key, not a verdict.
+  const ranges = [
+    ['function renderMoneyBand(', '/* -------------------------------------------------------------- engine */'],
+    ['function resultsBlurb(', 'function groupTitle('],
+    ['function renderMatchedGroups(', '/* a compact'],
+    ['function benefitCard(', '/* editable summary'],
+    ['function renderPrintActionPlan(', 'function reportProfileLine('],
+    ['function printResults(', 'function benefitIsLocal('],
+    ['function renderGuideBody(', 'function wireGuideInteractions('],
+  ];
+  for (const [start, end] of ranges) {
+    const from = source.indexOf(start);
+    assert.ok(from >= 0, start);
+    const to = source.indexOf(end, from + start.length);
+    assert.ok(to > from, end);
+    const body = source.slice(from, to)
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/^\s*\/\/.*$/gm, '')
+      .replace(/t\("[^"]+"\)/g, 'TRANSLATED_COPY');
+    const literals = body.match(/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|`(?:\\.|[^`\\])*`/g) || [];
+    for (const literal of literals) assert.doesNotMatch(literal, forbidden, start + ': ' + literal);
+  }
+});
+
 test("requirement cues have paired, plain-text, bounded actor metadata; rollout matches the reviewed applied inventory", () => {
   const migrated = [];
   for (const [key, req] of Object.entries(gates)) {

@@ -1333,6 +1333,7 @@ function renderMoneyBand(ready, almost) {
         <div class="mb-sub">${t("mb.readySub")}${extras.length ? " · " + extras.join(" · ") : ""}</div>
       </div>
     </div>
+    ${matchStatusNote("ready")}
     <p class="mb-caveat">${t("mb.caveat")}</p>
   </div>`;
   }
@@ -1347,6 +1348,7 @@ function renderMoneyBand(ready, almost) {
         <div class="mb-sub">${t(hasReady ? "mb.noTotalSub" : "mb.conditionalSub")}${extras.length ? " · " + extras.join(" · ") : ""}</div>
       </div>
     </div>
+    ${hasReady ? matchStatusNote("ready") : ""}
     <p class="mb-caveat">${t(hasReady ? "mb.noTotalCaveat" : "mb.conditionalCaveat")}</p>
   </div>`;
 }
@@ -2308,6 +2310,7 @@ function renderLanding() {
     <div class="hero-preview-wrap" aria-hidden="true">
       <div class="preview">
         <div class="preview-top"><span class="pv-dot"></span><b>8</b> ${t("pv.found")}<span class="pv-badge">${icon("check")} ${t("pv.qualify")}</span></div>
+        ${matchStatusNote("ready")}
         <div class="pv-hero">
           <div class="pv-hero-l">
             <span class="pv-hero-lbl">Example results</span>
@@ -3678,7 +3681,7 @@ function renderScenarioPanel(currentEvaluated) {
     const lost = currentEvaluated.filter((e) => matched(e.r.status) && !matched(changed.get(e.b.id).r.status));
     const newlyReady = hypothetical.filter((e) => e.r.status === "ready" && current.get(e.b.id).r.status !== "ready");
     const noLongerReady = currentEvaluated.filter((e) => e.r.status === "ready" && changed.get(e.b.id).r.status !== "ready");
-    const row = (key, items, tone) => `<div class="scenario-diff-row ${tone}"><b>${t(key)} <span>${items.length}</span></b><p>${items.length ? items.map((e) => e.b.name).join(" · ") : t("scenario.none")}</p></div>`;
+    const row = (key, items, tone) => `<div class="scenario-diff-row ${tone}"><b>${t(key)} <span>${items.length}</span></b>${tone === "ready" ? matchStatusNote("ready") : ""}<p>${items.length ? items.map((e) => e.b.name).join(" · ") : t("scenario.none")}</p></div>`;
     diff = `${row("scenario.gain", gained, "gain")}${row("scenario.lose", lost, "lose")}${row("scenario.newReady", newlyReady, "ready")}${row("scenario.noReady", noLongerReady, "not-ready")}`;
   }
 
@@ -3885,20 +3888,29 @@ function renderMatchedGrants() {
 
 function resultsBlurb(readyN, almostN) {
   const fr = LANG === "fr";
+  if (!fr) return t("res.acknowledgement");
   if (readyN && almostN)
     return fr
       ? `${readyN} programmes correspondent étroitement à vos réponses, et ${almostN} autres nécessitent d’abord la confirmation d’une condition. Il s’agit d’un résultat de dépistage, et non d’une décision d’approbation — ouvrez chaque guide avant de faire une demande.`
-      : `${readyN} programs closely match your answers, and ${almostN} more need a requirement confirmed first. This is a screening result, not an approval decision — open each guide before applying.`;
+      : t("res.acknowledgement");
   if (readyN)
     return fr
       ? `Voici ce que vous pouvez demander dès maintenant. Touchez une carte pour un guide en langage clair et le lien direct.`
-      : `These programs closely match your answers. This is not a guarantee of eligibility — open each guide and confirm the full rules before applying.`;
+      : t("res.acknowledgement");
   if (almostN)
     return t(almostN === 1 ? "res.conditionalOne" : "res.conditionalMany")
       .replace("{count}", almostN);
   return fr
     ? `Aucune correspondance selon vos réponses — ajustez vos réponses, ou commencez par le crédit d'impôt pour personnes handicapées.`
-    : `Based on your answers we didn't find a match — try adjusting your answers, or start with the Disability Tax Credit.`;
+    : t("res.acknowledgement");
+}
+
+// Copy only: keep match statuses separate from user-recorded application progress.
+function matchStatusLabel(status) {
+  return t(status === "ready" ? "grp.ready" : status === "almost" ? "grp.almost" : "nm.summary");
+}
+function matchStatusNote(status) {
+  return status === "ready" ? `<p class="match-note">${t("det.eligible")}</p>` : "";
 }
 
 function groupTitle(kind, ic, text, count) {
@@ -3966,7 +3978,7 @@ function renderMatchedGroups(ready, almost, rankOf) {
   }
   let h = "";
   if (ready.length) {
-    h += groupTitle("ready", "check", t("grp.ready"), ready.length);
+    h += groupTitle("ready", "check", t("grp.ready"), ready.length) + matchStatusNote("ready");
     h += `<div class="benefits-grid">${ready.map((e) => benefitCard(e.b, e.r, rankOf[e.b.id])).join("")}</div>`;
   }
   if (almost.length) {
@@ -4206,6 +4218,8 @@ function benefitCard(b, r, rank) {
           <span class="tag lvl">${b.level}</span>
           <span class="tag">${b.category}</span>
         </div>
+        <span class="tag match-status">${matchStatusLabel(r.status)}</span>
+        ${matchStatusNote(r.status)}
         <p class="summary">${b.summary}</p>
         ${metaRow(b)}
         ${needsHtml}
@@ -4534,17 +4548,20 @@ function renderPrintActionPlan(matched) {
       ? `<p class="print-next"><b>Next step:</b> ${esc(b.detail.steps[0])}</p>` : "";
     const documents = b.detail && Array.isArray(b.detail.documents) && b.detail.documents.length
       ? `<div class="print-documents"><b>Forms and documents</b><ul>${b.detail.documents.map((item) => `<li>${esc(item)}</li>`).join("")}</ul></div>` : "";
+    const r = evaluate(b);
     return `<section class="print-benefit">
       <h2>${esc(b.name)}</h2>
+      <p class="print-match-status">${matchStatusLabel(r.status)}</p>
+      ${matchStatusNote(r.status)}
       <p>${esc(b.summary)}</p>
       ${url ? `<p class="print-url"><b>Official link:</b> ${esc(url)}</p>` : ""}
-      ${reqPrint(evaluate(b).needs)}
+      ${reqPrint(r.needs)}
       ${nextStep}
       ${documents}
     </section>`;
   }).join("");
   return `<article class="print-action-plan" aria-hidden="true">
-    <header><h1>AbilityFinder — My action plan</h1><p class="print-date">${esc(printDate)}</p></header>
+    <header><h1>AbilityFinder — My action plan</h1><p class="print-date">${esc(printDate)}</p><p>${t("res.acknowledgement")}</p></header>
     ${items || "<p>No matched or tracked benefits yet.</p>"}
     <footer>Generated by abilityfinder.ca — free, independent, not affiliated with any government. Details change; confirm with official sources.</footer>
   </article>`;
@@ -4596,10 +4613,12 @@ function printResults() {
     const docs = b.detail && b.detail.documents && b.detail.documents.length
       ? `<p class="lbl">What you'll need</p><ul>${b.detail.documents.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>` : "";
     const tracked = progress[b.id] && STAGE[progress[b.id]] ? STAGE[progress[b.id]].label : null;
-    const status = tracked || (r.status === "ready" ? "Ready to apply" : "One step away");
+    const status = matchStatusLabel(r.status);
     const phone = b.detail && b.detail.phone ? `<p class="lnk">Phone: ${esc(b.detail.phone)}</p>` : "";
     return `<section>
       <h3><span class="num">${i}</span>${esc(b.name)} <span class="badge">${esc(status)}</span></h3>
+      ${matchStatusNote(r.status)}
+      ${tracked ? `<p>Application progress: ${esc(tracked)}</p>` : ""}
       <p class="meta">${esc(b.level)} · ${esc(b.category)}${metaBits ? " · " + metaBits : ""}</p>
       <p class="amt">${value}</p>
       <p>${esc(b.summary)}</p>
@@ -4646,11 +4665,12 @@ function printResults() {
       <p class="brand">AbilityFinder · ${SCOPE_LABEL}</p>
       <h1>My disability benefits report</h1>
       ${profile ? `<p class="profile"><b>Based on:</b> ${esc(profile)}</p>` : ""}
-      ${total > 0 ? `<p class="total">Estimated value represented by these close matches: <b>up to ~$${total.toLocaleString("en-CA")}/year</b>, plus one-time back-pay and lifetime savings where noted. This is not an eligibility or payment estimate, and programs may not stack.</p>` : ""}
+      ${total > 0 ? `<p class="total">Estimated value represented by programs under Matches your answers: <b>up to ~$${total.toLocaleString("en-CA")}/year</b>, plus one-time back-pay and lifetime savings where noted. This is not an eligibility or payment estimate, and programs may not stack.</p>` : ""}
       ${dateStr ? `<p class="profile" style="color:#888;font-size:12px;margin-top:8px;">Prepared ${esc(dateStr)}. Share this with a family member, caregiver, or case worker.</p>` : ""}
     </header>
-    ${readyRows ? `<p class="grp">Ready to apply (${ready.length})</p>${readyRows}` : ""}
-    ${almostRows ? `<p class="grp">One step away (${almost.length})</p>${almostRows}` : ""}
+    <p>${t("res.acknowledgement")}</p>
+    ${readyRows ? `<p class="grp">${t("grp.ready")} (${ready.length})</p>${matchStatusNote("ready")}${readyRows}` : ""}
+    ${almostRows ? `<p class="grp">${t("grp.almost")} (${almost.length})</p>${almostRows}` : ""}
     ${!readyRows && !almostRows ? "<p>No matches yet — try adjusting your answers in AbilityFinder.</p>" : ""}
     <footer>
       Amounts are estimates. Always confirm current rules and amounts on each official government page before applying.
@@ -5065,10 +5085,8 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   const factsHtml = facts.map(([k, val]) => `<div class="fact"><dt>${k}</dt><dd>${val}</dd></div>`).join("");
 
   const sideStatus = !wizardDone()
-    ? { cls: "maybe", txt: "Check your eligibility" }
-    : r.status === "almost" ? { cls: "almost", txt: r.needs.length === 1 ? "One step away" : reqCount(r.needs.length) }
-    : x.confirm ? { cls: "maybe", txt: "Possible match — confirm rules" }
-    : { cls: "ready", txt: "Close match — confirm rules" };
+    ? { cls: "maybe", txt: t("af.check") }
+    : { cls: r.status, txt: matchStatusLabel(r.status) };
   const unmet = wizardDone() && r.status === "almost" ? r.needs : [];
   const sidePrompt = !wizardDone()
     ? `<div class="side-next"><h2>See if it fits you</h2><p>Answer the questionnaire for a personalized match.</p></div>`
@@ -5084,7 +5102,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   // wizard trigger (wired in wireGuideInteractions) when the wizard isn't done.
   const afEligible = !wizardDone()
     ? `<span class="af-a">${t("af.eligiblePrompt")}</span><button class="linklike af-check" data-guide-check>${t("af.check")} ${icon("arrowRight")}</button>`
-    : `<span class="af-a af-status ${sideStatus.cls}">${sideStatus.txt}</span>`;
+    : `<span class="af-a af-status ${sideStatus.cls}">${sideStatus.txt}</span>${matchStatusNote(r.status)}`;
   const answerFirst = inline ? "" : `<section class="answer-first" aria-label="${t("af.aria")}">
         <div class="af-cell"><span class="af-q">${t("af.eligible")}</span>${afEligible}</div>
         ${b.amount ? `<div class="af-cell"><span class="af-q">${t("af.howMuch")}</span><span class="af-a">${v.head}</span></div>` : ""}
@@ -5136,6 +5154,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
       <aside class="detail-side">
         <div class="side-card">
           <span class="side-status ${sideStatus.cls}">${sideStatus.txt}</span>
+          ${wizardDone() ? matchStatusNote(r.status) : ""}
           ${sidePrompt}
           ${nextAction ? `<a class="apply side-next-action" href="${nextAction.action.url}" target="_blank" rel="noopener noreferrer" data-ext>${nextAction.action.text} ${icon("external")}</a>` : ""}
           <dl class="side-facts">${factsHtml}</dl>
