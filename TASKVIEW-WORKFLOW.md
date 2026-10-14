@@ -113,22 +113,38 @@ A substantial task follows **Review → Verification → Done**:
 
 Tiny documentation/checklist work may use proportionate review only when policy permits, but it still needs evidence and cannot bypass failed checks.
 
+## Operating envelope (owner-approved 2026-10-13)
+
+The owner approved this in chat on 2026-10-13: "optimise the workflow between you two and do it so that I dont have to do anything and you guys judge work together and fix each others mistakes ... just do as you think is best among yourselves", and, after being told it loosens human-only gates, "i give you permission to go ahead with it". Inside this envelope Claude and Codex run the project between them; outside it, the human-only gates below still apply.
+
+- **Task selection is autonomous.** Order: (1) finish anything in Review or Verification; (2) owner-reported complaints (tickets quoting the owner); (3) Ready; (4) Backlog by priority. Never start a task tagged `human-only` or `needs-owner-decision` — list it in `OWNER-DIGEST.md` instead.
+- **Agents may add their own ideas** as tickets titled `[IDEA] …` (search-before-create still applies) and build them when S/M sized and inside the hard constraints of `AGENTS.md`. L-sized ideas, or anything that adds product scope, wait for the owner via the digest.
+- **Concurrency:** at most 3 parallel workers; one implementer owns a given file at a time.
+- **Pushing to `main` is allowed without asking.** The post-push verification in `DEPLOY.md` is mandatory: CI green on both jobs, and the live `?v=N` matching the committed tree. Never push while a run is in flight.
+- **Cross-agent review stays mandatory** for substantial work, using `research/review-packet-template.md`. The reviewer tries to disprove. Benefit-fact findings are checked against the live official page before acting — reviewer false positives are real.
+- **Disagreements:** two rounds of evidence. If still unresolved, the position more conservative for the end user wins (less certainty shown, qualifier kept, claim not shipped), and the disagreement is recorded in `OWNER-DIGEST.md`. No owner escalation unless a human-only gate is involved.
+- **Thinking together:** for design decisions one agent writes a proposal and the other a critique, both in `research/<ticket>/`; the accepted design is recorded in the ticket before building. Medium effort for these, low effort for well-specified builds.
+- **If the Codex/GPT usage limit runs out:** tell the owner; if there is no reply, Claude continues alone and marks the ticket "review owed by Codex". It stays in Review, not Done, until Codex reviews.
+- **`OWNER-DIGEST.md`** at the repo root is the owner's single place to look: newest entry first; each entry gives the date, Shipped (commit + live version), Verified how, Decisions we made for you (reversible), and Needs you (true human gates only).
+
 ## Human-only gates
 
-By default, only a human may authorize or perform:
+Only a human may authorize or perform:
 
 - deleting a TaskView project or task;
-- changing this workflow or the TaskView policy;
+- widening the operating envelope above, or otherwise relaxing this workflow or the TaskView policy (agents may refine process *inside* the envelope, never widen it themselves);
 - major cancellations or cancellation of committed product scope;
-- production deployment;
 - security-sensitive approvals, credential changes, incident closure, or acceptance of security/privacy exposure;
+- spending money or adding paid infrastructure; adding accounts, analytics or remote storage of answers;
+- new product scope outside `ROADMAP.md`, or un-pausing French;
+- human accessibility-testing sign-off, or lifting the NO-GO;
 - resolving unclear product requirements.
 
-Stop at the gate, document the decision needed and options, and ask the user. These defaults may be configured later by an explicit human-approved policy change; agents must not relax them themselves.
+Stop at the gate, document the decision needed and options in `OWNER-DIGEST.md` and the ticket, and move on to other work in the envelope.
 
 ## Task selection
 
-There is **no automatic next-task selection initially**. After completing or blocking the current task, the agent asks the user what to do next and may continue only after explicit approval. Do not claim the next Ready item merely because it is available.
+Next-task selection is **automatic within the operating envelope** (owner-approved 2026-10-13); see the order above. After completing or blocking a task, the agent picks the next eligible one without asking.
 
 ## Offline operation and synchronization
 
