@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.18.0";
+const SPEC_VERSION = "1.19.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -413,6 +413,27 @@ const GATES = {
   childThreeAdls: needGate("childThreeAdls"),
 
   /* ---------------------------------------------------------- circumstance */
+  // Batch two: HATC permits expected residence and family claimants. Missing
+  // self-profile answers cannot hard-exclude those unasked routes.
+  hatcEligibleDwelling: {
+    evidence: "answers",
+    satisfy: { add: { circumstances: ["homeowner"] } },
+    violations: [{ name: "ownership or expected residence needs checking", fragment: { set: { circumstances: ["none"] } }, expect: "almost" }],
+  },
+  hatcQualifyingPerson: {
+    evidence: "answers",
+    satisfy: { set: { dtc: "yes" } },
+    violations: [{ name: "family claimant or year-specific eligibility unasked", fragment: { set: { dtc: "no", ageBand: "19to59" } }, expect: "almost" }],
+  },
+  hatcQualifyingRenovationSpend: external("HATC is non-refundable and requires eligible work done and paid for in the tax year; the wizard does not collect spending."),
+  richmondFinancialHardship: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [
+      { name: "PWD designation does not establish current assistance receipt", fragment: { set: { income: "high", bcAssistance: "pwd" } }, expect: "almost" },
+      { name: "other assistance or financial limits need checking", fragment: { set: { income: "high", bcAssistance: "none" } }, expect: "almost" },
+    ],
+  },
   homeowner: circumstanceGate("homeowner"),
   vehicleOwner: circumstanceGate("vehicleOwner"),
   recentGraduate: circumstanceGate("recentGraduate"),
@@ -803,7 +824,7 @@ const PROGRAM_NOTES = {
   },
   "home-accessibility-tax-credit": {
     bestCase: "almost",
-    why: "The mutation acceptance criterion for ticket #61: removing the qualifyingRenovationSpend gate must turn this Expected: \"almost\" / Received: \"ready\".",
+    why: "HATC must remain almost until eligible work is done and paid for. Batch two uses hatcQualifyingRenovationSpend for its non-refundable wording; removing this external gate must still expose false readiness. Missing ownership or personal DTC answers are now almost, not no, because expected residence and family claimant routes are unasked.",
   },
   "bc-home-reno-tax-credit": {
     bestCase: "almost",

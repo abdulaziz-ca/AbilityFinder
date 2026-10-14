@@ -22,6 +22,81 @@ function loadData() {
 
 const { BENEFITS, BENEFIT_VALUES, BENEFIT_META } = loadData();
 
+test("batch two: transit and recreation values retain all source limits", () => {
+  const edmonton = benefitById("edmonton-fare-assistance");
+  assert.match(edmonton.amount, /\$35 or \$50.*depending on household income/);
+  assert.match(BENEFIT_VALUES[edmonton.id].note, /\$35 or \$50.*depending on household income/);
+  assert.doesNotMatch(JSON.stringify(edmonton), /\$36|automatically considers|You qualify on/);
+  const lethbridge = benefitById("lethbridge-fee-assistance");
+  for (const text of [lethbridge.amount, BENEFIT_VALUES[lethbridge.id].note]) {
+    assert.match(text, /up to \$150 per person per season toward one recreation or culture program, while funds are available/);
+  }
+  const hat = benefitById("medicinehat-fair-entry");
+  for (const text of [hat.amount, BENEFIT_VALUES[hat.id].note]) {
+    assert.match(text, /up to 75%.*up to \$630\/yr per person/);
+    assert.equal((text.match(/up to \$200\/yr per person/g) || []).length, 2);
+    assert.match(text, /separate.*Esplanade education/);
+  }
+  assert.match(hat.detail.about, /regular-priced.*City-run pools.*provided directly by Esplanade staff/);
+  assert.match(hat.detail.time, /missing information may delay/);
+  // These are discount descriptions, not cash computations. None may enter
+  // an annual or monthly estimate using the old price or an assumed subsidy.
+  for (const id of [edmonton.id, lethbridge.id, hat.id]) {
+    const value = BENEFIT_VALUES[id];
+    assert.equal(value.kind, "discount");
+    for (const field of ["annualMax", "annualMin", "monthlyMax", "monthlyMin"])
+      assert.equal(value[field], undefined, `${id}.${field}`);
+  }
+});
+
+test("batch two: tax lines, supported dependants and prior-year exclusion", () => {
+  const medical = benefitById("medical-expense-tax-credit");
+  const steps = medical.detail.steps.join(" ");
+  assert.match(steps, /total on line 33099/);
+  assert.match(steps, /line below.*lesser of 3%.*\$2,834/);
+  assert.match(steps, /following line of your return/);
+  assert.match(steps, /residents of Canada at any time in the year/);
+  assert.doesNotMatch(steps, /any other dependant|result on line 33099/);
+  assert.match(medical.detail.tips[1], /not already claimed in the prior year/);
+});
+
+test("batch two: conditional coverage, choices and alternative documents stay qualified", () => {
+  const csg = benefitById("csg-dse");
+  assert.match(csg.summary, /Helps pay.*if you qualify.*can include.*depending on your needs/);
+  assert.match(csg.note, /depends on your needs and your application/);
+  assert.equal(csg.source, "https://www.canada.ca/en/employment-social-development/services/education/grants/disabilities.html");
+  const rdsp = benefitById("rdsp");
+  for (const text of [rdsp.summary, rdsp.detail.about, rdsp.detail.aboutList.lead]) {
+    assert.match(text, /may (add|pay)/);
+    assert.match(text, /depending on (your )?family income/);
+    assert.match(text, /contribut/);
+  }
+  const richmond = benefitById("richmond-rec-fee-subsidy");
+  for (const text of [richmond.amount, richmond.summary]) {
+    assert.match(text, /many drop-in programs and services/);
+    assert.match(text, /most registered programs/);
+  }
+  assert.match(richmond.requiresNote, /government assistance.*do not receive them.*other financial limits/);
+  const saanich = benefitById("saanich-life");
+  assert.match(saanich.amount, /Option 1:.*52 regional.*Option 2: 50% off an annual/);
+  assert.match(saanich.note, /children.*youth.*may.*strict eligibility.*no guarantee/);
+  for (const text of [saanich.eligibility.note, saanich.requiresNote]) {
+    assert.match(text, /landing.*within one year/);
+    assert.match(text, /adjudicator form/);
+    assert.match(text, /local school.*parental or guardian support/);
+  }
+  assert.match(benefitById("taxi-saver-bctransit").detail.steps[4], /remainder in cash/);
+});
+
+test("batch two: HATC and Richmond use isolated gates", () => {
+  assert.deepEqual(Array.from(benefitById("home-accessibility-tax-credit").requires),
+    ["hatcQualifyingPerson", "hatcEligibleDwelling", "hatcQualifyingRenovationSpend"]);
+  assert.ok(benefitById("richmond-rec-fee-subsidy").requires.includes("richmondFinancialHardship"));
+  assert.ok(benefitById("saanich-life").requires.includes("lowIncome"));
+  assert.ok(benefitById("bc-home-reno-tax-credit").requires.includes("qualifyingRenovationSpend"));
+  assert.ok(benefitById("multigenerational-home-renovation-tax-credit").requires.includes("homeRenoCandidate"));
+});
+
 function benefitById(id) {
   return BENEFITS.find((benefit) => benefit.id === id);
 }

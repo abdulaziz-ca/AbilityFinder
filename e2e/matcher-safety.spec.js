@@ -1,5 +1,47 @@
 const { test, expect } = require("@playwright/test");
 
+test("batch two: HATC unasked routes remain actionable and Richmond PWD receipt remains unconfirmed", async ({ page }) => {
+  const hatc = await evaluateProfile(page, { dtc: "no", circumstances: ["none"] });
+  expect(hatc["home-accessibility-tax-credit"].status).toBe("almost");
+  const pwd = await evaluateProfile(page, { province: "BC", city: "Richmond", income: "high", bcAssistance: "pwd" });
+  expect(pwd["richmond-rec-fee-subsidy"].status).toBe("almost");
+  const unknown = await evaluateProfile(page, { province: "BC", city: "Richmond", income: "high", bcAssistance: "none" });
+  expect(unknown["richmond-rec-fee-subsidy"].status).toBe("almost");
+  expect(unknown["richmond-rec-fee-subsidy"].needs.map(n => n.text).join(" ")).toContain("do not receive them");
+  const gates = await page.evaluate(() => {
+    const keys = ["hatcEligibleDwelling", "hatcQualifyingPerson", "hatcQualifyingRenovationSpend", "richmondFinancialHardship"];
+    return keys.map(key => ({ key, fixed: REQS[key].fixed, short: REQS[key].short, who: REQS[key].who }));
+  });
+  for (const gate of gates) {
+    expect(gate.fixed).toBe(false);
+    expect(gate.short.length).toBeLessThanOrEqual(80);
+    expect(gate.short).not.toMatch(/\d/);
+    expect(gate.who).toContain("you");
+  }
+});
+
+test("batch two: HATC known answers satisfy only their listed checks", async ({ page }) => {
+  await gotoReadyApp(page);
+  const cases = [
+    { dtc: "no", ageBand: "19to59", circumstances: ["none"], income: "high", bcAssistance: "none", expected: [false, false, false, false] },
+    { dtc: "yes", ageBand: "19to59", circumstances: ["homeowner"], income: "low", bcAssistance: "none", expected: [true, true, false, true] },
+    { dtc: "no", ageBand: "65plus", circumstances: ["none"], income: "high", bcAssistance: "pwd", expected: [false, true, false, false] },
+    { dtc: "unsure", ageBand: "19to59", circumstances: ["unsure"], income: "unsure", bcAssistance: "other", expected: [false, false, false, false] },
+  ];
+  for (const { expected, ...overrides } of cases) {
+    const result = await page.evaluate(model => {
+      const previous = answers;
+      answers = model;
+      try {
+        return [REQS.hatcEligibleDwelling.met(), REQS.hatcQualifyingPerson.met(), REQS.hatcQualifyingRenovationSpend.met(), REQS.richmondFinancialHardship.met()];
+      } finally {
+        answers = previous;
+      }
+    }, answerModel(overrides));
+    expect(result).toEqual(expected);
+  }
+});
+
 function answerModel(overrides = {}) {
   return {
     forWho: "self",
@@ -1426,7 +1468,13 @@ test("renovation tax credits stay conditional on the work actually being done, n
     expect(benefit, `expected a result for ${id}`).toBeTruthy();
     expect(benefit.status, `${id} must not claim readiness before the work is done`).toBe("almost");
     expect(benefit.status).not.toBe("ready");
-    expect(benefit.needs.map((need) => need.text).join(" ")).toMatch(/only once the qualifying renovation has actually been done/i);
+    const text = benefit.needs.map((need) => need.text).join(" ");
+    if (id === "home-accessibility-tax-credit") {
+      expect(text).toMatch(/only once a qualifying renovation has actually been done and paid for in the tax year/i);
+      expect(text).toMatch(/non-refundable.*reduces the tax you owe/i);
+    } else {
+      expect(text).toMatch(/only once the qualifying renovation has actually been done/i);
+    }
   }
 });
 

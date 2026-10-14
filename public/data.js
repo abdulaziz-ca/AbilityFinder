@@ -224,11 +224,11 @@ const BENEFIT_VALUES = {
   "ab-special-needs-housing": { kind: "services", excludeFromEstimate: true,
     note: "Subsidized housing applied for through a local housing provider" },
   "calgary-fair-entry": { kind: "discount", note: "transit $6.30–$63/mo by income band + lower-cost recreation" },
-  "edmonton-fare-assistance": { kind: "discount", note: "$36/mo transit pass + low-cost recreation" },
+  "edmonton-fare-assistance": { kind: "discount", note: "Reduced-cost monthly Arc card ($35 or $50 depending on household income) + Leisure Access Pass" },
   // Municipal programs researched 2026-07-15 — figures from each city's own page.
   "reddeer-fee-assistance": { kind: "discount", note: "$34/mo transit pass + up to $200/yr recreation" },
-  "lethbridge-fee-assistance": { kind: "discount", note: "3 months of bus passes for the price of 1 + $150/season" },
-  "medicinehat-fair-entry": { kind: "discount", note: "75% off transit (max $630/yr) + $200/yr recreation" },
+  "lethbridge-fee-assistance": { kind: "discount", note: "3 months of bus passes for the price of 1 + up to $150 per person per season toward one recreation or culture program, while funds are available" },
+  "medicinehat-fair-entry": { kind: "discount", note: "up to 75% off transit (up to $630/yr per person) + up to $200/yr per person for City recreation and a separate up to $200/yr per person for Esplanade education programs" },
   "grandeprairie-aish-pass": { kind: "discount", note: "$10.25/mo transit pass (vs $74.25) + 75% off recreation" },
   "stalbert-subsidy": { kind: "discount", note: "Free local transit + free annual rec membership" },
   "strathcona-subsidy": { kind: "discount", note: "Reduced transit fare cap + free annual Active Pass+" },
@@ -289,9 +289,9 @@ const BENEFIT_VALUES = {
   "vancouver-leisure-access": { kind: "discount", excludeFromEstimate: true, note: "free pool/rink admission + 50% off fitness" },
   "surrey-leisure-access": { kind: "discount", excludeFromEstimate: true, note: "free pass (0-18/60+) or 75% off adults; 75% off courses" },
   "burnaby-fair-play": { kind: "discount", excludeFromEstimate: true, note: "$250/person ($500/child) credit + annual Be Active Pass" },
-  "richmond-rec-fee-subsidy": { kind: "discount", excludeFromEstimate: true, note: "free drop-in + 90% off programs (<=$300 kids/$100 adults)" },
+  "richmond-rec-fee-subsidy": { kind: "discount", excludeFromEstimate: true, note: "Unlimited free admission to many drop-in programs and services + 90% off most registered programs (up to $300/year for children and youth or $100/year for adults and seniors)" },
   "victoria-life": { kind: "discount", excludeFromEstimate: true, note: "2 yrs free drop-ins + $80-120 program credit" },
-  "saanich-life": { kind: "discount", excludeFromEstimate: true, note: "2 yrs free drop-ins + one-time $80-120 grant" },
+  "saanich-life": { kind: "discount", excludeFromEstimate: true, note: "Choose for two years: Saanich free drop-ins, 52 regional visits/year and a one-time $80–$120 age-based Saanich program grant; or 50% off an annual Regional Recreation Pass" },
   "kelowna-recreation-assistance": { kind: "discount", excludeFromEstimate: true, note: "credit toward a pass or City programs" },
   "coquitlam-far": { kind: "discount", excludeFromEstimate: true, note: "50 drop-in passes + $225 credit per member" },
   "kamloops-arch": { kind: "discount", excludeFromEstimate: true, note: "up to $400/yr recreation credits" },
@@ -412,7 +412,7 @@ const BENEFIT_META = {
   "edmonton-fare-assistance": { difficulty: 1, effort: "Application + proof of income", wait: "8–12 weeks" },
   "reddeer-fee-assistance": { difficulty: 1, effort: "Online form + proof", wait: "up to 10 business days" },
   "lethbridge-fee-assistance": { difficulty: 1, effort: "Online form or call 311", wait: "apply any time" },
-  "medicinehat-fair-entry": { difficulty: 1, effort: "One form, lasts 2 years", wait: "about 2 weeks" },
+  "medicinehat-fair-entry": { difficulty: 1, effort: "One form, lasts up to 2 years", wait: "Processed within two weeks; missing information may delay approval" },
   "grandeprairie-aish-pass": { difficulty: 1, effort: "Ask at City Hall", wait: "same day in person" },
   "stalbert-subsidy": { difficulty: 1, effort: "One FCSS form", wait: "1–2 weeks" },
   "strathcona-subsidy": { difficulty: 2, effort: "Call or visit FCSS", wait: "ask when you apply" },
@@ -470,7 +470,7 @@ const BENEFIT_META = {
   "burnaby-fair-play": { difficulty: 2, effort: "Application + residency and income proof", wait: "Confirm with the City" },
   "richmond-rec-fee-subsidy": { difficulty: 2, effort: "Application + residency and income proof", wait: "Confirm with the City" },
   "victoria-life": { difficulty: 2, effort: "Application + residency and income proof", wait: "Confirm with the City" },
-  "saanich-life": { difficulty: 2, effort: "Online application + CRA income statements", wait: "Allow time before registering" },
+  "saanich-life": { difficulty: 2, effort: "Online application + CRA income statements for most households, or documents for an alternative route", wait: "Allow time before registering" },
   "kelowna-recreation-assistance": { difficulty: 2, effort: "Email application + income assessment", wait: "Up to 2 weeks once complete" },
   "coquitlam-far": { difficulty: 2, effort: "Application + residency and income proof", wait: "Confirm with the City" },
   "kamloops-arch": { difficulty: 2, effort: "Annual ARCH/KamPASS application", wait: "Confirm with the City" },
@@ -3012,7 +3012,7 @@ const BENEFITS = [
     category: "Money & savings",
     amount: "Up to $3,500 grant + $1,000 bond per year (free government money)",
     summary:
-      "A savings account where the government adds matching grants (up to 300%) and bonds — you don't even need to contribute to get the bond if your income is low.",
+      "A savings account where the government may add matching grants (up to 300%) and bonds, depending on your family income and how much is contributed — you don't even need to contribute to get the bond if your income is low.",
     requires: ["dtc", "under60", "rdspOpening", "rdspContributionWindow"],
     note:
       "One of the best-value benefits available. Open one at most banks or credit unions after you're approved for the DTC.",
@@ -3023,9 +3023,9 @@ const BENEFITS = [
       "https://www.canada.ca/en/employment-social-development/programs/disability/savings.html",
     detail: {
       about:
-        "A long-term savings account for people approved for the DTC. The government pays in grants (matching what you put in) and bonds (free money for lower incomes) — potentially tens of thousands of dollars over time.",
+        "A long-term savings account for people approved for the DTC. The government may pay in grants (matching what you put in) and bonds (for lower incomes), depending on family income and contributions — potentially tens of thousands of dollars over time.",
       aboutList: {
-        lead: "A long-term savings account for people approved for the DTC. The government pays in grants (matching what you put in) and bonds (free money for lower incomes) — potentially tens of thousands of dollars over time.",
+        lead: "A long-term savings account for people approved for the DTC. The government may pay in grants (matching what you put in) and bonds (for lower incomes), depending on family income and contributions — potentially tens of thousands of dollars over time.",
         items: [
           "Grants and bonds follow a different, earlier deadline than contributions.",
           "A beneficiary's RDSP can receive a grant on contributions made until December 31 of the year in which the beneficiary turns 49.",
@@ -3222,17 +3222,17 @@ const BENEFITS = [
     category: "Education",
     amount: "Up to $20,000 / year",
     summary:
-      "Covers assistive technology, note-taking, tutoring, coaching and other supports for students with disabilities.",
+      "Helps pay for extra education-related costs, such as services and equipment you need to support your studies, if you qualify. Supports can include assistive technology, note-taking, tutoring and coaching, depending on your needs.",
     requires: ["student", "notBcStudentAidDuplicate", "csgNeedAndProgram", "csgServicesEquipment"],
     note:
-      "Covers a lot: assistive tech, tutors, note-takers, learning coaches, specialized transportation and more.",
+      "Can help with services and equipment you need for your studies. What is approved depends on your needs and your application.",
     applyText: "Apply through your provincial student aid",
     applyUrl: (a) => STUDENT_AID[a.province] || FED_STUDENT_AID,
     source:
       "https://www.canada.ca/en/employment-social-development/services/education/grants/disabilities.html",
     detail: {
       about:
-        "A large grant that pays for the specific services and equipment a student needs because of their disability — from screen readers and hearing supports to coaching, tutoring and note-taking.",
+        "A grant that helps pay for extra education-related costs, such as services and equipment you need to support your studies. Examples can include screen readers, hearing supports, coaching, tutoring and note-taking, depending on your needs.",
       steps: [
         "Apply through Alberta Student Aid and complete the disability section.",
         "Work with your school's Accessibility / Disability Services office to identify what you need.",
@@ -3257,8 +3257,8 @@ const BENEFITS = [
     category: "Tax",
     amount: "Up to $20,000 per year in eligible expenses, claimed as a non-refundable tax credit",
     summary:
-      "A federal non-refundable tax credit for renovations that make a home safer or easier to get around, for people approved for the Disability Tax Credit and for people 65 or older.",
-    requires: ["homeRenoCandidate", "homeowner", "qualifyingRenovationSpend"],
+      "A non-refundable federal credit for home accessibility renovations. The person must be eligible for the Disability Tax Credit at any time in the year, or aged 65 or older at year end. Certain family members may claim for them.",
+    requires: ["hatcQualifyingPerson", "hatcEligibleDwelling", "hatcQualifyingRenovationSpend"],
     eligibility: {
       mode: "all",
       items: [
@@ -3497,19 +3497,22 @@ const BENEFITS = [
     note:
       "Only the portion above a threshold counts. The threshold is the LESSER of 3% of net income or $2,834, so on a lower income the 3% figure usually applies and more of your expenses count. This amount is indexed and changes by tax year — confirm the figure for the year you are filing.",
     requiresNote:
-      "You claim expenses you paid for yourself, your spouse or common-law partner, and your children under 18 on line 33099. Expenses for other dependants go on line 33199, where the same threshold is worked out separately using that dependant's net income. Keep all receipts.",
+      "You claim expenses you paid for yourself, your spouse or common-law partner, and your children under 18 on line 33099. Expenses for a dependant who depended on you for support, other than a spouse, partner or child under 18, go on line 33199 (see CRA for who counts), where the same threshold is worked out separately using that dependant's net income. Keep all receipts.",
     applyText: "Read the CRA guidance for lines 33099 and 33199",
     applyUrl: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-33099-33199-eligible-medical-expenses-you-claim-on-your-tax-return.html",
     source: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-33099-33199-eligible-medical-expenses-you-claim-on-your-tax-return.html",
     detail: {
       about:
-        "For line 33099 you total the eligible expenses, then subtract the lesser of 3% of your net income from line 23600 or $2,834, and the remainder is what the credit is calculated on. CRA's own worked example: Pauline's net income is $55,000, 3% of that is $1,650, and because $1,650 is less than $2,834 she subtracts $1,650 from the $6,300 of combined expenses. Expenses for children under 18 can be combined with the parents' expenses. For a dependant other than a spouse, partner or child under 18, use line 33199 and run the same lesser-of calculation against that dependant's own net income. The $2,834 figure is indexed and changes by tax year.",
-      aboutList: { lead: "For line 33099 you total the eligible expenses, then subtract the lesser of 3% of your net income from line 23600 or $2,834, and the remainder is what the credit is calculated on.", items: ["CRA's own worked example: Pauline's net income is $55,000, 3% of that is $1,650, and because $1,650 is less than $2,834 she subtracts $1,650 from the $6,300 of combined expenses.", "Expenses for children under 18 can be combined with the parents' expenses.", "For a dependant other than a spouse, partner or child under 18, use line 33199 and run the same lesser-of calculation against that dependant's own net income.", "The $2,834 figure is indexed and changes by tax year."] },
+        "For line 33099 you total the eligible expenses, then subtract the lesser of 3% of your net income from line 23600 or $2,834, and the remainder, entered on the line after the threshold, is what the credit is calculated on. CRA's own worked example: Pauline's net income is $55,000, 3% of that is $1,650, and because $1,650 is less than $2,834 she subtracts $1,650 from the $6,300 of combined expenses. Expenses for children under 18 can be combined with the parents' expenses. For a dependant who depended on you for support, other than a spouse, partner or child under 18, use line 33199 (see CRA for who counts) and run the same lesser-of calculation against that dependant's own net income. The $2,834 figure is indexed and changes by tax year.",
+      aboutList: { lead: "For line 33099 you total the eligible expenses, then subtract the lesser of 3% of your net income from line 23600 or $2,834, and the remainder, entered on the line after the threshold, is what the credit is calculated on.", items: ["CRA's own worked example: Pauline's net income is $55,000, 3% of that is $1,650, and because $1,650 is less than $2,834 she subtracts $1,650 from the $6,300 of combined expenses.", "Expenses for children under 18 can be combined with the parents' expenses.", "For a dependant who depended on you for support, other than a spouse, partner or child under 18, use line 33199 (see CRA for who counts) and run the same lesser-of calculation against that dependant's own net income.", "The $2,834 figure is indexed and changes by tax year."] },
       steps: [
         "collect receipts for every eligible medical expense for the year, for yourself, your spouse or partner and your children under 18",
-        "total them and subtract the lesser of 3% of your net income from line 23600 or $2,834",
-        "enter the result on line 33099",
-        "claim expenses for any other dependant separately on line 33199, running the same calculation against that dependant's net income.",
+        "total them and enter the total on line 33099",
+        "on the line below, enter the lesser of 3% of your net income from line 23600 or $2,834",
+        "subtract that amount from the line 33099 total and enter the result on the following line of your return",
+        "Claim eligible expenses on line 33199 for other dependants who depended on you for support: your or your spouse's or common-law partner's children aged 18 or older at the end of the tax year, or grandchildren.",
+        "Line 33199 also covers your or your spouse's or common-law partner's parents, grandparents, brothers, sisters, uncles, aunts, nephews or nieces who depended on you for support and were residents of Canada at any time in the year.",
+        "For each eligible dependant on line 33199, run the same calculation against that dependant's net income.",
       ],
       documents: [
         "receipts for every medical expense claimed",
@@ -3518,7 +3521,7 @@ const BENEFITS = [
       ],
       tips: [
         "the threshold is the LESSER of the two figures, so a lower income means a lower threshold and more of your expenses count",
-        "you can pick the 12-month period ending in the tax year that captures the most expenses, so check CRA's rule before choosing",
+        "you can choose any 12-month period ending in the tax year, as long as those expenses were not already claimed in the prior year, so check CRA's rule before choosing",
         "if you also claim the disability supports deduction on line 21500, split each expense between the two rather than claiming it twice",
         "the $2,834 threshold is indexed, so confirm the current figure for your filing year.",
       ],
@@ -4180,12 +4183,12 @@ const BENEFITS = [
     name: "Edmonton Ride Transit & Leisure Access",
     level: "Edmonton",
     category: "Getting around & recreation",
-    amount: "$36/month transit pass + free/low-cost recreation",
+    amount: "Reduced-cost monthly Arc transit card ($35 or $50 a month, depending on household income) + Leisure Access Pass",
     summary:
       "A subsidized monthly Arc transit card plus reduced-cost access to City of Edmonton recreation facilities.",
     requires: ["edmonton", "lowIncomeOrDisabilityIncome"],
     note:
-      "You qualify on low income OR if you receive AISH / CPP Disability. One application covers both transit and leisure access.",
+      "You may be eligible if your household income is at or under the City's limits (they depend on household size), or if you receive AISH or CPP Disability Benefits, among other programs the City lists. Use the City's eligibility questions to check.",
     applyText: "Edmonton transit & leisure assistance",
     applyUrl: "https://www.edmonton.ca/ets/fare-assistance",
     source: "https://www.edmonton.ca/ets/fare-assistance",
@@ -4195,15 +4198,15 @@ const BENEFITS = [
       steps: [
         "Complete the Leisure Access / Ride Transit application.",
         "Include proof of income OR proof you receive AISH / CPP-D.",
-        "Once approved, buy the $36 monthly Arc card and use your Leisure Access pass.",
+        "Once approved, buy your reduced-cost monthly Arc card (the City lists $35 or $50 a month depending on household income) and use your Leisure Access pass.",
       ],
       documents: [
         "Proof of income OR AISH / CPP-D statement",
         "Edmonton address",
       ],
       tips: [
-        "Applying for Leisure Access automatically considers you for the transit discount too.",
-        "If you're on AISH or CPP Disability you likely qualify regardless of the income cutoff.",
+        "Use the City's eligibility questions to check the Ride Transit Program and/or the Leisure Access Pass.",
+        "If you receive AISH or CPP Disability Benefits, the City's eligibility check says you may be eligible without meeting the income limit.",
       ],
       time: "Approximately 8 to 12 weeks for approval. If you ask for your Arc card by mail, allow up to 10 more business days; you can pick it up in person instead.",
       phone: "City of Edmonton 311",
@@ -4266,9 +4269,9 @@ const BENEFITS = [
     name: "Lethbridge Fee Assistance Program",
     level: "Lethbridge",
     category: "Getting around & recreation",
-    amount: "3 months of bus passes for the price of 1 + $150/season recreation",
+    amount: "3 months of bus passes for the price of 1 (you pay for one month, two are free) + up to $150 per person per season toward one recreation or culture program, while funds are available",
     summary:
-      "One application covers transit, Access-A-Ride paratransit, and recreation fees. AISH counts as proof of income.",
+      "One City program covers transit, Access-A-Ride paratransit, and recreation fees, with a separate application form for each. AISH counts as proof of income.",
     requires: ["lethbridge", "lowIncomeOrDisabilityIncome"],
     note:
       "This is the only one of these city programs that also subsidizes paratransit (Access-A-Ride) — worth knowing if you can't use a regular bus.",
@@ -4281,9 +4284,9 @@ const BENEFITS = [
       about:
         "A single City of Lethbridge program covering three things: bus passes (you pay for one month and get the next two free), Access-A-Ride paratransit at one-third of the usual cost, and recreation or culture programs.",
       steps: [
-        "Apply online through the City's Fee Assistance form, or call 311 for help.",
+        "Apply online using the Fee Assistance application form for what you need (recreation and culture, bus pass, or Access-A-Ride), or call 311 for help.",
         "Send your AISH statement as proof of income — it's on their accepted list, so you don't need a Notice of Assessment.",
-        "Choose what you need: bus pass, Access-A-Ride, recreation, or more than one.",
+        "Choose what you need: bus pass, Access-A-Ride, recreation, or more than one — each has its own form.",
         "Buy your one paid month of bus pass and the next two come free.",
       ],
       documents: [
@@ -4304,34 +4307,46 @@ const BENEFITS = [
     name: "Medicine Hat Fair Entry",
     level: "Medicine Hat",
     category: "Getting around & recreation",
-    amount: "75% off transit (up to $630/yr) + $200/yr recreation & arts",
+    amount: "up to 75% off transit (up to $630/yr per person) + up to $200/yr per person for City recreation, and a separate up to $200/yr per person for Esplanade education programs",
     summary:
-      "One application, valid up to two years, for cheaper transit passes plus recreation and Esplanade arts programs.",
+      "One application, valid up to two years, for cheaper transit passes plus recreation and Esplanade education programs.",
     requires: ["medicinehat", "lowIncomeOrDisabilityIncome"],
     note:
-      "Approval lasts up to two years, so this is one of the least repetitive programs to stay on. Your AISH benefits card is accepted as proof.",
+      "Approval lasts up to two years, so this is one of the least repetitive programs to stay on. A copy of your current AISH Health Benefits Card is accepted as proof.",
     applyText: "Medicine Hat Fair Entry",
     applyUrl: "https://forms.medicinehat.ca/Community-Development/Fair-Entry-Application",
     source:
       "https://www.medicinehat.ca/community-support-culture-safety/community-support/fair-entry/",
     detail: {
       about:
-        "The City of Medicine Hat's single low-income access program. It cuts 75% off monthly transit passes (to an annual maximum of $630 of subsidy), and gives each approved person $200 a year toward City recreation and Esplanade arts programs at 75% off.",
+        "The City of Medicine Hat's single low-income access program. It can take up to 75% off age-appropriate monthly transit passes (to an annual maximum of $630 subsidy per person). It gives each approved person up to $200 a year for regular-priced City recreation programs and admissions at City-run pools and leisure centres, plus a separate up to $200 a year for Esplanade education programs provided directly by Esplanade staff, at 75% off.",
+      aboutList: {
+        lead: "The City of Medicine Hat's single low-income access program has separate subsidies for each service area.",
+        items: [
+          "Transit: up to 75% off age-appropriate monthly passes, to an annual maximum of $630 subsidy per person.",
+          "City recreation: up to $200 a year per approved person, at 75% off.",
+          "Eligible recreation: regular-priced City programs and admissions at City-run pools and leisure centres.",
+          "Esplanade: a separate up to $200 a year per approved person, at 75% off.",
+          "Eligible Esplanade programs: education provided directly by Esplanade staff.",
+        ],
+      },
       steps: [
         "Fill in the Fair Entry application online, or call 403-502-8001.",
-        "Attach your AISH benefits card — it's accepted as proof of income.",
+        "Attach a copy of your current AISH Health Benefits Card — it's accepted as proof of income. Provide a document for each household member aged 18 or older.",
         "Add proof of a Medicine Hat address.",
-        "Wait about two weeks for a decision.",
+        "Your application should be processed within two weeks, but approval depends on the information you provide, and missing information may delay it.",
       ],
       documents: [
-        "AISH benefits card — or a CRA notice, Alberta Works document, or a social worker's letter",
+        "A copy of your current AISH Health Benefits Card — or another accepted proof of income from the City's list (for example a CRA Notice of Assessment or an Alberta Works document). Provide a document for each household member aged 18 or older.",
+        "A letter from a social worker or support staff is accepted only when no other documents are available. It must be dated within the last 30 days and come from someone you have a current relationship with.",
+        "The letter must state the length of the relationship, that the writer is aware of the Low Income Eligibility, and that your household meets the eligibility requirements.",
         "Proof of a Medicine Hat address",
       ],
       tips: [
         "List every family member on the one application — each approved person gets their own $200 recreation subsidy.",
         "Approval is good for up to two years, so diarize the expiry rather than re-applying blindly.",
       ],
-      time: "About two weeks.",
+      time: "Processed within two weeks; missing information may delay approval.",
       phone: "Fair Entry: 403-502-8001",
     },
   },
@@ -5075,7 +5090,7 @@ const BENEFITS = [
     "source": "https://www.bctransit.com/victoria/riderinfo/handydart/taxi-saver/",
     "detail": {
       "about": "Taxi Saver is delivered by participating regional BC Transit systems. This guide uses Victoria's current rules; other regions can set different prices, purchase methods and taxi companies.",
-      "steps": ["Confirm that you are permanently registered for handyDART, age 12 or older and have a handyPASS", "Open your region's Taxi Saver page and confirm the current package price and purchase method", "Buy vouchers from the regional Taxi Saver office or approved outlet", "Book a participating taxi directly and show your handyPASS", "Use vouchers for part of the metered fare and pay any remainder using a method the taxi accepts"],
+      "steps": ["Confirm that you are permanently registered for handyDART, age 12 or older and have a handyPASS", "Open your region's Taxi Saver page and confirm the current package price and purchase method", "Buy vouchers from the regional Taxi Saver office or approved outlet", "Book a participating taxi directly and show your handyPASS", "Use vouchers toward the metered fare and pay any remainder in cash (for example, on a $5.80 fare you pay $5.00 in coupons and $0.80 in cash)"],
       "documents": ["Current handyPASS", "Payment accepted by the regional Taxi Saver office"],
       "tips": ["Vouchers cover 50% of eligible taxi fares but cannot be transferred or used as a tip", "Drivers do not give change for vouchers, so combine denominations carefully", "Check the participating taxi list before booking because companies can change"],
       "time": "Ask the regional Taxi Saver office",
@@ -6047,18 +6062,18 @@ const BENEFITS = [
     "name": "Recreation Fee Subsidy Program (RFSP)",
     "level": "Richmond",
     "category": "Recreation",
-    "amount": "Unlimited free drop-in admission plus 90% off registered programs, up to $300 a year for children and youth or $100 a year for adults and seniors",
-    "summary": "Richmond's recreation subsidy for residents in financial hardship — free drop-ins with no cap, and nine tenths off most registered programs.",
-    "requires": ["bc", "richmondbc", "lowIncome"],
+    "amount": "Unlimited free admission to many drop-in programs and services plus 90% off most registered programs, up to $300 a year for children and youth or $100 a year for adults and seniors",
+    "summary": "Richmond's recreation subsidy for residents in financial hardship — free admission to many drop-in programs and services with no cap on visits, and nine tenths off most registered programs.",
+    "requires": ["bc", "richmondbc", "richmondFinancialHardship"],
     eligibility: {
       mode: "all",
       items: [
         "You live in Richmond.",
-        "You are in financial hardship — the City defines this as having difficulty paying for basic living costs such as food, clothing and housing, without savings or other financial resources.",
+        "You are in financial hardship, shown either by receiving one of the government assistance programs the City lists (for example Disability Assistance or the Canada Disability Benefit), or, if you do not receive them, by meeting the City's family net income and other financial limits.",
       ],
     },
-    "requiresNote": "You must live in Richmond and be in financial hardship, which the City defines as having difficulty paying for basic living costs such as food, clothing and housing, without savings or other financial resources.",
-    "note": "The 90% discount on registered programs is capped at $300 per year in subsidy for children and youth 18 and under, and $100 per year for adults and seniors 19 and over. Free drop-in admission is not capped.",
+    "requiresNote": "You must live in Richmond and be in financial hardship, shown either by receiving one of the government assistance programs the City lists (for example Disability Assistance or the Canada Disability Benefit), or, if you do not receive them, by meeting the City's family net income and other financial limits. The City defines hardship as difficulty paying for basic living costs such as food, clothing and housing, without savings or other financial resources.",
+    "note": "The 90% discount on most registered programs is capped at $300 per year in subsidy for children and youth 18 and under, and $100 per year for adults and seniors 19 and over. Free admission to eligible drop-in programs is not capped.",
     "applyText": "Apply for the Recreation Fee Subsidy",
     "applyUrl": "https://www.richmond.ca/culture/social/accessibility/subsidies/recreation-fee.htm",
     "source": "https://www.richmond.ca/culture/social/accessibility/subsidies/recreation-fee.htm",
@@ -6117,27 +6132,36 @@ const BENEFITS = [
     "name": "L.I.F.E. Program (Leisure Involvement For Everyone)",
     "level": "Saanich",
     "category": "Recreation",
-    "amount": "Two years of free drop-ins at Saanich facilities plus a one-time grant of $80 to $120 toward registered programs",
+    "amount": "Choose one of two options for two years. Option 1: free drop-ins at Saanich facilities, 52 regional drop-in visits a year, and a one-time grant of $80 to $120 (by age) toward registered programs at Saanich centres. Option 2: 50% off an annual Regional Recreation Pass.",
     "summary": "Saanich's version of the regional L.I.F.E. program. Approval lasts two years and you pick one of two benefit options.",
     "requires": ["bc", "saanich", "lowIncome"],
     "eligibility": {
       "mode": "all",
       "items": [
         "You have proof of Saanich residency — a utility or phone bill dated within the last three months, a current signed rental agreement, or a current driver's licence or BC identification card. One proof covers the whole family.",
-        "You have a Canada Revenue Agency Proof of Income Statement for every household member 19 and over, even those who will not use the program. Thresholds are based on their combined gross income."
+        "Most households qualify with a Canada Revenue Agency Proof of Income Statement for every household member 19 and over, even those who will not use the program. Thresholds are based on their combined gross income."
       ],
-      "note": "Newcomers to Canada without that statement can apply with landing papers showing a landing date within one year of applying."
+      "note": "Other routes exist: newcomers can apply with landing papers showing a landing date within one year of applying; if your statement no longer reflects your current income (for example after an illness or job loss) you can use a completed adjudicator form; a youth in a local school without parental or guardian support can use the Youth Application form; if none fit, contact the financial-assistance office."
     },
-    "requiresNote": "You need proof of Saanich residency — a utility or phone bill dated within the last three months, a current signed rental agreement, or a current driver's licence or BC identification card. One proof covers the whole family. You also need a Canada Revenue Agency Proof of Income Statement for every household member 19 and over, even those who will not use the program; thresholds are based on their combined gross income. Newcomers to Canada without that statement can apply with landing papers showing a landing date within one year of applying.",
-    "note": "Approval is valid for two years from the date of approval, and the grant amounts below are for that whole two-year term — there are no further funds once the initial grant is used. Saanich only accepts CRA Proof of Income Statements, not Notices of Assessment. Allow at least 5 days between approval and registering, because grants take up to 5 days to appear on your account.",
+    "requiresNote": "You need proof of Saanich residency — a utility or phone bill dated within the last three months, a current signed rental agreement, or a current driver's licence or BC identification card. One proof covers the whole family. Most households need a Canada Revenue Agency Proof of Income Statement for every household member 19 and over, even those who will not use the program; thresholds are based on their combined gross income. Other routes exist: newcomers with landing papers showing a landing date within one year of applying; a completed adjudicator form if the statement no longer reflects current income (for example after illness or job loss); a Youth Application form for a youth in a local school without parental or guardian support. Contact the financial-assistance office if none fit.",
+    "note": "Approval is valid for two years from the date of approval, and the grant amounts below are for that whole two-year term — for adults and preschool-age children the grant is all that is available for the two-year term; for children (5–12) and youth (13–18) there may be some additional funds after the initial grant is used, with strict eligibility guidelines and no guarantee. Saanich only accepts CRA Proof of Income Statements, not Notices of Assessment. Allow at least 5 days between approval and registering, because grants take up to 5 days to appear on your account.",
     "applyText": "Apply online for L.I.F.E.",
     "applyUrl": "https://www.saanich.ca/EN/main/parks-recreation-community/community-services/financial-assistance/financial-assistance.html",
     "source": "https://www.saanich.ca/EN/main/parks-recreation-community/community-services/financial-assistance/financial-assistance.html",
     "detail": {
-      "about": "Saanich's two-year L.I.F.E. approval includes local drop-ins, regional visits and an age-based one-time program grant. Current applications can be completed through the City's secure online form.",
-      "steps": ["Gather one current proof of Saanich residence for the household", "Get the current CRA Proof of Income Statement for every household member age 19 or older", "Complete the secure online L.I.F.E. application and upload the documents", "If income shown is under $1,000 or the household has a special situation, contact the financial-assistance office directly", "Allow time after approval for the program grant to appear before registering"],
-      "documents": ["Utility or phone bill from the last three months, signed rental agreement, driver's licence or BC identification", "Current CRA Proof of Income Statement for every household member 19 or older", "Recent landing papers instead of income statements for eligible newcomers within one year of arrival"],
-      "tips": ["Saanich accepts CRA Proof of Income Statements, not Notices of Assessment", "The initial grant is for the whole two-year approval", "Allow at least five days after approval before trying to spend the grant"],
+      "about": "Saanich's two-year L.I.F.E. approval lets you choose Option 1 (free drop-ins at Saanich facilities, regional drop-in visits, and an age-based one-time grant for Saanich registered programs) or Option 2 (50% off an annual Regional Recreation Pass). Current applications can be completed through the City's secure online form.",
+      "aboutList": {
+        "lead": "Saanich's two-year L.I.F.E. approval lets you choose one of two options.",
+        "items": [
+          "Option 1 includes free drop-ins at Saanich facilities and regional drop-in visits.",
+          "Option 1 also includes an age-based one-time grant for registered programs at Saanich centres.",
+          "Option 2 is 50% off an annual Regional Recreation Pass.",
+          "Current applications can be completed through the City's secure online form."
+        ]
+      },
+      "steps": ["Gather one current proof of Saanich residence for the household", "Get the current CRA Proof of Income Statement for every household member age 19 or older (or, if another route applies to you, the form for that route)", "Complete the secure online L.I.F.E. application and upload the documents", "If income shown is under $1,000 or the household has a special situation, contact the financial-assistance office directly", "Allow time after approval for the program grant to appear before registering"],
+      "documents": ["Utility or phone bill from the last three months, signed rental agreement, driver's licence or BC identification", "Current CRA Proof of Income Statement for every household member 19 or older (most households), or the adjudicator form / Youth Application form where those routes apply", "Recent landing papers instead of income statements for eligible newcomers within one year of arrival"],
+      "tips": ["Saanich accepts CRA Proof of Income Statements, not Notices of Assessment", "The initial grant is for the whole two-year approval (children and youth may be able to ask about additional funds, not guaranteed)", "Allow at least five days after approval before trying to spend the grant"],
       "time": "Grant setup can take up to five days after approval"
     }
   },

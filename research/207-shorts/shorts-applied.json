@@ -1,4 +1,24 @@
 {
+  "hatcEligibleDwelling": {
+    "short": "Check ownership and ordinary or expected residence in the Canadian home",
+    "who": ["you"],
+    "reason": "HATC-specific expected residence and family ownership alternatives; full source qualifiers remain behind the cue"
+  },
+  "hatcQualifyingPerson": {
+    "short": "Check DTC eligibility during the year or senior status at year end",
+    "who": ["you"],
+    "reason": "Retains year-specific eligibility and family claimant alternatives without hard exclusion"
+  },
+  "hatcQualifyingRenovationSpend": {
+    "short": "Check the renovation is done and paid for, and keep the receipts",
+    "who": ["you"],
+    "reason": "Copies shared spending cue; full HATC wording retains non-refundable tax-owing restriction"
+  },
+  "richmondFinancialHardship": {
+    "short": "Check listed assistance or, without it, income and other financial limits",
+    "who": ["you", "program"],
+    "reason": "Retains distinct government assistance and financial-limit routes instead of universal income screening"
+  },
   "bcMedTransportRoute": {
     "short": "Check which medical transportation eligibility route may apply",
     "who": ["you", "program"],
