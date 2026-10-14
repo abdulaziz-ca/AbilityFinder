@@ -128,6 +128,16 @@ ${flaggedLines.join('\n')}
 `;
 }
 
+if (process.argv.includes('--surfaces') || process.argv.includes('--update-baseline')) {
+  try {
+    require('./lib/dense-surface-report')(path.join(__dirname, '..'), process.argv.includes('--update-baseline'));
+  } catch (error) {
+    console.error(`Dense surface report could not be completed: ${error.stack || error}`);
+    process.exit(1);
+  }
+  process.exit(0);
+}
+
 try {
   const ctx={window:{},document:{},console};vm.createContext(ctx);
   vm.runInContext(fs.readFileSync(path.join(__dirname,'..','public','data.js'),'utf8')+';globalThis.__B=BENEFITS;',ctx);

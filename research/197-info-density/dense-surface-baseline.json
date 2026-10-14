@@ -1,0 +1,19 @@
+{
+  "generated": "2026-10-14T02:40:37.315Z",
+  "counts": {
+    "gate.unmet": 88,
+    "eligibility.note": 37,
+    "detail.about": 88,
+    "detail.aboutList.items": 141,
+    "summary": 25,
+    "note": 57
+  },
+  "maxChars": {
+    "gate.unmet": 626,
+    "eligibility.note": 548,
+    "detail.about": 1697,
+    "detail.aboutList.items": 636,
+    "summary": 361,
+    "note": 694
+  }
+}

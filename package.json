@@ -11,6 +11,7 @@
     "gen:guides": "node scripts/gen-guide-pages.js",
     "verify:deploy": "node scripts/verify-deploy.js",
     "check:readability": "node scripts/check-readability.js",
+    "check:surfaces": "node scripts/check-readability.js --surfaces",
     "test": "node --test test/*.test.js",
     "test:e2e": "playwright test"
   },

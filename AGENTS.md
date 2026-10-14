@@ -117,6 +117,15 @@ When a browser-loaded CSS, JavaScript, font, or icon asset changes, bump the sha
 Never hand-copy municipal rules. Programs that look similar have materially
 different AISH exclusions, transit prices, and recreation coverage.
 
+#### Readability rule
+
+A requirement bullet is one short line; prefer a list over a paragraph. Move
+full official qualifiers behind the expander, never delete them. Run
+`npm run check:surfaces` for new or edited benefit text. The dense-surface
+ratchet test blocks increases in flagged counts. Lower the baseline with
+`node scripts/check-readability.js --surfaces --update-baseline` only when the
+count went DOWN; do not raise it to bypass the test.
+
 ### Coverage-gap proposals
 
 Before recording anywhere — a ticket, `ROADMAP.md`, a research note — that the
