@@ -32,6 +32,12 @@ if (!Array.isArray(allBenefits) || allBenefits.length === 0) {
 }
 
 const appSource = fs.readFileSync(APP, "utf8");
+// Evaluate the app's exact freshness helper: one decision for both surfaces.
+const freshnessConstants = ["DATA_VERIFIED_MONTH", "STALE_MONTHS", "MONTHS_EN"]
+  .map(name => appSource.match(new RegExp(`^const ${name} = .*;$`, "m"))?.[0]);
+const freshnessFunction = appSource.match(/function verifiedFor\(b\) \{[\s\S]*?\n\}/)?.[0];
+if (freshnessConstants.some(x => !x) || !freshnessFunction) throw new Error("Missing app freshness helper");
+vm.runInContext(freshnessConstants.join("\n") + "\n" + freshnessFunction + "\nglobalThis.guideFreshness = verifiedFor;", ctx);
 const bcEnabledMatch = /^const BC_ENABLED = (true|false);\s*$/m.exec(appSource);
 if (!bcEnabledMatch) {
   throw new Error("gen:guides — could not find literal const BC_ENABLED = true/false in public/app.js");
@@ -229,6 +235,7 @@ ${header()}
             <ul class="guide-list">
 ${links.map((x) => `              <li><a class="guide-link" href="${esc(x.url)}">${esc(x.label)}</a></li>`).join("\n")}
             </ul>
+            <p class="side-foot"><span class="verified">${esc(ctx.guideFreshness(b).wording)}</span></p>
             <p class="detail-foot">Benefit rules and amounts can change. Confirm the current details before applying.</p>
             <p><a class="btn btn-primary" href="https://abilityfinder.ca/">Answer a few questions to see benefits you may qualify for</a></p>
             </div>

@@ -1,5 +1,6 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
+  { date: "2026-10-13", text: "Guide freshness labels now distinguish individual source checks from the catalogue review. About shows live counts for both groups. Benefit facts and review dates are unchanged." },
   { date: "2026-10-13", text: "Requirements now show short checks with the full official wording available underneath. Mixed results keep the available cues, and requirement links, keyboard focus and printed guides are clearer. Eligibility rules are unchanged." },
   { date: "2026-09-05", text: "The organizations directory now covers Ontario; it previously showed Ontario residents nothing. Eight listings were added, including ARCH Disability Law Centre, Autism Ontario, Spinal Cord Injury Ontario, Easter Seals Ontario and Steps to Justice. Each was verified on the organization's own website in September 2026." },
   { date: "2026-09-05", text: "Windsor residents will now see two Pathway to Potential programs: the Affordable Pass Program, with a Transit Windsor 30-day adult bus pass at $63 instead of $124, and the 90% Recreation Discount, which takes 90% off eligible recreation registration fees before taxes. Proof of ODSP benefits counts as proof of income. Verified against the City of Windsor's own pages in September 2026." },

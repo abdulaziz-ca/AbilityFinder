@@ -2895,7 +2895,7 @@ function renderAbout() {
     <p class="legal-lede">AbilityFinder makes it easier to find disability benefits and understand what to do next.</p>
 
     ${block("What AbilityFinder is", `<p>AbilityFinder is a free, independent tool that helps ${SCOPE_RESIDENTS} with disabilities find benefits in our catalog that may match their situation. It is not affiliated with any government. There is no login and there are no ads.</p>`)}
-    ${block("How we verify facts", `<p>Every benefit links to an official government source. The whole catalog was last fully reviewed in July 2026; each guide shows that date, and any benefit we re-check later shows its own.</p><p>Automated link monitoring checks official links around the clock and flags pages that break or move, and each guide warns when its review is getting old and the numbers are worth re-confirming.</p>`)}
+    ${block("How we verify facts", `<p>Every benefit links to an official government source. ${BENEFITS.filter(b => !verifiedFor(b).inherited).length} programs were individually re-checked against their official source; the remaining ${BENEFITS.filter(b => verifiedFor(b).inherited).length} were last checked in the ${verifiedFor(null).label} catalogue review.</p><p>Automated link monitoring checks official links around the clock and flags pages that break or move, and each guide warns when its review is getting old and the numbers are worth re-confirming.</p>`)}
     ${block("What we never do", `<p>We do not create accounts, show ads, or use third-party trackers. Your answers stay on your device. We never sell or share your data.</p>`)}
     ${block("Found a mistake?", `<p>Please tell us through the <button class="linklike js-feedback">feedback form</button>. Corrections help everyone who uses AbilityFinder.</p>`)}
     ${block("Who runs this", `<p>AbilityFinder is an independent project built in Alberta by a small team. It is not a government service.</p>`)}
@@ -4943,7 +4943,9 @@ function verifiedFor(b) {
   const [y, m] = raw.split("-").map(Number);
   const now = new Date();
   const months = (now.getUTCFullYear() - y) * 12 + (now.getUTCMonth() - (m - 1));
-  return { label: `${MONTHS_EN[m - 1]} ${y}`, months: Math.max(0, months), stale: months >= STALE_MONTHS };
+  const label = `${MONTHS_EN[m - 1]} ${y}`;
+  const inherited = !(b && BENEFIT_VERIFIED[b.id]);
+  return { label, inherited, wording: inherited ? `Part of the ${label} catalogue review` : `Info verified ${label}`, months: Math.max(0, months), stale: months >= STALE_MONTHS };
 }
 
 /* Phase-2 detail sections: tax warning, denial reasons, appeals, FAQs, related */
@@ -5159,7 +5161,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
             <a class="source-link" href="${resolveUrl(b.source)}" target="_blank" rel="noopener noreferrer" data-ext>${t("det.official")} ${icon("external")}</a>
             ${inline ? "" : `<button class="source-link copy-link" type="button" data-copy-guide-link="${b.id}">Copy link to this guide</button>`}
           </div>
-          <p class="side-foot"><span class="verified${vFresh.stale ? " stale" : ""}">${icon(vFresh.stale ? "info" : "check")} Info verified ${vFresh.label}</span></p>
+          <p class="side-foot"><span class="verified${vFresh.stale ? " stale" : ""}">${icon(vFresh.stale ? "info" : "check")} ${vFresh.wording}</span></p>
           ${vFresh.stale ? `<p class="side-stale">${icon("info")} <span>That was about ${vFresh.months} months ago. Amounts and income rules usually change each year, so <b>check the official page above</b> before you count on a number here.</span></p>` : ""}
         </div>
       </aside>
