@@ -8,6 +8,19 @@ const LANGS = [{ code: "en", label: "EN", name: "English" }, { code: "fr", label
 
 const I18N = {
   en: {
+    "req.heading": "Requirements to check",
+    "req.count.one": "1 requirement not yet confirmed",
+    "req.count.other": "{n} requirements not yet confirmed",
+    "req.context": "Some checks involve a professional or a program decision.",
+    "req.you": "What you can check or prepare",
+    "req.professional": "What a professional confirms",
+    "req.program": "What the program decides",
+    "req.shared": "Shared checks",
+    "req.other": "Other checks",
+    "req.full": "Read full requirements for {name}",
+    "req.guide": "See all requirements for {name}",
+    "req.more.one": "— 1 more",
+    "req.more.other": "— {n} more",
     "nav.tag": "Canada",
     "skip.main": "Skip to main content",
     "lang.switch": "change language to French",

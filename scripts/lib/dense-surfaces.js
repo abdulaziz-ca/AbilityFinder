@@ -56,10 +56,7 @@ function collectDenseSurfaces(rootDir) {
     results.push({ surface, id, text, chars: text.length,
       sentences: text.split(/[.!?]+/).map(s => s.trim()).filter(Boolean).length });
   }
-  const noop = () => undefined;
-  const globals = new Proxy({}, { get: () => noop });
-  const gates = vm.runInContext(`(${objectLiteral(fs.readFileSync(path.join(rootDir, 'public/app.js'), 'utf8'))})`,
-    vm.createContext(globals), { timeout: 1000 });
+  const gates = extractReqs(rootDir);
   function walk(value, keys) {
     if (!value || typeof value !== 'object') return;
     for (const [key, child] of Object.entries(value)) {
@@ -80,4 +77,12 @@ function collectDenseSurfaces(rootDir) {
   }
   return results;
 }
-module.exports = { collectDenseSurfaces, isFlagged, SURFACES };
+// Expose display metadata alongside the original gate functions for schema and
+// preservation tests. Evaluating the literal does not execute gate predicates.
+function extractReqs(rootDir) {
+  const noop = () => undefined;
+  const globals = new Proxy({}, { get: () => noop });
+  return vm.runInContext(`(${objectLiteral(fs.readFileSync(path.join(rootDir, 'public/app.js'), 'utf8'))})`,
+    vm.createContext(globals), { timeout: 1000 });
+}
+module.exports = { collectDenseSurfaces, extractReqs, isFlagged, SURFACES };

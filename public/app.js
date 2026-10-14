@@ -253,6 +253,8 @@ const REQS = {
   bc: { met: () => answers.province === "BC", fixed: true, unmet: "This is a British Columbia program." },
   on: { met: () => answers.province === "ON", fixed: true, unmet: "This is an Ontario program." },
   odspMedical: {
+    short: "Check ODSP's disability decision or prescribed-class route",
+    who: ["you", "professional", "program"],
     met: () => false,
     fixed: false,
     unmet:
@@ -432,6 +434,8 @@ const REQS = {
     action: { text: "Review Canada Disability Benefit eligibility", url: "https://www.canada.ca/en/services/benefits/disability/canada-disability-benefit/eligibility.html" },
   },
   cdbStatus: {
+    short: "Check CDB status routes and federal imprisonment exceptions",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "You must be a Canadian citizen, a permanent resident, a protected person, a temporary resident who has lived in Canada throughout the previous 18 months, or registered or entitled to be registered under the Indian Act. If you are serving a sentence of 2 years or more in a federal penitentiary you are not eligible, except for the first and last month of that sentence.",
@@ -450,6 +454,8 @@ const REQS = {
     action: { text: "Check Canada Child Benefit eligibility", url: "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit.html" },
   },
   rdspOpening: {
+    short: "Check SIN and residency rules for opening an RDSP and contributing",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "To open a plan the beneficiary needs a valid social insurance number and must be a resident of Canada when the plan is opened and when each contribution is made.",
@@ -468,6 +474,8 @@ const REQS = {
     action: { text: "Review grant and bond rules", url: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/registered-disability-savings-plan-rdsp/canada-disability-savings-grant-canada-disability-savings-bond.html" },
   },
   cwbEligibility: {
+    short: "Check CWB residence, family, income rules and exclusions",
+    who: ["you"],
     met: () => false,
     fixed: false,
     unmet: "You must be a resident of Canada throughout the year, be 19 or older on December 31 or live with your spouse, common-law partner or child, and have net income below the level set for your province or territory. You are not eligible if you were enrolled as a full-time student for more than 13 weeks in the year unless you have an eligible dependant on December 31, if you were confined to a prison or similar institution for at least 90 days during the year, or if you do not have to pay tax in Canada because you are an officer or servant of another country, such as a diplomat, or a family member or employee of that person.",
@@ -523,6 +531,8 @@ const REQS = {
     action: { text: "Review DRES disability criteria", url: DRES_URL },
   },
   dresEmploymentRoute: {
+    short: "Check DRES employment and accommodation routes and exclusions",
+    who: ["you", "program"],
     // Work/training answers do not establish employment-destined status, the
     // requested accommodation, or whether an institutional exclusion applies.
     met: () => false,
@@ -768,6 +778,8 @@ const REQS = {
     unmet: "This is claimed by the person providing support, on their own tax return, for a spouse, partner or dependant with a mental or physical impairment.",
   },
   bcHomeOwnerGrantDisabilityRoute: {
+    short: "Check the disability assistance or spending route and any Form B requirement",
+    who: ["you", "professional", "program"],
     met: () => false,
     fixed: false,
     unmet: "You must qualify on one of two routes: you receive provincial disability assistance, hardship assistance or a supplement under the Employment and Assistance for Persons with Disabilities Act; or you pay at least $150 a month for assistance with daily living activities, or have spent at least $2,000 on structural modifications to the home. The second route needs Form B (FIN 74) signed by a health professional.",
@@ -1208,7 +1220,9 @@ function evaluate(benefit) {
       if (key === "dtc" && answers.dtc === "unsure") {
         text = "You're not sure about your Disability Tax Credit — apply for it; it unlocks this.";
       }
-      needs.push({ text, action: req.action });
+      const useCue = !(key === "dtc" && answers.dtc === "unsure");
+      needs.push({ key, text, action: req.action,
+        short: useCue ? req.short : undefined, who: useCue ? req.who : undefined });
     }
   }
   if (reasons.length) return { status: "no", needs, reasons };
@@ -3988,15 +4002,53 @@ function statusControl(b) {
   </span>`;
 }
 
+// Display-only requirements helpers. Never use actor metadata in eligibility.
+function reqEscape(value) {
+  return String(value).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+function reqCount(n) {
+  return t(n === 1 ? "req.count.one" : "req.count.other").replace("{n}", n);
+}
+function reqPrint(needs) {
+  return needs.length ? `<section lang="en"><h2>${t("req.heading")}</h2><ul>${needs.map(n => `<li>${reqEscape(n.text)}</li>`).join("")}</ul></section>` : "";
+}
+function renderRequirements(b, needs, surface = "detail", nextAction = null) {
+  const heading = `req-${surface}-${b.id}`;
+  const level = surface === "inline" ? 4 : 2;
+  const groups = ["you", "professional", "program", "shared", "other"];
+  const groupFor = n => !n.short ? "other" : n.who.length > 1 ? "shared" : n.who[0];
+  const ordered = groups.flatMap(g => needs.filter(n => groupFor(n) === g));
+  const migrated = ordered.filter(n => n.short);
+  const direct = migrated.length === 1 && migrated[0].short === migrated[0].text;
+  const action = n => n.action && !(n.action.url === nextAction?.action.url && n.action.text === nextAction?.action.text)
+    ? `<a class="req-action" lang="en" href="${reqEscape(n.action.url)}" target="_blank" rel="noopener noreferrer" data-ext>${reqEscape(n.action.text)}</a>` : "";
+  return `<section class="side-next req-checks" lang="en" aria-labelledby="${heading}">
+    <h${level} id="${heading}" tabindex="-1">${t("req.heading")}</h${level}>
+    <p class="req-count">${reqCount(needs.length)}</p>
+    <p class="req-context">${t("req.context")}</p>
+    ${LANG !== "en" ? `<p lang="${LANG}">${t("det.enNote")}</p>` : ""}
+    ${groups.map(g => {
+      const rows = ordered.filter(n => groupFor(n) === g);
+      return rows.length ? `<div class="req-group${g === "other" ? " req-fallback" : ""}"><h${level + 1} class="req-group-title">${t(`req.${g}`)}</h${level + 1}><ul class="req-list" lang="en">${rows.map(n => `<li class="req-cue" data-req-key="${n.key}">${reqEscape(n.short || n.text)}${!n.short || direct ? action(n) : ""}</li>`).join("")}</ul></div>` : "";
+    }).join("")}
+    ${migrated.length && !direct ? `<details class="req-full"><summary>${reqEscape(t("req.full").replace("{name}", b.name))}</summary><ol class="req-full-list" lang="en">${migrated.map(n => `<li data-req-key="${n.key}"><p class="req-cue">${reqEscape(n.short)}</p><p class="req-wording">${reqEscape(n.text)}</p>${action(n)}</li>`).join("")}</ol></details>` : ""}
+  </section>`;
+}
+function reqPreview(b, needs) {
+  const allCues = needs.every(n => n.short);
+  const shown = allCues ? needs.slice(0, 3) : [];
+  const more = allCues ? needs.length - shown.length : 0;
+  const suffix = more ? " " + t(more === 1 ? "req.more.one" : "req.more.other").replace("{n}", more) : "";
+  const slug = b.id.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  return `<section class="needs req-preview" lang="en" aria-labelledby="req-card-${b.id}"><h4 class="needs-h" id="req-card-${b.id}">${t("req.heading")}</h4><p class="req-count">${reqCount(needs.length)}</p>${shown.length ? `<ul class="req-list" lang="en">${shown.map(n => `<li class="req-cue">${reqEscape(n.short)}</li>`).join("")}</ul>` : ""}<a class="req-guide-link js-req-guide" href="/guides/${slug}" data-id="${b.id}">${reqEscape(t("req.guide").replace("{name}", b.name) + suffix)}</a></section>`;
+}
+
 function benefitCard(b, r, rank) {
   const stage = progress[b.id] || "";
   const rankBadge = rank ? `<span class="rank-badge" title="Suggested order to apply">${rank}</span>` : "";
   const needsHtml =
     r.status === "almost" && r.needs.length
-      ? `<div class="needs">
-           <div class="needs-h">${t("det.almostSub")}</div>
-           <ul>${r.needs.map((n) => `<li>${n.text}</li>`).join("")}</ul>
-         </div>` : "";
+      ? reqPreview(b, r.needs) : "";
 
   const v = valueParts(b);
   const valueHtml = `<span class="amount">${v.est ? `<span class="amount-tag">Est. value</span>` : ""}${v.head}</span>${v.sub ? `<span class="amount-sub">${v.sub}</span>` : ""}`;
@@ -4223,6 +4275,15 @@ function wireResults() {
   );
   document.querySelector(".scenario-reset")?.addEventListener("click", () => { scenarioChanges.clear(); scenarioOpen = true; render(); });
 
+  document.querySelectorAll(".js-req-guide").forEach(link =>
+    link.addEventListener("click", event => {
+      if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      detailFrom = "results";
+      setState("detail", { detailId: link.dataset.id });
+      document.getElementById(`req-detail-${link.dataset.id}`)?.focus();
+    })
+  );
   document.querySelectorAll(".js-detail").forEach((btn) =>
     btn.addEventListener("click", () => {
       detailFrom = "results";
@@ -4330,6 +4391,7 @@ function renderPrintActionPlan(matched) {
       <h2>${esc(b.name)}</h2>
       <p>${esc(b.summary)}</p>
       ${url ? `<p class="print-url"><b>Official link:</b> ${esc(url)}</p>` : ""}
+      ${reqPrint(evaluate(b).needs)}
       ${nextStep}
       ${documents}
     </section>`;
@@ -4394,6 +4456,7 @@ function printResults() {
       <p class="meta">${esc(b.level)} · ${esc(b.category)}${metaBits ? " · " + metaBits : ""}</p>
       <p class="amt">${value}</p>
       <p>${esc(b.summary)}</p>
+      ${reqPrint(r.needs)}
       ${steps}
       ${docs}
       <p class="lnk">Apply: ${esc(resolveUrl(b.applyUrl))}</p>
@@ -4854,14 +4917,14 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
 
   const sideStatus = !wizardDone()
     ? { cls: "maybe", txt: "Check your eligibility" }
-    : r.status === "almost" ? { cls: "almost", txt: "One step away" }
+    : r.status === "almost" ? { cls: "almost", txt: r.needs.length === 1 ? "One step away" : reqCount(r.needs.length) }
     : x.confirm ? { cls: "maybe", txt: "Possible match — confirm rules" }
     : { cls: "ready", txt: "Close match — confirm rules" };
-  const unmet = wizardDone() && r.status === "almost" ? r.needs.slice(0, 2) : [];
+  const unmet = wizardDone() && r.status === "almost" ? r.needs : [];
   const sidePrompt = !wizardDone()
     ? `<div class="side-next"><h2>See if it fits you</h2><p>Answer the questionnaire for a personalized match.</p></div>`
     : unmet.length
-      ? `<div class="side-next"><h2>Before you can apply</h2><ul>${unmet.map((n) => `<li>${n.text}</li>`).join("")}</ul></div>`
+      ? renderRequirements(b, unmet, inline ? "inline" : "detail", nextAction)
       : `<div class="side-next"><h2>Next step</h2><p>Confirm the current rules, then use the official application.</p></div>`;
 
   // Answer-first summary (ticket #197): the three questions a benefit user
@@ -4939,7 +5002,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
       </aside>
     </div>
 
-    ${inline ? "" : `${backBtn("d-back2")}</div>`}`;
+    ${inline ? "" : `${backBtn("d-back2")}</div><article class="print-action-plan" aria-hidden="true" lang="en"><h1>${reqEscape(b.name)}</h1>${reqPrint(unmet)}</article>`}`;
 }
 
 function renderDetail(id) {

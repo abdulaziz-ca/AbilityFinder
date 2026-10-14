@@ -1,0 +1,681 @@
+{
+  "prolonged": {
+    "short": "Ask a medical practitioner which CRA route to check",
+    "who": [
+      "you",
+      "professional"
+    ],
+    "reason": "Leaves marked restriction, combined limitations and life-sustaining therapy criteria in full; asking does not establish eligibility"
+  },
+  "odspMedical": {
+    "short": "Check ODSP's disability review or the route that skips it",
+    "who": [
+      "you",
+      "professional",
+      "program"
+    ],
+    "reason": "Leaves the disability definition, professional verification, return deadline and CPP-D/QPP-D prescribed-class exception in full"
+  },
+  "passportDso": {
+    "short": "Ask DSO about its review and the psychologist's assessment",
+    "who": [
+      "you",
+      "professional",
+      "program"
+    ],
+    "reason": "Leaves DSO's eligibility decision and the psychologist or psychological associate's registration requirements in full"
+  },
+  "tdpDeductible": {
+    "short": "Check household drug costs, insurance and other drug coverage",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves the approximate spending threshold, Ontario Drug Benefit exclusion and full-insurance exclusion in full"
+  },
+  "hvmpMobility": {
+    "short": "Check how your disability limits movement and daily tasks",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves the substantial restriction test and examples of daily activities in full"
+  },
+  "hvmpIncome": {
+    "short": "Check the income limit and whether you may need to pay a share",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves the income threshold and possible contribution in full; may is not changed to a required payment"
+  },
+  "hvmpCoordinator": {
+    "short": "Check other funding first and ask the coordinator about approval",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves the public/private funding requirement and the coordinator's eligibility and spending decisions in full"
+  },
+  "ssahDocumentation": {
+    "short": "Ask about health records and how SSAH decides funding",
+    "who": [
+      "you",
+      "professional",
+      "program"
+    ],
+    "reason": "Leaves regulated professional documentation and discretionary funding based on available resources in full; no amount is promised"
+  },
+  "acsdSeverity": {
+    "short": "Ask ACSD how it reviews your child's disability and extra costs",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves severity, extraordinary costs and ACSD's eligibility and amount decisions in full"
+  },
+  "acsdIncome": {
+    "short": "Check family income, family size and disability costs with ACSD",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves the income cap and the amount's dependence on family size and disability-related costs in full"
+  },
+  "adpClinical": {
+    "short": "Ask an ADP authorizer about the assessment for your device",
+    "who": [
+      "you",
+      "professional"
+    ],
+    "reason": "Leaves device-specific clinical criteria, registered authorizer status and duration of equipment need in full"
+  },
+  "odspFinancial": {
+    "short": "Check with ODSP about income, assets and what does not count",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves family and shelter factors, asset caps and exempt income/assets in full; ODSP decides financial need"
+  },
+  "notBcStudentAidDuplicate": {
+    "short": "Check the StudentAid BC guide for this grant",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves the same-program explanation and B.C.-specific application steps in full; fixed route is not an eligibility task"
+  },
+  "achbAge": {
+    "short": "Check the child's age and high school rules for coverage",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves ordinary age coverage and the older high-school exception in full; this does not suggest age can be changed"
+  },
+  "achbFamilyResidencyStatus": {
+    "short": "Check where each family member lives and their status in Canada",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves Alberta residence and citizen/permanent-resident requirements for each included family member in full"
+  },
+  "achbCoverageCoordination": {
+    "short": "Check other health plans and whether ACHB may cover costs left over",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves excluded government coverage, other-plan-first rules and possible eligible residual health/dental costs in full"
+  },
+  "notPostSecondaryStudent": {
+    "short": "Check Kelowna's student rule and ask about student pass rates",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves the exclusion and alternative discounted rate with enrolment/ID proof in full; no approval is implied"
+  },
+  "cppDisabilityContributorLink": {
+    "short": "Check the parent's CPP benefit and the child's age and school status",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves the parent's qualifying benefit types and the child's age and recognized-school conditions in full"
+  },
+  "cdbTaxFiling": {
+    "short": "Check tax residency and tax returns for you and your partner",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves the required tax year, partner filing and before-payment condition in full"
+  },
+  "cdbStatus": {
+    "short": "Check the rules for status in Canada and time in federal prison",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves each accepted status, residence duration, sentence length and first/last-month exception in full"
+  },
+  "cdbAmountCalculation": {
+    "short": "Ask Service Canada how family income may affect your payment",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves adjusted family net income calculation and the possibility of no payment in full; eligibility alone promises no money"
+  },
+  "ccbEligibility": {
+    "short": "Check Canada Child Benefit rules and yearly tax filing",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves living-with-child, primary care and tax-residency conditions in full; CCB eligibility remains necessary"
+  },
+  "rdspOpening": {
+    "short": "Check the RDSP beneficiary's social insurance number and residency",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves the beneficiary's valid social insurance number and Canada residence at opening and each contribution in full"
+  },
+  "rdspContributionWindow": {
+    "short": "Check the RDSP rules for opening a plan and adding money",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves the age/year window, absence of an annual limit and lifetime contribution limit in full"
+  },
+  "rdspGrantWindow": {
+    "short": "Check the RDSP grant and bond window, not just the savings window",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves the earlier grant/bond age and calendar cutoff, distinct from contributions, in full"
+  },
+  "cwbEligibility": {
+    "short": "Check the Canada Workers Benefit rules and exceptions",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves residence, age/family alternative, income, student/dependant, prison and foreign-official exclusions in full"
+  },
+  "csgNeedAndProgram": {
+    "short": "Check student aid rules, school eligibility and disability records",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves assessed need, recognized disability, designated school and alternate territorial/Quebec application routes in full"
+  },
+  "csgServicesEquipment": {
+    "short": "Ask a qualified person to confirm school support needs and costs",
+    "who": [
+      "you",
+      "professional"
+    ],
+    "reason": "Leaves the allowed certifiers, written confirmation, education-related needs and separate cost document in full"
+  },
+  "abGrantStudyAidEligibility": {
+    "short": "Check Alberta student aid rules, course load and assessed need",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves student-funding eligibility, standard/reduced course loads and calculated-need thresholds in full"
+  },
+  "abGrantCurrentCostRequest": {
+    "short": "Check approved cost records and what is left after federal funding",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves Schedule form, quotes/estimates, current costs, approval and federal-funding-first allocation in full"
+  },
+  "dresResidencyAndStatus": {
+    "short": "Check Alberta residency and your right to work or train in Canada",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves the accepted citizenship, permanent-resident and Convention Refugee statuses in full"
+  },
+  "dresDisabilityBarrier": {
+    "short": "Check records of how your disability affects school or work",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves permanent/long-term documentation and education, training or employment barrier criteria in full"
+  },
+  "dresEmploymentRoute": {
+    "short": "Check whether DRES or your school handles the support you need",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves employment-destined accommodation scope, school exclusions and unfunded employment services in full"
+  },
+  "abServiceDogQualified": {
+    "short": "Check your service dog's records against Alberta's accepted routes",
+    "who": [
+      "you",
+      "professional"
+    ],
+    "reason": "Leaves approved-provider assessment, accredited graduation and equivalent government-contracted qualification routes in full"
+  },
+  "abCapccContinuingCareHome": {
+    "short": "Check your care home type and how you can share your goals",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves Alberta home categories and ability to set goals and communicate preferences in full; home type is not asked in the quiz"
+  },
+  "abSpecialNeedsHousingPlacement": {
+    "short": "Ask your local housing provider about its rules and waiting list",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves community-specific income limits and the local provider's eligibility decision in full; no provincial placement is promised"
+  },
+  "aishMedical": {
+    "short": "Ask about AISH's disability review and your doctor's report",
+    "who": [
+      "you",
+      "professional",
+      "program"
+    ],
+    "reason": "Leaves permanent employment prevention and treatment/rehabilitation/training review in full; AISH, not the doctor, decides"
+  },
+  "aishFinancial": {
+    "short": "Check income, assets and other benefits you may need to apply for",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves partner income, non-exempt asset cap and the requirement to seek other income you may qualify for in full"
+  },
+  "adapMedical": {
+    "short": "Check Alberta's disability review for AISH and ADAP",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves significant employment impact, continuous/episodic impairment and combined application assessment in full"
+  },
+  "adapFinancial": {
+    "short": "Check ADAP income reviews, assets and other possible benefits",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves monthly review, non-exempt asset cap and required applications for other income you may qualify for in full"
+  },
+  "aadlAssessment": {
+    "short": "Ask an AADL health professional about the item and assessment rules",
+    "who": [
+      "you",
+      "professional"
+    ],
+    "reason": "Leaves authorized assessor, listed item, approved vendor and expected condition duration in full"
+  },
+  "aadlOtherPayer": {
+    "short": "Check whether another plan already covers the item",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves named public/private payers and the already-covered exclusion in full"
+  },
+  "rampMobilityRoute": {
+    "short": "Check RAMP's routes for mobility aids or listed conditions",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves wheelchair, older walker-user and listed progressive-condition routes in full; diagnosis alone is not approval"
+  },
+  "rampIncomeAndResidency": {
+    "short": "Check RAMP's family income and Alberta residency rules",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves family-size income table, wheelchair-related addition and continuous residence duration in full"
+  },
+  "adultHealthIncome": {
+    "short": "Check your family size against Alberta's current income table",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves specific household income limits and increases for children in full"
+  },
+  "adultHealthGateway": {
+    "short": "Check the health benefit routes and other coverage exclusions",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves pregnancy, ongoing drug needs, transition route and all excluded public coverage in full"
+  },
+  "abPlacardMobility": {
+    "short": "Check the parking permit rules for walking or vision limits",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves walking-distance and substantial safe-navigation vision tests in full; fixed failures remain reasons, not tasks"
+  },
+  "autismDiagnosis": {
+    "short": "Check whether the autism diagnosis meets B.C. standards",
+    "who": [
+      "you",
+      "professional"
+    ],
+    "reason": "Leaves the B.C.-standard diagnosis requirement in full; the collector flags the abbreviation, not lengthy prose"
+  },
+  "planGClinicalAndFinancialNeed": {
+    "short": "Ask your prescriber about Plan G's health and income checks",
+    "who": [
+      "you",
+      "professional"
+    ],
+    "reason": "Leaves clinical confirmation with the local mental health/substance use team and financial threshold in full"
+  },
+  "planPRegistration": {
+    "short": "Ask a doctor or nurse practitioner to send the registration form",
+    "who": [
+      "you",
+      "professional"
+    ],
+    "reason": "Leaves physician/nurse practitioner registration with PharmaCare and no patient/family form requirement in full"
+  },
+  "bcMsp": {
+    "short": "Check your Medical Services Plan enrolment",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves B.C. enrolment-first wording in full; fixed no-enrolment answers remain on the reason path"
+  },
+  "bcSupplementaryBenefitsEligibility": {
+    "short": "Check the income, At Home or Mental Health Client routes",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves alternative income and MSP enrolment routes, income period and cap in full"
+  },
+  "firstNationsStatus": {
+    "short": "Ask FNHA Health Benefits about status and B.C. residency rules",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves Indian status and B.C. residence requirements in full; the questionnaire does not establish status"
+  },
+  "bcPwdStatus": {
+    "short": "Check your B.C. PWD designation or disability assistance status",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves the designation-or-assistance prerequisite in full; this is a status check, not an approval promise"
+  },
+  "bcAssistanceStatus": {
+    "short": "Check the guide for accepted B.C. assistance or status categories",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves qualifying assistance, care and protected-status categories in full; fixed failures are not changed"
+  },
+  "bcBusPassStatus": {
+    "short": "Check the bus pass routes for disability assistance or senior status",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves PWD/disability assistance and listed low-income senior categories in full"
+  },
+  "bcPwdMedical": {
+    "short": "Ask about the ministry review and the health reports it needs",
+    "who": [
+      "you",
+      "professional",
+      "program"
+    ],
+    "reason": "Leaves severity, expected duration, medical and prescribed-assessor reports in full; the ministry decides"
+  },
+  "bcPwdDesignationFinancial": {
+    "short": "Check the usual PWD application path and routes that may skip it",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves the generally required financial screen, retained designation and prescribed-class bypass routes in full"
+  },
+  "bcDisabilityAssistanceFinancial": {
+    "short": "Ask the ministry about its family income and asset test",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves ministry adjudication, family-unit test and differing exempt asset limits in full"
+  },
+  "bcCydbIntake": {
+    "short": "Check current Autism Funding or At Home routes and transition plans",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves current intake pathways, automatic recipient transition and future direct-application date in full"
+  },
+  "bcFuelTaxRoute": {
+    "short": "Check which disability proof the fuel tax refund program accepts",
+    "who": [
+      "you",
+      "professional",
+      "program"
+    ],
+    "reason": "Leaves accepted agency letters, certification alternatives and listed medical conditions in full; medical certification is not universal"
+  },
+  "bcFuelTaxRegistered": {
+    "short": "Check your fuel tax refund registration approval before claiming",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves approved registration and confirmation-before-claiming requirements in full"
+  },
+  "bcDefermentProperty": {
+    "short": "Check residency, home ownership, equity and unpaid property bills",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves residence duration, principal-home status, equity share and prior-tax/fee/interest payment rules in full"
+  },
+  "qualifyingRenovationSpend": {
+    "short": "Check the renovation is done and paid for, and keep the receipts",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves qualifying-spend and partial-reimbursement conditions in full; the cue does not promise a credit amount"
+  },
+  "mhrtcSecondaryUnit": {
+    "short": "Check the separate-unit rules and who the renovation is for",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves self-contained facilities, relative relationship, senior/DTC route and lifetime claim limit in full"
+  },
+  "excisePermanentMobilityCertified": {
+    "short": "Ask a medical practitioner about certifying your mobility limits",
+    "who": [
+      "you",
+      "professional"
+    ],
+    "reason": "Leaves permanent impairment and inability to safely use public transport in full"
+  },
+  "cdcpRequirements": {
+    "short": "Check dental coverage, tax returns, family income and residency",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves no-access-to-private-coverage rule, partner filing, adjusted income cap and Canadian residence in full"
+  },
+  "disabilityMedicalExpensesPaid": {
+    "short": "Check paid medical costs and receipts for your tax return",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves already-spent/paid condition in full; a receipt alone does not establish a qualifying expense"
+  },
+  "caregiverSupportClaim": {
+    "short": "Check who gives support and who claims it on their tax return",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves spouse/partner/dependant relationship and mental/physical impairment conditions in full"
+  },
+  "bcHomeOwnerGrantDisabilityRoute": {
+    "short": "Check the assistance or spending route and whether a health form is needed",
+    "who": [
+      "you",
+      "professional"
+    ],
+    "reason": "Leaves alternative assistance/spending routes, spending thresholds and professional Form B requirement only for the second route in full"
+  },
+  "rahaEligibility": {
+    "short": "Check household rules and get written approval before work is done",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves permanent disability/physical loss, income/asset limits and exclusion of pre-approval completed adaptations in full"
+  },
+  "bcHealthyKidsIncome": {
+    "short": "Check income rules and apply for MSP supplementary benefits first",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves supplementary-benefit prerequisite, adjusted net income cap and Health Insurance BC application in full"
+  },
+  "bcWorkBcRoute": {
+    "short": "Check which WorkBC route fits your work or school situation",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves unemployed/underemployed, employed-at-risk, seeking-more-hours and final-year student alternatives in full"
+  },
+  "coquitlamStatus": {
+    "short": "Check Coquitlam's residency and immigration status rules",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves citizen, permanent-resident and refugee routes and temporary/business-class exclusions in full"
+  },
+  "coquitlamIncome": {
+    "short": "Check your household size against Coquitlam's income table",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves household-specific Low Income Cut-off figures and the city's verification in full"
+  },
+  "archIncomeOrAssistance": {
+    "short": "Check Kamloops' assistance, income or pension routes",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves alternative assistance, guideline-based income and pension/long-term disability routes in full"
+  },
+  "notBcAssistance": {
+    "short": "Check whether Healthy Kids or ministry coverage is the right route",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves lower-income family criteria, assistance exclusion and equivalent ministry coverage in full; fixed answers remain reasons"
+  },
+  "dailyLivingLimit": {
+    "short": "Check daily living limits and the help or supports you need",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves significant restriction and accepted help, supervision, device or service-animal alternatives in full"
+  },
+  "outsideMetroVancouver": {
+    "short": "Check whether to use B.C. Transit or TransLink for your area",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves the Metro Vancouver versus B.C. Transit community split in full; location is a routing fact, not an action to change"
+  },
+  "waterlooRenovatesEligibility": {
+    "short": "Ask the Region to check income, home value and home records",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves family-size cap, sole/principal residence, no other property, current taxes/mortgage and full-value insurance in full"
+  },
+  "waterlooHomemakingNeed": {
+    "short": "Ask about the program's home help review and the records it needs",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves functional impairment, illness/injury/aging/disability, financial test and waitlist-stage disclosure in full"
+  },
+  "waterlooWasteSupportApproval": {
+    "short": "Ask the Region which waste support route you can apply for",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves no-available-helper restriction for assisted collection and approved bag-tag route in full; neither is promised"
+  },
+  "yorkHomemakersNeed": {
+    "short": "Call York Region to ask about health and financial need rules",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves temporary/permanent illness or disability and unpublished financial thresholds in full"
+  },
+  "ottawaOdspReceipt": {
+    "short": "Check your Ottawa residency and ODSP and transit proof",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves current ODSP receipt and required ODSP identifier plus Presto/Para Transpo identifier in full"
+  },
+  "atpApproval": {
+    "short": "Ask about transit program approval and household tax records",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves household net income calculation and required tax-return line in full; approval is still needed"
+  },
+  "londonRenovatesEligibility": {
+    "short": "Ask London to check income, assets, home value and residency",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves gross income, liquid assets, assessed value caps and sole/principal home in London or Middlesex County in full"
+  },
+  "p2pIncomeTest": {
+    "short": "Ask local transit or recreation staff for your family's income limit",
+    "who": [
+      "you",
+      "program"
+    ],
+    "reason": "Leaves combined household income, family-size Market Basket Measure threshold and unpublished limits in full"
+  },
+  "stalbert": {
+    "short": "Check whether the City of St. Albert program is for your area",
+    "who": [
+      "you"
+    ],
+    "reason": "Leaves the City of St. Albert location restriction in full; collector flags the abbreviation and fixed failures stay reasons"
+  },
+  "achbOlderDependent": {
+    "short": null,
+    "who": null,
+    "reason": "Function-valued unmet has distinct age-band branches; retain both full resolved texts without a static cue"
+  },
+  "dtc": {
+    "short": null,
+    "who": null,
+    "reason": "DTC-unsure has a special runtime override; withhold a cue for this gate until that branch is explicitly reviewed"
+  }
+}

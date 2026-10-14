@@ -1,0 +1,168 @@
+const { test, expect } = require("@playwright/test");
+const { gotoReady, waitForAppReady } = require("./app-ready");
+const { buildAll } = require("./oracle/build-personas");
+const { BASE_PERSONA } = require("./oracle/oracle-spec");
+
+const persona = { ...BASE_PERSONA, disabilities: ["physical"], city: "Camrose", dtc: "yes", citizenPR: true, situation: ["working"] };
+async function results(page) {
+  await gotoReady(page);
+  await page.evaluate(model => { answers = { ...BLANK(), ...model }; setState("results"); }, persona);
+}
+
+test("pilot cue preview opens personalized requirements; full list has a keyboard-operable name", async ({ page }) => {
+  await results(page);
+  const id = await page.evaluate(() => BENEFITS.find(b => b.requires.includes("cwbEligibility")).id);
+  const preview = page.locator(`#req-card-${id}`).locator("..");
+  await expect(preview.getByRole("heading", { name: "Requirements to check" })).toBeVisible();
+  await expect(preview.locator(".req-cue")).toHaveText(["Check CWB residence, family, income rules and exclusions"]);
+  const link = preview.getByRole("link", { name: /^See all requirements for/ });
+  await expect(link).toHaveAttribute("href", `/guides/${id}`);
+  await link.click();
+  await expect(page.locator(`#req-detail-${id}`)).toBeFocused();
+  const section = page.locator(".req-checks");
+  await expect(section).toHaveAttribute("lang", "en");
+  await expect(section.locator("details")).toHaveCount(1);
+  const name = await page.evaluate(id => `Read full requirements for ${BENEFITS.find(b => b.id === id).name}`, id);
+  const summary = section.locator("summary");
+  await expect(summary).toHaveAccessibleName(name);
+  await summary.focus();
+  await page.keyboard.press("Enter");
+  await expect(section.locator("details")).toHaveAttribute("open", "");
+  await expect(section.locator(".req-wording")).toBeVisible();
+  await page.keyboard.press("Space");
+  await expect(section.locator("details")).not.toHaveAttribute("open", "");
+});
+
+test("every gate's resolved full text reaches the detail DOM intact, including dynamic branches", async ({ page }) => {
+  await gotoReady(page);
+  const report = await page.evaluate(() => {
+    const failures = [];
+    let checked = 0;
+    // Both branches of the sole dynamic unmet gate, plus the DTC-unsure override.
+    for (const ageBand of ["12to15", "19to59"]) {
+      answers = { ...BLANK(), ageBand, dtc: "unsure", situation: [], disabilities: [] };
+      for (const [key, req] of Object.entries(REQS)) {
+        const text = typeof req.unmet === "function" ? req.unmet() : req.unmet;
+        const host = document.createElement("div");
+        host.innerHTML = renderRequirements({ id: "test", name: "Test benefit" }, [{ key, text, short: req.short, who: req.who, action: req.action }]);
+        const wording = host.querySelector(".req-wording") || host.querySelector(`li[data-req-key="${key}"]`);
+        // Fallback rows may also contain an action; their first text node is the full wording.
+        const actual = wording?.classList.contains("req-wording") ? wording.textContent : wording?.firstChild?.textContent;
+        if (actual !== text) failures.push({ key, text, actual });
+        if (host.querySelectorAll("details").length > 1) failures.push({ key, problem: "multiple disclosures" });
+        checked++;
+      }
+    }
+    const needs = evaluate({ requires: ["dtc"] }).needs;
+    const host = document.createElement("div");
+    host.innerHTML = renderRequirements({ id: "dtc-test", name: "DTC" }, needs);
+    if (!host.textContent.includes(needs[0].text) || needs[0].short) failures.push({ problem: "DTC-unsure override" });
+    return { failures, checked, gates: Object.keys(REQS).length };
+  });
+  expect(report.failures).toEqual([]);
+  expect(report.checked).toBe(report.gates * 2);
+});
+
+test("mixed pilot detail keeps every need, fallback prose and print wording", async ({ page }) => {
+  await results(page);
+  await page.evaluate(() => { detailFrom = "results"; setState("detail", { detailId: "rdsp" }); });
+  const section = page.locator(".req-checks");
+  await expect(section.locator(".req-cue").first()).toContainText("Check SIN and residency");
+  await expect(section.getByRole("heading", { name: "Other checks" })).toBeVisible();
+  await expect(section.locator("details")).toHaveCount(1);
+  const texts = await page.evaluate(() => evaluate(BENEFITS.find(b => b.id === "rdsp")).needs.map(n => n.text));
+  expect(texts.length).toBeGreaterThan(2);
+  for (const text of texts) expect(await section.textContent()).toContain(text);
+  await expect(page.locator(".side-status")).toHaveText(`${texts.length} requirements not yet confirmed`);
+  await page.emulateMedia({ media: "print" });
+  const printed = page.locator(".print-action-plan");
+  await expect(printed).toBeVisible();
+  await expect(printed).toHaveAttribute("aria-hidden", "true");
+  for (const text of texts) expect(await printed.textContent()).toContain(text);
+});
+
+test("catalogue detail rendering retains every evaluated need, not just the first two", async ({ page }) => {
+  await gotoReady(page);
+  const catalogue = await page.evaluate(() => BENEFITS.map(b => ({ id: b.id, requires: [...b.requires] })));
+  const cases = buildAll(catalogue).map(c => ({ id: c.id, answers: c.bestCase.answers }));
+  const report = await page.evaluate(cases => {
+    const failures = [];
+    let checked = 0;
+    for (const c of cases) {
+      answers = { ...BLANK(), ...c.answers, disabilities: c.answers.disabilities.length ? c.answers.disabilities : ["none"], city: c.answers.city || "Camrose" };
+      const b = BENEFITS.find(b => b.id === c.id);
+      const r = evaluate(b);
+      if (r.status !== "almost") continue;
+      const host = document.createElement("div");
+      host.innerHTML = renderGuideBody(b, r);
+      const section = host.querySelector(".req-checks");
+      for (const n of r.needs) {
+        const row = section?.querySelector(`.req-wording[data-req-key="${n.key}"]`) ||
+          section?.querySelector(`.req-full-list [data-req-key="${n.key}"] .req-wording`) ||
+          section?.querySelector(`.req-fallback [data-req-key="${n.key}"]`);
+        const actual = row?.classList.contains("req-wording") ? row.textContent : row?.firstChild?.textContent;
+        if (actual !== n.text) failures.push({ id: b.id, key: n.key, actual, expected: n.text });
+        checked++;
+      }
+    }
+    return { failures, checked };
+  }, cases);
+  expect(report.failures).toEqual([]);
+  expect(report.checked).toBeGreaterThan(100);
+});
+
+test("inline headings, shared actors and EN fallback keep their presentation contracts", async ({ page }) => {
+  await results(page);
+  await page.evaluate(() => {
+    answers.province = "ON";
+    answers.city = "Kingston";
+    LANG = "fr";
+    setState("detail", { detailId: "odsp" });
+  });
+  const section = page.locator(".req-checks");
+  await expect(section.getByRole("heading", { name: "Shared checks" })).toBeVisible();
+  await expect(section.locator('[lang="fr"]')).toHaveCount(1);
+  await expect(section.locator("details")).toHaveCount(1);
+  const inline = await page.evaluate(() => {
+    const b = BENEFITS.find(b => b.id === "odsp");
+    const host = document.createElement("div");
+    host.innerHTML = renderGuideBody(b, evaluate(b), { inline: true });
+    const section = host.querySelector(".req-checks");
+    return { id: section.querySelector("[tabindex]").id, heading: section.querySelector("[tabindex]").tagName, group: section.querySelector(".req-group-title").tagName };
+  });
+  expect(inline).toEqual({ id: "req-inline-odsp", heading: "H4", group: "H5" });
+});
+
+for (const forWho of ["self", "child", "family"]) {
+  for (const theme of ["light", "dark", "contrast"]) {
+    test(`requirements reflow after fresh ${theme} reload for ${forWho}`, async ({ page }) => {
+      await gotoReady(page);
+      await page.evaluate(({ theme }) => {
+        document.documentElement.dataset.theme = theme === "contrast" ? "dark" : theme;
+      }, { theme });
+      await page.reload();
+      await waitForAppReady(page);
+      await page.setViewportSize({ width: 320, height: 900 });
+      await page.emulateMedia({ reducedMotion: "reduce" });
+      await page.evaluate(({ model, forWho, theme }) => {
+        answers = { ...BLANK(), ...model, forWho };
+        document.documentElement.dataset.theme = theme === "contrast" ? "dark" : theme;
+        document.body.classList.toggle("a11y-contrast", theme === "contrast");
+        document.body.classList.add("a11y-nomotion");
+        setState("detail", { detailId: "rdsp" });
+      }, { model: persona, forWho, theme });
+      await expect(page.locator(".req-checks")).toBeVisible();
+      expect(await page.locator(".req-checks").evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+      const routeFailures = await page.evaluate(() => {
+        helpTopic = "disabilities";
+        const routes = ["landing", "wizard", "results", "browse", "detail", "privacy", "about", "support", "updates", "help", "accessibility", "professionals", "partner-overview", "impact", "dtc-prep", "grants", "organizations"];
+        return routes.filter(route => {
+          setState(route, { stepIndex: 0, detailId: "rdsp" });
+          const app = document.getElementById("app");
+          return !app.textContent.trim() || !!app.querySelector(".render-error");
+        });
+      });
+      expect(routeFailures).toEqual([]);
+    });
+  }
+}
