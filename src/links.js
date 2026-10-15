@@ -3,10 +3,10 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 218 links. The monitor checks a bounded rotating batch every
+// 219 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
-// 5 dynamic (function) URLs are skipped — they depend on the
+// 4 dynamic (function) URLs are skipped — they depend on the
 // user's answers and expose no safe static URL to check.
 
 export const LINKS = [
@@ -209,6 +209,11 @@ export const LINKS = [
     "url": "https://www.canada.ca/en/employment-social-development/services/education/grants/disabilities.html",
     "label": "Canada Student Grant for Students with Disabilities — official source",
     "kind": "source"
+  },
+  {
+    "url": "https://www.canada.ca/en/services/benefits/education/student-aid/grants-loans/disabilities-service-equipment.html",
+    "label": "Canada Student Grant — Services & Equipment — apply",
+    "kind": "apply"
   },
   {
     "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-31285-home-accessibility-expenses.html",
@@ -1102,4 +1107,4 @@ export const LINKS = [
   }
 ];
 
-export const SKIPPED_DYNAMIC = 5;
+export const SKIPPED_DYNAMIC = 4;

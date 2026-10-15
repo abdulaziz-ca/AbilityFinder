@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.28.0";
+const SPEC_VERSION = "1.29.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -249,7 +249,7 @@ const GATES = {
     satisfy: { set: { city: "Kitchener" } },
     violations: [{ name: "Waterloo Region township", fragment: { set: { city: "North Dumfries" } }, expect: "no" }],
   },
-  waterlooRenovatesEligibility: external("Depends on the Region confirming the family-size income maximum, home value, sole-and-principal-residence and other-property rules, current taxes and mortgage, and full-value insurance; the wizard does not ask those details."),
+  waterlooRenovatesEligibility: external("Depends on the Region confirming the family-size total gross household income maximum or sole-source OW/ODSP financial support, home value, sole-and-principal-residence and other-property rules, current taxes and mortgage, and full-value insurance; generic lowIncome cannot establish or disprove the alternative."),
   waterlooHomemakingFinancial: {
     evidence: "answers",
     satisfy: { set: { income: "low" } },
@@ -413,14 +413,8 @@ const GATES = {
       { name: "no mobility or vision category", fragment: { drop: { disabilities: ["physical", "vision"] } }, expect: "no" },
     ],
   },
-  vehicleDisability: {
-    evidence: "answers",
-    satisfy: { add: { disabilities: ["physical"] } },
-    violations: [
-      { name: "no qualifying category", fragment: { drop: { disabilities: ["physical", "vision"] }, set: { functionalNeeds: ["none"] } }, expect: "no" },
-      { name: "needs unsure", fragment: { drop: { disabilities: ["physical", "vision"] }, set: { functionalNeeds: ["unsure"] } }, expect: "almost" },
-    ],
-  },
+  // vehicleDisability remains unchanged in production. Fuel tax was its last
+  // catalogue user; omit the now-orphaned oracle entry, not the shared gate.
 
   /* ----------------------------------------------------- functional limits */
   dailyLivingLimit: needGate("dailyLiving"),
@@ -697,7 +691,7 @@ const GATES = {
   bcHomeOwnerGrantDisabilityRoute: external("Depends on the specific disability route the grant recognises, evidenced to the province."),
   rahaEligibility: external("RAHA applies its own income and asset limits, which are not published in a form the wizard can test."),
   bcWorkBcRoute: external("WorkBC confirms the service route at intake."),
-  bcFuelTaxRoute: external("Requires one of the programme's accepted disability confirmations."),
+  bcFuelTaxRoute: external("Fuel-tax registration accepts certification, BCANDS, Veterans' Affairs, CNIB or medical routes, including permanent mental disability making public transportation hazardous. Physical, vision or transit answers cannot disprove these unasked routes; fuel tax no longer uses vehicleDisability."),
   bcFuelTaxRegistered: external("Requires an approved registration in the fuel tax refund programme."),
   bcDefermentProperty: external("Depends on residency duration, registered ownership, equity share and tax arrears."),
   coquitlamStatus: external("Coquitlam determines status through its own application."),

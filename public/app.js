@@ -912,7 +912,7 @@ const REQS = {
     who: ["you", "professional", "program"],
     met: () => false,
     fixed: false,
-    unmet: "You must confirm your disability through one of the program's accepted routes — a B.C. Disability Assistance Certification, a BCANDS letter, a Veterans Affairs 100% disability pension letter, a CNIB letter, or a medical certification of one of the six listed conditions.",
+    unmet: "You must be 16 years old or older. Confirm your disability through one of these routes:\n• B.C. Disability Assistance Certification.\n• A BCANDS letter confirming disability assistance or a supplement from the Social Assistance for Persons with Disability program in accordance with the Indigenous Services Canada Social Development Program – Policy and Procedures Handbook – BC Region; it must state your enrollment date and end date (if applicable).\n• A Veterans' Affairs letter confirming a 100% disability pension through service while in His Majesty's forces and the date you began receiving it.\n• A CNIB letter confirming permanent sight impairment, that you are not eligible to hold a driver's licence, and the effective date of the impairment.\n• Medical certification of loss of a limb; permanent dependence on a wheelchair; complete and permanent functional loss of lower limbs; permanent impairment of movement or permanent mental disability to the extent that use of public transportation would be hazardous (whether or not it is available); or permanent sight impairment to the extent that you are not eligible to hold a driver's licence.",
     action: { text: "Review the fuel tax refund routes", url: "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities" },
   },
   bcFuelTaxRegistered: {
@@ -1231,7 +1231,7 @@ const REQS = {
     met: () => false,
     fixed: false,
     unmet:
-      "The Region must confirm the family-size income maximum, the home's maximum $600,000 value, sole and principal residence with no other property ownership, up-to-date property taxes and mortgage payments, and full-value home insurance.",
+      "The Region must confirm:\n• Total gross income of all household members (including those with disabilities) at or below the family-size maximum, or Ontario Works or Ontario Disability Support Program financial support as the household's sole source of income.\n• The home's maximum $600,000 value and sole and principal residence with no other property ownership.\n• Up-to-date property taxes and mortgage payments, and full-value home insurance.",
     action: { text: "See funding and application details", url: "https://www.regionofwaterloo.ca/programs-and-services/employment-and-financial-supports/financial-support-for-renters-and-homeowners/funding-for-home-repairs/" },
   },
   waterlooHomemakingFinancial: {

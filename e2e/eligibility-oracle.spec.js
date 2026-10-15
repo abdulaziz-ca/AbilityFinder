@@ -214,17 +214,22 @@ test.describe("eligibility oracle", () => {
         programId: icbc.id,
         answers: { ...icbc.bestCase.answers, disabilities: [category], functionalNeeds: ["none"] },
       })),
-      {
+      ...["none", "mental", "unsure"].map((category) => ({
         programId: "bc-fuel-tax-refund-disabilities",
-        answers: { ...icbc.bestCase.answers, disabilities: ["none"], functionalNeeds: ["none"] },
-      },
+        answers: { ...icbc.bestCase.answers, disabilities: [category], functionalNeeds: ["none"] },
+      })),
     ]);
     for (const result of routeResults.slice(0, 3)) {
       expect(result.status, "unasked ICBC disability-confirmation routes stay open").toBe("almost");
       expect(result.needs.join(" ")).toMatch(/registration page lists/);
       expect(result.needs.join(" ")).toMatch(/registration is confirmed/);
     }
-    expect(routeResults[3].status, "the out-of-batch shared vehicle gate is unchanged").toBe("no");
+    // Follow-ups: fuel tax now uses its external confirmation routes, not
+    // vehicleDisability. No physical/vision/transit answers cannot reject it.
+    for (const result of routeResults.slice(3)) {
+      expect(result.status, "unasked fuel-tax confirmation routes stay open").toBe("almost");
+      expect(result.needs.join(" ")).toMatch(/permanent mental disability/);
+    }
   });
 
   test("every program that can be refused is refused for the specified reason", async ({ page }) => {

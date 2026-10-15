@@ -188,9 +188,13 @@ test("batch two: tax lines, supported dependants and prior-year exclusion", () =
 
 test("batch two: conditional coverage, choices and alternative documents stay qualified", () => {
   const csg = benefitById("csg-dse");
-  assert.match(csg.summary, /Helps pay.*if you qualify.*can include.*depending on your needs/);
+  assert.match(csg.summary, /Helps pay.*education-related services or equipment.*if you qualify/);
   assert.match(csg.note, /depends on your needs and your application/);
-  assert.equal(csg.source, "https://www.canada.ca/en/employment-social-development/services/education/grants/disabilities.html");
+  assert.equal(csg.source, "https://www.canada.ca/en/services/benefits/education/student-aid/grants-loans/disabilities-service-equipment.html");
+  assert.equal(csg.applyUrl, csg.source);
+  const { buildLinkCatalogue } = require("../scripts/link-sources.js");
+  const catalogue = buildLinkCatalogue({ benefits: [csg] }).links;
+  assert.ok(catalogue.some((link) => link.url === csg.source));
   const rdsp = benefitById("rdsp");
   for (const text of [rdsp.summary, rdsp.detail.about, rdsp.detail.aboutList.lead]) {
     assert.match(text, /may (add|pay)/);
@@ -461,7 +465,7 @@ test("home owner grant health-professional certification is specific to Option B
 
 test("fuel tax medical routes retain permanent and complete qualifiers", () => {
   const b = benefitById("bc-fuel-tax-refund-disabilities");
-  for (const text of [b.requiresNote, b.eligibility.items.join(" ")]) {
+  for (const text of [snapshotReqs.bcFuelTaxRoute.unmet, b.eligibility.items.join(" ")]) {
     for (const phrase of ["permanent dependence on a wheelchair", "complete and permanent functional loss of lower limbs", "permanent impairment of movement", "permanent mental disability", "permanent sight impairment", "whether or not it is available"]) {
       assert.ok(text.includes(phrase), phrase);
     }
@@ -545,4 +549,59 @@ test("Kelowna recreation assistance LICO table equals the City's 2025 page", () 
   assert.match(benefit.detail.time, /may take up to two weeks from the date of submission, provided all required information is received/);
   assert.match(benefit.requiresNote, /income verification requirements and have all the necessary documentation/);
   assert.doesNotMatch(benefit.requiresNote, /\bqualify\b/);
+});
+
+test("follow-ups: Waterloo preserves conflicting dates, income alternatives and security", () => {
+  const b = benefitById("waterloo-ontario-renovates");
+  for (const text of [b.note, b.detail.steps[4], b.detail.tips[2]]) {
+    for (const date of ["November 15, 2026", "December 15, 2026", "December 1, 2026"]) assert.ok(text.includes(date));
+    assert.match(text, /check the current deadline with the Region/i);
+    assert.doesNotMatch(text, /lead dates|program page instead/);
+  }
+  assert.ok(!b.requires.includes("lowIncome"));
+  for (const text of [b.eligibility.items[2], b.detail.steps[0], snapshotReqs.waterlooRenovatesEligibility.unmet]) {
+    assert.match(text, /Ontario Works or Ontario Disability Support Program/);
+    assert.match(text, /sole source of income/);
+  }
+  for (const text of [b.amount, b.detail.about, b.detail.aboutList.items[0], BENEFIT_VALUES[b.id].note]) {
+    assert.match(text, /\$25,000.*homeowner repairs.*and\/or up to \$25,000.*accessibility/);
+    assert.match(text, /subject to change/);
+    assert.doesNotMatch(text, /\$50,000/);
+  }
+  for (const text of [b.detail.about, b.detail.aboutList.items[1]]) {
+    assert.match(text, /including \$25,000.*promissory note/);
+    assert.match(text, /exceeds \$25,000.*mortgage registered on title/);
+  }
+});
+
+test("follow-ups: services grant requires both documents and the school-year boundary", () => {
+  const b = benefitById("csg-dse");
+  assert.equal(b.amount, "Up to $20,000 per school year (August 1 to July 31)");
+  const docs = b.detail.documents.join(" ");
+  for (const phrase of ["Written confirmation of need", "rehabilitation caseworker", "official from a centre for students with disabilities", "guidance counselor", "financial aid administrator", "document confirming the related cost"]) assert.ok(docs.includes(phrase));
+  assert.match(b.detail.steps[0], /province or territory/);
+  assert.doesNotMatch(JSON.stringify(b), /Assessed with|Alberta Student Aid|recommendation or quote/);
+  assert.doesNotMatch(BENEFIT_META[b.id].wait, /^with student aid$/);
+});
+
+test("follow-ups: fuel-tax routes preserve letter dates, signing conditions and soft gate", () => {
+  const b = benefitById("bc-fuel-tax-refund-disabilities");
+  assert.ok(!b.requires.includes("vehicleDisability"));
+  assert.ok(b.requires.includes("bcFuelTaxRoute"));
+  const gate = snapshotReqs.bcFuelTaxRoute;
+  assert.equal(gate.fixed, false);
+  assert.equal(gate.met(), false);
+  assert.ok(gate.short.length <= 80);
+  assert.doesNotMatch(gate.short, /\d/);
+  assert.ok(gate.who.length);
+  const routes = b.eligibility.items.join(" ");
+  for (const text of [routes, gate.unmet]) {
+    for (const phrase of ["BCANDS", "disability assistance or a supplement", "end date (if applicable)", "His Majesty's forces", "date you began receiving", "effective date of the impairment", "permanent mental disability"]) assert.ok(text.includes(phrase), phrase);
+  }
+  assert.match(b.requiresNote, /16 years old or older/);
+  assert.match(b.amount, /may receive/);
+  assert.match(BENEFIT_VALUES[b.id].note, /may receive/);
+  assert.match(b.detail.documents.join(" "), /registering and signing.*19 or older.*power of attorney or representation agreement/);
+  assert.match(b.detail.time, /up to 4 weeks/);
+  assert.match(BENEFIT_META[b.id].wait, /up to 4 weeks/);
 });

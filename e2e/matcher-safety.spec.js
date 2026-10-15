@@ -990,6 +990,16 @@ const qualifyingBcChild = {
   msp: "yes",
 };
 
+test("Waterloo sole-source assistance is not rejected by the generic income answer", async ({ page }) => {
+  const results = await evaluateProfile(page, {
+    province: "ON", city: "Kitchener", ageBand: "19to59",
+    income: "high", circumstances: ["homeowner"],
+  });
+  const b = results["waterloo-ontario-renovates"];
+  expect(b.status).toBe("almost");
+  expect(b.needs.map((need) => need.text).join(" ")).toMatch(/sole source of income/);
+});
+
 test("BC programs never return ready from unasked criteria", async ({ page }) => {
   const adult = await evaluateProfile(page, qualifyingBcAdult);
   for (const id of [
