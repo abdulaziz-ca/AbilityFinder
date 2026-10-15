@@ -4579,7 +4579,7 @@ const BENEFITS = [
     amount: "Half-price monthly bus pass of your choice (local, commuter or LATS)",
     summary: "Financial-navigation support that can provide a half-price monthly bus pass (your choice of local, commuter or LATS pass). The Recreation Assistance Program is now CLOSED and will reopen for new applications in January 2027.",
     requires: ["leduc", "lowIncome"],
-    note: "Leduc lists half-price monthly bus passes, with a choice of local, commuter or LATS monthly pass. Its Recreation Assistance Program (a free annual Leduc Recreation Centre membership for qualifying residents) is now CLOSED and will reopen for new applications in January 2027.",
+    note: "Leduc lists half-price monthly bus passes, with a choice of local, commuter or LATS monthly pass. All Recreation Assistance Program funding for 2026 has been fully allocated. The program is now CLOSED and will reopen for new applications in January 2027.",
     applyText: "Contact Leduc FCSS about subsidies",
     applyUrl: "https://www.leduc.ca/community/family-community-support-services/housing-financial-support",
     source: "https://www.leduc.ca/community/family-community-support-services/housing-financial-support",
@@ -5584,7 +5584,7 @@ const BENEFITS = [
       "steps": ["From age 16, ask your MCFD/CYSN worker about transition planning to CLBC", "Contact your nearest CLBC office (1-877-660-2522) — a facilitator explains the required documents and approved assessors", "Submit assessments and forms completed by an approved professional (registered psychologist for the DD stream); school-years assessments may be reusable", "Once eligibility is confirmed, attend the CLBC Welcome Workshop series and work with your facilitator on a support plan", "CLBC connects you to funded services based on the plan and available resources"],
       "documents": ["Cognitive/psychoeducational assessment by a registered psychologist (DD stream)", "Adaptive functioning assessment completed by an approved professional", "Confirmed FASD or autism spectrum diagnosis for the PSI stream", "CLBC eligibility forms completed by approved professionals"],
       "tips": ["Start at 16 — assessments and planning take time. What funded support you get, and when, depends on how urgent your situation is and the funding CLBC has at the time of your request.", "If you were assessed in school, ask the school district for copies; a new assessment may not be needed", "Not eligible under the DD stream? Ask specifically about the Personalized Supports Initiative (PSI)", "Respite or equivalent funding is commonly the first service offered to families of transitioning youth — ask your facilitator what is available in your region", "Adults on CLBC services usually also qualify for BC PWD disability assistance — apply for both"],
-      "time": "Apply from age 16; eligibility confirmation before the 19th birthday is recommended. When funded support starts depends on urgency and the funding CLBC has at the time of the request.",
+      "time": "When funded support starts depends on how urgent your situation is and the amount of funding CLBC has at the time of the request.",
       "phone": "1-877-660-2522"
     }
   },

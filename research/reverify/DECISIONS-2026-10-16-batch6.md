@@ -329,3 +329,17 @@ Because faithful source wording and the five new gate texts are longer: gate.unm
 
 ### Test results
 `npm test` 170/170; `npm run check:surfaces` passes; `npx playwright test --project=app-chromium --workers=1` 233 passed of 233 listed.
+
+## Codex review round
+
+Sources: `research/reverify/snapshots/bc-clbc--1.txt` and `bc-clbc--2.txt` only. These corrections supersede the original batch 6 decisions above where they conflict.
+
+1. **HIGH — `REQS.bcClbcStream`:** Set `met: () => false`. Category selection and onset do not establish significantly impaired intellectual AND adaptive functioning (DD), or the significant day-to-day help required for ASD/FASD (PSI). Preserve `fixed`, `short`, and `who`; leave shared `developmental` unchanged. Mark the oracle gate external and change `bc-clbc` best case from `ready` to `almost`; bump oracle spec to 1.26.0, preserving batch 7 fixes.
+2. **MEDIUM — gate unmet text:** Explicitly attach significant day-to-day help / adaptive-function limitations to both FASD and autism, consistent with snapshot 2's introductory eligibility wording and the record.
+3. **LOW — `bc-clbc.detail.time` only:** Remove the age-16 instruction and unsupported recommendation to confirm eligibility before the 19th birthday. Retain snapshot 1's contingency on urgency and available CLBC funding. Leave age-16 text elsewhere untouched.
+
+The oracle persona builder now applies optional category hints on external gates and exercises their declared fixed-refusal violations. The CLBC category hint is not evidence of full eligibility; the redundant onset-only violation is removed because the external gate is already unmet in the best case.
+
+Validation: `npm run gen:context` succeeded (134 entries); `npm run gen:guides` succeeded (133 benefit pages plus index and sitemap); `npm test` passed 170/170; `npm run check:surfaces` passed; final whole-project `npx playwright test --project=app-chromium --workers=1` passed **233 of 233 listed**, zero failures. Earlier runs exposed and resolved oracle persona issues; unrelated browser timeouts cleared on the final whole-project rerun. `git diff --check` passed.
+
+Asset version remains 179. No commit. Existing batch 7 review changes are preserved.

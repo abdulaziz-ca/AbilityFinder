@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.24.0";
+const SPEC_VERSION = "1.26.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -438,11 +438,7 @@ const GATES = {
   vehicleOwner: circumstanceGate("vehicleOwner"),
   recentGraduate: circumstanceGate("recentGraduate"),
   // Batch 7 (2026-10-16): record-specific gates replacing shared ones that drifted from the page.
-  waterlooMobilityPlusTransit: {
-    evidence: "answers",
-    satisfy: { add: { functionalNeeds: ["transitBarrier"] } },
-    violations: [{ name: "no transit-barrier answer: another eligibility type may apply", fragment: { set: { functionalNeeds: ["none"] } }, expect: "almost" }],
-  },
+  waterlooMobilityPlusTransit: external("Needing assistance on regular public transit does not establish that a disability prevents conventional transit use or that barriers limit consistent use; the wizard cannot establish a MobilityPLUS eligibility type."),
   bcParkingMobility: {
     evidence: "answers",
     satisfy: { add: { disabilities: ["physical"] }, set: { canWalkFar: false } },
@@ -451,11 +447,7 @@ const GATES = {
       { name: "no physical category: mobility limits can arise under other categories", fragment: { drop: { disabilities: ["physical"] } }, expect: "almost" },
     ],
   },
-  okotoksResidency: {
-    evidence: "answers",
-    satisfy: { set: { city: "Okotoks" } },
-    violations: [{ name: "another community: Foothills County residents also qualify", fragment: { set: { city: OTHER_CITY.AB } }, expect: "almost" }],
-  },
+  okotoksResidency: external("The city question asks in or near, so selecting Okotoks does not establish residence in the Town of Okotoks or Foothills County."),
   exciseMobilityImpairment: external("Depends on a permanent mobility impairment with unsafe public transportation, which the wizard cannot establish."),
   fortsaskIncomeRoute: external("Depends on receiving funding from an approved government program or meeting the Statistics Canada low income thresholds, neither of which the wizard asks."),
   mhrtcQualifyingIndividual: {
@@ -469,10 +461,10 @@ const GATES = {
     violations: [{ name: "not a citizen or PR: other listed routes exist", fragment: { set: { citizenPR: false } }, expect: "almost" }],
   },
   bcClbcStream: {
-    evidence: "answers",
+    // Diagnosis and onset do not establish the required functional impairments.
+    evidence: "external",
     satisfy: { add: { disabilities: ["intellectual"] }, set: { onsetBefore18: true } },
     violations: [
-      { name: "onset not before 18: PSI stream may still apply", fragment: { set: { onsetBefore18: false } }, expect: "almost" },
       { name: "no developmental category", fragment: { drop: { disabilities: ["intellectual", "autism"] } }, expect: "no" },
     ],
   },
@@ -773,7 +765,7 @@ const PROGRAM_BEST_CASE = {
   "sprucegrove-low-income-transit":                "ready",
   "leduc-subsidies":                               "ready",
   "cochrane-connect-card":                         "ready",
-  "okotoks-fee-assistance":                        "ready",
+  "okotoks-fee-assistance":                        "almost",
   "canmore-affordable-services":                   "ready",
   "lloydminster-recreation-access":                "ready",
   "fortsask-access":                               "almost",
@@ -808,7 +800,7 @@ const PROGRAM_BEST_CASE = {
   "waterloo-curbside-waste-support":                "almost",
   "grt-affordable-transit":                        "almost",
   "grt-cnib-pass":                                 "almost",
-  "grt-mobilityplus":                              "ready",
+  "grt-mobilityplus":                              "almost",
   "grt-taxi-coupons":                              "almost",
   "grt-support-person":                            "almost",
   "york-region-homemakers":                        "almost",
@@ -836,7 +828,7 @@ const PROGRAM_BEST_CASE = {
   "bc-at-home-medical":                            "almost",
   "bc-supported-child-development":                "ready",
   "bc-at-home-saet":                               "almost",
-  "bc-clbc":                                       "ready",
+  "bc-clbc":                                       "almost",
   "bc-csg-students-disabilities":                  "ready",
   "bc-csg-services-equipment":                     "ready",
   "bc-access-grant-students-disabilities":         "ready",

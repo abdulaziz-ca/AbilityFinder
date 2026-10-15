@@ -1167,9 +1167,9 @@ const REQS = {
   bcClbcStream: {
     short: "Check which CLBC stream fits",
     who: ["you", "program"],
-    met: () => (hasDisability("intellectual") || hasDisability("autism")) && answers.onsetBefore18 === true,
+    met: () => false,
     fixed: () => !(hasDisability("intellectual") || hasDisability("autism")),
-    unmet: "CLBC supports adults with a developmental disability (significantly impaired intellectual and adaptive functioning that started before age 18). Through the Personalized Supports Initiative it also supports adults without a developmental disability who have a diagnosis of FASD, or a diagnosis of Autism Spectrum Disorder and significant limitation in adaptive functioning.",
+    unmet: "CLBC supports adults with a developmental disability (significantly impaired intellectual and adaptive functioning that started before age 18). Through the Personalized Supports Initiative it also supports adults without a developmental disability who have a diagnosis of FASD or Autism Spectrum Disorder and, in either case, need significant help with day-to-day tasks (significant limitation in adaptive functioning).",
   },
   bcWorkAbleSelfIdentify: {
     short: "Check that you self-identify as having a disability",
@@ -1284,7 +1284,7 @@ const REQS = {
   waterlooMobilityPlusTransit: {
     short: "Check which MobilityPLUS eligibility type fits",
     who: ["you", "professional"],
-    met: () => hasFunctionalNeed("transitBarrier"),
+    met: () => false,
     fixed: false,
     unmet: "MobilityPLUS eligibility may be unconditional (a disability prevents you from using conventional transit), conditional (environmental or physical barriers limit your ability to consistently use it) or temporary (a temporary disability prevents you from using it).",
   },
@@ -1343,7 +1343,7 @@ const REQS = {
   okotoksResidency: {
     short: "Check that you live in the Town of Okotoks or Foothills County",
     who: ["you"],
-    met: () => answers.city === "Okotoks",
+    met: () => false,
     fixed: false,
     unmet: "You must live in the Town of Okotoks or Foothills County.",
   },

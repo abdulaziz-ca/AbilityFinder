@@ -87,3 +87,13 @@ Asset version 178 -> 179 everywhere pinned; DATA_CHANGELOG entry; `npm run gen:c
 - Asset version 178 -> 179 (`public/index.html`, `public/styles.css`, regenerated guides); `DATA_CHANGELOG` entry; `npm run gen:context` and `npm run gen:guides` rerun.
 - Density baseline updated (`--surfaces --update-baseline`) because faithful wording is longer: gate.unmet flagged 105 -> 109, detail.about 93 -> 94, note 66 -> 67. eligibility.note 44, aboutList.items 150, summary 26, flaggedWithoutShort 1 unchanged (the summary maxChars baseline of 393 was stale; the real maximum is 361).
 - Results: `npm test` 170/170; `npm run check:surfaces` passes; `npx playwright test --project=app-chromium --workers=1` 233 passed of 233 listed (first run had one failure, an orphaned `okotoks` oracle entry, fixed).
+
+## Codex review round
+
+These corrections supersede the corresponding initial decisions above; evidence remains exclusively the saved snapshots.
+
+1. **HIGH — Waterloo MobilityPLUS (B8):** `waterlooMobilityPlusTransit.met` is now always false; `fixed: false`, short, who and unmet wording are unchanged. The answer “Cannot use regular public transit without assistance” does not establish the snapshot’s prevention or consistent-use-barrier routes. Shared `transitBarrier` is unchanged. Oracle evidence is now external; `grt-mobilityplus` best case changes from `ready` to `almost`, including users selecting the transit-barrier answer.
+2. **MEDIUM — Okotoks residency (A9):** `okotoksResidency.met` is now always false, retaining `fixed: false` and all wording. Selecting a city “in or near” cannot establish residence in the Town of Okotoks or Foothills County. Oracle evidence is now external; `okotoks-fee-assistance` best case changes from `ready` to `almost`, including low-income users selecting Okotoks.
+3. **MEDIUM — Leduc recreation (A8):** Removed the unsourced free annual Leduc Recreation Centre membership association from the note. It now states that all Recreation Assistance Program funding for 2026 has been fully allocated and the program “will reopen for new applications in January 2027”. No other field in the record, BENEFIT_VALUES or BENEFIT_META repeats the membership claim. Transit eligibility/status is unchanged.
+
+Oracle SPEC_VERSION is 1.25.0; both explicit best-case status expectations are now `almost`. Asset version stays 179. Regenerated context and guides (134 context entries; 133 benefit pages plus guide index). Validation: `npm test` **170 passed / 170**; `npm run check:surfaces` **passed**, with unchanged flagged counts; whole `app-chromium` project **233 passed / 233 listed**, zero failures (`--workers=1`). No commit or push.

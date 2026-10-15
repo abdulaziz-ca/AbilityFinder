@@ -156,7 +156,9 @@ function provableGates(requires) {
 /* The best-case persona: satisfy everything satisfiable. */
 function buildBestCase(program) {
   const draft = newDraft();
-  for (const key of provableGates(program.requires)) {
+  // External gates may need a category hint to avoid a fixed refusal, without
+  // claiming that the wizard can establish their full eligibility criteria.
+  for (const key of program.requires.filter((key) => GATES[key])) {
     applyFragment(draft, GATES[key].satisfy, key);
   }
   settle(draft);
@@ -167,10 +169,10 @@ function buildBestCase(program) {
    violated gate is the only thing standing in the way. */
 function buildViolations(program) {
   const cases = [];
-  for (const key of provableGates(program.requires)) {
+  for (const key of program.requires.filter((key) => GATES[key])) {
     for (const violation of GATES[key].violations || []) {
       const draft = newDraft();
-      for (const other of provableGates(program.requires)) {
+      for (const other of program.requires.filter((key) => GATES[key])) {
         applyFragment(draft, GATES[other].satisfy, other);
       }
       applyFragment(draft, violation.fragment, `${key}/${violation.name}`, key);
