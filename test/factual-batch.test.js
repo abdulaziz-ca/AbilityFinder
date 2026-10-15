@@ -465,9 +465,9 @@ test("home owner grant health-professional certification is specific to Option B
 
 test("fuel tax medical routes retain permanent and complete qualifiers", () => {
   const b = benefitById("bc-fuel-tax-refund-disabilities");
-  for (const text of [snapshotReqs.bcFuelTaxRoute.unmet, b.eligibility.items.join(" ")]) {
-    for (const phrase of ["permanent dependence on a wheelchair", "complete and permanent functional loss of lower limbs", "permanent impairment of movement", "permanent mental disability", "permanent sight impairment", "whether or not it is available"]) {
-      assert.ok(text.includes(phrase), phrase);
+  for (const text of [b.eligibility.items.join(" ")]) {
+    for (const phrase of ["permanent dependence on a wheelchair", "complete and permanent functional loss of lower limbs", "permanent impairment of movement", "permanent mental disability", "permanent sight impairment", "whether or not it's available"]) {
+      assert.ok(text.toLowerCase().includes(phrase), phrase);
     }
     assert.doesNotMatch(text, /loss of function in a lower limb/);
   }
@@ -595,9 +595,11 @@ test("follow-ups: fuel-tax routes preserve letter dates, signing conditions and 
   assert.doesNotMatch(gate.short, /\d/);
   assert.ok(gate.who.length);
   const routes = b.eligibility.items.join(" ");
-  for (const text of [routes, gate.unmet]) {
-    for (const phrase of ["BCANDS", "disability assistance or a supplement", "end date (if applicable)", "His Majesty's forces", "date you began receiving", "effective date of the impairment", "permanent mental disability"]) assert.ok(text.includes(phrase), phrase);
-  }
+  assert.ok(gate.unmet.length <= 300);
+  assert.match(gate.unmet, /guide's eligibility section/);
+  assert.match(gate.unmet, /may qualify/);
+  assert.equal(b.eligibility.items.length, 10);
+  for (const phrase of ["BCANDS", "disability assistance or a supplement", "end date (if applicable)", "His Majesty's forces", "date you began receiving", "effective date of the impairment", "permanent mental disability"]) assert.ok(routes.toLowerCase().includes(phrase.toLowerCase()), phrase);
   assert.match(b.requiresNote, /16 years old or older/);
   assert.match(b.amount, /may receive/);
   assert.match(BENEFIT_VALUES[b.id].note, /may receive/);

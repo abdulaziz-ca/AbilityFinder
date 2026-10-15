@@ -912,7 +912,7 @@ const REQS = {
     who: ["you", "professional", "program"],
     met: () => false,
     fixed: false,
-    unmet: "You must be 16 years old or older. Confirm your disability through one of these routes:\n• B.C. Disability Assistance Certification.\n• A BCANDS letter confirming disability assistance or a supplement from the Social Assistance for Persons with Disability program in accordance with the Indigenous Services Canada Social Development Program – Policy and Procedures Handbook – BC Region; it must state your enrollment date and end date (if applicable).\n• A Veterans' Affairs letter confirming a 100% disability pension through service while in His Majesty's forces and the date you began receiving it.\n• A CNIB letter confirming permanent sight impairment, that you are not eligible to hold a driver's licence, and the effective date of the impairment.\n• Medical certification of loss of a limb; permanent dependence on a wheelchair; complete and permanent functional loss of lower limbs; permanent impairment of movement or permanent mental disability to the extent that use of public transportation would be hazardous (whether or not it is available); or permanent sight impairment to the extent that you are not eligible to hold a driver's licence.",
+    unmet: "You must be 16 or older. You may qualify through B.C. Disability Assistance Certification, a BCANDS, Veterans' Affairs or CNIB letter, or medical certification of a listed condition, such as a permanent mental disability. See the full list in the guide's eligibility section.",
     action: { text: "Review the fuel tax refund routes", url: "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities" },
   },
   bcFuelTaxRegistered: {

@@ -5211,7 +5211,7 @@ const BENEFITS = [
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/apply",
     "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/funding-amount",
     "detail": {
-      "about": "Normally, up to 20% of the allocation can go to training, travel and equipment (TTE). For the final aligned funding period ending March 31, 2027, BC increased the allowable TTE portion to 50%.",
+      "about": "Normally, up to 20% of the allocation can go to training, travel and equipment (TTE). For the final aligned funding period ending March 31, 2027, BC increased the allowable TTE portion to 50%. Requests must not exceed 50% of a child/youth’s annual funding amount for benefit plans that are 12 months or less. For benefit plans that are 13 months or longer, the limit is 50% on the adjusted portion, with the first 12 months being available at 20%. Families are encouraged to check their TTE balance on MyFamily Services (MyFS) or call Autism Funding to confirm their balance (Toll Free: 1 877 777-3530).",
       "coversList": {
         "lead": "Up to $22,000 per year per child covers:",
         "items": [
@@ -5238,7 +5238,7 @@ const BENEFITS = [
       ],
       "tips": [
         "Intervention services must come from providers on the RASP registry, or from behaviour interventionists supervised by a RASP professional. Family counselling or therapy providers do not need to be on RASP.",
-        "The normal training, travel and equipment limit is 20%, but BC raised it to 50% for the final aligned funding period ending March 31, 2027",
+        "The normal training, travel and equipment limit is 20%, but BC raised it to 50% for the final aligned funding period ending March 31, 2027. Requests must not exceed 50% of a child/youth’s annual funding amount for benefit plans that are 12 months or less. For benefit plans that are 13 months or longer, the limit is 50% on the adjusted portion, with the first 12 months being available at 20%. Families are encouraged to check their TTE balance on MyFamily Services (MyFS) or call Autism Funding to confirm their balance (Toll Free: 1 877 777-3530).",
         "Approved services and purchases must be delivered by March 31, 2027; direct-payment supporting documents are due May 31, 2027, and final invoices or reimbursement requests are due September 30, 2027",
         "From July 2026 the ministry contacts Autism Funding families about moving to the new Disability Benefit ($6,500 or $17,000/year); you keep current funding until your transition date",
         "These professionals may be eligible to provide family counselling or therapy: Canadian Certified Counsellors, Registered Clinical Counsellors, Registered Marriage and Family Therapists, Registered Psychiatrists, Registered Psychologists, and Registered Social Workers or Registered Clinical Social Workers. Contact Autism Funding or Autism Information Services BC for more information."
@@ -5267,7 +5267,7 @@ const BENEFITS = [
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/apply",
     "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/funding-amount",
     "detail": {
-      "about": "Administrative costs are limited to up to $50 a month for a bookkeeper, or $600 per funding period for direct payment accountant fees. The normal training, travel and equipment (TTE) limit is 20%. For the final aligned funding period ending March 31, 2027, BC increased the allowable TTE portion to 50%.",
+      "about": "Administrative costs are limited to up to $50 a month for a bookkeeper, or $600 per funding period for direct payment accountant fees. The normal training, travel and equipment (TTE) limit is 20%. For the final aligned funding period ending March 31, 2027, BC increased the allowable TTE portion to 50%. Requests must not exceed 50% of a child/youth’s annual funding amount for benefit plans that are 12 months or less. For benefit plans that are 13 months or longer, the limit is 50% on the adjusted portion, with the first 12 months being available at 20%. Families are encouraged to check their TTE balance on MyFamily Services (MyFS) or call Autism Funding to confirm their balance (Toll Free: 1 877 777-3530). For families with youth aging out (turning 19) prior to March 31, 2027, requests for travel, training and equipment purchases must not exceed 20%.",
       "coversList": {
         "lead": "Up to $6,000 per year per child for:",
         "items": [
@@ -5298,8 +5298,9 @@ const BENEFITS = [
       ],
       "tips": [
         "For ages 6-18 providers do not have to be RASP-listed for every service type, so therapy, tutoring and camps are easier to fund than under the Under-6 program",
-        "The normal training, travel and equipment limit is 20%, but BC raised it to 50% for the final aligned funding period ending March 31, 2027",
+        "The normal training, travel and equipment limit is 20%, but BC raised it to 50% for the final aligned funding period ending March 31, 2027. Requests must not exceed 50% of a child/youth’s annual funding amount for benefit plans that are 12 months or less. For benefit plans that are 13 months or longer, the limit is 50% on the adjusted portion, with the first 12 months being available at 20%. Families are encouraged to check their TTE balance on MyFamily Services (MyFS) or call Autism Funding to confirm their balance (Toll Free: 1 877 777-3530).",
         "Approved services and purchases must be delivered by March 31, 2027; direct-payment supporting documents are due May 31, 2027, and final invoices or reimbursement requests are due September 30, 2027",
+        "For families with youth aging out (turning 19) prior to March 31, 2027, requests for travel, training and equipment purchases must not exceed 20%.",
         "Ask your CYSN office about the transition schedule if you have not been contacted by fall 2026"
       ],
       "time": "New applications are accepted until March 2027. The program and final aligned funding periods end March 31, 2027; later paperwork deadlines do not extend the service-delivery date.",
@@ -6063,16 +6064,16 @@ const BENEFITS = [
     eligibility: {
       mode: "any",
       items: [
-        "A B.C. Disability Assistance Certification.",
-        "A letter from the British Columbia Aboriginal Network on Disability Society (BCANDS) confirming you receive disability assistance or a supplement from the Social Assistance for Persons with Disability program in accordance with the Indigenous Services Canada Social Development Program – Policy and Procedures Handbook – BC Region. The letter must state the date you were enrolled in the program and the end date (if applicable).",
-        "A letter from Veterans' Affairs confirming you receive a 100% disability pension through service while in His Majesty's forces, and the date you began receiving the disability pension.",
-        "A letter from the Canadian National Institute for the Blind (CNIB) confirming permanent sight impairment, that you are not eligible to hold a driver's licence, and the effective date of the impairment.",
-        "Medical certification of loss of a limb.",
-        "Medical certification of permanent dependence on a wheelchair.",
-        "Medical certification of complete and permanent functional loss of lower limbs.",
-        "Medical certification of permanent impairment of movement to the extent that public transportation would be hazardous (whether or not it is available).",
-        "Medical certification of permanent mental disability to the extent that public transportation would be hazardous (whether or not it is available).",
-        "Medical certification of permanent sight impairment to the extent that you are not eligible to hold a driver's licence.",
+        "B.C. Disability Assistance Certification",
+        "Letter from the British Columbia Aboriginal Network on Disability Society (BCANDS) confirming you receive disability assistance or a supplement from the Social Assistance for Persons with Disability program in accordance with the Indigenous Services Canada Social Development Program – Policy and Procedures Handbook – BC Region. The letter from BCANDS must state the date you were enrolled in the Social Assistance for Persons with Disability program and the end date (if applicable)",
+        "Letter from Veterans' Affairs confirming you receive a 100% disability pension. This letter must state: That you receive a 100% disability pension through service while in His Majesty's forces, and The date you began receiving the disability pension",
+        "Letter from the Canadian National Institute for the Blind (CNIB) confirming permanent sight impairment. The letter from CNIB must state: That you have a permanent sight impairment, That you are not eligible to hold a driver's licence, and The effective date of the impairment",
+        "Medical certification confirming one of the following conditions: Loss of a limb",
+        "Medical certification confirming one of the following conditions: Permanent dependence on a wheelchair",
+        "Medical certification confirming one of the following conditions: Complete and permanent functional loss of lower limbs",
+        "Medical certification confirming one of the following conditions: Permanent impairment of movement to the extent that use of public transportation would be hazardous (whether or not it's available)",
+        "Medical certification confirming one of the following conditions: Permanent mental disability to the extent that use of public transportation would be hazardous (whether or not it's available)",
+        "Medical certification confirming one of the following conditions: Permanent sight impairment to the extent that you're not eligible to hold a driver's licence",
       ],
       note: "You must be 16 or older and must also own or lease a vehicle, or have an ownership interest in a vehicle",
     },

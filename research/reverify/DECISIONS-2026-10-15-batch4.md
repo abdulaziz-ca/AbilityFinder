@@ -435,3 +435,24 @@ Execution artifacts (also individually included in the manifest):
 ### Remaining owner questions (not silently fixed)
 
 Items 31/34/39 remain OPEN. HandyCard's unsupported minimum-age tip, SAET's unreadable PDF-dependent facts, autism transition dates/schedules and other NOT ON PAGE observations remain evidence gaps as recorded in the original report. Vancouver's broader gate proposal remains outside authorized scope. The request's fixed:false instruction for ADAP intentionally differs from the original decisions' conditional underage refusal; its changed underage outcome is explicitly covered by the oracle and documented above.
+
+## TTE resolution 2026-10-17
+
+Items **34 and 39 are now RESOLVED**; this supersedes their historical OPEN status above. Item 31 remains outside this resolution.
+
+Source: `snapshots/autism-tte--support-needs.txt` (page updated October 9, 2026; fetched October 15). Its newer transition guidance qualifies the older 20% statements in the travel, training and service-provider snapshots:
+
+- Requests must not exceed 50% of a child/youth’s annual funding amount for benefit plans that are 12 months or less.
+- For benefit plans that are 13 months or longer, the limit is 50% on the adjusted portion, with the first 12 months being available at 20%.
+- For families with youth aging out (turning 19) prior to March 31, 2027, requests for travel, training and equipment purchases must not exceed 20%. This applies only to the ages 6–18 record, not under-6.
+- Exact balance advice (snapshot whitespace normalized): “Families are encouraged to check their TTE balance on MyFamily Services (MyFS) or call Autism Funding to confirm their balance (Toll Free: 1 877 777-3530)”.
+
+Added these qualifications to both records’ about text and tips, preserving existing normal-20% / final-aligned-period-50% phrases. The aging-out exception is also stated in the older record’s tips. No integrity assertions were weakened or changed. Asset pins raised from 182 to 183, DATA_CHANGELOG updated, and context and guides regenerated. These are targeted corrections, not whole-record re-verification.
+
+Verification:
+- `npm run gen:context`: 134 entries; `npm run gen:guides`: 133 benefit pages plus guide index.
+- `npm test`: 174 passed, 1 failed (175 total). The unchanged `detail.about` density ratchet allows 94 flagged descriptions; the required additive under-6 qualifications raise this to 95. Required qualifiers and asserted phrases were retained; neither the ratchet nor integrity tests were weakened.
+- `npm run check:surfaces`: passed; regenerated density report records the increase.
+- Requested `npx playwright test --project=app-chromium --workers=1 e2e/data-integrity.spec.js e2e/oracle`: 4 passed. The directory filter does not select the actual oracle entrypoint.
+- Additional `npx playwright test --project=app-chromium --workers=1 e2e/eligibility-oracle.spec.js`: 7 passed.
+- `git diff --check`: passed. No commit or push.
