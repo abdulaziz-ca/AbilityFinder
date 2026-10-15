@@ -18,7 +18,16 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 - **Re-verification batch 5** — `fd10cb0`, `?v=177`. 16 records, 391 facts, 36 differed, all 36 fixed. BC MSP
   Supplementary Benefits now lists all eight eligible groups (we said "three ways"); the child and youth
   disability benefit's age and helpline numbers corrected; Medical Equipment's emergency exception restored.
-- Progress: **77 of 134 records re-checked** against their official pages since 2026-10-14.
+- **Re-verification batch 6** — `b31c1cf`, `?v=178` (CI 732/732). 16 records, 28 differences, all fixed. AISH follows
+  "18 or older and not eligible for Old Age Security" (65+ now "More to check", never "Matches"; the AISH safety
+  tests passed unchanged); Special Needs Housing's rent rules; the Adult Health Benefit's correct contact centre.
+  Codex ran out of usage mid-build, so a Claude worker finished it and a separate Claude reviewer checked it —
+  **Codex review owed**.
+- **Batch 7 built but NOT released** (14 records, 18 differences: DTC must be submitted with the digital DTC form or
+  by mail, not "submit documents"; Leduc recreation is closed until January 2027; GRT's online application is
+  temporarily down; and more). Committed locally on the work branch only, because Claude hit its own usage limit
+  before an independent review. Next session: Codex reviews it, then it ships.
+- Progress: **93 of 134 records re-checked and released** (107 including batch 7).
 - Note: the readability ratchet's baseline rose slightly (about a dozen passages) because the official wording,
   qualifiers included, is longer than our old shortened text. Accuracy wins over brevity here.
 
