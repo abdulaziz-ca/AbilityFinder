@@ -36,8 +36,11 @@ const { BENEFITS, BENEFIT_VERIFIED, HELP_ORGS } = loadDataForTest();
 
    - 2026-07: the catalog-wide review sweep (also DATA_VERIFIED_MONTH in app.js).
    - 2026-09: the nine Ontario province-level records, each read against its
-     official ontario.ca page on 2026-09-04 while being written. */
-const REVIEWED_MONTHS = new Set(["2026-07", "2026-09"]);
+     official ontario.ca page on 2026-09-04 while being written.
+   - 2026-10: the October 2026 snapshot re-verification (research/reverify/
+     VERIFIED-DATES-2026-10-17.md): only records whose every fact row was
+     confirmed or corrected, with no unchecked amount, threshold, age or date. */
+const REVIEWED_MONTHS = new Set(["2026-07", "2026-09", "2026-10"]);
 
 test("benefit review dates use month granularity", () => {
   assert.equal(typeof BENEFIT_VERIFIED, "object");
