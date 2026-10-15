@@ -40,7 +40,9 @@ function proseFor(b) {
 
   if (b.eligibility) {
     parts.push(
-      (b.eligibility.items || []).join(' ') + ' ' + (b.eligibility.note || '')
+      (b.eligibility.items || []).join(' ') + ' ' + (b.eligibility.note?.items
+        ? [b.eligibility.note.lead, ...b.eligibility.note.items, b.eligibility.note.after].join(' ')
+        : (b.eligibility.note || ''))
     );
   }
 

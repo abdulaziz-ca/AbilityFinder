@@ -69,7 +69,14 @@ function collectDenseSurfaces(rootDir) {
   vm.createContext(ctx);
   vm.runInContext(fs.readFileSync(path.join(rootDir, 'public/data.js'), 'utf8') + ';globalThis.__B=BENEFITS;', ctx);
   for (const b of ctx.__B) {
-    add('eligibility.note', `${b.id}.eligibility.note`, b.eligibility && b.eligibility.note);
+    const note = b.eligibility && b.eligibility.note;
+    if (note && Array.isArray(note.items)) {
+      add('eligibility.note', `${b.id}.eligibility.note.lead`, note.lead);
+      note.items.forEach((text, i) => add('eligibility.note', `${b.id}.eligibility.note.items[${i}]`, text));
+      add('eligibility.note', `${b.id}.eligibility.note.after`, note.after);
+    } else {
+      add('eligibility.note', `${b.id}.eligibility.note`, note);
+    }
     add('detail.about', `${b.id}.detail.about`, b.detail && b.detail.about);
     const items = b.detail && b.detail.aboutList && b.detail.aboutList.items;
     if (Array.isArray(items)) items.forEach((text, i) => add('detail.aboutList.items', `${b.id}.detail.aboutList.items[${i}]`, text));

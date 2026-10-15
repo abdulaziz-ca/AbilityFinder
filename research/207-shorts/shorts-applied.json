@@ -428,7 +428,7 @@
     "reason": "Leaves B.C. enrolment-first wording in full; fixed no-enrolment answers remain on the reason path"
   },
   "bcSupplementaryBenefitsEligibility": {
-    "short": "Check the income, At Home or Mental Health Client routes",
+    "short": "Check the income and other eligibility routes",
     "who": [
       "you"
     ],
@@ -488,6 +488,11 @@
     ],
     "reason": "Leaves ministry adjudication, family-unit test and differing exempt asset limits in full"
   },
+  "bcCydbAge": {
+    "short": "Check the age range",
+    "who": ["you"],
+    "reason": "Batch five isolates the age boundary; full wording preserves the last day of the nineteenth birthday month"
+  },
   "bcCydbIntake": {
     "short": null,
     "who": null,
@@ -516,6 +521,11 @@
       "you"
     ],
     "reason": "Leaves residence duration, principal-home status, equity share and prior-tax/fee/interest payment rules in full"
+  },
+  "bcHomeRenoSpend": {
+    "short": "Check the renovation expenses qualify, and keep the receipts",
+    "who": ["you"],
+    "reason": "Batch five isolates the provincial paid-or-payable rule without changing the shared federal gate"
   },
   "qualifyingRenovationSpend": {
     "short": "Check the renovation is done and paid for, and keep the receipts",

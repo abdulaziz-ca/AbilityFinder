@@ -66,10 +66,20 @@ test("requiresNote stays populated, rendered, searchable, and present in generat
         );
       }
       if (benefit.eligibility.note) {
-        assert.ok(
-          normalizedGuide.includes(clean(benefit.eligibility.note)),
-          `Generated guide for ${benefit.id} does not contain its eligibility note: ${guidePath}`
-        );
+        const note = benefit.eligibility.note;
+        const parts = note.items ? [note.lead, ...note.items, note.after] : [note];
+        for (const part of parts) {
+          assert.ok(
+            normalizedGuide.includes(clean(part)),
+            `Generated guide for ${benefit.id} does not contain its eligibility note: ${guidePath}`
+          );
+        }
+        if (note.items) {
+          assert.equal(note.items.length, 8, "MSP retains all eight alternative groups");
+          for (const item of note.items) {
+            assert.ok(guideHtml.includes(`<li>${item}</li>`), "Each MSP group is a list item");
+          }
+        }
       }
     } else {
       const normalizedNote = clean(benefit.requiresNote);

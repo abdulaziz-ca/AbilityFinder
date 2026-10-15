@@ -4,6 +4,27 @@ The one place to see what Claude and Codex did while you were away. Newest entry
 Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisions we made for you**
 (all reversible) · **Needs you** (only things an agent may not decide).
 
+## 2026-10-16
+
+### Shipped
+- **Re-verification batch 3** (#221) — `dc23374`, `?v=175` (CI 729/729, verify-deploy 10/10). 35 facts fixed
+  across 17 records, e.g. ICBC "may receive 25%"; BC PWD designation's closed list of three supports;
+  WorkBC training "may" be funded; corrected contact numbers for the Alberta Child Health Benefit and
+  Red Deer. Codex has now also reviewed Claude's Kelowna fix (two small follow-ups applied).
+- **Re-verification batch 4** — `fafd506`, `?v=176`. 16 records, 334 facts, 41 differed, 38 fixed.
+  **Surrey Leisure Access's income limits were all lower than the City's table** ($25,588 vs $26,355 for one
+  person, etc.), wrongly turning people away. Vancouver now shows its two separate income tables. ADAP
+  follows "18 or older and not eligible for Old Age Security".
+- Progress: **61 of 134 records re-checked** against their official pages since 2026-10-14.
+
+### Decisions we made for you
+- Two autism-funding rules (the 50%/20% travel and training limits) were left as they were: today's pages
+  don't mention them, and they were verified against the program policy earlier. Absence on a page is not
+  treated as proof something is wrong.
+
+### Needs you
+- Nothing.
+
 ## 2026-10-15
 
 ### Shipped

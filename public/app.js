@@ -246,6 +246,11 @@ const REQS = {
   age6to18: { met: () => ageIn("6to11", "12to15", "16to17", "18"), fixed: true, unmet: "This program is for children and youth aged 6–18." },
   schoolAge: { met: () => ageIn("6to11", "12to15", "16to17"), fixed: true, unmet: "This is for school-aged children and youth." },
   under19: { met: () => isUnder18() || ageIn("18"), fixed: true, unmet: "This is for children and youth younger than 19." },
+  // The age bands cannot express the last day of the nineteenth birthday month.
+  bcCydbAge: { met: () => isUnder18() || ageIn("18"), fixed: true,
+    short: "Check the age range",
+    who: ["you"],
+    unmet: "This benefit is for children and youth from age 0 until the last day of their 19th birthday month." },
   age12plus: { met: () => ageIn("12to15", "16to17", "18", "19to59", "60to64", "65plus"), fixed: true, unmet: "You must be at least 12." },
   age16plus: { met: () => ageIn("16to17", "18", "19to59", "60to64", "65plus"), fixed: true, unmet: "You must be at least 16." },
   age18plus: { met: () => ageIn("18", "19to59", "60to64", "65plus"), fixed: true, unmet: "You must be at least 18." },
@@ -770,11 +775,11 @@ const REQS = {
     action: { text: "Check or apply for MSP", url: "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents/eligibility-and-enrolment" },
   },
   bcSupplementaryBenefitsEligibility: {
-    short: "Check the income, At Home or Mental Health Client routes",
+    short: "Check the income and other eligibility routes",
     who: ["you"],
     met: () => false,
     fixed: false,
-    unmet: "You qualify one of three ways: your adjusted net income last year was less than $42,000, or you are enroled with MSP through the At Home Program, or you are enroled with MSP as a Mental Health Client.",
+    unmet: "You may be eligible in several ways: your adjusted net income last year was less than $42,000, or you are an Income Assistance recipient, a Convention refugee, an inmate of a B.C. Correctional Facility, enroled with MSP through the At Home Program, a long term care resident receiving the GIS, enroled with MSP as a Mental Health Client, or a First Nations individual with valid B.C. Medical Plan coverage through FNHA. You live in B.C., have lived in Canada as a citizen or permanent resident for at least the last 12 months before applying, and are not exempt from paying income tax under another act.",
     action: { text: "Apply for Supplementary Benefits", url: "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents/benefits/services-covered-by-msp/supplementary-benefits" },
   },
   firstNationsStatus: {
@@ -926,6 +931,13 @@ const REQS = {
     met: () => answers.income === "low",
     fixed: false,
     unmet: "You must be in financial hardship in one of two ways: you receive one of the government assistance programs the City lists (for example Disability Assistance, Income Assistance, the Guaranteed Income Supplement or the Canada Disability Benefit), or you do not receive them but meet the City's family net income and other financial limits.",
+  },
+  bcHomeRenoSpend: {
+    short: "Check the renovation expenses qualify, and keep the receipts",
+    who: ["you"],
+    met: () => false,
+    fixed: false,
+    unmet: "This credit pays back part of what you spend, so it applies only once the qualifying renovation has actually been done. An eligible expense is deemed to have been paid on the earlier of the date it was paid or the date it becomes payable. Keep your invoices and receipts.",
   },
   qualifyingRenovationSpend: {
     short: "Check the renovation is done and paid for, and keep the receipts",
@@ -5269,7 +5281,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
         ${aboutVisible}
         ${b.note ? `<section class="guide-block"><h2 class="guide-h">${t("guide.goodToKnow")}</h2><div class="note">${b.note}</div></section>` : ""}
         ${b.eligibility && b.eligibility.items && b.eligibility.items.length
-          ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="eligibility-lead">${b.eligibility.mode === "any" ? t("guide.mustMeetAny") : t("guide.mustMeetAll")}</p><ul class="eligibility-list">${b.eligibility.items.map((it) => `<li>${it}</li>`).join("")}</ul>${b.eligibility.note ? `<p class="detail-about eligibility-note">${b.eligibility.note}</p>` : ""}</section>`
+          ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="eligibility-lead">${b.eligibility.mode === "any" ? t("guide.mustMeetAny") : t("guide.mustMeetAll")}</p><ul class="eligibility-list">${b.eligibility.items.map((it) => `<li>${it}</li>`).join("")}</ul>${b.eligibility.note ? (b.eligibility.note.items ? `<p class="eligibility-lead">${b.eligibility.note.lead}</p><ul class="eligibility-list">${b.eligibility.note.items.map((it) => `<li>${it}</li>`).join("")}</ul><p class="detail-about eligibility-note">${b.eligibility.note.after}</p>` : `<p class="detail-about eligibility-note">${b.eligibility.note}</p>`) : ""}</section>`
           : b.requiresNote ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="detail-about">${b.requiresNote}</p></section>` : ""}
         ${valueSection}
         ${tiersSection}

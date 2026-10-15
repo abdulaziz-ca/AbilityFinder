@@ -40,30 +40,30 @@ Month-only ages use the first day of the month, not an asserted verification day
 | 28 | reddeer-fee-assistance | Red Deer Transit & Recreation Fee Assistance | 2026-07 | true | 106 | https://www.reddeer.ca/recreation-and-culture/recreation/facility-admission-fees--pass-prices/fee-assistance-program/<br>https://www.reddeer.ca/city-services/transit/fares-and-passes/transit-fare-assistance-pass/ |
 | 29 | richmond-rec-fee-subsidy | Recreation Fee Subsidy Program (RFSP) | 2026-07 | true | 106 | https://www.richmond.ca/culture/social/accessibility/subsidies/recreation-fee.htm |
 | 30 | saanich-life | L.I.F.E. Program (Leisure Involvement For Everyone) | 2026-07 | true | 106 | https://www.saanich.ca/EN/main/parks-recreation-community/community-services/financial-assistance/financial-assistance.html |
-| 31 | taxi-saver-bctransit | Taxi Saver Program (BC Transit) | 2026-07 | true | 106 | https://www.bctransit.com/victoria/riderinfo/handydart/taxi-saver/ |
-| 32 | taxisaver-translink | TaxiSaver Program (TransLink) | 2026-07 | true | 106 | https://www.translink.ca/rider-guide/transit-accessibility/how-to-use-accessible-transit |
-| 33 | victoria-life | L.I.F.E. Program (Leisure Involvement For Everyone) | 2026-07 | true | 106 | https://www.victoria.ca/parks-recreation/recreation/accessibility-inclusion/life-program |
-| 34 | woodbuffalo-lift | Wood Buffalo LIFT (Low-Income Fare Transit) | 2026-07 | true | 106 | https://www.rmwb.ca/LIFT<br>https://forms.rmwb.ca/Community-Services/LIFT-Program-Application |
-| 35 | aadl | Alberta Aids to Daily Living (AADL) | 2026-07 | true | 106 | https://www.alberta.ca/aadl-eligibility-and-application-for-benefits<br>https://www.alberta.ca/alberta-aids-to-daily-living |
-| 36 | airdrie-fair-access | Airdrie Fair Access | 2026-07 | true | 106 | https://www.airdrie.ca/index.cfm?serviceID=2157<br>https://www.airdrie.ca/index.cfm?serviceID=2414 |
-| 37 | bc-icbc-disability-discount | ICBC Disability Discount (Basic Autoplan) | 2026-07 | true | 106 | https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities |
-| 38 | bc-pharmacare-plan-c | PharmaCare Plan C (Income & Disability Assistance) | 2026-07 | true | 106 | https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/plan-c |
-| 39 | bc-pwd-designation | Persons with Disabilities (PWD) Designation | 2026-07 | true | 106 | https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/pwd-designation-and-application/designation-application<br>https://myselfserve.gov.bc.ca/ |
-| 40 | bc-supported-child-development | Supported Child Development | 2026-07 | true | 106 | https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/early-childhood-intervention |
-| 41 | bc-workbc-employment-services | WorkBC Employment Services | 2026-07 | true | 106 | https://www.workbc.ca/get-support/workbc-centre-services |
-| 42 | child-health-benefit | Alberta Child Health Benefit | 2026-07 | true | 106 | https://www.alberta.ca/alberta-child-health-benefit |
-| 43 | cwb-disability | Canada Workers Benefit — Disability Supplement | 2026-07 | true | 106 | https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-45300-canada-workers-benefit-cwb.html |
-| 44 | disability-supports-deduction | Disability Supports Deduction (line 21500) | 2026-07 | true | 106 | https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-21500-disability-supports-deduction.html |
-| 45 | dres | Disability Related Employment Supports (DRES) | 2026-07 | true | 106 | https://www.alberta.ca/disability-related-employment-supports |
-| 46 | fscd | Family Support for Children with Disabilities (FSCD) | 2026-07 | true | 106 | https://www.alberta.ca/fscd-eligibility<br>https://www.alberta.ca/fscd |
-| 47 | handycard-translink | HandyCard (TransLink) | 2026-07 | true | 106 | https://www.translink.ca/rider-guide/transit-accessibility/handydart |
-| 48 | handydart-bctransit | handyDART (BC Transit) | 2026-07 | true | 106 | https://www.bctransit.com/ |
-| 49 | local-supports | Local transit & recreation discounts | 2026-07 | true | 106 | https://ab.211.ca/<br>https://bc.211.ca/<br>https://211.ca/ |
-| 50 | pdd | Persons with Developmental Disabilities (PDD) | 2026-07 | true | 106 | https://www.alberta.ca/persons-with-developmental-disabilities-pdd |
-| 51 | stalbert-subsidy | St. Albert Transit & Recreation Subsidy | 2026-07 | true | 106 | https://stalbert.ca/city/fcss/programs-services/subsidy/ |
-| 52 | strathcona-subsidy | Strathcona County Everybody Rides & Everybody Gets to Play | 2026-07 | true | 106 | https://www.strathcona.ca/community-families/affordable-services/<br>https://www.strathcona.ca/community-families/affordable-services/subsidized-fares/ |
-| 53 | surrey-leisure-access | Leisure Access Program (LAP) | 2026-07 | true | 106 | https://www.surrey.ca/parks-recreation/activities-registration/admissions-passes/leisure-access-program |
-| 54 | vancouver-leisure-access | Leisure Access Program (LAP) | 2026-07 | true | 106 | https://vancouver.ca/parks-recreation-culture/leisure-access-card.aspx |
+| 31 | surrey-leisure-access | Leisure Access Program (LAP) | 2026-07 | true | 106 | https://www.surrey.ca/parks-recreation/activities-registration/admissions-passes/leisure-access-program |
+| 32 | taxi-saver-bctransit | Taxi Saver Program (BC Transit) | 2026-07 | true | 106 | https://www.bctransit.com/victoria/riderinfo/handydart/taxi-saver/ |
+| 33 | taxisaver-translink | TaxiSaver Program (TransLink) | 2026-07 | true | 106 | https://www.translink.ca/rider-guide/transit-accessibility/how-to-use-accessible-transit |
+| 34 | vancouver-leisure-access | Leisure Access Program (LAP) | 2026-07 | true | 106 | https://vancouver.ca/parks-recreation-culture/leisure-access-card.aspx |
+| 35 | victoria-life | L.I.F.E. Program (Leisure Involvement For Everyone) | 2026-07 | true | 106 | https://www.victoria.ca/parks-recreation/recreation/accessibility-inclusion/life-program |
+| 36 | woodbuffalo-lift | Wood Buffalo LIFT (Low-Income Fare Transit) | 2026-07 | true | 106 | https://www.rmwb.ca/LIFT<br>https://forms.rmwb.ca/Community-Services/LIFT-Program-Application |
+| 37 | aadl | Alberta Aids to Daily Living (AADL) | 2026-07 | true | 106 | https://www.alberta.ca/aadl-eligibility-and-application-for-benefits<br>https://www.alberta.ca/alberta-aids-to-daily-living |
+| 38 | airdrie-fair-access | Airdrie Fair Access | 2026-07 | true | 106 | https://www.airdrie.ca/index.cfm?serviceID=2157<br>https://www.airdrie.ca/index.cfm?serviceID=2414 |
+| 39 | bc-icbc-disability-discount | ICBC Disability Discount (Basic Autoplan) | 2026-07 | true | 106 | https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities |
+| 40 | bc-pharmacare-plan-c | PharmaCare Plan C (Income & Disability Assistance) | 2026-07 | true | 106 | https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/plan-c |
+| 41 | bc-pwd-designation | Persons with Disabilities (PWD) Designation | 2026-07 | true | 106 | https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/pwd-designation-and-application/designation-application<br>https://myselfserve.gov.bc.ca/ |
+| 42 | bc-supported-child-development | Supported Child Development | 2026-07 | true | 106 | https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/early-childhood-intervention |
+| 43 | bc-workbc-employment-services | WorkBC Employment Services | 2026-07 | true | 106 | https://www.workbc.ca/get-support/workbc-centre-services |
+| 44 | child-health-benefit | Alberta Child Health Benefit | 2026-07 | true | 106 | https://www.alberta.ca/alberta-child-health-benefit |
+| 45 | cwb-disability | Canada Workers Benefit — Disability Supplement | 2026-07 | true | 106 | https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-45300-canada-workers-benefit-cwb.html |
+| 46 | disability-supports-deduction | Disability Supports Deduction (line 21500) | 2026-07 | true | 106 | https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-21500-disability-supports-deduction.html |
+| 47 | dres | Disability Related Employment Supports (DRES) | 2026-07 | true | 106 | https://www.alberta.ca/disability-related-employment-supports |
+| 48 | fscd | Family Support for Children with Disabilities (FSCD) | 2026-07 | true | 106 | https://www.alberta.ca/fscd-eligibility<br>https://www.alberta.ca/fscd |
+| 49 | handycard-translink | HandyCard (TransLink) | 2026-07 | true | 106 | https://www.translink.ca/rider-guide/transit-accessibility/handydart |
+| 50 | handydart-bctransit | handyDART (BC Transit) | 2026-07 | true | 106 | https://www.bctransit.com/ |
+| 51 | local-supports | Local transit & recreation discounts | 2026-07 | true | 106 | https://ab.211.ca/<br>https://bc.211.ca/<br>https://211.ca/ |
+| 52 | pdd | Persons with Developmental Disabilities (PDD) | 2026-07 | true | 106 | https://www.alberta.ca/persons-with-developmental-disabilities-pdd |
+| 53 | stalbert-subsidy | St. Albert Transit & Recreation Subsidy | 2026-07 | true | 106 | https://stalbert.ca/city/fcss/programs-services/subsidy/ |
+| 54 | strathcona-subsidy | Strathcona County Everybody Rides & Everybody Gets to Play | 2026-07 | true | 106 | https://www.strathcona.ca/community-families/affordable-services/<br>https://www.strathcona.ca/community-families/affordable-services/subsidized-fares/ |
 | 55 | adap | Alberta Disability Assistance Program (ADAP) | 2026-07 | false | 106 | https://www.alberta.ca/alberta-disability-assistance-program<br>https://www.alberta.ca/how-to-apply-for-aish-and-adap |
 | 56 | bc-access-grant-deaf-students | B.C. Access Grant for Deaf Students | 2026-07 | false | 106 | https://studentaidbc.ca/sites/all/files/school-officials/policy_manual_26_27.pdf<br>https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-deaf-students |
 | 57 | bc-access-grant-students-disabilities | B.C. Access Grant for Students with Disabilities | 2026-07 | false | 106 | https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-students-disabilities |

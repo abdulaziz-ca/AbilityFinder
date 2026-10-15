@@ -184,8 +184,90 @@ test("batch two: HATC and Richmond use isolated gates", () => {
     ["hatcQualifyingPerson", "hatcEligibleDwelling", "hatcQualifyingRenovationSpend"]);
   assert.ok(benefitById("richmond-rec-fee-subsidy").requires.includes("richmondFinancialHardship"));
   assert.ok(benefitById("saanich-life").requires.includes("lowIncome"));
-  assert.ok(benefitById("bc-home-reno-tax-credit").requires.includes("qualifyingRenovationSpend"));
+  assert.ok(benefitById("bc-home-reno-tax-credit").requires.includes("bcHomeRenoSpend"));
   assert.ok(benefitById("multigenerational-home-renovation-tax-credit").requires.includes("homeRenoCandidate"));
+});
+
+test("batch five: student verification exceptions and distinct request routes survive", () => {
+  const equipment = benefitById("bc-csg-services-equipment");
+  const student = benefitById("bc-csg-students-disabilities");
+  assert.match(equipment.detail.steps[0], /Specific Learning Disorders.*different verification requirements/);
+  assert.match(equipment.detail.steps[2], /Equipment Request form to Assistive Technology BC.*Services Request form to StudentAid BC/);
+  assert.match(equipment.detail.steps[3], /equipment is ordered.*notification/);
+  assert.doesNotMatch(equipment.detail.steps.join(" "), /decisions are posted/);
+  assert.match(BENEFIT_META[equipment.id].effort, /Appendix 8 if you applied before June 19, 2026/);
+  assert.match(student.detail.steps[2], /do not require the form/);
+  assert.match(student.detail.steps[3], /if your disability needs it/);
+  assert.match(student.detail.documents[1], /not required for some disabilities/);
+  const bursary = benefitById("bc-supplemental-bursary-students-disabilities");
+  assert.match(bursary.summary, /may be eligible.*qualify for the Canada Student Grant/);
+  assert.match(bursary.requiresNote, /qualify for the Canada Student Grant/);
+  assert.match(bursary.note, /same program at the same school.*whichever occurs first/);
+  assert.match(benefitById("cpp-childrens-benefit").detail.tips[1], /full-time or part-time, can apply and renew online/);
+});
+
+test("batch five: youth transition boundaries remain conditional and isolated", () => {
+  const b = benefitById("bc-cy-disability-benefit");
+  assert.deepEqual(Array.from(b.requires), ["bc", "bcCydbAge", "childHighNeeds", "bcCydbIntake"]);
+  for (const text of [b.summary, b.requiresNote, b.eligibility.items[0]]) {
+    assert.match(text, /last day of (?:their|the) 19th birthday month/);
+  }
+  for (const text of [b.detail.about, b.detail.aboutList.items[1]]) {
+    assert.match(text, /degenerative conditions with predictable decline/);
+  }
+  assert.match(b.note, /Eligible families.*will not need to apply.*may be asked.*additional information/);
+  assert.match(b.note, /province-wide by April 1, 2027/);
+  assert.match(b.detail.steps[1], /before March 31, 2027.*if they are eligible/);
+  assert.match(b.detail.tips[0], /if they are eligible/);
+  assert.match(b.detail.documents[0], /others may be asked for additional information/);
+  assert.match(b.detail.steps[2], /^After April 1, 2027/);
+  assert.match(b.detail.time, /after April 1, 2027/);
+  assert.match(b.detail.tips[3], /1-844-442-2800.*PAIRS.*1-844-878-4700.*excluding statutory holidays/);
+  assert.ok(benefitById("bc-healthy-kids").requires.includes("under19"));
+  assert.ok(benefitById("bc-home-reno-tax-credit").requires.includes("bcHomeRenoSpend"));
+  assert.ok(benefitById("multigenerational-home-renovation-tax-credit").requires.includes("qualifyingRenovationSpend"));
+});
+
+test("batch five: dental medical equipment and optical coverage keep exceptions", () => {
+  const dental = benefitById("bc-dental-supplement");
+  assert.match(dental.eligibility.items[0], /may be able.*persistent multiple barriers/);
+  for (const text of [dental.requiresNote, dental.eligibility.note]) {
+    assert.match(text, /may also be eligible for dentures.*complete upper and\/or lower teeth.*previous six months.*relieve pain/);
+  }
+  assert.match(dental.detail.time, /may be able/);
+  const pwd = benefitById("bc-disability-assistance-pwd");
+  assert.match(pwd.detail.about, /minimum is \$75/);
+  assert.match(pwd.detail.aboutList.items[0], /minimum is \$75/);
+  assert.match(pwd.detail.steps[4], /month following designation.*month of your 18th birthday/);
+  const medical = benefitById("bc-medical-equipment-devices");
+  assert.match(medical.amount, /more only if the excess is from unusual installation expenses/);
+  assert.match(medical.note, /except in cases of a life-threatening emergency.*Co-funding may be considered/);
+  assert.match(medical.detail.tips[0], /except in cases of a life-threatening emergency/);
+  assert.match(medical.detail.about, /and\/or the medical need confirmed/);
+  assert.match(medical.detail.steps[1], /and\/or an assessment/);
+  assert.match(medical.detail.documents[0], /and\/or therapist assessment/);
+  assert.match(medical.detail.aboutList.items[2], /automatic turning beds and containment type beds/);
+  const optical = benefitById("bc-optical-supplement");
+  for (const text of [optical.amount, optical.detail.about, optical.detail.aboutList.items[2], optical.detail.tips[1]]) {
+    assert.match(text, /eye doctor confirms a change in your prescription/);
+  }
+  assert.match(optical.detail.aboutList.items[3], /necessary repairs to lenses or frames/);
+  assert.match(optical.note, /may be responsible/);
+});
+
+test("batch five: MSP retains eight possible routes residency tax and mail qualifiers", () => {
+  const b = benefitById("bc-msp-supplementary-benefits");
+  assert.equal(b.eligibility.mode, "all");
+  assert.equal(b.eligibility.note.items.length, 8);
+  assert.match(b.eligibility.note.lead, /may be eligible include/);
+  assert.match(b.eligibility.items[2], /last 12 months.*not exempt/);
+  assert.match(b.note, /many practitioners.*allowed to charge more/);
+  assert.match(b.summary, /may also be eligible for the Healthy Kids Program/);
+  assert.match(b.detail.aboutList.items[2], /may also be eligible/);
+  assert.match(b.detail.tips[2], /eligibility may be affected/);
+  assert.match(b.detail.tips[4], /may be eligible.*hearing assistance/);
+  assert.match(b.detail.documents[1], /Assessment or Reassessment.*if you apply by mail, include copies/);
+  assert.doesNotMatch(b.requiresNote, /one of three ways/);
 });
 
 function benefitById(id) {

@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.21.0";
+const SPEC_VERSION = "1.22.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -294,6 +294,7 @@ const GATES = {
   child: ageGate("6to11", "19to59"),
   under6: ageGate("under6", "19to59"),
   under19: ageGate("16to17", "19to59"),
+  bcCydbAge: ageGate("16to17", "19to59"),
   schoolAge: ageGate("6to11", "19to59"),
   age6to18: ageGate("6to11", "19to59"),
   age12plus: ageGate("19to59", "under6"),
@@ -534,6 +535,7 @@ const GATES = {
   cdcpRequirements: external("Depends on absence of private dental coverage, filed returns and adjusted family net income."),
   disabilityMedicalExpensesPaid: external("Depends on expenses actually paid and receipted — money out the door, not an answer."),
   caregiverSupportClaim: external("Depends on the supporting person's own tax return and their dependant relationship."),
+  bcHomeRenoSpend: external("Depends on the renovation having actually been done; the expense is deemed paid when paid or payable."),
   qualifyingRenovationSpend: external("The credit pays back part of what is spent, so it depends on the renovation having actually been done and paid for."),
   mhrtcSecondaryUnit: external("Depends on a self-contained secondary unit having been created, and on it never having been claimed before for that person."),
   excisePermanentMobilityCertified: external("Requires a practitioner to certify permanent mobility impairment and inability to use public transport safely."),
@@ -843,7 +845,7 @@ const PROGRAM_NOTES = {
   },
   "bc-home-reno-tax-credit": {
     bestCase: "almost",
-    why: "Same renovation-spend gate as the federal credit; a credit cannot be claimed before the work is paid for.",
+    why: "Record-specific renovation-spend gate; the renovation must actually be done and the expense is deemed paid when paid or payable.",
   },
   "multigenerational-home-renovation-tax-credit": {
     bestCase: "almost",
