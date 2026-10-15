@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.22.0";
+const SPEC_VERSION = "1.23.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -438,6 +438,29 @@ const GATES = {
   homeowner: circumstanceGate("homeowner"),
   vehicleOwner: circumstanceGate("vehicleOwner"),
   recentGraduate: circumstanceGate("recentGraduate"),
+  mhrtcQualifyingIndividual: {
+    evidence: "answers",
+    satisfy: { set: { dtc: "yes", ageBand: "19to59" } },
+    violations: [{ name: "no DTC and not a senior: the unit may be for a relative", fragment: { set: { dtc: "no", ageBand: "19to59" } }, expect: "almost" }],
+  },
+  abSpecialNeedsHousingStatus: {
+    evidence: "answers",
+    satisfy: { set: { citizenPR: true } },
+    violations: [{ name: "not a citizen or PR: other listed routes exist", fragment: { set: { citizenPR: false } }, expect: "almost" }],
+  },
+  bcClbcStream: {
+    evidence: "answers",
+    satisfy: { add: { disabilities: ["intellectual"] }, set: { onsetBefore18: true } },
+    violations: [
+      { name: "onset not before 18: PSI stream may still apply", fragment: { set: { onsetBefore18: false } }, expect: "almost" },
+      { name: "no developmental category", fragment: { drop: { disabilities: ["intellectual", "autism"] } }, expect: "no" },
+    ],
+  },
+  bcWorkAbleSelfIdentify: {
+    evidence: "answers",
+    satisfy: { set: { disabilityVerified: "yes" } },
+    violations: [{ name: "not yet documented, self-identification still possible", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" }],
+  },
   homeRenoCandidate: {
     evidence: "answers",
     satisfy: { set: { dtc: "yes" } },
@@ -572,6 +595,14 @@ const GATES = {
   aishFinancial: external("AISH applies its own income and asset test to the household."),
   // No answer distinguishes designation from receipt, or establishes another route.
   surreyLeisureRoute: external("Surrey's listed route and its conditions need confirmation; PWD designation alone is not receipt."),
+  aishAge: {
+    evidence: "answers",
+    satisfy: { set: { ageBand: "19to59" } },
+    violations: [
+      { name: "under eighteen: hard age minimum", fragment: { set: { ageBand: "under6" } }, expect: "no" },
+      { name: "senior: OAS eligibility not asked", fragment: { set: { ageBand: "65plus" } }, expect: "almost" },
+    ],
+  },
   adapAge: {
     evidence: "answers",
     satisfy: { set: { ageBand: "19to59" } },

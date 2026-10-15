@@ -185,7 +185,7 @@ test("batch two: HATC and Richmond use isolated gates", () => {
   assert.ok(benefitById("richmond-rec-fee-subsidy").requires.includes("richmondFinancialHardship"));
   assert.ok(benefitById("saanich-life").requires.includes("lowIncome"));
   assert.ok(benefitById("bc-home-reno-tax-credit").requires.includes("bcHomeRenoSpend"));
-  assert.ok(benefitById("multigenerational-home-renovation-tax-credit").requires.includes("homeRenoCandidate"));
+  assert.ok(benefitById("multigenerational-home-renovation-tax-credit").requires.includes("mhrtcQualifyingIndividual"));
 });
 
 test("batch five: student verification exceptions and distinct request routes survive", () => {

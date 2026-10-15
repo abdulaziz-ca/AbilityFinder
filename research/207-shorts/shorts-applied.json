@@ -730,5 +730,40 @@
     "short": null,
     "who": null,
     "reason": "DTC-unsure has a special runtime override; withhold a cue for this gate until that branch is explicitly reviewed"
+  },
+  "mhrtcQualifyingIndividual": {
+    "short": "Check who the unit is for",
+    "who": ["you"],
+    "reason": "MHRTC-specific qualifying individual: a senior or an adult eligible for the DTC; may be a relative, not only the person answering"
+  },
+  "abSpecialNeedsHousingStatus": {
+    "short": "Check your status against the listed routes",
+    "who": ["you"],
+    "reason": "Special Needs Housing lists several status routes; the questionnaire only knows citizen or PR"
+  },
+  "aishAge": {
+    "short": "Check your age and Old Age Security eligibility",
+    "who": ["you"],
+    "reason": "AISH-specific age and OAS test; no fixed upper age ceiling"
+  },
+  "bcClbcStream": {
+    "short": "Check which CLBC stream fits",
+    "who": ["you", "program"],
+    "reason": "CLBC Personalized Supports Initiative has no before-18 onset requirement"
+  },
+  "bcWorkAbleSelfIdentify": {
+    "short": "Check that you self-identify as having a disability",
+    "who": ["you"],
+    "reason": "Work-Able asks for self-identification without diagnosis disclosure"
+  },
+  "lloydminster": {
+    "short": "Check the City of Lloydminster residency rule",
+    "who": ["you"],
+    "reason": "Gate text now carries the First Nations, Metis and Inuit residency exemption; the long text stays behind the expander"
+  },
+  "recentGraduate": {
+    "short": "Check your qualification and graduation date",
+    "who": ["you"],
+    "reason": "Gate text now lists the qualifying credentials and the three-year window; the long text stays behind the expander"
   }
 }

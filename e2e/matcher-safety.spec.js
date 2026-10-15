@@ -893,7 +893,10 @@ test("jurisdiction, age and status produce a clean no-match", async ({ page }) =
   }
 
   const senior = await evaluateProfile(page, { ageBand: "65plus" });
-  for (const id of adultProgramIds) expect(senior[id].status).toBe("no");
+  expect(senior["adult-health-benefit"].status).toBe("no");
+  // AISH uses OAS eligibility, not a fixed upper age limit; never ready.
+  expect(senior.aish.status).toBe("almost");
+  expect(senior.aish.status).not.toBe("ready");
   // ADAP uses OAS eligibility, not a fixed upper age limit.
   expect(senior.adap.status).toBe("almost");
 

@@ -73,7 +73,7 @@ test("every AISH surface states the official employment test", () => {
 
 test("the matcher gates are unchanged and conservative", () => {
   assert.deepEqual(Array.from(benefit.requires), [
-    "adult",
+    "aishAge",
     "ab",
     "citizenPR",
     "aishMedical",

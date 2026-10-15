@@ -1,19 +1,19 @@
 {
   "generated": "2026-10-16",
   "counts": {
-    "gate.unmet": 98,
-    "eligibility.note": 43,
+    "gate.unmet": 105,
+    "eligibility.note": 44,
     "detail.about": 93,
     "detail.aboutList.items": 150,
     "summary": 26,
-    "note": 64
+    "note": 66
   },
   "maxChars": {
     "gate.unmet": 626,
-    "eligibility.note": 548,
+    "eligibility.note": 684,
     "detail.about": 1697,
     "detail.aboutList.items": 636,
-    "summary": 361,
+    "summary": 393,
     "note": 694
   },
   "flaggedWithoutShort": 1

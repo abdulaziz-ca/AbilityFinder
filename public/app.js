@@ -609,7 +609,14 @@ const REQS = {
     who: ["you", "program"],
     met: () => false,
     fixed: false,
-    unmet: "Income limits are set community by community, and you apply to a local housing provider rather than to the province, so that provider confirms eligibility and holds the waiting list.",
+    unmet: "Income limits are set community by community, and you apply to a local housing provider rather than to the province, so that provider confirms eligibility. Each housing operator may keep a waitlist when there are no current vacancies.",
+  },
+  abSpecialNeedsHousingStatus: {
+    short: "Check your status against the listed routes",
+    who: ["you"],
+    met: () => answers.citizenPR === true,
+    fixed: false,
+    unmet: "You must be a Canadian citizen or permanent resident, a refugee sponsored by the Government of Canada, or a privately sponsored refugee whose sponsorship has broken down. Evacuees from Ukraine with a Canada-Ukraine Authorization for Emergency Travel are eligible to apply. Some housing providers may have additional eligibility criteria.",
   },
   fscdEligibility: {
     met: () => false,
@@ -640,6 +647,13 @@ const REQS = {
     met: () => false,
     fixed: false,
     unmet: "Surrey says you may qualify through income tax documents against its family size and income table, Ministry of Social Development client status, the Disability Tax Credit with lower net income, Guaranteed Income Supplement for seniors, qualifying legal care or SAJE support, or a refugee referral through an approved agency. Check which route applies.",
+  },
+  aishAge: {
+    short: "Check your age and Old Age Security eligibility",
+    who: ["you"],
+    met: () => isAdultAge(),
+    fixed: () => isUnder18(),
+    unmet: "AISH is for adults aged 18 and older who are not eligible to receive an Old Age Security pension. If you are 65 or older, check whether you are eligible to receive an Old Age Security pension.",
   },
   adapAge: {
     short: "Check your age and Old Age Security eligibility",
@@ -695,7 +709,7 @@ const REQS = {
     who: ["you"],
     met: () => false,
     fixed: false,
-    unmet: "RAMP is for an Albertan of any age who uses a wheelchair, a senior 65 or older who uses a 4-wheel walker on an ongoing basis, or someone living with one of the listed progressive conditions: multiple sclerosis, muscular dystrophy, ALS, COPD, Parkinson's disease, Alzheimer's disease, spina bifida, a spinal cord injury, or a non-recovering stroke.",
+    unmet: "RAMP may be for an Albertan of any age who uses a wheelchair, a senior (65+) who uses a 4-wheel walker on an ongoing basis, or someone living with a progressive neuro-degenerative disease including multiple sclerosis, muscular dystrophy, ALS, COPD, Parkinson's disease, Alzheimer's disease, spina bifida, a spinal cord injury, or non-recovering stroke.",
     action: { text: "Review RAMP eligibility", url: "https://www.alberta.ca/residential-access-modification-program" },
   },
   rampIncomeAndResidency: {
@@ -1103,9 +1117,19 @@ const REQS = {
   translinkHandyCard: { met: () => false, fixed: false, unmet: "Get a TransLink HandyCard first (TaxiSavers are sold to HandyCard members)." },
   bcTransitHandyDart: { met: () => false, fixed: false, unmet: "Register as a permanent handyDART customer and obtain a handyPASS first." },
   atHomeProgram: { met: () => false, fixed: false, unmet: "The child must first be enrolled in the At Home Program." },
-  recentGraduate: { met: () => hasCircumstance("recentGraduate"), fixed: () => !circumstanceUnknown(), unmet: "Work-Able requires graduation within three years of the program start date." },
+  recentGraduate: { met: () => hasCircumstance("recentGraduate"), fixed: () => !circumstanceUnknown(),
+    short: "Check your qualification and graduation date",
+    who: ["you"],
+    unmet: "Work-Able requires a recent graduate of a recognized post-secondary institution (two-year diploma, associate degree, bachelor's degree, master's degree or doctorate) with a graduation date within three years of the program start date." },
   vehicleOwner: { met: () => hasCircumstance("vehicleOwner"), fixed: () => !circumstanceUnknown(), unmet: "You must own, lease, or have an ownership interest in a qualifying vehicle." },
   homeowner: { met: () => hasCircumstance("homeowner"), fixed: () => !circumstanceUnknown(), unmet: "You or the eligible family member must own and live in the home and meet the program's other property rules." },
+  mhrtcQualifyingIndividual: {
+    short: "Check who the unit is for",
+    who: ["you"],
+    met: () => isSeniorAge() || (answers.dtc === "yes" && ageIn("18", "19to59", "60to64")),
+    fixed: false,
+    unmet: "The secondary unit must allow a senior or an adult who is eligible for the disability tax credit to live with a qualifying relative. Check whether the person the unit is for is one of these.",
+  },
   homeRenoCandidate: {
     met: () => answers.dtc === "yes" || isSeniorAge(),
     fixed: true,
@@ -1126,6 +1150,20 @@ const REQS = {
   },
   hearingDisability: { met: () => hasDisability("hearing"), fixed: true, unmet: "This grant is specifically for Deaf or hard-of-hearing students." },
   learningDisability: { met: () => hasDisability("learning"), fixed: true, unmet: "This bursary is specifically for a recommended learning-disability assessment." },
+  bcClbcStream: {
+    short: "Check which CLBC stream fits",
+    who: ["you", "program"],
+    met: () => (hasDisability("intellectual") || hasDisability("autism")) && answers.onsetBefore18 === true,
+    fixed: () => !(hasDisability("intellectual") || hasDisability("autism")),
+    unmet: "CLBC supports adults with a developmental disability (significantly impaired intellectual and adaptive functioning that started before age 18). Through the Personalized Supports Initiative it also supports adults without a developmental disability who have a diagnosis of FASD, or a diagnosis of Autism Spectrum Disorder and significant limitation in adaptive functioning.",
+  },
+  bcWorkAbleSelfIdentify: {
+    short: "Check that you self-identify as having a disability",
+    who: ["you"],
+    met: () => answers.disabilityVerified === "yes",
+    fixed: false,
+    unmet: "Work-Able asks you to self-identify as having a disability. It does not ask you to disclose your specific disability or diagnosis.",
+  },
   developmental: {
     // PDD: a developmental disability that began before age 18
     met: () =>
@@ -1281,7 +1319,10 @@ const REQS = {
   cochrane: { met: () => answers.city === "Cochrane", fixed: true, unmet: "This is a Town of Cochrane program." },
   okotoks: { met: () => answers.city === "Okotoks", fixed: true, unmet: "This is a Town of Okotoks program." },
   canmore: { met: () => answers.city === "Canmore", fixed: true, unmet: "This is a Town of Canmore program." },
-  lloydminster: { met: () => answers.city === "Lloydminster", fixed: true, unmet: "This is a City of Lloydminster program." },
+  lloydminster: { met: () => answers.city === "Lloydminster", fixed: true,
+    short: "Check the City of Lloydminster residency rule",
+    who: ["you"],
+    unmet: "This is a City of Lloydminster program. The residency requirement does not apply to First Nations, Metis, and/or Inuit applicants, who must still meet the income eligibility." },
   fortsask: { met: () => answers.city === "Fort Saskatchewan", fixed: true, unmet: "This is a City of Fort Saskatchewan program." },
   vancouver: { met: () => answers.city === "Vancouver", fixed: true, unmet: "This is a City of Vancouver program." },
   surrey: { met: () => answers.city === "Surrey", fixed: true, unmet: "This is a City of Surrey program." },

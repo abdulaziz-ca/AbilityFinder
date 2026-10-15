@@ -238,7 +238,7 @@ const BENEFIT_VALUES = {
   "leduc-subsidies": { kind: "discount", note: "half-price local, commuter and LATS transit + a free rec membership" },
   "cochrane-connect-card": { kind: "discount", note: "25% off local transit + 50% off SLS Centre monthly passes" },
   "okotoks-fee-assistance": { kind: "discount", note: "80% off most Town programs, passes and admission" },
-  "canmore-affordable-services": { kind: "discount", note: "discounts on local transit, recreation and community services" },
+  "canmore-affordable-services": { kind: "discount", note: "discounts on Regional ROAM Transit, recreation and community services" },
   "lloydminster-recreation-access": { kind: "discount", note: "$2 adult drop-in admission at City recreation facilities" },
   "fortsask-access": { kind: "discount", note: "free multi-facility membership and reduced local or commuter transit fares" },
   "local-supports": { kind: "discount", note: "varies by community" },
@@ -405,7 +405,7 @@ const BENEFIT_META = {
   pdd: { difficulty: 3, effort: "Assessment-based", wait: "varies" },
   fscd: { difficulty: 2, effort: "Meet with an FSCD worker", wait: "varies" },
   "ab-grant-disability": { difficulty: 2, effort: "Student aid + current Schedule 4 and cost quotes", wait: "with student aid" },
-  "adult-health-benefit": { difficulty: 2, effort: "Form + proof of income", wait: "a few weeks" },
+  "adult-health-benefit": { difficulty: 2, effort: "Form + consent for CRA to verify income", wait: "a few weeks" },
   "child-health-benefit": { difficulty: 2, effort: "Form + proof of income", wait: "a few weeks" },
   "parking-placard": { difficulty: 1, effort: "Short form + a registry visit", wait: "often same day" },
   "calgary-fair-entry": { difficulty: 1, effort: "Online + proof of income", wait: "1–2 weeks" },
@@ -3307,7 +3307,7 @@ const BENEFITS = [
     amount: "14.5% of up to $50,000 in eligible expenses, to a maximum of $7,250 (2025 tax year)",
     summary:
       "A refundable federal credit for building a self-contained secondary unit in a home so that a senior, or an adult eligible for the Disability Tax Credit, can live with a relative. It is worth 14.5% of up to $50,000 of eligible costs, to a maximum of $7,250 for the 2025 tax year.",
-    requires: ["homeRenoCandidate", "qualifyingRenovationSpend", "mhrtcSecondaryUnit"],
+    requires: ["mhrtcQualifyingIndividual", "qualifyingRenovationSpend", "mhrtcSecondaryUnit"],
     note:
       "This is a once-in-a-lifetime claim for the person the unit is built for, so it is worth getting right before the work starts. Note the rate: for the 2025 tax year the credit is 14.5% to a maximum of $7,250 — figures of 15% and $7,500 are widely quoted but do not match the CRA's current page.",
     requiresNote:
@@ -3575,7 +3575,7 @@ const BENEFITS = [
     amount: "Monthly living allowance + health and personal benefits",
     summary:
       "Alberta disability income assistance for people whose permanent disability prevents employment.",
-    requires: ["adult", "ab", "citizenPR", "aishMedical", "aishFinancial"],
+    requires: ["aishAge", "ab", "citizenPR", "aishMedical", "aishFinancial"],
     note:
       "AISH is for a severe, permanent disability that prevents employment. Alberta now uses one application to assess both AISH and ADAP — submit it once, not separately for each program.",
     applyText: "Apply for Alberta disability income assistance",
@@ -3602,10 +3602,10 @@ const BENEFITS = [
         "Use Alberta's AISH/ADAP benefit estimator for a household-specific estimate before relying on any amount.",
         "If you receive AISH or ADAP, report the outcome of your CDB and/or DTC application to Alberta, including the approved CDB amount or a denial. Alberta says that when no CDB decision had been made by February 28, 2026, $200 was reduced from April 2026 benefits.",
         "Getting help with the online application: phone the Alberta Supports Contact Centre at 1-877-644-9992, or 780-644-9992 in Edmonton.",
-        "Your health professional may charge you a fee to complete the Disability Assistance Medical Report, and you are responsible for paying it. If you are on Income Support that cost may be covered — ask your Income Support worker.",
+        "Your health professional may charge you a fee to complete the Disability Assistance Medical Report, and you are responsible for paying it. If you are on Income Support that cost may be covered — ask your Income Support worker. For AISH clients who transitioned to ADAP and later choose to be assessed for AISH, Alberta says it will cover the cost of one Disability Income Assistance Medical Report; this support is not time-limited.",
         "Benefits are backdated to the month AISH or ADAP received all of the information needed to approve your application, so getting every document in sooner is worth real money.",
         "To check where your application is, phone 587-759-6810 in the Edmonton area, or 1-877-759-6810 toll free within Alberta.",
-        "If you left AISH or ADAP less than 2 years ago, and not because your medical condition changed, your file may be reopened quickly rather than you having to reapply from scratch.",
+        "If you leave AISH or ADAP, your file may be reopened quickly if it has been less than 2 years since you got your last AISH benefits and you did not leave AISH or ADAP due to a change in your medical condition. Contact AISH or ADAP if this applies to you; if not, you will need to reapply.",
       ],
       time: "Ask Alberta Supports for the current processing time.",
       phone: "DIA Application Processing Centre (applications and status): 1-877-759-6810",
@@ -3650,10 +3650,10 @@ const BENEFITS = [
         "Use Alberta's AISH/ADAP benefit estimator for a household-specific estimate before relying on any amount.",
         "If you receive ADAP or AISH, report the outcome of your CDB and/or DTC application to Alberta, including the approved CDB amount or a denial. Alberta says that when no CDB decision had been made by February 28, 2026, $200 was reduced from April 2026 benefits.",
         "Getting help with the online application: phone the Alberta Supports Contact Centre at 1-877-644-9992, or 780-644-9992 in Edmonton.",
-        "Your health professional may charge you a fee to complete the Disability Assistance Medical Report, and you are responsible for paying it. If you are on Income Support that cost may be covered — ask your Income Support worker.",
+        "Your health professional may charge you a fee to complete the Disability Assistance Medical Report, and you are responsible for paying it. If you are on Income Support that cost may be covered — ask your Income Support worker. For AISH clients who transitioned to ADAP and later choose to be assessed for AISH, Alberta says it will cover the cost of one Disability Income Assistance Medical Report; this support is not time-limited.",
         "Benefits are backdated to the month AISH or ADAP received all of the information needed to approve your application, so getting every document in sooner is worth real money.",
         "To check where your application is, phone 587-759-6810 in the Edmonton area, or 1-877-759-6810 toll free within Alberta.",
-        "If you left AISH or ADAP less than 2 years ago, and not because your medical condition changed, your file may be reopened quickly rather than you having to reapply from scratch."
+        "If you leave AISH or ADAP, your file may be reopened quickly if it has been less than 2 years since you got your last AISH benefits and you did not leave AISH or ADAP due to a change in your medical condition. Contact AISH or ADAP if this applies to you; if not, you will need to reapply."
       ],
       "time": "Ask Alberta Supports for the current processing time.",
       "phone": "DIA Application Processing Centre (applications and status): 1-877-759-6810"
@@ -3870,7 +3870,7 @@ const BENEFITS = [
     name: "Alberta Adult Health Benefit",
     level: "Alberta",
     category: "Health",
-    amount: "Free prescriptions, dental, optical and more",
+    amount: "Dental care, prescription drugs, eye exams and glasses, and more — ask your provider what is paid for",
     summary:
       "Health coverage for adults in lower-income households — prescriptions, dental, eye care, essential diabetic supplies.",
     requires: ["adult", "ab", "citizenPR", "adultHealthIncome", "adultHealthGateway"],
@@ -3885,17 +3885,19 @@ const BENEFITS = [
       steps: [
         "Check the income guidelines on the page.",
         "Complete the Alberta Adult Health Benefit application.",
-        "Submit it with proof of income.",
+        "Sign the consent for the Canada Revenue Agency to verify your income, add documentation of your high ongoing prescription drug needs if it applies, and submit the form by email, mail or fax.",
       ],
       documents: [
-        "Proof of income (e.g. tax assessment)",
+        "Signed Consent for Canada Revenue Agency to Verify Income (part of the application form)",
         "Alberta Health Care number",
+        "If it applies: documentation of high ongoing prescription drug needs, such as a pharmacy dispensing history report",
       ],
       tips: [
         "If you leave AISH or Income Support because you started working, you may keep this coverage — ask specifically.",
+        "If your application is denied based on your income, Alberta describes a reassessment route with extra income documents; the steps depend on when you were denied.",
       ],
       time: "A few weeks to process.",
-      phone: "Alberta Supports: 1-877-644-9992",
+      phone: "Health Benefits Contact Centre: 780-427-6848, or toll free 1-877-469-5437",
     },
   },
   {
@@ -3954,8 +3956,8 @@ const BENEFITS = [
     source: "https://www.alberta.ca/residential-access-modification-program",
     detail: {
       about:
-        "A provincial grant for permanent modifications that let you enter and move within your own living space. RAMP pays up to \$12,000 per person each benefit year, which runs April 1 to March 31, and up to \$24,000 per person within 10 years. You qualify by one of three routes: you use a wheelchair at any age. You are 65 or older and use a 4-wheel walker on an ongoing basis. Or you live with multiple sclerosis, muscular dystrophy, ALS, COPD, Parkinson's disease, Alzheimer's disease, spina bifida, a spinal cord injury, or a non-recovering stroke. You must be a Canadian citizen or permanent resident who has lived in Alberta for 90 continuous days, and your family income must be within the RAMP table — from \$36,900 for a single adult to \$94,500 for a couple with five children, plus \$7,131 when a child permanently uses a wheelchair. Alberta notes that exceptions may apply when income is within \$1,200 of the threshold.",
-      aboutList: { lead: "A provincial grant for permanent modifications that let you enter and move within your own living space.", items: ["RAMP pays up to $12,000 per person each benefit year, which runs April 1 to March 31, and up to $24,000 per person within 10 years.", "You qualify by one of three routes: you use a wheelchair at any age. You are 65 or older and use a 4-wheel walker on an ongoing basis. Or you live with multiple sclerosis, muscular dystrophy, ALS, COPD, Parkinson's disease, Alzheimer's disease, spina bifida, a spinal cord injury, or a non-recovering stroke.", "You must be a Canadian citizen or permanent resident who has lived in Alberta for 90 continuous days, and your family income must be within the RAMP table — from $36,900 for a single adult to $94,500 for a couple with five children, plus $7,131 when a child permanently uses a wheelchair.", "Alberta notes that exceptions may apply when income is within $1,200 of the threshold."] },
+        "A provincial grant for permanent modifications that let you enter and move within your own living space. RAMP pays up to \$12,000 per person each benefit year, which runs April 1 to March 31, and up to \$24,000 per person within 10 years. You may be eligible if you are an Albertan of any age who uses a wheelchair, a senior (65+) who uses a 4-wheel walker on an ongoing basis, or living with a progressive neuro-degenerative disease including multiple sclerosis, muscular dystrophy, ALS, COPD, Parkinson's disease, Alzheimer's disease, spina bifida, spinal cord injuries or non-recovering stroke. You must be a Canadian citizen or permanent resident who has lived in Alberta for 90 continuous days, and your family income must be within the RAMP table — from \$36,900 for a single adult to \$94,500 for a couple with five children, plus \$7,131 when a child permanently uses a wheelchair. Alberta notes that exceptions may apply when income is within \$1,200 of the threshold.",
+      aboutList: { lead: "A provincial grant for permanent modifications that let you enter and move within your own living space.", items: ["RAMP pays up to $12,000 per person each benefit year, which runs April 1 to March 31, and up to $24,000 per person within 10 years.", "You may be eligible if you are an Albertan of any age who uses a wheelchair, a senior (65+) who uses a 4-wheel walker on an ongoing basis, or living with a progressive neuro-degenerative disease including multiple sclerosis, muscular dystrophy, ALS, COPD, Parkinson's disease, Alzheimer's disease, spina bifida, spinal cord injuries or non-recovering stroke.", "You must be a Canadian citizen or permanent resident who has lived in Alberta for 90 continuous days, and your family income must be within the RAMP table — from $36,900 for a single adult to $94,500 for a couple with five children, plus $7,131 when a child permanently uses a wheelchair.", "Alberta notes that exceptions may apply when income is within $1,200 of the threshold."] },
       steps: [
         "Read the RAMP Guidelines and Criteria document before starting; Alberta says incomplete applications will not be processed.",
         "Complete the RAMP Application Checklist, the RAMP Application Form and the RAMP Modification Recommendation Form.",
@@ -4030,15 +4032,15 @@ const BENEFITS = [
       ],
     },
     note:
-      "The card carries an expiration date, so check it and renew before it lapses. The Alberta.ca identification card page does not set out the renewal process — call the Service Dog Assessment team at 780-427-9136, or toll-free within Alberta at 310-0000.",
+      "The card carries an expiration date, so check it and renew before it lapses. The Alberta.ca identification card page does not set out the renewal process — call the Service Dog Assessment team at 780-427-9136 (in Alberta, dial 310-0000 first, before the phone number to call toll free).",
     requiresNote:
       "Your service dog must have passed an assessment from one of Alberta's approved service dog providers, graduated from a program accredited by Assistance Dogs International, or been qualified by an organization contracted by a provincial or territorial government in Canada to train or assess service dogs to standards equivalent to the Alberta Training Standard.",
     applyUrl: "https://servicedogs.alberta.ca/",
     source: "https://www.alberta.ca/service-dog-identification-card",
     detail: {
       about:
-        "Each card shows the handler's name, the dog's name, photos, a validation number and an expiration date. You apply online through the Service Dogs Portal, or you can ask the Service Dog Assessment team for a form. There is no fee, and the official identification card is mailed in approximately two weeks. The Alberta.ca identification card page does not itself set out the access rights the card confers, so do not assume the card is the whole legal picture.",
-      aboutList: { lead: "Each card shows the handler's name, the dog's name, photos, a validation number and an expiration date.", items: ["You apply online through the Service Dogs Portal, or you can ask the Service Dog Assessment team for a form.", "There is no fee, and the official identification card is mailed in approximately two weeks.", "The Alberta.ca identification card page does not itself set out the access rights the card confers, so do not assume the card is the whole legal picture."] },
+        "Each card shows the handler's name, the dog's name, photos, a validation number and an expiration date. You apply online through the Service Dogs Portal, or you can ask the Service Dog Assessment team for a form. There is no fee, and the official identification card is mailed in approximately two weeks. Alberta.ca says qualified service dog teams must have the card to ensure access to public places, and that it verifies you and your service dog have protected public access rights in Alberta. Carry it with you at all times when in public.",
+      aboutList: { lead: "Each card shows the handler's name, the dog's name, photos, a validation number and an expiration date.", items: ["You apply online through the Service Dogs Portal, or you can ask the Service Dog Assessment team for a form.", "There is no fee, and the official identification card is mailed in approximately two weeks.", "Alberta.ca says qualified service dog teams must have the card to ensure access to public places, and that it verifies you and your service dog have protected public access rights in Alberta. Carry it with you at all times when in public."] },
       steps: [
         "Make sure your dog has qualified by one of the three accepted routes: an assessment from one of Alberta's approved service dog providers, graduation from a program accredited by Assistance Dogs International, or qualification by an organization contracted by a provincial or territorial government in Canada to standards equivalent to the Alberta Training Standard",
         "Take one photo that clearly shows you and your service dog, with no other dogs or people in it",
@@ -4053,7 +4055,7 @@ const BENEFITS = [
       tips: [
         "The photo rules are specific and are an easy thing to get wrong: portrait format, taken from at least six feet away, your face clear and facing the camera, no other people or dogs, and your dog's head at roughly the same height as yours.",
         "The photo has to go in as a PDF, not a JPEG or a phone screenshot.",
-        "If you would rather use paper, phone 780-427-9136, or 310-0000 toll-free inside Alberta, and ask the Service Dog Assessment team for a form.",
+        "If you would rather use paper, phone the Service Dog Assessment team at 780-427-9136 (in Alberta, dial 310-0000 before the phone number to call toll free), and ask for a form.",
       ],
       time: "The card is mailed in approximately 2 weeks.",
     },
@@ -4110,25 +4112,25 @@ const BENEFITS = [
     amount: "Subsidized housing; no rent formula is published for this program type",
     summary:
       "Subsidized provincial housing for people with special housing needs, including people with developmental disabilities and people with physical challenges. There is no central application — you find a local housing provider and apply to them directly.",
-    requires: ["ab", "citizenPR", "abSpecialNeedsHousingPlacement"],
+    requires: ["ab", "abSpecialNeedsHousingStatus", "abSpecialNeedsHousingPlacement"],
     eligibility: {
       mode: "all",
       items: [
         "You have special housing needs. This includes people with developmental disabilities, people with physical challenges, victims of family violence, wards of the provincial government, the hard-to-house, and any other group with special housing needs.",
         "Your income is below the local income limits as determined by the market for your community.",
-        "You are a Canadian citizen or permanent resident, a refugee sponsored by the Government of Canada, or a privately sponsored refugee whose sponsorship has broken down. Ukrainian evacuees with a Canada-Ukraine Authorization for Emergency Travel also qualify.",
+        "You are a Canadian citizen or permanent resident, a refugee sponsored by the Government of Canada, or a privately sponsored refugee whose sponsorship has broken down. Evacuees from Ukraine with a Canada-Ukraine Authorization for Emergency Travel are eligible to apply. Some housing providers may have additional eligibility criteria.",
       ],
     },
     note:
       "Applications are not centralized. Use the Find Housing tool to see what is available, then contact the local housing provider directly for their application. Income limits are set community by community and Alberta.ca does not publish a single figure, so check the limit where you actually live rather than assuming.",
     requiresNote:
-      "Special Needs Housing is for individuals who have special housing needs, including people with developmental disabilities, people with physical challenges, victims of family violence, wards of the provincial government, the hard-to-house, and any other group with special housing needs. You must have an income below the local income limits as determined by the market for your community, and be a Canadian citizen or permanent resident, a refugee sponsored by the Government of Canada, or a privately sponsored refugee whose sponsorship has broken down. Ukrainian evacuees with a Canada-Ukraine Authorization for Emergency Travel also qualify.",
+      "Special Needs Housing is for individuals who have special housing needs, including people with developmental disabilities, people with physical challenges, victims of family violence, wards of the provincial government, the hard-to-house, and any other group with special housing needs. You must have an income below the local income limits as determined by the market for your community, and be a Canadian citizen or permanent resident, a refugee sponsored by the Government of Canada, or a privately sponsored refugee whose sponsorship has broken down. Evacuees from Ukraine with a Canada-Ukraine Authorization for Emergency Travel are eligible to apply. Some housing providers may have additional eligibility criteria.",
     applyUrl: "https://findhousing.alberta.ca/",
     source: "https://www.alberta.ca/affordable-housing-programs",
     detail: {
       about:
-        "Special Needs Housing is one of four provincial affordable housing program types, alongside Community Housing, Seniors apartments and Seniors Lodge. It serves individuals who have special housing needs and may include support services for residents. Applying takes three steps: use the Find Housing tool to see which options are available to meet your needs, choose a local housing provider offering a program that suits your situation, then contact that provider directly for their application. Two things people wrongly carry over from the other program types: the rent formula of 30% of total annual household income is stated for Community Housing and Seniors apartments, not for Special Needs Housing, and the requirement to be functionally independent is stated for the seniors programs. Alberta.ca refers to an income thresholds document rather than publishing a single income limit.",
-      aboutList: { lead: "Special Needs Housing is one of four provincial affordable housing program types, alongside Community Housing, Seniors apartments and Seniors Lodge.", items: ["It serves individuals who have special housing needs and may include support services for residents.", "Applying takes three steps: use the Find Housing tool to see which options are available to meet your needs, choose a local housing provider offering a program that suits your situation, then contact that provider directly for their application.", "Two things people wrongly carry over from the other program types: the rent formula of 30% of total annual household income is stated for Community Housing and Seniors apartments, not for Special Needs Housing, and the requirement to be functionally independent is stated for the seniors programs.", "Alberta.ca refers to an income thresholds document rather than publishing a single income limit."] },
+        "Special Needs Housing is one of four provincial affordable housing program types, alongside Community Housing, Seniors apartments and Seniors Lodge. It serves individuals who have special housing needs and may include support services for residents. Applying takes three steps: use the Find Housing tool to see which options are available to meet your needs, choose a local housing provider offering a program that suits your situation, then contact that provider directly for their application. Alberta.ca states a rent formula for Community Housing (30% of a household's total annual income, non-senior household) and for Seniors apartments (30% of a household's adjusted income). It does not state one for Special Needs Housing. The requirement to be functionally independent is stated for the seniors programs. Alberta.ca refers to an income thresholds document rather than publishing a single income limit.",
+      aboutList: { lead: "Special Needs Housing is one of four provincial affordable housing program types, alongside Community Housing, Seniors apartments and Seniors Lodge.", items: ["It serves individuals who have special housing needs and may include support services for residents.", "Applying takes three steps: use the Find Housing tool to see which options are available to meet your needs, choose a local housing provider offering a program that suits your situation, then contact that provider directly for their application.", "Alberta.ca states a rent formula for Community Housing (30% of a household's total annual income, non-senior household) and for Seniors apartments (30% of a household's adjusted income). It does not state one for Special Needs Housing.", "The requirement to be functionally independent is stated for the seniors programs.", "Alberta.ca refers to an income thresholds document rather than publishing a single income limit."] },
       steps: [
         "Use the Find Housing tool at findhousing.alberta.ca and answer its questions",
         "Look through the options it displays and choose a local housing provider offering a program that suits your situation",
@@ -4139,11 +4141,11 @@ const BENEFITS = [
         "Alberta.ca does not publish a province-wide document list, so ask the local housing provider what their application requires",
       ],
       tips: [
-        "There is no single provincial application, so different providers may ask for different things and keep separate waiting lists. Applying to one does not put you on another's list.",
-        "The 30% of income rent formula Alberta publishes is for Community Housing and Seniors apartments. It is not stated for Special Needs Housing, so ask the provider how rent is worked out.",
+        "There is no single provincial application, so different providers may ask for different things. Each housing operator may keep a waitlist when there are no current vacancies; ask each provider how its list works.",
+        "The rent formulas Alberta publishes are for Community Housing (30% of a household's total annual income, non-senior household) and Seniors apartments (30% of a household's adjusted income). None is stated for Special Needs Housing, so ask the provider how rent is worked out.",
         "Special Needs Housing may include support services for residents, so ask what support comes with the unit rather than assuming it is housing only.",
       ],
-      time: "Alberta.ca does not publish a wait time, and each provider keeps its own waiting list.",
+      time: "Alberta.ca does not publish a wait time. Each housing operator may keep a waitlist when there are no current vacancies.",
     },
   },
 
@@ -4630,15 +4632,15 @@ const BENEFITS = [
     name: "Canmore Affordable Services Program",
     level: "Canmore",
     category: "Getting around & recreation",
-    amount: "Discounts on local transit, recreation and community services",
-    summary: "A Town program that provides qualifying residents with lower-cost local services, including transit and recreation.",
+    amount: "Discounts on Regional ROAM Transit, recreation and community services",
+    summary: "A Town program that provides qualifying residents with lower-cost services, including Regional ROAM Transit and recreation.",
     requires: ["canmore", "lowIncome"],
-    note: "The Town lists discounts across local transit, recreation and community services. Transit discount tiers differ, so confirm the current rate for your household.",
+    note: "The Town lists discounts across Regional ROAM Transit, recreation and community services. Transit discount tiers differ, so confirm the current rate for your household.",
     applyText: "Canmore Affordable Services Program",
     applyUrl: "https://www.canmore.ca/your-community/community-supports-and-services/affordable-services-program",
     source: "https://www.canmore.ca/your-community/community-supports-and-services/affordable-services-program",
     detail: {
-      about: "Canmore’s Affordable Services Program provides qualifying residents with discounts on Town and community services, including local transit and recreation.",
+      about: "Canmore’s Affordable Services Program provides qualifying residents with discounts on Town and community services, including Regional ROAM Transit and recreation.",
       steps: ["Review the Town’s current eligibility and application instructions.", "Apply with the income and residency documents requested.", "Ask which discounts apply to the services you use."],
       documents: ["Proof of income", "Proof of Canmore residence"],
       tips: ["Transit discounts are tiered; the Town page is the source of truth for the current rate.", "Apply before assuming a discount is available for a specific community service."],
@@ -4651,7 +4653,7 @@ const BENEFITS = [
     level: "Lloydminster",
     category: "Recreation",
     amount: "$2 adult drop-in admission at City recreation facilities",
-    summary: "Income-based recreation access for qualifying Lloydminster residents.",
+    summary: "Income-based recreation access for eligible Lloydminster residents. The residency requirement does not apply to First Nations, Metis, and/or Inuit applicants, who must still meet the income eligibility.",
     requires: ["lloydminster", "lowIncome"],
     note: "The City lists income-based access to City recreation facilities, including $2 adult drop-in admission. Confirm all current discounts when applying.",
     applyText: "Lloydminster Recreation Access Program",
@@ -4660,7 +4662,7 @@ const BENEFITS = [
     detail: {
       about: "Lloydminster’s Recreation Access Program gives qualifying low-income residents reduced-cost access to City recreation facilities.",
       steps: ["Review the City’s current income criteria and application instructions.", "Apply with the documents the City requests.", "Ask the recreation desk which current facility admissions and passes are covered."],
-      documents: ["Proof of household income", "Proof of Lloydminster residence"],
+      documents: ["Proof of household income", "Proof of Lloydminster residence (not required of First Nations, Metis, and/or Inuit applicants, who provide a copy of a Certificate of Indian Status card and/or a Certificate of Treaty Status card, as the page lists)"],
       tips: ["Use the official City page to confirm current rates before making plans around a discount.", "Ask whether your household members can be included in the application."],
       time: "Ask when you apply.",
     },
@@ -4887,7 +4889,7 @@ const BENEFITS = [
       "aboutList": { "lead": "Plan G pays 100% of eligible costs for certain psychiatric medications, for B.C. residents of any age who have both clinical and financial need.", "items": ["The province describes the financial test as an annual income lower than $42,000.", "Eligibility is confirmed by your physician or nurse practitioner together with your local mental health and substance use location, or the Child and Youth Mental Health team, and the prescriber then submits the Application for PharmaCare Plan G form for you.", "Coverage runs for up to one year and must be renewed if you still need it.", "The province advises knowing your renewal date and seeing a healthcare provider about a month ahead to submit the new application."] },
       "steps": ["Tell your physician or nurse practitioner that you have both clinical and financial need and ask about Plan G", "They confirm eligibility with your local mental health and substance use location, or the Child and Youth Mental Health team", "The prescriber submits the Application for PharmaCare Plan G form on your behalf", "Write down your renewal date and book an appointment about a month before it to submit a new application"],
       "documents": ["Nothing for you to submit — your prescriber completes and sends the Application for PharmaCare Plan G form", "Bring anything your prescriber asks for to show income if they need it"],
-      "tips": ["The renewal is the thing that catches people out, because coverage simply stops after a year, so put the date somewhere you will see it and go in a month early", "The plan covers certain psychiatric medications and not every drug, so ask your prescriber or pharmacist whether the specific medication is on Plan G before you rely on it", "Substance use is covered by the same route, since eligibility is confirmed through the local mental health and substance use location", "Plan G's $42,000 test is on annual income, which is worded differently from the adjusted net income test used for MSP Supplementary Benefits — qualifying for one does not automatically mean qualifying for the other"]
+      "tips": ["The renewal is the thing that catches people out, because coverage is for up to 1 year and needs to be renewed, so put the date somewhere you will see it and go in a month early", "The plan covers certain psychiatric medications and not every drug, so ask your prescriber or pharmacist whether the specific medication is on Plan G before you rely on it", "Your prescriber confirms eligibility together with your local mental health and substance use location, or the Child and Youth Mental Health team. Plan G covers certain psychiatric medications, so ask whether a specific medication is on the plan.", "Plan G's $42,000 test is on annual income, which is worded differently from the adjusted net income test used for MSP Supplementary Benefits — qualifying for one does not automatically mean qualifying for the other"]
     }
   },
   {
@@ -4907,9 +4909,9 @@ const BENEFITS = [
     "detail": {
       "about": "Plan P covers 100% of eligible costs for medications used in palliative care that appear on the Plan P formulary. It is for B.C. residents of any age who have reached the end stage of a life-threatening disease or illness and who wish to receive palliative care at home, and \"home\" is read broadly: the person's own home, living with family or friends, a supportive or assisted living residence, or a hospice unit at a long-term care facility such as a community hospice bed that is not covered under PharmaCare Plan B. Medications are only part of it — eligible patients can also receive medical supplies and equipment through their local health authority. A physician or nurse practitioner submits the registration form to PharmaCare, and the single form notifies both PharmaCare and the health authority that the patient is eligible.",
       "aboutList": { "lead": "Plan P covers 100% of eligible costs for medications used in palliative care that appear on the Plan P formulary.", "items": ["It is for B.C. residents of any age who have reached the end stage of a life-threatening disease or illness and who wish to receive palliative care at home, and \"home\" is read broadly: the person's own home, living with family or friends, a supportive or assisted living residence, or a hospice unit at a long-term care facility such as a community hospice bed that is not covered under PharmaCare Plan B.", "Medications are only part of it — eligible patients can also receive medical supplies and equipment through their local health authority.", "A physician or nurse practitioner submits the registration form to PharmaCare, and the single form notifies both PharmaCare and the health authority that the patient is eligible."] },
-      "steps": ["Tell the doctor or nurse practitioner that palliative care at home is what the patient wants, and ask them to register the patient for BC Palliative Care Benefits", "Ask the same clinician, or the local health authority, about the medical supplies and equipment that come with eligibility, since those are arranged separately from the medications", "Ask for the BC Palliative Care Benefits patient information sheet, which is available in multiple languages"],
+      "steps": ["Tell the doctor or nurse practitioner that palliative care at home is what the patient wants, and ask them to register the patient for BC Palliative Care Benefits", "Ask the same clinician, or the local health authority, about the medical supplies and equipment that eligible patients can also receive through their local health authority", "Ask for the BC Palliative Care Benefits patient information sheet, which is available in multiple languages"],
       "documents": ["Nothing for the patient or family to submit — the registration form is completed and sent by the physician or nurse practitioner"],
-      "tips": ["The medications are covered at 100% when they are on the Plan P formulary, so ask the pharmacist to check the formulary if something is not covered", "Supplies and equipment come through the local health authority rather than PharmaCare, and are worth asking about separately", "A community hospice bed counts as home for this plan, as long as it is not already covered under PharmaCare Plan B", "Registration in Plan P is also one of the prescribed routes to B.C.'s Persons with Disabilities designation, which can matter if disability assistance is being applied for at the same time"]
+      "tips": ["The medications are covered at 100% when they are on the Plan P formulary, so ask the pharmacist to check the formulary if something is not covered", "Eligible patients can also receive supplies and equipment through the local health authority, so ask about them separately", "A community hospice bed counts as home for this plan, as long as it is not already covered under PharmaCare Plan B", "Registration in Plan P is also one of the prescribed routes to B.C.'s Persons with Disabilities designation, which can matter if disability assistance is being applied for at the same time"]
     }
   },
   {
@@ -5557,8 +5559,8 @@ const BENEFITS = [
     "level": "British Columbia",
     "category": "Family",
     "amount": "Individually planned funded services — residential, employment, community inclusion, respite",
-    "summary": "Provincial agency funding lifelong supports for adults 19+ with developmental disabilities — home sharing and staffed living, employment services, community inclusion, respite and family support. Youth can apply from age 16 to have services ready at 19.",
-    "requires": ["bc", "age16plus", "developmental", "disabilityDoc"],
+    "summary": "Provincial agency funding lifelong supports for adults 19+ with developmental disabilities — home sharing and staffed living, employment services, community inclusion, respite and family support. Youth can apply from age 16. What funded support you get, and when, depends on how urgent your situation is and the funding CLBC has at the time of the request.",
+    "requires": ["bc", "age16plus", "bcClbcStream", "disabilityDoc"],
     eligibility: {
       mode: "any",
       items: [
@@ -5568,7 +5570,7 @@ const BENEFITS = [
       note: "You can apply from age 16, and supports continue beyond 65.",
     },
     "requiresNote": "Adults 19+ with significantly impaired intellectual AND adaptive functioning that began before age 18; or, under the PSI stream, adults with an FASD or autism spectrum diagnosis plus significant adaptive-functioning limitations. Apply from age 16; supports continue beyond 65",
-    "note": "Two eligibility streams: Developmental Disability (needs a psychologist's cognitive and adaptive assessments) and the Personalized Supports Initiative (FASD or ASD diagnosis plus significant daily-living limitations, no intellectual disability required). School-era assessments can often be reused.",
+    "note": "Two eligibility streams: Developmental Disability (needs a psychologist's cognitive and adaptive assessments) and the Personalized Supports Initiative (FASD or ASD diagnosis plus significant daily-living limitations, no intellectual disability required). Sometimes these assessments have already been done when you were in school, so ask before arranging new ones.",
     "applyText": "Check CLBC eligibility",
     "applyUrl": "https://www.communitylivingbc.ca/who-does-clbc-support/eligible-clbc-support/",
     "source": "https://www.communitylivingbc.ca/what-support-is-available/",
@@ -5577,8 +5579,8 @@ const BENEFITS = [
       "coversList": { "lead": "CLBC funds and coordinates:", "items": ["residential supports (living in your own place, shared living/home sharing with a contracted family, or staffed homes)", "employment support to find and keep a job", "community inclusion and connection programs", "skill development", "respite for families", "wellness supports for daily responsibilities", "behavioural support", "the Provincial Assessment Centre's mental-health services for people 14+ with developmental disabilities"] },
       "steps": ["From age 16, ask your MCFD/CYSN worker about transition planning to CLBC", "Contact your nearest CLBC office (1-877-660-2522) — a facilitator explains the required documents and approved assessors", "Submit assessments and forms completed by an approved professional (registered psychologist for the DD stream); school-years assessments may be reusable", "Once eligibility is confirmed, attend the CLBC Welcome Workshop series and work with your facilitator on a support plan", "CLBC connects you to funded services based on the plan and available resources"],
       "documents": ["Cognitive/psychoeducational assessment by a registered psychologist (DD stream)", "Adaptive functioning assessment completed by an approved professional", "Confirmed FASD or autism spectrum diagnosis for the PSI stream", "CLBC eligibility forms completed by approved professionals"],
-      "tips": ["Start at 16 — assessments and planning take time, and starting early means supports can begin right at 19", "If you were assessed in school, ask the school district for copies; a new assessment may not be needed", "Not eligible under the DD stream? Ask specifically about the Personalized Supports Initiative (PSI)", "Respite or equivalent funding is commonly the first service offered to families of transitioning youth — ask your facilitator what is available in your region", "Adults on CLBC services usually also qualify for BC PWD disability assistance — apply for both"],
-      "time": "Apply from age 16; eligibility confirmation before the 19th birthday is recommended so services start on time.",
+      "tips": ["Start at 16 — assessments and planning take time. What funded support you get, and when, depends on how urgent your situation is and the funding CLBC has at the time of your request.", "If you were assessed in school, ask the school district for copies; a new assessment may not be needed", "Not eligible under the DD stream? Ask specifically about the Personalized Supports Initiative (PSI)", "Respite or equivalent funding is commonly the first service offered to families of transitioning youth — ask your facilitator what is available in your region", "Adults on CLBC services usually also qualify for BC PWD disability assistance — apply for both"],
+      "time": "Apply from age 16; eligibility confirmation before the 19th birthday is recommended. When funded support starts depends on urgency and the funding CLBC has at the time of the request.",
       "phone": "1-877-660-2522"
     }
   },
@@ -5944,23 +5946,24 @@ const BENEFITS = [
     "category": "Work",
     "amount": "Paid BC Public Service internship of up to 24 months",
     "summary": "A paid internship program in the BC Public Service for recent post-secondary graduates who self-identify as having a disability — any physical, sensory, neurological, visible or invisible disability.",
-    "requires": ["bc", "age18plus", "employmentActive", "disabilityDoc", "recentGraduate"],
+    "requires": ["bc", "age18plus", "employmentActive", "bcWorkAbleSelfIdentify", "recentGraduate"],
     eligibility: {
       mode: "all",
       items: [
-        "You are a recent post-secondary graduate — graduation within 3 years of the program start date.",
+        "You are a recent post-secondary graduate with a two-year diploma, associate degree, bachelor's degree, master's degree or doctorate from a recognized post-secondary institution.",
+        "Your graduation date is within 3 years of the program start date.",
         "You self-identify as having a disability.",
       ],
       note: "You do not have to disclose your specific diagnosis.",
     },
-    "requiresNote": "You must be a recent post-secondary graduate (graduation within 3 years of the program start date) who self-identifies as having a disability. You do not have to disclose your specific diagnosis.",
-    "note": "Intake runs annually. Applications for the 2026/27 cohort are closed — the next intake for the 2027/28 cohort opens in spring 2027. Graduates keep access to internal BC Public Service job postings for 24 months after completing the program.",
+    "requiresNote": "You must be a recent post-secondary graduate with a two-year diploma, associate degree, bachelor's degree, master's degree or doctorate from a recognized post-secondary institution, with a graduation date within 3 years of the program start date, and self-identify as having a disability. You do not have to disclose your specific diagnosis.",
+    "note": "Intake runs annually. Applications for the 2026/27 cohort are closed — the page says to check back in Spring 2027 for information on the 2027/28 intake. Graduates keep access to internal BC Public Service job postings for 24 months after completing the program.",
     "applyText": "Check intake dates and apply",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/careers-myhr/job-seekers/internship-co-op-opportunities/work-able",
     "source": "https://www2.gov.bc.ca/gov/content/careers-myhr/job-seekers/internship-co-op-opportunities/work-able",
     "detail": {
       "about": "Work-Able coordinates paid internship opportunities across the BC Public Service for recent graduates with disabilities, for up to 24 months. Participants get government work experience, a peer cohort of other graduates with disabilities, exposure to different career paths, and post-program access to internal job postings.",
-      "steps": ["Watch the Work-Able page for the annual intake (next opens spring 2027 for the 2027/28 cohort).", "Confirm you graduated within 3 years of the program start date.", "Apply online during the intake window; you self-identify as having a disability without disclosing a diagnosis.", "If selected, you are placed in a paid position with a ministry."],
+      "steps": ["Check the Work-Able page in Spring 2027 for information on the 2027/28 intake, or contact the Work-Able team to be notified when the next application period opens.", "Confirm you graduated within 3 years of the program start date.", "Apply online during the intake window; you self-identify as having a disability without disclosing a diagnosis.", "If selected, you are placed in a paid position with a ministry."],
       "documents": ["Proof of post-secondary graduation (within 3 years of program start)", "Resume"],
       "tips": ["Contact the Work-Able team to be notified when the next application period opens.", "Workplace accommodations are part of the program's design — you do not need to negotiate them alone."],
       "time": "Annual intake; internships run up to 24 months"
@@ -5982,10 +5985,10 @@ const BENEFITS = [
         "You are not a full-time student, unless you are in your final year.",
         "You have a work-related barrier due to a disability or functional limitation.",
       ],
-      note: "Volunteering toward an employment goal and self-employment count.",
+      note: "Volunteering toward a longer-term employment goal counts. Self-employment counts if you can show proof of regular income.",
     },
-    "requiresNote": "You must be 16 or older, a B.C. resident legally eligible to work, not a full-time student (unless in your final year), and have a work-related barrier due to a disability or functional limitation. Volunteering toward an employment goal and self-employment count.",
-    "note": "Covers work-related needs only — not medical treatments or daily-living items. Delivered under contract to the province with regional offices in Burnaby, Kelowna, Nanaimo and Victoria.",
+    "requiresNote": "You must be 16 or older, a B.C. resident legally eligible to work, not a full-time student (unless in your final year), and have a work-related barrier due to a disability or functional limitation. Volunteering toward a longer-term employment goal counts, and so does self-employment with proof of regular income.",
+    "note": "Covers employment-related needs, including volunteer work that is part of a longer-term employment goal — not medical treatments and therapies, items for daily living, or employment services such as job coaching or wage subsidies. Delivered under contract to the province with regional offices in Burnaby, Kelowna, Nanaimo and Victoria.",
     "applyText": "Apply online",
     "applyUrl": "https://apply.workbc.ca/",
     "source": "https://www.workbc.ca/get-support/assistive-technology-pwd",
@@ -5993,7 +5996,7 @@ const BENEFITS = [
       "about": "Assistive Technology Services (ATS) removes equipment barriers between you and employment. It funds assistive devices and technology, ergonomic supports like furniture and lighting, restorative supports, ASL interpreting and captioning, communication and hearing devices for work, workplace access modifications, and vehicle modifications needed for employment. How much is covered depends on your financial circumstances.",
       "aboutList": { "lead": "Assistive Technology Services (ATS) removes equipment barriers between you and employment.", "items": ["It funds assistive devices and technology, ergonomic supports like furniture and lighting, restorative supports, ASL interpreting and captioning, communication and hearing devices for work, workplace access modifications, and vehicle modifications needed for employment.", "How much is covered depends on your financial circumstances."] },
       "steps": ["Apply through WorkBC Online Employment Services (apply.workbc.ca) or contact ATS directly.", "An ATS specialist works with you to understand your work barrier and equipment needs.", "Approved equipment and services are arranged fully or partially funded."],
-      "documents": ["Proof you are a B.C. resident eligible to work", "Information about your job, job offer, self-employment or volunteer role", "Details of the disability-related barrier and equipment needs (ATS helps document this)"],
+      "documents": ["Proof you are a B.C. resident eligible to work", "Information about your job, job offer, self-employment (needs proof of regular income) or volunteer role", "Details of the disability-related barrier and equipment needs (ATS helps document this)"],
       "tips": ["Commuting barriers count — vehicle modifications and travel-related equipment can be funded when needed for work.", "You can use ATS while employed to keep your job, not just when job hunting.", "Email info-ats@workbc.ca if you are unsure whether your situation qualifies."],
       "time": "Varies by request; contact ATS for current timelines",
       "phone": "1-844-453-5506"

@@ -15,7 +15,12 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
   **Surrey Leisure Access's income limits were all lower than the City's table** ($25,588 vs $26,355 for one
   person, etc.), wrongly turning people away. Vancouver now shows its two separate income tables. ADAP
   follows "18 or older and not eligible for Old Age Security".
-- Progress: **61 of 134 records re-checked** against their official pages since 2026-10-14.
+- **Re-verification batch 5** — `fd10cb0`, `?v=177`. 16 records, 391 facts, 36 differed, all 36 fixed. BC MSP
+  Supplementary Benefits now lists all eight eligible groups (we said "three ways"); the child and youth
+  disability benefit's age and helpline numbers corrected; Medical Equipment's emergency exception restored.
+- Progress: **77 of 134 records re-checked** against their official pages since 2026-10-14.
+- Note: the readability ratchet's baseline rose slightly (about a dozen passages) because the official wording,
+  qualifiers included, is longer than our old shortened text. Accuracy wins over brevity here.
 
 ### Decisions we made for you
 - Two autism-funding rules (the 50%/20% travel and training limits) were left as they were: today's pages
