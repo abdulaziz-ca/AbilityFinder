@@ -1065,6 +1065,13 @@ const REQS = {
   },
 
   /* disability-type driven */
+  bcParkingMobility: {
+    short: "Check that a mobility limitation applies",
+    who: ["you"],
+    met: () => hasDisability("physical") && answers.canWalkFar === false,
+    fixed: false,
+    unmet: "People with mobility limitations are entitled to a permit, for example people who use a wheelchair, crutches, a cane or other mobility aid, or whose health prevents them from walking very far.",
+  },
   mobility: {
     // eligible if physical + can't walk 50m, OR vision loss affecting mobility
     met: () =>
@@ -1142,6 +1149,13 @@ const REQS = {
     fixed: false,
     unmet: "Confirm your disability with one of the routes the registration page lists: B.C. Disability Assistance Certification; a letter from BCANDS, Veterans' Affairs (100% disability pension) or CNIB; or medical certification of a listed permanent condition.",
     action: { text: "Review fuel-tax registration routes", url: "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities" },
+  },
+  exciseMobilityImpairment: {
+    short: "Check whether your mobility impairment is permanent and affects transit",
+    who: ["you"],
+    met: () => false,
+    fixed: false,
+    unmet: "This refund is for people with a permanent mobility impairment who cannot safely use public transportation.",
   },
   vehicleDisability: {
     met: () => hasDisability("physical") || hasDisability("vision") || hasFunctionalNeed("transitBarrier"),
@@ -1261,9 +1275,18 @@ const REQS = {
     unmet: "You need to be approved for the Affordable Transit Program, which is based on household net income from line 23600 of each household member's tax return.",
   },
   mobilityplusRegistered: {
+    short: "Check that you are a MobilityPLUS customer in the three cities",
+    who: ["you"],
     met: () => false,
     fixed: false,
-    unmet: "You need to be registered with MobilityPLUS.",
+    unmet: "You need to be registered with MobilityPLUS. MobilityPLUS customers who live and travel in Cambridge, Kitchener and Waterloo can buy taxi coupons. Customers on MobilityPLUS North Dumfries or Kiwanis Transit services are not eligible.",
+  },
+  waterlooMobilityPlusTransit: {
+    short: "Check which MobilityPLUS eligibility type fits",
+    who: ["you", "professional"],
+    met: () => hasFunctionalNeed("transitBarrier"),
+    fixed: false,
+    unmet: "MobilityPLUS eligibility may be unconditional (a disability prevents you from using conventional transit), conditional (environmental or physical barriers limit your ability to consistently use it) or temporary (a temporary disability prevents you from using it).",
   },
   cnibCustomer: {
     met: () => false,
@@ -1317,13 +1340,26 @@ const REQS = {
   sprucegrovearea: { met: () => ["Spruce Grove", "Stony Plain"].includes(answers.city), fixed: true, unmet: "This is for eligible Spruce Grove-area residents." },
   leduc: { met: () => answers.city === "Leduc", fixed: true, unmet: "This is a City of Leduc program." },
   cochrane: { met: () => answers.city === "Cochrane", fixed: true, unmet: "This is a Town of Cochrane program." },
-  okotoks: { met: () => answers.city === "Okotoks", fixed: true, unmet: "This is a Town of Okotoks program." },
+  okotoksResidency: {
+    short: "Check that you live in the Town of Okotoks or Foothills County",
+    who: ["you"],
+    met: () => answers.city === "Okotoks",
+    fixed: false,
+    unmet: "You must live in the Town of Okotoks or Foothills County.",
+  },
   canmore: { met: () => answers.city === "Canmore", fixed: true, unmet: "This is a Town of Canmore program." },
   lloydminster: { met: () => answers.city === "Lloydminster", fixed: true,
     short: "Check the City of Lloydminster residency rule",
     who: ["you"],
     unmet: "This is a City of Lloydminster program. The residency requirement does not apply to First Nations, Metis, and/or Inuit applicants, who must still meet the income eligibility." },
   fortsask: { met: () => answers.city === "Fort Saskatchewan", fixed: true, unmet: "This is a City of Fort Saskatchewan program." },
+  fortsaskIncomeRoute: {
+    short: "Check your income route (approved program or income limit)",
+    who: ["you"],
+    met: () => false,
+    fixed: false,
+    unmet: "The applicant must be receiving funding from an approved Government program (such as AISH, CPPD, FSCD or Income Support), or have a combined household income at or under the Statistics Canada Low Income Thresholds listed on the City’s page. Proof of income verification is required.",
+  },
   vancouver: { met: () => answers.city === "Vancouver", fixed: true, unmet: "This is a City of Vancouver program." },
   surrey: { met: () => answers.city === "Surrey", fixed: true, unmet: "This is a City of Surrey program." },
   burnaby: { met: () => answers.city === "Burnaby", fixed: true, unmet: "This is a City of Burnaby program." },

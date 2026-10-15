@@ -765,5 +765,35 @@
     "short": "Check your qualification and graduation date",
     "who": ["you"],
     "reason": "Gate text now lists the qualifying credentials and the three-year window; the long text stays behind the expander"
+  },
+  "waterlooMobilityPlusTransit": {
+    "short": "Check which MobilityPLUS eligibility type fits",
+    "who": ["you", "professional"],
+    "reason": "MobilityPLUS has unconditional, conditional and temporary eligibility; the questionnaire only asks about transit barriers"
+  },
+  "exciseMobilityImpairment": {
+    "short": "Check whether your mobility impairment is permanent and affects transit",
+    "who": ["you"],
+    "reason": "Excise refund page names only a permanent mobility impairment with unsafe public transportation; the questionnaire cannot establish either"
+  },
+  "fortsaskIncomeRoute": {
+    "short": "Check your income route (approved program or income limit)",
+    "who": ["you"],
+    "reason": "Fort Saskatchewan accepts an approved government program (AISH, CPPD, FSCD, Income Support) or the Statistics Canada income thresholds; neither is asked"
+  },
+  "okotoksResidency": {
+    "short": "Check that you live in the Town of Okotoks or Foothills County",
+    "who": ["you"],
+    "reason": "Residency includes Foothills County, which the community question does not list"
+  },
+  "bcParkingMobility": {
+    "short": "Check that a mobility limitation applies",
+    "who": ["you"],
+    "reason": "SPARC BC names mobility limitations only; vision loss is not a stated route"
+  },
+  "mobilityplusRegistered": {
+    "short": "Check that you are a MobilityPLUS customer in the three cities",
+    "who": ["you"],
+    "reason": "Taxi coupons need MobilityPLUS registration in Cambridge, Kitchener and Waterloo; North Dumfries and Kiwanis Transit customers are not eligible"
   }
 }

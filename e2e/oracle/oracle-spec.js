@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.23.0";
+const SPEC_VERSION = "1.24.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -274,7 +274,6 @@ const GATES = {
   sprucegrovearea: municipality("Spruce Grove", "AB"),
   leduc: municipality("Leduc", "AB"),
   cochrane: municipality("Cochrane", "AB"),
-  okotoks: municipality("Okotoks", "AB"),
   canmore: municipality("Canmore", "AB"),
   lloydminster: municipality("Lloydminster", "AB"),
   fortsask: municipality("Fort Saskatchewan", "AB"),
@@ -438,6 +437,27 @@ const GATES = {
   homeowner: circumstanceGate("homeowner"),
   vehicleOwner: circumstanceGate("vehicleOwner"),
   recentGraduate: circumstanceGate("recentGraduate"),
+  // Batch 7 (2026-10-16): record-specific gates replacing shared ones that drifted from the page.
+  waterlooMobilityPlusTransit: {
+    evidence: "answers",
+    satisfy: { add: { functionalNeeds: ["transitBarrier"] } },
+    violations: [{ name: "no transit-barrier answer: another eligibility type may apply", fragment: { set: { functionalNeeds: ["none"] } }, expect: "almost" }],
+  },
+  bcParkingMobility: {
+    evidence: "answers",
+    satisfy: { add: { disabilities: ["physical"] }, set: { canWalkFar: false } },
+    violations: [
+      { name: "physical category but walks far enough: other mobility limits may apply", fragment: { set: { canWalkFar: true } }, expect: "almost" },
+      { name: "no physical category: mobility limits can arise under other categories", fragment: { drop: { disabilities: ["physical"] } }, expect: "almost" },
+    ],
+  },
+  okotoksResidency: {
+    evidence: "answers",
+    satisfy: { set: { city: "Okotoks" } },
+    violations: [{ name: "another community: Foothills County residents also qualify", fragment: { set: { city: OTHER_CITY.AB } }, expect: "almost" }],
+  },
+  exciseMobilityImpairment: external("Depends on a permanent mobility impairment with unsafe public transportation, which the wizard cannot establish."),
+  fortsaskIncomeRoute: external("Depends on receiving funding from an approved government program or meeting the Statistics Canada low income thresholds, neither of which the wizard asks."),
   mhrtcQualifyingIndividual: {
     evidence: "answers",
     satisfy: { set: { dtc: "yes", ageBand: "19to59" } },
@@ -756,7 +776,7 @@ const PROGRAM_BEST_CASE = {
   "okotoks-fee-assistance":                        "ready",
   "canmore-affordable-services":                   "ready",
   "lloydminster-recreation-access":                "ready",
-  "fortsask-access":                               "ready",
+  "fortsask-access":                               "almost",
   "local-supports":                                "ready",
   "bc-pwd-designation":                            "almost",
   "bc-fair-pharmacare":                            "ready",
