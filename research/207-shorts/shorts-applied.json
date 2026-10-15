@@ -1,4 +1,24 @@
 {
+  "waterlooHomemakingFinancial": {
+    "short": "Ask the Region about the low income or social support route",
+    "who": ["you", "program"],
+    "reason": "Preserves the Region's low income or social support alternatives"
+  },
+  "windsorEssex": {
+    "short": "Check Windsor-Essex residency and local program eligibility",
+    "who": ["you", "program"],
+    "reason": "Preserves Windsor-Essex scope, wizard city limitation and municipal eligibility qualifier"
+  },
+  "yorkRecreationFamilyRoute": {
+    "short": "Check which York Region subsidy route applies to your family",
+    "who": ["you", "program"],
+    "reason": "Keeps listed receipt routes, child care income threshold and overnight housing qualifier in full"
+  },
+  "yorkRecreationAge": {
+    "short": "Check the age range for the subsidy you want",
+    "who": ["you"],
+    "reason": "Keeps distinct PLAY, day camp and overnight ranges and the single parent route in full"
+  },
   "torontoFairPassAge": {
     "short": "Check the Fair Pass age range and other TTC fares",
     "who": ["you"],
@@ -686,7 +706,7 @@
     "reason": "Leaves no-available-helper restriction for assisted collection and approved bag-tag route in full; neither is promised"
   },
   "yorkHomemakersNeed": {
-    "short": "Call York Region to ask about health and financial need rules",
+    "short": "Contact York Region to ask about health and financial need rules",
     "who": [
       "you",
       "program"

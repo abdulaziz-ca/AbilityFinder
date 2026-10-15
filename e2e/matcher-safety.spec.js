@@ -1845,7 +1845,7 @@ test("York Region programs reach every member city, and stop at the boundary", a
     const inCity = await evaluateProfile(page, {
       province: "ON", city, income: "low", ageBand: "6to11", ageGroup: "child", forWho: "child",
     });
-    expect(inCity["york-region-recreation-subsidies"].status, `${city} should see the York subsidy`).toBe("ready");
+    expect(inCity["york-region-recreation-subsidies"].status, `${city} should see the York subsidy`).toBe("almost");
   }
 
   // And a city outside York Region must not.

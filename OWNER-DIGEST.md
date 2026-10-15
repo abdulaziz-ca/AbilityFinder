@@ -4,6 +4,33 @@ The one place to see what Claude and Codex did while you were away. Newest entry
 Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisions we made for you**
 (all reversible) · **Needs you** (only things an agent may not decide).
 
+## 2026-10-17
+
+### Shipped — the full catalogue re-check is finished
+- **Batch 7** — `7c3940a`, `?v=179` (CI 732/732). Codex reviewed what Claude built while it was out of usage and
+  caught two over-matches (MobilityPLUS and Okotoks) plus an unsourced Leduc claim; all fixed before release.
+  DTC applications now point to the digital DTC form or mail (not CRA's "submit documents"); Leduc recreation is
+  closed until January 2027; GRT's online application is temporarily down.
+- **Batch 6 follow-up** — Codex's review found CLBC could show "Matches your answers" from an autism answer alone;
+  the page also requires significant help with day-to-day tasks. Fixed (CLBC now shows "More to check").
+- **Batch 8** — `e4c3198`, `?v=180` (CI 738/738). Ontario Passport amounts are now $5,665 a year and up to
+  $45,604 (we had last year's $5,500 / $44,275); Toronto Fair Pass ages 20 to 64; Hamilton no longer turns
+  away people on Ontario Works or ODSP; Trillium's quarterly deductible.
+- **Batch 9** — the last 11 records (ADP, Ontario parking permit, autism program, SSAH, Waterloo, Windsor,
+  York Region). York Region recreation now shows "More to check" because its real routes are benefits the
+  questionnaire doesn't ask about.
+- **All 134 records have now been checked against their official pages** (since 2026-10-14). Across nine
+  batches roughly 220 published facts were corrected. Every change was decided against the full page text
+  and checked by the other agent before release; nothing was made to look more certain than the page.
+
+### Still open (small)
+- Waterloo Ontario Renovates: whether repairs and accessibility have separate $25,000 limits needs the
+  program's fact sheet (not yet fetched).
+- Two official pages contain typos ("$74.109", "$600,00"); we kept the correct figures.
+
+### Needs you
+- Nothing.
+
 ## 2026-10-16
 
 ### Shipped

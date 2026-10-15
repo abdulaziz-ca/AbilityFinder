@@ -154,3 +154,121 @@ Snapshot facts (`--1`): PLAY "assist children ages four to 18 and single parents
 - Regenerate guides and context; run unit and e2e suites (e2e alone).
 
 Count: 16 FIX / 2 KEEP / 0 OPEN
+
+## Fixes applied
+
+Applied all sixteen FIX decisions; both KEEP decisions are untouched.
+Only the supplied snapshots were used as factual evidence. No live-page
+email address was inferred from the York placeholder.
+
+### Per-item disposition
+
+| Item | Result | Applied change |
+|---|---|---|
+| 1 | KEEP | ADP fixed-price “may”, amount and values note unchanged. |
+| 2 | FIX | Added “Generally” to Ontario residence and health-card eligibility; document entry unchanged. |
+| 3 | FIX | Restored the general qualification hedge in disability/duration eligibility, tip and `adpClinical` text. |
+| 4 | FIX | Restored “Generally” in device-specific clinical eligibility; gate opening sentence unchanged. |
+| 5 | FIX | Preserved both qualifying-for and receiving-support exclusions, including the Group A veteran qualifier. |
+| 6 | FIX | Added the direct grant/any-business exception to the purchase step and ADP effort metadata; existing usual billing wording retained. |
+| 7 | FIX | Restored maximum visual field, both eyes and diameter conditions. |
+| 8 | KEEP | Parking permit wait metadata, including “about 7 weeks”, unchanged. |
+| 9 | FIX | OAP re-registration is an exemption, not a prohibition; supporting documents restored in note and tip. |
+| 10 | FIX | SSAH infant tip preserves regulated professional, written statement, probability or presence, ongoing functional limitations and approximate reassessment age. |
+| 11 | FIX | Municipal curbside collection condition restored in waste eligibility, about-list item and approval gate. |
+| 12 | FIX | Waste note includes tagged bags without dropping any handling restriction. |
+| 13 | FIX | Homemaking uses `waterlooHomemakingFinancial`, preserving low income or social support. |
+| 14 | FIX | Added the reimbursement request deadline, distinct from the unchanged change-reporting deadline. |
+| 15 | FIX | Recreation uses hard `windsorEssex`; Windsor-Essex scope and municipal variability are explicit. |
+| 16 | FIX | Replaced phone exclusivity with contact wording in tip and gate cue/full text. Existing `steps[0]`, including its unverified email, is byte-for-byte unchanged; no email was added or confirmed. |
+| 17 | FIX | York recreation uses the external listed-route gate; updated eligibility, route-specific note, summary, about and lead. Deliberately changed best-case `ready` to `almost`. |
+| 18 | FIX | York recreation uses its soft age gate; retained PLAY single parents, distinct program ranges and under-six uncertainty. |
+
+### Gates, shared-check audit and status changes
+
+- `waterlooHomemakingFinancial`: `met: () => lowIncome()`, `fixed: false`.
+  Low income still yields `almost` because the need gate is external.
+  For otherwise matching moderate/high-income profiles, `no` becomes
+  `almost`: social support is an alternative the wizard cannot establish.
+- `windsorEssex`: Windsor city predicate, `fixed: true`, exactly as decided.
+  No status change. Added a digit-free short cue and paired `who` array
+  for readability; full source-qualified wording remains behind it.
+  Other Essex towns remain unavailable in the city selector.
+- `yorkRecreationFamilyRoute`: always unmet, `fixed: false`.
+  Otherwise matching York child/low-income profiles deliberately change
+  from `ready` to `almost`: income alone establishes no listed route.
+  Moderate/high-income York profiles formerly excluded by `lowIncome`
+  now receive `almost`, not an unsupported categorical rejection.
+- `yorkRecreationAge`: matches the decided school-age bands through
+  eighteen, `fixed: false`. York profiles formerly excluded by `child`
+  now receive `almost`, including age eighteen and possible single-parent
+  routes. Under-six remains unresolved because four-to-five cannot be
+  distinguished; formerly ready low-income under-six profiles also become
+  `almost`. No profile is made ready by these changes. Outside York Region
+  remains `no`, because `yorkRegion` is still hard.
+- Grep verified the unchanged `lowIncome`, `child` and `windsor` definitions
+  and the remaining `windsor-affordable-pass` use of `windsor`; therefore
+  the shared gate and its oracle entry were retained.
+- Programmatic comparison against HEAD verified every pre-existing gate
+  unchanged except the three approved record-specific text edits:
+  `adpClinical`, `waterlooWasteSupportApproval`, `yorkHomemakersNeed`.
+  Only the three approved records changed `requires`; all other benefits
+  retain their prior shared checks.
+
+### Oracle and readability
+
+- Bumped `SPEC_VERSION` once, from `1.27.0` to `1.28.0`.
+- Added four oracle gate entries: Waterloo financial answer evidence with
+  moderate/high `almost` violations; Windsor municipality evidence;
+  York route external evidence with the decided explanation; York age
+  answer evidence with the under-six `almost` violation.
+- Changed only the York recreation best-case baseline to `almost` and the
+  five-city matcher assertion accordingly. Guelph remains `no`.
+- Updated the applied cue inventory for the four new gates and the
+  York homemaker contact cue. All cues are bounded, digit-free and have
+  paired `who` arrays; the layout test passes.
+- Dense-gate baseline rises only from 111 to 115 for the four new
+  qualifier-preserving, source-worded gate explanations. No other surface
+  count or maximum was increased; no qualifier was removed to meet a cap.
+  Flagged gates with cues are 114 of 115; uncued count remains one.
+- `BENEFIT_VERIFIED` is entirely unchanged. This is a targeted correction,
+  not a claim that all fact rows are now verified. In particular Windsor
+  retains NOT ON PAGE residency-duration and MBM-threshold rows; the York
+  email remains unverified, and other unsupported rows remain as reported.
+
+### Data procedure and validation
+
+- Asset pins changed from 180 to 181 in index, stylesheet font URLs and
+  every generated guide. Historical changelog entries were not rewritten.
+- Added a `DATA_CHANGELOG` entry and ran `npm run gen:context` and
+  `npm run gen:guides` after the final app/data changes.
+- `npm run check:surfaces`: passed; counts are gate 115, eligibility note
+  44, about 94, about-list item 150, summary 26, note 67.
+- Initial `npm test`: 169/172 passed; three density/cue-inventory guards
+  exposed the required baseline and cue updates. Final: **172/172 passed**,
+  zero failures or skips. No test assertions were weakened.
+- Whole `npx playwright test --project=app-chromium --workers=1`, run alone:
+  first run **234/235 passed**, one HATC app-initialization wait timed out.
+  A fresh whole-project run with the same command, no timeout changes and
+  no retries, passed **235/235**, zero failures. Listed: **235 tests in
+  22 files**; passed equals listed. Batch-nine and oracle checks passed
+  in both runs. The initial timeout is retained in the first run log.
+- `git diff --check`: passed. No commit or push. No changes to
+  `TASKVIEW-*.md`, `AGENTS.md`, `OWNER-DIGEST.md` or `.taskview/`.
+
+### Changed files
+
+- `public/data.js`, `public/app.js`, `public/changelog.js`.
+- `public/index.html`, `public/styles.css` (asset pins).
+- All 134 files under `public/guides/` (133 benefit guides plus index;
+  every guide has the asset-pin change, affected guides also have new copy).
+- `src/benefits-context.js` (generated). The context generator also ran for
+  `src/links.js`, but that file has no diff; sitemap also has no diff.
+- `e2e/oracle/oracle-spec.js`, `e2e/matcher-safety.spec.js`.
+- `research/197-info-density/DENSE-SURFACES-REPORT.md`,
+  `research/197-info-density/dense-surface-baseline.json`.
+- `research/207-shorts/shorts-applied.json` and this decisions file.
+- New validation logs under `outputs/`: `batch9-context.log`,
+  `batch9-guides.log`, `batch9-surfaces.log`, `batch9-unit.log`,
+  `batch9-playwright.log`, `batch9-playwright-final.log`,
+  `batch9-playwright-listed.log`. Pre-existing untracked files were left alone.

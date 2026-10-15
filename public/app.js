@@ -361,7 +361,7 @@ const REQS = {
     met: () => false,
     fixed: false,
     unmet:
-      "Each ADP device category has its own clinical criteria. A registered authorizer for that device type must assess you and confirm you meet them, and that the equipment is needed for 6 months or longer.",
+      "Each ADP device category has its own clinical criteria. A registered authorizer for that device type must assess you and confirm you meet them, and that the equipment is generally needed for 6 months or longer.",
     action: { text: "See how to apply by device type", url: "https://www.ontario.ca/page/assistive-devices-program" },
   },
   oapDiagnosis: {
@@ -1234,6 +1234,34 @@ const REQS = {
       "The Region must confirm the family-size income maximum, the home's maximum $600,000 value, sole and principal residence with no other property ownership, up-to-date property taxes and mortgage payments, and full-value home insurance.",
     action: { text: "See funding and application details", url: "https://www.regionofwaterloo.ca/programs-and-services/employment-and-financial-supports/financial-support-for-renters-and-homeowners/funding-for-home-repairs/" },
   },
+  waterlooHomemakingFinancial: {
+    short: "Ask the Region about the low income or social support route",
+    who: ["you", "program"],
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "The Region lists financial criteria of low income or social support. Ask the Region which applies to you.",
+  },
+  windsorEssex: {
+    short: "Check Windsor-Essex residency and local program eligibility",
+    who: ["you", "program"],
+    met: () => answers.city === "Windsor",
+    fixed: true,
+    unmet: "This is for Windsor-Essex residents. This tool can only place residents of the City of Windsor, and the program says eligibility may differ across municipalities.",
+  },
+  yorkRecreationFamilyRoute: {
+    short: "Check which York Region subsidy route applies to your family",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "York Region lists routes such as receiving a rent subsidy, Ontario Works, ODSP or ACSD, or a child care fee subsidy with an annual income of $43,000 or less. Overnight camp also lists some housing communities. Families who meet one of the Region's listed routes may be eligible.",
+  },
+  yorkRecreationAge: {
+    short: "Check the age range for the subsidy you want",
+    who: ["you"],
+    met: () => ageIn("6to11", "12to15", "16to17", "18"),
+    fixed: false,
+    unmet: "PLAY assists children ages four to 18 and single parents. Summer day camp is for ages four to 12, and youth overnight camp for ages 12 to 17.",
+  },
   waterlooHomemakingNeed: {
     short: "Ask about the program's home help review and the records it needs",
     who: ["you", "program"],
@@ -1249,16 +1277,16 @@ const REQS = {
     met: () => false,
     fixed: false,
     unmet:
-      "Assisted collection is for a disability or physical limitation when nobody is available to help; the medical exemption's bag tags go to approved applicants. Either way you apply to the Region first.",
+      "Assisted collection is for a disability or physical limitation when nobody is available to help, and only for eligible households that receive municipal curbside waste collection; the medical exemption's bag tags go to approved applicants. Either way you apply to the Region first.",
     action: { text: "See both waste support programs", url: "https://www.regionofwaterloo.ca/programs-and-services/garbage-and-organics/garbage/curbside-waste-support/" },
   },
   yorkHomemakersNeed: {
-    short: "Call York Region to ask about health and financial need rules",
+    short: "Contact York Region to ask about health and financial need rules",
     who: ["you", "program"],
     met: () => false,
     fixed: false,
     unmet:
-      "York Region checks that you are temporarily or permanently ill or disabled and that you meet its financial need requirements. The thresholds are not published, so you need to call.",
+      "York Region checks that you are temporarily or permanently ill or disabled and that you meet its financial need requirements. The thresholds are not published, so you need to contact York Region.",
     action: { text: "Call York Region to apply", url: "https://www.york.ca/support/financial-assistance/homemakers-services" },
   },
   visionDisability: {

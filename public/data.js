@@ -368,7 +368,7 @@ const BENEFIT_META = {
   hvmp: { difficulty: 3, effort: "Application details via the March of Dimes website; eligibility assessed by the program's service coordinator", wait: "Not published" },
   ssah: { difficulty: 3, effort: "Application with medical documentation, sent to your local Ministry regional office", wait: "Not published" },
   acsd: { difficulty: 3, effort: "Online or paper application reviewed by a special agreements officer", wait: "Not published" },
-  "on-adp": { difficulty: 3, effort: "Assessment by a registered authorizer, then purchase through a registered vendor", wait: "Not published" },
+  "on-adp": { difficulty: 3, effort: "Assessment by a registered authorizer, then purchase (through a registered vendor, except for grant-funded equipment)", wait: "Not published" },
   "ontario-autism-program": { difficulty: 2, effort: "Create an AccessOAP account and register with the written diagnosis", wait: "Not published" },
   odsp: { difficulty: 4, effort: "Online, phone or in-person application, plus a Disability Determination Package unless you are in a prescribed class", wait: "A few months" },
   "on-parking-permit": { difficulty: 2, effort: "Application + a regulated health professional certifies your condition", wait: "Up to 3 weeks (online or mail); about 7 weeks (in person)" },
@@ -1212,7 +1212,7 @@ const BENEFITS = [
     summary:
       "The Region funds agencies to help eligible people live independently with light housekeeping, meal planning and preparation, and laundry. The waitlist is currently approximately 2–3 years, except under special circumstances.",
     note: "Once you reach the top of the waitlist, full disclosure of financial and health information is required to confirm eligibility. Crisis cleans may be considered when there is a serious and immediate threat to a household's safety and/or housing stability, such as severe unsanitary conditions, infestation or hoarding.",
-    requires: ["waterlooRegion", "lowIncome", "waterlooHomemakingNeed"],
+    requires: ["waterlooRegion", "waterlooHomemakingFinancial", "waterlooHomemakingNeed"],
     eligibility: {
       mode: "all",
       items: [
@@ -1265,12 +1265,12 @@ const BENEFITS = [
     amount: "Assisted cart collection, or 30 garbage bag tags a year at no charge for approved applicants",
     summary:
       "Two supports for Waterloo Region residents who create extra medical-related waste and/or have a disability or physical limitation that makes it difficult to place black and green carts at the curb: assisted cart set-out and a medical exemption with 30 free garbage bag tags per year for approved applicants.",
-    note: "Assisted Waste Collection is only for moving Region-issued black garbage and green organics carts from an agreed set-out location to the curb. Staff do not empty indoor containers, move carts from another location, collect outside the regular schedule, or enter homes or garages.",
+    note: "Assisted Waste Collection moves Region-issued black garbage and green organics carts from an agreed set-out location to the curb. Tagged bags are also collected. Staff do not empty indoor containers, move carts from another location, collect outside the regular schedule, or enter homes or garages.",
     requires: ["waterlooRegion", "waterlooWasteSupportApproval"],
     eligibility: {
       mode: "any",
       items: [
-        "For Assisted Waste Collection: you live with a disability or physical limitation, need help placing Region-issued black and green carts at the curb, and do not have someone available to help",
+        "For Assisted Waste Collection: you live with a disability or physical limitation, need help placing Region-issued black and green carts at the curb, and do not have someone available to help. It is available to eligible households that receive municipal curbside waste collection",
         "For the Medical Exemption Program: medical needs create extra garbage, such as packaging, incontinence products or unrecyclable medical waste",
       ],
       note: "The Region presents these as two support programs on one page. Approval depends on the requirements for the program you apply to.",
@@ -1284,7 +1284,7 @@ const BENEFITS = [
       aboutList: {
         lead: "One page covers two different curbside waste supports.",
         items: [
-          "Assisted Waste Collection is for residents with a disability or physical limitation who need help placing Region-issued black garbage and green organics carts at the curb and do not have someone available to help.",
+          "Assisted Waste Collection is for residents with a disability or physical limitation who need help placing Region-issued black garbage and green organics carts at the curb and do not have someone available to help. It is available to eligible households that receive municipal curbside waste collection.",
           "It does not include emptying indoor containers into carts, moving carts from anywhere other than the agreed set-out location, or collecting waste outside the regular schedule.",
           "Collection staff will not enter homes or garages.",
           "The Medical Exemption Program is for medical needs that create extra garbage, such as packaging, incontinence products or unrecyclable medical waste.",
@@ -1603,7 +1603,7 @@ const BENEFITS = [
       ],
       tips: [
         "Temporary illness counts, not only permanent disability — worth asking about while recovering from surgery or a hospital stay.",
-        "Neither the amount of help nor the financial thresholds are published, so calling is the only way to find out where you stand.",
+        "Neither the amount of help nor the financial thresholds are published, so contact York Region to find out where you stand.",
       ],
       phone: "1-877-464-9675",
     },
@@ -1615,25 +1615,24 @@ const BENEFITS = [
     category: "Recreation",
     amount: "Subsidies for recreation programs, day camps and youth overnight camps",
     summary:
-      "York Region funds subsidies that let children from low-income families join recreation programs and camps run by their municipality, plus overnight camp funding for youth aged 12 to 17.",
+      "York Region funds recreation and camp subsidies; families who meet one of the Region's listed routes may be eligible. Children can join programs and camps run by their municipality, with overnight camp funding for youth aged 12 to 17.",
     note: "York Region does not guarantee space in programs or camps — a subsidy is not a place. Search on your city's site will not find this, because the Region funds it and the municipal recreation departments run the programs.",
-    requires: ["yorkRegion", "child", "lowIncome"],
+    requires: ["yorkRegion", "yorkRecreationAge", "yorkRecreationFamilyRoute"],
     eligibility: {
       mode: "all",
       items: [
-        "The child is from a family with low income",
-        "You live in a York Region municipality",
+        "A family that meets at least one listed route may be eligible if it lives in York Region, such as receiving a rent subsidy, Ontario Works, ODSP or ACSD, or a child care fee subsidy with an annual income of $43,000 or less",
       ],
-      note: "Three subsidies are offered: Positive Leisure Activities for Youth (PLAY), summer day camp funding, and youth overnight camp funding for eligible youth aged 12 to 17.",
+      note: "Three subsidies are offered: Positive Leisure Activities for Youth (PLAY), summer day camp funding, and youth overnight camp funding. Overnight camp funding is for eligible youth aged 12 to 17. PLAY assists children ages four to 18 and single parents. Summer day camp is for children ages four to 12. Routes differ a little by subsidy. Day camp families on a child care fee subsidy contact their Children's Services Representative. Overnight camp also lists some housing communities.",
     },
     applyText: "See York Region recreation subsidies",
     applyUrl: "https://www.york.ca/support/financial-assistance/recreation-subsidies",
     source: "https://www.york.ca/support/financial-assistance/recreation-subsidies",
     detail: {
       about:
-        "York Region offers subsidies for recreation programs, day camps and youth overnight camps. The recreation program and day camp subsidies let children from families with low income take part in programs offered by the municipal recreation departments. The youth overnight camp funding helps eligible youth aged 12 to 17 attend an approved overnight camp.",
+        "York Region offers subsidies for recreation programs, day camps and youth overnight camps. For the recreation program and day camp subsidies, families who meet one of the Region's listed routes may be eligible. Children take part in programs offered by the municipal recreation departments. The youth overnight camp funding helps eligible youth aged 12 to 17 attend an approved overnight camp.",
       aboutList: {
-        lead: "York Region funds recreation and camp subsidies for children from low-income families.",
+        lead: "York Region funds recreation and camp subsidies for children; families who meet one of the Region's listed routes may be eligible.",
         items: [
           "Positive Leisure Activities for Youth, known as PLAY.",
           "Summer day camp funding.",
@@ -1647,7 +1646,7 @@ const BENEFITS = [
         "Apply through York Region",
         "Register with your municipal recreation department for the program or camp itself",
       ],
-      documents: ["Information about your family's income"],
+      documents: ["Information about the benefit or subsidy your family receives (or, for the child care fee subsidy route, your income)"],
       tips: [
         "Looking on your city's website will not turn this up — York Region funds it and the city delivers the programs.",
         "The subsidy does not hold a spot for you, so register for the program early as well.",
@@ -1974,7 +1973,7 @@ const BENEFITS = [
     summary:
       "The Pathway to Potential Recreation Assistance Program's 90% Recreation Discount subsidizes eligible Windsor-Essex residents for 90% off eligible recreation program registration fees before taxes.",
     note: "Program eligibility may differ across municipalities. Apply or ask questions through your local municipal recreation department. Funding is first-come, first-served, and all approvals are determined by the local recreation department subject to local demands and budgets.",
-    requires: ["windsor", "lowIncome", "p2pIncomeTest"],
+    requires: ["windsorEssex", "lowIncome", "p2pIncomeTest"],
     eligibility: {
       mode: "all",
       items: [
@@ -1996,7 +1995,7 @@ const BENEFITS = [
           "90% off the program registration fee before taxes.",
           "Funding covers program registration fees, but not equipment or material costs.",
           "It extends to eligible programs and services delivered directly by municipal recreation departments and approved service organizations within Windsor-Essex County.",
-          "Payment is issued directly to the program provider, or you can request reimbursement if registration fees were paid in advance.",
+          "Payment is issued directly to the program provider, or you can request reimbursement if registration fees were paid in advance. A reimbursement request must be made within 30 days of payment.",
           "Program eligibility may differ across municipalities; contact your local municipal recreation department.",
         ],
       },
@@ -2580,7 +2579,7 @@ const BENEFITS = [
         "SSAH will not reimburse things another government program already funds, including devices paid for by the Assistive Devices Program and home or vehicle changes covered by the Home and Vehicle Modification Program.",
         "It also does not cover basic living expenses, transportation, dental care, private school tuition, or hands-on therapy and assessments such as ABA, speech-language therapy, occupational or physical therapy, and psychotherapy.",
         "You have one year from your funding end date to submit expenses. Funding received between April 1, 2025 and March 31, 2026 must be claimed by March 31, 2027.",
-        "For an infant without a definitive diagnosis, the professional describes the probability of delay and risk of further delay; eligibility is then decided again at about age 6.",
+        "For an infant without a definitive diagnosis, the regulated health professional gives a written statement describing the probability or presence of delay and risk of further delay that will result in ongoing functional limitations. Eligibility is then decided again at about age 6.",
       ],
     },
   },
@@ -2653,10 +2652,10 @@ const BENEFITS = [
     eligibility: {
       mode: "all",
       items: [
-        "An Ontario resident with a valid Ontario health card",
-        "A physical disability requiring the equipment or supplies for 6 months or longer",
-        "Meet the clinical criteria specific to the device you are applying for",
-        "Not already receiving support for the same equipment from the Workplace Safety and Insurance Board, or as a Group \"A\" veteran from Veterans Affairs Canada",
+        "Generally, an Ontario resident with a valid Ontario health card",
+        "Generally, a physical disability requiring the equipment or supplies for 6 months or longer",
+        "Generally, meet the clinical criteria specific to the device you are applying for",
+        "Not already qualifying for, or receiving, financial support for the same equipment or supplies from the Workplace Safety and Insurance Board. Group \"A\" veterans are also excluded if they already qualify for, or receive, support from Veterans Affairs Canada",
       ],
       note: "Your income is not considered.",
     },
@@ -2679,7 +2678,7 @@ const BENEFITS = [
       steps: [
         "Check that the equipment or supplies you need are a category ADP funds",
         "See a registered authorizer for your device type, who assesses you and confirms you meet the clinical criteria for it",
-        "Buy the device from an ADP-registered vendor, who usually bills ADP for its share directly",
+        "Buy the device from an ADP-registered vendor, who usually bills ADP for its share directly. For a grant, ADP pays you directly and you can buy from any business you choose",
         "Pay your share of the cost, plus any optional accessories or services you choose",
       ],
       documents: [
@@ -2688,7 +2687,7 @@ const BENEFITS = [
       ],
       tips: [
         "Income is not part of the test — ADP does not look at what you earn.",
-        "The equipment must be needed for 6 months or longer.",
+        "Generally, the equipment must be needed for 6 months or longer.",
         "ADP does not cover repairs, and you are responsible for care and maintenance.",
         "If you cannot afford your share, Easter Seals Ontario, The War Amps and Lions Clubs may be able to help.",
         "Replacement may be funded if your condition changes, or if the equipment is out of warranty and cannot be repaired at a reasonable cost.",
@@ -2704,7 +2703,7 @@ const BENEFITS = [
     amount: "Needs-based services and supports",
     summary:
       "Services and supports for children and youth on the autism spectrum in Ontario, until they turn 18 — including foundational family services, caregiver-mediated early years programs, core clinical services, an entry to school program, and urgent response services.",
-    note: "Register once through AccessOAP, the program's independent intake organization. Do not register again if you already registered with the Ontario Autism Program or already submitted a registration form to the Ministry of Children, Community and Social Services.",
+    note: "Register once through AccessOAP, the program's independent intake organization. You do not need to register again if you already registered with the Ontario Autism Program or already submitted a registration form and supporting documents to the Ministry of Children, Community and Social Services.",
     requires: ["on", "child", "autismSelected", "oapDiagnosis"],
     eligibility: {
       mode: "all",
@@ -2741,7 +2740,7 @@ const BENEFITS = [
         "The written autism diagnosis, showing the child's full name and date of birth, the assessment date, a statement that the child meets the diagnostic criteria for autism spectrum disorder, and the professional's name and credentials",
       ],
       tips: [
-        "Register once — do not register again if you already registered with the OAP or already sent a form to the ministry.",
+        "Register once — you do not need to register again if you already registered with the OAP or already sent a registration form and supporting documents to the ministry.",
         "If you registered before April 2021, ask about interim one-time funding and childhood budgets.",
         "Behaviour plans are no longer part of the program; they have been replaced by other services.",
         "Your child may also qualify for Special Services at Home or the Assistance for Children with Severe Disabilities program.",
@@ -2836,7 +2835,7 @@ const BENEFITS = [
         "Portable oxygen is a medical necessity",
         "Cardiovascular disease at Class III or Class IV functional capacity",
         "Severely limited in the ability to walk by an arthritic, neurological, musculoskeletal, or orthopaedic condition",
-        "Visual acuity of 20/200 or poorer in the better eye with corrective lenses, or a field of vision of 20 degrees or less",
+        "Visual acuity of 20/200 or poorer in the better eye with corrective lenses, or a maximum field of vision using both eyes with a diameter of 20 degrees or less",
         "Mobility is severely limited by one or more conditions or functional impairments",
       ],
       note:

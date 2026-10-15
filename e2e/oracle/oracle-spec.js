@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.27.0";
+const SPEC_VERSION = "1.28.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -250,6 +250,23 @@ const GATES = {
     violations: [{ name: "Waterloo Region township", fragment: { set: { city: "North Dumfries" } }, expect: "no" }],
   },
   waterlooRenovatesEligibility: external("Depends on the Region confirming the family-size income maximum, home value, sole-and-principal-residence and other-property rules, current taxes and mortgage, and full-value insurance; the wizard does not ask those details."),
+  waterlooHomemakingFinancial: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [
+      { name: "moderate income: social support route not collected", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "high income: social support route not collected", fragment: { set: { income: "high" } }, expect: "almost" },
+    ],
+  },
+  windsorEssex: municipality("Windsor", "ON"),
+  yorkRecreationFamilyRoute: external("The wizard does not ask about rent subsidy, Ontario Works, ODSP, ACSD or child care fee subsidy receipt, so no answer can establish a listed route."),
+  yorkRecreationAge: {
+    evidence: "answers",
+    satisfy: { set: { ageBand: "6to11" } },
+    violations: [
+      { name: "age under 6: four to five not distinguishable", fragment: { set: { ageBand: "under6" } }, expect: "almost" },
+    ],
+  },
   waterlooHomemakingNeed: external("Depends on the program confirming significant functional impairment affecting homemaking, the reason help is needed at home, and full financial and health information when the applicant reaches the top of the waitlist."),
   waterlooWasteSupportApproval: external("Depends on Region approval under either the assisted-collection route or the medical-waste route; the wizard cannot establish every condition for either route."),
   yorkHomemakersNeed: external("Depends on York Region's unpublished financial need assessment and confirmation of illness or disability."),
@@ -820,7 +837,7 @@ const PROGRAM_BEST_CASE = {
   "grt-taxi-coupons":                              "almost",
   "grt-support-person":                            "almost",
   "york-region-homemakers":                        "almost",
-  "york-region-recreation-subsidies":              "ready",
+  "york-region-recreation-subsidies":              "almost",
   "ottawa-community-pass":                         "almost",
   "ottawa-access-pass":                            "almost",
   "ottawa-equipass":                               "ready",
