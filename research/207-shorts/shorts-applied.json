@@ -1,4 +1,14 @@
 {
+  "torontoFairPassAge": {
+    "short": "Check the Fair Pass age range and other TTC fares",
+    "who": ["you"],
+    "reason": "Retains the page age rule and youth, student and seniors fare referral behind a short cue"
+  },
+  "hamiltonFareRoute": {
+    "short": "Check the Ontario Works, ODSP or household income route",
+    "who": ["you", "program"],
+    "reason": "Hamilton accepts OW or ODSP recipients as an alternative to household income below the Low-Income Measure; receipt is not collected"
+  },
   "surreyLeisureRoute": {
     "short": "Check which Surrey Leisure Access route applies",
     "who": ["you"],

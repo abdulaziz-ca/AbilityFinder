@@ -167,7 +167,7 @@ const BENEFIT_VALUES = {
   "toronto-fair-pass": { kind: "discount", note: "36% off adult single TTC fares — $2.10 instead of $3.30, monthly cap $98.70" },
   "toronto-welcome-policy": { kind: "discount", note: "$683.04/year up to age 24; $314.60/year at 25 and over" },
   "trillium-drug-program": { kind: "coverage", excludeFromEstimate: true, note: "for most people the deductible is about 4% of after-tax household income, then up to $2 for each drug filled or refilled" },
-  "passport-program": { kind: "grant", excludeFromEstimate: true, note: "$5,500 a year minimum; up to $44,275 based on assessed need" },
+  "passport-program": { kind: "grant", excludeFromEstimate: true, note: "$5,665 a year minimum; up to $45,604 based on assessed need" },
   hvmp: { kind: "grant", excludeFromEstimate: true, note: "funds approved home or vehicle modifications; no published maximum" },
   ssah: { kind: "grant", excludeFromEstimate: true, note: "discretionary funding for respite and support services; no published amount" },
   acsd: { kind: "cash", excludeFromEstimate: true, monthlyMax: 678, note: "income-tested; $25 to $678 a month depending on income, family size and disability costs (July 2026)" },
@@ -347,7 +347,7 @@ const BENEFIT_META = {
   "grt-cnib-pass": { difficulty: 1, effort: "Call GRT to arrange a special CNIB EasyGO fare card", wait: "Not published" },
   "grt-mobilityplus": { difficulty: 3, effort: "Two-part application, including a Health/Disability Professional form", wait: "Not published" },
   "grt-taxi-coupons": { difficulty: 1, effort: "Order by phone, buy in person, or mail a cheque with your MobilityPLUS ID", wait: "Not published" },
-  "grt-support-person": { difficulty: 2, effort: "Online or paper application, usually completed by a registered health professional", wait: "Not published" },
+  "grt-support-person": { difficulty: 2, effort: "Online or paper application; a PAL card number, or the health-care professional's section (completed by a professional with a listed designation)", wait: "GRT sends a letter within 14 calendar days of receiving your application saying whether you are approved" },
   "york-region-homemakers": { difficulty: 2, effort: "Phone York Region and go through a financial need assessment", wait: "Not published" },
   "york-region-recreation-subsidies": { difficulty: 2, effort: "Apply through York Region, then register with your municipal recreation department", wait: "Not published" },
   "ottawa-community-pass": { difficulty: 2, effort: "Set the discount at a Customer Service Centre with your ODSP number and Presto card", wait: "Not published" },
@@ -357,12 +357,12 @@ const BENEFIT_META = {
   "london-ontario-renovates": { difficulty: 3, effort: "Application package with income, property and asset documents plus three repair estimates", wait: "Not published — first come, first served until funds run out" },
   "windsor-affordable-pass": { difficulty: 2, effort: "Application through the local municipal transit department with proof of income and residency", wait: "Not published — funding is first-come, first-served and subject to local demands and budgets" },
   "windsor-recreation-assistance": { difficulty: 2, effort: "Application through the local municipal recreation department with proof of income and residency", wait: "Not published — funding is first-come, first-served and subject to local demands and budgets" },
-  "hamilton-fare-assist": { difficulty: 2, effort: "Application with proof of total household income", wait: "Not published" },
+  "hamilton-fare-assist": { difficulty: 2, effort: "Application with your Ontario Works or ODSP Member ID, or a Notice of Assessment for each family member", wait: "Not published" },
   "brampton-activeassist": { difficulty: 2, effort: "Application online, in person at a recreation centre, or by mail, with supporting documents", wait: "Not published — the City has noted longer waits" },
   "mississauga-activeassist": { difficulty: 2, effort: "Application at a community centre or online with original supporting documents", wait: "Within 15 business days" },
   "ottawa-hand-in-hand": { difficulty: 2, effort: "Application form, approved in person at a recreation or cultural facility", wait: "Not published" },
   "toronto-fair-pass": { difficulty: 2, effort: "Online application with a PRESTO card number, plus proof of income or an OW/ODSP member ID", wait: "Not published" },
-  "toronto-welcome-policy": { difficulty: 2, effort: "Application with documents for each family member", wait: "Not published" },
+  "toronto-welcome-policy": { difficulty: 2, effort: "Application with proof of income for each family member 18 or older, or an OW, ODSP or Child Care Fee Subsidy ID", wait: "Email on the outcome within 5 business days; paper applications can take up to 8 weeks; missing documents add time" },
   "trillium-drug-program": { difficulty: 2, effort: "Household application, online or on paper", wait: "Not published" },
   "passport-program": { difficulty: 4, effort: "Apply through Developmental Services Ontario, then work with a local Passport agency", wait: "Not published" },
   hvmp: { difficulty: 3, effort: "Application details via the March of Dimes website; eligibility assessed by the program's service coordinator", wait: "Not published" },
@@ -370,7 +370,7 @@ const BENEFIT_META = {
   acsd: { difficulty: 3, effort: "Online or paper application reviewed by a special agreements officer", wait: "Not published" },
   "on-adp": { difficulty: 3, effort: "Assessment by a registered authorizer, then purchase through a registered vendor", wait: "Not published" },
   "ontario-autism-program": { difficulty: 2, effort: "Create an AccessOAP account and register with the written diagnosis", wait: "Not published" },
-  odsp: { difficulty: 4, effort: "Online, phone or in-person application + a Disability Determination Package", wait: "A few months" },
+  odsp: { difficulty: 4, effort: "Online, phone or in-person application, plus a Disability Determination Package unless you are in a prescribed class", wait: "A few months" },
   "on-parking-permit": { difficulty: 2, effort: "Application + a regulated health professional certifies your condition", wait: "Up to 3 weeks (online or mail); about 7 weeks (in person)" },
   "dres": { difficulty: 3, effort: "Application + disability documentation", wait: "varies" },
   "cpp-childrens-benefit": { difficulty: 2, effort: "Apply with the parent's CPP-D", wait: "monthly once approved" },
@@ -1546,16 +1546,17 @@ const BENEFITS = [
         "Complete the online application",
         "Or call GRT customer service to have a form mailed to you",
         "Or pick up a form at any GRT customer service location",
-        "Unless the PAL shortcut applies, have a registered health professional complete the application",
+        "If you are not enrolled in PAL, the application should be completed by a registered health-care professional with one of the designations GRT lists (for example physician, nurse practitioner, nurse or occupational therapist, or others approved by the Region)",
       ],
       documents: [
         "A completed Transit Support Person application",
         "If you are currently enrolled in the Personal Assistant for Leisure Activities program through the City of Kitchener, City of Waterloo or City of Cambridge: your PAL card number",
-        "Otherwise: the part of the application completed by a registered health professional",
+        "If you are not in PAL: the part of the application that should be completed by a registered health-care professional with a designation GRT lists",
       ],
       tips: [
         "If you are currently enrolled in the Personal Assistant for Leisure Activities (PAL) program through the City of Kitchener, City of Waterloo or City of Cambridge, your health care professional does not have to fill out the application. Provide your PAL card number instead.",
         "Your support person can be anyone 13 or older who travels with you to assist, including a family member, friend, paid attendant or volunteer.",
+        "Any fees a health-care professional charges are not reimbursed by GRT.",
       ],
     },
   },
@@ -2030,14 +2031,14 @@ const BENEFITS = [
     category: "Transit",
     amount: "50% off single-ride PRESTO fares for a year",
     summary:
-      "Half-price single-ride PRESTO fares on Hamilton transit for households at or below the Low-Income Measure, including people receiving ODSP or CPP Disability. It applies to accessible DARTS trips as well as conventional buses, and covers everyone eligible in the household.",
+      "Half-price single-ride PRESTO fares on Hamilton transit for households below the Low-Income Measure, including people receiving ODSP or CPP Disability. It applies to accessible DARTS trips as well as conventional buses, and covers everyone eligible in the household.",
     note: "The discount does not apply to monthly or annual passes. It lasts one year from approval and you re-apply each year. Fare Assist became permanent on January 1, 2026, and replaced two earlier programs: the Affordable Transit Pass for Ontario Works recipients, and the Temporary Transit Fare Special Program for people using a personal mobility device such as a wheelchair, scooter or walker, and for CNIB cardholders.",
-    requires: ["hamilton", "lowIncome"],
+    requires: ["hamilton", "hamiltonFareRoute"],
     eligibility: {
       mode: "all",
       items: [
         "You live in Hamilton",
-        "Your total household income is at or below the Statistics Canada Low-Income Measure for your family size",
+        "You receive Ontario Works or ODSP, or your total household income is below the Statistics Canada Low-Income Measure for your family size",
       ],
       note: "Eligibility is based on total household income regardless of where the income comes from — employment, Ontario Works, ODSP, the Canada Pension Plan disability benefit, Employment Insurance, or WSIB payments all count the same way. Recent refugees, newcomers to Canada, and people aged 18 or 19 who have not yet filed a tax return may also qualify. After-tax income limits by family size: $30,255 for 1 person, $42,787 for 2, $52,403 for 3, $60,510 for 4, $67,652 for 5, $74,109 for 6, $80,047 for 7, $85,574 for 8, $90,765 for 9 and $95,675 for 10.",
     },
@@ -2046,7 +2047,7 @@ const BENEFITS = [
     source: "https://www.hamilton.ca/home-neighbourhood/hsr/fares/hsr-fare-assist",
     detail: {
       about:
-        "Fare Assist gives Hamilton residents living at or below the Statistics Canada Low-Income Measure a 50 per cent discount on single-ride PRESTO fares, for themselves and their family, for one year following approval. Eligibility is based on total household income regardless of income source. The discount applies to both conventional and accessible transit, so it covers trips taken on DARTS vehicles as well as HSR buses. The City estimates about 88,000 Hamiltonians will benefit.",
+        "Fare Assist gives Hamilton residents living below the Statistics Canada Low-Income Measure a 50 per cent discount on single-ride PRESTO fares, for themselves and their family, for one year following approval. Eligibility is based on total household income regardless of income source. The discount applies to both conventional and accessible transit, so it covers trips taken on DARTS vehicles as well as HSR buses. The City estimates about 88,000 Hamiltonians will benefit.",
       aboutList: {
         lead: "Fare Assist halves single-ride PRESTO fares for lower-income Hamilton households.",
         items: [
@@ -2059,14 +2060,15 @@ const BENEFITS = [
       },
       steps: [
         "Check your total household income against the Low-Income Measure for your family size",
-        "Apply through the City of Hamilton — eligibility is based on household income from any source",
+        "Apply through the City of Hamilton — if you receive Ontario Works or ODSP you give your Member ID; otherwise your total household income, from any source, must be below the Low-Income Measure for your family size",
         "Once approved, the 50 per cent discount applies to single-ride PRESTO fares for one year",
         "Load funds onto your PRESTO card as you need them",
         "Re-apply each year to keep the discount",
       ],
       documents: [
-        "Proof of total household income for everyone in the household",
+        "If you receive Ontario Works or ODSP: your Member ID. Everyone else: a current Notice of Assessment for all family members",
         "Your PRESTO card, which the discount is applied to",
+        "Identification showing your current address, such as a driver's license, health card or government-issued ID",
       ],
       tips: [
         "The discount covers DARTS accessible transit trips, not only conventional HSR buses.",
@@ -2250,16 +2252,16 @@ const BENEFITS = [
     summary:
       "A discount on TTC and Wheel-Trans fares for lower-income Toronto residents, loaded straight onto your PRESTO card for 12 months. If you receive ODSP or Ontario Works you already meet the income test.",
     note: "Amounts are set by the TTC and are subject to change; they are based on paying with PRESTO. From August 1, 2026 the program runs annual eligibility reviews, and active Ontario Works, ODSP and Child Care Fee Subsidy clients are reviewed for renewal — if eligibility cannot be verified from City records you will be contacted with next steps.",
-    requires: ["toronto", "adult", "lowIncome"],
+    requires: ["toronto", "torontoFairPassAge", "lowIncome"],
     eligibility: {
       mode: "all",
       items: [
         "Between 20 and 64 years of age",
         "Live in the City of Toronto",
         "Have a PRESTO card number",
-        "Total after-tax family income, counting every family member over 18, below 75% of the Low-Income Measure After-Tax threshold",
+        "Total after-tax family income below 75% of the Low-Income Measure After-Tax threshold. The City counts income for family members aged 20 to 64 (one line of its page says over 18).",
       ],
-      note: "Residents already receiving Ontario Works, Emergency Assistance or ODSP meet the financial eligibility criteria. If you are 13 to 19 or 65 and over, ask the TTC about youth, student and seniors fares instead.",
+      note: "Residents already receiving Ontario Works, Emergency Assistance or ODSP meet the financial eligibility criteria. If you are 13 to 19 or 65 and over, ask the TTC about youth, student and seniors fares instead. The City's income table says income is only calculated for family members aged 20 to 64, while another line says family members over 18; ask the City who is counted.",
     },
     applyText: "Apply for Fair Pass",
     applyUrl: "https://www.toronto.ca/community-people/employment-social-support/support-for-people-in-financial-need/assistance-through-ontario-works/transit-discount/",
@@ -2290,10 +2292,10 @@ const BENEFITS = [
         "Your Ontario Works member ID, ODSP member ID, or Child Care Fee Subsidy household or client file number — or proof of income documents instead",
       ],
       tips: [
-        "Receiving Ontario Works, Emergency Assistance or ODSP means you meet the financial criteria without providing income documents.",
+        "Receiving Ontario Works, Emergency Assistance or ODSP means you meet the financial criteria. You do not need income documents if you receive Ontario Works, ODSP or Child Care Fee Subsidy; Emergency Assistance is not on that list, so you may need to give proof of income.",
         "The discount covers Wheel-Trans as well as regular TTC service.",
         "The Human Services Integration Office supports applications by phone for social assistance recipients, and offers language interpretation and paper applications on request.",
-        "Existing clients do not need to reapply; from August 1, 2026 eligibility is reviewed annually.",
+        "Some clients must reapply. If you actively receive Ontario Works, ODSP or Child Care Fee Subsidy, you may not need to; if you do, the City contacts you 45 days before your discount expires. From August 1, 2026 eligibility is reviewed annually.",
       ],
       phone: "416-338-8888",
     },
@@ -2335,13 +2337,13 @@ const BENEFITS = [
       },
       steps: [
         "Check your total after-tax family income against the Welcome Policy threshold for your family size",
-        "Gather the required documents for each family member",
+        "Gather proof of income for each family member 18 or older, or your Ontario Works member ID, ODSP member ID or Child Care Fee Subsidy household or client file number instead",
         "Apply through the City of Toronto, or call 416-338-8888 for help",
         "Once approved, use the credit toward recreation registrations for the next 12 months",
         "Re-apply and submit documents again the following year",
       ],
       documents: [
-        "Proof of income for each family member 18 or older",
+        "Proof of income for each family member 18 or older — or your program identification number if you receive Ontario Works, ODSP or Child Care Fee Subsidy",
         "Documents for each family member included in the application",
       ],
       tips: [
@@ -2360,7 +2362,7 @@ const BENEFITS = [
     category: "Health",
     amount: "Covers eligible drugs above a deductible that for most people is about 4% of after-tax household income, then up to $2 for each drug filled or refilled",
     summary:
-      "Helps Ontario households with high prescription-drug costs compared with their income. For most people the deductible is about 4% of after-tax household income; once you have paid it, you pay up to $2 for each drug filled or refilled for the rest of the program year.",
+      "Helps Ontario households with high prescription-drug costs compared with their income. For most people the deductible is about 4% of after-tax household income, paid in four quarterly amounts; once you have paid a quarter's amount, you pay up to $2 for each drug filled or refilled until the end of that quarter.",
     note: "Your household income for the deductible is the net income you reported to the Canada Revenue Agency for the previous tax year — the amount on line 23600 of your Notice of Assessment — minus any amount you withdrew from a Canadian Registered Disability Savings Plan, shown on line 12500 of your tax return. Only money your household actually pays out of pocket counts toward the deductible — amounts covered by private insurance, a drug company or a discount card do not.",
     requires: ["on", "tdpDeductible"],
     eligibility: {
@@ -2371,20 +2373,20 @@ const BENEFITS = [
         "You do not have an insurance plan that pays for 100% of your drugs",
         "You spend about 4% or more of your after-tax household income on prescription-drug costs",
       ],
-      note: "You apply as a household. That includes your spouse, and it can include another person you live with where one of you is a parent, grandparent or legal guardian of the other and one is dependent on the other for support.",
+      note: "You apply as a household. You can apply for yourself if you live alone or only with people the page does not list. Otherwise you have to include your spouse (the page lists married and some other partner cases) and another person you live with if one of you is a parent, grandparent or legal guardian of the other and one of you is dependent on the other for support.",
     },
     applyText: "Apply to the Trillium Drug Program",
     applyUrl: "https://www.ontario.ca/page/get-help-high-prescription-drug-costs",
     source: "https://www.ontario.ca/page/get-help-high-prescription-drug-costs",
     detail: {
       about:
-        "The Trillium Drug Program helps Ontarians pay for high prescription-drug costs relative to their household income. It covers the cost of more than 5,900 medications available through the Ontario Drug Benefit program, plus almost 1,500 additional drug products that meet specific criteria through the Exceptional Access Program. You pay a deductible first — for most people about 4% of household income after taxes — and once it is paid you pay up to $2 for each drug filled or refilled until the end of the program year.",
+        "The Trillium Drug Program helps Ontarians pay for high prescription-drug costs relative to their household income. It covers the cost of more than 5,900 medications available through the Ontario Drug Benefit program, plus almost 1,500 additional drug products that meet specific criteria through the Exceptional Access Program. You pay a deductible first — for most people about 4% of household income after taxes, split into four quarterly amounts — and once a quarter's amount is paid you pay up to $2 for each drug filled or refilled until the end of that quarter.",
       aboutList: {
         lead: "The Trillium Drug Program helps Ontario households with high prescription-drug costs relative to their income.",
         items: [
           "Covers more than 5,900 medications available through the Ontario Drug Benefit program, plus almost 1,500 more through the Exceptional Access Program.",
           "For most people the deductible is about 4% of household income after taxes.",
-          "Once the deductible is paid, you pay up to $2 for each drug filled or refilled until the end of the program year.",
+          "Once a quarter's deductible is paid, you pay up to $2 for each drug filled or refilled until the end of that quarter.",
           "The deductible is divided into four equal quarterly amounts across the four quarters of the program year.",
           "The program year runs from August 1 to July 31.",
         ],
@@ -2407,6 +2409,7 @@ const BENEFITS = [
         "Money withdrawn from a Canadian Registered Disability Savings Plan is subtracted from the income used to calculate your deductible.",
         "Only what your household pays out of pocket counts toward the deductible — not amounts paid by private insurance, a drug company or a drug discount card.",
         "Rather than paying the whole deductible at once, it is split into four equal quarterly amounts across the program year.",
+        "Each new quarter starts with that quarter's deductible; an unpaid amount carries over to the next quarter, but not into the next year.",
       ],
       phone: "1-800-575-5386",
     },
@@ -2417,10 +2420,10 @@ const BENEFITS = [
     name: "Passport program (adults with a developmental disability)",
     level: "Ontario",
     category: "Community supports",
-    amount: "$5,500 a year, up to $44,275 based on assessed need",
+    amount: "$5,665 a year, up to $45,604 based on assessed need",
     summary:
       "Funding for adults 18 or older with a developmental disability to take part in their community and live as independently as possible, and to give their caregivers a break. It is a reimbursement program — you submit receipts and are repaid up to your annual allocation.",
-    note: "Every Passport recipient receives at least $5,500 a year. More than that is possible, up to $44,275, but it depends on your assessed level of need and on funding becoming available — Passport agencies keep a waiting list for the additional amounts.",
+    note: "Every Passport recipient receives at least $5,665 a year. More than that is possible, up to $45,604, but it depends on your assessed level of need and on funding becoming available — Passport agencies keep a waiting list for the additional amounts.",
     requires: ["on", "age18plus", "passportDevelopmental", "passportDso"],
     eligibility: {
       mode: "all",
@@ -2437,22 +2440,22 @@ const BENEFITS = [
     source: "https://www.ontario.ca/page/passport-program-adults-developmental-disability",
     detail: {
       about:
-        "Passport helps adults 18 or older with a developmental disability take part in their communities and live as independently as possible, and it helps their caregivers take a break from caregiving. It is a reimbursement program: you submit invoices and receipts for admissible expenses and are reimbursed up to your annual funding allocation. Passport is funded by the Ontario government and administered by local Passport agencies. All recipients receive a minimum of $5,500 a year, and it is possible to receive more, up to a maximum of $44,275, based on assessed need.",
+        "Passport helps adults 18 or older with a developmental disability take part in their communities and live as independently as possible, and it helps their caregivers take a break from caregiving. It is a reimbursement program: you submit invoices and receipts for admissible expenses and are reimbursed up to your annual funding allocation. Passport is funded by the Ontario government and administered by local Passport agencies. All recipients receive a minimum of $5,665 a year, and it is possible to receive more, up to a maximum of $45,604, based on assessed need.",
       aboutList: {
         lead: "Passport funds services and supports for adults with a developmental disability.",
         items: [
           "Pays for taking part in community classes or recreational programs, developing work, volunteer and daily life skills, hiring a support worker, person-directed planning, and temporary respite for caregivers.",
           "It is a reimbursement program — you submit invoices and receipts and are repaid up to your annual allocation.",
-          "Every recipient receives a minimum of $5,500 a year.",
-          "More is possible, up to a maximum of $44,275, based on your assessed level of need and as funding becomes available.",
+          "Every recipient receives a minimum of $5,665 a year.",
+          "More is possible, up to a maximum of $45,604, based on your assessed level of need and as funding becomes available.",
           "Funded by the Ontario government and administered by local Passport agencies.",
         ],
       },
       steps: [
         "Contact your local Developmental Services Ontario (DSO) office, which manages applications for provincially funded adult developmental services",
         "DSO confirms whether you are eligible for government-funded adult developmental services",
-        "Once confirmed, DSO connects you with your local Passport agency for $5,500 a year in funding",
-        "To seek more than $5,500, complete an application package so DSO can fully assess your needs; your information then goes to your local Passport agency",
+        "Once confirmed, DSO connects you with your local Passport agency for $5,665 a year in funding",
+        "To seek more than $5,665, complete an application package so DSO can fully assess your needs; your information then goes to your local Passport agency",
         "Submit invoices and receipts for admissible expenses to be reimbursed up to your allocation",
       ],
       documents: [
@@ -2461,8 +2464,8 @@ const BENEFITS = [
       ],
       tips: [
         "Tell DSO if anything in your application changes, so they can reassess and re-prioritize you on the most up-to-date information.",
-        "If you are approved for more than $5,500 and accept between April and September, you receive a full 12-month amount in the first year; accept between October and March and you receive a 6-month amount in the first year and a full year after that. Either way you receive at least $5,500 in your first year.",
-        "Passport agencies keep the list of people waiting to receive additional funding above $5,500.",
+        "If you are approved for more than $5,665 and accept between April and September, you receive a full 12-month amount in the first year; accept between October and March and you receive a 6-month amount in the first year and a full year after that. Either way you receive at least $5,665 in your first year.",
+        "Passport agencies keep the list of people waiting to receive additional funding above $5,665.",
         "Claims for a service or product received on or before March 31, 2026 must be submitted by March 31, 2027.",
         "From March 31, 2027 onward, you have 12 months after the end of each fiscal year (which ends March 31) to submit claims for anything bought on or after April 1, 2026.",
       ],

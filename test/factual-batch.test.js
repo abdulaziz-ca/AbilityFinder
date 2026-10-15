@@ -22,6 +22,41 @@ function loadData() {
 
 const { BENEFITS, BENEFIT_VALUES, BENEFIT_META } = loadData();
 
+test("batch eight: Passport repeats only the snapshot amounts and keeps funding conditions", () => {
+  const b = benefitById("passport-program");
+  const text = JSON.stringify([b, BENEFIT_VALUES[b.id]]);
+  assert.doesNotMatch(text, /5,500|44,275/);
+  assert.match(b.amount, /\$5,665.*\$45,604.*assessed need/);
+  assert.match(b.note, /funding becoming available/);
+  assert.match(b.detail.aboutList.items[3], /as funding becomes available/);
+  assert.match(b.detail.tips[1], /April and September.*12-month.*October and March.*6-month/);
+});
+
+test("batch eight: source exceptions, routes and quarterly reset remain explicit", () => {
+  assert.match(BENEFIT_META.odsp.effort, /unless you are in a prescribed class/);
+  const fair = benefitById("toronto-fair-pass");
+  assert.match(fair.eligibility.items[3], /20 to 64.*over 18/);
+  assert.match(fair.detail.tips[0], /Emergency Assistance is not on that list/);
+  assert.match(fair.detail.tips[3], /may not need to.*45 days/);
+  const welcome = benefitById("toronto-welcome-policy");
+  assert.match(welcome.detail.documents[0], /or your program identification number/);
+  assert.match(BENEFIT_META[welcome.id].wait, /within 5 business days.*up to 8 weeks.*missing documents/);
+  const tdp = benefitById("trillium-drug-program");
+  for (const field of [tdp.summary, tdp.detail.about, tdp.detail.aboutList.items[2]]) {
+    assert.match(field, /up to \$2.*end of that quarter/);
+    assert.doesNotMatch(field, /end of the program year/);
+  }
+  assert.match(tdp.eligibility.note, /Otherwise you have to include/);
+  const grt = benefitById("grt-support-person");
+  assert.match(grt.detail.steps[3], /should be completed.*designations GRT lists/);
+  assert.match(BENEFIT_META[grt.id].wait, /within 14 calendar days/);
+  const hamilton = benefitById("hamilton-fare-assist");
+  assert.ok(hamilton.requires.includes("hamiltonFareRoute"));
+  assert.ok(!hamilton.requires.includes("lowIncome"));
+  assert.match(hamilton.detail.documents[0], /Member ID.*Everyone else.*all family members/);
+  assert.match(hamilton.detail.documents[2], /current address/);
+});
+
 test("batch four: Surrey's unlabelled table and route qualifiers match the snapshot", () => {
   const b = benefitById("surrey-leisure-access");
   assert.deepEqual(JSON.parse(JSON.stringify(b.amountTiers.rows)), [

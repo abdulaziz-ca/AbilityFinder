@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.26.0";
+const SPEC_VERSION = "1.27.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -300,6 +300,22 @@ const GATES = {
   age16plus: ageGate("19to59", "under6"),
   age18plus: ageGate("19to59", "under6"),
   adult: ageGate("19to59", "under6"),
+  torontoFairPassAge: {
+    evidence: "answers",
+    satisfy: { set: { ageBand: "19to59" } },
+    violations: [
+      { name: "age 18: page says 20 to 64", fragment: { set: { ageBand: "18" } }, expect: "no" },
+      { name: "senior", fragment: { set: { ageBand: "65plus" } }, expect: "no" },
+    ],
+  },
+  hamiltonFareRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [
+      { name: "moderate income: OW or ODSP route not collected", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "high income: OW or ODSP route not collected", fragment: { set: { income: "high" } }, expect: "almost" },
+    ],
+  },
   workingAge: ageGate("19to59", "under6"),
   under60: ageGate("19to59", "65plus"),
   achbAge: ageGate("6to11", "60to64"),

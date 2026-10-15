@@ -240,6 +240,13 @@ const REQS = {
   },
 
   adult: { met: isAdultAge, fixed: true, unmet: "This is for people aged 18–64." },
+  torontoFairPassAge: {
+    short: "Check the Fair Pass age range and other TTC fares",
+    who: ["you"],
+    met: () => ageIn("19to59", "60to64"),
+    fixed: true,
+    unmet: "Fair Pass lists applicants as between 20 and 64 years of age. If you are 13 to 19 or 65 and over, the City points you to the TTC's youth, student and seniors fares instead.",
+  },
   workingAge: { met: isAdultAge, fixed: true, unmet: "This is for people aged 18–64." },
   child: { met: isUnder18, fixed: true, unmet: "This is for children under 18." },
   under6: { met: () => ageIn("under6"), fixed: true, unmet: "This program is only for children younger than 6." },
@@ -422,6 +429,13 @@ const REQS = {
   },
 
   lowIncome: { met: () => lowIncome(), fixed: true, unmet: "This is for lower-income households." },
+  hamiltonFareRoute: {
+    short: "Check the Ontario Works, ODSP or household income route",
+    who: ["you", "program"],
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "Hamilton residents who are recipients of Ontario Works or the Ontario Disability Support Program (ODSP), or whose household incomes are below the Low-Income Measure, can apply for themselves and their family.",
+  },
   lowIncomeOrDisabilityIncome: {
     // Household-size thresholds and actual receipt of AISH/CPP-D are not asked.
     // DTC approval or inability to work cannot stand in for either route.

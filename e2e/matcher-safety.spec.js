@@ -1,5 +1,28 @@
 const { test, expect } = require("@playwright/test");
 
+test("batch eight: Fair Pass rejects only clearly excluded adult bands", async ({ page }) => {
+  for (const [ageBand, expected] of [["18", "no"], ["19to59", "ready"], ["60to64", "ready"], ["65plus", "no"]]) {
+    const results = await evaluateProfile(page, { province: "ON", city: "Toronto", income: "low", ageBand });
+    expect(results["toronto-fair-pass"].status, ageBand).toBe(expected);
+  }
+});
+
+test("batch eight: Hamilton leaves unasked OW and ODSP routes open", async ({ page }) => {
+  for (const income of ["low", "moderate", "high"]) {
+    const results = await evaluateProfile(page, { province: "ON", city: "Hamilton", income });
+    expect(results["hamilton-fare-assist"].status, income).toBe(income === "low" ? "ready" : "almost");
+    if (income !== "low") {
+      const need = results["hamilton-fare-assist"].needs.find(n => n.text.includes("Hamilton residents who are recipients"));
+      expect(need.text).toContain("Ontario Works");
+      expect(need.text).toContain("ODSP");
+      expect(need.text).toContain("below the Low-Income Measure");
+    }
+  }
+  const toronto = await evaluateProfile(page, { province: "ON", city: "Toronto", income: "high" });
+  expect(toronto["hamilton-fare-assist"].status).toBe("no");
+  expect(toronto["toronto-fair-pass"].status).toBe("no");
+});
+
 test("batch two: HATC unasked routes remain actionable and Richmond PWD receipt remains unconfirmed", async ({ page }) => {
   const hatc = await evaluateProfile(page, { dtc: "no", circumstances: ["none"] });
   expect(hatc["home-accessibility-tax-credit"].status).toBe("almost");
