@@ -1946,7 +1946,11 @@ const BROWSE_LEVELS = [
   { key: "local", label: "Local / city" },
 ];
 
+const PROGRAM_CHANGE_DATA = AbilityFinderProgramChanges.collect(DATA_CHANGELOG, BENEFITS.map((b) => b.id));
+let programChanges = null;
+
 const PERSISTENCE_SELECTIONS = {
+  programChangeWatermark: PROGRAM_CHANGE_DATA.watermark,
   disabilities: DISABILITIES.map((item) => item.value),
   ageBands: AGE_BANDS.map((item) => item.value),
   situations: ["childcare", "elementary", "secondary", "student", "working", "looking", "unableToWork", "none"],
@@ -1969,7 +1973,7 @@ function persistentState() {
   return AbilityFinderState.buildPersistedState({
     answers, view, stepIndex, detailId, detailFrom, progress, groupMode,
     browseQuery, browseTheme, browseLevel, browseDis, a11y, lang: LANG,
-    helpTopic, helpReturnStep,
+    helpTopic, helpReturnStep, programChanges,
     theme: document.documentElement.getAttribute("data-theme"), askConsent,
     validSelections: PERSISTENCE_SELECTIONS,
   });
@@ -2000,6 +2004,7 @@ async function loadState() {
     theme: document.documentElement.getAttribute("data-theme") || "dark",
     validSelections: PERSISTENCE_SELECTIONS,
   });
+  programChanges = restored.programChanges;
   answers = restored.answers;
   // v43 returns to the smaller tap-to-select age ranges. v42 also persisted the
   // derived band, so current sessions keep their progress without retaining the
@@ -3918,6 +3923,84 @@ function renderScenarioPanel(currentEvaluated) {
   </section>`;
 }
 
+// No visit timestamps or previous-results history. Missing/new IDs baseline silently.
+function baselineProgramChanges() {
+  let changed = false;
+  if (!programChanges) { programChanges = { version: 1, seenByProgram: {} }; changed = true; }
+  for (const b of BENEFITS) {
+    if (!Object.prototype.hasOwnProperty.call(programChanges.seenByProgram, b.id)) {
+      programChanges.seenByProgram[b.id] = PROGRAM_CHANGE_DATA.watermark;
+      changed = true;
+    }
+  }
+  if (changed) void saveState();
+}
+
+function pendingProgramUpdates(matched) {
+  if (!programChanges) return [];
+  const inResults = new Set(matched.map((e) => e.b.id));
+  return browseCatalog().flatMap((b) => {
+    if (!inResults.has(b.id) && !STAGE[progress[b.id]]) return [];
+    const cursor = programChanges.seenByProgram[b.id];
+    if (!Number.isSafeInteger(cursor)) return [];
+    const changes = PROGRAM_CHANGE_DATA.changes.filter((change) => change.recordId === b.id && change.revision > cursor);
+    return changes.length ? [{ b, changes, provenance: inResults.has(b.id) ? "In your results" : "Saved or tracked" }] : [];
+  });
+}
+
+// Match gen-guide-pages.js: only records with a static official URL get guides.
+function hasGeneratedGuide(b) {
+  return [b.applyUrl, b.source].some((url) => {
+    const staticUrl = typeof url === "function" ? url.staticUrl : url;
+    return typeof staticUrl === "string" && /^https?:\/\//.test(staticUrl);
+  });
+}
+
+function renderProgramUpdates(matched) {
+  const pending = pendingProgramUpdates(matched);
+  if (!pending.length) return "";
+  const esc = (value) => String(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  return `<section class="program-updates" lang="en" aria-labelledby="program-updates-title">
+    <h3 id="program-updates-title">Updates to your programs</h3>
+    <p>Details for ${pending.length === 1 ? "1 program" : `${pending.length} programs`} were updated in AbilityFinder.</p>
+    <p>These are recorded updates since your last review on this device. They may correct our guide, not a change to the program itself. Other updates may not be listed. The program decides if you qualify.</p>
+    <details><summary>Show the updates</summary><ul>${pending.map(({ b, changes, provenance }) => `<li data-updated-program="${esc(b.id)}">
+      <h4>${esc(b.name)}</h4><p>${provenance}</p>
+      <ul>${changes.map((change) => `<li>Guide update: ${esc(new Date(change.date + "T12:00:00Z").toLocaleDateString("en-CA", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" }))} — ${esc(change.summary)}</li>`).join("")}</ul>
+      <p>${hasGeneratedGuide(b) ? `<a href="/guides/${esc(b.id)}.html">Read the ${esc(b.name)} guide</a> · ` : ""}<a href="${esc(resolveUrl(b.source))}" target="_blank" rel="noopener noreferrer">Official source</a></p>
+    </li>`).join("")}</ul></details>
+    <button type="button" class="tool-btn" id="hide-program-updates" aria-label="Got it, hide these updates">Got it</button>
+    <p id="program-updates-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
+  </section>`;
+}
+
+function wireProgramUpdates() {
+  const button = document.getElementById("hide-program-updates");
+  if (!button) return;
+  const panel = button.closest("section");
+  const ids = [...panel.querySelectorAll("[data-updated-program]")].map((item) => item.dataset.updatedProgram);
+  const watermark = PROGRAM_CHANGE_DATA.watermark; // Capture this notice, not a future catalogue.
+  button.addEventListener("click", async () => {
+    button.disabled = true;
+    const previous = Object.fromEntries(ids.map((id) => [id, programChanges.seenByProgram[id]]));
+    for (const id of ids) programChanges.seenByProgram[id] = watermark;
+    const saved = await saveState();
+    if (!saved && AbilityFinderDB.lastWriteConflict) return; // authoritative reload; never retry stale state
+    const status = panel.querySelector("[role=status]");
+    if (saved) {
+      for (const child of [...panel.children]) if (child !== status) child.remove();
+      panel.removeAttribute("aria-labelledby");
+      status.textContent = "These updates are marked reviewed on this device.";
+    } else {
+      // A later unrelated save must not persist an acknowledgment reported as failed.
+      Object.assign(programChanges.seenByProgram, previous);
+      button.disabled = false;
+      status.textContent = "We could not save this review on this device. These updates may appear again next time.";
+    }
+    status.focus({ preventScroll: true });
+  });
+}
+
 function renderResults() {
   const evaluated = browseCatalog().map((b) => ({ b, r: evaluate(b) }));
   const ready = evaluated.filter((e) => e.r.status === "ready");
@@ -3948,6 +4031,7 @@ function renderResults() {
     <h2>${headline}</h2>
     <p>${resultsBlurb(ready.length, almost.length)}</p>
   </div>
+  ${renderProgramUpdates(matched)}
   ${renderMoneyBand(ready, almost)}
   ${renderScenarioPanel(evaluated)}
   <div class="results-tools">
@@ -4621,6 +4705,7 @@ function renderSupportCard(item) {
 }
 
 function wireResults() {
+  wireProgramUpdates();
   const scenarioToggle = document.getElementById("scenario-title");
   if (scenarioToggle) scenarioToggle.addEventListener("click", () => {
     scenarioOpen = !scenarioOpen;
@@ -5856,6 +5941,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // future reorder cannot silently disarm the readiness wait.
   history.replaceState({ view, stepIndex, detailId }, "");
   render();
+  if (!document.querySelector(".render-error")) baselineProgramChanges();
 
   // language switcher
   const langBtn = document.getElementById("langBtn");

@@ -79,7 +79,7 @@ function liveState() {
 test("buildPersistedState whitelists app selections and excludes free-text/private runtime context", () => {
   const saved = buildPersistedState(liveState());
 
-  assert.equal(saved.schemaVersion, 1);
+  assert.equal(saved.schemaVersion, 2);
   assert.equal(saved.answers.forWho, "self");
   assert.equal(saved.answers.citizenPR, true);
   assert.deepEqual(saved.answers.disabilities, ["physical"]);
@@ -91,6 +91,7 @@ test("buildPersistedState whitelists app selections and excludes free-text/priva
   assert.equal(saved.helpTopic, "msp");
   assert.equal(saved.helpReturnStep, 7);
   assert.deepEqual(saved.ui, {
+    programChanges: null,
     groupMode: "category",
     browseQuery: "tax",
     browseTheme: "money",

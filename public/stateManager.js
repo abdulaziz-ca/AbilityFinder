@@ -123,12 +123,32 @@
     return clean;
   }
 
+  // Feature markers are all-or-nothing: corruption must never invent history.
+  function cleanProgramChanges(candidate, validSelections = {}) {
+    const plain = (value) => value && typeof value === "object" && !Array.isArray(value) &&
+      (Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null);
+    const ids = allowedValues(validSelections, "benefitIds");
+    const watermark = validSelections.programChangeWatermark;
+    if (!plain(candidate) || !ids || !Number.isSafeInteger(watermark) || watermark < 0 ||
+        Object.keys(candidate).length !== 2 || candidate.version !== 1 ||
+        !Object.prototype.hasOwnProperty.call(candidate, "seenByProgram") || !plain(candidate.seenByProgram)) return null;
+    const keys = Object.keys(candidate.seenByProgram);
+    if (keys.length > ids.size) return null;
+    const seenByProgram = {};
+    for (const id of keys) {
+      const revision = candidate.seenByProgram[id];
+      if (!ids.has(id) || !Number.isSafeInteger(revision) || revision < 0 || revision > watermark) return null;
+      Object.defineProperty(seenByProgram, id, { value: revision, enumerable: true, writable: true, configurable: true });
+    }
+    return { version: 1, seenByProgram };
+  }
+
   function buildPersistedState(live = {}) {
     const validSelections = live.validSelections || {};
     const answers = cleanAnswers(live.answers, {}, validSelections);
     const benefitIds = allowedValues(validSelections, "benefitIds");
     return {
-      schemaVersion: 1,
+      schemaVersion: 2,
       answers,
       view: VIEWS.has(live.view) ? live.view : "landing",
       stepIndex: Number.isInteger(live.stepIndex) && live.stepIndex >= 0 ? live.stepIndex : 0,
@@ -138,6 +158,7 @@
       helpReturnStep: Number.isInteger(live.helpReturnStep) && live.helpReturnStep >= 0 ? live.helpReturnStep : 0,
       progress: cleanProgress(live.progress, validSelections),
       ui: {
+        programChanges: cleanProgramChanges(live.programChanges, validSelections),
         groupMode: live.groupMode === "category" ? "category" : "priority",
         browseQuery: typeof live.browseQuery === "string" ? live.browseQuery.slice(0, 200) : "",
         browseTheme: BROWSE_THEMES.has(live.browseTheme) ? live.browseTheme : "all",
@@ -171,6 +192,7 @@
       helpTopic,
       helpReturnStep: Number.isInteger(source.helpReturnStep) && source.helpReturnStep >= 0 ? source.helpReturnStep : 0,
       progress: cleanProgress(source.progress, validSelections),
+      programChanges: cleanProgramChanges(ui.programChanges, validSelections),
       groupMode: ui.groupMode === "category" ? "category" : "priority",
       browseQuery: typeof ui.browseQuery === "string" ? ui.browseQuery.slice(0, 200) : "",
       browseTheme: BROWSE_THEMES.has(ui.browseTheme) ? ui.browseTheme : "all",
@@ -234,5 +256,5 @@
     }
   }
 
-  return { StateChangeEmitter, buildPersistedState, restorePersistedState, sanitizeLegacyState };
+  return { cleanProgramChanges, StateChangeEmitter, buildPersistedState, restorePersistedState, sanitizeLegacyState };
 });

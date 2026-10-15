@@ -1,18 +1,173 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
+  { date: "2026-10-17", text: "Results can now show recorded updates to matching and tracked programs on a returning device. The optional list stays until you choose Got it. Review markers are kept only in this browser alongside saved answers; first use starts silently, and the public Updates page remains available." },
   { date: "2026-10-17", text: "Review dates moved to October 2026 for 54 benefits whose facts were fully re-checked against their official pages (each fact confirmed, or corrected and then confirmed, with no unchecked amount, threshold, age limit or deadline). The other benefits keep their earlier review month. Benefit facts and guide wording are unchanged." },
-  { date: "2026-10-17", text: "Resolved autism TTE items 34 and 39. Preserved the normal 20% and final aligned period 50% framing; clarified annual funding for plans of 12 months or less, the adjusted portion for plans of 13 months or longer with the first 12 months at 20%, and the 20% exception for youth turning 19 before March 31, 2027 (ages 6–18 record only). Added the support-needs page’s MyFS or Autism Funding balance-check advice. Asset version 183; whole-record verification dates are unchanged for these targeted fixes." },
-  { date: "2026-10-17", text: "Applied all fifteen snapshot follow-up fixes and resolved batch eight open item twelve. Waterloo states both conflicting fact-sheet application dates, the agreement date, separate repair and accessibility limits, promissory-note and mortgage security, and the sole-source OW/ODSP income alternative. Removed its generic low-income gate so that alternative is not rejected. The federal services and equipment grant links to its own page, uses the school-year limit, requires both written confirmation of need and a cost document, and applies through provincial or territorial student aid without promising simultaneous assessment. BC fuel tax preserves possible ICBC benefits, minimum age, full confirmation-letter conditions and dates, representative signing documents and processing up to four weeks. Its record-specific external confirmation gate replaces the shared vehicle disability gate: profiles without physical, vision or transit answers move from no to almost when residency and vehicle ownership pass. The shared gate and excise refund are unchanged. Asset version 182; whole-record verification dates are unchanged for these targeted fixes." },
-  { date: "2026-10-17", text: "Applied sixteen batch nine snapshot re-verification fixes. Restored ADP qualification hedges, other-coverage exclusions and grant purchase exception; parking visual-field conditions; OAP re-registration exemption; SSAH infant documentation; Waterloo waste collection conditions and tagged bags; Windsor reimbursement deadline and Windsor-Essex scope; and York homemaker contact wording. Record-specific checks preserve Waterloo's low income or social support routes and York recreation's listed benefit routes and age ranges. York recreation deliberately moves from ready to almost because the wizard cannot establish a listed route. Windsor-Essex residency remains a hard check; shared checks are unchanged. Asset version 181; whole-record verification dates are unchanged because this is a targeted assertion correction, not a full verification." },
-  { date: "2026-10-17", text: "Applied fifteen batch eight re-verification fixes from supplied snapshots: ODSP effort preserves the prescribed-class exception; Passport minimum and maximum updated throughout; Toronto Fair Pass age, income-counting conflict, renewal and income-document wording; Welcome Policy program-ID alternative and processing times; Trillium quarterly deductible and household inclusion; GRT support-person professional designations, PAL alternative and decision letter; Hamilton Fare Assist OW/ODSP route and documents. Added record-specific Toronto age and Hamilton route checks without changing shared checks. Waterloo funding remains open pending the fact sheet; malformed Waterloo home-value and Hamilton income-table figures are kept as decided. Asset version 180. Whole-record verification dates are unchanged; these are targeted assertion fixes, not a new whole-record verification." },
-  { date: "2026-10-16", text: "Applied seventeen re-verification batch seven snapshot-wording fixes to ten records (one further finding, the CPP disability age wording, was kept because the page is ambiguous). Corrected Cochrane Connect Card (Town, documents for all adults in the household), the Disability Tax Credit sending route (digital form or mail, not the submit documents section), Leduc (monthly bus pass of your choice; Recreation Assistance Program closed until it reopens for new applications in January 2027), the Alberta parking placard wording, the BC SPARC permit types, and Grand River Transit Affordable Transit Program (online application temporarily unavailable, other ways to apply, student and new-to-Canada documents), MobilityPLUS professionals and taxi coupon eligibility. Added record-specific checks so the Excise Gasoline Tax Refund, Fort Saskatchewan Access for Everyone (approved-program or income route), Okotoks Fee Assistance (Foothills County), the SPARC BC permit (mobility limitations) and MobilityPLUS (unconditional, conditional or temporary) no longer turn away people the pages include. Shared checks are unchanged. Asset version 179; whole-record verification dates are unchanged." },
-  { date: "2026-10-16", text: "Applied all twenty-eight re-verification batch six snapshot-wording fixes to fourteen records. Restored source hedges and exceptions (Lloydminster residency exemption, RAMP eligibility wording, Special Needs Housing waitlists and rent formulas, Adult Health Benefit coverage, application steps and contact line, AISH report costs and file reopening, CLBC funding timing, Plan G and Plan P wording, Work-Able graduate rules, WorkBC assistive technology scope, Canmore ROAM Transit). Added record-specific checks so AISH no longer turns away people 65 or older who may not be eligible for Old Age Security (it is still never shown as a match), the Multigenerational Home Renovation Tax Credit asks who the unit is for, Special Needs Housing recognises other listed routes, CLBC recognises its Personalized Supports Initiative stream, and Work-Able asks for self-identification. Shared checks and assistance-receipt logic are unchanged. Asset version 178; whole-record verification dates are unchanged." },
-  { date: "2026-10-16", text: "Applied all thirty-six re-verification batch five snapshot-wording fixes to eleven records. Restored disability verification exceptions, conditional eligibility and coverage, assistance payment timing, renovation paid-or-payable rules, medical equipment exceptions and all eight MSP eligibility groups. Added record-specific age and renovation checks; shared checks and assistance-receipt logic are unchanged. The age bands cannot express eligibility through the last day of the nineteenth birthday month. Asset version 177; whole-record verification dates are unchanged." },
-  { date: "2026-10-15", text: "Applied re-verification batch four snapshot-wording fixes to twelve records: restored qualifying routes, source hedges, document exceptions and recreation limits; corrected Surrey's unlabelled income table and added Vancouver's separate income columns. Surrey now asks which route applies without treating PWD designation alone as current assistance receipt. ADAP separately checks age and Old Age Security eligibility and preserves the employment restriction test. Items 31, 34 and 39 remain open; autism equipment, training and travel rules are unchanged. Asset version 176. Whole-record verification dates are unchanged." },
-  { date: "2026-10-15", text: "Applied re-verification batch three source-wording fixes to transit, recreation, health, disability designation, tax and employment supports. Restored conditional eligibility, funding and coverage qualifiers; corrected application routes, documents, processing times and contact numbers. ICBC now checks its accepted disability-confirmation routes separately, without rejecting unasked alternatives. DRES exclusions remain enforced. Kelowna and the three deferred observations are unchanged. Asset version 175; whole-record verification dates are unchanged." },
-  { date: "2026-10-15", text: "Corrected the Kelowna recreation assistance income table to the City's published 2025 Low Income Cut-Offs (family of 1: $26,926, up to $71,254 for 7); the previous figures were higher than the City's page. The program now says you are eligible to apply if you meet the income verification requirements and have all the necessary documentation, and the assessment time reads up to two weeks from the date of submission, provided all required information is received. Checked against the City of Kelowna's own page." },
-  { date: "2026-10-15", text: "Applied twenty-four source-wording corrections: student equipment help; Edmonton monthly Arc tiers and possible eligibility; HATC dwelling, claimant and non-refundable spending checks; Lethbridge separate forms and capped funding; medical-expense return lines and supported dependants; Medicine Hat separate subsidies, proof and processing caveats; conditional RDSP grants and bonds; Richmond program scope and assistance alternatives; Saanich benefit choices and alternative documents; and Taxi Saver cash remainders. HATC and Richmond now have record-specific checks so unasked alternatives are not refusals. Asset version 173. Whole-record verification dates and the student equipment source URL are unchanged." },
-  { date: "2026-10-15", text: "Corrected Healthy Kids cost-help wording and its inclusive income limit; medical transportation routes, extraordinary-cost wording and conditional escort costs; At Home Medical Benefits alternatives; Option B home owner grant certification; permanent and complete fuel-tax disability conditions; Sales Tax Credit age or family alternatives; and Burnaby FAIR Play child-benefit, CUAET and agency-referral routes. Unasked alternatives remain More to check, not a refusal. Based only on official snapshots fetched October 14 and re-confirmed unchanged October 15. Unverified facts remain unverified; no whole-record verification dates were advanced." },
+  { date: "2026-10-17", text: "Resolved autism TTE items 34 and 39. Preserved the normal 20% and final aligned period 50% framing; clarified annual funding for plans of 12 months or less, the adjusted portion for plans of 13 months or longer with the first 12 months at 20%, and the 20% exception for youth turning 19 before March 31, 2027 (ages 6–18 record only). Added the support-needs page’s MyFS or Autism Funding balance-check advice. Asset version 183; whole-record verification dates are unchanged for these targeted fixes.",
+    revision: 12,
+    changes: [
+      { recordId: "bc-autism-funding-6-18", kind: "coverage", summary: "The training, travel and equipment funding conditions were corrected." },
+      { recordId: "bc-autism-funding-under-6", kind: "coverage", summary: "The training, travel and equipment funding conditions were corrected." }
+    ]
+  },
+  { date: "2026-10-17", text: "Applied all fifteen snapshot follow-up fixes and resolved batch eight open item twelve. Waterloo states both conflicting fact-sheet application dates, the agreement date, separate repair and accessibility limits, promissory-note and mortgage security, and the sole-source OW/ODSP income alternative. Removed its generic low-income gate so that alternative is not rejected. The federal services and equipment grant links to its own page, uses the school-year limit, requires both written confirmation of need and a cost document, and applies through provincial or territorial student aid without promising simultaneous assessment. BC fuel tax preserves possible ICBC benefits, minimum age, full confirmation-letter conditions and dates, representative signing documents and processing up to four weeks. Its record-specific external confirmation gate replaces the shared vehicle disability gate: profiles without physical, vision or transit answers move from no to almost when residency and vehicle ownership pass. The shared gate and excise refund are unchanged. Asset version 182; whole-record verification dates are unchanged for these targeted fixes.",
+    revision: 11,
+    changes: [
+      { recordId: "waterloo-ontario-renovates", kind: "deadline", summary: "The conflicting application dates and need to confirm the deadline were clarified." },
+      { recordId: "waterloo-ontario-renovates", kind: "rule", summary: "The alternative income qualification route was restored." },
+      { recordId: "waterloo-ontario-renovates", kind: "amount", summary: "The separate funding limits and security conditions were corrected." },
+      { recordId: "csg-dse", kind: "application", summary: "The student aid application route and required documents were corrected." },
+      { recordId: "bc-fuel-tax-refund-disabilities", kind: "rule", summary: "The qualifying vehicles and disability confirmation requirements were corrected." }
+    ]
+  },
+  { date: "2026-10-17", text: "Applied sixteen batch nine snapshot re-verification fixes. Restored ADP qualification hedges, other-coverage exclusions and grant purchase exception; parking visual-field conditions; OAP re-registration exemption; SSAH infant documentation; Waterloo waste collection conditions and tagged bags; Windsor reimbursement deadline and Windsor-Essex scope; and York homemaker contact wording. Record-specific checks preserve Waterloo's low income or social support routes and York recreation's listed benefit routes and age ranges. York recreation deliberately moves from ready to almost because the wizard cannot establish a listed route. Windsor-Essex residency remains a hard check; shared checks are unchanged. Asset version 181; whole-record verification dates are unchanged because this is a targeted assertion correction, not a full verification.",
+    revision: 10,
+    changes: [
+      { recordId: "on-adp", kind: "rule", summary: "The qualification and other-coverage exceptions were clarified." },
+      { recordId: "on-parking-permit", kind: "rule", summary: "The visual-field eligibility conditions were corrected." },
+      { recordId: "ontario-autism-program", kind: "application", summary: "The re-registration exception was restored." },
+      { recordId: "ssah", kind: "application", summary: "The infant documentation and reassessment requirements were corrected." },
+      { recordId: "waterloo-curbside-waste-support", kind: "rule", summary: "The collection eligibility and cart support scope were corrected." },
+      { recordId: "waterloo-homemaking-support", kind: "rule", summary: "The income eligibility check was corrected." },
+      { recordId: "windsor-recreation-assistance", kind: "deadline", summary: "The reimbursement deadline was corrected." },
+      { recordId: "york-region-homemakers", kind: "application", summary: "The available application contact routes were corrected." },
+      { recordId: "york-region-recreation-subsidies", kind: "rule", summary: "The income and child eligibility checks were corrected." }
+    ]
+  },
+  { date: "2026-10-17", text: "Applied fifteen batch eight re-verification fixes from supplied snapshots: ODSP effort preserves the prescribed-class exception; Passport minimum and maximum updated throughout; Toronto Fair Pass age, income-counting conflict, renewal and income-document wording; Welcome Policy program-ID alternative and processing times; Trillium quarterly deductible and household inclusion; GRT support-person professional designations, PAL alternative and decision letter; Hamilton Fare Assist OW/ODSP route and documents. Added record-specific Toronto age and Hamilton route checks without changing shared checks. Waterloo funding remains open pending the fact sheet; malformed Waterloo home-value and Hamilton income-table figures are kept as decided. Asset version 180. Whole-record verification dates are unchanged; these are targeted assertion fixes, not a new whole-record verification.",
+    revision: 9,
+    changes: [
+      { recordId: "odsp", kind: "application", summary: "The application effort guidance now preserves the prescribed-class exception." },
+      { recordId: "passport-program", kind: "amount", summary: "The funding limits were updated." },
+      { recordId: "toronto-fair-pass", kind: "rule", summary: "The age and income qualification conditions were corrected." },
+      { recordId: "toronto-welcome-policy", kind: "application", summary: "The application document requirements were corrected." },
+      { recordId: "trillium-drug-program", kind: "coverage", summary: "The coverage and deductible conditions were clarified." },
+      { recordId: "grt-support-person", kind: "application", summary: "The application document instructions were corrected." },
+      { recordId: "hamilton-fare-assist", kind: "application", summary: "The income and document instructions were corrected." }
+    ]
+  },
+  { date: "2026-10-16", text: "Applied seventeen re-verification batch seven snapshot-wording fixes to ten records (one further finding, the CPP disability age wording, was kept because the page is ambiguous). Corrected Cochrane Connect Card (Town, documents for all adults in the household), the Disability Tax Credit sending route (digital form or mail, not the submit documents section), Leduc (monthly bus pass of your choice; Recreation Assistance Program closed until it reopens for new applications in January 2027), the Alberta parking placard wording, the BC SPARC permit types, and Grand River Transit Affordable Transit Program (online application temporarily unavailable, other ways to apply, student and new-to-Canada documents), MobilityPLUS professionals and taxi coupon eligibility. Added record-specific checks so the Excise Gasoline Tax Refund, Fort Saskatchewan Access for Everyone (approved-program or income route), Okotoks Fee Assistance (Foothills County), the SPARC BC permit (mobility limitations) and MobilityPLUS (unconditional, conditional or temporary) no longer turn away people the pages include. Shared checks are unchanged. Asset version 179; whole-record verification dates are unchanged.",
+    revision: 8,
+    changes: [
+      { recordId: "cochrane-connect-card", kind: "application", summary: "The household document requirements were corrected." },
+      { recordId: "dtc", kind: "application", summary: "The accepted application submission routes were corrected." },
+      { recordId: "excise-gasoline-tax-refund", kind: "rule", summary: "The mobility eligibility check was corrected." },
+      { recordId: "fortsask-access", kind: "rule", summary: "The income qualification routes were corrected." },
+      { recordId: "leduc-subsidies", kind: "application", summary: "The recreation intake closure and transit pass choices were clarified." },
+      { recordId: "okotoks-fee-assistance", kind: "rule", summary: "The residency eligibility check was corrected." },
+      { recordId: "parking-placard", kind: "rule", summary: "The mobility and vision eligibility wording was corrected." },
+      { recordId: "sparc-parking-permit", kind: "rule", summary: "The permit types and mobility eligibility check were corrected." },
+      { recordId: "grt-affordable-transit", kind: "application", summary: "The alternative application routes and document requirements were added." },
+      { recordId: "grt-mobilityplus", kind: "rule", summary: "The eligibility types and professional documentation were corrected." },
+      { recordId: "grt-taxi-coupons", kind: "rule", summary: "The eligible transit service areas were corrected." }
+    ]
+  },
+  { date: "2026-10-16", text: "Applied all twenty-eight re-verification batch six snapshot-wording fixes to fourteen records. Restored source hedges and exceptions (Lloydminster residency exemption, RAMP eligibility wording, Special Needs Housing waitlists and rent formulas, Adult Health Benefit coverage, application steps and contact line, AISH report costs and file reopening, CLBC funding timing, Plan G and Plan P wording, Work-Able graduate rules, WorkBC assistive technology scope, Canmore ROAM Transit). Added record-specific checks so AISH no longer turns away people 65 or older who may not be eligible for Old Age Security (it is still never shown as a match), the Multigenerational Home Renovation Tax Credit asks who the unit is for, Special Needs Housing recognises other listed routes, CLBC recognises its Personalized Supports Initiative stream, and Work-Able asks for self-identification. Shared checks and assistance-receipt logic are unchanged. Asset version 178; whole-record verification dates are unchanged.",
+    revision: 7,
+    changes: [
+      { recordId: "lloydminster-recreation-access", kind: "rule", summary: "The residency exception was restored." },
+      { recordId: "multigenerational-home-renovation-tax-credit", kind: "rule", summary: "The qualifying renovation and claimant requirements were corrected." },
+      { recordId: "ab-service-dog-id-card", kind: "rule", summary: "The service dog identification and access conditions were corrected." },
+      { recordId: "ab-special-needs-housing", kind: "rule", summary: "The eligibility exceptions and placement expectations were clarified." },
+      { recordId: "adult-health-benefit", kind: "contact", summary: "The application contact number was corrected." },
+      { recordId: "aish", kind: "rule", summary: "The age eligibility and benefit guidance were corrected." },
+      { recordId: "bc-clbc", kind: "rule", summary: "The eligibility routes and service expectations were corrected." },
+      { recordId: "bc-pharmacare-plan-g", kind: "coverage", summary: "The renewal and medication coverage guidance was corrected." },
+      { recordId: "bc-pharmacare-plan-p", kind: "application", summary: "The application and coverage instructions were corrected." },
+      { recordId: "bc-work-able-internship", kind: "rule", summary: "The graduation and disability documentation conditions were corrected." },
+      { recordId: "bc-workbc-assistive-technology", kind: "rule", summary: "The eligibility and support conditions were corrected." },
+      { recordId: "canmore-affordable-services", kind: "coverage", summary: "The Regional ROAM Transit coverage was clarified." },
+      { recordId: "ramp", kind: "rule", summary: "The non-exhaustive mobility eligibility routes were clarified." }
+    ]
+  },
+  { date: "2026-10-16", text: "Applied all thirty-six re-verification batch five snapshot-wording fixes to eleven records. Restored disability verification exceptions, conditional eligibility and coverage, assistance payment timing, renovation paid-or-payable rules, medical equipment exceptions and all eight MSP eligibility groups. Added record-specific age and renovation checks; shared checks and assistance-receipt logic are unchanged. The age bands cannot express eligibility through the last day of the nineteenth birthday month. Asset version 177; whole-record verification dates are unchanged.",
+    revision: 6,
+    changes: [
+      { recordId: "bc-csg-services-equipment", kind: "application", summary: "The disability verification and equipment request steps were corrected." },
+      { recordId: "bc-csg-students-disabilities", kind: "application", summary: "The disability verification exceptions were clarified." },
+      { recordId: "bc-cy-disability-benefit", kind: "rule", summary: "The age, eligibility and enrolment conditions were corrected." },
+      { recordId: "bc-dental-supplement", kind: "rule", summary: "The eligibility exceptions were clarified." },
+      { recordId: "bc-disability-assistance-pwd", kind: "amount", summary: "The shelter allowance and first-payment timing were corrected." },
+      { recordId: "bc-home-reno-tax-credit", kind: "rule", summary: "The renovation spending requirement was corrected." },
+      { recordId: "bc-medical-equipment-devices", kind: "coverage", summary: "The coverage conditions and approval instructions were corrected." },
+      { recordId: "bc-msp-supplementary-benefits", kind: "rule", summary: "The qualifying routes and document requirements were corrected." },
+      { recordId: "bc-optical-supplement", kind: "coverage", summary: "The optical coverage conditions were corrected." },
+      { recordId: "bc-supplemental-bursary-students-disabilities", kind: "deadline", summary: "The application timing conditions were corrected." },
+      { recordId: "cpp-childrens-benefit", kind: "application", summary: "The online application and renewal options were clarified." }
+    ]
+  },
+  { date: "2026-10-15", text: "Applied re-verification batch four snapshot-wording fixes to twelve records: restored qualifying routes, source hedges, document exceptions and recreation limits; corrected Surrey's unlabelled income table and added Vancouver's separate income columns. Surrey now asks which route applies without treating PWD designation alone as current assistance receipt. ADAP separately checks age and Old Age Security eligibility and preserves the employment restriction test. Items 31, 34 and 39 remain open; autism equipment, training and travel rules are unchanged. Asset version 176. Whole-record verification dates are unchanged.",
+    revision: 5,
+    changes: [
+      { recordId: "fscd", kind: "application", summary: "The disability documentation exceptions were clarified." },
+      { recordId: "handycard-translink", kind: "rule", summary: "The transit membership requirements were corrected." },
+      { recordId: "local-supports", kind: "contact", summary: "The navigator service hours were corrected." },
+      { recordId: "stalbert-subsidy", kind: "rule", summary: "The income assessment and recreation coverage conditions were corrected." },
+      { recordId: "strathcona-subsidy", kind: "application", summary: "The household income document instructions were corrected." },
+      { recordId: "surrey-leisure-access", kind: "amount", summary: "The income table and recreation limits were corrected." },
+      { recordId: "vancouver-leisure-access", kind: "rule", summary: "The qualifying routes and their document requirements were corrected." },
+      { recordId: "adap", kind: "rule", summary: "The age and medical eligibility conditions were corrected." },
+      { recordId: "bc-access-grant-students-disabilities", kind: "rule", summary: "The student eligibility routes were corrected." },
+      { recordId: "bc-at-home-saet", kind: "coverage", summary: "The description of therapy support was corrected." },
+      { recordId: "bc-autism-funding-6-18", kind: "application", summary: "The service and application document requirements were corrected." },
+      { recordId: "bc-autism-funding-under-6", kind: "application", summary: "The provider and application document requirements were corrected." }
+    ]
+  },
+  { date: "2026-10-15", text: "Applied re-verification batch three source-wording fixes to transit, recreation, health, disability designation, tax and employment supports. Restored conditional eligibility, funding and coverage qualifiers; corrected application routes, documents, processing times and contact numbers. ICBC now checks its accepted disability-confirmation routes separately, without rejecting unasked alternatives. DRES exclusions remain enforced. Kelowna and the three deferred observations are unchanged. Asset version 175; whole-record verification dates are unchanged.",
+    revision: 4,
+    changes: [
+      { recordId: "taxisaver-translink", kind: "rule", summary: "The required transit membership was corrected." },
+      { recordId: "victoria-life", kind: "coverage", summary: "The recreation facilities and available pass options were corrected." },
+      { recordId: "aadl", kind: "rule", summary: "The assessment and other-coverage exceptions were clarified." },
+      { recordId: "airdrie-fair-access", kind: "application", summary: "The accepted income documents and approval term were clarified." },
+      { recordId: "bc-icbc-disability-discount", kind: "rule", summary: "The disability confirmation routes were corrected." },
+      { recordId: "bc-pharmacare-plan-c", kind: "coverage", summary: "The emergency prescription coverage conditions were corrected." },
+      { recordId: "bc-pwd-designation", kind: "application", summary: "The application purpose and prescribed-class routes were corrected." },
+      { recordId: "bc-workbc-employment-services", kind: "coverage", summary: "The conditional training and related supports were clarified." },
+      { recordId: "child-health-benefit", kind: "contact", summary: "The application contact numbers were corrected." },
+      { recordId: "disability-supports-deduction", kind: "rule", summary: "The eligible activities for claiming expenses were corrected." },
+      { recordId: "dres", kind: "rule", summary: "The employment support eligibility wording was corrected." },
+      { recordId: "reddeer-fee-assistance", kind: "contact", summary: "The application contact number was corrected." },
+      { recordId: "woodbuffalo-lift", kind: "application", summary: "The application and household document instructions were corrected." },
+      { recordId: "handydart-translink", kind: "application", summary: "The application processing guidance was corrected." }
+    ]
+  },
+  { date: "2026-10-15", text: "Corrected the Kelowna recreation assistance income table to the City's published 2025 Low Income Cut-Offs (family of 1: $26,926, up to $71,254 for 7); the previous figures were higher than the City's page. The program now says you are eligible to apply if you meet the income verification requirements and have all the necessary documentation, and the assessment time reads up to two weeks from the date of submission, provided all required information is received. Checked against the City of Kelowna's own page.",
+    revision: 3,
+    changes: [
+      { recordId: "kelowna-recreation-assistance", kind: "amount", summary: "The income limits were corrected." },
+      { recordId: "kelowna-recreation-assistance", kind: "rule", summary: "Who can apply and the income-check wording were clarified." }
+    ]
+  },
+  { date: "2026-10-15", text: "Applied twenty-four source-wording corrections: student equipment help; Edmonton monthly Arc tiers and possible eligibility; HATC dwelling, claimant and non-refundable spending checks; Lethbridge separate forms and capped funding; medical-expense return lines and supported dependants; Medicine Hat separate subsidies, proof and processing caveats; conditional RDSP grants and bonds; Richmond program scope and assistance alternatives; Saanich benefit choices and alternative documents; and Taxi Saver cash remainders. HATC and Richmond now have record-specific checks so unasked alternatives are not refusals. Asset version 173. Whole-record verification dates and the student equipment source URL are unchanged.",
+    revision: 2,
+    changes: [
+      { recordId: "csg-dse", kind: "coverage", summary: "The description of eligible equipment support was corrected." },
+      { recordId: "edmonton-fare-assistance", kind: "amount", summary: "The monthly fare tiers were corrected." },
+      { recordId: "home-accessibility-tax-credit", kind: "rule", summary: "The dwelling and claimant requirements were corrected." },
+      { recordId: "lethbridge-fee-assistance", kind: "application", summary: "The separate application forms and recreation limits were clarified." },
+      { recordId: "medical-expense-tax-credit", kind: "rule", summary: "The dependant expense and claim instructions were corrected." },
+      { recordId: "medicinehat-fair-entry", kind: "coverage", summary: "The recreation and arts coverage limits were corrected." },
+      { recordId: "richmond-rec-fee-subsidy", kind: "rule", summary: "The income check and recreation access limits were corrected." },
+      { recordId: "saanich-life", kind: "coverage", summary: "The included recreation supports and funding limits were corrected." },
+      { recordId: "rdsp", kind: "coverage", summary: "The conditions for receiving government grants and bonds were clarified." },
+      { recordId: "taxi-saver-bctransit", kind: "application", summary: "The required payment method for the remaining fare was corrected." }
+    ]
+  },
+  { date: "2026-10-15", text: "Corrected Healthy Kids cost-help wording and its inclusive income limit; medical transportation routes, extraordinary-cost wording and conditional escort costs; At Home Medical Benefits alternatives; Option B home owner grant certification; permanent and complete fuel-tax disability conditions; Sales Tax Credit age or family alternatives; and Burnaby FAIR Play child-benefit, CUAET and agency-referral routes. Unasked alternatives remain More to check, not a refusal. Based only on official snapshots fetched October 14 and re-confirmed unchanged October 15. Unverified facts remain unverified; no whole-record verification dates were advanced.",
+    revision: 1,
+    changes: [
+      { recordId: "bc-healthy-kids", kind: "coverage", summary: "The cost-help wording was corrected." },
+      { recordId: "bc-healthy-kids", kind: "rule", summary: "The inclusive income limit was clarified." },
+      { recordId: "bc-medical-transportation", kind: "coverage", summary: "The extraordinary travel costs and conditional escort coverage were clarified." },
+      { recordId: "bc-medical-transportation", kind: "rule", summary: "The eligibility routes and available-resource condition were corrected." },
+      { recordId: "bc-at-home-medical", kind: "rule", summary: "The alternative medical-benefit eligibility routes were restored." },
+      { recordId: "bc-additional-home-owner-grant", kind: "rule", summary: "The certification requirement was limited to the applicable route." },
+      { recordId: "bc-fuel-tax-refund-disabilities", kind: "rule", summary: "The permanent disability and complete functional-loss conditions were corrected." },
+      { recordId: "bc-sales-tax-credit", kind: "rule", summary: "The age and family eligibility alternatives were restored." },
+      { recordId: "burnaby-fair-play", kind: "rule", summary: "The child-benefit, refugee and other eligibility routes were corrected." },
+      { recordId: "burnaby-fair-play", kind: "application", summary: "The agency-referral alternative to a household application was clarified." }
+    ]
+  },
   { date: "2026-10-14", text: "Results and Print my action plan now include a combined Documents to gather checklist, using the unchanged wording from each matched program's guide. Shared items list the programs that need them; official program pages have the final lists. Nothing is sent or stored remotely." },
   { date: "2026-10-14", text: "English results now say Matches your answers, More to check, or Does not match these answers. Matching answers is not a decision by the program: results, guides and printed plans explain that the program decides if you qualify. Requirements, answers and matching rules are unchanged." },
   { date: "2026-10-14", text: "The Canada Disability Benefit guide now explains the income calculation under More about instead of treating it as a prerequisite. The RDSP guide likewise explains the earlier grant and bond deadline without making it a prerequisite for the plan. Other eligibility checks remain, so neither program is newly marked ready. These facts were checked against the official pages in October 2026; the contribution and BC transition checks are unchanged." },
@@ -95,3 +250,29 @@ const DATA_CHANGELOG = [
   { date: "2026-07-15", text: "Added privacy-preserving browser persistence, cross-tab safety, municipal benefit coverage, blank-page recovery, link-health monitoring and catalog corrections." },
   { date: "2026-07-14", text: "AbilityFinder launched with a sourced Alberta and federal catalog, a plain-language questionnaire and guides, accessibility controls, a grounded assistant, feedback tools and full catalog verification." },
 ];
+
+/* Optional personal-notice metadata. Unattributed history stays public-feed-only.
+   Revisions are immutable publication batches, oldest first when validating. */
+const AbilityFinderProgramChanges = (() => {
+  const kinds = new Set(['amount', 'rule', 'deadline', 'application', 'coverage', 'contact']);
+  function validEntry(entry, knownIds) {
+    return !!entry && Number.isSafeInteger(entry.revision) && entry.revision > 0 &&
+      Array.isArray(entry.changes) && entry.changes.length > 0 && entry.changes.length <= knownIds.size * kinds.size &&
+      entry.changes.every((change) => change && typeof change === 'object' && !Array.isArray(change) &&
+        Object.keys(change).length === 3 && knownIds.has(change.recordId) && kinds.has(change.kind) &&
+        typeof change.summary === 'string' && change.summary.trim().length > 0 && change.summary.length <= 120 &&
+        !/^\d+$/.test(change.summary.trim()));
+  }
+  function collect(entries, ids) {
+    const knownIds = new Set(ids);
+    let watermark = 0;
+    const changes = [];
+    for (const entry of [...entries].reverse()) {
+      if (!validEntry(entry, knownIds) || entry.revision <= watermark) continue;
+      watermark = entry.revision;
+      for (const change of entry.changes) changes.push({ ...change, revision: entry.revision, date: entry.date });
+    }
+    return { watermark, changes };
+  }
+  return { validEntry, collect };
+})();

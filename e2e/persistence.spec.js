@@ -379,7 +379,12 @@ test("browse filters, UI flags and consent recover while free text stays out of 
 });
 
 test("legacy browser state is sanitized before migration and restores its help route", async ({ page }) => {
-  await deleteAppStorage(page);
+  // Seed BEFORE app boot. First-use program-change baselining now creates an
+  // authoritative IDB snapshot; injecting legacy state after that must not win.
+  await page.route("**/__legacy_seed__", route => route.fulfill({
+    contentType: "text/html", body: "<!doctype html><title>Legacy seed</title>",
+  }));
+  await page.goto("/__legacy_seed__");
   await page.evaluate(() => {
     localStorage.setItem("abilityfinder.v2", JSON.stringify({
       answers: {
@@ -403,7 +408,7 @@ test("legacy browser state is sanitized before migration and restores its help r
     localStorage.setItem("abilityfinder.theme", "light");
   });
 
-  await page.reload();
+  await page.goto("/");
   await expect(page.locator("#hp-back")).toBeVisible();
   const migrated = await storedState(page);
   expect(migrated.answers).toMatchObject({
