@@ -23,9 +23,20 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
   batches roughly 220 published facts were corrected. Every change was decided against the full page text
   and checked by the other agent before release; nothing was made to look more certain than the page.
 
+- **Follow-ups** — `afce811`, `?v=182`: Waterloo Ontario Renovates now matches the Region's 2026 fact sheet
+  (separate repair and accessibility limits; the $600,000 home-value limit is confirmed); the Services &
+  Equipment student grant links to its own official page (#220); the BC fuel-tax refund no longer turns away
+  people on routes the page accepts.
+- **BC autism funding** — `36e0d5a`, `?v=183`: the travel/training/equipment limit now uses the newest page's
+  exact rule (50% for plans of 12 months or less, 50% of the adjusted portion for longer plans, 20% for youth
+  turning 19 before March 31, 2027). The fuel-tax requirement, which had grown to 1,148 characters, is now one
+  sentence plus a bullet list.
+- **51 guides now say "Info verified October 2026"** — `8f085e6`, `?v=184`. Only records where every fact was
+  confirmed or fixed, nothing is open, and no figure, age or date is missing from the page. The other 83 keep
+  their older date; the reason for each is in `research/reverify/VERIFIED-DATES-2026-10-17.md`.
+
 ### Still open (small)
-- Waterloo Ontario Renovates: whether repairs and accessibility have separate $25,000 limits needs the
-  program's fact sheet (not yet fetched).
+- Codex review owed on two small commits it couldn't finish (`36e0d5a` autism/fuel-tax, and the batch 6 build).
 - Two official pages contain typos ("$74.109", "$600,00"); we kept the correct figures.
 
 ### Needs you
