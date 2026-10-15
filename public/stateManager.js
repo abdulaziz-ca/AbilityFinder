@@ -86,13 +86,9 @@
         }
       }
     });
-    if (!["AB", "BC"].includes(clean.province)) {
-      clean.city = null;
-    } else if (clean.city !== null) {
-      const byProvince = validSelections && validSelections.citiesByProvince;
-      const provinceCities = byProvince && byProvince[clean.province];
-      if (Array.isArray(provinceCities) && !provinceCities.includes(clean.city)) clean.city = null;
-    }
+    const byProvince = validSelections && validSelections.citiesByProvince;
+    const provinceCities = byProvince && byProvince[clean.province];
+    if (!Array.isArray(provinceCities) || !provinceCities.includes(clean.city)) clean.city = null;
     return clean;
   }
 

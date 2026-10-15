@@ -14,7 +14,8 @@
     "reverify:queue": "node scripts/reverify-queue.js",
     "check:surfaces": "node scripts/check-readability.js --surfaces",
     "test": "node --test test/*.test.js",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "at:seed": "node scripts/at-kit-seed.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.1",

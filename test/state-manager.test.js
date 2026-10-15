@@ -17,6 +17,7 @@ const validSelections = {
   circumstances: ["homeowner", "vehicleOwner", "none", "unsure"],
   provinces: ["AB", "BC", "other"],
   cities: ["Calgary", "Edmonton", "Vancouver"],
+  citiesByProvince: { AB: ["Calgary", "Edmonton"], BC: ["Vancouver"] },
   benefitIds: ["dtc", "aish"],
   progressStages: ["saved", "submitted"],
 };
@@ -276,4 +277,32 @@ test("StateChangeEmitter notifies every subscriber and supports unsubscribe", ()
     "second:answer-change",
     "second:filter-change",
   ]);
+});
+
+
+test("restore validates cities against the province catalogue, including Ontario", () => {
+  const selections = {
+    ...validSelections,
+    provinces: ["AB", "BC", "ON", "other"],
+    cities: [...validSelections.cities, "Toronto"],
+    citiesByProvince: { ...validSelections.citiesByProvince, ON: ["Toronto"], other: [] },
+  };
+  for (const [province, city, expected] of [
+    ["ON", "Toronto", "Toronto"], ["ON", "Unknown", null],
+    ["ON", "Calgary", null], ["AB", "Calgary", "Calgary"],
+    ["BC", "Vancouver", "Vancouver"], ["AB", "Vancouver", null],
+    ["BC", "Calgary", null], ["other", "Toronto", null],
+    ["unknown", "Toronto", null],
+  ]) {
+    const restored = restorePersistedState({ answers: { province, city } }, {
+      answers: blankAnswers(), validSelections: selections,
+    });
+    assert.equal(restored.answers.city, expected, `${province}: ${city}`);
+  }
+  for (const citiesByProvince of [undefined, {}]) {
+    const restored = restorePersistedState({ answers: { province: "ON", city: "Toronto" } }, {
+      answers: blankAnswers(), validSelections: { ...selections, citiesByProvince },
+    });
+    assert.equal(restored.answers.city, null);
+  }
 });
