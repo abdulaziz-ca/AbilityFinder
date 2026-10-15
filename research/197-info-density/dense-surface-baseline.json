@@ -1,12 +1,12 @@
 {
-  "generated": "2026-10-14T04:29:24.300Z",
+  "generated": "2026-10-15T00:23:32.000Z",
   "counts": {
-    "gate.unmet": 94,
+    "gate.unmet": 95,
     "eligibility.note": 37,
-    "detail.about": 90,
-    "detail.aboutList.items": 144,
+    "detail.about": 92,
+    "detail.aboutList.items": 146,
     "summary": 25,
-    "note": 58
+    "note": 59
   },
   "maxChars": {
     "gate.unmet": 626,

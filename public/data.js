@@ -215,7 +215,7 @@ const BENEFIT_VALUES = {
   "ab-grant-disability": { kind: "grant", annualMax: 3000,
     note: "per loan year; limited to approved service/equipment costs after federal funding is allocated first" },
   "adult-health-benefit": { kind: "coverage", note: "prescriptions, dental, optical, ambulance and diabetes supplies — Alberta publishes no annual dollar value" },
-  "child-health-benefit": { kind: "coverage", note: "free prescriptions, dental & optical for kids" },
+  "child-health-benefit": { kind: "coverage", note: "eligible prescription drugs, basic and preventative dental care and eyeglasses for children in low-income households" },
   "parking-placard": { kind: "access", note: "low-cost accessible parking permit" },
   "ab-service-dog-id-card": { kind: "access", excludeFromEstimate: true,
     note: "Free provincial ID card for a qualified service dog team, mailed in about 2 weeks" },
@@ -285,12 +285,12 @@ const BENEFIT_VALUES = {
   "handydart-bctransit": { kind: "discount", excludeFromEstimate: true, note: "free registration; attendants ride free" },
   "taxi-saver-bctransit": { kind: "discount", excludeFromEstimate: true, note: "half-price taxi coupons" },
   "bc-fuel-tax-refund-disabilities": { kind: "discount", excludeFromEstimate: true, note: "<=$500/yr fuel-tax refund + 25% off ICBC basic" },
-  "bc-icbc-disability-discount": { kind: "discount", excludeFromEstimate: true, note: "25% off ICBC basic Autoplan" },
+  "bc-icbc-disability-discount": { kind: "discount", excludeFromEstimate: true, note: "may get 25% off ICBC basic Autoplan" },
   "vancouver-leisure-access": { kind: "discount", excludeFromEstimate: true, note: "free pool/rink admission + 50% off fitness" },
   "surrey-leisure-access": { kind: "discount", excludeFromEstimate: true, note: "free pass (0-18/60+) or 75% off adults; 75% off courses" },
   "burnaby-fair-play": { kind: "discount", excludeFromEstimate: true, note: "$250/person ($500/child) credit + annual Be Active Pass" },
   "richmond-rec-fee-subsidy": { kind: "discount", excludeFromEstimate: true, note: "Unlimited free admission to many drop-in programs and services + 90% off most registered programs (up to $300/year for children and youth or $100/year for adults and seniors)" },
-  "victoria-life": { kind: "discount", excludeFromEstimate: true, note: "2 yrs free drop-ins + $80-120 program credit" },
+  "victoria-life": { kind: "discount", excludeFromEstimate: true, note: "2 yrs free drop-ins (opens early 2027) + $80-120 program credit" },
   "saanich-life": { kind: "discount", excludeFromEstimate: true, note: "Choose for two years: Saanich free drop-ins, 52 regional visits/year and a one-time $80–$120 age-based Saanich program grant; or 50% off an annual Regional Recreation Pass" },
   "kelowna-recreation-assistance": { kind: "discount", excludeFromEstimate: true, note: "credit toward a pass or City programs" },
   "coquitlam-far": { kind: "discount", excludeFromEstimate: true, note: "50 drop-in passes + $225 credit per member" },
@@ -3449,25 +3449,25 @@ const BENEFITS = [
   },
   {
     id: "disability-supports-deduction",
-    eligibility: { mode: "all", items: ["You must have an impairment in physical or mental functions and have paid the expenses yourself so that you could work, attend school or carry out research.", "Only the person with the disability can claim this deduction — a family member cannot claim it for them."], note: "Some expenses need a certification from a medical practitioner. Keep every receipt." },
+    eligibility: { mode: "all", items: ["You must have an impairment in physical or mental functions and have paid the expenses yourself so that you could work, attend school or do research for which you received a grant.", "Only the person with the disability can claim this deduction — a family member cannot claim it for them."], note: "Some expenses need a certification from a medical practitioner. Keep every receipt." },
     name: "Disability Supports Deduction (line 21500)",
     level: "Federal",
     category: "Tax",
     amount: "A deduction from your income for what you paid, with no fixed maximum",
     requires: ["disabilityMedicalExpensesPaid"],
     summary:
-      "A federal tax deduction for a person with an impairment in physical or mental functions, covering what they paid for supports that let them work, attend school or do research. Only the person with the disability can claim it.",
+      "You may be able to deduct support costs if you have an impairment in physical or mental functions. Supports must let you work, attend school or do research for which you received a grant. Only the person with the disability can claim it.",
     note:
       "This is a deduction, not a credit — it reduces the income you are taxed on rather than paying out money. The same expense can go here or to the medical expense credit, or be split between them, but the total claimed cannot exceed what you actually spent.",
     requiresNote:
-      "You must have an impairment in physical or mental functions and have paid the expenses yourself so that you could work, attend school or carry out research. Only the person with the disability can claim this deduction — a family member cannot claim it for them. Some expenses need a certification from a medical practitioner. Keep every receipt.",
+      "You must have an impairment in physical or mental functions and have paid the expenses yourself so that you could work, attend school or do research for which you received a grant. Only the person with the disability can claim this deduction — a family member cannot claim it for them. Some expenses need a certification from a medical practitioner. Keep every receipt.",
     applyText: "Read the CRA guidance for line 21500",
     applyUrl: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-21500-disability-supports-deduction.html",
     source: "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-21500-disability-supports-deduction.html",
     detail: {
       about:
-        "Line 21500 lets a person with an impairment in physical or mental functions deduct what they paid for supports that made work, school or research possible. Use Form T929, Disability Supports Deduction, to work out the amount, then enter the figure from line 12 of that form on line 21500 of your return, in Step 3, net income. CRA notes that the same medical expense can be claimed on line 21500 or on line 33099, or split between the two, as long as the total claimed is not more than the expense. Do not send Form T929 or the receipts with your return; keep them in case CRA asks.",
-      aboutList: { lead: "Line 21500 lets a person with an impairment in physical or mental functions deduct what they paid for supports that made work, school or research possible.", items: ["Use Form T929, Disability Supports Deduction, to work out the amount, then enter the figure from line 12 of that form on line 21500 of your return, in Step 3, net income.", "CRA notes that the same medical expense can be claimed on line 21500 or on line 33099, or split between the two, as long as the total claimed is not more than the expense.", "Do not send Form T929 or the receipts with your return; keep them in case CRA asks."] },
+        "If you have an impairment in physical or mental functions, you may be able to deduct what you paid for supports. Supports must let you work, attend school or do research for which you received a grant. Use Form T929, Disability Supports Deduction, to work out the amount, then enter the figure from line 12 of that form on line 21500 of your return, in Step 3, net income. CRA notes that the same medical expense can be claimed on line 21500 or on line 33099, or split between the two, as long as the total claimed is not more than the expense. Do not send Form T929 or the receipts with your return; keep them in case CRA asks.",
+      aboutList: { lead: "If you have an impairment in physical or mental functions, you may be able to deduct what you paid for supports. Supports must let you work, attend school or do research for which you received a grant.", items: ["Use Form T929, Disability Supports Deduction, to work out the amount, then enter the figure from line 12 of that form on line 21500 of your return, in Step 3, net income.", "CRA notes that the same medical expense can be claimed on line 21500 or on line 33099, or split between the two, as long as the total claimed is not more than the expense.", "Do not send Form T929 or the receipts with your return; keep them in case CRA asks."] },
       steps: [
         "check the CRA list of eligible expenses for this deduction and whether any of yours need a medical practitioner's certification",
         "complete Form T929, Disability Supports Deduction",
@@ -3782,11 +3782,11 @@ const BENEFITS = [
         "You are legally entitled to work or train in Canada.",
         "You are a Canadian citizen, permanent resident, or Convention Refugee.",
         "You are employed or employment destined.",
-        "A documented permanent or long-term disability creates a barrier to education, training, or employment.",
+        "You may be eligible for funding if you have a disability that is documented permanent or long-term and creating a barrier to education, training and/or employment.",
       ],
     },
     requiresNote:
-      "You must be 16 or older, reside in Alberta, be legally entitled to work or train in Canada, and be a Canadian citizen, permanent resident, or Convention Refugee. You must be employed or employment destined, and a documented permanent or long-term disability must create a barrier to education, training, or employment.",
+      "You must be 16 or older, reside in Alberta, be legally entitled to work or train in Canada, and be a Canadian citizen, permanent resident, or Convention Refugee. You must be employed or employment destined. You may be eligible for funding if your disability is documented permanent or long-term and creating a barrier to education, training and/or employment.",
     note:
       "Published examples include assistive devices, equipment or technology; ASL interpreting and captioning; an academic aide or note taker; communication or hearing devices for work; workplace access or modification; and work-related vehicle modifications. Education or training supports are not available while attending Alberta Education-funded K–12 or a publicly funded Alberta post-secondary institution; contact the school or institution for disability accommodations. A separate eligible work route may still be considered.",
     applyText: "Disability Related Employment Supports",
@@ -3899,12 +3899,12 @@ const BENEFITS = [
     name: "Alberta Child Health Benefit",
     level: "Alberta",
     category: "Health (for children)",
-    amount: "Free prescriptions, dental, optical for kids",
+    amount: "Covers eligible prescription drugs, basic and preventative dental care and eyeglasses for children in low-income households",
     summary:
       "Health coverage for children under 18 in lower-income families, with a conditional route for 18- and 19-year-olds still in high school through grade 12.",
     requires: ["achbAge", "ab", "citizenPR", "lowIncome", "achbOlderDependent", "achbFamilyResidencyStatus", "achbCoverageCoordination"],
     note:
-      "The applicant and family members must live in Alberta and be Canadian citizens or permanent residents. Income Support, AISH, the Child and Youth Support Program, and Non-Insured Health Benefits are excluded government coverage. Private plans and the Canadian Dental Care Plan are coordinated first, not exclusions.",
+      "The applicant and family members must live in Alberta and be Canadian citizens or permanent residents. Income Support, AISH, the Child and Youth Support Program, and Non-Insured Health Benefits are excluded government coverage. Private plans are coordinated first, not exclusions. For services covered by both ACHB and the Canadian Dental Care Plan, claims go to the Canadian Dental Care Plan first.",
     applyText: "Alberta Child Health Benefit",
     applyUrl: "https://www.alberta.ca/alberta-child-health-benefit",
     source: "https://www.alberta.ca/alberta-child-health-benefit",
@@ -3927,10 +3927,10 @@ const BENEFITS = [
       tips: [
         "Income Support, AISH, the Child and Youth Support Program, and Non-Insured Health Benefits for First Nations and Inuit are excluded government health-benefit coverage.",
         "Private or other health insurance is not an exclusion. Use it first; ACHB may cover remaining eligible costs.",
-        "Use the Canadian Dental Care Plan first; ACHB may cover remaining eligible dental costs.",
+        "If you also have the Canadian Dental Care Plan, claims for services covered by both plans go to the Canadian Dental Care Plan first; ACHB may then cover remaining eligible dental costs.",
       ],
       time: "A few weeks to process.",
-      phone: "Alberta Supports: 1-877-644-9992",
+      phone: "Health Benefits Contact Centre: 780-427-6848 or 1-877-469-5437",
     },
   },
   {
@@ -4229,12 +4229,12 @@ const BENEFITS = [
     name: "Red Deer Transit & Recreation Fee Assistance",
     level: "Red Deer",
     category: "Getting around & recreation",
-    amount: "$34/month transit pass + up to $200/year recreation",
+    amount: "$34/month transit pass + up to $200/year per eligible person for recreation programs (pending available funding)",
     summary:
-      "A reduced monthly transit pass plus help with City recreation fees. Being on AISH qualifies you automatically.",
+      "A reduced monthly transit pass plus help with City recreation fees. If you are on AISH you may automatically qualify when you show the City your documents.",
     requires: ["reddeer", "lowIncomeOrDisabilityIncome"],
     note:
-      "If you're on AISH or Income Support you qualify automatically — no income test needed. The transit pass is a permanent program (not a pilot), and both need renewing each year.",
+      "If you're on AISH or Income Support you may automatically qualify when you provide the listed document, so you may not need to send a Notice of Assessment. The transit pass is a permanent program (not a pilot), and both need renewing each year.",
     applyText: "Red Deer fee assistance",
     applyUrl:
       "https://www.reddeer.ca/city-services/transit/fares-and-passes/transit-fare-assistance-pass/",
@@ -4242,26 +4242,26 @@ const BENEFITS = [
       "https://www.reddeer.ca/recreation-and-culture/recreation/facility-admission-fees--pass-prices/fee-assistance-program/",
     detail: {
       about:
-        "Two City of Red Deer programs. The Transit Fare Assistance Pass drops a monthly pass to $34 no matter which type you'd normally buy (regular passes run $62–$75). The Recreation Fee Assistance Program adds a Recreation Pass Card for drop-in use plus up to $200 a year toward registered programs.",
-      aboutList: { lead: "Two City of Red Deer programs.", items: ["The Transit Fare Assistance Pass drops a monthly pass to $34 no matter which type you'd normally buy (regular passes run $62–$75).", "The Recreation Fee Assistance Program adds a Recreation Pass Card for drop-in use plus up to $200 a year toward registered programs."] },
+        "Two City of Red Deer programs. The Transit Fare Assistance Pass drops a monthly pass to $34 no matter which type you'd normally buy (regular passes run $62–$75). The Recreation Fee Assistance Program adds a Recreation Pass Card for drop-in use plus, pending available funding, up to $200 a year per eligible person toward Safe & Healthy Communities program registrations.",
+      aboutList: { lead: "Two City of Red Deer programs.", items: ["The Transit Fare Assistance Pass drops a monthly pass to $34 no matter which type you'd normally buy (regular passes run $62–$75).", "The Recreation Fee Assistance Program adds a Recreation Pass Card for drop-in use.", "Plus, pending available funding, up to $200 a year per eligible person toward Safe & Healthy Communities program registrations."] },
       steps: [
         "Apply online for Recreation Fee Assistance, or for the Transit Fare Assistance Pass — being approved for recreation also qualifies you for transit.",
-        "If you're on AISH, Income Support or Guaranteed Income Supplement, say so — that's automatic qualification and you can skip the income test.",
+        "If you're on AISH, Income Support or Guaranteed Income Supplement, provide that document — the City says you may automatically qualify.",
         "Otherwise attach your CRA Notice of Assessment so they can check you against the low-income line.",
-        "Allow up to 10 business days, then buy the $34 pass.",
+        "Allow up to 10 business days (recreation applications may take longer due to high volume), then buy the $34 pass.",
         "Re-apply every year — approval expires.",
       ],
       documents: [
         "Proof you're on AISH / Income Support / GIS — or a CRA Notice of Assessment",
-        "Proof of a Red Deer address",
+        "Government-issued ID, and proof of residence if your ID does not show your current Red Deer address",
       ],
       tips: [
         "One application can cover both: being approved for Recreation Fee Assistance is itself a qualifying route into the transit pass.",
         "Recreation funding is 'pending available funding' — apply early in the year rather than late.",
         "Sorensen Station staff will help you apply in person if the online form is hard going.",
       ],
-      time: "Up to 10 business days.",
-      phone: "City of Red Deer: 403-342-8111",
+      time: "Transit pass: up to 10 business days. Recreation: the City says processing may take over 10 business days due to high volume.",
+      phone: "Fee Assistance Program: 403-309-8411 (or feeassistance@reddeer.ca)",
     },
   },
   {
@@ -4467,7 +4467,7 @@ const BENEFITS = [
       "One income-tested application covering Airdrie transit passes and Genesis Place recreation, at 25%, 50% or 75% off depending on income.",
     requires: ["airdrie", "lowIncomeOrDisabilityIncome"],
     note:
-      "Unlike Red Deer or Medicine Hat, being on AISH does NOT qualify you automatically here — Airdrie goes purely on household income. AISH income is well under the line, so it's still worth applying; just expect to show income rather than an AISH card.",
+      "Airdrie assesses your household income against its thresholds; the page does not say that being on AISH qualifies you automatically. An AISH or ADAP form showing your eligibility period is one of the accepted proof-of-income documents, and AISH/ADAP recipients get a two-year term instead of one year.",
     applyText: "Airdrie Fair Access",
     applyUrl: "https://www.airdrie.ca/index.cfm?serviceID=2414",
     source: "https://www.airdrie.ca/index.cfm?serviceID=2157",
@@ -4499,7 +4499,7 @@ const BENEFITS = [
     category: "Getting around & recreation",
     amount: "$10/month transit pass + 75% off SMART Bus + 60% off recreation",
     summary:
-      "A $10 monthly transit pass, 75% off specialized SMART Bus passes, and a separate 60% discount on regional recreation memberships.",
+      "A $10 monthly transit pass, 75% off specialized SMART Bus passes, and a 60% discount on regional recreation memberships through a community partner.",
     requires: ["woodbuffalo", "lowIncomeOrDisabilityIncome"],
     note:
       "One of only two municipal programs here that discounts specialized (door-to-door) transit — the other is Lethbridge's Access-A-Ride. Your AISH statement is accepted as proof of income.",
@@ -4508,26 +4508,26 @@ const BENEFITS = [
     source: "https://www.rmwb.ca/LIFT",
     detail: {
       about:
-        "The Regional Municipality of Wood Buffalo's Low-Income Fare Transit program: a monthly conventional transit pass for $10, and 75% off 10- and 25-ride passes for the SMART Bus (the specialized service for seniors and people with mobility needs). Everyone in the household is covered by the one application. The Wood Buffalo Recreation Support Program is separate and gives 60% off memberships at Syncrude Sport and Wellness Centre, Regional Recreation Corporation facilities and Vista Ridge.",
-      aboutList: { lead: "The Regional Municipality of Wood Buffalo's Low-Income Fare Transit program: a monthly conventional transit pass for $10, and 75% off 10- and 25-ride passes for the SMART Bus (the specialized service for seniors and people with mobility needs).", items: ["Everyone in the household is covered by the one application.", "The Wood Buffalo Recreation Support Program is separate and gives 60% off memberships at Syncrude Sport and Wellness Centre, Regional Recreation Corporation facilities and Vista Ridge."] },
+        "The Regional Municipality of Wood Buffalo's Low-Income Fare Transit program: a monthly conventional transit pass for $10, and 75% off 10- and 25-ride passes for the SMART Bus (the specialized service for seniors and people with mobility needs). Everyone in the household is covered by the one application. The Wood Buffalo Recreation Support Program is a separate program that gives 60% off memberships at Syncrude Sport and Wellness Centre, Regional Recreation Corporation facilities and Vista Ridge. The LIFT page says only one application is required to assess eligibility for these community partner discounts.",
+      aboutList: { lead: "The Regional Municipality of Wood Buffalo's Low-Income Fare Transit program: a monthly conventional transit pass for $10, and 75% off 10- and 25-ride passes for the SMART Bus (the specialized service for seniors and people with mobility needs).", items: ["Everyone in the household is covered by the one application.", "The Wood Buffalo Recreation Support Program is a separate program that gives 60% off memberships at:", "Syncrude Sport and Wellness Centre, Regional Recreation Corporation facilities and Vista Ridge.", "The LIFT page says only one application is required to assess eligibility for these community partner discounts."] },
       steps: [
         "Apply online for LIFT, or email community.services@rmwb.ca, or apply in person.",
         "Send your AISH statement as proof of income — it's accepted.",
-        "Allow 7–10 business days for approval.",
+        "You will be notified within 7–10 business days if you submit a complete application.",
         "For SMART Bus, buy the discounted 10- or 25-ride passes directly from the operator once you're approved.",
-        "Ask about the Recreation Support Program separately — it's a different application.",
+        "Ask the City or the Recreation Support Program how to claim the 60% recreation discount once you are approved; the LIFT page says one application assesses eligibility.",
       ],
       documents: [
         "AISH statement (or other proof of household income)",
         "Proof of a Wood Buffalo address",
-        "You must be 18 or older to apply",
+        "You must be 18 or older to apply (people under 18 who live independently may be considered)",
       ],
       tips: [
         "The income line here is generous — about $35,500 for one person, well above AISH.",
         "One application covers your partner and dependent children too, not just you.",
         "Call Pulse on 780-743-7000 if anything about the form is unclear.",
       ],
-      time: "7–10 business days.",
+      time: "Notification within 7–10 business days of a complete application.",
       phone: "Pulse: 780-743-7000",
     },
   },
@@ -4713,28 +4713,38 @@ const BENEFITS = [
     "name": "Persons with Disabilities (PWD) Designation",
     "level": "British Columbia",
     "category": "Money",
-    "amount": "No direct payment on its own — it is the designation that unlocks disability assistance, the transportation supplement and the ministry health supplements.",
-    "summary": "BC's provincial disability status for adults 18 and over with a severe impairment expected to last at least two years. It is the credential behind most other BC disability programs.",
+    "amount": "No direct payment on its own. The designation is required to access disability assistance, and a recipient with it may be eligible for higher rates, health supplements, an annual earnings exemption and a bus pass.",
+    "summary": "BC's provincial disability status for adults 18 and over with a severe impairment expected to last at least two years. It is required to access disability assistance.",
     "requires": ["bc", "age18plus", "dailyLivingLimit", "bcPwdMedical", "bcPwdDesignationFinancial"],
     eligibility: {
       mode: "all",
       items: [
         "You are 18 or older.",
         "You are financially eligible, or likely to be within six months.",
-        "You have a severe mental or physical impairment likely to continue for at least two years that significantly restricts daily living and requires an assistive device, significant help or supervision, an assistance animal, or similar support.",
+        "You have a severe mental or physical impairment likely to continue for at least two years that significantly restricts daily living and requires an assistive device, the significant help or supervision of another person, or the services of an assistance animal.",
       ],
     },
-    "requiresNote": "You are 18 or older; are financially eligible or likely to be within six months; and have a severe mental or physical impairment likely to continue for at least two years that significantly restricts daily living and requires an assistive device, significant help or supervision, an assistance animal, or similar support.",
+    "requiresNote": "You are 18 or older; are financially eligible or likely to be within six months; and have a severe mental or physical impairment likely to continue for at least two years that significantly restricts daily living and requires an assistive device, the significant help or supervision of another person, or the services of an assistance animal.",
     "note": "The test is functional, not diagnostic. The impairment must directly and significantly restrict your ability to perform daily living activities, AND you must need an assistive device, the significant help or supervision of another person, or the services of an assistance animal.",
     "applyText": "Start on My Self Serve",
     "applyUrl": "https://myselfserve.gov.bc.ca/",
     "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/pwd-designation-and-application/designation-application",
     "detail": {
-      "about": "The standard application is form HR2883. Five prescribed classes can use the shorter HR3642 application instead: people on BC PharmaCare Plan P (palliative care), At Home Program participants, Community Living BC eligible clients, people receiving CPP Disability or the Post-Retirement Disability Benefit, and people with an Indigenous Services Canada PWD designation in the BC region.",
-      "aboutList": { "lead": "The standard application is form HR2883.", "items": ["Five prescribed classes can use the shorter HR3642 application instead: people on BC PharmaCare Plan P (palliative care), At Home Program participants, Community Living BC eligible clients, people receiving CPP Disability or the Post-Retirement Disability Benefit, and people with an Indigenous Services Canada PWD designation in the BC region."] },
-      "steps": ["Start an assistance application through My Self Serve so the ministry can first check financial eligibility", "Ask the ministry for the PWD designation application (HR2883) after you start the assistance application", "Complete the applicant section, then have a doctor or nurse practitioner complete the medical report", "Have a prescribed professional who knows your daily limitations complete the assessor report", "Submit all sections and keep a copy; respond if the ministry asks for more information"],
+      "about": "The standard application is form HR2883. Five prescribed classes can use the prescribed-class application (HR3642) instead: people enrolled in BC PharmaCare Plan P (palliative care); people the Ministry of Children and Family Development has determined to be eligible for the At Home Program; people Community Living BC has determined to be eligible for its supports and services; people determined as disabled by the Government of Canada and eligible for the CPP Disability Benefit or Post-Retirement Disability Benefit; and people designated as a Person with Disabilities by Indigenous Services Canada in the BC region. Prescribed-class applicants must still meet all other eligibility requirements (identification, financial, residency, etc.).",
+      "aboutList": {
+        "lead": "The standard application is form HR2883. Five prescribed classes can use the prescribed-class application (HR3642) instead:",
+        "items": [
+          "People enrolled in BC PharmaCare Plan P (palliative care).",
+          "People the Ministry of Children and Family Development has determined to be eligible for the At Home Program.",
+          "People Community Living BC has determined to be eligible for its supports and services.",
+          "People determined as disabled by the Government of Canada and eligible for the CPP Disability Benefit or Post-Retirement Disability Benefit.",
+          "People designated as a Person with Disabilities by Indigenous Services Canada in the BC region.",
+          "Prescribed-class applicants must still meet all other eligibility requirements (identification, financial, residency, etc.)."
+        ]
+      },
+      "steps": ["Start an assistance application through My Self Serve so the ministry can first check financial eligibility", "Ask the ministry for the PWD designation application (HR2883) after you start the assistance application", "Complete the applicant section, then have a doctor or nurse practitioner complete the medical report", "Have a medical practitioner, nurse practitioner or other prescribed professional complete the assessor report", "Submit all sections and keep a copy; respond if the ministry asks for more information"],
       "documents": ["Identification, income, asset and shelter information for the assistance application", "PWD designation application HR2883", "Medical and functional information describing how the impairment restricts daily living and what help or supervision is required"],
-      "tips": ["You can start the PWD application at age 17 and a half, although disability assistance cannot begin before 18", "If you are in a prescribed class, ask whether the shorter HR3642 form applies before arranging two professional reports", "Ask each professional to describe functional restrictions and support needs, not only the diagnosis"],
+      "tips": ["You can start the PWD application at age 17 and a half, although disability assistance cannot begin before 18", "If you are in a prescribed class, ask whether the prescribed-class HR3642 application applies instead of the standard application", "The ministry provides the HR2883 application to people who intend to apply for disability assistance; it is not given out only to qualify for other programs.", "Ask each professional to describe functional restrictions and support needs, not only the diagnosis"],
       "time": "The ministry does not publish one guaranteed decision time",
       "phone": "1-866-866-0800"
     }
@@ -4815,7 +4825,7 @@ const BENEFITS = [
     "source": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/plan-c",
     "detail": {
       "about": "Enrolment in those programs automatically enrols you in Plan C — there is no separate application. It also covers prostheses and orthoses including offloading devices for diabetic foot ulcers, ostomy supplies, and insulin and insulin pumps (insulin pumps need an approved Special Authority request from a doctor).",
-      "steps": ["Confirm that your qualifying income, disability, hardship, care or protected status is active with the responsible ministry", "Give the pharmacy your BC Services Card or Personal Health Number so it can check Plan C", "If the status is active but the pharmacy cannot see Plan C, ask the ministry or Health Insurance BC to correct the enrolment", "For an urgent prescription, ask the prescriber or pharmacist whether the emergency 48-hour Plan C process applies"],
+      "steps": ["Confirm that your qualifying income, disability, hardship, care or protected status is active with the responsible ministry", "Give the pharmacy your BC Services Card or Personal Health Number so it can check Plan C", "If the status is active but the pharmacy cannot see Plan C, ask the ministry or Health Insurance BC to correct the enrolment", "If you are eligible for Plan C but not yet enrolled and need a prescription urgently, ask the prescriber or pharmacist whether they can request emergency Plan C coverage, which provides up to 48 hours of PharmaCare coverage"],
       "documents": ["BC Services Card or Personal Health Number", "Any recent ministry notice showing the qualifying assistance or care status"],
       "tips": ["There is no separate Plan C application", "Register for Fair PharmaCare as well so coverage can continue if your assistance status changes", "Ask the pharmacy about any amount before paying; covered drugs and dispensing fees should not be charged under Plan C"],
       "time": "Automatic when the qualifying ministry status is active",
@@ -4990,7 +5000,7 @@ const BENEFITS = [
       "steps": ["Download and complete the combined HandyDART and HandyCard application", "Describe the parts of conventional transit you cannot navigate without help, including temporary or changing barriers", "Include the optional medical verification if it will help explain the functional barrier", "Submit the application using the instructions on the form and wait for Access Transit to contact you", "After approval, call to book trips one to seven days ahead; bookings for the next day must be requested before 4 p.m."],
       "documents": ["Completed HandyDART and HandyCard application", "Recent photo for the HandyCard portion", "Optional functional or medical verification"],
       "tips": ["Explain what happens from your door to the stop, on the vehicle and during transfers — eligibility is about the functional trip, not a diagnosis", "A HandyDART taxi replacement costs the regular HandyDART fare; it is not a TaxiSaver trip", "Tell the booking agent about mobility aids, an attendant, a service dog or vehicle limitations"],
-      "time": "Ask Access Transit when you submit the application",
+      "time": "TransLink says it processes HandyDART applications within 10 days of confirming receipt, and asks you to allow 4 to 6 weeks for HandyCard applications.",
       "phone": "604-953-3680"
     }
   },
@@ -5022,7 +5032,7 @@ const BENEFITS = [
     "level": "Metro Vancouver",
     "category": "Transit",
     "amount": "Half-price taxi coupons — $25.00 buys one book with $50.00 worth of coupons, maximum two books per month",
-    "summary": "Half-price taxi coupons for HandyCard holders, for trips where a scheduled HandyDART ride does not work.",
+    "summary": "Half-price taxi coupons for HandyCard holders.",
     "requires": ["bc", "metroVancouver", "transitBarrier", "translinkHandyCard"],
     "requiresNote": "You must be a TransLink HandyCard member.",
     "note": "Order by cheque or money order with a self-addressed envelope, or buy in person at the TransLink Customer Service Centre at Waterfront Station, which takes cash, debit or credit. Buying in person, you or your representative must present the original HandyCard.",
@@ -5834,8 +5844,8 @@ const BENEFITS = [
     "name": "WorkBC Employment Services",
     "level": "British Columbia",
     "category": "Work",
-    "amount": "Free — including skills training, wage subsidies, assistive technology, and transportation and dependent-care supports",
-    "summary": "BC's free public employment service. Help finding work, paid training, and practical supports that remove the barriers around a job, with services built specifically for people with disabilities.",
+    "amount": "Free employment services, including work experience and wage subsidies. Funding support for training, transportation, dependent care and employment-related disability supports may be available, typically for clients with an employment plan.",
+    "summary": "BC's free public employment service. Help finding work, possible funding support for training, and possible financial supports, with services built specifically for people with disabilities.",
     "requires": ["bc", "age16plus", "bcWorkBcRoute"],
     "requiresNote": "Check whether you are eligible by applying online at apply.workbc.ca. Staff can support you in completing your application.",
     "note": "For clients with disabilities, the job search service includes working with employers to carve or customize jobs to meet your needs. Assistive technology funding is covered separately in the related WorkBC Assistive Technology Services program already in this catalog.",
@@ -5843,10 +5853,24 @@ const BENEFITS = [
     "applyUrl": "https://www.workbc.ca/get-support/workbc-centre-services",
     "source": "https://www.workbc.ca/get-support/workbc-centre-services",
     "detail": {
-      "about": "WorkBC centres provide free employment services including job-search help, training, work experience, wage subsidies and practical disability-related supports. A WorkBC counsellor reviews eligibility and builds the plan with you.",
+      "about": "WorkBC centres provide free employment services including job-search help, work experience and wage subsidies. Funding support for training and employment-related disability supports may be available, typically for clients with an employment plan. A WorkBC counsellor reviews eligibility and builds the plan with you.",
+      "aboutList": {
+        "lead": "WorkBC centre services and possible funding:",
+        "items": [
+          "Free employment services including job-search help, work experience and wage subsidies.",
+          "Funding support for training and employment-related disability supports may be available, typically for clients with an employment plan.",
+          "A WorkBC counsellor reviews eligibility and builds the plan with you."
+        ]
+      },
       "steps": ["Get a Basic BCeID or set up online access with a BC Services Card", "Register for Online Employment Services and select WorkBC Employment Services", "Complete the application, including work status, barriers and the WorkBC centre you want to use", "Upload requested documents and communicate with the centre through the secure portal", "Meet an employment counsellor to confirm eligibility and create a personal action plan"],
       "documents": ["Valid Social Insurance Number", "Information showing you are legally allowed to work in B.C.", "Work and education history", "Information about disability-related employment barriers if requesting specialized supports"],
-      "tips": ["A phone number and fixed mailing address are not required to submit the online application", "Centre staff can help you complete the application", "People with disabilities can qualify in additional employed or student situations, including risk of losing a job or the final year of school"],
+      "tips": [
+        "A phone number and fixed mailing address are not required to submit the online application",
+        "Centre staff can help you complete the application",
+        "People with disabilities can qualify in additional employed or student situations, including risk of losing a job or the final year of school",
+        "Financial supports are typically available to clients who are case managed through WorkBC (an employment plan in place, working with an employment specialist).",
+        "Dependent care covers childcare while you are job searching."
+      ],
       "time": "The local WorkBC centre decides eligibility after reviewing the completed application",
       "phone": "Contact your selected WorkBC centre"
     }
@@ -5857,7 +5881,7 @@ const BENEFITS = [
     "level": "British Columbia",
     "category": "Transit",
     "amount": "Up to $500 per calendar year for a registered vehicle, plus a 25% discount off ICBC basic Autoplan insurance",
-    "summary": "Refunds provincial fuel tax on a vehicle you own, lease or have an ownership interest in — and registering also unlocks a 25% discount on your basic ICBC insurance.",
+    "summary": "Refunds provincial fuel tax on a vehicle you own, lease or have an ownership interest in — and if you are eligible for the program, you may also receive 25% off your basic ICBC insurance.",
     "requires": ["bc", "vehicleDisability", "vehicleOwner", "bcFuelTaxRoute"],
     eligibility: {
       mode: "any",
@@ -5894,11 +5918,11 @@ const BENEFITS = [
     "name": "ICBC Disability Discount (Basic Autoplan)",
     "level": "British Columbia",
     "category": "Transit",
-    "amount": "25% off ICBC basic Autoplan insurance, including electric vehicles",
-    "summary": "A quarter off the basic part of your vehicle insurance. It comes with registering for the provincial fuel tax refund program, so the two go together.",
-    "requires": ["bc", "vehicleDisability", "vehicleOwner", "bcFuelTaxRegistered"],
-    "requiresNote": "You qualify by registering for the Fuel Tax Refund Program for Persons with Disabilities — the same disability confirmations listed there apply.",
-    "note": "Register for bc-fuel-tax-refund-disabilities first, then talk to an Autoplan broker about applying the discount to your policy.",
+    "amount": "You may receive 25% off ICBC basic Autoplan insurance (including electric vehicles) if you are eligible for the fuel tax refund program for persons with disabilities",
+    "summary": "If you are eligible for the provincial fuel tax refund program for persons with disabilities, you may receive 25% off the basic part of your ICBC vehicle insurance.",
+    "requires": ["bc", "bcVehicleDisabilityRoute", "vehicleOwner", "bcFuelTaxRegistered"],
+    "requiresNote": "You must be 16 or older. You may receive it if you are eligible for the Fuel Tax Refund Program for Persons with Disabilities — the same disability confirmations listed there apply.",
+    "note": "Register for the Fuel Tax Refund Program for Persons with Disabilities first, then talk to an Autoplan broker about applying the discount to your policy.",
     "applyText": "Start with the fuel tax refund program",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities",
     "source": "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities",
@@ -6091,8 +6115,8 @@ const BENEFITS = [
     "name": "L.I.F.E. Program (Leisure Involvement For Everyone)",
     "level": "Victoria",
     "category": "Recreation",
-    "amount": "Two years of unlimited free drop-ins, 52 free regional drop-ins a year, plus a program credit of $80 to $120 depending on age",
-    "summary": "Victoria's low-income recreation membership. It runs two years from your approval date, not by calendar year, and covers pool, skating and regional partner facilities.",
+    "amount": "Two years of unlimited free drop-ins at Victoria Recreation Centre (opening planned early 2027) and public skating at Save-On-Foods Memorial Arena, 52 free regional drop-ins a year, plus a program credit of $80 to $120 depending on age",
+    "summary": "Victoria's low-income recreation membership. It runs two years from your approval date, not by calendar year, and covers drop-ins at Victoria Recreation Centre (opening planned early 2027), public skating and regional partner drop-ins.",
     "requires": ["bc", "victoria", "lowIncome"],
     "eligibility": {
       "mode": "all",
@@ -6120,9 +6144,18 @@ const BENEFITS = [
     "applyUrl": "https://www.victoria.ca/parks-recreation/recreation/accessibility-inclusion/life-program",
     "source": "https://www.victoria.ca/parks-recreation/recreation/accessibility-inclusion/life-program",
     "detail": {
-      "about": "The two-year membership combines local unlimited drop-ins, a regional 52-visit benefit and a one-time registered-program credit. The City also accepts an adjudicator route when standard documents cannot reasonably be provided.",
-      "steps": ["Complete one L.I.F.E. application for family members living at the same address", "Gather current proof of City of Victoria residence and income documents for household adults", "If documents are unavailable, ask an eligible professional who knows the household situation to complete the adjudicator section", "Submit through the method on the current City form", "After approval, obtain the regional visit sticker each calendar year and use the program credit before the two-year term ends"],
-      "documents": ["Completed L.I.F.E. application", "Utility bill, phone bill or rental agreement from the last three months", "Most recent CRA Notice of Assessment for household members over 19, or completed adjudicator verification"],
+      "about": "The two-year membership combines unlimited drop-ins at Victoria Recreation Centre (opening planned early 2027) and public skating, a regional 52-visit benefit and a one-time registered-program credit. If you cannot provide the standard documents you may still be eligible to apply using an adjudicator. The City only accepts adjudicator applications when all required information is provided and audits all adjudicator forms.",
+      "aboutList": {
+        "lead": "The two-year membership includes:",
+        "items": [
+          "Unlimited drop-ins at Victoria Recreation Centre (opening planned early 2027) and public skating.",
+          "A regional 52-visit benefit and a one-time registered-program credit.",
+          "If you cannot provide the standard documents you may still be eligible to apply using an adjudicator.",
+          "The City only accepts adjudicator applications when all required information is provided and audits all adjudicator forms."
+        ]
+      },
+      "steps": ["Complete one L.I.F.E. application for family members living at the same address", "Gather current proof of City of Victoria residence and income documents for household adults", "If you cannot provide the documents, you may be able to use an adjudicator: a community professional familiar with your financial and residential situation completes the adjudicator form", "Submit through the method on the current City form", "After approval, obtain the regional visit sticker each calendar year and use the program credit before the two-year term ends"],
+      "documents": ["Completed L.I.F.E. application", "Utility bill, phone bill or rental agreement from the last three months", "Most recent CRA Notice of Assessment for household members aged 19 and older, or completed adjudicator verification"],
       "tips": ["The $80 or $120 program credit is for the whole two-year term, not each year", "The regional 52-visit sticker must be renewed each calendar year", "Ask staff which benefit option is better before choosing the discounted regional annual pass"],
       "time": "Membership lasts two years from approval"
     }
@@ -6179,7 +6212,7 @@ const BENEFITS = [
         "You are a Canadian citizen or permanent resident currently residing in Kelowna as a full-time resident.",
         "You meet the family net income threshold based on the after-tax Low Income Cut-off (see the table below). You must also meet income verification requirements and have all the necessary documentation. People receiving government financial assistance are eligible to apply, as are people who do not receive it but are experiencing financial hardship and meet the guidelines.",
       ],
-      "note": "Post-secondary students are NOT eligible, though they can ask for the discounted student rate on passes instead. Also not eligible: temporary residents and visitors, including anyone on a study or work permit; immigrants classified as business class, investor or entrepreneur; and anyone banned from City recreation facilities, including Parkinson Recreation Centre and the Kelowna-area YMCAs.",
+      "note": "Post-secondary students are NOT eligible, though they can ask for the discounted student rate on passes instead. Also not eligible: temporary residents and visitors, including anyone on a study or work permit; immigrants classified as business class, investor or entrepreneur; and anyone banned from City recreation facilities, including Parkinson Recreation Centre and the Kelowna-area YMCAs. Recreation Services may exercise discretion when determining eligibility for Financial Assistance for individuals with previous suspensions or bans.",
     },
     "amountTiers": {
       "caption": "City of Kelowna — Low Income Cut-Offs (LICO) 2025 (family net income after tax)",
@@ -6194,7 +6227,7 @@ const BENEFITS = [
         ["7", "$71,254"],
       ],
     },
-    "requiresNote": "You must be a Canadian citizen or permanent resident currently residing in Kelowna as a full-time resident, and meet the family net income threshold based on the after-tax Low Income Cut-off published by Statistics Canada. The City 2025 LICO table lists $26,926 for a family of 1, $33,519 for 2, $41,208 for 3, $50,032 for 4, $56,744 for 5, $64,000 for 6 and $71,254 for 7. You must also meet income verification requirements and have all the necessary documentation. People receiving government financial assistance are eligible to apply, as are people who do not receive it but are experiencing financial hardship and meet the guidelines. Post-secondary students are NOT eligible, though they can ask for the discounted student rate on passes instead. Also not eligible: temporary residents and visitors, including anyone on a study or work permit; immigrants classified as business class, investor or entrepreneur; and anyone banned from City recreation facilities, including Parkinson Recreation Centre and the Kelowna-area YMCAs.",
+    "requiresNote": "You must be a Canadian citizen or permanent resident currently residing in Kelowna as a full-time resident, and meet the family net income threshold based on the after-tax Low Income Cut-off published by Statistics Canada. The City 2025 LICO table lists $26,926 for a family of 1, $33,519 for 2, $41,208 for 3, $50,032 for 4, $56,744 for 5, $64,000 for 6 and $71,254 for 7. You must also meet income verification requirements and have all the necessary documentation. People receiving government financial assistance are eligible to apply, as are people who do not receive it but are experiencing financial hardship and meet the guidelines. Post-secondary students are NOT eligible, though they can ask for the discounted student rate on passes instead. Also not eligible: temporary residents and visitors, including anyone on a study or work permit; immigrants classified as business class, investor or entrepreneur; and anyone banned from City recreation facilities, including Parkinson Recreation Centre and the Kelowna-area YMCAs. Recreation Services may exercise discretion when determining eligibility for Financial Assistance for individuals with previous suspensions or bans.",
     "note": "Apply by emailing the Access to Recreation Department. The assessment may take up to two weeks from the date of submission, provided all required information is received. The income assessment counts income from all sources, including disability benefits and workers' compensation as well as employment, investments, pensions, child and foster child support, rental income and funds held in trust.",
     "applyText": "Email Access to Recreation to apply",
     "applyUrl": "https://www.kelowna.ca/parks-recreation/recreation-sport/recreation-programs-registration/financial-assistance-recreation",

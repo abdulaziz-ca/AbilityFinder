@@ -203,6 +203,28 @@ test.describe("eligibility oracle", () => {
         )
         .toBe(PROGRAM_BEST_CASE[programCase.id]);
     });
+
+    // Batch three item nine: these answers cannot disprove the registration
+    // page's certification/letter/medical alternatives. Keep other vehicle
+    // programs' shared hard rejection intact. Expectations come from the
+    // source routes, not a recording of matcher output.
+    const icbc = cases.find((c) => c.id === "bc-icbc-disability-discount");
+    const routeResults = await evaluateBatch(page, [
+      ...["none", "mental", "unsure"].map((category) => ({
+        programId: icbc.id,
+        answers: { ...icbc.bestCase.answers, disabilities: [category], functionalNeeds: ["none"] },
+      })),
+      {
+        programId: "bc-fuel-tax-refund-disabilities",
+        answers: { ...icbc.bestCase.answers, disabilities: ["none"], functionalNeeds: ["none"] },
+      },
+    ]);
+    for (const result of routeResults.slice(0, 3)) {
+      expect(result.status, "unasked ICBC disability-confirmation routes stay open").toBe("almost");
+      expect(result.needs.join(" ")).toMatch(/registration page lists/);
+      expect(result.needs.join(" ")).toMatch(/registration is confirmed/);
+    }
+    expect(routeResults[3].status, "the out-of-batch shared vehicle gate is unchanged").toBe("no");
   });
 
   test("every program that can be refused is refused for the specified reason", async ({ page }) => {

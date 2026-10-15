@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.19.0";
+const SPEC_VERSION = "1.20.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -572,7 +572,8 @@ const GATES = {
   adapFinancial: external("ADAP applies its own financial test."),
   ahcipRegistered: external("Depends on active Alberta Health Care Insurance Plan registration."),
   aadlAssessment: external("Requires an assessment by an AADL-authorised assessor."),
-  aadlOtherPayer: external("Depends on what another payer already covers for the same item."),
+  aadlOtherPayer: external("Depends on eligibility for comparable benefits, including the NIHB fallback."),
+  bcVehicleDisabilityRoute: external("ICBC requires confirmation through a registration-page disability route; the wizard cannot establish it from physical, vision or transit answers."),
   pddEligibility: external("PDD eligibility is determined by the program, including its own assessment process."),
   fscdEligibility: external("FSCD eligibility is determined by a regional caseworker agreement."),
   dresResidencyAndStatus: external("DRES confirms residency and immigration status through its own intake."),
@@ -812,6 +813,10 @@ const PROGRAM_BEST_CASE = {
    somebody has to defend at review.
    -------------------------------------------------------------------------- */
 const PROGRAM_NOTES = {
+  "bc-icbc-disability-discount": {
+    bestCase: "almost",
+    why: "TaskView #221, batch three item nine: registration-page disability confirmation has alternatives the wizard does not collect. Missing physical, vision or transit categories must not reject ICBC; bcVehicleDisabilityRoute and fuel-tax registration remain external. The shared vehicleDisability gate stays unchanged for its other users. Item twenty adds age text only, not an age gate.",
+  },
   "burnaby-fair-play": { bestCase: "almost", why: "Review F1: PWD designation does not establish receiving assistance; eligibility route needs external confirmation." },
   "bc-medical-transportation": { bestCase: "almost", why: "Review F1: PWD designation does not establish receiving assistance; eligibility route needs external confirmation." },
   "bc-at-home-medical": {

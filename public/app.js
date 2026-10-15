@@ -408,11 +408,11 @@ const REQS = {
     action: { text: "Review Alberta Child Health Benefit eligibility", url: ACHB_URL },
   },
   achbCoverageCoordination: {
-    short: "Check government health coverage first; other plans are used before ACHB",
+    short: "Check excluded coverage and coordination for services covered by both plans",
     who: ["you", "program"],
     met: () => false,
     fixed: false,
-    unmet: "Confirm the family is not receiving government health-benefit coverage through Income Support, AISH, the Child and Youth Support Program, or Non-Insured Health Benefits for First Nations and Inuit. Private or other health plans are not exclusions: use them first and ACHB may cover remaining eligible costs. Use the Canadian Dental Care Plan first too; ACHB may cover remaining eligible dental costs.",
+    unmet: "Confirm the family is not receiving government health-benefit coverage through Income Support, AISH, the Child and Youth Support Program, or Non-Insured Health Benefits for First Nations and Inuit. Private or other health plans are not exclusions: use them first and ACHB may cover remaining eligible costs. For dental services covered by both plans, claim from the Canadian Dental Care Plan first; ACHB may then cover remaining eligible dental costs.",
     action: { text: "Review coverage and coordination rules", url: ACHB_URL },
   },
 
@@ -577,7 +577,7 @@ const REQS = {
     // requested accommodation, or whether an institutional exclusion applies.
     met: () => false,
     fixed: false,
-    unmet: "Confirm that you are employed or employment destined and that the request is for a DRES-funded accommodation. Education or training supports are not available while attending Alberta Education-funded K–12 or a publicly funded Alberta post-secondary institution; contact the school or institution for disability accommodations. DRES does not fund ordinary job matching, employment or skills training, or wage subsidies.",
+    unmet: "Confirm that you are employed or employment destined and that the request is for a DRES-funded accommodation. Education or training supports are not available while attending Alberta Education-funded K–12 or a publicly funded Alberta post-secondary institution; contact the school or institution for disability accommodations. DRES does not fund employment services, for example job matching, employment or skills training, or wage subsidies.",
     action: { text: "Review DRES routes and exclusions", url: DRES_URL },
   },
   pddEligibility: {
@@ -650,19 +650,19 @@ const REQS = {
     action: { text: "Check AHCIP registration", url: "https://www.alberta.ca/ahcip-how-to-apply" },
   },
   aadlAssessment: {
-    short: "Ask an authorized health professional about assessment and AADL-listed items",
+    short: "Ask an authorized health professional about assessment and AADL benefits",
     who: ["you", "professional"],
     met: () => false,
     fixed: false,
-    unmet: "An authorized health professional must assess you, and the item must be an AADL-listed benefit bought from an approved vendor. The condition must be expected to last 6 months or longer.",
+    unmet: "An authorized health professional must assess you, and the item must be an AADL benefit bought from an AADL-approved vendor. AADL defines long-term and chronic as 6 months or longer.",
     action: { text: "Review AADL eligibility", url: "https://www.alberta.ca/aadl-eligibility-and-application-for-benefits" },
   },
   aadlOtherPayer: {
-    short: "Check whether another plan already covers the item",
+    short: "Check comparable benefits you may receive and the NIHB fallback",
     who: ["you"],
     met: () => false,
     fixed: false,
-    unmet: "AADL does not cover items already covered by Veterans Affairs, Workers' Compensation Board, Non-Insured Health Benefits, or a private insurance plan.",
+    unmet: "You may not be eligible for AADL if you are eligible to receive comparable benefits from another source: Veterans Affairs (for a medical condition from active duty), Workers' Compensation Board, Non-Insured Health Benefits (NIHB) or a private insurance plan. If a benefit is not available through NIHB and you are eligible for AADL, AADL benefits can be accessed.",
   },
   homeAccessNeed: {
     met: () => hasFunctionalNeed("homeAccess"),
@@ -833,7 +833,7 @@ const REQS = {
     who: ["you", "professional", "program"],
     met: () => false,
     fixed: false,
-    unmet: "The ministry decides whether your impairment is severe and likely to continue for at least two years. A doctor or nurse practitioner completes the medical report and a prescribed professional completes the assessor report.",
+    unmet: "The ministry decides whether your impairment is severe and likely to continue for at least two years. A medical practitioner or nurse practitioner completes the medical report, and a medical practitioner, nurse practitioner or other prescribed professional completes the assessor report.",
     action: { text: "Review the PWD designation criteria", url: "https://www2.gov.bc.ca/gov/content/family-social-supports/services-for-people-with-disabilities/disability-assistance" },
   },
   bcPwdDesignationFinancial: {
@@ -1041,7 +1041,7 @@ const REQS = {
     who: ["you"],
     met: () => hasFunctionalNeed("dailyLiving"),
     fixed: () => !functionalNeedUnknown(),
-    unmet: "PWD requires significant restrictions in daily living plus help, supervision, an assistive device, service animal, or similar support.",
+    unmet: "PWD requires significant restrictions in daily living plus an assistive device, the significant help or supervision of another person, or the services of an assistance animal.",
   },
   childHighNeeds: {
     met: () => hasFunctionalNeed("childHighNeeds"),
@@ -1072,7 +1072,7 @@ const REQS = {
   outsideMetroVancouver: {
     short: "Check whether to use B.C. Transit or TransLink for your area",
     who: ["you"], met: () => !!answers.city && !METRO_VANCOUVER_CITIES.includes(answers.city), fixed: true, unmet: "Use the TransLink program in Metro Vancouver; this listing is for B.C. Transit communities." },
-  translinkHandyCard: { met: () => false, fixed: false, unmet: "Register for TransLink HandyDART/HandyCard first." },
+  translinkHandyCard: { met: () => false, fixed: false, unmet: "Get a TransLink HandyCard first (TaxiSavers are sold to HandyCard members)." },
   bcTransitHandyDart: { met: () => false, fixed: false, unmet: "Register as a permanent handyDART customer and obtain a handyPASS first." },
   atHomeProgram: { met: () => false, fixed: false, unmet: "The child must first be enrolled in the At Home Program." },
   recentGraduate: { met: () => hasCircumstance("recentGraduate"), fixed: () => !circumstanceUnknown(), unmet: "Work-Able requires graduation within three years of the program start date." },
@@ -1082,6 +1082,14 @@ const REQS = {
     met: () => answers.dtc === "yes" || isSeniorAge(),
     fixed: true,
     unmet: "This credit requires DTC eligibility (any age), age 65+, or an eligible supporting family member living with the person.",
+  },
+  bcVehicleDisabilityRoute: {
+    short: "Check which disability confirmation the registration page accepts",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "Confirm your disability with one of the routes the registration page lists: B.C. Disability Assistance Certification; a letter from BCANDS, Veterans' Affairs (100% disability pension) or CNIB; or medical certification of a listed permanent condition.",
+    action: { text: "Review fuel-tax registration routes", url: "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities" },
   },
   vehicleDisability: {
     met: () => hasDisability("physical") || hasDisability("vision") || hasFunctionalNeed("transitBarrier"),

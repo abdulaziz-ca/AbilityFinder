@@ -397,7 +397,7 @@ test("DRES warns institution students and ordinary-training-only profiles", asyn
   expect(warning).toMatch(/Alberta Education-funded K–12/);
   expect(warning).toMatch(/publicly funded Alberta post-secondary institution/);
   expect(warning).toMatch(/contact the school or institution for disability accommodations/i);
-  expect(warning).toMatch(/does not fund ordinary job matching, employment or skills training, or wage subsidies/i);
+  expect(warning).toMatch(/does not fund employment services, for example job matching, employment or skills training, or wage subsidies/i);
 });
 
 test("DRES injected employment and covered-device facts cannot manufacture ready", async ({ page }) => {

@@ -163,12 +163,12 @@
     "reason": "Leaves Alberta residence and citizen/permanent-resident requirements for each included family member in full"
   },
   "achbCoverageCoordination": {
-    "short": "Check government health coverage first; other plans are used before ACHB",
+    "short": "Check excluded coverage and coordination for services covered by both plans",
     "who": [
       "you",
       "program"
     ],
-    "reason": "Leaves excluded government coverage, other-plan-first rules and possible eligible residual health/dental costs in full"
+    "reason": "Leaves excluded government coverage and private-plan rules in full; CDCP-first coordination is limited to services covered by both plans, with possible eligible residual dental costs"
   },
   "notPostSecondaryStudent": {
     "short": "Check Kelowna's student rule and ask about student pass rates",
@@ -337,19 +337,19 @@
     "reason": "Leaves monthly review, non-exempt asset cap and required applications for other income you may qualify for in full"
   },
   "aadlAssessment": {
-    "short": "Ask an authorized health professional about assessment and AADL-listed items",
+    "short": "Ask an authorized health professional about assessment and AADL benefits",
     "who": [
       "you",
       "professional"
     ],
-    "reason": "Leaves authorized assessor, listed item, approved vendor and expected condition duration in full"
+    "reason": "Leaves authorized assessment, AADL benefit, approved AADL vendor and the long-term/chronic definition in full without extending duration to terminal illness"
   },
   "aadlOtherPayer": {
-    "short": "Check whether another plan already covers the item",
+    "short": "Check comparable benefits you may receive and the NIHB fallback",
     "who": [
       "you"
     ],
-    "reason": "Leaves named public/private payers and the already-covered exclusion in full"
+    "reason": "Leaves possible ineligibility for comparable benefits, the active-duty Veterans Affairs scope and the NIHB fallback in full"
   },
   "rampMobilityRoute": {
     "short": "Check RAMP's routes for mobility aids or listed conditions",
@@ -574,6 +574,11 @@
       "program"
     ],
     "reason": "Leaves supplementary-benefit prerequisite, adjusted net income cap and Health Insurance BC application in full"
+  },
+  "bcVehicleDisabilityRoute": {
+    "short": "Check which disability confirmation the registration page accepts",
+    "who": ["you", "program"],
+    "reason": "ICBC-only external check preserves registration-page certification, letter and medical routes; physical, vision and transit answers cannot reject other accepted routes"
   },
   "bcWorkBcRoute": {
     "short": "Check which WorkBC route fits your work or school situation",

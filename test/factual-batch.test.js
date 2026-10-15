@@ -324,7 +324,15 @@ test("Kelowna recreation assistance LICO table equals the City's 2025 page", () 
   assert.equal(JSON.stringify(benefit.amountTiers.rows), JSON.stringify(page));
   assert.equal(benefit.amountTiers.headers[1], "Family net income");
   const note = benefit.requiresNote;
-  for (const [, value] of page) assert.ok(note.includes(value), `requiresNote mentions ${value}`);
+  for (const pairing of [
+    /\$26,926 for a family of 1\b/,
+    /\$33,519 for 2\b/,
+    /\$41,208 for 3\b/,
+    /\$50,032 for 4\b/,
+    /\$56,744 for 5\b/,
+    /\$64,000 for 6\b/,
+    /\$71,254 for 7\b/,
+  ]) assert.match(note, pairing);
   assert.doesNotMatch(JSON.stringify(benefit), /31,264|38,922|47,851|58,096|65,892|74,315|82,739/);
   assert.match(benefit.detail.time, /may take up to two weeks from the date of submission, provided all required information is received/);
   assert.match(benefit.requiresNote, /income verification requirements and have all the necessary documentation/);
