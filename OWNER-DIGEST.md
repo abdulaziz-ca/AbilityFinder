@@ -4,6 +4,25 @@ The one place to see what Claude and Codex did while you were away. Newest entry
 Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisions we made for you**
 (all reversible) · **Needs you** (only things an agent may not decide).
 
+## 2026-10-18
+
+### Shipped
+- **"Updates to your programs"** (#214) — `5866955`, `?v=185` (CI 816/816). A returning visitor's results show one
+  collapsed panel listing which of their programs had a recorded correction since they last pressed "Got it"
+  (e.g. "The income limits were corrected."). First visits show nothing; nothing leaves the device. Built from a
+  Codex design that Claude cut down to one button and results-only; Claude's review caught a missing Kelowna entry,
+  an accessibility naming issue and default-blue links before release.
+- **Ontario restore bug fixed** — `619fcda`, `?v=186`. Ontario users' saved city was wiped on every reload (the
+  restore code only knew Alberta and BC had cities). Found while building the AT test kit.
+- **Assistive-technology test kit** (#215b) — `docs/at-test-kit/`: six personas, eight journeys, what NVDA /
+  VoiceOver / TalkBack should announce, a results template and one-command setup. It prepares the human
+  screen-reader passes; it does not replace them.
+- Codex has now reviewed everything Claude built while it was out of usage.
+
+### Needs you
+- Nothing. When you want the real screen-reader testing done (epic #28), `docs/at-test-kit/README.md` is the
+  script to hand a tester.
+
 ## 2026-10-17
 
 ### Shipped — the full catalogue re-check is finished
