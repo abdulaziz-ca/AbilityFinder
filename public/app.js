@@ -627,12 +627,28 @@ const REQS = {
     unmet: "AISH counts your income and your spouse or partner's income, and your combined non-exempt assets must stay at or under $100,000. You must also apply for other income you may qualify for, such as CPP-D, the Canada Disability Benefit, EI or WCB.",
     action: { text: "Review AISH eligibility", url: "https://www.alberta.ca/aish-eligibility" },
   },
+  surreyLeisureRoute: {
+    short: "Check which Surrey Leisure Access route applies",
+    who: ["you"],
+    // The wizard's PWD answer can mean designation alone, not current receipt.
+    // No existing answer establishes any of the City's listed routes.
+    met: () => false,
+    fixed: false,
+    unmet: "Surrey says you may qualify through income tax documents against its family size and income table, Ministry of Social Development client status, the Disability Tax Credit with lower net income, Guaranteed Income Supplement for seniors, qualifying legal care or SAJE support, or a refugee referral through an approved agency. Check which route applies.",
+  },
+  adapAge: {
+    short: "Check your age and Old Age Security eligibility",
+    who: ["you"],
+    met: () => isAdultAge(),
+    fixed: () => isUnder18(),
+    unmet: "ADAP is for adults aged eighteen and older who are not eligible to receive an Old Age Security pension. If you are sixty-five or older, check whether you are eligible to receive an Old Age Security pension.",
+  },
   adapMedical: {
     short: "Check Alberta's disability review for AISH and ADAP",
     who: ["you", "program"],
     met: () => false,
     fixed: false,
-    unmet: "Alberta decides whether your disability significantly impedes employment, continuously or episodically. One application assesses both AISH and ADAP.",
+    unmet: "Alberta decides whether your severe disability significantly impedes employment, continuously or episodically. For ADAP it must be determined to significantly restrict but not prevent you from being employed. One application assesses both AISH and ADAP.",
     action: { text: "Review ADAP eligibility", url: "https://www.alberta.ca/adap-eligibility" },
   },
   adapFinancial: {

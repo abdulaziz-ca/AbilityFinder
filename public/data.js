@@ -230,7 +230,7 @@ const BENEFIT_VALUES = {
   "lethbridge-fee-assistance": { kind: "discount", note: "3 months of bus passes for the price of 1 + up to $150 per person per season toward one recreation or culture program, while funds are available" },
   "medicinehat-fair-entry": { kind: "discount", note: "up to 75% off transit (up to $630/yr per person) + up to $200/yr per person for City recreation and a separate up to $200/yr per person for Esplanade education programs" },
   "grandeprairie-aish-pass": { kind: "discount", note: "$10.25/mo transit pass (vs $74.25) + 75% off recreation" },
-  "stalbert-subsidy": { kind: "discount", note: "Free local transit + free annual rec membership" },
+  "stalbert-subsidy": { kind: "discount", note: "Free local fares + free annual rec membership (AISH/ADAP)" },
   "strathcona-subsidy": { kind: "discount", note: "Reduced transit fare cap + free annual Active Pass+" },
   "airdrie-fair-access": { kind: "discount", note: "25–75% off transit + Genesis Place recreation" },
   "woodbuffalo-lift": { kind: "discount", note: "$10/mo transit pass + 75% off SMART Bus + 60% off recreation" },
@@ -287,7 +287,7 @@ const BENEFIT_VALUES = {
   "bc-fuel-tax-refund-disabilities": { kind: "discount", excludeFromEstimate: true, note: "<=$500/yr fuel-tax refund + 25% off ICBC basic" },
   "bc-icbc-disability-discount": { kind: "discount", excludeFromEstimate: true, note: "may get 25% off ICBC basic Autoplan" },
   "vancouver-leisure-access": { kind: "discount", excludeFromEstimate: true, note: "free pool/rink admission + 50% off fitness" },
-  "surrey-leisure-access": { kind: "discount", excludeFromEstimate: true, note: "free pass (0-18/60+) or 75% off adults; 75% off courses" },
+  "surrey-leisure-access": { kind: "discount", excludeFromEstimate: true, note: "free pass (0-18/60+) or 75% off adults; 75% off most courses" },
   "burnaby-fair-play": { kind: "discount", excludeFromEstimate: true, note: "$250/person ($500/child) credit + annual Be Active Pass" },
   "richmond-rec-fee-subsidy": { kind: "discount", excludeFromEstimate: true, note: "Unlimited free admission to many drop-in programs and services + 90% off most registered programs (up to $300/year for children and youth or $100/year for adults and seniors)" },
   "victoria-life": { kind: "discount", excludeFromEstimate: true, note: "2 yrs free drop-ins (opens early 2027) + $80-120 program credit" },
@@ -432,13 +432,13 @@ const BENEFIT_META = {
   "bc-healthy-kids": { difficulty: 2, effort: "Health-benefit application + income information", wait: "Not published — ask the program" },
   "bc-medical-transportation": { difficulty: 2, effort: "Travel request + medical confirmation", wait: "Ask before arranging travel" },
   "handydart-translink": { difficulty: 2, effort: "Application + health-professional section", wait: "Not published — confirm with TransLink" },
-  "handycard-translink": { difficulty: 2, effort: "Same application as HandyDART", wait: "Not published — confirm with TransLink" },
+  "handycard-translink": { difficulty: 2, effort: "Same application as HandyDART", wait: "Allow 4 to 6 weeks for processing" },
   "taxisaver-translink": { difficulty: 1, effort: "HandyCard first, then order coupons", wait: "After HandyCard approval" },
   "handydart-bctransit": { difficulty: 2, effort: "Regional registration + supporting information", wait: "Varies by transit system" },
   "taxi-saver-bctransit": { difficulty: 1, effort: "Register for handyDART, then buy coupons", wait: "Varies by transit system" },
   "bc-disability-assistance-pwd": { difficulty: 5, effort: "Financial application + PWD designation evidence", wait: "Not published — ask the ministry" },
-  "bc-autism-funding-under-6": { difficulty: 3, effort: "Application + qualifying diagnostic report", wait: "Ask Autism Funding about current processing" },
-  "bc-autism-funding-6-18": { difficulty: 3, effort: "Application + qualifying diagnostic report", wait: "Ask Autism Funding about current processing" },
+  "bc-autism-funding-under-6": { difficulty: 3, effort: "Application + diagnosis form for your assessment route", wait: "Ask Autism Funding about current processing" },
+  "bc-autism-funding-6-18": { difficulty: 3, effort: "Application + diagnosis form for your assessment route", wait: "Ask Autism Funding about current processing" },
   "bc-cy-disability-benefit": { difficulty: 3, effort: "Transition or needs-based ministry assessment", wait: "Phased rollout through April 2027" },
   "bc-monthly-nutritional-supplement": { difficulty: 3, effort: "Form HR2847 + practitioner or dietitian section", wait: "Not published — ask the ministry" },
   "bc-optical-supplement": { difficulty: 1, effort: "Show your BC Services Card to the provider", wait: "Coverage checked by the provider" },
@@ -3612,36 +3612,39 @@ const BENEFITS = [
     },
   },
   {
-    id: "adap",
-    needsPractitioner: true,
-    name: "Alberta Disability Assistance Program (ADAP)",
-    level: "Alberta",
-    category: "Money",
-    amount: "Up to $1,740/month + health, personal and employment benefits",
-    summary:
-      "Alberta disability income assistance when a severe disability significantly impedes employment, including episodically.",
-    requires: ["adult", "ab", "citizenPR", "adapMedical", "adapFinancial"],
-    note:
-      "The same combined application assesses ADAP and AISH. This guide can only flag that ADAP may be worth asking about — Alberta makes the eligibility decision.",
-    applyText: "Apply for Alberta disability income assistance",
-    applyUrl: "https://www.alberta.ca/how-to-apply-for-aish-and-adap",
-    source: "https://www.alberta.ca/alberta-disability-assistance-program",
-    detail: {
-      about:
-        "ADAP is Alberta disability income assistance for adults whose severe disability significantly impedes employment continuously or episodically. It can include a core monthly financial benefit, health benefits, personal benefits and employment supports.",
-      steps: [
+    "id": "adap",
+    "needsPractitioner": true,
+    "name": "Alberta Disability Assistance Program (ADAP)",
+    "level": "Alberta",
+    "category": "Money",
+    "amount": "Up to $1,740/month + health, personal and employment benefits",
+    "summary": "Alberta disability income assistance when a severe disability significantly impedes employment, continuously or episodically, but does not prevent it.",
+    "requires": [
+      "adapAge",
+      "ab",
+      "citizenPR",
+      "adapMedical",
+      "adapFinancial"
+    ],
+    "note": "The same combined application assesses ADAP and AISH. This guide can only flag that ADAP may be worth asking about — Alberta makes the eligibility decision.",
+    "applyText": "Apply for Alberta disability income assistance",
+    "applyUrl": "https://www.alberta.ca/how-to-apply-for-aish-and-adap",
+    "source": "https://www.alberta.ca/alberta-disability-assistance-program",
+    "detail": {
+      "about": "ADAP is Alberta disability income assistance for adults whose severe disability significantly impedes employment continuously or episodically. To be medically eligible, the severe disability must be determined to significantly restrict but not prevent a person from being employed. It can include a core monthly financial benefit, health benefits, personal benefits and employment supports.",
+      "steps": [
         "Use Alberta's combined AISH/ADAP application — it assesses which program fits; you do not make two separate applications.",
         "Complete your part and arrange the required medical report with a medical professional registered in Alberta.",
-        "Provide the residency, status and financial information requested by Alberta Supports.",
+        "Provide the residency, status and financial information requested by Alberta Supports."
       ],
-      documents: [
+      "documents": [
         "Medical report describing how the disability significantly impedes employment",
         "Proof of Alberta residency + Canadian citizenship / PR",
         "Financial details (income and assets)",
         "Disability Income Assistance (DIA) application form, if you cannot apply online",
-        "Disability Assistance Medical Report, completed by your health professional",
+        "Disability Assistance Medical Report, completed by your health professional"
       ],
-      tips: [
+      "tips": [
         "Describe functional limits and fluctuating or episodic barriers — not only your diagnosis name.",
         "One application is enough: Alberta decides whether AISH or ADAP is the appropriate program.",
         "Use Alberta's AISH/ADAP benefit estimator for a household-specific estimate before relying on any amount.",
@@ -3650,11 +3653,11 @@ const BENEFITS = [
         "Your health professional may charge you a fee to complete the Disability Assistance Medical Report, and you are responsible for paying it. If you are on Income Support that cost may be covered — ask your Income Support worker.",
         "Benefits are backdated to the month AISH or ADAP received all of the information needed to approve your application, so getting every document in sooner is worth real money.",
         "To check where your application is, phone 587-759-6810 in the Edmonton area, or 1-877-759-6810 toll free within Alberta.",
-        "If you left AISH or ADAP less than 2 years ago, and not because your medical condition changed, your file may be reopened quickly rather than you having to reapply from scratch.",
+        "If you left AISH or ADAP less than 2 years ago, and not because your medical condition changed, your file may be reopened quickly rather than you having to reapply from scratch."
       ],
-      time: "Ask Alberta Supports for the current processing time.",
-      phone: "DIA Application Processing Centre (applications and status): 1-877-759-6810",
-    },
+      "time": "Ask Alberta Supports for the current processing time.",
+      "phone": "DIA Application Processing Centre (applications and status): 1-877-759-6810"
+    }
   },
   {
     id: "aadl",
@@ -3725,38 +3728,39 @@ const BENEFITS = [
     },
   },
   {
-    id: "fscd",
-    name: "Family Support for Children with Disabilities (FSCD)",
-    level: "Alberta",
-    category: "Family supports",
-    amount: "Services + funding for families raising a child with a disability",
-    summary:
-      "Support and funding for Alberta families raising a child under 18 with a disability — respite, aids, counselling, and reimbursement of some costs.",
-    requires: ["child", "ab", "fscdEligibility"],
-    note:
-      "Wide-ranging support for families: respite care, specialized services, and help with some out-of-pocket disability costs. Separate from (and can be combined with) the federal Child Disability Benefit.",
-    applyText: "Family Support for Children with Disabilities",
-    applyUrl: "https://www.alberta.ca/fscd",
-    source: "https://www.alberta.ca/fscd-eligibility",
-    detail: {
-      about:
-        "A provincial program that helps families of children under 18 with disabilities cover the extra costs and stress of caregiving — respite, child-focused supports, family counselling, and reimbursement of some disability-related expenses.",
-      steps: [
+    "id": "fscd",
+    "name": "Family Support for Children with Disabilities (FSCD)",
+    "level": "Alberta",
+    "category": "Family supports",
+    "amount": "Services + funding for families raising a child with a disability",
+    "summary": "Support and funding for Alberta families raising a child under 18 with a disability — respite, aids, counselling, and reimbursement of some costs.",
+    "requires": [
+      "child",
+      "ab",
+      "fscdEligibility"
+    ],
+    "note": "Wide-ranging support for families: respite care, specialized services, and help with some out-of-pocket disability costs. Separate from (and can be combined with) the federal Child Disability Benefit.",
+    "applyText": "Family Support for Children with Disabilities",
+    "applyUrl": "https://www.alberta.ca/fscd",
+    "source": "https://www.alberta.ca/fscd-eligibility",
+    "detail": {
+      "about": "A provincial program that helps families of children under 18 with disabilities cover the extra costs and stress of caregiving — respite, child-focused supports, family counselling, and reimbursement of some disability-related expenses.",
+      "steps": [
         "Contact an FSCD office or Alberta Supports.",
         "Meet with an FSCD worker to identify your family's needs.",
-        "A signed agreement sets out the services and funding you'll receive.",
+        "A signed agreement sets out the services and funding you'll receive."
       ],
-      documents: [
-        "A diagnosis of your child's disability from a professional",
-        "Proof of Alberta residency",
+      "documents": [
+        "Medical documentation confirming your child has a disability or is awaiting a diagnosis",
+        "Proof of Alberta residency"
       ],
-      tips: [
+      "tips": [
         "Ask specifically about respite — many families don't realize it's covered.",
-        "You can receive FSCD AND the federal Child Disability Benefit at the same time.",
+        "You can receive FSCD AND the federal Child Disability Benefit at the same time."
       ],
-      time: "Assessment-based; contact them to begin.",
-      phone: "Alberta Supports: 1-877-644-9992",
-    },
+      "time": "Assessment-based; contact them to begin.",
+      "phone": "Alberta Supports: 1-877-644-9992"
+    }
   },
   {
     id: "dres",
@@ -4222,7 +4226,7 @@ const BENEFITS = [
      Worth knowing: these are NOT all the same program with a different logo.
      Grande Prairie explicitly excludes AISH recipients from its low-income
      transit subsidy and gives them a much better separate pass; St. Albert
-     gives AISH free transit outright. Assuming they all work like Calgary's
+     gives eligible residents free local fares. Assuming they all work like Calgary's
      Fair Entry would have sent people to the wrong program. */
   {
     id: "reddeer-fee-assistance",
@@ -4387,75 +4391,85 @@ const BENEFITS = [
     },
   },
   {
-    id: "stalbert-subsidy",
-    name: "St. Albert Transit & Recreation Subsidy",
-    level: "St. Albert",
-    category: "Getting around & recreation",
-    amount: "Free local transit + free annual recreation membership",
-    summary:
-      "On AISH or ADAP in St. Albert, local buses and the Handibus are free, and a year's membership at every City rec facility is free too.",
-    requires: ["stalbert", "municipalProgramEligibility"],
-    note:
-      "AISH and ADAP recipients get automatic eligibility here — the free annual recreation membership isn't income-tested for you, and local transit is free rather than discounted.",
-    applyText: "St. Albert subsidy program",
-    applyUrl: "https://stalbert.ca/city/fcss/programs-services/subsidy/",
-    source: "https://stalbert.ca/city/fcss/programs-services/subsidy/",
-    detail: {
-      about:
-        "St. Albert's Family and Community Support Services runs one subsidy covering transit and recreation. For AISH and ADAP recipients: free local fares within St. Albert, free Handibus rides if you're an approved rider, 65% off the monthly Edmonton commuter pass, and a free annual membership at Servus Place, Fountain Park and Grosvenor Pool.",
-      aboutList: { lead: "St. Albert's Family and Community Support Services runs one subsidy covering transit and recreation. For AISH and ADAP recipients:", items: ["free local fares within St. Albert", "free Handibus rides if you're an approved rider", "65% off the monthly Edmonton commuter pass", "and a free annual membership at Servus Place, Fountain Park and Grosvenor Pool"] },
-      steps: [
+    "id": "stalbert-subsidy",
+    "name": "St. Albert Transit & Recreation Subsidy",
+    "level": "St. Albert",
+    "category": "Getting around & recreation",
+    "amount": "Free local fares within St. Albert + free annual recreation membership for AISH and ADAP recipients",
+    "summary": "St. Albert's subsidy gives eligible residents free local fares within St. Albert and free local Handibus tickets for approved riders. AISH and ADAP recipients are eligible for a free annual membership at City-run recreation facilities.",
+    "requires": [
+      "stalbert",
+      "municipalProgramEligibility"
+    ],
+    "note": "AISH and ADAP recipients are eligible for a free annual recreation membership. The City's page also says your total annual household income (before taxes) must be within the low-income limits set by Statistics Canada. It does not say whether that rule applies to AISH or ADAP recipients, so confirm with the City.",
+    "applyText": "St. Albert subsidy program",
+    "applyUrl": "https://stalbert.ca/city/fcss/programs-services/subsidy/",
+    "source": "https://stalbert.ca/city/fcss/programs-services/subsidy/",
+    "detail": {
+      "about": "St. Albert's Family and Community Support Services runs one subsidy covering transit and recreation. For eligible residents: free local fares within St. Albert; free local tickets for approved Handibus riders for travel within St. Albert; 65% off monthly adult commuter fares for travel between St. Albert and Edmonton; AISH and ADAP recipients are eligible for a free annual membership at City-run recreation facilities, including Servus Credit Union Place, Fountain Park Recreation Centre and Grosvenor Outdoor Pool.",
+      "aboutList": {
+        "lead": "St. Albert's Family and Community Support Services runs one subsidy covering transit and recreation. For eligible residents:",
+        "items": [
+          "free local fares within St. Albert",
+          "free local tickets for approved Handibus riders for travel within St. Albert",
+          "65% off monthly adult commuter fares for travel between St. Albert and Edmonton",
+          "AISH and ADAP recipients are eligible for a free annual membership at City-run recreation facilities, including Servus Credit Union Place, Fountain Park Recreation Centre and Grosvenor Outdoor Pool"
+        ]
+      },
+      "steps": [
         "Fill in the subsidy application on the City's subsidy page.",
-        "Say that you receive AISH or ADAP — that's automatic eligibility for the free annual recreation membership.",
+        "Say that you receive AISH or ADAP — AISH and ADAP recipients are eligible for the free annual recreation membership.",
         "If you use the Handibus, ask about approved-rider status at the same time.",
-        "Call 780-459-1756 if you get stuck.",
+        "Call 780-459-1756 if you get stuck."
       ],
-      documents: [
+      "documents": [
         "Proof you receive AISH or ADAP",
-        "Proof of a St. Albert address",
+        "Proof of a St. Albert address"
       ],
-      tips: [
+      "tips": [
         "You can't claim this if another source already funds the same thing — so if a program is already paying your bus fare, sort that out first.",
-        "The commuter pass to Edmonton is separate from free local fares — ask for both if you travel in.",
+        "The commuter fare between St. Albert and Edmonton is separate from free local fares — ask about both if you travel in."
       ],
-      time: "Allow a couple of weeks.",
-      phone: "St. Albert FCSS: 780-459-1756",
-    },
+      "time": "Allow a couple of weeks.",
+      "phone": "St. Albert FCSS: 780-459-1756"
+    }
   },
   {
-    id: "strathcona-subsidy",
-    name: "Strathcona County Everybody Rides & Everybody Gets to Play",
-    level: "Sherwood Park",
-    category: "Getting around & recreation",
-    amount: "Reduced transit fare cap + free annual Active Pass+",
-    summary:
-      "Reduced transit fares on your Arc card and a no-cost annual Active Pass+ for County recreation facilities, for residents on a limited income.",
-    requires: ["strathcona", "lowIncomeOrDisabilityIncome"],
-    note:
-      "These are income-tested rather than disability-specific, and the income line is roughly $33,675/year for one person — AISH is below that, so it's worth applying.",
-    applyText: "Strathcona County subsidies",
-    applyUrl: "https://www.strathcona.ca/community-families/affordable-services/subsidized-fares/",
-    source: "https://www.strathcona.ca/community-families/affordable-services/",
-    detail: {
-      about:
-        "Two Strathcona County programs. Everybody Rides puts a reduced monthly fare cap on your Arc card profile for local and commuter travel. Everybody Gets to Play gives a free annual Active Pass+ for County recreation facilities plus reduced fees on programs.",
-      steps: [
+    "id": "strathcona-subsidy",
+    "name": "Strathcona County Everybody Rides & Everybody Gets to Play",
+    "level": "Sherwood Park",
+    "category": "Getting around & recreation",
+    "amount": "Reduced transit fare cap + free annual Active Pass+",
+    "summary": "Reduced transit fares on your Arc card and a no-cost annual Active Pass+ for County recreation facilities, for residents on a limited income.",
+    "requires": [
+      "strathcona",
+      "lowIncomeOrDisabilityIncome"
+    ],
+    "note": "These are income-tested rather than disability-specific, and the income line is roughly $33,675/year for one person — AISH is below that, so it's worth applying.",
+    "applyText": "Strathcona County subsidies",
+    "applyUrl": "https://www.strathcona.ca/community-families/affordable-services/subsidized-fares/",
+    "source": "https://www.strathcona.ca/community-families/affordable-services/",
+    "detail": {
+      "about": "Two Strathcona County programs. Everybody Rides puts a reduced monthly fare cap on your Arc card profile for local and commuter travel. Everybody Gets to Play gives a free annual Active Pass+ for County recreation facilities plus reduced fees on programs.",
+      "steps": [
         "Call Family and Community Services at 780-464-4044, or go to 401 Festival Lane (Community Centre, 2nd floor).",
-        "Bring ID, proof you live in the County, and your Notice of Assessment.",
-        "Ask about both programs in the one visit — they're separate but handled by the same team.",
+        "Bring ID, proof you live in the County, and your Notice of Assessment (see the documents list for the exceptions).",
+        "Ask about both programs in the one visit — they're separate but handled by the same team."
       ],
-      documents: [
+      "documents": [
         "Photo ID",
         "Proof of a Strathcona County address",
-        "CRA Notice of Assessment (or other proof of income)",
+        "Notice of Assessment (NOA) from the Canada Revenue Agency — a 2025 NOA is required starting June 1, 2026, and a 2024 NOA is no longer accepted",
+        "If your NOA no longer reflects your current finances, bring 3 months of bank statements as well",
+        "New refugee or permanent resident in the first year with no NOA: 3 months of bank statements from a Canadian bank"
       ],
-      tips: [
+      "tips": [
         "The County raised its income thresholds, so a refusal from years ago isn't a reason not to re-apply.",
-        "Everybody Rides works by changing the fare cap on your Arc card — you keep using the same card.",
+        "Everybody Rides works by changing the fare cap on your Arc card — you keep using the same card."
       ],
-      time: "Ask when you apply — it isn't published.",
-      phone: "Family and Community Services: 780-464-4044",
-    },
+      "time": "Ask when you apply — it isn't published.",
+      "phone": "Family and Community Services: 780-464-4044"
+    }
   },
   {
     id: "airdrie-fair-access",
@@ -4672,38 +4686,38 @@ const BENEFITS = [
     },
   },
   {
-    id: "local-supports",
-    name: "Local transit & recreation discounts",
-    level: "Your community",
-    category: "Getting around & recreation",
-    amount: "Varies by community",
-    summary:
-      "Many cities and towns run their own low-income or disability discounts on transit passes and recreation. 2-1-1 can point you to yours.",
-    requires: ["provinceCovered", "cityOther"],
-    note:
-      "Programs are named and run differently in every community. 2-1-1 is a free, confidential service that finds the ones near you.",
-    applyText: "Find supports near me (2-1-1)",
+    "id": "local-supports",
+    "name": "Local transit & recreation discounts",
+    "level": "Your community",
+    "category": "Getting around & recreation",
+    "amount": "Varies by community",
+    "summary": "Many cities and towns run their own low-income or disability discounts on transit passes and recreation. 2-1-1 can point you to yours.",
+    "requires": [
+      "provinceCovered",
+      "cityOther"
+    ],
+    "note": "Programs are named and run differently in every community. 2-1-1 is a free, confidential service that finds the ones near you.",
+    "applyText": "Find supports near me (2-1-1)",
     applyUrl: (a) => TWO_ELEVEN[a.province] || "https://211.ca/",
     source: (a) => TWO_ELEVEN[a.province] || "https://211.ca/",
-    detail: {
-      about:
-        "Beyond the biggest cities, many municipalities offer their own low-income or disability discounts on transit and recreation — but they're all named and delivered differently. 2-1-1 is a free, confidential, 24/7 service that connects you to the specific programs in your community.",
-      steps: [
+    "detail": {
+      "about": "Beyond the biggest cities, many municipalities offer their own low-income or disability discounts on transit and recreation — but they're all named and delivered differently. 2-1-1 is a free, confidential service that connects you to the specific programs in your community. In most of Canada you can reach it 24 hours a day, in more than 150 languages. In BC, 211 navigators are available 9am to 9pm, Monday to Friday, excluding statutory holidays.",
+      "steps": [
         "Visit your provincial 2-1-1 site, or simply dial 2-1-1 from any phone.",
         "Tell them your town and what you need (transit, recreation, financial help).",
-        "They'll point you to the exact local programs and how to apply.",
+        "They'll point you to the exact local programs and how to apply."
       ],
-      documents: [
+      "documents": [
         "Your city or town name",
-        "A rough idea of your household income",
+        "A rough idea of your household income"
       ],
-      tips: [
-        "Dialing 2-1-1 is free and available 24/7 in many languages.",
-        "Also search your town's own website for 'recreation fee assistance' or 'low-income transit pass'.",
+      "tips": [
+        "Dialing 2-1-1 is free. In most of Canada it is open 24 hours a day, in many languages; BC navigators are available 9am to 9pm on weekdays, excluding holidays.",
+        "Also search your town's own website for 'recreation fee assistance' or 'low-income transit pass'."
       ],
-      time: "Immediate — it's an information service.",
-      phone: "Dial 2-1-1",
-    },
+      "time": "Immediate — it's an information service.",
+      "phone": "Dial 2-1-1"
+    }
   },
 
   /* ---- British Columbia (hidden until BC_ENABLED) ---- */
@@ -5011,18 +5025,35 @@ const BENEFITS = [
     "category": "Transit",
     "amount": "Free photo ID card — concession fares for you, free travel for your attendant, and access to half-price TaxiSaver coupons",
     "summary": "Photo ID card for Metro Vancouver riders who cannot use conventional transit without assistance. It gets you concession fares, lets an attendant travel free, and unlocks the TaxiSaver program.",
-    "requires": ["bc", "metroVancouver", "transitBarrier"],
-    "requiresNote": "Same eligibility and the same combined application form as HandyDART — a physical, sensory or cognitive disability that means you cannot use conventional public transit for all trips without assistance.",
+    "requires": [
+      "bc",
+      "metroVancouver",
+      "transitBarrier"
+    ],
+    "requiresNote": "You apply on the same combined HandyDART and HandyCard application form. HandyDART users may also be eligible for HandyCard, a photo-identity card for customers who need assistance to use the conventional system. The HandyDART test is a physical, sensory or cognitive disability that means you cannot use conventional public transit for all trips without assistance; see the application form for detailed criteria.",
     "note": "The attendant travels free on buses, SkyTrain, SeaBus and West Coast Express. HandyDART trips are paid separately at the 1-Zone fare.",
     "applyText": "Apply with the HandyDART & HandyCard form",
     "applyUrl": "https://www.translink.ca/rider-guide/transit-accessibility/handydart",
     "source": "https://www.translink.ca/rider-guide/transit-accessibility/handydart",
     "detail": {
       "about": "HandyCard is for conventional TransLink services, not HandyDART. Carry the original photo card and show it when paying a concession fare or travelling with an attendant.",
-      "steps": ["Complete the combined HandyDART and HandyCard application", "Describe why you cannot use conventional transit without an attendant", "Include the required photo and submit the form using its instructions", "When the card arrives, carry it on every eligible trip and show it when requested"],
-      "documents": ["Completed combined application", "A recent photo meeting the form requirements", "Optional supporting verification describing the transit barrier"],
-      "tips": ["HandyCard applicants must be at least 12 and live in the TransLink service region", "An attendant rides free with you on conventional transit, but you still pay your own concession fare", "The same application can request HandyDART and HandyCard together"],
-      "time": "Ask Access Transit when you apply",
+      "steps": [
+        "Complete the combined HandyDART and HandyCard application",
+        "Describe why you cannot use conventional transit without an attendant",
+        "Include the required photo and submit the form using its instructions",
+        "When the card arrives, carry it on every eligible trip and show it when requested"
+      ],
+      "documents": [
+        "Completed combined application",
+        "A recent photo meeting the form requirements",
+        "Optional supporting verification describing the transit barrier"
+      ],
+      "tips": [
+        "HandyCard applicants must be at least 12 and live in the TransLink service region",
+        "An attendant rides free with you on conventional transit, but you still pay your own concession fare",
+        "The same application can request HandyDART and HandyCard together"
+      ],
+      "time": "Allow 4 to 6 weeks for HandyCard applications to be processed",
       "phone": "604-953-3680"
     }
   },
@@ -5138,18 +5169,50 @@ const BENEFITS = [
     "category": "Money",
     "amount": "Up to $22,000/year",
     "summary": "Direct annual funding to buy autism intervention services (behaviour consultants, therapists, supervised behaviour interventionists) for children under 6 with an autism diagnosis.",
-    "requires": ["bc", "under6", "autismSelected", "autismDiagnosis"],
+    "requires": [
+      "bc",
+      "under6",
+      "autismSelected",
+      "autismDiagnosis"
+    ],
     "requiresNote": "Child under age 6 with an autism spectrum disorder diagnosis meeting BC standards (BCAAN or qualified private assessment)",
-    "note": "Autism Funding accepts new applications until March 2027 and ends March 31, 2027. Current families transition to the BC Children and Youth Disability Benefit in phases; the ministry will contact them. Final aligned funding periods may be prorated to March 31, 2027.",
+    "note": "Autism Funding accepts new applications until March 2027 and ends March 31, 2027. The ministry says it will contact all recipients about their eligibility to transfer to the BC Children and Youth Disability Benefit ahead of the transition. Final aligned funding periods may be prorated to March 31, 2027.",
     "applyText": "Apply for autism funding",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/apply",
     "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/funding-amount",
     "detail": {
       "about": "Normally, up to 20% of the allocation can go to training, travel and equipment (TTE). For the final aligned funding period ending March 31, 2027, BC increased the allowable TTE portion to 50%.",
-      "coversList": { "lead": "Up to $22,000 per year per child covers:", "items": ["professionals listed on the Registry of Autism Service Providers (RASP)", "behaviour interventionists supervised by a RASP professional", "family counselling from certified counsellors, psychologists, social workers or psychiatrists", "employment-related costs when you hire staff", "administrative costs up to $100/month"] },
-      "steps": ["Get an autism diagnosis through the BC Autism Assessment Network (BCAAN, free via physician referral) or a private assessment meeting BC standards", "Register for a Basic BCeID account to apply online, or complete the paper Application for Autism Funding", "Email the application and supporting documents to mcf.autismfundingintake@gov.bc.ca or submit through your local CYSN office", "Sign the funding agreement, then choose RASP-listed providers and submit invoices or reimbursement claims"],
-      "documents": ["Diagnostic report confirming autism spectrum disorder", "Confirmation of Previous Diagnosis of Autism Spectrum Disorder form (CF0905) if diagnosed elsewhere", "Child's Personal Health Number and proof of BC residency", "Basic BCeID account for online applications"],
-      "tips": ["Providers must be on the RASP registry for children under 6 — search it before hiring", "The normal training, travel and equipment limit is 20%, but BC raised it to 50% for the final aligned funding period ending March 31, 2027", "Approved services and purchases must be delivered by March 31, 2027; direct-payment supporting documents are due May 31, 2027, and final invoices or reimbursement requests are due September 30, 2027", "From July 2026 the ministry contacts Autism Funding families about moving to the new Disability Benefit ($6,500 or $17,000/year); you keep current funding until your transition date"],
+      "coversList": {
+        "lead": "Up to $22,000 per year per child covers:",
+        "items": [
+          "professionals listed on the Registry of Autism Service Providers (RASP)",
+          "behaviour interventionists supervised by a RASP professional",
+          "family counselling or therapy (providers do not need to be on RASP)",
+          "employment-related costs when you hire staff",
+          "administrative costs up to $100/month"
+        ]
+      },
+      "steps": [
+        "Get an autism diagnosis through the BC Autism Assessment Network (BCAAN, free via physician referral) or a private assessment meeting BC standards",
+        "Register for a Basic BCeID account to apply online, or complete the paper Application for Autism Funding",
+        "Email the application and supporting documents to mcf.autismfundingintake@gov.bc.ca or submit through your local CYSN office",
+        "Sign the funding agreement, then choose providers (RASP-listed professionals, supervised behaviour interventionists, or family counselling providers) and submit invoices or reimbursement claims"
+      ],
+      "documents": [
+        "Proof of age and residency (for example a birth certificate or BC Services Card)",
+        "BCAAN assessment: the BCAAN Clinical Outcome (PANTER) Form (BCAAN assessment reports are optional)",
+        "Private (non-BCAAN) assessment: form CF0904 and a diagnostic report showing the ADOS-2 and ADI-R were used, signed by the assessor, with the speech-language and psychological evaluation findings",
+        "Assessment outside B.C.: form CF0905 and a copy of the original diagnostic report or assessment information",
+        "Basic BCeID account for online applications",
+        "Assessment outside B.C.: a new assessment may be required if the BC specialist cannot confirm that the previous diagnosis meets the DSM-5 criteria"
+      ],
+      "tips": [
+        "Intervention services must come from providers on the RASP registry, or from behaviour interventionists supervised by a RASP professional. Family counselling or therapy providers do not need to be on RASP.",
+        "The normal training, travel and equipment limit is 20%, but BC raised it to 50% for the final aligned funding period ending March 31, 2027",
+        "Approved services and purchases must be delivered by March 31, 2027; direct-payment supporting documents are due May 31, 2027, and final invoices or reimbursement requests are due September 30, 2027",
+        "From July 2026 the ministry contacts Autism Funding families about moving to the new Disability Benefit ($6,500 or $17,000/year); you keep current funding until your transition date",
+        "These professionals may be eligible to provide family counselling or therapy: Canadian Certified Counsellors, Registered Clinical Counsellors, Registered Marriage and Family Therapists, Registered Psychiatrists, Registered Psychologists, and Registered Social Workers or Registered Clinical Social Workers. Contact Autism Funding or Autism Information Services BC for more information."
+      ],
       "time": "New applications are accepted until March 2027. The program and final aligned funding periods end March 31, 2027; later paperwork deadlines do not extend the service-delivery date.",
       "phone": "1-877-777-3530"
     }
@@ -5162,18 +5225,53 @@ const BENEFITS = [
     "category": "Money",
     "amount": "Up to $6,000/year",
     "summary": "Annual funding for autism intervention, therapies, life-skills programs, camps and out-of-school tutoring for children and youth aged 6 to 18.",
-    "requires": ["bc", "age6to18", "autismSelected", "autismDiagnosis"],
+    "requires": [
+      "bc",
+      "age6to18",
+      "autismSelected",
+      "autismDiagnosis"
+    ],
     "requiresNote": "Child or youth aged 6-18 with an autism spectrum disorder diagnosis meeting BC standards",
-    "note": "Autism Funding accepts new applications until March 2027 and ends March 31, 2027. Current families transition to the BC Children and Youth Disability Benefit in phases; the ministry will contact them. Final aligned funding periods may be prorated to March 31, 2027.",
+    "note": "Autism Funding accepts new applications until March 2027 and ends March 31, 2027. The ministry says it will contact all recipients about their eligibility to transfer to the BC Children and Youth Disability Benefit ahead of the transition. Final aligned funding periods may be prorated to March 31, 2027.",
     "applyText": "Apply for autism funding",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/apply",
     "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/funding-amount",
     "detail": {
-      "about": "Administrative costs are normally limited to $50/month (or $600 per period for an accountant), and the normal training, travel and equipment (TTE) limit is 20%. For the final aligned funding period ending March 31, 2027, BC increased the allowable TTE portion to 50%.",
-      "coversList": { "lead": "Up to $6,000 per year per child for:", "items": ["behaviour consultants or analysts", "speech-language pathologists", "occupational or physical therapists", "behaviour interventionists", "life skills and social skills programs", "out-of-school learning support and tutoring", "dietary counselling from registered dieticians", "family counselling", "specialized therapeutic camps for autism"] },
-      "steps": ["Have an autism diagnosis on file (BCAAN or qualified private assessment)", "Apply online with a Basic BCeID or send the Application for Autism Funding to mcf.autismfundingintake@gov.bc.ca, or go through your local CYSN office", "Sign the funding agreement and hire qualified providers", "Submit invoices for direct payment or claim reimbursements"],
-      "documents": ["Diagnostic report or CF0905 confirmation form", "Child's Personal Health Number", "Basic BCeID account for the online portal"],
-      "tips": ["For ages 6-18 providers do not have to be RASP-listed for every service type, so therapy, tutoring and camps are easier to fund than under the Under-6 program", "The normal training, travel and equipment limit is 20%, but BC raised it to 50% for the final aligned funding period ending March 31, 2027", "Approved services and purchases must be delivered by March 31, 2027; direct-payment supporting documents are due May 31, 2027, and final invoices or reimbursement requests are due September 30, 2027", "Ask your CYSN office about the transition schedule if you have not been contacted by fall 2026"],
+      "about": "Administrative costs are limited to up to $50 a month for a bookkeeper, or $600 per funding period for direct payment accountant fees. The normal training, travel and equipment (TTE) limit is 20%. For the final aligned funding period ending March 31, 2027, BC increased the allowable TTE portion to 50%.",
+      "coversList": {
+        "lead": "Up to $6,000 per year per child for:",
+        "items": [
+          "behaviour consultants or analysts",
+          "speech-language pathologists",
+          "occupational or physical therapists",
+          "behaviour interventionists (should be supervised by one of the professionals listed above)",
+          "life skills and social skills programs",
+          "out-of-school learning support and tutoring",
+          "dietary counselling from registered dieticians",
+          "family counselling",
+          "specialized therapeutic camps for autism"
+        ]
+      },
+      "steps": [
+        "Have an autism diagnosis on file (BCAAN or qualified private assessment)",
+        "Apply online with a Basic BCeID or send the Application for Autism Funding to mcf.autismfundingintake@gov.bc.ca, or go through your local CYSN office",
+        "Sign the funding agreement and hire providers for the eligible services (behaviour interventionists should be supervised by a listed professional)",
+        "Submit invoices for direct payment or claim reimbursements"
+      ],
+      "documents": [
+        "Proof of age and residency (for example a birth certificate or BC Services Card)",
+        "BCAAN assessment: the BCAAN Clinical Outcome (PANTER) Form (BCAAN assessment reports are optional)",
+        "Private (non-BCAAN) assessment: form CF0904 and a diagnostic report showing the ADOS-2 and ADI-R were used, signed by the assessor",
+        "Assessment outside B.C.: form CF0905 and a copy of the original diagnostic report or assessment information",
+        "Basic BCeID account for the online portal",
+        "Assessment outside B.C.: a new assessment may be required if the BC specialist cannot confirm that the previous diagnosis meets the DSM-5 criteria"
+      ],
+      "tips": [
+        "For ages 6-18 providers do not have to be RASP-listed for every service type, so therapy, tutoring and camps are easier to fund than under the Under-6 program",
+        "The normal training, travel and equipment limit is 20%, but BC raised it to 50% for the final aligned funding period ending March 31, 2027",
+        "Approved services and purchases must be delivered by March 31, 2027; direct-payment supporting documents are due May 31, 2027, and final invoices or reimbursement requests are due September 30, 2027",
+        "Ask your CYSN office about the transition schedule if you have not been contacted by fall 2026"
+      ],
       "time": "New applications are accepted until March 2027. The program and final aligned funding periods end March 31, 2027; later paperwork deadlines do not extend the service-delivery date.",
       "phone": "1-877-777-3530"
     }
@@ -5395,8 +5493,13 @@ const BENEFITS = [
     "level": "British Columbia",
     "category": "Health",
     "amount": "Up to $5,760/year each for OT, PT and speech therapy, plus up to $1,920/year for chiropractic or massage",
-    "summary": "Pays for private occupational therapy, physiotherapy and speech-language pathology outside school hours for school-aged children enrolled in the At Home Program.",
-    "requires": ["bc", "schoolAge", "childThreeAdls", "atHomeProgram"],
+    "summary": "May help families with the cost of out-of-school occupational therapy, physiotherapy and speech-language pathology for school-aged children enrolled in the At Home Program.",
+    "requires": [
+      "bc",
+      "schoolAge",
+      "childThreeAdls",
+      "atHomeProgram"
+    ],
     "requiresNote": "School-aged children and youth enrolled in the At Home Program",
     "note": "SAET families were among the first moved to the new B.C. Children and Youth Disability Benefit: implementation began April 1, 2026, starting with children already in the At Home Program, autism funding and other children-and-youth-with-support-needs services, and therapies remain an approved use of the new benefit. SAET itself stays available until March 31, 2027, or until your child transitions, whichever comes first, and all SAET authorizations are being updated to align with that end date. New families are told to keep using the current pathways for now. The new benefit is fully operational provincewide from April 1, 2027. Ask AHP Medical Benefits which stream applies to your child.",
     "applyText": "Request through AHP Medical Benefits",
@@ -5404,10 +5507,31 @@ const BENEFITS = [
     "source": "https://www2.gov.bc.ca/assets/gov/family-and-social-supports/children-teens-with-support-needs/at_home_program_guide.pdf",
     "detail": {
       "about": "Up to $5,760 per 12-month period for each of occupational therapy, physiotherapy and speech-language pathology (including therapist-assistant services), delivered one-to-one or in groups. Maximum billing rates: $160/hour for therapists, $60/hour for therapist assistants; up to $480 of the maximum can go to consultation, report writing and travel. A separate $1,920/year is available for chiropractic ($40/session) or massage ($40/hour). Exceptions to maximums are considered for post-surgical rehabilitation. Services must complement, not duplicate, school-based therapy.",
-      "aboutList": { "lead": "Up to $5,760 per 12-month period for each of occupational therapy, physiotherapy and speech-language pathology (including therapist-assistant services), delivered one-to-one or in groups.", "items": ["Maximum billing rates: $160/hour for therapists, $60/hour for therapist assistants; up to $480 of the maximum can go to consultation, report writing and travel.", "A separate $1,920/year is available for chiropractic ($40/session) or massage ($40/hour).", "Exceptions to maximums are considered for post-surgical rehabilitation.", "Services must complement, not duplicate, school-based therapy."] },
-      "steps": ["Ensure the child is enrolled in the At Home Program", "Have the treating OT, PT, SLP, chiropractor or massage therapist complete the At Home Program Request for School-Aged Extended Therapies form, including intended functional outcomes", "Submit the request to AHP Medical Benefits for review", "Approved therapists invoice AHP Medical Benefits directly"],
-      "documents": ["Request for School-Aged Extended Therapies form completed by the treating therapist", "Functional outcomes for the child (Part 5 of the request form)"],
-      "tips": ["The requesting therapist must coordinate with the school-based therapy team so services do not overlap", "Sequential therapy blocks (one goal at a time) are preferred over running everything simultaneously", "If your child moved to the Disability Benefit in April 2026, pay for the same therapies from the new $6,500/$17,000 allocation instead", "Post-surgical rehab can exceed the annual maximum — ask for an exception"],
+      "aboutList": {
+        "lead": "Up to $5,760 per 12-month period for each of occupational therapy, physiotherapy and speech-language pathology (including therapist-assistant services), delivered one-to-one or in groups.",
+        "items": [
+          "Maximum billing rates: $160/hour for therapists, $60/hour for therapist assistants; up to $480 of the maximum can go to consultation, report writing and travel.",
+          "A separate $1,920/year is available for chiropractic ($40/session) or massage ($40/hour).",
+          "Exceptions to maximums are considered for post-surgical rehabilitation.",
+          "Services must complement, not duplicate, school-based therapy."
+        ]
+      },
+      "steps": [
+        "Ensure the child is enrolled in the At Home Program",
+        "Have the treating OT, PT, SLP, chiropractor or massage therapist complete the At Home Program Request for School-Aged Extended Therapies form, including intended functional outcomes",
+        "Submit the request to AHP Medical Benefits for review",
+        "Approved therapists invoice AHP Medical Benefits directly"
+      ],
+      "documents": [
+        "Request for School-Aged Extended Therapies form completed by the treating therapist",
+        "Functional outcomes for the child (Part 5 of the request form)"
+      ],
+      "tips": [
+        "The requesting therapist must coordinate with the school-based therapy team so services do not overlap",
+        "Sequential therapy blocks (one goal at a time) are preferred over running everything simultaneously",
+        "If your child moved to the Disability Benefit in April 2026, pay for the same therapies from the new $6,500/$17,000 allocation instead",
+        "Post-surgical rehab can exceed the annual maximum — ask for an exception"
+      ],
       "time": "Requests reviewed by AHP Medical Benefits; SAET recipients transitioned to the Disability Benefit starting April 2026.",
       "phone": "1-888-613-3232"
     }
@@ -5516,25 +5640,42 @@ const BENEFITS = [
     "category": "Education",
     "amount": "Up to $1,560 per program year ($30 per week of study)",
     "summary": "Non-repayable grant money that replaces B.C. student loans for full-time students with a disability, so you borrow less.",
-    "requires": ["bc", "student", "disabilityDoc"],
-    eligibility: {
-      mode: "all",
-      items: [
-        "You are a full-time student at a B.C. public post-secondary school.",
+    "requires": [
+      "bc",
+      "student",
+      "disabilityDoc"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are enrolled in a full-time program at a designated public post-secondary school in B.C.",
         "You qualify for federal and provincial student financial aid.",
-        "You have a permanent disability, or a persistent or prolonged disability as defined by the Canada Student Financial Assistance Program.",
+        "You have a permanent disability, or a persistent or prolonged disability as defined by the Canada Student Financial Assistance Program."
       ],
+      "note": "Students who received this grant at another school in 2025/26, for the same program at the same school, may request to continue until their program is complete or July 31, 2029, whichever is first."
     },
-    "requiresNote": "You are a full-time student at a B.C. public post-secondary school, you qualify for federal and provincial student financial aid, and you have a permanent disability, or a persistent or prolonged disability as defined by the Canada Student Financial Assistance Program.",
-    "note": "B.C. public post-secondary schools only. It replaces B.C. student loan funding with grant funding, so it lowers what you have to pay back.",
+    "requiresNote": "You may be eligible if you are enrolled in a full-time program at a designated public post-secondary school, you qualify for federal and provincial student financial aid, and you have a permanent disability, or a persistent or prolonged disability as defined by the Canada Student Financial Assistance Program. See the limited continuing-grant exception below.",
+    "note": "Only available to students attending B.C. public post-secondary schools. Students enrolled at another school in 2025/26 who received this grant for the same program at the same school may request to continue until their program is complete or until July 31, 2029, whichever occurs first. It replaces B.C. student loan funding with grant funding, so it lowers what you have to pay back.",
     "applyText": "See how to apply for disability funding",
     "applyUrl": "https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-students-disabilities",
     "source": "https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-students-disabilities",
     "detail": {
-      "about": "This non-repayable grant replaces B.C. student loan funding with grant funding for eligible full-time students with a disability at B.C. public post-secondary schools, reducing the amount they borrow.",
-      "steps": ["Apply for full-time StudentAid BC funding for the study period", "If disability status is not already verified, submit the StudentAid BC Disability Verification Form completed by an accepted medical assessor", "Confirm that the school is a B.C. public post-secondary institution", "Review the assessment notice in your StudentAid BC account; the grant is assessed with the aid application"],
-      "documents": ["StudentAid BC application", "Disability Verification Form if status is not already verified", "Any follow-up financial information StudentAid BC requests"],
-      "tips": ["There is no separate grant application after disability status is verified", "Contact the school's accessibility services office early for accommodations and related disability funding"],
+      "about": "This non-repayable grant replaces B.C. student loan funding with grant funding for eligible full-time students with a disability at B.C. public post-secondary schools (a limited exception applies to students already receiving it at another school), reducing the amount they borrow.",
+      "steps": [
+        "Apply for full-time StudentAid BC funding for the study period",
+        "If disability status is not already verified, submit the StudentAid BC Disability Verification Form completed by an accepted medical assessor",
+        "Confirm that your school is a B.C. public post-secondary institution, or ask about continuing if you received this grant there in 2025/26",
+        "Review the assessment notice in your StudentAid BC account; the grant is assessed with the aid application"
+      ],
+      "documents": [
+        "StudentAid BC application",
+        "Disability Verification Form if status is not already verified",
+        "Any follow-up financial information StudentAid BC requests"
+      ],
+      "tips": [
+        "There is no separate grant application after disability status is verified",
+        "Contact the school's accessibility services office early for accommodations and related disability funding"
+      ],
       "time": "Assessed with the StudentAid BC application",
       "phone": "1-800-561-1818"
     }
@@ -5996,27 +6137,107 @@ const BENEFITS = [
     "name": "Leisure Access Program (LAP)",
     "level": "Vancouver",
     "category": "Recreation",
-    "amount": "Free admission to pools and rinks, 50% off fitness centres and lessons, and a pass now valid for 3 years",
-    "summary": "Vancouver's low-income recreation pass. Swimming and skating admission are free, and most other Park Board recreation is half price.",
-    "requires": ["bc", "vancouver", "lowIncome"],
-    eligibility: {
-      mode: "all",
-      items: [
-        "You are a resident of the City of Vancouver.",
-        "You qualify one of these ways: you are a family with a child up to 17 who qualifies for the Child Disability Benefit; or you, your spouse or partner, or a dependent aged 18 or older qualifies for the Disability Tax Credit; or you receive income assistance or another listed provincial or federal subsidy; or you are a client of a non-profit or government agency that can refer you; or you are an asylum seeker or temporary foreign worker; or you are a low-income resident who does not receive income assistance and cannot be referred; or you are receiving Employment Insurance benefits in 2026/2027.",
+    "amount": "Free admission to pools and rinks, 50% off fitness centre admission and group swimming and skating lessons, and a pass now valid for 3 years",
+    "summary": "Vancouver's low-income recreation pass. Swimming and skating admission are free; outdoor pools require an online reservation. Fitness centre admission, group swimming and skating lessons and other listed programs are half price.",
+    "requires": [
+      "bc",
+      "vancouver",
+      "lowIncome"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Child Disability Benefit: a family with a child up to 17 that receives the Child Disability Benefit, shown on its Canada Child Benefit notice",
+        "Disability Tax Credit: you, your spouse or partner, or a dependent aged 18 or older qualifies for the Disability Tax Credit, and your family's combined net income is at or below the table maximum",
+        "Income assistance: you receive income assistance or one of the listed provincial or federal subsidies (for example MSDPR assistance, Guaranteed Income Supplement, RAP, SAFER or a valid red bus pass)",
+        "Agency referral: you are a client of a non-profit or government agency that can refer you",
+        "Asylum seeker or temporary foreign worker: the non-profit or government agency you are a client of refers you (Third Party Referral form)",
+        "Low income without income assistance, and you cannot be referred: your net family income is at or below the table maximum",
+        "Employment Insurance: you are receiving EI benefits in 2026/2027, and your projected family income is at or below the table maximum"
       ],
+      "note": "You must be a resident of the City of Vancouver (UBC and the University Endowment Lands are not in the City). Leisure Access is not available to immigrants classified as investors or entrepreneurs. It is also not available to individuals or families with combined interest and other investment income (line 12100) over $1,500, net rental income (line 12600) over $2,000, or capital gains (line 12700) over $2,000."
     },
-    "requiresNote": "You must be a resident of the City of Vancouver. You qualify if you are a family with a child up to 17 who qualifies for the Child Disability Benefit, or if you, your spouse or partner, or a dependent aged 18 or older qualifies for the Disability Tax Credit. You can also qualify if you receive income assistance or another listed provincial or federal subsidy; are a client of a non-profit or government agency that can refer you; are an asylum seeker or temporary foreign worker; are a low-income resident who does not receive income assistance and cannot be referred; or are receiving Employment Insurance benefits in 2026/2027.",
+    "requiresNote": "You must be a City of Vancouver resident and meet one of the routes below, including its income or referral conditions and the exclusions.",
     "note": "Starting January 1, 2026, Leisure Access passes are valid for 3 years — a pass issued in 2026 does not expire until 2029. Note that UBC and the University Endowment Lands are not in the City of Vancouver.",
     "applyText": "Apply for a Leisure Access pass",
     "applyUrl": "https://vancouver.ca/parks-recreation-culture/leisure-access-card.aspx",
     "source": "https://vancouver.ca/parks-recreation-culture/leisure-access-card.aspx",
     "detail": {
       "about": "The pass adds free or reduced recreation access to a Vancouver Park Board OneCard and ActiveNet account. The route and documents depend on whether you qualify through a listed benefit, an agency referral or the low-income application.",
-      "steps": ["Open the City's page and choose the application route matching your situation", "Complete the Leisure Access application and gather the documents listed for that route", "Submit it at a Park Board community centre or by the stated mail process", "After approval, have the Leisure Access membership added to the OneCard and ActiveNet account", "For a child 16 or younger, complete the parent or guardian photo-consent form"],
-      "documents": ["Proof of a qualifying benefit or current Proof of Income Statement, depending on route", "Proof of a City of Vancouver address dated within 90 days", "Government-issued identification", "OneCard photo consent for children 16 and younger"],
-      "tips": ["A Notice of Assessment is not the same as the CRA Proof of Income Statement requested for the low-income route", "UBC and University Endowment Lands addresses are outside the City of Vancouver", "Bring the pass and photo identification when a partner venue requires both"],
+      "steps": [
+        "Open the City's page and choose the application route matching your situation",
+        "Complete the Leisure Access application and gather the documents listed for that route",
+        "Submit it at a Park Board community centre or by the stated mail process",
+        "After approval, have the Leisure Access membership added to the OneCard and ActiveNet account",
+        "For a child 16 or younger, complete the parent or guardian photo-consent form"
+      ],
+      "documents": [
+        "Proof of a qualifying benefit or current Proof of Income Statement, depending on route",
+        "Proof of a City of Vancouver address dated within 90 days",
+        "Government-issued identification",
+        "OneCard photo consent for children 16 and younger",
+        "2025 Canada Child Benefit notice (Child Disability Benefit route)",
+        "2025 Proof of Income Statement verifying receipt of the Disability Tax Credit (the page says not a Notice of Assessment)",
+        "Original Third Party Referral form completed by the referring agency within 90 days, signed and dated by you (agency referral routes)",
+        "Family members' 2025 tax year Proof of Income Statement (EI route)",
+        "Service Canada letter showing your Employment Insurance start and finish date and benefit rate (EI route)"
+      ],
+      "tips": [
+        "A Notice of Assessment is not the same as the CRA Proof of Income Statement requested for the low-income route",
+        "UBC and University Endowment Lands addresses are outside the City of Vancouver",
+        "Bring the pass and photo identification when a partner venue requires both"
+      ],
       "time": "Ask the Leisure Access office when submitting"
+    },
+    "amountTiers": {
+      "caption": "Maximum net family income by route (EI route: projected family income)",
+      "headers": [
+        "Family size",
+        "Disability Tax Credit route",
+        "Low-income self-referral and EI routes"
+      ],
+      "rows": [
+        [
+          "1 person",
+          "$53,166",
+          "$43,028"
+        ],
+        [
+          "2 people",
+          "$70,972",
+          "$60,834"
+        ],
+        [
+          "3 people",
+          "$84,645",
+          "$74,507"
+        ],
+        [
+          "4 people",
+          "$96,171",
+          "$86,033"
+        ],
+        [
+          "5 people",
+          "$106,325",
+          "$96,187"
+        ],
+        [
+          "6 people",
+          "$115,506",
+          "$105,368"
+        ],
+        [
+          "7 people",
+          "$123,948",
+          "$113,810"
+        ],
+        [
+          "Each additional person",
+          "Not stated on the page",
+          "Add $8,450"
+        ]
+      ]
     }
   },
   {
@@ -6024,28 +6245,93 @@ const BENEFITS = [
     "name": "Leisure Access Program (LAP)",
     "level": "Surrey",
     "category": "Recreation",
-    "amount": "Free 1-year pass for ages 0-18 and 60+, or 75% off for adults 19-59, plus 75% off registered courses",
+    "amount": "Free 1-year pass for ages 0-18 and 60+, or 75% off for adults 19-59, plus 75% off most registered courses",
     "summary": "Surrey's recreation subsidy. Children, youth and seniors get a free year-long pass to every City recreation facility; adults get three quarters off.",
-    "requires": ["bc", "surrey", "lowIncome"],
-    eligibility: {
-      mode: "all",
-      items: [
-        "You are a Surrey resident.",
-        "You qualify one of these ways: applying with income tax documents against the family size and income table; as a client of the Ministry of Social Development; with a Disability Tax Credit; as a senior receiving the Guaranteed Income Supplement; as a client of the Ministry of Children and Family Development; or as a refugee.",
+    "requires": [
+      "bc",
+      "surrey",
+      "surreyLeisureRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Income tax documents: your family's combined net income (line 23600) is less than the maximum for your family size in the table, and the City's other income-line limits are met",
+        "Client of the Ministry of Social Development",
+        "Disability Tax Credit applicants must meet the City's family-income and other income-line limits.",
+        "Senior receiving the Guaranteed Income Supplement",
+        "Child or youth in qualifying legal care, or a young adult supported by the Ministry's SAJE program.",
+        "Refugee, with a referral application completed through an approved settlement services agency"
       ],
+      "note": "You must be a Surrey resident. The City says you may qualify if one of these situations applies. For the Disability Tax Credit route, your family's combined net income, after subtracting the Disability Tax Credit amounts the City's page lists, must be less than the maximum for your family size, and the City's other income-line limits must be met. The legal-care route covers a child or youth aged 0-18 in the legal care of the Ministry of Children and Family Development, Métis Family Services or Vancouver Aboriginal Child and Family Services Society, or a young adult aged 19-25 supported by the Ministry's SAJE program; enrolment covers the child or youth and one legal guardian."
     },
-    "requiresNote": "You must be a Surrey resident and qualify one of these ways: applying with income tax documents against the family size and income table; as a client of the Ministry of Social Development; with a Disability Tax Credit; as a senior receiving the Guaranteed Income Supplement; as a client of the Ministry of Children and Family Development; or as a refugee.",
-    "note": "Enrolment is valid for one year. If you apply with income tax documents, the family net income maximum (line 23600 of your Notice of Assessment) is $25,588 for a family of 1, $31,140 for 2, $38,777 for 3, $48,377 for 4, $55,089 for 5, $61,095 for 6, $67,099 for 7, and $6,006 more for each additional person.",
+    "requiresNote": "You may qualify if you are a Surrey resident and one of the City's routes applies. See the route list and its income, legal-care and referral conditions below.",
+    "note": "Enrolment is valid for one year. If you apply with income tax documents, your family's combined net income (line 23600 of your Notice of Assessment or Proof of Income Statement) must be less than the maximum for your family size in the table. A family is one or two married or common-law adults and their legal dependents aged 18 and under. In the year you are enrolled, course discounts are limited: up to $500 plus $500 at Semiahmoo Arts Society for ages 0-18, and up to $250 plus $250 for adults 19-59 and seniors 60+. Applicable day camps for children (0 to 12) and youth (13 to 18) get 75% off with no discount limits. A few specialty programs are not included.",
     "applyText": "Apply for the Leisure Access Program",
     "applyUrl": "https://www.surrey.ca/parks-recreation/activities-registration/admissions-passes/leisure-access-program",
     "source": "https://www.surrey.ca/parks-recreation/activities-registration/admissions-passes/leisure-access-program",
     "detail": {
-      "about": "Surrey accepts several qualifying routes. Income-tax applicants must meet both the family-income table and the additional investment, rental, RRSP-deduction and capital-gain limits on the current City page.",
-      "steps": ["Review the City's qualifying routes and select the one that applies", "Complete the Leisure Access Program application and copy the documents required for that route", "Submit online and wait for staff to schedule an appointment, or submit in person at a listed Surrey facility", "After approval, use the pass through the MySurrey account or call registration staff"],
-      "documents": ["Application form", "Government-issued photo identification for one adult", "Proof of Income Statement or Notice of Assessment for each adult when applying by income", "Program confirmation, DTC information or referral documents for another qualifying route"],
-      "tips": ["Translation and interpretation support are available free", "Check that tax documents are from a currently accepted year before submitting", "Ask whether a specialty program is excluded before registering"],
+      "about": "Surrey accepts several qualifying routes. Income-tax and Disability Tax Credit applicants must meet the family-income test and the line 12100, 12600, 20800 and 25400 limits on the City's page.",
+      "steps": [
+        "Review the City's qualifying routes and select the one that applies",
+        "Complete the Leisure Access Program application and copy the documents required for that route",
+        "Submit online and wait for staff to schedule an appointment, or submit in person at a listed Surrey facility",
+        "After approval, use the pass through the MySurrey account or call registration staff"
+      ],
+      "documents": [
+        "Application form",
+        "Government-issued photo identification for one adult",
+        "Proof of Income Statement for each adult in the family, when applying with income tax documents",
+        "Program confirmation, DTC information or referral documents for another qualifying route",
+        "Canada Child Benefit Notice, Goods and Services Tax Credit Notice or Canada Groceries and Essentials Benefit Notice (income-tax and DTC routes; MSD and GIS routes only if children aged 0-18 or a spouse in the family are not listed on the letter)"
+      ],
+      "tips": [
+        "Translation and interpretation support are available free",
+        "As of September 1, 2026 income tax documents must be for the 2025 or 2026 tax year.",
+        "Ask whether a specialty program is excluded before registering"
+      ],
       "time": "Online applicants are contacted for appointments on a first-come, first-served basis",
       "phone": "604-502-6325"
+    },
+    "amountTiers": {
+      "caption": "Family net income maximum for the Leisure Access Program — only for patrons applying with income tax documents",
+      "headers": [
+        "Family size",
+        "Family net income"
+      ],
+      "rows": [
+        [
+          "1",
+          "$26,355"
+        ],
+        [
+          "2",
+          "$32,075"
+        ],
+        [
+          "3",
+          "$39,940"
+        ],
+        [
+          "4",
+          "$49,829"
+        ],
+        [
+          "5",
+          "$56,742"
+        ],
+        [
+          "6",
+          "$62,928"
+        ],
+        [
+          "7",
+          "$69,112"
+        ],
+        [
+          "8 and more",
+          "$6,186 for each additional person"
+        ]
+      ]
     }
   },
   {

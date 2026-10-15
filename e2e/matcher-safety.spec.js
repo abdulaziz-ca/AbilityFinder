@@ -865,9 +865,21 @@ test("no Alberta answer combination reaches ready", async ({ page }) => {
   }
 });
 
+test("Surrey route confirmation does not infer receipt from PWD designation", async ({ page }) => {
+  for (const profile of [
+    { province: "BC", city: "Surrey", income: "low", bcAssistance: "none" },
+    { province: "BC", city: "Surrey", income: "low", bcAssistance: "pwd" },
+    { province: "BC", city: "Surrey", income: "high", bcAssistance: "pwd" },
+  ]) {
+    const result = await evaluateProfile(page, profile);
+    expect(result["surrey-leisure-access"].status).toBe("almost");
+    expect(result["surrey-leisure-access"].needs.map(need => need.text).join(" ")).toMatch(/may qualify.*Check which route applies/);
+  }
+});
+
 test("jurisdiction, age and status produce a clean no-match", async ({ page }) => {
   const albertaIds = ["aish", "adap", "aadl", "adult-health-benefit"];
-  const adultProgramIds = ["aish", "adap", "adult-health-benefit"];
+  const adultProgramIds = ["aish", "adult-health-benefit"];
 
   const outsideAlberta = await evaluateProfile(page, {
     province: "BC",
@@ -875,11 +887,19 @@ test("jurisdiction, age and status produce a clean no-match", async ({ page }) =
   });
   for (const id of albertaIds) expect(outsideAlberta[id].status).toBe("no");
 
+  for (const ageBand of ["under6", "6to11", "12to15", "16to17"]) {
+    const underage = await evaluateProfile(page, { ageBand });
+    expect(underage.adap.status).toBe("no");
+  }
+
   const senior = await evaluateProfile(page, { ageBand: "65plus" });
   for (const id of adultProgramIds) expect(senior[id].status).toBe("no");
+  // ADAP uses OAS eligibility, not a fixed upper age limit.
+  expect(senior.adap.status).toBe("almost");
 
   const nonCitizen = await evaluateProfile(page, { citizenPR: false });
   for (const id of adultProgramIds) expect(nonCitizen[id].status).toBe("no");
+  expect(nonCitizen.adap.status).toBe("no");
 
   const noEquipmentNeed = await evaluateProfile(page, { functionalNeeds: ["none"] });
   expect(noEquipmentNeed.aadl.status).toBe("no");

@@ -22,6 +22,97 @@ function loadData() {
 
 const { BENEFITS, BENEFIT_VALUES, BENEFIT_META } = loadData();
 
+test("batch four: Surrey's unlabelled table and route qualifiers match the snapshot", () => {
+  const b = benefitById("surrey-leisure-access");
+  assert.deepEqual(JSON.parse(JSON.stringify(b.amountTiers.rows)), [
+    ["1", "$26,355"], ["2", "$32,075"], ["3", "$39,940"],
+    ["4", "$49,829"], ["5", "$56,742"], ["6", "$62,928"],
+    ["7", "$69,112"], ["8 and more", "$6,186 for each additional person"],
+  ]);
+  assert.equal(b.amountTiers.headers[1], "Family net income");
+  assert.doesNotMatch(b.amountTiers.caption, /20\d\d/);
+  assert.equal(b.eligibility.mode, "any");
+  assert.equal(b.eligibility.items.length, 6);
+  assert.match(b.eligibility.note, /may qualify/);
+  assert.ok(b.eligibility.items[2].length <= 120);
+  assert.ok(b.eligibility.items[4].length <= 120);
+  assert.match(b.eligibility.note, /less than.*other income-line limits/);
+  assert.match(b.eligibility.note, /SAJE.*one legal guardian/);
+  assert.match(b.amount, /most registered courses/);
+  assert.match(b.note, /up to \$500 plus \$500.*up to \$250 plus \$250/);
+  assert.match(b.note, /Applicable day camps for children \(0 to 12\) and youth \(13 to 18\).*no discount limits/);
+  assert.match(b.detail.documents.join(" "), /Proof of Income Statement.*Canada Groceries and Essentials/);
+  assert.ok(b.requires.includes("surreyLeisureRoute"));
+  assert.ok(!b.requires.includes("lowIncome"));
+});
+
+test("batch four: Vancouver has one three-column table with route-specific limits", () => {
+  const b = benefitById("vancouver-leisure-access");
+  assert.deepEqual(JSON.parse(JSON.stringify(b.amountTiers.headers)), [
+    "Family size", "Disability Tax Credit route", "Low-income self-referral and EI routes",
+  ]);
+  assert.deepEqual(JSON.parse(JSON.stringify(b.amountTiers.rows)), [
+    ["1 person", "$53,166", "$43,028"], ["2 people", "$70,972", "$60,834"],
+    ["3 people", "$84,645", "$74,507"], ["4 people", "$96,171", "$86,033"],
+    ["5 people", "$106,325", "$96,187"], ["6 people", "$115,506", "$105,368"],
+    ["7 people", "$123,948", "$113,810"],
+    ["Each additional person", "Not stated on the page", "Add $8,450"],
+  ]);
+  assert.equal(b.eligibility.mode, "any");
+  assert.equal(b.eligibility.items.length, 7);
+  assert.match(b.eligibility.items[0], /receives.*shown on/);
+  assert.match(b.eligibility.items[4], /agency.*refers you/);
+  assert.match(b.eligibility.items[6], /projected family income/);
+  assert.match(b.eligibility.note, /investors or entrepreneurs/);
+  for (const value of ["$1,500", "$2,000", "12100", "12600", "12700"])
+    assert.ok(b.eligibility.note.includes(value));
+  assert.match(b.summary, /outdoor pools.*online reservation/);
+  assert.match(b.amount, /group swimming and skating lessons/);
+});
+
+test("batch four: document exceptions, hedges and processing periods stay explicit", () => {
+  assert.match(benefitById("fscd").detail.documents[0], /awaiting a diagnosis/);
+  const handy = benefitById("handycard-translink");
+  assert.match(handy.requiresNote, /may also be eligible/);
+  assert.match(handy.detail.time, /4 to 6 weeks/);
+  assert.match(BENEFIT_META[handy.id].wait, /4 to 6 weeks/);
+  const local = benefitById("local-supports");
+  assert.match(local.detail.about, /In most of Canada.*excluding statutory holidays/);
+  assert.equal(typeof local.applyUrl, "function");
+  assert.equal(typeof local.source, "function");
+  assert.equal(local.applyUrl({ province: "other" }), "https://211.ca/");
+  const strathcona = benefitById("strathcona-subsidy").detail.documents.join(" ");
+  assert.match(strathcona, /2025 NOA.*June 1, 2026.*2024 NOA.*no longer accepted/);
+  assert.match(strathcona, /New refugee or permanent resident.*first year.*Canadian bank/);
+  assert.match(benefitById("stalbert-subsidy").note, /does not say whether.*confirm with the City/);
+  const grant = benefitById("bc-access-grant-students-disabilities");
+  assert.match(grant.note, /same program at the same school.*may request.*July 31, 2029.*whichever/);
+  assert.match(grant.requiresNote, /^You may be eligible/);
+  assert.match(benefitById("bc-at-home-saet").summary, /^May help.*out-of-school/);
+});
+
+test("batch four: ADAP employment wording and autism assessment routes retain qualifiers", () => {
+  const adap = benefitById("adap");
+  assert.ok(adap.requires.includes("adapAge"));
+  assert.match(adap.summary, /severe.*continuously or episodically.*does not prevent/);
+  assert.match(adap.detail.about, /significantly restrict but not prevent/);
+  for (const id of ["bc-autism-funding-6-18", "bc-autism-funding-under-6"]) {
+    const b = benefitById(id);
+    assert.match(b.note, /eligibility to transfer/);
+    assert.doesNotMatch(b.note, /in phases/);
+    assert.match(b.detail.documents.join(" "), /PANTER.*optional.*CF0904.*ADOS-2.*ADI-R.*CF0905/);
+    assert.doesNotMatch(b.detail.documents.join(" "), /Personal Health Number/);
+    assert.equal(BENEFIT_META[id].effort, "Application + diagnosis form for your assessment route");
+  }
+  const older = benefitById("bc-autism-funding-6-18");
+  assert.match(older.detail.coversList.items[3], /should be supervised/);
+  assert.match(older.detail.about, /bookkeeper.*direct payment accountant fees/);
+  const younger = benefitById("bc-autism-funding-under-6");
+  assert.match(younger.detail.tips[0], /interventionists supervised.*do not need to be on RASP/);
+  assert.match(younger.detail.tips.at(-1), /may be eligible/);
+  assert.match(younger.detail.documents[2], /speech-language and psychological/);
+});
+
 test("batch two: transit and recreation values retain all source limits", () => {
   const edmonton = benefitById("edmonton-fare-assistance");
   assert.match(edmonton.amount, /\$35 or \$50.*depending on household income/);

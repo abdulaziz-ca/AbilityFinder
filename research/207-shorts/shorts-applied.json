@@ -1,4 +1,14 @@
 {
+  "surreyLeisureRoute": {
+    "short": "Check which Surrey Leisure Access route applies",
+    "who": ["you"],
+    "reason": "Surrey-specific alternatives remain unconfirmed; PWD designation alone is not receipt"
+  },
+  "adapAge": {
+    "short": "Check your age and Old Age Security eligibility",
+    "who": ["you"],
+    "reason": "ADAP-specific age and OAS test; no fixed upper age ceiling"
+  },
   "hatcEligibleDwelling": {
     "short": "Check ownership and ordinary or expected residence in the Canadian home",
     "who": ["you"],

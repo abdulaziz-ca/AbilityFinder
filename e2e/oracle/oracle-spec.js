@@ -49,7 +49,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.20.0";
+const SPEC_VERSION = "1.21.0";
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
@@ -568,6 +568,16 @@ const GATES = {
   odspFinancial: external("ODSP assesses income, assets, shelter costs and family size; the wizard cannot compute financial need."),
   aishMedical: external("AISH medical eligibility is adjudicated by the program from medical evidence."),
   aishFinancial: external("AISH applies its own income and asset test to the household."),
+  // No answer distinguishes designation from receipt, or establishes another route.
+  surreyLeisureRoute: external("Surrey's listed route and its conditions need confirmation; PWD designation alone is not receipt."),
+  adapAge: {
+    evidence: "answers",
+    satisfy: { set: { ageBand: "19to59" } },
+    violations: [
+      { name: "under eighteen: hard age minimum", fragment: { set: { ageBand: "under6" } }, expect: "no" },
+      { name: "senior: OAS eligibility not asked", fragment: { set: { ageBand: "65plus" } }, expect: "almost" },
+    ],
+  },
   adapMedical: external("ADAP medical eligibility is adjudicated by the program."),
   adapFinancial: external("ADAP applies its own financial test."),
   ahcipRegistered: external("Depends on active Alberta Health Care Insurance Plan registration."),
@@ -793,7 +803,7 @@ const PROGRAM_BEST_CASE = {
   "bc-property-tax-deferment-disabilities":        "almost",
   "bc-sales-tax-credit":                           "ready",
   "vancouver-leisure-access":                      "ready",
-  "surrey-leisure-access":                         "ready",
+  "surrey-leisure-access":                         "almost",
   "burnaby-fair-play":                             "almost",
   "richmond-rec-fee-subsidy":                      "ready",
   "victoria-life":                                 "ready",
