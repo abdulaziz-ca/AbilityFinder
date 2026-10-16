@@ -1,5 +1,46 @@
 const { test, expect } = require("@playwright/test");
 
+test("#223: directory leads do not exclude overlapping youth bands or financial need at high income", async ({ page }) => {
+  await gotoReadyApp(page);
+  const cases = [
+    ["bear-essentials", { province: "BC", city: "Victoria", ageBand: "19to59", income: "high", functionalNeeds: ["medicalTravel"] }, true],
+    ["bear-essentials", { province: "BC", city: "Saanich", ageBand: "18", functionalNeeds: ["equipment"] }, true],
+    ["bear-essentials", { province: "BC", city: "Victoria", ageBand: "60to64", functionalNeeds: ["equipment"] }, false],
+    ["shine-dreams", { ageBand: "19to59", disabilities: ["physical"] }, true],
+    ["shine-dreams", { forWho: "child", ageBand: "6to11", disabilities: ["physical"] }, true],
+    ["shine-dreams", { forWho: "child", ageBand: "under6", disabilities: ["physical"] }, false],
+    ["shine-dreams", { ageBand: "60to64", disabilities: ["physical"] }, false],
+    ["variety-ab", { ageBand: "19to59" }, true],
+    ["cknw-kids-fund", { province: "BC", ageBand: "19to59" }, true],
+    ["bc-rehab-bursary", { province: "BC", forWho: "child", ageBand: "16to17", disabilities: ["physical"], situation: ["student"] }, true],
+    ["kinsmen-bc-equipment", { province: "BC", forWho: "child", ageBand: "18", disabilities: ["physical"], functionalNeeds: ["equipment"] }, true],
+  ];
+  for (const [id, overrides, expected] of cases) {
+    const actual = await page.evaluate(({ id, model }) => {
+      const previous = answers;
+      answers = model;
+      try { return grantMatchesAnswers(GRANTS_DIRECTORY.find(g => g.id === id)); }
+      finally { answers = previous; }
+    }, { id, model: answerModel(overrides) });
+    expect(actual, `${id}: ${JSON.stringify(overrides)}`).toBe(expected);
+  }
+});
+
+test("#223: directory cards show exact limits, past deadline and advance approval", async ({ page }) => {
+  await gotoReadyApp(page);
+  await page.evaluate(model => { answers = model; setState("grants"); }, answerModel({ province: "BC", city: "Victoria" }));
+  const bear = page.locator('[data-grant-id="bear-essentials"]');
+  await expect(bear).toContainText("0–19 (up to their 20th birthday)");
+  await expect(bear).toContainText("$15,000");
+  await expect(bear).toContainText("received and approved in advance");
+  await expect(page.locator('[data-grant-id="bc-rehab-bursary"]')).toContainText("That date has passed");
+  await expect(page.locator('[data-grant-id="shine-dreams"]')).toContainText("11–21");
+  await page.locator('[data-grants-filter="adults"]').click();
+  await expect(bear).toBeVisible();
+  await page.locator('[data-grants-filter="children"]').click();
+  await expect(bear).toBeVisible();
+});
+
 test("batch eight: Fair Pass rejects only clearly excluded adult bands", async ({ page }) => {
   for (const [ageBand, expected] of [["18", "no"], ["19to59", "ready"], ["60to64", "ready"], ["65plus", "no"]]) {
     const results = await evaluateProfile(page, { province: "ON", city: "Toronto", income: "low", ageBand });

@@ -22,6 +22,46 @@ function loadData() {
 
 const { BENEFITS, BENEFIT_VALUES, BENEFIT_META } = loadData();
 
+function loadDirectoryFollowups() {
+  return vm.runInNewContext(`${fs.readFileSync(path.join(ROOT, "public", "grants-data.js"), "utf8")}\n;GRANTS_DIRECTORY`);
+}
+
+test("#223: directory age filters retain every overlapping or unspecified age band", () => {
+  const grants = loadDirectoryFollowups();
+  const byId = id => grants.find(g => g.id === id);
+  for (const id of ["variety-ab", "cknw-kids-fund", "bc-rehab-bursary"]) {
+    assert.equal(byId(id).ageBands, undefined, id);
+    assert.equal(byId(id).audience, "all", id);
+    assert.match(byId(id).whoFor, /check.*eligibility/i);
+  }
+  assert.equal(byId("kinsmen-bc-equipment").ageBands, undefined);
+  assert.equal(byId("kinsmen-bc-equipment").audience, "all");
+  for (const id of ["tetra", "dog-guides", "als-ab-equipment"]) {
+    assert.equal(byId(id).audience, "all");
+    assert.equal(byId(id).ageBands, undefined);
+    assert.doesNotMatch(byId(id).whoFor, /all ages/i);
+  }
+  const shine = byId("shine-dreams");
+  assert.match(shine.whoFor, /11–21/);
+  assert.equal(shine.audience, "all");
+  assert.deepEqual(Array.from(shine.ageBands), ["6to11", "12to15", "16to17", "18", "19to59"]);
+  const bear = byId("bear-essentials");
+  assert.equal(bear.audience, "all");
+  assert.deepEqual(Array.from(bear.ageBands), ["under6", "6to11", "12to15", "16to17", "18", "19to59"]);
+});
+
+test("#223: Bear preserves need and advance approval without inventing an income cutoff", () => {
+  const bear = loadDirectoryFollowups().find(g => g.id === "bear-essentials");
+  assert.equal(bear.lowIncome, false);
+  assert.match(bear.whoFor, /0–19.*20th birthday/);
+  assert.match(bear.whoFor, /require financial support.*lifetime.*\$15,000/);
+  assert.match(bear.howToApply, /health care professional.*family circumstances.*consent/);
+  assert.match(bear.howToApply, /received and approved in advance of travel or equipment purchase/);
+  const bursary = loadDirectoryFollowups().find(g => g.id === "bc-rehab-bursary");
+  assert.match(bursary.howToApply, /September 1, 2026.*all required supporting documents.*date has passed.*next application cycle/);
+  assert.doesNotMatch(bursary.offers, /current.*deadline/);
+});
+
 test("batch eight: Passport repeats only the snapshot amounts and keeps funding conditions", () => {
   const b = benefitById("passport-program");
   const text = JSON.stringify([b, BENEFIT_VALUES[b.id]]);

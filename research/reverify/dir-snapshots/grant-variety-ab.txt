@@ -1,2 +1,2 @@
-URL: https://varietyalberta.ca | fetched: 2026-10-16T07:35:40.545483Z | status: 200
-Variety Alberta | The Children's Charity of Alberta
+URL: https://varietyalberta.ca | fetched: 2026-10-16 | status: 200 (read in a real browser; program list loads dynamically and showed "Loading programs...")
+Variety – the Children's Charity of Alberta supports children and youth with disabilities and specialized needs across Alberta through life-changing programs and community support. Your generosity funds adaptive equipment, accessible play, family support, and life-changing experiences across the province. Contact 1517, 246 Stewart Green SW Calgary, AB T3H 3C8 info@varietyalberta.ca

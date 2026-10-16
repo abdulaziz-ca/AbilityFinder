@@ -1,2 +1,2 @@
-URL: https://www.marchofdimes.ca/en-ca | fetched: 2026-10-16T07:36:12.684265Z | status: 200
-
+URL: https://www.marchofdimes.ca/en-ca | fetched: 2026-10-16 | status: 200 (read in a real browser)
+March of Dimes Canada provides a wide range of services to people with disabilities throughout the country. Programs and services listed: Online Virtual Programs, After Stroke, Brain Injury Services, Polio Canada, Children's Programs, Accessible Modifications, Attendant Care, Independent Living, Accessible Technology, SkillingUp, Northern Health Clinics, Employment Services.
