@@ -4,6 +4,22 @@ The one place to see what Claude and Codex did while you were away. Newest entry
 Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisions we made for you**
 (all reversible) · **Needs you** (only things an agent may not decide).
 
+## 2026-10-19
+
+### Shipped
+- **"Check this fact" pilot** (#209 phase 2) — `6ecaee6`, `?v=187` (CI 867/867). Three Waterloo transit programs
+  (GRT taxi coupons, CNIB pass, Affordable Transit Program) each offer one optional Yes / No / Not sure question,
+  e.g. "Are you currently approved by the Region of Waterloo for the Affordable Transit Program?". Only an explicit
+  Yes on that program's own question can move it to "Matches your answers" (with "Includes facts you checked on
+  this device"); every other requirement still applies, and nothing leaves the device. Without anyone answering,
+  results are exactly as before. Claude's review caught a what-if panel that would have falsely said "no longer
+  ready", a change that leaked beyond the three programs, and approval wording that ignored the one-year expiry -
+  all fixed before release.
+- If this pilot reads well to you, the same pattern can extend to other "registered with / approved for" checks.
+
+### Needs you
+- Nothing.
+
 ## 2026-10-18
 
 ### Shipped
