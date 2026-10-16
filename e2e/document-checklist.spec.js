@@ -14,7 +14,7 @@ for (const theme of ["light", "dark", "contrast"]) {
       const no = browseCatalog().find(b => evaluate(b).status === "no" && b.detail?.documents?.length);
       if (no) progress[no.id] = "saved";
       setState("results");
-      const matched = browseCatalog().map(b => ({ b, r: evaluate(b) })).filter(e => ["ready", "almost"].includes(e.r.status));
+      const matched = resultGroups(browseCatalog().filter(b => benefitInResultsScope(b, answers)).map(b => ({ b, r: evaluate(b) }))).g1; // G1 programs only
       const checklist = buildDocumentChecklist(matched);
       const unique = new Set(matched.flatMap(e => e.b.detail?.documents || []).map(s => s.toLowerCase().trim().replace(/\s+/g, " ").replace(/[\p{P}\s]+$/gu, "")));
       return { checklist: checklist.filter(e => e.programs.length >= 2), single: checklist.filter(e => e.programs.length === 1), independentCount: unique.size };

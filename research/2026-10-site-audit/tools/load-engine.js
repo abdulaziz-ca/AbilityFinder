@@ -10,10 +10,13 @@ function loadEngine(root = path.resolve(__dirname, "../../..")) {
   const stepsEnd = app.indexOf("\n];\n", stepsAt) + 4;
   const visEnd = app.indexOf("const visibleSteps");
   const evalAns = app.slice(app.indexOf("function evaluateAnswers"), app.indexOf("function scenarioAnswerModel"));
-  const benefitProvince = app.slice(app.indexOf("function benefitProvince"), app.indexOf("}", app.indexOf("return null;", app.indexOf("function benefitProvince"))) + 1);
+  // benefitInResultsScope + benefitProvince (scope fix, d0bbe52) and the province helpers they call.
+  const scopeAt = app.indexOf("function benefitInResultsScope");
+  const benefitProvince = app.slice(scopeAt, app.indexOf("}", app.indexOf("return null;", app.indexOf("function benefitProvince"))) + 1) + "\n" +
+    app.slice(app.indexOf("function benefitIsLocal"), app.indexOf("function benefitSearchText"));
   vm.runInContext(
     app.slice(0, stepsEnd) + "\n" + app.slice(stepsEnd, app.indexOf("\n", visEnd) + 1) + "\n" + evalAns + "\n" + benefitProvince +
-      "\nglobalThis.__ = { REQS, BENEFITS, STEPS, CITIES_BY_PROVINCE, BENEFIT_VALUES, BENEFIT_META, evaluate, evaluateAnswers, priorityScore, benefitProvince," +
+      "\nglobalThis.__ = { REQS, BENEFITS, STEPS, CITIES_BY_PROVINCE, BENEFIT_VALUES, BENEFIT_META, evaluate, evaluateAnswers, priorityScore, benefitProvince, benefitInResultsScope, browseCatalog," +
       " visibleSteps, setAnswers: (a) => { answers = a; }, getAnswers: () => answers };",
     ctx,
   );

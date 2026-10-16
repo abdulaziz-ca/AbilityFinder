@@ -2,6 +2,13 @@ const { test, expect } = require('@playwright/test');
 const { gotoReady, waitForAppReady } = require('./app-ready');
 const { personas, seedSnippet } = require('../scripts/at-kit-seed');
 
+async function expectGroupedTotal(page, ready, almost) {
+  const cards = await page.locator('.benefit.almost').count();
+  const rows = await page.locator('[data-result-group]').count();
+  expect(cards + rows).toBe(almost);
+  await expect(page.locator('.benefit.ready')).toHaveCount(ready);
+}
+
 for (const persona of personas) {
   test(`AT kit seed: ${persona.id}`, async ({ page }) => {
     const errors = [];
@@ -22,12 +29,12 @@ for (const persona of personas) {
     };
     const [ready, almost] = counts[persona.id];
     await expect(page.locator('.benefit.ready')).toHaveCount(ready);
-    await expect(page.locator('.benefit.almost')).toHaveCount(almost);
-    await expect(page.locator('.results-head .big')).toHaveText(String(ready + almost));
+    // Presentation groups: G1 cards + G2/G3 rows still account for every matched program.
+    await expect(page.locator('.results-head h1')).toHaveText('Programs based on your answers');
+    await expectGroupedTotal(page, ready, almost);
     await expect(page.locator('.group-title.ready')).toHaveCount(ready ? 1 : 0);
     if (ready) await expect(page.locator('.group-title.ready')).toContainText('Matches your answers');
-    await expect(page.locator('.group-title.almost')).toContainText('More to check');
-    await expect(page.locator('.group-title')).toHaveCount(ready ? 2 : 1);
+    if (await page.locator('.group-title.almost').count()) await expect(page.locator('.group-title.almost')).toContainText('More to check');
     await expect(page.locator('.notmatch')).toBeVisible();
     if (persona.returning) {
       await expect(page.locator('.program-updates')).toBeVisible();
@@ -39,7 +46,7 @@ for (const persona of personas) {
       await expect(page.locator('#program-updates-status')).toBeFocused();
       await gotoReady(page);
       await expect(page.locator('.program-updates')).toHaveCount(0);
-      await expect(page.locator('.results-head .big')).toHaveText('21');
+      await expectGroupedTotal(page, 0, 21);
     } else {
       await expect(page.locator('.program-updates')).toHaveCount(0);
       await page.reload();
@@ -47,8 +54,7 @@ for (const persona of personas) {
       await expect(page.locator('.results-head')).toBeVisible();
       await expect(page.locator('#selInput')).toHaveCount(0);
       await expect(page.locator('.benefit.ready')).toHaveCount(ready);
-      await expect(page.locator('.benefit.almost')).toHaveCount(almost);
-      await expect(page.locator('.results-head .big')).toHaveText(String(ready + almost));
+      await expectGroupedTotal(page, ready, almost);
       await expect(page.locator('.program-updates')).toHaveCount(0);
     }
     expect(errors).toEqual([]);

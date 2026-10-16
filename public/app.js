@@ -1562,19 +1562,9 @@ function renderMoneyBand(ready, almost) {
   </div>`;
   }
 
-  const hasReady = ready.length > 0;
-  return `
-  <div class="money-band no-estimate">
-    <div class="mb-head">
-      <span class="mb-badge">${icon(hasReady ? "money" : "key")}</span>
-      <div>
-        <div class="mb-total">${t(hasReady ? "mb.noTotalTitle" : "mb.conditionalTitle")}</div>
-        <div class="mb-sub">${t(hasReady ? "mb.noTotalSub" : "mb.conditionalSub")}${extras.length ? " · " + extras.join(" · ") : ""}</div>
-      </div>
-    </div>
-    ${hasReady ? matchStatusNote("ready") : ""}
-    <p class="mb-caveat">${t(hasReady ? "mb.noTotalCaveat" : "mb.conditionalCaveat")}</p>
-  </div>`;
+  // No figure to show: render nothing. An empty "no estimate" band only added
+  // reading load above the programs (site audit 2026-10, DECISION.md).
+  return "";
 }
 
 /* -------------------------------------------------------------- engine */
@@ -3936,6 +3926,7 @@ function renderScenarioPanel(currentEvaluated) {
   const situation = visible.find((step) => step.key === "situation");
   const income = visible.find((step) => step.key === "income");
   const city = visible.find((step) => step.key === "city");
+  const dtc = visible.find((step) => step.key === "dtc");
 
   if (situation) {
     const options = stepOptions(situation).filter((o) => o.value !== "none").map((o) => {
@@ -3947,6 +3938,7 @@ function renderScenarioPanel(currentEvaluated) {
   if (age) controls.push(scenarioSelect(age, t("scenario.age"), stepOptions(age).map((o) => `<option value="${o.value}">${optionText(age, o)}</option>`)));
   if (income) controls.push(scenarioSelect(income, t("scenario.income"), stepOptions(income).map((o) => `<option value="${o.value}">${optionText(income, o)}</option>`)));
   if (city) controls.push(scenarioSelect(city, t("scenario.city"), stepOptions(city).map((value) => `<option value="${value}">${value}</option>`)));
+  if (dtc) controls.push(scenarioSelect(dtc, t("scenario.dtc"), stepOptions(dtc).map((o) => `<option value="${o.value}">${optionText(dtc, o)}</option>`)));
 
   const chips = [...scenarioChanges.values()].map((change) => `<button type="button" class="scenario-chip" data-scenario-remove="${change.id}" aria-label="${t("scenario.remove")} ${change.label}">${change.label}${icon("x")}</button>`).join("");
   let diff = `<p class="scenario-empty">${t("scenario.empty")}</p>`;
@@ -3954,9 +3946,13 @@ function renderScenarioPanel(currentEvaluated) {
     const hypothetical = evaluateAnswers(model, confirmedFacts).filter((e) => benefitInResultsScope(e.b, model));
     const current = new Map(currentEvaluated.map((e) => [e.b.id, e]));
     const changed = new Map(hypothetical.map((e) => [e.b.id, e]));
-    const matched = (status) => status === "ready" || status === "almost";
-    const gained = hypothetical.filter((e) => matched(e.r.status) && !matched(current.get(e.b.id)?.r.status));
-    const lost = currentEvaluated.filter((e) => matched(e.r.status) && !matched(changed.get(e.b.id)?.r.status));
+    // Same presentation classifier as the page, on the hypothetical answers.
+    const currentG1 = resultGroups(currentEvaluated, answers).g1;
+    const changedG1 = resultGroups(hypothetical, model).g1;
+    const inCurrentG1 = new Set(currentG1.map((e) => e.b.id));
+    const inChangedG1 = new Set(changedG1.map((e) => e.b.id));
+    const gained = changedG1.filter((e) => !inCurrentG1.has(e.b.id));
+    const lost = currentG1.filter((e) => !inChangedG1.has(e.b.id));
     const newlyReady = hypothetical.filter((e) => e.r.status === "ready" && current.get(e.b.id)?.r.status !== "ready");
     const noLongerReady = currentEvaluated.filter((e) => e.r.status === "ready" && changed.get(e.b.id)?.r.status !== "ready");
     const row = (key, items, tone) => `<div class="scenario-diff-row ${tone}"><b>${t(key)} <span>${items.length}</span></b>${tone === "ready" ? matchStatusNote("ready") : ""}<p>${items.length ? items.map((e) => e.b.name).join(" · ") : t("scenario.none")}</p></div>`;
@@ -4054,52 +4050,85 @@ function wireProgramUpdates() {
   });
 }
 
+/* Presentation groups (public/resultsGroups.js). Pure: never changes a status. */
+function resultGroups(evaluated, model = answers) {
+  return AbilityFinderResultsGroups.classifyResults(evaluated, model);
+}
+
+// New results copy is English-only for now; mark it so French pages stay honest.
+const enOnly = () => (LANG === "en" ? "" : ' lang="en"');
+
+function guideSlug(b) {
+  return b.id.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+function guideLink(b, text = t("grp.readGuide")) {
+  return `<a class="row-guide-link js-guide-link" href="/guides/${reqEscape(guideSlug(b))}" data-id="${reqEscape(b.id)}">${reqEscape(text)}<span class="sr-only">: ${reqEscape(b.name)}</span></a>`;
+}
+
+/* G2: one line each — "If [situation]: [program] — Read the guide". */
+function renderOtherPrograms(items) {
+  if (!items.length) return "";
+  return `<section class="result-group result-group-other" aria-labelledby="g2-title" lang="en">
+    <h2 class="result-group-h" id="g2-title">${t("grp.g2")} (${items.length})</h2>
+    <p class="result-group-sub">${t("grp.g2Sub")}</p>
+    <ul class="compact-rows">${items.map((e) => `<li class="compact-row" data-result-group="g2" data-id="${reqEscape(e.b.id)}"><span class="cr-if">If ${reqEscape(e.situation)}:</span> <b class="cr-name">${reqEscape(e.b.name)}</b> — ${guideLink(e.b)}</li>`).join("")}</ul>
+  </section>`;
+}
+
+/* G3: one closed native disclosure. Only definite contradictions from the
+   person's own answers; prerequisite rows name what is needed first. */
+function renderNotNow(items) {
+  if (!items.length) return "";
+  const dtcFirst = items.filter((e) => e.reason === "dtc");
+  const dtcRecord = BENEFITS.find((b) => b.id === "dtc");
+  return `<details class="result-group result-group-later" lang="en">
+    <summary><h2 class="result-group-h" id="g3-title">${t("grp.g3")} (${items.length})</h2></summary>
+    <p class="result-group-sub">${t("grp.g3Sub")}</p>
+    ${dtcFirst.length ? `<div class="later-reason">
+      <p class="later-why"><b>${t("grp.g3Dtc")}</b> — ${dtcRecord ? guideLink(dtcRecord, t("grp.g3DtcLink")) : ""}</p>
+      <ul class="compact-rows">${dtcFirst.map((e) => `<li class="compact-row" data-result-group="g3" data-id="${reqEscape(e.b.id)}"><b class="cr-name">${reqEscape(e.b.name)}</b> — ${guideLink(e.b)}</li>`).join("")}</ul>
+    </div>` : ""}
+  </details>`;
+}
+
 function renderResults() {
   const evaluated = browseCatalog().filter((b) => benefitInResultsScope(b, answers)).map((b) => ({ b, r: evaluate(b) }));
-  const ready = evaluated.filter((e) => e.r.status === "ready");
-  const almost = evaluated.filter((e) => e.r.status === "almost");
+  const groups = resultGroups(evaluated);
+  const ready = groups.g1.filter((e) => e.r.status === "ready");
+  const almost = groups.g1.filter((e) => e.r.status === "almost");
   // "not a match" excludes programs that belong to a DIFFERENT province
-  const no = evaluated.filter((e) => {
-    if (e.r.status !== "no") return false;
+  const no = groups.no.filter((e) => {
     const p = benefitProvince(e.b);
     return !p || p === answers.province;
   });
 
-  // Order by the site's editorial value/ease score. This is not an official
-  // eligibility or urgency ranking.
-  ready.sort((a, b) => priorityScore(b.b) - priorityScore(a.b));
-  almost.sort((a, b) => priorityScore(b.b) - priorityScore(a.b));
+  // Every in-scope ready/almost program, each exactly once (G1, G2, G3).
+  const matched = [...groups.g1, ...groups.g2, ...groups.g3];
 
-  const totalWin = ready.length + almost.length;
-
-  const matched = [...ready, ...almost];
-  // stable priority rank for the "ready" items (1..N) — reused in both group modes
-  const rankOf = {};
-  ready.forEach((e, i) => { rankOf[e.b.id] = i + 1; });
-
-  const headline = totalWin === 1 ? t("res.headline1") : t("res.headline");
   let html = `
   <div class="results-head">
-    <div class="big">${totalWin}</div>
-    <h1>${headline}</h1>
+    <h1${enOnly()}>${t("res.title")}</h1>
+    ${groups.g1.length ? "" : `<p class="results-need-more"${enOnly()}>${t("res.needMore")}</p>`}
     <p>${resultsBlurb(ready.length, almost.length)}</p>
   </div>
   ${renderProgramUpdates(matched)}
   ${renderMoneyBand(ready, almost)}
-  ${renderScenarioPanel(evaluated)}
   <div class="results-tools">
     <button class="tool-btn" id="printList">${icon("print")}${t("res.print")}</button>
-    <div class="group-toggle" role="group" aria-label="Group benefits by">
-      <button class="gt-btn ${groupMode === "priority" ? "on" : ""}" data-group="priority">${icon("list")}Priority order</button>
-      <button class="gt-btn ${groupMode === "category" ? "on" : ""}" data-group="category">${icon("grid")}By category</button>
-    </div>
+    ${groups.g1.length ? `<div class="group-toggle" role="group" aria-label="Show programs to check"${enOnly()}>
+      <button class="gt-btn ${groupMode === "priority" ? "on" : ""}" data-group="priority" aria-pressed="${groupMode === "priority"}">${icon("list")}${t("res.byAnswers")}</button>
+      <button class="gt-btn ${groupMode === "category" ? "on" : ""}" data-group="category" aria-pressed="${groupMode === "category"}">${icon("grid")}${t("res.byCategory")}</button>
+    </div>` : ""}
   </div>
   ${trackerSummary(matched)}
   ${renderAnswerChips()}
-  ${renderPrintActionPlan(matched)}`;
+  ${renderPrintActionPlan(groups.g1)}`;
 
-  html += renderMatchedGroups(ready, almost, rankOf);
-  const documents = buildDocumentChecklist(actionPlanBenefits(matched));
+  html += renderMatchedGroups(ready, almost);
+  html += renderOtherPrograms(groups.g2);
+  html += renderNotNow(groups.g3);
+  html += renderScenarioPanel(evaluated);
+  const documents = buildDocumentChecklist(actionPlanBenefits(groups.g1));
   if (documents.length) html += `<details class="document-checklist-details" lang="en"><summary>Documents several programs ask for (${splitDocumentChecklist(documents).shared.length})</summary>${renderDocumentChecklist(documents)}</details>`;
 
   html += renderMatchedGrants();
@@ -4323,28 +4352,34 @@ function benefitTypeLabel(b) {
   return type ? type.badge : "Government program";
 }
 
-/* render matched benefits either in priority groups or by category theme */
-function renderMatchedGroups(ready, almost, rankOf) {
+/* G1 "Programs to check": full cards, already in evidence order (ready first,
+   then fewer unmet checks, then name). "By category" regroups the same G1
+   items by program type; it never pulls in G2/G3 items. No rank badges: the
+   order is not an editorial priority. */
+function renderMatchedGroups(ready, almost) {
+  const g1 = [...ready, ...almost];
+  if (!g1.length) return "";
+  let h = `<section class="result-group result-group-main" aria-labelledby="g1-title">
+    <h2 class="result-group-h" id="g1-title"${enOnly()}>${t("grp.g1")} (${g1.length})</h2>`;
   if (groupMode === "category") {
-    const all = [...ready, ...almost].sort((a, b) => priorityScore(b.b) - priorityScore(a.b));
-    return PROGRAM_TYPES.map((th) => {
-      const items = all.filter((e) => benefitType(e.b) === th.key);
+    h += PROGRAM_TYPES.map((th) => {
+      const items = g1.filter((e) => benefitType(e.b) === th.key);
       if (!items.length) return "";
       return groupTitle(th.key, th.icon, th.label, items.length) +
-        `<div class="benefits-grid">${items.map((e) => benefitCard(e.b, e.r, rankOf[e.b.id])).join("")}</div>`;
+        `<div class="benefits-grid">${items.map((e) => benefitCard(e.b, e.r)).join("")}</div>`;
     }).join("");
+  } else {
+    if (ready.length) {
+      h += groupTitle("ready", "check", t("grp.ready"), ready.length) + matchStatusNote("ready");
+      h += `<div class="benefits-grid">${ready.map((e) => benefitCard(e.b, e.r)).join("")}</div>`;
+    }
+    if (almost.length) {
+      const isPrimary = !ready.length;
+      h += groupTitle(`almost${isPrimary ? " primary" : ""}`, "key", t(isPrimary ? "grp.almostOnly" : "grp.almost"), almost.length);
+      h += `<div class="benefits-grid">${almost.map((e) => benefitCard(e.b, e.r)).join("")}</div>`;
+    }
   }
-  let h = "";
-  if (ready.length) {
-    h += groupTitle("ready", "check", t("grp.ready"), ready.length) + matchStatusNote("ready");
-    h += `<div class="benefits-grid">${ready.map((e) => benefitCard(e.b, e.r, rankOf[e.b.id])).join("")}</div>`;
-  }
-  if (almost.length) {
-    const isPrimary = !ready.length;
-    h += groupTitle(`almost${isPrimary ? " primary" : ""}`, "key", t(isPrimary ? "grp.almostOnly" : "grp.almost"), almost.length);
-    h += `<div class="benefits-grid">${almost.map((e) => benefitCard(e.b, e.r, rankOf[e.b.id])).join("")}</div>`;
-  }
-  return h;
+  return h + "</section>";
 }
 
 /* a compact "where am I" strip above the results (only shows active stages) */
@@ -4858,6 +4893,14 @@ function wireResults() {
         el.focus({ preventScroll: true });
         el.scrollIntoView({ block: "start", behavior: a11y.motion ? "auto" : "smooth" });
       }
+    })
+  );
+  document.querySelectorAll(".js-guide-link").forEach(link =>
+    link.addEventListener("click", event => {
+      if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      detailFrom = "results";
+      setState("detail", { detailId: link.dataset.id });
     })
   );
   document.querySelectorAll(".js-detail").forEach((btn) =>

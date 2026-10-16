@@ -704,11 +704,12 @@ test("money band covers empty, ready, mixed, zero-total, and RDSP states", async
   expect(model.mixedAnnualTotal).toBe(4300);
   expect(model.mixed).toContain("Up to ~$4,300 / year");
   expect(model.mixed).not.toContain("$90,000");
-  expect(model.zeroTotal).toContain("Matches your answers — value varies by program");
+  // The empty "no estimate" band was removed on purpose (results redesign): no figure, no band.
+  expect(model.zeroTotal).toBe("");
   expect(model.zeroTotal).not.toMatch(/\$[\d,]+/);
-  expect(model.almostOnly).toContain("More to check");
+  expect(model.almostOnly).toBe("");
   expect(model.almostOnly).not.toMatch(/\$[\d,]+/);
-  expect(model.almostRdsp).toContain("More to check");
+  expect(model.almostRdsp).toBe("");
   expect(model.almostRdsp).not.toContain("$90,000");
   expect(model.almostRdsp).not.toContain("$4,500");
   expect(model.readyRdsp).toContain("Up to ~$4,500 / year");
@@ -752,22 +753,21 @@ test("money and all-conditional result copy is complete in English and French", 
     }
   });
 
-  expect(copy.en.one).toBe("We did not ask about every requirement. You can still read how to apply.");
+  expect(copy.en.one).toBe("We did not ask about every requirement. Each program decides if you qualify.");
   expect(copy.en.one).not.toContain("These 1 programs");
-  expect(copy.en.many).toBe("We did not ask about every requirement. You can still read how to apply.");
-  expect(copy.en.almost).toContain("More to check");
+  expect(copy.en.many).toBe("We did not ask about every requirement. Each program decides if you qualify.");
+  expect(copy.en.almost).toBe("");
   expect(copy.en.ready).toContain("Up to ~$4,500 / year");
   expect(copy.en.group).toMatch(/group-title almost primary/);
   expect(copy.en.group).toContain("More to check");
 
-  const frenchAcknowledgement = "Nous n’avons pas posé de question sur chaque exigence. Vous pouvez quand même lire comment faire une demande.";
+  const frenchAcknowledgement = "Nous n’avons pas posé de question sur chaque exigence. Chaque programme décide si vous êtes admissible.";
   expect(copy.fr.one).toBe(frenchAcknowledgement);
   expect(copy.fr.many).toBe(frenchAcknowledgement);
   expect(copy.fr.mixed).toBe(frenchAcknowledgement);
   expect(copy.fr.one + copy.fr.many).not.toMatch(/CIPH|crédit d.impôt/i);
   expect(copy.fr.mixed).not.toMatch(/CIPH|crédit d.impôt/i);
-  expect(copy.fr.almost).toContain("D’autres points à vérifier");
-  expect(copy.fr.almost).not.toMatch(/confirmer une chose|une condition/);
+  expect(copy.fr.almost).toBe("");
   expect(copy.fr.ready).toContain("Jusqu’à ~$4,500 / an");
   expect(copy.fr.ready).toContain("jusqu’à $90,000 à vie (REEI)");
   expect(copy.fr.group).toMatch(/group-title almost primary/);

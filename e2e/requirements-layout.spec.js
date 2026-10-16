@@ -22,7 +22,7 @@ test("mixed results render all three answer-based labels and the acknowledgement
   await expect(page.locator('.benefit.almost .match-status').first()).toHaveText('More to check');
   await expect(page.locator('.benefit.ready .match-note').first()).toHaveText('Based on what you told us. The program decides if you qualify.');
   await expect(page.locator('.notmatch summary')).toContainText('Does not match these answers');
-  await expect(page.locator('#app')).toContainText('We did not ask about every requirement. You can still read how to apply.');
+  await expect(page.locator('#app')).toContainText('We did not ask about every requirement. Each program decides if you qualify.');
   // Category grouping and a user-saved card must retain the same status copy.
   await page.evaluate(() => {
     const b = browseCatalog().find(b => evaluate(b).status === 'ready');
@@ -64,7 +64,7 @@ test("detail and printed plan keep match copy separate from recorded application
   expect(report.badges.join(' ')).not.toMatch(/eligible|approved|guaranteed|likely|one step away/i);
   expect(report.text).toContain('Application progress: Approved');
   expect(report.text).toContain('Based on what you told us. The program decides if you qualify.');
-  expect(report.text).toContain('We did not ask about every requirement. You can still read how to apply.');
+  expect(report.text).toContain('We did not ask about every requirement. Each program decides if you qualify.');
 });
 
 test("pilot cue preview opens personalized requirements; full list has a keyboard-operable name", async ({ page }) => {
