@@ -16,9 +16,15 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
   ready", a change that leaked beyond the three programs, and approval wording that ignored the one-year expiry -
   all fixed before release.
 - If this pilot reads well to you, the same pattern can extend to other "registered with / approved for" checks.
+- **Grants and organizations directories re-checked** (#43) — `6168c25`, `?v=188` (CI 867/867). All 48 entries
+  against their official pages: 353 facts confirmed, 13 field changes in 5 entries. Disability Alliance BC's law
+  clinic has closed summary-advice intake until early 2027; CPABC's funding "may be available"; Variety BC's
+  residency, age and diabetes-route conditions. A few ages and deadlines the pages don't state are queued (#223).
 
 ### Needs you
-- Nothing.
+- **One contact only a person can make (#43, decided by you in August):** ask Easter Seals Alberta whether their
+  equipment funding program still runs — their own menu links to a page that no longer exists. Our entry is
+  unchanged until they answer.
 
 ## 2026-10-18
 
