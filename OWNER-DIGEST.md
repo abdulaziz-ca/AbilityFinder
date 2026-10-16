@@ -19,7 +19,7 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 - **Grants and organizations directories re-checked** (#43) — `6168c25`, `?v=188` (CI 867/867). All 48 entries
   against their official pages: 353 facts confirmed, 13 field changes in 5 entries. Disability Alliance BC's law
   clinic has closed summary-advice intake until early 2027; CPABC's funding "may be available"; Variety BC's
-  residency, age and diabetes-route conditions. A few ages and deadlines the pages don't state are queued (#223).
+  residency, age and diabetes-route conditions. Follow-up #223 (`89647d5`, `?v=189`, CI 873/873): Bear Essentials, Shine, BC Rehab bursary and others now state only ages and deadlines their own pages give.
 
 ### Needs you
 - **One contact only a person can make (#43, decided by you in August):** ask Easter Seals Alberta whether their
