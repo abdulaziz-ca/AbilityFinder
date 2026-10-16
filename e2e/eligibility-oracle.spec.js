@@ -20,6 +20,7 @@
 const { test, expect } = require("@playwright/test");
 const {
   SPEC_VERSION,
+  PROGRAM_NO_CONFIRMATION,
   DIMENSIONS,
   GATES,
   PROGRAM_BEST_CASE,
@@ -49,8 +50,8 @@ async function readCatalogue(page) {
    persona and serialising all of it would be the slow part. */
 async function evaluateBatch(page, personas) {
   return page.evaluate((cases) =>
-    cases.map(({ programId, answers }) => {
-      const evaluated = window.evaluateAnswers(answers);
+    cases.map(({ programId, answers, confirmedFacts }) => {
+      const evaluated = window.evaluateAnswers(answers, confirmedFacts);
       const hit = evaluated.find((e) => e.b.id === programId);
       return {
         status: hit ? hit.r.status : null,
@@ -162,7 +163,7 @@ test.describe("eligibility oracle", () => {
 
     const results = await evaluateBatch(
       page,
-      cases.map((c) => ({ programId: c.id, answers: c.bestCase.answers })),
+      cases.map((c) => ({ programId: c.id, answers: c.bestCase.answers, confirmedFacts: c.bestCase.confirmedFacts })),
     );
 
     // The false-ready invariant, stated once for all 59 externally gated
@@ -180,6 +181,15 @@ test.describe("eligibility oracle", () => {
     });
   });
 
+  test("no-confirmation baseline stays identical to the pre-pilot catalogue", async ({ page }) => {
+    await gotoReadyApp(page);
+    const cases = buildAll(await readCatalogue(page));
+    const results = await evaluateBatch(page, cases.map(c => ({ programId: c.id, answers: c.bestCase.answers })));
+    cases.forEach((c, i) => expect.soft(results[i].status, c.id).toBe(PROGRAM_NO_CONFIRMATION[c.id]));
+    expect(results.filter(r => r.status === "ready")).toHaveLength(45);
+    expect(results.filter(r => r.status === "almost")).toHaveLength(89);
+  });
+
   test("every program's best-case persona lands on its specified outcome", async ({ page }) => {
     await gotoReadyApp(page);
     const catalogue = await readCatalogue(page);
@@ -187,7 +197,7 @@ test.describe("eligibility oracle", () => {
 
     const results = await evaluateBatch(
       page,
-      cases.map((c) => ({ programId: c.id, answers: c.bestCase.answers })),
+      cases.map((c) => ({ programId: c.id, answers: c.bestCase.answers, confirmedFacts: c.bestCase.confirmedFacts })),
     );
 
     // Asserted against the DECLARED baseline, not the derived one. The coverage
@@ -244,12 +254,14 @@ test.describe("eligibility oracle", () => {
     const violationPersonas = flattened.map(({ programCase, violation }) => ({
       programId: programCase.id,
       answers: violation.answers,
+      confirmedFacts: programCase.bestCase.confirmedFacts,
     }));
     const results = await evaluateBatch(page, [
       ...violationPersonas,
       ...cases.map((programCase) => ({
         programId: programCase.id,
         answers: programCase.bestCase.answers,
+        confirmedFacts: programCase.bestCase.confirmedFacts,
       })),
     ]);
     const baselineNeeds = new Map(
@@ -293,6 +305,7 @@ test.describe("eligibility oracle", () => {
       flattened.map(({ programCase, violation }) => ({
         programId: programCase.id,
         answers: violation.answers,
+      confirmedFacts: programCase.bestCase.confirmedFacts,
       })),
     );
 
@@ -326,7 +339,7 @@ test.describe("eligibility oracle", () => {
 
     const results = await evaluateBatch(
       page,
-      cases.map((c) => ({ programId: c.id, answers: c.bestCase.answers })),
+      cases.map((c) => ({ programId: c.id, answers: c.bestCase.answers, confirmedFacts: c.bestCase.confirmedFacts })),
     );
 
     cases.forEach((programCase, i) => {
@@ -357,10 +370,11 @@ test.describe("eligibility oracle", () => {
     }
 
     const personas = cases.flatMap((programCase) => [
-      { programId: programCase.id, answers: programCase.bestCase.answers },
+      { programId: programCase.id, answers: programCase.bestCase.answers, confirmedFacts: programCase.bestCase.confirmedFacts },
       ...programCase.violations.map((violation) => ({
         programId: programCase.id,
         answers: violation.answers,
+      confirmedFacts: programCase.bestCase.confirmedFacts,
       })),
     ]);
     const results = await evaluateBatch(page, personas);

@@ -22,7 +22,7 @@
    states so explicitly rather than leaving it implicit.
    ========================================================================== */
 
-const { BASE_PERSONA, DEFAULT_CITY, GATES } = require("./oracle-spec");
+const { BASE_PERSONA, DEFAULT_CITY, GATES, SCOPED_FACTS } = require("./oracle-spec");
 
 const MULTI_SELECT = ["disabilities", "functionalNeeds", "circumstances", "situation"];
 const PLACEHOLDERS = ["none", "unsure"];
@@ -205,6 +205,7 @@ function buildProgramCases(program) {
       // The invariant. One external gate is enough: the product cannot know the
       // fact, so it must not claim the outcome.
       expect: external.length ? "almost" : "ready",
+      confirmedFacts: SCOPED_FACTS[program.id] ? { [program.id]: SCOPED_FACTS[program.id] } : {},
       answers: best.answers,
       conflicts: best.conflicts,
     },

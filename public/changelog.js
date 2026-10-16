@@ -1,5 +1,6 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
+  { date: "2026-10-16", text: "Optional device-only fact checks are available for the GRT CNIB pass, taxi coupons and Affordable Transit Program. You can edit or clear each program’s checks. The program still decides." },
   { date: "2026-10-17", text: "Saved Ontario cities now restore with your answers, so reloading results no longer asks for the city again. Cities are checked against the current province city choices. Asset version 186." },
   { date: "2026-10-17", text: "Results can now show recorded updates to matching and tracked programs on a returning device. The optional list stays until you choose Got it. Review markers are kept only in this browser alongside saved answers; first use starts silently, and the public Updates page remains available." },
   { date: "2026-10-17", text: "Review dates moved to October 2026 for 54 benefits whose facts were fully re-checked against their official pages (each fact confirmed, or corrected and then confirmed, with no unchecked amount, threshold, age limit or deadline). The other benefits keep their earlier review month. Benefit facts and guide wording are unchanged." },

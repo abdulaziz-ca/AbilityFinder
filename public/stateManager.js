@@ -12,6 +12,54 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function (root) {
   "use strict";
 
+  // Reviewed against GRT snapshots fetched 2026-10-16. No shared/unscoped facts.
+  const FACT_REGISTRY = Object.freeze({
+    "grt-taxi-coupons": { mobilityplusRegistered: { version: 2, components: {
+      registered: "Are you currently registered with MobilityPLUS?"
+    }, help: "Taxi coupons are for travel within Cambridge, Kitchener and Waterloo. Customers with seasonal eligibility may only purchase during active registration periods. Customers on MobilityPLUS North Dumfries or Kiwanis Transit services are not eligible for taxi coupons." } },
+    "grt-cnib-pass": { cnibCustomer: { version: 1, components: {
+      customer: "Are you a CNIB customer?"
+    }, help: "This asks about your CNIB customer status, not your vision." } },
+    "grt-affordable-transit": { atpApproval: { version: 2, components: {
+      approved: "Are you currently approved by the Region of Waterloo for the Affordable Transit Program?"
+    }, help: "Applying is not the same as being approved. Check that your approval is still current; ATP eligibility lasts one year." } },
+  });
+  const plainFactObject = value => value && typeof value === "object" && !Array.isArray(value) &&
+    (Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null);
+  function cleanConfirmedFacts(candidate) {
+    const clean = {};
+    try {
+      if (!plainFactObject(candidate) || Object.keys(candidate).length > 3) return clean;
+      for (const [id, gates] of Object.entries(FACT_REGISTRY)) {
+        if (!Object.prototype.hasOwnProperty.call(candidate, id)) continue;
+        const input = candidate[id];
+        if (!plainFactObject(input) || Object.keys(input).length > Object.keys(gates).length) continue;
+        for (const [key, definition] of Object.entries(gates)) {
+          if (!Object.prototype.hasOwnProperty.call(input, key)) continue;
+          const fact = input[key];
+          if (!plainFactObject(fact) || Object.keys(fact).length !== 2 ||
+              !Number.isInteger(fact.version) || fact.version !== definition.version ||
+              !plainFactObject(fact.components) ||
+              Object.keys(fact.components).length > Object.keys(definition.components).length) continue;
+          const components = {};
+          let valid = true;
+          for (const [component, value] of Object.entries(fact.components)) {
+            if (!Object.prototype.hasOwnProperty.call(definition.components, component) ||
+                !["yes", "no", "unsure"].includes(value)) { valid = false; break; }
+            components[component] = value;
+          }
+          if (valid) { clean[id] ||= {}; clean[id][key] = { version: fact.version, components }; }
+        }
+      }
+    } catch (_) { return {}; }
+    return clean;
+  }
+  function confirmedGatePasses(id, key, candidate) {
+    const definition = Object.prototype.hasOwnProperty.call(FACT_REGISTRY, id) && FACT_REGISTRY[id][key];
+    const fact = cleanConfirmedFacts(candidate)[id]?.[key];
+    return !!(definition && fact && Object.keys(definition.components).every(c => fact.components[c] === "yes"));
+  }
+
   const ANSWER_KEYS = [
     "forWho",
     "disabilities",
@@ -145,6 +193,7 @@
     const benefitIds = allowedValues(validSelections, "benefitIds");
     return {
       schemaVersion: 2,
+      confirmedFacts: cleanConfirmedFacts(live.confirmedFacts),
       answers,
       view: VIEWS.has(live.view) ? live.view : "landing",
       stepIndex: Number.isInteger(live.stepIndex) && live.stepIndex >= 0 ? live.stepIndex : 0,
@@ -180,6 +229,7 @@
     const browseLevels = allowedValues(validSelections, "browseLevels") || BROWSE_LEVELS;
     const benefitIds = allowedValues(validSelections, "benefitIds");
     return {
+      confirmedFacts: cleanConfirmedFacts(source.confirmedFacts),
       answers: cleanAnswers(source.answers, defaults.answers || {}, validSelections),
       view: restoredView === "help" && !helpTopic ? "wizard" : restoredView,
       stepIndex: Number.isInteger(source.stepIndex) && source.stepIndex >= 0 ? source.stepIndex : 0,
@@ -252,5 +302,5 @@
     }
   }
 
-  return { cleanProgramChanges, StateChangeEmitter, buildPersistedState, restorePersistedState, sanitizeLegacyState };
+  return { FACT_REGISTRY, cleanConfirmedFacts, confirmedGatePasses, cleanProgramChanges, StateChangeEmitter, buildPersistedState, restorePersistedState, sanitizeLegacyState };
 });

@@ -125,6 +125,7 @@ let view = "landing";   // landing, wizard, results, browse, detail, privacy, ab
 let stepIndex = 0;
 let detailId = null;
 let detailFrom = "results"; // "results" | "browse" — where the guide was opened from
+let confirmedFacts = {}; // program + gate + version + component choices; device only
 let progress = {};      // { benefitId: stageKey } — where the user is in each application
 let editingReturn = false; // when true, editing one answer returns to results
 let groupMode = "priority"; // "priority" | "category" — how results are grouped
@@ -1575,13 +1576,18 @@ function renderMoneyBand(ready, almost) {
 }
 
 /* -------------------------------------------------------------- engine */
-function evaluate(benefit) {
+function evaluate(benefit, scopedConfirmations = confirmedFacts) {
+  let checkedFacts = false;
   const needs = [];
   const reasons = [];
   for (const key of benefit.requires) {
     const req = REQS[key];
     if (!req || req.met()) continue;
     const fixed = typeof req.fixed === "function" ? req.fixed() : req.fixed;
+    if (!fixed && AbilityFinderState.confirmedGatePasses(benefit.id, key, scopedConfirmations)) {
+      checkedFacts = true;
+      continue;
+    }
     if (fixed) {
       reasons.push(typeof req.unmet === "function" ? req.unmet() : req.unmet);
     } else {
@@ -1596,7 +1602,7 @@ function evaluate(benefit) {
   }
   if (reasons.length) return { status: "no", needs, reasons };
   if (needs.length) return { status: "almost", needs, reasons };
-  return { status: "ready", needs, reasons };
+  return { status: "ready", needs, reasons, checkedFacts };
 }
 
 /* =============================================================================
@@ -1971,7 +1977,7 @@ const stateChanges = new AbilityFinderState.StateChangeEmitter();
 
 function persistentState() {
   return AbilityFinderState.buildPersistedState({
-    answers, view, stepIndex, detailId, detailFrom, progress, groupMode,
+    answers, confirmedFacts, view, stepIndex, detailId, detailFrom, progress, groupMode,
     browseQuery, browseTheme, browseLevel, browseDis, a11y, lang: LANG,
     helpTopic, helpReturnStep, programChanges,
     theme: document.documentElement.getAttribute("data-theme"), askConsent,
@@ -2016,6 +2022,7 @@ async function loadState() {
   detailFrom = restored.detailFrom;
   helpTopic = restored.helpTopic;
   helpReturnStep = restored.helpReturnStep;
+  confirmedFacts = restored.confirmedFacts;
   progress = restored.progress;
   groupMode = restored.groupMode;
   browseQuery = restored.browseQuery;
@@ -2394,6 +2401,7 @@ function render() {
     bar.style.width = "100%";
     app.innerHTML = renderSafely(renderResults, "results");
     wireResults();
+    wireFactChecks();
   } else if (view === "browse") {
     progress.style.display = "none";
     app.innerHTML = renderSafely(renderBrowse, "browse");
@@ -2403,6 +2411,7 @@ function render() {
     bar.style.width = "100%";
     app.innerHTML = renderSafely(() => renderDetail(detailId), "guide");
     wireDetail();
+    wireFactChecks();
   } else if (view === "privacy") {
     progress.style.display = "none";
     app.innerHTML = renderSafely(renderPrivacy, "privacy");
@@ -2479,7 +2488,7 @@ function render() {
   const reReset = document.getElementById("reReset");
   if (reReset)
     reReset.addEventListener("click", () => {
-      answers = BLANK(); progress = {}; stepIndex = 0; detailId = null;
+      answers = BLANK(); confirmedFacts = {}; progress = {}; stepIndex = 0; detailId = null;
       setState("landing");
     });
   // Content CTAs can appear on results and information pages as well as the
@@ -2736,6 +2745,7 @@ function startFromLifeEvent(startingPoint) {
   // Every starting point begins a fresh questionnaire. Preseeds are applied by
   // the same validated selection helper used by the wizard's own option taps.
   answers = BLANK();
+  confirmedFacts = {};
   progress = {};
   editingReturn = false;
   selections.forEach(([key, value]) => {
@@ -3714,6 +3724,7 @@ function applyWizardSelection(step, value) {
   });
   if (!validOption) return false;
 
+  if (JSON.stringify(answers[step.key]) !== JSON.stringify(value)) confirmedFacts = {};
   if (step.type === "multi") toggleMulti(step, value);
   else {
     const previous = answers[step.key];
@@ -3750,6 +3761,7 @@ function wireStep(step) {
     const sel = document.getElementById("selInput");
     if (sel)
       sel.addEventListener("change", () => {
+        if (answers[step.key] !== sel.value) confirmedFacts = {};
         answers[step.key] = sel.value;
         notifyStateChange("wizard-answer");
         setTimeout(goNext, 150);
@@ -3833,11 +3845,11 @@ function cloneAnswers(source = answers) {
 /* REQS intentionally powers both real and hypothetical results. Swap its answer
    model only for this synchronous calculation, then restore the real model before
    returning. Nothing here emits a state change or reaches persistence. */
-function evaluateAnswers(answerModel) {
+function evaluateAnswers(answerModel, scopedConfirmations = {}) {
   const realAnswers = answers;
   answers = answerModel;
   try {
-    return BENEFITS.map((b) => ({ b, r: evaluate(b) }));
+    return BENEFITS.map((b) => ({ b, r: evaluate(b, scopedConfirmations) }));
   } finally {
     answers = realAnswers;
   }
@@ -3899,7 +3911,7 @@ function renderScenarioPanel(currentEvaluated) {
   const chips = [...scenarioChanges.values()].map((change) => `<button type="button" class="scenario-chip" data-scenario-remove="${change.id}" aria-label="${t("scenario.remove")} ${change.label}">${change.label}${icon("x")}</button>`).join("");
   let diff = `<p class="scenario-empty">${t("scenario.empty")}</p>`;
   if (scenarioChanges.size) {
-    const hypothetical = evaluateAnswers(model);
+    const hypothetical = evaluateAnswers(model, confirmedFacts);
     const current = new Map(currentEvaluated.map((e) => [e.b.id, e]));
     const changed = new Map(hypothetical.map((e) => [e.b.id, e]));
     const matched = (status) => status === "ready" || status === "almost";
@@ -4490,32 +4502,87 @@ function renderRequirements(b, needs, surface = "detail", nextAction = null) {
   return `<section class="side-next req-checks" lang="en" aria-labelledby="${heading}">
     <h${level} id="${heading}" tabindex="-1">${t("req.heading")}</h${level}>
     <p class="req-context">${t("req.context")}</p>
-    ${groups.map(g => {
+    <div data-fact-requirements="${b.id}">${groups.map(g => {
       const rows = ordered.filter(n => groupFor(n) === g);
       return rows.length ? `<div class="req-group${g === "other" ? " req-fallback" : ""}"><h${level + 1} class="req-group-title">${t(`req.${g}`)}</h${level + 1}><ul class="req-list" lang="en">${rows.map(n => `<li class="req-cue" data-req-key="${reqEscape(n.key)}">${reqEscape(n.short || n.text)}${!n.short || direct ? action(n) : ""}</li>`).join("")}</ul></div>` : "";
     }).join("")}
     ${migrated.length && !direct ? `<details class="req-full"><summary>${reqEscape(t("req.full").replace("{name}", () => b.name))}</summary><ol class="req-full-list" lang="en">${migrated.map(n => `<li data-req-key="${reqEscape(n.key)}"><p class="req-cue">${reqEscape(n.short)}</p><p class="req-wording">${reqEscape(n.text)}</p>${action(n)}</li>`).join("")}</ol></details>` : ""}
-  </section>`;
+  </div>${factChecks(b, surface)}</section>`;
 }
 function reqPreview(b, needs) {
   const shown = needs.filter(n => n.short).slice(0, 3);
   if (needs.length === 1 && !needs[0].short && [...needs[0].text].length <= 120) shown.push(needs[0]);
   const more = needs.length - shown.length;
   const slug = b.id.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-  return `<section class="needs req-preview" lang="en" aria-labelledby="req-card-${reqEscape(b.id)}"><h4 class="needs-h" id="req-card-${reqEscape(b.id)}">${t("req.heading")}</h4><p class="req-count">${reqCount(needs.length)}</p>${shown.length ? `<ul class="req-list" lang="en">${shown.map(n => `<li class="req-cue">${reqEscape(n.short || n.text)}</li>`).join("")}</ul>` : ""}${more ? `<p class="req-other">${t("req.otherChecks").replace("{n}", more)}</p>` : ""}<a class="req-guide-link js-req-guide" href="/guides/${reqEscape(slug)}" data-id="${reqEscape(b.id)}">${reqEscape(t("req.guide").replace("{name}", () => b.name))}</a></section>`;
+  return `<section class="needs req-preview" lang="en" aria-labelledby="req-card-${reqEscape(b.id)}"><h4 class="needs-h" id="req-card-${reqEscape(b.id)}">${t("req.heading")}</h4><div data-fact-requirements="${b.id}"><p class="req-count">${reqCount(needs.length)}</p>${shown.length ? `<ul class="req-list" lang="en">${shown.map(n => `<li class="req-cue">${reqEscape(n.short || n.text)}</li>`).join("")}</ul>` : ""}${more ? `<p class="req-other">${t("req.otherChecks").replace("{n}", more)}</p>` : ""}<a class="req-guide-link js-req-guide" href="/guides/${reqEscape(slug)}" data-id="${reqEscape(b.id)}">${reqEscape(t("req.guide").replace("{name}", () => b.name))}</a></div>${factChecks(b, "card")}</section>`;
+}
+
+function factChecks(b, surface) {
+  const gates = AbilityFinderState.FACT_REGISTRY[b.id];
+  if (!gates || !wizardDone() || evaluate(b).status === "no") return "";
+  return `<details class="fact-checks" lang="en" data-fact-checks="${b.id}"><summary>Check this fact (optional)</summary>
+    ${answers.forWho !== "self" ? "<p>Answer about the person this benefit is for.</p>" : ""}
+    <p>Tell us only yes, no, or not sure. Do not enter any ID numbers. These answers stay on this device. The program still decides.</p>
+    ${Object.entries(gates).map(([key, gate]) => `<p>${reqEscape(gate.help.replace(/\byour\b/g, poss()))}</p>${Object.entries(gate.components).map(([component, question]) => {
+      const subjectQuestion = question.replace("Are you", who().areQ).replace("approved you", `approved ${subj()}`);
+      const name = `fact-${surface}-${b.id}-${key}-${component}`;
+      return `<fieldset><legend>${reqEscape(b.name + ": " + subjectQuestion)}</legend>${[ ["yes", "Yes"], ["no", "No"], ["unsure", "Not sure"] ].map(([value, label]) => `<label><input type="radio" name="${name}" data-fact-id="${b.id}" data-fact-gate="${key}" data-fact-component="${component}" value="${value}" ${confirmedFacts[b.id]?.[key]?.components[component] === value ? "checked" : ""}>${label}</label>`).join("")}</fieldset>`;
+    }).join("")}`).join("")}
+    <button type="button" class="guide-toggle" data-clear-facts="${b.id}">Clear these checks</button>
+    <p class="fact-live" role="status" aria-live="polite"></p>
+  </details>`;
+}
+function wireFactChecks() {
+  const update = async (id, control, clear = false) => {
+    const b = BENEFITS.find(b => b.id === id);
+    const before = evaluate(b).status;
+    if (clear) delete confirmedFacts[id];
+    else {
+      const key = control.dataset.factGate;
+      const gate = AbilityFinderState.FACT_REGISTRY[id][key];
+      confirmedFacts[id] ||= {};
+      confirmedFacts[id][key] ||= { version: gate.version, components: {} };
+      confirmedFacts[id][key].components[control.dataset.factComponent] = control.value;
+    }
+    const r = evaluate(b);
+    // Never replace the focused control or regroup cards during an answer edit.
+    document.querySelectorAll(`[data-fact-status="${id}"]`).forEach(el => {
+      el.textContent = matchStatusLabel(r.status);
+      el.classList.remove("ready", "almost", "no"); el.classList.add(r.status);
+      const parent = el.parentElement;
+      parent.querySelectorAll(":scope > .match-note, :scope > .checked-facts-note").forEach(n => n.remove());
+      el.insertAdjacentHTML("afterend", matchStatusNote(r.status) + (r.checkedFacts ? '<p class="checked-facts-note" lang="en">Includes facts you checked on this device.</p>' : ""));
+    });
+    document.querySelectorAll(`[data-fact-program="${id}"]`).forEach(el => {
+      el.classList.remove("ready", "almost", "no"); el.classList.add(r.status);
+    });
+    document.querySelectorAll(`[data-fact-requirements="${id}"]`).forEach(el => {
+      el.innerHTML = `<p class="req-count">${reqCount(r.needs.length)}</p>${r.needs.length ? `<ul class="req-list">${r.needs.map(n => `<li class="req-cue">${reqEscape(n.text)}</li>`).join("")}</ul>` : ""}`;
+    });
+    document.querySelectorAll(`[data-fact-checks="${id}"]`).forEach(el => {
+      el.querySelectorAll("input").forEach(input => { input.checked = confirmedFacts[id]?.[input.dataset.factGate]?.components[input.dataset.factComponent] === input.value; });
+      el.querySelector(".fact-live").textContent = el.contains(control)
+        ? before !== "ready" && r.status === "ready" ? "Matches your answers. The program still decides." : before === "ready" && r.status !== "ready" ? "Checks updated." : clear ? "Checks cleared." : ""
+        : "";
+    });
+    const saved = await saveState();
+    if (!saved) document.querySelectorAll(`[data-fact-checks="${id}"] .fact-live`).forEach(el => { el.textContent = "Not saved on this device."; });
+  };
+  document.querySelectorAll("[data-fact-id]").forEach(input => input.addEventListener("change", () => { void update(input.dataset.factId, input); }));
+  document.querySelectorAll("[data-clear-facts]").forEach(button => button.addEventListener("click", () => { void update(button.dataset.clearFacts, button, true); }));
 }
 
 function benefitCard(b, r, rank) {
   const stage = progress[b.id] || "";
   const rankBadge = rank ? `<span class="rank-badge" title="Suggested order to apply">${rank}</span>` : "";
   const needsHtml =
-    r.status === "almost" && r.needs.length
+    (r.status === "almost" && r.needs.length) || (r.status !== "no" && AbilityFinderState.FACT_REGISTRY[b.id])
       ? reqPreview(b, r.needs) : "";
 
   const v = valueParts(b);
   const valueHtml = `<span class="amount">${v.est ? `<span class="amount-tag">Est. value</span>` : ""}${v.head}</span>${v.sub ? `<span class="amount-sub">${v.sub}</span>` : ""}`;
   return `
-  <div class="benefit ${r.status} ${stage ? "stage-" + stage : ""}">
+  <div data-fact-program="${b.id}" class="benefit ${r.status} ${stage ? "stage-" + stage : ""}">
     <div class="benefit-row">
       <div class="benefit-main">
         <div class="top">
@@ -4525,8 +4592,8 @@ function benefitCard(b, r, rank) {
           <span class="tag lvl">${b.level}</span>
           <span class="tag">${b.category}</span>
         </div>
-        <span class="tag match-status">${matchStatusLabel(r.status)}</span>
-        ${matchStatusNote(r.status)}
+        <span class="tag match-status" data-fact-status="${b.id}">${matchStatusLabel(r.status)}</span>
+        ${matchStatusNote(r.status)}${r.checkedFacts ? '<p class="checked-facts-note" lang="en">Includes facts you checked on this device.</p>' : ""}
         <p class="summary">${b.summary}</p>
         ${metaRow(b)}
         ${needsHtml}
@@ -4831,6 +4898,7 @@ function wireResults() {
   if (r)
     r.addEventListener("click", () => {
       answers = BLANK();
+      confirmedFacts = {};
       progress = {};
       stepIndex = 0;
       detailId = null;
@@ -4904,7 +4972,7 @@ function renderPrintActionPlan(matched) {
     return `<section class="print-benefit">
       <h2>${esc(b.name)}</h2>
       <p class="print-match-status">${matchStatusLabel(r.status)}</p>
-      ${matchStatusNote(r.status)}
+      ${matchStatusNote(r.status)}${r.checkedFacts ? '<p class="checked-facts-note" lang="en">Includes facts you checked on this device.</p>' : ""}
       <p>${esc(b.summary)}</p>
       ${url ? `<p class="print-url"><b>Official link:</b> ${esc(url)}</p>` : ""}
       ${reqPrint(r.needs)}
@@ -4970,7 +5038,7 @@ function printResults() {
     const phone = b.detail && b.detail.phone ? `<p class="lnk">Phone: ${esc(b.detail.phone)}</p>` : "";
     return `<section>
       <h3><span class="num">${i}</span>${esc(b.name)} <span class="badge">${esc(status)}</span></h3>
-      ${matchStatusNote(r.status)}
+      ${matchStatusNote(r.status)}${r.checkedFacts ? '<p class="checked-facts-note" lang="en">Includes facts you checked on this device.</p>' : ""}
       ${tracked ? `<p>Application progress: ${esc(tracked)}</p>` : ""}
       <p class="meta">${esc(b.level)} · ${esc(b.category)}${metaBits ? " · " + metaBits : ""}</p>
       <p class="amt">${value}</p>
@@ -5440,10 +5508,10 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   const sideStatus = !wizardDone()
     ? { cls: "maybe", txt: t("af.check") }
     : { cls: r.status, txt: matchStatusLabel(r.status) };
-  const unmet = wizardDone() && r.status === "almost" ? r.needs : [];
+  const unmet = r.status === "almost" ? r.needs : [];
   const sidePrompt = !wizardDone()
     ? `<div class="side-next"><h2>See if it fits you</h2><p>Answer the questionnaire for a personalized match.</p></div>`
-    : unmet.length
+    : (unmet.length || (r.status !== "no" && AbilityFinderState.FACT_REGISTRY[b.id]))
       ? renderRequirements(b, unmet, inline ? "inline" : "detail", nextAction)
       : `<div class="side-next"><h2>Next step</h2><p>Confirm the current rules, then use the official application.</p></div>`;
 
@@ -5455,7 +5523,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   // wizard trigger (wired in wireGuideInteractions) when the wizard isn't done.
   const afEligible = !wizardDone()
     ? `<span class="af-a">${t("af.eligiblePrompt")}</span><button class="linklike af-check" data-guide-check>${t("af.check")} ${icon("arrowRight")}</button>`
-    : `<span class="af-a af-status ${sideStatus.cls}">${sideStatus.txt}</span>${matchStatusNote(r.status)}`;
+    : `<span data-fact-status="${b.id}" class="af-a af-status ${sideStatus.cls}">${sideStatus.txt}</span>${matchStatusNote(r.status)}${r.checkedFacts ? '<p class="checked-facts-note" lang="en">Includes facts you checked on this device.</p>' : ""}`;
   const answerFirst = inline ? "" : `<section class="answer-first" aria-label="${t("af.aria")}">
         <div class="af-cell"><span class="af-q">${t("af.eligible")}</span>${afEligible}</div>
         ${b.amount ? `<div class="af-cell"><span class="af-q">${t("af.howMuch")}</span><span class="af-a">${v.head}</span></div>` : ""}
@@ -5506,7 +5574,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
 
       <aside class="detail-side">
         <div class="side-card">
-          <span class="side-status ${sideStatus.cls}">${sideStatus.txt}</span>
+          <span data-fact-status="${b.id}" class="side-status ${sideStatus.cls}">${sideStatus.txt}</span>
           ${wizardDone() ? matchStatusNote(r.status) : ""}
           ${sidePrompt}
           ${nextAction ? `<a class="apply side-next-action" href="${nextAction.action.url}" target="_blank" rel="noopener noreferrer" data-ext>${nextAction.action.text} ${icon("external")}</a>` : ""}
@@ -5970,6 +6038,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       e.preventDefault();
       stopReadAloud();
       answers = BLANK();
+      confirmedFacts = {};
       progress = {};
       stepIndex = 0;
       detailId = null;

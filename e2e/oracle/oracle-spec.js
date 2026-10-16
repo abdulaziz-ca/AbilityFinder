@@ -16,6 +16,8 @@
      evidence: "answers"  — a wizard answer can establish this gate. The user
                             tells us their province, their age, their city,
                             whether they own a home. We know it.
+     evidence: "scoped-fact" — explicit program/version/component checks, separate
+                            from answers; absent checks cannot establish a gate.
      evidence: "external" — this gate depends on a fact the wizard never
                             collects and cannot collect: a caseworker's
                             adjudication, a doctor's certification, a tax
@@ -49,11 +51,20 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.29.0";
+const SPEC_VERSION = "1.30.0";
+
+// Separate evidence channel: never wizard answers and never official adjudication.
+// GRT source snapshots fetched 2026-10-16; each yes is scoped to this program.
+const SCOPED_FACTS = {
+  "grt-taxi-coupons": { mobilityplusRegistered: { version: 2, components: { registered: "yes" } } },
+  "grt-cnib-pass": { cnibCustomer: { version: 1, components: { customer: "yes" } } },
+  "grt-affordable-transit": { atpApproval: { version: 2, components: { approved: "yes" } } },
+};
 
 /* The persona dimensions this oracle asserts over. These are the keys of the
    production answer model — see the wizard STEPS in public/app.js. Any gate
-   whose satisfaction needs a dimension outside this list is by definition
+   whose satisfaction needs a dimension outside this list (unless explicitly
+   reviewed as scoped-fact) is by definition
    `evidence: "external"`, because the wizard has no way to ask for it.
 
    TICKET NOTE: ticket #61's DONE WHEN records this list as "TBD — owner to
@@ -273,9 +284,9 @@ const GATES = {
   visionDisability: disabilityGate("vision"),
   ottawaOdspReceipt: external("Depends on actually receiving ODSP benefits and holding an ODSP identification number."),
   paraTranspoRegistered: external("Depends on being registered as a Para Transpo customer, which the wizard never asks."),
-  atpApproval: external("Depends on Affordable Transit Program approval based on household net income from line 23600 of each household member's tax return."),
-  mobilityplusRegistered: external("Depends on being registered with MobilityPLUS, which the wizard never asks."),
-  cnibCustomer: external("Depends on being a CNIB customer, which the wizard never asks."),
+  atpApproval: { evidence: "scoped-fact", why: "Explicit, versioned program-scoped confirmation; never inferred from wizard answers." },
+  mobilityplusRegistered: { evidence: "scoped-fact", why: "Explicit, versioned program-scoped confirmation; never inferred from wizard answers." },
+  cnibCustomer: { evidence: "scoped-fact", why: "Explicit, versioned program-scoped confirmation; never inferred from wizard answers." },
   supportPersonApproval: external("Depends on applying to the Transit Support Person program."),
   aCardProof: external("Depends on holding a CNIB card or an Attorney-General of Ontario Guide Dog photo ID card."),
   londonRenovatesEligibility: external("Depends on household income, liquid assets and the home's property tax assessment value, none of which the wizard asks about."),
@@ -825,10 +836,10 @@ const PROGRAM_BEST_CASE = {
   "waterloo-ontario-renovates":                    "almost",
   "waterloo-homemaking-support":                    "almost",
   "waterloo-curbside-waste-support":                "almost",
-  "grt-affordable-transit":                        "almost",
-  "grt-cnib-pass":                                 "almost",
+  "grt-affordable-transit":                        "ready",
+  "grt-cnib-pass":                                 "ready",
   "grt-mobilityplus":                              "almost",
-  "grt-taxi-coupons":                              "almost",
+  "grt-taxi-coupons":                              "ready",
   "grt-support-person":                            "almost",
   "york-region-homemakers":                        "almost",
   "york-region-recreation-subsidies":              "almost",
@@ -923,7 +934,13 @@ const PROGRAM_NOTES = {
   },
 };
 
+// Frozen no-confirmation baseline remains the current pre-pilot 45 ready / 89 almost (the proposal predates later gate reviews).
+const PROGRAM_NO_CONFIRMATION = { ...PROGRAM_BEST_CASE,
+  "grt-affordable-transit": "almost", "grt-cnib-pass": "almost", "grt-taxi-coupons": "almost" };
+
 module.exports = {
+  SCOPED_FACTS,
+  PROGRAM_NO_CONFIRMATION,
   SPEC_VERSION,
   PROGRAM_BEST_CASE,
   DIMENSIONS,

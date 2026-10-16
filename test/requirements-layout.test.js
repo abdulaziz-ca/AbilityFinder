@@ -11,7 +11,7 @@ const source = fs.readFileSync(path.join(root, "public/app.js"), "utf8");
 const i18n = fs.readFileSync(path.join(root, "public/i18n.js"), "utf8");
 const helpers = source.slice(source.indexOf("function reqEscape("), source.indexOf("function benefitCard("));
 function renderer() {
-  const ctx = vm.createContext({});
+  const ctx = vm.createContext({ AbilityFinderState: require("../public/stateManager"), wizardDone: () => false });
   vm.runInContext(i18n + '\n' + helpers + '\nglobalThis.renderRequirements = renderRequirements;', ctx);
   return ctx;
 }
