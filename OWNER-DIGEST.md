@@ -6,6 +6,37 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-16 — afternoon: full site audit
+
+### What we found (research/2026-10-site-audit/)
+Four Claude Opus researchers audited the whole site (results relevance, a real-browser walkthrough of 4 people on
+desktop and phone, content and trust, engineering), and Codex critiqued the plan. Your "fluke" feeling is confirmed
+by measurement: across 15 test people only 9% of listed programs matched, and 20% of the "More to check" items were
+already ruled out by the person's own answers - usually as cards 2 to 4.
+
+### Shipped
+- **Results grouped by what fits now** — `63a31f0`, `?v=192`. "Programs to check" (real matches first, unchanged),
+  "Other programs to check" (one line each: "If you have …"), and a closed "Not for your situation now" (e.g. programs
+  that need Disability Tax Credit approval first). Full cards across the 15 people: 307 → 208; nothing hidden.
+- **Bugs** — `d0bbe52`, `b673382`: keyboard arrows no longer pick answers; other provinces' city programs no longer
+  leak in; Calgary no longer sees Okotoks; Ontario users aren't refused for a question they were never asked; a failed
+  script no longer leaves the page stuck on "Loading"; high-contrast fixes; and a Safari regression CI caught
+  before it shipped.
+- **Content** — accurate privacy wording; honest landing examples (no invented prices); changelog dates fixed (my
+  session numbering had future-dated 9 entries); one "How much?" text for live and static guides; no more
+  "free government money" for the RDSP.
+
+### Next (in research/2026-10-site-audit/DECISION.md)
+- Phase 2: an optional "What do you already receive?" question, so someone on AISH sees "You get this" instead of
+  being asked to check AISH.
+- More reviewed "not for your situation" rules (age, working status), one class at a time.
+- Engineering: caching (each visit re-checks 13 files), faster CI, plain-language rewrite (median reading level is
+  grade 12.5).
+
+### Needs you
+- Easter Seals Alberta contact (unchanged).
+- French: the toggle is live but the catalogue is English. Keep it paused, or plan the translation?
+
 ## 2026-10-16 — morning
 
 ### Shipped
