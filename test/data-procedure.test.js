@@ -586,7 +586,37 @@ function extractChangelogEntries(source, label = "public/changelog.js") {
           /^\d{4}-\d{2}-\d{2}$/.test(entry.date) &&
           typeof entry.text === "string"
       )
-      .map((entry) => JSON.stringify([entry.date, entry.text]))
+      .map((entry) => {
+        // Content audit, 2026-10-16: retain these historical entries while
+        // correcting their dates/count, rather than preserving false claims.
+        // This finite migration is NOT permission to rewrite other history.
+        // Original commits and corrected dates: research/2026-10-site-audit/CONTENT-FIXES.md.
+        const corrections = [
+          ['2026-10-19', '2026-10-16', 'Resolved 12 targeted directory follow-ups.'],
+          ['2026-10-19', '2026-10-16', 'Re-checked all 18 grant and 30 organization'],
+          ['2026-10-17', '2026-10-15', 'Saved Ontario cities now restore'],
+          ['2026-10-17', '2026-10-15', 'Results can now show recorded updates'],
+          ['2026-10-17', '2026-10-15', 'Review dates moved to October 2026'],
+          ['2026-10-17', '2026-10-15', 'Resolved autism TTE items 34 and 39.'],
+          ['2026-10-17', '2026-10-15', 'Applied all fifteen snapshot follow-up fixes'],
+          ['2026-10-17', '2026-10-15', 'Applied sixteen batch nine'],
+          ['2026-10-17', '2026-10-15', 'Applied fifteen batch eight'],
+          ['2026-10-16', '2026-10-14', 'Applied seventeen re-verification batch seven'],
+          ['2026-10-16', '2026-10-14', 'Applied all twenty-eight re-verification batch six'],
+          ['2026-10-16', '2026-10-14', 'Applied all thirty-six re-verification batch five'],
+          ['2026-10-15', '2026-10-14', 'Applied re-verification batch four'],
+          ['2026-10-15', '2026-10-14', 'Applied re-verification batch three'],
+          ['2026-10-15', '2026-10-14', 'Corrected the Kelowna recreation assistance income table'],
+          ['2026-10-15', '2026-10-14', 'Applied twenty-four source-wording corrections:'],
+          ['2026-10-15', '2026-10-14', 'Corrected Healthy Kids cost-help wording'],
+          ['2026-09-04', '2026-09-05', 'Toronto programs added.'],
+          ['2026-08-14', '2026-08-15', 'Repointed the Easter Seals Alberta directory link'],
+        ];
+        const correction = corrections.find(([oldDate, , prefix]) => entry.date === oldDate && entry.text.startsWith(prefix));
+        const date = correction ? correction[1] : entry.date;
+        const text = entry.text.replace('Review dates moved to October 2026 for 54 benefits', 'Review dates moved to October 2026 for 51 benefits');
+        return JSON.stringify([date, text]);
+      })
   );
 }
 

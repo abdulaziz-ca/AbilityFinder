@@ -187,7 +187,7 @@ const BENEFIT_VALUES = {
   "cpp-childrens-benefit": { kind: "cash", excludeFromEstimate: true,
     note: "$307.81 per month per child in 2026, or $153.91 for a part-time student aged 18 to 25" },
   rdsp: { kind: "grant", annualMax: 4500, lifetimeMax: 90000,
-    note: "in free government grants & bonds" },
+    note: "in government grants & bonds; repayment rules apply" },
   "cwb-disability": { kind: "cash", annualMax: 843, note: "refundable top-up on your tax return" },
   "cpp-disability": { kind: "cash", monthlyMin: 611, monthlyMax: 1741, annualMax: 20894 },
   "csg-disability": { kind: "grant", annualMax: 2800 },
@@ -3016,7 +3016,7 @@ const BENEFITS = [
     name: "Registered Disability Savings Plan (RDSP)",
     level: "Federal",
     category: "Money & savings",
-    amount: "Up to $3,500 grant + $1,000 bond per year (free government money)",
+    amount: "Up to $3,500 grant + $1,000 bond per year (repayment rules apply)",
     summary:
       "A savings account where the government may add matching grants (up to 300%) and bonds, depending on your family income and how much is contributed — you don't even need to contribute to get the bond if your income is low.",
     requires: ["dtc", "under60", "rdspOpening", "rdspContributionWindow"],

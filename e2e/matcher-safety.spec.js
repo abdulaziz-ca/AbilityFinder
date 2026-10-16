@@ -760,15 +760,18 @@ test("money and all-conditional result copy is complete in English and French", 
   expect(copy.en.group).toMatch(/group-title almost primary/);
   expect(copy.en.group).toContain("More to check");
 
-  expect(copy.fr.one).toContain("Ce programme n’est pas écarté");
-  expect(copy.fr.many).toContain("Ces 2 programmes ne sont pas écartés");
+  const frenchAcknowledgement = "Nous n’avons pas posé de question sur chaque exigence. Vous pouvez quand même lire comment faire une demande.";
+  expect(copy.fr.one).toBe(frenchAcknowledgement);
+  expect(copy.fr.many).toBe(frenchAcknowledgement);
+  expect(copy.fr.mixed).toBe(frenchAcknowledgement);
   expect(copy.fr.one + copy.fr.many).not.toMatch(/CIPH|crédit d.impôt/i);
   expect(copy.fr.mixed).not.toMatch(/CIPH|crédit d.impôt/i);
-  expect(copy.fr.almost).toContain("Votre prochaine étape : confirmer une chose");
+  expect(copy.fr.almost).toContain("D’autres points à vérifier");
+  expect(copy.fr.almost).not.toMatch(/confirmer une chose|une condition/);
   expect(copy.fr.ready).toContain("Jusqu’à ~$4,500 / an");
   expect(copy.fr.ready).toContain("jusqu’à $90,000 à vie (REEI)");
   expect(copy.fr.group).toMatch(/group-title almost primary/);
-  expect(copy.fr.group).toContain("Programmes à confirmer");
+  expect(copy.fr.group).toContain("D’autres points à vérifier");
 });
 
 test("results UX helpers preserve matcher definitions, values, questions, and input ordering", async ({ page }) => {

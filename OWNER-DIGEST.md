@@ -4,7 +4,9 @@ The one place to see what Claude and Codex did while you were away. Newest entry
 Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisions we made for you**
 (all reversible) · **Needs you** (only things an agent may not decide).
 
-## 2026-10-19
+> Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
+
+## 2026-10-16 — morning
 
 ### Shipped
 - **"Check this fact" pilot** (#209 phase 2) — `6ecaee6`, `?v=187` (CI 867/867). Three Waterloo transit programs
@@ -26,7 +28,7 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
   equipment funding program still runs — their own menu links to a page that no longer exists. Our entry is
   unchanged until they answer.
 
-## 2026-10-18
+## 2026-10-15 — afternoon
 
 ### Shipped
 - **"Updates to your programs"** (#214) — `5866955`, `?v=185` (CI 816/816). A returning visitor's results show one
@@ -45,7 +47,7 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 - Nothing. When you want the real screen-reader testing done (epic #28), `docs/at-test-kit/README.md` is the
   script to hand a tester.
 
-## 2026-10-17
+## 2026-10-15 — early morning
 
 ### Shipped — the full catalogue re-check is finished
 - **Batch 7** — `7c3940a`, `?v=179` (CI 732/732). Codex reviewed what Claude built while it was out of usage and
@@ -83,7 +85,7 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 ### Needs you
 - Nothing.
 
-## 2026-10-16
+## 2026-10-14 — evening
 
 ### Shipped
 - **Re-verification batch 3** (#221) — `dc23374`, `?v=175` (CI 729/729, verify-deploy 10/10). 35 facts fixed
@@ -118,7 +120,7 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 ### Needs you
 - Nothing.
 
-## 2026-10-15
+## 2026-10-14 — day
 
 ### Shipped
 - **Re-verification batch 1** (#219) — `b608154`, `?v=172` (CI 723/723, live). 17 records checked against
@@ -159,7 +161,7 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 ### Needs you
 - Nothing.
 
-## 2026-10-14 (evening)
+## 2026-10-13 — late night (commit times on 2026-10-14)
 
 ### Shipped
 - **Honest status labels** (#209 phase 1) — `f86116e`, live as `?v=170` (CI 702/702). Results now say

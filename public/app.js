@@ -29,10 +29,7 @@ const SCOPE_DESTINATION = _joinOr(_SCOPE_FULL);
 // residency explanation, which is the whole point of help on a residency question
 // and was never a completeness claim.
 const SCOPE_RESIDENCY_HELP = `The federal benefits in our catalog apply anywhere in Canada. Provincial and municipal programs depend on where you live — our catalog includes selected ${SCOPE_LABEL_LONG} ones.`;
-const SCOPE_RESIDENCY_HELP_FR = BC_ENABLED
-  ? "Les prestations fédérales du catalogue s'appliquent partout au Canada. Les programmes provinciaux et municipaux dépendent de votre lieu de résidence ; le catalogue en comprend une sélection pour l'Alberta et la Colombie-Britannique."
-  // The previous fallback claimed Ontario and Québec, which the product has never covered.
-  : "Les prestations fédérales du catalogue s'appliquent partout au Canada. Les programmes provinciaux et municipaux dépendent de votre lieu de résidence ; le catalogue en comprend une sélection pour l'Alberta.";
+const SCOPE_RESIDENCY_HELP_FR = `Les prestations fédérales du catalogue s'appliquent partout au Canada. Les programmes provinciaux et municipaux dépendent de votre lieu de résidence ; le catalogue en comprend une sélection pour ${["l'Alberta", ...(BC_ENABLED ? ["la Colombie-Britannique"] : []), ...(ON_ENABLED ? ["l'Ontario"] : [])].join(" et ")}.`;
 
 /* -------------------------------------------------- answer state (defaults) */
 const BLANK = () => ({
@@ -2553,8 +2550,8 @@ function renderLanding() {
 
     <div class="hero-preview-wrap" aria-hidden="true">
       <div class="preview">
-        <div class="preview-top"><span class="pv-dot"></span><b>8</b> ${t("pv.found")}<span class="pv-badge">${icon("check")} ${t("pv.qualify")}</span></div>
-        ${matchStatusNote("ready")}
+        <div class="preview-top"><span class="pv-dot"></span><b>Example programs</b></div>
+        <p class="match-note">Illustration only — not matched to anyone's answers.</p>
         <div class="pv-hero">
           <div class="pv-hero-l">
             <span class="pv-hero-lbl">Example results</span>
@@ -2563,10 +2560,7 @@ function renderLanding() {
           <div class="pv-gauge"><span class="pv-gauge-fill"></span><span class="pv-gauge-tick" style="left:74%"></span></div>
         </div>
         <div class="pv-list">
-          <div class="pv-row"><span class="pv-ic">${icon("money")}</span><span class="pv-meta"><b>${t("pv.dtc")}</b><span>Non-refundable tax credit</span></span><span class="pv-check">${icon("check")}</span></div>
-          <div class="pv-row"><span class="pv-ic">${icon("money")}</span><span class="pv-meta"><b>${t("pv.rdsp")}</b><span>+ $4,500 / year</span></span><span class="pv-check">${icon("check")}</span></div>
-          <div class="pv-row"><span class="pv-ic">${icon("transit")}</span><span class="pv-meta"><b>${t("pv.transit")}</b><span>from $5.90 / month</span></span><span class="pv-check">${icon("check")}</span></div>
-          <div class="pv-row"><span class="pv-ic">${icon("money")}</span><span class="pv-meta"><b>${t("pv.cdb")}</b><span>${t("pv.needsDtc")}</span></span><span class="pv-lock">${icon("lock")}</span></div>
+          ${["pv.dtc", "pv.rdsp", "pv.transit", "pv.cdb"].map(key => `<div class="pv-row"><span class="pv-ic">${icon(key === "pv.transit" ? "transit" : "money")}</span><span class="pv-meta"><b>${t(key)}</b><span>Check the guide for details</span></span></div>`).join("")}
         </div>
       </div>
     </div>
@@ -2693,7 +2687,7 @@ function renderLanding() {
         <button class="linklike" type="button" data-info-nav="grants">${t("footer.grants")}</button>
         <button class="linklike" type="button" data-info-nav="organizations">${t("footer.organizations")}</button>
         <button class="linklike js-browse">${t("menu.browse")}</button>
-        <span class="sf-note">${SCOPE_LABEL} · Info verified ${DATA_VERIFIED} · Not government-affiliated</span>
+        <span class="sf-note">${SCOPE_LABEL} · Each guide shows when it was last checked · Not government-affiliated</span>
       </div>
     </footer>
   </section>`;
@@ -2875,12 +2869,12 @@ const HELP_PAGES = {
         p: "People expect one, and it doesn't exist. The government doesn't decide by diagnosis — it decides by <b>how much your condition limits you day to day</b>, even with treatment. Two people with the same diagnosis can get different answers. Someone with a condition nobody's heard of can qualify easily.",
       },
       {
-        h: "This question does not decide anything",
-        p: "The categories on the last page are just buckets we use to match you to programs and to suggest the right kind of practitioner. Picking one doesn't make you eligible, and picking the “wrong” one doesn't disqualify you. Nothing here is sent to the government.",
+        h: "Some programs depend on the category",
+        p: "We use these categories to match you to programs and suggest the right kind of practitioner. Some programs depend on the category you pick, so it can change which results you see. Picking a category does not establish eligibility — the program decides. You can change your answers anytime. Your answers stay on this device. We don't send them anywhere.",
       },
       {
         h: "So what should you pick?",
-        p: `Whatever is closest. If two fit, pick both — it's a multi-select. If nothing fits, pick <b>“Something else / not listed”</b> and carry on; that choice will not disqualify you, because most programs don't depend on the category at all.`,
+        p: `Pick what is closest. If two fit, pick both — it's a multi-select. If nothing fits, pick <b>“Something else / not listed”</b>. Some programs depend on a specific category, so check each guide's requirements. You can change your answers anytime.`,
       },
       {
         h: "If you don't have a diagnosis yet",
@@ -2888,7 +2882,7 @@ const HELP_PAGES = {
       },
       {
         h: "If you want to talk to a person",
-        p: "Voice of Albertans with Disabilities and Inclusion Alberta both help people work out what they might qualify for, for free, before any paperwork. Alberta 211 (dial 2-1-1, any time) will point you to local help. They're all listed under “Real people who can help” on your results.",
+        p: "The “Real people who can help” section on your results lists help for your province. Check each organization's listing for who it serves and how to contact it.",
       },
     ],
     foot:
@@ -3101,7 +3095,7 @@ function renderPrivacy() {
 
     <div class="legal-block">
       <h2>Important disclaimer</h2>
-      <p>AbilityFinder is a free helper tool, <b>not</b> legal, medical, or financial advice, and it is not affiliated with the Government of ${SCOPE_GOVERNMENTS}. Dollar figures are <b>estimates</b> to give you a sense of scale — your actual amount depends on your situation. Eligibility rules and amounts change; always confirm the current details on each official government page before you apply. Information was last verified ${DATA_VERIFIED}.</p>
+      <p>AbilityFinder is a free helper tool, <b>not</b> legal, medical, or financial advice, and it is not affiliated with the Government of ${SCOPE_GOVERNMENTS}. Dollar figures show published amounts or limits, not a personal payment estimate — your actual amount depends on your situation. Eligibility rules and amounts change; always confirm the current details on each official government page before you apply. Each guide shows when it was last checked.</p>
     </div>
 
     <button class="back-link bottom" id="p-back2">${icon("arrowLeft")} Back</button>
@@ -3127,7 +3121,7 @@ function renderAbout() {
     <p class="legal-lede">AbilityFinder makes it easier to find disability benefits and understand what to do next.</p>
 
     ${block("What AbilityFinder is", `<p>AbilityFinder is a free, independent tool that helps ${SCOPE_RESIDENTS} with disabilities find benefits in our catalog that may match their situation. It is not affiliated with any government. There is no login and there are no ads.</p>`)}
-    ${block("How we verify facts", `<p>Every benefit links to an official government source. ${BENEFITS.filter(b => !verifiedFor(b).inherited).length} programs were individually re-checked against their official source; the remaining ${BENEFITS.filter(b => verifiedFor(b).inherited).length} were last checked in the ${verifiedFor(null).label} catalogue review.</p><p>Automated link monitoring checks official links around the clock and flags pages that break or move, and each guide warns when its review is getting old and the numbers are worth re-confirming.</p>`)}
+    ${block("How we verify facts", `<p>Every benefit links to an official government source. ${BENEFITS.filter(b => !verifiedFor(b).inherited).length} programs were individually re-checked against their official source; the remaining ${BENEFITS.filter(b => verifiedFor(b).inherited).length} were last checked in the ${verifiedFor(null).label} catalogue review.</p><p>Every few hours, automated monitoring checks a rotating set of official links and flags pages that break or move. A working link does not mean the rules or amounts are unchanged. Each guide shows its review date and warns when the numbers are worth re-confirming.</p>`)}
     ${block("What we never do", `<p>We do not create accounts, show ads, or use third-party trackers. Your answers stay on your device. We never sell or share your data.</p>`)}
     ${block("Found a mistake?", `<p>Please tell us through the <button class="linklike js-feedback">feedback form</button>. Corrections help everyone who uses AbilityFinder.</p>`)}
     ${block("Who runs this", `<p>AbilityFinder is an independent project built in Alberta by a small team. It is not a government service.</p>`)}
@@ -3785,8 +3779,22 @@ function wireStep(step) {
   }
 
   const choices = [...document.querySelectorAll(".wizard-choice")];
+  let advancePending = false;
   choices.forEach((choice, index) => {
+    // Label activation can forward a detail=0 click in WebKit. Track the
+    // originating pointer instead, scoped to this option and this render.
+    let pointerIntentUntil = 0;
+    const label = choice.nextElementSibling;
+    [choice, label].forEach((target) => {
+      target.addEventListener("pointerdown", (event) => {
+        pointerIntentUntil = event.isPrimary && event.button === 0 ? performance.now() + 1500 : 0;
+      });
+      target.addEventListener("pointercancel", () => { pointerIntentUntil = 0; });
+    });
     choice.addEventListener("keydown", (event) => {
+      // A pointer press that never clicked must not turn later keyboard input
+      // into an auto-advance, even while the intent window is still open.
+      pointerIntentUntil = 0;
       if (step.type === "multi") return;
       const direction = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[event.key];
       if (direction) {
@@ -3799,8 +3807,11 @@ function wireStep(step) {
     });
     // Pointer activation keeps the existing one-tap path. Keyboard selection
     // records an answer but leaves the question and Next button in place.
-    choice.addEventListener("click", (event) => {
-      if (step.type !== "multi" && event.detail > 0) {
+    choice.addEventListener("click", () => {
+      const pointerActivation = performance.now() < pointerIntentUntil;
+      pointerIntentUntil = 0;
+      if (step.type !== "multi" && pointerActivation && !advancePending) {
+        advancePending = true;
         const idx = stepIndex;
         setTimeout(() => {
           if (stepIndex !== idx) return;
@@ -4249,22 +4260,7 @@ function renderMatchedGrants() {
 }
 
 function resultsBlurb(readyN, almostN) {
-  const fr = LANG === "fr";
-  if (!fr) return t("res.acknowledgement");
-  if (readyN && almostN)
-    return fr
-      ? `${readyN} programmes correspondent étroitement à vos réponses, et ${almostN} autres nécessitent d’abord la confirmation d’une condition. Il s’agit d’un résultat de dépistage, et non d’une décision d’approbation — ouvrez chaque guide avant de faire une demande.`
-      : t("res.acknowledgement");
-  if (readyN)
-    return fr
-      ? `Voici ce que vous pouvez demander dès maintenant. Touchez une carte pour un guide en langage clair et le lien direct.`
-      : t("res.acknowledgement");
-  if (almostN)
-    return t(almostN === 1 ? "res.conditionalOne" : "res.conditionalMany")
-      .replace("{count}", almostN);
-  return fr
-    ? `Aucune correspondance selon vos réponses — ajustez vos réponses, ou commencez par le crédit d'impôt pour personnes handicapées.`
-    : t("res.acknowledgement");
+  return t("res.acknowledgement");
 }
 
 // Copy only: keep match statuses separate from user-recorded application progress.
@@ -4623,7 +4619,7 @@ function benefitCard(b, r, rank) {
       ? reqPreview(b, r.needs) : "";
 
   const v = valueParts(b);
-  const valueHtml = `<span class="amount">${v.est ? `<span class="amount-tag">Est. value</span>` : ""}${v.head}</span>${v.sub ? `<span class="amount-sub">${v.sub}</span>` : ""}`;
+  const valueHtml = `<span class="amount">${v.est ? `<span class="amount-tag">Published maximum</span>` : ""}${v.head}</span>${v.sub ? `<span class="amount-sub">${v.sub}</span>` : ""}`;
   return `
   <div data-fact-program="${b.id}" class="benefit ${r.status} ${stage ? "stage-" + stage : ""}">
     <div class="benefit-row">
@@ -5138,8 +5134,8 @@ function printResults() {
     ${almostRows ? `<p class="grp">${t("grp.almost")} (${almost.length})</p>${almostRows}` : ""}
     ${!readyRows && !almostRows ? "<p>No matches yet — try adjusting your answers in AbilityFinder.</p>" : ""}
     <footer>
-      Amounts are estimates. Always confirm current rules and amounts on each official government page before applying.
-      This report is a helper, not legal, medical, or financial advice. Info verified ${esc(DATA_VERIFIED)}.
+      Amounts are published amounts or limits, not a personal payment estimate. Always confirm current rules and amounts on each official government page before applying.
+      This report is a helper, not legal, medical, or financial advice. Each guide shows when it was last checked.
     </footer>
     </body></html>`;
   const w = window.open("", "_blank");
@@ -5228,7 +5224,7 @@ function browseFiltered() {
 /* a status-agnostic card for browsing (no eligibility judgement) */
 function browseCard(b) {
   const v = valueParts(b);
-  const valueHtml = `<span class="amount">${v.est ? `<span class="amount-tag">Est. value</span>` : ""}${v.head}</span>${v.sub ? `<span class="amount-sub">${v.sub}</span>` : ""}`;
+  const valueHtml = `<span class="amount">${v.est ? `<span class="amount-tag">Published maximum</span>` : ""}${v.head}</span>${v.sub ? `<span class="amount-sub">${v.sub}</span>` : ""}`;
   return `
   <div class="benefit browse-card${browseDis !== "all" && isDisSpecific(b, browseDis) ? " dis-match" : ""}">
     <div class="benefit-row">
@@ -5489,7 +5485,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   const enNote = LANG !== "en" ? `<div class="note">${t("det.enNote")}</div>` : "";
 
   const v = valueParts(b);
-  const valueHead = `<div class="detail-amount">${v.est ? `<span class="amount-tag">Est. value</span>` : ""}${v.head}</div>${v.sub ? `<div class="detail-amount-sub">${v.sub}</div>` : ""}`;
+  const valueHead = `<div class="detail-amount">${reqEscape(b.amount)}</div>${v.sub ? `<div class="detail-amount-sub">${v.sub}</div>` : ""}`;
   const valueSection = b.amount ? `<section class="guide-block guide-value"><h2 class="guide-h">${icon("info")} What it can provide</h2>${valueHead}</section>` : "";
 
   // Optional structured amount breakdown. When a benefit's value has bands or
@@ -5570,7 +5566,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
     : `<span data-fact-status="${b.id}" class="af-a af-status ${sideStatus.cls}">${sideStatus.txt}</span>${matchStatusNote(r.status)}${r.checkedFacts ? '<p class="checked-facts-note" lang="en">Includes facts you checked on this device.</p>' : ""}`;
   const answerFirst = inline ? "" : `<section class="answer-first" aria-label="${t("af.aria")}">
         <div class="af-cell"><span class="af-q">${t("af.eligible")}</span>${afEligible}</div>
-        ${b.amount ? `<div class="af-cell"><span class="af-q">${t("af.howMuch")}</span><span class="af-a">${v.head}</span></div>` : ""}
+        ${b.amount ? `<div class="af-cell"><span class="af-q">${t("af.howMuch")}</span><span class="af-a">${reqEscape(b.amount)}</span></div>` : ""}
         <div class="af-cell"><span class="af-q">${t("af.howApply")}</span>${b.applyUrl ? `<a class="af-apply-link" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.applyText || t("af.applyGeneric")} ${icon("external")}</a>` : `<span class="af-a">${b.applyText || t("af.applyGeneric")}</span>`}${d.time ? `<span class="af-meta">${t("meta.time")}: ${d.time}</span>` : ""}</div>
       </section>`;
 

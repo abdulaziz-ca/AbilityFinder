@@ -17,6 +17,34 @@ test('radio arrows only move focus; Space records; Next advances', async ({ page
   await page.locator('#next').click();
   await expect(page.locator('#wizard-question')).toContainText('Which of these apply');
 });
+test('clicking option LABEL text advances exactly one step', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('.js-start').first().click();
+  await settleWizardCard(page);
+  // Hit the visible text inside the label, never the sr-only radio input.
+  await page.locator('label[for="wizard-option-0-0"] .label').click();
+  await expect(page.locator('#wizard-question')).toContainText('Which of these apply');
+  await page.waitForTimeout(500);
+  await expect(page.locator('#wizard-question')).toContainText('Which of these apply');
+  expect(await page.evaluate(() => ({ index: stepIndex, answer: answers.forWho })))
+    .toEqual({ index: 1, answer: 'self' });
+});
+test('Enter records without advancing, even after unused pointer intent', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('.js-start').first().click();
+  await settleWizardCard(page);
+  const radio = page.getByRole('radio', { name: 'Myself', exact: true });
+  await page.locator('label[for="wizard-option-0-0"]').dispatchEvent('pointerdown', {
+    isPrimary: true, button: 0, pointerType: 'mouse',
+  });
+  await radio.focus();
+  await page.keyboard.press('Enter');
+  await expect(radio).toBeChecked();
+  expect(await page.evaluate(() => answers.forWho)).toBe('self');
+  await page.waitForTimeout(500);
+  await expect(page.locator('#wizard-question')).toHaveText('Who are we finding benefits for?');
+  expect(await page.evaluate(() => stepIndex)).toBe(0);
+});
 test('double-clicking a step-one option advances exactly one step', async ({ page }) => {
   await page.goto('/');
   await page.locator('.js-start').first().click();
