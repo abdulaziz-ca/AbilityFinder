@@ -267,6 +267,7 @@ test("normal wizard cycle saves continuously and reloads from IndexedDB mid-flow
   await page.locator("#next").click();
   await pick(page, "Lower income");
   await page.locator("#selInput").selectOption("Calgary");
+  await page.locator("#next").click();
 
   await expect(page.locator(".results-head")).toBeVisible();
   await page.locator('[data-group="category"]').click();
@@ -315,6 +316,7 @@ test("normal wizard cycle saves continuously and reloads from IndexedDB mid-flow
   await recovered.locator("#next").click();
   await pick(recovered, "Middle income");
   await recovered.locator("#selInput").selectOption("Edmonton");
+  await recovered.locator("#next").click();
   await expect(recovered.locator(".results-head")).toBeVisible();
   await expect.poll(async () => (await storedState(recovered)).answers.forWho).toBe("child");
   await recovered.reload();

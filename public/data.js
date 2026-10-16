@@ -4628,7 +4628,7 @@ const BENEFITS = [
     category: "Recreation",
     amount: "80% off most Town programs, passes and admission",
     summary: "A recreation-fee subsidy for qualifying low-income Okotoks and Foothills County residents.",
-    requires: ["okotoksResidency", "lowIncome"],
+    requires: ["ab", "okotoksArea", "okotoksResidency", "lowIncome"],
     note: "The Town describes 80% support for most Town programs, passes and admission. Check current exclusions and camp limits before registering.",
     applyText: "Okotoks recreation fee assistance",
     applyUrl: "https://www.okotoks.ca/your-community/social-well-being/family-community-resources/okotoks-family-resource-centre-7",

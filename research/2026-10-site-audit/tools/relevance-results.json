@@ -1,0 +1,6405 @@
+[
+  {
+    "id": "P01-calgary-aish",
+    "label": "Single adult, 45, on AISH, Calgary",
+    "ready": 1,
+    "almost": 20,
+    "no": 50,
+    "by": {
+      "a": 4,
+      "b": 8,
+      "c": 7,
+      "d": 1
+    },
+    "sub": {
+      "c-step": 4,
+      "knowable-fact": 8,
+      "c-judged": 3,
+      "someone-else-claims": 1,
+      "program-decides": 4
+    },
+    "tiers": {
+      "ready": 1,
+      "possible": 13,
+      "later": 7
+    },
+    "tiersMech": {
+      "ready": 1,
+      "possible": 16,
+      "later": 4
+    },
+    "firstCToday": 2,
+    "cInTop10": 5,
+    "universal": 7,
+    "firstCScored": 15,
+    "cInTop10Scored": 0,
+    "t4": {
+      "ready": 1,
+      "personal": 6,
+      "general": 7,
+      "later": 7
+    },
+    "rec": {
+      "mech": {
+        "ready": 1,
+        "possible": 8,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 2,
+        "later-dtc": 2,
+        "visible": 10
+      },
+      "full": {
+        "ready": 1,
+        "possible": 6,
+        "dtc-card": 1,
+        "unnarrowed": 6,
+        "later": 5,
+        "later-dtc": 2,
+        "visible": 8
+      },
+      "full2": {
+        "ready": 1,
+        "possible": 5,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 5,
+        "later-dtc": 2,
+        "visible": 7
+      }
+    },
+    "dtcGated": 2,
+    "otherProvNo": 23,
+    "possibleUniversal": 6,
+    "almostDetail": [
+      {
+        "id": "rdsp",
+        "layout": "later-dtc",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dtc",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\" do not meet it"
+          },
+          {
+            "key": "rdspOpening",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "rdspContributionWindow",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "cpp-disability",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "cppContrib",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "adult-health-benefit",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "adultHealthIncome",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "adultHealthGateway",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "cdb-adult",
+        "layout": "later-dtc",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dtc",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\" do not meet it"
+          },
+          {
+            "key": "cdbTaxFiling",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "cdbStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "dres",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dresResidencyAndStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "dresDisabilityBarrier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "dresEmploymentRoute",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "said not working, looking for work or studying"
+          }
+        ]
+      },
+      {
+        "id": "okotoks-fee-assistance",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "okotoksResidency",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "said they live in Calgary"
+          }
+        ]
+      },
+      {
+        "id": "cpp-childrens-benefit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cppDisabilityContributorLink",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "home-accessibility-tax-credit",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hatcQualifyingPerson",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\" do not meet it"
+          },
+          {
+            "key": "hatcEligibleDwelling",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for circumstances is \"not sure\" or was never asked"
+          },
+          {
+            "key": "hatcQualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canadian-dental-care-plan",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cdcpRequirements",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "medical-expense-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canada-caregiver-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "d",
+        "universal": true,
+        "needs": [
+          {
+            "key": "caregiverSupportClaim",
+            "cls": "d",
+            "sub": "someone-else-claims",
+            "why": "a supporter claims it"
+          }
+        ]
+      },
+      {
+        "id": "ab-service-dog-id-card",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "abServiceDogQualified",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "dtc",
+        "layout": "dtc-card",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "prolonged",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "certifier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "multigenerational-home-renovation-tax-credit",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "mhrtcQualifyingIndividual",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\", ageBand=\"19to59\" do not meet it"
+          },
+          {
+            "key": "qualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "mhrtcSecondaryUnit",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "excise-gasoline-tax-refund",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": true,
+        "needs": [
+          {
+            "key": "exciseMobilityImpairment",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "no mobility or transit limitation selected"
+          },
+          {
+            "key": "excisePermanentMobilityCertified",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "disability-supports-deduction",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "ab-capcc",
+        "layout": "unnarrowed",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "abCapccContinuingCareHome",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "ab-special-needs-housing",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "abSpecialNeedsHousingPlacement",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "aish",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "aishMedical",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "aishFinancial",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "adap",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "adapMedical",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "adapFinancial",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "P02-vancouver-worker-dtc",
+    "label": "Working adult, 38, wheelchair user, has DTC, Vancouver",
+    "ready": 5,
+    "almost": 18,
+    "no": 86,
+    "by": {
+      "a": 2,
+      "b": 12,
+      "c": 3,
+      "d": 1
+    },
+    "sub": {
+      "knowable-fact": 12,
+      "c-step": 1,
+      "c-mismatch": 2,
+      "someone-else-claims": 1,
+      "program-decides": 2
+    },
+    "tiers": {
+      "ready": 5,
+      "possible": 15,
+      "later": 3
+    },
+    "tiersMech": {
+      "ready": 5,
+      "possible": 15,
+      "later": 3
+    },
+    "firstCToday": 10,
+    "cInTop10": 1,
+    "universal": 7,
+    "firstCScored": 21,
+    "cInTop10Scored": 0,
+    "t4": {
+      "ready": 5,
+      "personal": 6,
+      "general": 9,
+      "later": 3
+    },
+    "rec": {
+      "mech": {
+        "ready": 5,
+        "possible": 7,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 3,
+        "later-dtc": 0,
+        "visible": 13
+      },
+      "full": {
+        "ready": 5,
+        "possible": 7,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 3,
+        "later-dtc": 0,
+        "visible": 13
+      },
+      "full2": {
+        "ready": 5,
+        "possible": 5,
+        "dtc-card": 1,
+        "unnarrowed": 9,
+        "later": 3,
+        "later-dtc": 0,
+        "visible": 11
+      }
+    },
+    "dtcGated": 0,
+    "otherProvNo": 38,
+    "possibleUniversal": 7,
+    "almostDetail": [
+      {
+        "id": "rdsp",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "rdspOpening",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "rdspContributionWindow",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "cdb-adult",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "cdbTaxFiling",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "cdbStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "cwb-disability",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "cwbEligibility",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "taxisaver-translink",
+        "layout": "unnarrowed",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "translinkHandyCard",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-bus-pass",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcBusPassStatus",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers bcAssistance=\"none\" do not meet it"
+          }
+        ]
+      },
+      {
+        "id": "bc-workbc-employment-services",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcWorkBcRoute",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "cpp-childrens-benefit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cppDisabilityContributorLink",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "home-accessibility-tax-credit",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hatcEligibleDwelling",
+            "cls": "c",
+            "sub": "c-mismatch",
+            "why": "answers circumstances=[\"none\"] do not meet it"
+          },
+          {
+            "key": "hatcQualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canadian-dental-care-plan",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cdcpRequirements",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "medical-expense-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canada-caregiver-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "d",
+        "universal": true,
+        "needs": [
+          {
+            "key": "caregiverSupportClaim",
+            "cls": "d",
+            "sub": "someone-else-claims",
+            "why": "a supporter claims it"
+          }
+        ]
+      },
+      {
+        "id": "bc-msp-supplementary-benefits",
+        "layout": "possible",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcSupplementaryBenefitsEligibility",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-fnha-health-benefits",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "firstNationsStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-medical-transportation",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcMedTransportRoute",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "bcMedTransportNeed",
+            "cls": "c",
+            "sub": "c-mismatch",
+            "why": "answers functionalNeeds=[\"transitBarrier\",\"equipment\"] do not meet it"
+          }
+        ]
+      },
+      {
+        "id": "dtc",
+        "layout": "dtc-card",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "prolonged",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "certifier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "multigenerational-home-renovation-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "qualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "mhrtcSecondaryUnit",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "excise-gasoline-tax-refund",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "exciseMobilityImpairment",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "excisePermanentMobilityCertified",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "disability-supports-deduction",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "P03-surrey-autistic-child",
+    "label": "Parent of an autistic 8-year-old, Surrey",
+    "ready": 2,
+    "almost": 20,
+    "no": 87,
+    "by": {
+      "a": 3,
+      "b": 9,
+      "c": 7,
+      "d": 1
+    },
+    "sub": {
+      "c-step": 5,
+      "knowable-fact": 8,
+      "someone-else-claims": 1,
+      "c-mismatch": 1,
+      "answered-unsure-or-not-asked": 1,
+      "program-decides": 3,
+      "c-judged": 1
+    },
+    "tiers": {
+      "ready": 2,
+      "possible": 13,
+      "later": 7
+    },
+    "tiersMech": {
+      "ready": 2,
+      "possible": 14,
+      "later": 6
+    },
+    "firstCToday": 3,
+    "cInTop10": 4,
+    "universal": 7,
+    "firstCScored": 16,
+    "cInTop10Scored": 0,
+    "t4": {
+      "ready": 2,
+      "personal": 4,
+      "general": 9,
+      "later": 7
+    },
+    "rec": {
+      "mech": {
+        "ready": 2,
+        "possible": 6,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 4,
+        "later-dtc": 2,
+        "visible": 9
+      },
+      "full": {
+        "ready": 2,
+        "possible": 6,
+        "dtc-card": 1,
+        "unnarrowed": 6,
+        "later": 5,
+        "later-dtc": 2,
+        "visible": 9
+      },
+      "full2": {
+        "ready": 2,
+        "possible": 6,
+        "dtc-card": 1,
+        "unnarrowed": 6,
+        "later": 5,
+        "later-dtc": 2,
+        "visible": 9
+      }
+    },
+    "dtcGated": 2,
+    "otherProvNo": 38,
+    "possibleUniversal": 6,
+    "almostDetail": [
+      {
+        "id": "rdsp",
+        "layout": "later-dtc",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dtc",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\" do not meet it"
+          },
+          {
+            "key": "rdspOpening",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "rdspContributionWindow",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "child-disability-benefit",
+        "layout": "later-dtc",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dtc",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\" do not meet it"
+          },
+          {
+            "key": "ccbEligibility",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-bus-pass",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcBusPassStatus",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers bcAssistance=\"none\" do not meet it"
+          }
+        ]
+      },
+      {
+        "id": "cpp-childrens-benefit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cppDisabilityContributorLink",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "home-accessibility-tax-credit",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hatcQualifyingPerson",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\" do not meet it"
+          },
+          {
+            "key": "hatcQualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canadian-dental-care-plan",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cdcpRequirements",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "medical-expense-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canada-caregiver-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "d",
+        "universal": true,
+        "needs": [
+          {
+            "key": "caregiverSupportClaim",
+            "cls": "d",
+            "sub": "someone-else-claims",
+            "why": "a supporter claims it"
+          }
+        ]
+      },
+      {
+        "id": "bc-msp-supplementary-benefits",
+        "layout": "possible",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcSupplementaryBenefitsEligibility",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-fnha-health-benefits",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "firstNationsStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-healthy-kids",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcHealthyKidsIncome",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-medical-transportation",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcMedTransportRoute",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "bcMedTransportNeed",
+            "cls": "c",
+            "sub": "c-mismatch",
+            "why": "answers functionalNeeds=[\"communication\",\"sensory\"] do not meet it"
+          }
+        ]
+      },
+      {
+        "id": "sparc-parking-permit",
+        "layout": "possible",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcParkingMobility",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for canWalkFar is \"not sure\" or was never asked"
+          }
+        ]
+      },
+      {
+        "id": "bc-additional-home-owner-grant",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcHomeOwnerGrantDisabilityRoute",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "surrey-leisure-access",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "surreyLeisureRoute",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "dtc",
+        "layout": "dtc-card",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "prolonged",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "certifier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "multigenerational-home-renovation-tax-credit",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "mhrtcQualifyingIndividual",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\", ageBand=\"6to11\" do not meet it"
+          },
+          {
+            "key": "qualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "mhrtcSecondaryUnit",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "excise-gasoline-tax-refund",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": true,
+        "needs": [
+          {
+            "key": "exciseMobilityImpairment",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "no mobility or transit limitation selected"
+          },
+          {
+            "key": "excisePermanentMobilityCertified",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "disability-supports-deduction",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-at-home-medical",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcAtHomeMedicalRoute",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "P04-toronto-senior-mobility",
+    "label": "Senior, 67, mobility needs, Toronto",
+    "ready": 2,
+    "almost": 14,
+    "no": 48,
+    "by": {
+      "a": 5,
+      "b": 6,
+      "c": 2,
+      "d": 1
+    },
+    "sub": {
+      "c-judged": 2,
+      "knowable-fact": 5,
+      "answered-unsure-or-not-asked": 1,
+      "someone-else-claims": 1,
+      "program-decides": 5
+    },
+    "tiers": {
+      "ready": 2,
+      "possible": 12,
+      "later": 2
+    },
+    "tiersMech": {
+      "ready": 2,
+      "possible": 14,
+      "later": 0
+    },
+    "firstCToday": 3,
+    "cInTop10": 2,
+    "universal": 7,
+    "firstCScored": 15,
+    "cInTop10Scored": 0,
+    "t4": {
+      "ready": 2,
+      "personal": 5,
+      "general": 7,
+      "later": 2
+    },
+    "rec": {
+      "mech": {
+        "ready": 2,
+        "possible": 6,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 0,
+        "later-dtc": 0,
+        "visible": 9
+      },
+      "full": {
+        "ready": 2,
+        "possible": 5,
+        "dtc-card": 1,
+        "unnarrowed": 6,
+        "later": 2,
+        "later-dtc": 0,
+        "visible": 8
+      },
+      "full2": {
+        "ready": 2,
+        "possible": 4,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 2,
+        "later-dtc": 0,
+        "visible": 7
+      }
+    },
+    "dtcGated": 0,
+    "otherProvNo": 15,
+    "possibleUniversal": 6,
+    "almostDetail": [
+      {
+        "id": "okotoks-fee-assistance",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "okotoksResidency",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "said they live in Toronto"
+          }
+        ]
+      },
+      {
+        "id": "trillium-drug-program",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "tdpDeductible",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "cpp-childrens-benefit",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cppDisabilityContributorLink",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "benefit is for a child (under 25) of a CPP-D recipient"
+          }
+        ]
+      },
+      {
+        "id": "home-accessibility-tax-credit",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hatcEligibleDwelling",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for circumstances is \"not sure\" or was never asked"
+          },
+          {
+            "key": "hatcQualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canadian-dental-care-plan",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cdcpRequirements",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "medical-expense-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canada-caregiver-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "d",
+        "universal": true,
+        "needs": [
+          {
+            "key": "caregiverSupportClaim",
+            "cls": "d",
+            "sub": "someone-else-claims",
+            "why": "a supporter claims it"
+          }
+        ]
+      },
+      {
+        "id": "hvmp",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hvmpIncome",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "hvmpCoordinator",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "on-adp",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "adpClinical",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "dtc",
+        "layout": "dtc-card",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "prolonged",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "certifier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "multigenerational-home-renovation-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "qualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "mhrtcSecondaryUnit",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "excise-gasoline-tax-refund",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "exciseMobilityImpairment",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "excisePermanentMobilityCertified",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "disability-supports-deduction",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "odsp",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "odspMedical",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "odspFinancial",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "P05-ottawa-odsp",
+    "label": "Adult, 50, on ODSP, Ottawa",
+    "ready": 2,
+    "almost": 18,
+    "no": 44,
+    "by": {
+      "a": 3,
+      "b": 13,
+      "c": 1,
+      "d": 1
+    },
+    "sub": {
+      "knowable-fact": 11,
+      "c-judged": 1,
+      "answered-unsure-or-not-asked": 2,
+      "someone-else-claims": 1,
+      "program-decides": 3
+    },
+    "tiers": {
+      "ready": 2,
+      "possible": 17,
+      "later": 1
+    },
+    "tiersMech": {
+      "ready": 2,
+      "possible": 18,
+      "later": 0
+    },
+    "firstCToday": 6,
+    "cInTop10": 1,
+    "universal": 7,
+    "firstCScored": 20,
+    "cInTop10Scored": 0,
+    "t4": {
+      "ready": 2,
+      "personal": 8,
+      "general": 9,
+      "later": 1
+    },
+    "rec": {
+      "mech": {
+        "ready": 2,
+        "possible": 10,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 0,
+        "later-dtc": 0,
+        "visible": 13
+      },
+      "full": {
+        "ready": 2,
+        "possible": 9,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 1,
+        "later-dtc": 0,
+        "visible": 12
+      },
+      "full2": {
+        "ready": 2,
+        "possible": 6,
+        "dtc-card": 1,
+        "unnarrowed": 10,
+        "later": 1,
+        "later-dtc": 0,
+        "visible": 9
+      }
+    },
+    "dtcGated": 0,
+    "otherProvNo": 15,
+    "possibleUniversal": 7,
+    "almostDetail": [
+      {
+        "id": "rdsp",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "rdspOpening",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "rdspContributionWindow",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "cpp-disability",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "cppContrib",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "cdb-adult",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "cdbTaxFiling",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "cdbStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "okotoks-fee-assistance",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "okotoksResidency",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "said they live in Ottawa"
+          }
+        ]
+      },
+      {
+        "id": "ottawa-community-pass",
+        "layout": "unnarrowed",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "ottawaOdspReceipt",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "ottawa-access-pass",
+        "layout": "unnarrowed",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "paraTranspoRegistered",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "trillium-drug-program",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "tdpDeductible",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "cpp-childrens-benefit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cppDisabilityContributorLink",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "home-accessibility-tax-credit",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hatcEligibleDwelling",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for circumstances is \"not sure\" or was never asked"
+          },
+          {
+            "key": "hatcQualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canadian-dental-care-plan",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cdcpRequirements",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "medical-expense-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canada-caregiver-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "d",
+        "universal": true,
+        "needs": [
+          {
+            "key": "caregiverSupportClaim",
+            "cls": "d",
+            "sub": "someone-else-claims",
+            "why": "a supporter claims it"
+          }
+        ]
+      },
+      {
+        "id": "hvmp",
+        "layout": "possible",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hvmpMobility",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for canWalkFar is \"not sure\" or was never asked"
+          },
+          {
+            "key": "hvmpIncome",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "hvmpCoordinator",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "dtc",
+        "layout": "dtc-card",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "prolonged",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "certifier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "multigenerational-home-renovation-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "qualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "mhrtcSecondaryUnit",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "excise-gasoline-tax-refund",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "exciseMobilityImpairment",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "excisePermanentMobilityCertified",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "disability-supports-deduction",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "odsp",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "odspMedical",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "odspFinancial",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "P06-edmonton-ld-student",
+    "label": "Low-income student, 20, learning disability, Edmonton",
+    "ready": 0,
+    "almost": 23,
+    "no": 48,
+    "by": {
+      "a": 7,
+      "b": 9,
+      "c": 6,
+      "d": 1
+    },
+    "sub": {
+      "program-decides": 7,
+      "c-step": 4,
+      "knowable-fact": 9,
+      "c-judged": 2,
+      "someone-else-claims": 1
+    },
+    "tiers": {
+      "ready": 0,
+      "possible": 17,
+      "later": 6
+    },
+    "tiersMech": {
+      "ready": 0,
+      "possible": 19,
+      "later": 4
+    },
+    "firstCToday": 2,
+    "cInTop10": 3,
+    "universal": 7,
+    "firstCScored": 18,
+    "cInTop10Scored": 0,
+    "t4": {
+      "ready": 0,
+      "personal": 10,
+      "general": 7,
+      "later": 6
+    },
+    "rec": {
+      "mech": {
+        "ready": 0,
+        "possible": 11,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 2,
+        "later-dtc": 2,
+        "visible": 12
+      },
+      "full": {
+        "ready": 0,
+        "possible": 10,
+        "dtc-card": 1,
+        "unnarrowed": 6,
+        "later": 4,
+        "later-dtc": 2,
+        "visible": 11
+      },
+      "full2": {
+        "ready": 0,
+        "possible": 9,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 4,
+        "later-dtc": 2,
+        "visible": 10
+      }
+    },
+    "dtcGated": 2,
+    "otherProvNo": 23,
+    "possibleUniversal": 6,
+    "almostDetail": [
+      {
+        "id": "csg-dse",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "csgNeedAndProgram",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "csgServicesEquipment",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "rdsp",
+        "layout": "later-dtc",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dtc",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\" do not meet it"
+          },
+          {
+            "key": "rdspOpening",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "rdspContributionWindow",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "ab-grant-disability",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "abGrantStudyAidEligibility",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "abGrantCurrentCostRequest",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "adult-health-benefit",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "adultHealthIncome",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "adultHealthGateway",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "csg-disability",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "csgNeedAndProgram",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "cdb-adult",
+        "layout": "later-dtc",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dtc",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\" do not meet it"
+          },
+          {
+            "key": "cdbTaxFiling",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "cdbStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "dres",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dresResidencyAndStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "dresDisabilityBarrier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "dresEmploymentRoute",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "edmonton-fare-assistance",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "lowIncomeOrDisabilityIncome",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "okotoks-fee-assistance",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "okotoksResidency",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "said they live in Edmonton"
+          }
+        ]
+      },
+      {
+        "id": "cpp-childrens-benefit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cppDisabilityContributorLink",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "home-accessibility-tax-credit",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hatcQualifyingPerson",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\" do not meet it"
+          },
+          {
+            "key": "hatcEligibleDwelling",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for circumstances is \"not sure\" or was never asked"
+          },
+          {
+            "key": "hatcQualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canadian-dental-care-plan",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cdcpRequirements",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "medical-expense-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canada-caregiver-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "d",
+        "universal": true,
+        "needs": [
+          {
+            "key": "caregiverSupportClaim",
+            "cls": "d",
+            "sub": "someone-else-claims",
+            "why": "a supporter claims it"
+          }
+        ]
+      },
+      {
+        "id": "ab-service-dog-id-card",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "abServiceDogQualified",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "dtc",
+        "layout": "dtc-card",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "prolonged",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "certifier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "multigenerational-home-renovation-tax-credit",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "mhrtcQualifyingIndividual",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\", ageBand=\"19to59\" do not meet it"
+          },
+          {
+            "key": "qualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "mhrtcSecondaryUnit",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "excise-gasoline-tax-refund",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": true,
+        "needs": [
+          {
+            "key": "exciseMobilityImpairment",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "no mobility or transit limitation selected"
+          },
+          {
+            "key": "excisePermanentMobilityCertified",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "disability-supports-deduction",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "ab-capcc",
+        "layout": "unnarrowed",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "abCapccContinuingCareHome",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "ab-special-needs-housing",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "abSpecialNeedsHousingPlacement",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "aish",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "aishMedical",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "aishFinancial",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "adap",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "adapMedical",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "adapFinancial",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "P07-kelowna-moderate-nodtc",
+    "label": "Adult, 42, chronic pain, no DTC, middle income, Kelowna",
+    "ready": 1,
+    "almost": 23,
+    "no": 85,
+    "by": {
+      "a": 3,
+      "b": 11,
+      "c": 8,
+      "d": 1
+    },
+    "sub": {
+      "c-step": 6,
+      "program-decides": 3,
+      "knowable-fact": 9,
+      "someone-else-claims": 1,
+      "c-mismatch": 1,
+      "answered-unsure-or-not-asked": 2,
+      "c-judged": 1
+    },
+    "tiers": {
+      "ready": 1,
+      "possible": 15,
+      "later": 8
+    },
+    "tiersMech": {
+      "ready": 1,
+      "possible": 16,
+      "later": 7
+    },
+    "firstCToday": 2,
+    "cInTop10": 5,
+    "universal": 7,
+    "firstCScored": 17,
+    "cInTop10Scored": 0,
+    "t4": {
+      "ready": 1,
+      "personal": 6,
+      "general": 9,
+      "later": 8
+    },
+    "rec": {
+      "mech": {
+        "ready": 1,
+        "possible": 8,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 4,
+        "later-dtc": 3,
+        "visible": 10
+      },
+      "full": {
+        "ready": 1,
+        "possible": 8,
+        "dtc-card": 1,
+        "unnarrowed": 6,
+        "later": 5,
+        "later-dtc": 3,
+        "visible": 10
+      },
+      "full2": {
+        "ready": 1,
+        "possible": 8,
+        "dtc-card": 1,
+        "unnarrowed": 6,
+        "later": 5,
+        "later-dtc": 3,
+        "visible": 10
+      }
+    },
+    "dtcGated": 3,
+    "otherProvNo": 38,
+    "possibleUniversal": 6,
+    "almostDetail": [
+      {
+        "id": "rdsp",
+        "layout": "later-dtc",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dtc",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\" do not meet it"
+          },
+          {
+            "key": "rdspOpening",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "rdspContributionWindow",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "cdb-adult",
+        "layout": "later-dtc",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dtc",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\" do not meet it"
+          },
+          {
+            "key": "cdbTaxFiling",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "cdbStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "cwb-disability",
+        "layout": "later-dtc",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dtc",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\" do not meet it"
+          },
+          {
+            "key": "cwbEligibility",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-pharmacare-plan-p",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "planPRegistration",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "bc-bus-pass",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcBusPassStatus",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers bcAssistance=\"none\" do not meet it"
+          }
+        ]
+      },
+      {
+        "id": "bc-workbc-employment-services",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcWorkBcRoute",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-icbc-disability-discount",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcVehicleDisabilityRoute",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "bcFuelTaxRegistered",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "cpp-childrens-benefit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cppDisabilityContributorLink",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "home-accessibility-tax-credit",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hatcQualifyingPerson",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\" do not meet it"
+          },
+          {
+            "key": "hatcQualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canadian-dental-care-plan",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cdcpRequirements",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "medical-expense-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canada-caregiver-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "d",
+        "universal": true,
+        "needs": [
+          {
+            "key": "caregiverSupportClaim",
+            "cls": "d",
+            "sub": "someone-else-claims",
+            "why": "a supporter claims it"
+          }
+        ]
+      },
+      {
+        "id": "bc-msp-supplementary-benefits",
+        "layout": "possible",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcSupplementaryBenefitsEligibility",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-fnha-health-benefits",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "firstNationsStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-medical-transportation",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcMedTransportRoute",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "bcMedTransportNeed",
+            "cls": "c",
+            "sub": "c-mismatch",
+            "why": "answers functionalNeeds=[\"fatiguePain\"] do not meet it"
+          }
+        ]
+      },
+      {
+        "id": "sparc-parking-permit",
+        "layout": "possible",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcParkingMobility",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for canWalkFar is \"not sure\" or was never asked"
+          }
+        ]
+      },
+      {
+        "id": "bc-additional-home-owner-grant",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcHomeOwnerGrantDisabilityRoute",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "bc-fuel-tax-refund-disabilities",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcFuelTaxRoute",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "dtc",
+        "layout": "dtc-card",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "prolonged",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "certifier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "multigenerational-home-renovation-tax-credit",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "mhrtcQualifyingIndividual",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\", ageBand=\"19to59\" do not meet it"
+          },
+          {
+            "key": "qualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "mhrtcSecondaryUnit",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "excise-gasoline-tax-refund",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": true,
+        "needs": [
+          {
+            "key": "exciseMobilityImpairment",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "no mobility or transit limitation selected"
+          },
+          {
+            "key": "excisePermanentMobilityCertified",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "disability-supports-deduction",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-workbc-assistive-technology",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "disabilityDoc",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for disabilityVerified is \"not sure\" or was never asked"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "P08-bc-pwd-victoria",
+    "label": "Adult, 55, PWD designation, Victoria",
+    "ready": 10,
+    "almost": 21,
+    "no": 78,
+    "by": {
+      "a": 5,
+      "b": 12,
+      "c": 3,
+      "d": 1
+    },
+    "sub": {
+      "answered-unsure-or-not-asked": 3,
+      "knowable-fact": 9,
+      "c-judged": 1,
+      "program-decides": 5,
+      "c-mismatch": 2,
+      "someone-else-claims": 1
+    },
+    "tiers": {
+      "ready": 10,
+      "possible": 18,
+      "later": 3
+    },
+    "tiersMech": {
+      "ready": 10,
+      "possible": 19,
+      "later": 2
+    },
+    "firstCToday": 14,
+    "cInTop10": 0,
+    "universal": 7,
+    "firstCScored": 29,
+    "cInTop10Scored": 0,
+    "t4": {
+      "ready": 10,
+      "personal": 8,
+      "general": 10,
+      "later": 3
+    },
+    "rec": {
+      "mech": {
+        "ready": 10,
+        "possible": 11,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 2,
+        "later-dtc": 0,
+        "visible": 22
+      },
+      "full": {
+        "ready": 10,
+        "possible": 10,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 3,
+        "later-dtc": 0,
+        "visible": 21
+      },
+      "full2": {
+        "ready": 10,
+        "possible": 9,
+        "dtc-card": 1,
+        "unnarrowed": 8,
+        "later": 3,
+        "later-dtc": 0,
+        "visible": 20
+      }
+    },
+    "dtcGated": 2,
+    "otherProvNo": 38,
+    "possibleUniversal": 7,
+    "almostDetail": [
+      {
+        "id": "rdsp",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dtc",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for dtc is \"not sure\" or was never asked"
+          },
+          {
+            "key": "rdspOpening",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "rdspContributionWindow",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "cpp-disability",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "cppContrib",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "cdb-adult",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dtc",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for dtc is \"not sure\" or was never asked"
+          },
+          {
+            "key": "cdbTaxFiling",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "cdbStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "okotoks-fee-assistance",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "okotoksResidency",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "said they live in Victoria"
+          }
+        ]
+      },
+      {
+        "id": "bc-pharmacare-plan-p",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "planPRegistration",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "taxi-saver-bctransit",
+        "layout": "unnarrowed",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcTransitHandyDart",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-workbc-employment-services",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcWorkBcRoute",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "cpp-childrens-benefit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cppDisabilityContributorLink",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "home-accessibility-tax-credit",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hatcQualifyingPerson",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for dtc is \"not sure\" or was never asked"
+          },
+          {
+            "key": "hatcEligibleDwelling",
+            "cls": "c",
+            "sub": "c-mismatch",
+            "why": "answers circumstances=[\"none\"] do not meet it"
+          },
+          {
+            "key": "hatcQualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canadian-dental-care-plan",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cdcpRequirements",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "medical-expense-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canada-caregiver-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "d",
+        "universal": true,
+        "needs": [
+          {
+            "key": "caregiverSupportClaim",
+            "cls": "d",
+            "sub": "someone-else-claims",
+            "why": "a supporter claims it"
+          }
+        ]
+      },
+      {
+        "id": "bc-msp-supplementary-benefits",
+        "layout": "possible",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcSupplementaryBenefitsEligibility",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-fnha-health-benefits",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "firstNationsStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-medical-transportation",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcMedTransportRoute",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "bcMedTransportNeed",
+            "cls": "c",
+            "sub": "c-mismatch",
+            "why": "answers functionalNeeds=[\"dailyLiving\",\"transitBarrier\",\"equipment\"] do not meet it"
+          }
+        ]
+      },
+      {
+        "id": "dtc",
+        "layout": "dtc-card",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "prolonged",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "certifier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "multigenerational-home-renovation-tax-credit",
+        "layout": "possible",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "mhrtcQualifyingIndividual",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for dtc is \"not sure\" or was never asked"
+          },
+          {
+            "key": "qualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "mhrtcSecondaryUnit",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "excise-gasoline-tax-refund",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "exciseMobilityImpairment",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "excisePermanentMobilityCertified",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "disability-supports-deduction",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-pwd-designation",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcPwdMedical",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "bcPwdDesignationFinancial",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "bc-disability-assistance-pwd",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcPwdMedical",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "bcDisabilityAssistanceFinancial",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "P09-reddeer-deaf-worker",
+    "label": "Deaf adult, 30, working, middle income, Red Deer",
+    "ready": 0,
+    "almost": 20,
+    "no": 51,
+    "by": {
+      "a": 4,
+      "b": 9,
+      "c": 6,
+      "d": 1
+    },
+    "sub": {
+      "c-step": 5,
+      "knowable-fact": 9,
+      "someone-else-claims": 1,
+      "program-decides": 4,
+      "c-judged": 1
+    },
+    "tiers": {
+      "ready": 0,
+      "possible": 14,
+      "later": 6
+    },
+    "tiersMech": {
+      "ready": 0,
+      "possible": 15,
+      "later": 5
+    },
+    "firstCToday": 1,
+    "cInTop10": 4,
+    "universal": 7,
+    "firstCScored": 15,
+    "cInTop10Scored": 0,
+    "t4": {
+      "ready": 0,
+      "personal": 7,
+      "general": 7,
+      "later": 6
+    },
+    "rec": {
+      "mech": {
+        "ready": 0,
+        "possible": 7,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 2,
+        "later-dtc": 3,
+        "visible": 8
+      },
+      "full": {
+        "ready": 0,
+        "possible": 7,
+        "dtc-card": 1,
+        "unnarrowed": 6,
+        "later": 3,
+        "later-dtc": 3,
+        "visible": 8
+      },
+      "full2": {
+        "ready": 0,
+        "possible": 6,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 3,
+        "later-dtc": 3,
+        "visible": 7
+      }
+    },
+    "dtcGated": 3,
+    "otherProvNo": 23,
+    "possibleUniversal": 6,
+    "almostDetail": [
+      {
+        "id": "rdsp",
+        "layout": "later-dtc",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dtc",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\" do not meet it"
+          },
+          {
+            "key": "rdspOpening",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "rdspContributionWindow",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "adult-health-benefit",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "adultHealthIncome",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "adultHealthGateway",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "cdb-adult",
+        "layout": "later-dtc",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dtc",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\" do not meet it"
+          },
+          {
+            "key": "cdbTaxFiling",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "cdbStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "dres",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dresResidencyAndStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "dresDisabilityBarrier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "dresEmploymentRoute",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "cwb-disability",
+        "layout": "later-dtc",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dtc",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\" do not meet it"
+          },
+          {
+            "key": "cwbEligibility",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "reddeer-fee-assistance",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "lowIncomeOrDisabilityIncome",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "cpp-childrens-benefit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cppDisabilityContributorLink",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "home-accessibility-tax-credit",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hatcQualifyingPerson",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\" do not meet it"
+          },
+          {
+            "key": "hatcEligibleDwelling",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for circumstances is \"not sure\" or was never asked"
+          },
+          {
+            "key": "hatcQualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canadian-dental-care-plan",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cdcpRequirements",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "medical-expense-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canada-caregiver-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "d",
+        "universal": true,
+        "needs": [
+          {
+            "key": "caregiverSupportClaim",
+            "cls": "d",
+            "sub": "someone-else-claims",
+            "why": "a supporter claims it"
+          }
+        ]
+      },
+      {
+        "id": "ab-service-dog-id-card",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "abServiceDogQualified",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "dtc",
+        "layout": "dtc-card",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "prolonged",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "certifier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "multigenerational-home-renovation-tax-credit",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "mhrtcQualifyingIndividual",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"no\", ageBand=\"19to59\" do not meet it"
+          },
+          {
+            "key": "qualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "mhrtcSecondaryUnit",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "excise-gasoline-tax-refund",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": true,
+        "needs": [
+          {
+            "key": "exciseMobilityImpairment",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "no mobility or transit limitation selected"
+          },
+          {
+            "key": "excisePermanentMobilityCertified",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "disability-supports-deduction",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "ab-capcc",
+        "layout": "unnarrowed",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "abCapccContinuingCareHome",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "ab-special-needs-housing",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "abSpecialNeedsHousingPlacement",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "aish",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "aishMedical",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "aishFinancial",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "adap",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "adapMedical",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "adapFinancial",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "P10-ontario-child-wheelchair",
+    "label": "Parent of a 4-year-old wheelchair user, Hamilton",
+    "ready": 1,
+    "almost": 17,
+    "no": 46,
+    "by": {
+      "a": 5,
+      "b": 9,
+      "c": 2,
+      "d": 1
+    },
+    "sub": {
+      "knowable-fact": 8,
+      "c-mismatch": 1,
+      "answered-unsure-or-not-asked": 1,
+      "someone-else-claims": 1,
+      "program-decides": 5,
+      "c-step": 1
+    },
+    "tiers": {
+      "ready": 1,
+      "possible": 15,
+      "later": 2
+    },
+    "tiersMech": {
+      "ready": 1,
+      "possible": 15,
+      "later": 2
+    },
+    "firstCToday": 4,
+    "cInTop10": 1,
+    "universal": 7,
+    "firstCScored": 17,
+    "cInTop10Scored": 0,
+    "t4": {
+      "ready": 1,
+      "personal": 7,
+      "general": 8,
+      "later": 2
+    },
+    "rec": {
+      "mech": {
+        "ready": 1,
+        "possible": 7,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 2,
+        "later-dtc": 0,
+        "visible": 9
+      },
+      "full": {
+        "ready": 1,
+        "possible": 7,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 2,
+        "later-dtc": 0,
+        "visible": 9
+      },
+      "full2": {
+        "ready": 1,
+        "possible": 7,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 2,
+        "later-dtc": 0,
+        "visible": 9
+      }
+    },
+    "dtcGated": 0,
+    "otherProvNo": 15,
+    "possibleUniversal": 7,
+    "almostDetail": [
+      {
+        "id": "rdsp",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "rdspOpening",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "rdspContributionWindow",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "child-disability-benefit",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "ccbEligibility",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "hamilton-fare-assist",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hamiltonFareRoute",
+            "cls": "c",
+            "sub": "c-mismatch",
+            "why": "answers income=\"moderate\" do not meet it"
+          }
+        ]
+      },
+      {
+        "id": "trillium-drug-program",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "tdpDeductible",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "cpp-childrens-benefit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cppDisabilityContributorLink",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "home-accessibility-tax-credit",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hatcEligibleDwelling",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for circumstances is \"not sure\" or was never asked"
+          },
+          {
+            "key": "hatcQualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canadian-dental-care-plan",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cdcpRequirements",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "medical-expense-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canada-caregiver-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "d",
+        "universal": true,
+        "needs": [
+          {
+            "key": "caregiverSupportClaim",
+            "cls": "d",
+            "sub": "someone-else-claims",
+            "why": "a supporter claims it"
+          }
+        ]
+      },
+      {
+        "id": "hvmp",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hvmpIncome",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "hvmpCoordinator",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "ssah",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "ssahDocumentation",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "acsd",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "acsdSeverity",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "acsdIncome",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "on-adp",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "adpClinical",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "dtc",
+        "layout": "dtc-card",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "prolonged",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "certifier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "multigenerational-home-renovation-tax-credit",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "mhrtcQualifyingIndividual",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers dtc=\"yes\", ageBand=\"under6\" do not meet it"
+          },
+          {
+            "key": "qualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "mhrtcSecondaryUnit",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "excise-gasoline-tax-refund",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "exciseMobilityImpairment",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "excisePermanentMobilityCertified",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "disability-supports-deduction",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "P11-burnaby-high-income-dtc",
+    "label": "Adult, 48, MS, higher income, has DTC, Burnaby",
+    "ready": 3,
+    "almost": 24,
+    "no": 82,
+    "by": {
+      "a": 5,
+      "b": 14,
+      "c": 4,
+      "d": 1
+    },
+    "sub": {
+      "knowable-fact": 14,
+      "c-judged": 2,
+      "program-decides": 5,
+      "c-step": 1,
+      "someone-else-claims": 1,
+      "c-mismatch": 1
+    },
+    "tiers": {
+      "ready": 3,
+      "possible": 20,
+      "later": 4
+    },
+    "tiersMech": {
+      "ready": 3,
+      "possible": 22,
+      "later": 2
+    },
+    "firstCToday": 6,
+    "cInTop10": 2,
+    "universal": 7,
+    "firstCScored": 24,
+    "cInTop10Scored": 0,
+    "t4": {
+      "ready": 3,
+      "personal": 12,
+      "general": 8,
+      "later": 4
+    },
+    "rec": {
+      "mech": {
+        "ready": 3,
+        "possible": 14,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 2,
+        "later-dtc": 0,
+        "visible": 18
+      },
+      "full": {
+        "ready": 3,
+        "possible": 12,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 4,
+        "later-dtc": 0,
+        "visible": 16
+      },
+      "full2": {
+        "ready": 3,
+        "possible": 9,
+        "dtc-card": 1,
+        "unnarrowed": 10,
+        "later": 4,
+        "later-dtc": 0,
+        "visible": 13
+      }
+    },
+    "dtcGated": 0,
+    "otherProvNo": 38,
+    "possibleUniversal": 7,
+    "almostDetail": [
+      {
+        "id": "rdsp",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "rdspOpening",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "rdspContributionWindow",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "cdb-adult",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "cdbTaxFiling",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "cdbStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "cwb-disability",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "cwbEligibility",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "income band \"high\" lies above the published ceiling"
+          }
+        ]
+      },
+      {
+        "id": "bc-pharmacare-plan-p",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "planPRegistration",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "bc-bus-pass",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcBusPassStatus",
+            "cls": "c",
+            "sub": "c-step",
+            "why": "answers bcAssistance=\"none\" do not meet it"
+          }
+        ]
+      },
+      {
+        "id": "bc-workbc-employment-services",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcWorkBcRoute",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-icbc-disability-discount",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcVehicleDisabilityRoute",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "bcFuelTaxRegistered",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "cpp-childrens-benefit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cppDisabilityContributorLink",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "home-accessibility-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hatcQualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canadian-dental-care-plan",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cdcpRequirements",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "medical-expense-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canada-caregiver-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "d",
+        "universal": true,
+        "needs": [
+          {
+            "key": "caregiverSupportClaim",
+            "cls": "d",
+            "sub": "someone-else-claims",
+            "why": "a supporter claims it"
+          }
+        ]
+      },
+      {
+        "id": "bc-msp-supplementary-benefits",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcSupplementaryBenefitsEligibility",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "income band \"high\" lies above the published ceiling"
+          }
+        ]
+      },
+      {
+        "id": "bc-fnha-health-benefits",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "firstNationsStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-medical-transportation",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcMedTransportRoute",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "bcMedTransportNeed",
+            "cls": "c",
+            "sub": "c-mismatch",
+            "why": "answers functionalNeeds=[\"fatiguePain\",\"homeAccess\"] do not meet it"
+          }
+        ]
+      },
+      {
+        "id": "bc-additional-home-owner-grant",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcHomeOwnerGrantDisabilityRoute",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "bc-home-reno-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcHomeRenoSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-fuel-tax-refund-disabilities",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "bcFuelTaxRoute",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "burnaby-fair-play",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "burnabyFairPlayRoute",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "dtc",
+        "layout": "dtc-card",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "prolonged",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "certifier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "multigenerational-home-renovation-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "qualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "mhrtcSecondaryUnit",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "excise-gasoline-tax-refund",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "exciseMobilityImpairment",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "excisePermanentMobilityCertified",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "disability-supports-deduction",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "bc-raha",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "rahaEligibility",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "P12-lethbridge-intellectual-adult",
+    "label": "Adult, 24, intellectual disability, Lethbridge (family helping)",
+    "ready": 0,
+    "almost": 21,
+    "no": 50,
+    "by": {
+      "a": 5,
+      "b": 12,
+      "c": 3,
+      "d": 1
+    },
+    "sub": {
+      "answered-unsure-or-not-asked": 4,
+      "knowable-fact": 8,
+      "program-decides": 5,
+      "c-judged": 3,
+      "someone-else-claims": 1
+    },
+    "tiers": {
+      "ready": 0,
+      "possible": 18,
+      "later": 3
+    },
+    "tiersMech": {
+      "ready": 0,
+      "possible": 21,
+      "later": 0
+    },
+    "firstCToday": 5,
+    "cInTop10": 2,
+    "universal": 7,
+    "firstCScored": 19,
+    "cInTop10Scored": 0,
+    "t4": {
+      "ready": 0,
+      "personal": 9,
+      "general": 9,
+      "later": 3
+    },
+    "rec": {
+      "mech": {
+        "ready": 0,
+        "possible": 13,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 0,
+        "later-dtc": 0,
+        "visible": 14
+      },
+      "full": {
+        "ready": 0,
+        "possible": 11,
+        "dtc-card": 1,
+        "unnarrowed": 6,
+        "later": 3,
+        "later-dtc": 0,
+        "visible": 12
+      },
+      "full2": {
+        "ready": 0,
+        "possible": 10,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 3,
+        "later-dtc": 0,
+        "visible": 11
+      }
+    },
+    "dtcGated": 2,
+    "otherProvNo": 23,
+    "possibleUniversal": 6,
+    "almostDetail": [
+      {
+        "id": "rdsp",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dtc",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for dtc is \"not sure\" or was never asked"
+          },
+          {
+            "key": "rdspOpening",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "rdspContributionWindow",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "adult-health-benefit",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "adultHealthIncome",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "adultHealthGateway",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "cdb-adult",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dtc",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for dtc is \"not sure\" or was never asked"
+          },
+          {
+            "key": "cdbTaxFiling",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "cdbStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "pdd",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "pddEligibility",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "dres",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dresResidencyAndStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "dresDisabilityBarrier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "dresEmploymentRoute",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "said not working, looking for work or studying"
+          }
+        ]
+      },
+      {
+        "id": "lethbridge-fee-assistance",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "lowIncomeOrDisabilityIncome",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "okotoks-fee-assistance",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "okotoksResidency",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "said they live in Lethbridge"
+          }
+        ]
+      },
+      {
+        "id": "cpp-childrens-benefit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cppDisabilityContributorLink",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "home-accessibility-tax-credit",
+        "layout": "possible",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hatcQualifyingPerson",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for dtc is \"not sure\" or was never asked"
+          },
+          {
+            "key": "hatcEligibleDwelling",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for circumstances is \"not sure\" or was never asked"
+          },
+          {
+            "key": "hatcQualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canadian-dental-care-plan",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cdcpRequirements",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "medical-expense-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canada-caregiver-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "d",
+        "universal": true,
+        "needs": [
+          {
+            "key": "caregiverSupportClaim",
+            "cls": "d",
+            "sub": "someone-else-claims",
+            "why": "a supporter claims it"
+          }
+        ]
+      },
+      {
+        "id": "ab-service-dog-id-card",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "abServiceDogQualified",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "dtc",
+        "layout": "dtc-card",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "prolonged",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "certifier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "multigenerational-home-renovation-tax-credit",
+        "layout": "possible",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "mhrtcQualifyingIndividual",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for dtc is \"not sure\" or was never asked"
+          },
+          {
+            "key": "qualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "mhrtcSecondaryUnit",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "excise-gasoline-tax-refund",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": true,
+        "needs": [
+          {
+            "key": "exciseMobilityImpairment",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "no mobility or transit limitation selected"
+          },
+          {
+            "key": "excisePermanentMobilityCertified",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "disability-supports-deduction",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "ab-capcc",
+        "layout": "unnarrowed",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "abCapccContinuingCareHome",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "ab-special-needs-housing",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "abSpecialNeedsHousingPlacement",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "aish",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "aishMedical",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "aishFinancial",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "adap",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "adapMedical",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "adapFinancial",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "P13-kingston-vision-senior",
+    "label": "Senior, 70, low vision, Kingston",
+    "ready": 2,
+    "almost": 12,
+    "no": 50,
+    "by": {
+      "a": 4,
+      "b": 6,
+      "c": 1,
+      "d": 1
+    },
+    "sub": {
+      "knowable-fact": 5,
+      "c-judged": 1,
+      "answered-unsure-or-not-asked": 1,
+      "someone-else-claims": 1,
+      "program-decides": 4
+    },
+    "tiers": {
+      "ready": 2,
+      "possible": 11,
+      "later": 1
+    },
+    "tiersMech": {
+      "ready": 2,
+      "possible": 12,
+      "later": 0
+    },
+    "firstCToday": 4,
+    "cInTop10": 1,
+    "universal": 7,
+    "firstCScored": 14,
+    "cInTop10Scored": 0,
+    "t4": {
+      "ready": 2,
+      "personal": 4,
+      "general": 7,
+      "later": 1
+    },
+    "rec": {
+      "mech": {
+        "ready": 2,
+        "possible": 4,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 0,
+        "later-dtc": 0,
+        "visible": 7
+      },
+      "full": {
+        "ready": 2,
+        "possible": 4,
+        "dtc-card": 1,
+        "unnarrowed": 6,
+        "later": 1,
+        "later-dtc": 0,
+        "visible": 7
+      },
+      "full2": {
+        "ready": 2,
+        "possible": 3,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 1,
+        "later-dtc": 0,
+        "visible": 6
+      }
+    },
+    "dtcGated": 0,
+    "otherProvNo": 14,
+    "possibleUniversal": 6,
+    "almostDetail": [
+      {
+        "id": "trillium-drug-program",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "tdpDeductible",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "cpp-childrens-benefit",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cppDisabilityContributorLink",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "benefit is for a child (under 25) of a CPP-D recipient"
+          }
+        ]
+      },
+      {
+        "id": "home-accessibility-tax-credit",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hatcEligibleDwelling",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for circumstances is \"not sure\" or was never asked"
+          },
+          {
+            "key": "hatcQualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canadian-dental-care-plan",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cdcpRequirements",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "medical-expense-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canada-caregiver-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "d",
+        "universal": true,
+        "needs": [
+          {
+            "key": "caregiverSupportClaim",
+            "cls": "d",
+            "sub": "someone-else-claims",
+            "why": "a supporter claims it"
+          }
+        ]
+      },
+      {
+        "id": "hvmp",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hvmpIncome",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "hvmpCoordinator",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "dtc",
+        "layout": "dtc-card",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "prolonged",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "certifier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "multigenerational-home-renovation-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "qualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "mhrtcSecondaryUnit",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "excise-gasoline-tax-refund",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "exciseMobilityImpairment",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "excisePermanentMobilityCertified",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "disability-supports-deduction",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "odsp",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "odspMedical",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "odspFinancial",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "P14-calgary-teen-mental",
+    "label": "Parent of a 15-year-old with anxiety + ADHD, Calgary",
+    "ready": 0,
+    "almost": 16,
+    "no": 55,
+    "by": {
+      "a": 3,
+      "b": 12,
+      "c": 0,
+      "d": 1
+    },
+    "sub": {
+      "answered-unsure-or-not-asked": 6,
+      "knowable-fact": 6,
+      "someone-else-claims": 1,
+      "program-decides": 3
+    },
+    "tiers": {
+      "ready": 0,
+      "possible": 16,
+      "later": 0
+    },
+    "tiersMech": {
+      "ready": 0,
+      "possible": 16,
+      "later": 0
+    },
+    "firstCToday": null,
+    "cInTop10": 0,
+    "universal": 7,
+    "firstCScored": null,
+    "cInTop10Scored": 0,
+    "t4": {
+      "ready": 0,
+      "personal": 4,
+      "general": 12,
+      "later": 0
+    },
+    "rec": {
+      "mech": {
+        "ready": 0,
+        "possible": 8,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 0,
+        "later-dtc": 0,
+        "visible": 9
+      },
+      "full": {
+        "ready": 0,
+        "possible": 8,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 0,
+        "later-dtc": 0,
+        "visible": 9
+      },
+      "full2": {
+        "ready": 0,
+        "possible": 8,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 0,
+        "later-dtc": 0,
+        "visible": 9
+      }
+    },
+    "dtcGated": 2,
+    "otherProvNo": 23,
+    "possibleUniversal": 7,
+    "almostDetail": [
+      {
+        "id": "rdsp",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dtc",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for dtc is \"not sure\" or was never asked"
+          },
+          {
+            "key": "rdspOpening",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "rdspContributionWindow",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "child-disability-benefit",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dtc",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for dtc is \"not sure\" or was never asked"
+          },
+          {
+            "key": "ccbEligibility",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "fscd",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "fscdEligibility",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "aadl",
+        "layout": "possible",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "equipmentNeed",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for functionalNeeds is \"not sure\" or was never asked"
+          },
+          {
+            "key": "ahcipRegistered",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "aadlAssessment",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "aadlOtherPayer",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "cpp-childrens-benefit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cppDisabilityContributorLink",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "home-accessibility-tax-credit",
+        "layout": "possible",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hatcQualifyingPerson",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for dtc is \"not sure\" or was never asked"
+          },
+          {
+            "key": "hatcEligibleDwelling",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for circumstances is \"not sure\" or was never asked"
+          },
+          {
+            "key": "hatcQualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canadian-dental-care-plan",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cdcpRequirements",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "medical-expense-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canada-caregiver-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "d",
+        "universal": true,
+        "needs": [
+          {
+            "key": "caregiverSupportClaim",
+            "cls": "d",
+            "sub": "someone-else-claims",
+            "why": "a supporter claims it"
+          }
+        ]
+      },
+      {
+        "id": "ab-service-dog-id-card",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "abServiceDogQualified",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "dtc",
+        "layout": "dtc-card",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "prolonged",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "certifier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "multigenerational-home-renovation-tax-credit",
+        "layout": "possible",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "mhrtcQualifyingIndividual",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for dtc is \"not sure\" or was never asked"
+          },
+          {
+            "key": "qualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "mhrtcSecondaryUnit",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "excise-gasoline-tax-refund",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "exciseMobilityImpairment",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "excisePermanentMobilityCertified",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "disability-supports-deduction",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "ramp",
+        "layout": "possible",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "homeAccessNeed",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for functionalNeeds is \"not sure\" or was never asked"
+          },
+          {
+            "key": "rampMobilityRoute",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "rampIncomeAndResidency",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "ab-special-needs-housing",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "abSpecialNeedsHousingPlacement",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "P15-edmonton-senior",
+    "label": "Senior, 66, low income, mobility needs, Edmonton",
+    "ready": 0,
+    "almost": 18,
+    "no": 53,
+    "by": {
+      "a": 4,
+      "b": 8,
+      "c": 5,
+      "d": 1
+    },
+    "sub": {
+      "knowable-fact": 7,
+      "c-judged": 3,
+      "program-decides": 4,
+      "answered-unsure-or-not-asked": 1,
+      "someone-else-claims": 1,
+      "c-mismatch": 2
+    },
+    "tiers": {
+      "ready": 0,
+      "possible": 13,
+      "later": 5
+    },
+    "tiersMech": {
+      "ready": 0,
+      "possible": 16,
+      "later": 2
+    },
+    "firstCToday": 2,
+    "cInTop10": 3,
+    "universal": 7,
+    "firstCScored": 14,
+    "cInTop10Scored": 0,
+    "t4": {
+      "ready": 0,
+      "personal": 6,
+      "general": 7,
+      "later": 5
+    },
+    "rec": {
+      "mech": {
+        "ready": 0,
+        "possible": 8,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 2,
+        "later-dtc": 0,
+        "visible": 9
+      },
+      "full": {
+        "ready": 0,
+        "possible": 6,
+        "dtc-card": 1,
+        "unnarrowed": 6,
+        "later": 5,
+        "later-dtc": 0,
+        "visible": 7
+      },
+      "full2": {
+        "ready": 0,
+        "possible": 5,
+        "dtc-card": 1,
+        "unnarrowed": 7,
+        "later": 5,
+        "later-dtc": 0,
+        "visible": 6
+      }
+    },
+    "dtcGated": 0,
+    "otherProvNo": 23,
+    "possibleUniversal": 6,
+    "almostDetail": [
+      {
+        "id": "aadl",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "ahcipRegistered",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "aadlAssessment",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "aadlOtherPayer",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "dres",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "dresResidencyAndStatus",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "dresDisabilityBarrier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "dresEmploymentRoute",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "said not working, looking for work or studying"
+          }
+        ]
+      },
+      {
+        "id": "parking-placard",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "certifier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "edmonton-fare-assistance",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "lowIncomeOrDisabilityIncome",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "okotoks-fee-assistance",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "okotoksResidency",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "said they live in Edmonton"
+          }
+        ]
+      },
+      {
+        "id": "cpp-childrens-benefit",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cppDisabilityContributorLink",
+            "cls": "c",
+            "sub": "c-judged",
+            "why": "benefit is for a child (under 25) of a CPP-D recipient"
+          }
+        ]
+      },
+      {
+        "id": "home-accessibility-tax-credit",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "hatcEligibleDwelling",
+            "cls": "b",
+            "sub": "answered-unsure-or-not-asked",
+            "why": "answer for circumstances is \"not sure\" or was never asked"
+          },
+          {
+            "key": "hatcQualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canadian-dental-care-plan",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "cdcpRequirements",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "medical-expense-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "canada-caregiver-credit",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "d",
+        "universal": true,
+        "needs": [
+          {
+            "key": "caregiverSupportClaim",
+            "cls": "d",
+            "sub": "someone-else-claims",
+            "why": "a supporter claims it"
+          }
+        ]
+      },
+      {
+        "id": "ab-service-dog-id-card",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "abServiceDogQualified",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "dtc",
+        "layout": "dtc-card",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "prolonged",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "certifier",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "multigenerational-home-renovation-tax-credit",
+        "layout": "unnarrowed",
+        "tier4": "personal",
+        "programCls": "b",
+        "universal": false,
+        "needs": [
+          {
+            "key": "qualifyingRenovationSpend",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          },
+          {
+            "key": "mhrtcSecondaryUnit",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "excise-gasoline-tax-refund",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "a",
+        "universal": true,
+        "needs": [
+          {
+            "key": "exciseMobilityImpairment",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "excisePermanentMobilityCertified",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "disability-supports-deduction",
+        "layout": "unnarrowed",
+        "tier4": "general",
+        "programCls": "b",
+        "universal": true,
+        "needs": [
+          {
+            "key": "disabilityMedicalExpensesPaid",
+            "cls": "b",
+            "sub": "knowable-fact",
+            "why": "a fact the person likely knows (registration, receipt, spend, status)"
+          }
+        ]
+      },
+      {
+        "id": "ab-special-needs-housing",
+        "layout": "possible",
+        "tier4": "personal",
+        "programCls": "a",
+        "universal": false,
+        "needs": [
+          {
+            "key": "abSpecialNeedsHousingPlacement",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "aish",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "aishAge",
+            "cls": "c",
+            "sub": "c-mismatch",
+            "why": "answers ageBand=\"65plus\" do not meet it"
+          },
+          {
+            "key": "aishMedical",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "aishFinancial",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      },
+      {
+        "id": "adap",
+        "layout": "later",
+        "tier4": "later",
+        "programCls": "c",
+        "universal": false,
+        "needs": [
+          {
+            "key": "adapAge",
+            "cls": "c",
+            "sub": "c-mismatch",
+            "why": "answers ageBand=\"65plus\" do not meet it"
+          },
+          {
+            "key": "adapMedical",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          },
+          {
+            "key": "adapFinancial",
+            "cls": "a",
+            "sub": "program-decides",
+            "why": "program/clinician/assessor decides"
+          }
+        ]
+      }
+    ]
+  }
+]

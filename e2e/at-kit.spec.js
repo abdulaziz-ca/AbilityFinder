@@ -16,8 +16,9 @@ for (const persona of personas) {
     await expect(page.locator('.results-head')).toBeVisible();
     // Fixed expectations, independent of the evaluator: changes need a kit review.
     const counts = {
-      'ab-self': [0, 22], 'bc-child': [4, 21], 'on-family': [3, 17],
-      'bc-self': [10, 20], 'no-matches': [0, 11], returning: [0, 22],
+      // Okotoks is no longer a lead outside its Alberta service area.
+      'ab-self': [0, 21], 'bc-child': [4, 20], 'on-family': [3, 16],
+      'bc-self': [10, 19], 'no-matches': [0, 11], returning: [0, 21],
     };
     const [ready, almost] = counts[persona.id];
     await expect(page.locator('.benefit.ready')).toHaveCount(ready);
@@ -38,7 +39,7 @@ for (const persona of personas) {
       await expect(page.locator('#program-updates-status')).toBeFocused();
       await gotoReady(page);
       await expect(page.locator('.program-updates')).toHaveCount(0);
-      await expect(page.locator('.results-head .big')).toHaveText('22');
+      await expect(page.locator('.results-head .big')).toHaveText('21');
     } else {
       await expect(page.locator('.program-updates')).toHaveCount(0);
       await page.reload();

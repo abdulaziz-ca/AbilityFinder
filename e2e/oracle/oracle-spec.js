@@ -51,7 +51,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.30.0";
+const SPEC_VERSION = "1.31.0";
 
 // Separate evidence channel: never wizard answers and never official adjudication.
 // GRT source snapshots fetched 2026-10-16; each yes is scoped to this program.
@@ -472,7 +472,13 @@ const GATES = {
       { name: "other assistance or financial limits need checking", fragment: { set: { income: "high", bcAssistance: "none" } }, expect: "almost" },
     ],
   },
-  homeowner: circumstanceGate("homeowner"),
+  homeowner: {
+    ...circumstanceGate("homeowner"),
+    violations: [
+      ...circumstanceGate("homeowner").violations,
+      { name: "ownership unasked", fragment: { set: { circumstances: [] } }, expect: "almost" },
+    ],
+  },
   vehicleOwner: circumstanceGate("vehicleOwner"),
   recentGraduate: circumstanceGate("recentGraduate"),
   // Batch 7 (2026-10-16): record-specific gates replacing shared ones that drifted from the page.
@@ -483,6 +489,14 @@ const GATES = {
     violations: [
       { name: "physical category but walks far enough: other mobility limits may apply", fragment: { set: { canWalkFar: true } }, expect: "almost" },
       { name: "no physical category: mobility limits can arise under other categories", fragment: { drop: { disabilities: ["physical"] } }, expect: "almost" },
+    ],
+  },
+  okotoksArea: {
+    ...municipality("Okotoks", "AB"),
+    violations: [
+      ...municipality("Okotoks", "AB").violations,
+      { name: "city unasked", fragment: { set: { city: null } }, expect: "almost" },
+      { name: "unlisted city", fragment: { set: { city: "Other / my town isn't listed" } }, expect: "almost" },
     ],
   },
   okotoksResidency: external("The city question asks in or near, so selecting Okotoks does not establish residence in the Town of Okotoks or Foothills County."),

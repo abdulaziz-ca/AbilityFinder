@@ -1144,7 +1144,7 @@ const REQS = {
     who: ["you"],
     unmet: "Work-Able requires a recent graduate of a recognized post-secondary institution (two-year diploma, associate degree, bachelor's degree, master's degree or doctorate) with a graduation date within three years of the program start date." },
   vehicleOwner: { met: () => hasCircumstance("vehicleOwner"), fixed: () => !circumstanceUnknown(), unmet: "You must own, lease, or have an ownership interest in a qualifying vehicle." },
-  homeowner: { met: () => hasCircumstance("homeowner"), fixed: () => !circumstanceUnknown(), unmet: "You or the eligible family member must own and live in the home and meet the program's other property rules." },
+  homeowner: { met: () => hasCircumstance("homeowner"), fixed: () => answers.circumstances.length > 0 && !circumstanceUnknown(), unmet: "You or the eligible family member must own and live in the home and meet the program's other property rules." },
   mhrtcQualifyingIndividual: {
     short: "Check who the unit is for",
     who: ["you"],
@@ -1383,6 +1383,11 @@ const REQS = {
   sprucegrovearea: { met: () => ["Spruce Grove", "Stony Plain"].includes(answers.city), fixed: true, unmet: "This is for eligible Spruce Grove-area residents." },
   leduc: { met: () => answers.city === "Leduc", fixed: true, unmet: "This is a City of Leduc program." },
   cochrane: { met: () => answers.city === "Cochrane", fixed: true, unmet: "This is a Town of Cochrane program." },
+  okotoksArea: {
+    met: () => answers.province === "AB" && ["Okotoks", "Foothills County"].includes(answers.city),
+    fixed: () => !!answers.city && answers.city !== "Other / my town isn't listed",
+    unmet: "This program serves Okotoks and Foothills County, Alberta.",
+  },
   okotoksResidency: {
     short: "Check that you live in the Town of Okotoks or Foothills County",
     who: ["you"],
@@ -1952,7 +1957,11 @@ const BROWSE_LEVELS = [
   { key: "local", label: "Local / city" },
 ];
 
-const PROGRAM_CHANGE_DATA = AbilityFinderProgramChanges.collect(DATA_CHANGELOG, BENEFITS.map((b) => b.id));
+const PROGRAM_CHANGE_DATA = typeof AbilityFinderProgramChanges !== "undefined" && typeof DATA_CHANGELOG !== "undefined"
+  ? AbilityFinderProgramChanges.collect(DATA_CHANGELOG, BENEFITS.map((b) => b.id))
+  // No feed means no notices or new baselines. Preserve existing review markers
+  // during validation rather than rejecting them against a fabricated zero.
+  : { watermark: Number.MAX_SAFE_INTEGER, changes: [] };
 let programChanges = null;
 
 const PERSISTENCE_SELECTIONS = {
@@ -3761,29 +3770,49 @@ function wireStep(step) {
     const sel = document.getElementById("selInput");
     if (sel)
       sel.addEventListener("change", () => {
-        if (answers[step.key] !== sel.value) confirmedFacts = {};
-        answers[step.key] = sel.value;
-        notifyStateChange("wizard-answer");
-        setTimeout(goNext, 150);
+        // Native select navigation is a draft until explicitly confirmed.
+        const next = document.getElementById("next");
+        if (next) next.disabled = !sel.value;
       });
     const back = document.getElementById("back");
     const next = document.getElementById("next");
     if (back) back.addEventListener("click", goBack);
-    if (next) next.addEventListener("click", goNext);
+    if (next) next.addEventListener("click", () => {
+      if (!sel || !applyWizardSelection(step, sel.value)) return;
+      goNext();
+    });
     return;
   }
 
-  document.querySelectorAll(".wizard-choice").forEach((choice) => {
+  const choices = [...document.querySelectorAll(".wizard-choice")];
+  choices.forEach((choice, index) => {
+    choice.addEventListener("keydown", (event) => {
+      if (step.type === "multi") return;
+      const direction = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[event.key];
+      if (direction) {
+        event.preventDefault();
+        choices[(index + direction + choices.length) % choices.length].focus();
+      } else if (event.key === "Enter") {
+        event.preventDefault();
+        choice.click();
+      }
+    });
+    // Pointer activation keeps the existing one-tap path. Keyboard selection
+    // records an answer but leaves the question and Next button in place.
+    choice.addEventListener("click", (event) => {
+      if (step.type !== "multi" && event.detail > 0) {
+        const idx = stepIndex;
+        setTimeout(() => {
+          if (stepIndex !== idx) return;
+          goNext();
+        }, 200);
+      }
+    });
     choice.addEventListener("change", () => {
       const value = JSON.parse(choice.dataset.value);
       if (!applyWizardSelection(step, value)) return;
       refreshWizardSelectionControls(step);
-      if (step.type === "multi") {
-        // Native checkboxes expose their state without replacing #app, so the
-        // focused choice remains focused while someone builds a multi-answer.
-      } else {
-        setTimeout(goNext, 200); // snappy auto-advance
-      }
+      // Keep native selection and focus without replacing the question.
     });
   });
 
@@ -3911,14 +3940,14 @@ function renderScenarioPanel(currentEvaluated) {
   const chips = [...scenarioChanges.values()].map((change) => `<button type="button" class="scenario-chip" data-scenario-remove="${change.id}" aria-label="${t("scenario.remove")} ${change.label}">${change.label}${icon("x")}</button>`).join("");
   let diff = `<p class="scenario-empty">${t("scenario.empty")}</p>`;
   if (scenarioChanges.size) {
-    const hypothetical = evaluateAnswers(model, confirmedFacts);
+    const hypothetical = evaluateAnswers(model, confirmedFacts).filter((e) => benefitInResultsScope(e.b, model));
     const current = new Map(currentEvaluated.map((e) => [e.b.id, e]));
     const changed = new Map(hypothetical.map((e) => [e.b.id, e]));
     const matched = (status) => status === "ready" || status === "almost";
-    const gained = hypothetical.filter((e) => matched(e.r.status) && !matched(current.get(e.b.id).r.status));
-    const lost = currentEvaluated.filter((e) => matched(e.r.status) && !matched(changed.get(e.b.id).r.status));
-    const newlyReady = hypothetical.filter((e) => e.r.status === "ready" && current.get(e.b.id).r.status !== "ready");
-    const noLongerReady = currentEvaluated.filter((e) => e.r.status === "ready" && changed.get(e.b.id).r.status !== "ready");
+    const gained = hypothetical.filter((e) => matched(e.r.status) && !matched(current.get(e.b.id)?.r.status));
+    const lost = currentEvaluated.filter((e) => matched(e.r.status) && !matched(changed.get(e.b.id)?.r.status));
+    const newlyReady = hypothetical.filter((e) => e.r.status === "ready" && current.get(e.b.id)?.r.status !== "ready");
+    const noLongerReady = currentEvaluated.filter((e) => e.r.status === "ready" && changed.get(e.b.id)?.r.status !== "ready");
     const row = (key, items, tone) => `<div class="scenario-diff-row ${tone}"><b>${t(key)} <span>${items.length}</span></b>${tone === "ready" ? matchStatusNote("ready") : ""}<p>${items.length ? items.map((e) => e.b.name).join(" · ") : t("scenario.none")}</p></div>`;
     diff = `${row("scenario.gain", gained, "gain")}${row("scenario.lose", lost, "lose")}${row("scenario.newReady", newlyReady, "ready")}${row("scenario.noReady", noLongerReady, "not-ready")}`;
   }
@@ -3937,6 +3966,7 @@ function renderScenarioPanel(currentEvaluated) {
 
 // No visit timestamps or previous-results history. Missing/new IDs baseline silently.
 function baselineProgramChanges() {
+  if (typeof AbilityFinderProgramChanges === "undefined") return;
   let changed = false;
   if (!programChanges) { programChanges = { version: 1, seenByProgram: {} }; changed = true; }
   for (const b of BENEFITS) {
@@ -4014,7 +4044,7 @@ function wireProgramUpdates() {
 }
 
 function renderResults() {
-  const evaluated = browseCatalog().map((b) => ({ b, r: evaluate(b) }));
+  const evaluated = browseCatalog().filter((b) => benefitInResultsScope(b, answers)).map((b) => ({ b, r: evaluate(b) }));
   const ready = evaluated.filter((e) => e.r.status === "ready");
   const almost = evaluated.filter((e) => e.r.status === "almost");
   // "not a match" excludes programs that belong to a DIFFERENT province
@@ -4040,7 +4070,7 @@ function renderResults() {
   let html = `
   <div class="results-head">
     <div class="big">${totalWin}</div>
-    <h2>${headline}</h2>
+    <h1>${headline}</h1>
     <p>${resultsBlurb(ready.length, almost.length)}</p>
   </div>
   ${renderProgramUpdates(matched)}
@@ -4083,7 +4113,20 @@ function renderResults() {
 }
 
 /* which province a benefit belongs to (federal / nationwide → null) */
+function benefitInResultsScope(b, model) {
+  const province = benefitProvince(b);
+  if (province && province !== model.province) return false;
+  if (b.requires.includes("okotoksArea")) {
+    return model.province === "AB" && (!model.city || ["Other / my town isn't listed", "Okotoks", "Foothills County"].includes(model.city));
+  }
+  return true;
+}
+
 function benefitProvince(b) {
+  // Local levels include regional delivery bodies, not only province gates.
+  if (benefitIsOntario(b)) return "ON";
+  if (benefitIsBritishColumbia(b)) return "BC";
+  if (b.level === "Alberta" || ALBERTA_CITIES.includes(b.level) || b.level === "Spruce Grove area") return "AB";
   const r = b.requires;
   if (r.includes("ab") || r.includes("calgary") || r.includes("edmonton")) return "AB";
   for (const p of ["bc", "on", "qc", "mb", "sk", "ns", "nb", "nl", "pe", "yt", "nt", "nu"])
@@ -4726,6 +4769,7 @@ function practitionerFinder(b) {
     <p class="finder-lead">${t("finder.lead")}</p>
     ${formFlag}
     <div class="finder-row">
+      <label for="finderPostal">${t("finder.postalLabel")}</label>
       <input id="finderPostal" class="text-input finder-postal" data-finder-postal inputmode="text" placeholder="${t("finder.postalPh")}" value="${attrEscape(answers.postal)}" />
       <button class="btn btn-ghost" data-finder-loc type="button">${icon("compass")} ${t("finder.useLoc")}</button>
     </div>
@@ -5015,7 +5059,7 @@ function reportAnnualTotal(ready) {
 }
 function printResults() {
   const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
-  const evaluated = browseCatalog().map((b) => ({ b, r: evaluate(b) }));
+  const evaluated = browseCatalog().filter((b) => benefitInResultsScope(b, answers)).map((b) => ({ b, r: evaluate(b) }));
   const ready = evaluated.filter((e) => e.r.status === "ready").sort((a, b) => priorityScore(b.b) - priorityScore(a.b));
   const almost = evaluated.filter((e) => e.r.status === "almost").sort((a, b) => priorityScore(b.b) - priorityScore(a.b));
 
@@ -5991,6 +6035,7 @@ function wireAssistant() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  try {
   await loadState();
   // Stable deep link for static guide footers. Only this one value is honoured.
   try {
@@ -6052,4 +6097,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     e.preventDefault();
     window.open(a.href, "_blank", "noopener");
   });
+  window.AbilityFinderStartup?.ready();
+  } catch (error) {
+    console.error("AbilityFinder startup failed", error);
+    window.AbilityFinderStartup?.fail();
+  }
 });

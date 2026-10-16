@@ -4,6 +4,21 @@
    generous rhythm. Light + dark aware, accessible.
    ========================================================================== */
 
+/* Plain recovery screen, using the active light/dark/contrast theme. */
+.startup-error {
+  max-width: 42rem;
+  margin: 3rem auto;
+  padding: 1.5rem;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+.startup-error h1 { font-size: 1.75rem; line-height: 1.25; }
+.startup-error .btn { min-width: 8rem; min-height: 48px; padding: 0.75rem 1.5rem; }
+.startup-error a { color: var(--text); text-decoration: underline; text-underline-offset: 0.2em; }
+.startup-error a:focus-visible,
+.startup-error button:focus-visible { outline: 3px solid var(--text); outline-offset: 4px; }
+
 /* Self-hosted fonts (both OFL) avoid contacting a third-party font CDN.
    Fraunces = display serif; Inter = body. */
 @font-face {
@@ -11,7 +26,7 @@
   font-style: normal;
   font-weight: 300 500;
   font-display: swap;
-  src: url("fonts/fraunces-latin.woff2?v=189") format("woff2");
+  src: url("fonts/fraunces-latin.woff2?v=190") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 @font-face {
@@ -19,7 +34,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/inter-latin.woff2?v=189") format("woff2");
+  src: url("fonts/inter-latin.woff2?v=190") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+2191, U+2193, U+2212;
 }
 
@@ -544,7 +559,7 @@ body.a11y-nomotion .life-event-card:hover .life-event-arrow { transform: none; }
 /* ---------------------------------------------------------------- results */
 .results-head { margin-bottom: 6px; }
 .results-head .big { font-family: var(--font-display); font-optical-sizing: auto; font-size: clamp(3.4rem, 12vw, 5.2rem); font-weight: 350; letter-spacing: -0.03em; line-height: 1; color: var(--text); }
-.results-head h2 { font-family: var(--font-display); font-optical-sizing: auto; margin: 6px 0 12px; font-size: clamp(1.6rem, 4vw, 2.1rem); font-weight: 400; letter-spacing: -0.02em; line-height: 1.12; }
+.results-head h1 { font-family: var(--font-display); font-optical-sizing: auto; margin: 6px 0 12px; font-size: clamp(1.6rem, 4vw, 2.1rem); font-weight: 400; letter-spacing: -0.02em; line-height: 1.12; }
 .results-head p { color: var(--text-dim); margin: 0; max-width: 54ch; font-size: 1rem; }
 
 /* money band — the "how much could I get" headline + retro estimator */
@@ -1360,7 +1375,9 @@ body.a11y-links a, body.a11y-links .apply, body.a11y-links .source-link, body.a1
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
 body.a11y-nomotion *, body.a11y-nomotion *::before, body.a11y-nomotion *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-body.a11y-contrast { --bg: #000; --bg-2: #000; --panel: #0b0b0b; --panel-2: #151515; --hair: rgba(255,255,255,0.5); --hair-2: rgba(255,255,255,0.8); --text: #fff; --text-dim: #ececec; --text-dimmer: #d0d0d0; --accent: #f4ead6; --accent-hi: #ffffff; --ok: #5ce6a0; --warn: #ffd27a; }
+body.a11y-contrast { --bg: #000; --bg-2: #000; --panel: #0b0b0b; --panel-2: #151515; --hair: rgba(255,255,255,0.5); --hair-2: rgba(255,255,255,0.8); --text: #fff; --text-dim: #ececec; --text-dimmer: #d0d0d0; --accent: #f4ead6; --accent-hi: #ffffff; --ok: #5ce6a0; --warn: #ffd27a; --danger: #ff8a87; --btn: #fff; --btn-ink: #000; --ok-soft: rgba(92,230,160,0.13); --warn-soft: rgba(255,210,122,0.13); }
+body.a11y-contrast .hero-atmos, body.a11y-contrast .wiz-mountains { display: none; }
+body.a11y-contrast .hero-inner { text-shadow: none; }
 body.a11y-contrast::before, body.a11y-contrast::after,
 body.a11y-contrast .wrap::before, body.a11y-contrast .wrap::after { display: none; }
 body.a11y-contrast .wizard-card, body.a11y-contrast .opt, body.a11y-contrast .cat { border-width: 2px; }

@@ -255,6 +255,7 @@ async function completeBcWizard(page, forWho = "Myself") {
   await page.locator("#next").click();
   await pick(page, "Lower income");
   await page.locator("#selInput").selectOption("Vancouver");
+  await page.locator("#next").click();
   await expect(page.locator(".results-head")).toBeVisible();
 }
 
@@ -325,6 +326,7 @@ test("BC adult post-secondary answers exclude child and unrelated work programs"
   await page.locator("#next").click();
   await pick(page, "Middle income");
   await page.locator("#selInput").selectOption("Vancouver");
+  await page.locator("#next").click();
 
   const matched = page.locator(".benefits-grid");
   await expect(matched.getByRole("heading", { name: "B.C. Access Grant for Students with Disabilities", exact: true })).toHaveCount(1);
@@ -356,6 +358,7 @@ test("Alberta adult post-secondary answers exclude child programs", async ({ pag
   await page.locator("#next").click();
   await pick(page, "Middle income");
   await page.locator("#selInput").selectOption("Calgary");
+  await page.locator("#next").click();
 
   const matched = page.locator(".benefits-grid");
   await expect(matched.getByRole("heading", { name: "Canada Student Grant for Students with Disabilities", exact: true })).toHaveCount(1);

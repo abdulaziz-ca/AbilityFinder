@@ -198,6 +198,7 @@ test.describe("all-day reminder calendar dates", () => {
     await page.locator("#next").click();
     await pick(page, "Lower income");
     await page.locator("#selInput").selectOption("Edmonton");
+    await page.locator("#next").click();
     await expect(page.locator(".results-head")).toBeVisible();
 
     const trackedBenefit = page.locator('[data-track="edmonton-fare-assistance"]');
