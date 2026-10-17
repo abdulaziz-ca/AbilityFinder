@@ -161,9 +161,11 @@ coverage at all. This is where the largest gaps are.
   valid verification path, and it is worth asking rather than leaving the gap open.
 
 ### NOT YET SWEPT
-- No systematic sweep of which of the 42 listed Ontario cities run disability or
-  low-income programs. The nine largest are the obvious starting point, since reach
-  per verified record is highest there.
+- **Swept for leads 2026-10-17** (`research/2026-10-city-sweep/LEADS.md`): of the 29 listed
+  Ontario cities with no local record, 25 have likely programs (often regional: Durham TAP, Halton
+  SPLIT, Niagara Transit Benefit Pass) and 4 could not be read (Greater Sudbury, North Bay,
+  Stratford, Timmins). These are search leads, not verified facts; each needs the official page read
+  before it becomes a record.
 - No exhaustive sweep of ontario.ca for provincial disability programs beyond the nine
   built. The nine were chosen as the province-level MVP, not proven exhaustive.
 
@@ -176,20 +178,39 @@ coverage at all. This is where the largest gaps are.
   That sweep found the earlier DATA-12 list of four missing programs was **not
   exhaustive**, which is the honest state: Alberta coverage is deep but not proven
   complete.
-- 24 of the 51 listed Alberta cities have no municipal programs recorded. Some
-  genuinely have none; nobody has confirmed which.
+- 32 of the 51 listed Alberta cities had no municipal program recorded. **Swept for leads
+  2026-10-17** (`research/2026-10-city-sweep/LEADS.md`): 22 have likely programs (many through
+  FCSS), 10 had none found in search. Leads only; read each official page before building.
 
 ---
 
 ## British Columbia
 
 ### ASSESSED, NOT ALL BUILT
-- **PharmaCare: all 13 plans were assessed as of 2026-07-29.** Which plans are
-  represented as records and which were judged out of scope should be listed here
-  explicitly rather than living only in the ROADMAP note.
+- **PharmaCare: all 13 plans were assessed as of 2026-07-29** (details in `ROADMAP.md`).
+  Itemised 2026-10-17. The deciding test was "does it have its own application?":
+
+  | Plan | Where it lives | Why |
+  |---|---|---|
+  | Fair PharmaCare (I) | own record `bc-fair-pharmacare` | income-based registration |
+  | C (income assistance) | own record `bc-pharmacare-plan-c` | follows assistance status |
+  | G (psychiatric medications) | own record `bc-pharmacare-plan-g` | prescriber application |
+  | P (palliative care) | own record `bc-pharmacare-plan-p` | physician application |
+  | W (First Nations Health Benefits) | own record `bc-fnha-health-benefits` | FNHA enrolment route |
+  | B (long-term care) | tips on `bc-fair-pharmacare` | automatic for residents of registered facilities |
+  | NP (national pharmacare) | tips on `bc-fair-pharmacare` | automatic at the pharmacy |
+  | S (smoking cessation) | tip on `bc-fair-pharmacare` | declaration at the pharmacy |
+  | F (At Home Program children) | inside `bc-at-home-medical` | arrives with At Home enrolment |
+  | D (cystic fibrosis) | no record | the CF clinic arranges it |
+  | M (medication management) | no record | automatic |
+  | Z (assurance) | no record | automatic with MSP |
+  | X (HIV/AIDS) | out of scope (owner, 2026-07-29) | condition-specific, not disability-based |
 
 ### NOT YET SWEPT
-- 45 cities listed; those without programs have not been individually confirmed.
+- 35 of the 45 listed cities had no local record. **Swept for leads 2026-10-17**
+  (`research/2026-10-city-sweep/LEADS.md`): 30 have likely recreation-access programs (several run
+  by a region or society), 5 had none found in search (Fort St. John, Parksville, Salmon Arm,
+  Vernon, Williams Lake). Leads only.
 
 ---
 

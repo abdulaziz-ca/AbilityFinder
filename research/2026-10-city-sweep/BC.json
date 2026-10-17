@@ -1,0 +1,428 @@
+{
+ "Abbotsford": {
+  "programs": [
+   {
+    "name": "PRC Subsidy Program",
+    "kind": "recreation fee assistance",
+    "url": "https://www.abbotsford.ca/node/10757",
+    "one_line": "Pass to city recreation facilities plus 25% off group swim/skate lessons and day camps.",
+    "eligibility_hint": "Full-time resident; household income within Statistics Canada low-income cutoffs."
+   },
+   {
+    "name": "Special Needs Access Program",
+    "kind": "recreation fee assistance",
+    "url": "https://www.abbotsford.ca/node/9454",
+    "one_line": "50% off recreation centre drop-in admissions and passes.",
+    "eligibility_hint": "Resident with permanent disability confirmed by physician; cannot combine with Subsidy Program."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. "
+ },
+ "Campbell River": {
+  "programs": [
+   {
+    "name": "Leisure Involvement For Everyone (L.I.F.E.)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.campbellriver.ca/parks-recreation-culture/recreation/affordable-recreation",
+    "one_line": "52 free drop-in admissions plus discount on some registered programs.",
+    "eligibility_hint": "Campbell River/Area D residents facing financial challenges; proof of income required."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. "
+ },
+ "Chilliwack": {
+  "programs": [
+   {
+    "name": "Leisure Access Program",
+    "kind": "recreation fee assistance",
+    "url": "https://chilliwack.com/main/page.cfm?id=1729",
+    "one_line": "Reduced-price entry to city leisure centres and public programs; sliding discounts.",
+    "eligibility_hint": "Low income or on income assistance; older form also allowed disability verification (unconfirmed current)."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. Disability route appears in 2023 form but not 2024."
+ },
+ "Colwood": {
+  "programs": [
+   {
+    "name": "LIFE (Leisure Involvement For Everyone) via West Shore Parks & Recreation",
+    "kind": "recreation fee assistance",
+    "url": "https://www.wspr.ca/inclusion-support/financial-support",
+    "one_line": "Low-income access to recreation at West Shore facilities.",
+    "eligibility_hint": "Resident of Colwood, Langford, Highlands, Metchosin, View Royal; income within StatCan low-income thresholds."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. Run by West Shore Parks & Recreation Society, not the city."
+ },
+ "Langford": {
+  "programs": [
+   {
+    "name": "LIFE (Leisure Involvement For Everyone) via West Shore Parks & Recreation",
+    "kind": "recreation fee assistance",
+    "url": "https://www.wspr.ca/inclusion-support/financial-support",
+    "one_line": "Low-income access to recreation at West Shore facilities.",
+    "eligibility_hint": "Resident of Colwood, Langford, Highlands, Metchosin, View Royal; income within StatCan low-income thresholds."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. Run by West Shore Parks & Recreation Society, not the city."
+ },
+ "Comox": {
+  "programs": [
+   {
+    "name": "TRIP / LEAP (Comox Valley combined program)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.comox.ca/sites/default/files/2024-03/TRIP-LEAP%202024%20combined.pdf",
+    "one_line": "Free drop-ins and registered-program discounts for low-income residents.",
+    "eligibility_hint": "Residency, BC Services cards, family income within Low Income Measure."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. Comox's own program is TRIP; LEAP is regional (Comox Valley Regional District)."
+ },
+ "Courtenay": {
+  "programs": [
+   {
+    "name": "Recreation Access Program (RAP) / LEAP",
+    "kind": "recreation fee assistance",
+    "url": "https://courtenay.ca/EN/main/community/recreation/recreation-access.html",
+    "one_line": "52 free drop-ins plus 50-75% off registered programs, with annual caps.",
+    "eligibility_hint": "Income below StatCan Low Income Measure after tax; Courtenay residency."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. "
+ },
+ "Cranbrook": {
+  "programs": [
+   {
+    "name": "Leisure Access Program",
+    "kind": "recreation fee assistance",
+    "url": "https://cranbrook.ca/our-city/city-departments/leisure-services/services/leisure-access-program",
+    "one_line": "75% off swim rates, aquafit and joint mobility classes; monthly transit passes provided.",
+    "eligibility_hint": "Household income under published chart; apply via adjudicating agency (e.g. Salvation Army, Community Connections)."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. Transit-pass element listed on city page; details not verified."
+ },
+ "Dawson Creek": {
+  "programs": [
+   {
+    "name": "Leisure Access Program",
+    "kind": "recreation fee assistance",
+    "url": "https://www.dawsoncreek.ca/parks-recreation/free-activities/leisure-access-and-funding-assistance",
+    "one_line": "Subsidized access to city recreation facilities and programs.",
+    "eligibility_hint": "Dawson Creek resident 3+ months; income at or below LICO or on income assistance; Trusted Partner verifies."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. "
+ },
+ "Delta": {
+  "programs": [
+   {
+    "name": "Leisure Access Assistance Program",
+    "kind": "recreation fee assistance",
+    "url": "https://www.delta.ca/parks-recreation/sports-activities/recreation-access",
+    "one_line": "Access to drop-in fitness classes, weight room, public swims and skating.",
+    "eligibility_hint": "Low-income Delta residents based on CRA family net income."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. Also YAK Pass (free drop-in for ages 18 and under). Thresholds not seen."
+ },
+ "Duncan": {
+  "programs": [
+   {
+    "name": "Leisure Access Program (North Cowichan)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.northcowichan.ca/form/leisure-access-program-application",
+    "one_line": "Annual access to drop-in programs at Cowichan Aquatic Centre and Fuller Lake Arena.",
+    "eligibility_hint": "Economically disadvantaged residents incl. City of Duncan; proof of residency and income."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. Run by Municipality of North Cowichan for Duncan residents too; CVRD also has a subsidy (cvrd.ca)."
+ },
+ "Fort St. John": {
+  "none_found": true,
+  "searched": [
+   "fsj.ca (via search; no program page surfaced)"
+  ],
+  "notes": "No leisure access program found; a news report said the city is investigating one. Not verified on fsj.ca."
+ },
+ "Langley": {
+  "programs": [
+   {
+    "name": "Leisure Access Grant (City of Langley)",
+    "kind": "recreation fee assistance",
+    "url": "https://langleycity.ca/admission-rates-passes-and-financial-assistance",
+    "one_line": "25-75% off one program or pass per person per season.",
+    "eligibility_hint": "City of Langley resident on income assistance or income under threshold; temporary residents excluded."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. This is the City of Langley only. No Township of Langley (tol.ca) individual subsidy page found; Township not verified."
+ },
+ "Maple Ridge": {
+  "programs": [
+   {
+    "name": "Access Pass (Financial Access)",
+    "kind": "recreation fee assistance",
+    "url": "https://mapleridge.ca/1465/Financial-Access",
+    "one_line": "Reduced admissions and program fees (older page: 75% off admissions).",
+    "eligibility_hint": "Maple Ridge resident with low income (LICO); new 2026 Financial Access Policy terms unconfirmed."
+   },
+   {
+    "name": "Disability access pass",
+    "kind": "recreation fee assistance",
+    "url": "https://www.mapleridge.ca/node/1965",
+    "one_line": "50% off admissions, 25% off programs to a $150 annual maximum.",
+    "eligibility_hint": "Person diagnosed with a disability."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. Policy changed for 2026; confirm current terms."
+ },
+ "Mission": {
+  "programs": [
+   {
+    "name": "PLAY (Providing Leisure All Year) Pass",
+    "kind": "recreation fee assistance",
+    "url": "https://www.mission.ca/node/1114",
+    "one_line": "Free admissions to the Leisure Centre.",
+    "eligibility_hint": "Mission resident 3+ months; income at/below CRA low-income threshold or on income assistance; $5/$10 admin fee."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. "
+ },
+ "Nanaimo": {
+  "programs": [
+   {
+    "name": "LEAP (Leisure Economic Access Pass)",
+    "kind": "recreation fee assistance",
+    "url": "https://nanaimo.ca/parks-recreation-culture/recreation-facilities-schedules/leap-(leisure-economic-access-pass)",
+    "one_line": "50 free drop-ins a year, 50% off registered programs (max $40), free museum/gallery entry.",
+    "eligibility_hint": "Income below StatCan low-income guidelines, or income/disability assistance, GIS, CLBC; students excluded."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. "
+ },
+ "Nelson": {
+  "programs": [
+   {
+    "name": "Leisure Access Pass (RDCK)",
+    "kind": "recreation fee assistance",
+    "url": "https://rdck.ca/EN/main/services/recreation/nelson-district-community-complex.html",
+    "one_line": "Discounts on admission at Nelson & District Community Complex (about 50% adults; credits).",
+    "eligibility_hint": "Low-income RDCK residents; reapply yearly; program undergoing changes."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. Run by Regional District of Central Kootenay, not the city."
+ },
+ "New Westminster": {
+  "programs": [
+   {
+    "name": "Parks and Recreation Financial Assistance Program",
+    "kind": "recreation fee assistance",
+    "url": "https://www.newwestcity.ca/parks-and-recreation/access-and-inclusion/sb_expander_articles/973.php",
+    "one_line": "50% off eligible registered programs and Active passes; credits per household member.",
+    "eligibility_hint": "Agency referral or household income under $50,000 (2023 materials) plus New West residency."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. Figures from 2023 materials, may be dated."
+ },
+ "North Vancouver": {
+  "programs": [
+   {
+    "name": "NVRC Financial Assistance Program",
+    "kind": "recreation fee assistance",
+    "url": "https://www.nvrc.ca/programs-memberships/program-directory/free-low-cost",
+    "one_line": "Up to 50% off fitness memberships, 75% off registered programs, free swim/skate admissions.",
+    "eligibility_hint": "Residents of City or District of North Vancouver in financial hardship; income guidelines by family size."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. Run by North Vancouver Recreation & Culture Commission, serves both City and District."
+ },
+ "Parksville": {
+  "none_found": true,
+  "searched": [
+   "rdn.bc.ca/recreation",
+   "rdn.bc.ca/district-69-recreation"
+  ],
+  "notes": "RDN District 69 recreation lists a 'financial access program' among services, but no eligibility page found. Run by region, not city. Call 250-248-3252."
+ },
+ "Penticton": {
+  "programs": [
+   {
+    "name": "LIFE (Leisure Involvement For Everyone)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.penticton.ca/node/71",
+    "one_line": "50% off two programs a year (max $25 each) plus free/discounted swim and skate admissions.",
+    "eligibility_hint": "After-tax household income at or below StatCan low income; resident 3+ months; not post-secondary students."
+   },
+   {
+    "name": "Access Pass",
+    "kind": "recreation fee assistance",
+    "url": "https://www.penticton.ca/node/71",
+    "one_line": "25% off multi-visit and monthly passes to fitness room and pool.",
+    "eligibility_hint": "Permanent cognitive or physical disability."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. "
+ },
+ "Pitt Meadows": {
+  "programs": [
+   {
+    "name": "Low-income fee subsidy (Council Policy C083)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.pittmeadows.ca/media/5925",
+    "one_line": "Reduced program and admission fees; participants pay a portion.",
+    "eligibility_hint": "Pitt Meadows residents meeting federal low-income cut-offs; policy last revised Dec 2020."
+   },
+   {
+    "name": "Access Support Pass",
+    "kind": "recreation fee assistance",
+    "url": "https://www.pittmeadows.ca/parks-recreation/programs-registration/membership-rates",
+    "one_line": "Support worker attends drop-in programs free.",
+    "eligibility_hint": "Individuals requiring support (not income-based)."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. "
+ },
+ "Port Coquitlam": {
+  "programs": [
+   {
+    "name": "Financial Assistance for Recreation Participants",
+    "kind": "recreation fee assistance",
+    "url": "https://www.portcoquitlam.ca/node/5545",
+    "one_line": "Up to $500/yr child subsidy, $200 adult, 75% discount, free One City Pass drop-ins.",
+    "eligibility_hint": "Under Statistics Canada LICO threshold."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. "
+ },
+ "Port Moody": {
+  "programs": [
+   {
+    "name": "Leisure Access program",
+    "kind": "recreation fee assistance",
+    "url": "https://www.portmoody.ca/media/pybmlml1/leisure-access-application-form.pdf",
+    "one_line": "Subsidized recreation for residents facing financial hardship.",
+    "eligibility_hint": "Port Moody resident; household income under family-size ceiling (about $23,861 for one person)."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. Subsidy amounts not seen."
+ },
+ "Powell River": {
+  "programs": [
+   {
+    "name": "Low Income Recreation Assistance / Recreation Access Pass",
+    "kind": "recreation fee assistance",
+    "url": "https://bc.211.ca/result/parks-and-recreation-42660708/",
+    "one_line": "Up to 52 passes a year for household at the Recreation Complex.",
+    "eligibility_hint": "Residents meeting low income measurement guidelines."
+   }
+  ],
+  "notes": "UNVERIFIED on official site: sources are a local news report and 211 BC listing; no powellriver.ca page opened. Confirm with Rec Complex."
+ },
+ "Prince George": {
+  "programs": [
+   {
+    "name": "Leisure Access Program",
+    "kind": "recreation fee assistance",
+    "url": "https://www.princegeorge.ca/node/5327",
+    "one_line": "52 free swim admissions, then 75% off passes and swim lessons (credit up to $50).",
+    "eligibility_hint": "PG resident; income below StatCan low income guidelines, or BC seniors supplement, or agency referral."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. "
+ },
+ "Prince Rupert": {
+  "programs": [
+   {
+    "name": "Recreation Access Program",
+    "kind": "recreation fee assistance",
+    "url": "https://www.princerupert.ca/node/988",
+    "one_line": "90% fee subsidy for children/youth, 50% adults, 50 free admissions per person yearly.",
+    "eligibility_hint": "Based on financial need; first come, first served until budget is used."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. "
+ },
+ "Quesnel": {
+  "programs": [
+   {
+    "name": "Leisure Access Card",
+    "kind": "recreation fee assistance",
+    "url": "https://www.quesnel.ca/node/4489",
+    "one_line": "50% off public swim/skate admissions and memberships, 25% off programs.",
+    "eligibility_hint": "North Cariboo Recreation taxation area residents with limited income; proof of need required."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. Form seen was 2022-23."
+ },
+ "Salmon Arm": {
+  "none_found": true,
+  "searched": [
+   "salmonarm.ca/191/Salmon-Arm-Recreation",
+   "castanetkamloops.net reports on Shuswap Recreation Society"
+  ],
+  "notes": "No low-income access program found; facilities run by Shuswap Recreation Society. Not conclusive."
+ },
+ "Squamish": {
+  "programs": [
+   {
+    "name": "Recreation Access Program (RAP)",
+    "kind": "recreation fee assistance",
+    "url": "https://squamish.ca/assets/000-Recreation-Services/000_Forms/RAP-updated-form_-2024.pdf",
+    "one_line": "50% discount on public swims/skates and registered programs; card valid one year.",
+    "eligibility_hint": "Squamish residents in financial need; household income declared on application."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. "
+ },
+ "Terrace": {
+  "programs": [
+   {
+    "name": "Affordable Recreation Access Program",
+    "kind": "recreation fee assistance (disability/low income)",
+    "url": "https://www.terrace.ca/sites/default/files/2026-06/Affordable%20Recreation%20Access%20Program%20-%20Revised%20June%2022%202026.pdf",
+    "one_line": "50% off drop-in fees and 10-visit, 1- and 3-month memberships.",
+    "eligibility_hint": "Recipients of income assistance, PWD, PPMB, or CPP Disability; family covered for income assistance."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. "
+ },
+ "Vernon": {
+  "none_found": true,
+  "searched": [
+   "vernon.ca Vernon Resident Program pages"
+  ],
+  "notes": "Only the Vernon Resident Program found (residency-based 50% discount), not income or disability based. No low-income program surfaced; not conclusive."
+ },
+ "West Vancouver": {
+  "programs": [
+   {
+    "name": "Recreation Financial Assistance Program (RFAP)",
+    "kind": "recreation fee assistance",
+    "url": "https://westvancouver.ca/parks-recreation/recreation-programs-services/access-services",
+    "one_line": "Discounted program fees and free admissions.",
+    "eligibility_hint": "West Vancouver resident in financial need; interview and tax documents; property assessment limits apply."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. "
+ },
+ "White Rock": {
+  "programs": [
+   {
+    "name": "Leisure Access Program",
+    "kind": "recreation fee assistance",
+    "url": "https://www.whiterockcity.ca/825/Leisure-Access-Program",
+    "one_line": "50% off programs/memberships up to $300/yr, free public skating, 50% off pool passes.",
+    "eligibility_hint": "Permanent White Rock resident under family income limit (about $25,837 for one person)."
+   }
+  ],
+  "notes": "Found via web search result URLs on official domain; pages not individually opened, details from search snippets, verify before use. "
+ },
+ "Williams Lake": {
+  "none_found": true,
+  "searched": [
+   "central-interior-rural.pathwaysbc.ca listing",
+   "cariboord.ca Central Cariboo Recreation"
+  ],
+  "notes": "No income-based access program found; complex owned by Cariboo Regional District, run by city. Not conclusive."
+ }
+}

@@ -1,0 +1,351 @@
+{
+ "Banff": {
+  "programs": [
+   {
+    "name": "Banff Access Program",
+    "kind": "recreation fee assistance + low-income transit pass",
+    "url": "https://banff.ca/963/Banff-Access-Program",
+    "one_line": "Tier 1: 50% off community classes/programs, 90% off Banff-Canmore transit passes; Tier 2: 25% off programs.",
+    "eligibility_hint": "Town of Banff resident 3+ months, household income at/below tier cutoff (Tier 1 single $40,643)."
+   }
+  ],
+  "notes": "Fetched via search snippet of official page; a 2023 release said all residents get free local transit; confirm."
+ },
+ "Beaumont": {
+  "programs": [
+   {
+    "name": "Recreation Inclusion Subsidy",
+    "kind": "recreation fee assistance",
+    "url": "https://www.beaumont.ab.ca/297/Recreation-Subsidy",
+    "one_line": "$150/person/year toward City recreation fees; AISH recipients get free access to applicable programs.",
+    "eligibility_hint": "Beaumont resident who demonstrates inability to pay; AISH recipients can apply."
+   }
+  ],
+  "notes": "Page read directly. Closed for 2026; reopens January 2027. Not tied to FCSS on page."
+ },
+ "Blackfalds": {
+  "programs": [
+   {
+    "name": "Recreation Fee Assistance Program (PASS)",
+    "kind": "recreation fee assistance",
+    "url": "https://irec.wolfcreek.ab.ca/download/108425",
+    "one_line": "Town subsidizes fees for municipal programs, memberships, admissions for individuals and seniors unable to pay.",
+    "eligibility_hint": "Blackfalds resident passing income assessment via FCSS (403-885-6247)."
+   }
+  ],
+  "notes": "Only source is a form hosted on Wolf Creek site (not blackfalds.ca); may be outdated; not confirmed on town site."
+ },
+ "Bonnyville": {
+  "none_found": true,
+  "searched": [
+   "web search of Bonnyville recreation/FCSS subsidy; no town page found"
+  ],
+  "notes": "Only KidSport Bonnyville (non-municipal) surfaced. Town pages not read."
+ },
+ "Brooks": {
+  "programs": [
+   {
+    "name": "Recreation Fee Assistance Program",
+    "kind": "recreation fee assistance",
+    "url": "https://www.brooks.ca",
+    "one_line": "50% off annual recreation membership at JBS Canada Centre and Centennial Regional Arena (per third-party listing).",
+    "eligibility_hint": "Low-income residents of Brooks and County of Newell."
+   }
+  ],
+  "notes": "Only third-party listing (hellodarwin) found; official page not located; intake listed closed. URL is city home, not verified program page."
+ },
+ "Camrose": {
+  "programs": [
+   {
+    "name": "Low-Income Transit Pass funding / transit tokens",
+    "kind": "low-income transit",
+    "url": "https://www.camrose.ca/roads-transportation/public-transit/transit-tokens/",
+    "one_line": "City transit is free; tokens distributed via social agencies; provincial low-income pass funding extended to March 2027.",
+    "eligibility_hint": "Residents in need, via local agencies (per city page)."
+   }
+  ],
+  "notes": "Transit free city-wide per city pages (search snippets). No rec subsidy found; Camrose & District FCSS not checked."
+ },
+ "Chestermere": {
+  "programs": [
+   {
+    "name": "Community Access Program (CAP)",
+    "kind": "recreation fee assistance + low-income transit pass",
+    "url": "https://thecityofchestermere.ca/community-services/cap-registration/",
+    "one_line": "CAP card: discounts at Harmony Health, Genesis Centre, TELUS Spark, plus monthly transit subsidy.",
+    "eligibility_hint": "Low-income Chestermere residents (LICO); AISH accepted as proof of income."
+   }
+  ],
+  "notes": "Page read directly. Renewed each Dec 31."
+ },
+ "Coaldale": {
+  "programs": [
+   {
+    "name": "Fee Assistance Program",
+    "kind": "recreation fee assistance",
+    "url": "https://www.coaldale.ca/node/4178",
+    "one_line": "Assistance for town recreation programs and Shift Community Recreation Centre memberships.",
+    "eligibility_hint": "Town of Coaldale/County of Lethbridge residents under income guidelines (e.g. single under $35,000)."
+   }
+  ],
+  "notes": "Official page returned 403 on direct fetch; details from search snippet of that page. Intake via FCSS (587) 370-8518."
+ },
+ "Cold Lake": {
+  "none_found": true,
+  "searched": [
+   "https://www.coldlake.com/media/ktcdsvoh/197-rc-16-recreation-user-fee-policy.pdf",
+   "https://coldlake.com/en/live/family-and-community-support-services.aspx"
+  ],
+  "notes": "User fee policy mentions subsidy of user groups generally but no income/disability program located. Not fully read."
+ },
+ "Devon": {
+  "programs": [
+   {
+    "name": "Participation Fund (Resident Affordability Program)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.devon.ca/participationfund",
+    "one_line": "Reduces cost of town-run recreation and activities for residents; funding varies with income and household size.",
+    "eligibility_hint": "Pre-approved if on Income Support, AISH, or Alberta health benefits; others may apply."
+   }
+  ],
+  "notes": "Page returned 403 on fetch; details from search snippet of devon.ca. Run through Devon FCSS 780-987-8325."
+ },
+ "Didsbury": {
+  "none_found": true,
+  "searched": [
+   "web search for Didsbury recreation subsidy; nothing found"
+  ],
+  "notes": "Town site not read; absence not conclusive."
+ },
+ "Drayton Valley": {
+  "programs": [
+   {
+    "name": "Recreation Fee Assistance Program (RFAP)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.draytonvalley.ca/recreation-fee-assistance-program/",
+    "one_line": "75% subsidy on aquatic centre and fitness centre programs, passes, lessons, camps.",
+    "eligibility_hint": "Drayton Valley resident with household income below Statistics Canada LICO."
+   }
+  ],
+  "notes": "Page read directly. Page does not state whether 2026 intake is open; call 780-515-4250."
+ },
+ "Edson": {
+  "programs": [
+   {
+    "name": "Leisure Assist (Community Services Fee Assistance Program)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.edson.ca/public/download/files/350852",
+    "one_line": "Up to $150 per person or $450 per family toward town program registration and Leisure Centre admissions.",
+    "eligibility_hint": "Auto-eligible with AISH, Alberta Works income support, GIS; or income below LICO."
+   }
+  ],
+  "notes": "From search snippets of edson.ca documents; documents not fetched; some may be older drafts."
+ },
+ "High River": {
+  "programs": [
+   {
+    "name": "Community Access Program",
+    "kind": "recreation fee assistance",
+    "url": "https://highriver.ca/services/leisure-services/rec-facilities-activity-schedules-and-rates/program-guide-registration",
+    "one_line": "Discounts on many Town programs, activities and support services.",
+    "eligibility_hint": "Residents meeting household income requirements; contact FCSS 403-652-8620."
+   }
+  ],
+  "notes": "From search snippet only; thresholds not seen; URL is the rec program guide page that mentions it."
+ },
+ "Hinton": {
+  "programs": [
+   {
+    "name": "Low Income Recreation Assistance Program (LIRAP)",
+    "kind": "recreation fee assistance",
+    "url": "https://hinton.ca",
+    "one_line": "50% off recreation centre punch passes and monthly passes.",
+    "eligibility_hint": "Income below LICO or on AISH, CPP-Disability, Alberta Income Support; apply via FCSS."
+   },
+   {
+    "name": "Low Income Transit Program (LITP)",
+    "kind": "low-income transit pass",
+    "url": "https://hinton.ca",
+    "one_line": "Reduced-rate monthly or punch-card transit passes; 15 free trips for the lowest incomes.",
+    "eligibility_hint": "Similar to LIRAP; applications at FCSS office only."
+   }
+  ],
+  "notes": "From search snippets of hinton.ca notices (2025); LITP funding period ended Mar 2026, renewal unconfirmed. URLs are site root, exact program pages not captured."
+ },
+ "Innisfail": {
+  "programs": [
+   {
+    "name": "Fee Assistance Program",
+    "kind": "recreation fee assistance",
+    "url": "https://www.mountainviewtoday.ca/innisfail-news/town-willing-to-look-at-new-support-policy-1810034",
+    "one_line": "Up to $200 per eligible resident toward activity fees or memberships; bus passes also qualify (2021 report).",
+    "eligibility_hint": "AISH, unemployment benefits, or income below LICO."
+   }
+  ],
+  "notes": "Only news-media sources (2021); no official town page found; currency unconfirmed. URL is NOT official."
+ },
+ "Lacombe": {
+  "programs": [
+   {
+    "name": "PASS Program (Lacombe & District FCSS)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.lacombe.ca/DocumentCenter/View/2845/Funding-Help-Programs-and-Info-Handout",
+    "one_line": "Up to $100 per child/youth per year for swim lessons, recreation and youth activities.",
+    "eligibility_hint": "Children/youth 0-18 of eligible families via Lacombe & District FCSS 403-782-6637."
+   }
+  ],
+  "notes": "From city handout snippet; children only; run by FCSS."
+ },
+ "Morinville": {
+  "programs": [
+   {
+    "name": "Wellness and Recreation Access Program (WRAP)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.morinville.ca/things-to-do/morinville-leisure-centre/fitness-and-recreation-programs/wellness-and-recreation-access-program/",
+    "one_line": "Up to $250 per person per year toward Leisure Centre memberships, town and FCSS programs.",
+    "eligibility_hint": "Morinville residents under LICO; AISH, Income Support or Seniors Benefits recipients can apply."
+   }
+  ],
+  "notes": "Fetch of that URL gave 404; details from search snippet (two similar morinville.ca URLs surfaced). Run via Morinville FCSS 780-939-4361."
+ },
+ "Olds": {
+  "none_found": true,
+  "searched": [
+   "web search olds.ca for recreation subsidy; olds.ca/fcss"
+  ],
+  "notes": "Only seniors housekeeping subsidy (65+) via Community Connection Centre found; not clearly municipal rec/transit. Old news snippet mentioned 30% discount, unverified."
+ },
+ "Peace River": {
+  "programs": [
+   {
+    "name": "Community Scholarship (youth recreation funding)",
+    "kind": "recreation fee assistance",
+    "url": "https://peaceriver.ca/playsports",
+    "one_line": "Up to $100 per calendar year for sports, recreation and culture for children 17 and under.",
+    "eligibility_hint": "Peace River resident children; apparently no income test."
+   }
+  ],
+  "notes": "From search snippet; not income-based or disability-specific; included as borderline."
+ },
+ "Ponoka": {
+  "none_found": true,
+  "searched": [
+   "https://ponoka.ca/p/recreation-programming (via search)"
+  ],
+  "notes": "Only free rec pass for seniors 90+ found (age-based, not income/disability)."
+ },
+ "Redcliff": {
+  "none_found": true,
+  "searched": [
+   "web search only; no Redcliff pages surfaced"
+  ],
+  "notes": "Town site not read; absence not conclusive."
+ },
+ "Rocky Mountain House": {
+  "programs": [
+   {
+    "name": "Recreation Facility Access Program (RFAP)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.rockymtnhouse.com/p/rfap",
+    "one_line": "Access Card: 50% off drop-in admissions, program registrations and memberships.",
+    "eligibility_hint": "Household income at/below threshold (single $35,000; family of four $50,000); apply at Clearwater Regional FCSS."
+   }
+  ],
+  "notes": "From search snippet of town page; thresholds dated Jan 2025."
+ },
+ "Slave Lake": {
+  "programs": [
+   {
+    "name": "LEAP (Leisure Economic Assistance Program)",
+    "kind": "recreation fee assistance",
+    "url": "https://slavelake.ca/2339/Community-Programs",
+    "one_line": "Annual fee-assistance credits for admissions, punch cards or memberships; older page: 50% off courses.",
+    "eligibility_hint": "Town of Slave Lake or MD Lesser Slave River resident with income under LICO (single $31,264)."
+   }
+  ],
+  "notes": "New Bylaw 10-2026 reported only by a third-party site (fipa.bc.ca); official page snippet shows older terms; confirm."
+ },
+ "Stettler": {
+  "none_found": true,
+  "searched": [
+   "web search; Stettler rec rates 2018 article"
+  ],
+  "notes": "Only KidSport Stettler (non-municipal). Town site not read."
+ },
+ "Strathmore": {
+  "programs": [
+   {
+    "name": "Community Access Card (FCSS)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.strathmore.ca/living-here/family-community-support-services/resources-financial-support/community-access-card/",
+    "one_line": "10/25/50/75% off entry fees or memberships at Aquatic Centre and arenas; not lessons or classes.",
+    "eligibility_hint": "Strathmore residents; discount tier by household income and family size (Policy 5104)."
+   }
+  ],
+  "notes": "Page read directly. Aquatic Centre rates page also lists a Person with Disability rate."
+ },
+ "Sylvan Lake": {
+  "programs": [
+   {
+    "name": "You Can Play Too! subsidy",
+    "kind": "recreation fee assistance",
+    "url": "https://www.sylvanlake.ca/en/your-government/grant-programs.aspx",
+    "one_line": "Subsidy up to $200 per person per year toward town program participation.",
+    "eligibility_hint": "Sylvan Lake residents qualifying by income; proof such as CRA notice of assessment."
+   },
+   {
+    "name": "Sylvan Link Card",
+    "kind": "recreation fee assistance + discounts",
+    "url": "https://www.sylvanlake.ca/en/public-services/wellness-and-community-connections-wcc.aspx",
+    "one_line": "Reduced rates on recreation, transportation and participating businesses for low-income residents.",
+    "eligibility_hint": "Income requirements on the Wellness & Community Connections page (not captured)."
+   }
+  ],
+  "notes": "From search snippets; some pages may be dated."
+ },
+ "Taber": {
+  "programs": [
+   {
+    "name": "Fee Assistance Program",
+    "kind": "recreation fee assistance",
+    "url": "https://www.taber.ca/town-services/recreation/fee-assistance",
+    "one_line": "50% off Community Centre drop-ins, kids day camps, Aquafun memberships, drop-ins and lessons.",
+    "eligibility_hint": "Town/MD of Taber residents under income limits (e.g. single $35,000, four $50,000); via FCSS."
+   }
+  ],
+  "notes": "Page returned 403; details from search snippet; thresholds from a 2021 sheet."
+ },
+ "Vegreville": {
+  "none_found": true,
+  "searched": [
+   "web search; only KidSport Vegreville"
+  ],
+  "notes": "Town site not read."
+ },
+ "Wainwright": {
+  "none_found": true,
+  "searched": [
+   "web search; only KidSport Wainwright"
+  ],
+  "notes": "Town site not read."
+ },
+ "Wetaskiwin": {
+  "none_found": true,
+  "searched": [
+   "wetaskiwin.ca search results incl. Manluk Centre admission pages"
+  ],
+  "notes": "No fee assistance page surfaced; recreation@wetaskiwin.ca 780-361-4444. Absence not conclusive."
+ },
+ "Whitecourt": {
+  "programs": [
+   {
+    "name": "Recreation fee assistance (Allan & Jean Millar Centre)",
+    "kind": "recreation fee assistance",
+    "url": "https://whitecourt.ca/play/allan-jean-millar-centre/facility-admission-information",
+    "one_line": "Approved applicants pay a reduced portion of membership fees at Millar Centre facilities.",
+    "eligibility_hint": "Residents of Whitecourt or Woodlands County (Districts 2,3,4) meeting financial criteria."
+   }
+  ],
+  "notes": "From search snippets (2025 flyer); thresholds not seen."
+ }
+}

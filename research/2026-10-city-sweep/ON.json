@@ -1,0 +1,458 @@
+{
+ "Ajax": {
+  "programs": [
+   {
+    "name": "Town of Ajax Recreation Financial Assistance",
+    "kind": "recreation fee assistance",
+    "url": "https://durham.ca/en/health-and-wellness/low-cost-and-subsidized-recreation-programs.aspx",
+    "one_line": "Fee assistance options for Town of Ajax recreation programs and memberships.",
+    "eligibility_hint": "Ajax residents; based on eligibility (income). Details on Town page not read."
+   },
+   {
+    "name": "Durham Region Transit Assistance Program (TAP)",
+    "kind": "low-income transit pass",
+    "url": "https://www.durhamregiontransit.com/en/fares-and-passes/resources/TAP_Information_February-2025.pdf",
+    "one_line": "Unlimited monthly DRT travel at a reduced price via PRESTO; Feb 2025 sheet lists $52.22 monthly.",
+    "eligibility_hint": "Customers currently receiving social assistance in Durham Region (Ontario Works; ODSP)."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. Ajax's own recreation page URL not confirmed; link is Durham Region directory listing. Third-party rebate figures ignored as unverified. Region of Durham also gives Ontario Works clients a Recreation Program Card via caseworker (durham.ca low-cost recreation page). "
+ },
+ "Belleville": {
+  "programs": [
+   {
+    "name": "Recreation Fee Assistance",
+    "kind": "recreation fee assistance",
+    "url": "https://www.belleville.ca/learn-and-play/recreation/recreation-guide-and-registration-information/recreation-fee-assistance/",
+    "one_line": "25%, 50% or 75% off camps, lessons and gym/swim/skate visits based on household income.",
+    "eligibility_hint": "Household-income based; subsidy expires June 30 each year."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. No income-based transit pass found; Belleville Transit has disability/senior fare categories ($85 monthly vs $90 adult, Dec 2025 report) but those are not income-tested."
+ },
+ "Brantford": {
+  "programs": [
+   {
+    "name": "Recreation subsidy (City of Brantford)",
+    "kind": "recreation fee assistance",
+    "url": "https://info-bhn.cioc.ca/record/SIM0025",
+    "one_line": "Income-based subsidy for city recreation programs for children and youth.",
+    "eligibility_hint": "Children and youth up to age 17, household income based."
+   }
+  ],
+  "notes": "Only a community directory listing was found; City of Brantford's own page not retrieved, so age limit and thresholds unconfirmed. No Brantford Transit low-income/disability pass found. Neighbouring County of Brant (brant.ca LIFE program) is separate and not the City."
+ },
+ "Burlington": {
+  "programs": [
+   {
+    "name": "Halton Region SPLIT (Subsidized Passes for Low-Income Transit)",
+    "kind": "low-income transit pass",
+    "url": "https://burlington.ca/en/transit/low-income-pass.aspx",
+    "one_line": "Region of Halton subsidy on local transit passes for low-income residents; Burlington Transit passes free ages 13-64.",
+    "eligibility_hint": "Must be approved for Halton Region SPLIT program; low income; Halton address and proof of status."
+   }
+  ],
+  "notes": "Run by Halton Region, delivered via Burlington Transit. City recreation fee assistance not found in searches (Halton SPLIT / Region programs apply). Seniors 65+ ride free with PRESTO."
+ },
+ "Chatham-Kent": {
+  "programs": [
+   {
+    "name": "Affordable Pass (Chatham-Kent Transit)",
+    "kind": "low-income transit pass",
+    "url": "https://www.chatham-kent.ca/transit/fares/Pages/Affordable-Pass.aspx",
+    "one_line": "Discounted monthly pass (about $41.23) covering urban and specialized transit in Chatham and Wallaceburg.",
+    "eligibility_hint": "Household income at or below Statistics Canada low-income measure for family size."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. No municipal recreation subsidy found. Family Service Kent adVANtage accessible transport is a non-municipal agency service."
+ },
+ "Clarington": {
+  "programs": [
+   {
+    "name": "Fee Assistance Program (Clarington)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.clarington.net/parks-and-recreation/financial-assistance/",
+    "one_line": "$300 credit per person toward Community Services activities or memberships; $200 if within 25% of LICO.",
+    "eligibility_hint": "Receiving Ontario Works or ODSP, or income at/near Statistics Canada LICO; approval needed before registering."
+   },
+   {
+    "name": "Durham Region Transit Assistance Program (TAP)",
+    "kind": "low-income transit pass",
+    "url": "https://www.durhamregiontransit.com/en/fares-and-passes/resources/TAP_Information_February-2025.pdf",
+    "one_line": "Unlimited monthly DRT travel at a reduced price via PRESTO; Feb 2025 sheet lists $52.22 monthly.",
+    "eligibility_hint": "Customers currently receiving social assistance in Durham Region (Ontario Works; ODSP)."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. Two Clarington pages differ slightly on what the credit covers; thresholds may be outdated. Region of Durham also gives Ontario Works clients a Recreation Program Card via caseworker (durham.ca low-cost recreation page). "
+ },
+ "Cornwall": {
+  "programs": [
+   {
+    "name": "Fee Assistance in Recreation (FAIR)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.cornwall.ca/en/recreation-community-supports/recreation-and-sports/fee-assistance-in-recreation/",
+    "one_line": "City covers 75% of eligible recreation costs, up to $300 a year, incl. pool memberships and public skating.",
+    "eligibility_hint": "Cornwall resident 18+, family income at or below Statistics Canada LICO."
+   },
+   {
+    "name": "Community Bus Pass",
+    "kind": "low-income transit pass",
+    "url": "https://www.cornwall.ca/en/live-here/transit-pass-programs.aspx",
+    "one_line": "$48 unlimited monthly pass on conventional and community bus; 175 passes, first come first served.",
+    "eligibility_hint": "Receiving ODSP or Ontario Works; documentation each purchase."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. No general low-income pass for people outside ODSP/OW found."
+ },
+ "Greater Sudbury": {
+  "could_not_read": true,
+  "searched": [
+   "https://www.greatersudbury.ca/living/transit/fares1",
+   "https://www.greatersudbury.ca/live/transit/fares-and-passes/bus-passes",
+   "https://www.greatersudbury.ca/city-hall/news-and-public-notices/2017/greater-sudbury-transit-fare-changes-take-effect-february-1/"
+  ],
+  "notes": "A 2016-2017 city release described a trial Affordable Transit Pass (half-price 31-day pass, employed adults 18-64 at low-income threshold); could not confirm it is still offered. Fares page lists concession fares incl. disability pensioners (proof required). No Leisure Access / recreation subsidy found. Current pages not verified."
+ },
+ "Guelph": {
+  "programs": [
+   {
+    "name": "Fee Assistance in Recreation (FAIR)",
+    "kind": "recreation fee assistance",
+    "url": "https://guelph.ca/how-can-we-help-you/fee-assistance-subsidy",
+    "one_line": "Up to $250 per calendar year toward City recreation programs for adults and seniors.",
+    "eligibility_hint": "Family income before tax at or below Statistics Canada LICO; Guelph resident."
+   },
+   {
+    "name": "Affordable Bus Pass Program",
+    "kind": "low-income transit pass",
+    "url": "https://guelph.ca/how-can-we-help-you/fee-assistance-subsidy",
+    "one_line": "Discounted Guelph Transit pass for low-income residents, sliding scale.",
+    "eligibility_hint": "Family income at or below LICO for family size; UofG students excluded."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. Youth 18 and under are referred to Children's Foundation Free to Grow. Pass pricing from 2022 news; verify current."
+ },
+ "Kingston": {
+  "programs": [
+   {
+    "name": "Municipal Fee Assistance Program: Affordable Transit Pass",
+    "kind": "low-income transit pass",
+    "url": "https://www.cityofkingston.ca/MFAP",
+    "one_line": "Discounted monthly Kingston Transit pass (about $20 adult, $14.88 youth/senior).",
+    "eligibility_hint": "Low-income households; annual MFAP application with proof of income and residence."
+   },
+   {
+    "name": "SPARK (Subsidy Program for Affordable Recreation in Kingston)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.cityofkingston.ca/MFAP",
+    "one_line": "Up to $300 a year per eligible person toward City recreation; free fitness, skates, swims.",
+    "eligibility_hint": "Low-income Kingston residents via MFAP application; first-come, first-served funding."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. A city notice said 2025 SPARK funds were fully used; check current-year availability."
+ },
+ "Milton": {
+  "programs": [
+   {
+    "name": "Financial Assistance (Town of Milton recreation)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.milton.ca/en/arts-and-recreation/financial-assistance.aspx",
+    "one_line": "Up to $200 per person per year toward Town recreation programs (a directory listing says $300).",
+    "eligibility_hint": "Milton residents with gross household income below LICO; not eligible if receiving Halton Region funds."
+   },
+   {
+    "name": "Halton Region SPLIT (Subsidized Passes for Low-Income Transit)",
+    "kind": "low-income transit pass",
+    "url": "https://www.halton.ca",
+    "one_line": "Region of Halton subsidy on local transit passes for low-income residents; Burlington Transit passes free ages 13-64.",
+    "eligibility_hint": "Must be approved for Halton Region SPLIT program; low income; Halton address and proof of status."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. Amount conflicts between town page and directory. Halton SPLIT URL is the Region's home page; specific page not opened."
+ },
+ "Niagara Falls": {
+  "programs": [
+   {
+    "name": "Municipal Fee Assistance",
+    "kind": "recreation fee assistance",
+    "url": "https://niagarafalls.ca/recreation-culture-and-community/recreation-programs-and-facilities/municipal-fee-assistance/",
+    "one_line": "50% off registered programs for children 17 and under; free Activity Pass for open swims and skates for families.",
+    "eligibility_hint": "Niagara Falls resident, household income below LICO; reapply annually by end of January."
+   },
+   {
+    "name": "Niagara Transit Benefit Pass (Niagara Region)",
+    "kind": "low-income transit pass",
+    "url": "https://nrtransit.ca/fares/transit-benefit-pass/",
+    "one_line": "Discounted $50 monthly bus pass.",
+    "eligibility_hint": "Ontario Works or ODSP recipients, or low-income applicants; full-time post-secondary students not eligible."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. Income limits shown on city page may be dated. Transit pass is Niagara Region-run."
+ },
+ "North Bay": {
+  "could_not_read": true,
+  "searched": [
+   "web searches for North Bay recreation fee assistance / North Bay Transit reduced fare returned no cityofnorthbay.ca pages"
+  ],
+  "notes": "Search index did not surface any City of North Bay page; absence not confirmed. Needs a manual check of cityofnorthbay.ca."
+ },
+ "Oakville": {
+  "programs": [
+   {
+    "name": "Affordable Access (Recreation Connection Subsidy)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.oakville.ca/parks-recreation-culture/programs-activities/affordable-access/",
+    "one_line": "$400 per person credit valid 12 months for Town recreation programs.",
+    "eligibility_hint": "Based on household net income and size; apply in person with proof of residency."
+   },
+   {
+    "name": "Halton Region SPLIT (Subsidized Passes for Low-Income Transit)",
+    "kind": "low-income transit pass",
+    "url": "https://halton.cioc.ca/record/OAK0054",
+    "one_line": "Region of Halton subsidy on local transit passes for low-income residents; Burlington Transit passes free ages 13-64.",
+    "eligibility_hint": "Must be approved for Halton Region SPLIT program; low income; Halton address and proof of status."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. Older form said $300. SPLIT link is a community directory; Region page not opened."
+ },
+ "Oshawa": {
+  "programs": [
+   {
+    "name": "Recreation Fee Assistance Program",
+    "kind": "recreation fee assistance",
+    "url": "https://www.oshawa.ca/explore-play/recreation/assistance-and-support",
+    "one_line": "Subsidy (about 75%) toward City recreation programs and memberships for low-income residents.",
+    "eligibility_hint": "Net family income no more than 25% above LICO; Ontario Works via Region."
+   },
+   {
+    "name": "Durham Region Transit Assistance Program (TAP)",
+    "kind": "low-income transit pass",
+    "url": "https://www.durhamregiontransit.com/en/fares-and-passes/resources/TAP_Information_February-2025.pdf",
+    "one_line": "Unlimited monthly DRT travel at a reduced price via PRESTO; Feb 2025 sheet lists $52.22 monthly.",
+    "eligibility_hint": "Customers currently receiving social assistance in Durham Region (Ontario Works; ODSP)."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. Subsidy detail partly from Access to Recreation Policy PDF. Region of Durham also gives Ontario Works clients a Recreation Program Card via caseworker (durham.ca low-cost recreation page). "
+ },
+ "Peterborough": {
+  "programs": [
+   {
+    "name": "Recreation Subsidy",
+    "kind": "recreation fee assistance",
+    "url": "https://www.peterborough.ca/recsubsidy",
+    "one_line": "Subsidy of $100 or $200 per person per year toward City recreation registration.",
+    "eligibility_hint": "City of Peterborough resident; low-income by household size, or on social assistance."
+   },
+   {
+    "name": "Subsidized City Transit pass (Ontario Works / ODSP)",
+    "kind": "low-income transit pass",
+    "url": "https://peterborough.ca/recreation-culture-social-services/social-services/ontario-works/transportation-help",
+    "one_line": "Subsidized 30-day transit pass (about $38).",
+    "eligibility_hint": "Ontario Works or ODSP recipients."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. No general low-income transit discount found; transit page not directly confirmed."
+ },
+ "Pickering": {
+  "programs": [
+   {
+    "name": "Financial Assistance (Pickering recreation)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.pickering.ca/en/living/FinancialAssistance.aspx",
+    "one_line": "Subsidy on registration for City recreation programs and memberships.",
+    "eligibility_hint": "Pickering residents with financial need; most recent Notice of Assessment required; ODSP/OW help at Registration Desk."
+   },
+   {
+    "name": "Durham Region Transit Assistance Program (TAP)",
+    "kind": "low-income transit pass",
+    "url": "https://www.durhamregiontransit.com/en/fares-and-passes/resources/TAP_Information_February-2025.pdf",
+    "one_line": "Unlimited monthly DRT travel at a reduced price via PRESTO; Feb 2025 sheet lists $52.22 monthly.",
+    "eligibility_hint": "Customers currently receiving social assistance in Durham Region (Ontario Works; ODSP)."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. DRT TAP price/status from 2019-2025 sources; verify. Region of Durham also gives Ontario Works clients a Recreation Program Card via caseworker (durham.ca low-cost recreation page). "
+ },
+ "Sarnia": {
+  "programs": [
+   {
+    "name": "Reduced-rate bus passes and tickets via Inn of the Good Shepherd",
+    "kind": "low-income transit pass",
+    "url": "https://www.sarnia.ca/living-here/getting-around/sarnia-transit/transit-fares/",
+    "one_line": "City fare page lists the Inn as outlet for discounted passes and tickets for low-income people.",
+    "eligibility_hint": "Low-income individuals; call 519-344-1746 for details."
+   },
+   {
+    "name": "Annual CNIB Pass",
+    "kind": "paratransit",
+    "url": "https://www.sarnia.ca/2025-transit-fare-fees",
+    "one_line": "Discounted annual Sarnia Transit pass (about $36).",
+    "eligibility_hint": "Valid CNIB card required."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. No City recreation fee assistance found. CNIB price differs on the page ($36 vs $35.25). Transit page directory entry names the Inn as the provider, so the discount may be agency-run."
+ },
+ "Sault Ste. Marie": {
+  "programs": [
+   {
+    "name": "Half-price social equity transit pass (Sault Transit)",
+    "kind": "low-income transit pass",
+    "url": "https://sootoday.com/local-news/free-bus-rides-replaced-by-half-price-social-equity-passes-7577223",
+    "one_line": "Half-price Sault Transit pass for Ontario Works and ODSP recipients.",
+    "eligibility_hint": "Ontario Works and ODSP recipients."
+   }
+  ],
+  "notes": "Only local news found; official city/Sault Transit page NOT read, so url is a news article and details/status unverified (about 2023-24). No recreation fee assistance found."
+ },
+ "St. Catharines": {
+  "programs": [
+   {
+    "name": "Fee Assistance in Recreation (FAIR)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.stcatharines.ca/community-services-and-supports/fee-assistance-in-recreation/",
+    "one_line": "50% off registered programs, individual swim passes and Older Adult Centre memberships.",
+    "eligibility_hint": "St. Catharines resident, household income below before-tax LICO for family size."
+   },
+   {
+    "name": "Niagara Transit Benefit Pass (Niagara Region)",
+    "kind": "low-income transit pass",
+    "url": "https://nrtransit.ca/fares/transit-benefit-pass/",
+    "one_line": "Discounted $50 monthly bus pass.",
+    "eligibility_hint": "Ontario Works or ODSP recipients, or low-income applicants; full-time post-secondary students not eligible."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. Application form found was dated July 2022. OW and ODSP recipients qualify automatically for the Niagara pass from July 1, 2025."
+ },
+ "Stratford": {
+  "could_not_read": true,
+  "searched": [
+   "https://calendar.stratford.ca/meetings/Detail/2023-06-13-1630-Social-Services-Sub-committee/3d62716a-8df9-4168-956c-b0260120c7fb"
+  ],
+  "notes": "2023 committee minutes mention low-income families being able to buy bus passes at a reduced rate through the City and social services giving passes; no official program page found or read. Needs manual check."
+ },
+ "Thunder Bay": {
+  "programs": [
+   {
+    "name": "Affordable Access to Recreation and Transit pilot",
+    "kind": "recreation fee assistance and low-income transit pass",
+    "url": "https://www.thunderbay.ca/en/news/city-to-accept-applications-for-2024-affordable-access-to-recreation-transit-pilot-as-of-nov-1.aspx",
+    "one_line": "$350 recreation credit for adults 18+, and half-price adult monthly bus pass for ages 25-59.",
+    "eligibility_hint": "Thunder Bay resident at or below after-tax LICO; not already on OW/ODSP transit help (for transit part)."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. Three-year pilot run with Lakehead Social Planning Council (lspc.ca); a listing from April 2026 says intake closed; confirm."
+ },
+ "Timmins": {
+  "could_not_read": true,
+  "searched": [
+   "web search for Timmins recreation fee assistance / transit low income; only a community directory listing for Leisure Services found"
+  ],
+  "notes": "No official timmins.ca page surfaced. Absence not confirmed. Needs manual check."
+ },
+ "Welland": {
+  "programs": [
+   {
+    "name": "Wellness for All",
+    "kind": "recreation fee assistance",
+    "url": "https://www.welland.ca/community-and-recreation/welland-community-centre/wellness-for-all/",
+    "one_line": "Funding for residents with limited finances to join City recreation and culture programs.",
+    "eligibility_hint": "Welland resident with financial need; application and interview."
+   },
+   {
+    "name": "Niagara Transit Benefit Pass (Niagara Region)",
+    "kind": "low-income transit pass",
+    "url": "https://nrtransit.ca/fares/transit-benefit-pass/",
+    "one_line": "Discounted $50 monthly bus pass.",
+    "eligibility_hint": "Ontario Works or ODSP recipients, or low-income applicants; full-time post-secondary students not eligible."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. Third-party listing says intake closed; city page does not. Wellness for All is donation-matched fund."
+ },
+ "Wellesley": {
+  "programs": [
+   {
+    "name": "Affordable Transit Program (Region of Waterloo / GRT)",
+    "kind": "low-income transit pass",
+    "url": "https://www.grt.ca/en/fares-passes/affordable-transit-program.aspx",
+    "one_line": "About 55 percent off GRT fare products for approved low-income households.",
+    "eligibility_hint": "18+, Region of Waterloo resident, not full-time student, household income under limit."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. Regional program; township's own recreation subsidy not found (Wellesley.ca grants page is for non-profits; property-tax relief for low-income seniors/disabled persons was mentioned at wellesley.ca/living-here/grants-and-special-assistance but not read). Service in the townships is GRT regional/rural, coverage not checked."
+ },
+ "Whitby": {
+  "programs": [
+   {
+    "name": "Access Program (Subsidized Programs)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.whitby.ca/subsidy",
+    "one_line": "Subsidy for Town of Whitby recreation programs; 55+ membership for approved seniors.",
+    "eligibility_hint": "Whitby residents with financial need; application to subsidy@whitby.ca."
+   },
+   {
+    "name": "Durham Region Transit Assistance Program (TAP)",
+    "kind": "low-income transit pass",
+    "url": "https://www.durhamregiontransit.com/en/fares-and-passes/resources/TAP_Information_February-2025.pdf",
+    "one_line": "Unlimited monthly DRT travel at a reduced price via PRESTO; Feb 2025 sheet lists $52.22 monthly.",
+    "eligibility_hint": "Customers currently receiving social assistance in Durham Region (Ontario Works; ODSP)."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. Policy last revised May 2020. Region of Durham also gives Ontario Works clients a Recreation Program Card via caseworker (durham.ca low-cost recreation page). "
+ },
+ "Wilmot": {
+  "programs": [
+   {
+    "name": "Financial Assistance Program (Township of Wilmot)",
+    "kind": "recreation fee assistance",
+    "url": "https://www.wilmot.ca/township-office/budget-and-finance/financial-assistance/",
+    "one_line": "Credits toward recreation fees, up to $200 per participant per calendar year per one page.",
+    "eligibility_hint": "Wilmot resident 6+ months; household income chart; proof of income and residency."
+   },
+   {
+    "name": "Affordable Transit Program (Region of Waterloo / GRT)",
+    "kind": "low-income transit pass",
+    "url": "https://www.grt.ca/en/fares-passes/affordable-transit-program.aspx",
+    "one_line": "About 55 percent off GRT fare products for approved low-income households.",
+    "eligibility_hint": "18+, Region of Waterloo resident, not full-time student, household income under limit."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. Two Wilmot pages conflict (children under 14 vs individuals; $2,500 cap vs $200 per participant)."
+ },
+ "Woodstock": {
+  "programs": [
+   {
+    "name": "Fee Assistance in Recreation (FAIR)",
+    "kind": "recreation fee assistance and low-income transit pass",
+    "url": "https://www.cityofwoodstock.ca/recreation-culture/recreation-woodstock/fee-assistance-in-recreation-program-fair/",
+    "one_line": "Recreation credit ($200/yr under 18, $50/yr 18+) and 50% off city bus passes in 3-month credits.",
+    "eligibility_hint": "Woodstock resident with family income below LICO for family size."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. LICO figures differ between two city pages."
+ },
+ "Woolwich": {
+  "programs": [
+   {
+    "name": "Recreation financial assistance and Co-operative Program",
+    "kind": "recreation fee assistance",
+    "url": "https://www.woolwich.ca/explore-play/recreation-programs/assistance-programs/",
+    "one_line": "Confidential assessment for help with swim, skate, fitness fees; Co-operative Program gives 10-visit pass.",
+    "eligibility_hint": "Woolwich residents; adults 18+ on low income for Co-operative Program."
+   },
+   {
+    "name": "PAL card (Personal Assistance for Leisure Activities)",
+    "kind": "other municipal disability support",
+    "url": "https://www.woolwich.ca/explore-play/recreation-programs/assistance-programs/",
+    "one_line": "Disability leisure access card program, per a directory summary.",
+    "eligibility_hint": "People with disabilities; details not confirmed."
+   },
+   {
+    "name": "Affordable Transit Program (Region of Waterloo / GRT)",
+    "kind": "low-income transit pass",
+    "url": "https://www.grt.ca/en/fares-passes/affordable-transit-program.aspx",
+    "one_line": "About 55 percent off GRT fare products for approved low-income households.",
+    "eligibility_hint": "18+, Region of Waterloo resident, not full-time student, household income under limit."
+   }
+  ],
+  "notes": "Details come from web-search summaries of the official pages; the pages themselves were not opened directly. PAL card and Co-operative Program details from a summary of the township page and a third-party listing; confirm."
+ }
+}
