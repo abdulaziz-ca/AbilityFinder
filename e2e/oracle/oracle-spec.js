@@ -115,10 +115,12 @@ const BASE_PERSONA = {
 /* Default community per province, chosen so it carries no municipal program of
    its own — a persona should never satisfy a city gate it did not ask for. Both
    are real entries in CITIES_BY_PROVINCE. */
-const DEFAULT_CITY = { AB: "Camrose", BC: "Nanaimo", ON: "Kingston" };
+// 2026-10-17: Nanaimo and Kingston gained municipal records, so the defaults moved
+// to Fort St. John and Timmins (no local record; city-sweep "none found" / unreadable).
+const DEFAULT_CITY = { AB: "Camrose", BC: "Fort St. John", ON: "Timmins" };
 
 /* Cities used to violate a city gate: same province, different community. */
-const OTHER_CITY = { AB: "Wetaskiwin", BC: "Prince George", ON: "Guelph" };
+const OTHER_CITY = { AB: "Wetaskiwin", BC: "Williams Lake", ON: "Guelph" };
 
 /* --------------------------------------------------------------------------
    FRAGMENTS
@@ -314,6 +316,11 @@ const GATES = {
   /* ------------------------------------------------------ BC municipalities */
   vancouver: municipality("Vancouver", "BC"),
   surrey: municipality("Surrey", "BC"),
+  abbotsford: municipality("Abbotsford", "BC"),
+  mapleRidge: municipality("Maple Ridge", "BC"),
+  nanaimo: municipality("Nanaimo", "BC"),
+  newWestminster: municipality("New Westminster", "BC"),
+  princeGeorge: municipality("Prince George", "BC"),
   burnaby: municipality("Burnaby", "BC"),
   richmondbc: municipality("Richmond", "BC"),
   victoria: municipality("Victoria", "BC"),
@@ -355,6 +362,46 @@ const GATES = {
     evidence: "answers",
     satisfy: { set: { income: "low" } },
     violations: [{ name: "moderate income: low income, OW or ODSP not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  abbotsfordPrcIncome: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  mapleRidgeIncome: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  nanaimoLeapRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  newWestRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  princeGeorgeIncome: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  physicianConfirmedDisability: {
+    evidence: "answers",
+    satisfy: { set: { disabilityVerified: "yes" } },
+    violations: [{ name: "not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" }],
+  },
+  mapleRidgeDisabilityProof: {
+    evidence: "answers",
+    satisfy: { set: { disabilityVerified: "yes" } },
+    violations: [{ name: "not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" }],
+  },
+  nanaimoNotStudent: {
+    evidence: "answers",
+    satisfy: { drop: { situation: ["student"] } },
+    violations: [{ name: "is a post-secondary student", fragment: { add: { situation: ["student"] } }, expect: "no" }],
   },
   kingstonMfapIncome: {
     evidence: "answers",
@@ -893,6 +940,13 @@ const PROGRAM_BEST_CASE = {
   "niagara-transit-benefit-pass":                  "ready",
   "kingston-affordable-transit-pass":              "ready",
   "halton-split":                                  "ready",
+  "abbotsford-prc-subsidy":                        "ready",
+  "abbotsford-specialized-access":                 "ready",
+  "maple-ridge-access-pass-financial":             "ready",
+  "maple-ridge-access-pass-disability":            "ready",
+  "nanaimo-leap":                                  "ready",
+  "new-westminster-financial-assistance":          "ready",
+  "prince-george-lap":                             "ready",
   "brampton-activeassist":                         "ready",
   "mississauga-activeassist":                      "ready",
   "ottawa-hand-in-hand":                           "ready",

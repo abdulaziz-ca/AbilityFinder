@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 221 links. The monitor checks a bounded rotating batch every
+// 226 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -808,6 +808,31 @@ export const LINKS = [
   {
     "url": "https://www.halton.ca/For-Residents/Employment-and-Financial-Assistance/Subsidized-Passes-for-Low-Income-Transit-(SPLIT)",
     "label": "Halton SPLIT transit subsidy (Burlington, Oakville, Milton) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.abbotsford.ca/node/10757",
+    "label": "PRC Subsidy Program (Abbotsford) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://mapleridge.ca/1465/Financial-Access",
+    "label": "Access Pass, Financial (Maple Ridge) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://nanaimo.ca/parks-recreation-culture/recreation-facilities-schedules/leap-(leisure-economic-access-pass)",
+    "label": "LEAP, Leisure Economic Access Pass (Nanaimo) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.newwestcity.ca/parks-and-recreation/access-and-inclusion/sb_expander_articles/973.php",
+    "label": "Financial Assistance Program (New Westminster) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princegeorge.ca/node/5327",
+    "label": "Leisure Access Program (Prince George) — apply",
     "kind": "apply"
   },
   {

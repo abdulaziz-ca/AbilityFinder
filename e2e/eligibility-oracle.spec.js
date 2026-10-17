@@ -188,8 +188,8 @@ test.describe("eligibility oracle", () => {
     cases.forEach((c, i) => expect.soft(results[i].status, c.id).toBe(PROGRAM_NO_CONFIRMATION[c.id]));
     // 44/90 since 2026-10-16: the LD assessment bursary's documentation gate
     // became a school-referral check (research/2026-10-site-audit/G3-RULES.md).
-    // 47 since 2026-10-17: Niagara Transit Benefit Pass, Kingston Affordable Transit Pass and Halton SPLIT added.
-    expect(results.filter(r => r.status === "ready")).toHaveLength(47);
+    // 54 since 2026-10-17: three Ontario transit programs and seven B.C. recreation programs added.
+    expect(results.filter(r => r.status === "ready")).toHaveLength(54);
     expect(results.filter(r => r.status === "almost")).toHaveLength(90);
   });
 

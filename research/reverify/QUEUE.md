@@ -1,9 +1,9 @@
 # Benefit re-verification queue
 
 Generated: 2026-10-17  
-Records: 137  
+Records: 144  
 Inherited: 39  
-Own-date: 98  
+Own-date: 105  
 Oldest: 2026-07 (108 days)
 
 Month-only ages use the first day of the month, not an asserted verification day. Priority = age + 60 inherited + 30 dollar figures. This queue never changes facts.
@@ -109,41 +109,48 @@ Month-only ages use the first day of the month, not an asserted verification day
 | 97 | home-accessibility-tax-credit | Home Accessibility Tax Credit (HATC) | 2026-10 | false | 16 | https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-31285-home-accessibility-expenses.html |
 | 98 | lethbridge-fee-assistance | Lethbridge Fee Assistance Program | 2026-10 | false | 16 | https://www.lethbridge.ca/community-services-supports/community-social-development-csd/fee-assistance-program/ |
 | 99 | lloydminster-recreation-access | Lloydminster Recreation Access Program | 2026-10 | false | 16 | https://www.lloydminster.ca/recreation-culture-community/social-programs-and-services/recreation-access-program/ |
-| 100 | medicinehat-fair-entry | Medicine Hat Fair Entry | 2026-10 | false | 16 | https://www.medicinehat.ca/community-support-culture-safety/community-support/fair-entry/<br>https://forms.medicinehat.ca/Community-Development/Fair-Entry-Application |
-| 101 | niagara-transit-benefit-pass | Niagara Transit Benefit Pass | 2026-10 | false | 16 | https://nrtransit.ca/fares/transit-benefit-pass/ |
-| 102 | on-parking-permit | Accessible Parking Permit (Ontario) | 2026-09 | false | 46 | https://www.ontario.ca/page/get-accessible-parking-permit |
-| 103 | passport-program | Passport program (adults with a developmental disability) | 2026-10 | false | 16 | https://www.ontario.ca/page/passport-program-adults-developmental-disability |
-| 104 | richmond-rec-fee-subsidy | Recreation Fee Subsidy Program (RFSP) | 2026-10 | false | 16 | https://www.richmond.ca/culture/social/accessibility/subsidies/recreation-fee.htm |
-| 105 | saanich-life | L.I.F.E. Program (Leisure Involvement For Everyone) | 2026-10 | false | 16 | https://www.saanich.ca/EN/main/parks-recreation-community/community-services/financial-assistance/financial-assistance.html |
-| 106 | sprucegrove-low-income-transit | Spruce Grove Low Income Transit Pass | 2026-10 | false | 16 | https://www.sprucegrove.org/services/spruce-grove-transit/transit-fares/ |
-| 107 | surrey-leisure-access | Leisure Access Program (LAP) | 2026-10 | false | 16 | https://www.surrey.ca/parks-recreation/activities-registration/admissions-passes/leisure-access-program |
-| 108 | taxi-saver-bctransit | Taxi Saver Program (BC Transit) | 2026-10 | false | 16 | https://www.bctransit.com/victoria/riderinfo/handydart/taxi-saver/ |
-| 109 | toronto-fair-pass | Fair Pass Transit Discount (Toronto) | 2026-10 | false | 16 | https://www.toronto.ca/community-people/employment-social-support/support-for-people-in-financial-need/assistance-through-ontario-works/transit-discount/ |
-| 110 | toronto-welcome-policy | Welcome Policy recreation fee subsidy (Toronto) | 2026-10 | false | 16 | https://www.toronto.ca/community-people/employment-social-support/child-family-support/welcome-policy-recreation-fee-subsidy/ |
-| 111 | trillium-drug-program | Trillium Drug Program | 2026-10 | false | 16 | https://www.ontario.ca/page/get-help-high-prescription-drug-costs |
-| 112 | waterloo-ontario-renovates | Ontario Renovates home repair and accessibility funding (Region of Waterloo) | 2026-10 | false | 16 | https://www.regionofwaterloo.ca/programs-and-services/employment-and-financial-supports/financial-support-for-renters-and-homeowners/funding-for-home-repairs/ |
-| 113 | windsor-recreation-assistance | 90% Recreation Discount (Windsor) | 2026-09 | false | 46 | https://www.citywindsor.ca/residents/social-services/social-policy-and-pathway-to-potential/pathway-to-potential/p2p-programs/recreation-assistance-program |
-| 114 | ab-service-dog-id-card | Alberta Service Dog Identification Card | 2026-10 | false | 16 | https://www.alberta.ca/service-dog-identification-card<br>https://servicedogs.alberta.ca/ |
-| 115 | ab-special-needs-housing | Special Needs Housing | 2026-10 | false | 16 | https://www.alberta.ca/affordable-housing-programs<br>https://findhousing.alberta.ca/ |
-| 116 | bc-icbc-disability-discount | ICBC Disability Discount (Basic Autoplan) | 2026-10 | false | 16 | https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities |
-| 117 | bc-pharmacare-plan-g | PharmaCare Plan G (Psychiatric Medications) | 2026-10 | false | 16 | https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover#plang |
-| 118 | bc-pharmacare-plan-p | PharmaCare Plan P (BC Palliative Care Benefits) | 2026-10 | false | 16 | https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover#planp<br>https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/pharmacare/pharmacare-publications/patient-information-sheets#planp |
-| 119 | bc-workbc-assistive-technology | WorkBC Assistive Technology Services | 2026-10 | false | 16 | https://www.workbc.ca/get-support/assistive-technology-pwd<br>https://apply.workbc.ca/ |
-| 120 | canmore-affordable-services | Canmore Affordable Services Program | 2026-10 | false | 16 | https://www.canmore.ca/your-community/community-supports-and-services/affordable-services-program |
-| 121 | cochrane-connect-card | Cochrane Connect Card | 2026-10 | false | 16 | https://www.cochrane.ca/node/241/financial-resources/cochrane-connect-card |
-| 122 | fortsask-access | Fort Saskatchewan Access for Everyone | 2026-10 | false | 16 | https://www.fortsask.ca/recreation-parks/program-registrations-drop-in-classes/access-for-everyone-program/ |
-| 123 | fscd | Family Support for Children with Disabilities (FSCD) | 2026-10 | false | 16 | https://www.alberta.ca/fscd-eligibility<br>https://www.alberta.ca/fscd |
-| 124 | grt-cnib-pass | CNIB pass (Grand River Transit) | 2026-10 | false | 16 | https://www.grt.ca/fares-and-payment/tickets-and-passes/passes/cnib-pass/ |
-| 125 | grt-support-person | Transit Support Person program (Grand River Transit) | 2026-10 | false | 16 | https://www.grt.ca/rider-information/transit-support-person-program/ |
-| 126 | halton-split | Halton SPLIT transit subsidy (Burlington, Oakville, Milton) | 2026-10 | false | 16 | https://www.halton.ca/For-Residents/Employment-and-Financial-Assistance/Subsidized-Passes-for-Low-Income-Transit-(SPLIT) |
-| 127 | hvmp | Home and Vehicle Modification Program | 2026-10 | false | 16 | https://www.ontario.ca/page/home-and-vehicle-modification-program |
-| 128 | kingston-affordable-transit-pass | Kingston Affordable Transit Pass | 2026-10 | false | 16 | https://www.cityofkingston.ca/MFAP |
-| 129 | okotoks-fee-assistance | Okotoks Recreation Fee Assistance | 2026-10 | false | 16 | https://www.okotoks.ca/your-community/social-well-being/family-community-resources/okotoks-family-resource-centre-7 |
-| 130 | on-adp | Assistive Devices Program (Ontario) | 2026-10 | false | 16 | https://www.ontario.ca/page/assistive-devices-program |
-| 131 | ontario-autism-program | Ontario Autism Program | 2026-10 | false | 16 | https://www.ontario.ca/page/ontario-autism-program |
-| 132 | ottawa-a-card | a-card — free OC Transpo travel if you are blind or partially sighted (Ottawa) | 2026-10 | false | 16 | https://www.octranspo.com/en/fares/reduced-fares/ |
-| 133 | ssah | Special Services at Home (SSAH) | 2026-10 | false | 16 | https://www.ontario.ca/page/special-services-home |
-| 134 | waterloo-curbside-waste-support | Curbside waste support programs (Region of Waterloo) | 2026-10 | false | 16 | https://www.regionofwaterloo.ca/programs-and-services/garbage-and-organics/garbage/curbside-waste-support/ |
-| 135 | waterloo-homemaking-support | Homemaking Support Services Program (Region of Waterloo) | 2026-10 | false | 16 | https://www.regionofwaterloo.ca/programs-and-services/seniors-and-long-term-care/community-programs-for-older-adults/homemaking-support/ |
-| 136 | york-region-homemakers | Homemakers Services (York Region) | 2026-10 | false | 16 | https://www.york.ca/support/financial-assistance/homemakers-services |
-| 137 | york-region-recreation-subsidies | Recreation subsidies (York Region) | 2026-10 | false | 16 | https://www.york.ca/support/financial-assistance/recreation-subsidies |
+| 100 | maple-ridge-access-pass-disability | Access Pass, Disability (Maple Ridge) | 2026-10 | false | 16 | https://mapleridge.ca/1465/Financial-Access |
+| 101 | maple-ridge-access-pass-financial | Access Pass, Financial (Maple Ridge) | 2026-10 | false | 16 | https://mapleridge.ca/1465/Financial-Access |
+| 102 | medicinehat-fair-entry | Medicine Hat Fair Entry | 2026-10 | false | 16 | https://www.medicinehat.ca/community-support-culture-safety/community-support/fair-entry/<br>https://forms.medicinehat.ca/Community-Development/Fair-Entry-Application |
+| 103 | nanaimo-leap | LEAP, Leisure Economic Access Pass (Nanaimo) | 2026-10 | false | 16 | https://nanaimo.ca/parks-recreation-culture/recreation-facilities-schedules/leap-(leisure-economic-access-pass) |
+| 104 | new-westminster-financial-assistance | Financial Assistance Program (New Westminster) | 2026-10 | false | 16 | https://www.newwestcity.ca/parks-and-recreation/access-and-inclusion/sb_expander_articles/973.php |
+| 105 | niagara-transit-benefit-pass | Niagara Transit Benefit Pass | 2026-10 | false | 16 | https://nrtransit.ca/fares/transit-benefit-pass/ |
+| 106 | on-parking-permit | Accessible Parking Permit (Ontario) | 2026-09 | false | 46 | https://www.ontario.ca/page/get-accessible-parking-permit |
+| 107 | passport-program | Passport program (adults with a developmental disability) | 2026-10 | false | 16 | https://www.ontario.ca/page/passport-program-adults-developmental-disability |
+| 108 | prince-george-lap | Leisure Access Program (Prince George) | 2026-10 | false | 16 | https://www.princegeorge.ca/node/5327 |
+| 109 | richmond-rec-fee-subsidy | Recreation Fee Subsidy Program (RFSP) | 2026-10 | false | 16 | https://www.richmond.ca/culture/social/accessibility/subsidies/recreation-fee.htm |
+| 110 | saanich-life | L.I.F.E. Program (Leisure Involvement For Everyone) | 2026-10 | false | 16 | https://www.saanich.ca/EN/main/parks-recreation-community/community-services/financial-assistance/financial-assistance.html |
+| 111 | sprucegrove-low-income-transit | Spruce Grove Low Income Transit Pass | 2026-10 | false | 16 | https://www.sprucegrove.org/services/spruce-grove-transit/transit-fares/ |
+| 112 | surrey-leisure-access | Leisure Access Program (LAP) | 2026-10 | false | 16 | https://www.surrey.ca/parks-recreation/activities-registration/admissions-passes/leisure-access-program |
+| 113 | taxi-saver-bctransit | Taxi Saver Program (BC Transit) | 2026-10 | false | 16 | https://www.bctransit.com/victoria/riderinfo/handydart/taxi-saver/ |
+| 114 | toronto-fair-pass | Fair Pass Transit Discount (Toronto) | 2026-10 | false | 16 | https://www.toronto.ca/community-people/employment-social-support/support-for-people-in-financial-need/assistance-through-ontario-works/transit-discount/ |
+| 115 | toronto-welcome-policy | Welcome Policy recreation fee subsidy (Toronto) | 2026-10 | false | 16 | https://www.toronto.ca/community-people/employment-social-support/child-family-support/welcome-policy-recreation-fee-subsidy/ |
+| 116 | trillium-drug-program | Trillium Drug Program | 2026-10 | false | 16 | https://www.ontario.ca/page/get-help-high-prescription-drug-costs |
+| 117 | waterloo-ontario-renovates | Ontario Renovates home repair and accessibility funding (Region of Waterloo) | 2026-10 | false | 16 | https://www.regionofwaterloo.ca/programs-and-services/employment-and-financial-supports/financial-support-for-renters-and-homeowners/funding-for-home-repairs/ |
+| 118 | windsor-recreation-assistance | 90% Recreation Discount (Windsor) | 2026-09 | false | 46 | https://www.citywindsor.ca/residents/social-services/social-policy-and-pathway-to-potential/pathway-to-potential/p2p-programs/recreation-assistance-program |
+| 119 | ab-service-dog-id-card | Alberta Service Dog Identification Card | 2026-10 | false | 16 | https://www.alberta.ca/service-dog-identification-card<br>https://servicedogs.alberta.ca/ |
+| 120 | ab-special-needs-housing | Special Needs Housing | 2026-10 | false | 16 | https://www.alberta.ca/affordable-housing-programs<br>https://findhousing.alberta.ca/ |
+| 121 | abbotsford-prc-subsidy | PRC Subsidy Program (Abbotsford) | 2026-10 | false | 16 | https://www.abbotsford.ca/node/10757 |
+| 122 | abbotsford-specialized-access | Specialized Access Program (Abbotsford) | 2026-10 | false | 16 | https://www.abbotsford.ca/node/10757 |
+| 123 | bc-icbc-disability-discount | ICBC Disability Discount (Basic Autoplan) | 2026-10 | false | 16 | https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities |
+| 124 | bc-pharmacare-plan-g | PharmaCare Plan G (Psychiatric Medications) | 2026-10 | false | 16 | https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover#plang |
+| 125 | bc-pharmacare-plan-p | PharmaCare Plan P (BC Palliative Care Benefits) | 2026-10 | false | 16 | https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover#planp<br>https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/pharmacare/pharmacare-publications/patient-information-sheets#planp |
+| 126 | bc-workbc-assistive-technology | WorkBC Assistive Technology Services | 2026-10 | false | 16 | https://www.workbc.ca/get-support/assistive-technology-pwd<br>https://apply.workbc.ca/ |
+| 127 | canmore-affordable-services | Canmore Affordable Services Program | 2026-10 | false | 16 | https://www.canmore.ca/your-community/community-supports-and-services/affordable-services-program |
+| 128 | cochrane-connect-card | Cochrane Connect Card | 2026-10 | false | 16 | https://www.cochrane.ca/node/241/financial-resources/cochrane-connect-card |
+| 129 | fortsask-access | Fort Saskatchewan Access for Everyone | 2026-10 | false | 16 | https://www.fortsask.ca/recreation-parks/program-registrations-drop-in-classes/access-for-everyone-program/ |
+| 130 | fscd | Family Support for Children with Disabilities (FSCD) | 2026-10 | false | 16 | https://www.alberta.ca/fscd-eligibility<br>https://www.alberta.ca/fscd |
+| 131 | grt-cnib-pass | CNIB pass (Grand River Transit) | 2026-10 | false | 16 | https://www.grt.ca/fares-and-payment/tickets-and-passes/passes/cnib-pass/ |
+| 132 | grt-support-person | Transit Support Person program (Grand River Transit) | 2026-10 | false | 16 | https://www.grt.ca/rider-information/transit-support-person-program/ |
+| 133 | halton-split | Halton SPLIT transit subsidy (Burlington, Oakville, Milton) | 2026-10 | false | 16 | https://www.halton.ca/For-Residents/Employment-and-Financial-Assistance/Subsidized-Passes-for-Low-Income-Transit-(SPLIT) |
+| 134 | hvmp | Home and Vehicle Modification Program | 2026-10 | false | 16 | https://www.ontario.ca/page/home-and-vehicle-modification-program |
+| 135 | kingston-affordable-transit-pass | Kingston Affordable Transit Pass | 2026-10 | false | 16 | https://www.cityofkingston.ca/MFAP |
+| 136 | okotoks-fee-assistance | Okotoks Recreation Fee Assistance | 2026-10 | false | 16 | https://www.okotoks.ca/your-community/social-well-being/family-community-resources/okotoks-family-resource-centre-7 |
+| 137 | on-adp | Assistive Devices Program (Ontario) | 2026-10 | false | 16 | https://www.ontario.ca/page/assistive-devices-program |
+| 138 | ontario-autism-program | Ontario Autism Program | 2026-10 | false | 16 | https://www.ontario.ca/page/ontario-autism-program |
+| 139 | ottawa-a-card | a-card — free OC Transpo travel if you are blind or partially sighted (Ottawa) | 2026-10 | false | 16 | https://www.octranspo.com/en/fares/reduced-fares/ |
+| 140 | ssah | Special Services at Home (SSAH) | 2026-10 | false | 16 | https://www.ontario.ca/page/special-services-home |
+| 141 | waterloo-curbside-waste-support | Curbside waste support programs (Region of Waterloo) | 2026-10 | false | 16 | https://www.regionofwaterloo.ca/programs-and-services/garbage-and-organics/garbage/curbside-waste-support/ |
+| 142 | waterloo-homemaking-support | Homemaking Support Services Program (Region of Waterloo) | 2026-10 | false | 16 | https://www.regionofwaterloo.ca/programs-and-services/seniors-and-long-term-care/community-programs-for-older-adults/homemaking-support/ |
+| 143 | york-region-homemakers | Homemakers Services (York Region) | 2026-10 | false | 16 | https://www.york.ca/support/financial-assistance/homemakers-services |
+| 144 | york-region-recreation-subsidies | Recreation subsidies (York Region) | 2026-10 | false | 16 | https://www.york.ca/support/financial-assistance/recreation-subsidies |

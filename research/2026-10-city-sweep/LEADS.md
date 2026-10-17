@@ -5,8 +5,8 @@ Three Claude researchers checked every listed city with no local program in the 
 paratransit registration and other municipal disability supports.
 
 **Built from these leads (2026-10-17, ?v=203):** `niagara-transit-benefit-pass` (St. Catharines,
-Welland, Niagara Falls) `kingston-affordable-transit-pass` and `halton-split` (Burlington, Oakville, Milton; ?v=204), each from its official page
-(`snapshots/`) with an independent review. Durham TAP was not built: its only official sheet (February 2025) now returns 404, so its current form is unconfirmed. Guelph FAIR was not built: the page found was a general City
+Welland, Niagara Falls) `kingston-affordable-transit-pass` and `halton-split` (Burlington, Oakville, Milton; ?v=204), and seven B.C. recreation records (?v=205): `abbotsford-prc-subsidy`, `abbotsford-specialized-access`, `maple-ridge-access-pass-financial`, `maple-ridge-access-pass-disability`, `nanaimo-leap`, `new-westminster-financial-assistance`, `prince-george-lap` — each from its official page
+(`snapshots/`) with an independent review. Durham TAP was not built: its only official sheet (February 2025) now returns 404, so its current form is unconfirmed. Chilliwack, Delta and North Vancouver were not built: the pages found had no eligibility rule or benefit detail. Guelph FAIR was not built: the page found was a general City
 page with no amount, limits or steps. Wellesley, Wilmot and Woolwich were already covered by the
 Region of Waterloo records (their gate lists the townships); the uncovered-city count matched names only.
 

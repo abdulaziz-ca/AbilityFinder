@@ -1940,3 +1940,20 @@ test("Halton SPLIT reaches Burlington, Oakville and Milton only", async ({ page 
   expect((await evaluateProfile(page, { ...base, city: "Mississauga" }))["halton-split"].status).toBe("no");
   expect((await evaluateProfile(page, { ...base, city: "Oakville", income: "moderate" }))["halton-split"].status).toBe("almost");
 });
+
+test("new B.C. recreation programs are city-gated, and their own rules stay honest", async ({ page }) => {
+  const base = { province: "BC", income: "low", ageBand: "19to59", ageGroup: "adult", disabilityVerified: "yes", situation: ["none"] };
+  const cases = [
+    ["abbotsford-prc-subsidy", "Abbotsford"], ["abbotsford-specialized-access", "Abbotsford"],
+    ["maple-ridge-access-pass-financial", "Maple Ridge"], ["maple-ridge-access-pass-disability", "Maple Ridge"],
+    ["nanaimo-leap", "Nanaimo"], ["new-westminster-financial-assistance", "New Westminster"], ["prince-george-lap", "Prince George"],
+  ];
+  for (const [id, city] of cases) {
+    expect((await evaluateProfile(page, { ...base, city }))[id].status, id).toBe("ready");
+    expect((await evaluateProfile(page, { ...base, city: "Vancouver" }))[id].status, `${id} outside`).toBe("no");
+  }
+  // Disability passes: documentation not yet in hand is a check, never a refusal.
+  expect((await evaluateProfile(page, { ...base, city: "Abbotsford", disabilityVerified: "no" }))["abbotsford-specialized-access"].status).toBe("almost");
+  // LEAP excludes post-secondary students, which the wizard asks about.
+  expect((await evaluateProfile(page, { ...base, city: "Nanaimo", situation: ["student"] }))["nanaimo-leap"].status).toBe("no");
+});

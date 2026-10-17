@@ -143,6 +143,13 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "prince-george-lap": { kind: "access", note: "52 free swims, then 75% off swim passes and programs (up to a $50 credit)." },
+  "new-westminster-financial-assistance": { kind: "discount", note: "50% off eligible programs and passes, using 1,000 credits per family member." },
+  "nanaimo-leap": { kind: "access", note: "50 free admissions, 50% off programs up to $40, and free gallery and museum entry." },
+  "maple-ridge-access-pass-disability": { kind: "discount", note: "50% off admissions and 25% off programs up to $150 a year." },
+  "maple-ridge-access-pass-financial": { kind: "discount", note: "75% or 90% off admissions and 50% off programs up to $300 spent." },
+  "abbotsford-specialized-access": { kind: "discount", note: "50% off drop-in admissions and passes, plus free entry for a required support worker." },
+  "abbotsford-prc-subsidy": { kind: "discount", note: "Pass plus 25% off listed programs; the pass price itself is not stated on the page." },
   "halton-split": { kind: "discount", note: "Part of the cost of bus tickets or monthly passes; the page does not give the amount" },
   "kingston-affordable-transit-pass": { kind: "discount", note: "Discounted monthly pass. The price is not published on the MFAP page." },
   "niagara-transit-benefit-pass": { kind: "discount", note: "$50 a month for a monthly bus pass. The page does not give the regular price." },
@@ -343,6 +350,13 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "prince-george-lap": { difficulty: 2, effort: "One form with income proof and photo ID", wait: "Up to 10 days, often a day or two" },
+  "new-westminster-financial-assistance": { difficulty: 2, effort: "Bring documents to a recreation facility", wait: "Not published" },
+  "nanaimo-leap": { difficulty: 2, effort: "Online form or print and take in the front desk", wait: "Not published" },
+  "maple-ridge-access-pass-disability": { difficulty: 2, effort: "Online form with uploads, or in person", wait: "Up to 10 business days" },
+  "maple-ridge-access-pass-financial": { difficulty: 2, effort: "Online form with uploads, or in person", wait: "Up to 10 business days" },
+  "abbotsford-specialized-access": { difficulty: 3, effort: "Get a physician to complete a form, then apply in person", wait: "Not published" },
+  "abbotsford-prc-subsidy": { difficulty: 3, effort: "Gather several documents and apply in person", wait: "Up to 2 weeks" },
   "halton-split": { difficulty: 2, effort: "Online application with a Halton 311 account, or call 311; documents within 10 business days", wait: "Not published" },
   "kingston-affordable-transit-pass": { difficulty: 2, effort: "One application to MFAP, online, by email or in person.", wait: "Not published" },
   "niagara-transit-benefit-pass": { difficulty: 2, effort: "Bring ID and a benefit statement to a terminal or outlet. Low-income applicants also fill in an application with proof of income.", wait: "Not published" },
@@ -6794,6 +6808,392 @@ const BENEFITS = [
         "Upload documents online, mail them to Halton Regional Centre (1151 Bronte Road, Oakville) or drop them off in person."
       ]
     }
+  },
+  {
+    "id": "abbotsford-prc-subsidy",
+    "name": "PRC Subsidy Program (Abbotsford)",
+    "level": "Abbotsford",
+    "category": "Recreation",
+    "amount": "Recreation pass plus 25% off listed programs",
+    "summary": "A recreation pass for Abbotsford recreation centres and 25% off some registered programs. It is for full-time Abbotsford residents whose family net income is under the City's low-income cutoff for their household size.",
+    "note": "The program runs May 1 to April 30 and you re-apply each year. Group swim and skate lessons qualify, but private lessons do not. Some camps and other programs qualify, and the list is updated each year.",
+    "requires": [
+      "bc",
+      "abbotsford",
+      "abbotsfordPrcIncome"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a full-time Abbotsford resident",
+        "Your family net income after tax is within the City's low-income cutoff chart"
+      ],
+      "note": "Income proof is usually your 2025 Notice of Assessment (line 236); other proofs are listed."
+    },
+    "applyText": "Apply for the PRC Subsidy",
+    "applyUrl": "https://www.abbotsford.ca/node/10757",
+    "source": "https://www.abbotsford.ca/node/10757",
+    "detail": {
+      "aboutList": {
+        "lead": "The subsidy gives lower-income Abbotsford households a recreation pass and discounts on some programs.",
+        "items": [
+          "A recreation pass to City of Abbotsford recreation centres.",
+          "25% off group swim and skate lessons; private lessons are excluded.",
+          "25% off some neighbourhood and summer camps for ages 3 to 12, and other specified programs.",
+          "Net income limit: $22,361 for 1 person (from $5,000), $27,214 for 2, $33,888 for 3.",
+          "Net income limit: $42,278 for 4, $48,142 for 5, $53,390 for 6, $58,639 for 7 or more."
+        ]
+      },
+      "steps": [
+        "Compare your family's after-tax net income with the City's cutoff chart",
+        "Fill in the application form with details for everyone in your household",
+        "Take the form and your documents to City Hall, the Abbotsford Recreation Centre or the Matsqui Recreation Centre",
+        "Wait for an email or letter telling you if you were approved",
+        "If approved, go to the Abbotsford or Matsqui Recreation Centre to get your pass",
+        "Re-apply each year"
+      ],
+      "documents": [
+        "Proof of Abbotsford residency dated in the last 3 months, such as a utility bill, a letter from your bank or a rental agreement",
+        "Valid government photo ID, such as a driver's licence, BC ID or passport",
+        "One of these as proof of income: a 2025 Notice of Assessment for every adult 19 or older, an Independent Youth Letter, or a letter from a Registered Social Worker",
+        "Canada Child Benefit Notice listing all dependent children, if children are on the application"
+      ],
+      "tips": [
+        "A Tax Notice Summary is not accepted. You need the Notice of Assessment.",
+        "The City does not accept faxed or emailed applications.",
+        "New immigrants must visit Archway Community Services for an application form.",
+        "If you are denied, you get a letter in the mail with the reasons."
+      ],
+      "time": "Up to 2 weeks to process",
+      "phone": "604-859-3134"
+    }
+  },
+  {
+    "id": "abbotsford-specialized-access",
+    "name": "Specialized Access Program (Abbotsford)",
+    "level": "Abbotsford",
+    "category": "Recreation",
+    "amount": "50% off recreation centre drop-in admissions and passes",
+    "summary": "Half-price drop-in admissions and passes at Abbotsford recreation centres. It is for full-time Abbotsford residents whose permanent disability a physician confirms. Support workers who are needed get in free.",
+    "note": "There is no income test on the page. A physician completes a section of the form, so no medical copies are needed. The page does not give a renewal period.",
+    "requires": [
+      "bc",
+      "abbotsford",
+      "physicianConfirmedDisability"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a full-time Abbotsford resident",
+        "You have a permanent disability confirmed by a physician"
+      ]
+    },
+    "applyText": "Apply for Specialized Access",
+    "applyUrl": "https://www.abbotsford.ca/node/10757",
+    "source": "https://www.abbotsford.ca/node/10757",
+    "detail": {
+      "aboutList": {
+        "lead": "This program lowers recreation centre costs for Abbotsford residents with permanent disabilities.",
+        "items": [
+          "50% off recreation centre drop-in admissions.",
+          "50% off recreation centre passes.",
+          "Support workers who are required to assist you are admitted at no charge."
+        ]
+      },
+      "steps": [
+        "Download and complete the application form, and review the FAQ",
+        "Ask a physician to complete the disability section of the form",
+        "Take the form and your documents to City Hall, the Abbotsford Recreation Centre or the Matsqui Recreation Centre",
+        "Wait for an email or letter telling you if you were approved",
+        "Go to the Abbotsford or Matsqui Recreation Centre to get your Specialized Access Card"
+      ],
+      "documents": [
+        "Proof of permanent disability confirmed by a physician, on the application form only; no copies required",
+        "Proof of Abbotsford residency dated in the last 3 months, such as a utility bill, a letter from your bank or a rental agreement",
+        "Valid government photo ID of the applicant, or of the legal guardian if the applicant is a minor"
+      ],
+      "tips": [
+        "The City does not accept faxed or emailed applications.",
+        "If you are denied, you get a letter in the mail with the reasons."
+      ],
+      "phone": "604-859-3134"
+    }
+  },
+  {
+    "id": "maple-ridge-access-pass-financial",
+    "name": "Access Pass, Financial (Maple Ridge)",
+    "level": "Maple Ridge",
+    "category": "Recreation",
+    "amount": "75% off admissions, 90% under $18,000; 50% off programs up to $300",
+    "summary": "A discount on Maple Ridge recreation for residents with a low household income. You get 75% off admissions and 50% off registered programs, up to $300 of spending. Income under $18,000 gets 90% off drop-in and 10- or 20-pass admissions.",
+    "note": "The pass lasts one year from approval and you re-apply each year. The 90% rate excludes post-secondary students.",
+    "requires": [
+      "bc",
+      "mapleRidge",
+      "mapleRidgeIncome"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Maple Ridge (ask the City how this applies if you hold a study or visitor visa)",
+        "The main applicant is 19 or older"
+      ],
+      "note": "Before-tax household income at or below the Low Income Cut-off (500,000+ community size), or third-party verification."
+    },
+    "applyText": "Apply for the Access Pass",
+    "applyUrl": "https://mapleridge.ca/1465/Financial-Access",
+    "source": "https://mapleridge.ca/1465/Financial-Access",
+    "detail": {
+      "aboutList": {
+        "lead": "The Access Pass lowers admission and program costs for Maple Ridge residents with a low household income.",
+        "items": [
+          "75% off drop-in, 10-pass, 20-pass, 1-month and 3-month admissions.",
+          "90% off drop-in, 10-pass and 20-pass admissions if income is below $18,000, excluding post-secondary students.",
+          "50% off registered program fees, up to $300 of spending.",
+          "The pass is valid for one year from the date of approval."
+        ]
+      },
+      "steps": [
+        "Choose how to apply: online, on paper at the Maple Ridge Leisure Centre, or through a third party",
+        "Fill in the Financial application form",
+        "Upload or hand in your documents, or have a third party complete the adjudicator section",
+        "Wait for an email or phone call about your application",
+        "Pick up your membership card at the Maple Ridge Leisure Centre or Albion Community Centre",
+        "Re-apply each year"
+      ],
+      "documents": [
+        "An address-related bill from the last 3 months. PO Box addresses are not accepted",
+        "A Notice of Assessment for each person contributing to household income, or government assistance documents such as GIS, SAFER, EI or income assistance",
+        "Not needed if a third party verifies you: proof of address and income"
+      ],
+      "tips": [
+        "Not discounted, among others: private swimming lessons, high performance training camps, contracted or partner programs over $299.99, licensed afterschool care and employment certification.",
+        "Rename your uploaded files with your last name.",
+        "A third party can be a social worker, caseworker, counsellor, school principal, community agency or medical provider.",
+        "Online registration applies your discount automatically. Email Registration@MapleRidge.ca for your first sign-in link.",
+        "Applications needing extra screening can take up to 14 days."
+      ],
+      "time": "Up to 10 business days",
+      "phone": "604-467-7422"
+    }
+  },
+  {
+    "id": "maple-ridge-access-pass-disability",
+    "name": "Access Pass, Disability (Maple Ridge)",
+    "level": "Maple Ridge",
+    "category": "Recreation",
+    "amount": "50% off admissions; 25% off programs up to $150 a year",
+    "summary": "A discount on City of Maple Ridge recreation for residents with a diagnosed temporary or permanent disability. You get 50% off admissions and 25% off program fees, up to $150 a year. It is for the person with the disability, not the family.",
+    "note": "The page lists no income test for this pass. The pass lasts one year from approval and you re-apply each year.",
+    "requires": [
+      "bc",
+      "mapleRidge",
+      "mapleRidgeDisabilityProof"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Maple Ridge (ask the City how this applies if you hold a study or visitor visa)",
+        "You have a diagnosed temporary or permanent disability, with documents or third-party verification"
+      ],
+      "note": "The pass is for the person with the disability only, one applicant per application."
+    },
+    "applyText": "Apply for the Disability Access Pass",
+    "applyUrl": "https://mapleridge.ca/1465/Financial-Access",
+    "source": "https://mapleridge.ca/1465/Financial-Access",
+    "detail": {
+      "aboutList": {
+        "lead": "The Disability Access Pass lowers admission and program costs for Maple Ridge residents with a diagnosed disability.",
+        "items": [
+          "50% off single, 10-pass, 20-pass, 1-month and 3-month admissions.",
+          "The pass is valid for one year from the date of approval.",
+          "A medical or para-medical provider can verify your disability on the form."
+        ]
+      },
+      "steps": [
+        "Choose how to apply: online, on paper at the Maple Ridge Leisure Centre, or through a third party",
+        "Fill in the Individuals Diagnosed With Temporary or Permanent Disability form",
+        "Upload or hand in your documents, or have a third party complete the adjudicator section",
+        "Wait for an email or phone call about your application",
+        "Pick up your membership card at the Maple Ridge Leisure Centre or Albion Community Centre",
+        "Re-apply each year"
+      ],
+      "documents": [
+        "An address-related bill from the last 3 months. PO Box addresses are not accepted",
+        "Proof of disability, such as BC PWD designation, Disability Tax Credit approval, CPP Disability letter, Veterans Affairs or WorkSafeBC documents",
+        "Not needed if a third party verifies you: proof of address"
+      ],
+      "tips": [
+        "Not discounted, among others: private swimming lessons, high performance training camps, contracted or partner programs over $299.99, licensed afterschool care and employment certification.",
+        "The page's list of disability documents is cut off at the end, so ask staff if yours is not listed.",
+        "Online registration applies your discount automatically. Email Registration@MapleRidge.ca for your first sign-in link.",
+        "Applications needing extra screening can take up to 14 days."
+      ],
+      "time": "Up to 10 business days",
+      "phone": "604-467-7422"
+    }
+  },
+  {
+    "id": "nanaimo-leap",
+    "name": "LEAP, Leisure Economic Access Pass (Nanaimo)",
+    "level": "Nanaimo",
+    "category": "Recreation",
+    "amount": "50 free admissions a year, 50% off programs up to $40",
+    "summary": "LEAP gives 50 free drop-in admissions a year per person, half-price registered programs (limits apply) and free art gallery and museum entry. You qualify through one of six listed routes, such as assistance or low income.",
+    "note": "Post-secondary students are not eligible. The newcomer or refugee route works only once. After that you must re-apply with a Notice of Assessment.",
+    "requires": [
+      "bc",
+      "nanaimo",
+      "nanaimoLeapRoute",
+      "nanaimoNotStudent"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Nanaimo, Lantzville or Electoral Area A, B or C of the Regional District of Nanaimo",
+        "You show proof of financial need by one of the six routes on the page"
+      ],
+      "note": "Post-secondary students are not eligible for LEAP."
+    },
+    "applyText": "Apply for LEAP",
+    "applyUrl": "https://nanaimo.ca/parks-recreation-culture/recreation-facilities-schedules/leap-(leisure-economic-access-pass)",
+    "source": "https://nanaimo.ca/parks-recreation-culture/recreation-facilities-schedules/leap-(leisure-economic-access-pass)",
+    "detail": {
+      "aboutList": {
+        "lead": "LEAP helps Nanaimo-area families in financial need use City recreation, art and museum services.",
+        "items": [
+          "50 free admissions per year per person for drop-in swimming, skating, weight rooms and drop-in gym.",
+          "Half price on programs (to a $40 maximum) for all family members, up to four times a year per person.",
+          "Free admission to the Nanaimo Art Gallery and Nanaimo Museum.",
+          "Income limit if you use a Notice of Assessment: $26,290 for 1 person, $32,727 for 2, $40,234 for 3.",
+          "Income limit: $48,851 for 4 people, $55,404 for 5, $62,488 for 6, $69,571 for 7."
+        ]
+      },
+      "steps": [
+        "Pick the route that fits: income assistance or disability assistance, Seniors GIS, CLBC support, child or youth in care, newcomer or refugee, or a Notice of Assessment",
+        "Print the LEAP form, or apply online",
+        "Attach your proof of need and photo ID, online or at the front desk",
+        "Child or youth in care: ask your social worker or guardianship worker to email registration@nanaimo.ca"
+      ],
+      "documents": [
+        "Photo ID for the main contact and other adults, showing current address",
+        "Income or disability assistance: a recent proof such as an MHSD stub, notice of deposit or benefit statement from the last 3 months",
+        "Seniors GIS: a confirmation letter from Service Canada or a cheque stub",
+        "CLBC: proof of CLBC support",
+        "None of the above: last tax year's Notice of Assessment for each adult in the family"
+      ],
+      "tips": [
+        "Income assistance includes disability assistance from the Province of BC or the Government of Canada.",
+        "If you are a CLBC client, bring proof of your approved support.",
+        "Newcomers and refugees can contact the Central Vancouver Island Multicultural Society at info@cvims.org or 250-753-6911.",
+        "Canadian Tire Jumpstart is a separate application and is not run by the City."
+      ]
+    }
+  },
+  {
+    "id": "new-westminster-financial-assistance",
+    "name": "Financial Assistance Program (New Westminster)",
+    "level": "New Westminster",
+    "category": "Recreation",
+    "amount": "50% off eligible programs and two pass types",
+    "summary": "Eligible New Westminster residents get a 50% discount on eligible registered programs, the Active 10 Visit pass and the Active 30 Day pass. You qualify by a social service agency referral or household income under $50,000.",
+    "note": "Each family member gets 1,000 credits. They expire on December 31 each year, and you can then re-apply. Credits are non-transferable and have no cash value. You can buy one pass at a time.",
+    "requires": [
+      "bc",
+      "newWestminster",
+      "newWestRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "A social service agency completes the Financial Assistance Referral Form for you",
+        "Your household income is below $50,000"
+      ],
+      "note": "Either route also needs proof of New Westminster residency."
+    },
+    "applyText": "Apply for Financial Assistance",
+    "applyUrl": "https://www.newwestcity.ca/parks-and-recreation/access-and-inclusion/sb_expander_articles/973.php",
+    "source": "https://www.newwestcity.ca/parks-and-recreation/access-and-inclusion/sb_expander_articles/973.php",
+    "detail": {
+      "aboutList": {
+        "lead": "The program reduces fees for New Westminster residents who show a referral or lower household income.",
+        "items": [
+          "Every family member receives 1,000 credits; they reduce fees by up to 50% on eligible purchases.",
+          "Credits work through staff or your online account, and expire December 31.",
+          "$2 drop-in admissions are open to everyone, but they get no extra discount."
+        ]
+      },
+      "steps": [
+        "Choose a route: an agency referral, or proof that household income is below $50,000",
+        "Bring your documents and proof of residency to Recreation Facility customer service staff during office hours",
+        "Staff create accounts for you and eligible household family members",
+        "Use your credits through staff or your online account",
+        "After credits expire on December 31, apply again"
+      ],
+      "documents": [
+        "Proof of New Westminster residency",
+        "Agency route: the Financial Assistance Referral Form completed by a social service agency",
+        "Income route: a CRA tax assessment or a federal Child Benefit Notice, dated within the past 12 months"
+      ],
+      "tips": [
+        "Registered programs are not eligible if they involve a third-party operator, are already subsidized, are private or semi-private lessons, or involve transportation costs.",
+        "An agency can also email the referral letter, and staff will contact you.",
+        "Credits expire December 31; you can then re-apply."
+      ]
+    }
+  },
+  {
+    "id": "prince-george-lap",
+    "name": "Leisure Access Program (Prince George)",
+    "level": "Prince George",
+    "category": "Recreation",
+    "amount": "52 free swims, then 75% off swim passes",
+    "summary": "The Leisure Access Program gives 52 free public swims. After that it gives 75% off swim passes and 75% off swimming programs, up to a $50 credit. It is for Prince George residents with limited income.",
+    "note": "The program covers a variety of aquatic activities. Referral agencies can submit applications for their clients.",
+    "requires": [
+      "bc",
+      "princeGeorge",
+      "princeGeorgeIncome"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Prince George (the City says “permanent residents of Prince George”)",
+        "Your annual income is below the Statistics Canada Low Income Guidelines, or you get a BC Seniors Supplement below them"
+      ],
+      "note": "Income limits are on the page by household size, from 1 to 6 people."
+    },
+    "applyText": "Apply for the Leisure Access Program",
+    "applyUrl": "https://www.princegeorge.ca/node/5327",
+    "source": "https://www.princegeorge.ca/node/5327",
+    "detail": {
+      "aboutList": {
+        "lead": "The program lowers swimming costs for residents on a limited income.",
+        "items": [
+          "52 complimentary public swimming admissions.",
+          "75% off all swim passes once the 52 free admissions are used.",
+          "75% off swimming programs, such as lessons, up to a $50 credit.",
+          "Income under: $26,127 for 1 person, $32,525 for 2, $39,986 for 3.",
+          "Income under: $48,550 for 4 people, $55,064 for 5, $62,103 for 6."
+        ]
+      },
+      "steps": [
+        "Fill in the LAP Participant Application form, online or on paper",
+        "Get a paper copy at the Canfor Leisure Pool or P.G. Aquatic Centre if you prefer",
+        "Include proof of yearly household income and photo ID",
+        "Or ask an approved referral agency to apply for you with the LAP Referral Agency Application"
+      ],
+      "documents": [
+        "Proof of yearly household income",
+        "Photo ID"
+      ],
+      "tips": [
+        "Applications are processed Monday to Friday, 9 a.m. to 4:30 p.m.",
+        "Processing can take up to 10 days, but it is typically a day or two on weekdays.",
+        "Agencies that are not yet approved can email leisureaccessprogram@princegeorge.ca to ask about becoming a referral agency."
+      ],
+      "time": "Up to 10 days; often 1 to 2 weekdays"
+    }
   }
 
 ];
@@ -6905,6 +7305,13 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "prince-george-lap": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "new-westminster-financial-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "nanaimo-leap": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "maple-ridge-access-pass-disability": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "maple-ridge-access-pass-financial": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "abbotsford-specialized-access": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "abbotsford-prc-subsidy": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
   "halton-split": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
   "kingston-affordable-transit-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
   "niagara-transit-benefit-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)

@@ -850,5 +850,40 @@
     "short": "Check the low-income, Ontario Works or ODSP route",
     "who": ["you", "program"],
     "reason": "New Halton SPLIT record (2026-10-17)"
+  },
+  "abbotsfordPrcIncome": {
+    "short": "Check your income against the City's low-income chart",
+    "who": ["you", "program"],
+    "reason": "New B.C. recreation record (2026-10-17)"
+  },
+  "mapleRidgeIncome": {
+    "short": "Check the Low Income Cut-off or third-party route",
+    "who": ["you", "program"],
+    "reason": "New B.C. recreation record (2026-10-17)"
+  },
+  "nanaimoLeapRoute": {
+    "short": "Check the six financial-need routes",
+    "who": ["you", "program"],
+    "reason": "New B.C. recreation record (2026-10-17)"
+  },
+  "newWestRoute": {
+    "short": "Check the agency referral or income route",
+    "who": ["you", "program"],
+    "reason": "New B.C. recreation record (2026-10-17)"
+  },
+  "princeGeorgeIncome": {
+    "short": "Check your income against the City's guidelines",
+    "who": ["you", "program"],
+    "reason": "New B.C. recreation record (2026-10-17)"
+  },
+  "physicianConfirmedDisability": {
+    "short": "Check that a physician can confirm a permanent disability",
+    "who": ["you", "professional"],
+    "reason": "New B.C. recreation record (2026-10-17)"
+  },
+  "mapleRidgeDisabilityProof": {
+    "short": "Check your disability documents or third-party verification",
+    "who": ["you", "professional"],
+    "reason": "New B.C. recreation record (2026-10-17)"
   }
 }
