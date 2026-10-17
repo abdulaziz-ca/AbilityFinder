@@ -244,6 +244,8 @@ const GATES = {
   mississauga: municipality("Mississauga", "ON"),
   brampton: municipality("Brampton", "ON"),
   hamilton: municipality("Hamilton", "ON"),
+  niagaraRegion: municipality("St. Catharines", "ON"),
+  kingston: municipality("Kingston", "ON"),
   london: municipality("London", "ON"),
   windsor: municipality("Windsor", "ON"),
   yorkRegion: {
@@ -337,6 +339,21 @@ const GATES = {
       { name: "age 18: page says 20 to 64", fragment: { set: { ageBand: "18" } }, expect: "no" },
       { name: "senior", fragment: { set: { ageBand: "65plus" } }, expect: "no" },
     ],
+  },
+  niagaraTbpRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: OW, ODSP or Region approval not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  notFullTimePostSecondary: {
+    evidence: "answers",
+    satisfy: { drop: { situation: ["student"] } },
+    violations: [{ name: "post-secondary student: full-time status not asked", fragment: { add: { situation: ["student"] } }, expect: "almost" }],
+  },
+  kingstonMfapIncome: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: MFAP limit not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
   },
   hamiltonFareRoute: {
     evidence: "answers",
@@ -867,6 +884,8 @@ const PROGRAM_BEST_CASE = {
   "windsor-affordable-pass":                       "almost",
   "windsor-recreation-assistance":                 "almost",
   "hamilton-fare-assist":                          "ready",
+  "niagara-transit-benefit-pass":                  "ready",
+  "kingston-affordable-transit-pass":              "ready",
   "brampton-activeassist":                         "ready",
   "mississauga-activeassist":                      "ready",
   "ottawa-hand-in-hand":                           "ready",

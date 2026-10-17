@@ -4,6 +4,12 @@ Three Claude researchers checked every listed city with no local program in the 
 35 in B.C. and 29 in Ontario. They looked for recreation fee help, low-income or disability transit passes,
 paratransit registration and other municipal disability supports.
 
+**Built from these leads (2026-10-17, ?v=203):** `niagara-transit-benefit-pass` (St. Catharines,
+Welland, Niagara Falls) and `kingston-affordable-transit-pass`, each from its official page
+(`snapshots/`) with an independent review. Guelph FAIR was not built: the page found was a general City
+page with no amount, limits or steps. Wellesley, Wilmot and Woolwich were already covered by the
+Region of Waterloo records (their gate lists the townships); the uncovered-city count matched names only.
+
 **Status: leads only.** Almost every entry comes from web-search results that point to an official
 domain; few pages were opened and read. Nothing here may go into the catalogue until the official page
 is read (the re-verification pipeline: snapshot, report, decision, build, review). "None found" means

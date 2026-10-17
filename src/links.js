@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 218 links. The monitor checks a bounded rotating batch every
+// 220 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -793,6 +793,16 @@ export const LINKS = [
   {
     "url": "https://www.kamloops.ca/recreation-culture/programs-activities/accessible-recreation/arch-program",
     "label": "ARCH (Affordable Recreation for Community Health) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://nrtransit.ca/fares/transit-benefit-pass/",
+    "label": "Niagara Transit Benefit Pass — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.cityofkingston.ca/MFAP",
+    "label": "Kingston Affordable Transit Pass — apply",
     "kind": "apply"
   },
   {

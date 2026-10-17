@@ -1912,3 +1912,22 @@ test("York Region programs reach every member city, and stop at the boundary", a
   const adult = await evaluateProfile(page, { province: "ON", city: "Vaughan", income: "low" });
   expect(adult["york-region-homemakers"].status).toBe("almost");
 });
+
+test("Niagara Transit Benefit Pass reaches its three listed cities and keeps the student rule soft", async ({ page }) => {
+  const base = { province: "ON", income: "low", ageBand: "19to59", ageGroup: "adult", situation: ["none"] };
+  for (const city of ["St. Catharines", "Welland", "Niagara Falls"]) {
+    const r = await evaluateProfile(page, { ...base, city });
+    expect(r["niagara-transit-benefit-pass"].status, city).toBe("ready");
+  }
+  expect((await evaluateProfile(page, { ...base, city: "Hamilton" }))["niagara-transit-benefit-pass"].status).toBe("no");
+  // Full-time vs part-time study is not asked, so a student is a check, never a refusal.
+  expect((await evaluateProfile(page, { ...base, city: "Welland", situation: ["student"] }))["niagara-transit-benefit-pass"].status).toBe("almost");
+  expect((await evaluateProfile(page, { ...base, city: "Welland", income: "moderate" }))["niagara-transit-benefit-pass"].status).toBe("almost");
+});
+
+test("Kingston Affordable Transit Pass is city-gated and income is a check above low", async ({ page }) => {
+  const base = { province: "ON", income: "low", ageBand: "19to59", ageGroup: "adult" };
+  expect((await evaluateProfile(page, { ...base, city: "Kingston" }))["kingston-affordable-transit-pass"].status).toBe("ready");
+  expect((await evaluateProfile(page, { ...base, city: "Kingston", income: "moderate" }))["kingston-affordable-transit-pass"].status).toBe("almost");
+  expect((await evaluateProfile(page, { ...base, city: "Toronto" }))["kingston-affordable-transit-pass"].status).toBe("no");
+});

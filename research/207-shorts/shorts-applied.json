@@ -830,5 +830,20 @@
     "short": "Check that your school recommends an assessment",
     "who": ["you", "program"],
     "reason": "Replaces a documentation gate the bursary itself pays to meet (2026-10-16 source check)"
+  },
+  "niagaraTbpRoute": {
+    "short": "Check the Ontario Works, ODSP or low-income route",
+    "who": ["you", "program"],
+    "reason": "New Niagara Transit Benefit Pass record (2026-10-17)"
+  },
+  "notFullTimePostSecondary": {
+    "short": "Check the full-time student rule",
+    "who": ["you"],
+    "reason": "Niagara excludes full-time post-secondary students; the wizard does not ask full- vs part-time"
+  },
+  "kingstonMfapIncome": {
+    "short": "Check your income against the MFAP limit",
+    "who": ["you", "program"],
+    "reason": "New Kingston Affordable Transit Pass record (2026-10-17)"
   }
 }

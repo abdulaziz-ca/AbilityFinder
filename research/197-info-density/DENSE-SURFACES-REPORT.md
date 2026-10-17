@@ -4,12 +4,12 @@ Bullet surfaces (gate.unmet, eligibility.note, detail.aboutList.items) are flagg
 
 | Surface | Total | Flagged | Longest id | Chars |
 |---|---:|---:|---|---:|
-| gate.unmet | 227 | 115 | cwbEligibility.unmet | 626 |
-| eligibility.note | 69 | 44 | surrey-leisure-access.eligibility.note | 684 |
+| gate.unmet | 232 | 115 | cwbEligibility.unmet | 626 |
+| eligibility.note | 71 | 44 | surrey-leisure-access.eligibility.note | 684 |
 | detail.about | 134 | 95 | dtc.detail.about | 1697 |
-| detail.aboutList.items | 334 | 150 | dtc.detail.aboutList.items[1] | 636 |
-| summary | 134 | 26 | bc-clbc.summary | 377 |
-| note | 134 | 67 | surrey-leisure-access.note | 690 |
+| detail.aboutList.items | 341 | 150 | dtc.detail.aboutList.items[1] | 636 |
+| summary | 136 | 26 | bc-clbc.summary | 377 |
+| note | 136 | 67 | surrey-leisure-access.note | 690 |
 
 ## Flagged items, longest first
 
@@ -200,9 +200,9 @@ Bullet surfaces (gate.unmet, eligibility.note, detail.aboutList.items) are flagg
 - **detail.about** — `bc-supported-child-development.detail.about` (296 chars, 2 sentences): Supported Child Development is a set of community-based programs offering consulting and support to children, families and child care centres so children with extra support needs can participate in inclusive child care. Aboriginal Supported Child Development provides culturally relevant support.
 - **gate.unmet** — `abServiceDogQualified.unmet` (295 chars, 1 sentences): Your service dog must already be qualified — assessed by one of Alberta's approved service dog providers, graduated from an Assistance Dogs International accredited program, or qualified by an organization contracted by a provincial or territorial government in Canada to an equivalent standard.
 - **detail.about** — `york-region-homemakers.detail.about` (295 chars, 3 sentences): York Region can help cover the cost of an in-home homemaker for people who have a temporary or permanent illness or disability. Homemakers help with laundry, meals and light housekeeping. To be eligible you must be temporarily or permanently ill or disabled and meet financial need requirements.
-- **note** — `bc-cy-disability-benefit.note` (292 chars, 3 sentences): Starts April 1, 2026. Eligible families already receiving ministry services for children and youth with support needs, including autism funding, will not need to apply, although some may be asked to provide additional information. The benefit will be available province-wide by April 1, 2027.
 - **note** — `ab-special-needs-housing.note` (291 chars, 7 sentences): Applications are not centralized. Use the Find Housing tool to see what is available. Then contact the local housing provider for their application. Income limits are set community by community. Alberta.ca does not publish a single figure. Check the limit where you live instead of assuming.
 - **note** — `airdrie-fair-access.note` (291 chars, 4 sentences): Airdrie checks your household income against its limits. The page does not say that being on AISH qualifies you automatically. An AISH or ADAP form showing your eligibility period is one of the accepted proof-of-income documents. AISH/ADAP recipients get a two-year term instead of one year.
+- **note** — `bc-cy-disability-benefit.note` (291 chars, 3 sentences): Began April 1, 2026. Eligible families already receiving ministry services for children and youth with support needs, including autism funding, will not need to apply, although some may be asked to provide additional information. The benefit will be available province-wide by April 1, 2027.
 - **summary** — `on-adp.summary` (290 chars, 3 sentences): Helps pay for customized equipment and specialized supplies for a long-term physical disability. This includes wheelchairs and other mobility aids, hearing aids, visual aids, prosthetics, respiratory and ventilator equipment, and diabetic and ostomy supplies. Your income is not considered.
 - **note** — `bc-pwd-designation.note` (289 chars, 3 sentences): The test is about what you can do, not your diagnosis. The impairment must directly and significantly restrict your ability to do daily living activities. And you must need an assistive device, the significant help or supervision of another person, or the services of an assistance animal.
 - **gate.unmet** — `ccbEligibility.unmet` (289 chars, 1 sentences): The Child Disability Benefit is paid together with the Canada Child Benefit, so you must already be eligible for the CCB — living with the child, being primarily responsible for their care and upbringing, and a resident of Canada for tax purposes — and you must file your taxes every year.

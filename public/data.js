@@ -104,7 +104,7 @@ resolveBcTransitHandyDartUrl.staticUrl = BC_TRANSIT_HANDYDART_CHOOSER;
 /* Ontario regional municipalities that deliver programs on behalf of their member cities.
    These are NOT city options in the questionnaire — nobody selects "York Region" — but a
    record can carry one as its `level`, so the province filter has to know about them. */
-const ON_REGIONS = ["York Region", "Region of Waterloo"];
+const ON_REGIONS = ["York Region", "Region of Waterloo", "Niagara Region"];
 
 const ON_CITIES = [
   "Ajax", "Aurora", "Barrie", "Belleville", "Brampton", "Brantford", "Burlington",
@@ -143,6 +143,8 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "kingston-affordable-transit-pass": { kind: "discount", note: "Discounted monthly pass. The price is not published on the MFAP page." },
+  "niagara-transit-benefit-pass": { kind: "discount", note: "$50 a month for a monthly bus pass. The page does not give the regular price." },
   "waterloo-ontario-renovates": { kind: "grant", excludeFromEstimate: true, note: "maximum $25,000 per dwelling for homeowner repairs as a fully forgivable loan and/or up to $25,000 for eligible accessibility modifications; accessibility funding includes a grant portion up to $5,000; maximum funding limits may be subject to change" },
   "waterloo-homemaking-support": { kind: "services", excludeFromEstimate: true, note: "light housekeeping, meal planning and preparation, and laundry; waitlist currently approximately 2–3 years except under special circumstances" },
   "waterloo-curbside-waste-support": { kind: "services", excludeFromEstimate: true, note: "assisted black and green cart set-out, or 30 garbage bag tags per year at no charge for approved medical-waste applicants" },
@@ -340,6 +342,8 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "kingston-affordable-transit-pass": { difficulty: 2, effort: "One application to MFAP, online, by email or in person.", wait: "Not published" },
+  "niagara-transit-benefit-pass": { difficulty: 2, effort: "Bring ID and a benefit statement to a terminal or outlet. Low-income applicants also fill in an application with proof of income.", wait: "Not published" },
   "waterloo-ontario-renovates": { difficulty: 3, effort: "Application with identification, income, property, tax, mortgage and insurance documents", wait: "First come first serve; eligible households are contacted by phone to arrange a home inspection" },
   "waterloo-homemaking-support": { difficulty: 2, effort: "Apply through Caredove, then provide full financial and health information when you reach the top of the waitlist", wait: "Currently approximately 2–3 years, except under special circumstances" },
   "waterloo-curbside-waste-support": { difficulty: 2, effort: "Apply to the Region for assisted cart collection or the medical exemption", wait: "Ask the Region about current processing time" },
@@ -6630,6 +6634,114 @@ const BENEFITS = [
       "time": "Annual approval; ask the screening agency for current review time",
       "phone": "250-828-3582"
     }
+  },
+  {
+    "id": "niagara-transit-benefit-pass",
+    "name": "Niagara Transit Benefit Pass",
+    "level": "Niagara Region",
+    "category": "Transit",
+    "amount": "$50 monthly bus pass",
+    "summary": "A discounted $50 monthly bus pass from Niagara Region Transit. It is for Niagara residents on Ontario Works or ODSP, or who qualify as low income. Full-time post-secondary students are not eligible.",
+    "note": "Niagara Region must approve low-income applications before you buy a pass. It will not reimburse passes you already bought. The page does not give the low-income limits. Ask the Region how they apply to you.",
+    "requires": [
+      "niagaraRegion",
+      "niagaraTbpRoute",
+      "notFullTimePostSecondary"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a Niagara resident",
+        "You get Ontario Works or ODSP, or you qualify as a low-income individual or household",
+        "You are not a full-time post-secondary student"
+      ],
+      "note": "OW and ODSP recipients have qualified automatically since July 1, 2025; others apply for an income check."
+    },
+    "applyText": "Apply for the Transit Benefit Pass",
+    "applyUrl": "https://nrtransit.ca/fares/transit-benefit-pass/",
+    "source": "https://nrtransit.ca/fares/transit-benefit-pass/",
+    "detail": {
+      "aboutList": {
+        "lead": "This program gives eligible Niagara residents a discounted monthly bus pass.",
+        "items": [
+          "The pass costs $50 a month.",
+          "It is for individuals and families on Ontario Works, ODSP, or who qualify based on low-income criteria.",
+          "You pay for the pass yourself.",
+          "If you use the Transit app, the approval lets you buy the $50 monthly pass in the app each month for one year."
+        ]
+      },
+      "steps": [
+        "If you get Ontario Works or ODSP, you already qualify. Get your monthly payment statement from the mail or online through MyBenefits",
+        "If you do not get OW or ODSP, apply online at owbenefits.niagararegion.ca. You can also call 905-641-9960 ext. 6072, fax 905-984-6759, or mail the Ontario Works Discretionary Benefit Team at 234 Bunting Rd., St. Catharines, L2R 6Z4",
+        "A staff member will contact you to review your application",
+        "If you applied on low income, wait for Niagara Region to approve you before you buy a pass. You then get a Transit Benefit Pass Approval Form for each eligible family member",
+        "Get verified in person with your ID and your benefit statement or approval form. For the Transit app, go to the St. Catharines Bus Terminal or the Welland Bus Terminal and give a unique email address. For a physical pass, go to a Transit Benefit Pass outlet",
+        "Pay $50 for the monthly pass"
+      ],
+      "documents": [
+        "One valid ID for each household member if you apply on low income: birth certificate, driver's licence, health card or citizenship document",
+        "Proof of income if you apply on low income, such as bank statements, pay stubs or pension stubs",
+        "If you get OW or ODSP: a recent benefit statement or proof of enrolment. OW clients can ask their caseworker for a proof of eligibility letter if they cannot get it online",
+        "If you applied on low income: the approved letter from Niagara Region's Social Assistance and Employment Opportunities office, or the Transit Benefit Pass Approval Form",
+        "A valid ID for each purchase. It must match your verification documents"
+      ],
+      "tips": [
+        "Apply and get approved before you buy a pass. The Region does not reimburse passes you already bought.",
+        "At a pass outlet, only the verified person can buy the pass. Bring your documents and ID each time.",
+        "Be ready to pay when you get verified.",
+        "In the Transit app, the pass is not available until that month's payment has been made.",
+        "For help, email info@niagaratransit.ca or call 1-833-678-5463."
+      ],
+      "phone": "905-641-9960 ext. 6072"
+    }
+  },
+  {
+    "id": "kingston-affordable-transit-pass",
+    "name": "Kingston Affordable Transit Pass",
+    "level": "Kingston",
+    "category": "Transit",
+    "amount": "Discounted monthly transit pass",
+    "summary": "A discounted, renewable monthly Kingston transit pass. You get it through the City's Municipal Fee Assistance Program (MFAP), which is income-based. You only need to apply once to MFAP.",
+    "note": "The page does not give the pass price. Funding is first-come, first-served until the yearly budget runs out. Ask the City about the price and Kingston Transit's fares and passes page.",
+    "requires": [
+      "kingston",
+      "kingstonMfapIncome"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "MFAP compares your household income with its limit for your household size",
+        "You apply to the Municipal Fee Assistance Program (MFAP)"
+      ],
+      "note": "MFAP uses the after-tax Low-Income Measure plus 15 percent; the 2026 limits are in the tips below."
+    },
+    "applyText": "Apply for MFAP",
+    "applyUrl": "https://www.cityofkingston.ca/MFAP",
+    "source": "https://www.cityofkingston.ca/MFAP",
+    "detail": {
+      "aboutList": {
+        "lead": "MFAP gives low- and moderate-income households access to City services at no cost or a lower cost. The transit pass is one of them.",
+        "items": [
+          "You can get a discounted renewable monthly transit pass.",
+          "If you recently started a part-time or full-time job, the transit employment program gives a free two-month pass.",
+          "MFAP also covers other things, such as free access to fitness centres, public skates and public swims through SPARK."
+        ]
+      },
+      "steps": [
+        "Compare your household income with the 2026 limits in the tips",
+        "Create a MyKingston account and apply online. You can also email mfap@cityofkingston.ca or apply in person at Housing and Social Services, 362 Montreal St.",
+        "See the City's Transit Fares and Passes page for the discounted monthly pass"
+      ],
+      "documents": [
+        "The page does not list documents. Ask the City what to bring"
+      ],
+      "tips": [
+        "2026 MFAP income limits (after tax): $34,793 for 1 person, $49,205 for 2, $60,263 for 3, $69,587 for 4, $77,800 for 5, $85,225 for 6, $92,054 for 7, $98,410 for 8, $104,380 for 9 and $110,020 for 10.",
+        "Funding is first-come, first-served, so apply early.",
+        "Questions: mfap@cityofkingston.ca or 613-546-2695 ext. 4906."
+      ],
+      "phone": "613-546-2695 ext. 4906"
+    }
   }
 
 ];
@@ -6741,6 +6853,8 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "kingston-affordable-transit-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "niagara-transit-benefit-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
   // 2026-10: records whose every fact row was CONFIRMED, or DIFFERS then FIXED/KEPT
   // (more conservative), with no NOT ON PAGE amount/threshold/age/date row and no
   // OPEN item; see research/reverify/VERIFIED-DATES-2026-10-17.md.

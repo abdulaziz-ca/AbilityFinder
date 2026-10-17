@@ -435,6 +435,28 @@ const REQS = {
     fixed: false,
     unmet: "Hamilton residents who are recipients of Ontario Works or the Ontario Disability Support Program (ODSP), or whose household incomes are below the Low-Income Measure, can apply for themselves and their family.",
   },
+  niagaraTbpRoute: {
+    short: "Check the Ontario Works, ODSP or low-income route",
+    who: ["you", "program"],
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "You must get Ontario Works or ODSP, or Niagara Region must approve you as low income.",
+  },
+  // The wizard asks about post-secondary study but not full-time vs part-time.
+  notFullTimePostSecondary: {
+    short: "Check the full-time student rule",
+    who: ["you"],
+    met: () => !isStudent(),
+    fixed: false,
+    unmet: "Full-time post-secondary students are not eligible.",
+  },
+  kingstonMfapIncome: {
+    short: "Check your income against the MFAP limit",
+    who: ["you", "program"],
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "Household income must be at or under the MFAP limit (after-tax Low-Income Measure plus 15 percent).",
+  },
   lowIncomeOrDisabilityIncome: {
     // Household-size thresholds and actual receipt of AISH/CPP-D are not asked.
     // DTC approval or inability to work cannot stand in for either route.
@@ -1218,6 +1240,9 @@ const REQS = {
   mississauga: { met: () => answers.city === "Mississauga", fixed: true, unmet: "This is a City of Mississauga program." },
   brampton: { met: () => answers.city === "Brampton", fixed: true, unmet: "This is a City of Brampton program." },
   hamilton: { met: () => answers.city === "Hamilton", fixed: true, unmet: "This is a City of Hamilton program." },
+  // Niagara Region members in ON_CITIES; other Niagara municipalities are not listed in the wizard.
+  niagaraRegion: { met: () => ["St. Catharines", "Welland", "Niagara Falls"].includes(answers.city), fixed: true, unmet: "This is a Niagara Region program for Niagara residents." },
+  kingston: { met: () => answers.city === "Kingston", fixed: true, unmet: "This is a City of Kingston program." },
   london: { met: () => answers.city === "London", fixed: true, unmet: "This is a City of London program." },
   windsor: { met: () => answers.city === "Windsor", fixed: true, unmet: "This is a City of Windsor program." },
   yorkRegion: {
