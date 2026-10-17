@@ -27,15 +27,11 @@ permissions:
   contents: read
 
 jobs:
+  # Unit tests, generated-file checks and the dependency audit. No browsers.
   test:
-    name: Unit and browser tests
+    name: Unit tests and checks
     runs-on: ubuntu-latest
-    # The three-engine matrix takes about 13 minutes on a runner. 30 was not enough:
-    # on 2026-07-28 a 16m37s browser download pushed the job past the cap and it was
-    # cancelled mid-suite, which also blocked the deploy through `needs: test`. The
-    # cache above should keep normal runs near 15 minutes; 45 leaves room for a slow
-    # mirror on a cache miss while still catching a genuine hang.
-    timeout-minutes: 45
+    timeout-minutes: 20
 
     steps:
       - name: Check out the repository
@@ -62,70 +58,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # The Playwright browser binaries are not in node_modules; --with-deps also
-      # pulls the system libraries each engine needs on CI. All three are required
-      # because the suite runs a Chromium/Firefox/WebKit matrix — WebKit most of
-      # all, since this is a disability product whose audience skews to iOS.
-      # Cached because on 2026-07-28 this download took 16m37s on one runner and the
-      # job hit its 30-minute cap mid-suite and was CANCELLED. The tests were fine.
-      # A cancelled test job also blocks the deploy through `needs: test`, so a slow
-      # mirror became a release blocker. The cache key is the resolved Playwright
-      # version, so a version bump invalidates it automatically.
-      - name: Resolve the Playwright version
-        id: playwright-version
-        run: echo "version=$(node -p "require(@playwright/test/package.json).version")" >> "$GITHUB_OUTPUT"
-
-      - name: Cache Playwright browsers
-        id: playwright-cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}
-
-      # On a cache miss, fetch the browsers AND their apt dependencies.
-      #
-      # DELIBERATELY UNBOUNDED, and that is a known residual gap, not an oversight.
-      # This path only runs on a @playwright/test version bump or a cache eviction: it
-      # did not execute once in the 40 most recent runs, so there is nothing to set a
-      # bound from, and a guessed one would most likely fire on exactly the rare version
-      # bump it was meant to protect.
-      #
-      # BUDGET WARNING for whoever hits a cache miss: this path may already be close to
-      # the 45-minute job cap WITHOUT anything hanging. The recorded browser download is
-      # 16m37s (2026-07-28) and the apt half has been observed at 13m11s — 29m48s
-      # together, plus the ~13-minute three-engine matrix is 42m48s, leaving 2m12s for
-      # checkout, Node setup and npm ci, which exceed that. If a cache-miss run is
-      # cancelled at the cap, suspect this arithmetic before suspecting the commit, and
-      # capture the step durations: they are the measurement needed to bound this step.
-      - name: Install Playwright browsers and system dependencies
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps chromium firefox webkit
-
-      # On a cache hit the binaries are restored but the apt packages are NOT — they
-      # live outside ~/.cache/ms-playwright. WebKit in particular will not launch
-      # without them, so install just the system dependencies.
-      # BOUNDED because an unbounded apt can consume the whole job. On 2026-08-19 this
-      # step stalled after fetching the InRelease files and emitted nothing for 44
-      # minutes, until the job-level timeout-minutes: 45 cancelled the job. A cancelled
-      # test job blocks the deploy exactly like a red one (needs: test), so a healthy
-      # commit did not release, and the failure showed up as a bare cancellation with no
-      # error naming a cause.
-      #
-      # WHY 20 AND NOT LESS: this step is apt-only, but it is NOT fast. Measured across
-      # the 12 runs of 2026-08-18/19, all successful: 0m25s, 0m39s, 0m40s, 0m57s, 1m15s,
-      # 2m14s, 4m48s, 6m17s, 7m01s, 7m23s, 9m00s, 13m11s. 20 minutes sits ~52% above the
-      # slowest success and still leaves 25 of the job's 45 minutes for a suite that
-      # normally lands near 14.
-      #
-      # READ 20 AS "reasonable on current evidence", NOT as "proven safe". Twelve
-      # samples from a two-day window say nothing about the long tail, and apt duration
-      # here is mirror-dominated. If a legitimate run ever exceeds it, RAISE the bound
-      # and record the new measurement. Do not delete it — that restores the 45-minute
-      # silent failure this exists to prevent.
-      - name: Install Playwright system dependencies
-        if: steps.playwright-cache.outputs.cache-hit == 'true'
-        timeout-minutes: 20
-        run: npx playwright install-deps chromium firefox webkit
 
       # Generated files must reproduce from their scripts. If a generated artifact
       # was hand-edited, or someone forgot to regenerate after a data change, the
@@ -159,6 +91,106 @@ jobs:
           # of guessing, because a wrong baseline passes the guard vacuously.
           DATA_PROCEDURE_BASELINE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
 
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Audit all dependencies (informational)
+        run: npm audit --audit-level=high || true
+
+  # One browser engine per job, in parallel (site audit 2026-10, D-ENGINEERING.md
+  # P2-7): the single three-engine job took 19-26 minutes. fail-fast is off so one
+  # engine's failure still reports the other two.
+  browser:
+    name: Browser tests (${{ matrix.engine }})
+    runs-on: ubuntu-latest
+    # See the cache-miss budget note on the install step: a miss for ONE engine is
+    # well under the old three-engine arithmetic, so 45 stays generous.
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, firefox, webkit]
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          # Matches the local toolchain (Node 26).
+          node-version: '26'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+
+      # The Playwright browser binaries are not in node_modules; --with-deps also
+      # pulls the system libraries each engine needs on CI. All three are required
+      # because the suite runs a Chromium/Firefox/WebKit matrix — WebKit most of
+      # all, since this is a disability product whose audience skews to iOS.
+      # Cached because on 2026-07-28 this download took 16m37s on one runner and the
+      # job hit its 30-minute cap mid-suite and was CANCELLED. The tests were fine.
+      # A cancelled test job also blocks the deploy through `needs: test`, so a slow
+      # mirror became a release blocker. The cache key is the resolved Playwright
+      # version, so a version bump invalidates it automatically.
+      - name: Resolve the Playwright version
+        id: playwright-version
+        run: echo "version=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ matrix.engine }}-${{ steps.playwright-version.outputs.version }}
+
+      # On a cache miss, fetch the browsers AND their apt dependencies.
+      #
+      # DELIBERATELY UNBOUNDED, and that is a known residual gap, not an oversight.
+      # This path only runs on a @playwright/test version bump or a cache eviction: it
+      # did not execute once in the 40 most recent runs, so there is nothing to set a
+      # bound from, and a guessed one would most likely fire on exactly the rare version
+      # bump it was meant to protect.
+      #
+      # BUDGET WARNING for whoever hits a cache miss: this path may already be close to
+      # the 45-minute job cap WITHOUT anything hanging. The recorded browser download is
+      # 16m37s (2026-07-28) and the apt half has been observed at 13m11s — 29m48s
+      # together, plus the ~13-minute three-engine matrix is 42m48s, leaving 2m12s for
+      # checkout, Node setup and npm ci, which exceed that. If a cache-miss run is
+      # cancelled at the cap, suspect this arithmetic before suspecting the commit, and
+      # capture the step durations: they are the measurement needed to bound this step.
+      - name: Install Playwright browsers and system dependencies
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps ${{ matrix.engine }}
+
+      # On a cache hit the binaries are restored but the apt packages are NOT — they
+      # live outside ~/.cache/ms-playwright. WebKit in particular will not launch
+      # without them, so install just the system dependencies.
+      # BOUNDED because an unbounded apt can consume the whole job. On 2026-08-19 this
+      # step stalled after fetching the InRelease files and emitted nothing for 44
+      # minutes, until the job-level timeout-minutes: 45 cancelled the job. A cancelled
+      # test job blocks the deploy exactly like a red one (needs: test), so a healthy
+      # commit did not release, and the failure showed up as a bare cancellation with no
+      # error naming a cause.
+      #
+      # WHY 20 AND NOT LESS: this step is apt-only, but it is NOT fast. Measured across
+      # the 12 runs of 2026-08-18/19, all successful: 0m25s, 0m39s, 0m40s, 0m57s, 1m15s,
+      # 2m14s, 4m48s, 6m17s, 7m01s, 7m23s, 9m00s, 13m11s. 20 minutes sits ~52% above the
+      # slowest success and still leaves 25 of the job's 45 minutes for a suite that
+      # normally lands near 14.
+      #
+      # READ 20 AS "reasonable on current evidence", NOT as "proven safe". Twelve
+      # samples from a two-day window say nothing about the long tail, and apt duration
+      # here is mirror-dominated. If a legitimate run ever exceeds it, RAISE the bound
+      # and record the new measurement. Do not delete it — that restores the 45-minute
+      # silent failure this exists to prevent.
+      - name: Install Playwright system dependencies
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        timeout-minutes: 20
+        run: npx playwright install-deps ${{ matrix.engine }}
+
       # Two Playwright projects run here. "app" uses a static server; "worker"
       # boots `wrangler dev --local`, which is what makes the production CSP,
       # the security headers and the /api/* contracts testable at all. Local mode
@@ -170,7 +202,7 @@ jobs:
       # and left annotations saying only "exit code 1". The config already picks
       # github + line when CI is set.
       - name: Browser and Worker tests
-        run: npx playwright test
+        run: npx playwright test --project=app-${{ matrix.engine }} --project=worker-${{ matrix.engine }}
         env:
           # Wrangler otherwise prompts about telemetry on first run, which would
           # hang a non-interactive runner.
@@ -180,17 +212,11 @@ jobs:
       # dev-only advisories are reported but do not fail the build, because they
       # are frequently out of our control and turning CI red for them trains
       # people to ignore it.
-      - name: Audit production dependencies
-        run: npm audit --omit=dev --audit-level=high
-
-      - name: Audit all dependencies (informational)
-        run: npm audit --audit-level=high || true
-
       - name: Upload Playwright report on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report
+          name: playwright-report-${{ matrix.engine }}
           path: |
             playwright-report/
             test-results/
@@ -203,10 +229,10 @@ jobs:
   # deploys directly from a working tree and bypasses this gate entirely, which
   # DEPLOY.md documents as a recovery route.
   #
-  # `needs: test` makes the deploy conditional on the full suite passing, so a red
+  # `needs: [test, browser]` makes the deploy conditional on the full suite passing, so a red
   # suite cannot reach production *through this workflow*.
   #
-  # Only the gate WIRING is provable from this repository — `needs: test` below.
+  # Only the gate WIRING is provable from this repository — `needs: [test, browser]` below.
   # The other two enabling facts are owner-observed external conditions, recorded
   # in REMAINING-WORK.md, that no file here can assert: that CLOUDFLARE_API_TOKEN
   # exists as a repository secret, and that Workers Builds' git integration is
@@ -226,7 +252,7 @@ jobs:
   # ---------------------------------------------------------------------------
   deploy:
     name: Deploy to Cloudflare
-    needs: test
+    needs: [test, browser]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10

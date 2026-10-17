@@ -72,7 +72,7 @@ module.exports = defineConfig({
 
   webServer: [
     {
-      command: "python3 -m http.server 8766 --directory public",
+      command: "node e2e/static-server.js public 8766",
       url: "http://127.0.0.1:8766",
       reuseExistingServer: true,
       timeout: 15_000,

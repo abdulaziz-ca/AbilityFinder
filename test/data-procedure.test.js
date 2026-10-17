@@ -16,6 +16,12 @@ const DATA_FILES = [
   "public/orgs-data.js",
 ];
 
+// Browser-loaded assets served with a one-year immutable cache (public/_headers).
+// Changing one without moving ?v=N would leave returning visitors on the old file,
+// so "the index asset version moves" also fires for these (site audit 2026-10, P2-1).
+// embed.js is unversioned and deliberately not long-cached.
+const isVersionedAsset = (file) => (/^public\/[^/]+\.(js|css)$/.test(file) && file !== "public/embed.js") || file === "public/favicon.svg";
+
 function runGit(args) {
   try {
     return {
@@ -320,11 +326,12 @@ function dataChangeContext(t) {
     // baseline-free pair runs unconditionally" — the whole point of the 065014a redesign —
     // was false whenever git was missing. They now run; only the baseline-dependent pair
     // skips, and it says why.
-    return { changed: new Set(), changedDataFiles: [], baseline: null, trust: "none", gitUnavailable: resolved.skipReason };
+    return { changed: new Set(), changedDataFiles: [], changedAssetFiles: [], baseline: null, trust: "none", gitUnavailable: resolved.skipReason };
   }
   if (resolved.resolutionError) assert.fail(resolved.resolutionError);
 
   const changedDataFiles = DATA_FILES.filter((file) => resolved.changed.has(file));
+  const changedAssetFiles = [...resolved.changed].filter(isVersionedAsset).sort();
 
   // WHY: the four tests below return early when no data file is in the change set, so
   // "4 pass / 0 fail" is the signature of a genuine enforced run AND of a vacuous one.
@@ -358,7 +365,7 @@ function dataChangeContext(t) {
     }
   }
 
-  return { ...resolved, changedDataFiles };
+  return { ...resolved, changedDataFiles, changedAssetFiles };
 }
 
 // "HEAD" is a legitimate baseline value here (the working-tree-diff path), so only
@@ -721,6 +728,10 @@ test.describe("data-change procedure stays enforced", () => {
     const markerProblems = [];
     for (const file of filesToCheck) {
       const markers = extractAssetMarkers(readRepoFile(...file.split("/")));
+      // styles.css's only markers were the font URLs, which are unversioned since
+      // 2026-10-17 (fonts never change; /fonts/* is immutable). Guides must still
+      // carry their single marker.
+      if (markers.length === 0 && file === "public/styles.css") continue;
       if (markers.length === 0) {
         markerProblems.push(`${file} (missing ?v=N marker)`);
         continue;
@@ -767,7 +778,8 @@ test.describe("data-change procedure stays enforced", () => {
     // reads as a verified pass in every report. A DECLARED baseline showing no data change
     // is a genuine no-op and still returns quietly.
     if (context.gitUnavailable) return void t.skip(context.gitUnavailable);
-    if (context.changedDataFiles.length === 0) {
+    const versionTriggers = [...new Set([...context.changedDataFiles, ...(context.changedAssetFiles || [])])];
+    if (versionTriggers.length === 0) {
       if (context.trust === "inferred") {
         return void t.skip(
           `cannot confirm: baseline ${shortSha(context.baseline)} was inferred from the nearest ref, ` +
@@ -818,8 +830,8 @@ test.describe("data-change procedure stays enforced", () => {
     assert.notEqual(
       currentVersions[0],
       oldVersions[0],
-      `${context.changedDataFiles.join(", ")} changed, but the shared asset version ` +
-        `in public/index.html is still ?v=${oldVersions[0]}. Bump ?v=N for browser-loaded data files.`
+      `${versionTriggers.join(", ")} changed, but the shared asset version ` +
+        `in public/index.html is still ?v=${oldVersions[0]}. Bump ?v=N: these files are cached for a year per version.`
     );
   });
 

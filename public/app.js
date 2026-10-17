@@ -1586,7 +1586,14 @@ function evaluate(benefit, scopedConfirmations = confirmedFacts) {
   const reasons = [];
   for (const key of benefit.requires) {
     const req = REQS[key];
-    if (!req || req.met()) continue;
+    // Fail closed: a requirement key with no definition (a typo in data.js)
+    // must never silently drop a gate and produce a false "Matches your answers".
+    if (!req) {
+      console.error(`AbilityFinder: unknown requirement "${key}" on ${benefit.id}`);
+      needs.push({ key, text: "We could not check one requirement. Read the official page to confirm." });
+      continue;
+    }
+    if (req.met()) continue;
     const fixed = typeof req.fixed === "function" ? req.fixed() : req.fixed;
     if (!fixed && AbilityFinderState.confirmedGatePasses(benefit.id, key, scopedConfirmations)) {
       checkedFacts = true;

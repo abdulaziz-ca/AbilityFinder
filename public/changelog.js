@@ -1,5 +1,6 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
+  { date: "2026-10-17", text: "Faster repeat visits: app files are now cached by version, and fonts are no longer re-downloaded after each update. A program with an unknown requirement can no longer be shown as a match. Benefit amounts and program rules are unchanged. Asset version 196." },
   { date: "2026-10-16", text: "If you answered No / not yet to the autism diagnosis question, BC Autism Funding and the Ontario Autism Program now appear under Not for your situation now as An autism diagnosis is needed first, because each program requires a diagnosis before you apply. Benefit amounts and program rules are unchanged. Asset version 194." },
   { date: "2026-10-16", text: "The Learning Disability Assessment Bursary no longer asks for disability documentation first: it pays for the assessment that provides it. It now checks the official conditions instead: StudentAid BC eligibility, a designated public B.C. school, and a recommendation from the school's accessibility services office. Asset version 195.",
     revision: 13,

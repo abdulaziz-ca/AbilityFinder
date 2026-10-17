@@ -89,7 +89,9 @@ test("REL-02: starting a new conversation does not clear questionnaire/profile",
 });
 
 test("REL-03: a stalled assistant fetch times out and restores controls", async ({ page }) => {
-  await page.addInitScript(() => { window.__ASK_TIMEOUT_MS = 400; });
+  // 1.5 s, not 400 ms: on a slow runner the Stop button could appear and vanish
+  // inside 400 ms, so asserting it was visible raced the timeout itself.
+  await page.addInitScript(() => { window.__ASK_TIMEOUT_MS = 1500; });
   await page.goto("/");
   await page.route("**/api/ask", async (route) => {
     await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -100,7 +102,7 @@ test("REL-03: a stalled assistant fetch times out and restores controls", async 
   await ask(page, "hi");
   await expect(page.locator("#askStop")).toBeVisible();
 
-  await expect(page.locator("#askSend")).toBeVisible({ timeout: 2500 });
+  await expect(page.locator("#askSend")).toBeVisible({ timeout: 5000 });
   await expect(page.locator("#askStop")).toBeHidden();
   await expect(page.locator("#askLog .ask-msg.err")).toContainText(/too long|try again/i);
   await expect(page.locator("#askLive")).not.toBeEmpty();

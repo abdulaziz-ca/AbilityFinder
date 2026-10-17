@@ -68,10 +68,10 @@ test('French scope follows both province flags and French results match the Engl
 test('changelog is newest-first, has no future dates, and October review count matches the data', () => {
   const ctx = context();
   vm.runInContext(fs.readFileSync('public/changelog.js', 'utf8') + '\nglobalThis.entries = DATA_CHANGELOG;', ctx);
-  assert.equal(ctx.entries[0].date, '2026-10-16');
+  assert.equal(ctx.entries[0].date, '2026-10-17');
   assert.equal(ctx.entries[0].revision, undefined);
   for (let i = 0; i < ctx.entries.length; i++) {
-    assert.ok(ctx.entries[i].date <= '2026-10-16');
+    assert.ok(ctx.entries[i].date <= '2026-10-17');
     if (i) assert.ok(ctx.entries[i-1].date >= ctx.entries[i].date, ctx.entries[i].text);
   }
   const count = vm.runInContext('Object.values(BENEFIT_VERIFIED).filter(d => d === "2026-10").length', ctx);
