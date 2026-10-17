@@ -189,8 +189,8 @@ test.describe("eligibility oracle", () => {
     // 44/90 since 2026-10-16: the LD assessment bursary's documentation gate
     // became a school-referral check (research/2026-10-site-audit/G3-RULES.md).
     // 54 since 2026-10-17: three Ontario transit programs and seven B.C. recreation programs added.
-    expect(results.filter(r => r.status === "ready")).toHaveLength(54);
-    expect(results.filter(r => r.status === "almost")).toHaveLength(90);
+    expect(results.filter(r => r.status === "ready")).toHaveLength(80);
+    expect(results.filter(r => r.status === "almost")).toHaveLength(92);
   });
 
   test("every program's best-case persona lands on its specified outcome", async ({ page }) => {

@@ -885,5 +885,145 @@
     "short": "Check your disability documents or third-party verification",
     "who": ["you", "professional"],
     "reason": "New B.C. recreation record (2026-10-17)"
+  },
+  "banffAccessProgramRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record banff-access-program (2026-10-17)"
+  },
+  "blackfaldsRecreationFeeAssistanceRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record blackfalds-recreation-fee-assistance (2026-10-17)"
+  },
+  "chestermereCommunityAccessProgramRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record chestermere-community-access-program (2026-10-17)"
+  },
+  "draytonValleyRecreationFeeAssistanceRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record drayton-valley-recreation-fee-assistance (2026-10-17)"
+  },
+  "edsonLeisureAssistRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record edson-leisure-assist (2026-10-17)"
+  },
+  "rockyMountainHouseRfapRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record rocky-mountain-house-rfap (2026-10-17)"
+  },
+  "strathmoreCommunityAccessCardRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record strathmore-community-access-card (2026-10-17)"
+  },
+  "whitecourtRecreationFeeAssistanceRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record whitecourt-recreation-fee-assistance (2026-10-17)"
+  },
+  "bellevilleRecreationFeeAssistanceRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record belleville-recreation-fee-assistance (2026-10-17)"
+  },
+  "chathamKentAffordableBusPassRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record chatham-kent-affordable-bus-pass (2026-10-17)"
+  },
+  "cornwallFairRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record cornwall-fair (2026-10-17)"
+  },
+  "peterboroughRecreationSubsidyRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record peterborough-recreation-subsidy (2026-10-17)"
+  },
+  "peterboroughOwOdspTransitPassRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "City-sweep record peterborough-ow-odsp-transit-pass (2026-10-17)"
+  },
+  "campbellRiverLifeRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record campbell-river-life (2026-10-17)"
+  },
+  "colwoodLangfordLifeRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record colwood-langford-life (2026-10-17)"
+  },
+  "courtenayComoxRapLeapRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record courtenay-comox-rap-leap (2026-10-17)"
+  },
+  "cranbrookLeisureAccessRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record cranbrook-leisure-access (2026-10-17)"
+  },
+  "duncanLeisureAccessRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record duncan-leisure-access (2026-10-17)"
+  },
+  "missionPlayPassRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record mission-play-pass (2026-10-17)"
+  },
+  "pentictonLifeRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record penticton-life (2026-10-17)"
+  },
+  "pentictonAccessPassRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "City-sweep record penticton-access-pass (2026-10-17)"
+  },
+  "pittMeadowsFeeSubsidyRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record pitt-meadows-fee-subsidy (2026-10-17)"
+  },
+  "portMoodyLeisureAccessRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record port-moody-leisure-access (2026-10-17)"
+  },
+  "princeRupertRecreationAccessRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record prince-rupert-recreation-access (2026-10-17)"
+  },
+  "quesnelLeisureAccessRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record quesnel-leisure-access (2026-10-17)"
+  },
+  "squamishRecreationAccessRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record squamish-recreation-access (2026-10-17)"
+  },
+  "terraceAffordableRecreationAccessRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "City-sweep record terrace-affordable-recreation-access (2026-10-17)"
+  },
+  "whiteRockLeisureAccessRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record white-rock-leisure-access (2026-10-17)"
   }
 }

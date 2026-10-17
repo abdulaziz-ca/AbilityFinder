@@ -165,7 +165,8 @@ coverage at all. This is where the largest gaps are.
   Ontario cities with no local record, 25 have likely programs (often regional: Durham TAP, Halton
   SPLIT, Niagara Transit Benefit Pass) and 4 could not be read (Greater Sudbury, North Bay,
   Stratford, Timmins). These are search leads, not verified facts; each needs the official page read
-  before it becomes a record.
+  before it becomes a record. **Built so far: 41 local records from the sweep (?v=203–206); see LEADS.md for
+  what was built, skipped and why.**
 - No exhaustive sweep of ontario.ca for provincial disability programs beyond the nine
   built. The nine were chosen as the province-level MVP, not proven exhaustive.
 

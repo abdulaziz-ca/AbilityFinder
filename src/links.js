@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 226 links. The monitor checks a bounded rotating batch every
+// 254 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -833,6 +833,146 @@ export const LINKS = [
   {
     "url": "https://www.princegeorge.ca/node/5327",
     "label": "Leisure Access Program (Prince George) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://banff.ca/963/Banff-Access-Program",
+    "label": "Banff Access Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://irec.wolfcreek.ab.ca/download/108425",
+    "label": "Recreation Fee Assistance Program (PASS) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://thecityofchestermere.ca/community-services/cap-registration/",
+    "label": "Community Access Program (CAP) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.draytonvalley.ca/recreation-fee-assistance-program/",
+    "label": "Recreation Fee Assistance Program (RFAP) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.edson.ca/public/download/files/350852",
+    "label": "Leisure Assist (Fee Assistance Program) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.rockymtnhouse.com/p/rfap",
+    "label": "Recreation Facility Access Program (Rocky Mountain House) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.strathmore.ca/living-here/family-community-support-services/resources-financial-support/community-access-card/",
+    "label": "Community Access Card (Strathmore) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://whitecourt.ca/play/allan-jean-millar-centre/facility-admission-information",
+    "label": "Recreational Fee Assistance Program (Whitecourt) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.belleville.ca/learn-and-play/recreation/recreation-guide-and-registration-information/recreation-fee-assistance/",
+    "label": "Recreation Fee Assistance (Belleville) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.chatham-kent.ca/transit/fares/Pages/Affordable-Pass.aspx",
+    "label": "Affordable Bus Pass (Chatham-Kent Transit) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.cornwall.ca/en/recreation-community-supports/recreation-and-sports/fee-assistance-in-recreation/",
+    "label": "Fee Assistance in Recreation, FAIR (Cornwall) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.peterborough.ca/recsubsidy",
+    "label": "Recreation Program Subsidy (Peterborough) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://peterborough.ca/recreation-culture-social-services/social-services/ontario-works/transportation-help",
+    "label": "Subsidized City Bus Pass (Peterborough, OW and ODSP) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.campbellriver.ca/parks-recreation-culture/recreation/affordable-recreation",
+    "label": "L.I.F.E. Program (Campbell River) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.wspr.ca/inclusion-support/financial-support",
+    "label": "LIFE Program (West Shore Parks & Recreation) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://courtenay.ca/EN/main/community/recreation/recreation-access.html",
+    "label": "Recreation Access Program and LEAP (Comox Valley) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://cranbrook.ca/our-city/city-departments/leisure-services/services/leisure-access-program",
+    "label": "Leisure Access Program (Cranbrook) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.northcowichan.ca/form/leisure-access-program-application",
+    "label": "Leisure Access Program (Duncan) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://mission.ca/playpass",
+    "label": "PLAY Pass (Mission) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.mission.ca/node/1114",
+    "label": "PLAY Pass (Mission) — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www.penticton.ca/node/71",
+    "label": "LIFE Program (Penticton) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.pittmeadows.ca/media/5925",
+    "label": "Program and Admission Fee Subsidy (Pitt Meadows) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.portmoody.ca/media/pybmlml1/leisure-access-application-form.pdf",
+    "label": "Leisure Access Program (Port Moody) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princerupert.ca/node/988",
+    "label": "Recreation Access Program (Prince Rupert) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quesnel.ca/node/4489",
+    "label": "Leisure Access Card (Quesnel) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://squamish.ca/assets/000-Recreation-Services/000_Forms/RAP-updated-form_-2024.pdf",
+    "label": "Recreation Access Program (Squamish) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.terrace.ca/sites/default/files/2026-06/Affordable%20Recreation%20Access%20Program%20-%20Revised%20June%2022%202026.pdf",
+    "label": "Affordable Recreation Access Program (Terrace) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.whiterockcity.ca/825/Leisure-Access-Program",
+    "label": "Leisure Access Program (White Rock) — apply",
     "kind": "apply"
   },
   {

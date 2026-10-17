@@ -1957,3 +1957,13 @@ test("new B.C. recreation programs are city-gated, and their own rules stay hone
   // LEAP excludes post-secondary students, which the wizard asks about.
   expect((await evaluateProfile(page, { ...base, city: "Nanaimo", situation: ["student"] }))["nanaimo-leap"].status).toBe("no");
 });
+
+test("city-sweep programs are city-gated and reach ready only through their own routes", async ({ page }) => {
+  const cases = [["banff-access-program","AB","Banff","ready"],["blackfalds-recreation-fee-assistance","AB","Blackfalds","ready"],["chestermere-community-access-program","AB","Chestermere","ready"],["drayton-valley-recreation-fee-assistance","AB","Drayton Valley","ready"],["edson-leisure-assist","AB","Edson","ready"],["rocky-mountain-house-rfap","AB","Rocky Mountain House","ready"],["strathmore-community-access-card","AB","Strathmore","ready"],["whitecourt-recreation-fee-assistance","AB","Whitecourt","ready"],["belleville-recreation-fee-assistance","ON","Belleville","ready"],["chatham-kent-affordable-bus-pass","ON","Chatham-Kent","ready"],["cornwall-fair","ON","Cornwall","ready"],["peterborough-recreation-subsidy","ON","Peterborough","ready"],["peterborough-ow-odsp-transit-pass","ON","Peterborough","almost"],["campbell-river-life","BC","Campbell River","ready"],["colwood-langford-life","BC","Colwood","ready"],["courtenay-comox-rap-leap","BC","Courtenay","ready"],["cranbrook-leisure-access","BC","Cranbrook","ready"],["duncan-leisure-access","BC","Duncan","ready"],["mission-play-pass","BC","Mission","ready"],["penticton-life","BC","Penticton","ready"],["penticton-access-pass","BC","Penticton","ready"],["pitt-meadows-fee-subsidy","BC","Pitt Meadows","ready"],["port-moody-leisure-access","BC","Port Moody","ready"],["prince-rupert-recreation-access","BC","Prince Rupert","ready"],["quesnel-leisure-access","BC","Quesnel","ready"],["squamish-recreation-access","BC","Squamish","ready"],["terrace-affordable-recreation-access","BC","Terrace","almost"],["white-rock-leisure-access","BC","White Rock","ready"]];
+  for (const [id, province, city, best] of cases) {
+    const base = { province, city, income: "low", ageBand: "19to59", ageGroup: "adult", disabilityVerified: "yes", situation: ["none"] };
+    expect((await evaluateProfile(page, base))[id].status, id).toBe(best);
+    const other = { AB: "Wetaskiwin", BC: "Williams Lake", ON: "Timmins" }[province];
+    expect((await evaluateProfile(page, { ...base, city: other }))[id].status, id + " elsewhere").toBe("no");
+  }
+});

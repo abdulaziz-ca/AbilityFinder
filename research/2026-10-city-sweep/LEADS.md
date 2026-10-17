@@ -132,3 +132,43 @@ nothing turned up in the search, not that the city has nothing. Raw data: AB.jso
 - AB: 22 cities with leads, 10 none found, 0 could not read
 - BC: 30 cities with leads, 5 none found, 0 could not read
 - ON: 25 cities with leads, 0 none found, 4 could not read
+
+## Second build pass (2026-10-17, ?v=206)
+
+**Built (28):** `banff-access-program`, `blackfalds-recreation-fee-assistance`, `chestermere-community-access-program`, `drayton-valley-recreation-fee-assistance`, `edson-leisure-assist`, `rocky-mountain-house-rfap`, `strathmore-community-access-card`, `whitecourt-recreation-fee-assistance`, `belleville-recreation-fee-assistance`, `chatham-kent-affordable-bus-pass`, `cornwall-fair`, `peterborough-recreation-subsidy`, `peterborough-ow-odsp-transit-pass`, `campbell-river-life`, `colwood-langford-life`, `courtenay-comox-rap-leap`, `cranbrook-leisure-access`, `duncan-leisure-access`, `mission-play-pass`, `penticton-life`, `penticton-access-pass`, `pitt-meadows-fee-subsidy`, `port-moody-leisure-access`, `prince-rupert-recreation-access`, `quesnel-leisure-access`, `squamish-recreation-access`, `terrace-affordable-recreation-access`, `white-rock-leisure-access`.
+Each was drafted from its snapshot, reviewed independently against it (20 fixes applied), and checked by me.
+
+**Skipped after reading the page:**
+
+- `lead-ab-beaumont-02.txt`: Recreation Inclusion Subsidy is closed for 2026 and reopens January 2027; page also gives no income test, only a fee-based general route.
+- `lead-ab-brooks-04.txt`: Snapshot is the Brooks home page; it mentions no fee assistance program, who qualifies or what it gives.
+- `lead-ab-camrose-05.txt`: Transit tokens page says tokens come from social agencies; no eligibility rule, amount or city program stated.
+- `lead-ab-high-river-09.txt`: Program guide page only links to a Fee Assistance page; no eligibility or benefit stated.
+- `lead-ab-hinton-10.txt`: Snapshot is the Hinton home page; LIRAP is not described, so no eligibility or benefit.
+- `lead-ab-hinton-11.txt`: Snapshot is the Hinton home page; LITP is not described, so no eligibility or benefit.
+- `lead-ab-lacombe-12.txt`: Handout lists only an age range (0-18) and up to $100; no income or assistance test stated.
+- `lead-ab-peace-river-13.txt`: Community Scholarship states only age and residency, no financial test; Ron Campbell fund is a donor fund.
+- `lead-ab-sylvan-lake-16.txt`: You Can Play Too! states income-based but 2026 applications are closed and no income limit is given.
+- `lead-ab-sylvan-lake-17.txt`: Link Card gives discounts at local businesses and the page gives no income limit.
+- `lead-bc-nelson-27.txt`: Page is the RDCK Nelson & District Community Complex, a regional district facility page. It names a Leisure Access Pass but gives no eligibility rule or amount, and it is not the city's program.
+- `lead-bc-pitt-meadows-31.txt`: Access Support Pass: page does not say who qualifies (only 'individuals requiring support'), no disability or income route.
+- `lead-bc-port-coquitlam-32.txt`: News release: names no income test or other eligibility route, only 'eligible families'; not a program page.
+- `lead-bc-powell-river-34.txt`: 211 directory listing only mentions the Recreation Access Pass; no eligibility or benefit details.
+- `lead-on-brantford-41.txt`: Third-party directory record, not a city page; no income limit given.
+- `lead-on-sarnia-46.txt`: Discounted passes come via Inn of the Good Shepherd, not a city program; no criteria or amount stated.
+- `lead-on-sault-ste-marie-47.txt`: 2023 news article, not an official city page; no pass price, rules or how to apply.
+
+**Lead link dead or blocked (not built):**
+
+- AB Coaldale — Fee Assistance Program (HTTP 403)
+- AB Devon — Participation Fund (Resident Affordability Program) (HTTP 403)
+- AB Innisfail — Fee Assistance Program (HTTP 403)
+- AB Morinville — Wellness and Recreation Access Program (WRAP) (HTTP 404)
+- AB Slave Lake — LEAP (Leisure Economic Assistance Program) (HTTP 404)
+- AB Taber — Fee Assistance Program (HTTP 403)
+- BC Dawson Creek — Leisure Access Program (HTTP 404)
+- BC Langley — Leisure Access Grant (City of Langley) (HTTP 404)
+- BC West Vancouver — Recreation Financial Assistance Program (RFAP) (HTTP 403)
+- ON Cornwall — Community Bus Pass (HTTP 404)
+- ON Sarnia — Annual CNIB Pass (HTTP 404)
+- ON Thunder Bay — Affordable Access to Recreation and Transit pilot (HTTP 404)

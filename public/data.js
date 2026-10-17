@@ -143,6 +143,34 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "white-rock-leisure-access": { kind: "discount", note: "50% off, up to $300 a year" },
+  "terrace-affordable-recreation-access": { kind: "discount", note: "50% off drop-ins and short memberships" },
+  "squamish-recreation-access": { kind: "discount", note: "50% off services and programs" },
+  "quesnel-leisure-access": { kind: "discount", note: "50% off admissions, 25% off programs" },
+  "prince-rupert-recreation-access": { kind: "discount", note: "90% off for children and youth, 50% off for adults, plus 50 free admissions" },
+  "port-moody-leisure-access": { kind: "discount", note: "50% off admissions and many programs" },
+  "pitt-meadows-fee-subsidy": { kind: "discount", note: "Discounted fees; the rate is not published" },
+  "penticton-access-pass": { kind: "discount", note: "25% off passes" },
+  "penticton-life": { kind: "access", note: "Free and low-cost recreation; the exact discount is not published" },
+  "mission-play-pass": { kind: "access", note: "Free admissions to the Mission Leisure Centre." },
+  "duncan-leisure-access": { kind: "access", note: "Annual drop-in access at Cowichan Aquatic Centre and Fuller Lake Arena." },
+  "cranbrook-leisure-access": { kind: "discount", note: "75% off regular swim rates plus free monthly transit passes." },
+  "courtenay-comox-rap-leap": { kind: "discount", note: "52 free drop-ins and a $350 subsidy per family member through LEAP." },
+  "colwood-langford-life": { kind: "access", note: "Recreation centre access at Greater Victoria municipal centres for low-income households." },
+  "campbell-river-life": { kind: "discount", note: "52 free drop-ins and 50% off three City programs per card each year." },
+  "peterborough-ow-odsp-transit-pass": { kind: "discount", note: "A 30-day City bus pass for $49." },
+  "peterborough-recreation-subsidy": { kind: "grant", note: "$100 or $200 per person per year toward registration fees." },
+  "cornwall-fair": { kind: "discount", note: "City covers 75% of eligible recreation costs, up to $300 per year." },
+  "chatham-kent-affordable-bus-pass": { kind: "discount", note: "Unlimited urban rides for $41.99 per 30 days." },
+  "belleville-recreation-fee-assistance": { kind: "discount", note: "25%, 50% or 75% off eligible City recreation fees, based on income." },
+  "whitecourt-recreation-fee-assistance": { kind: "discount", note: "Subsidy toward 2 programs per session per family member, or a 3 month membership." },
+  "strathmore-community-access-card": { kind: "discount", note: "10% to 75% off entry and membership fees at three Town recreation facilities." },
+  "rocky-mountain-house-rfap": { kind: "discount", note: "50% off a set number of drop-ins, program registrations and one membership per card, each year." },
+  "edson-leisure-assist": { kind: "grant", note: "$150 per person, up to $450 per family, credited to your Active Net account each year." },
+  "drayton-valley-recreation-fee-assistance": { kind: "discount", note: "75% off qualifying Town recreation fees." },
+  "chestermere-community-access-program": { kind: "discount", note: "Subsidies and discounts on memberships, classes and transit. No dollar amount is published." },
+  "blackfalds-recreation-fee-assistance": { kind: "discount", note: "Subsidy for recreation fees when possible. No dollar amount or percentage is published." },
+  "banff-access-program": { kind: "discount", note: "Reduced rates on recreation, transit passes and participating services. No dollar amount is published." },
   "prince-george-lap": { kind: "access", note: "52 free swims, then 75% off swim passes and programs (up to a $50 credit)." },
   "new-westminster-financial-assistance": { kind: "discount", note: "50% off eligible programs and passes, using 1,000 credits per family member." },
   "nanaimo-leap": { kind: "access", note: "50 free admissions, 50% off programs up to $40, and free gallery and museum entry." },
@@ -350,6 +378,34 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "white-rock-leisure-access": { difficulty: 2, effort: "One application per family", wait: "Not published" },
+  "terrace-affordable-recreation-access": { difficulty: 3, effort: "Visit the Aquatic Centre and a verifying office", wait: "Not published" },
+  "squamish-recreation-access": { difficulty: 3, effort: "Gather original documents and apply at the recreation centre", wait: "Not published" },
+  "quesnel-leisure-access": { difficulty: 2, effort: "Fill in a form and show proof", wait: "Not published" },
+  "prince-rupert-recreation-access": { difficulty: 3, effort: "Collect proof of assistance or income, then apply online or on paper", wait: "Not published" },
+  "port-moody-leisure-access": { difficulty: 3, effort: "Gather several documents and apply in person", wait: "Not published" },
+  "pitt-meadows-fee-subsidy": { difficulty: 3, effort: "Collect income and address proof, then complete a form", wait: "Not published" },
+  "penticton-access-pass": { difficulty: 2, effort: "Fill in one form", wait: "Not published" },
+  "penticton-life": { difficulty: 2, effort: "Fill in one form and bring documents to the Community Centre", wait: "Not published" },
+  "mission-play-pass": { difficulty: 2, effort: "Short application, small fee", wait: "Up to three weeks" },
+  "duncan-leisure-access": { difficulty: 2, effort: "Online form with ID and Notice of Assessment or referral", wait: "Not published" },
+  "cranbrook-leisure-access": { difficulty: 3, effort: "Agency adjudication, then a City registration visit", wait: "About 1 week to process" },
+  "courtenay-comox-rap-leap": { difficulty: 2, effort: "One combined form with residency proof and BC Services Cards", wait: "Not published" },
+  "colwood-langford-life": { difficulty: 2, effort: "One family form with residency proof and Notice of Assessment", wait: "Not published" },
+  "campbell-river-life": { difficulty: 2, effort: "One form with proof of address and income", wait: "Not published" },
+  "peterborough-ow-odsp-transit-pass": { difficulty: 1, effort: "One visit to the bus terminal with statement and ID", wait: "Not published" },
+  "peterborough-recreation-subsidy": { difficulty: 2, effort: "Online application with uploaded documents", wait: "Not published" },
+  "cornwall-fair": { difficulty: 2, effort: "Email a form with ID and income documents", wait: "Not published" },
+  "chatham-kent-affordable-bus-pass": { difficulty: 3, effort: "Paper application with tax notices and ID", wait: "Not published" },
+  "belleville-recreation-fee-assistance": { difficulty: 3, effort: "Online application, then an appointment with documents", wait: "Contacted within 10 business days" },
+  "whitecourt-recreation-fee-assistance": { difficulty: 3, effort: "In-person application at Guest Services", wait: "Not published" },
+  "strathmore-community-access-card": { difficulty: 3, effort: "In-person visit with income and ID documents", wait: "Not published" },
+  "rocky-mountain-house-rfap": { difficulty: 2, effort: "One visit to the FCSS office with tax return or referral form", wait: "Not published" },
+  "edson-leisure-assist": { difficulty: 2, effort: "Fill in a short form and attach one proof document", wait: "About ten business days" },
+  "drayton-valley-recreation-fee-assistance": { difficulty: 3, effort: "Fill in a form and gather documents for every adult", wait: "Not published" },
+  "chestermere-community-access-program": { difficulty: 2, effort: "Submit a short online form, then give proof to staff", wait: "Not published" },
+  "blackfalds-recreation-fee-assistance": { difficulty: 3, effort: "Fill in a multi-section paper form and attach income proof", wait: "Two to four weeks" },
+  "banff-access-program": { difficulty: 3, effort: "Email several documents, including income, address and employment proof", wait: "Not published" },
   "prince-george-lap": { difficulty: 2, effort: "One form with income proof and photo ID", wait: "Up to 10 days, often a day or two" },
   "new-westminster-financial-assistance": { difficulty: 2, effort: "Bring documents to a recreation facility", wait: "Not published" },
   "nanaimo-leap": { difficulty: 2, effort: "Online form or print and take in the front desk", wait: "Not published" },
@@ -7194,6 +7250,1443 @@ const BENEFITS = [
       ],
       "time": "Up to 10 days; often 1 to 2 weekdays"
     }
+  },
+  {
+    "id": "banff-access-program",
+    "name": "Banff Access Program",
+    "level": "Banff",
+    "category": "Recreation",
+    "amount": "Free Banff Access Card for reduced rates on recreation and transit passes",
+    "summary": "A free card that lowers the cost of recreation programs, transit passes and other participating services for Banff residents with lower household income.",
+    "note": "The card cannot be combined with other subsidies or discounts, and it is not transferable. It is cancelled if you no longer qualify, for example if you move out of Banff.",
+    "requires": [
+      "ab",
+      "banff",
+      "banffAccessProgramRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live at a street address in the Town of Banff",
+        "Your gross household income is at or below the limit for your household size",
+        "You can show a need to reside in Banff, such as an employment contract",
+        "You are a Canadian citizen, permanent resident or closed work permit holder",
+        "You have lived in Banff for 3 full months, or 6 with an eligible open work permit"
+      ],
+      "note": "Limits are tiered by household size; the one-person amounts are in the tips."
+    },
+    "applyText": "Apply for the Banff Access Card",
+    "applyUrl": "https://banff.ca/963/Banff-Access-Program",
+    "source": "https://banff.ca/963/Banff-Access-Program",
+    "detail": {
+      "aboutList": {
+        "lead": "The Banff Access Card gives reduced rates on recreation, transit passes and other participating services.",
+        "items": [
+          "Adults 18 and older, and their children under 18 at the same address, can apply together.",
+          "Staff living at the Rimrock Hotel or on Juniper Way apply through the ID9 Access Program instead.",
+          "Open work permits that allow a 6-month wait include Working Holiday and Post-Graduate permits.",
+          "Partner open work permits and International Student work permits also allow a 6-month wait.",
+          "Post office boxes and General Delivery are not accepted as proof of address."
+        ]
+      },
+      "steps": [
+        "Check your household income against the limit for your household size.",
+        "Gather your proof of income, address, need to reside and residency status.",
+        "Email your documents to Community.Services@banff.ca with the subject line Banff Access Application.",
+        "Wait for a decision, because sending documents does not guarantee access."
+      ],
+      "documents": [
+        "Three current pay stubs from each job, or proof of government benefits such as AISH or EI",
+        "Your most recent Notice of Assessment showing line 15000",
+        "Proof of your Banff address, such as a utility bill, lease or financial document",
+        "An employment contract or a signed employer letter on letterhead",
+        "Proof of status, such as a Canadian passport, PR card or closed work permit",
+        "If reapplying, a Notice of Assessment from your previous tax year"
+      ],
+      "tips": [
+        "For one person, Tier 1 is $40,643.20 and Tier 2 is $48,771.84.",
+        "If your hours were cut or you were laid off, ask Community Services about your situation.",
+        "You can find your Notice of Assessment in your Canada Revenue Agency account.",
+        "Free help with taxes may be available for residents with low income and simple returns."
+      ],
+      "phone": "403-762-1251"
+    }
+  },
+  {
+    "id": "blackfalds-recreation-fee-assistance",
+    "name": "Recreation Fee Assistance Program (PASS)",
+    "level": "Blackfalds",
+    "category": "Recreation",
+    "amount": "Subsidized fees for Town programs, memberships and admissions",
+    "summary": "Helps Blackfalds residents with low household income pay fees for Town programs, memberships and admissions. The Town subsidizes fees when possible.",
+    "note": "One application also assesses you for Tools for School, Winter Wear and the Christmas Bureau. When your approval period ends, you must re-apply with all documents.",
+    "requires": [
+      "ab",
+      "blackfalds",
+      "blackfaldsRecreationFeeAssistanceRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Blackfalds",
+        "Your total household income is below the Statistics Canada Low Income Cut-Off",
+        "You send proof of income with your application"
+      ],
+      "note": "Proof can be a Notice of Assessment, an AISH or Alberta Works health card, or a social worker letter."
+    },
+    "applyText": "Get the application form",
+    "applyUrl": "https://irec.wolfcreek.ab.ca/download/108425",
+    "source": "https://irec.wolfcreek.ab.ca/download/108425",
+    "detail": {
+      "aboutList": {
+        "lead": "The Town of Blackfalds subsidizes fees for people who cannot pay for municipal recreation.",
+        "items": [
+          "Covers municipally operated programs, memberships and admissions.",
+          "The subsidy is given when possible, so funding may limit it.",
+          "FCSS assesses your income and sends you a notice telling you what to do next.",
+          "Household means people in one dwelling who are related by blood, marriage, common-law or adoption.",
+          "The limits are the Statistics Canada Low Income Cut-Offs, which are updated each year."
+        ]
+      },
+      "steps": [
+        "Fill in the Subsidized Program Application and tick the programs you want.",
+        "Add a copy of one income document. Do not mail originals.",
+        "Drop it off at the FCSS office, or send it by mail or fax.",
+        "Expect a notice within two to four weeks.",
+        "Show your approval notice, proof of identity and proof of Blackfalds residency to use the subsidy."
+      ],
+      "documents": [
+        "A current Notice of Assessment for each family member 18 and over, not a tax return summary",
+        "Or a current AISH or Alberta Works health benefits card that has not expired",
+        "Or a Registered Social Worker letter dated within 30 days, only if no other document exists",
+        "Or a Resettlement Assistance Program Start-Up and Monthly Allowance form",
+        "Or, for independent youth, a school principal or guidance counsellor letter"
+      ],
+      "tips": [
+        "If you are declined and your finances change, you can reapply with no waiting period.",
+        "Processing can take up to four weeks, so allow time if you apply by mail.",
+        "Call the FCSS Manager if you have trouble with the form."
+      ],
+      "time": "Notice in two to four weeks",
+      "phone": "403-885-6247"
+    }
+  },
+  {
+    "id": "chestermere-community-access-program",
+    "name": "Community Access Program (CAP)",
+    "level": "Chestermere",
+    "category": "Recreation",
+    "amount": "CAP card for subsidies on memberships, classes and transit passes",
+    "summary": "A card for low-income Chestermere residents. It gives access to community memberships, classes, transit passes and other offers from local businesses.",
+    "note": "Each card expires on December 31 and must be renewed by Community Wellness Services staff. You can ask for the monthly transit subsidy only, or the full program.",
+    "requires": [
+      "ab",
+      "chestermere",
+      "chestermereCommunityAccessProgramRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Chestermere",
+        "Your household income is low, based on the Low Income Cut-Offs (LICO)",
+        "You can show proof of residence, ID for household members and proof of income"
+      ],
+      "note": "The page lists the proofs of income it accepts but does not give a dollar limit."
+    },
+    "applyText": "Register for CAP",
+    "applyUrl": "https://thecityofchestermere.ca/community-services/cap-registration/",
+    "source": "https://thecityofchestermere.ca/community-services/cap-registration/",
+    "detail": {
+      "aboutList": {
+        "lead": "CAP supports low-income Chestermere residents with tax filing, memberships, classes and transit.",
+        "items": [
+          "The subsidies listed include a transportation subsidy and Kids Up Front tickets.",
+          "Others listed are TELUS Spark Centre passes and the Community Volunteer Income Tax Program.",
+          "Local partners listed include the Genesis Centre, Luna PLAY and Harmony Health and Fitness.",
+          "The Chestermere Regional Community Association and Calgary Yacht Club also appear on the list.",
+          "All information given to staff is kept strictly confidential."
+        ]
+      },
+      "steps": [
+        "Open the CAP registration form on the city page.",
+        "Choose monthly transit subsidy only, or full Community Access Program membership.",
+        "Enter your name, email and phone, then submit the form.",
+        "Give Community Wellness staff your proof of residence, ID and income."
+      ],
+      "documents": [
+        "Proof of Chestermere residence",
+        "ID for household members",
+        "Proof of income: a Notice of Assessment, AISH benefits, or Alberta Works Learners or Alberta Health Benefit",
+        "Or a letter from a Registered Social Worker, or 3 months of bank statements",
+        "Or a statement that your income is lower than the Chestermere Living Wage"
+      ],
+      "tips": [
+        "The transit-only option is open to adults and youth.",
+        "Renew your card each year, because every card ends on December 31."
+      ]
+    }
+  },
+  {
+    "id": "drayton-valley-recreation-fee-assistance",
+    "name": "Recreation Fee Assistance Program (RFAP)",
+    "level": "Drayton Valley",
+    "category": "Recreation",
+    "amount": "75% subsidized cost at the aquatic and fitness centres",
+    "summary": "Drayton Valley residents with gross household income below the Low Income Cut-Off get a 75% subsidized cost on Town programs at the Aquatic Centre and the Health and Fitness Centre.",
+    "note": "Programs must be a Town program or activity that is 4 or more days or classes long, a camp, or a membership. Fundraising or uniform fees, travel to out-of-town competitions and programs of three days or less are not covered.",
+    "requires": [
+      "ab",
+      "draytonValley",
+      "draytonValleyRecreationFeeAssistanceRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in the Town of Drayton Valley",
+        "Your gross household income is below the Statistics Canada Low Income Cut-Off",
+        "You send documents that prove income and residency for all adults in the household"
+      ],
+      "note": "The 2025 gross limits run from $30,526 for 1 person to $80,784 for 7 persons."
+    },
+    "applyText": "Get the application form",
+    "applyUrl": "https://www.draytonvalley.ca/recreation-fee-assistance-program/",
+    "source": "https://www.draytonvalley.ca/recreation-fee-assistance-program/",
+    "detail": {
+      "aboutList": {
+        "lead": "The program lowers the cost of recreation for Drayton Valley residents with low income.",
+        "items": [
+          "Aquatic Centre passes and swimming lessons are covered, as are children's camps of 4 or more days.",
+          "Fitness Centre passes, the indoor track and racquetball or squash passes are covered.",
+          "Passes can be yearly, 6-month, 3-month, monthly or a 10-visit punch pass.",
+          "A family is up to two adults and their dependent children, and you may apply for up to 7 people."
+        ]
+      },
+      "steps": [
+        "Download the application form, or pick one up at a Town recreation or civic location.",
+        "Attach your income and residency documents to the form.",
+        "Seal it in an envelope and drop it at the Community Services Centre, or mail or email it.",
+        "Wait to be contacted. If approved, you get a letter listing the programs you can use."
+      ],
+      "documents": [
+        "Proof of residence: a driver's license or utility bill with your legal land address, not a P.O. box",
+        "Alberta Health Benefits Card or Alberta Income Support Summary to verify income",
+        "Or a Notice of Assessment from the most recent tax year for every adult",
+        "Or your two most recent pay stubs or bank statements"
+      ],
+      "tips": [
+        "You may need an appointment, depending on staff availability.",
+        "To get a copy of your assessment, call the Canada Revenue Agency and ask for it by mail.",
+        "Documents are needed for all adults in the household."
+      ],
+      "phone": "780.515.4250"
+    }
+  },
+  {
+    "id": "edson-leisure-assist",
+    "name": "Leisure Assist (Fee Assistance Program)",
+    "level": "Edson",
+    "category": "Recreation",
+    "amount": "$150 per person, up to $450 per family each year",
+    "summary": "Eligible Edson residents get $150 each, or up to $450 per family, toward Town community programs and Leisure Centre admissions and programs.",
+    "note": "Funding is limited and first come, first served. Group and facility rentals are excluded. You must reapply each year and give current documents.",
+    "requires": [
+      "ab",
+      "edson",
+      "edsonLeisureAssistRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in the Town of Edson or Yellowhead County",
+        "You get AISH, Alberta Income Support, Alberta Works or the Guaranteed Income Supplement",
+        "Or you have refugee status, low income below the LICO, or a reference letter"
+      ],
+      "note": "The Low Income Cut-Off runs from $24,486 for 1 person to $64,797 for 7 or more."
+    },
+    "applyText": "Get the application form",
+    "applyUrl": "https://www.edson.ca/public/download/files/350852",
+    "source": "https://www.edson.ca/public/download/files/350852",
+    "detail": {
+      "aboutList": {
+        "lead": "Leisure Assist adds credit to your account to help with recreation registration fees.",
+        "items": [
+          "Once approved, your Active Net account is credited with $150 per person.",
+          "The credit is capped at $450 per household.",
+          "A reference letter can come from a teacher, family school liaison, doctor or social worker.",
+          "Each application is valid for a maximum of twelve months."
+        ]
+      },
+      "steps": [
+        "Fill in the Leisure Assist application form and list your household members.",
+        "Attach proof of identity and the documents for how you qualify.",
+        "Drop it off at the Griffiths Park Centre, 5414-6th Ave, or email it to cserv@edson.ca.",
+        "Wait for an email about your approval."
+      ],
+      "documents": [
+        "Low income: your most recent Canada Revenue Agency Notice of Assessment",
+        "AISH or Alberta Income Support: a Health Benefit Card, direct deposit statement or T5007",
+        "Guaranteed Income Supplement: a letter or direct deposit statement",
+        "Refugee status: a Protected Person Status document, or a Refugee Claimant document",
+        "A signed reference letter with the writer's contact information"
+      ],
+      "tips": [
+        "If you are declined and your situation changes, you can reapply with no waiting period.",
+        "If you do not attend courses you registered for, later applications may be disqualified.",
+        "Applications usually take ten business days to process."
+      ],
+      "time": "About ten business days"
+    }
+  },
+  {
+    "id": "rocky-mountain-house-rfap",
+    "name": "Recreation Facility Access Program (Rocky Mountain House)",
+    "level": "Rocky Mountain House",
+    "category": "Recreation",
+    "amount": "50% off Town drop-ins, programs and memberships",
+    "summary": "Half price on Town of Rocky Mountain House recreation for families and individuals at or under an income limit. Each person gets an Access Card for one year.",
+    "note": "Cards cannot be transferred or replaced if lost. The discount cannot be combined with other offers.",
+    "requires": [
+      "ab",
+      "rockyMountainHouse",
+      "rockyMountainHouseRfapRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Your total family income is at or under the limit for your family size",
+        "You have a referral form from a referral agency that confirms you are eligible"
+      ],
+      "note": "The limit uses line 150 of your latest tax return, from $35,000 for 1 person to $52,500 for 5."
+    },
+    "applyText": "See how to apply",
+    "applyUrl": "https://www.rockymtnhouse.com/p/rfap",
+    "source": "https://www.rockymtnhouse.com/p/rfap",
+    "detail": {
+      "aboutList": {
+        "lead": "Each person in an eligible household gets an Access Card that halves the cost of Town recreation.",
+        "items": [
+          "Each card allows 24 drop-in admissions at 50% off.",
+          "Each card allows 3 program or lesson registrations at 50% off.",
+          "Each card allows 1 aquatic or recreation membership at 50% off.",
+          "Cards are valid for one year from the day they are issued."
+        ]
+      },
+      "steps": [
+        "Check the income limit for your family size on the Town page.",
+        "Go to the Clearwater Regional FCSS office with proof of income or a referral form.",
+        "Pick up one Access Card for each person in your household.",
+        "Use the cards at the Rocky Regional Recreation Centre or the Co-operative Aquatic Centre."
+      ],
+      "documents": [
+        "Your most recent income tax return, showing line 150, or a referral form from a referral agency"
+      ],
+      "tips": [
+        "Ask Guest Services which programs and lessons can use your card.",
+        "Over five people adds $2,500 to the $52,000 base limit for each extra person."
+      ],
+      "time": "Monday to Friday, 8:30 AM to 4:00 PM",
+      "phone": "403-847-5270"
+    }
+  },
+  {
+    "id": "strathmore-community-access-card",
+    "name": "Community Access Card (Strathmore)",
+    "level": "Strathmore",
+    "category": "Recreation",
+    "amount": "10%, 25%, 50% or 75% off entry fees and memberships",
+    "summary": "A discount card for Strathmore residents facing financial barriers. It covers entry and membership fees at three Town recreation facilities. Your income and family size set the discount.",
+    "note": "The card does not cover swimming lessons, fitness classes or other programs. Approved cards expire on December 31 and must be renewed each year.",
+    "requires": [
+      "ab",
+      "strathmore",
+      "strathmoreCommunityAccessCardRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Strathmore",
+        "Your household income and size meet the financial criteria in Town Policy 5104"
+      ],
+      "note": "You must show proof of income and who lives in your household."
+    },
+    "applyText": "See how to apply",
+    "applyUrl": "https://www.strathmore.ca/living-here/family-community-support-services/resources-financial-support/community-access-card/",
+    "source": "https://www.strathmore.ca/living-here/family-community-support-services/resources-financial-support/community-access-card/",
+    "detail": {
+      "aboutList": {
+        "lead": "The card lowers entry and membership fees at Town recreation facilities for residents who qualify.",
+        "items": [
+          "Discounts are 10, 25, 50 or 75 percent, set by household income and family size.",
+          "It works at the Aquatic Centre, the Family Centre Arena and the Motor Products Sports Centre.",
+          "The card lists your household members, so entry is private.",
+          "Applications are accepted year-round."
+        ]
+      },
+      "steps": [
+        "Go to the FCSS office in person, since applications cannot be done any other way.",
+        "Bring your documents for every household member.",
+        "Submit the application. It is accepted any time of year.",
+        "Renew each year, because approvals end on December 31."
+      ],
+      "documents": [
+        "Line 15000 from last year's notice of assessment",
+        "Alberta Health Care cards or valid ID for each family member applying",
+        "Proof of residency",
+        "Documents showing AISH, GIS or refugee status, if they apply"
+      ],
+      "tips": [
+        "A mid-year approval still ends on December 31.",
+        "The Town posts sub-levels and the policy on the same page."
+      ],
+      "phone": "(403) 934-9090"
+    }
+  },
+  {
+    "id": "whitecourt-recreation-fee-assistance",
+    "name": "Recreational Fee Assistance Program (Whitecourt)",
+    "level": "Whitecourt",
+    "category": "Recreation",
+    "amount": "Subsidy for 2 programs per session or a 3 month membership",
+    "summary": "A subsidy for adults and their dependents under 18 who cannot pay the full fee. It covers programs and memberships at the Allan & Jean Millar Centre. Applications are kept confidential.",
+    "note": "The page does not list income limits or the subsidy rate. Families must first apply to KidSport for programs it covers.",
+    "requires": [
+      "ab",
+      "whitecourt",
+      "whitecourtRecreationFeeAssistanceRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in the Town of Whitecourt or Woodlands County",
+        "Your circumstances meet the financial criteria for people unable to pay the full fee",
+        "You applied to KidSport first, if you need a program it covers"
+      ],
+      "note": "This is for adults and their dependents under 18."
+    },
+    "applyText": "Visit Guest Services to apply",
+    "applyUrl": "https://whitecourt.ca/play/allan-jean-millar-centre/facility-admission-information",
+    "source": "https://whitecourt.ca/play/allan-jean-millar-centre/facility-admission-information",
+    "detail": {
+      "aboutList": {
+        "lead": "The program helps people who cannot pay full fees use Allan & Jean Millar Centre programs.",
+        "items": [
+          "Each family member may get help with 2 programs per session.",
+          "A 3 month membership may be covered instead.",
+          "You can apply again each year.",
+          "All applications are held in strict confidence."
+        ]
+      },
+      "steps": [
+        "Apply to KidSport first for any programs it covers.",
+        "Go to Guest Services at the Allan & Jean Millar Centre to apply.",
+        "Call Guest Services at 780-778-3637 for more information."
+      ],
+      "documents": [],
+      "tips": [
+        "The page does not list the financial criteria, so call Guest Services for more information."
+      ],
+      "phone": "780-778-3637"
+    }
+  },
+  {
+    "id": "belleville-recreation-fee-assistance",
+    "name": "Recreation Fee Assistance (Belleville)",
+    "level": "Belleville",
+    "category": "Recreation",
+    "amount": "25%, 50% or 75% off City recreation program fees",
+    "summary": "A discount on City of Belleville recreation programs and facility visits. Your household income sets the rate. Approval lasts from July 1 to June 30.",
+    "note": "Private, semi-private and low-ratio lessons, personal training, exam fees and add-ons are not covered. You renew every year. An appointment is needed only every other year unless your address or other details change.",
+    "requires": [
+      "on",
+      "belleville",
+      "bellevilleRecreationFeeAssistanceRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Belleville",
+        "Your total family income is within the City's chart limit for your family size"
+      ],
+      "note": "The City's chart gives the 75, 50 and 25 percent income limits for families of 1 to 7."
+    },
+    "applyText": "Apply for fee assistance",
+    "applyUrl": "https://www.belleville.ca/learn-and-play/recreation/recreation-guide-and-registration-information/recreation-fee-assistance/",
+    "source": "https://www.belleville.ca/learn-and-play/recreation/recreation-guide-and-registration-information/recreation-fee-assistance/",
+    "detail": {
+      "aboutList": {
+        "lead": "Approved households pay a lower rate on eligible City programs without reapplying for each one.",
+        "items": [
+          "Eligible programs may include camps, group swim and skate lessons, and aquafit sessions.",
+          "Eligible programs may also include session passes, drop-ins and facility memberships.",
+          "Aquatic leadership courses, such as Bronze Cross, may be eligible.",
+          "The rate is 25, 50 or 75 percent off, set by your income."
+        ]
+      },
+      "steps": [
+        "Fill in the application online, or call 613-966-4632 to ask for a form.",
+        "Wait for an email with instructions to book an appointment.",
+        "Expect a call within 10 business days to confirm the appointment.",
+        "Bring your documents to the appointment.",
+        "Register for eligible programs at your approved rate."
+      ],
+      "documents": [
+        "Photo ID showing your address, for each household member 18 and over",
+        "Proof of income for everyone in the household, such as a Notice of Assessment, ODSP or Ontario Works statement",
+        "Proof of residency, such as a property tax bill or rental agreement"
+      ],
+      "tips": [
+        "To reapply, apply online or in person and hand in documents at the Quinte Sports & Wellness Centre."
+      ],
+      "phone": "613-966-4632"
+    }
+  },
+  {
+    "id": "chatham-kent-affordable-bus-pass",
+    "name": "Affordable Bus Pass (Chatham-Kent Transit)",
+    "level": "Chatham-Kent",
+    "category": "Transit",
+    "amount": "30-day unlimited urban transit pass for $41.99",
+    "summary": "A 30-day rolling pass with unlimited rides on urban routes for Chatham-Kent residents with a low family income. You can load 30, 60 or 90 days at a time.",
+    "note": "The pass also covers specialized transit in Chatham and Wallaceburg. The card cannot be passed to someone else.",
+    "requires": [
+      "on",
+      "chathamKent",
+      "chathamKentAffordableBusPassRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Chatham-Kent",
+        "Your yearly combined family income is at or below the Statistics Canada before-tax low-income measure"
+      ],
+      "note": "The limit depends on your family size, and ODSP clients can show current income statements."
+    },
+    "applyText": "Apply for the pass",
+    "applyUrl": "https://www.chatham-kent.ca/transit/fares/Pages/Affordable-Pass.aspx",
+    "source": "https://www.chatham-kent.ca/transit/fares/Pages/Affordable-Pass.aspx",
+    "detail": {
+      "aboutList": {
+        "lead": "The pass gives low-income residents a fixed price for unlimited urban bus rides.",
+        "items": [
+          "It starts the first time you scan it and runs for 30 days in a row.",
+          "It works on Chatham and Wallaceburg urban routes.",
+          "It also covers specialized transit."
+        ]
+      },
+      "steps": [
+        "Fill in the application form.",
+        "Gather a tax notice and ID for each family member.",
+        "Submit everything to the Chatham-Kent Civic Centre.",
+        "Load 30, 60 or 90 days onto your card after you are approved."
+      ],
+      "documents": [
+        "A signed application form",
+        "A current Canada Revenue Agency Notice of Assessment for every family member with income",
+        "Identification for you and each family member, such as a birth certificate, license, passport or health card"
+      ],
+      "tips": [
+        "The pass costs $41.99.",
+        "The Affordable Bus Pass Policy on the transit site has more detail."
+      ],
+      "phone": "519-436-3233"
+    }
+  },
+  {
+    "id": "cornwall-fair",
+    "name": "Fee Assistance in Recreation, FAIR (Cornwall)",
+    "level": "Cornwall",
+    "category": "Recreation",
+    "amount": "75% of costs covered, up to $300 a year",
+    "summary": "The City covers 75 percent of swimming lessons, City sports and other recreation programs for low-income residents. You pay 25 percent. It also covers pool memberships and public skating passes.",
+    "note": "The $300 yearly cap applies. Each year on June 1 you send in the previous year's tax documents.",
+    "requires": [
+      "on",
+      "cornwall",
+      "cornwallFairRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in the City of Cornwall",
+        "You are 18 or older to apply",
+        "Your yearly combined family income is at or below the Statistics Canada Low Income Cut-Off",
+        "You have not used up the yearly funding maximum"
+      ]
+    },
+    "applyText": "Apply for FAIR",
+    "applyUrl": "https://www.cornwall.ca/en/recreation-community-supports/recreation-and-sports/fee-assistance-in-recreation/",
+    "source": "https://www.cornwall.ca/en/recreation-community-supports/recreation-and-sports/fee-assistance-in-recreation/",
+    "detail": {
+      "aboutList": {
+        "lead": "FAIR lowers what you pay for City recreation so cost is not a barrier.",
+        "items": [
+          "You pay only 25 percent of eligible costs.",
+          "Swimming lessons and City sports are included.",
+          "Pool memberships and public skating passes are included.",
+          "Support stops once you reach $300 for the year."
+        ]
+      },
+      "steps": [
+        "Fill in the FAIR client application form.",
+        "Add ID for each family member and one proof of income.",
+        "Add proof that you live in Cornwall.",
+        "Email the full package to the City.",
+        "Send last year's documents again each June 1."
+      ],
+      "documents": [
+        "One photocopy of ID for each family member",
+        "One of these, showing your address: a Notice of Assessment for each adult, an Ontario Works or ODSP statement of deposit, a Canada Child Benefit notice, or a GIS notice",
+        "Proof of residency, such as a lease, utility bill or driver's licence"
+      ],
+      "tips": [
+        "Canadian Tire Jumpstart can also help with youth sports costs."
+      ]
+    }
+  },
+  {
+    "id": "peterborough-recreation-subsidy",
+    "name": "Recreation Program Subsidy (Peterborough)",
+    "level": "Peterborough",
+    "category": "Recreation",
+    "amount": "$100 or $200 a year toward recreation registration",
+    "summary": "A yearly subsidy toward registration for sports, camps and recreation programs in Peterborough. People with a low income or on Ontario Works or ODSP can apply. Your income decides if you get $100 or $200.",
+    "note": "It covers registration fees only, not equipment or after-school programs. Programs outside City limits are not covered.",
+    "requires": [
+      "on",
+      "peterborough",
+      "peterboroughRecreationSubsidyRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You live in Peterborough and your household income is under the low-income cut-off chart",
+        "You live in Peterborough and receive Ontario Works or ODSP"
+      ],
+      "note": "The limit is $39,668 for a household of up to five for the full $200, and $39,669 to $43,993 for $100."
+    },
+    "applyText": "Apply for the subsidy",
+    "applyUrl": "https://www.peterborough.ca/recsubsidy",
+    "source": "https://www.peterborough.ca/recsubsidy",
+    "detail": {
+      "aboutList": {
+        "lead": "The subsidy is paid straight to the program provider, or refunded if you already paid.",
+        "items": [
+          "Children aged 17 and under can get up to $200 a year each.",
+          "Adults can get up to $200 a year for programs at City facilities.",
+          "Sports leagues, camps, dance, martial arts and skating lessons count.",
+          "You can apply for several programs and people at once."
+        ]
+      },
+      "steps": [
+        "Check your household income against the chart.",
+        "Upload your documents in the online application.",
+        "Register for your programs, then pay anything above your subsidy.",
+        "For other groups, give them the Verification of Subsidy letter."
+      ],
+      "documents": [
+        "Notice of Assessment or Canada Child Tax Benefit statement for each adult, since pay stubs are not accepted",
+        "Statement of Assistance for anyone on Ontario Works or ODSP",
+        "Proof of a City of Peterborough address",
+        "The program name and start date"
+      ],
+      "tips": [
+        "To be refunded, apply within 30 days of paying.",
+        "Staff can help with your application by email or phone."
+      ],
+      "phone": "705-742-0050 ext. 1574"
+    }
+  },
+  {
+    "id": "peterborough-ow-odsp-transit-pass",
+    "name": "Subsidized City Bus Pass (Peterborough, OW and ODSP)",
+    "level": "Peterborough",
+    "category": "Transit",
+    "amount": "30-day City bus pass for $49",
+    "summary": "A subsidized monthly Peterborough Transit pass for adults on Ontario Works and for people on ODSP. A 30-day pass costs $49.",
+    "note": "Ontario Works clients may be eligible if they do not get transportation money from their Case Manager.",
+    "requires": [
+      "on",
+      "peterborough",
+      "peterboroughOwOdspTransitPassRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You are an adult on Ontario Works in the City or County and get no travel money from your Case Manager",
+        "You are an ODSP client living in the City or County of Peterborough"
+      ]
+    },
+    "applyText": "See how to get the pass",
+    "applyUrl": "https://peterborough.ca/recreation-culture-social-services/social-services/ontario-works/transportation-help",
+    "source": "https://peterborough.ca/recreation-culture-social-services/social-services/ontario-works/transportation-help",
+    "detail": {
+      "aboutList": {
+        "lead": "The pass lowers the price of monthly City bus travel for people on Ontario Works or ODSP.",
+        "items": [
+          "You buy it in person at the Peterborough Transit bus terminal.",
+          "Both city and county residents on these programs can use it."
+        ]
+      },
+      "steps": [
+        "Take your statement of assistance for the current month and personal ID.",
+        "Go to the Peterborough Transit bus terminal at 190 Simcoe St.",
+        "Buy the 30-day pass for $49."
+      ],
+      "documents": [
+        "Your Ontario Works or ODSP statement of assistance for the current month",
+        "Personal identification"
+      ],
+      "tips": [
+        "Ontario Works clients can ask their Case Manager about the pass."
+      ],
+      "phone": "705-748-8830"
+    }
+  },
+  {
+    "id": "campbell-river-life",
+    "name": "L.I.F.E. Program (Campbell River)",
+    "level": "Campbell River",
+    "category": "Recreation",
+    "amount": "52 free drop-ins and 50% off three programs",
+    "summary": "The L.I.F.E. card gives Campbell River residents who face financial challenges 52 free drop-in admissions. It also gives 50% off fees for three City recreation programs.",
+    "note": "Some programs are excluded, including Summerside Express summer camps. Each family member can get a card. Cards last one calendar year.",
+    "requires": [
+      "bc",
+      "campbellRiver",
+      "campbellRiverLifeRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Campbell River",
+        "You meet the income requirements on the application form"
+      ],
+      "note": "The income limits are on the application form, not on the page."
+    },
+    "applyText": "See L.I.F.E. program details",
+    "applyUrl": "https://www.campbellriver.ca/parks-recreation-culture/recreation/affordable-recreation",
+    "source": "https://www.campbellriver.ca/parks-recreation-culture/recreation/affordable-recreation",
+    "detail": {
+      "aboutList": {
+        "lead": "The L.I.F.E. card lowers recreation costs for Campbell River residents with limited funds.",
+        "items": [
+          "52 free drop-in admissions, including Centennial Pool, the weight room and drop-in classes.",
+          "50% off fees for three City of Campbell River recreation programs.",
+          "Some exceptions apply to the discount, such as Summerside Express summer camps.",
+          "Every family member can have one LIFE card."
+        ]
+      },
+      "steps": [
+        "Get the form at the Sportsplex or Community Centre, or print it from the page",
+        "Fill in the whole form",
+        "Hand it to office staff at the Sportsplex or Community Centre with your proof documents",
+        "Show your card whenever you want the reduced fee"
+      ],
+      "documents": [
+        "Proof of residency with your current address, such as a driver's licence or current utility bill",
+        "Proof of income, such as a Notice of Assessment, EI, disability or pension stubs"
+      ],
+      "tips": [
+        "Applications that are not filled in fully are not accepted.",
+        "A card is cancelled if the information on the form is false.",
+        "Cards are not transferable and have no cash value."
+      ]
+    }
+  },
+  {
+    "id": "colwood-langford-life",
+    "name": "LIFE Program (West Shore Parks & Recreation)",
+    "level": "Colwood",
+    "category": "Recreation",
+    "amount": "Low-income access to recreation centres",
+    "summary": "LIFE helps people and families with low incomes use recreation services and programs at municipal recreation centres in Greater Victoria. It is run by West Shore Parks & Recreation.",
+    "note": "LIFE passes cannot be transferred or exchanged for cash or credit.",
+    "requires": [
+      "bc",
+      "colwoodArea",
+      "colwoodLangfordLifeRoute",
+      "noPostSecondaryStudents"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Colwood, Langford, Highlands, Metchosin or View Royal",
+        "Your combined gross household income is at or below the Statistics Canada low income thresholds",
+        "You are not a full-time post-secondary student at Royal Roads, UVic or Camosun College"
+      ],
+      "note": "Newcomers within 5 years of immigrating may use travel documents instead of a Notice of Assessment in year one."
+    },
+    "applyText": "See LIFE program details",
+    "applyUrl": "https://www.wspr.ca/inclusion-support/financial-support",
+    "source": "https://www.wspr.ca/inclusion-support/financial-support",
+    "detail": {
+      "aboutList": {
+        "lead": "LIFE opens Greater Victoria recreation centres to West Shore households with low incomes.",
+        "items": [
+          "Works at all municipal recreation centres in Greater Victoria.",
+          "Members can book a free weight room orientation at Juan de Fuca.",
+          "The page does not list a dollar amount or discount rate.",
+          "A lost card costs $5 plus tax to replace."
+        ]
+      },
+      "steps": [
+        "Fill in one application per family",
+        "Gather proof of residency and your Notice of Assessment",
+        "Drop off the form at reception at the Juan de Fuca Recreation Centre, 1767 Island Highway, Victoria",
+        "Have your picture taken for your LIFE card"
+      ],
+      "documents": [
+        "Current proof of residency, such as a utility bill, rental agreement or government ID",
+        "A 2024 or 2025 Notice of Assessment",
+        "Newcomers: official travel documents for each family member in the first year"
+      ],
+      "tips": [
+        "A separate form exists for youth without family support.",
+        "An adjudicator form is also on the page.",
+        "Replacement cards lose 4 visits a month from January up to the replacement date."
+      ],
+      "phone": "250-478-8384"
+    }
+  },
+  {
+    "id": "courtenay-comox-rap-leap",
+    "name": "Recreation Access Program and LEAP (Comox Valley)",
+    "level": "Courtenay",
+    "category": "Recreation",
+    "amount": "52 free drop-ins plus program discounts",
+    "summary": "LEAP gives Comox Valley residents with lower incomes 52 free drop-in visits a year and a $350 subsidy per family member. Courtenay residents also get RAP discounts on registered programs.",
+    "note": "RAP is for Courtenay residents only; LEAP is regional.",
+    "requires": [
+      "bc",
+      "courtenayArea",
+      "courtenayComoxRapLeapRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in the Comox Valley",
+        "Your household income is within the Statistics Canada after-tax low-income measure (LIM-AT)"
+      ],
+      "note": "RAP is for City of Courtenay residents; other Comox Valley residents use LEAP."
+    },
+    "applyText": "See RAP and LEAP details",
+    "applyUrl": "https://courtenay.ca/EN/main/community/recreation/recreation-access.html",
+    "source": "https://courtenay.ca/EN/main/community/recreation/recreation-access.html",
+    "detail": {
+      "aboutList": {
+        "lead": "One application covers both programs for lower-income Comox Valley residents.",
+        "items": [
+          "LEAP drop-in visits work at participating Comox Valley recreation centres.",
+          "LEAP: a $350 subsidy per family member for registered programs.",
+          "RAP for Courtenay residents: children get 75% off, up to $450 a year.",
+          "RAP: youth get 75% off, up to $400 a year.",
+          "RAP: adults get 50% off, up to $350 a year."
+        ]
+      },
+      "steps": [
+        "Download the combined Recreation Access and LEAP 2026 application form",
+        "Complete it",
+        "Take it to the Lewis or Florence Filberg centre with your documents",
+        "Wait for staff to contact you when your recreation cards are ready"
+      ],
+      "documents": [
+        "Proof of Comox Valley residency, such as a utility bill or rental receipt",
+        "A B.C. Services Card for you and each family member applying"
+      ],
+      "tips": [
+        "Drop-ins include swimming, fitness, the Wellness Centre, parent and tot programs, The LINC Youth Centre and skating.",
+        "A program summary sheet is on the page."
+      ],
+      "phone": "250-338-1000"
+    }
+  },
+  {
+    "id": "cranbrook-leisure-access",
+    "name": "Leisure Access Program (Cranbrook)",
+    "level": "Cranbrook",
+    "category": "Recreation",
+    "amount": "75% off swim rates and free transit",
+    "summary": "The Leisure Access Program gives Cranbrook residents with limited income 75% off regular swim rates and free transit passes. Children under seven swim free with an adult.",
+    "note": "Transit passes are handed out monthly, cannot be transferred and are not replaced if lost or stolen. Benefits last one year, then you must re-apply.",
+    "requires": [
+      "bc",
+      "cranbrook",
+      "cranbrookLeisureAccessRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Cranbrook",
+        "Your household income is at or below the limit for your family size"
+      ],
+      "note": "Limits run from $20,848 for 1 person to $55,172 for 7 people; a family of 4 is $38,740."
+    },
+    "applyText": "See Leisure Access Program details",
+    "applyUrl": "https://cranbrook.ca/our-city/city-departments/leisure-services/services/leisure-access-program",
+    "source": "https://cranbrook.ca/our-city/city-departments/leisure-services/services/leisure-access-program",
+    "detail": {
+      "aboutList": {
+        "lead": "The program lowers swim and transit costs.",
+        "items": [
+          "75% off regular swim rates for public swims, Aquafit and joint mobility classes.",
+          "Free public swims for children under seven, with an adult.",
+          "Free transit access through monthly transit passes."
+        ]
+      },
+      "steps": [
+        "Check your family size against the income chart",
+        "Contact one of the four adjudicating agencies listed on the page",
+        "Meet the adjudicator, who checks your information and fills out your application",
+        "Wait about a week, then book an appointment with Recreation & Culture to register",
+        "Show residency and ID at that appointment"
+      ],
+      "documents": [
+        "Government-issued photo ID with your current address",
+        "Proof of address in one adult's name, such as a utility bill, bank statement or rental contract",
+        "Notice of Assessment or T1 General for each adult, or a Release of Information from MSDSI",
+        "Canada Child Benefit notice if children are on the application"
+      ],
+      "tips": [
+        "The adjudicators are Salvation Army, Community Connections Society, Interior Health Mental Health Programs and MCFD.",
+        "Release of Information forms are at Service BC, 101-100 Cranbrook Street N.",
+        "If you do not qualify, check the pool schedule for Free Family Swims."
+      ],
+      "phone": "250-489-0220"
+    }
+  },
+  {
+    "id": "duncan-leisure-access",
+    "name": "Leisure Access Program (Duncan)",
+    "level": "Duncan",
+    "category": "Recreation",
+    "amount": "Annual drop-in access",
+    "summary": "The Leisure Access Program gives economically disadvantaged residents annual access to drop-in programs at the Cowichan Aquatic Centre and Fuller Lake Arena. City of Duncan residents can apply.",
+    "note": "North Cowichan runs the program for several areas, including the City of Duncan. The page gives no dollar value for the access.",
+    "requires": [
+      "bc",
+      "duncan",
+      "duncanLeisureAccessRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in the City of Duncan or another listed area",
+        "Your gross household income is under the cutoff for your household size"
+      ],
+      "note": "Cutoffs run from $27,308 for 1 person to $72,268 for 7 or more; a household of 4 is $50,744."
+    },
+    "applyText": "Apply for the Leisure Access Program",
+    "applyUrl": "https://www.northcowichan.ca/form/leisure-access-program-application",
+    "source": "https://www.northcowichan.ca/form/leisure-access-program-application",
+    "detail": {
+      "aboutList": {
+        "lead": "The program covers drop-in use of two Cowichan area facilities for lower-income households.",
+        "items": [
+          "Open to residents of North Cowichan, the CVRD, Duncan, Cowichan Tribes Reserve Lands and Ladysmith."
+        ]
+      },
+      "steps": [
+        "Fill in the online application",
+        "List every person in your household",
+        "Upload photo ID and your 2025 Notice of Assessment, or use an agency referral",
+        "Submit the form"
+      ],
+      "documents": [
+        "Current government-issued photo ID for each applicant over 18, with a matching address",
+        "2025 Notice of Assessment, line 15000",
+        "Or a referral completed by a listed agency, with its stamp or business card"
+      ],
+      "tips": [
+        "Total gross household income means all income before taxes from every household member.",
+        "Referral agencies are MCFD, Ministry of Housing and Social Development, Community Living BC, Cowichan Valley Youth Services and Cowichan Tribes Social Development.",
+        "Passes can be cancelled for breaking facility rules or the Code of Conduct."
+      ]
+    }
+  },
+  {
+    "id": "mission-play-pass",
+    "name": "PLAY Pass (Mission)",
+    "level": "Mission",
+    "category": "Recreation",
+    "amount": "Free Leisure Centre admissions",
+    "summary": "The PLAY Pass gives free admissions to the Mission Leisure Centre. You qualify with a low income or by being on income assistance. There is a small admin fee.",
+    "note": "The fee is $5 for an individual and $10 for a family. Processing can take up to three weeks.",
+    "requires": [
+      "bc",
+      "mission",
+      "missionPlayPassRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have lived in Mission for at least 3 months",
+        "Your income is at or below the CRA low income thresholds, or you get Income Assistance"
+      ],
+      "note": "Income Assistance means the provincial ministry or the Federal Social Development Program."
+    },
+    "applyText": "Apply for a PLAY Pass",
+    "applyUrl": "https://mission.ca/playpass",
+    "source": "https://www.mission.ca/node/1114",
+    "detail": {
+      "aboutList": {
+        "lead": "The PLAY Pass removes the entry cost at the Leisure Centre for lower-income residents.",
+        "items": [
+          "Free admissions to the Leisure Centre.",
+          "Based on the CRA low income threshold or income assistance.",
+          "The page does not say how many free visits you get."
+        ]
+      },
+      "steps": [
+        "Apply online at mission.ca/playpass or in person at the Leisure Centre",
+        "Pay the admin fee when your application is approved",
+        "Wait up to three weeks for processing"
+      ],
+      "documents": [],
+      "tips": [
+        "The page points to a more information link for the full rules."
+      ]
+    }
+  },
+  {
+    "id": "penticton-life",
+    "name": "LIFE Program (Penticton)",
+    "level": "Penticton",
+    "category": "Recreation",
+    "amount": "Free and low-cost recreation",
+    "summary": "The LIFE program gives free and low-cost recreation at the Penticton Community Centre. It is for Penticton residents with a limited family income.",
+    "note": "The page does not list an income limit or the exact discount. Check the LIFE information form or ask at the Community Centre.",
+    "requires": [
+      "bc",
+      "penticton",
+      "pentictonLifeRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Penticton",
+        "Your family income is limited"
+      ],
+      "note": "The page gives no income amount, so the form decides."
+    },
+    "applyText": "See LIFE program details",
+    "applyUrl": "https://www.penticton.ca/node/71",
+    "source": "https://www.penticton.ca/node/71",
+    "detail": {
+      "aboutList": {
+        "lead": "LIFE lowers the cost of recreation.",
+        "items": [
+          "It is for residents of Penticton on a limited family income.",
+          "The LIFE Pass Information Form and Application Form are online."
+        ]
+      },
+      "steps": [
+        "Read the LIFE Pass Information Form",
+        "Fill in the application form",
+        "Return it with all required documents to the Community Centre at 325 Power Street"
+      ],
+      "documents": [
+        "All documents the application form asks for"
+      ],
+      "tips": [
+        "You can pick up a paper form at the Community Centre."
+      ]
+    }
+  },
+  {
+    "id": "penticton-access-pass",
+    "name": "Access Pass (Penticton)",
+    "level": "Penticton",
+    "category": "Recreation",
+    "amount": "25% off fitness room and pool passes",
+    "summary": "The Access Pass gives 25% off passes to the fitness room, pool or both. It is for people with a permanent cognitive or physical disability.",
+    "note": "The discount also applies to promotional deals. It covers 10-ticket, 1, 3, 6 and 12 month passes.",
+    "requires": [
+      "bc",
+      "penticton",
+      "pentictonAccessPassRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have a permanent cognitive or physical disability"
+      ]
+    },
+    "applyText": "See Access Pass details",
+    "applyUrl": "https://www.penticton.ca/node/71",
+    "source": "https://www.penticton.ca/node/71",
+    "detail": {
+      "aboutList": {
+        "lead": "Access Pass holders get a lower price on recreation passes.",
+        "items": [
+          "The discount is 25% off 10-ticket passes.",
+          "It works for the fitness room, the pool, or the combined pass."
+        ]
+      },
+      "steps": [
+        "Download the Access Pass application form",
+        "Complete it",
+        "Follow the form's instructions for where to send it"
+      ],
+      "documents": [
+        "The completed Access Pass application form"
+      ],
+      "tips": [
+        "The page links to more information with the form."
+      ]
+    }
+  },
+  {
+    "id": "pitt-meadows-fee-subsidy",
+    "name": "Program and Admission Fee Subsidy (Pitt Meadows)",
+    "level": "Pitt Meadows",
+    "category": "Recreation",
+    "amount": "Discounted program and admission fees for one year",
+    "summary": "Pitt Meadows residents with a low income can get discounted recreation program and admission fees for one year. You pay part of each fee.",
+    "note": "The policy does not state the discount amount. Temporary residents, including people on study or work permits, are excluded.",
+    "requires": [
+      "bc",
+      "pittMeadows",
+      "pittMeadowsFeeSubsidyRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Pitt Meadows",
+        "Your income is at or below the federal low-income cut-off",
+        "Your documents show at least $5,000 of income"
+      ],
+      "note": "Visitors and people on a study or work permit are excluded."
+    },
+    "applyText": "See the subsidy policy",
+    "applyUrl": "https://www.pittmeadows.ca/media/5925",
+    "source": "https://www.pittmeadows.ca/media/5925",
+    "detail": {
+      "aboutList": {
+        "lead": "Council Policy C083 sets up a fee subsidy for local residents who cannot afford full fees.",
+        "items": [
+          "It covers program fees and admission fees.",
+          "Approval lasts one year, and you can reapply each year.",
+          "Everyone still pays a portion of the fee."
+        ]
+      },
+      "steps": [
+        "Gather proof that you live in Pitt Meadows",
+        "Gather proof that your income meets the cut-off",
+        "Complete the Fee Subsidy Application Form",
+        "Reapply each year with the same documents"
+      ],
+      "documents": [
+        "Proof of local residence",
+        "Income documents showing you meet the cut-off and have at least $5,000 of income"
+      ],
+      "tips": [
+        "Business class immigrants, investors and entrepreneurs are also excluded."
+      ]
+    }
+  },
+  {
+    "id": "port-moody-leisure-access",
+    "name": "Leisure Access Program (Port Moody)",
+    "level": "Port Moody",
+    "category": "Recreation",
+    "amount": "50% off admissions, fitness passes and some programs",
+    "summary": "Port Moody residents in financial need get 50% off admissions, fitness passes and some programs. The card lasts up to one year.",
+    "note": "Your family income must fall between a minimum and a maximum that depend on family size. Free skate and helmet rentals are included.",
+    "requires": [
+      "bc",
+      "portMoody",
+      "portMoodyLeisureAccessRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Port Moody",
+        "Your family income is above the minimum and below the maximum for your family size"
+      ],
+      "note": "For one person, income must be from $5,000 to $23,861."
+    },
+    "applyText": "See the application form",
+    "applyUrl": "https://www.portmoody.ca/media/pybmlml1/leisure-access-application-form.pdf",
+    "source": "https://www.portmoody.ca/media/pybmlml1/leisure-access-application-form.pdf",
+    "detail": {
+      "aboutList": {
+        "lead": "The Leisure Access Card gives half-price recreation for the whole family.",
+        "items": [
+          "50% off single drop-ins, fitness passes and skating or aquatics passes.",
+          "50% off up to four registered programs per family member each year.",
+          "50% off up to two weeks of all-day summer camp per person.",
+          "Free skate and helmet rentals."
+        ]
+      },
+      "steps": [
+        "Complete the Leisure Access application form",
+        "Attach the checklist documents",
+        "Take it to the Recreation Complex or Kyle Centre",
+        "Have a photo taken for each family member",
+        "Reapply each year, at least a month before expiry"
+      ],
+      "documents": [
+        "Government photo ID",
+        "Utility bill in an adult's name",
+        "GST credit notice",
+        "Child benefit notices if you have dependents",
+        "Cheque stub from your income source",
+        "Notice of Assessment for each income earner"
+      ],
+      "tips": [
+        "Private lessons and party packages are not included.",
+        "Students living at home must include their family's income."
+      ],
+      "time": "Valid up to one year"
+    }
+  },
+  {
+    "id": "prince-rupert-recreation-access",
+    "name": "Recreation Access Program (Prince Rupert)",
+    "level": "Prince Rupert",
+    "category": "Recreation",
+    "amount": "90% off for children and youth, 50% off for adults",
+    "summary": "Prince Rupert subsidizes recreation fees by 90% for children and youth and 50% for adults. Each eligible family member also gets 50 free admissions a year.",
+    "note": "Funding is first come, first served until the budget is used. Eligibility is based only on financial need.",
+    "requires": [
+      "bc",
+      "princeRupert",
+      "princeRupertRecreationAccessRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You get a named provincial benefit such as disability assistance, social assistance or a Seniors Supplement",
+        "Your tax and benefit documents show financial need"
+      ],
+      "note": "You also need photo ID and proof you live in Prince Rupert."
+    },
+    "applyText": "Apply for the Recreation Access Program",
+    "applyUrl": "https://www.princerupert.ca/node/988",
+    "source": "https://www.princerupert.ca/node/988",
+    "detail": {
+      "aboutList": {
+        "lead": "The program helps people in need use the Rec Complex at a lower cost.",
+        "items": [
+          "The subsidy works toward memberships, visit passes or registered programs.",
+          "The 50 free admissions can be used for the gymnasium, swimming or skating.",
+          "Approval lasts one year and is reviewed each year."
+        ]
+      },
+      "steps": [
+        "Check that you can show proof of financial assistance",
+        "Get a referral letter if you need one",
+        "Fill in the form, on paper or online",
+        "Attach your documents",
+        "Call to book an intake appointment if you want help"
+      ],
+      "documents": [
+        "Photo ID for all adults",
+        "Proof you live in Prince Rupert",
+        "Proof of assistance, or a Notice of Assessment for all adults and a Child Tax Benefit notice for dependents"
+      ],
+      "tips": [
+        "Applications are kept confidential.",
+        "A missed program with no cancellation may affect later subsidy requests."
+      ],
+      "phone": "(250) 624 6707"
+    }
+  },
+  {
+    "id": "quesnel-leisure-access",
+    "name": "Leisure Access Card (Quesnel)",
+    "level": "Quesnel",
+    "category": "Recreation",
+    "amount": "50% off swimming and skating, 25% off programs",
+    "summary": "Quesnel gives 50% off public swimming and skating admissions and 25% off programs. It is for people on income assistance or with a low household income.",
+    "note": "The card is valid for one year from the day the application is accepted. Show both your Resident Card and your Leisure Access Card.",
+    "requires": [
+      "bc",
+      "quesnel",
+      "quesnelLeisureAccessRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You get income assistance from the provincial ministry",
+        "Your household income is at or below the limit for your family size"
+      ],
+      "note": "The limit is $24,486 for one person and $64,797 for seven or more."
+    },
+    "applyText": "Apply for the Leisure Access Card",
+    "applyUrl": "https://www.quesnel.ca/node/4489",
+    "source": "https://www.quesnel.ca/node/4489",
+    "detail": {
+      "aboutList": {
+        "lead": "The card lowers costs at the Arts and Recreation Centre and Quesnel Arenas.",
+        "items": [
+          "The swimming and skating discount is for children and adults.",
+          "25% off programs at the Arts and Recreation Centre and the arenas."
+        ]
+      },
+      "steps": [
+        "Complete the application form",
+        "Have proof of financial need ready",
+        "Submit the form with your proof",
+        "Renew with a new application when the card is about to expire"
+      ],
+      "documents": [
+        "A signed Release of Personal Information form, or your latest Notice of Assessment",
+        "A Seniors Supplement card or a current Employment Insurance form also works"
+      ],
+      "tips": [
+        "New applicants and renewals both fill in a new application.",
+        "The program is paid for by North Cariboo Parks and Recreation taxes."
+      ]
+    }
+  },
+  {
+    "id": "squamish-recreation-access",
+    "name": "Recreation Access Program (Squamish)",
+    "level": "Squamish",
+    "category": "Recreation",
+    "amount": "50% off recreation services and registered programs",
+    "summary": "Squamish residents in financial need get 50% off recreation services and registered programs. The card is valid for one year.",
+    "note": "Gross household income must be under the limit for your size (from $26,570 for one person, 2024 form). The form also mentions a minimum; ask the District.",
+    "requires": [
+      "bc",
+      "squamish",
+      "squamishRecreationAccessRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in the District of Squamish",
+        "Your household income is under the limit for your household size",
+        "You have the original required documents"
+      ],
+      "note": "The page lists limits from $26,570 for one person to $70,298 for seven."
+    },
+    "applyText": "See the application form",
+    "applyUrl": "https://squamish.ca/assets/000-Recreation-Services/000_Forms/RAP-updated-form_-2024.pdf",
+    "source": "https://squamish.ca/assets/000-Recreation-Services/000_Forms/RAP-updated-form_-2024.pdf",
+    "detail": {
+      "aboutList": {
+        "lead": "The Recreation Access Card lowers the cost of recreation for households in need.",
+        "items": [
+        ]
+      },
+      "steps": [
+        "Check the self-assessment on the form",
+        "Complete the application form",
+        "Bring it with your documents to Brennan Park Recreation Centre"
+      ],
+      "documents": [
+        "Government-issued ID for the main applicant",
+        "For each adult, a Notice of Assessment, proof of income, or an income assistance or disability statement",
+        "Proof of residency such as a lease or Canada Child Benefit notice"
+      ],
+      "tips": [
+        "Approved agencies can take your application, including PearlSpace and Sea to Sky Community Services.",
+        "Staff can help if you lack the documents."
+      ],
+      "phone": "604.898.3604"
+    }
+  },
+  {
+    "id": "terrace-affordable-recreation-access",
+    "name": "Affordable Recreation Access Program (Terrace)",
+    "level": "Terrace",
+    "category": "Recreation",
+    "amount": "50% off drop-in fees and short memberships",
+    "summary": "Terrace gives a discount card for 50% off drop-in fees and short memberships. It is for people who get certain provincial or federal assistance or disability benefits.",
+    "note": "Fitness class registration, rentals, swimming lessons and other registered activities are not included.",
+    "requires": [
+      "bc",
+      "terrace",
+      "terraceAffordableRecreationAccessRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You get regular income assistance, PWD or PPMB benefits",
+        "You get Canada Pension Plan Disability",
+        "You get the Guaranteed Income Supplement or the Child Disability Benefit"
+      ]
+    },
+    "applyText": "See the program details",
+    "applyUrl": "https://www.terrace.ca/sites/default/files/2026-06/Affordable%20Recreation%20Access%20Program%20-%20Revised%20June%2022%202026.pdf",
+    "source": "https://www.terrace.ca/sites/default/files/2026-06/Affordable%20Recreation%20Access%20Program%20-%20Revised%20June%2022%202026.pdf",
+    "detail": {
+      "aboutList": {
+        "lead": "A discount card lowers the price of drop-in visits and short memberships.",
+        "items": [
+          "It gives 50% off drop-in fees.",
+          "It covers 10-visit, 1 month and 3 month memberships.",
+          "Buy memberships before the card expires."
+        ]
+      },
+      "steps": [
+        "Pick up the application and letter at the Terrace and District Aquatic Centre",
+        "Complete the form",
+        "Take it to Service BC or Service Canada to verify your benefits",
+        "Bring the paperwork back to the Aquatic Centre"
+      ],
+      "documents": [
+        "The completed application form",
+        "A Release of Personal Information form (HR0095) for provincial benefits",
+        "The standard benefit letter for CPP Disability, the Guaranteed Income Supplement or the Child Disability Benefit",
+        "Identification"
+      ],
+      "tips": [
+        "Cards expire on a schedule: every six months for some benefits and yearly for PWD.",
+        "People on regular income assistance get cards for up to 3 dependent children too."
+      ],
+      "phone": "250-615-3030"
+    }
+  },
+  {
+    "id": "white-rock-leisure-access",
+    "name": "Leisure Access Program (White Rock)",
+    "level": "White Rock",
+    "category": "Recreation",
+    "amount": "50% off programs and memberships, up to $300 a year",
+    "summary": "White Rock gives low-income residents 50% off eligible recreation programs or memberships, up to $300 a year. Skating at Centennial Arena is free.",
+    "note": "South Surrey residents are not eligible. They can apply to the City of Surrey program instead.",
+    "requires": [
+      "bc",
+      "whiteRock",
+      "whiteRockLeisureAccessRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a permanent resident of the City of White Rock",
+        "Your family income is at or below the limit for your family size"
+      ],
+      "note": "The limit is $26,926 for one person and $64,000 for six."
+    },
+    "applyText": "Apply for the Leisure Access Program",
+    "applyUrl": "https://www.whiterockcity.ca/825/Leisure-Access-Program",
+    "source": "https://www.whiterockcity.ca/825/Leisure-Access-Program",
+    "detail": {
+      "aboutList": {
+        "lead": "The program helps residents join recreation when money is tight.",
+        "items": [
+          "It gives 50% off eligible programs or memberships, up to $300 per year.",
+          "It includes free public skating at Centennial Arena.",
+          "Annual and 20-session passes for Grandview Heights Aquatic Centre and South Surrey Indoor Pool are 50% off."
+        ]
+      },
+      "steps": [
+        "Download the application form",
+        "Include the total income of all adults in the household",
+        "Complete one application per family",
+        "Contact Recreation and Culture to arrange your submission"
+      ],
+      "documents": [
+        "The completed application form and the documents it requires"
+      ],
+      "tips": [
+        "Total income for all adults in the household must be included."
+      ],
+      "phone": "604-541-2199"
+    }
   }
 
 ];
@@ -7305,6 +8798,34 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "white-rock-leisure-access": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "terrace-affordable-recreation-access": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "squamish-recreation-access": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "quesnel-leisure-access": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "prince-rupert-recreation-access": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "port-moody-leisure-access": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "pitt-meadows-fee-subsidy": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "penticton-access-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "penticton-life": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "mission-play-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "duncan-leisure-access": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "cranbrook-leisure-access": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "courtenay-comox-rap-leap": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "colwood-langford-life": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "campbell-river-life": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "peterborough-ow-odsp-transit-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "peterborough-recreation-subsidy": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "cornwall-fair": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "chatham-kent-affordable-bus-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "belleville-recreation-fee-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "whitecourt-recreation-fee-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "strathmore-community-access-card": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "rocky-mountain-house-rfap": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "edson-leisure-assist": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "drayton-valley-recreation-fee-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "chestermere-community-access-program": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "blackfalds-recreation-fee-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "banff-access-program": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
   "prince-george-lap": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
   "new-westminster-financial-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
   "nanaimo-leap": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)

@@ -6,6 +6,25 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-17 — afternoon: the rest of the city leads
+
+### Shipped ()
+- **28 more local programs**, each built from its official page and checked by a separate Claude reviewer (20
+  corrections made before shipping, e.g. Belleville's income limit is about 144% of LICO, not "at or under"):
+  8 Alberta towns (Banff, Blackfalds, Chestermere, Drayton Valley, Edson, Rocky Mountain House, Strathmore,
+  Whitecourt), 15 B.C. communities (Campbell River, Colwood/Langford, Comox Valley, Cranbrook, Duncan, Mission,
+  Penticton x2, Pitt Meadows, Port Moody, Prince Rupert, Quesnel, Squamish, Terrace, White Rock) and 4 Ontario
+  cities (Belleville, Chatham-Kent, Cornwall, Peterborough x2). **The catalogue is now 172 programs.**
+- Not built: 17 pages that did not state who qualifies or what you get (often a home page, a news story or a
+  directory listing), and 13 lead links that were dead or blocked. All listed with reasons in
+  , so they can be picked up later.
+
+### Decisions we made for you
+- Squamish's 2024 form says income must "meet the minimum ,570"; that is almost certainly the one-person limit.
+  The record states the limits and tells people to ask the District, rather than turning away very low incomes.
+- Two programs only for people on Ontario Works/ODSP or B.C. assistance (Peterborough transit, Terrace) can never
+  show as "matches your answers", because the wizard does not ask about receiving them; they show as a check.
+
 ## 2026-10-17 — morning: glossary, last content items, three new programs
 
 ### Shipped (`?v=201` → `?v=204`)
