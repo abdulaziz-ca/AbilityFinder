@@ -381,7 +381,7 @@ const BENEFIT_META = {
   "disability-supports-deduction": { difficulty: 3, effort: "Claimed on your tax return", wait: "at tax time" },
   "medical-expense-tax-credit": { difficulty: 2, effort: "Claimed on your tax return", wait: "at tax time" },
   "canada-caregiver-credit": { difficulty: 2, effort: "Claimed on your tax return", wait: "at tax time" },
-  "ab-service-dog-id-card": { difficulty: 2, effort: "Application + proof of assessment", wait: "varies" },
+  "ab-service-dog-id-card": { difficulty: 2, effort: "Application + proof of assessment", wait: "Card mailed in approximately 2 weeks" },
   "ab-capcc": { difficulty: 3, effort: "Application through continuing care", wait: "varies" },
   "ab-special-needs-housing": { difficulty: 3, effort: "Housing application + income verification", wait: "waitlists vary" },
   "bc-msp-supplementary-benefits": { difficulty: 2, effort: "Register with MSP (no cost)", wait: "varies" },
@@ -390,8 +390,8 @@ const BENEFIT_META = {
   "bc-fnha-health-benefits": { difficulty: 2, effort: "Enrol with the First Nations Health Authority", wait: "varies" },
   "bc-additional-home-owner-grant": { difficulty: 2, effort: "Claimed with your property taxes", wait: "at tax time" },
   "bc-raha": { difficulty: 4, effort: "BC Housing application + possible OT/PT assessment", wait: "varies" },
-  dtc: { difficulty: 3, effort: "30–60 min + a doctor visit", wait: "8–20 weeks" },
-  "cdb-adult": { difficulty: 2, effort: "15–30 min (after DTC)", wait: "monthly once approved" },
+  dtc: { difficulty: 3, effort: "30–60 min + a doctor visit", wait: "Varies" },
+  "cdb-adult": { difficulty: 2, effort: "15–30 min (after DTC)", wait: "First payment the month after approval" },
   "child-disability-benefit": { difficulty: 1, effort: "Automatic after DTC + CCB", wait: "next CCB payment" },
   rdsp: { difficulty: 2, effort: "~1 hr at a bank/credit union", wait: "same day to open" },
   "cwb-disability": { difficulty: 1, effort: "Claimed on your tax return", wait: "at tax time" },
@@ -431,7 +431,7 @@ const BENEFIT_META = {
   "bc-pharmacare-plan-c": { difficulty: 1, effort: "Usually automatic with qualifying assistance", wait: "Automatic when ministry status is active" },
   "bc-healthy-kids": { difficulty: 2, effort: "Health-benefit application + income information", wait: "Not published — ask the program" },
   "bc-medical-transportation": { difficulty: 2, effort: "Travel request + medical confirmation", wait: "Ask before arranging travel" },
-  "handydart-translink": { difficulty: 2, effort: "Application + health-professional section", wait: "Not published — confirm with TransLink" },
+  "handydart-translink": { difficulty: 2, effort: "Application + health-professional section", wait: "HandyDART application processed within 10 days of confirming receipt; HandyCard 4 to 6 weeks" },
   "handycard-translink": { difficulty: 2, effort: "Same application as HandyDART", wait: "Allow 4 to 6 weeks for processing" },
   "taxisaver-translink": { difficulty: 1, effort: "HandyCard first, then order coupons", wait: "After HandyCard approval" },
   "handydart-bctransit": { difficulty: 2, effort: "Regional registration + supporting information", wait: "Varies by transit system" },
@@ -557,7 +557,7 @@ const BENEFIT_EXTRA = {
     confirm: "enough recent CPP contributions (usually 4 of the last 6 years) AND medical proof your disability is 'severe and prolonged' — it regularly stops you from any substantially gainful work",
     taxNote: "CPP-D is taxable income and can reduce income-tested benefits (AISH, GIS, provincial assistance). Private long-term disability (LTD) insurers usually subtract it from what they pay you.",
     denials: [
-      "The disability wasn't shown to prevent ALL suitable work, not just your former job.",
+      "The disability wasn't shown to stop you from working at any job on a regular basis, not just your former job.",
       "Not enough CPP contributions in the qualifying period.",
       "The medical report was thin — describe your worst days, not your best.",
     ],
@@ -624,7 +624,7 @@ const BENEFIT_EXTRA = {
     related: ["dtc"],
   },
   aadl: {
-    taxNote: "You usually pay a 25% cost-share (capped each year) — waived entirely for low-income households and people on AISH.",
+    taxNote: "You usually pay a 25% cost-share (capped each year) — you do not pay it if you are low-income or receiving income assistance.",
     related: ["aish", "adult-health-benefit"],
   },
   "adult-health-benefit": {
@@ -3068,7 +3068,7 @@ const BENEFITS = [
       "If you work and earn a lower income, this adds an extra disability top-up to your tax refund.",
     requires: ["dtc", "working", "cwbEligibility"],
     note:
-      "Claimed automatically on your annual tax return once your DTC is on file with the CRA.",
+      "Claimed on your annual tax return once your DTC is on file with the CRA.",
     applyText: "Canada Workers Benefit details",
     applyUrl:
       "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-45300-canada-workers-benefit-cwb.html",
@@ -3701,7 +3701,7 @@ const BENEFITS = [
       ],
       tips: [
         "You don't apply to a general office. You go through an authorizer (often an OT, physio, or audiologist). Ask your doctor for a referral.",
-        "The 25% cost-share is capped each year. It can be waived entirely for low-income households or those on AISH.",
+        "The 25% cost-share is capped each year. Low-income Albertans and people receiving income assistance do not pay it.",
       ],
       time: "Depends on the assessment and vendor.",
       phone: "AADL: 780-427-0731 (toll-free via 310-0000)",
@@ -4806,7 +4806,7 @@ const BENEFITS = [
       "aboutList": { "lead": "Assistance is tied to family net income from two years prior and coverage applies automatically at the pharmacy counter.", "items": ["After a family meets its deductible PharmaCare pays 70% of eligible costs, or 75% if a family member was born before 1940.", "After a family reaches its family maximum, Fair PharmaCare pays 100% of eligible costs for the rest of the year."] },
       "steps": ["Gather the Personal Health Number for every family member, Social Insurance Numbers for adults, and the adults' tax information from two years ago", "Register online, or call Health Insurance BC if online registration is not accessible to you", "Use the temporary coverage that begins the same day while income verification is pending", "Sign and return the CRA consent form within 30 days so temporary coverage does not end", "Check your registration status online or call if a pharmacy cannot see the coverage"],
       "documents": ["Personal Health Number for every family member", "Social Insurance Number for each adult", "Line 23600 from each adult's Notice of Assessment from two years ago", "Line 12500 Registered Disability Savings Plan income, if applicable"],
-      "tips": ["Registration is free and temporary coverage begins the same day", "The CRA consent deadline matters: return it within 30 days", "If family income has dropped substantially, ask PharmaCare whether an income review is available", "If you or a family member is moving into long-term care, ask whether the facility is registered with PharmaCare Plan B before moving in. Plan B covers 100% of eligible prescription drugs and medical supplies for permanent residents of registered facilities. It starts automatically. But not every facility is registered.", "Plan B does not apply to extended-care, acute-care, multi-level or assisted-living facilities. It also does not apply to a short-term stay in a long-term care facility, such as a temporary stay to give a caregiver respite.", "Since March 1, 2026, PharmaCare's National Pharmacare plan, Plan NP, has covered many diabetes medications, contraceptives and menopausal hormone therapy at no cost to you. Coverage is automatic at the pharmacy. There is nothing to register for and no receipts to submit. You must be a B.C. resident enrolled in MSP, and the prescription must be dispensed in B.C.", "Plan NP prescriptions do not count towards your Fair PharmaCare deductible or family maximum. So they cost you nothing, but they also do not move you closer to meeting your deductible.", "The Plan NP diabetes list includes insulins, metformin, glyburide, gliclazide, dapagliflozin and empagliflozin, and combinations of them. A few others need Special Authority approval before a pharmacy can fill them. These include saxagliptin, linagliptin and pioglitazone. Ask your prescriber.", "On April 1, 2026, Plan NP expanded to cover certain diabetes-related supplies and devices.", "PharmaCare also covers the full cost of nicotine gum, lozenges and patches for one continuous course of up to 12 weeks (84 days) in a calendar year. The allowance resets on January 1. You and the pharmacist both sign a declaration form at the pharmacy, so there is nothing to apply for in advance. You must be enrolled in MSP, but you do not need to be signed up for Fair PharmaCare. Certain prescription stop-smoking drugs are covered instead through Fair PharmaCare or through Plans B, C, G or W."],
+      "tips": ["Registration is free and temporary coverage begins the same day", "The CRA consent deadline matters: return it within 30 days", "If family income has dropped substantially, ask PharmaCare whether an income review is available", "If you or a family member is moving into long-term care, ask whether the facility is registered with PharmaCare Plan B before moving in. Plan B covers 100% of eligible prescription drugs and pharmacy services for permanent residents of registered facilities. It also covers eligible medical supplies up to a maximum price set by PharmaCare. It starts automatically. But not every facility is registered.", "Plan B does not apply to extended-care, acute-care, multi-level or assisted-living facilities. It also does not apply to a short-term stay in a long-term care facility, such as a temporary stay for respite care, hospice or palliative care.", "Since March 1, 2026, PharmaCare's National Pharmacare plan, Plan NP, has covered many diabetes medications, contraceptives and menopausal hormone therapy at no cost to you. Coverage is automatic at the pharmacy. There is nothing to register for and no receipts to submit. You must be a B.C. resident enrolled in MSP, and the prescription must be dispensed in B.C.", "Plan NP prescriptions do not count towards your Fair PharmaCare deductible or family maximum. So they cost you nothing, but they also do not move you closer to meeting your deductible.", "The Plan NP diabetes list includes insulins, metformin, glyburide, gliclazide, dapagliflozin and empagliflozin, and combinations of them. A few others need Special Authority approval before a pharmacy can fill them. These include saxagliptin, linagliptin and pioglitazone. Ask your prescriber.", "On April 1, 2026, Plan NP expanded to cover certain diabetes-related supplies and devices.", "PharmaCare also covers the full cost of nicotine gum, lozenges and patches for one continuous course of up to 12 weeks (84 days) in a calendar year. The allowance resets on January 1. You and the pharmacist both sign a declaration form at the pharmacy, so there is nothing to apply for in advance. You must be enrolled in MSP, but you do not need to be signed up for Fair PharmaCare. Certain prescription stop-smoking drugs are covered instead through Fair PharmaCare or through Plans B, C, G or W."],
       "time": "Temporary coverage begins the day you register; income verification follows",
       "phone": "1-800-663-7100"
     }
@@ -5389,7 +5389,7 @@ const BENEFITS = [
     "level": "British Columbia",
     "category": "Transit",
     "amount": "No annual fee for PWD recipients; $45/year for eligible low-income seniors",
-    "summary": "An annual bus pass for people on BC disability assistance and for low-income seniors. It works on scheduled BC Transit services across the province. In Metro Vancouver it comes as a Compass Card.",
+    "summary": "A bus pass for people on BC disability assistance and for low-income seniors. It works on scheduled BC Transit services across the province. In Metro Vancouver it comes as a Compass Card.",
     "requires": ["bc", "bcBusPassStatus"],
     eligibility: {
       mode: "any",
