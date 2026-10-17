@@ -2646,6 +2646,7 @@ function wireHeaderMenu() {
   const menuNavigation = {
     start: navigateStart,
     browse: navigateBrowse,
+    coverage: () => setState("coverage"),
     grants: navigateGrants,
     organizations: navigateOrganizations,
     about: navigateAbout,
@@ -2812,6 +2813,10 @@ function render() {
     progress.style.display = "none";
     app.innerHTML = renderSafely(renderAbout, "about");
     wireAbout();
+  } else if (view === "coverage") {
+    progress.style.display = "none";
+    app.innerHTML = renderSafely(renderCoverage, "coverage");
+    wireInfoPage(["cv-back", "cv-back2"]);
   } else if (view === "support") {
     progress.style.display = "none";
     app.innerHTML = renderSafely(renderSupport, "support");
@@ -3558,6 +3563,56 @@ function wireInfoPage(backIds) {
   });
 }
 function wireAbout() { wireInfoPage(["a-back", "a-back2"]); }
+
+/* "What we don't cover yet" (task #206). Honest limits, so people know where
+   else to look. The city lists are computed from the matcher: a listed city
+   counts as covered when at least one local program does not refuse someone
+   who lives there, so the page cannot drift from the catalogue. */
+const LOCAL_LEVELS_EXCLUDED = new Set(["Federal", "Alberta", "British Columbia", "Ontario"]);
+function citiesWithoutLocalPrograms() {
+  const out = {};
+  for (const [prov, cities] of Object.entries(CITIES_BY_PROVINCE)) {
+    const local = BENEFITS.filter((b) => !LOCAL_LEVELS_EXCLUDED.has(b.level) && benefitProvince(b) === prov);
+    out[prov] = cities.filter((city) => {
+      if (/^Other/i.test(city)) return false;
+      // Two plausible people (an adult and a child, low income, documented
+      // disability): a city is covered when some local program does not refuse
+      // at least one of them. A blank profile is not enough, because programs'
+      // other firm rules (age, for example) refuse an empty answer set.
+      const base = { ...BLANK(), province: prov, city, forWho: "self", income: "low", citizenPR: true, disabilityVerified: "yes", dtc: "yes", disabilities: ["physical"], functionalNeeds: ["dailyLiving"], situation: ["none"], circumstances: ["none"] };
+      const people = [{ ...base, ageBand: "19to59", ageGroup: "adult" }, { ...base, forWho: "child", ageBand: "6to11", ageGroup: "child", situation: ["elementary"] }];
+      return !people.some((model) => evaluateAnswers(model, {}).some((e) => local.includes(e.b) && e.r.status !== "no"));
+    });
+  }
+  return out;
+}
+function renderCoverage() {
+  const block = (h, body) => `<div class="legal-block"><h2>${h}</h2>${body}</div>`;
+  const missing = citiesWithoutLocalPrograms();
+  const names = { AB: "Alberta", BC: "British Columbia", ON: "Ontario" };
+  const cityRows = Object.entries(missing).filter(([p]) => names[p]).map(([p, list]) =>
+    `<p><b>${names[p]}:</b> ${list.length ? reqEscape(list.join(", ")) : "every listed community has at least one local program"}.</p>`).join("");
+  const localCount = BENEFITS.filter((b) => !LOCAL_LEVELS_EXCLUDED.has(b.level)).length;
+  return `
+  <section class="legal" lang="en">
+    <button class="back-link" id="cv-back">${icon("arrowLeft")} Back</button>
+    <p class="section-label">Our limits</p>
+    <h1 class="legal-title">What we don’t cover yet</h1>
+    <p class="legal-lede">AbilityFinder does not list every program. This page says plainly what is missing, so you know where else to look.</p>
+    ${block("Where we cover", `<p>We cover Canada-wide federal programs and provincial programs in ${SCOPE_LABEL_LONG}, plus ${localCount} city and regional programs. If you live in another province or territory, you will only see federal programs.</p>`)}
+    ${block("Communities with no local program in our catalogue yet", `<p>These communities are in our list, but we have not added a city or regional program for them. They may still have one: ask your city hall or recreation centre.</p>${cityRows}`)}
+    ${block("Kinds of help we do not list", `<ul class="cred-list">
+      <li>${icon("info")}<span>Programs for one medical condition rather than disability, such as condition-specific drug programs.</span></li>
+      <li>${icon("info")}<span>Programs whose rules or amounts are not published, or that change by local office, until we can state them accurately.</span></li>
+      <li>${icon("info")}<span>Private, workplace or insurance benefits, and one-off pilots.</span></li>
+      <li>${icon("info")}<span>Some charity grants and community organizations: our <button class="linklike" data-cover-nav="grants">grants</button> and <button class="linklike" data-cover-nav="organizations">organizations</button> lists hold the ones we have checked.</span></li>
+    </ul>`)}
+    ${block("Language", `<p>The menus can switch to French, but program details are in English for now.</p>`)}
+    ${block("Where else to look", `<p>211 can point you to local programs: <a href="https://ab.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>Alberta 211</a>, <a href="https://bc.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>BC 211</a>, <a href="https://211ontario.ca" target="_blank" rel="noopener noreferrer" data-ext>211 Ontario</a>. Elsewhere in Canada, visit <a href="https://211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211.ca</a>.</p>`)}
+    ${block("Know a program we missed?", `<p>Tell us through the <button class="linklike js-feedback">feedback form</button>. We add a program only after we read its official page.</p>`)}
+    <button class="back-link bottom" id="cv-back2">${icon("arrowLeft")} Back</button>
+  </section>`;
+}
 function wireSupport() { wireInfoPage(["s-back", "s-back2"]); }
 
 function infoList(keys) {

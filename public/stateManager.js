@@ -83,7 +83,7 @@
   ];
   const A11Y_KEYS = ["spacing", "contrast", "links", "guide", "motion"];
   const HELP_TOPICS = ["disabilities", "documentation", "autismAssessment", "functionalNeeds", "msp", "bcAssistance", "circumstances", "dtc"];
-  const VIEWS = new Set(["landing", "wizard", "results", "browse", "detail", "privacy", "about", "support", "updates", "help", "accessibility", "professionals", "partner-overview", "impact", "dtc-prep", "grants", "organizations"]);
+  const VIEWS = new Set(["landing", "wizard", "results", "browse", "detail", "privacy", "about", "coverage", "support", "updates", "help", "accessibility", "professionals", "partner-overview", "impact", "dtc-prep", "grants", "organizations"]);
   const BROWSE_LEVELS = new Set(["all", "Federal", "Alberta", "British Columbia", "local"]);
   const BROWSE_THEMES = new Set(["all", "money", "health", "getting-around", "employment", "education", "family"]);
 
