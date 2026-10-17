@@ -5764,7 +5764,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
       <aside class="detail-side">
         <div class="side-card">
           <span data-fact-status="${b.id}" class="side-status ${sideStatus.cls}">${sideStatus.txt}</span>
-          ${wizardDone() ? matchStatusNote(r.status) : ""}
+          ${wizardDone() && inline ? matchStatusNote(r.status) : ""}
           ${sidePrompt}
           ${nextAction ? `<a class="apply side-next-action" href="${nextAction.action.url}" target="_blank" rel="noopener noreferrer" data-ext>${nextAction.action.text} ${icon("external")}</a>` : ""}
           <dl class="side-facts">${factsHtml}</dl>
