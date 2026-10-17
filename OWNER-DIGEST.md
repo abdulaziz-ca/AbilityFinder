@@ -6,6 +6,19 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-16 — evening: "already get" question
+
+### Shipped
+- **"Do you already get any of these?"** — `ee094d5`, `?v=193`. An optional question after the DTC question:
+  AISH / ADAP (Alberta), B.C. disability assistance, ODSP (Ontario), CPP disability benefit. Picked programs move to a
+  "You already get" group at the top of results, and out of every other list (including "not a match", the
+  print-out and the what-if panel). No match or status changes. Getting ODSP turns the Ottawa Community Pass into a
+  full card. Children aren't asked; skipping is fine; older saved answers still open straight to results.
+
+### Verified how
+223 unit tests, the Chromium browser suite locally, screenshots of the question and results, and an independent
+Claude review (its two findings, the print-out and the what-if rows, are fixed). Built Claude-only, as you asked.
+
 ## 2026-10-16 — afternoon: full site audit
 
 ### What we found (research/2026-10-site-audit/)
@@ -27,8 +40,7 @@ already ruled out by the person's own answers - usually as cards 2 to 4.
   "free government money" for the RDSP.
 
 ### Next (in research/2026-10-site-audit/DECISION.md)
-- Phase 2: an optional "What do you already receive?" question, so someone on AISH sees "You get this" instead of
-  being asked to check AISH.
+- ~~Phase 2: "already get" question~~ — shipped the same evening (see above).
 - More reviewed "not for your situation" rules (age, working status), one class at a time.
 - Engineering: caching (each visit re-checks 13 files), faster CI, plain-language rewrite (median reading level is
   grade 12.5).
