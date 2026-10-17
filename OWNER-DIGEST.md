@@ -6,6 +6,27 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-17 — evening: retried leads, coverage page, redesign research
+
+### Shipped
+- **11 more local programs** (`?v=208`) after finding each lead's current official page: High River, Morinville,
+  Taber, Dawson Creek, Langley, Nelson (RDCK), Port Coquitlam, West Vancouver, Brantford, Cornwall's community bus
+  pass and Sarnia's CNIB pass. **Catalogue: 183 programs.** The leads that remain are listed with reasons in
+  `research/2026-10-city-sweep/LEADS.md` (closed this year, funding ended, page gone, bot check, no official page).
+- **"What we don't cover yet" page** (`?v=207`, in the menu), as you asked. It lists the communities with no local
+  program yet (worked out from the matcher itself, so it stays accurate), the kinds of help we don't list, and 211
+  links for each province.
+
+### Redesign: research and drafts (nothing on the live site changed)
+- `research/2026-10-redesign/`: 16 reference sites reviewed, accessibility research with 30 testable criteria,
+  and **three drafts** of the same four screens: Quiet Paper, Calm Green, Clear Ink. Open
+  `research/2026-10-redesign/drafts/index.html`, or look at `screens/`.
+- My recommendation is in `PLAN.md` (Calm Green for home and results, Quiet Paper's discipline for questions and
+  guides). Board: epic #224 with tickets #225–#233.
+
+### Needs you
+- **#225: pick a design direction** (or a mix). Every other redesign ticket waits on it.
+
 ## 2026-10-17 — afternoon: the rest of the city leads
 
 ### Shipped (`?v=206`)
