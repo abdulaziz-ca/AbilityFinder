@@ -1947,3 +1947,8 @@ body.a11y-nomotion .side-note:hover .sn-go .ic { transform: none; }
   html { scroll-padding-bottom: 56px; }
   body { padding-bottom: 56px; }
 }
+
+/* Touch targets on results: tracker selects were 26px, grouping buttons 28px and
+   answer chips 30px. 44px is the comfortable minimum for a motor-impaired
+   audience (site audit 2026-10, D-ENGINEERING P3; WCAG 2.5.5). */
+.track-sel, .gt-btn, .chip { min-height: 44px; }

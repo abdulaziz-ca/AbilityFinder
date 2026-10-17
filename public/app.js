@@ -6208,6 +6208,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (brand)
     brand.addEventListener("click", (e) => {
       e.preventDefault();
+      // People expect a logo to mean "home", not "erase". Ask before clearing
+      // anything they would lose (site audit 2026-10, D-ENGINEERING P3).
+      const hasWork = JSON.stringify(answers) !== JSON.stringify(BLANK()) || Object.keys(progress).length > 0;
+      if (hasWork && !window.confirm(t("brand.confirmStartOver"))) return;
       stopReadAloud();
       answers = BLANK();
       confirmedFacts = {};

@@ -375,6 +375,7 @@ const I18N = {
     "res.needMore": "We need more information to narrow this down.",
     "res.byAnswers": "Best match first",
     "res.byCategory": "By category",
+    "brand.confirmStartOver": "Start over? This clears your answers and tracked progress on this device. Your display settings stay.",
     "grp.g0": "You already get",
     "grp.g0Sub": "You told us you get these, so they are not listed as programs to check. Each guide links to the official page.",
     "grp.g0Tag": "You already get this",

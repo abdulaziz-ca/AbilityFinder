@@ -86,3 +86,15 @@ test('autism diagnosis "not sure": BC Autism Funding keeps its full card', async
   await expect(page.locator('[data-later-reason="autism"]')).toHaveCount(0);
   await expect(page.locator('.result-group-main [data-fact-program="bc-autism-funding-6-18"]')).toHaveCount(1);
 });
+
+test('the logo asks before clearing answers; dismissing keeps them', async ({ page }) => {
+  await openResults(page, 'P01-calgary-aish');
+  page.once('dialog', (d) => d.dismiss());
+  await page.locator('#brandHome').click();
+  await expect(page.locator('.results-head h1')).toHaveText('Programs based on your answers');
+  expect(await page.evaluate(() => answers.city)).toBe('Calgary');
+  page.once('dialog', (d) => d.accept());
+  await page.locator('#brandHome').click();
+  await expect.poll(() => page.evaluate(() => answers.city)).toBe(null);
+  await expect.poll(() => page.evaluate(() => view)).toBe('landing');
+});
