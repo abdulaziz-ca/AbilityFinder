@@ -116,7 +116,7 @@ const officialLinks = (b) => {
     if (typeof staticUrl !== "string" || !/^https?:\/\//.test(staticUrl) || links.some((x) => x.url === staticUrl)) return;
     links.push({ url: staticUrl, label });
   };
-  add(b.applyUrl, clean(b.applyText) || "Apply or learn more");
+  add(b.applyUrl, clean(b.applyText) || (() => { try { return `Open the official page on ${new URL(b.applyUrl).hostname.replace(/^www2?\./, "")}`; } catch { return "Apply or learn more"; } })());
   add(b.source, "Official government source");
   return links;
 };

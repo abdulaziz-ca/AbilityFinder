@@ -15,7 +15,7 @@ function context() {
     p2Sections: () => ({}), listBlock: () => '', practitionerFinder: () => '',
     resolveUrl: s => s,
   });
-  vm.runInContext(data + '\n' + translations + '\n' + fn('reqEscape') + '\n' + fn('statusBadge') + '\n' + fn('valueParts') + '\n' + fn('difficultyInfo') + '\n' + fn('renderGuideBody') + '\n' + fn('resultsBlurb') + '\nglobalThis.benefits = BENEFITS; globalThis.render = renderGuideBody;', ctx);
+  vm.runInContext(data + '\n' + translations + '\n' + fn('reqEscape') + '\n' + fn('applyLabel') + '\n' + fn('statusBadge') + '\n' + fn('valueParts') + '\n' + fn('difficultyInfo') + '\n' + fn('renderGuideBody') + '\n' + fn('resultsBlurb') + '\nglobalThis.benefits = BENEFITS; globalThis.render = renderGuideBody;', ctx);
   return ctx;
 }
 test('every live guide amount equals the qualified catalogue amount and generated static guide', () => {

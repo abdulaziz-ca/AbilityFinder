@@ -3326,7 +3326,7 @@ const BENEFITS = [
       "You can claim this only once in a lifetime for the person the unit is built for. Get it right before the work starts. Note the rate: for the 2025 tax year the credit is 14.5% to a maximum of $7,250. Figures of 15% and $7,500 are widely quoted, but they do not match the CRA's current page.",
     requiresNote:
       "The renovation must create a self-contained secondary unit. One of the people living in the existing home or in the new unit must be a qualifying individual: either 65 years of age or older at the end of the renovation period tax year, or 18 to 64 and eligible for the Disability Tax Credit at any time in that year. Only one renovation can be claimed for a qualifying individual during their lifetime. The person claiming must be an eligible individual: a resident of Canada from January 1 to December 31 of the claim year who either ordinarily resides, or intends to ordinarily reside, in the home within 12 months of the end of the renovation period and is the qualifying individual, their cohabiting spouse or common-law partner, or a qualifying relation of theirs; or who owns the home and is a qualifying relation of the qualifying individual. The home must be in Canada, owned by the qualifying individual or a qualifying relation during the renovation period tax year, and lived in by both the qualifying individual and a qualifying relation within 12 months after the renovation period ends.",
-    applyText: "Multigenerational Home Renovation Tax Credit (MHRTC)",
+    applyText: "Open the official page on canada.ca",
     applyUrl:
       "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-45355-mhrtc.html",
     source:
@@ -3378,7 +3378,7 @@ const BENEFITS = [
       "None of the CRA's pages for this program say how much the refund is per litre. This includes the program page, the Form XE8 page and Guide RC4064. Temporary cuts to the federal excise tax rates on certain types of fuel are in effect. Ask the CRA at 1-877-432-5472 what the current rate is. Do not rely on a figure from anywhere else.",
     requiresNote:
       "You must have a permanent mobility impairment and be unable to safely use public transportation. A qualified medical practitioner must certify the impairment.",
-    applyText: "Form XE8, Application for Refund of Federal Excise Tax on Gasoline",
+    applyText: "Open Form XE8 on canada.ca",
     applyUrl: "https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/xe8.html",
     source:
       "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/excise-gasoline-tax-refund.html",
@@ -3684,7 +3684,7 @@ const BENEFITS = [
     requires: ["ab", "equipmentNeed", "ahcipRegistered", "aadlAssessment", "aadlOtherPayer"],
     note:
       "Covers a wide range of devices. You usually pay 25% (capped per year). Low-income households can have that waived.",
-    applyText: "Alberta Aids to Daily Living",
+    applyText: "Open the official page on alberta.ca",
     applyUrl: "https://www.alberta.ca/alberta-aids-to-daily-living",
     source: "https://www.alberta.ca/aadl-eligibility-and-application-for-benefits",
     detail: {
@@ -3718,7 +3718,7 @@ const BENEFITS = [
     requires: ["age18plus", "ab", "developmental", "pddEligibility"],
     note:
       "For adults whose developmental disability began before age 18 and significantly affects daily living. Provides services and supports, not direct cash.",
-    applyText: "Persons with Developmental Disabilities",
+    applyText: "Open the official page on alberta.ca",
     applyUrl: "https://www.alberta.ca/persons-with-developmental-disabilities-pdd",
     source: "https://www.alberta.ca/persons-with-developmental-disabilities-pdd",
     detail: {
@@ -3754,7 +3754,7 @@ const BENEFITS = [
       "fscdEligibility"
     ],
     "note": "Wide-ranging support for families: respite care, specialized services, and help with some out-of-pocket disability costs. It is separate from the federal Child Disability Benefit, and you can get both.",
-    "applyText": "Family Support for Children with Disabilities",
+    "applyText": "Open the official page on alberta.ca",
     "applyUrl": "https://www.alberta.ca/fscd",
     "source": "https://www.alberta.ca/fscd-eligibility",
     "detail": {
@@ -3807,7 +3807,7 @@ const BENEFITS = [
       "You must be 16 or older, reside in Alberta, be legally entitled to work or train in Canada, and be a Canadian citizen, permanent resident, or Convention Refugee. You must be employed or employment destined. You may be eligible for funding if your disability is documented permanent or long-term and creating a barrier to education, training and/or employment.",
     note:
       "Alberta's published examples include: assistive devices, equipment or technology; ASL interpreting and captioning; an academic aide or note taker; communication or hearing devices for work; workplace access or changes; and work-related vehicle changes. Education or training supports are not available while you attend Alberta Education-funded K–12 or a publicly funded Alberta post-secondary institution. Contact the school or institution for disability accommodations. A separate eligible work route may still be considered.",
-    applyText: "Disability Related Employment Supports",
+    applyText: "Open the official page on alberta.ca",
     applyUrl: "https://www.alberta.ca/disability-related-employment-supports",
     source: "https://www.alberta.ca/disability-related-employment-supports",
     detail: {
@@ -3890,7 +3890,7 @@ const BENEFITS = [
     requires: ["adult", "ab", "citizenPR", "adultHealthIncome", "adultHealthGateway"],
     note:
       "Helps cover the cost of medication if you're on a lower income and not already covered by AISH.",
-    applyText: "Alberta Adult Health Benefit",
+    applyText: "Open the official page on alberta.ca",
     applyUrl: "https://www.alberta.ca/alberta-adult-health-benefit",
     source: "https://www.alberta.ca/alberta-adult-health-benefit",
     detail: {
@@ -3925,7 +3925,7 @@ const BENEFITS = [
     requires: ["achbAge", "ab", "citizenPR", "lowIncome", "achbOlderDependent", "achbFamilyResidencyStatus", "achbCoverageCoordination"],
     note:
       "The applicant and family members must live in Alberta and be Canadian citizens or permanent residents. Income Support, AISH, the Child and Youth Support Program, and Non-Insured Health Benefits are excluded government coverage. Private plans are used first. They are not exclusions. For services covered by both ACHB and the Canadian Dental Care Plan, claims go to the Canadian Dental Care Plan first.",
-    applyText: "Alberta Child Health Benefit",
+    applyText: "Open the official page on alberta.ca",
     applyUrl: "https://www.alberta.ca/alberta-child-health-benefit",
     source: "https://www.alberta.ca/alberta-child-health-benefit",
     declarationText: "Declaration for an 18- or 19-year-old dependent (AEHB3654)",
@@ -4209,7 +4209,7 @@ const BENEFITS = [
     requires: ["edmonton", "lowIncomeOrDisabilityIncome"],
     note:
       "You may be eligible if your household income is at or under the City's limits. The limits depend on household size. You may also be eligible if you get AISH or CPP Disability Benefits, among other programs the City lists. Use the City's eligibility questions to check.",
-    applyText: "Edmonton transit & leisure assistance",
+    applyText: "Open the official page on edmonton.ca",
     applyUrl: "https://www.edmonton.ca/ets/fare-assistance",
     source: "https://www.edmonton.ca/ets/fare-assistance",
     detail: {
@@ -4255,7 +4255,7 @@ const BENEFITS = [
     requires: ["reddeer", "lowIncomeOrDisabilityIncome"],
     note:
       "If you're on AISH or Income Support, you may automatically qualify when you provide the listed document. You may not need to send a Notice of Assessment. The transit pass is a permanent program (not a pilot). Both programs need renewing each year.",
-    applyText: "Red Deer fee assistance",
+    applyText: "Open the official page on reddeer.ca",
     applyUrl:
       "https://www.reddeer.ca/city-services/transit/fares-and-passes/transit-fare-assistance-pass/",
     source:
@@ -4295,7 +4295,7 @@ const BENEFITS = [
     requires: ["lethbridge", "lowIncomeOrDisabilityIncome"],
     note:
       "This is the only one of these city programs that also helps pay for paratransit (Access-A-Ride). This is worth knowing if you can't use a regular bus.",
-    applyText: "Lethbridge fee assistance",
+    applyText: "Open the official page on lethbridge.ca",
     applyUrl:
       "https://www.lethbridge.ca/community-services-supports/community-social-development-csd/fee-assistance-program/",
     source:
@@ -4333,7 +4333,7 @@ const BENEFITS = [
     requires: ["medicinehat", "lowIncomeOrDisabilityIncome"],
     note:
       "Approval lasts up to two years, so you renew less often than with most programs here. A copy of your current AISH Health Benefits Card is accepted as proof.",
-    applyText: "Medicine Hat Fair Entry",
+    applyText: "Open the application form on medicinehat.ca",
     applyUrl: "https://forms.medicinehat.ca/Community-Development/Fair-Entry-Application",
     source:
       "https://www.medicinehat.ca/community-support-culture-safety/community-support/fair-entry/",
@@ -4381,7 +4381,7 @@ const BENEFITS = [
     requires: ["grandeprairie", "municipalProgramEligibility"],
     note:
       "Important: AISH and ADAP recipients are not part of the general Transit Access Program. You get your own, cheaper pass instead ($10.25 vs $37.13). Ask for the AISH pass by name at City Hall.",
-    applyText: "Grande Prairie transit fares",
+    applyText: "Open the official page on cityofgp.com",
     applyUrl: "https://cityofgp.com/roads-transportation/public-transit/fares-superpass",
     source: "https://cityofgp.com/roads-transportation/public-transit/transit-access-program",
     detail: {
@@ -4418,7 +4418,7 @@ const BENEFITS = [
       "municipalProgramEligibility"
     ],
     "note": "AISH and ADAP recipients are eligible for a free annual recreation membership. The City's page also says your total annual household income (before taxes) must be within the low-income limits set by Statistics Canada. It does not say whether that rule applies to AISH or ADAP recipients, so confirm with the City.",
-    "applyText": "St. Albert subsidy program",
+    "applyText": "Open the official page on stalbert.ca",
     "applyUrl": "https://stalbert.ca/city/fcss/programs-services/subsidy/",
     "source": "https://stalbert.ca/city/fcss/programs-services/subsidy/",
     "detail": {
@@ -4462,7 +4462,7 @@ const BENEFITS = [
       "lowIncomeOrDisabilityIncome"
     ],
     "note": "These programs are based on income, not disability. The income line is roughly $33,675/year for one person. AISH is below that, so it's worth applying.",
-    "applyText": "Strathcona County subsidies",
+    "applyText": "Open the official page on strathcona.ca",
     "applyUrl": "https://www.strathcona.ca/community-families/affordable-services/subsidized-fares/",
     "source": "https://www.strathcona.ca/community-families/affordable-services/",
     "detail": {
@@ -4498,7 +4498,7 @@ const BENEFITS = [
     requires: ["airdrie", "lowIncomeOrDisabilityIncome"],
     note:
       "Airdrie checks your household income against its limits. The page does not say that being on AISH qualifies you automatically. An AISH or ADAP form showing your eligibility period is one of the accepted proof-of-income documents. AISH/ADAP recipients get a two-year term instead of one year.",
-    applyText: "Airdrie Fair Access",
+    applyText: "Open the official page on airdrie.ca",
     applyUrl: "https://www.airdrie.ca/index.cfm?serviceID=2414",
     source: "https://www.airdrie.ca/index.cfm?serviceID=2157",
     detail: {
@@ -4533,7 +4533,7 @@ const BENEFITS = [
     requires: ["woodbuffalo", "lowIncomeOrDisabilityIncome"],
     note:
       "This is one of only two municipal programs here that discount specialized (door-to-door) transit. The other is Lethbridge's Access-A-Ride. Your AISH statement is accepted as proof of income.",
-    applyText: "Wood Buffalo LIFT",
+    applyText: "Open the application form on rmwb.ca",
     applyUrl: "https://forms.rmwb.ca/Community-Services/LIFT-Program-Application",
     source: "https://www.rmwb.ca/LIFT",
     detail: {
@@ -4570,7 +4570,7 @@ const BENEFITS = [
     summary: "A reduced local or commuter transit pass for qualifying Spruce Grove-area residents.",
     requires: ["sprucegrovearea", "lowIncome"],
     note: "The City accepts applications year-round. The program also serves eligible Stony Plain and Parkland County residents.",
-    applyText: "Spruce Grove transit fares and low-income pass",
+    applyText: "Open the official page on sprucegrove.org",
     applyUrl: "https://www.sprucegrove.org/services/spruce-grove-transit/transit-fares/",
     source: "https://www.sprucegrove.org/services/spruce-grove-transit/transit-fares/",
     detail: {
@@ -4610,7 +4610,7 @@ const BENEFITS = [
     summary: "A Town card for residents facing financial or situational barriers, with local transit and recreation discounts.",
     requires: ["cochrane", "lowIncome"],
     note: "Cochrane assesses financial and situational need. Book an appointment and bring the requested income and address documents for all adults in the household.",
-    applyText: "Cochrane Connect Card information",
+    applyText: "Open the official page on cochrane.ca",
     applyUrl: "https://www.cochrane.ca/node/241/financial-resources/cochrane-connect-card",
     source: "https://www.cochrane.ca/node/241/financial-resources/cochrane-connect-card",
     detail: {
@@ -4630,7 +4630,7 @@ const BENEFITS = [
     summary: "A recreation-fee subsidy for qualifying low-income Okotoks and Foothills County residents.",
     requires: ["ab", "okotoksArea", "okotoksResidency", "lowIncome"],
     note: "The Town describes 80% support for most Town programs, passes and admission. Check current exclusions and camp limits before registering.",
-    applyText: "Okotoks recreation fee assistance",
+    applyText: "Open the official page on okotoks.ca",
     applyUrl: "https://www.okotoks.ca/your-community/social-well-being/family-community-resources/okotoks-family-resource-centre-7",
     source: "https://www.okotoks.ca/your-community/social-well-being/family-community-resources/okotoks-family-resource-centre-7",
     detail: {
@@ -4650,7 +4650,7 @@ const BENEFITS = [
     summary: "A Town program that gives qualifying residents lower-cost services, including Regional ROAM Transit and recreation.",
     requires: ["canmore", "lowIncome"],
     note: "The Town lists discounts across Regional ROAM Transit, recreation and community services. Transit discount tiers differ, so confirm the current rate for your household.",
-    applyText: "Canmore Affordable Services Program",
+    applyText: "Open the official page on canmore.ca",
     applyUrl: "https://www.canmore.ca/your-community/community-supports-and-services/affordable-services-program",
     source: "https://www.canmore.ca/your-community/community-supports-and-services/affordable-services-program",
     detail: {
@@ -4670,7 +4670,7 @@ const BENEFITS = [
     summary: "Income-based recreation access for eligible Lloydminster residents. First Nations, Metis, and/or Inuit applicants do not need to meet the residency requirement. They must still meet the income eligibility.",
     requires: ["lloydminster", "lowIncome"],
     note: "The City lists income-based access to City recreation facilities, including $2 adult drop-in admission. Confirm all current discounts when applying.",
-    applyText: "Lloydminster Recreation Access Program",
+    applyText: "Open the official page on lloydminster.ca",
     applyUrl: "https://www.lloydminster.ca/recreation-culture-community/social-programs-and-services/recreation-access-program/",
     source: "https://www.lloydminster.ca/recreation-culture-community/social-programs-and-services/recreation-access-program/",
     detail: {
@@ -4690,7 +4690,7 @@ const BENEFITS = [
     summary: "Recreation and transit support for eligible Fort Saskatchewan residents with limited income or approved income support.",
     requires: ["fortsask", "fortsaskIncomeRoute"],
     note: "The City lists a fully discounted annual multi-facility membership and an Everyone Rides transit subsidy. It also accepts several approved income-support programs. Confirm your route when applying.",
-    applyText: "Fort Saskatchewan Access for Everyone",
+    applyText: "Open the official page on fortsask.ca",
     applyUrl: "https://www.fortsask.ca/recreation-parks/program-registrations-drop-in-classes/access-for-everyone-program/",
     source: "https://www.fortsask.ca/recreation-parks/program-registrations-drop-in-classes/access-for-everyone-program/",
     detail: {
@@ -4939,7 +4939,7 @@ const BENEFITS = [
     "summary": "Status First Nations people living in B.C. get health coverage through the First Nations Health Authority. It covers prescriptions, medical supplies and equipment, dental, vision, mental health and medical transportation. You enrol by phone with your status number.",
     "note": "Plan W is not a separate application. B.C. states that you do not apply for Plan W and must be enrolled with FNHA to be covered by it. So enrolling with FNHA is the whole route. Some items, including insulin pumps, need special authorization and are not covered automatically.",
     "requiresNote": "You must be a First Nations person with Indian status living in British Columbia. Infants up to 24 months are covered if at least one parent is eligible. You are not eligible if you have health insurance provided by the federal government, or by a First Nations organization as part of a self-government agreement with Canada. The pharmacy coverage, which B.C. calls PharmaCare Plan W, also requires active Medical Services Plan enrolment.",
-    "applyText": "First Nations Health Benefits (FNHA)",
+    "applyText": "Open the official page on fnha.ca",
     "applyUrl": "https://www.fnha.ca/benefits",
     "source": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/first-nations-health-authority-clients",
     "detail": {

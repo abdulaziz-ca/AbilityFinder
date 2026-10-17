@@ -1579,6 +1579,17 @@ function renderMoneyBand(ready, almost) {
   return "";
 }
 
+/* Apply-button text. A record without its own label gets one that is always
+   true: where the link goes, not a promise that it opens an application form
+   (site audit 2026-10, C-CONTENT-TRUST P2-16). */
+function applyLabel(b) {
+  if (b.applyText) return b.applyText;
+  try {
+    const host = new URL(resolveUrl(b.applyUrl)).hostname.replace(/^www2?\./, "");
+    return `Open the official page on ${host}`;
+  } catch { return t("af.applyGeneric"); }
+}
+
 /* Time-limited program badge (BENEFIT_STATUS in data.js). English-only copy. */
 function statusBadge(b) {
   const s = typeof BENEFIT_STATUS !== "undefined" && BENEFIT_STATUS[b.id];
@@ -5705,7 +5716,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   const answerFirst = inline ? "" : `<section class="answer-first" aria-label="${t("af.aria")}">
         <div class="af-cell"><span class="af-q">${t("af.eligible")}</span>${afEligible}</div>
         ${b.amount ? `<div class="af-cell"><span class="af-q">${t("af.howMuch")}</span><span class="af-a">${reqEscape(b.amount)}</span></div>` : ""}
-        <div class="af-cell"><span class="af-q">${t("af.howApply")}</span>${b.applyUrl ? `<a class="af-apply-link" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.applyText || t("af.applyGeneric")} ${icon("external")}</a>` : `<span class="af-a">${b.applyText || t("af.applyGeneric")}</span>`}${d.time ? `<span class="af-meta">${t("meta.time")}: ${d.time}</span>` : ""}</div>
+        <div class="af-cell"><span class="af-q">${t("af.howApply")}</span>${b.applyUrl ? `<a class="af-apply-link" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${applyLabel(b)} ${icon("external")}</a>` : `<span class="af-a">${applyLabel(b)}</span>`}${d.time ? `<span class="af-meta">${t("meta.time")}: ${d.time}</span>` : ""}</div>
       </section>`;
 
   return `
@@ -5758,7 +5769,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
           ${nextAction ? `<a class="apply side-next-action" href="${nextAction.action.url}" target="_blank" rel="noopener noreferrer" data-ext>${nextAction.action.text} ${icon("external")}</a>` : ""}
           <dl class="side-facts">${factsHtml}</dl>
           <div class="side-actions">
-            ${b.applyUrl ? `<a class="apply" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.applyText || t("af.applyGeneric")} ${icon("external")}</a>` : ""}
+            ${b.applyUrl ? `<a class="apply" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${applyLabel(b)} ${icon("external")}</a>` : ""}
             ${b.declarationUrl ? `<a class="source-link" href="${resolveUrl(b.declarationUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.declarationText || "Required dependent declaration"} ${icon("external")}</a>` : ""}
             <a class="source-link" href="${resolveUrl(b.source)}" target="_blank" rel="noopener noreferrer" data-ext>${t("det.official")} ${icon("external")}</a>
             ${inline ? "" : `<button class="source-link copy-link" type="button" data-copy-guide-link="${b.id}">Copy link to this guide</button>`}
