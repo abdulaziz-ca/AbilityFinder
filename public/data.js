@@ -2870,7 +2870,6 @@ const BENEFITS = [
       tips: [
         "There is no fee to get, renew, or replace the permit.",
         "A permanent permit is valid for 5 years and renews without needing to be re-certified. Temporary and subject-to-change permits need re-certification to renew.",
-        "The permit belongs to the person, not the car. You can only use it when the permit holder is in the vehicle.",
         "Municipalities set their own privileges (for example free or extended metered parking), so check your city's bylaws.",
         "Travelling outside Ontario? If you hold a valid permit, you can get a traveller's permit. It lets you park the car you leave behind (for example at an Ontario airport or train station) while you take your regular permit on the trip.",
       ],
@@ -3352,7 +3351,7 @@ const BENEFITS = [
       tips: [
         "You cannot claim the same expense under more than one credit. Expenses in an MHRTC claim cannot also be claimed for the medical expense tax credit or the home accessibility tax credit.",
         "You must reduce your expenses by anything you were paid back for. This includes any help you receive or are entitled to receive, and related rebates such as GST/HST rebates.",
-        "The claim year depends on when the renovation period ENDED, not when it started. A project that spans two years is claimed once, in the later year.",
+        "The claim year depends on when the renovation period ended, not when it started. A project that spans two years is claimed once, in the later year.",
         "You may claim more than one qualifying renovation in the same year. But you can claim only one per qualifying individual per lifetime.",
       ],
     },
@@ -3826,7 +3825,6 @@ const BENEFITS = [
       ],
       tips: [
         "Alberta's published examples of what is covered include: assistive devices, equipment or technology; ASL interpreting and captioning; an academic aide or note taker; communication or hearing devices for work; workplace access or changes; and work-related vehicle changes.",
-        "DRES does not fund medical treatments or therapies, daily-living items, job matching, employment and skills training, or wage subsidies.",
         "If the request is for education or training while you attend Alberta Education-funded K–12 or a publicly funded Alberta post-secondary institution, contact the school or institution for disability accommodations. This does not by itself rule out a separate eligible work route.",
       ],
       phone: "Alberta Supports Contact Centre 780-644-9992 or 1-877-644-9992",
@@ -3987,7 +3985,6 @@ const BENEFITS = [
       tips: [
         "Tell RAMP if you are waiting for hospital discharge or are in palliative care. Alberta gives those applications priority.",
         "Changes must be permanent. RAMP reviews requests for temporary changes case by case.",
-        "Work must be finished within 90 days of approval unless RAMP allows more time.",
         "There is no appeal process. If you are refused, you can reapply with updated information.",
         "Alberta has said the Guidelines and Criteria document and the Application Form are being updated. Use the current forms on the RAMP page until the new ones appear.",
       ],
@@ -4515,7 +4512,7 @@ const BENEFITS = [
         "Proof of an Airdrie address",
       ],
       tips: [
-        "Income up to 25% ABOVE the low-income cut-off still gets you the 25% tier. Don't assume you earn too much.",
+        "Income up to 25% above the low-income cut-off still gets you the 25% tier. Don't assume you earn too much.",
         "If you use Access Airdrie (paratransit), ask whether your subsidy applies to it. The program page doesn't say either way, so check.",
       ],
       time: "Ask when you apply.",
@@ -4842,7 +4839,7 @@ const BENEFITS = [
       },
     },
     "requiresNote": "You must be enroled in MSP, and your spouse too if you have one, before Supplementary Benefits can be approved. You may be eligible through your income or through one of the other groups the ministry lists. You live in B.C., have lived in Canada as a citizen or permanent resident for at least the last 12 months before applying, and are not exempt from paying income tax under another act. Those who may be eligible include:\n- Adjusted net income last year of less than $42,000 (your family may qualify).\n- Income Assistance recipients.\n- Convention refugees.\n- Inmates of B.C. Correctional Facilities.\n- People enroled with MSP through the At Home Program.\n- Residents of long term care facilities receiving the Guaranteed Income Supplement.\n- People enroled with MSP as Mental Health Clients.\n- First Nations individuals with valid B.C. Medical Plan coverage through the First Nations Health Authority.\n Adjusted net income is last year's net income confirmed by CRA — combined with your spouse's if you have one — after certain deductions. There is no cost to apply. Coverage does not apply to treatment received outside British Columbia.",
-    "note": "The $23 is a contribution, not the full fee — many practitioners are opted out of MSP and are allowed to charge more, and you pay the difference. Ask what the visit costs and what MSP covers before you book. The 10 visits are a COMBINED limit across all six service types, not 10 of each.",
+    "note": "The $23 is a contribution, not the full fee — many practitioners are opted out of MSP and are allowed to charge more, and you pay the difference. Ask what the visit costs and what MSP covers before you book. The 10 visits are a combined limit across all six service types, not 10 of each.",
     "applyText": "Apply for Supplementary Benefits",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents/benefits/services-covered-by-msp/supplementary-benefits",
     "source": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents/benefits/services-covered-by-msp/supplementary-benefits",

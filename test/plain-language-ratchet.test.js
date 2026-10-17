@@ -46,7 +46,7 @@ test("no program summary runs past the length budget", () => {
 });
 
 test("no all-capital emphasis words in program text", () => {
-  const CAPS = /\b(NOT|AND|OR|ALL|CLOSED|LESSER|BEFORE|ONE|FIRST|NO|NEVER|MUST|ONLY)\b/;
+  const CAPS = /\b(NOT|AND|OR|ALL|CLOSED|LESSER|BEFORE|ONE|FIRST|NO|NEVER|MUST|ONLY|ENDED|COMBINED|ABOVE)\b/;
   const hits = [];
   const walk = (o, p) => {
     if (typeof o === "string") { if (CAPS.test(o)) hits.push(p); }
