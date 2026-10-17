@@ -20,7 +20,14 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 - **Three new Ontario programs**, the first built from the city sweep, each from its official page with an
   independent Claude review: **Niagara Transit Benefit Pass** ($50 monthly pass; St. Catharines, Welland, Niagara
   Falls), **Kingston Affordable Transit Pass** (through the City's fee assistance program), and **Halton SPLIT**
-  (Burlington, Oakville, Milton). The catalogue is now 137 programs.
+  (Burlington, Oakville, Milton).
+- **Seven B.C. recreation programs** (`?v=205`): Abbotsford (low-income subsidy and a disability access pass),
+  Maple Ridge (financial and disability access passes), Nanaimo LEAP, New Westminster financial assistance and
+  Prince George's Leisure Access Program. The independent review caught and fixed hardened wording and two pieces
+  of invented advice in the drafts before they shipped. The catalogue is now **144 programs**.
+- **Link monitor**: three city pages that block automated checks (Vancouver, Kelowna, Variety BC) were reported as
+  "broken" every few hours. I confirmed each loads in a real browser; they now show as "blocks automated checks"
+  instead, so a real broken link stands out.
 - **City sweep for task #206**: 96 listed cities with no local program were checked for leads
   (`research/2026-10-city-sweep/LEADS.md`): Alberta 22 with leads, B.C. 30, Ontario 25. These are leads, not facts:
   two lead links I tried were already dead. The B.C. PharmaCare plans are now itemised in COVERAGE-GAPS.md.
