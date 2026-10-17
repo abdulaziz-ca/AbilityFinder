@@ -4768,7 +4768,6 @@ function benefitCard(b, r, rank) {
           <h3 id="benefit-title-${b.id}">${b.name}</h3>
           <span class="program-kind ${benefitType(b)}">${benefitTypeLabel(b)}</span>
           <span class="tag lvl">${b.level}</span>
-          <span class="tag">${b.category}</span>
         </div>
         <span class="tag match-status" data-fact-status="${b.id}">${matchStatusLabel(r.status)}</span>
         ${matchStatusNote(r.status)}${r.checkedFacts ? '<p class="checked-facts-note" lang="en">Includes facts you checked on this device.</p>' : ""}
@@ -5229,7 +5228,7 @@ function printResults() {
       <h3><span class="num">${i}</span>${esc(b.name)} <span class="badge">${esc(status)}</span></h3>
       ${matchStatusNote(r.status)}${r.checkedFacts ? '<p class="checked-facts-note" lang="en">Includes facts you checked on this device.</p>' : ""}
       ${tracked ? `<p>Application progress: ${esc(tracked)}</p>` : ""}
-      <p class="meta">${esc(b.level)} · ${esc(b.category)}${metaBits ? " · " + metaBits : ""}</p>
+      <p class="meta">${esc(b.level)}${metaBits ? " · " + metaBits : ""}</p>
       <p class="amt">${value}</p>
       <p>${esc(b.summary)}</p>
       ${reqPrint(r.needs)}
@@ -5381,7 +5380,6 @@ function browseCard(b) {
         <div class="top">
           <h3>${b.name}</h3>
           <span class="tag lvl">${b.level}</span>
-          <span class="tag">${b.category}</span>
           ${browseDis !== "all" && isDisSpecific(b, browseDis) ? `<span class="tag dis-tag">${icon("check")} Aimed at this</span>` : ""}
         </div>
         ${statusBadge(b)}<p class="summary">${b.summary}</p>
@@ -5693,7 +5691,6 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   if (d.time || mm.wait) facts.push(["How long", d.time || mm.wait]);
   if (d.phone) facts.push(["Phone", d.phone]);
   facts.push(["Level", b.level]);
-  facts.push(["Category", b.category]);
   const factsHtml = facts.map(([k, val]) => `<div class="fact"><dt>${k}</dt><dd>${val}</dd></div>`).join("");
 
   const sideStatus = !wizardDone()
@@ -5728,7 +5725,6 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
     <header class="detail-hero">
       <div class="detail-tags">
         <span class="tag lvl">${b.level}</span>
-        <span class="tag">${b.category}</span>
       </div>
       <h1 class="detail-title">${b.name}</h1>
       ${statusBadge(b)}<p class="detail-lede">${b.summary}</p>
