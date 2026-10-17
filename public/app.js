@@ -5588,7 +5588,7 @@ function p2Sections(b) {
       </div>`
     : "";
   const tax = x.taxNote
-    ? `<div class="callout"><span class="co-ic">${icon("info")}</span><div><b>Good to know</b><p>${x.taxNote}</p></div></div>`
+    ? `<div class="callout"><span class="co-ic">${icon("info")}</span><div><b>Money and other benefits</b><p>${x.taxNote}</p></div></div>`
     : "";
   const denials = x.denials && x.denials.length
     ? `<div class="guide-block"><div class="guide-h">${icon("info")} Common reasons people get denied</div>
@@ -5686,7 +5686,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   const di = difficultyInfo(mm.difficulty);
   const facts = [];
   if (mm.difficulty) facts.push(["Difficulty", `<span class="fact-diff ${di.cls}"><span class="dots">${di.dots}</span> ${di.label}</span>`]);
-  if (mm.effort) facts.push(["Time to apply", mm.effort]);
+  if (mm.effort) facts.push(["Application", mm.effort]);
   if (mm.wait) facts.push(["Wait for a decision", mm.wait]);
   if (d.time) facts.push(["Processing", d.time]);
   if (d.phone) facts.push(["Phone", d.phone]);
