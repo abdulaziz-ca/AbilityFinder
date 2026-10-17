@@ -6,6 +6,22 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-16 — night: more "Not for your situation now" rules
+
+### Shipped
+- **Autism diagnosis needed first** — `a939c14`, `?v=194`. If the autism diagnosis answer is "No / not yet", BC
+  Autism Funding (under 6, 6–18) and the Ontario Autism Program move to the closed list as "An autism diagnosis is
+  needed first". Both official pages require the diagnosis before applying. "Not sure" never moves them.
+- **Bursary fix** — `a9c04ef`, `?v=195`. The B.C. Learning Disability Assessment Bursary asked for disability
+  documentation first, but it *pays for* the assessment. It now checks what the official page asks: StudentAid BC
+  eligibility, a designated public school, and a recommendation from the school's accessibility office.
+
+### Decisions we made for you
+A Claude agent checked 16 candidate programs against their official pages; only 3 were safe. We did **not**
+add rules for missing documentation, B.C. PWD status, age, working status or income: in every case the program
+has another route, or sorts it out inside the application (student aid even repays the assessment). Those programs
+stay as cards. Full record: research/2026-10-site-audit/G3-RULES.md.
+
 ## 2026-10-16 — evening: "already get" question
 
 ### Shipped
