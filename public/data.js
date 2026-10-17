@@ -1181,7 +1181,7 @@ const BENEFITS = [
       },
       steps: [
         "Check the family-size income table or the alternative of Ontario Works or Ontario Disability Support Program financial support as the household's sole source of income; confirm the home-value, ownership, tax, mortgage and insurance requirements",
-        "Gather every required document — the application will not be processed unless ALL required documents are received",
+        "Gather every required document — the application will not be processed unless all required documents are received",
         "Submit the application by email, fax, mail or in person",
         "If eligible, wait for the Region to contact you by phone to arrange a home inspection",
         "The fact sheet says apply before November 15, 2026 and have a signed agreement by December 15, 2026. It also says: Deadline to submit application is December 1, 2026. Check the current deadline with the Region",
@@ -1194,7 +1194,7 @@ const BENEFITS = [
         "Proof that property taxes and mortgage payments are up to date",
       ],
       tips: [
-        "The Region must receive ALL required documents, or it will not process your application.",
+        "The Region must receive all required documents, or it will not process your application.",
         "The fact sheet says applications are accepted all year. 2026 funding is available after April 1, 2026, once the province confirms it.",
         "The fact sheet gives different application dates. It says to apply before November 15, 2026. It also says the deadline to submit an application is December 1, 2026. You also need a signed agreement by December 15, 2026. Check the current deadline with the Region.",
         "For emergencies such as heating problems or an urgent plumbing leak, call 519-575-4400.",
@@ -1332,10 +1332,10 @@ const BENEFITS = [
       items: [
         "You are 18 or older",
         "You live in the Region of Waterloo",
-        "You are NOT a full-time college or university student",
+        "You are not a full-time college or university student",
         "Your household net income is at or below the limit",
       ],
-      note: "Income is household NET income: add line 23600 from each member's tax return. A household includes people you live with, are related to and financially support. Everyone counts even if they do not need a pass, and members over 18 must provide income information. If approved, ALL household members can buy the discounted fares, including all children 17 or younger.",
+      note: "Income is household NET income: add line 23600 from each member's tax return. A household includes people you live with, are related to and financially support. Everyone counts even if they do not need a pass, and members over 18 must provide income information. If approved, all household members can buy the discounted fares, including all children 17 or younger.",
     },
     applyText: "Apply for the Affordable Transit Program",
     applyUrl: "https://www.grt.ca/fares-and-payment/affordable-transit-program/",
@@ -1350,7 +1350,7 @@ const BENEFITS = [
           "$1.35 ATP stored value per ride, compared with $3 regular stored value and a $4 cash fare.",
           "$6.75 for a strip of 5 ATP MobilityPLUS tickets, compared with $15 regular.",
           "Eligibility is managed by the Region of Waterloo Department of Community Services.",
-          "If approved, ALL household members can buy discounted fares, including all children 17 or younger.",
+          "If approved, all household members can buy discounted fares, including all children 17 or younger.",
         ],
       },
       steps: [
@@ -1762,7 +1762,7 @@ const BENEFITS = [
       mode: "all",
       items: [
         "Your family income is below the low income threshold set by the Government of Canada",
-        "You do NOT receive transportation benefits from Social Services",
+        "You do not receive transportation benefits from Social Services",
       ],
       note: "You apply with a completed EquiPass Application and Consent Form plus a Notice of Assessment from the Canada Revenue Agency for the most recent taxation year. If you do not have a Notice of Assessment, other documentation can be used instead.",
     },
@@ -2912,7 +2912,7 @@ const BENEFITS = [
       ],
       tips: [
         "The medical practitioner's section decides most approvals. Ask them to be specific and give concrete examples of your limitations.",
-        "You do NOT need to pay a private company a percentage of your refund. Applying directly is free.",
+        "You do not need to pay a private company a percentage of your refund. Applying directly is free.",
         "Denied? Read the decision letter, ask what information was missing, and use the CRA review or objection process that applies to your case.",
         "List the everyday activities affected, and whether they fall under walking, mental functions, dressing, feeding, eliminating, hearing, speaking or vision.",
         "Discuss whether the difficulty continues even with appropriate therapy, medication and devices.",
@@ -3050,7 +3050,7 @@ const BENEFITS = [
         "Be a Canadian resident under age 60",
       ],
       tips: [
-        "The bond (up to $1,000/year) needs NO contribution from you.",
+        "The bond (up to $1,000/year) needs no contribution from you.",
         "Grants can match up to 300%. For lower incomes, the first $500 you put in can become $1,500.",
         "Ask the bank specifically for an 'RDSP'. Front-line staff are sometimes not familiar with it.",
       ],
@@ -3105,7 +3105,7 @@ const BENEFITS = [
       "A monthly payment if a severe, long-term disability stops you from working and you've paid into CPP.",
     requires: ["workingAge", "cppContrib", "unableToWork"],
     note:
-      "Does NOT require the DTC. You need enough past CPP work contributions AND a disability severe enough that it regularly prevents any substantial work.",
+      "Does not require the DTC. You need enough past CPP work contributions and a disability severe enough that it regularly prevents any substantial work.",
     applyText: "Apply for CPP Disability",
     applyUrl:
       "https://www.canada.ca/en/services/benefits/publicpensions/cpp-disability-benefit.html",
@@ -3214,7 +3214,7 @@ const BENEFITS = [
         "Enrolment in a designated post-secondary program",
       ],
       tips: [
-        "One Alberta Student Aid application covers the federal grants AND the Alberta grant. You do not apply separately.",
+        "One Alberta Student Aid application covers the federal grants and the Alberta grant. You do not apply separately.",
         "You only need to submit disability documentation once, not every year.",
       ],
       time: "Assessed with your student aid application.",
@@ -3295,20 +3295,20 @@ const BENEFITS = [
         "The Home Accessibility Tax Credit is claimed at line 31285 of your federal return. A qualifying individual can claim up to $20,000 per year in eligible expenses. Where more than one qualifying individual lives in the same dwelling, the total for that dwelling is still $20,000, and where several people are entitled to claim, they can split it. The annual limit was $20,000 for 2022 through 2024, and $10,000 from 2015 through 2021. CRA states that an expense which also qualifies as a medical expense can be claimed both as a medical expense and as a home accessibility expense.",
       aboutList: { lead: "The Home Accessibility Tax Credit is claimed at line 31285 of your federal return.", items: ["A qualifying individual can claim up to $20,000 per year in eligible expenses.", "Where more than one qualifying individual lives in the same dwelling, the total for that dwelling is still $20,000, and where several people are entitled to claim, they can split it.", "The annual limit was $20,000 for 2022 through 2024, and $10,000 from 2015 through 2021.", "CRA states that an expense which also qualifies as a medical expense can be claimed both as a medical expense and as a home accessibility expense."] },
       steps: [
-        "keep every invoice and receipt, showing the vendor, their business address, their GST/HST number where applicable, a description of the work and the address, the amount, and proof of payment",
-        "complete the chart for line 31285 on the Federal Worksheet",
-        "enter the result on line 31285 of your federal return, and keep the documents rather than sending them",
+        "Keep every invoice and receipt, showing the vendor, their business address, their GST/HST number where applicable, a description of the work and the address, the amount, and proof of payment",
+        "Complete the chart for line 31285 on the Federal Worksheet",
+        "Enter the result on line 31285 of your federal return, and keep the documents rather than sending them",
       ],
       documents: [
-        "agreements, invoices and receipts identifying the vendor, the work, the address and the amount",
-        "proof of payment",
-        "for a condominium or co-operative, a signed statement from the corporation setting out the amounts and your share",
+        "Agreements, invoices and receipts identifying the vendor, the work, the address and the amount",
+        "Proof of payment",
+        "For a condominium or co-operative, a signed statement from the corporation setting out the amounts and your share",
       ],
       tips: [
-        "you do not apply in advance, you claim it when you file",
-        "it is non-refundable, so it lowers the tax you owe and does not pay you on its own",
-        "these costs are not eligible: costs that mainly raise the value of the home, routine repairs, appliances and financing costs",
-        "an item you buy that does not become a permanent part of the home is generally not eligible",
+        "You do not apply in advance, you claim it when you file",
+        "It is non-refundable, so it lowers the tax you owe and does not pay you on its own",
+        "These costs are not eligible: costs that mainly raise the value of the home, routine repairs, appliances and financing costs",
+        "An item you buy that does not become a permanent part of the home is generally not eligible",
       ],
     },
   },
@@ -3432,7 +3432,7 @@ const BENEFITS = [
     summary:
       "A federal plan that pays part of the cost of dental care. It is for people without private dental coverage whose adjusted family net income is under $90,000. It is based on income, not disability. Canada lists it among its disability benefits because many disabled people have no workplace dental coverage.",
     note:
-      "The plan pays at CDCP established fees. These can be lower than what your provider charges, so you may still owe the difference to them. Ask your provider what the CDCP pays and what you will owe BEFORE treatment.",
+      "The plan pays at CDCP established fees. These can be lower than what your provider charges, so you may still owe the difference to them. Ask your provider what the CDCP pays and what you will owe before treatment.",
     requiresNote:
       "You must meet all four requirements. First, you have no access to private dental insurance or coverage, including a health spending account that covers dental costs. The only exception is if you retired and opted out of dental coverage through your pension plan before December 11, 2023 and cannot opt back in. Second, you and your spouse or common-law partner have filed your Canadian tax returns for the previous year. Third, your adjusted family net income is less than $90,000. Fourth, you are a Canadian resident. You can check the coverage question on your T4 or T4A: code 1 in the dental box means you do not have access, while 2, 3, 4 or 5 means your work or pension plan offers some dental coverage for you or your family.",
     applyText: "Apply for the Canadian Dental Care Plan",
@@ -3443,21 +3443,21 @@ const BENEFITS = [
         "The CDCP pays a share of eligible oral health care at fees the plan sets. What it pays depends on adjusted family net income: under $70,000 the plan covers 100% of eligible costs at CDCP established fees and you cover none of those fees. From $70,000 to $79,999 the plan covers 60% and you cover 40%. From $80,000 to $89,999 the plan covers 40% and you cover 60%. Covered services include diagnostic and preventive care, complete dentures including standard and temporary, denture repairs, relines and rebases, and linings placed to condition oral tissues. Partial dentures and complete immediate and overdentures need preauthorization, as do services beyond the plan's frequency limits. Providers are paid by the plan directly, so you should not have to pay the whole cost up front, but you may owe additional charges to the provider.",
       aboutList: { lead: "The CDCP pays a share of eligible oral health care at fees the plan sets.", items: ["What it pays depends on adjusted family net income: under $70,000 the plan covers 100% of eligible costs at CDCP established fees and you cover none of those fees.", "From $70,000 to $79,999 the plan covers 60% and you cover 40%.", "From $80,000 to $89,999 the plan covers 40% and you cover 60%.", "Covered services include diagnostic and preventive care, complete dentures including standard and temporary, denture repairs, relines and rebases, and linings placed to condition oral tissues.", "Partial dentures and complete immediate and overdentures need preauthorization, as do services beyond the plan's frequency limits.", "Providers are paid by the plan directly, so you should not have to pay the whole cost up front, but you may owe additional charges to the provider."] },
       steps: [
-        "check all four requirements, including the dental code on your T4 or T4A",
-        "confirm your tax return and your spouse or partner's are filed for the previous year",
-        "apply through the Canadian Dental Care Plan",
-        "before treatment, ask your oral health provider what the CDCP will pay and what you will owe, and whether the service needs preauthorization.",
+        "Check all four requirements, including the dental code on your T4 or T4A",
+        "Confirm your tax return and your spouse or partner's are filed for the previous year",
+        "Apply through the Canadian Dental Care Plan",
+        "Before treatment, ask your oral health provider what the CDCP will pay and what you will owe, and whether the service needs preauthorization.",
       ],
       documents: [
-        "your T4 or T4A slip showing the dental coverage code",
-        "your filed tax return for the previous year, and your spouse or common-law partner's",
-        "proof that you no longer have access to dental coverage, if CRA asks for it.",
+        "Your T4 or T4A slip showing the dental coverage code",
+        "Your filed tax return for the previous year, and your spouse or common-law partner's",
+        "Proof that you no longer have access to dental coverage, if CRA asks for it.",
       ],
       tips: [
-        "the plan pays at CDCP established fees, which may be below your provider's fee, so ask what you will owe first",
-        "some services need preauthorization, and not every request is approved",
-        "if you have any dental coverage at all, you are not eligible, even if it covers very little",
-        "if you join while you actually had coverage, you may have to repay the government for services the plan paid.",
+        "The plan pays at CDCP established fees, which may be below your provider's fee, so ask what you will owe first",
+        "Some services need preauthorization, and not every request is approved",
+        "If you have any dental coverage at all, you are not eligible, even if it covers very little",
+        "If you join while you actually had coverage, you may have to repay the government for services the plan paid.",
       ],
     },
   },
@@ -3483,19 +3483,19 @@ const BENEFITS = [
         "If you have an impairment in physical or mental functions, you may be able to deduct what you paid for supports. Supports must let you work, attend school or do research for which you received a grant. Use Form T929, Disability Supports Deduction, to work out the amount, then enter the figure from line 12 of that form on line 21500 of your return, in Step 3, net income. CRA notes that the same medical expense can be claimed on line 21500 or on line 33099, or split between the two, as long as the total claimed is not more than the expense. Do not send Form T929 or the receipts with your return; keep them in case CRA asks.",
       aboutList: { lead: "If you have an impairment in physical or mental functions, you may be able to deduct what you paid for supports. Supports must let you work, attend school or do research for which you received a grant.", items: ["Use Form T929, Disability Supports Deduction, to work out the amount, then enter the figure from line 12 of that form on line 21500 of your return, in Step 3, net income.", "CRA notes that the same medical expense can be claimed on line 21500 or on line 33099, or split between the two, as long as the total claimed is not more than the expense.", "Do not send Form T929 or the receipts with your return; keep them in case CRA asks."] },
       steps: [
-        "check the CRA list of eligible expenses for this deduction and whether any of yours need a medical practitioner's certification",
-        "complete Form T929, Disability Supports Deduction",
-        "enter the amount from line 12 of Form T929 on line 21500 of your return, and keep the form and receipts rather than sending them.",
+        "Check the CRA list of eligible expenses for this deduction and whether any of yours need a medical practitioner's certification",
+        "Complete Form T929, Disability Supports Deduction",
+        "Enter the amount from line 12 of Form T929 on line 21500 of your return, and keep the form and receipts rather than sending them.",
       ],
       documents: [
-        "receipts for every expense claimed",
+        "Receipts for every expense claimed",
         "Form T929, Disability Supports Deduction",
-        "any certification from a medical practitioner that a particular expense requires.",
+        "Any certification from a medical practitioner that a particular expense requires.",
       ],
       tips: [
-        "only the person with the disability can claim this, so it cannot be moved to a parent or spouse",
-        "decide whether each expense is better on line 21500 or as a medical expense on line 33099, because you can split them but not double-count",
-        "because it is a deduction, it lowers taxable income. This can matter more than a credit at higher incomes.",
+        "Only the person with the disability can claim this, so it cannot be moved to a parent or spouse",
+        "Decide whether each expense is better on line 21500 or as a medical expense on line 33099, because you can split them but not double-count",
+        "Because it is a deduction, it lowers taxable income. This can matter more than a credit at higher incomes.",
       ],
     },
   },
@@ -3509,7 +3509,7 @@ const BENEFITS = [
     summary:
       "The federal credit for medical expenses you pay yourself. Disability-related costs are often the largest medical expenses a household has. Most of them are claimed here.",
     note:
-      "Only the part above a threshold counts. The threshold is the LESSER of 3% of net income or $2,834. On a lower income, the 3% figure usually applies, so more of your expenses count. This amount is indexed and changes by tax year. Confirm the figure for the year you are filing.",
+      "Only the part above a threshold counts. The threshold is the lesser of 3% of net income or $2,834. On a lower income, the 3% figure usually applies, so more of your expenses count. This amount is indexed and changes by tax year. Confirm the figure for the year you are filing.",
     requiresNote:
       "You claim expenses you paid for yourself, your spouse or common-law partner, and your children under 18 on line 33099. Expenses for a dependant who depended on you for support, other than a spouse, partner or child under 18, go on line 33199 (see CRA for who counts), where the same threshold is worked out separately using that dependant's net income. Keep all receipts.",
     applyText: "Read the CRA guidance for lines 33099 and 33199",
@@ -3520,24 +3520,24 @@ const BENEFITS = [
         "For line 33099 you total the eligible expenses, then subtract the lesser of 3% of your net income from line 23600 or $2,834, and the remainder, entered on the line after the threshold, is what the credit is calculated on. CRA's own worked example: Pauline's net income is $55,000, 3% of that is $1,650, and because $1,650 is less than $2,834 she subtracts $1,650 from the $6,300 of combined expenses. Expenses for children under 18 can be combined with the parents' expenses. For a dependant who depended on you for support, other than a spouse, partner or child under 18, use line 33199 (see CRA for who counts) and run the same lesser-of calculation against that dependant's own net income. The $2,834 figure is indexed and changes by tax year.",
       aboutList: { lead: "For line 33099 you total the eligible expenses, then subtract the lesser of 3% of your net income from line 23600 or $2,834, and the remainder, entered on the line after the threshold, is what the credit is calculated on.", items: ["CRA's own worked example: Pauline's net income is $55,000, 3% of that is $1,650, and because $1,650 is less than $2,834 she subtracts $1,650 from the $6,300 of combined expenses.", "Expenses for children under 18 can be combined with the parents' expenses.", "For a dependant who depended on you for support, other than a spouse, partner or child under 18, use line 33199 (see CRA for who counts) and run the same lesser-of calculation against that dependant's own net income.", "The $2,834 figure is indexed and changes by tax year."] },
       steps: [
-        "collect receipts for every eligible medical expense for the year, for yourself, your spouse or partner and your children under 18",
-        "total them and enter the total on line 33099",
-        "on the line below, enter the lesser of 3% of your net income from line 23600 or $2,834",
-        "subtract that amount from the line 33099 total and enter the result on the following line of your return",
+        "Collect receipts for every eligible medical expense for the year, for yourself, your spouse or partner and your children under 18",
+        "Total them and enter the total on line 33099",
+        "On the line below, enter the lesser of 3% of your net income from line 23600 or $2,834",
+        "Subtract that amount from the line 33099 total and enter the result on the following line of your return",
         "Claim eligible expenses on line 33199 for other dependants who depended on you for support: your or your spouse's or common-law partner's children aged 18 or older at the end of the tax year, or grandchildren.",
         "Line 33199 also covers your or your spouse's or common-law partner's parents, grandparents, brothers, sisters, uncles, aunts, nephews or nieces who depended on you for support and were residents of Canada at any time in the year.",
         "For each eligible dependant on line 33199, run the same calculation against that dependant's net income.",
       ],
       documents: [
-        "receipts for every medical expense claimed",
-        "prescriptions or practitioner certifications where CRA requires them",
-        "your net income figure from line 23600.",
+        "Receipts for every medical expense claimed",
+        "Prescriptions or practitioner certifications where CRA requires them",
+        "Your net income figure from line 23600.",
       ],
       tips: [
-        "the threshold is the LESSER of the two figures, so a lower income means a lower threshold and more of your expenses count",
-        "you can choose any 12-month period ending in the tax year, as long as those expenses were not already claimed in the prior year. Check CRA's rule before choosing",
-        "if you also claim the disability supports deduction on line 21500, split each expense between the two. Do not claim it twice",
-        "the $2,834 threshold is indexed, so confirm the current figure for your filing year.",
+        "The threshold is the lesser of the two figures, so a lower income means a lower threshold and more of your expenses count",
+        "You can choose any 12-month period ending in the tax year, as long as those expenses were not already claimed in the prior year. Check CRA's rule before choosing",
+        "If you also claim the disability supports deduction on line 21500, split each expense between the two. Do not claim it twice",
+        "The $2,834 threshold is indexed, so confirm the current figure for your filing year.",
       ],
     },
   },
@@ -3561,20 +3561,20 @@ const BENEFITS = [
     detail: {
       about:
         "The Canada caregiver credit is a non-refundable credit for people supporting a family member with a mental or physical impairment. As CRA currently publishes it: for a spouse or common-law partner you may claim $2,687 on line 30300 and up to $8,601 on line 30425. For an eligible dependant aged 18 or older who qualifies for line 30400, you may claim $2,687 on line 30400 and up to $8,601 on line 30425. For an eligible dependant under 18 who qualifies for line 30400, you may claim $2,687 on either line 30400 or line 30500. For each of your own or your spouse's or partner's children under 18 at the end of the year, you may claim $2,687 on line 30500. For each dependant aged 18 or older who is not your spouse or partner and is not an eligible dependant claimed on line 30300 or line 30400, you may claim up to $8,601 on line 30450. All of these amounts are indexed and change by tax year.",
-      aboutList: { lead: "The Canada caregiver credit is a non-refundable credit for people supporting a family member with a mental or physical impairment. As CRA currently publishes it:", items: ["for a spouse or common-law partner you may claim $2,687 on line 30300 and up to $8,601 on line 30425.", "For an eligible dependant aged 18 or older who qualifies for line 30400, you may claim $2,687 on line 30400 and up to $8,601 on line 30425.", "For an eligible dependant under 18 who qualifies for line 30400, you may claim $2,687 on either line 30400 or line 30500.", "For each of your own or your spouse's or partner's children under 18 at the end of the year, you may claim $2,687 on line 30500.", "For each dependant aged 18 or older who is not your spouse or partner and is not an eligible dependant claimed on line 30300 or line 30400, you may claim up to $8,601 on line 30450.", "All of these amounts are indexed and change by tax year."] },
+      aboutList: { lead: "The Canada caregiver credit is a non-refundable credit for people supporting a family member with a mental or physical impairment. As CRA currently publishes it:", items: ["For a spouse or common-law partner you may claim $2,687 on line 30300 and up to $8,601 on line 30425.", "For an eligible dependant aged 18 or older who qualifies for line 30400, you may claim $2,687 on line 30400 and up to $8,601 on line 30425.", "For an eligible dependant under 18 who qualifies for line 30400, you may claim $2,687 on either line 30400 or line 30500.", "For each of your own or your spouse's or partner's children under 18 at the end of the year, you may claim $2,687 on line 30500.", "For each dependant aged 18 or older who is not your spouse or partner and is not an eligible dependant claimed on line 30300 or line 30400, you may claim up to $8,601 on line 30450.", "All of these amounts are indexed and change by tax year."] },
       steps: [
-        "work out your relationship to the person you support and whether they have a mental or physical impairment",
-        "check which line applies to that relationship, and whether any other credit is already being claimed for them",
-        "claim the amount on the correct line of your own return and keep the supporting documents.",
+        "Work out your relationship to the person you support and whether they have a mental or physical impairment",
+        "Check which line applies to that relationship, and whether any other credit is already being claimed for them",
+        "Claim the amount on the correct line of your own return and keep the supporting documents.",
       ],
       documents: [
         "a signed statement from a medical practitioner describing the impairment, when it began and its expected duration, if CRA asks for it",
-        "records showing the support you provide.",
+        "Records showing the support you provide.",
       ],
       tips: [
-        "the supporter claims this, so it does not lower the tax of the person with the disability",
-        "which line to use depends on the relationship and on other credits already claimed for that person. Read CRA's table before filing",
-        "the amounts are indexed and change each tax year, so do not rely on a figure you saw in a previous year.",
+        "The supporter claims this, so it does not lower the tax of the person with the disability",
+        "Which line to use depends on the relationship and on other credits already claimed for that person. Read CRA's table before filing",
+        "The amounts are indexed and change each tax year, so do not rely on a figure you saw in a previous year.",
       ],
     },
   },
@@ -3770,7 +3770,7 @@ const BENEFITS = [
       ],
       "tips": [
         "Ask specifically about respite. Many families don't realize it's covered.",
-        "You can receive FSCD AND the federal Child Disability Benefit at the same time."
+        "You can receive FSCD and the federal Child Disability Benefit at the same time."
       ],
       "time": "Assessment-based; contact them to begin.",
       "phone": "Alberta Supports: 1-877-644-9992"
@@ -4217,11 +4217,11 @@ const BENEFITS = [
         "City of Edmonton programs that give lower-income residents a discounted monthly transit pass (the Ride Transit Program) and reduced-cost recreation access (the Leisure Access Program).",
       steps: [
         "Complete the Leisure Access / Ride Transit application.",
-        "Include proof of income OR proof you receive AISH / CPP-D.",
+        "Include proof of income or proof you receive AISH / CPP-D.",
         "Once approved, buy your reduced-cost monthly Arc card (the City lists $35 or $50 a month depending on household income) and use your Leisure Access pass.",
       ],
       documents: [
-        "Proof of income OR AISH / CPP-D statement",
+        "Proof of income or AISH / CPP-D statement",
         "Edmonton address",
       ],
       tips: [
@@ -4380,7 +4380,7 @@ const BENEFITS = [
       "If you're on AISH, a monthly Grande Prairie transit pass costs $10.25 instead of $74.25. This is the deepest municipal transit discount in the province that we've found.",
     requires: ["grandeprairie", "municipalProgramEligibility"],
     note:
-      "Important: AISH and ADAP recipients are NOT part of the general Transit Access Program. You get your own, cheaper pass instead ($10.25 vs $37.13). Ask for the AISH pass by name at City Hall.",
+      "Important: AISH and ADAP recipients are not part of the general Transit Access Program. You get your own, cheaper pass instead ($10.25 vs $37.13). Ask for the AISH pass by name at City Hall.",
     applyText: "Grande Prairie transit fares",
     applyUrl: "https://cityofgp.com/roads-transportation/public-transit/fares-superpass",
     source: "https://cityofgp.com/roads-transportation/public-transit/transit-access-program",
@@ -4426,8 +4426,8 @@ const BENEFITS = [
       "aboutList": {
         "lead": "St. Albert's Family and Community Support Services runs one subsidy covering transit and recreation. For eligible residents:",
         "items": [
-          "free local fares within St. Albert",
-          "free local tickets for approved Handibus riders for travel within St. Albert",
+          "Free local fares within St. Albert",
+          "Free local tickets for approved Handibus riders for travel within St. Albert",
           "65% off monthly adult commuter fares for travel between St. Albert and Edmonton",
           "AISH and ADAP recipients are eligible for a free annual membership at City-run recreation facilities, including Servus Credit Union Place, Fountain Park Recreation Centre and Grosvenor Outdoor Pool"
         ]
@@ -4587,14 +4587,14 @@ const BENEFITS = [
     level: "Leduc",
     category: "Getting around & recreation",
     amount: "Half-price monthly bus pass of your choice (local, commuter or LATS)",
-    summary: "Financial-navigation support that can provide a half-price monthly bus pass. You choose a local, commuter or LATS pass. The Recreation Assistance Program is now CLOSED. It will reopen for new applications in January 2027.",
+    summary: "Financial-navigation support that can provide a half-price monthly bus pass. You choose a local, commuter or LATS pass. The Recreation Assistance Program is now closed. It will reopen for new applications in January 2027.",
     requires: ["leduc", "lowIncome"],
-    note: "Leduc lists half-price monthly bus passes. You can choose a local, commuter or LATS monthly pass. All Recreation Assistance Program funding for 2026 has been fully allocated. The program is now CLOSED and will reopen for new applications in January 2027.",
+    note: "Leduc lists half-price monthly bus passes. You can choose a local, commuter or LATS monthly pass. All Recreation Assistance Program funding for 2026 has been fully allocated. The program is now closed and will reopen for new applications in January 2027.",
     applyText: "Contact Leduc FCSS about subsidies",
     applyUrl: "https://www.leduc.ca/community/family-community-support-services/housing-financial-support",
     source: "https://www.leduc.ca/community/family-community-support-services/housing-financial-support",
     detail: {
-      about: "Leduc Family and Community Support Services can help qualifying residents access a half-price monthly bus pass as part of its housing and financial-navigation support. The Recreation Assistance Program is now CLOSED and will reopen for new applications in January 2027.",
+      about: "Leduc Family and Community Support Services can help qualifying residents access a half-price monthly bus pass as part of its housing and financial-navigation support. The Recreation Assistance Program is now closed and will reopen for new applications in January 2027.",
       steps: ["Contact Leduc FCSS for a financial-navigation appointment.", "Ask about the transit subsidy when discussing your situation. Ask when the Recreation Assistance Program reopens.", "Follow their directions for the documents needed to assess eligibility."],
       documents: ["Proof of Leduc residence", "Financial information requested by FCSS"],
       tips: ["You choose a local, commuter or LATS monthly pass. Ask specifically about LATS if you use specialized transit.", "The City’s page describes an assessment. Do not assume you are eligible until FCSS confirms it."],
@@ -4755,7 +4755,7 @@ const BENEFITS = [
       ],
     },
     "requiresNote": "You are 18 or older; are financially eligible or likely to be within six months; and have a severe mental or physical impairment likely to continue for at least two years that significantly restricts daily living and requires an assistive device, the significant help or supervision of another person, or the services of an assistance animal.",
-    "note": "The test is about what you can do, not your diagnosis. The impairment must directly and significantly restrict your ability to do daily living activities. AND you must need an assistive device, the significant help or supervision of another person, or the services of an assistance animal.",
+    "note": "The test is about what you can do, not your diagnosis. The impairment must directly and significantly restrict your ability to do daily living activities. And you must need an assistive device, the significant help or supervision of another person, or the services of an assistance animal.",
     "applyText": "Start on My Self Serve",
     "applyUrl": "https://myselfserve.gov.bc.ca/",
     "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/pwd-designation-and-application/designation-application",
@@ -4966,7 +4966,7 @@ const BENEFITS = [
       ],
       note: "Children in families on assistance get equivalent dental and optical coverage through the ministry supplements instead.",
     },
-    "requiresNote": "Your family qualifies for MSP supplementary benefits — that means an adjusted net income of $42,000 or less — and you are NOT receiving income assistance, disability assistance or hardship assistance. Children in families on assistance get equivalent dental and optical coverage through the ministry supplements instead.",
+    "requiresNote": "Your family qualifies for MSP supplementary benefits — that means an adjusted net income of $42,000 or less — and you are not receiving income assistance, disability assistance or hardship assistance. Children in families on assistance get equivalent dental and optical coverage through the ministry supplements instead.",
     "note": "Coverage stays active until the end of the month of your child's 19th birthday. If your child reaches the $2,000 dental limit, emergency treatment is still available, but only for the immediate relief of pain.",
     "applyText": "Apply for health & drug coverage",
     "applyUrl": "https://my.gov.bc.ca/ahdc",
@@ -5215,11 +5215,11 @@ const BENEFITS = [
       "coversList": {
         "lead": "Up to $22,000 per year per child covers:",
         "items": [
-          "professionals listed on the Registry of Autism Service Providers (RASP)",
-          "behaviour interventionists supervised by a RASP professional",
-          "family counselling or therapy (providers do not need to be on RASP)",
-          "employment-related costs when you hire staff",
-          "administrative costs up to $100/month"
+          "Professionals listed on the Registry of Autism Service Providers (RASP)",
+          "Behaviour interventionists supervised by a RASP professional",
+          "Family counselling or therapy (providers do not need to be on RASP)",
+          "Employment-related costs when you hire staff",
+          "Administrative costs up to $100/month"
         ]
       },
       "steps": [
@@ -5271,15 +5271,15 @@ const BENEFITS = [
       "coversList": {
         "lead": "Up to $6,000 per year per child for:",
         "items": [
-          "behaviour consultants or analysts",
-          "speech-language pathologists",
-          "occupational or physical therapists",
-          "behaviour interventionists (should be supervised by one of the professionals listed above)",
-          "life skills and social skills programs",
-          "out-of-school learning support and tutoring",
-          "dietary counselling from registered dieticians",
-          "family counselling",
-          "specialized therapeutic camps for autism"
+          "Behaviour consultants or analysts",
+          "Speech-language pathologists",
+          "Occupational or physical therapists",
+          "Behaviour interventionists (should be supervised by one of the professionals listed above)",
+          "Life skills and social skills programs",
+          "Out-of-school learning support and tutoring",
+          "Dietary counselling from registered dieticians",
+          "Family counselling",
+          "Specialized therapeutic camps for autism"
         ]
       },
       "steps": [
@@ -5375,7 +5375,7 @@ const BENEFITS = [
     "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/health-supplements-and-programs-rate-table",
     "detail": {
       "about": "Everyone receiving income or disability assistance gets specified optical services: routine eye exams for adults ($44.83 with an optometrist or $48.90 with an ophthalmologist every two years), new eyeglasses up to ministry maximum rates, new lenses if your eye doctor confirms a change in your prescription, and necessary repairs to lenses or frames. Payment goes straight from the ministry to the optometrist or optician.",
-      "aboutList": { "lead": "Everyone receiving income or disability assistance gets specified optical services:", "items": ["routine eye exams for adults ($44.83 with an optometrist or $48.90 with an ophthalmologist every two years)", "new eyeglasses up to ministry maximum rates", "new lenses if your eye doctor confirms a change in your prescription", "and necessary repairs to lenses or frames", "Payment goes straight from the ministry to the optometrist or optician."] },
+      "aboutList": { "lead": "Everyone receiving income or disability assistance gets specified optical services:", "items": ["Routine eye exams for adults ($44.83 with an optometrist or $48.90 with an ophthalmologist every two years)", "New eyeglasses up to ministry maximum rates", "New lenses if your eye doctor confirms a change in your prescription", "And necessary repairs to lenses or frames", "Payment goes straight from the ministry to the optometrist or optician."] },
       "steps": ["Take your BC Services Card to any eye clinic", "The clinic verifies your coverage through Pacific Blue Cross", "Get your exam and choose frames within the ministry rate (or pay the difference)", "The ministry pays the provider directly"],
       "documents": ["BC Services Card"],
       "tips": ["Ask the clinic which frames are fully covered at ministry rates before choosing", "If your eye doctor confirms a change in your prescription, new lenses are covered"],
@@ -5584,14 +5584,14 @@ const BENEFITS = [
       ],
       note: "You can apply from age 16, and supports continue beyond 65.",
     },
-    "requiresNote": "Adults 19+ with significantly impaired intellectual AND adaptive functioning that began before age 18; or, under the PSI stream, adults with an FASD or autism spectrum diagnosis plus significant adaptive-functioning limitations. Apply from age 16; supports continue beyond 65",
+    "requiresNote": "Adults 19+ with significantly impaired intellectual and adaptive functioning that began before age 18; or, under the PSI stream, adults with an FASD or autism spectrum diagnosis plus significant adaptive-functioning limitations. Apply from age 16; supports continue beyond 65",
     "note": "There are two eligibility streams. Developmental Disability needs a psychologist's cognitive and adaptive assessments. The Personalized Supports Initiative needs an FASD or ASD diagnosis plus significant daily-living limitations. You do not need an intellectual disability for this stream. These assessments are sometimes already done when you were in school, so ask before arranging new ones.",
     "applyText": "Check CLBC eligibility",
     "applyUrl": "https://www.communitylivingbc.ca/who-does-clbc-support/eligible-clbc-support/",
     "source": "https://www.communitylivingbc.ca/what-support-is-available/",
     "detail": {
       "about": "Services are delivered through a network of contracted agencies and planned individually with a CLBC facilitator.",
-      "coversList": { "lead": "CLBC funds and coordinates:", "items": ["residential supports (living in your own place, shared living/home sharing with a contracted family, or staffed homes)", "employment support to find and keep a job", "community inclusion and connection programs", "skill development", "respite for families", "wellness supports for daily responsibilities", "behavioural support", "the Provincial Assessment Centre's mental-health services for people 14+ with developmental disabilities"] },
+      "coversList": { "lead": "CLBC funds and coordinates:", "items": ["Residential supports (living in your own place, shared living/home sharing with a contracted family, or staffed homes)", "Employment support to find and keep a job", "Community inclusion and connection programs", "Skill development", "Respite for families", "Wellness supports for daily responsibilities", "Behavioural support", "The Provincial Assessment Centre's mental-health services for people 14+ with developmental disabilities"] },
       "steps": ["From age 16, ask your MCFD/CYSN worker about transition planning to CLBC", "Contact your nearest CLBC office (1-877-660-2522) — a facilitator explains the required documents and approved assessors", "Submit assessments and forms completed by an approved professional (registered psychologist for the DD stream); school-years assessments may be reusable", "Once eligibility is confirmed, attend the CLBC Welcome Workshop series and work with your facilitator on a support plan", "CLBC connects you to funded services based on the plan and available resources"],
       "documents": ["Cognitive/psychoeducational assessment by a registered psychologist (DD stream)", "Adaptive functioning assessment completed by an approved professional", "Confirmed FASD or autism spectrum diagnosis for the PSI stream", "CLBC eligibility forms completed by approved professionals"],
       "tips": ["Start at 16, because assessments and planning take time. What funded support you get, and when, depends on how urgent your situation is and the funding CLBC has at the time of your request.", "If you were assessed in school, ask the school district for copies. You may not need a new assessment.", "Not eligible under the DD stream? Ask specifically about the Personalized Supports Initiative (PSI)", "Respite or equivalent funding is commonly the first service offered to families of transitioning youth. Ask your facilitator what is available in your region.", "Adults on CLBC services usually also qualify for BC PWD disability assistance. Apply for both."],
@@ -5883,9 +5883,9 @@ const BENEFITS = [
     "detail": {
       "about": "The home owner grant lowers the property tax on your principal residence. The regular grant for 2026 is up to $570 in the Capital, Fraser Valley and Metro Vancouver regional districts and up to $770 elsewhere. If you are a person with a disability, or you live with a relative who has one, the additional grant raises that to up to $845 and up to $1,045. The 2026 grant threshold is an assessed value of $2,075,000, and the grant is reduced by $5 for each $1,000 of assessed value above it. For Option B (the daily-living or structural-modification route), a health professional must certify on Form B (FIN 74) that the person has a severe mental or physical impairment likely to continue for at least two years. If your assessed value is above the threshold, a separate low income grant supplement may apply when adjusted net income is $32,000 or less.",
       "aboutList": { "lead": "The home owner grant lowers the property tax on your principal residence.", "items": ["The regular grant for 2026 is up to $570 in the Capital, Fraser Valley and Metro Vancouver regional districts and up to $770 elsewhere.", "If you are a person with a disability, or you live with a relative who has one, the additional grant raises that to up to $845 and up to $1,045.", "The 2026 grant threshold is an assessed value of $2,075,000, and the grant is reduced by $5 for each $1,000 of assessed value above it.", "Option B is the daily-living or structural-modification route.", "For Option B, Form B (FIN 74) requires health-professional certification of a severe mental or physical impairment likely to continue for at least two years.", "If your assessed value is above the threshold, a separate low income grant supplement may apply when adjusted net income is $32,000 or less."] },
-      "steps": ["read the eligibility page for people with disabilities", "if you qualify through disability assistance, no health professional form is needed and you may optionally file Form FIN 81, Home Owner Grant Consent for Release of Information", "if you qualify on the daily-living or structural-modification route, have a health professional complete Form B (FIN 74), Certificate of Health Professional and Property Owner, with your first application", "apply for the grant each year, through the province rather than your municipality"],
-      "documents": ["Form B (FIN 74), Certificate of Health Professional and Property Owner, for the daily-living or structural-modification route on a first application", "optionally Form FIN 81, Home Owner Grant Consent for Release of Information", "your property tax notice"],
-      "tips": ["you must apply every year, the grant is not automatic", "you must still pay at least $100 in property taxes", "the higher northern and rural amount ends January 1, 2027"],
+      "steps": ["Read the eligibility page for people with disabilities", "If you qualify through disability assistance, no health professional form is needed and you may optionally file Form FIN 81, Home Owner Grant Consent for Release of Information", "If you qualify on the daily-living or structural-modification route, have a health professional complete Form B (FIN 74), Certificate of Health Professional and Property Owner, with your first application", "Apply for the grant each year, through the province rather than your municipality"],
+      "documents": ["Form B (FIN 74), Certificate of Health Professional and Property Owner, for the daily-living or structural-modification route on a first application", "Optionally Form FIN 81, Home Owner Grant Consent for Release of Information", "Your property tax notice"],
+      "tips": ["You must apply every year, the grant is not automatic", "You must still pay at least $100 in property taxes", "The higher northern and rural amount ends January 1, 2027"],
       "phone": "Toll free 1-888-355-2700, or 250-387-0555"
     }
   },
@@ -5947,9 +5947,9 @@ const BENEFITS = [
     "detail": {
       "about": "BC RAHA provides rebates so people can adapt their home for independent living. The lifetime maximum is $20,000 per household, and individual adaptations have their own caps set out in BC Housing.s Maximum Rebate Schedule. Applications are taken first-come, first-served until the funding for the year runs out, and the funding renews on April 1 each year. BC Housing aims to assess a completed application within 8 weeks, and pays within 3 weeks of receiving the final documents once the work is done. If you rent, the unit must be a legal, self-contained home with its own full kitchen and bathroom, and the tenant must be living independently rather than in assisted living. Tenants apply jointly with their landlord, and members of a housing co-operative use the landlord-and-tenant route.",
       "aboutList": { "lead": "BC RAHA provides rebates so people can adapt their home for independent living.", "items": ["The lifetime maximum is $20,000 per household, and individual adaptations have their own caps set out in BC Housing's Maximum Rebate Schedule.", "Applications are taken first-come, first-served until the funding for the year runs out, and the funding renews on April 1 each year.", "BC Housing aims to assess a completed application within 8 weeks, and pays within 3 weeks of receiving the final documents once the work is done.", "If you rent, the unit must be a legal, self-contained home with its own full kitchen and bathroom, and the tenant must be living independently rather than in assisted living.", "Tenants apply jointly with their landlord, and members of a housing co-operative use the landlord-and-tenant route."] },
-      "steps": ["check the property and adaptation eligibility pages, and use the BC RAHA Calculator to see whether you might qualify", "get an occupational therapist or physical therapist assessment if your adaptation needs one", "submit the BC RAHA Homeowner Application, or the Landlord and Tenant Application if you rent, with the documents it lists", "wait for written approval from BC Housing BEFORE any work starts, then complete the work within 180 days"],
-      "documents": ["the BC RAHA Homeowner Application, or the Landlord and Tenant Application if you rent", "an occupational therapist or physical therapist assessment where the adaptation requires one", "contractor quotes", "proof of household income and assets as listed in the application"],
-      "tips": ["do not start work before written approval, because anything finished first is not eligible", "funding renews April 1 and applications are first-come first-served, so apply early in the year", "you have 180 days from written approval to finish", "the $20,000 is a lifetime maximum for the household, not per adaptation", "BC Housing publishes an eligibility calculator at bcrahacalculator.bchousing.org. It takes a few minutes. It tells you if you are likely to qualify before you fill in the full application."],
+      "steps": ["Check the property and adaptation eligibility pages, and use the BC RAHA Calculator to see whether you might qualify", "Get an occupational therapist or physical therapist assessment if your adaptation needs one", "Submit the BC RAHA Homeowner Application, or the Landlord and Tenant Application if you rent, with the documents it lists", "Wait for written approval from BC Housing before any work starts, then complete the work within 180 days"],
+      "documents": ["The BC RAHA Homeowner Application, or the Landlord and Tenant Application if you rent", "An occupational therapist or physical therapist assessment where the adaptation requires one", "Contractor quotes", "Proof of household income and assets as listed in the application"],
+      "tips": ["Do not start work before written approval, because anything finished first is not eligible", "Funding renews April 1 and applications are first-come first-served, so apply early in the year", "You have 180 days from written approval to finish", "The $20,000 is a lifetime maximum for the household, not per adaptation", "BC Housing publishes an eligibility calculator at bcrahacalculator.bchousing.org. It takes a few minutes. It tells you if you are likely to qualify before you fill in the full application."],
       "time": "BC Housing aims to assess completed applications within 8 weeks, and pays within 3 weeks after the work is done and documents are received.",
       "phone": "604-433-2218 in the Lower Mainland, or toll free 1-800-257-7756"
     }
@@ -6078,7 +6078,7 @@ const BENEFITS = [
       note: "You must be 16 or older and must also own or lease a vehicle, or have an ownership interest in a vehicle",
     },
     "requiresNote": "You must be 16 years old or older and own or lease a vehicle, or have an ownership interest in a vehicle. Confirm your disability through one of the routes below, including all the listed letter conditions and dates.",
-    "note": "Register FIRST. You can apply for a refund only after your registration is confirmed. Register with the Ministry of Finance online or with a downloadable form. Then you get a registration confirmation letter. After that, you can claim refunds.",
+    "note": "Register first. You can apply for a refund only after your registration is confirmed. Register with the Ministry of Finance online or with a downloadable form. Then you get a registration confirmation letter. After that, you can claim refunds.",
     "applyText": "Register for the fuel tax refund",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities",
     "source": "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/motor-fuel-carbon-tax/refund-disabilities",
@@ -6541,7 +6541,7 @@ const BENEFITS = [
         "You are a Canadian citizen or permanent resident currently residing in Kelowna as a full-time resident.",
         "You meet the family net income threshold based on the after-tax Low Income Cut-off (see the table below). You must also meet income verification requirements and have all the necessary documentation. People receiving government financial assistance are eligible to apply, as are people who do not receive it but are experiencing financial hardship and meet the guidelines.",
       ],
-      "note": "Post-secondary students are NOT eligible, though they can ask for the discounted student rate on passes instead. Also not eligible: temporary residents and visitors, including anyone on a study or work permit; immigrants classified as business class, investor or entrepreneur; and anyone banned from City recreation facilities, including Parkinson Recreation Centre and the Kelowna-area YMCAs. Recreation Services may exercise discretion when determining eligibility for Financial Assistance for individuals with previous suspensions or bans.",
+      "note": "Post-secondary students are not eligible, though they can ask for the discounted student rate on passes instead. Also not eligible: temporary residents and visitors, including anyone on a study or work permit; immigrants classified as business class, investor or entrepreneur; and anyone banned from City recreation facilities, including Parkinson Recreation Centre and the Kelowna-area YMCAs. Recreation Services may exercise discretion when determining eligibility for Financial Assistance for individuals with previous suspensions or bans.",
     },
     "amountTiers": {
       "caption": "City of Kelowna — Low Income Cut-Offs (LICO) 2025 (family net income after tax)",
@@ -6556,7 +6556,7 @@ const BENEFITS = [
         ["7", "$71,254"],
       ],
     },
-    "requiresNote": "You must be a Canadian citizen or permanent resident currently residing in Kelowna as a full-time resident, and meet the family net income threshold based on the after-tax Low Income Cut-off published by Statistics Canada. The City 2025 LICO table lists $26,926 for a family of 1, $33,519 for 2, $41,208 for 3, $50,032 for 4, $56,744 for 5, $64,000 for 6 and $71,254 for 7. You must also meet income verification requirements and have all the necessary documentation. People receiving government financial assistance are eligible to apply, as are people who do not receive it but are experiencing financial hardship and meet the guidelines. Post-secondary students are NOT eligible, though they can ask for the discounted student rate on passes instead. Also not eligible: temporary residents and visitors, including anyone on a study or work permit; immigrants classified as business class, investor or entrepreneur; and anyone banned from City recreation facilities, including Parkinson Recreation Centre and the Kelowna-area YMCAs. Recreation Services may exercise discretion when determining eligibility for Financial Assistance for individuals with previous suspensions or bans.",
+    "requiresNote": "You must be a Canadian citizen or permanent resident currently residing in Kelowna as a full-time resident, and meet the family net income threshold based on the after-tax Low Income Cut-off published by Statistics Canada. The City 2025 LICO table lists $26,926 for a family of 1, $33,519 for 2, $41,208 for 3, $50,032 for 4, $56,744 for 5, $64,000 for 6 and $71,254 for 7. You must also meet income verification requirements and have all the necessary documentation. People receiving government financial assistance are eligible to apply, as are people who do not receive it but are experiencing financial hardship and meet the guidelines. Post-secondary students are not eligible, though they can ask for the discounted student rate on passes instead. Also not eligible: temporary residents and visitors, including anyone on a study or work permit; immigrants classified as business class, investor or entrepreneur; and anyone banned from City recreation facilities, including Parkinson Recreation Centre and the Kelowna-area YMCAs. Recreation Services may exercise discretion when determining eligibility for Financial Assistance for individuals with previous suspensions or bans.",
     "note": "To apply, email the Access to Recreation Department. The assessment may take up to two weeks from the date you submit, if all required information is received. The income assessment counts income from all sources. This includes disability benefits and workers' compensation, as well as employment, investments, pensions, child and foster child support, rental income and funds held in trust.",
     "applyText": "Email Access to Recreation to apply",
     "applyUrl": "https://www.kelowna.ca/parks-recreation/recreation-sport/recreation-programs-registration/financial-assistance-recreation",
@@ -6625,8 +6625,8 @@ const BENEFITS = [
     "applyUrl": "https://www.kamloops.ca/recreation-culture/programs-activities/accessible-recreation/arch-program",
     "source": "https://www.kamloops.ca/recreation-culture/programs-activities/accessible-recreation/arch-program",
     "detail": {
-      "about": "ARCH provides up to $400 in recreation credits for permanent Kamloops residents. You qualify by meeting any ONE of three routes: you receive Income Assistance from the Ministry of Social Development and Poverty Reduction. Your annual income is below the Statistics Canada Low Income Guidelines listed on the application form. Or you receive a Canadian pension or long-term disability payment below those guidelines. The annual application also asks to be considered for KamPASS, the City's reduced-cost adult monthly transit pass. The City states that ARCH and KamPASS are two separate programs that share one application process, that applicants are automatically considered for both, and that qualified participants can use both programs or just one. Approval for ARCH does not establish KamPASS eligibility. A participating screening or referral agency reviews the application; City recreation facilities do not accept the application itself.",
-      "aboutList": { "lead": "ARCH provides up to $400 in recreation credits for permanent Kamloops residents.", "items": ["You qualify by meeting any ONE of three routes: you receive Income Assistance from the Ministry of Social Development and Poverty Reduction. Your annual income is below the Statistics Canada Low Income Guidelines listed on the application form. Or you receive a Canadian pension or long-term disability payment below those guidelines.", "The annual application also asks to be considered for KamPASS, the City's reduced-cost adult monthly transit pass.", "The City states that ARCH and KamPASS are two separate programs that share one application process, that applicants are automatically considered for both, and that qualified participants can use both programs or just one.", "Approval for ARCH does not establish KamPASS eligibility.", "A participating screening or referral agency reviews the application; City recreation facilities do not accept the application itself."] },
+      "about": "ARCH provides up to $400 in recreation credits for permanent Kamloops residents. You qualify by meeting any one of three routes: you receive Income Assistance from the Ministry of Social Development and Poverty Reduction. Your annual income is below the Statistics Canada Low Income Guidelines listed on the application form. Or you receive a Canadian pension or long-term disability payment below those guidelines. The annual application also asks to be considered for KamPASS, the City's reduced-cost adult monthly transit pass. The City states that ARCH and KamPASS are two separate programs that share one application process, that applicants are automatically considered for both, and that qualified participants can use both programs or just one. Approval for ARCH does not establish KamPASS eligibility. A participating screening or referral agency reviews the application; City recreation facilities do not accept the application itself.",
+      "aboutList": { "lead": "ARCH provides up to $400 in recreation credits for permanent Kamloops residents.", "items": ["You qualify by meeting any one of three routes: you receive Income Assistance from the Ministry of Social Development and Poverty Reduction. Your annual income is below the Statistics Canada Low Income Guidelines listed on the application form. Or you receive a Canadian pension or long-term disability payment below those guidelines.", "The annual application also asks to be considered for KamPASS, the City's reduced-cost adult monthly transit pass.", "The City states that ARCH and KamPASS are two separate programs that share one application process, that applicants are automatically considered for both, and that qualified participants can use both programs or just one.", "Approval for ARCH does not establish KamPASS eligibility.", "A participating screening or referral agency reviews the application; City recreation facilities do not accept the application itself."] },
       "steps": ["Download the current ARCH–KamPASS application or pick up a paper copy", "Gather photo identification, a second piece of identification, proof of a Kamloops address and proof of income for each adult", "Take the complete application to a participating ARCH public screening agency or, if you are a client, a listed referral agency", "If approved, take the approval letter and photo identification to a listed City facility to activate ARCH credit", "If also approved for KamPASS, purchase it at Kamloops Museum and Archives"],
       "documents": ["Photo identification and a second piece of identification", "Current utility bill or other accepted proof of Kamloops residence", "Ministry assistance confirmation, each adult's latest Notice of Assessment, or accepted disability or pension income evidence"],
       "tips": ["Applications are not accepted at City recreation facilities", "One form requests both, but ARCH and KamPASS have separate eligibility. Being approved for ARCH does not mean you qualify for KamPASS", "KamPASS is not available to people who receive disability assistance from the Ministry of Social Development and Poverty Reduction under the Employment and Assistance for Persons with Disabilities Act. So many people who qualify for ARCH are excluded from KamPASS", "KamPASS also excludes these people: people aged 60 and over who are eligible for the Provincial BC Bus Pass for Seniors and Others; people aged 18 or under eligible for the BC Transit Family Travel Program or School District No. 73 Transportation Assistance; post-secondary students enrolled in U-PASS; CNIB card holders; and anyone whose income is above the Statistics Canada Low Income Cut-Offs or who cannot provide income verification", "Apply again each year and use the application form for the current program year"],
