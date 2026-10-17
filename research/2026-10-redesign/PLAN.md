@@ -1,3 +1,8 @@
+> **2026-10-17: the three drafts (Quiet Paper, Calm Green, Clear Ink) were scrapped at the owner's request.**
+> Next step: the owner reviews 15 well-designed reference websites from any industry
+> (`REFERENCE-SITES-15.md`) and picks which to base the redesign on. The accessibility criteria in
+> `A11Y-PATTERNS.md` still apply to whatever design is chosen. The text below is kept for the record.
+
 # AbilityFinder redesign — research summary, drafts and plan (2026-10-17)
 
 Status: **research and drafts only. The live site has not been changed.** Implementation is its own
