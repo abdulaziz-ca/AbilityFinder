@@ -6,6 +6,34 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-17 — morning: glossary, last content items, three new programs
+
+### Shipped (`?v=201` → `?v=204`)
+- **Abbreviations on every guide.** 78 expansions (AISH, CYSN, TTE, PWD…), each confirmed from the program's
+  own text, an official page or standard federal usage. Acronyms with two meanings in the catalogue (APP, ATS, CCC,
+  RAP) are left out on purpose. Program text is unchanged.
+- **Content audit finished**, apart from the items below: one category label instead of two inconsistent ones,
+  the last overclaims ("can qualify easily", "many are approved"), the third DTC route named, CDB items in a sensible
+  order, stale "new"/"now" wording, a news-release source replaced by the program page, directory dates explained,
+  the error card's "Start over" says it clears answers. Three tips that repeated the guide were removed, and a new
+  test stops repeated facts from growing.
+- **Three new Ontario programs**, the first built from the city sweep, each from its official page with an
+  independent Claude review: **Niagara Transit Benefit Pass** ($50 monthly pass; St. Catharines, Welland, Niagara
+  Falls), **Kingston Affordable Transit Pass** (through the City's fee assistance program), and **Halton SPLIT**
+  (Burlington, Oakville, Milton). The catalogue is now 137 programs.
+- **City sweep for task #206**: 96 listed cities with no local program were checked for leads
+  (`research/2026-10-city-sweep/LEADS.md`): Alberta 22 with leads, B.C. 30, Ontario 25. These are leads, not facts:
+  two lead links I tried were already dead. The B.C. PharmaCare plans are now itemised in COVERAGE-GAPS.md.
+
+### Decisions we made for you
+- Not built: Durham's transit program (its only official sheet now returns 404) and Guelph's fee assistance (the page
+  found had no amount, limits or steps). They stay as leads.
+- Left as they are: the fuel-tax eligibility list (a reviewed wording test pins it), "More about this benefit"
+  fine print (needs program-by-program judgement), unit formats, and long program names.
+
+### Needs you
+- Whether a public "what we don't cover yet" page should exist (task #206).
+
 ## 2026-10-17 — overnight: plain language and the rest of the audit list
 
 ### Shipped (`?v=197` → `?v=200`)
