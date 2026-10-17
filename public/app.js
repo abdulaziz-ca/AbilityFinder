@@ -5687,8 +5687,10 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   const facts = [];
   if (mm.difficulty) facts.push(["Difficulty", `<span class="fact-diff ${di.cls}"><span class="dots">${di.dots}</span> ${di.label}</span>`]);
   if (mm.effort) facts.push(["Application", mm.effort]);
-  if (mm.wait) facts.push(["Wait for a decision", mm.wait]);
-  if (d.time) facts.push(["Processing", d.time]);
+  // One row for one fact: the record's own timing text when it has one, else
+  // the short meta wait. Two rows ("Wait for a decision" and "Processing") often
+  // disagreed (site audit 2026-10, C-CONTENT-TRUST P1-09/P2-07).
+  if (d.time || mm.wait) facts.push(["How long", d.time || mm.wait]);
   if (d.phone) facts.push(["Phone", d.phone]);
   facts.push(["Level", b.level]);
   facts.push(["Category", b.category]);
