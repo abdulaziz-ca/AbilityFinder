@@ -122,6 +122,10 @@ different AISH exclusions, transit prices, and recreation coverage.
 
 #### Readability rule
 
+Full writing rules and length budgets: `docs/CONTENT-STYLE-GUIDE.md`. The
+plain-language ratchet (`test/plain-language-ratchet.test.js`) blocks the
+reading level of summaries, notes and tips from sliding back.
+
 A requirement bullet is one short line; prefer a list over a paragraph. Move
 full official qualifiers behind the expander, never delete them. Run
 `npm run check:surfaces` for new or edited benefit text. The dense-surface
