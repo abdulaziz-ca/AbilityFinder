@@ -748,8 +748,11 @@ test.describe("data-change procedure stays enforced", () => {
         markerProblems.push(`${file} (non-numeric marker: ${markers.map((marker) => marker.raw).join(", ")})`);
         continue;
       }
-      if (file.startsWith("public/guides/") && markers.length !== 1) {
-        markerProblems.push(`${file} (expected exactly one marker; found ${markers.length})`);
+      // Guides carry three markers since 2026-10-17 (styles.css, dbManager.js and
+      // guide-prefs.js). The check below still requires every one to equal the
+      // current version, so a guide left on an old ?v cannot slip through.
+      if (file.startsWith("public/guides/") && markers.length !== 3) {
+        markerProblems.push(`${file} (expected three markers; found ${markers.length})`);
         continue;
       }
       const versions = new Set(markers.map((marker) => marker.value));

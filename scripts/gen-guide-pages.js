@@ -89,6 +89,10 @@ if (!styleMatch) {
   process.exit(1);
 }
 const styleHref = styleMatch[1].replace(/^\/?/, "/");
+// Same ?v=N as the stylesheet, so every guide asset moves with one bump.
+const assetQuery = (/\?v=[^"]+$/.exec(styleHref) || [""])[0];
+// Short scope label for the header tag, e.g. "Alberta + BC + Ontario".
+const scopeTag = ["Alberta", ...(bcEnabled ? ["BC"] : []), ...(onEnabled ? ["Ontario"] : [])].join(" + ");
 
 const clean = (value) => String(value ?? "").replace(/\s+/g, " ").trim();
 const cleanGeneratedWhitespace = (value) => value.replace(/[ \t]+$/gm, "");
@@ -140,6 +144,8 @@ function head({ title, desc, canonical }) {
     <meta property="og:url" content="${esc(canonical)}" />
     <meta property="og:site_name" content="AbilityFinder" />
     <link rel="stylesheet" href="${esc(styleHref)}" />
+    <script src="/dbManager.js${esc(assetQuery)}"></script>
+    <script src="/guide-prefs.js${esc(assetQuery)}"></script>
     <style>
       .guide-link, .guide-link:visited {
         color: var(--accent-hi);
@@ -167,7 +173,7 @@ function header() {
       <div class="nav-inner">
         <a class="brand" href="https://abilityfinder.ca/" aria-label="AbilityFinder home"><span class="brand-name">AbilityFinder</span></a>
         <div class="nav-right">
-          <span class="nav-tag">Alberta + BC</span>
+          <span class="nav-tag">${scopeTag}</span>
           <a class="guide-link" href="https://abilityfinder.ca/">Find benefits</a>
           <a class="guide-link" href="https://abilityfinder.ca/guides/">Program guides</a>
         </div>
@@ -277,7 +283,7 @@ ${header()}
     <div class="wrap">
       <main class="browse">
         <header class="browse-head">
-          <p class="eyebrow">Alberta, BC + federal benefits</p>
+          <p class="eyebrow">${provinceProse} + federal benefits</p>
           <h1>Program guides</h1>
           <p>Browse plain-language guides to the programs in the AbilityFinder catalog.</p>
           <p><a class="btn btn-primary" href="https://abilityfinder.ca/">Answer a few questions to see benefits you may qualify for</a></p>

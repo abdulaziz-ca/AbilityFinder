@@ -1931,3 +1931,19 @@ body.a11y-nomotion .side-note:hover .sn-go .ic { transform: none; }
 .result-group-later[open] > summary { margin-bottom: 8px; }
 .later-why { margin: 0 0 8px; }
 .results-need-more { font-weight: 600; margin: 0 0 8px; }
+
+/* Short viewports, including 400% zoom (320 x 256 CSS px): the sticky nav, the
+   fixed mountains and two 52px buttons left about 130px for the question and
+   covered focused controls (WCAG 2.4.11). Let the nav scroll away, drop the
+   decoration, shrink the buttons and keep scrolled-to content clear of them
+   (site audit 2026-10, D-ENGINEERING P2-4). */
+@media (max-height: 480px) {
+  .nav { position: static; }
+  .wiz-mountains { display: none; }
+  .a11y-wrap, .ask-wrap { bottom: 8px; }
+  .a11y-wrap { right: 8px; }
+  .ask-wrap { left: 8px; }
+  .a11y-fab, .ask-fab { width: 40px; height: 40px; }
+  html { scroll-padding-bottom: 56px; }
+  body { padding-bottom: 56px; }
+}
