@@ -1967,3 +1967,13 @@ test("city-sweep programs are city-gated and reach ready only through their own 
     expect((await evaluateProfile(page, { ...base, city: other }))[id].status, id + " elsewhere").toBe("no");
   }
 });
+
+test("retried city-sweep programs are city-gated and reach ready only through their own routes", async ({ page }) => {
+  const cases = [["brantford-recreation-subsidy","ON","Brantford","ready"],["cornwall-community-bus-pass","ON","Cornwall","almost"],["dawson-creek-leisure-access","BC","Dawson Creek","ready"],["high-river-community-access-program","AB","High River","ready"],["langley-leisure-access-grant","BC","Langley","ready"],["morinville-wrap","AB","Morinville","ready"],["nelson-rdck-leisure-access","BC","Nelson","ready"],["port-coquitlam-financial-assistance","BC","Port Coquitlam","ready"],["sarnia-cnib-pass","ON","Sarnia","ready"],["taber-fee-assistance","AB","Taber","ready"],["west-vancouver-recreation-financial-assistance","BC","West Vancouver","ready"]];
+  for (const [id, province, city, best] of cases) {
+    const base = { province, city, income: "low", ageBand: "19to59", ageGroup: "adult", disabilityVerified: "yes", situation: ["none"] };
+    expect((await evaluateProfile(page, base))[id].status, id).toBe(best);
+    const other = { AB: "Wetaskiwin", BC: "Williams Lake", ON: "Timmins" }[province];
+    expect((await evaluateProfile(page, { ...base, city: other }))[id].status, id + " elsewhere").toBe("no");
+  }
+});

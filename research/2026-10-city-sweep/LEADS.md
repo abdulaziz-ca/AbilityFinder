@@ -172,3 +172,28 @@ Each was drafted from its snapshot, reviewed independently against it (20 fixes 
 - ON Cornwall — Community Bus Pass (HTTP 404)
 - ON Sarnia — Annual CNIB Pass (HTTP 404)
 - ON Thunder Bay — Affordable Access to Recreation and Transit pilot (HTTP 404)
+
+## Retry pass (2026-10-17, ?v=208)
+
+The 30 leads not built in pass two were retried: two Claude researchers searched for each program's current
+official page; pages were re-read with curl, PDFs with pdftotext, and bot-blocked sites in a real browser
+(no bot checks were bypassed).
+
+**Built (11):** `brantford-recreation-subsidy`, `cornwall-community-bus-pass`, `dawson-creek-leisure-access`,
+`high-river-community-access-program`, `langley-leisure-access-grant`, `morinville-wrap`,
+`nelson-rdck-leisure-access`, `port-coquitlam-financial-assistance`, `sarnia-cnib-pass`, `taber-fee-assistance`,
+`west-vancouver-recreation-financial-assistance` — each drafted from its page and reviewed independently
+(13 fixes, e.g. Morinville's income chart applies to everyone; Sarnia's page gives both $36 and $35.25).
+
+**Still not built, and why:**
+- Beaumont, Sylvan Lake "You Can Play Too!": closed for 2026 (Sylvan Lake's form gives no limits or amounts).
+- Hinton recreation and transit: the only notice found says funding ran to March 31, 2026, with no renewal.
+- Coaldale, Slave Lake: the official pages found now return 404.
+- Devon: behind a Cloudflare bot check (not bypassed); a person can check devon.ca.
+- Brooks, Camrose, Innisfail, Sault Ste. Marie, Powell River, Thunder Bay: no official program page found
+  (only news, directories or third-party pages).
+- Sarnia reduced-rate passes: run by the Inn of the Good Shepherd, not the city.
+- Pitt Meadows Access Support Pass: the page does not say who qualifies.
+- Lacombe, Peace River: youth funding with no financial or disability test (out of scope).
+- Sylvan Link Card: local business discounts, no stated eligibility (out of scope).
+

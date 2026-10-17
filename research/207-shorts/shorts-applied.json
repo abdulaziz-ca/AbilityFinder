@@ -1025,5 +1025,60 @@
     "short": "Check the program's income test",
     "who": ["you", "program"],
     "reason": "City-sweep record white-rock-leisure-access (2026-10-17)"
+  },
+  "brantfordRecreationSubsidyRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record brantford-recreation-subsidy (2026-10-17)"
+  },
+  "cornwallCommunityBusPassRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "City-sweep record cornwall-community-bus-pass (2026-10-17)"
+  },
+  "dawsonCreekLeisureAccessRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record dawson-creek-leisure-access (2026-10-17)"
+  },
+  "highRiverCommunityAccessProgramRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record high-river-community-access-program (2026-10-17)"
+  },
+  "langleyLeisureAccessGrantRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record langley-leisure-access-grant (2026-10-17)"
+  },
+  "morinvilleWrapRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record morinville-wrap (2026-10-17)"
+  },
+  "nelsonRdckLeisureAccessRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record nelson-rdck-leisure-access (2026-10-17)"
+  },
+  "portCoquitlamFinancialAssistanceRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record port-coquitlam-financial-assistance (2026-10-17)"
+  },
+  "sarniaCnibPassRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "City-sweep record sarnia-cnib-pass (2026-10-17)"
+  },
+  "taberFeeAssistanceRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record taber-fee-assistance (2026-10-17)"
+  },
+  "westVancouverRecreationFinancialAssistanceRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "City-sweep record west-vancouver-recreation-financial-assistance (2026-10-17)"
   }
 }

@@ -143,6 +143,17 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "west-vancouver-recreation-financial-assistance": { kind: "discount", note: "50% off FitPasses and activities, within yearly maximums." },
+  "taber-fee-assistance": { kind: "discount", note: "50% off many Town recreation fees." },
+  "sarnia-cnib-pass": { kind: "discount", note: "About $36 (a page note says $35.25) instead of $1,065 for the annual pass." },
+  "port-coquitlam-financial-assistance": { kind: "grant", note: "A One City Pass and a scholarship of $200 per adult or $500 per child." },
+  "nelson-rdck-leisure-access": { kind: "grant", note: "A yearly credit of $100 per adult or $150 per youth." },
+  "morinville-wrap": { kind: "grant", note: "Up to $250 per person toward recreation fees." },
+  "langley-leisure-access-grant": { kind: "discount", note: "25% to 75% off a City program or pass." },
+  "high-river-community-access-program": { kind: "discount", note: "50% off Town programs and recreation admissions." },
+  "dawson-creek-leisure-access": { kind: "grant", note: "Funding amount varies and is not guaranteed." },
+  "cornwall-community-bus-pass": { kind: "discount", note: "A reduced-price pass. The page gives no price." },
+  "brantford-recreation-subsidy": { kind: "discount", note: "The City pays 25% to 75% of fees, or 100% on assistance." },
   "white-rock-leisure-access": { kind: "discount", note: "50% off, up to $300 a year" },
   "terrace-affordable-recreation-access": { kind: "discount", note: "50% off drop-ins and short memberships" },
   "squamish-recreation-access": { kind: "discount", note: "50% off services and programs" },
@@ -378,6 +389,17 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "west-vancouver-recreation-financial-assistance": { difficulty: 4, effort: "Paper package, drop-off and interview", wait: "Two to six weeks" },
+  "taber-fee-assistance": { difficulty: 3, effort: "FCSS application, then card pickup", wait: "Not published" },
+  "sarnia-cnib-pass": { difficulty: 1, effort: "One visit with your CNIB card", wait: "Not published" },
+  "port-coquitlam-financial-assistance": { difficulty: 3, effort: "Form plus CRA income statement or partner form", wait: "10 to 14 business days (busy in January)" },
+  "nelson-rdck-leisure-access": { difficulty: 3, effort: "Online form with uploads", wait: "Up to three weeks" },
+  "morinville-wrap": { difficulty: 2, effort: "Form plus income proof", wait: "Not published" },
+  "langley-leisure-access-grant": { difficulty: 2, effort: "Form plus three documents", wait: "Within three weeks" },
+  "high-river-community-access-program": { difficulty: 2, effort: "In-person application with income papers", wait: "Not published" },
+  "dawson-creek-leisure-access": { difficulty: 3, effort: "Printed form and a Trusted Partner signature", wait: "Up to three weeks after the deadline" },
+  "cornwall-community-bus-pass": { difficulty: 2, effort: "In-person visit with proof", wait: "Not published" },
+  "brantford-recreation-subsidy": { difficulty: 2, effort: "Online form plus income papers", wait: "Not published" },
   "white-rock-leisure-access": { difficulty: 2, effort: "One application per family", wait: "Not published" },
   "terrace-affordable-recreation-access": { difficulty: 3, effort: "Visit the Aquatic Centre and a verifying office", wait: "Not published" },
   "squamish-recreation-access": { difficulty: 3, effort: "Gather original documents and apply at the recreation centre", wait: "Not published" },
@@ -8687,6 +8709,564 @@ const BENEFITS = [
       ],
       "phone": "604-541-2199"
     }
+  },
+  {
+    "id": "brantford-recreation-subsidy",
+    "name": "Recreation Financial Assistance (Brantford)",
+    "level": "Brantford",
+    "category": "Recreation",
+    "amount": "25%, 50% or 75% of program fees paid, or 100% on assistance",
+    "summary": "The City pays part of drop-in and registered program fees for children and youth 17 and under. The share depends on family size and gross income. Ontario Works, ODSP and refugee-status families get 100% with documents.",
+    "note": "Help is limited to two programs per person per season and two weeks of summer camp. Funds and programs must be available. Some restrictions apply. It is free to apply.",
+    "requires": [
+      "on",
+      "brantford",
+      "brantfordRecreationSubsidyRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Your family's gross annual income falls within the City's chart for your family size",
+        "You are on Ontario Works or ODSP, or your family has refugee status"
+      ],
+      "note": "The program is for children and youth 17 and under."
+    },
+    "applyText": "Apply for financial assistance",
+    "applyUrl": "https://www.brantford.ca/en/things-to-do/recreational-programs-financial-assistance.aspx",
+    "source": "https://www.brantford.ca/en/things-to-do/recreational-programs-financial-assistance.aspx",
+    "detail": {
+      "aboutList": {
+        "lead": "The City pays a share of fees, based on family size and income.",
+        "items": [
+          "The City pays 75% if gross income is $0 to $22,000 for a family of 1 or 2.",
+          "The share drops to 50% and then 25% at higher income bands in the chart.",
+          "Bands run up to $51,900 for a family of 6 or more.",
+          "It covers most drop-in and registered programs, if funds and programs are available."
+        ]
+      },
+      "steps": [
+        "Check the financial assistance chart for your family size",
+        "Fill out the online application, or apply at the front reception desk",
+        "Pay your share of the fee when you register"
+      ],
+      "documents": [
+        "On Ontario Works or ODSP: a current pay stub and Child Tax Benefit showing the children's names",
+        "Others: an income tax form or Notice of Assessment, and a current pay stub",
+        "Or a pay stub and Child Tax Benefit, or an Employment Insurance stub and Child Tax Benefit"
+      ],
+      "tips": [
+        "Assistance also depends on whether your family already got help this registration period.",
+        "The Arnold Anderson Sport Fund is separate. It gives youth up to $350, and the City does not approve it."
+      ],
+      "phone": "519-759-4150"
+    }
+  },
+  {
+    "id": "cornwall-community-bus-pass",
+    "name": "Community Bus Pass (Cornwall)",
+    "level": "Cornwall",
+    "category": "Transit",
+    "amount": "Affordable bus pass; 175 passes available",
+    "summary": "An affordable Cornwall Transit pass for people who get ODSP or Ontario Works. There are 175 passes, given first come, first served. The pass also works on Specialized Service if you have qualified for it.",
+    "note": "You need documents each time you buy a pass. The page does not give the price. Contact Cornwall Transit to ask.",
+    "requires": [
+      "on",
+      "cornwall",
+      "cornwallCommunityBusPassRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You get benefits from the Ontario Disability Support Program",
+        "You get Ontario Works assistance"
+      ]
+    },
+    "applyText": "Buy a pass at the transit office",
+    "applyUrl": "https://www.cornwall.ca/en/public-safety-transportation/transit/fares-and-passes/community-passes/",
+    "source": "https://www.cornwall.ca/en/public-safety-transportation/transit/fares-and-passes/community-passes/",
+    "detail": {
+      "aboutList": {
+        "lead": "A lower-cost pass for people on ODSP or Ontario Works.",
+        "items": [
+          "Qualified Specialized Service users can use it on that service too."
+        ]
+      },
+      "steps": [
+        "Go to the Cornwall Transit office at 863 Second St W",
+        "Show your photo ID and proof of benefits",
+        "Buy the pass"
+      ],
+      "documents": [
+        "Photo ID",
+        "An original or photocopied Ontario Works or ODSP cheque stub, or a drug or dental card"
+      ],
+      "tips": [
+        "Bring proof every time you buy a pass."
+      ],
+      "phone": "613-930-2787"
+    }
+  },
+  {
+    "id": "dawson-creek-leisure-access",
+    "name": "Leisure Access Program (Dawson Creek)",
+    "level": "Dawson Creek",
+    "category": "Recreation",
+    "amount": "Funding toward drop-in and program fees; amount varies",
+    "summary": "Funding for low-income Dawson Creek residents to pay for classes, drop-ins and events. You may get a drop-in punch card or credit toward a registered program. The amount depends on limited yearly funds.",
+    "note": "Funding is not guaranteed, and the amount can be small. New applicants are considered before repeat applicants. Applications are considered on the first day of each month.",
+    "requires": [
+      "bc",
+      "dawsonCreek",
+      "dawsonCreekLeisureAccessRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a permanent resident living within city boundaries for at least three months",
+        "Your family income is at or below the Statistics Canada Low-Income Cut-Off"
+      ]
+    },
+    "applyText": "Get the application form",
+    "applyUrl": "https://www.dawsoncreek.ca/parks-recreation/recreation-programs/leisure-access-and-funding-assistance/",
+    "source": "https://www.dawsoncreek.ca/parks-recreation/recreation-programs/leisure-access-and-funding-assistance/",
+    "detail": {
+      "aboutList": {
+        "lead": "Help paying for classes, drop-ins and events.",
+        "items": [
+          "Approved drop-in funding is used with a punch card at the front desk.",
+          "For registered programs, you tell staff to use your funding on the fee.",
+          "If you are approved for $30 on a $50 class, you pay the other $20."
+        ]
+      },
+      "steps": [
+        "Print the individual or group form, or pick one up at the Kenn Borek Aquatic Centre or Culture & Recreation front desk",
+        "Fill out the main applicant section",
+        "Ask a Trusted Partner to fill out the bottom section",
+        "Email the form or drop it off at the aquatic centre or Kin Arena"
+      ],
+      "documents": [
+        "The completed application form",
+        "The bottom section completed by a Trusted Partner, verifying income and residency"
+      ],
+      "tips": [
+        "A Trusted Partner is a social service agency, government agency or non-profit you work with.",
+        "Applicants are told by mail, up to three weeks after the deadline.",
+        "You can apply again, but funding is limited each calendar year."
+      ],
+      "time": "Up to three weeks after the deadline",
+      "phone": "250-784-3604"
+    }
+  },
+  {
+    "id": "high-river-community-access-program",
+    "name": "Community Access Program (High River)",
+    "level": "High River",
+    "category": "Recreation",
+    "amount": "50% off programs and recreation admissions",
+    "summary": "A CAP card gives lower-income High River residents half price on Town programs and on admissions and passes at the Bob Snodgrass Recreation Complex and Cargill Field House. It also gives a free library card and local discounts.",
+    "note": "Apply at the Town of High River's FCSS Resource Centre, and renew your card by June 30 every year.",
+    "requires": [
+      "ab",
+      "highRiver",
+      "highRiverCommunityAccessProgramRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in High River",
+        "Your household income is at or below the limit for your household size"
+      ],
+      "note": "The limits run from $45,000 for 1 person to $72,500 for 7 people."
+    },
+    "applyText": "Pick up an application at FCSS",
+    "applyUrl": "https://highriver.ca/community/community-support-services/cap",
+    "source": "https://highriver.ca/community/community-support-services/cap",
+    "detail": {
+      "aboutList": {
+        "lead": "A card with recreation discounts and local business discounts.",
+        "items": [
+          "50 per cent off all programs in the Community Program Guide.",
+          "50 per cent off admissions and passes at the two recreation facilities.",
+          "A free High River library card.",
+          "Discounts at some local health, music, thrift and pharmacy businesses."
+        ]
+      },
+      "steps": [
+        "Pick up an application at the FCSS Resource Centre, 251 9 Avenue SW",
+        "Bring your ID, plus proof of where you live and what you earn",
+        "Renew the card by June 30 each year"
+      ],
+      "documents": [
+        "Proof you live in High River, such as ID or utility bills",
+        "ID for household members, such as health cards or birth certificates",
+        "A current Notice of Assessment, or 3 months of bank statements"
+      ],
+      "tips": [
+        "Pharmacy discounts are for store-front items only, not prescriptions.",
+        "Staff are at the Resource Centre Monday to Friday, 9:00am to 4:00pm."
+      ],
+      "phone": "403-652-8620"
+    }
+  },
+  {
+    "id": "langley-leisure-access-grant",
+    "name": "Leisure Access Grant (City of Langley)",
+    "level": "Langley",
+    "category": "Recreation",
+    "amount": "25% to 75% off a program or pass",
+    "summary": "Low-income City of Langley residents can get a discount on a City program or pass, or an aquatic pass to the indoor pools in the area. If approved, each family member living permanently in the household gets the discount.",
+    "note": "Temporary residents, including people on study and work permits, do not qualify. The aquatic pass option is for adults and seniors only. The City replies within three weeks.",
+    "requires": [
+      "bc",
+      "langley",
+      "langleyLeisureAccessGrantRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a low-income resident of the City of Langley",
+        "You meet the Leisure Access Program income requirements",
+        "You are not a temporary resident"
+      ],
+      "note": "Temporary residents include people on study and work permits."
+    },
+    "applyText": "Apply for the Leisure Access Grant",
+    "applyUrl": "https://langleycity.ca/recreation-culture/recreation/admission-rates-passes-and-financial-assistance",
+    "source": "https://langleycity.ca/recreation-culture/recreation/admission-rates-passes-and-financial-assistance",
+    "detail": {
+      "aboutList": {
+        "lead": "The grant lowers the cost of recreation.",
+        "items": [
+          "The discount is 25% to 75%.",
+          "It covers a City of Langley program or pass.",
+          "Adults and seniors can choose an aquatic pass instead."
+        ]
+      },
+      "steps": [
+        "Complete the Leisure Access Grant application form",
+        "Attach the required documents",
+        "Submit it at a recreation facility, or email recreation@langleycity.ca",
+        "Wait to be contacted"
+      ],
+      "documents": [
+        "Proof of address, such as a recent utility bill in your name",
+        "A pay stub from your employer",
+        "A Notice of Assessment for all income earners in the family"
+      ],
+      "tips": [
+        "The application cannot be processed without the documents.",
+        "The page does not list the income limits. Ask the City about them."
+      ],
+      "time": "Contact within three weeks of submission",
+      "phone": "604.514.2940"
+    }
+  },
+  {
+    "id": "morinville-wrap",
+    "name": "Wellness and Recreation Access Program (Morinville)",
+    "level": "Morinville",
+    "category": "Recreation",
+    "amount": "Up to $250 per person",
+    "summary": "WRAP helps low-income Morinville people and families pay for leisure centre memberships, fitness classes, children's programs, sports and FCSS camps. Qualified applicants can get up to $250 per person.",
+    "note": "You must renew every calendar year. The page says household income must meet the Low-Income Cut-Offs chart. Some applicants must also show AISH, Income Support or Seniors Benefits proof.",
+    "requires": [
+      "ab",
+      "morinville",
+      "morinvilleWrapRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a resident of the Town of Morinville",
+        "Your household income is within the Low-Income Cut-Offs chart for your household size"
+      ],
+      "note": "Some applicants also give proof of AISH, Income Support or Seniors Benefits, or an FCSS social worker's assessment."
+    },
+    "applyText": "Apply for WRAP",
+    "applyUrl": "https://www.morinville.ca/things-to-do/morinville-leisure-centre/get-energized/wellness-and-recreation-access-program/",
+    "source": "https://www.morinville.ca/things-to-do/morinville-leisure-centre/get-energized/wellness-and-recreation-access-program/",
+    "detail": {
+      "aboutList": {
+        "lead": "A subsidy for recreation and FCSS programs.",
+        "items": [
+          "It covers Morinville Leisure Centre memberships.",
+          "It covers Town programs, such as children's sports and adult fitness classes.",
+          "It covers FCSS summer, PD day, and fall and spring break camps.",
+          "Local agencies with residential support may get Community Care day passes."
+        ]
+      },
+      "steps": [
+        "Complete the application form",
+        "Contact Morinville FCSS by email or phone",
+        "Submit your documents with the application"
+      ],
+      "documents": [
+        "Alberta ID or a utility bill showing a Morinville address",
+        "A current tax assessment or the last 90 days of bank statements",
+        "If on AISH, Income Support or Alberta Seniors Benefits: proof of receipt"
+      ],
+      "tips": [
+        "The income limit is $29,380 for 1 person and $77,751 for 7 people.",
+        "Community Recreation and FCSS programs are in the Community Program Guide."
+      ],
+      "phone": "780-939-7839"
+    }
+  },
+  {
+    "id": "nelson-rdck-leisure-access",
+    "name": "Leisure Access Program (RDCK, Nelson)",
+    "level": "Nelson",
+    "category": "Recreation",
+    "amount": "$100 per adult or $150 per child credit a year",
+    "summary": "The Regional District of Central Kootenay gives a yearly subsidy credit to people in financial hardship. It gives 50% off adult and 75% off youth admissions and memberships, and 50% off programs. Nelson residents can apply.",
+    "note": "Apply with a Notice of Assessment or proof of government assistance. Assistance recipients get a second credit of up to $200 for adults and $300 for youth. The pass expires every May 31.",
+    "requires": [
+      "bc",
+      "nelson",
+      "nelsonRdckLeisureAccessRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in the Regional District of Central Kootenay, which includes the City of Nelson",
+        "You are 19 or older, or a family applying together",
+        "You show proof of residency and one qualifying route"
+      ],
+      "note": "Routes are listed assistance, income below the Low Income Measure, or a social service letter."
+    },
+    "applyText": "Open the application form",
+    "applyUrl": "https://rdck.jotform.com/260834508820255",
+    "source": "https://rdck.jotform.com/260834508820255",
+    "detail": {
+      "aboutList": {
+        "lead": "A subsidy credit used for RDCK recreation.",
+        "items": [
+          "Admissions and memberships are 50% off for adults and 75% off for youth.",
+          "Programs are 50% off the advertised rate.",
+          "CHEER events have 100% subsidized admission.",
+          "Discounts apply only while you have credit left."
+        ]
+      },
+      "steps": [
+        "Complete the online application form",
+        "Upload ID or a household bill",
+        "Upload your proof of assistance or Notice of Assessment",
+        "Wait for approval, then show your card at each purchase"
+      ],
+      "documents": [
+        "ID or a recent household bill showing your name and address",
+        "A confirmation letter for the assistance you get, or a Notice of Assessment",
+        "Or a letter from a pre-approved social service organization"
+      ],
+      "tips": [
+        "Check your junk folder for the approval email.",
+        "The page recommends reapplying at least three weeks before May 31. The 2026 to 2027 form is on the page.",
+        "Expired passes get full rates, and fees are not refunded later."
+      ],
+      "time": "Up to three weeks"
+    }
+  },
+  {
+    "id": "port-coquitlam-financial-assistance",
+    "name": "Financial Assistance for Recreation (Port Coquitlam)",
+    "level": "Port Coquitlam",
+    "category": "Recreation",
+    "amount": "One City Pass plus a $200 adult or $500 child scholarship",
+    "summary": "Approved Port Coquitlam residents get a One City Pass for the calendar year. They can also take a scholarship of $200 per adult or $500 per child or youth. The scholarship gives a 75% discount on registered program fees.",
+    "note": "The scholarship cannot be used on programs you already registered for.",
+    "requires": [
+      "bc",
+      "portCoquitlam",
+      "portCoquitlamFinancialAssistanceRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a Port Coquitlam resident",
+        "Your income is within the LICO table, or a Community Partner or adjudicator refers you"
+      ],
+      "note": "Family means a maximum of 2 adults plus children or dependents in the home."
+    },
+    "applyText": "Apply online",
+    "applyUrl": "https://www.portcoquitlam.ca/node/949",
+    "source": "https://www.portcoquitlam.ca/node/949",
+    "detail": {
+      "aboutList": {
+        "lead": "A pass and an optional scholarship for registered programs.",
+        "items": [
+          "A One City Pass is valid for each approved family member.",
+          "The scholarship is $200 per adult and $500 per child or youth aged 0 to 18.",
+          "You pay the other 25% of the program fee.",
+          "Specialty programs, personal training, rentals and events are not included."
+        ]
+      },
+      "steps": [
+        "Fill out the online form, or download the paper form",
+        "Provide proof of residency",
+        "Provide a Proof of Income Statement or a Community Partner Reference Form",
+        "Submit by email, mail or drop-off"
+      ],
+      "documents": [
+        "A bill from the past 90 days showing your name and Port Coquitlam address",
+        "A CRA Proof of Income Statement for adults in the family",
+        "Or the Community Partner Reference Form"
+      ],
+      "tips": [
+        "A Notice of Assessment, T1 or T4 cannot replace the Proof of Income Statement.",
+        "January is busy. Staff reply within 10 to 14 business days.",
+        "The income limit is $31,264 or less for 1 person."
+      ],
+      "time": "10 to 14 business days",
+      "phone": "604-927-5371"
+    }
+  },
+  {
+    "id": "sarnia-cnib-pass",
+    "name": "Annual CNIB Pass (Sarnia Transit)",
+    "level": "Sarnia",
+    "category": "Transit",
+    "amount": "$36 per the fare table ($35.25 per a page note); regular annual pass is $1,065",
+    "summary": "A discounted annual Sarnia Transit bus pass for riders with a valid CNIB card. The 2026 fare table says $36 but a note on the page says $35.25. Passes are sold at City Hall, Customer Service Department.",
+    "note": "A note on the page lists the price as $35.25, while the fare table says $36. Ask Customer Service to confirm. Refunds are not available for transit passes.",
+    "requires": [
+      "on",
+      "sarnia",
+      "sarniaCnibPassRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a rider with a valid CNIB card"
+      ]
+    },
+    "applyText": "Contact Customer Service for the pass",
+    "applyUrl": "https://www.sarnia.ca/living-here/getting-around/sarnia-transit/transit-fares/",
+    "source": "https://www.sarnia.ca/living-here/getting-around/sarnia-transit/transit-fares/",
+    "detail": {
+      "aboutList": {
+        "lead": "A low-cost yearly bus pass for CNIB cardholders.",
+        "items": [
+          "It is a full year pass, against $1,065 for the regular annual pass.",
+          "Children 12 and under already ride free."
+        ]
+      },
+      "steps": [
+        "Contact Customer Service about the CNIB pass",
+        "Bring your valid CNIB card to City Hall, 255 Christina Street North",
+        "Buy the pass"
+      ],
+      "documents": [
+        "A valid CNIB card"
+      ],
+      "tips": [
+        "Smartcard replacement costs $7.15."
+      ],
+      "phone": "519-332-0330 ext. 3131"
+    }
+  },
+  {
+    "id": "taber-fee-assistance",
+    "name": "Fee Assistance Program (Taber)",
+    "level": "Taber",
+    "category": "Recreation",
+    "amount": "50% off recreation programs and Aquafun Centre fees",
+    "summary": "A 50% discount on Community Centre drop-in programs and summer kids day camps. It also gives 50% off Aquafun Centre membership, drop-ins and lessons. Some restrictions apply.",
+    "note": "It is for residents of the Town of Taber and the Municipal District of Taber who are below the income thresholds. The card lasts one year, and you can reapply through FCSS.",
+    "requires": [
+      "ab",
+      "taber",
+      "taberFeeAssistanceRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in the Town of Taber or the Municipal District of Taber",
+        "Your income is below the low-income thresholds",
+        "FCSS confirms you are eligible"
+      ],
+      "note": "The page sends you to the Fee Assistance Procedure for the thresholds."
+    },
+    "applyText": "Apply through FCSS",
+    "applyUrl": "https://www.taber.ca/town-services/recreation/fee-assistance",
+    "source": "https://www.taber.ca/town-services/recreation/fee-assistance",
+    "detail": {
+      "aboutList": {
+        "lead": "Half price on many Town recreation fees.",
+        "items": [
+          "50% off Community Centre drop-in programming and summer kids day camps.",
+          "50% off Aquafun Centre membership and drop-ins.",
+          "50% off lessons and courses, with some restrictions."
+        ]
+      },
+      "steps": [
+        "Fill out the application form and apply through FCSS",
+        "If eligible, get a referral letter from FCSS",
+        "Bring the letter to the Aquafun Centre reception desk",
+        "Staff issue each family member a fee assistance card"
+      ],
+      "documents": [
+        "The application form",
+        "The FCSS referral letter"
+      ],
+      "tips": [
+        "Staff try to keep your use of the program confidential.",
+        "KidSport and Jumpstart are other programs listed on the page."
+      ],
+      "time": "Card valid one year from referral"
+    }
+  },
+  {
+    "id": "west-vancouver-recreation-financial-assistance",
+    "name": "Recreation Financial Assistance Program (West Vancouver)",
+    "level": "West Vancouver",
+    "category": "Recreation",
+    "amount": "50% off FitPasses and activities; some memberships free",
+    "summary": "West Vancouver residents with low income and no significant savings or assets can get 50% off FitPasses and activities. Enhance West Van and Seniors' Activity Centre memberships are 100% subsidized.",
+    "note": "FitPass subsidy is up to $362 per subsidy year, and activities up to $400. Birthday parties, personal training, private lessons and events are not eligible; other exclusions may apply. Review can take two to six weeks.",
+    "requires": [
+      "bc",
+      "westVancouver",
+      "westVancouverRecreationFinancialAssistanceRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a West Vancouver resident, with proof for all family members",
+        "You are low income without significant savings or assets"
+      ],
+      "note": "Details are in the Qualifying for Financial Assistance handout."
+    },
+    "applyText": "Apply for RFAP",
+    "applyUrl": "https://westvancouver.ca/parks-recreation/recreation-programs-services/financial-assistance-support",
+    "source": "https://westvancouver.ca/parks-recreation/recreation-programs-services/financial-assistance-support",
+    "detail": {
+      "aboutList": {
+        "lead": "A subsidy on community centre recreation.",
+        "items": [
+          "50% off FitPasses, up to a maximum per subsidy year.",
+          "50% off activities, up to a maximum per subsidy year."
+        ]
+      },
+      "steps": [
+        "Read the information handout to confirm eligibility",
+        "Create a recreation account at activewestvanrec",
+        "Complete and sign the RFAP application form",
+        "Drop off the sealed package at the West Vancouver Community Centre front desk",
+        "Register for an RFAP interview at drop-off"
+      ],
+      "documents": [
+        "The signed and dated application form",
+        "Supporting documents listed in the handout, including recent tax information",
+        "Copies of EI documents, if you received EI"
+      ],
+      "tips": [
+        "Interview registration is not available online.",
+        "Do not email supporting documents.",
+        "Documents not collected within six weeks of your interview are shredded."
+      ],
+      "time": "Two to six weeks to review",
+      "phone": "604-925-7279"
+    }
   }
 
 ];
@@ -8798,6 +9378,17 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "west-vancouver-recreation-financial-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "taber-fee-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "sarnia-cnib-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "port-coquitlam-financial-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "nelson-rdck-leisure-access": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "morinville-wrap": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "langley-leisure-access-grant": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "high-river-community-access-program": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "dawson-creek-leisure-access": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "cornwall-community-bus-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
+  "brantford-recreation-subsidy": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
   "white-rock-leisure-access": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
   "terrace-affordable-recreation-access": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
   "squamish-recreation-access": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)

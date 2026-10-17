@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 254 links. The monitor checks a bounded rotating batch every
+// 265 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -973,6 +973,61 @@ export const LINKS = [
   {
     "url": "https://www.whiterockcity.ca/825/Leisure-Access-Program",
     "label": "Leisure Access Program (White Rock) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.brantford.ca/en/things-to-do/recreational-programs-financial-assistance.aspx",
+    "label": "Recreation Financial Assistance (Brantford) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.cornwall.ca/en/public-safety-transportation/transit/fares-and-passes/community-passes/",
+    "label": "Community Bus Pass (Cornwall) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.dawsoncreek.ca/parks-recreation/recreation-programs/leisure-access-and-funding-assistance/",
+    "label": "Leisure Access Program (Dawson Creek) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://highriver.ca/community/community-support-services/cap",
+    "label": "Community Access Program (High River) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://langleycity.ca/recreation-culture/recreation/admission-rates-passes-and-financial-assistance",
+    "label": "Leisure Access Grant (City of Langley) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.morinville.ca/things-to-do/morinville-leisure-centre/get-energized/wellness-and-recreation-access-program/",
+    "label": "Wellness and Recreation Access Program (Morinville) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://rdck.jotform.com/260834508820255",
+    "label": "Leisure Access Program (RDCK, Nelson) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.portcoquitlam.ca/node/949",
+    "label": "Financial Assistance for Recreation (Port Coquitlam) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.sarnia.ca/living-here/getting-around/sarnia-transit/transit-fares/",
+    "label": "Annual CNIB Pass (Sarnia Transit) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.taber.ca/town-services/recreation/fee-assistance",
+    "label": "Fee Assistance Program (Taber) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://westvancouver.ca/parks-recreation/recreation-programs-services/financial-assistance-support",
+    "label": "Recreation Financial Assistance Program (West Vancouver) — apply",
     "kind": "apply"
   },
   {
