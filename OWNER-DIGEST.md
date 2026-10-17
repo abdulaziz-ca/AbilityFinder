@@ -6,6 +6,41 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-17 — overnight: plain language and the rest of the audit list
+
+### Shipped (`?v=197` → `?v=200`)
+- **Plain-language rewrite** (`b3b4fe7`). 473 summaries, "Good to know" notes and tips rewritten in plainer words
+  and shorter sentences. Median reading grade for that text went from 11.8 to 9.1, and the programs at grade 9 or
+  below from 19 to 67 (card summaries alone: 13.5 → 10.8). How it was kept safe: seven Claude rewriters with one
+  brief; an automatic check that rejected any change to a figure, link, hedge word ("may", "up to", "not"…) or list
+  length; four Claude reviewers reading every before/after pair, plus my own sample; and the existing wording
+  guards, which put 27 fields back to their reviewed official wording. Eligibility rules were not touched.
+- **Style guide + ratchet.** `docs/CONTENT-STYLE-GUIDE.md` (rules and length limits) and a test that fails if the
+  reading level slides back.
+- **Facts that disagreed inside a program** (`52d7ade`), re-read against the official pages: PharmaCare Plan B,
+  AADL cost-share, Canada Workers Benefit, CPP disability, and one consistent timing for DTC, CDB, HandyDART and the
+  Alberta service dog card. BC Bus Pass no longer says "annual" (the government's own pages disagree).
+- **Closing programs show it.** BC Autism Funding, the At Home Program, Waterloo renovations and Leduc recreation
+  now carry an end-date badge on results and guides.
+- **More honest wording**: buttons say where they go ("Open the official page on alberta.ca"); guides no longer say
+  "You qualify if any of these apply"; homepage claims fixed ("more than 35 programs" → no false count, "about a
+  minute" → "a few minutes"); no ALL-CAPS emphasis; "the program decides" once per guide; documents lists hold only
+  documents; one "Good to know" box per guide.
+- **Accessibility**: guide pages now follow your light/dark theme, text size and contrast; 400% zoom no longer
+  hides the questions; results buttons are at least 44 px; the logo asks before wiping your answers.
+- **Worker/security**: request size is now capped even without a size header; the assistant points BC and Ontario
+  users to their own legal aid office.
+
+### Decisions we made for you
+- Kept BC RAHA's 8-week assessment and 3-week payment timing. The fact-checker couldn't find them on the one page
+  it loaded, but missing from a page isn't proof they're wrong.
+- Left the unit formats ("/month" vs "per month") alone: cosmetic, and risky to normalise across 134 programs.
+
+### Still open (bigger, or needs you)
+- Content: a shared acronym glossary, repeated facts across fields (P1-08), category labels, eligibility list
+  structure for a few records. Engineering: merge the two guide renderers, split `app.js`.
+- Human-only (unchanged): reader comprehension test, screen-reader passes, a study with disabled users.
+
 ## 2026-10-17 — engineering
 
 ### Shipped (`9f17a4e`, `?v=196`)
