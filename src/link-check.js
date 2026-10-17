@@ -230,6 +230,21 @@ async function checkOne(link) {
       }
       const softDead = detectSoftDead(currentUrl, body);
 
+      // A 403 from a URL a person has confirmed loads in a real browser is the
+      // site gating bots, not a dead link: report it as inconclusive so real
+      // breakage is not buried under the same false alarm every sweep.
+      if (res.status === 403 && Object.prototype.hasOwnProperty.call(BOT_GATED_VERIFIED, link.url)) {
+        return {
+          ...link,
+          status: 403,
+          ok: false,
+          reachable: true,
+          inconclusive: true,
+          error: `Blocks automated checks; loaded in a real browser on ${BOT_GATED_VERIFIED[link.url]}.`,
+          ms: Date.now() - started,
+        };
+      }
+
       return {
         ...link,
         status: res.status,
@@ -266,6 +281,18 @@ async function checkOne(link) {
     };
   }
 }
+
+/**
+ * URLs that answer the monitor with 403 but were opened and read in a real
+ * browser on the date given (title and content matched the record). Only an
+ * exact URL counts, and only a 403: any other status is reported as usual.
+ * Re-check these by hand when you revisit the link-health report.
+ */
+const BOT_GATED_VERIFIED = Object.freeze({
+  "https://vancouver.ca/parks-recreation-culture/leisure-access-card.aspx": "2026-10-17",
+  "https://www.kelowna.ca/parks-recreation/recreation-sport/recreation-programs-registration/financial-assistance-recreation": "2026-10-17",
+  "https://www.variety.bc.ca/grant-qualifications/": "2026-10-17",
+});
 
 /** Small pool — respects the six-connection cap without a dependency. */
 async function pool(items, size, fn) {

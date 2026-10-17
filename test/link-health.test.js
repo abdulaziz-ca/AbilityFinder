@@ -122,3 +122,25 @@ test("generated links monitor a dynamic URL's safe staticUrl exactly once", () =
   }, 0);
   assert.equal(skippedDynamic, dynamicWithoutStaticUrl);
 });
+
+test("a 403 from a hand-verified bot-gated URL is inconclusive; any other 403 is still broken", async () => {
+  let source = fs.readFileSync(path.join(ROOT, "src", "link-check.js"), "utf8");
+  source = source
+    .replace('import { LINKS, SKIPPED_DYNAMIC } from "./links.js";\n', "")
+    .replace(/\bexport function /g, "function ")
+    .replace(/\bexport const /g, "const ")
+    .replace(/\bexport async function /g, "async function ")
+    + "\nglobalThis.checkOne = checkOne;";
+  const context = {
+    URL, setTimeout, clearTimeout, AbortController, console,
+    fetch: async () => ({ status: 403, ok: false, headers: new Map(), text: async () => "<title>Forbidden</title>" }),
+  };
+  vm.createContext(context);
+  vm.runInContext(source, context);
+  const gated = await context.checkOne({ url: "https://www.kelowna.ca/parks-recreation/recreation-sport/recreation-programs-registration/financial-assistance-recreation", label: "x", kind: "apply" });
+  assert.equal(gated.inconclusive, true);
+  assert.match(gated.error, /real browser/);
+  const other = await context.checkOne({ url: "https://example.org/some-page", label: "y", kind: "apply" });
+  assert.notEqual(other.inconclusive, true);
+  assert.equal(other.ok, false);
+});
