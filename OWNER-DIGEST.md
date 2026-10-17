@@ -6,6 +6,22 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-17 — engineering
+
+### Shipped (`9f17a4e`, `?v=196`)
+- **Faster repeat visits.** App files are cached by version, so a returning visitor's browser no longer re-checks
+  each file. Fonts (116 KB) are no longer re-downloaded after every update. A CI check now fails if code changes
+  without a version bump, so nobody gets stuck on an old file.
+- **Safer matching.** If a program ever names a requirement the app doesn't know (a typo), it shows "We could not
+  check one requirement" instead of silently counting it as met.
+- **Tests no longer flaky.** The local test server was dropping connections under load. Replaced it: the Chromium suite
+  went from 32 failures to 308/308 at full speed; WebKit 319/319.
+- **CI faster.** Split into one job per browser running side by side: 14 min on the first run (which also re-downloaded
+  browsers), down from 19–26. A Claude review also found an old CI bug that kept browser downloads from ever refreshing.
+
+### Verified how
+229 unit tests, all three browsers in CI, deploy check 10/10, and the live cache headers read back from abilityfinder.ca.
+
 ## 2026-10-16 — night: more "Not for your situation now" rules
 
 ### Shipped
