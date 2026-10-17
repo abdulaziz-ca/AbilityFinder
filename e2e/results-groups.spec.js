@@ -50,3 +50,23 @@ test('working adult without DTC in Edmonton: DTC-dependent programs are in G3, D
   expect(cardIds.filter((id) => g3Ids.includes(id))).toEqual([]);
   await expect(page.locator('.result-group-main')).toContainText('Disability Tax Credit');
 });
+
+test('phase 2: a program the person already gets is listed as "You already get this", not as one to check', async ({ page }) => {
+  await openResults(page, 'P01-calgary-aish', (a) => ({ ...a, receives: ['aish'] }));
+  const have = page.locator('.result-group-have');
+  await expect(have.locator('#g0-title')).toHaveText('You already get (1)');
+  await expect(have.locator('[data-result-group="g0"][data-id="aish"]')).toContainText('You already get this');
+  await expect(page.locator('.result-group-main [data-fact-program="aish"]')).toHaveCount(0);
+  await expect(page.locator('[data-result-group="g2"][data-id="aish"], [data-result-group="g3"][data-id="aish"]')).toHaveCount(0);
+  await expect(page.locator('.notmatch .nm-item', { hasText: 'Assured Income' })).toHaveCount(0);
+});
+
+test('phase 2: without the answer there is no "You already get" group', async ({ page }) => {
+  await openResults(page, 'P01-calgary-aish');
+  await expect(page.locator('.result-group-have')).toHaveCount(0);
+});
+
+test('phase 2: a stale pick from another province is ignored', async ({ page }) => {
+  await openResults(page, 'P01-calgary-aish', (a) => ({ ...a, receives: ['odsp'] }));
+  await expect(page.locator('.result-group-have')).toHaveCount(0);
+});

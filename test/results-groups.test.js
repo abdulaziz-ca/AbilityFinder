@@ -65,3 +65,44 @@ test("G2 rows only hold programs whose remaining checks are unasked facts, with 
     }
   }
 });
+
+test("phase 2: a program the person already gets moves to G0 and nowhere else", () => {
+  for (const [personaId, received] of [["P01-calgary-aish", ["aish"]], ["P05-ottawa-odsp", ["odsp"]]]) {
+    const p = PERSONAS.find((x) => x.id === personaId);
+    const answers = { ...p.answers, receives: received };
+    const evaluated = evaluateScoped(answers);
+    const g = classifyResults(evaluated, answers, received);
+    assert.deepEqual(ids(g.g0), received, `${personaId}: G0 holds the received program`);
+    for (const key of ["g1", "g2", "g3", "no"]) {
+      assert.ok(!g[key].some((e) => received.includes(e.b.id)), `${personaId}: not also in ${key}`);
+    }
+    // Every other program is grouped exactly as without the answer, except the
+    // receipt-gated rows that become known (RECEIPT_GATES).
+    const before = classifyResults(evaluated, p.answers);
+    const where = (groups) => Object.fromEntries(["g1", "g2", "g3", "no"].flatMap((k) => groups[k].map((e) => [e.b.id, k])));
+    const was = where(before), now = where(g);
+    for (const id of Object.keys(now)) {
+      if (was[id] !== now[id]) assert.equal(id, "ottawa-community-pass", `${personaId}: only the ODSP-gated pass may move (${id})`);
+    }
+  }
+});
+
+test("phase 2: getting ODSP turns the Ottawa Community Pass from an 'If you get ODSP' row into a full card", () => {
+  const p = PERSONAS.find((x) => x.id === "P05-ottawa-odsp");
+  const evaluated = evaluateScoped(p.answers);
+  const pass = (g) => ["g1", "g2", "g3"].find((k) => g[k].some((e) => e.b.id === "ottawa-community-pass"));
+  const before = pass(classifyResults(evaluated, p.answers));
+  const after = pass(classifyResults(evaluated, p.answers, ["odsp"]));
+  if (before === "g2") assert.equal(after, "g1");
+  else assert.equal(after, before, "unchanged when the pass was not an unasked-fact row");
+});
+
+test("phase 2: no received answer means no G0 and identical groups", () => {
+  for (const p of PERSONAS) {
+    const evaluated = evaluateScoped(p.answers);
+    const a = classifyResults(evaluated, p.answers);
+    const b = classifyResults(evaluated, p.answers, []);
+    assert.equal(b.g0.length, 0);
+    for (const k of ["g1", "g2", "g3", "no"]) assert.deepEqual(ids(a[k]), ids(b[k]), `${p.id} ${k}`);
+  }
+});

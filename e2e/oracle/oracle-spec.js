@@ -79,7 +79,7 @@ const DIMENSIONS = [
   "forWho", "disabilities", "ageBand", "ageGroup", "disabilityVerified",
   "autismDiagnosis", "onsetBefore18", "canWalkFar", "functionalNeeds",
   "province", "msp", "bcAssistance", "circumstances", "citizenPR", "dtc",
-  "situation", "income", "city", "postal",
+  "receives", "situation", "income", "city", "postal",
 ];
 
 /* The three outcome states the production matcher can return. */
@@ -105,6 +105,7 @@ const BASE_PERSONA = {
   circumstances: ["none"],
   citizenPR: false,
   dtc: "no",
+  receives: ["none"],
   situation: ["none"],
   income: "moderate",
   city: null,

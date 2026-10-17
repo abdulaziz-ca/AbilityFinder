@@ -2,6 +2,17 @@ const fs = require("node:fs/promises");
 const { test, expect } = require("@playwright/test");
 const { settleWizardCard } = require("./wizard-helpers");
 
+
+// The optional "already get" step follows the DTC question for adults. These
+// walks skip it with Continue (it never blocks), and do nothing for a child.
+async function skipReceives(page) {
+  const onReceives = await page.evaluate(() => view === "wizard" && (visibleSteps()[stepIndex] || {}).id === "receives");
+  if (onReceives) {
+    await page.locator("#next").click();
+    await page.waitForFunction(() => (visibleSteps()[stepIndex] || {}).id !== "receives");
+  }
+}
+
 test.describe("all-day reminder calendar dates", () => {
   test.use({ timezoneId: "America/Edmonton", reducedMotion: "reduce" });
 
@@ -193,6 +204,7 @@ test.describe("all-day reminder calendar dates", () => {
     await pick(page, "Alberta");
     await pick(page, "Yes");
     await pick(page, "No, not yet");
+    await skipReceives(page);
     await pick(page, "Working / have a job");
     await pick(page, "A disability stops me from working");
     await page.locator("#next").click();

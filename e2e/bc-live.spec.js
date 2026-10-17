@@ -64,6 +64,17 @@ function withTimeout(promise, ms, label) {
   ]);
 }
 
+
+// The optional "already get" step follows the DTC question for adults. These
+// walks skip it with Continue (it never blocks), and do nothing for a child.
+async function skipReceives(page) {
+  const onReceives = await page.evaluate(() => view === "wizard" && (visibleSteps()[stepIndex] || {}).id === "receives");
+  if (onReceives) {
+    await page.locator("#next").click();
+    await page.waitForFunction(() => (visibleSteps()[stepIndex] || {}).id !== "receives");
+  }
+}
+
 async function pick(page, text) {
   const questionBefore = await page
     .locator("#wizard-question")
@@ -251,6 +262,7 @@ async function completeBcWizard(page, forWho = "Myself") {
   await page.locator("#next").click();
   await pick(page, "Yes");
   await pick(page, "No, not yet");
+  await skipReceives(page);
   await pick(page, forWho === "Myself" ? "None of these" : "In elementary school");
   await page.locator("#next").click();
   await pick(page, "Lower income");
@@ -322,6 +334,7 @@ test("BC adult post-secondary answers exclude child and unrelated work programs"
   await page.locator("#next").click();
   await pick(page, "Yes");
   await pick(page, "No, not yet");
+  await skipReceives(page);
   await pick(page, "In post-secondary school");
   await page.locator("#next").click();
   await pick(page, "Middle income");
@@ -354,6 +367,7 @@ test("Alberta adult post-secondary answers exclude child programs", async ({ pag
   await pick(page, "Alberta");
   await pick(page, "Yes");
   await pick(page, "No, not yet");
+  await skipReceives(page);
   await pick(page, "In post-secondary school");
   await page.locator("#next").click();
   await pick(page, "Middle income");
@@ -391,6 +405,7 @@ for (const item of schoolChoiceCases) {
     await pick(page, "Alberta");
     await pick(page, "Yes");
     await pick(page, "No, not yet");
+    await skipReceives(page);
 
     for (const label of item.expected) {
       await expect(page.getByRole("checkbox", { name: label, exact: true })).toBeVisible();

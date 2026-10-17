@@ -48,6 +48,7 @@ const BLANK = () => ({
   circumstances: [],  // concrete ownership/education facts used by a few BC programs
   citizenPR: null,     // true | false
   dtc: null,           // "yes" | "no" | "unsure"
+  receives: [],        // benefit ids the person says they already get (RECEIVES_OPTIONS), or "none"/"unsure"
   situation: [],       // "student","working","looking","unableToWork","none"
   income: null,        // "low" | "moderate" | "high"
   city: null,          // an ALBERTA_CITIES string
@@ -1844,6 +1845,24 @@ const STEPS = [
     },
   },
   {
+    // Site audit 2026-10 ("already get" question). Presentation only: a program the person says
+    // they already get is listed as "You already get this" instead of as a
+    // program to check. It never changes evaluate() or any other match.
+    id: "receives", type: "multi", kicker: "Benefits you already get",
+    q: () => `${who().doQ} already get any of these?`,
+    help: "Optional — you can skip this. Programs you already get are listed as “You already get this” instead of as something to check. This does not change any other result.",
+    key: "receives",
+    optional: true,
+    keepsFacts: true,
+    skipIf: () => answers.ageGroup === "child",
+    options: () => [
+      ...receivesChoices(answers.province).map((o) => ({ value: o.value, icon: "money", label: o.label })),
+      { value: "none", icon: "none", label: "None of these" },
+      { value: "unsure", icon: "help", label: "I'm not sure" },
+    ],
+    exclusive: ["none", "unsure"],
+  },
+  {
     id: "situation", type: "multi", kicker: "Your situation",
     q: () => `What best describes ${subj()} right now?`,
     help: "Pick all that apply — this opens up work & school supports.",
@@ -1933,6 +1952,24 @@ const stepOptions = (step) =>
       ? step.options()
       : step.options;
 
+/* Choices for the "already get" question. Each value is the benefit record id.
+   Province-specific programs are offered only for that province. */
+const RECEIVES_OPTIONS = [
+  { value: "aish", province: "AB", label: "AISH (Assured Income for the Severely Handicapped)" },
+  { value: "adap", province: "AB", label: "ADAP (Alberta Disability Assistance Program)" },
+  { value: "bc-disability-assistance-pwd", province: "BC", label: "B.C. disability assistance (PWD)" },
+  { value: "odsp", province: "ON", label: "ODSP (Ontario Disability Support Program)" },
+  { value: "cpp-disability", label: "CPP disability benefit" },
+];
+const receivesChoices = (province) => RECEIVES_OPTIONS.filter((o) => !o.province || o.province === province);
+/* Benefit ids the answer model says the person already gets. Stale picks (a
+   province or age change after answering) are dropped, never trusted. */
+function receivedIds(model = answers) {
+  if (model.ageGroup === "child" || !Array.isArray(model.receives)) return [];
+  const allowed = new Set(receivesChoices(model.province).map((o) => o.value));
+  return model.receives.filter((v) => allowed.has(v));
+}
+
 const visibleSteps = () => STEPS.filter((s) => !(s.skipIf && s.skipIf()));
 
 const BROWSE_LEVELS = [
@@ -1958,6 +1995,7 @@ const PERSISTENCE_SELECTIONS = {
   situations: ["childcare", "elementary", "secondary", "student", "working", "looking", "unableToWork", "none"],
   functionalNeeds: ["childHighNeeds", "childThreeAdls", "dailyLiving", "transitBarrier", "equipment", "nutrition", "medicalTravel", "communication", "memorySafety", "sensory", "homeAccess", "careCoordination", "fatiguePain", "none", "unsure"],
   circumstances: ["homeowner", "vehicleOwner", "recentGraduate", "none", "unsure"],
+  receives: [...RECEIVES_OPTIONS.map((o) => o.value), "none", "unsure"],
   provinces: STEPS.find((step) => step.key === "province").options.map((item) => item.value),
   cities: [...ALBERTA_CITIES, ...(BC_ENABLED ? BC_CITIES : []), ...(ON_ENABLED ? ON_CITIES : [])],
   citiesByProvince: { AB: ALBERTA_CITIES, BC: BC_ENABLED ? BC_CITIES : [], ON: ON_ENABLED ? ON_CITIES : [] },
@@ -3706,6 +3744,9 @@ function renderStep(step) {
 }
 
 function stepAnswered(step) {
+  // An optional step never holds the wizard back, and a saved answer set from
+  // before the step existed still counts as finished.
+  if (step.optional) return true;
   if (step.type === "multi") return answers[step.key].length > 0;
   return answers[step.key] !== null;
 }
@@ -3717,7 +3758,9 @@ function applyWizardSelection(step, value) {
   });
   if (!validOption) return false;
 
-  if (JSON.stringify(answers[step.key]) !== JSON.stringify(value)) confirmedFacts = {};
+  // Presentation-only answers (step.keepsFacts) never affect a gate, so they
+  // must not clear the person's program-scoped fact checks.
+  if (!step.keepsFacts && JSON.stringify(answers[step.key]) !== JSON.stringify(value)) confirmedFacts = {};
   if (step.type === "multi") toggleMulti(step, value);
   else {
     const previous = answers[step.key];
@@ -3868,6 +3911,7 @@ function cloneAnswers(source = answers) {
     disabilities: [...source.disabilities],
     functionalNeeds: [...source.functionalNeeds],
     circumstances: [...source.circumstances],
+    receives: [...(source.receives || [])],
     situation: [...source.situation],
   };
 }
@@ -3953,8 +3997,10 @@ function renderScenarioPanel(currentEvaluated) {
     const inChangedG1 = new Set(changedG1.map((e) => e.b.id));
     const gained = changedG1.filter((e) => !inCurrentG1.has(e.b.id));
     const lost = currentG1.filter((e) => !inChangedG1.has(e.b.id));
-    const newlyReady = hypothetical.filter((e) => e.r.status === "ready" && current.get(e.b.id)?.r.status !== "ready");
-    const noLongerReady = currentEvaluated.filter((e) => e.r.status === "ready" && changed.get(e.b.id)?.r.status !== "ready");
+    const receivedNow = new Set(receivedIds(answers));
+    const receivedThen = new Set(receivedIds(model));
+    const newlyReady = hypothetical.filter((e) => !receivedThen.has(e.b.id) && e.r.status === "ready" && current.get(e.b.id)?.r.status !== "ready");
+    const noLongerReady = currentEvaluated.filter((e) => !receivedNow.has(e.b.id) && e.r.status === "ready" && changed.get(e.b.id)?.r.status !== "ready");
     const row = (key, items, tone) => `<div class="scenario-diff-row ${tone}"><b>${t(key)} <span>${items.length}</span></b>${tone === "ready" ? matchStatusNote("ready") : ""}<p>${items.length ? items.map((e) => e.b.name).join(" · ") : t("scenario.none")}</p></div>`;
     diff = `${row("scenario.gain", gained, "gain")}${row("scenario.lose", lost, "lose")}${row("scenario.newReady", newlyReady, "ready")}${row("scenario.noReady", noLongerReady, "not-ready")}`;
   }
@@ -4052,7 +4098,7 @@ function wireProgramUpdates() {
 
 /* Presentation groups (public/resultsGroups.js). Pure: never changes a status. */
 function resultGroups(evaluated, model = answers) {
-  return AbilityFinderResultsGroups.classifyResults(evaluated, model);
+  return AbilityFinderResultsGroups.classifyResults(evaluated, model, receivedIds(model));
 }
 
 // New results copy is English-only for now; mark it so French pages stay honest.
@@ -4063,6 +4109,16 @@ function guideSlug(b) {
 }
 function guideLink(b, text = t("grp.readGuide")) {
   return `<a class="row-guide-link js-guide-link" href="/guides/${reqEscape(guideSlug(b))}" data-id="${reqEscape(b.id)}">${reqEscape(text)}<span class="sr-only">: ${reqEscape(b.name)}</span></a>`;
+}
+
+/* G0: programs the person says they already get. One line each. */
+function renderAlreadyGet(items) {
+  if (!items.length) return "";
+  return `<section class="result-group result-group-have" aria-labelledby="g0-title" lang="en">
+    <h2 class="result-group-h" id="g0-title">${t("grp.g0")} (${items.length})</h2>
+    <p class="result-group-sub">${t("grp.g0Sub")}</p>
+    <ul class="compact-rows">${items.map((e) => `<li class="compact-row" data-result-group="g0" data-id="${reqEscape(e.b.id)}"><b class="cr-name">${reqEscape(e.b.name)}</b> — <span class="cr-have">${t("grp.g0Tag")}</span> · ${guideLink(e.b)}</li>`).join("")}</ul>
+  </section>`;
 }
 
 /* G2: one line each — "If [situation]: [program] — Read the guide". */
@@ -4102,8 +4158,9 @@ function renderResults() {
     return !p || p === answers.province;
   });
 
-  // Every in-scope ready/almost program, each exactly once (G1, G2, G3).
-  const matched = [...groups.g1, ...groups.g2, ...groups.g3];
+  // Every in-scope ready/almost program, each exactly once (G1, G2, G3), plus
+  // programs the person already gets (G0, any status).
+  const matched = [...groups.g0, ...groups.g1, ...groups.g2, ...groups.g3];
 
   let html = `
   <div class="results-head">
@@ -4124,6 +4181,7 @@ function renderResults() {
   ${renderAnswerChips()}
   ${renderPrintActionPlan(groups.g1)}`;
 
+  html += renderAlreadyGet(groups.g0);
   html += renderMatchedGroups(ready, almost);
   html += renderOtherPrograms(groups.g2);
   html += renderNotNow(groups.g3);
@@ -5098,7 +5156,9 @@ function reportAnnualTotal(ready) {
 }
 function printResults() {
   const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
-  const evaluated = browseCatalog().filter((b) => benefitInResultsScope(b, answers)).map((b) => ({ b, r: evaluate(b) }));
+  // Programs the person already gets are not printed as ones to apply for.
+  const received = new Set(receivedIds());
+  const evaluated = browseCatalog().filter((b) => benefitInResultsScope(b, answers) && !received.has(b.id)).map((b) => ({ b, r: evaluate(b) }));
   const ready = evaluated.filter((e) => e.r.status === "ready").sort((a, b) => priorityScore(b.b) - priorityScore(a.b));
   const almost = evaluated.filter((e) => e.r.status === "almost").sort((a, b) => priorityScore(b.b) - priorityScore(a.b));
 

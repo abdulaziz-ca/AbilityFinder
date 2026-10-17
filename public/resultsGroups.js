@@ -21,6 +21,13 @@
                                     answered the DTC question "no" and the
                                     program needs DTC approval first.
 
+     g0  "You already get"           one-line rows (phase 2). Programs the
+                                    person says they already get, whatever
+                                    their status. Removed from every other
+                                    group, including "no", so a recipient is
+                                    never told to check, or that they do not
+                                    qualify for, a program they get.
+
    Status "no" programs are returned separately and untouched.
 
    Conservative by design: anything not on a reviewed list stays in g1. An
@@ -72,6 +79,12 @@
       : `you support ${s.them} and claim it on your tax return`),
   });
 
+  /* Gates that only ask whether the person gets a program the "already get"
+     question covers. When they said they get it, that condition is known, so
+     the program is no longer an "If you get ..." row: it keeps its full card
+     in g1 with its remaining proof checks. The gate itself is never marked met. */
+  const RECEIPT_GATES = Object.freeze({ ottawaOdspReceipt: "odsp" });
+
   /* Phase 1 g3 rule: programs whose remaining checks include DTC approval,
      for a person who answered the DTC question "no". "unsure" or unanswered
      never counts. Programs with a DTC-or-age-65 route (HATC, MHRTC) do not use
@@ -94,13 +107,16 @@
   }
 
   /* Which group one evaluated program belongs to. */
-  function groupOf(e, answers) {
+  function groupOf(e, answers, received = []) {
     const { b, r } = e;
+    if (received.includes(b.id)) return "g0";
     if (r.status === "ready") return "g1";
     if (r.status !== "almost") return "no";
     if (b.id === DTC_ID) return "g1";
     if (needsDtcFirst(r, answers)) return "g3";
-    if (r.needs.length && r.needs.every((n) => Object.prototype.hasOwnProperty.call(UNASKED_FACT_GATES, n.key))) return "g2";
+    const unasked = (n) => Object.prototype.hasOwnProperty.call(UNASKED_FACT_GATES, n.key)
+      && !(RECEIPT_GATES[n.key] && received.includes(RECEIPT_GATES[n.key]));
+    if (r.needs.length && r.needs.every(unasked)) return "g2";
     return "g1";
   }
 
@@ -115,20 +131,22 @@
   }
 
   /* evaluated: [{ b, r }] already limited to the person's results scope.
-     Returns new arrays; the inputs are not modified. */
-  function classifyResults(evaluated, answers) {
-    const out = { g1: [], g2: [], g3: [], no: [] };
+     received: benefit ids the person says they already get (validated by the
+     caller). Returns new arrays; the inputs are not modified. */
+  function classifyResults(evaluated, answers, received = []) {
+    const out = { g0: [], g1: [], g2: [], g3: [], no: [] };
     for (const e of evaluated) {
-      const group = groupOf(e, answers);
+      const group = groupOf(e, answers, received);
       if (group === "g2") out.g2.push({ ...e, situation: situationFor(e.r, answers) });
       else if (group === "g3") out.g3.push({ ...e, reason: "dtc" });
       else out[group].push(e);
     }
+    out.g0.sort(compareEvidence);
     out.g1.sort(compareEvidence);
     out.g2.sort(compareEvidence);
     out.g3.sort(compareEvidence);
     return out;
   }
 
-  return Object.freeze({ classifyResults, groupOf, compareEvidence, UNASKED_FACT_GATES, DTC_ID });
+  return Object.freeze({ classifyResults, groupOf, compareEvidence, UNASKED_FACT_GATES, RECEIPT_GATES, DTC_ID });
 });

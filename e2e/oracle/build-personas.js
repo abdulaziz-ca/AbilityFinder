@@ -24,7 +24,7 @@
 
 const { BASE_PERSONA, DEFAULT_CITY, GATES, SCOPED_FACTS } = require("./oracle-spec");
 
-const MULTI_SELECT = ["disabilities", "functionalNeeds", "circumstances", "situation"];
+const MULTI_SELECT = ["disabilities", "functionalNeeds", "circumstances", "receives", "situation"];
 const PLACEHOLDERS = ["none", "unsure"];
 
 const CHILD_BANDS = ["under6", "6to11", "12to15", "16to17"];
@@ -47,6 +47,7 @@ function newDraft() {
       disabilities: [...BASE_PERSONA.disabilities],
       functionalNeeds: [...BASE_PERSONA.functionalNeeds],
       circumstances: [...BASE_PERSONA.circumstances],
+      receives: [...BASE_PERSONA.receives],
       situation: [...BASE_PERSONA.situation],
     },
     setBy: {},

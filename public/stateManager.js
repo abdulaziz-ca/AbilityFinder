@@ -76,6 +76,7 @@
     "circumstances",
     "citizenPR",
     "dtc",
+    "receives",
     "situation",
     "income",
     "city",
@@ -96,7 +97,7 @@
 
   function answerValueIsValid(key, value) {
     if (value === null) return true;
-    if (key === "disabilities" || key === "situation" || key === "functionalNeeds" || key === "circumstances") {
+    if (key === "disabilities" || key === "situation" || key === "functionalNeeds" || key === "circumstances" || key === "receives") {
       return Array.isArray(value) && value.every((item) => typeof item === "string");
     }
     if (key === "onsetBefore18" || key === "canWalkFar" || key === "citizenPR") {
