@@ -5321,7 +5321,7 @@ const BENEFITS = [
       ],
     },
     "requiresNote": "Ages 0 until the last day of the 19th birthday month, with a long-term disability causing significant and complex developmental support needs, based on diagnosis and/or functional impact",
-    "note": "Starts April 1, 2026. Eligible families already receiving ministry services for children and youth with support needs, including autism funding, will not need to apply, although some may be asked to provide additional information. The benefit will be available province-wide by April 1, 2027.",
+    "note": "Began April 1, 2026. Eligible families already receiving ministry services for children and youth with support needs, including autism funding, will not need to apply, although some may be asked to provide additional information. The benefit will be available province-wide by April 1, 2027.",
     "applyText": "Learn about the Disability Benefit",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/financial-supports/disability-benefit",
     "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/financial-supports/disability-benefit",
@@ -6177,7 +6177,7 @@ const BENEFITS = [
     "name": "Leisure Access Program (LAP)",
     "level": "Vancouver",
     "category": "Recreation",
-    "amount": "Free admission to pools and rinks, 50% off fitness centre admission and group swimming and skating lessons, and a pass now valid for 3 years",
+    "amount": "Free admission to pools and rinks, 50% off fitness centre admission and group swimming and skating lessons, and a pass valid for 3 years",
     "summary": "Vancouver's low-income recreation pass. Swimming and skating admission are free; outdoor pools require an online reservation. Fitness centre admission, group swimming and skating lessons and other listed programs are half price.",
     "requires": [
       "bc",
