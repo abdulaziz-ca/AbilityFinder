@@ -2445,7 +2445,7 @@ function renderSafely(fn, label) {
       <p class="re-detail">${label}: ${String(err && err.message ? err.message : err).slice(0, 160)}</p>
       <div class="re-actions">
         <button class="btn btn-primary" id="reRetry" type="button">Try again</button>
-        <button class="btn btn-ghost" id="reReset" type="button">Start over</button>
+        <button class="btn btn-ghost" id="reReset" type="button">Start over (clears your answers)</button>
       </div>
       <p class="re-foot">If it keeps happening, please tell us — the feedback form is on the home page, and it genuinely gets read.</p>
     </section>`;
@@ -2938,7 +2938,7 @@ const HELP_PAGES = {
     blocks: [
       {
         h: "There is no official list of “qualifying disabilities”",
-        p: "People expect one, and it doesn't exist. The government doesn't decide by diagnosis — it decides by <b>how much your condition limits you day to day</b>, even with treatment. Two people with the same diagnosis can get different answers. Someone with a condition nobody's heard of can qualify easily.",
+        p: "People expect one, and it doesn't exist. The government doesn't decide by diagnosis — it decides by <b>how much your condition limits you day to day</b>, even with treatment. Two people with the same diagnosis can get different answers. Someone with a condition nobody's heard of can still qualify.",
       },
       {
         h: "Some programs depend on the category",

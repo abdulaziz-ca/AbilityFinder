@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 219 links. The monitor checks a bounded rotating batch every
+// 218 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -579,11 +579,6 @@ export const LINKS = [
     "url": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/financial-supports/disability-benefit",
     "label": "BC Children and Youth Disability Benefit — apply",
     "kind": "apply"
-  },
-  {
-    "url": "https://news.gov.bc.ca/releases/2026CFD0002-000136",
-    "label": "BC Children and Youth Disability Benefit — official source",
-    "kind": "source"
   },
   {
     "url": "https://www2.gov.bc.ca/assets/gov/british-columbians-our-governments/policies-for-government/bc-employment-assistance-policy-procedure-manual/forms/pdfs/hr2847.pdf",

@@ -511,7 +511,7 @@ const BENEFIT_EXTRA = {
       points: [
         {
           h: "“Severe” is not about your diagnosis",
-          p: "The CRA never asks how serious your condition sounds. It asks how much it limits you day to day. Two people with the identical diagnosis can get opposite answers — and someone with a condition you've never heard of can qualify easily. Never rule yourself out because your diagnosis doesn't sound bad enough.",
+          p: "The CRA never asks how serious your condition sounds. It asks how much it limits you day to day. Two people with the identical diagnosis can get opposite answers — and someone with a condition you've never heard of can qualify. Never rule yourself out because your diagnosis doesn't sound bad enough.",
         },
         {
           h: "You're judged <i>with</i> your treatment, not without it",
@@ -538,7 +538,7 @@ const BENEFIT_EXTRA = {
         "The CRA's eight functional categories are walking, dressing, feeding, speaking, hearing, vision, eliminating (bladder or bowel), and mental functions. Life-sustaining therapy is a separate route. Your practitioner documents the impairment and its effects; the CRA decides eligibility.",
     },
     confirm: "CRA approval after an authorized practitioner certifies that the impairment is prolonged and its effects meet an official DTC route",
-    taxNote: "The DTC is non-refundable — it only reduces income tax you owe. If your income is low, you can transfer it to a supporting spouse or parent instead, and it still unlocks the RDSP and Canada Disability Benefit.",
+    taxNote: "The DTC is non-refundable — it only reduces income tax you owe. If your income is low, you can transfer it to a supporting spouse or parent instead, and the DTC approval still counts for the RDSP and the Canada Disability Benefit.",
     denials: [
       "The practitioner described the diagnosis instead of your day-to-day limitations.",
       "A section of Form T2201 was left incomplete.",
@@ -561,7 +561,7 @@ const BENEFIT_EXTRA = {
       "Not enough CPP contributions in the qualifying period.",
       "The medical report was thin — describe your worst days, not your best.",
     ],
-    appeal: "Request a reconsideration in writing within 90 days. If still denied, appeal to the Social Security Tribunal. Strong new medical evidence matters — many are approved at reconsideration.",
+    appeal: "Request a reconsideration in writing within 90 days. If still denied, appeal to the Social Security Tribunal. Strong new medical evidence matters.",
     faqs: [
       { q: "Can I get CPP-D and the DTC?", a: "Yes — they're separate, and CPP-D can even support a DTC application." },
       { q: "What happens at 65?", a: "It automatically converts to your CPP retirement pension." },
@@ -3616,7 +3616,7 @@ const BENEFITS = [
         "If you receive AISH or ADAP, report the outcome of your CDB and/or DTC application to Alberta, including the approved CDB amount or a denial. Alberta says that when no CDB decision had been made by February 28, 2026, $200 was reduced from April 2026 benefits.",
         "Getting help with the online application: phone the Alberta Supports Contact Centre at 1-877-644-9992, or 780-644-9992 in Edmonton.",
         "Your health professional may charge you a fee to complete the Disability Assistance Medical Report, and you are responsible for paying it. If you are on Income Support that cost may be covered — ask your Income Support worker. For AISH clients who transitioned to ADAP and later choose to be assessed for AISH, Alberta says it will cover the cost of one Disability Income Assistance Medical Report; this support is not time-limited.",
-        "Benefits are backdated to the month AISH or ADAP received all of the information needed to approve your application, so getting every document in sooner is worth real money.",
+        "Benefits are backdated to the month AISH or ADAP received all of the information needed to approve your application, so sending every document sooner can mean an earlier start date for your benefits.",
         "To check where your application is, phone 587-759-6810 in the Edmonton area, or 1-877-759-6810 toll free within Alberta.",
         "If you leave AISH or ADAP, your file may be reopened quickly if it has been less than 2 years since you got your last AISH benefits and you did not leave AISH or ADAP due to a change in your medical condition. Contact AISH or ADAP if this applies to you; if not, you will need to reapply.",
       ],
@@ -3664,7 +3664,7 @@ const BENEFITS = [
         "If you receive ADAP or AISH, report the outcome of your CDB and/or DTC application to Alberta, including the approved CDB amount or a denial. Alberta says that when no CDB decision had been made by February 28, 2026, $200 was reduced from April 2026 benefits.",
         "Getting help with the online application: phone the Alberta Supports Contact Centre at 1-877-644-9992, or 780-644-9992 in Edmonton.",
         "Your health professional may charge you a fee to complete the Disability Assistance Medical Report, and you are responsible for paying it. If you are on Income Support that cost may be covered — ask your Income Support worker. For AISH clients who transitioned to ADAP and later choose to be assessed for AISH, Alberta says it will cover the cost of one Disability Income Assistance Medical Report; this support is not time-limited.",
-        "Benefits are backdated to the month AISH or ADAP received all of the information needed to approve your application, so getting every document in sooner is worth real money.",
+        "Benefits are backdated to the month AISH or ADAP received all of the information needed to approve your application, so sending every document sooner can mean an earlier start date for your benefits.",
         "To check where your application is, phone 587-759-6810 in the Edmonton area, or 1-877-759-6810 toll free within Alberta.",
         "If you leave AISH or ADAP, your file may be reopened quickly if it has been less than 2 years since you got your last AISH benefits and you did not leave AISH or ADAP due to a change in your medical condition. Contact AISH or ADAP if this applies to you; if not, you will need to reapply."
       ],
@@ -3768,7 +3768,7 @@ const BENEFITS = [
         "Proof of Alberta residency"
       ],
       "tips": [
-        "Ask specifically about respite. Many families don't realize it's covered.",
+        "Ask specifically about respite.",
         "You can receive FSCD and the federal Child Disability Benefit at the same time."
       ],
       "time": "Assessment-based; contact them to begin.",
@@ -4718,7 +4718,7 @@ const BENEFITS = [
       "steps": [
         "Visit your provincial 2-1-1 site, or simply dial 2-1-1 from any phone.",
         "Tell them your town and what you need (transit, recreation, financial help).",
-        "They'll point you to the exact local programs and how to apply."
+        "They can point you to local programs and how to apply."
       ],
       "documents": [
         "Your city or town name",
@@ -5172,7 +5172,7 @@ const BENEFITS = [
     "level": "British Columbia",
     "category": "Money",
     "amount": "Up to $1,483.50/month single ($983.50 support + $500 shelter) plus $52/month transportation supplement; up to $2,662/month for a couple where both have PWD",
-    "summary": "Monthly income support for adults with the Persons with Disabilities (PWD) designation — a support allowance plus shelter allowance, an automatic $52 transportation supplement, and full health supplements and PharmaCare Plan C coverage.",
+    "summary": "Monthly income support for adults with the Persons with Disabilities (PWD) designation — a support allowance plus shelter allowance, an automatic $52 transportation supplement, health supplements and PharmaCare Plan C coverage.",
     "requires": ["bc", "age18plus", "dailyLivingLimit", "bcPwdMedical", "bcDisabilityAssistanceFinancial"],
     "note": "Rates took effect December 1, 2025. As of July 2026, $1,483.50 for a single person is the current maximum. You can also work. Starting January 1, 2026, you can earn up to $16,200 a year before earnings change your payment. The limit is $23,400 for a couple where one of you has PWD and $32,400 where both do. There is no monthly cap, so you can earn it whenever suits you. Even if you go over the limit, you always keep 100% of the money you earn. Only the assistance payment is reduced.",
     "applyText": "Apply on My Self Serve",
@@ -5324,7 +5324,7 @@ const BENEFITS = [
     "note": "Starts April 1, 2026. Eligible families already receiving ministry services for children and youth with support needs, including autism funding, will not need to apply, although some may be asked to provide additional information. The benefit will be available province-wide by April 1, 2027.",
     "applyText": "Learn about the Disability Benefit",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/financial-supports/disability-benefit",
-    "source": "https://news.gov.bc.ca/releases/2026CFD0002-000136",
+    "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/financial-supports/disability-benefit",
     "detail": {
       "about": "Two funding tiers: a base tier of $6,500/year and a higher tier of $17,000/year set through support planning with a ministry worker. Funding covers disability-related expenses including respite, paediatric therapies, behavioural intervention, and assistive and augmentative communication supports. Eligibility is needs-based, not diagnosis-specific: direct admission for conditions such as moderate-to-profound intellectual disability, autism with intellectual disability, and degenerative conditions with predictable decline (such as Duchenne muscular dystrophy and SMA types 1 and 2), plus a needs-based clinical review pathway for rare or atypical cases. Part of a $475-million, three-year provincial investment that also expands free community services (therapies from spring 2026, behaviour and mental-health supports 2027, navigation and school-aged programming 2027-2028).",
       "aboutList": { "lead": "Two funding tiers: a base tier of $6,500/year and a higher tier of $17,000/year set through support planning with a ministry worker.", "items": ["Funding covers disability-related expenses including respite, paediatric therapies, behavioural intervention, and assistive and augmentative communication supports.", "Eligibility is needs-based, not diagnosis-specific: direct admission for conditions such as moderate-to-profound intellectual disability, autism with intellectual disability, and degenerative conditions with predictable decline (such as Duchenne muscular dystrophy and SMA types 1 and 2), plus a needs-based clinical review pathway for rare or atypical cases.", "Part of a $475-million, three-year provincial investment that also expands free community services (therapies from spring 2026, behaviour and mental-health supports 2027, navigation and school-aged programming 2027-2028)."] },
@@ -5353,7 +5353,7 @@ const BENEFITS = [
       "aboutList": { "lead": "The MNS is for people on disability assistance with the PWD designation who have a severe medical condition causing chronic, progressive deterioration of health with wasting-type symptoms, and who need additional nutritional items or vitamins and minerals to prevent imminent danger to life.", "items": ["Current maximums (Health Supplements & Programs rate table, effective August 1, 2023) are $180/month for dietary items and $45/month for vitamins or minerals."] },
       "steps": ["Get form HR2847 (Application for Monthly Nutritional Supplement) from your ministry office, My Self Serve or the link above", "Complete Part B yourself", "Have a medical practitioner, nurse practitioner or registered dietitian complete Part C describing your condition, symptoms and the items needed", "Submit the form; the ministry's Health Assistance staff review and decide"],
       "documents": ["Form HR2847 with the practitioner or dietitian section completed"],
-      "tips": ["A registered dietitian can complete Part C. This is often faster than waiting for a specialist appointment.", "Be specific about each symptom: two or more must be documented for approval", "If denied, request reconsideration. Monthly Nutritional Supplement denials are frequently overturned with better medical detail."],
+      "tips": ["A registered dietitian can complete Part C. This is often faster than waiting for a specialist appointment.", "Be specific about each symptom: two or more must be documented for approval", "If denied, request reconsideration. Better medical detail can help a reconsideration."],
       "time": "Typically a few weeks after the ministry receives the completed form",
       "phone": "1-866-866-0800"
     }
@@ -5619,8 +5619,8 @@ const BENEFITS = [
     "applyUrl": "https://studentaidbc.ca/apply/how-to-apply-disability-funding",
     "source": "https://studentaidbc.ca/explore/grants-scholarships/canada-student-grant-students-disabilities",
     "detail": {
-      "about": "This federal grant, delivered through StudentAid BC, helps cover education costs for students with disabilities. It is money you do not pay back, and it is available whether you study full-time or part-time. Disability status can be a permanent disability (lifelong) or a persistent or prolonged disability (12+ months). Once your disability status is verified, it also unlocks reduced course-load rules (40-59% counts as full-time) and other B.C. disability grants.",
-      "aboutList": { "lead": "This federal grant, delivered through StudentAid BC, helps cover education costs for students with disabilities.", "items": ["It is money you do not pay back, and it is available whether you study full-time or part-time.", "Disability status can be a permanent disability (lifelong) or a persistent or prolonged disability (12+ months).", "Once your disability status is verified, it also unlocks reduced course-load rules (40-59% counts as full-time) and other B.C. disability grants."] },
+      "about": "This federal grant, delivered through StudentAid BC, helps cover education costs for students with disabilities. It is money you do not pay back, and it is available whether you study full-time or part-time. Disability status can be a permanent disability (lifelong) or a persistent or prolonged disability (12+ months). Once your disability status is verified, you can also use reduced course-load rules (40-59% counts as full-time) and other B.C. disability grants.",
+      "aboutList": { "lead": "This federal grant, delivered through StudentAid BC, helps cover education costs for students with disabilities.", "items": ["It is money you do not pay back, and it is available whether you study full-time or part-time.", "Disability status can be a permanent disability (lifelong) or a persistent or prolonged disability (12+ months).", "Once your disability status is verified, you can also use reduced course-load rules (40-59% counts as full-time) and other B.C. disability grants."] },
       "steps": ["Apply for StudentAid BC full-time or part-time funding online.", "In your StudentAid BC account, open the Disability status application in the Forms section (for applications submitted after June 23, 2026).", "Download the Disability Verification Form and have a qualified medical assessor complete it. Some disabilities (Specific Learning Disorders) do not require the form and have different verification requirements; check the instructions on the form.", "Upload the signed form (if your disability needs it) inside the Disability status application and submit your declaration.", "StudentAid BC reviews it (about 6 weeks) and posts the decision to your account; the grant is then included in your funding assessment."],
       "documents": ["StudentAid BC application (full-time or part-time)", "Disability Verification Form completed by a qualified medical assessor (not required for some disabilities, such as Specific Learning Disorders)", "Social Insurance Number and B.C. ID for your StudentAid BC account"],
       "tips": ["You can submit the disability verification any time. You do not have to wait for your loan application to finish.", "Permanent disabilities never need re-verification. Persistent or prolonged disabilities are re-verified when you enter repayment or after a break of more than 5 years.", "If you already get provincial disability assistance (PWD), tell your school's financial aid office. It can affect how your funding is set up."],
