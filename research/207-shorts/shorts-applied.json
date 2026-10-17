@@ -845,5 +845,10 @@
     "short": "Check your income against the MFAP limit",
     "who": ["you", "program"],
     "reason": "New Kingston Affordable Transit Pass record (2026-10-17)"
+  },
+  "haltonSplitRoute": {
+    "short": "Check the low-income, Ontario Works or ODSP route",
+    "who": ["you", "program"],
+    "reason": "New Halton SPLIT record (2026-10-17)"
   }
 }

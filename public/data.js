@@ -104,7 +104,7 @@ resolveBcTransitHandyDartUrl.staticUrl = BC_TRANSIT_HANDYDART_CHOOSER;
 /* Ontario regional municipalities that deliver programs on behalf of their member cities.
    These are NOT city options in the questionnaire — nobody selects "York Region" — but a
    record can carry one as its `level`, so the province filter has to know about them. */
-const ON_REGIONS = ["York Region", "Region of Waterloo", "Niagara Region"];
+const ON_REGIONS = ["York Region", "Region of Waterloo", "Niagara Region", "Halton Region"];
 
 const ON_CITIES = [
   "Ajax", "Aurora", "Barrie", "Belleville", "Brampton", "Brantford", "Burlington",
@@ -143,6 +143,7 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "halton-split": { kind: "discount", note: "Part of the cost of bus tickets or monthly passes; the page does not give the amount" },
   "kingston-affordable-transit-pass": { kind: "discount", note: "Discounted monthly pass. The price is not published on the MFAP page." },
   "niagara-transit-benefit-pass": { kind: "discount", note: "$50 a month for a monthly bus pass. The page does not give the regular price." },
   "waterloo-ontario-renovates": { kind: "grant", excludeFromEstimate: true, note: "maximum $25,000 per dwelling for homeowner repairs as a fully forgivable loan and/or up to $25,000 for eligible accessibility modifications; accessibility funding includes a grant portion up to $5,000; maximum funding limits may be subject to change" },
@@ -342,6 +343,7 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "halton-split": { difficulty: 2, effort: "Online application with a Halton 311 account, or call 311; documents within 10 business days", wait: "Not published" },
   "kingston-affordable-transit-pass": { difficulty: 2, effort: "One application to MFAP, online, by email or in person.", wait: "Not published" },
   "niagara-transit-benefit-pass": { difficulty: 2, effort: "Bring ID and a benefit statement to a terminal or outlet. Low-income applicants also fill in an application with proof of income.", wait: "Not published" },
   "waterloo-ontario-renovates": { difficulty: 3, effort: "Application with identification, income, property, tax, mortgage and insurance documents", wait: "First come first serve; eligible households are contacted by phone to arrange a home inspection" },
@@ -6742,6 +6744,56 @@ const BENEFITS = [
       ],
       "phone": "613-546-2695 ext. 4906"
     }
+  },
+  {
+    "id": "halton-split",
+    "name": "Halton SPLIT transit subsidy (Burlington, Oakville, Milton)",
+    "level": "Halton Region",
+    "category": "Transit",
+    "amount": "Covers part of the cost of bus tickets or monthly passes",
+    "summary": "A Halton Region subsidy that pays part of your local bus tickets or monthly passes on Burlington, Oakville or Milton Transit. It is for Halton residents with a low income, including people on Ontario Works or ODSP.",
+    "note": "If you qualify, you are eligible for one year, then you re-apply. The page does not give the subsidy amount. Ask the Region what it covers for your age group and city.",
+    "requires": [
+      "haltonRegion",
+      "haltonSplitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Halton",
+        "You are a student, adult or senior with a low income, or you get Ontario Works or ODSP"
+      ],
+      "note": "In Halton Hills the subsidy is for ActiVan or the Taxi Scrip Program instead of buses."
+    },
+    "applyText": "Apply for SPLIT",
+    "applyUrl": "https://www.halton.ca/For-Residents/Employment-and-Financial-Assistance/Subsidized-Passes-for-Low-Income-Transit-(SPLIT)",
+    "source": "https://www.halton.ca/For-Residents/Employment-and-Financial-Assistance/Subsidized-Passes-for-Low-Income-Transit-(SPLIT)",
+    "detail": {
+      "aboutList": {
+        "lead": "SPLIT helps Halton residents with low incomes pay for local travel.",
+        "items": [
+          "Use it for bus tickets or monthly passes from Burlington Transit, Oakville Transit or Milton Transit.",
+          "It also covers Handi-Van and Care-A-Van, but not GO Transit, taxis or ride-sharing.",
+          "You can transfer into Hamilton or Peel Region if you finish the trip within two hours."
+        ]
+      },
+      "steps": [
+        "Check your eligibility with the SPLIT online tool. You do not need an account to check",
+        "Apply online with a Halton 311 account, or call 311",
+        "Send proof of address, income, date of birth and status in Canada within 10 business days, or the application is closed",
+        "Staff contact you if they need more information, then tell you if you qualify",
+        "Buy your pass or tickets: Burlington Transit at Burlington GO Station (2101 Fairview St.), Milton Town Hall (150 Mary St.) or Oakville Transit (430 Wyecroft Rd.)"
+      ],
+      "documents": [
+        "Proof of address for you and your spouse, such as a driver's licence or utility bill",
+        "A Notice of Assessment for every adult in your household",
+        "Proof of status in Canada and date of birth for you, your spouse and your children"
+      ],
+      "tips": [
+        "Only apply when your documents are ready. Missing documents close the application after 10 business days.",
+        "Upload documents online, mail them to Halton Regional Centre (1151 Bronte Road, Oakville) or drop them off in person."
+      ]
+    }
   }
 
 ];
@@ -6853,6 +6905,7 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "halton-split": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
   "kingston-affordable-transit-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
   "niagara-transit-benefit-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
   // 2026-10: records whose every fact row was CONFIRMED, or DIFFERS then FIXED/KEPT

@@ -1,9 +1,9 @@
 # Benefit re-verification queue
 
 Generated: 2026-10-17  
-Records: 136  
+Records: 137  
 Inherited: 39  
-Own-date: 97  
+Own-date: 98  
 Oldest: 2026-07 (108 days)
 
 Month-only ages use the first day of the month, not an asserted verification day. Priority = age + 60 inherited + 30 dollar figures. This queue never changes facts.
@@ -135,14 +135,15 @@ Month-only ages use the first day of the month, not an asserted verification day
 | 123 | fscd | Family Support for Children with Disabilities (FSCD) | 2026-10 | false | 16 | https://www.alberta.ca/fscd-eligibility<br>https://www.alberta.ca/fscd |
 | 124 | grt-cnib-pass | CNIB pass (Grand River Transit) | 2026-10 | false | 16 | https://www.grt.ca/fares-and-payment/tickets-and-passes/passes/cnib-pass/ |
 | 125 | grt-support-person | Transit Support Person program (Grand River Transit) | 2026-10 | false | 16 | https://www.grt.ca/rider-information/transit-support-person-program/ |
-| 126 | hvmp | Home and Vehicle Modification Program | 2026-10 | false | 16 | https://www.ontario.ca/page/home-and-vehicle-modification-program |
-| 127 | kingston-affordable-transit-pass | Kingston Affordable Transit Pass | 2026-10 | false | 16 | https://www.cityofkingston.ca/MFAP |
-| 128 | okotoks-fee-assistance | Okotoks Recreation Fee Assistance | 2026-10 | false | 16 | https://www.okotoks.ca/your-community/social-well-being/family-community-resources/okotoks-family-resource-centre-7 |
-| 129 | on-adp | Assistive Devices Program (Ontario) | 2026-10 | false | 16 | https://www.ontario.ca/page/assistive-devices-program |
-| 130 | ontario-autism-program | Ontario Autism Program | 2026-10 | false | 16 | https://www.ontario.ca/page/ontario-autism-program |
-| 131 | ottawa-a-card | a-card — free OC Transpo travel if you are blind or partially sighted (Ottawa) | 2026-10 | false | 16 | https://www.octranspo.com/en/fares/reduced-fares/ |
-| 132 | ssah | Special Services at Home (SSAH) | 2026-10 | false | 16 | https://www.ontario.ca/page/special-services-home |
-| 133 | waterloo-curbside-waste-support | Curbside waste support programs (Region of Waterloo) | 2026-10 | false | 16 | https://www.regionofwaterloo.ca/programs-and-services/garbage-and-organics/garbage/curbside-waste-support/ |
-| 134 | waterloo-homemaking-support | Homemaking Support Services Program (Region of Waterloo) | 2026-10 | false | 16 | https://www.regionofwaterloo.ca/programs-and-services/seniors-and-long-term-care/community-programs-for-older-adults/homemaking-support/ |
-| 135 | york-region-homemakers | Homemakers Services (York Region) | 2026-10 | false | 16 | https://www.york.ca/support/financial-assistance/homemakers-services |
-| 136 | york-region-recreation-subsidies | Recreation subsidies (York Region) | 2026-10 | false | 16 | https://www.york.ca/support/financial-assistance/recreation-subsidies |
+| 126 | halton-split | Halton SPLIT transit subsidy (Burlington, Oakville, Milton) | 2026-10 | false | 16 | https://www.halton.ca/For-Residents/Employment-and-Financial-Assistance/Subsidized-Passes-for-Low-Income-Transit-(SPLIT) |
+| 127 | hvmp | Home and Vehicle Modification Program | 2026-10 | false | 16 | https://www.ontario.ca/page/home-and-vehicle-modification-program |
+| 128 | kingston-affordable-transit-pass | Kingston Affordable Transit Pass | 2026-10 | false | 16 | https://www.cityofkingston.ca/MFAP |
+| 129 | okotoks-fee-assistance | Okotoks Recreation Fee Assistance | 2026-10 | false | 16 | https://www.okotoks.ca/your-community/social-well-being/family-community-resources/okotoks-family-resource-centre-7 |
+| 130 | on-adp | Assistive Devices Program (Ontario) | 2026-10 | false | 16 | https://www.ontario.ca/page/assistive-devices-program |
+| 131 | ontario-autism-program | Ontario Autism Program | 2026-10 | false | 16 | https://www.ontario.ca/page/ontario-autism-program |
+| 132 | ottawa-a-card | a-card — free OC Transpo travel if you are blind or partially sighted (Ottawa) | 2026-10 | false | 16 | https://www.octranspo.com/en/fares/reduced-fares/ |
+| 133 | ssah | Special Services at Home (SSAH) | 2026-10 | false | 16 | https://www.ontario.ca/page/special-services-home |
+| 134 | waterloo-curbside-waste-support | Curbside waste support programs (Region of Waterloo) | 2026-10 | false | 16 | https://www.regionofwaterloo.ca/programs-and-services/garbage-and-organics/garbage/curbside-waste-support/ |
+| 135 | waterloo-homemaking-support | Homemaking Support Services Program (Region of Waterloo) | 2026-10 | false | 16 | https://www.regionofwaterloo.ca/programs-and-services/seniors-and-long-term-care/community-programs-for-older-adults/homemaking-support/ |
+| 136 | york-region-homemakers | Homemakers Services (York Region) | 2026-10 | false | 16 | https://www.york.ca/support/financial-assistance/homemakers-services |
+| 137 | york-region-recreation-subsidies | Recreation subsidies (York Region) | 2026-10 | false | 16 | https://www.york.ca/support/financial-assistance/recreation-subsidies |

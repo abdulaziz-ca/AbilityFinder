@@ -1931,3 +1931,12 @@ test("Kingston Affordable Transit Pass is city-gated and income is a check above
   expect((await evaluateProfile(page, { ...base, city: "Kingston", income: "moderate" }))["kingston-affordable-transit-pass"].status).toBe("almost");
   expect((await evaluateProfile(page, { ...base, city: "Toronto" }))["kingston-affordable-transit-pass"].status).toBe("no");
 });
+
+test("Halton SPLIT reaches Burlington, Oakville and Milton only", async ({ page }) => {
+  const base = { province: "ON", income: "low", ageBand: "19to59", ageGroup: "adult" };
+  for (const city of ["Burlington", "Oakville", "Milton"]) {
+    expect((await evaluateProfile(page, { ...base, city }))["halton-split"].status, city).toBe("ready");
+  }
+  expect((await evaluateProfile(page, { ...base, city: "Mississauga" }))["halton-split"].status).toBe("no");
+  expect((await evaluateProfile(page, { ...base, city: "Oakville", income: "moderate" }))["halton-split"].status).toBe("almost");
+});

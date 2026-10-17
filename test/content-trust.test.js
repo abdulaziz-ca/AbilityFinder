@@ -37,7 +37,7 @@ test('every live guide amount equals the qualified catalogue amount and generate
     assert.equal(staticHtml.match(/<p class="detail-amount">([^]*?)<\/p>/)?.[1], answer, `${b.id}: static amount`);
     compared++;
   }
-  assert.equal(compared, 135);
+  assert.equal(compared, 136);
 });
 test('privacy copy describes local saving, including the French wizard', () => {
   assert.doesNotMatch(translations, /never saved|jamais enregistrées|ne conservons ni n'envoyons/);
@@ -76,7 +76,7 @@ test('changelog is newest-first, has no future dates, and October review count m
   }
   // Records first published after the October review carry 2026-10 from their own
   // official-page build, not from that review; the review entry keeps its count.
-  const ADDED_AFTER_REVIEW = ["niagara-transit-benefit-pass", "kingston-affordable-transit-pass"];
+  const ADDED_AFTER_REVIEW = ["niagara-transit-benefit-pass", "kingston-affordable-transit-pass", "halton-split"];
   const count = vm.runInContext(`Object.entries(BENEFIT_VERIFIED).filter(([id, d]) => d === "2026-10" && !${JSON.stringify(ADDED_AFTER_REVIEW)}.includes(id)).length`, ctx);
   assert.equal(count, 51);
   assert.match(ctx.entries.find(e => e.text.startsWith('Review dates moved')).text, new RegExp(`for ${count} benefits`));

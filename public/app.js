@@ -450,6 +450,13 @@ const REQS = {
     fixed: false,
     unmet: "Full-time post-secondary students are not eligible.",
   },
+  haltonSplitRoute: {
+    short: "Check the low-income, Ontario Works or ODSP route",
+    who: ["you", "program"],
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "You must have a low income, or get Ontario Works or ODSP; Halton Region decides.",
+  },
   kingstonMfapIncome: {
     short: "Check your income against the MFAP limit",
     who: ["you", "program"],
@@ -1243,6 +1250,8 @@ const REQS = {
   // Niagara Region members in ON_CITIES; other Niagara municipalities are not listed in the wizard.
   niagaraRegion: { met: () => ["St. Catharines", "Welland", "Niagara Falls"].includes(answers.city), fixed: true, unmet: "This is a Niagara Region program for Niagara residents." },
   kingston: { met: () => answers.city === "Kingston", fixed: true, unmet: "This is a City of Kingston program." },
+  // Halton Region members in ON_CITIES; Halton Hills is not listed in the wizard.
+  haltonRegion: { met: () => ["Burlington", "Oakville", "Milton"].includes(answers.city), fixed: true, unmet: "This is a Halton Region program for Halton residents." },
   london: { met: () => answers.city === "London", fixed: true, unmet: "This is a City of London program." },
   windsor: { met: () => answers.city === "Windsor", fixed: true, unmet: "This is a City of Windsor program." },
   yorkRegion: {

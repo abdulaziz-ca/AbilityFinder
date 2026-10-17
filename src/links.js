@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 220 links. The monitor checks a bounded rotating batch every
+// 221 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -803,6 +803,11 @@ export const LINKS = [
   {
     "url": "https://www.cityofkingston.ca/MFAP",
     "label": "Kingston Affordable Transit Pass — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.halton.ca/For-Residents/Employment-and-Financial-Assistance/Subsidized-Passes-for-Low-Income-Transit-(SPLIT)",
+    "label": "Halton SPLIT transit subsidy (Burlington, Oakville, Milton) — apply",
     "kind": "apply"
   },
   {

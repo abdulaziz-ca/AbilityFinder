@@ -246,6 +246,7 @@ const GATES = {
   hamilton: municipality("Hamilton", "ON"),
   niagaraRegion: municipality("St. Catharines", "ON"),
   kingston: municipality("Kingston", "ON"),
+  haltonRegion: municipality("Oakville", "ON"),
   london: municipality("London", "ON"),
   windsor: municipality("Windsor", "ON"),
   yorkRegion: {
@@ -349,6 +350,11 @@ const GATES = {
     evidence: "answers",
     satisfy: { drop: { situation: ["student"] } },
     violations: [{ name: "post-secondary student: full-time status not asked", fragment: { add: { situation: ["student"] } }, expect: "almost" }],
+  },
+  haltonSplitRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: low income, OW or ODSP not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
   },
   kingstonMfapIncome: {
     evidence: "answers",
@@ -886,6 +892,7 @@ const PROGRAM_BEST_CASE = {
   "hamilton-fare-assist":                          "ready",
   "niagara-transit-benefit-pass":                  "ready",
   "kingston-affordable-transit-pass":              "ready",
+  "halton-split":                                  "ready",
   "brampton-activeassist":                         "ready",
   "mississauga-activeassist":                      "ready",
   "ottawa-hand-in-hand":                           "ready",
