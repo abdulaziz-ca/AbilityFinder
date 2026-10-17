@@ -6639,6 +6639,98 @@ const BENEFITS = [
    decide (site audit 2026-10, C-CONTENT-TRUST P2-11). Text restates only facts
    already in the record; update it with the record. kind: "closing" | "closed"
    | "deadline". */
+/* Abbreviations (site audit 2026-10, C-CONTENT-TRUST P2-05). Each expansion was
+   confirmed from the program text, an official page snapshot or standard federal
+   usage; ambiguous acronyms (APP, ATS, CCC, RAP) and brand names are left out on
+   purpose. Guides list the ones that appear on that page. */
+const GLOSSARY = {
+  "AAC": "Augmentative and Alternative Communication",
+  "AADL": "Alberta Aids to Daily Living",
+  "ABA": "Applied Behaviour Analysis",
+  "ACHB": "Alberta Child Health Benefit",
+  "ACSD": "Assistance for Children with Severe Disabilities",
+  "ADAP": "Alberta Disability Assistance Program",
+  "ADP": "Assistive Devices Program",
+  "AHP": "At Home Program",
+  "AISH": "Assured Income for the Severely Handicapped",
+  "ARCH": "Affordable Recreation for Community Health",
+  "ASD": "Autism Spectrum Disorder",
+  "ASL": "American Sign Language",
+  "ATP": "Affordable Transit Program",
+  "BCAAN": "British Columbia Autism Assessment Network",
+  "BCANDS": "British Columbia Aboriginal Network on Disability Society",
+  "CAPCC": "Community Access for People in Continuing Care",
+  "CCB": "Canada Child Benefit",
+  "CDB": "Canada Disability Benefit",
+  "CDCP": "Canadian Dental Care Plan",
+  "CLBC": "Community Living BC",
+  "COLT": "Cochrane On Demand Local Transit",
+  "CPP": "Canada Pension Plan",
+  "CPP-D": "Canada Pension Plan Disability",
+  "CRA": "Canada Revenue Agency",
+  "CUAET": "Canada-Ukraine Authorization for Emergency Travel",
+  "CYSN": "Children and Youth with Support Needs",
+  "DIA": "Disability Income Assistance",
+  "DRES": "Disability Related Employment Supports",
+  "DSO": "Developmental Services Ontario",
+  "DTC": "Disability Tax Credit",
+  "EI": "Employment Insurance",
+  "FAR": "Financial Assistance for Recreation",
+  "FASD": "Fetal Alcohol Spectrum Disorder",
+  "FCSS": "Family and Community Support Services",
+  "FNHA": "First Nations Health Authority",
+  "FSCD": "Family Support for Children with Disabilities",
+  "GIS": "Guaranteed Income Supplement",
+  "GST": "Goods and Services Tax",
+  "HATC": "Home Accessibility Tax Credit",
+  "HST": "Harmonized Sales Tax",
+  "ICBC": "Insurance Corporation of British Columbia",
+  "IRCC": "Immigration, Refugees and Citizenship Canada",
+  "ISC": "Indigenous Services Canada",
+  "LAP": "Leisure Access Program",
+  "LICO": "Low Income Cut-Off",
+  "LIFT": "Low-Income Fare Transit Program",
+  "LIM-AT": "Low-Income Measure After-Tax",
+  "MBM": "Market Basket Measure",
+  "MCFD": "Ministry of Children and Family Development",
+  "MHRTC": "Multigenerational Home Renovation Tax Credit",
+  "MSDPR": "Ministry of Social Development and Poverty Reduction",
+  "MSO": "Medical Services Only",
+  "MSP": "Medical Services Plan",
+  "NOA": "Notice of Assessment",
+  "OAP": "Ontario Autism Program",
+  "ODSP": "Ontario Disability Support Program",
+  "OHIP": "Ontario Health Insurance Plan",
+  "OT": "Occupational Therapist",
+  "PAIRS": "Provincial Access, Information and Resource Services",
+  "PAL": "Personal Assistant for Leisure Activities",
+  "PDD": "Persons with Developmental Disabilities",
+  "PLAY": "Positive Leisure Activities for Youth",
+  "PPMB": "Persons with Persistent Multiple Barriers",
+  "PSI": "Personalized Supports Initiative",
+  "PT": "Physical Therapist",
+  "PWD": "Persons with Disabilities designation",
+  "RAMP": "Residential Access Modification Program",
+  "RASP": "Registry of Autism Service Providers",
+  "RDSP": "Registered Disability Savings Plan",
+  "RFSP": "Recreation Fee Subsidy Program",
+  "SAET": "School-Aged Extended Therapies",
+  "SAFER": "Shelter Aid for Elderly Renters",
+  "SIN": "Social Insurance Number",
+  "SLP": "Speech-Language Pathologist",
+  "SSAH": "Special Services at Home",
+  "TTC": "Toronto Transit Commission",
+  "TTE": "Training, Travel and Equipment",
+  "WSIB": "Workplace Safety and Insurance Board",
+};
+/* [abbreviation, expansion] pairs that appear in a program's own text, A to Z. */
+function glossaryTermsFor(b) {
+  const text = JSON.stringify(b, (k, v) => (/url$/i.test(k) || k === "source" ? undefined : v)).replace(/<[^>]+>/g, " ");
+  return Object.keys(GLOSSARY)
+    .filter((abbr) => new RegExp("(^|[^A-Za-z0-9-])" + abbr.replace(/-/g, "\\-") + "(?![A-Za-z0-9])").test(text))
+    .map((abbr) => [abbr, GLOSSARY[abbr]]);
+}
+
 const BENEFIT_STATUS = {
   "bc-autism-funding-under-6": { kind: "closing", text: "Ending: new applications until March 2027; the program ends March 31, 2027" },
   "bc-autism-funding-6-18": { kind: "closing", text: "Ending: new applications until March 2027; the program ends March 31, 2027" },

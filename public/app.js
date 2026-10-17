@@ -1590,6 +1590,14 @@ function applyLabel(b) {
   } catch { return t("af.applyGeneric"); }
 }
 
+/* "Abbreviations on this page": GLOSSARY terms that appear in this program's
+   text (data.js glossaryTermsFor). Closed by default; English-only. */
+function glossaryBlock(b) {
+  const terms = typeof glossaryTermsFor === "function" ? glossaryTermsFor(b) : [];
+  if (!terms.length) return "";
+  return `<details class="guide-block guide-glossary" lang="en"><summary><h2 class="guide-h">Abbreviations on this page</h2></summary><dl class="glossary-list">${terms.map(([a, e]) => `<div><dt><abbr title="${reqEscape(e)}">${reqEscape(a)}</abbr></dt><dd>${reqEscape(e)}</dd></div>`).join("")}</dl></details>`;
+}
+
 /* Time-limited program badge (BENEFIT_STATUS in data.js). English-only copy. */
 function statusBadge(b) {
   const s = typeof BENEFIT_STATUS !== "undefined" && BENEFIT_STATUS[b.id];
@@ -5756,6 +5764,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
         ${denialsMore}
         ${appealMore}
         ${faqsMore}
+        ${glossaryBlock(b)}
         ${inline ? `<div class="inline-guide-full"><button class="inline-guide-full-link" type="button" data-open-full-guide="${b.id}">${t("guide.openFull")} ${icon("arrowRight")}</button></div>` : ""}
       </div>
 

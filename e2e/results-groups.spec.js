@@ -104,3 +104,13 @@ test('a time-limited program shows its end date on the result card', async ({ pa
   const card = page.locator('[data-fact-program="bc-autism-funding-6-18"]');
   await expect(card.locator('.status-badge')).toContainText('the program ends March 31, 2027');
 });
+
+test('a guide lists the abbreviations it uses, closed by default', async ({ page }) => {
+  await openResults(page, 'P01-calgary-aish');
+  await page.evaluate(() => setState('detail', { detailId: 'aish', detailFrom: 'results' }));
+  const g = page.locator('details.guide-glossary');
+  await expect(g).toHaveCount(1);
+  expect(await g.evaluate((d) => d.open)).toBe(false);
+  await g.locator('summary').click();
+  await expect(g).toContainText('Assured Income for the Severely Handicapped');
+});

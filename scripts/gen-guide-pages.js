@@ -20,6 +20,7 @@ vm.runInContext(
     '\n;globalThis.__B = typeof BENEFITS !== "undefined" ? BENEFITS : null;' +
     '\n;globalThis.__M = typeof BENEFIT_META !== "undefined" ? BENEFIT_META : null;' +
     '\n;globalThis.__STATUS = typeof BENEFIT_STATUS !== "undefined" ? BENEFIT_STATUS : {};' +
+    '\n;globalThis.__GLOSS = typeof glossaryTermsFor === "function" ? glossaryTermsFor : () => [];' +
     '\n;globalThis.__BC_CITIES = typeof BC_CITIES !== "undefined" ? BC_CITIES : null;' +
     '\n;globalThis.__ON_CITIES = typeof ON_CITIES !== "undefined" ? ON_CITIES : null;' +
     '\n;globalThis.__ON_REGIONS = typeof ON_REGIONS !== "undefined" ? ON_REGIONS : [];',
@@ -28,6 +29,7 @@ vm.runInContext(
 const allBenefits = ctx.__B;
 const benefitMeta = ctx.__M || {};
 const STATUS = ctx.__STATUS || {};
+const glossaryTermsFor = ctx.__GLOSS || (() => []);
 if (!Array.isArray(allBenefits) || allBenefits.length === 0) {
   console.error("gen:guides — could not read BENEFITS from data.js");
   process.exit(1);
@@ -235,6 +237,7 @@ ${header()}
             ${list("What you may need", detail.documents)}
             ${list("Practical tips", detail.tips)}
             ${detail.time ? `<section class="guide-block"><h2 class="guide-h">Timing</h2><p class="detail-about">${esc(detail.time)}</p></section>` : ""}
+            ${(() => { const terms = glossaryTermsFor(b); return terms.length ? `<section class="guide-block"><h2 class="guide-h">Abbreviations on this page</h2><dl class="guide-list">${terms.map(([a, e]) => `<div><dt><abbr title="${esc(e)}">${esc(a)}</abbr></dt><dd>${esc(e)}</dd></div>`).join("")}</dl></section>` : ""; })()}
             ${detail.phone ? `<section class="guide-block"><h2 class="guide-h">Phone</h2><p class="detail-about">${esc(detail.phone)}</p></section>` : ""}
           </div>
           <aside class="detail-side">

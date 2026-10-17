@@ -1958,3 +1958,15 @@ body.a11y-nomotion .side-note:hover .sn-go .ic { transform: none; }
 .status-badge { display: inline-block; margin: 6px 0 8px; padding: 4px 10px; border-radius: 8px; font-size: 0.86rem; font-weight: 600; line-height: 1.4; border: 1px solid var(--hair-2); background: var(--panel-2); color: var(--text); }
 .status-badge.status-closed { border-color: var(--danger); }
 .status-badge.status-closing, .status-badge.status-deadline { border-color: var(--accent); }
+
+/* "Abbreviations on this page" (GLOSSARY). */
+.guide-glossary > summary { cursor: pointer; list-style: none; }
+.guide-glossary > summary::-webkit-details-marker { display: none; }
+.guide-glossary > summary .guide-h { display: inline; }
+.guide-glossary > summary::before { content: "\25B8\00a0"; }
+.guide-glossary[open] > summary::before { content: "\25BE\00a0"; }
+.glossary-list { margin: 8px 0 0; display: grid; gap: 6px; }
+.glossary-list div { display: flex; gap: 10px; flex-wrap: wrap; }
+.glossary-list dt { font-weight: 700; min-width: 5.5em; }
+.glossary-list dd { margin: 0; color: var(--text-dim); }
+.glossary-list abbr { text-decoration: none; }
