@@ -186,8 +186,10 @@ test.describe("eligibility oracle", () => {
     const cases = buildAll(await readCatalogue(page));
     const results = await evaluateBatch(page, cases.map(c => ({ programId: c.id, answers: c.bestCase.answers })));
     cases.forEach((c, i) => expect.soft(results[i].status, c.id).toBe(PROGRAM_NO_CONFIRMATION[c.id]));
-    expect(results.filter(r => r.status === "ready")).toHaveLength(45);
-    expect(results.filter(r => r.status === "almost")).toHaveLength(89);
+    // 44/90 since 2026-10-16: the LD assessment bursary's documentation gate
+    // became a school-referral check (research/2026-10-site-audit/G3-RULES.md).
+    expect(results.filter(r => r.status === "ready")).toHaveLength(44);
+    expect(results.filter(r => r.status === "almost")).toHaveLength(90);
   });
 
   test("every program's best-case persona lands on its specified outcome", async ({ page }) => {

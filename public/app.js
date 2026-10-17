@@ -1177,6 +1177,17 @@ const REQS = {
   },
   hearingDisability: { met: () => hasDisability("hearing"), fixed: true, unmet: "This grant is specifically for Deaf or hard-of-hearing students." },
   learningDisability: { met: () => hasDisability("learning"), fixed: true, unmet: "This bursary is specifically for a recommended learning-disability assessment." },
+  // The bursary pays for the assessment, so no documentation is needed first
+  // (official page, 2026-10-15 snapshot). What it asks for instead: StudentAid
+  // BC eligibility, a designated public B.C. institution, and a recommendation.
+  bcLdAssessmentReferral: {
+    short: "Check that your school recommends an assessment",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "You need StudentAid BC eligibility, a designated public college or university, and its accessibility office's referral.",
+    action: { text: "See the bursary page", url: "https://studentaidbc.ca/explore/grants-scholarships/learning-disability-assessment-bursary" },
+  },
   bcClbcStream: {
     short: "Check which CLBC stream fits",
     who: ["you", "program"],

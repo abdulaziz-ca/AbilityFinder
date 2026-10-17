@@ -1,6 +1,12 @@
 /* Public record of material catalog and guide changes. Keep newest entries first. */
 const DATA_CHANGELOG = [
   { date: "2026-10-16", text: "If you answered No / not yet to the autism diagnosis question, BC Autism Funding and the Ontario Autism Program now appear under Not for your situation now as An autism diagnosis is needed first, because each program requires a diagnosis before you apply. Benefit amounts and program rules are unchanged. Asset version 194." },
+  { date: "2026-10-16", text: "The Learning Disability Assessment Bursary no longer asks for disability documentation first: it pays for the assessment that provides it. It now checks the official conditions instead: StudentAid BC eligibility, a designated public B.C. school, and a recommendation from the school's accessibility services office. Asset version 195.",
+    revision: 13,
+    changes: [
+      { recordId: "bc-learning-disability-assessment-bursary", kind: "rule", summary: "Documentation is no longer required first. The school recommendation is checked instead." }
+    ]
+  },
   { date: "2026-10-16", text: "Added an optional question about benefits you already get (AISH, ADAP, B.C. disability assistance, ODSP or the CPP disability benefit). A program you say you get is listed as You already get this instead of as a program to check. Benefit amounts and program rules are unchanged. Asset version 193." },
   { date: "2026-10-16", text: "Results are now grouped by what to do next: Programs to check, Other programs to check (one line each), and a closed Not for your situation now list for programs that need Disability Tax Credit approval first. The combined count and empty estimate box are gone, and the what-if panel uses the same groups. Benefit amounts and program rules are unchanged. Asset version 192." },
   { date: "2026-10-16", text: "Corrected privacy wording, replaced illustrative results with generic examples, and aligned live and static guide amounts. Clarified disability-category help, published maximum labels, RDSP repayment wording and review dates. Corrected historical change-log dates and the October review count. French scope labels now include Ontario and matching copy no longer overstates results. Benefit amounts and program rules are unchanged." },

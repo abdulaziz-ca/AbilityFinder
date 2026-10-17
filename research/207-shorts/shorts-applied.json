@@ -825,5 +825,10 @@
     "short": "Check that you are a MobilityPLUS customer in the three cities",
     "who": ["you"],
     "reason": "Taxi coupons need MobilityPLUS registration in Cambridge, Kitchener and Waterloo; North Dumfries and Kiwanis Transit customers are not eligible"
+  },
+  "bcLdAssessmentReferral": {
+    "short": "Check that your school recommends an assessment",
+    "who": ["you", "program"],
+    "reason": "Replaces a documentation gate the bursary itself pays to meet (2026-10-16 source check)"
   }
 }

@@ -30,13 +30,13 @@ test('annotated changelog batches have known ids, allowed kinds, neutral short s
     }
     count++;
   }
-  assert.equal(count, 12);
+  assert.equal(count, 13);
   assert.equal(watermark, previous);
 });
 
 test('initial batches and Kelowna follow release order and only applied fixes are annotated', () => {
   const released = [...entries].reverse().filter(entry => entry.revision);
-  assert.deepEqual(Array.from(released, entry => entry.revision), Array.from({length: 12}, (_, i) => i + 1));
+  assert.deepEqual(Array.from(released, entry => entry.revision), Array.from({length: 13}, (_, i) => i + 1));
   assert.match(released[0].text, /^Corrected Healthy Kids/);
   assert.match(released[1].text, /^Applied twenty-four/);
   assert.match(released[2].text, /^Corrected the Kelowna/);

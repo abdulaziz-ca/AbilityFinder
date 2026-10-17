@@ -5778,7 +5778,7 @@ const BENEFITS = [
     "category": "Education",
     "amount": "Up to $3,500",
     "summary": "Covers the up-front cost of a learning disability assessment — the assessment that unlocks disability funding and academic accommodations in the first place.",
-    "requires": ["bc", "student", "disabilityDoc", "learningDisability"],
+    "requires": ["bc", "student", "learningDisability", "bcLdAssessmentReferral"],
     eligibility: {
       mode: "all",
       items: [

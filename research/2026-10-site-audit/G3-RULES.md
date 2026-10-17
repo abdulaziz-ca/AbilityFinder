@@ -30,8 +30,10 @@ A Claude source check (snapshots in research/reverify/snapshots/) found these un
   (§3): each has exceptions an answer band cannot rule out (OAS eligibility, capacity vs having a job,
   adjusted net income, local medical travel, relatives' ownership).
 
-## Follow-up worth a data review (not a G3 rule)
+## Data fix found by this review (shipped, ?v=195)
 
-- `bc-learning-disability-assessment-bursary` requires `disabilityDoc`, but the bursary pays for the
-  assessment that produces the documentation. The gate is soft (`fixed: false`), so the program still
-  shows, but its card asks for documentation it helps you get.
+- `bc-learning-disability-assessment-bursary` required `disabilityDoc`, but the bursary pays for the
+  assessment that produces the documentation. The official page asks instead for StudentAid BC
+  eligibility, enrolment at a designated public B.C. post-secondary school, and a recommendation from
+  the school's accessibility services office. The gate is now `bcLdAssessmentReferral` (always a check,
+  never "ready"); oracle SPEC_VERSION 1.32.0, no-confirmation baseline 44 ready / 90 almost.

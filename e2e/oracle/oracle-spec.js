@@ -51,7 +51,7 @@
    what the specification says, and that no program can overclaim.
    ========================================================================== */
 
-const SPEC_VERSION = "1.31.0";
+const SPEC_VERSION = "1.32.0";
 
 // Separate evidence channel: never wizard answers and never official adjudication.
 // GRT source snapshots fetched 2026-10-16; each yes is scoped to this program.
@@ -283,6 +283,7 @@ const GATES = {
   waterlooWasteSupportApproval: external("Depends on Region approval under either the assisted-collection route or the medical-waste route; the wizard cannot establish every condition for either route."),
   yorkHomemakersNeed: external("Depends on York Region's unpublished financial need assessment and confirmation of illness or disability."),
   visionDisability: disabilityGate("vision"),
+  bcLdAssessmentReferral: external("Depends on StudentAid BC eligibility, a designated public B.C. institution and a recommendation from the school's accessibility services office, none of which the wizard asks."),
   ottawaOdspReceipt: external("Depends on actually receiving ODSP benefits and holding an ODSP identification number."),
   paraTranspoRegistered: external("Depends on being registered as a Para Transpo customer, which the wizard never asks."),
   atpApproval: { evidence: "scoped-fact", why: "Explicit, versioned program-scoped confirmation; never inferred from wizard answers." },
@@ -887,7 +888,7 @@ const PROGRAM_BEST_CASE = {
   "bc-access-grant-students-disabilities":         "ready",
   "bc-supplemental-bursary-students-disabilities": "ready",
   "bc-assistance-program-students-disabilities":   "ready",
-  "bc-learning-disability-assessment-bursary":     "ready",
+  "bc-learning-disability-assessment-bursary":     "almost",
   "bc-access-grant-deaf-students":                 "ready",
   "bc-dental-supplement":                          "ready",
   "bc-additional-home-owner-grant":                "almost",
