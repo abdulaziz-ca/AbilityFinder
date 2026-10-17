@@ -8,7 +8,7 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 ## 2026-10-17 — afternoon: the rest of the city leads
 
-### Shipped ()
+### Shipped (`?v=206`)
 - **28 more local programs**, each built from its official page and checked by a separate Claude reviewer (20
   corrections made before shipping, e.g. Belleville's income limit is about 144% of LICO, not "at or under"):
   8 Alberta towns (Banff, Blackfalds, Chestermere, Drayton Valley, Edson, Rocky Mountain House, Strathmore,
@@ -17,7 +17,7 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
   cities (Belleville, Chatham-Kent, Cornwall, Peterborough x2). **The catalogue is now 172 programs.**
 - Not built: 17 pages that did not state who qualifies or what you get (often a home page, a news story or a
   directory listing), and 13 lead links that were dead or blocked. All listed with reasons in
-  , so they can be picked up later.
+  `research/2026-10-city-sweep/LEADS.md`, so they can be picked up later.
 
 ### Decisions we made for you
 - Squamish's 2024 form says income must "meet the minimum ,570"; that is almost certainly the one-person limit.
