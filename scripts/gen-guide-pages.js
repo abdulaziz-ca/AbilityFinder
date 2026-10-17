@@ -19,6 +19,7 @@ vm.runInContext(
   fs.readFileSync(DATA, "utf8") +
     '\n;globalThis.__B = typeof BENEFITS !== "undefined" ? BENEFITS : null;' +
     '\n;globalThis.__M = typeof BENEFIT_META !== "undefined" ? BENEFIT_META : null;' +
+    '\n;globalThis.__STATUS = typeof BENEFIT_STATUS !== "undefined" ? BENEFIT_STATUS : {};' +
     '\n;globalThis.__BC_CITIES = typeof BC_CITIES !== "undefined" ? BC_CITIES : null;' +
     '\n;globalThis.__ON_CITIES = typeof ON_CITIES !== "undefined" ? ON_CITIES : null;' +
     '\n;globalThis.__ON_REGIONS = typeof ON_REGIONS !== "undefined" ? ON_REGIONS : [];',
@@ -26,6 +27,7 @@ vm.runInContext(
 );
 const allBenefits = ctx.__B;
 const benefitMeta = ctx.__M || {};
+const STATUS = ctx.__STATUS || {};
 if (!Array.isArray(allBenefits) || allBenefits.length === 0) {
   console.error("gen:guides — could not read BENEFITS from data.js");
   process.exit(1);
@@ -213,6 +215,7 @@ ${header()}
         <header class="detail-hero">
           <p class="eyebrow">${esc(b.level)} · ${esc(b.category)}</p>
           <h1 class="detail-title">${esc(b.name)}</h1>
+          ${STATUS[b.id] ? `<p class="status-badge status-${esc(STATUS[b.id].kind)}">${esc(STATUS[b.id].text)}</p>` : ""}
           <p class="detail-lede">${esc(b.summary)}</p>
         </header>
         <div class="detail-body">
@@ -222,7 +225,7 @@ ${header()}
               : detail.about ? `<section class="guide-block"><h2 class="guide-h">What it is</h2><p class="detail-about">${esc(detail.about)}</p></section>` : ""}
             ${b.note ? `<section class="guide-block"><h2 class="guide-h">Good to know</h2><p class="detail-about">${esc(b.note)}</p></section>` : ""}
             ${b.eligibility && b.eligibility.items && b.eligibility.items.length
-              ? `<section class="guide-block"><h2 class="guide-h">What you must meet</h2><p class="eligibility-lead">${b.eligibility.mode === "any" ? "You qualify if any of these apply:" : "You must meet all of these:"}</p><ul class="eligibility-list">${b.eligibility.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul>${b.eligibility.note ? (b.eligibility.note.items ? `<p class="eligibility-lead">${esc(b.eligibility.note.lead)}</p><ul class="eligibility-list">${b.eligibility.note.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul><p class="detail-about eligibility-note">${esc(b.eligibility.note.after)}</p>` : `<p class="detail-about eligibility-note">${esc(b.eligibility.note)}</p>`) : ""}</section>`
+              ? `<section class="guide-block"><h2 class="guide-h">What you must meet</h2><p class="eligibility-lead">${b.eligibility.mode === "any" ? "The program requires at least one of these:" : "You must meet all of these:"}</p><ul class="eligibility-list">${b.eligibility.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul>${b.eligibility.note ? (b.eligibility.note.items ? `<p class="eligibility-lead">${esc(b.eligibility.note.lead)}</p><ul class="eligibility-list">${b.eligibility.note.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul><p class="detail-about eligibility-note">${esc(b.eligibility.note.after)}</p>` : `<p class="detail-about eligibility-note">${esc(b.eligibility.note)}</p>`) : ""}</section>`
               : b.requiresNote ? `<section class="guide-block"><h2 class="guide-h">What you must meet</h2><p class="detail-about">${esc(b.requiresNote)}</p></section>` : ""}
             ${b.amount ? `<section class="guide-block"><h2 class="guide-h">Amount or value</h2><p class="detail-amount">${esc(b.amount)}</p></section>` : ""}
             ${b.amountTiers && b.amountTiers.rows && b.amountTiers.rows.length ? `<section class="guide-block"><h2 class="guide-h">${esc(b.amountTiers.caption || "How the amount is worked out")}</h2><div class="tier-scroll"><table class="amount-tiers"><thead><tr>${b.amountTiers.headers.map((h) => `<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${b.amountTiers.rows.map((row) => `<tr>${row.map((cell) => `<td>${esc(cell)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></section>` : ""}

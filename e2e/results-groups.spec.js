@@ -98,3 +98,9 @@ test('the logo asks before clearing answers; dismissing keeps them', async ({ pa
   await expect.poll(() => page.evaluate(() => answers.city)).toBe(null);
   await expect.poll(() => page.evaluate(() => view)).toBe('landing');
 });
+
+test('a time-limited program shows its end date on the result card', async ({ page }) => {
+  await openResults(page, 'P03-surrey-autistic-child');
+  const card = page.locator('[data-fact-program="bc-autism-funding-6-18"]');
+  await expect(card.locator('.status-badge')).toContainText('the program ends March 31, 2027');
+});

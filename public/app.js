@@ -1579,6 +1579,13 @@ function renderMoneyBand(ready, almost) {
   return "";
 }
 
+/* Time-limited program badge (BENEFIT_STATUS in data.js). English-only copy. */
+function statusBadge(b) {
+  const s = typeof BENEFIT_STATUS !== "undefined" && BENEFIT_STATUS[b.id];
+  if (!s) return "";
+  return `<p class="status-badge status-${reqEscape(s.kind)}" lang="en">${reqEscape(s.text)}</p>`;
+}
+
 /* -------------------------------------------------------------- engine */
 function evaluate(benefit, scopedConfirmations = confirmedFacts) {
   let checkedFacts = false;
@@ -1718,7 +1725,7 @@ const STEPS = [
     // DYNAMIC — only if a physical/mobility condition is selected
     id: "mobilityQ", type: "single", kicker: "A bit more",
     q: () => `${who().canQ} comfortably walk about 50 metres (half a block)?`,
-    help: () => `This decides whether an accessible parking placard applies to ${who().them}.`,
+    help: () => `This helps show whether an accessible parking placard may apply to ${who().them}. The program decides.`,
     key: "canWalkFar",
     skipIf: () => !hasDisability("physical"),
     options: [
@@ -1859,7 +1866,7 @@ const STEPS = [
     sideNote: {
       topic: "dtc",
       label: "Not sure if you have it?",
-      sub: "How to check in 2 minutes — it's worth the most here",
+      sub: "How to check in 2 minutes",
     },
   },
   {
@@ -4294,7 +4301,7 @@ function renderSupportsArea() {
     <div class="supports-hook">
       <span class="sh-num" aria-hidden="true">${totalTips}</span>
       <p>practical ideas matched to ${who().poss === "your" ? "your" : poss()} answers.
-        <b>Many can be tried without an application</b>; linked services may still have
+        <b>Some can be tried without an application</b>; linked services may still have
         intake steps, costs or wait lists. Start with one manageable step.</p>
     </div>
     ${sections}
@@ -4734,7 +4741,7 @@ function wireFactChecks() {
 
 function benefitCard(b, r, rank) {
   const stage = progress[b.id] || "";
-  const rankBadge = rank ? `<span class="rank-badge" title="Suggested order to apply">${rank}</span>` : "";
+  const rankBadge = rank ? `<span class="rank-badge" title="Our rough order, not official advice">${rank}</span>` : "";
   const needsHtml =
     (r.status === "almost" && r.needs.length) || (r.status !== "no" && AbilityFinderState.FACT_REGISTRY[b.id])
       ? reqPreview(b, r.needs) : "";
@@ -4754,7 +4761,7 @@ function benefitCard(b, r, rank) {
         </div>
         <span class="tag match-status" data-fact-status="${b.id}">${matchStatusLabel(r.status)}</span>
         ${matchStatusNote(r.status)}${r.checkedFacts ? '<p class="checked-facts-note" lang="en">Includes facts you checked on this device.</p>' : ""}
-        <p class="summary">${b.summary}</p>
+        ${statusBadge(b)}<p class="summary">${b.summary}</p>
         ${metaRow(b)}
         ${needsHtml}
       </div>
@@ -5366,7 +5373,7 @@ function browseCard(b) {
           <span class="tag">${b.category}</span>
           ${browseDis !== "all" && isDisSpecific(b, browseDis) ? `<span class="tag dis-tag">${icon("check")} Aimed at this</span>` : ""}
         </div>
-        <p class="summary">${b.summary}</p>
+        ${statusBadge(b)}<p class="summary">${b.summary}</p>
         ${metaRow(b)}
       </div>
       <div class="benefit-side">
@@ -5711,7 +5718,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
         <span class="tag">${b.category}</span>
       </div>
       <h1 class="detail-title">${b.name}</h1>
-      <p class="detail-lede">${b.summary}</p>
+      ${statusBadge(b)}<p class="detail-lede">${b.summary}</p>
     </header>`}
 
     <div class="detail-body${inline ? " inline-guide-body" : ""}">

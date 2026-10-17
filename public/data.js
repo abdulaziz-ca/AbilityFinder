@@ -6637,6 +6637,20 @@ const BENEFITS = [
 
 ];
 
+/* Time-limited programs: one plain status line, shown as a badge on result
+   cards and at the top of the guide, so the end date is visible where people
+   decide (site audit 2026-10, C-CONTENT-TRUST P2-11). Text restates only facts
+   already in the record; update it with the record. kind: "closing" | "closed"
+   | "deadline". */
+const BENEFIT_STATUS = {
+  "bc-autism-funding-under-6": { kind: "closing", text: "Ending: new applications until March 2027; the program ends March 31, 2027" },
+  "bc-autism-funding-6-18": { kind: "closing", text: "Ending: new applications until March 2027; the program ends March 31, 2027" },
+  "bc-at-home-medical": { kind: "closing", text: "New families can apply until March 2027" },
+  "bc-at-home-saet": { kind: "closing", text: "Available until March 31, 2027, or until your child moves to the new benefit" },
+  "waterloo-ontario-renovates": { kind: "deadline", text: "Deadline: the Region lists December 1, 2026 in one place; check the current date with the Region" },
+  "leduc-subsidies": { kind: "closed", text: "Recreation Assistance is closed until January 2027; the bus pass support is separate" },
+};
+
 const BENEFIT_VERIFIED = {
   // 2026-10: records whose every fact row was CONFIRMED, or DIFFERS then FIXED/KEPT
   // (more conservative), with no NOT ON PAGE amount/threshold/age/date row and no

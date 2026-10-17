@@ -145,7 +145,7 @@ const I18N = {
     "pro.title": "Use AbilityFinder with the people you support",
     "pro.lede": "A quick, private way for advisers, social workers, clinic staff, and educators to find disability benefits with a client.",
     "pro.what.h": "What AbilityFinder is",
-    "pro.what.p": "AbilityFinder is a free, independent directory and matching tool for more than 35 verified {scopeProgramList} programs. Every benefit links to an official source, and the catalog shows when it was last reviewed.",
+    "pro.what.p": "AbilityFinder is a free, independent directory and matching tool for {scopeProgramList} programs. Every benefit links to an official source, and the catalog shows when it was last reviewed.",
     "pro.use.h": "How to use it with a client",
     "pro.use.1": "Run the short wizard together. It takes only a few minutes and does not ask for a name.",
     "pro.use.2": "Open a result to read its full plain-language guide, steps, documents, and official link.",
@@ -210,7 +210,7 @@ const I18N = {
 
     "land.eyebrow": "{scopeBenefits}",
     "land.title": "Answer a few questions. See which disability benefits you may qualify for.",
-    "land.sub": "Government disability supports are scattered across dozens of confusing pages. AbilityFinder asks a few simple questions, screens out known conflicts, and gives you a cautious list to verify, with plain-language guides and direct official links.",
+    "land.sub": "Government disability supports are scattered across dozens of confusing pages. AbilityFinder asks a few simple questions, sets aside programs your answers rule out, and gives you a cautious list to verify, with plain-language guides and direct official links.",
     "land.find": "Find my benefits",
     "land.how": "See how it works",
     "life.title": "Where are you starting from?",
@@ -247,23 +247,23 @@ const I18N = {
     "prob.badH": "The usual way",
     "prob.bad1": "You Google your disability and get 40 tabs of policy pages.",
     "prob.bad2": "Many programs hide their rules behind walls of text.",
-    "prob.bad3": "You never actually find out what <b>you</b> qualify for.",
+    "prob.bad3": "It is hard to tell which programs fit <b>your</b> situation.",
     // No fraction and no "entitled to": the old line asserted that half of an unknown
     // total goes unheard, which is a statistic this project cannot source, and claimed
     // entitlement the tool never establishes. The point survives without either.
     "prob.bad4": "Programs you could qualify for never come up at all.",
     "prob.goodH": "With AbilityFinder",
-    "prob.good1": "Answer a few checkboxes — no reading required.",
+    "prob.good1": "Answer a few questions, most with one tap.",
     "prob.good2": "Get a personal list of programs to verify, ordered by estimated value and how easy each one is to apply for.",
     "prob.good3": "Each one comes with a plain-English “how to apply” guide.",
     "prob.good4": "See possible matches to verify and the next step for each.",
 
     "how.title": "How it works",
     "how.1h": "Answer a few questions",
-    "how.1p": "Your disability, age, income and situation. Takes about a minute. Saved on this device, not sent to us.",
+    "how.1p": "Your disability, age, income and situation. Takes a few minutes. Saved on this device, not sent to us.",
     "how.2h": "See programs matched to your answers",
     "how.2p": "A tailored list of money, discounts and supports — with what matches your answers and what needs more checks.",
-    "how.3h": "Apply with confidence",
+    "how.3h": "Check, then apply",
     "how.3p": "Open a clear guide for each benefit: what it is, what to bring, tips to skip the runaround, then a direct link.",
 
     "cats.title": "What you could find",
@@ -276,7 +276,7 @@ const I18N = {
     "cats.note": "Covering federal, provincial, and local programs — for ADHD, autism, mental health, physical & chronic conditions, vision, hearing, learning disabilities and more.",
 
     "final.title": "Ready to see your list?",
-    "final.sub": "It's free, private, and takes about a minute.",
+    "final.sub": "It's free, private, and takes a few minutes.",
 
     "ask.thinking": "Thinking.",
     "ask.generic": "Something went wrong. Please try again.",
@@ -570,7 +570,7 @@ const I18N = {
     "pro.title": "Utilisez AbilityFinder avec les personnes que vous accompagnez",
     "pro.lede": "Une façon rapide et privée pour les conseillers, travailleurs sociaux, équipes cliniques et éducateurs de chercher des prestations avec un client.",
     "pro.what.h": "Ce qu’est AbilityFinder",
-    "pro.what.p": "AbilityFinder est un répertoire et un outil de jumelage gratuit et indépendant couvrant plus de 35 programmes {scopeProgramList} vérifiés. Chaque prestation renvoie à une source officielle, et le catalogue indique sa dernière date de révision.",
+    "pro.what.p": "AbilityFinder est un répertoire et un outil de jumelage gratuit et indépendant couvrant des programmes {scopeProgramList}. Chaque prestation renvoie à une source officielle, et le catalogue indique sa dernière date de révision.",
     "pro.use.h": "Comment l’utiliser avec un client",
     "pro.use.1": "Remplissez ensemble le court questionnaire. Il prend quelques minutes et ne demande aucun nom.",
     "pro.use.2": "Ouvrez un résultat pour lire le guide complet en langage clair, les étapes, les documents et le lien officiel.",
@@ -634,7 +634,7 @@ const I18N = {
 
     "land.eyebrow": "{scopeBenefits}",
     "land.title": "Répondez à quelques questions. Voyez les prestations d'invalidité auxquelles vous pourriez être admissible.",
-    "land.sub": "Les mesures de soutien gouvernementales liées au handicap sont éparpillées sur des dizaines de pages déroutantes. AbilityFinder pose quelques questions simples, écarte les incompatibilités connues et vous remet une liste prudente à vérifier, avec des guides clairs et des liens officiels.",
+    "land.sub": "Les mesures de soutien gouvernementales liées au handicap sont éparpillées sur des dizaines de pages déroutantes. AbilityFinder pose quelques questions simples, met de côté les programmes que vos réponses excluent et vous remet une liste prudente à vérifier, avec des guides clairs et des liens officiels.",
     "land.find": "Trouver mes prestations",
     "land.how": "Voir comment ça marche",
     "life.title": "Quelle est votre situation de départ?",
@@ -669,22 +669,22 @@ const I18N = {
     "prob.badH": "La méthode habituelle",
     "prob.bad1": "Vous cherchez votre handicap sur Google et obtenez 40 onglets de pages de politiques.",
     "prob.bad2": "De nombreux programmes cachent leurs règles derrière des murs de texte.",
-    "prob.bad3": "Vous ne découvrez jamais vraiment ce à quoi <b>vous</b> êtes admissible.",
+    "prob.bad3": "Il est difficile de savoir quels programmes correspondent à <b>votre</b> situation.",
     // "pourriez être admissible" (might be eligible), never "auxquelles vous avez droit"
     // (entitled to) — the same distinction the landing headline turns on.
     "prob.bad4": "Des programmes auxquels vous pourriez être admissible ne vous sont jamais présentés.",
     "prob.goodH": "Avec AbilityFinder",
-    "prob.good1": "Cochez quelques cases — aucune lecture requise.",
+    "prob.good1": "Répondez à quelques questions, la plupart en un clic.",
     "prob.good2": "Obtenez une liste personnelle de programmes à vérifier, classée selon la valeur probable et la simplicité de la demande.",
     "prob.good3": "Chacune vient avec un guide « comment faire la demande » en langage clair.",
     "prob.good4": "Des correspondances possibles à vérifier, avec la prochaine étape pour chaque demande.",
 
     "how.title": "Comment ça marche",
     "how.1h": "Répondez à quelques questions",
-    "how.1p": "Votre handicap, âge, revenu et situation. Environ une minute. Enregistré sur cet appareil, non envoyé à AbilityFinder.",
+    "how.1p": "Votre handicap, âge, revenu et situation. Quelques minutes. Enregistré sur cet appareil, non envoyé à AbilityFinder.",
     "how.2h": "Voyez vos correspondances probables",
     "how.2p": "Une liste personnalisée d’argent, de rabais et de soutiens — avec ce qui correspond à vos réponses et ce qui demande d’autres vérifications.",
-    "how.3h": "Faites votre demande en confiance",
+    "how.3h": "Vérifiez, puis faites votre demande",
     "how.3p": "Ouvrez un guide clair pour chaque prestation : ce que c'est, quoi apporter, des astuces, puis un lien direct.",
 
     "cats.title": "Ce que vous pourriez trouver",
@@ -697,7 +697,7 @@ const I18N = {
     "cats.note": "Programmes {scopeProgramList} — pour le TDAH, l'autisme, la santé mentale, les conditions physiques et chroniques, la vision, l'audition, les troubles d'apprentissage et plus.",
 
     "final.title": "Prêt à voir votre liste ?",
-    "final.sub": "C'est gratuit, privé, et ça prend environ une minute.",
+    "final.sub": "C'est gratuit, privé, et ça prend quelques minutes.",
 
     "ask.thinking": "Réflexion…",
     "ask.generic": "Une erreur s’est produite. Veuillez réessayer.",

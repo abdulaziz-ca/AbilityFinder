@@ -1952,3 +1952,9 @@ body.a11y-nomotion .side-note:hover .sn-go .ic { transform: none; }
    answer chips 30px. 44px is the comfortable minimum for a motor-impaired
    audience (site audit 2026-10, D-ENGINEERING P3; WCAG 2.5.5). */
 .track-sel, .gt-btn, .chip { min-height: 44px; }
+
+/* Time-limited program badge (BENEFIT_STATUS). Text carries the meaning; colour
+   only reinforces it. */
+.status-badge { display: inline-block; margin: 6px 0 8px; padding: 4px 10px; border-radius: 8px; font-size: 0.86rem; font-weight: 600; line-height: 1.4; border: 1px solid var(--hair-2); background: var(--panel-2); color: var(--text); }
+.status-badge.status-closed { border-color: var(--danger); }
+.status-badge.status-closing, .status-badge.status-deadline { border-color: var(--accent); }
