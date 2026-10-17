@@ -45,9 +45,9 @@ already ruled out by the person's own answers - usually as cards 2 to 4.
 - Engineering: caching (each visit re-checks 13 files), faster CI, plain-language rewrite (median reading level is
   grade 12.5).
 
-### Needs you
-- Easter Seals Alberta contact (unchanged).
-- French: the toggle is live but the catalogue is English. Keep it paused, or plan the translation?
+### Owner decisions (2026-10-16)
+- Easter Seals Alberta: **paused** — no phone call. The equipment entry stays as it is; agents won't raise it again.
+- French: **stays paused** — the toggle stays, the catalogue stays English. No translation work.
 
 ## 2026-10-16 — morning
 

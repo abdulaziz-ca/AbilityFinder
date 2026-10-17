@@ -4135,15 +4135,25 @@ function renderOtherPrograms(items) {
    person's own answers; prerequisite rows name what is needed first. */
 function renderNotNow(items) {
   if (!items.length) return "";
-  const dtcFirst = items.filter((e) => e.reason === "dtc");
-  const dtcRecord = BENEFITS.find((b) => b.id === "dtc");
+  // One sub-list per reason, in this order. Each heading says what is needed
+  // first and links to where to start it.
+  const REASONS = [
+    { reason: "dtc", head: t("grp.g3Dtc"), start: "dtc", link: t("grp.g3DtcLink") },
+    { reason: "autism", head: t("grp.g3Autism"), start: null, link: null },
+  ];
+  const sections = REASONS.map(({ reason, head, start, link }) => {
+    const rows = items.filter((e) => e.reason === reason);
+    if (!rows.length) return "";
+    const startRecord = start && BENEFITS.find((b) => b.id === start);
+    return `<div class="later-reason" data-later-reason="${reason}">
+      <p class="later-why"><b>${head}</b>${startRecord ? ` — ${guideLink(startRecord, link)}` : ""}</p>
+      <ul class="compact-rows">${rows.map((e) => `<li class="compact-row" data-result-group="g3" data-id="${reqEscape(e.b.id)}"><b class="cr-name">${reqEscape(e.b.name)}</b> — ${guideLink(e.b)}</li>`).join("")}</ul>
+    </div>`;
+  }).join("");
   return `<details class="result-group result-group-later" lang="en">
     <summary><h2 class="result-group-h" id="g3-title">${t("grp.g3")} (${items.length})</h2></summary>
     <p class="result-group-sub">${t("grp.g3Sub")}</p>
-    ${dtcFirst.length ? `<div class="later-reason">
-      <p class="later-why"><b>${t("grp.g3Dtc")}</b> — ${dtcRecord ? guideLink(dtcRecord, t("grp.g3DtcLink")) : ""}</p>
-      <ul class="compact-rows">${dtcFirst.map((e) => `<li class="compact-row" data-result-group="g3" data-id="${reqEscape(e.b.id)}"><b class="cr-name">${reqEscape(e.b.name)}</b> — ${guideLink(e.b)}</li>`).join("")}</ul>
-    </div>` : ""}
+    ${sections}
   </details>`;
 }
 

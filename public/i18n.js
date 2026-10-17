@@ -385,6 +385,7 @@ const I18N = {
     "grp.g3Sub": "Based on your answers, these are not the place to start today.",
     "grp.g3Dtc": "Disability Tax Credit approval needed first",
     "grp.g3DtcLink": "See how to apply",
+    "grp.g3Autism": "An autism diagnosis is needed first",
     "grp.readGuide": "Read the guide",
     "scenario.dtc": "Disability Tax Credit approval changes",
     "grp.supports": "Supports & strategies for you",

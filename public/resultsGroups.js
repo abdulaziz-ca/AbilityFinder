@@ -17,9 +17,10 @@
                                     already spent, who claims a credit).
      g3  "Not for your situation now" closed disclosure. ONLY definite
                                     contradictions from the person's own
-                                    answers. Phase 1 has one rule: the person
-                                    answered the DTC question "no" and the
-                                    program needs DTC approval first.
+                                    answers, as "needed first" rows: DTC
+                                    approval (DTC answered "no"), and an
+                                    autism diagnosis for three programs
+                                    (PREREQ_RULES).
 
      g0  "You already get"           one-line rows (phase 2). Programs the
                                     person says they already get, whatever
@@ -92,6 +93,31 @@
   const needsDtcFirst = (r, answers) =>
     answers && answers.dtc === "no" && r.needs.some((n) => n.key === "dtc");
 
+  /* Further "needed first" rules (site audit, reviewed one gate class at a
+     time). Each applies ONLY to the listed programs, each checked against its
+     official page: the program has no route that works without the missing
+     step (research/2026-10-site-audit/G3-RULES.md). The answer must be the
+     definite "no" option; "not sure", skipped or unasked never counts. These
+     are prerequisites, not refusals: the row says what is needed first. */
+  const PREREQ_RULES = Object.freeze([
+    /* Both BC pages: "In order to apply for funding, ensure you have had an
+       assessment and diagnosis." OAP: "To register ... your child must ...
+       have a written diagnosis of autism from a qualified professional." */
+    {
+      reason: "autism",
+      gates: ["autismDiagnosis", "oapDiagnosis"],
+      when: (a) => a.autismDiagnosis === "no",
+      programs: ["bc-autism-funding-under-6", "bc-autism-funding-6-18", "ontario-autism-program"],
+    },
+  ]);
+  function prereqReason(b, r, answers) {
+    if (!answers) return null;
+    for (const rule of PREREQ_RULES) {
+      if (rule.programs.includes(b.id) && rule.when(answers) && r.needs.some((n) => rule.gates.includes(n.key))) return rule.reason;
+    }
+    return null;
+  }
+
   function subjectFor(answers) {
     return SUBJECTS[answers && answers.forWho] || SUBJECTS.self;
   }
@@ -107,13 +133,19 @@
   }
 
   /* Which group one evaluated program belongs to. */
+  /* Why a program is in g3: "dtc" first, then the first matching PREREQ_RULES entry. */
+  function laterReason(e, answers) {
+    if (needsDtcFirst(e.r, answers)) return "dtc";
+    return prereqReason(e.b, e.r, answers);
+  }
+
   function groupOf(e, answers, received = []) {
     const { b, r } = e;
     if (received.includes(b.id)) return "g0";
     if (r.status === "ready") return "g1";
     if (r.status !== "almost") return "no";
     if (b.id === DTC_ID) return "g1";
-    if (needsDtcFirst(r, answers)) return "g3";
+    if (laterReason(e, answers)) return "g3";
     const unasked = (n) => Object.prototype.hasOwnProperty.call(UNASKED_FACT_GATES, n.key)
       && !(RECEIPT_GATES[n.key] && received.includes(RECEIPT_GATES[n.key]));
     if (r.needs.length && r.needs.every(unasked)) return "g2";
@@ -138,7 +170,7 @@
     for (const e of evaluated) {
       const group = groupOf(e, answers, received);
       if (group === "g2") out.g2.push({ ...e, situation: situationFor(e.r, answers) });
-      else if (group === "g3") out.g3.push({ ...e, reason: "dtc" });
+      else if (group === "g3") out.g3.push({ ...e, reason: laterReason(e, answers) });
       else out[group].push(e);
     }
     out.g0.sort(compareEvidence);
@@ -148,5 +180,5 @@
     return out;
   }
 
-  return Object.freeze({ classifyResults, groupOf, compareEvidence, UNASKED_FACT_GATES, RECEIPT_GATES, DTC_ID });
+  return Object.freeze({ classifyResults, groupOf, compareEvidence, UNASKED_FACT_GATES, RECEIPT_GATES, PREREQ_RULES, DTC_ID });
 });

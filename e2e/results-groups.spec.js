@@ -70,3 +70,19 @@ test('phase 2: a stale pick from another province is ignored', async ({ page }) 
   await openResults(page, 'P01-calgary-aish', (a) => ({ ...a, receives: ['odsp'] }));
   await expect(page.locator('.result-group-have')).toHaveCount(0);
 });
+
+test('autism diagnosis "No / not yet": BC Autism Funding is a "needed first" row, not a card', async ({ page }) => {
+  await openResults(page, 'P03-surrey-autistic-child', (a) => ({ ...a, autismDiagnosis: 'no' }));
+  const g3 = page.locator('details.result-group-later');
+  await g3.locator('summary').click();
+  const section = g3.locator('[data-later-reason="autism"]');
+  await expect(section).toContainText('An autism diagnosis is needed first');
+  await expect(section.locator('[data-result-group="g3"][data-id="bc-autism-funding-6-18"]')).toBeVisible();
+  await expect(page.locator('.result-group-main [data-fact-program="bc-autism-funding-6-18"]')).toHaveCount(0);
+});
+
+test('autism diagnosis "not sure": BC Autism Funding keeps its full card', async ({ page }) => {
+  await openResults(page, 'P03-surrey-autistic-child', (a) => ({ ...a, autismDiagnosis: 'unsure' }));
+  await expect(page.locator('[data-later-reason="autism"]')).toHaveCount(0);
+  await expect(page.locator('.result-group-main [data-fact-program="bc-autism-funding-6-18"]')).toHaveCount(1);
+});

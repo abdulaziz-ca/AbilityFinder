@@ -106,3 +106,39 @@ test("phase 2: no received answer means no G0 and identical groups", () => {
     for (const k of ["g1", "g2", "g3", "no"]) assert.deepEqual(ids(a[k]), ids(b[k]), `${p.id} ${k}`);
   }
 });
+
+test("autism diagnosis answered 'no': the three diagnosis-first programs move to G3 with reason autism", () => {
+  const p = PERSONAS.find((x) => x.id === "P03-surrey-autistic-child");
+  const cases = [
+    [{ ...p.answers, autismDiagnosis: "no" }, ["bc-autism-funding-6-18"]],
+    [{ ...p.answers, autismDiagnosis: "no", ageBand: "under6" }, ["bc-autism-funding-under-6"]],
+    [{ ...p.answers, autismDiagnosis: "no", province: "ON", city: "Toronto" }, ["ontario-autism-program"]],
+  ];
+  for (const [answers, expected] of cases) {
+    const evaluated = evaluateScoped(answers);
+    const g = classifyResults(evaluated, answers);
+    const autism = g.g3.filter((e) => e.reason === "autism").map((e) => e.b.id).sort();
+    assert.deepEqual(autism, expected, JSON.stringify({ province: answers.province, ageBand: answers.ageBand }));
+    // Same answers but "not sure" or unanswered: never moved.
+    for (const autismDiagnosis of ["unsure", null]) {
+      const a2 = { ...answers, autismDiagnosis };
+      const g2 = classifyResults(evaluateScoped(a2), a2);
+      assert.equal(g2.g3.filter((e) => e.reason === "autism").length, 0, `autismDiagnosis=${autismDiagnosis}`);
+    }
+  }
+});
+
+test("G3 rules only move programs on their reviewed list", () => {
+  const { PREREQ_RULES } = require("../public/resultsGroups.js");
+  for (const p of PERSONAS) {
+    for (const autismDiagnosis of ["no", "yes", "unsure"]) {
+      const answers = { ...p.answers, autismDiagnosis, disabilities: [...new Set([...(p.answers.disabilities || []), "autism"])] };
+      const g = classifyResults(evaluateScoped(answers), answers);
+      for (const e of g.g3) {
+        if (e.reason === "dtc") continue;
+        const rule = PREREQ_RULES.find((r) => r.reason === e.reason);
+        assert.ok(rule && rule.programs.includes(e.b.id), `${p.id}: ${e.b.id} (${e.reason})`);
+      }
+    }
+  }
+});
