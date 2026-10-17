@@ -472,3 +472,19 @@ test("SEC-04: the size gate runs before any binding is touched", async () => {
 
   assert.equal(response.status, 413);
 });
+
+test("SEC-04: a body over the cap without Content-Length is refused while streaming", async () => {
+  const worker = loadWorkerForTest();
+  const response = await worker.fetch(
+    new Request("https://abilityfinder.ca/api/feedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Origin": "https://abilityfinder.ca" },
+      body: JSON.stringify({ message: "x".repeat(70000) }),
+    }),
+    {
+      ASK_LIMIT: { async limit() { return { success: true }; } },
+      FEEDBACK_MAIL: { async send() { throw new Error("must not send"); } },
+    }
+  );
+  assert.equal(response.status, 413);
+});

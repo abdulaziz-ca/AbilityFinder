@@ -87,7 +87,7 @@ HOW TO WRITE:
 
 TONE AND CARE:
 - Many people using this are tired, in pain, or have been denied before. Never suggest someone is not trying hard enough.
-- You are not a doctor, lawyer, or financial advisor. For appeals and legal questions, point to Legal Aid Alberta or a community legal clinic.
+- You are not a doctor, lawyer, or financial advisor. For appeals and legal questions, point to the legal aid office in their province (Legal Aid Alberta, Legal Aid BC or Legal Aid Ontario) or a community legal clinic.
 - Many people give up before applying. If someone is unsure, encourage them to apply anyway: the government decides, applying is usually free, and a denial can be appealed.
 - Scope is ${BENEFITS_SCOPE.label}. For a province or territory outside ${BENEFITS_SCOPE.provinces.join(" and ")}, say AbilityFinder does not cover its provincial or territorial programs yet, but federal programs may still apply.`;
 
@@ -143,6 +143,37 @@ function errorResponse(message, status) {
       "Cache-Control": "no-store",
     },
   });
+}
+
+/**
+ * Read a JSON body with a real byte cap. bodyTooLarge() can only pre-check a
+ * declared Content-Length; a body sent without one used to be read unbounded
+ * (site audit 2026-10, D-ENGINEERING P3). Streams and stops at MAX_BODY_BYTES.
+ * Returns { tooLarge } or { body } or { malformed }.
+ */
+async function readJsonCapped(request) {
+  if (!request.body) return { malformed: true };
+  const reader = request.body.getReader();
+  const chunks = [];
+  let total = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    total += value.byteLength;
+    if (total > MAX_BODY_BYTES) {
+      await reader.cancel().catch(() => {});
+      return { tooLarge: true };
+    }
+    chunks.push(value);
+  }
+  const bytes = new Uint8Array(total);
+  let offset = 0;
+  for (const c of chunks) { bytes.set(c, offset); offset += c.byteLength; }
+  try {
+    return { body: JSON.parse(new TextDecoder().decode(bytes)) };
+  } catch {
+    return { malformed: true };
+  }
 }
 
 function bodyTooLarge(request) {
@@ -334,12 +365,10 @@ async function handleAsk(request, env) {
       : rl;
   }
 
-  let body;
-  try {
-    body = await request.json();
-  } catch {
-    return errorResponse("Malformed request.", 400);
-  }
+  const parsed = await readJsonCapped(request);
+  if (parsed.tooLarge) return errorResponse("That request is too large.", 413);
+  if (parsed.malformed) return errorResponse("Malformed request.", 400);
+  const body = parsed.body;
 
   const invalid = validateMessages(body?.messages);
   if (invalid) return errorResponse(invalid, 400);
@@ -402,12 +431,10 @@ async function handleFeedback(request, env) {
       : rl;
   }
 
-  let body;
-  try {
-    body = await request.json();
-  } catch {
-    return errorResponse("Malformed request.", 400);
-  }
+  const parsed = await readJsonCapped(request);
+  if (parsed.tooLarge) return errorResponse("That request is too large.", 413);
+  if (parsed.malformed) return errorResponse("Malformed request.", 400);
+  const body = parsed.body;
 
   const message = String(body?.message ?? "").trim();
   const rawKind = String(body?.kind ?? "").trim();
@@ -467,7 +494,7 @@ async function handleLinkHealth(request, env) {
   if (!raw) {
     return new Response(
       JSON.stringify({ status: "no report yet — the three-hour check has not run" }, null, 2),
-      { status: 200, headers: { "Content-Type": "application/json", "X-Robots-Tag": "noindex" } }
+      { status: 200, headers: { "Content-Type": "application/json", "Cache-Control": "no-store", "X-Robots-Tag": "noindex" } }
     );
   }
   return new Response(raw, {
