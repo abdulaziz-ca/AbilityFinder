@@ -2907,7 +2907,6 @@ const BENEFITS = [
       ],
       documents: [
         "Your Social Insurance Number (SIN)",
-        "A medical practitioner familiar with your condition",
         "Real examples of how it limits you (focus, memory, walking, self-care, etc.)",
       ],
       tips: [
@@ -2923,6 +2922,7 @@ const BENEFITS = [
         "Ask which activities count toward the 14 hours. Travel does not count, and recovery counts only when medically required.",
         "The CRA says people with Type 1 diabetes meet the life-sustaining-therapy criteria. Practitioners no longer need to give therapy details for 2021 and later years. But a practitioner must still certify the application.",
         "These questions do not decide eligibility. Only the certifying practitioner and the CRA do.",
+        "A medical practitioner familiar with your condition",
       ],
       time: "Processing time varies; check the CRA processing-times tool for a current estimate.",
       phone: "CRA: 1-800-959-8281",
@@ -3001,11 +3001,11 @@ const BENEFITS = [
       ],
       documents: [
         "Your child's DTC approval",
-        "You must be the person receiving the CCB",
       ],
       tips: [
         "No separate application. The hard part is getting your child's DTC approved.",
         "The amount goes down gradually for family income over about $82,847.",
+        "You must be the person receiving the CCB",
       ],
       time: "Added to your next CCB payment after DTC approval.",
       phone: "CRA benefits: 1-800-387-1193",
@@ -3047,12 +3047,12 @@ const BENEFITS = [
       ],
       documents: [
         "Your SIN and DTC approval",
-        "Be a Canadian resident under age 60",
       ],
       tips: [
         "The bond (up to $1,000/year) needs no contribution from you.",
         "Grants can match up to 300%. For lower incomes, the first $500 you put in can become $1,500.",
         "Ask the bank specifically for an 'RDSP'. Front-line staff are sometimes not familiar with it.",
+        "Be a Canadian resident under age 60",
       ],
       time: "Can be opened same-day once you have DTC approval.",
       phone: "RDSP info: 1-866-204-0357",
@@ -3121,7 +3121,6 @@ const BENEFITS = [
         "Submit and keep a copy of everything.",
       ],
       documents: [
-        "Enough CPP contributions (generally 4 of the last 6 years)",
         "A detailed medical report from your doctor",
         "Details of your work history and why you can't continue",
       ],
@@ -3129,6 +3128,7 @@ const BENEFITS = [
         "'Severe and prolonged' is a high bar. Describe your worst days honestly, not your best.",
         "If denied, you can request reconsideration. Don't give up after a first no.",
         "Apply as soon as you stop being able to work. There can be back-pay.",
+        "Enough CPP contributions (generally 4 of the last 6 years)",
       ],
       time: "Around 120 days for a decision.",
       phone: "Service Canada: 1-800-277-9914",
@@ -4550,12 +4550,12 @@ const BENEFITS = [
       documents: [
         "AISH statement (or other proof of household income)",
         "Proof of a Wood Buffalo address",
-        "You must be 18 or older to apply (people under 18 who live independently may be considered)",
       ],
       tips: [
         "The income line here is high: about $35,500 for one person, well above AISH.",
         "One application covers your partner and dependent children too, not just you.",
         "Call Pulse on 780-743-7000 if anything about the form is unclear.",
+        "You must be 18 or older to apply (people under 18 who live independently may be considered)",
       ],
       time: "Notification within 7–10 business days of a complete application.",
       phone: "Pulse: 780-743-7000",
@@ -5409,8 +5409,8 @@ const BENEFITS = [
       "about": "The BC Bus Pass Program provides a monthly pass at no annual cost to eligible people with the PWD designation who receive disability assistance, and a separate $45 annual pass to eligible low-income seniors. The pass works on scheduled BC Transit services across the province and as a Compass Card on TransLink in Metro Vancouver. A PWD recipient chooses either the pass or the $52 monthly cash transportation supplement.",
       "aboutList": { "lead": "The BC Bus Pass Program provides a monthly pass at no annual cost to eligible people with the PWD designation who receive disability assistance, and a separate $45 annual pass to eligible low-income seniors.", "items": ["The pass works on scheduled BC Transit services across the province and as a Compass Card on TransLink in Metro Vancouver.", "A PWD recipient chooses either the pass or the $52 monthly cash transportation supplement."] },
       "steps": ["Confirm whether you qualify through the PWD stream or the low-income-senior stream", "If you receive PWD disability assistance, choose either the no-fee bus pass or the $52 monthly cash transportation supplement", "Request the pass through My Self Serve or by calling 1-866-866-0800; PWD recipients switching from cash should contact the ministry by the 5th for the change to start the next month", "Allow 4 to 6 weeks for a new pass to arrive"],
-      "documents": ["No new documents if you already receive disability assistance — just your request", "Seniors stream: SIN, name, date of birth, address and contact details"],
-      "tips": ["PWD recipients pay no annual fee. The $45 annual fee applies to the eligible low-income-senior stream.", "The pass works in BC Transit communities across the whole province, not just your home city", "Replacement passes can have a fee, even when the original PWD pass had no annual fee. Report a lost pass quickly.", "PWD recipients can later cancel the pass and go back to the $52 monthly cash supplement. To do this, contact the ministry by the 5th."],
+      "documents": ["Seniors stream: SIN, name, date of birth, address and contact details"],
+      "tips": ["PWD recipients pay no annual fee. The $45 annual fee applies to the eligible low-income-senior stream.", "The pass works in BC Transit communities across the whole province, not just your home city", "Replacement passes can have a fee, even when the original PWD pass had no annual fee. Report a lost pass quickly.", "PWD recipients can later cancel the pass and go back to the $52 monthly cash supplement. To do this, contact the ministry by the 5th.", "No new documents if you already receive disability assistance — just your request"],
       "time": "Allow 4 to 6 weeks for a new pass to arrive",
       "phone": "1-866-866-0800"
     }
