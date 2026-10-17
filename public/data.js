@@ -3277,9 +3277,9 @@ const BENEFITS = [
       mode: "all",
       items: [
         "The person the renovation is for is a qualifying individual — either eligible for the Disability Tax Credit at any time in the year, or 65 years of age or older at the end of the year.",
-        "A spouse, common-law partner or certain other relatives may claim instead as an eligible individual.",
         "The renovation is of an enduring nature and integral to the dwelling, and either lets the person get into, move around or function within the home, or reduces their risk of harm.",
       ],
+      note: "A spouse, common-law partner or certain other relatives may claim instead as an eligible individual.",
     },
     note:
       "You claim this on your tax return at line 31285. You do not apply in advance. It is non-refundable, so it lowers the tax you owe. It does not pay you money on its own.",

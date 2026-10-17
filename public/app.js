@@ -5142,7 +5142,7 @@ function actionPlanBenefits(matched) {
 
 /* ---- print-only action plan; built entirely from the local catalog ---- */
 function renderPrintActionPlan(matched) {
-  const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+  const esc = reqEscape; // one shared helper that also escapes quotes (site audit D-ENGINEERING P3)
   const plan = actionPlanBenefits(matched);
   const listed = plan.map((e) => e.b);
   const documentsToGather = buildDocumentChecklist(plan);
@@ -5201,7 +5201,7 @@ function reportAnnualTotal(ready) {
   return Math.round(total / 100) * 100;
 }
 function printResults() {
-  const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+  const esc = reqEscape; // one shared helper that also escapes quotes (site audit D-ENGINEERING P3)
   // Programs the person already gets are not printed as ones to apply for.
   const received = new Set(receivedIds());
   const evaluated = browseCatalog().filter((b) => benefitInResultsScope(b, answers) && !received.has(b.id)).map((b) => ({ b, r: evaluate(b) }));
