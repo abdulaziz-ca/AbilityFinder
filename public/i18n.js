@@ -9,13 +9,13 @@ const LANGS = [{ code: "en", label: "EN", name: "English" }, { code: "fr", label
 const I18N = {
   en: {
     "req.heading": "Requirements to check",
-    "req.count.one": "1 requirement not yet confirmed",
-    "req.count.other": "{n} requirements not yet confirmed",
+    "req.count.one": "1 requirement to confirm",
+    "req.count.other": "{n} requirements to confirm",
     "req.context": "Some checks involve a professional or a program decision.",
     "req.you": "What you can check or prepare",
     "req.professional": "What a professional confirms",
     "req.program": "What the program decides",
-    "req.shared": "Shared checks",
+    "req.shared": "Checks you do with someone else",
     "req.other": "Other checks",
     "req.full": "Read full requirements for {name}",
     "req.guide": "See all requirements for {name}",

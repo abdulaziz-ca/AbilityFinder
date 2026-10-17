@@ -214,7 +214,7 @@ const REQS = {
   dtc: {
     met: () => answers.dtc === "yes",
     fixed: false,
-    unmet: "Get approved for the Disability Tax Credit first — it unlocks this.",
+    unmet: "This needs Disability Tax Credit approval first.",
     action: { text: "Start the DTC (T2201)", url: DTC_URL },
   },
   prolonged: {
@@ -1622,7 +1622,7 @@ function evaluate(benefit, scopedConfirmations = confirmedFacts) {
     } else {
       let text = typeof req.unmet === "function" ? req.unmet() : req.unmet;
       if (key === "dtc" && answers.dtc === "unsure") {
-        text = "You're not sure about your Disability Tax Credit — apply for it; it unlocks this.";
+        text = "This needs Disability Tax Credit approval. If you are not sure whether you have it, check your CRA account or apply.";
       }
       const useCue = !(key === "dtc" && answers.dtc === "unsure");
       needs.push({ key, text, action: req.action,

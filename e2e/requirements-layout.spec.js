@@ -182,7 +182,7 @@ test("inline headings, shared actors and EN fallback keep their presentation con
     setState("detail", { detailId: "odsp" });
   });
   const section = page.locator(".req-checks");
-  await expect(section.getByRole("heading", { name: "Shared checks" })).toBeVisible();
+  await expect(section.getByRole("heading", { name: "Checks you do with someone else" })).toBeVisible();
   await expect(section.locator('[lang="fr"]')).toHaveCount(0);
   expect(await page.locator('#app').textContent()).toContain(await page.evaluate(() => t('det.enNote')));
   const noteCount = await page.evaluate(() => document.getElementById('app').textContent.split(t('det.enNote')).length - 1);
