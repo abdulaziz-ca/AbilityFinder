@@ -245,6 +245,10 @@ async function enterAge(page, age) {
 }
 
 test("normal wizard cycle saves continuously and reloads from IndexedDB mid-flow", async ({ page, context }) => {
+  // Two full wizard walks plus reloads. On the CI WebKit runner this reached the
+  // final results page and still passed 90 s (2026-10-17, run for d0bba72), so it
+  // gets the triple budget Playwright reserves for known-long tests.
+  test.slow();
   const errors = [];
   const requests = [];
   collectPageErrors(page, errors);
