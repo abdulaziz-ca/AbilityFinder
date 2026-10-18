@@ -188,6 +188,11 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "saint-john-pro-kids": { kind: "grant", note: "Pays recreation registration, equipment and transport for low-income families" },
+  "saint-john-accessible-transit": { kind: "access", note: "Accessible rides for people who cannot use regular transit" },
+  "fredericton-para-transit": { kind: "discount", note: "Accessible rides for registered clients, $3 one way" },
+  "dieppe-accessible-transit": { kind: "discount", note: "City-subsidized accessible rides, $3 one way in Dieppe" },
+  "moncton-cnib-free-transit": { kind: "access", note: "Free Codiac Transpo rides for CNIB cardholders" },
   "nb-ambulance-fee-exemption": { kind: "discount", note: "Ambulance bill ($130.60 for residents) is not paid upfront by listed groups." },
   "nb-rrap": { kind: "grant", note: "A forgivable loan toward a secondary or garden suite for an adult with a disability." },
   "nb-rent-supplement": { kind: "grant", note: "Rent reduced to 30% of adjusted household income in a subsidized unit." },
@@ -546,6 +551,11 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "saint-john-pro-kids": { difficulty: 3, effort: "Not published", wait: "Not published" },
+  "saint-john-accessible-transit": { difficulty: 2, effort: "Phone booking", wait: "Not published" },
+  "fredericton-para-transit": { difficulty: 3, effort: "Registration form", wait: "Not published" },
+  "dieppe-accessible-transit": { difficulty: 3, effort: "Application with proof of disability", wait: "Usually about four weeks" },
+  "moncton-cnib-free-transit": { difficulty: 2, effort: "CNIB card", wait: "Not published" },
   "nb-ambulance-fee-exemption": { difficulty: 1, effort: "Contact Ambulance NB if you are billed in error.", wait: "Not published" },
   "nb-rrap": { difficulty: 4, effort: "Feasibility check, income proof and your 25% share of costs.", wait: "Not published" },
   "nb-rent-supplement": { difficulty: 2, effort: "Phone call and application with income details.", wait: "Not published" },
@@ -15487,6 +15497,237 @@ const BENEFITS = [
       ],
       "phone": "1-888-657-3222"
     }
+  },
+  {
+    "id": "moncton-cnib-free-transit",
+    "name": "Free Codiac Transpo rides for CNIB cardholders",
+    "level": "Moncton",
+    "category": "Transit",
+    "amount": "Free rides on all Codiac Transpo buses",
+    "summary": "CNIB cardholders ride all Codiac Transpo buses for free. Show your valid CNIB card when you board.",
+    "note": "Companions who need to travel with someone with a disability can get a free attendant pass.",
+    "requires": [
+      "nb",
+      "moncton",
+      "monctonCnibFreeTransitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You hold a CNIB card."
+      ],
+      "note": "Your CNIB card must be valid when you board."
+    },
+    "applyText": "See Codiac Transpo accessibility",
+    "applyUrl": "https://www.codiactranspo.ca/moncton-transport/accessibility",
+    "source": "https://www.codiactranspo.ca/moncton-transport/accessibility",
+    "detail": {
+      "aboutList": {
+        "lead": "This program gives you:",
+        "items": [
+          "Free travel on all Codiac Transpo buses.",
+          "A free attendant pass for a companion who assists you."
+        ]
+      },
+      "steps": [
+        "Get a CNIB card if you do not have one.",
+        "Show your valid CNIB card to the driver when you board.",
+        "Ask for an attendant pass at 140 Millenium Blvd if you travel with an assistant."
+      ],
+      "documents": [
+        "Valid CNIB card"
+      ],
+      "tips": []
+    }
+  },
+  {
+    "id": "dieppe-accessible-transit",
+    "name": "Dieppe Accessible Transit",
+    "level": "Dieppe",
+    "category": "Transit",
+    "amount": "Trips from $3 one way in Dieppe, $6 to Moncton or Riverview",
+    "summary": "Dieppe residents with a disability that stops them using public transit can book subsidized rides. The city pays the rest of the cost.",
+    "note": "Applications are reviewed case by case. Access can be denied, temporary or have conditions.",
+    "requires": [
+      "nb",
+      "dieppe",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Dieppe.",
+        "You use a wheelchair permanently, or can show a significant, lasting disability.",
+        "The disability does not let you use public transit safely.",
+        "You apply online or by phone."
+      ],
+      "note": "The city decides each application case by case."
+    },
+    "applyText": "Apply to Dieppe Accessible Transit",
+    "applyUrl": "https://www.dieppe.ca/en/vivre-ici/transports/transport-adapte/",
+    "source": "https://www.dieppe.ca/en/vivre-ici/transports/transport-adapte/",
+    "detail": {
+      "aboutList": {
+        "lead": "This program gives you:",
+        "items": [
+          "$3 one way or $6 return within Dieppe.",
+          "$6 one way or $12 return to or from Moncton or Riverview.",
+          "Service Monday to Saturday 6:30 am to 9:30 pm, Sunday 9:30 am to 6 pm."
+        ]
+      },
+      "steps": [
+        "Apply online or call 506-877-7900.",
+        "Give a valid email address, because decisions are sent by email.",
+        "Wait for a decision. Applications are typically processed within four weeks.",
+        "Book each trip with the provider at least 24 hours ahead."
+      ],
+      "documents": [
+        "Proof of a significant, lasting disability, if you do not use a wheelchair permanently"
+      ],
+      "tips": [
+        "The city may reassess, change or end your access later.",
+        "Some trips may be shared with other passengers.",
+        "You are told how many round trips you get each month."
+      ],
+      "time": "Typically within four weeks",
+      "phone": "506-384-0969"
+    }
+  },
+  {
+    "id": "fredericton-para-transit",
+    "name": "Fredericton Para Transit",
+    "level": "Fredericton",
+    "category": "Transit",
+    "amount": "$3 one way, or 10 tickets for $27.50",
+    "summary": "Fredericton runs a para transit service for people with disabilities. It is for registered clients only, in accessible vehicles.",
+    "note": "Attendants travel free where required. Trips must be booked a day before.",
+    "requires": [
+      "nb",
+      "fredericton",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a person with a disability.",
+        "You are a registered Para Transit client."
+      ],
+      "note": "The page does not list the registration rules."
+    },
+    "applyText": "See Fredericton Para Transit",
+    "applyUrl": "https://www.fredericton.ca/en/resident-services/fredericton-transit/para-transit",
+    "source": "https://www.fredericton.ca/en/resident-services/fredericton-transit/para-transit",
+    "detail": {
+      "aboutList": {
+        "lead": "This program gives you:",
+        "items": [
+          "Rides in accessible vehicles for $3 cash each way.",
+          "Service Monday to Saturday 7 am to 11 pm, Sunday 9 am to 6 pm."
+        ]
+      },
+      "steps": [
+        "Read the registration documents on the Para Transit page.",
+        "Fill in the registration and consent form, or call Service Fredericton at 506-460-2020.",
+        "Once registered, call to book each trip a day before."
+      ],
+      "documents": [
+        "Para Transit Registration and Consent Form"
+      ],
+      "tips": [
+        "A 10-ride ticket book costs $27.50.",
+        "Regular users can subscribe for set times and destinations.",
+        "Booking line for registered clients: 506-460-2212."
+      ]
+    }
+  },
+  {
+    "id": "saint-john-accessible-transit",
+    "name": "Saint John Accessible Transit",
+    "level": "Saint John",
+    "category": "Transit",
+    "amount": "$5.50 each way, or 10 rides for $50",
+    "summary": "Rides for people with disabilities who cannot use regular public transit. A non-profit, Independence Plus Inc., runs the service.",
+    "note": "An attendant travelling with you pays nothing. Cancel at least 60 minutes ahead.",
+    "requires": [
+      "nb",
+      "saintJohn",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have a disability.",
+        "You cannot use regular public transportation."
+      ],
+      "note": "The page does not describe a registration process."
+    },
+    "applyText": "See Saint John Accessible Transit",
+    "applyUrl": "https://saintjohn.ca/en/transit/accessibility/handi-bus-service",
+    "source": "https://saintjohn.ca/en/transit/accessibility/handi-bus-service",
+    "detail": {
+      "aboutList": {
+        "lead": "This program gives you:",
+        "items": [
+          "A 10-ride pass for $50 or a 20-ride pass for $90.",
+          "Service Monday to Saturday, with no service on Sunday."
+        ]
+      },
+      "steps": [
+        "Call 506-648-0609 to book or cancel a ride.",
+        "Be ready 5 minutes before your pickup time.",
+        "Call 506-643-7004 for administration questions."
+      ],
+      "documents": [],
+      "tips": [
+        "Rides within city limits cost $5.50 each way.",
+        "Drivers wait only 3 minutes.",
+        "Drivers cannot enter your home or help carry wheelchairs, so arrange an attendant.",
+        "Failing to cancel or being late costs the full fee, and three no-shows may lead to suspension."
+      ]
+    }
+  },
+  {
+    "id": "saint-john-pro-kids",
+    "name": "P.R.O. Kids recreation fee help",
+    "level": "Saint John",
+    "category": "Recreation",
+    "amount": "Pays registration, equipment and transportation costs",
+    "summary": "P.R.O. Kids is a charitable program run by the City of Saint John for low-income families. It pays costs of organized, registered recreation.",
+    "note": "The page gives no age rule or income limit. Ask the City about both.",
+    "requires": [
+      "nb",
+      "saintJohn",
+      "saintJohnProKidsRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are in a low-income family.",
+        "You need help paying for organized, registered recreation."
+      ],
+      "note": "The page does not state an income limit or an age rule."
+    },
+    "applyText": "See City of Saint John financial assistance",
+    "applyUrl": "https://saintjohn.ca/en/parks-and-recreation/recreation/financial-assistance",
+    "source": "https://saintjohn.ca/en/parks-and-recreation/recreation/financial-assistance",
+    "detail": {
+      "aboutList": {
+        "lead": "This program pays for:",
+        "items": [
+          "Registration fees.",
+          "Equipment costs.",
+          "Transportation costs related to the activity."
+        ]
+      },
+      "steps": [
+        "Read the Financial Assistance page.",
+        "Contact the City of Saint John Parks and Recreation to ask how to apply."
+      ],
+      "documents": [],
+      "tips": [
+        "The page lists online forms but does not name the P.R.O. Kids form."
+      ]
+    }
   }
 
 ];
@@ -15617,6 +15858,11 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "saint-john-pro-kids": "2026-10", // new 2026-10-17 from the official page (research/2026-10-new-brunswick/city-snapshots)
+  "saint-john-accessible-transit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-new-brunswick/city-snapshots)
+  "fredericton-para-transit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-new-brunswick/city-snapshots)
+  "dieppe-accessible-transit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-new-brunswick/city-snapshots)
+  "moncton-cnib-free-transit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-new-brunswick/city-snapshots)
   "nb-ambulance-fee-exemption": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "nb-rrap": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "nb-rent-supplement": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)

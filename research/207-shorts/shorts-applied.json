@@ -1570,5 +1570,15 @@
     "short": "Check that you get the assistance program it names",
     "who": ["you"],
     "reason": "Provincial-sweep record nb-ambulance-fee-exemption (2026-10-17)"
+  },
+  "monctonCnibFreeTransitRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "New Brunswick city record moncton-cnib-free-transit (2026-10-18)"
+  },
+  "saintJohnProKidsRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "New Brunswick city record saint-john-pro-kids (2026-10-18)"
   }
 }
