@@ -8,7 +8,7 @@ const app = fs.readFileSync('public/app.js', 'utf8');
 function context() {
   const ctx = vm.createContext({window: {}, document: {}, console});
   const constants = ['DATA_VERIFIED_MONTH', 'STALE_MONTHS', 'MONTHS_EN'].map(n => app.match(new RegExp(`^const ${n} = .*;$`, 'm'))[0]);
-  vm.runInContext(fs.readFileSync('public/data.js', 'utf8') + '\n' + constants.join('\n') + '\n' + app.match(/function verifiedFor\(b\) \{[\s\S]*?\n\}/)[0] + '\nglobalThis.freshness = verifiedFor;', ctx);
+  vm.runInContext(fs.readFileSync('public/data.js', 'utf8') + '\n' + constants.join('\n') + '\n' + app.match(/function verifiedFor\(b\) \{[\s\S]*?\n\}/)[0] + '\nglobalThis.freshness = verifiedFor; globalThis.levelOf = (id) => BENEFITS.find((b) => b.id === id).level;', ctx);
   return ctx;
 }
 test('every record has exactly one honest label, agrees with queue and generated guide', () => {
@@ -24,11 +24,12 @@ test('every record has exactly one honest label, agrees with queue and generated
     assert.equal(inheritedLabel, record.inherited, record.id);
     inherited += Number(f.inherited);
     const file = `public/guides/${record.id}.html`;
-    if (record.id === 'local-supports') { assert.equal(fs.existsSync(file), false); continue; }
+    // The routing placeholder and dark-province records have no static guide.
+    if (record.id === 'local-supports' || (ctx.levelOf(record.id) === 'Saskatchewan' && !/^const SK_ENABLED = true;/m.test(app))) { assert.equal(fs.existsSync(file), false); continue; }
     const html = fs.readFileSync(file, 'utf8');
     assert.ok(html.includes(`<span class="verified">${f.wording}</span>`), record.id);
   }
-  assert.equal(queue.length, 218);
+  assert.equal(queue.length, 236);
   assert.equal(inherited, 39);
   assert.ok(app.includes('${vFresh.wording}'));
 });

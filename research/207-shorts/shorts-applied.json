@@ -1250,5 +1250,90 @@
     "short": "Check the disability documents the program asks for",
     "who": ["you", "professional"],
     "reason": "Provincial-sweep record on-childrens-rehab (2026-10-17)"
+  },
+  "skSaidRoute": {
+    "short": "Check the disability and financial need rules",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record sk-said (2026-10-17)"
+  },
+  "skIncomeSupportRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record sk-income-support (2026-10-17)"
+  },
+  "skEmploymentIncentiveRoute": {
+    "short": "Check the income test, your work earnings and that you are raising a child",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record sk-employment-incentive (2026-10-17)"
+  },
+  "skHousingBenefitRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record sk-housing-benefit (2026-10-17)"
+  },
+  "skSailRoute": {
+    "short": "Ask a health professional for a referral",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record sk-sail (2026-10-17)"
+  },
+  "skSupplementaryHealthRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Provincial-sweep record sk-supplementary-health (2026-10-17)"
+  },
+  "skFamilyHealthBenefitsRoute": {
+    "short": "Check the income test and that you are raising a child",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record sk-family-health-benefits (2026-10-17)"
+  },
+  "skSpecialSupportRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record sk-special-support (2026-10-17)"
+  },
+  "skSeniorsDrugPlanRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record sk-seniors-drug-plan (2026-10-17)"
+  },
+  "skSeniorsIncomePlanRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record sk-seniors-income-plan (2026-10-17)"
+  },
+  "skAutismIndividualizedFundingRoute": {
+    "short": "Check the diagnosis and that the child is under twelve",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record sk-autism-individualized-funding (2026-10-17)"
+  },
+  "skCognitiveDisabilityStrategyRoute": {
+    "short": "Ask the ministry whether your need qualifies",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record sk-cognitive-disability-strategy (2026-10-17)"
+  },
+  "skFamilyRespiteIntellectualDisabilityRoute": {
+    "short": "Check the income or disability route",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record sk-family-respite-intellectual-disability (2026-10-17)"
+  },
+  "skHomeCareRoute": {
+    "short": "Ask for a care needs assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record sk-home-care (2026-10-17)"
+  },
+  "skAdaptationsForIndependenceRoute": {
+    "short": "Check the disability, income and asset limits",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record sk-adaptations-for-independence (2026-10-17)"
+  },
+  "skEapdRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record sk-eapd (2026-10-17)"
+  },
+  "skPersonalCareHomeBenefitRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record sk-personal-care-home-benefit (2026-10-17)"
   }
 }

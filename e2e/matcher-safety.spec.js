@@ -1755,6 +1755,34 @@ test("a dark province's records cannot be browsed or rendered", async ({ page })
   }
 });
 
+test("dark Saskatchewan records cannot be browsed or rendered, and Lloydminster stays shared", async ({ page }) => {
+  await gotoReadyApp(page);
+  const probe = await page.evaluate(() => {
+    const skIds = BENEFITS.filter((b) => b.level === "Saskatchewan").map((b) => b.id);
+    const browsable = browseCatalog().map((b) => b.id);
+    const lloyd = BENEFITS.find((b) => b.id === "lloydminster-recreation-access");
+    return {
+      skEnabled: SK_ENABLED,
+      skCount: skIds.length,
+      browsableSk: skIds.filter((id) => browsable.includes(id)),
+      renderableSk: skIds.filter((id) => !/Not found/.test(renderDetail(id))),
+      lloydBrowsable: browsable.includes(lloyd.id),
+      lloydProvinces: benefitProvinces(lloyd),
+    };
+  });
+  expect(probe.skCount).toBeGreaterThan(0);
+  // The Alberta program in a shared border city never disappears with the flag.
+  expect(probe.lloydBrowsable).toBe(true);
+  if (probe.skEnabled) {
+    expect(probe.browsableSk.length).toBe(probe.skCount);
+    expect(probe.lloydProvinces).toEqual(["AB", "SK"]);
+  } else {
+    expect(probe.browsableSk).toEqual([]);
+    expect(probe.renderableSk).toEqual([]);
+    expect(probe.lloydProvinces).toEqual(["AB"]);
+  }
+});
+
 test("the city question is never asked when the province has no city list", async ({ page }) => {
   // Ontario went live with province-level records only, so CITIES_BY_PROVINCE.ON is
   // empty. Before this guard, COVERED_PROVINCES included ON so the step rendered with

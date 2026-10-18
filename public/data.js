@@ -152,6 +152,24 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "sk-accessible-parking": { kind: "access", note: "$10 fee each time a permit is issued; the health professional may charge a form fee" },
+  "sk-personal-care-home-benefit": { kind: "grant", note: "Monthly amount is $3,500 minus your monthly income (half of combined income for couples)" },
+  "sk-eapd": { kind: "access", note: "Funds disability-related supports for work or training; no dollar amount published" },
+  "sk-adaptations-for-independence": { kind: "grant", note: "Forgivable loan of up to $23,000 for accessibility changes" },
+  "sk-home-care": { kind: "access", note: "Services based on assessed need; fees depend on income and a subsidy is available" },
+  "sk-family-respite-intellectual-disability": { kind: "grant", note: "Monthly income-tested respite benefit; no dollar amount published" },
+  "sk-cognitive-disability-strategy": { kind: "grant", note: "Income-tested benefit; no dollar amount published" },
+  "sk-autism-individualized-funding": { kind: "grant", note: "Up to $8,000 a year under age 6 and up to $6,000 a year for ages 6 to 11, paid for approved services" },
+  "sk-seniors-income-plan": { kind: "grant", note: "Monthly income top-up for seniors on OAS and GIS." },
+  "sk-seniors-drug-plan": { kind: "discount", note: "A $25 cap on eligible prescriptions." },
+  "sk-special-support": { kind: "discount", note: "Lower drug costs based on family income." },
+  "sk-family-health-benefits": { kind: "access", note: "Health coverage for children in low-income working families." },
+  "sk-supplementary-health": { kind: "access", note: "Extra health coverage for people on qualifying income programs." },
+  "sk-sail": { kind: "access", note: "Coverage of disability-related equipment and supplies." },
+  "sk-housing-benefit": { kind: "grant", note: "Monthly help with rent and utilities." },
+  "sk-employment-incentive": { kind: "grant", note: "Monthly payment for working families with low incomes and children." },
+  "sk-income-support": { kind: "grant", note: "Monthly money for shelter and basic needs." },
+  "sk-said": { kind: "grant", note: "Long-term monthly income for people with a significant and enduring disability." },
   "on-childrens-rehab": { kind: "access", note: "Therapy and family supports through a local Children's Treatment Centre" },
   "bc-subsidized-housing": { kind: "access", note: "Rent geared to income (30% of gross household income), subject to a minimum rent" },
   "ab-sharp": { kind: "access", note: "Low-interest loan of up to $40,000 at the current rate of 4.45%" },
@@ -433,6 +451,24 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "sk-accessible-parking": { difficulty: 2, effort: "Form signed by a health professional, plus $10 fee", wait: "Not published" },
+  "sk-personal-care-home-benefit": { difficulty: 3, effort: "Application form with income documents and direct deposit form", wait: "Not published" },
+  "sk-eapd": { difficulty: 2, effort: "Phone SaskJobs, then write a career or service plan", wait: "Not published" },
+  "sk-adaptations-for-independence": { difficulty: 4, effort: "Application form with income and asset documents, and a health practitioner's identification of changes", wait: "Not published" },
+  "sk-home-care": { difficulty: 3, effort: "Assessment by the health authority, plus an agreement for individualized funding", wait: "Not published" },
+  "sk-family-respite-intellectual-disability": { difficulty: 3, effort: "Application, two assessments and income verification", wait: "Not published" },
+  "sk-cognitive-disability-strategy": { difficulty: 3, effort: "Application package sent to a consultant, with help available", wait: "Not published" },
+  "sk-autism-individualized-funding": { difficulty: 3, effort: "Online application with ID, diagnosis form and bank details, then proof of expenses", wait: "Not published" },
+  "sk-seniors-income-plan": { difficulty: 1, effort: "No application. File taxes and apply for OAS/GIS.", wait: "Not published" },
+  "sk-seniors-drug-plan": { difficulty: 2, effort: "One application form with consent or income documents.", wait: "Not published" },
+  "sk-special-support": { difficulty: 2, effort: "One application form with consent or income documents.", wait: "Not published" },
+  "sk-family-health-benefits": { difficulty: 2, effort: "Call for a pre-assessment.", wait: "Not published" },
+  "sk-supplementary-health": { difficulty: 1, effort: "Approval follows enrolment in a qualifying program.", wait: "Not published" },
+  "sk-sail": { difficulty: 3, effort: "Needs a professional referral and program-specific criteria.", wait: "Not published" },
+  "sk-housing-benefit": { difficulty: 2, effort: "One online or PDF application with documents.", wait: "Contact SHC if no reply within 14 business days" },
+  "sk-employment-incentive": { difficulty: 2, effort: "Online application with income documents, then monthly income reports.", wait: "Not published" },
+  "sk-income-support": { difficulty: 2, effort: "Online or phone application plus a questionnaire within 30 days.", wait: "Not published" },
+  "sk-said": { difficulty: 3, effort: "Online or phone application, a disability assessment and a service questionnaire.", wait: "Not published" },
   "on-childrens-rehab": { difficulty: 2, effort: "Contact your local Children's Treatment Centre; no referral needed", wait: "Not published" },
   "bc-subsidized-housing": { difficulty: 4, effort: "Online or paper application with proof of disability and income", wait: "Not published" },
   "ab-sharp": { difficulty: 3, effort: "Application form, estimates and a land title caveat", wait: "Not published" },
@@ -11254,6 +11290,975 @@ const BENEFITS = [
         "You can also call your local ministry regional office for more information."
       ]
     }
+  },
+  {
+    "id": "sk-said",
+    "name": "Saskatchewan Assured Income for Disability (SAID)",
+    "level": "Saskatchewan",
+    "category": "Income support",
+    "amount": "Monthly income; payment tiers, no set maximum",
+    "summary": "Long-term monthly income for adults with a significant and enduring disability who lack the money for basic needs. Benefits vary with your situation and needs.",
+    "note": "New rules started September 1, 2026. The page says no current client will see a reduction in benefits.",
+    "requires": [
+      "sk",
+      "age18plus",
+      "skSaidRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a Canadian citizen, permanent resident or refugee, or here under the Canada-Ukraine authorization.",
+        "You live in Saskatchewan and are 18 or older.",
+        "You lack the financial resources to meet your basic needs.",
+        "You have a significant and enduring disability of a permanent nature that affects daily living.",
+        "The disability means you need a device, another person, a service animal or other accommodation."
+      ],
+      "note": "A Disability Impact Assessment is part of the application and identifies a significant and enduring disability."
+    },
+    "applyText": "Apply for SAID",
+    "applyUrl": "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities/income-support-for-people-with-disabilities",
+    "source": "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities/income-support-for-people-with-disabilities",
+    "detail": {
+      "aboutList": {
+        "lead": "SAID is Saskatchewan's long-term income support for people with disabilities.",
+        "items": [
+          "The Living Income benefit is a fixed monthly amount that you decide how to spend.",
+          "Exceptional Needs benefits help with costs like starting work or training and urgent household needs.",
+          "Benefits changed on September 1, 2026, and the page lists no set maximum monthly benefit.",
+          "As of April 1, 2025, yearly earned income exemptions: $7,500 single, $8,700 couple, $9,500 family.",
+          "Families with children earning over $500 a month can apply for the Saskatchewan Employment Incentive."
+        ]
+      },
+      "steps": [
+        "Apply online with a Saskatchewan Account, by phone, or at your local Social Services office.",
+        "Give your SIN, health number, and details of your money, property, vehicles and other benefits.",
+        "Finish the direct deposit form, the mandatory service questionnaire and money details within 30 days.",
+        "Complete the Disability Impact Assessment as part of the application.",
+        "If you apply as a couple, your spouse or partner must apply with you."
+      ],
+      "documents": [
+        "Social Insurance Number and Saskatchewan Health Services Number, or proof you applied",
+        "Spouse, partner and children's SINs and health numbers, if they apply",
+        "A rental or tenancy agreement",
+        "Bank statements for all accounts in your name and your spouse's name",
+        "Direct deposit authorization form"
+      ],
+      "tips": [
+        "An online application expires if you do not submit it within 15 days of starting.",
+        "If your application is denied, you have 15 days from the date on the letter to appeal.",
+        "Report changes such as a new job or a move right away. You may have to repay money if you do not.",
+        "Current Saskatchewan Income Support clients who want to apply for SAID should speak with their Planning and Support Specialist first.",
+        "A trustee or direct payment of shelter costs may be arranged if managing money is hard."
+      ],
+      "time": "Allow 25 minutes or more to apply online.",
+      "phone": "1-888-567-SAID (7243)"
+    }
+  },
+  {
+    "id": "sk-income-support",
+    "name": "Saskatchewan Income Support (SIS)",
+    "level": "Saskatchewan",
+    "category": "Income support",
+    "amount": "Adult basic benefit $375 a month; shelter $615 to $1,287 (rates from May 1, 2026)",
+    "summary": "Monthly money for shelter and basic needs for people with no or low income. The amount depends on your spouse, children, housing costs and where you live.",
+    "note": "These rates are effective May 1, 2026. Your circumstances are assessed every month, so the amount may change.",
+    "requires": [
+      "sk",
+      "age18plus",
+      "skIncomeSupportRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a Canadian citizen, permanent resident or refugee, or here under the Canada Ukraine authorization.",
+        "You live in Saskatchewan and are 18 or older.",
+        "You and your spouse or partner have no income or low income.",
+        "You have explored every other reasonable way to support yourself, including work and child support."
+      ],
+      "note": "The page says any person who needs financial help can apply."
+    },
+    "applyText": "Apply for SIS",
+    "applyUrl": "https://www.saskatchewan.ca/residents/family-and-social-support/financial-help/saskatchewan-income-support-sis",
+    "source": "https://www.saskatchewan.ca/residents/family-and-social-support/financial-help/saskatchewan-income-support-sis",
+    "detail": {
+      "aboutList": {
+        "lead": "SIS helps people in need meet basic needs while they become more self-sufficient.",
+        "items": [
+          "Adult basic benefit is $375 a month, or $445 in the Northern Administration District.",
+          "Children's basic benefit is $65 a month per child.",
+          "Shelter benefit runs from $615 to $1,287 a month by household and place.",
+          "Other help can include a $190 monthly heating benefit if you lack natural gas, and $50 to $150 for medical diets.",
+          "Monthly earned income exemptions are $375 single, $475 couple, $500 family."
+        ]
+      },
+      "steps": [
+        "Apply online with a Saskatchewan Account, by phone, or at a Social Services office.",
+        "Give your SIN, health number and details of your money, property and other benefits.",
+        "Complete the mandatory questionnaire online or by phone within 30 days of applying.",
+        "Send in your direct deposit form and a bank account in your name."
+      ],
+      "documents": [
+        "Social Insurance Number and Saskatchewan Health Services Number, or proof you applied",
+        "Spouse, partner and children's SINs and health numbers",
+        "Pay stubs or other income information",
+        "A rental agreement or other proof of where you live",
+        "Direct Deposit Authorization form"
+      ],
+      "tips": [
+        "An online application expires if you do not finish it within 15 days.",
+        "Families with children earning over $500 a month can apply for the Saskatchewan Employment Incentive.",
+        "The ministry may pay rent and utilities for you, or arrange a trustee, if managing money is hard.",
+        "Tell the ministry about changes right away. You may have to repay money if you do not."
+      ],
+      "time": "Allow 25 minutes or more to apply online.",
+      "phone": "1-866-221-5200"
+    }
+  },
+  {
+    "id": "sk-employment-incentive",
+    "name": "Saskatchewan Employment Incentive (SEI)",
+    "level": "Saskatchewan",
+    "category": "Money (for parents)",
+    "amount": "$400 to $600 a month, by number of eligible children",
+    "summary": "A monthly payment for working families with low incomes and children. It also comes with Supplementary Health Benefits review and discounted bus passes where available.",
+    "note": "The most you can get is paid when family earned income is between $500 and $2,200 a month. Over $2,200, it drops 30 cents for each extra dollar.",
+    "requires": [
+      "sk",
+      "skEmploymentIncentiveRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a Canadian citizen or permanent resident living in Saskatchewan, and you are 18 or older.",
+        "You have a valid Social Insurance Number and Saskatchewan Health Services Number.",
+        "You do not receive Saskatchewan Income Support or SAID benefits.",
+        "You have children aged 0-12, or aged 13-17 needing child care due to special circumstances.",
+        "You get the Canada Child Benefit for them, or are a Person of Sufficient Interest.",
+        "Your earned income is at least $500 a month, and family income is under the limit."
+      ],
+      "note": "The monthly family income limit depends on how many children you have."
+    },
+    "applyText": "Apply for SEI",
+    "applyUrl": "https://www.saskatchewan.ca/residents/family-and-social-support/financial-help/saskatchewan-employment-incentive-sei",
+    "source": "https://www.saskatchewan.ca/residents/family-and-social-support/financial-help/saskatchewan-employment-incentive-sei",
+    "detail": {
+      "aboutList": {
+        "lead": "SEI supports working families who have low incomes.",
+        "items": [
+          "The most you can get is $400 a month for 1 child, $500 for 2, and $600 for 3 or more.",
+          "Eligible families are automatically reviewed for Supplementary Health Benefits.",
+          "You can ask to hear about the Saskatchewan Housing Benefit when you apply.",
+          "Discounted bus passes are sold in seven municipalities, including Regina and Saskatoon."
+        ]
+      },
+      "steps": [
+        "Sign in to a Saskatchewan Account and apply online.",
+        "Attach pay stubs and other documents that verify your income.",
+        "Check your status through email or text alerts from your Saskatchewan Account.",
+        "Report your family income every month and tell Social Services of any changes."
+      ],
+      "documents": [
+        "Pay stubs for all pay received in the month before you apply",
+        "Self-employed: last year's Notice of Assessment, or last month's gross income if new",
+        "Social Insurance Numbers",
+        "Family members' Health Services Numbers",
+        "Direct deposit information"
+      ],
+      "tips": [
+        "Monthly family income limits: $3,533.34 with 1 child, $3,866.67 with 2, and $4,200.00 with 3 or more.",
+        "If you have a child aged 13-17 who needs child care, submit the special circumstance child care referral form.",
+        "If you receive CPP, EI, OAS, GIS, child support or rental income, you must give the amount.",
+        "If you need help, send the online communication form from your SEI account.",
+        "Allow about 25 minutes for the application."
+      ],
+      "time": "A staff member replies within five business days of a help request."
+    }
+  },
+  {
+    "id": "sk-housing-benefit",
+    "name": "Saskatchewan Housing Benefit",
+    "level": "Saskatchewan",
+    "category": "Housing",
+    "amount": "$210 to $390 a month (effective July 1, 2026)",
+    "summary": "A monthly benefit for renters whose rent and utilities take a large share of their income. The amount depends on household size and the share of income spent on shelter.",
+    "note": "Amounts are effective July 1, 2026. Two other streams help people in vulnerable living situations.",
+    "requires": [
+      "sk",
+      "skHousingBenefitRoute",
+      "noPostSecondaryStudents"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You rent your home and spend 35 per cent or more of before-tax household income on rent and utilities.",
+        "Your household has less than $300,000 in assets.",
+        "Your before-tax household income is at or below the limit for your household."
+      ],
+      "note": "Limits are $43,100 (single or couple), $52,900 (one dependant), $63,800 (two or more dependants) a year."
+    },
+    "applyText": "Apply for the Housing Benefit",
+    "applyUrl": "https://www.saskatchewan.ca/residents/housing-and-renting/renting-and-leasing/saskatchewan-housing-benefit",
+    "source": "https://www.saskatchewan.ca/residents/housing-and-renting/renting-and-leasing/saskatchewan-housing-benefit",
+    "detail": {
+      "aboutList": {
+        "lead": "The benefit is co-funded by the federal and Saskatchewan governments.",
+        "items": [
+          "Spending 35 to 45 per cent of income on shelter: $210, $270 or $330 a month.",
+          "Spending over 45 per cent: $270, $330 or $390 a month, by household size.",
+          "The higher amounts apply to households with one or more dependants.",
+          "A Supportive Housing Stream and a Seeking Safety from Interpersonal Violence Stream also exist."
+        ]
+      },
+      "steps": [
+        "Complete the online application, or download the PDF application. You only need one.",
+        "If you use the PDF, send it with required documents by email, fax or mail.",
+        "Wait for Saskatchewan Housing Corporation to contact you if it needs more information."
+      ],
+      "documents": [
+        "The completed application",
+        "The documents the application asks for"
+      ],
+      "tips": [
+        "You are not eligible if you get shelter support from another Saskatchewan assistance or training program.",
+        "You are also not eligible if you rent from a housing authority under the Social Housing Program.",
+        "Sponsored newcomers, people incarcerated in a facility, and full-time post-secondary students are not eligible.",
+        "Allow extra time if you apply by mail."
+      ],
+      "time": "If you hear nothing within 14 business days, contact the housing corporation.",
+      "phone": "1-844-787-4177"
+    }
+  },
+  {
+    "id": "sk-sail",
+    "name": "Saskatchewan Aids to Independent Living (SAIL)",
+    "level": "Saskatchewan",
+    "category": "Daily living supports",
+    "amount": "Coverage for disability-related equipment and supplies",
+    "summary": "Basic coverage of equipment, devices, products and supplies for people with physical disabilities and certain chronic health conditions, so they can live more actively and independently.",
+    "note": "A health care professional must refer you. The page lists the specific programs and their own criteria.",
+    "requires": [
+      "sk",
+      "equipmentNeed",
+      "skSailRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a Saskatchewan resident with a valid Saskatchewan Health Services Number.",
+        "An authorized health care professional refers you for service.",
+        "You use a service in Saskatchewan, unless Saskatchewan Health pre-authorizes otherwise.",
+        "You do not get benefits from other agencies such as SGI, WCB, Health Canada or Veterans Affairs."
+      ]
+    },
+    "applyText": "See SAIL programs",
+    "applyUrl": "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities/saskatchewan-aids-to-independent-living",
+    "source": "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities/saskatchewan-aids-to-independent-living",
+    "detail": {
+      "aboutList": {
+        "lead": "SAIL helps people with physical disabilities and some chronic conditions.",
+        "items": [
+          "Universal programs include prosthetics and orthotics, mobility and assistive devices, and respiratory equipment.",
+          "Other universal programs cover nutritional products, home oxygen, CPAP loans and compression garments.",
+          "Special programs include Paraplegia, Cystic Fibrosis, Ostomy, Haemophilia and the Insulin Pump Program.",
+          "Special programs also cover Chronic End-Stage Renal Disease and Aids to the Blind."
+        ]
+      },
+      "steps": [
+        "Ask an authorized health care professional about a referral.",
+        "Check the SAIL General Policies and the criteria for the program you need.",
+        "Contact SAIL to ask about your program."
+      ],
+      "documents": [
+        "Valid Saskatchewan Health Services Number",
+        "Referral from an authorized health care professional"
+      ],
+      "tips": [
+        "Special benefit programs have their own eligibility criteria.",
+        "The page does not say how to submit a claim, so contact SAIL to ask how your program works."
+      ],
+      "phone": "1-888-787-8996"
+    }
+  },
+  {
+    "id": "sk-supplementary-health",
+    "name": "Supplementary Health Benefits",
+    "level": "Saskatchewan",
+    "category": "Health",
+    "amount": "Adults pay up to $2 per prescription; dental, vision, hearing, foot care",
+    "summary": "Health services and products beyond basic coverage for people on SAID, Saskatchewan Income Support or the Employment Incentive, and some other groups.",
+    "note": "The Ministry of Health sends a letter confirming approval. Payments go straight to providers.",
+    "requires": [
+      "sk",
+      "skSupplementaryHealthRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You are enrolled in SAID, Saskatchewan Income Support or the Saskatchewan Employment Incentive.",
+        "You are a government ward or an inmate of a provincial correctional institution.",
+        "You live in a special care facility and qualify for the Seniors Income Plan."
+      ],
+      "note": "Covered services depend on your plan and often need prior approval."
+    },
+    "applyText": "See how coverage works",
+    "applyUrl": "https://www.saskatchewan.ca/residents/health/prescription-drug-plans-and-health-coverage/extended-benefits-and-drug-plan/supplementary-health-benefits",
+    "source": "https://www.saskatchewan.ca/residents/health/prescription-drug-plans-and-health-coverage/extended-benefits-and-drug-plan/supplementary-health-benefits",
+    "detail": {
+      "aboutList": {
+        "lead": "This program pays for health services not covered by basic health insurance.",
+        "items": [
+          "Adults on Plan One pay no more than $2 for each benefit prescription.",
+          "Under-18s get benefit prescriptions free, including insulin and diabetes pills.",
+          "Dental, eye exam, glasses, hearing, podiatry and emergency ambulance services are covered.",
+          "Adults able to work get emergency dental only for six months, then full benefits."
+        ]
+      },
+      "steps": [
+        "Enrol in a qualifying program such as SAID, SIS or SEI.",
+        "Wait for the Ministry of Health letter confirming approval.",
+        "Show your Saskatchewan Health card to the provider."
+      ],
+      "documents": [
+        "Valid Saskatchewan Health card or temporary health coverage form"
+      ],
+      "tips": [
+        "Many medical supplies need a prescription and prior approval.",
+        "Hearing aid replacement has a 30 per cent co-payment for clients over 20.",
+        "Coverage does not normally extend outside Saskatchewan without prior approval.",
+        "Questions about SAID or SIS can go to the Ministry of Social Services."
+      ],
+      "phone": "1-800-266-0695"
+    }
+  },
+  {
+    "id": "sk-family-health-benefits",
+    "name": "Family Health Benefits",
+    "level": "Saskatchewan",
+    "category": "Health (for children)",
+    "amount": "Children's dental, eye care, drugs; limited cover for parents",
+    "summary": "Health benefits for low-income working families who pass an income test. They help pay for several health services for children and some for parents.",
+    "note": "The Ministry of Social Services decides eligibility. Call for a pre-assessment.",
+    "requires": [
+      "sk",
+      "skFamilyHealthBenefitsRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a low-income working family.",
+        "You meet the standards of an income test."
+      ],
+      "note": "The page does not list income limits."
+    },
+    "applyText": "Learn about Family Health Benefits",
+    "applyUrl": "https://www.saskatchewan.ca/residents/health/prescription-drug-plans-and-health-coverage/extended-benefits-and-drug-plan/family-health-benefits",
+    "source": "https://www.saskatchewan.ca/residents/health/prescription-drug-plans-and-health-coverage/extended-benefits-and-drug-plan/family-health-benefits",
+    "detail": {
+      "aboutList": {
+        "lead": "Children are covered for most dental services and more.",
+        "items": [
+          "Children get eye exams once a year and basic eyeglasses.",
+          "Children get emergency ambulance, basic medical supplies and Saskatchewan Formulary drugs.",
+          "Parents get an eye exam every two years.",
+          "Parents have drug coverage with a $100 semi-annual family deductible and 35 per cent co-payment."
+        ]
+      },
+      "steps": [
+        "Call the Ministry of Social Services to complete a pre-assessment.",
+        "Present your Saskatchewan Health Services card for any health service."
+      ],
+      "documents": [
+        "Saskatchewan Health Services card"
+      ],
+      "tips": [
+        "Some basic medical supplies for children need prior approval.",
+        "Parents or legal guardians may apply for more cover under the Special Support program."
+      ],
+      "phone": "1-888-488-6385"
+    }
+  },
+  {
+    "id": "sk-special-support",
+    "name": "Special Support Program (drug costs)",
+    "level": "Saskatchewan",
+    "category": "Health",
+    "amount": "Deductible and copayment set by family income and drug costs",
+    "summary": "A voluntary, income-tested program that helps with prescription drug costs in relation to your income. Coverage is set for a calendar year.",
+    "note": "Coverage begins when the Drug Plan receives your complete application with income documents.",
+    "requires": [
+      "sk",
+      "skSpecialSupportRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "The Ministry of Health decides eligibility from your drug history and total income (line 15000).",
+        "Families on GIS, the Seniors Income Plan or Family Health Benefits, or with the Seniors' Drug Plan, may apply.",
+        "Other residents can be assessed too; the Ministry of Health decides from drug history and income."
+      ],
+      "note": "People covered by federal programs, such as Non-Insured Health Benefits or Veterans Affairs, are not eligible."
+    },
+    "applyText": "Apply for Special Support",
+    "applyUrl": "https://www.saskatchewan.ca/residents/health/prescription-drug-plans-and-health-coverage/extended-benefits-and-drug-plan/drug-cost-assistance",
+    "source": "https://www.saskatchewan.ca/residents/health/prescription-drug-plans-and-health-coverage/extended-benefits-and-drug-plan/drug-cost-assistance",
+    "detail": {
+      "aboutList": {
+        "lead": "You pay for Formulary or Exception Drug Status drugs by a deductible and copayment.",
+        "items": [
+          "The deductible is based on total family income.",
+          "The copayment is based on family income and total family drug costs.",
+          "You can estimate both with the Special Support Estimate Calculator.",
+          "You pay the lesser amount if another drug program charges less."
+        ]
+      },
+      "steps": [
+        "Choose Side A to let the CRA share your income, or Side B to send income documents yourself.",
+        "Mail, fax or email the form to the Special Support Program.",
+        "Wait for the confirmation of benefits letter."
+      ],
+      "documents": [
+        "Special Support application form, Side A or Side B",
+        "Income documentation, if you use Side B"
+      ],
+      "tips": [
+        "Side A renews coverage automatically each year if you file your income tax return.",
+        "Side B users must reapply each year. A renewal form is mailed in the fall.",
+        "Ask your physician or pharmacist if your drugs may qualify for Exception Drug Status.",
+        "You may ask for a reassessment in writing if your income or drug costs change."
+      ],
+      "phone": "1-800-667-7581"
+    }
+  },
+  {
+    "id": "sk-seniors-drug-plan",
+    "name": "Seniors' Drug Plan",
+    "level": "Saskatchewan",
+    "category": "Health",
+    "amount": "$25 per eligible prescription",
+    "summary": "Eligible seniors 65 and older pay $25 for prescriptions on the Saskatchewan Formulary or approved under Exception Drug Status.",
+    "note": "You pay the lesser amount if another program, such as Special Support, charges less.",
+    "requires": [
+      "sk",
+      "age65plus",
+      "skSeniorsDrugPlanRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a Saskatchewan resident aged 65 or older with a valid Saskatchewan Health card.",
+        "You qualify for the provincial age credit, based on net income (line 23600).",
+        "Your net income is $81,633 or less on your 2025 return, for 2027 coverage."
+      ],
+      "note": "Seniors covered by federal programs, such as Non-Insured Health Benefits or Veterans Affairs, are not eligible."
+    },
+    "applyText": "Apply for the Seniors' Drug Plan",
+    "applyUrl": "https://www.saskatchewan.ca/residents/health/accessing-health-care-services/seniors-drug-plan",
+    "source": "https://www.saskatchewan.ca/residents/health/accessing-health-care-services/seniors-drug-plan",
+    "detail": {
+      "aboutList": {
+        "lead": "The plan caps what you pay for each eligible prescription.",
+        "items": [
+          "Drugs must be on the Saskatchewan Formulary or have Exception Drug Status.",
+          "GIS clients keep a $200 and SIP clients a $100 semi-annual deductible, then a 35 per cent copayment.",
+          "There is no change for people with SAIL, palliative care, or SIP in long-term care."
+        ]
+      },
+      "steps": [
+        "Choose Form A to let the CRA share your income, or Form B to send income documents.",
+        "Mail, fax or email the form to the Seniors' Drug Plan.",
+        "Wait for the confirmation of benefits letter."
+      ],
+      "documents": [
+        "Seniors' Drug Plan application form, Form A or Form B",
+        "Income documentation, if you use Form B"
+      ],
+      "tips": [
+        "You can apply up to two months before you turn 65.",
+        "If you apply before turning 65, coverage starts the first day of that birthday month.",
+        "Form A renews coverage automatically if you file your tax return each year.",
+        "Ask your physician or pharmacist about Exception Drug Status."
+      ],
+      "phone": "1-800-667-7581"
+    }
+  },
+  {
+    "id": "sk-seniors-income-plan",
+    "name": "Seniors Income Plan (SIP)",
+    "level": "Saskatchewan",
+    "category": "Income support",
+    "amount": "Up to $360 a month at home (rates effective July 1, 2023)",
+    "summary": "A monthly benefit for seniors who have little or no income other than Old Age Security and the Guaranteed Income Supplement. No application is needed.",
+    "note": "Income cut-off levels are as of October 1, 2026. Maximum rates are effective July 1, 2023.",
+    "requires": [
+      "sk",
+      "age65plus",
+      "skSeniorsIncomePlanRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 65 or older and a permanent resident of Saskatchewan.",
+        "You receive full or partial OAS pension and GIS.",
+        "Your annual income is below a specified level."
+      ],
+      "note": "Assets, OAS and GIS are not counted when judging eligibility."
+    },
+    "applyText": "Learn about SIP",
+    "applyUrl": "https://www.saskatchewan.ca/residents/family-and-social-support/seniors-services/seniors-income-plan",
+    "source": "https://www.saskatchewan.ca/residents/family-and-social-support/seniors-services/seniors-income-plan",
+    "detail": {
+      "aboutList": {
+        "lead": "SIP tops up income for seniors who rely on OAS and GIS.",
+        "items": [
+          "A single person at home gets up to $360 a month (rates effective July 1, 2023).",
+          "A married couple, both on OAS/GIS, gets up to $325 a month (rates effective July 1, 2023).",
+          "In a special care home, the maximum is $50 a month (rates effective July 1, 2023).",
+          "SIP ends at $4,560 yearly taxable income, not counting OAS/GIS, for a single person at home (Oct 1, 2026)."
+        ]
+      },
+      "steps": [
+        "File your income tax return each year.",
+        "Apply for OAS and GIS through Service Canada.",
+        "SIP is paid automatically if you qualify."
+      ],
+      "documents": [
+        "Income tax return",
+        "OAS/GIS application"
+      ],
+      "tips": [
+        "If you get the maximum GIS, you also get the maximum SIP.",
+        "More income lowers your GIS and SIP.",
+        "Eligibility is reassessed each year in July.",
+        "SIP clients with Saskatchewan Health coverage get extra health benefits.",
+        "Status Indian clients get health coverage from Health Canada."
+      ],
+      "phone": "1-800-667-7161"
+    }
+  },
+  {
+    "id": "sk-autism-individualized-funding",
+    "name": "Autism Spectrum Disorder Individualized Funding (ASD-IF)",
+    "level": "Saskatchewan",
+    "category": "Health (for children)",
+    "amount": "Up to $8,000 a year under age 6; up to $6,000 a year ages 6 to 11",
+    "summary": "Gives parents money each year to buy therapy and family supports for a child with an autism diagnosis. Up to $8,000 under age six, and up to $6,000 for ages six to 11.",
+    "note": "You choose from a list of approved services and expenses, then send in proof of what you spent.",
+    "requires": [
+      "sk",
+      "child",
+      "autismSelected",
+      "skAutismIndividualizedFundingRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your child has a diagnosis of Autism Spectrum Disorder (ASD).",
+        "Your child is under age 12.",
+        "You can show proof of Saskatchewan residency."
+      ],
+      "note": "Only one parent can apply; out-of-province diagnoses need Saskatchewan Health Authority review."
+    },
+    "applyText": "Apply online for ASD-IF",
+    "applyUrl": "https://www.saskatchewan.ca/residents/health/accessing-health-care-services/health-services-for-people-with-disabilities/autism-services",
+    "source": "https://www.saskatchewan.ca/residents/health/accessing-health-care-services/health-services-for-people-with-disabilities/autism-services",
+    "detail": {
+      "aboutList": {
+        "lead": "ASD-IF pays for services that suit your child, chosen by you.",
+        "items": [
+          "You pick from approved therapies and family supports.",
+          "Funding is up to $8,000 a year under age six.",
+          "Funding is up to $6,000 a year for ages six to 11.",
+          "A registry lists autism service providers near you."
+        ]
+      },
+      "steps": [
+        "If you think your child may have ASD, contact a local autism program to arrange an assessment.",
+        "Gather your documents and apply online.",
+        "Once approved, send proof of expenses with the Submit an Expense Online form.",
+        "Renew each year, after sending all proof of expenses for the previous year."
+      ],
+      "documents": [
+        "Social Insurance Numbers",
+        "Your child's Health Services Number",
+        "Proof of Saskatchewan residency (SGI photo ID, SaskPower, SaskEnergy or a utility bill from the last three months)",
+        "ASD Diagnostic Form",
+        "Direct Deposit Payment Request Form"
+      ],
+      "tips": [
+        "Check the List of Eligible Services and Expenses before you spend.",
+        "Tell the Ministry of Social Services right away if your address or bank details change.",
+        "Private providers set their own fees, so ask them for rates."
+      ],
+      "phone": "1-833-304-1774"
+    }
+  },
+  {
+    "id": "sk-cognitive-disability-strategy",
+    "name": "Cognitive Disability Strategy (CDS) Support",
+    "level": "Saskatchewan",
+    "category": "Daily living supports",
+    "amount": "Income-tested benefit; amount set by need and disability impact",
+    "summary": "Offers behaviour-support help and an income-tested money benefit to people with a cognitive disability, or their families, who have an unmet need. The benefit amount is not published.",
+    "note": "The page does not give a dollar amount. It depends on financial need and the assessed effect of the disability.",
+    "requires": [
+      "sk",
+      "skCognitiveDisability",
+      "skCognitiveDisabilityStrategyRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have a cognitive disability.",
+        "You have an unmet need linked to the disability.",
+        "An evidence-based intervention could meet that need.",
+        "No other system can support the need."
+      ],
+      "note": "The disability must be long-term and present from an early age, except for an acquired brain injury."
+    },
+    "applyText": "Apply to the Cognitive Disability Strategy",
+    "applyUrl": "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities/financial-help-and-support-for-people-with-cognitive-disabilities",
+    "source": "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities/financial-help-and-support-for-people-with-cognitive-disabilities",
+    "detail": {
+      "aboutList": {
+        "lead": "CDS helps people with cognitive disabilities and their families.",
+        "items": [
+          "Cognitive Disability Consultants help families make behaviour support plans.",
+          "The Cognitive Disability Benefit is income-tested money for an unmet need.",
+          "Benefit levels depend on financial need and assessed disability impact."
+        ]
+      },
+      "steps": [
+        "Download the application package.",
+        "Send the form to the Cognitive Disability Consultant.",
+        "Or ask someone who works with you, like a case worker, to help.",
+        "If you have no case worker, the consultant can help you fill it in."
+      ],
+      "documents": [
+        "Cognitive Disability Strategy application package",
+        "Renewal package, when you renew"
+      ],
+      "tips": [
+        "Call the provincial office if you are unsure where to start."
+      ],
+      "phone": "1-833-304-1774"
+    }
+  },
+  {
+    "id": "sk-family-respite-intellectual-disability",
+    "name": "Family Respite Benefit (child with an intellectual disability)",
+    "level": "Saskatchewan",
+    "category": "Home support",
+    "amount": "Monthly income-tested benefit; amount set by need and disability impact",
+    "summary": "Pays parents or guardians a monthly amount to arrange short-term care for a child under 18 with an intellectual disability. It gives caregivers a break. The amount depends on need.",
+    "note": "The benefit is income-tested, and the page gives no dollar amounts. You work with Community Living Service Delivery on a respite plan.",
+    "requires": [
+      "sk",
+      "child",
+      "developmental",
+      "skFamilyRespiteIntellectualDisabilityRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a Saskatchewan resident.",
+        "Your child under age 18 lives in your family home.",
+        "Your child is accepted for Community Living Service Delivery (CLSD) services.",
+        "You meet the financial eligibility criteria."
+      ],
+      "note": "You must agree to an annual income test, an annual review and to use the benefit for respite care."
+    },
+    "applyText": "Contact your nearest CLSD office",
+    "applyUrl": "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities/temporary-help-for-families-caring-for-a-child-with-intellectual-disabilities",
+    "source": "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities/temporary-help-for-families-caring-for-a-child-with-intellectual-disabilities",
+    "detail": {
+      "aboutList": {
+        "lead": "Respite gives caregivers a short-term break from daily care of a child.",
+        "items": [
+          "The benefit is paid monthly.",
+          "Levels depend on financial need and assessed disability impact.",
+          "It pays for short-term extra or alternative supervision and care.",
+          "You cannot pay yourself or use it for work-related child care."
+        ]
+      },
+      "steps": [
+        "Contact the nearest Community Living Service Delivery office.",
+        "Complete the application and sign the declaration.",
+        "Take part in the child and family assessments.",
+        "Agree to income checks with the Canada Revenue Agency.",
+        "Work with CLSD on your respite plan."
+      ],
+      "documents": [
+        "Signed application with declaration",
+        "Consent to income verification using your Notice of Assessment",
+        "You may be asked to provide records"
+      ],
+      "tips": [
+        "Expect two assessments: the child's support needs and the family impact.",
+        "Report any change in your circumstances."
+      ],
+      "phone": "1-833-304-1774"
+    }
+  },
+  {
+    "id": "sk-home-care",
+    "name": "Home Care and Individualized Funding for Home Care",
+    "level": "Saskatchewan",
+    "category": "Home support",
+    "amount": "Services based on assessed need; fees based on income",
+    "summary": "The Saskatchewan Health Authority provides home care, such as nursing, homemaking and meals, based on assessed need. Some services have fees based on income, and you can apply for a subsidy.",
+    "note": "Individualized funding lets you arrange and manage your own support services if you are assessed as eligible.",
+    "requires": [
+      "sk",
+      "skHomeCareRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You need home care and the health authority assesses your need for services.",
+        "For individualized funding, you must be eligible for home care support services and need long-term supportive care.",
+        "For individualized funding, you must also be able to manage the funding and willing to accept the responsibilities."
+      ],
+      "note": "The health authority decides your services and funding level after an assessment."
+    },
+    "applyText": "Contact your Saskatchewan Health Authority home care program",
+    "applyUrl": "https://www.saskatchewan.ca/residents/health/accessing-health-care-services/care-at-home-and-outside-the-hospital/home-care",
+    "source": "https://www.saskatchewan.ca/residents/health/accessing-health-care-services/care-at-home-and-outside-the-hospital/home-care",
+    "detail": {
+      "aboutList": {
+        "lead": "Home care helps people stay independent at home.",
+        "items": [
+          "Services include assessment, nursing, homemaking, personal care, respite and meals.",
+          "Nursing assessment, therapy and volunteer services are free to clients.",
+          "Fees for some services depend on your income and services used.",
+          "Individualized funding does not cover nursing or therapies."
+        ]
+      },
+      "steps": [
+        "Contact the Saskatchewan Health Authority Home Care Program in your community.",
+        "They assess your care needs.",
+        "They set the type of service and funding level.",
+        "For individualized funding, sign an agreement with the health authority."
+      ],
+      "documents": [
+        "Signed individualized funding agreement, if you choose that option"
+      ],
+      "tips": [
+        "Individualized funding means you hire, schedule and pay staff yourself.",
+        "You must have a backup care plan that does not rely on home care.",
+        "Hiring family members is not permitted."
+      ]
+    }
+  },
+  {
+    "id": "sk-adaptations-for-independence",
+    "name": "Home Repair Program - Adaptations for Independence",
+    "level": "Saskatchewan",
+    "category": "Home",
+    "amount": "Forgivable loan of up to $23,000",
+    "summary": "A forgivable loan of up to $23,000 to make a home more accessible for a person with a housing-related disability. For owners with low incomes, and rental owners who rent to low-income households.",
+    "note": "Repairs done before written approval do not qualify. Work must be finished within six months of approval.",
+    "requires": [
+      "sk",
+      "skAdaptationsForIndependenceRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You own and live in the home, and a household member has a housing-related disability.",
+        "Or you rent the modified units to low-income households that include a person with that disability.",
+        "Household income and assets are at or below the limits set by Saskatchewan Housing Corporation."
+      ],
+      "note": "Income and rent limits are dated July 1, 2026; a health practitioner must identify the changes."
+    },
+    "applyText": "Send the Repair and Renovation Application Form",
+    "applyUrl": "https://www.saskatchewan.ca/residents/housing-and-renting/home-repairs-and-renovations/adapt-a-home-for-a-person-with-a-disability",
+    "source": "https://www.saskatchewan.ca/residents/housing-and-renting/home-repairs-and-renovations/adapt-a-home-for-a-person-with-a-disability",
+    "detail": {
+      "aboutList": {
+        "lead": "This program helps pay to make a home accessible.",
+        "items": [
+          "The loan is forgivable and up to $23,000.",
+          "Homeowner income maximums by bedrooms: $58,100, $71,300, $86,300, $103,500 (July 1, 2026).",
+          "The asset level is $300,000 for all households.",
+          "Rental monthly maximum rents: $1,262, $1,550, $1,875, $2,250 (July 1, 2026)."
+        ]
+      },
+      "steps": [
+        "Download the Homeowner or Rental application form.",
+        "Complete it and mail, deliver or email it to Saskatchewan Housing Corporation.",
+        "Wait for written approval before any work starts.",
+        "Finish the work within six months of approval."
+      ],
+      "documents": [
+        "Completed Repair and Renovation Application Form",
+        "Modifications identified by a qualified health practitioner",
+        "Required supporting documents listed on the form"
+      ],
+      "tips": [
+        "You pay any costs above the approved amount.",
+        "Liens or judgments on the property title can affect eligibility."
+      ],
+      "phone": "1-800-667-7567"
+    }
+  },
+  {
+    "id": "sk-eapd",
+    "name": "Employability Assistance for Persons with Disabilities (EAPD)",
+    "level": "Saskatchewan",
+    "category": "Employment",
+    "amount": "Funding for disability-related costs; no amount published",
+    "summary": "Pays for disability-related supports that help you prepare for, find and keep work, or take needed training or education. Employers hiring you may also get help with accommodation costs.",
+    "note": "The page gives no dollar amount. Funding covers disability-related costs only.",
+    "requires": [
+      "sk",
+      "age16plus",
+      "skEapdRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You need specialized supports because of a disability to prepare for, get or keep work.",
+        "You are legally entitled to work in Canada and Saskatchewan.",
+        "You are at least 16 years of age.",
+        "You will give a self-declaration of your disability.",
+        "You will develop an approved career action plan or service plan."
+      ],
+      "note": "The disability may be learning, developmental, mental health, physical or other, as you declare it."
+    },
+    "applyText": "Contact SaskJobs Career Services",
+    "applyUrl": "https://www.saskatchewan.ca/residents/jobs-working-and-training/job-training-and-financial-support-programs/employability-assistance-for-persons-with-disabilities",
+    "source": "https://www.saskatchewan.ca/residents/jobs-working-and-training/job-training-and-financial-support-programs/employability-assistance-for-persons-with-disabilities",
+    "detail": {
+      "aboutList": {
+        "lead": "EAPD helps people with disabilities move into work.",
+        "items": [
+          "It funds supports to take part in training or education for work.",
+          "It funds supports to get and keep a job.",
+          "Funding may pay for an assessment of your disability's impact.",
+          "Employers may get help with costs like job coaching and technical supports."
+        ]
+      },
+      "steps": [
+        "Contact SaskJobs Career Services to learn about the program.",
+        "Get your career action plan or service plan approved.",
+        "The plan lists your career goals and needed supports."
+      ],
+      "documents": [
+        "Self-declaration of disability",
+        "Approved career action plan or service plan"
+      ],
+      "tips": [
+        "Funding is for disability-related costs only."
+      ],
+      "phone": "1-833-613-0485"
+    }
+  },
+  {
+    "id": "sk-personal-care-home-benefit",
+    "name": "Personal Care Home Benefit (PCHB)",
+    "level": "Saskatchewan",
+    "category": "Money",
+    "amount": "Monthly top-up to a $3,500 monthly income threshold",
+    "summary": "A monthly payment for seniors who live in a licensed personal care home. It is the difference between a $3,500 monthly income threshold and your monthly income.",
+    "note": "Married or common-law applicants give both incomes, and half of the combined household income is counted.",
+    "requires": [
+      "sk",
+      "age65plus",
+      "skPersonalCareHomeBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 65 years of age or older.",
+        "You are a Saskatchewan resident.",
+        "You live in a Saskatchewan licensed personal care home.",
+        "You receive an Old Age Security pension.",
+        "Your monthly income is below specified levels."
+      ],
+      "note": "Approved clients do not re-apply every year but must send income documents before September."
+    },
+    "applyText": "Send the Personal Care Home Benefit application",
+    "applyUrl": "https://www.saskatchewan.ca/residents/family-and-social-support/seniors-services/seniors-living-in-personal-care-homes",
+    "source": "https://www.saskatchewan.ca/residents/family-and-social-support/seniors-services/seniors-living-in-personal-care-homes",
+    "detail": {
+      "aboutList": {
+        "lead": "PCHB helps with the cost of living in a licensed personal care home.",
+        "items": [
+          "The amount depends on your income and marital status.",
+          "Benefits are paid from the date the ministry receives your application.",
+          "You have up to 60 days to send your documents.",
+          "Recipients send income documents before the next benefit year starts."
+        ]
+      },
+      "steps": [
+        "Review the Application Guide and the list of licensed personal care homes.",
+        "Download and complete the application form.",
+        "Send documents within 60 days to the Client Service Centre in Regina.",
+        "By mail, email or fax; contact details are on the application page."
+      ],
+      "documents": [
+        "Signed application form",
+        "Direct deposit form",
+        "GIS Entitlement letter, or most recent tax return and a bank statement showing OAS/GIS deposit",
+        "Responsible Person Consent Form (if required)",
+        "Confirmation of Admission Form (if required)"
+      ],
+      "tips": [
+        "Apply as soon as you meet the eligibility rules.",
+        "A spouse sends their own GIS letter or tax return and bank statement, if applicable."
+      ],
+      "phone": "1-855-544-7242"
+    }
+  },
+  {
+    "id": "sk-accessible-parking",
+    "name": "Accessible Parking Program (SaskAbilities)",
+    "level": "Saskatchewan",
+    "category": "Daily living supports",
+    "amount": "$10 fee each time a permit is issued",
+    "summary": "A parking permit for people who cannot walk more than 50 metres unassisted without great difficulty or danger. It lets you use accessible parking spaces in any vehicle you ride in.",
+    "note": "SaskAbilities runs the program. A health professional must confirm the medical details on the first application.",
+    "requires": [
+      "sk",
+      "bcParkingMobility"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You cannot walk unassisted more than 50 metres without great difficulty or danger to your health and safety."
+      ],
+      "note": "Legally blind people are also eligible, and no driver's licence is needed if you meet the medical criteria."
+    },
+    "applyText": "Complete the parking permit application",
+    "applyUrl": "https://www.saskabilities.ca/services/independent-living/accessible-parking/",
+    "source": "https://www.saskabilities.ca/services/independent-living/accessible-parking/",
+    "detail": {
+      "aboutList": {
+        "lead": "The permit lets you park in accessible spaces.",
+        "items": [
+          "The permit is used in any vehicle carrying the permit holder.",
+          "It can only be used when the holder enters or exits the vehicle.",
+          "Other provinces and territories will recognize the permit, but you must follow local rules there.",
+          "Each person gets one permit."
+        ]
+      },
+      "steps": [
+        "Fill in Section 1 in the name of the person with the disability.",
+        "Ask a chiropractor, nurse practitioner, occupational therapist, physical therapist or physician to fill in Section 2.",
+        "Mail it to the Saskatoon office, or bring it to a SaskAbilities location, with the $10 fee."
+      ],
+      "documents": [
+        "Application form with your signature and your health professional's original signature",
+        "$10 permit fee"
+      ],
+      "tips": [
+        "Emailed and faxed forms are not accepted.",
+        "The health professional may charge their own fee to complete the form.",
+        "Permanent permit holders can renew by filling in Section 1 only.",
+        "If you are denied, you can appeal in writing within 30 days."
+      ],
+      "phone": "306.385.7213"
+    }
   }
 
 ];
@@ -11365,6 +12370,24 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "sk-accessible-parking": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-personal-care-home-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-eapd": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-adaptations-for-independence": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-home-care": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-family-respite-intellectual-disability": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-cognitive-disability-strategy": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-autism-individualized-funding": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-seniors-income-plan": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-seniors-drug-plan": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-special-support": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-family-health-benefits": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-supplementary-health": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-sail": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-housing-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-employment-incentive": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-income-support": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-said": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "on-childrens-rehab": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "bc-subsidized-housing": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "ab-sharp": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)

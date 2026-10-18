@@ -421,8 +421,9 @@ function expectedGeneratedLinks() {
   const appSource = readRepoFile("public", "app.js");
   const bcEnabled = /\bconst BC_ENABLED = true;\s*$/m.test(appSource);
   const onEnabled = /^const ON_ENABLED = true;\s*$/m.test(appSource);
+  const skEnabled = /^const SK_ENABLED = true;\s*$/m.test(appSource);
   const { links, skippedDynamic } = buildLinkCatalogue({
-    benefits: benefitsInScope(sources.__benefits, sources.__bcCities, bcEnabled, sources.__onCities, onEnabled),
+    benefits: benefitsInScope(sources.__benefits, sources.__bcCities, bcEnabled, sources.__onCities, onEnabled, skEnabled),
     helpOrgs: sources.__help,
     grants: sources.__grants || [],
     orgs: sources.__orgs || [],
@@ -461,7 +462,8 @@ function expectedBenefitsContextSource() {
     sources.__bcCities,
     bcEnabled,
     sources.__onCities,
-    onEnabled
+    onEnabled,
+    /^const SK_ENABLED = true;\s*$/m.test(appSource)
   );
   const clean = (value) => String(value ?? "").replace(/\s+/g, " ").trim();
   const byId = new Map(benefits.map((benefit) => [benefit.id, benefit]));

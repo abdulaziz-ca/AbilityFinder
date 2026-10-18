@@ -117,10 +117,10 @@ const BASE_PERSONA = {
    are real entries in CITIES_BY_PROVINCE. */
 // 2026-10-17: Nanaimo and Kingston gained municipal records, so the defaults moved
 // to Fort St. John and Timmins (no local record; city-sweep "none found" / unreadable).
-const DEFAULT_CITY = { AB: "Camrose", BC: "Fort St. John", ON: "Timmins" };
+const DEFAULT_CITY = { AB: "Camrose", BC: "Fort St. John", ON: "Timmins", SK: "Yorkton" };
 
 /* Cities used to violate a city gate: same province, different community. */
-const OTHER_CITY = { AB: "Wetaskiwin", BC: "Williams Lake", ON: "Guelph" };
+const OTHER_CITY = { AB: "Wetaskiwin", BC: "Williams Lake", ON: "Guelph", SK: "Estevan" };
 
 /* --------------------------------------------------------------------------
    FRAGMENTS
@@ -209,6 +209,7 @@ const GATES = {
   ab: province("AB"),
   bc: province("BC"),
   on: province("ON"),
+  sk: province("SK"),
   provinceCovered: {
     evidence: "answers",
     satisfy: { set: { province: "AB" } },
@@ -779,6 +780,87 @@ const GATES = {
     satisfy: { set: { disabilityVerified: "yes" } },
     violations: [{ name: "not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" }],
   },
+  skSaidRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", disabilityVerified: "yes" } },
+    violations: [
+      { name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "disability not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" },
+    ],
+  },
+  skIncomeSupportRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  skEmploymentIncentiveRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", ageBand: "6to11" } },
+    violations: [
+      { name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "an adult may have no child: not asked", fragment: { set: { ageBand: "19to59" } }, expect: "almost" },
+    ],
+  },
+  skHousingBenefitRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  skSailRoute: external("Depends on a referral from an authorized health professional, which the wizard cannot confirm."),
+  skSupplementaryHealthRoute: external("Depends on receiving the assistance program the province names, which the wizard does not ask."),
+  skFamilyHealthBenefitsRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", ageBand: "6to11" } },
+    violations: [
+      { name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "an adult may have no child: not asked", fragment: { set: { ageBand: "19to59" } }, expect: "almost" },
+    ],
+  },
+  skSpecialSupportRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  skSeniorsDrugPlanRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  skSeniorsIncomePlanRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  skAutismIndividualizedFundingRoute: {
+    evidence: "answers",
+    satisfy: { set: { autismDiagnosis: "yes", ageBand: "6to11" } },
+    violations: [{ name: "no written diagnosis yet", fragment: { set: { autismDiagnosis: "no" } }, expect: "almost" }],
+  },
+  skCognitiveDisabilityStrategyRoute: external("Depends on an unmet need that no other program can support, which the ministry assesses."),
+  skFamilyRespiteIntellectualDisabilityRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "neither route established", fragment: { set: { income: "moderate", disabilityVerified: "no" } }, expect: "almost" }],
+  },
+  skHomeCareRoute: external("Depends on a health authority assessment of care needs, which the wizard cannot make."),
+  skAdaptationsForIndependenceRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", disabilityVerified: "yes" } },
+    violations: [
+      { name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "disability not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" },
+    ],
+  },
+  skEapdRoute: {
+    evidence: "answers",
+    satisfy: { set: { disabilityVerified: "yes" } },
+    violations: [{ name: "not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" }],
+  },
+  skPersonalCareHomeBenefitRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
   kingstonMfapIncome: {
     evidence: "answers",
     satisfy: { set: { income: "low" } },
@@ -841,6 +923,11 @@ const GATES = {
   },
   autismSelected: disabilityGate("autism"),
   brainInjuryDisability: disabilityGate("braininjury"),
+  skCognitiveDisability: {
+    evidence: "answers",
+    satisfy: { add: { disabilities: ["intellectual"] } },
+    violations: [{ name: "no cognitive category", fragment: { drop: { disabilities: ["intellectual", "autism", "braininjury", "learning", "other"] } }, expect: "no" }],
+  },
   hearingDisability: disabilityGate("hearing"),
   learningDisability: disabilityGate("learning"),
   autismDiagnosis: {
@@ -1352,6 +1439,24 @@ const PROGRAM_BEST_CASE = {
   "squamish-recreation-access":                    "ready",
   "terrace-affordable-recreation-access":          "almost",
   "white-rock-leisure-access":                     "ready",
+  "sk-said":                                       "ready",
+  "sk-income-support":                             "ready",
+  "sk-employment-incentive":                       "ready",
+  "sk-housing-benefit":                            "ready",
+  "sk-sail":                                       "almost",
+  "sk-supplementary-health":                       "almost",
+  "sk-family-health-benefits":                     "ready",
+  "sk-special-support":                            "ready",
+  "sk-seniors-drug-plan":                          "ready",
+  "sk-seniors-income-plan":                        "ready",
+  "sk-autism-individualized-funding":              "ready",
+  "sk-cognitive-disability-strategy":              "almost",
+  "sk-family-respite-intellectual-disability":     "ready",
+  "sk-home-care":                                  "almost",
+  "sk-adaptations-for-independence":               "ready",
+  "sk-eapd":                                       "ready",
+  "sk-personal-care-home-benefit":                 "ready",
+  "sk-accessible-parking":                         "ready",
   "bc-subsidized-housing":                         "ready",
   "on-childrens-rehab":                            "ready",
   "on-child-benefit":                              "ready",

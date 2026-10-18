@@ -1,0 +1,106 @@
+URL: https://www.saskatchewan.ca/residents/family-and-social-support/financial-help/saskatchewan-employment-incentive-sei | province: SK | program: Saskatchewan Employment Incentive (SEI) | fetched: 2026-10-18
+=== PAGE: https://www.saskatchewan.ca/residents/family-and-social-support/financial-help/saskatchewan-employment-incentive-sei (HTTP 200, 6518 chars)
+
+ Saskatchewan Employment Incentive (SEI)
+ The Saskatchewan Employment Incentive (SEI) provides working families who have low incomes with a monthly financial benefit, Supplementary Health Benefits, access to discounted bus passes (where available), connections to employment supports through the Ministry of Immigration and Career Training and access to the Saskatchewan Housing Benefit through the Saskatchewan Housing Corporation.
+ - 
+ Benefits
+ - 
+ Eligibility
+ - 
+ Apply
+ - 
+ Further Information
+ Renseignements en français
+ Share
+ - 
+ - 
+ - 
+ - 
+ Print this page
+ Top
+ 1. Benefits
+ The amount of the incentive is based on: 
+ - Your family income; and 
+ - The number of eligible children in your family. 
+Maximum SEI amounts are available when your family eligible earned income falls between $500 and $2,200 per month, before deductions.
+ Eligible Children
+ Maximum Incentive per Month
+ 1
+ $400
+ 2
+ $500
+ 3+
+ $600
+When your family income is over $2,200 per month, the SEI is reduced by 30 cents for every additional dollar of income over $2,200. 
+ The maximum family income for SEI is based on the number of eligible children you have (see Maximum Family Income table below). 
+ If you would like to know more about SEI and how it is calculated, a fact sheet and rate sheet with examples are available. 
+Additional Benefits 
+ - Eligible SEI families will be automatically reviewed for Supplementary Health Benefits eligibility.
+ - Through the SEI application, you can indicate if you are interested in learning more about the Saskatchewan Housing Benefit (SHB). A representative from the SHB program will contact you. 
+ - Discounted bus passes are also available for purchase for families receiving SEI in seven municipalities throughout the province.
+ Top
+ 2. Eligibility
+ You may be eligible for SEI if all of the following apply to you:
+ - You are a Canadian Citizen or permanent resident;
+ - You are living in Saskatchewan;
+ - You are 18 years or older;
+ - You have a valid Social Insurance Number and Saskatchewan Health Services Number;
+ - You do not receive Saskatchewan Income Support (SIS), Saskatchewan Assured Income for Disability (SAID) benefits;
+ - You have children ages 0-12 and/or children ages 13-17 who require childcare due to special circumstances, and receive the Canada Child Benefit (CCB) for those children or are a Person of Sufficient Interest (PSI) and have those children in your care; and
+ - You have a minimum eligible earned income of $500 per month and a family income that is less than the monthly maximum listed below. If your monthly family income meets or exceeds the following maximums, your benefit will be zero.
+ Maximum Monthly Family Income per Eligible Children
+ Eligible Children
+ Maximum Family Income
+ 1
+ $3,533.34
+ 2
+ $3,866.67
+ 3+
+ $4,200.00
+To continue to receive SEI, you must report your family income monthly and inform Social Services of any change in your circumstances (e.g., change of address, the addition of a child or other family circumstances).
+ Top
+ 3. Apply
+ You can apply for the SEI through a Saskatchewan Account. Saskatchewan Accounts are free to use and allow residents to securely access a variety of online government services.
+Plan to spend approximately 25 minutes to complete the application and attach documents needed to verify your information.
+You and your spouse will need to provide the following, if applicable:
+ - Pay stubs for all pay received in the month prior to your application;
+ - If you are self-employed, a Notice of Assessment from Canada Revenue Agency for the previous tax year or, if it is the first year of your business, the previous month’s gross income;
+ - Social Insurance Number(s);
+ - Your family members’ Health Services Numbers; and
+ - Your direct deposit information.
+If you receive any of the following, you must provide the amount received:
+ - Canada Pension Plan (CPP);
+ - Employment Insurance (EI);
+ - Old Age Security (OAS);
+ - Guaranteed Income Supplement (GIS);
+ - Seniors Income Plan (SIP);
+ - Workers Compensation Benefits;
+ - Child or spousal support; or
+ - Money from rental income.
+You can access your SEI application anytime. You are also able to save and return to your SEI application. After you have completed and submitted your SEI application, it is important that you sign out from your Saskatchewan Account, clear your history/cookies, and close the browser completely. This is particularly important if you are using a computer or mobile device that is shared not your own.
+You can use these step-by-step instructions to apply online:
+ - How to Apply Online for SEI
+ - How to Add Income and Upload Documents at Initial Application
+ - How to Add Income and Upload Documents to a Monthly Report
+Apply for the Saskatchewan Employment Incentive
+ Top
+ 4. Further Information
+ Once your application is submitted, you will receive notifications by email or text regarding the status of your application and confirmation of your eligibility. To receive these notifications, you will need to ensure you have turned on alerts for your Saskatchewan Account. 
+If approved, you will manage your SEI through your Saskatchewan Account. Through your Saskatchewan Account you can update your address, contact information updates, and upload documents for any circumstance changes.
+If you need additional assistance, please submit an online communication form from your SEI account and a Ministry of Social Services employee will reach out to you within five business days.
+If you have a child aged 13-17 that requires child care due to special circumstances such as a child with a disability, you can download and submit a MSS special circumstance child care referral form.
+If you have questions not covered here, please refer to the SEI Questions and Answers.
+ Related Items
+ - 
+Supplementary Health Benefits
+ Qualified individuals are eligible for a number of health services and products in addition to universal health benefits.
+ - 
+Employment Supports
+ Employment support including job searching, job matching, job coaching, career planning, and job training is available for eligible Saskatchewan residents throughout the province.
+ - 
+Discounted Bus Pass
+ Discounted bus passes are available for you and your family members to purchase if you live in Regina, Saskatoon, Prince Albert, Moose Jaw, North Battleford, Swift Current, or Yorkton. 
+ - 
+Saskatchewan Housing Benefit
+ The Saskatchewan Housing Benefit is a monthly benefit that helps eligible Saskatchewan renters with their shelter costs. 
