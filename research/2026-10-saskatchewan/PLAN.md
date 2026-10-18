@@ -10,8 +10,8 @@ published eligibility), FASD services (single condition), KidsFirst (not disabil
 discounted 31-day pass), Saskatoon (Access Transit, Leisure Access, low-income bus pass, accessible parking permit
 subsidy), Moose Jaw (discounted monthly pass, Paratransit), Prince Albert Access Transit, Yorkton (Access Transit,
 discounted monthly pass), North Battleford Handi-Bus. Paratransit uses the transit-barrier answer, like HandyDART.
-Not built: Prince Albert's discounted pass (the page does not say who qualifies), Swift Current Access Transit
-(official page removed). No official program page found for Estevan, Weyburn, Martensville or Warman
+Swift Current Access Transit added after its page moved (`?v=215`). Not built: Prince Albert's discounted pass
+(the page does not say who qualifies). No official program page found for Estevan, Weyburn, Martensville or Warman
 (`sk-city-leads.json`).
 
 Original scoping notes follow.

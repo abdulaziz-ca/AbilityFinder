@@ -2219,6 +2219,7 @@ const REQS = {
   },
   vancouver: { met: () => answers.city === "Vancouver", fixed: true, unmet: "This is a City of Vancouver program." },
   surrey: { met: () => answers.city === "Surrey", fixed: true, unmet: "This is a City of Surrey program." },
+  swiftCurrent: { met: () => answers.city === "Swift Current", fixed: true, unmet: "This is a local program for Swift Current residents." },
   regina: { met: () => answers.city === "Regina", fixed: true, unmet: "This is a local program for Regina residents." },
   saskatoon: { met: () => answers.city === "Saskatoon", fixed: true, unmet: "This is a local program for Saskatoon residents." },
   northBattleford: { met: () => answers.city === "North Battleford", fixed: true, unmet: "This is a local program for North Battleford residents." },

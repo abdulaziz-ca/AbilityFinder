@@ -1,7 +1,22 @@
-URL: https://www.swiftcurrent.ca/divisions/infrastructure-operations/transit-services | province: SK/Swift Current | program: Access Transit | fetched: 2026-10-18
-=== PAGE: https://www.swiftcurrent.ca/divisions/infrastructure-operations/transit-services (HTTP 403, 267 chars)
-
-Access Denied
-You don't have permission to access "http://www.swiftcurrent.ca/$(SERVE_403)/divisions/infrastructure-operations/transit-services?" on this server.
-Reference #18.eb182117.1792298815.3dc031c4
-https://errors.edgesuite.net/18.eb182117.1792298815.3dc031c4
+URL: https://www.swiftcurrent.ca/i-want-to-/learn-about-city-services/swift-transit | province: SK/Swift Current | program: Access Transit | fetched: 2026-10-18 (browser pane; automated fetch returns 403)
+=== PAGE: https://www.swiftcurrent.ca/i-want-to-/learn-about-city-services/swift-transit
+SWIFT TRANSIT...WELCOME ABOARD!
+Swift Transit travels on a scheduled, fixed route, picking up and dropping off customers at designated bus stops at key locations and near places like senior centres, shopping malls, major attractions and Cypress Regional Hospital.
+Swift Transit Hours of Operation: RED LINE – Monday to Saturday: 7:00 AM to 7:00 PM (last run beings at 6:00 pm). OUT OF OPERATION FOR STATUTORY HOLIDAYS
+Cost:
+• $3.00 for one-way trip – please have exact change
+• $30.00 for a 10 trip punch pass - available at City Hall OR from bus driver if you have exact change
+• $75.00 Monthly Pass – available for purchase at City Hall
+Children ages 6-12 can ride for $1.00 each way and the service is free for children under 6 years old. Children under 6 years of age must be accompanied by a responsible attendant at all times.
+If you cannot walk to a bus stop or require accessibility accommodations:
+If you have mobility issues, you may be eligible to use Access Transit services. Call Access Transit at 306-770-2263 to make arrangements. The fare for a one-way trip is $3.00.
+Access Transit Hours of Operation:
+Mon-Fri 8:00am to 6:00pm
+Saturday 12:00pm to 6:00pm
+Sunday 8:30am to 2:30pm
+STATUTORY HOLIDAY INFO: NO SERVICES
+Operating Partners:
+A partnership between the City of Swift Current and the SaskAbilities has been established, with SaskAbilities operating both the Access Transit and public transit system.
+This partnership provides opportunities for local adults and children with disabilities and enhance their independence and participation in the community.
+If you have additional questions or concerns: Please call 306-770-2263 or email swifttransit@saskabilities.ca and we will be happy to assist you.
+For Access Transit questions please call 306-770-2263

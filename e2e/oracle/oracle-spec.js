@@ -317,6 +317,7 @@ const GATES = {
   /* ------------------------------------------------------ BC municipalities */
   vancouver: municipality("Vancouver", "BC"),
   surrey: municipality("Surrey", "BC"),
+  swiftCurrent: municipality("Swift Current", "SK"),
   regina: municipality("Regina", "SK"),
   saskatoon: municipality("Saskatoon", "SK"),
   northBattleford: municipality("North Battleford", "SK"),
@@ -1483,6 +1484,7 @@ const PROGRAM_BEST_CASE = {
   "squamish-recreation-access":                    "ready",
   "terrace-affordable-recreation-access":          "almost",
   "white-rock-leisure-access":                     "ready",
+  "swift-current-access-transit":                  "ready",
   "regina-affordable-access":                      "ready",
   "regina-paratransit":                            "ready",
   "saskatoon-access-transit":                      "ready",

@@ -21,8 +21,8 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 ### Decisions we made for you
 - Paratransit shows as a match when you say regular transit is hard to use, the same rule as HandyDART in B.C.
-- Not built: Prince Albert's discounted pass (its page does not say who qualifies) and Swift Current Access Transit
-  (the official page has been removed). Estevan, Weyburn, Martensville and Warman have no official program page,
+- Swift Current Access Transit was added afterwards (`?v=215`), once its moved page turned up. Not built:
+  Prince Albert's discounted pass (its page does not say who qualifies). Estevan, Weyburn, Martensville and Warman have no official program page,
   so the "What we don't cover yet" page lists them.
 
 ## 2026-10-18 — Saskatchewan is live (provincial programs)

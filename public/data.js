@@ -152,6 +152,7 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "swift-current-access-transit": { kind: "access", note: "accessible transit; $3.00 per one-way trip" },
   "yorkton-discounted-monthly-pass": { kind: "discount", note: "The discounted pass costs $27.50 a month, not the adult price of $90.00." },
   "yorkton-access-transit": { kind: "access", note: "Door-to-door rides for people with disabilities who cannot use regular transit." },
   "saskatoon-accessible-parking-permit-subsidy": { kind: "discount", note: "The yearly permit costs $50 plus GST instead of $100 plus GST." },
@@ -468,6 +469,7 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "swift-current-access-transit": { difficulty: 1, effort: "Phone to arrange a trip", wait: "Not published" },
   "yorkton-discounted-monthly-pass": { difficulty: 2, effort: "Buy the pass in person at City Hall.", wait: "Not published" },
   "yorkton-access-transit": { difficulty: 3, effort: "Register in advance through SaskAbilities.", wait: "Not published" },
   "saskatoon-accessible-parking-permit-subsidy": { difficulty: 3, effort: "Apply for the subsidy first, then buy the permit at City Hall.", wait: "Not published" },
@@ -13105,6 +13107,49 @@ const BENEFITS = [
         "Transit runs Monday to Friday, 8 a.m. to 7 p.m. Hours may change on statutory holidays."
       ]
     }
+  },
+  {
+    "id": "swift-current-access-transit",
+    "name": "Access Transit (Swift Current)",
+    "level": "Swift Current",
+    "category": "Transit",
+    "amount": "$3.00 per one-way trip",
+    "summary": "A ride option in Swift Current for people with mobility issues who cannot use the regular Swift Transit bus stops. You phone Access Transit to arrange your trip.",
+    "note": "SaskAbilities runs Access Transit and the regular bus in partnership with the City. There is no service on statutory holidays.",
+    "requires": [
+      "sk",
+      "swiftCurrent",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have mobility issues, or you cannot walk to a bus stop or need accessibility accommodations."
+      ],
+      "note": "The page says that if you have mobility issues, you may be eligible."
+    },
+    "applyText": "See Swift Transit and Access Transit",
+    "applyUrl": "https://www.swiftcurrent.ca/i-want-to-/learn-about-city-services/swift-transit",
+    "source": "https://www.swiftcurrent.ca/i-want-to-/learn-about-city-services/swift-transit",
+    "detail": {
+      "aboutList": {
+        "lead": "Access Transit runs on these hours:",
+        "items": [
+          "Monday to Friday, 8:00 am to 6:00 pm.",
+          "Saturday, noon to 6:00 pm.",
+          "Sunday, 8:30 am to 2:30 pm."
+        ]
+      },
+      "steps": [
+        "Call Access Transit to make arrangements for your trip",
+        "Pay the fare for each one-way trip"
+      ],
+      "documents": [],
+      "tips": [
+        "Questions can also go to swifttransit@saskabilities.ca."
+      ],
+      "phone": "306-770-2263"
+    }
   }
 
 ];
@@ -13216,6 +13261,7 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "swift-current-access-transit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
   "yorkton-discounted-monthly-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
   "yorkton-access-transit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
   "saskatoon-accessible-parking-permit-subsidy": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
