@@ -6,6 +6,38 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-17 — night: provincial sweep (Alberta, B.C., Ontario) and 15 reference websites
+
+### Shipped
+- **35 provincial programs** (`?v=209`, `?v=210`). Each one was checked on its official page, written from the
+  saved page text only, and checked line by line by a separate reviewer. Ontario now has 24 provincial records
+  (was 9): Ontario Works, the Ontario Drug Benefit, ODSP health benefits, Healthy Smiles, seniors' dental, DSO,
+  respite, home care, the Northern Health Travel Grant, GAINS, the Child Benefit, the Trillium Benefit, OESP and
+  children's treatment centres. B.C. gained 10 (Income Assistance, PPMB, hearing supplements, home support, CSIL,
+  Nursing Support Services, SAFER, RAP, the B.C. Family Benefit, subsidized housing). Alberta gained 10 (Income
+  Support, the Seniors Benefit, Special Needs Assistance for Seniors, seniors' dental and optical, SHARP, the Child
+  and Family Benefit, the Rent Assistance Benefit, the Brain Injury Initiative, home care, Blue Cross Non-Group).
+  **Catalogue: 218 programs.** Full list, matching decisions and what was not built: `research/2026-10-prov-sweep/SWEEP.md`.
+
+### Verified how
+- Unit tests (239), the Chromium and WebKit browser suites and the eligibility oracle, all passing; CI runs Firefox.
+- A final completeness check by a fresh agent found 2 more programs, now built. Nothing else in scope is missing
+  that has a public provincial eligibility page.
+
+### Decisions we made for you
+- Programs decided by a care assessment (home care, CSIL, Nursing Support Services) never show as a full match.
+  They show under "More to check", with what to ask for.
+- Child benefits are a full match only for a child profile, because we don't ask adults whether they have children.
+- Not built: the B.C. Family Benefit disability supplement (proposed for July 2027, re-check then) and the Ontario
+  Bursary for Students with Disabilities (no public eligibility page; the federal grants are already listed).
+
+### Design
+- The three drafts are scrapped, as you asked. **15 reference websites** with homepage screenshots:
+  `research/2026-10-redesign/REFERENCE-SITES-15.md` and `reference-screens/`.
+
+### Needs you
+- **#225: tell me which of the 15 sites to base the redesign on.**
+
 ## 2026-10-17 — evening: retried leads, coverage page, redesign research
 
 ### Shipped

@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 300 links. The monitor checks a bounded rotating batch every
+// 302 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -1203,6 +1203,16 @@ export const LINKS = [
   {
     "url": "https://www.alberta.ca/seniors-home-adaptation-repair-program",
     "label": "Seniors Home Adaptation and Repair Program (SHARP) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.bchousing.org/housing-assistance/rental-housing/subsidized-housing",
+    "label": "Subsidized housing (BC Housing Registry) for people with disabilities — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/childrens-rehabilitation-services",
+    "label": "Children's Rehabilitation Services (Children's Treatment Centres) — apply",
     "kind": "apply"
   },
   {

@@ -1009,6 +1009,20 @@ const REQS = {
     fixed: false,
     unmet: "You are 65 or older, own your home and have income of $75,000 or less.",
   },
+  bcSubsidizedHousingRoute: {
+    short: "Check the income limits and your disability pension or DTC",
+    who: ["you", "professional"],
+    met: () => lowIncome() && (answers.dtc === "yes" || answers.bcAssistance === "pwd"),
+    fixed: false,
+    unmet: "You get a disability pension or are disabled for income tax purposes, with income under the limits.",
+  },
+  onChildrensRehabRoute: {
+    short: "Check the disability documents the program asks for",
+    who: ["you", "professional"],
+    met: () => answers.disabilityVerified === "yes",
+    fixed: false,
+    unmet: "Child or youth up to 19 (21 if in school) with a physical or developmental disability or communication difficulty.",
+  },
   kingstonMfapIncome: {
     short: "Check your income against the MFAP limit",
     who: ["you", "program"],

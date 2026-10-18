@@ -766,6 +766,19 @@ const GATES = {
     satisfy: { set: { income: "low" } },
     violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
   },
+  bcSubsidizedHousingRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", dtc: "yes" } },
+    violations: [
+      { name: "moderate income: the Housing Income Limits are not collected", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "no DTC or disability assistance yet", fragment: { set: { dtc: "no", bcAssistance: "none" } }, expect: "almost" },
+    ],
+  },
+  onChildrensRehabRoute: {
+    evidence: "answers",
+    satisfy: { set: { disabilityVerified: "yes" } },
+    violations: [{ name: "not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" }],
+  },
   kingstonMfapIncome: {
     evidence: "answers",
     satisfy: { set: { income: "low" } },
@@ -1339,6 +1352,8 @@ const PROGRAM_BEST_CASE = {
   "squamish-recreation-access":                    "ready",
   "terrace-affordable-recreation-access":          "almost",
   "white-rock-leisure-access":                     "ready",
+  "bc-subsidized-housing":                         "ready",
+  "on-childrens-rehab":                            "ready",
   "on-child-benefit":                              "ready",
   "on-dso-adult-services":                         "ready",
   "on-enhanced-respite":                           "ready",

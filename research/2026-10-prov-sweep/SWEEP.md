@@ -5,17 +5,18 @@ full list of provincial programs. Each candidate was checked on its official pag
 (`verification/verified-*.json`), the page text was saved (`snapshots/`), a record was drafted from the
 snapshot only, and a separate reviewer checked every sentence and number against it.
 
-## Built (33)
+## Built (35)
 
-**Ontario (14):** Ontario Works · Ontario Drug Benefit · ODSP health and disability benefits (Special Diet
+**Ontario (15):** Ontario Works · Ontario Drug Benefit · ODSP health and disability benefits (Special Diet
 Allowance folded in) · ODSP employment supports · Healthy Smiles Ontario · Ontario Seniors Dental Care
 Program · Developmental Services Ontario (adult services) · Enhanced Respite (children) · Ontario Health
 atHome home and community care · Northern Health Travel Grant · GAINS · Ontario Child Benefit · Ontario
-Trillium Benefit · Ontario Electricity Support Program.
+Trillium Benefit · Ontario Electricity Support Program · Children's Rehabilitation Services (added after the final check).
 
-**B.C. (9):** Income Assistance · Persons with Persistent Multiple Barriers · hearing instruments and the
+**B.C. (10):** Income Assistance · Persons with Persistent Multiple Barriers · hearing instruments and the
 Alternative Hearing Assistance Supplement · Home and Community Care home support · CSIL · Nursing
-Support Services · SAFER · Rental Assistance Program · B.C. Family Benefit.
+Support Services · SAFER · Rental Assistance Program · B.C. Family Benefit · subsidized housing through the BC
+Housing Registry (added after the final check).
 
 **Alberta (10):** Income Support · Alberta Seniors Benefit · Special Needs Assistance for Seniors · Dental
 and Optical Assistance for Seniors · SHARP · Alberta Child and Family Benefit · Rent Assistance Benefit
@@ -49,3 +50,13 @@ Coverage (premium subsidy).
   Homeowners' Property Tax Grant and Seniors Care at Home Tax Credit (no eligibility on the page),
   Ontario Renovates (no disability criterion), OHIP eye exams (universal), LEAP (no usable program page;
   mentioned as a tip on OESP), BC Seniors Supplement (no current gov.bc.ca page).
+
+## Final completeness check
+
+A fresh agent re-read each province's hub pages against the updated catalogue
+(`verification/final-check.json`). It found the two programs above, which were then built and reviewed the same
+way. Also checked and not built: Alberta Child Care Subsidy (general subsidy, no disability-specific rule),
+Alberta Seniors Lodge Program (the page covers capital funding only), B.C. PWD transportation supplement (already
+in bc-disability-assistance-pwd and bc-bus-pass), B.C. Community Volunteer Supplement (closed to new applicants
+since 2011), MSP premium help (premiums ended in 2020), Ontario community housing (run by municipal service
+managers; no provincial eligibility page).

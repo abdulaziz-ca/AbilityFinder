@@ -1,9 +1,9 @@
 # Benefit re-verification queue
 
 Generated: 2026-10-18  
-Records: 216  
+Records: 218  
 Inherited: 39  
-Own-date: 177  
+Own-date: 179  
 Oldest: 2026-07 (109 days)
 
 Month-only ages use the first day of the month, not an asserted verification day. Priority = age + 60 inherited + 30 dollar figures. This queue never changes facts.
@@ -176,53 +176,55 @@ Month-only ages use the first day of the month, not an asserted verification day
 | 164 | bc-pharmacare-plan-p | PharmaCare Plan P (BC Palliative Care Benefits) | 2026-10 | false | 17 | https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover#planp<br>https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/pharmacare/pharmacare-publications/patient-information-sheets#planp |
 | 165 | bc-ppmb | Persons with Persistent Multiple Barriers (PPMB) | 2026-10 | false | 17 | https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/persons-with-persistent-multiple-barriers/persons-with-persistent-multiple-barriers-topic |
 | 166 | bc-rental-assistance-program | Rental Assistance Program (RAP) | 2026-10 | false | 17 | https://www.bchousing.org/housing-assistance/rental-assistance-programs/RAP |
-| 167 | bc-workbc-assistive-technology | WorkBC Assistive Technology Services | 2026-10 | false | 17 | https://www.workbc.ca/get-support/assistive-technology-pwd<br>https://apply.workbc.ca/ |
-| 168 | belleville-recreation-fee-assistance | Recreation Fee Assistance (Belleville) | 2026-10 | false | 17 | https://www.belleville.ca/learn-and-play/recreation/recreation-guide-and-registration-information/recreation-fee-assistance/ |
-| 169 | blackfalds-recreation-fee-assistance | Recreation Fee Assistance Program (PASS) | 2026-10 | false | 17 | https://irec.wolfcreek.ab.ca/download/108425 |
-| 170 | brantford-recreation-subsidy | Recreation Financial Assistance (Brantford) | 2026-10 | false | 17 | https://www.brantford.ca/en/things-to-do/recreational-programs-financial-assistance.aspx |
-| 171 | campbell-river-life | L.I.F.E. Program (Campbell River) | 2026-10 | false | 17 | https://www.campbellriver.ca/parks-recreation-culture/recreation/affordable-recreation |
-| 172 | canmore-affordable-services | Canmore Affordable Services Program | 2026-10 | false | 17 | https://www.canmore.ca/your-community/community-supports-and-services/affordable-services-program |
-| 173 | chestermere-community-access-program | Community Access Program (CAP) | 2026-10 | false | 17 | https://thecityofchestermere.ca/community-services/cap-registration/ |
-| 174 | cochrane-connect-card | Cochrane Connect Card | 2026-10 | false | 17 | https://www.cochrane.ca/node/241/financial-resources/cochrane-connect-card |
-| 175 | colwood-langford-life | LIFE Program (West Shore Parks & Recreation) | 2026-10 | false | 17 | https://www.wspr.ca/inclusion-support/financial-support |
-| 176 | cornwall-community-bus-pass | Community Bus Pass (Cornwall) | 2026-10 | false | 17 | https://www.cornwall.ca/en/public-safety-transportation/transit/fares-and-passes/community-passes/ |
-| 177 | cranbrook-leisure-access | Leisure Access Program (Cranbrook) | 2026-10 | false | 17 | https://cranbrook.ca/our-city/city-departments/leisure-services/services/leisure-access-program |
-| 178 | dawson-creek-leisure-access | Leisure Access Program (Dawson Creek) | 2026-10 | false | 17 | https://www.dawsoncreek.ca/parks-recreation/recreation-programs/leisure-access-and-funding-assistance/ |
-| 179 | drayton-valley-recreation-fee-assistance | Recreation Fee Assistance Program (RFAP) | 2026-10 | false | 17 | https://www.draytonvalley.ca/recreation-fee-assistance-program/ |
-| 180 | duncan-leisure-access | Leisure Access Program (Duncan) | 2026-10 | false | 17 | https://www.northcowichan.ca/form/leisure-access-program-application |
-| 181 | fortsask-access | Fort Saskatchewan Access for Everyone | 2026-10 | false | 17 | https://www.fortsask.ca/recreation-parks/program-registrations-drop-in-classes/access-for-everyone-program/ |
-| 182 | fscd | Family Support for Children with Disabilities (FSCD) | 2026-10 | false | 17 | https://www.alberta.ca/fscd-eligibility<br>https://www.alberta.ca/fscd |
-| 183 | grt-cnib-pass | CNIB pass (Grand River Transit) | 2026-10 | false | 17 | https://www.grt.ca/fares-and-payment/tickets-and-passes/passes/cnib-pass/ |
-| 184 | grt-support-person | Transit Support Person program (Grand River Transit) | 2026-10 | false | 17 | https://www.grt.ca/rider-information/transit-support-person-program/ |
-| 185 | halton-split | Halton SPLIT transit subsidy (Burlington, Oakville, Milton) | 2026-10 | false | 17 | https://www.halton.ca/For-Residents/Employment-and-Financial-Assistance/Subsidized-Passes-for-Low-Income-Transit-(SPLIT) |
-| 186 | high-river-community-access-program | Community Access Program (High River) | 2026-10 | false | 17 | https://highriver.ca/community/community-support-services/cap |
-| 187 | hvmp | Home and Vehicle Modification Program | 2026-10 | false | 17 | https://www.ontario.ca/page/home-and-vehicle-modification-program |
-| 188 | kingston-affordable-transit-pass | Kingston Affordable Transit Pass | 2026-10 | false | 17 | https://www.cityofkingston.ca/MFAP |
-| 189 | langley-leisure-access-grant | Leisure Access Grant (City of Langley) | 2026-10 | false | 17 | https://langleycity.ca/recreation-culture/recreation/admission-rates-passes-and-financial-assistance |
-| 190 | mission-play-pass | PLAY Pass (Mission) | 2026-10 | false | 17 | https://www.mission.ca/node/1114<br>https://mission.ca/playpass |
-| 191 | okotoks-fee-assistance | Okotoks Recreation Fee Assistance | 2026-10 | false | 17 | https://www.okotoks.ca/your-community/social-well-being/family-community-resources/okotoks-family-resource-centre-7 |
-| 192 | on-adp | Assistive Devices Program (Ontario) | 2026-10 | false | 17 | https://www.ontario.ca/page/assistive-devices-program |
-| 193 | on-dso-adult-services | Developmental Services Ontario adult services | 2026-10 | false | 17 | https://www.ontario.ca/page/programs-and-services-adults-developmental-disabilities-ontario |
-| 194 | on-healthy-smiles | Healthy Smiles Ontario | 2026-10 | false | 17 | https://www.ontario.ca/page/get-dental-care |
-| 195 | on-home-community-care | Home and community care (Ontario Health atHome) | 2026-10 | false | 17 | https://www.ontario.ca/page/homecare-seniors |
-| 196 | on-seniors-dental | Ontario Seniors Dental Care Program | 2026-10 | false | 17 | https://www.ontario.ca/page/dental-care-seniors |
-| 197 | ontario-autism-program | Ontario Autism Program | 2026-10 | false | 17 | https://www.ontario.ca/page/ontario-autism-program |
-| 198 | ottawa-a-card | a-card — free OC Transpo travel if you are blind or partially sighted (Ottawa) | 2026-10 | false | 17 | https://www.octranspo.com/en/fares/reduced-fares/ |
-| 199 | penticton-access-pass | Access Pass (Penticton) | 2026-10 | false | 17 | https://www.penticton.ca/node/71 |
-| 200 | penticton-life | LIFE Program (Penticton) | 2026-10 | false | 17 | https://www.penticton.ca/node/71 |
-| 201 | pitt-meadows-fee-subsidy | Program and Admission Fee Subsidy (Pitt Meadows) | 2026-10 | false | 17 | https://www.pittmeadows.ca/media/5925 |
-| 202 | port-moody-leisure-access | Leisure Access Program (Port Moody) | 2026-10 | false | 17 | https://www.portmoody.ca/media/pybmlml1/leisure-access-application-form.pdf |
-| 203 | prince-rupert-recreation-access | Recreation Access Program (Prince Rupert) | 2026-10 | false | 17 | https://www.princerupert.ca/node/988 |
-| 204 | quesnel-leisure-access | Leisure Access Card (Quesnel) | 2026-10 | false | 17 | https://www.quesnel.ca/node/4489 |
-| 205 | rocky-mountain-house-rfap | Recreation Facility Access Program (Rocky Mountain House) | 2026-10 | false | 17 | https://www.rockymtnhouse.com/p/rfap |
-| 206 | squamish-recreation-access | Recreation Access Program (Squamish) | 2026-10 | false | 17 | https://squamish.ca/assets/000-Recreation-Services/000_Forms/RAP-updated-form_-2024.pdf |
-| 207 | ssah | Special Services at Home (SSAH) | 2026-10 | false | 17 | https://www.ontario.ca/page/special-services-home |
-| 208 | strathmore-community-access-card | Community Access Card (Strathmore) | 2026-10 | false | 17 | https://www.strathmore.ca/living-here/family-community-support-services/resources-financial-support/community-access-card/ |
-| 209 | taber-fee-assistance | Fee Assistance Program (Taber) | 2026-10 | false | 17 | https://www.taber.ca/town-services/recreation/fee-assistance |
-| 210 | terrace-affordable-recreation-access | Affordable Recreation Access Program (Terrace) | 2026-10 | false | 17 | https://www.terrace.ca/sites/default/files/2026-06/Affordable%20Recreation%20Access%20Program%20-%20Revised%20June%2022%202026.pdf |
-| 211 | waterloo-curbside-waste-support | Curbside waste support programs (Region of Waterloo) | 2026-10 | false | 17 | https://www.regionofwaterloo.ca/programs-and-services/garbage-and-organics/garbage/curbside-waste-support/ |
-| 212 | waterloo-homemaking-support | Homemaking Support Services Program (Region of Waterloo) | 2026-10 | false | 17 | https://www.regionofwaterloo.ca/programs-and-services/seniors-and-long-term-care/community-programs-for-older-adults/homemaking-support/ |
-| 213 | west-vancouver-recreation-financial-assistance | Recreation Financial Assistance Program (West Vancouver) | 2026-10 | false | 17 | https://westvancouver.ca/parks-recreation/recreation-programs-services/financial-assistance-support |
-| 214 | whitecourt-recreation-fee-assistance | Recreational Fee Assistance Program (Whitecourt) | 2026-10 | false | 17 | https://whitecourt.ca/play/allan-jean-millar-centre/facility-admission-information |
-| 215 | york-region-homemakers | Homemakers Services (York Region) | 2026-10 | false | 17 | https://www.york.ca/support/financial-assistance/homemakers-services |
-| 216 | york-region-recreation-subsidies | Recreation subsidies (York Region) | 2026-10 | false | 17 | https://www.york.ca/support/financial-assistance/recreation-subsidies |
+| 167 | bc-subsidized-housing | Subsidized housing (BC Housing Registry) for people with disabilities | 2026-10 | false | 17 | https://www.bchousing.org/housing-assistance/rental-housing/subsidized-housing |
+| 168 | bc-workbc-assistive-technology | WorkBC Assistive Technology Services | 2026-10 | false | 17 | https://www.workbc.ca/get-support/assistive-technology-pwd<br>https://apply.workbc.ca/ |
+| 169 | belleville-recreation-fee-assistance | Recreation Fee Assistance (Belleville) | 2026-10 | false | 17 | https://www.belleville.ca/learn-and-play/recreation/recreation-guide-and-registration-information/recreation-fee-assistance/ |
+| 170 | blackfalds-recreation-fee-assistance | Recreation Fee Assistance Program (PASS) | 2026-10 | false | 17 | https://irec.wolfcreek.ab.ca/download/108425 |
+| 171 | brantford-recreation-subsidy | Recreation Financial Assistance (Brantford) | 2026-10 | false | 17 | https://www.brantford.ca/en/things-to-do/recreational-programs-financial-assistance.aspx |
+| 172 | campbell-river-life | L.I.F.E. Program (Campbell River) | 2026-10 | false | 17 | https://www.campbellriver.ca/parks-recreation-culture/recreation/affordable-recreation |
+| 173 | canmore-affordable-services | Canmore Affordable Services Program | 2026-10 | false | 17 | https://www.canmore.ca/your-community/community-supports-and-services/affordable-services-program |
+| 174 | chestermere-community-access-program | Community Access Program (CAP) | 2026-10 | false | 17 | https://thecityofchestermere.ca/community-services/cap-registration/ |
+| 175 | cochrane-connect-card | Cochrane Connect Card | 2026-10 | false | 17 | https://www.cochrane.ca/node/241/financial-resources/cochrane-connect-card |
+| 176 | colwood-langford-life | LIFE Program (West Shore Parks & Recreation) | 2026-10 | false | 17 | https://www.wspr.ca/inclusion-support/financial-support |
+| 177 | cornwall-community-bus-pass | Community Bus Pass (Cornwall) | 2026-10 | false | 17 | https://www.cornwall.ca/en/public-safety-transportation/transit/fares-and-passes/community-passes/ |
+| 178 | cranbrook-leisure-access | Leisure Access Program (Cranbrook) | 2026-10 | false | 17 | https://cranbrook.ca/our-city/city-departments/leisure-services/services/leisure-access-program |
+| 179 | dawson-creek-leisure-access | Leisure Access Program (Dawson Creek) | 2026-10 | false | 17 | https://www.dawsoncreek.ca/parks-recreation/recreation-programs/leisure-access-and-funding-assistance/ |
+| 180 | drayton-valley-recreation-fee-assistance | Recreation Fee Assistance Program (RFAP) | 2026-10 | false | 17 | https://www.draytonvalley.ca/recreation-fee-assistance-program/ |
+| 181 | duncan-leisure-access | Leisure Access Program (Duncan) | 2026-10 | false | 17 | https://www.northcowichan.ca/form/leisure-access-program-application |
+| 182 | fortsask-access | Fort Saskatchewan Access for Everyone | 2026-10 | false | 17 | https://www.fortsask.ca/recreation-parks/program-registrations-drop-in-classes/access-for-everyone-program/ |
+| 183 | fscd | Family Support for Children with Disabilities (FSCD) | 2026-10 | false | 17 | https://www.alberta.ca/fscd-eligibility<br>https://www.alberta.ca/fscd |
+| 184 | grt-cnib-pass | CNIB pass (Grand River Transit) | 2026-10 | false | 17 | https://www.grt.ca/fares-and-payment/tickets-and-passes/passes/cnib-pass/ |
+| 185 | grt-support-person | Transit Support Person program (Grand River Transit) | 2026-10 | false | 17 | https://www.grt.ca/rider-information/transit-support-person-program/ |
+| 186 | halton-split | Halton SPLIT transit subsidy (Burlington, Oakville, Milton) | 2026-10 | false | 17 | https://www.halton.ca/For-Residents/Employment-and-Financial-Assistance/Subsidized-Passes-for-Low-Income-Transit-(SPLIT) |
+| 187 | high-river-community-access-program | Community Access Program (High River) | 2026-10 | false | 17 | https://highriver.ca/community/community-support-services/cap |
+| 188 | hvmp | Home and Vehicle Modification Program | 2026-10 | false | 17 | https://www.ontario.ca/page/home-and-vehicle-modification-program |
+| 189 | kingston-affordable-transit-pass | Kingston Affordable Transit Pass | 2026-10 | false | 17 | https://www.cityofkingston.ca/MFAP |
+| 190 | langley-leisure-access-grant | Leisure Access Grant (City of Langley) | 2026-10 | false | 17 | https://langleycity.ca/recreation-culture/recreation/admission-rates-passes-and-financial-assistance |
+| 191 | mission-play-pass | PLAY Pass (Mission) | 2026-10 | false | 17 | https://www.mission.ca/node/1114<br>https://mission.ca/playpass |
+| 192 | okotoks-fee-assistance | Okotoks Recreation Fee Assistance | 2026-10 | false | 17 | https://www.okotoks.ca/your-community/social-well-being/family-community-resources/okotoks-family-resource-centre-7 |
+| 193 | on-adp | Assistive Devices Program (Ontario) | 2026-10 | false | 17 | https://www.ontario.ca/page/assistive-devices-program |
+| 194 | on-childrens-rehab | Children's Rehabilitation Services (Children's Treatment Centres) | 2026-10 | false | 17 | https://www.ontario.ca/page/childrens-rehabilitation-services |
+| 195 | on-dso-adult-services | Developmental Services Ontario adult services | 2026-10 | false | 17 | https://www.ontario.ca/page/programs-and-services-adults-developmental-disabilities-ontario |
+| 196 | on-healthy-smiles | Healthy Smiles Ontario | 2026-10 | false | 17 | https://www.ontario.ca/page/get-dental-care |
+| 197 | on-home-community-care | Home and community care (Ontario Health atHome) | 2026-10 | false | 17 | https://www.ontario.ca/page/homecare-seniors |
+| 198 | on-seniors-dental | Ontario Seniors Dental Care Program | 2026-10 | false | 17 | https://www.ontario.ca/page/dental-care-seniors |
+| 199 | ontario-autism-program | Ontario Autism Program | 2026-10 | false | 17 | https://www.ontario.ca/page/ontario-autism-program |
+| 200 | ottawa-a-card | a-card — free OC Transpo travel if you are blind or partially sighted (Ottawa) | 2026-10 | false | 17 | https://www.octranspo.com/en/fares/reduced-fares/ |
+| 201 | penticton-access-pass | Access Pass (Penticton) | 2026-10 | false | 17 | https://www.penticton.ca/node/71 |
+| 202 | penticton-life | LIFE Program (Penticton) | 2026-10 | false | 17 | https://www.penticton.ca/node/71 |
+| 203 | pitt-meadows-fee-subsidy | Program and Admission Fee Subsidy (Pitt Meadows) | 2026-10 | false | 17 | https://www.pittmeadows.ca/media/5925 |
+| 204 | port-moody-leisure-access | Leisure Access Program (Port Moody) | 2026-10 | false | 17 | https://www.portmoody.ca/media/pybmlml1/leisure-access-application-form.pdf |
+| 205 | prince-rupert-recreation-access | Recreation Access Program (Prince Rupert) | 2026-10 | false | 17 | https://www.princerupert.ca/node/988 |
+| 206 | quesnel-leisure-access | Leisure Access Card (Quesnel) | 2026-10 | false | 17 | https://www.quesnel.ca/node/4489 |
+| 207 | rocky-mountain-house-rfap | Recreation Facility Access Program (Rocky Mountain House) | 2026-10 | false | 17 | https://www.rockymtnhouse.com/p/rfap |
+| 208 | squamish-recreation-access | Recreation Access Program (Squamish) | 2026-10 | false | 17 | https://squamish.ca/assets/000-Recreation-Services/000_Forms/RAP-updated-form_-2024.pdf |
+| 209 | ssah | Special Services at Home (SSAH) | 2026-10 | false | 17 | https://www.ontario.ca/page/special-services-home |
+| 210 | strathmore-community-access-card | Community Access Card (Strathmore) | 2026-10 | false | 17 | https://www.strathmore.ca/living-here/family-community-support-services/resources-financial-support/community-access-card/ |
+| 211 | taber-fee-assistance | Fee Assistance Program (Taber) | 2026-10 | false | 17 | https://www.taber.ca/town-services/recreation/fee-assistance |
+| 212 | terrace-affordable-recreation-access | Affordable Recreation Access Program (Terrace) | 2026-10 | false | 17 | https://www.terrace.ca/sites/default/files/2026-06/Affordable%20Recreation%20Access%20Program%20-%20Revised%20June%2022%202026.pdf |
+| 213 | waterloo-curbside-waste-support | Curbside waste support programs (Region of Waterloo) | 2026-10 | false | 17 | https://www.regionofwaterloo.ca/programs-and-services/garbage-and-organics/garbage/curbside-waste-support/ |
+| 214 | waterloo-homemaking-support | Homemaking Support Services Program (Region of Waterloo) | 2026-10 | false | 17 | https://www.regionofwaterloo.ca/programs-and-services/seniors-and-long-term-care/community-programs-for-older-adults/homemaking-support/ |
+| 215 | west-vancouver-recreation-financial-assistance | Recreation Financial Assistance Program (West Vancouver) | 2026-10 | false | 17 | https://westvancouver.ca/parks-recreation/recreation-programs-services/financial-assistance-support |
+| 216 | whitecourt-recreation-fee-assistance | Recreational Fee Assistance Program (Whitecourt) | 2026-10 | false | 17 | https://whitecourt.ca/play/allan-jean-millar-centre/facility-admission-information |
+| 217 | york-region-homemakers | Homemakers Services (York Region) | 2026-10 | false | 17 | https://www.york.ca/support/financial-assistance/homemakers-services |
+| 218 | york-region-recreation-subsidies | Recreation subsidies (York Region) | 2026-10 | false | 17 | https://www.york.ca/support/financial-assistance/recreation-subsidies |

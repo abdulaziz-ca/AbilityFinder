@@ -288,7 +288,8 @@
     "bc-ppmb": "almost",
     "bc-rental-assistance-program": "almost",
     "bc-safer": "no",
-    "bc-hearing-supplements": "no"
+    "bc-hearing-supplements": "no",
+    "bc-subsidized-housing": "almost"
   },
   "P03-surrey-autistic-child": {
     "waterloo-ontario-renovates": "no",
@@ -433,7 +434,8 @@
     "bc-ppmb": "almost",
     "bc-rental-assistance-program": "almost",
     "bc-safer": "no",
-    "bc-hearing-supplements": "no"
+    "bc-hearing-supplements": "no",
+    "bc-subsidized-housing": "almost"
   },
   "P04-toronto-senior-mobility": {
     "waterloo-ontario-renovates": "no",
@@ -583,7 +585,8 @@
     "on-northern-health-travel-grant": "almost",
     "on-odsp-employment-supports": "almost",
     "on-odsp-health-benefits": "almost",
-    "on-oesp": "ready"
+    "on-oesp": "ready",
+    "on-childrens-rehab": "no"
   },
   "P05-ottawa-odsp": {
     "waterloo-ontario-renovates": "no",
@@ -733,7 +736,8 @@
     "on-northern-health-travel-grant": "almost",
     "on-odsp-employment-supports": "almost",
     "on-odsp-health-benefits": "almost",
-    "on-oesp": "ready"
+    "on-oesp": "ready",
+    "on-childrens-rehab": "no"
   },
   "P06-edmonton-ld-student": {
     "waterloo-ontario-renovates": "no",
@@ -1024,7 +1028,8 @@
     "bc-ppmb": "almost",
     "bc-rental-assistance-program": "almost",
     "bc-safer": "no",
-    "bc-hearing-supplements": "no"
+    "bc-hearing-supplements": "no",
+    "bc-subsidized-housing": "almost"
   },
   "P08-bc-pwd-victoria": {
     "waterloo-ontario-renovates": "no",
@@ -1169,7 +1174,8 @@
     "bc-ppmb": "almost",
     "bc-rental-assistance-program": "almost",
     "bc-safer": "no",
-    "bc-hearing-supplements": "no"
+    "bc-hearing-supplements": "no",
+    "bc-subsidized-housing": "ready"
   },
   "P09-reddeer-deaf-worker": {
     "waterloo-ontario-renovates": "no",
@@ -1465,7 +1471,8 @@
     "on-northern-health-travel-grant": "almost",
     "on-odsp-employment-supports": "almost",
     "on-odsp-health-benefits": "almost",
-    "on-oesp": "almost"
+    "on-oesp": "almost",
+    "on-childrens-rehab": "ready"
   },
   "P11-burnaby-high-income-dtc": {
     "waterloo-ontario-renovates": "no",
@@ -1610,7 +1617,8 @@
     "bc-ppmb": "almost",
     "bc-rental-assistance-program": "almost",
     "bc-safer": "no",
-    "bc-hearing-supplements": "no"
+    "bc-hearing-supplements": "no",
+    "bc-subsidized-housing": "almost"
   },
   "P12-lethbridge-intellectual-adult": {
     "waterloo-ontario-renovates": "no",
@@ -1906,7 +1914,8 @@
     "on-northern-health-travel-grant": "almost",
     "on-odsp-employment-supports": "almost",
     "on-odsp-health-benefits": "almost",
-    "on-oesp": "almost"
+    "on-oesp": "almost",
+    "on-childrens-rehab": "no"
   },
   "P14-calgary-teen-mental": {
     "waterloo-ontario-renovates": "no",

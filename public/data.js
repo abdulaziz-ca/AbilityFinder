@@ -143,6 +143,8 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "on-childrens-rehab": { kind: "access", note: "Therapy and family supports through a local Children's Treatment Centre" },
+  "bc-subsidized-housing": { kind: "access", note: "Rent geared to income (30% of gross household income), subject to a minimum rent" },
   "ab-sharp": { kind: "access", note: "Low-interest loan of up to $40,000 at the current rate of 4.45%" },
   "ab-seniors-special-needs-assistance": { kind: "grant", note: "Up to $5,872 per benefit year toward eligible items" },
   "ab-seniors-dental-optical": { kind: "discount", note: "Dental up to $5,000 every 5 years; glasses up to $230 every 3 years" },
@@ -422,6 +424,8 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "on-childrens-rehab": { difficulty: 2, effort: "Contact your local Children's Treatment Centre; no referral needed", wait: "Not published" },
+  "bc-subsidized-housing": { difficulty: 4, effort: "Online or paper application with proof of disability and income", wait: "Not published" },
   "ab-sharp": { difficulty: 3, effort: "Application form, estimates and a land title caveat", wait: "Not published" },
   "ab-seniors-special-needs-assistance": { difficulty: 3, effort: "Receipts or estimates, plus medical notes for some items", wait: "Not published" },
   "ab-seniors-dental-optical": { difficulty: 2, effort: "Enrol in Seniors Financial Assistance, then claim", wait: "Not published" },
@@ -11132,6 +11136,115 @@ const BENEFITS = [
       ],
       "phone": "Alberta Supports Contact Centre (ask for a call back from a loan specialist): 1-877-644-9992"
     }
+  },
+  {
+    "id": "bc-subsidized-housing",
+    "name": "Subsidized housing (BC Housing Registry) for people with disabilities",
+    "level": "British Columbia",
+    "category": "Housing",
+    "amount": "Rent is 30% of household gross income, with a minimum rent",
+    "summary": "Long-term rental housing for B.C. residents with disabilities and a low income. Rent is based on your income. Demand is high, so wait times cannot be predicted.",
+    "note": "You must be able to live independently, with supports if they are available in your community. Your application must be kept up to date or it may be cancelled.",
+    "requires": [
+      "bc",
+      "bcSubsidizedHousingRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in B.C. and can live independently.",
+        "You get a recognized disability pension, or you are disabled for income tax purposes.",
+        "Your household gross income is below the Housing Income Limits (HILs).",
+        "Your household assets are under $100,000 in buildings managed by BC Housing.",
+        "Everyone in your household meets the residency rules, such as being a citizen or permanent resident."
+      ],
+      "note": "Non-profit and co-op providers decide for themselves whether to apply an assets limit."
+    },
+    "applyText": "Apply to the Housing Registry",
+    "applyUrl": "https://www.bchousing.org/housing-assistance/rental-housing/subsidized-housing",
+    "source": "https://www.bchousing.org/housing-assistance/rental-housing/subsidized-housing",
+    "detail": {
+      "aboutList": {
+        "lead": "This page covers subsidized housing in general. This is what it says for people with disabilities.",
+        "items": [
+          "Rent is 30% of household gross income, subject to a minimum rent based on the number of people.",
+          "Single people with disabilities can apply for bachelor and one-bedroom units.",
+          "Low-income people who need help to live independently can apply for specially modified rental homes.",
+          "Those homes are in selected subsidized housing developments.",
+          "The income limits are the Housing Income Limits, which BC Housing sets from time to time."
+        ]
+      },
+      "steps": [
+        "Use Housing Listings to find buildings and see how each one takes applications.",
+        "Apply online to the Housing Registry, or download and fill in the paper form.",
+        "Send copies of your documents by upload, in person at a BC Housing office, by mail or by fax.",
+        "Also apply directly to non-profit and co-op providers that run their own lists.",
+        "Update your application about once every six months and when your details change."
+      ],
+      "documents": [
+        "Proof you get a recognized disability pension, or are disabled for income tax purposes",
+        "Last year's tax return showing the Disability Tax Credit, or a Canada Revenue Agency approval letter",
+        "Copies of documents only, because originals are not returned"
+      ],
+      "tips": [
+        "Applying to many buildings may improve your chances of getting a unit.",
+        "If you have no landlord reference, some providers may accept a professional or personal reference.",
+        "A Supplemental Form can be filled in for a serious health condition that is affected by your housing.",
+        "If BC Housing does not hear from you for over six months, your application is put on hold."
+      ],
+      "time": "Not published. Wait times depend on unit turnover and the needs of other households."
+    }
+  },
+  {
+    "id": "on-childrens-rehab",
+    "name": "Children's Rehabilitation Services (Children's Treatment Centres)",
+    "level": "Ontario",
+    "category": "Health (for children)",
+    "amount": "Physiotherapy, occupational therapy and speech and language therapy",
+    "summary": "Therapy and family supports for children and youth with physical or developmental disabilities or communication difficulties. You do not need a formal referral.",
+    "note": "Children's Treatment Centres also give these services in schools to students in Ontario public schools. Students in publicly funded schools may use them until they finish school.",
+    "requires": [
+      "on",
+      "under19",
+      "onChildrensRehabRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a child or youth up to 19 years old, or up to 21 if you are in school.",
+        "You have a physical disability, a developmental disability, or communication difficulties or disorders."
+      ],
+      "note": "A formal referral is not needed, but education or health professionals may refer you."
+    },
+    "applyText": "Find a Children's Treatment Centre",
+    "applyUrl": "https://www.ontario.ca/page/childrens-rehabilitation-services",
+    "source": "https://www.ontario.ca/page/childrens-rehabilitation-services",
+    "detail": {
+      "aboutList": {
+        "lead": "Children's Treatment Centres and Surrey Place in Toronto offer these services.",
+        "items": [
+          "Physiotherapy helps restore, maintain and make the most of a child's mobility and well-being.",
+          "Occupational therapy helps with self-care, productivity and leisure.",
+          "Speech and language therapy helps with oral motor and communication function.",
+          "SmartStart Hubs in Toronto give families one entry point to assessment and services.",
+          "Family supports include respite services and parent coaching."
+        ]
+      },
+      "steps": [
+        "Find your area in the table of Children's Treatment Centres on the page.",
+        "Contact your local centre, or Surrey Place in Toronto, to talk about your child's development.",
+        "The centre can explain which services your child should get and how to reach them.",
+        "If you already know what your child needs, you can contact providers directly."
+      ],
+      "documents": [
+        "A formal referral is not required"
+      ],
+      "tips": [
+        "Contact Empowered Kids Ontario (EKO) for more information about services and locations.",
+        "Children from birth until school may also qualify for preschool speech and language services.",
+        "You can also call your local ministry regional office for more information."
+      ]
+    }
   }
 
 ];
@@ -11243,6 +11356,8 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "on-childrens-rehab": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "bc-subsidized-housing": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "ab-sharp": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "ab-seniors-special-needs-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "ab-seniors-dental-optical": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)

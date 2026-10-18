@@ -1240,5 +1240,15 @@
     "short": "Check the program's income test",
     "who": ["you", "program"],
     "reason": "Provincial-sweep record ab-sharp (2026-10-17)"
+  },
+  "bcSubsidizedHousingRoute": {
+    "short": "Check the income limits and your disability pension or DTC",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record bc-subsidized-housing (2026-10-17)"
+  },
+  "onChildrensRehabRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record on-childrens-rehab (2026-10-17)"
   }
 }

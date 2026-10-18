@@ -25,8 +25,8 @@ for (const persona of personas) {
     const counts = {
       // Okotoks is no longer a lead outside its Alberta service area.
       // 2026-10-17 provincial sweep: income-tested provincial benefits added (kit reviewed).
-      'ab-self': [3, 23], 'bc-child': [6, 24], 'on-family': [6, 22],
-      'bc-self': [10, 24], 'no-matches': [0, 11], returning: [3, 23],
+      'ab-self': [3, 23], 'bc-child': [6, 25], 'on-family': [6, 22],
+      'bc-self': [11, 24], 'no-matches': [0, 11], returning: [3, 23],
     };
     const [ready, almost] = counts[persona.id];
     await expect(page.locator('.benefit.ready')).toHaveCount(ready);
