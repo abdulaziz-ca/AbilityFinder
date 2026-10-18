@@ -1,0 +1,100 @@
+URL: https://www2.gnb.ca/content/gnb/en/corporate/promo/investing-in-early-learning-and-child-care/information-for-families/guide.html | province: NB | program: Childcare Assistance Program | fetched: 2026-10-18
+=== PAGE: https://www2.gnb.ca/content/gnb/en/corporate/promo/investing-in-early-learning-and-child-care/information-for-families/guide.html (HTTP 200, 8136 chars)
+
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MGVPDD"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>
+ - Early Learning and Child Care in New Brunswick
+ - Information for families 
+ Childcare financial assistance
+ Step by step guide for families
+ On this page:
+ - Childcare financial assistance
+ - Online application
+ - Step 1 - Parent Portal sign in or register
+ - Step 2 - Childcare financial assistance application
+ - Step 3 - Choose application type
+ - Step 4 - Required documentation
+ - Step 5 - Verify address and contact information
+ - Step 6 - Applicant's information
+ - Step 7 - Parent referrals and Child program referrals - ONLY
+ - Step 8 - Upload required documents
+ - Step 9 - Verifying Child Enrolment Details
+ - Step 10 - Add a Child
+ - Step 11 - Review and submit application
+ - Update information
+ - Contact
+ Childcare financial assistance
+Childcare Financial Assistance is available for low- and middle- income parents to help cover the cost of child care.  To be eligible, parents must be working, enroled in a training or education program, have a parent referral or have a referral from a child program.  Benefits are determined based on annual gross household income up to $80,000.
+There are two Childcare Financial Assistance programs:
+- Parent Subsidy Program which provides financial support to parents with preschool children (0-5 years, not yet in school) enroled in a designated early learning and childcare facility.
+- Childcare Assistance Program which provides financial support to parents with preschool children (0-5 years, not yet in school) enroled in a non-designated early learning and childcare facility or children 5-12 years and enroled in a school age program.
+Both programs use a sliding scale based on gross annual household income (before deductions).
+Parents with an income of $37,500 or less whose preschool child is enroled in a designated early learning and childcare facility may qualify for free childcare.
+To apply, parents will complete only one application online through the Parent Portal at Childcare Financial Assistance.
+ Online application
+The application process is now online!
+The application process for Childcare Financial Assistance is available exclusively online through the Parent Portal. The Parent Portal is the same secure system used to accept the enrolment offer from your child’s early learning and child care facility.
+ Parent Portal
+ Step 1: Parent Portal sign in or register
+Visit the Parent Portal (GNB.CA/parentportal) and either sign into your existing account or register for a new account. If you are registering, an email will be sent to you requesting that you confirm your email address. 
+ Important
+ When applying for Childcare Financial Assistance, you must use the same Parent Portal account that you used to accept the enrolment offer from your child’s early learning and child care facility. 
+If your child is not yet enroled in an early learning and child care facility but an enrolment offer has been issued by the facility, accept the offer in the Parent Portal by following the directions in the email. 
+If you expect to have an enrolment offer within 60 days, you can apply for Childcare Financial Assistance and be pre-approved for up to 60 days. If an offer is not active within that time frame, you will need to reapply. 
+*Note: Please ensure you provide your early learning and child care facility with the same email address that is associated with your Parent Portal account.
+Once signed in, you can apply for Childcare Financial Assistance.
+ Step 2: Childcare financial assistance application
+From the Home page, select Childcare Financial Assistance and then Apply for Childcare Financial Assistance.
+ Step 3: Choose application type
+Choose the Application Type that best describes your reason for applying:
+- Regular–both parent(s) are working or enroled in an education or training program.
+- Parent Referral –a Parent has a referral letter for one of the following:
+- Medical Referral
+- Social Development Referral
+- High School Referral
+- Child Program Referral – your child has a referral letter from one of the following Child Programs:
+- Family and Early Childhood (Early Intervention)
+- Making Friends Learning Together - Access
+- Making Friends Learning Together – Post EYE-DA
+- VIVA Therapeutic Services
+- Social Development Referral
+- Atlantic Provinces Special Education Authority (APSEA)
+ Step 4: Required documentation
+Review the necessary documentation required to complete your application, the required documentation varies based on the application type you selected. Once you’ve reviewed and collected the required documentation select Apply for Childcare Financial Assistance.
+ Step 5: Verify address and contact information
+Verify or add your address and contact information, then select Next.
+ Step 6: Applicant's information
+Complete all the required information for the primary applicant as well as the secondary applicant, if applicable, then select Next.
+ Step 7: Parent referrals and child program referrals - ONLY
+This step is only for Parent Referrals and Child Program Referrals
+If you are applying through the Parent Referral or Child Program Referral, you will be prompted to select the Referral Type or Child Program that applies to you.
+If more than one child has a Child Program Referral, you must submit an application for each child. 
+ Step 8: Upload required documents
+Upload required supporting documentation for the primary applicant. You will need to choose a document type from the dropdown menu and then choose a document to upload from your computer or mobile device.  The document will appear in your list of uploaded documents on the screen.  The required documentation that you need to upload will be listed on the screen based on the application type.
+Once all the required documents have been uploaded, select Next.
+If there is a secondary applicant, repeat the steps to upload the required documents for the secondary applicant, then select Next.
+ Step 9: Verifying Child Enrolment Details
+If you have previously registered a child on the Parent Portal, you will see a screen for each child displaying their current Enrolment Details.
+Review the Enrolment Details for each child and confirm these are correct by selecting Yes. If the Enrolment Details are not correct, select No. You will be prompted to add notes related to your answer.
+Once Enrolment Details are confirmed, click Next.
+ Step 10: Add a Child
+If you need to add another child, or are registering your child for the first time, select Yes, Add a child and follow the steps for registering your child.
+After a child is registered, you will be prompted to confirm the Enrolment Details. Once Enrolment Details are confirmed, click Next.
+ Step 11: Review and submit application
+Review the application summary and supporting documents to ensure they are accurate and complete.  Missing documents may delay application processing.  
+Carefully review the Declaration and Consent section, check the box indicating that you agree to the above conditions, and provide your electronic signature by typing your name in the signature box.
+Select Submit Application.
+ How to update information
+If any of the following situations apply to your household, go to the Children - Programs and Services tab in your Parent Portal account. Under Childcare Financial Assistance, click Details next to the benefit record.
+- Change in household income
+- Change in marital status
+- Termination of benefits
+- Extension of benefits (applicable only for Parent Referral applications and must be submitted before benefits expire, if benefits expired, parents must reapply)
+This will open a new page showing a summary of your current benefits. In the blue box, click Update to request changes to your current Childcare Financial Assistance benefits. 
+ Contact
+If you have any questions regarding the application process, please email or call us Monday to Friday from 8:30AM to 4:30PM.
+Email: EECDPortal-PortailEDPE@gnb.ca
+Telephone : 1 833 221-9339 
+ Copyright Government of New Brunswick
+ Privacy 
+ Disclaimer 

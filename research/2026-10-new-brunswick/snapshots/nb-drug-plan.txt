@@ -1,4 +1,86 @@
-URL: https://www.gnb.ca/en/topic/health-wellness/nb-drug-plans/premiums-payments.html | province: NB | program: New Brunswick Drug Plan (income-based premium) | fetched: 2026-10-18
+URL: https://www.gnb.ca/en/topic/health-wellness/nb-drug-plans/enrol-drug-plan.html | province: NB | program: New Brunswick Drug Plan | fetched: 2026-10-18
+=== PAGE: https://www.gnb.ca/en/topic/health-wellness/nb-drug-plans/enrol-drug-plan.html (HTTP 200, 7928 chars)
+
+ Enrol in the New Brunswick Drug Plan
+ Eligibility for the New Brunswick Drug Plan and how to apply.
+ On this page
+ - 
+ - 
+ - 
+ - 
+ - 
+ - 
+ - 
+ - 
+ Overview
+ The New Brunswick Drug Plan is a prescription drug plan that provides drug coverage for New Brunswickers without insurance and those with insurance that doesn’t cover certain prescriptions. Coverage is available regardless of pre-existing conditions or age.
+Premiums are determined based on income and members will be required to pay a 30% co-payment, up to a maximum amount per prescription.
+ Eligibility
+ The New Brunswick Drug Plan is available to New Brunswick residents who have an active Medicare card and meet one of the following requirements: 
+- do not have drug coverage through a private plan or other government program 
+- have existing drug coverage with a private plan, but: - have reached the annual or lifetime maximum for drug coverage with the plan, or 
+- have been prescribed a drug that is not listed on their private plan formulary for the prescribed condition (indication) 
+New Residents 
+Individuals who move to New Brunswick must obtain NB Medicare coverage before they are eligible to apply to the New Brunswick Drug Plan. Information on how to apply for a Medicare card can be found through MyHealthNB. 
+Medicare coverage will only begin the first day of the third month after establishing permanent residence in New Brunswick. If possible, new residents may wish to obtain a 90-day supply of medications before moving, in case of delays receiving new drug coverage. 
+Once the Medicare card has been received, new residents may apply for Drug Plan coverage.  
+ Eligible benefits
+ The New Brunswick Drug Plans Formulary is a list of drugs that are eligible benefits under the New Brunswick Drug Plans. The Formulary is updated monthly.
+The New Brunswick Drug Plan covers prescription drugs only. Vaccines, cannabis or cannabis products, medical devices, supplies and equipment (e.g., diabetic supplies, ostomy supplies, oxygen) are not eligible benefits under the New Brunswick Drug Plans.
+Individuals should contact the New Brunswick Drug Plans at 1-800-332-3692 to confirm that the prescribed drug is listed on the Formulary.
+ How to apply if you have no other drug coverage
+ Complete one New Brunswick Drug Plan Application Form (PDF 703 KB) for the family. 
+Applicants who have a spouse are required to provide spousal information on the application form, even if the spouse is not applying for coverage.
+Mail or fax the completed form to:
+New Brunswick Drug Plan 
+PO Box 690 
+Moncton, NB 
+E1C 8M7
+Fax: 1-888-455-8322
+ How to apply if you have other drug coverage
+ The following documentation must be completed and mailed or faxed to the address above: 
+- completed New Brunswick Drug Plan Application Form (PDF 703 KB) (one per family) 
+- completed Supporting Application Form Other Drug Coverage (PDF 535 KB) (one for each applicant) 
+- letter from each applicant’s private plan(s) that includes the following information: - confirmation the annual or lifetime maximum for drug coverage with their private plan has been reached, or 
+- the drug they have been prescribed is not listed on the private plan’s formulary for the condition being treated 
+- if the prescribed drug(s) is listed as a special authorization benefit, a special authorization request must be completed by the applicant’s health care provider and accompany the application 
+Applicants who have a spouse are required to provide spousal information on the application form even if the spouse is not applying for coverage.  
+In all instances, the New Brunswick Drug Plan is the payor of last resort and coordination of benefits with other drug plans is not permitted. This means that the New Brunswick Drug Plan will only consider coverage for drugs listed on the New Brunswick Drug Plans Formulary when those drugs are not listed on the private plan formulary for the prescribed condition (indication) or are no longer covered because a private plan’s annual or lifetime maximum has been reached. 
+The New Brunswick Drug Plan will not consider requests for coverage due to a private plan’s reimbursement criteria for the prescribed condition not being met. 
+Renewal
+Members enrolled with the New Brunswick Drug Plan because they have been prescribed a drug that is not listed on their private plan formulary for the prescribed condition or they have reached their private plan’s lifetime drug maximum must renew their New Brunswick Drug Plan coverage annually. 
+Members must provide updated written confirmation from their private plan regarding the eligibility of their drug(s) on an annual basis (or more frequently, if deemed appropriate). 
+If coverage was approved with the New Brunswick Drug Plan because the private plan’s annual maximum was reached, coverage will be cancelled when the private plan maximum renews. Individuals must re-apply to the New Brunswick Drug Plan if the annual private plan maximum is reached again.  
+Notification of Changes
+If there are changes in the member’s other drug coverage at any time during the year, they must notify the NB Drug Plans. Depending on the change, the member may be required to submit a new Supporting Application Form Other Drug Coverage (PDF 535 KB) along with a new letter from the private plan.
+ Dependants
+ Eligible dependants of the Plan include: 
+- all dependant children under the age of 19 
+- all dependants age 19 or older who are eligible for a Disability Tax Credit under the federal Income Tax Act, were eligible for the tax credit as a minor and reside with the applicant 
+Dependants of applicants, who are 16 to 18 years old, must provide consent to share their personal health information with the New Brunswick Drug Plan by signing Section 5 of the application form. When a dependant of a member reaches the age of 16, the Plan sends a letter and Consent form (PDF 525 KB) that must be completed and returned.  
+For those unable to consent to the release and use of their health information, substitute decision making powers can be transferred by filling out the Substitute Decision Maker Request Form (PDF 544 KB) or Release of Information to Third Party Consent Form (PDF 572 KB) and submitting it to the address below.
+ Change in circumstances
+ If there are changes in the member’s other drug coverage at any time during the year, they must notify the NB Drug Plans. Depending on the change, the member may be required to submit a new Supporting Application Form Other Drug Coverage (PDF 535 KB) along with a new letter from the private plan.  
+To add or remove a family member or to update personal or payment information, members must complete the following form(s) and submit them by mail or fax to:  
+- Change in Circumstance — Spouse and Dependants (PDF 609 KB)
+- Information Changes — Personal, Income or Payment (PDF 628 KB)
+New Brunswick Drug Plan  
+PO Box 690  
+Moncton, NB  
+E1C 8M7 
+Fax: 1-888-455-8322 
+Members who wish to cancel their coverage may do so at any time by calling the New Brunswick Drug Plan. If the cancellation is requested within 14 days of the effective date of coverage and no drug claims have been paid, no premium will be charged. 
+Members who permanently leave New Brunswick are not eligible for coverage. Members must advise the New Brunswick Drug Plan and New Brunswick Medicare before moving. If possible, members may wish to obtain a 90-day supply of medications before moving, in case of delays receiving drug coverage.  
+If a member leaves New Brunswick for elsewhere in Canada, New Brunswick Medicare coverage will remain in effect for three months, including the month of the move.
+ Get help
+ For additional inquiries, contact us Monday to Friday between 8:00 a.m. and 5:00 p.m., excluding holidays.
+ New Brunswick Drug Plans 
+ Phone: 1-506-867-4515
+Toll free within New Brunswick: 1-800-332-3692
+Email: info@nbdrugs-medicamentsnb.ca   
+ Back to top
+
+
 === PAGE: https://www.gnb.ca/en/topic/health-wellness/nb-drug-plans/premiums-payments.html (HTTP 200, 7841 chars)
 
  Premiums and co-payments

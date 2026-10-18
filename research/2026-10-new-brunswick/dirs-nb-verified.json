@@ -1,0 +1,229 @@
+{
+ "maps": {
+  "STUDENT_AID": {
+   "NB": {
+    "url": "https://www.gnb.ca/en/topic/education-training/post-secondary/student-aid/resources-students-disabilities.html",
+    "source_note": "GNB Student Financial Services: students with disabilities (fetched 2026-10-18)"
+   }
+  },
+  "TWO_ELEVEN": {
+   "NB": {
+    "url": "https://nb.211.ca/",
+    "source_note": "211 New Brunswick site (fetched; page text minimal, only branding); 2-1-1 details from search results, not page"
+   }
+  },
+  "EMPLOYMENT": {
+   "NB": {
+    "url": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/tess-disabilities.html",
+    "source_note": "GNB Training and Employment Support Services (TESS) for persons with disabilities (fetched 2026-10-18)"
+   }
+  }
+ },
+ "HELP_ORGS": {
+  "NB": [
+   {
+    "id": "nb-pleis",
+    "cat": "Help with the forms",
+    "name": "Public Legal Education and Information Service of NB (PLEIS-NB)",
+    "summary": "Provides legal information to the public, including a toll-free Family Law Information Line and a toll-free Legal Information Line (French and English). General information, not individual legal advice.",
+    "url": "https://legalinfonb.ca",
+    "urlText": "legalinfonb.ca",
+    "focus": [
+     "rights",
+     "appeals",
+     "local"
+    ],
+    "coverage": [
+     "NB"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "nb-legal-aid",
+    "cat": "If you're denied \u2014 legal help & appeals",
+    "name": "Legal Aid New Brunswick (NB Legal Aid Services Commission)",
+    "summary": "Helps people with low incomes with eligible criminal and family matters; duty counsel at courthouses is free for covered matters. PLEIS-NB's guide does not mention disability benefit appeals.",
+    "url": "https://legalinfonb.ca/?p=1023",
+    "urlText": "Legal Aid in New Brunswick (PLEIS-NB guide)",
+    "focus": [
+     "appeals",
+     "rights",
+     "family"
+    ],
+    "coverage": [
+     "NB"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "nb-hrc",
+    "cat": "If you're denied \u2014 legal help & appeals",
+    "name": "New Brunswick Human Rights Commission",
+    "summary": "Takes discrimination complaints on its approved forms, emailed to the Commission. Complaints can typically be filed for incidents within the last 12 months. You can call to ask about the process.",
+    "phone": "(506) 453-2301",
+    "url": "https://www2.gnb.ca/content/gnb/en/departments/nbhrc/the-complaint-process/filing-a-complaint.html",
+    "urlText": "Filing a complaint",
+    "focus": [
+     "rights",
+     "accommodation",
+     "appeals"
+    ],
+    "coverage": [
+     "NB"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "nb-inclusion",
+    "cat": "Find local services near you",
+    "name": "Inclusion NB",
+    "summary": "Supports inclusion for people with disabilities and their families through Family Support, Inclusive Education, Inclusive Employment and Life in Community programs. Toll-free line; the inquiry form offers regions: Bathurst, Edmundston, Fredericton, Moncton, Miramichi, Saint John.",
+    "phone": "1-866-622-2548",
+    "url": "https://inclusionnb.ca",
+    "urlText": "inclusionnb.ca",
+    "focus": [
+     "family",
+     "intellectual",
+     "local",
+     "rights"
+    ],
+    "coverage": [
+     "NB"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "nb-211",
+    "cat": "Find local services near you",
+    "name": "211 New Brunswick",
+    "summary": "The site identifies itself as 211 New Brunswick (a community services information service).",
+    "url": "https://nb.211.ca/",
+    "urlText": "nb.211.ca",
+    "focus": [
+     "local"
+    ],
+    "coverage": [
+     "NB"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "disability-alliance-canada-nb",
+    "cat": "Help with the forms",
+    "name": "Disability Alliance Canada",
+    "summary": "A national, cross-disability non-profit serving people with disabilities across Canada. Offers free one-on-one advocate support for CPP Disability and the Disability Tax Credit (DTC).",
+    "url": "https://disabilityalliancecanada.ca",
+    "urlText": "disabilityalliancecanada.ca",
+    "focus": [
+     "dtc",
+     "appeals"
+    ],
+    "coverage": [
+     "NB"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "plan-institute-helpline-nb",
+    "cat": "Help with the forms",
+    "name": "Disability Planning Helpline (Plan Institute)",
+    "summary": "A free, nationwide (Canada-wide) helpline for disability planning questions, including the RDSP.",
+    "phone": "1-844-311-7526",
+    "url": "https://www.rdsp.com",
+    "urlText": "rdsp.com",
+    "focus": [
+     "rdsp",
+     "dtc"
+    ],
+    "coverage": [
+     "NB"
+    ],
+    "verified": "2026-10-18"
+   }
+  ]
+ },
+ "ORGS_DIRECTORY": {
+  "NB": [
+   {
+    "id": "nb-inclusion-nb",
+    "name": "Inclusion NB",
+    "url": "https://inclusionnb.ca",
+    "region": "New Brunswick",
+    "coverage": [
+     "NB"
+    ],
+    "whatTheyDo": "Supports inclusion for people with disabilities and their families through family support, inclusive education, inclusive employment and life-in-community programs, plus advocacy and training.",
+    "focus": "advocacy-family",
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "nb-premiers-council",
+    "name": "Premier's Council on Disabilities",
+    "url": "https://www2.gnb.ca/content/gnb/en/departments/pcsdp/about-us.html",
+    "region": "New Brunswick",
+    "coverage": [
+     "NB"
+    ],
+    "whatTheyDo": "A consultation, study and information-sharing body that advises the provincial government on issues affecting persons with disabilities and reports directly to the Premier (toll-free 1-800-442-4412).",
+    "focus": "navigation-advocacy",
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "nb-easter-seals",
+    "name": "Easter Seals New Brunswick",
+    "url": "https://www.easterseals.nb.ca",
+    "region": "New Brunswick",
+    "coverage": [
+     "NB"
+    ],
+    "whatTheyDo": "Has served people with disabilities since 1966. Programs listed include assistive technology, the accessible Camp Rotary and a Disability Travel Card, with pages on funding opportunities and the Disability Tax Credit.",
+    "focus": "physical-disability",
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "nb-autism-resource-centres",
+    "name": "Autism Resource Centres of New Brunswick (regional network)",
+    "url": "https://www2.gnb.ca/content/gnb/en/departments/education/autism/other.html",
+    "region": "New Brunswick (regional centres)",
+    "coverage": [
+     "NB"
+    ],
+    "whatTheyDo": "Non-profit community centres offering free referrals, resources, support, education and outreach to people with ASD, their families and friends, and professionals.",
+    "focus": "autism",
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "nb-pleis-dir",
+    "name": "Public Legal Education and Information Service of NB (PLEIS-NB)",
+    "url": "https://legalinfonb.ca",
+    "region": "New Brunswick",
+    "coverage": [
+     "NB"
+    ],
+    "whatTheyDo": "Provides legal information to the public through toll-free information lines, free workshops and webinars, and a tenant information program.",
+    "focus": "legal",
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "nb-hrc-dir",
+    "name": "New Brunswick Human Rights Commission",
+    "url": "https://www2.gnb.ca/content/gnb/en/departments/nbhrc/the-complaint-process/filing-a-complaint.html",
+    "region": "New Brunswick",
+    "coverage": [
+     "NB"
+    ],
+    "whatTheyDo": "Receives human rights complaints on its approved forms; you can call (506) 453-2301 to ask about the process.",
+    "focus": "legal",
+    "verified": "2026-10-18"
+   }
+  ]
+ },
+ "changes": [
+  "nb-pleis: removed phone (not on page), reworded",
+  "nb-legal-aid, nb-hrc, nb-inclusion, nb-211 reworded",
+  "ORGS: reworded inclusion, premiers-council, easter-seals, autism, pleis-dir, hrc-dir",
+  "added disability-alliance-canada-nb, plan-institute-helpline-nb",
+  "Ability NB: 403 on both hosts, not added",
+  "211 kept: page identifies as 211 New Brunswick"
+ ]
+}

@@ -13,8 +13,8 @@ const ON_ENABLED = true;
 const SK_ENABLED = true;
 // Manitoba: live with provincial and Winnipeg records; PROVINCE_NOTICES.MB cautions users.
 const MB_ENABLED = true;
-// New Brunswick rollout — dark until launch.
-const NB_ENABLED = false;
+// New Brunswick: live with provincial and city records.
+const NB_ENABLED = true;
 // Scope labels compose from the enabled-province set, so flipping a flag updates them everywhere.
 // Invariant: with ON_ENABLED=false (and BC_ENABLED=true) these produce exactly the prior Alberta+BC strings.
 const _SCOPE_FULL = ["Alberta", ...(BC_ENABLED ? ["British Columbia"] : []), ...(ON_ENABLED ? ["Ontario"] : []), ...(SK_ENABLED ? ["Saskatchewan"] : []), ...(MB_ENABLED ? ["Manitoba"] : []), ...(NB_ENABLED ? ["New Brunswick"] : [])];
@@ -1338,9 +1338,9 @@ const REQS = {
     unmet: "You must be pregnant, live in Manitoba and have net family income under $32,000 a year.",
   },
   brandonCnibFreeTransitRoute: {
-    short: "Check the disability documents the program asks for",
-    who: ["you", "professional"],
-    met: () => answers.disabilityVerified === "yes",
+    short: "Check that you hold a CNIB card",
+    who: ["you"],
+    met: () => hasDisability("vision"),
     fixed: false,
     unmet: "You are a CNIB registered client.",
   },
@@ -1478,18 +1478,60 @@ const REQS = {
     unmet: "You get Social Assistance or the Guaranteed Income Supplement, or fit another listed group.",
   },
   monctonCnibFreeTransitRoute: {
-    short: "Check the disability documents the program asks for",
-    who: ["you", "professional"],
-    met: () => answers.disabilityVerified === "yes",
+    short: "Check that you hold a CNIB card",
+    who: ["you"],
+    met: () => hasDisability("vision"),
     fixed: false,
     unmet: "You hold a valid CNIB card.",
   },
   saintJohnProKidsRoute: {
+    short: "Check the income test and that the program is for your child",
+    who: ["you", "program"],
+    met: () => lowIncome() && isUnder18(),
+    fixed: false,
+    unmet: "Your family has a low income.",
+  },
+  nbDrugPlanRoute: {
+    short: "Check whether you have other drug coverage",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "Open to residents without drug coverage; premiums rise with household income.",
+  },
+  nbHearingAidProgramRoute: {
+    short: "Check your health card coverage",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "You must be a Social Development client or dependent with a qualifying health card.",
+  },
+  nbPublicHousingRoute: {
     short: "Check the program's income test",
     who: ["you", "program"],
     met: () => lowIncome(),
     fixed: false,
-    unmet: "Your family has a low income.",
+    unmet: "Household income must be under the ceiling for your area and home size.",
+  },
+  nbSeniorsHomeRenovationCreditRoute: {
+    short: "Check the senior and household rules",
+    who: ["you", "program"],
+    met: () => isSeniorAge(),
+    fixed: false,
+    unmet: "No income test: seniors and family living with them can claim at any income.",
+  },
+  nbChildcareAssistanceRoute: {
+    short: "Check the income limit and your child's age",
+    who: ["you", "program"],
+    met: () => lowIncome() && ageIn("under6", "6to11"),
+    fixed: false,
+    unmet: "Gross household income must be up to $80,000, and parents must work, study or have a referral.",
+  },
+  nbHomeownerRepairRoute: {
+    short: "Check the income limit and that you own your home",
+    who: ["you", "program"],
+    met: () => lowIncome() && hasCircumstance("homeowner"),
+    fixed: false,
+    unmet: "Low-income homeowners, or owners needing disability or seniors' changes, may qualify.",
   },
   kingstonMfapIncome: {
     short: "Check your income against the MFAP limit",
@@ -3146,6 +3188,8 @@ const RECEIVES_OPTIONS = [
   { value: "sk-said", province: "SK", label: "SAID (Saskatchewan Assured Income for Disability)" },
   { value: "mb-supports-persons-disabilities", province: "MB", label: "Manitoba Supports for Persons with Disabilities (MSPD)" },
   { value: "mb-eia", province: "MB", label: "EIA (Employment and Income Assistance)" },
+  { value: "nb-social-assistance", province: "NB", label: "Social Assistance (including Extended Benefits)" },
+  { value: "nb-disability-support-program", province: "NB", label: "Disability Support Program" },
   { value: "cpp-disability", label: "CPP disability benefit" },
 ];
 const receivesChoices = (province) => RECEIVES_OPTIONS.filter((o) => !o.province || o.province === province);

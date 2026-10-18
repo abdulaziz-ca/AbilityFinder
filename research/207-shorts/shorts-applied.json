@@ -1472,8 +1472,8 @@
     "reason": "Provincial-sweep record mb-prenatal-benefit (2026-10-17)"
   },
   "brandonCnibFreeTransitRoute": {
-    "short": "Check the disability documents the program asks for",
-    "who": ["you", "professional"],
+    "short": "Check that you hold a CNIB card",
+    "who": ["you"],
     "reason": "Manitoba city record brandon-cnib-free-transit (2026-10-18)"
   },
   "nbSocialAssistanceRoute": {
@@ -1572,13 +1572,43 @@
     "reason": "Provincial-sweep record nb-ambulance-fee-exemption (2026-10-17)"
   },
   "monctonCnibFreeTransitRoute": {
-    "short": "Check the disability documents the program asks for",
-    "who": ["you", "professional"],
+    "short": "Check that you hold a CNIB card",
+    "who": ["you"],
     "reason": "New Brunswick city record moncton-cnib-free-transit (2026-10-18)"
   },
   "saintJohnProKidsRoute": {
-    "short": "Check the program's income test",
+    "short": "Check the income test and that the program is for your child",
     "who": ["you", "program"],
     "reason": "New Brunswick city record saint-john-pro-kids (2026-10-18)"
+  },
+  "nbDrugPlanRoute": {
+    "short": "Check whether you have other drug coverage",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nb-drug-plan (2026-10-17)"
+  },
+  "nbHearingAidProgramRoute": {
+    "short": "Check your health card coverage",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nb-hearing-aid-program (2026-10-17)"
+  },
+  "nbPublicHousingRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nb-public-housing (2026-10-17)"
+  },
+  "nbSeniorsHomeRenovationCreditRoute": {
+    "short": "Check the senior and household rules",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nb-seniors-home-renovation-credit (2026-10-17)"
+  },
+  "nbChildcareAssistanceRoute": {
+    "short": "Check the income limit and your child's age",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nb-childcare-assistance (2026-10-17)"
+  },
+  "nbHomeownerRepairRoute": {
+    "short": "Check the income limit and that you own your home",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nb-homeowner-repair (2026-10-17)"
   }
 }

@@ -1,0 +1,109 @@
+URL: https://www2.gnb.ca/content/dam/gnb/Departments/sd-ds/pdf/HealthServices/HearingAidPolicy.pdf | province: NB | program: Health Services Hearing Aid and Vision programs | fetched: 2026-10-18
+=== PAGE: https://www2.gnb.ca/content/dam/gnb/Departments/sd-ds/pdf/HealthServices/HearingAidPolicy.pdf (HTTP 200, 6483 chars)
+SOCIAL DEVELOPMENT HEARING AID POLICY 2026
+
+                                          PURPOSE
+The Health Services Hearing Aid Program provides clients of the Department of Social Development
+with coverage for the purchase and maintenance of hearing aids.
+
+                                         WHO IS ELIGIBLE
+•   Department of Social Development clients and their dependents who hold a valid NBCase
+    (white) Health Card indicating
+           o “Supplementary” in the BASIC HEALTH ELIGIBILITY section
+                                   OR
+           o “HA.” (hearing aid) in the ADDITIONAL HEALTH ELIGIBILITY section
+
+•   Department of Social Development clients who hold a valid NBFamilies (yellow) Health Card that
+    indicates
+           o a “Y” under the OTH in the VALID ONLY FOR box
+
+•   Social Development clients who hold a valid NBCase (yellow) Health Card indicating
+           o an “X” under SUPP in the VALID ONLY FOR box
+Clients must not have any other medical coverage to be eligible for full benefits.
+
+
+                               REQUESTS FOR PRIOR APPROVAL
+•   Prior approval must be obtained from the Health Services Program for all services
+•   The Exceptional Circumstances form must be submitted for all children who are followed by the
+    Special Needs Children program, whose families have private insurance.
+
+
+                                            BENEFITS
+Important Notes:
+   1. Replacement of a hearing aid is not automatic once the time restriction has expired and the
+      need for replacement must be demonstrated.
+   2. Only hearing aids that meet the client’s basic hearing needs in the most cost effective
+      manner will be approved.
+   3. Benefits must be obtained from a New Brunswick supplier unless the equipment or service is
+      not available to the client in this province
+Benefits       Criteria/ Limitations                          Documentation Required             Eligible service
+                                                                                                 providers
+Hearing Aids   1. Client has a hearing limitation that:       •   Certified audiologist’s    •        licensed
+                 • impairs their ability function normally        report, including                   hearing
+                     on a daily basis                             specifications.                     aid
+                 • can be improved with assistance of         •   Copy of audiogram                   providers
+                     a hearing aid                            •   1 estimate on a Health              registered
+               2. Only basic models are eligible                  Services invoice                    with the
+               3. Only 1 hearing aid for the same ear         •   Serial number                       NB
+                  can be provided every 5 years               •   Physician’s Rx        when          Hearing
+               4. Maximum of $1000 per hearing aid.               testing done outside a              Aid
+                  (suppliers cannot bill the client for any       hospital (initial request           Society
+                  costs more than this amount)                    only)
+                                                              •   Warranty information
+                                                               o Warranty coverage details
+                                                               o expiry date
+Repairs         1. Hearing aid must have been                 • 1 cost estimate on a              •   licensed
+                   purchased by the Health                       Health Services invoice,             hearing aid
+                   Services Program or, where                    preferably from the                  providers
+                   purchased elsewhere, be a                     original supplier                    registered
+                   model eligible through the                 • A complete description of             with the
+                   Program                                       the repair required,                 NB
+                2. Only repairs that are authorized              including:                           Hearing
+                   under the manufacturer’s warranty             - make, model, serial                Aid Society
+                   can be approved once the                      number
+                   warranty has expired                          - which part(s) of the aid is
+                3. Repairs must be feasible and                  (are) being repaired
+                   cost effective                             • Date of purchase and who
+                                                                 purchased the aid, if not
+                                                                 purchased by Health
+                                                                 Services
+Ear molds       1. Hearing aid must have been                 • 1 cost estimate on a
+                   purchased by the Health                       Health Services invoice.
+                   Services Program or, where
+                   purchased elsewhere, be a
+                   model eligible through the
+                   Program
+                2. Eligible once per year for adults
+                   and once every 6 months for
+                   children
+                3. Purchased for behind the ear
+                   (BTE) hearing aids only
+Disposabl      1. The hearing aid must be devices             •   1 cost estimate on a
+e Hearing         eligible under the Health Services              Health Services
+Aid               Program.                                        Hearing Aid Claim Form
+Batteries      2. A maximum of $200 can be paid per
+                  hearing aid, issued only upon client
+                  request.
+               3. Eligible once per year.
+                                  NON-BENEFIT SERVICES
+
+The following items are not covered by the Health Services Hearing Aid Program:
+• CIC or Bi-cross hearing aids
+• BAHA hearing aids
+• Personal FM systems
+• Cochlear implants
+• Hearing aids for cochlear implants
+• Batteries for cochlear implants
+• Repairs or replacement of hearing aid chargers
+• Hooks, filters, tubing
+• Convenience options such as T-coil, directional microphone, etc.
+• Cleaning/ drying
+• Pocket Talker
+• Hearing tests or evaluation
+
+=== PAGE: (vision page has no content; only the hearing aid policy is used) (HTTP 200, 82 chars)
+- 
+- 
+ Health Services Vision Program 
+ Services 
+ Government of New Brunswick

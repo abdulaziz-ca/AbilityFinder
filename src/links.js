@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 381 links. The monitor checks a bounded rotating batch every
+// 422 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -1511,6 +1511,166 @@ export const LINKS = [
     "kind": "apply"
   },
   {
+    "url": "https://www2.gnb.ca/content/gnb/en/services/services_renderer.10295.html",
+    "label": "Social Assistance Program (Income Assistance) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/disability-support.html",
+    "label": "Disability Support Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/self-support.html",
+    "label": "Self-Managed Support — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/employment-support.html",
+    "label": "Employment and Support Services Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/tess-disabilities.html",
+    "label": "Training and Employment Support Services (TESS) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/supports-children.html",
+    "label": "Family Supports for Children with Disabilities — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/vehicle-retrofit.html",
+    "label": "Vehicle Retrofit Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gnb.ca/en/topic/driving-transportation/driving-safety/disabled-parking.html",
+    "label": "Accessible (Disabled) Parking Permit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gnb.ca/en/topic/health-wellness/nb-drug-plans/eligibility-prescription.html",
+    "label": "New Brunswick Prescription Drug Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gnb.ca/content/gnb/en/departments/social_development/promos/healthy_smiles_clear_vision.html",
+    "label": "Healthy Smiles, Clear Vision — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gnb.ca/content/gnb/en/services/services_renderer.13836.Preschool_Autism_Program.html",
+    "label": "Preschool Autism Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://socialsupportsnb.ca/en/",
+    "label": "Long-Term Care Program (home support) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gnb.ca/content/dam/gnb/Departments/sd-ds/pdf/LTC/LongTermCare-e.pdf",
+    "label": "Long-Term Care Program (home support) — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www.gnb.ca/en/topic/health-wellness/medicare-plans-programs/extra-mural.html",
+    "label": "Extra-Mural Program (home healthcare) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gnb.ca/en/news/n-b.2026.04.applications-for-2026-low-income-seniors-benefit-now-available.html",
+    "label": "Low-Income Seniors' Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gnb.ca/content/gnb/en/departments/finance/taxes/child_tax_benefit.html",
+    "label": "New Brunswick Child Tax Benefit and Working Income Supplement — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities.html",
+    "label": "Health Services equipment and supplies (Social Development) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gnb.ca/en/topic/family-home-community/housing-property/portable-rent.html",
+    "label": "Portable Rent Supplement (persons with disabilities) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gnb.ca/en/topic/family-home-community/housing-property/rent-suppplement.html",
+    "label": "Rent Supplement Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gnb.ca/en/topic/family-home-community/housing-property/rehabilitation-conversion.html",
+    "label": "Rental RRAP and garden suites for adults with disabilities — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://ambulancenb.ca/en/billing/",
+    "label": "Ambulance fee exemption — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.codiactranspo.ca/moncton-transport/accessibility",
+    "label": "Free Codiac Transpo rides for CNIB cardholders — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.dieppe.ca/en/vivre-ici/transports/transport-adapte/",
+    "label": "Dieppe Accessible Transit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.fredericton.ca/en/resident-services/fredericton-transit/para-transit",
+    "label": "Fredericton Para Transit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://saintjohn.ca/en/transit/accessibility/handi-bus-service",
+    "label": "Saint John Accessible Transit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://saintjohn.ca/en/parks-and-recreation/recreation/financial-assistance",
+    "label": "P.R.O. Kids recreation fee help — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gnb.ca/en/topic/health-wellness/nb-drug-plans/enrol-drug-plan.html",
+    "label": "New Brunswick Drug Plan — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gnb.ca/content/dam/gnb/Departments/sd-ds/pdf/HealthServices/HearingAidPolicy.pdf",
+    "label": "Health Services Hearing Aid Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gnb.ca/en/topic/family-home-community/housing-property/public-housing.html",
+    "label": "Public Housing (Housing NB) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gnb.ca/en/topic/family-home-community/seniors/senior-tax-credit.html",
+    "label": "Seniors' Home Renovation Tax Credit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gnb.ca/content/gnb/en/corporate/promo/investing-in-early-learning-and-child-care/information-for-families/guide.html",
+    "label": "Childcare Financial Assistance — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gnb.ca/en/topic/family-home-community/housing-property/home-repair.html",
+    "label": "Homeowner Repair Program — apply",
+    "kind": "apply"
+  },
+  {
     "url": "https://vadsociety.ca",
     "label": "Help — Voice of Albertans with Disabilities (VAD)",
     "kind": "help"
@@ -1623,6 +1783,31 @@ export const LINKS = [
   {
     "url": "https://mb.211.ca",
     "label": "Help — 211 Manitoba",
+    "kind": "help"
+  },
+  {
+    "url": "https://legalinfonb.ca",
+    "label": "Help — Public Legal Education and Information Service of NB (PLEIS-NB)",
+    "kind": "help"
+  },
+  {
+    "url": "https://legalinfonb.ca/?p=1023",
+    "label": "Help — Legal Aid New Brunswick (NB Legal Aid Services Commission)",
+    "kind": "help"
+  },
+  {
+    "url": "https://www2.gnb.ca/content/gnb/en/departments/nbhrc/the-complaint-process/filing-a-complaint.html",
+    "label": "Help — New Brunswick Human Rights Commission",
+    "kind": "help"
+  },
+  {
+    "url": "https://inclusionnb.ca",
+    "label": "Help — Inclusion NB",
+    "kind": "help"
+  },
+  {
+    "url": "https://nb.211.ca/",
+    "label": "Help — 211 New Brunswick",
     "kind": "help"
   },
   {
@@ -1881,6 +2066,21 @@ export const LINKS = [
     "kind": "org"
   },
   {
+    "url": "https://www2.gnb.ca/content/gnb/en/departments/pcsdp/about-us.html",
+    "label": "org:nb-premiers-council — Premier's Council on Disabilities",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.easterseals.nb.ca",
+    "label": "org:nb-easter-seals — Easter Seals New Brunswick",
+    "kind": "org"
+  },
+  {
+    "url": "https://www2.gnb.ca/content/gnb/en/departments/education/autism/other.html",
+    "label": "org:nb-autism-resource-centres — Autism Resource Centres of New Brunswick (regional network)",
+    "kind": "org"
+  },
+  {
     "url": "https://studentaid.alberta.ca/",
     "label": "Province fallback — student aid (AB)",
     "kind": "help"
@@ -1898,6 +2098,11 @@ export const LINKS = [
   {
     "url": "https://edu.gov.mb.ca/msa/applying-for-student-aid/frequently-asked-questions-for-students-with-disabilities.html",
     "label": "Province fallback — student aid (MB)",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.gnb.ca/en/topic/education-training/post-secondary/student-aid/resources-students-disabilities.html",
+    "label": "Province fallback — student aid (NB)",
     "kind": "help"
   },
   {

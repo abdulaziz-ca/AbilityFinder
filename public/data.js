@@ -166,11 +166,13 @@ const STUDENT_AID = {
   ON: "https://www.ontario.ca/page/osap-for-under-represented-learners",
   SK: "https://www.saskatchewan.ca/residents/education-and-learning/saskatchewan-student-aid/student-loans-and-grants/supports-for-students-with-disabilities",
   MB: "https://edu.gov.mb.ca/msa/applying-for-student-aid/frequently-asked-questions-for-students-with-disabilities.html",
+  NB: "https://www.gnb.ca/en/topic/education-training/post-secondary/student-aid/resources-students-disabilities.html",
 };
 const TWO_ELEVEN = { AB: "https://ab.211.ca/", BC: "https://bc.211.ca/",
   ON: "https://211ontario.ca",
   SK: "https://sk.211.ca",
   MB: "https://mb.211.ca",
+  NB: "https://nb.211.ca/",
 };
 const EMPLOYMENT = {
   AB: "https://www.alberta.ca/disability-related-employment-supports",
@@ -178,6 +180,7 @@ const EMPLOYMENT = {
   ON: "https://www.ontario.ca/page/working-and-earning-ontario-disability-support-program",
   SK: "https://www.saskatchewan.ca/residents/jobs-working-and-training/job-training-and-financial-support-programs/employability-assistance-for-persons-with-disabilities",
   MB: "https://gov.mb.ca/wd/ites/pwd_work/where.html",
+  NB: "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/tess-disabilities.html",
 };
 
 /* =============================================================================
@@ -188,6 +191,12 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "nb-homeowner-repair": { kind: "grant", note: "A loan where a portion is forgiven, for repairs, accessibility changes or seniors' adaptations." },
+  "nb-childcare-assistance": { kind: "grant", note: "Pays part, or for some families all, of child care costs." },
+  "nb-seniors-home-renovation-credit": { kind: "grant", note: "Gives back 10% of eligible home accessibility costs, up to $1,000 a year." },
+  "nb-public-housing": { kind: "access", note: "Gives access to a Housing NB rental home for households with low-to-moderate incomes." },
+  "nb-hearing-aid-program": { kind: "grant", note: "Pays toward basic hearing aids, repairs, ear molds and batteries for eligible Social Development clients." },
+  "nb-drug-plan": { kind: "discount", note: "Pays part of the cost of listed prescription drugs. You pay a monthly premium and a share of each prescription." },
   "saint-john-pro-kids": { kind: "grant", note: "Pays recreation registration, equipment and transport for low-income families" },
   "saint-john-accessible-transit": { kind: "access", note: "Accessible rides for people who cannot use regular transit" },
   "fredericton-para-transit": { kind: "discount", note: "Accessible rides for registered clients, $3 one way" },
@@ -551,6 +560,12 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "nb-homeowner-repair": { difficulty: 3, effort: "Phone call to start; repairs must be assessed", wait: "Not published" },
+  "nb-childcare-assistance": { difficulty: 3, effort: "Online application with uploaded documents", wait: "Not published" },
+  "nb-seniors-home-renovation-credit": { difficulty: 2, effort: "Claim on your tax return and keep receipts", wait: "Not published" },
+  "nb-public-housing": { difficulty: 2, effort: "Phone call to apply", wait: "Not published" },
+  "nb-hearing-aid-program": { difficulty: 4, effort: "Prior approval plus audiologist report, audiogram and estimate", wait: "Not published" },
+  "nb-drug-plan": { difficulty: 3, effort: "Mail or fax paper forms; a private plan letter is needed if you have other coverage", wait: "Not published" },
   "saint-john-pro-kids": { difficulty: 3, effort: "Not published", wait: "Not published" },
   "saint-john-accessible-transit": { difficulty: 2, effort: "Phone booking", wait: "Not published" },
   "fredericton-para-transit": { difficulty: 3, effort: "Registration form", wait: "Not published" },
@@ -1673,6 +1688,86 @@ const HELP_ORGS = [
     urlText: "rdsp.com",
     focus: ["rdsp", "dtc"],
     coverage: ["MB"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "nb-pleis",
+    cat: "Help with the forms",
+    name: "Public Legal Education and Information Service of NB (PLEIS-NB)",
+    summary: "Provides legal information to the public, including a toll-free Family Law Information Line and a toll-free Legal Information Line (French and English). General information, not individual legal advice.",
+    url: "https://legalinfonb.ca",
+    urlText: "legalinfonb.ca",
+    focus: ["rights", "appeals", "local"],
+    coverage: ["NB"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "nb-legal-aid",
+    cat: "If you're denied — legal help & appeals",
+    name: "Legal Aid New Brunswick (NB Legal Aid Services Commission)",
+    summary: "Helps people with low incomes with eligible criminal and family matters; duty counsel at courthouses is free for covered matters. PLEIS-NB's guide does not mention disability benefit appeals.",
+    url: "https://legalinfonb.ca/?p=1023",
+    urlText: "Legal Aid in New Brunswick (PLEIS-NB guide)",
+    focus: ["appeals", "rights", "family"],
+    coverage: ["NB"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "nb-hrc",
+    cat: "If you're denied — legal help & appeals",
+    name: "New Brunswick Human Rights Commission",
+    summary: "Takes discrimination complaints on its approved forms, emailed to the Commission. Complaints can typically be filed for incidents within the last 12 months. You can call to ask about the process.",
+    phone: "(506) 453-2301",
+    url: "https://www2.gnb.ca/content/gnb/en/departments/nbhrc/the-complaint-process/filing-a-complaint.html",
+    urlText: "Filing a complaint",
+    focus: ["rights", "accommodation", "appeals"],
+    coverage: ["NB"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "nb-inclusion",
+    cat: "Find local services near you",
+    name: "Inclusion NB",
+    summary: "Supports inclusion for people with disabilities and their families through Family Support, Inclusive Education, Inclusive Employment and Life in Community programs. Toll-free line; the inquiry form offers regions: Bathurst, Edmundston, Fredericton, Moncton, Miramichi, Saint John.",
+    phone: "1-866-622-2548",
+    url: "https://inclusionnb.ca",
+    urlText: "inclusionnb.ca",
+    focus: ["family", "intellectual", "local", "rights"],
+    coverage: ["NB"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "nb-211",
+    cat: "Find local services near you",
+    name: "211 New Brunswick",
+    summary: "The site identifies itself as 211 New Brunswick (a community services information service).",
+    url: "https://nb.211.ca/",
+    urlText: "nb.211.ca",
+    focus: ["local"],
+    coverage: ["NB"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "disability-alliance-canada-nb",
+    cat: "Help with the forms",
+    name: "Disability Alliance Canada",
+    summary: "A national, cross-disability non-profit serving people with disabilities across Canada. Offers free one-on-one advocate support for CPP Disability and the Disability Tax Credit (DTC).",
+    url: "https://disabilityalliancecanada.ca",
+    urlText: "disabilityalliancecanada.ca",
+    focus: ["dtc", "appeals"],
+    coverage: ["NB"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "plan-institute-helpline-nb",
+    cat: "Help with the forms",
+    name: "Disability Planning Helpline (Plan Institute)",
+    summary: "A free, nationwide (Canada-wide) helpline for disability planning questions, including the RDSP.",
+    phone: "1-844-311-7526",
+    url: "https://www.rdsp.com",
+    urlText: "rdsp.com",
+    focus: ["rdsp", "dtc"],
+    coverage: ["NB"],
     verified: "2026-10-18",
   },
 ];
@@ -15728,6 +15823,337 @@ const BENEFITS = [
         "The page lists online forms but does not name the P.R.O. Kids form."
       ]
     }
+  },
+  {
+    "id": "nb-drug-plan",
+    "name": "New Brunswick Drug Plan",
+    "level": "New Brunswick",
+    "category": "Health",
+    "amount": "From $7.42 a month per adult, plus 30% of each prescription up to $5.25 to $36.00 (from November 1, 2026)",
+    "summary": "A prescription drug plan for New Brunswickers with no drug coverage, or whose private plan runs out or does not list a drug. Cost depends on household income.",
+    "note": "It covers prescription drugs on the Formulary only. Vaccines, cannabis, medical devices and supplies, such as ostomy supplies and oxygen, are not covered.",
+    "requires": [
+      "nb",
+      "nbDrugPlanRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in New Brunswick and have an active Medicare card.",
+        "You have no drug coverage from a private plan or other government program.",
+        "Or your private plan's annual or lifetime drug maximum has been reached.",
+        "Or a drug you were prescribed is not on your private plan's list for your condition."
+      ],
+      "note": "Coverage is available regardless of pre-existing conditions or age."
+    },
+    "applyText": "Fill in one New Brunswick Drug Plan application form for the family. Mail or fax it to the Drug Plan.",
+    "applyUrl": "https://www.gnb.ca/en/topic/health-wellness/nb-drug-plans/enrol-drug-plan.html",
+    "source": "https://www.gnb.ca/en/topic/health-wellness/nb-drug-plans/enrol-drug-plan.html",
+    "detail": {
+      "aboutList": {
+        "lead": "What it costs and covers (premium amounts are in the tips):",
+        "items": [
+          "The lowest premium is for gross income of $19,571 or less (individual) or $39,141 or less (family).",
+          "The highest premium is for income over $95,976 (individual) or over $162,625 (family).",
+          "Premiums and co-payments follow household income from last year's tax return and are reassessed each year.",
+          "Children under 19 pay no premium, but a parent or guardian must enrol and pay one.",
+          "Dependants 19 or older can be covered if they qualify for the Disability Tax Credit, did as a minor, and live with you."
+        ]
+      },
+      "steps": [
+        "Get an active New Brunswick Medicare card if you do not have one. New residents must do this first.",
+        "Fill in the New Brunswick Drug Plan Application Form. Give spouse details even if your spouse is not applying.",
+        "If you have private coverage, add the Supporting Application Form Other Drug Coverage for each applicant.",
+        "Add a letter from your private plan saying the maximum is reached or the drug is not listed.",
+        "Mail the forms to PO Box 690, Moncton, NB E1C 8M7, or fax them to 1-888-455-8322."
+      ],
+      "documents": [
+        "New Brunswick Drug Plan Application Form (one per family)",
+        "Supporting Application Form Other Drug Coverage (one per applicant, if you have other coverage)",
+        "Letter from each private plan, if you have other coverage",
+        "Special authorization request from your health care provider, if the drug needs one"
+      ],
+      "tips": [
+        "From November 1, 2026, the lowest premium is $7.42 a month per adult, or $89 a year.",
+        "From November 1, 2026, the highest premium is $257.25 a month per adult, or $3,087 a year.",
+        "You also pay 30% of each prescription, up to $5.25 in the lowest band and $36.00 in the highest.",
+        "The Drug Plan pays last. It does not coordinate benefits with other plans.",
+        "It will not consider requests where your private plan's own rules for the condition are not met.",
+        "If you do not file a tax return, you are charged the maximum annual premium. File one each year.",
+        "Call the Drug Plan to check that a drug is on the Formulary."
+      ],
+      "time": "Monday to Friday, 8:00 a.m. to 5:00 p.m.",
+      "phone": "1-800-332-3692"
+    }
+  },
+  {
+    "id": "nb-hearing-aid-program",
+    "name": "Health Services Hearing Aid Program",
+    "level": "New Brunswick",
+    "category": "Health",
+    "amount": "Up to $1,000 per hearing aid; up to $200 per hearing aid, once a year, for disposable batteries",
+    "summary": "Pays for basic hearing aids and their upkeep for Department of Social Development clients and their dependents who hold a qualifying health card.",
+    "note": "You must get approval from the Health Services Program before you buy. Only basic models that meet your basic hearing needs are approved.",
+    "requires": [
+      "nb",
+      "hearingDisability",
+      "nbHearingAidProgramRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a Department of Social Development client or a dependent of one.",
+        "Your NB health card shows the hearing aid or supplementary coverage the policy lists.",
+        "You have no other medical coverage, to be eligible for full benefits.",
+        "A hearing limitation affects daily life and a hearing aid can improve it."
+      ],
+      "note": "Children in the Special Needs Children program with private insurance need an Exceptional Circumstances form."
+    },
+    "applyText": "Ask the Health Services Program for prior approval before any purchase. Use a licensed hearing aid provider.",
+    "applyUrl": "https://www2.gnb.ca/content/dam/gnb/Departments/sd-ds/pdf/HealthServices/HearingAidPolicy.pdf",
+    "source": "https://www2.gnb.ca/content/dam/gnb/Departments/sd-ds/pdf/HealthServices/HearingAidPolicy.pdf",
+    "detail": {
+      "aboutList": {
+        "lead": "What the program covers",
+        "items": [
+          "Hearing aids: up to $1,000 each, and suppliers cannot bill you more than that.",
+          "Only 1 hearing aid for the same ear can be provided every 5 years.",
+          "Repairs are covered for program-bought or eligible aids, when the repair is feasible and cost effective.",
+          "Ear molds are covered once a year for adults and once every 6 months for children.",
+          "Ear molds are for behind-the-ear hearing aids only.",
+          "Disposable batteries: up to $200 per hearing aid, once a year, only if you ask."
+        ]
+      },
+      "steps": [
+        "Get a certified audiologist's report and a copy of your audiogram.",
+        "Get 1 estimate from a licensed provider registered with the NB Hearing Aid Society, on a Health Services invoice.",
+        "Send your request to the Health Services Program for prior approval.",
+        "Buy from a New Brunswick supplier unless the item is not available in the province."
+      ],
+      "documents": [
+        "Certified audiologist's report with specifications",
+        "Copy of the audiogram",
+        "1 estimate on a Health Services invoice",
+        "Serial number",
+        "Physician's prescription, when testing was done outside a hospital (first request only)",
+        "Warranty details and expiry date"
+      ],
+      "tips": [
+        "Replacement is not automatic after 5 years. You must show the need.",
+        "Not covered: cochlear implants, personal FM systems, BAHA and CIC aids, and hearing tests.",
+        "Charger repairs, T-coil and directional microphone options are not covered either."
+      ]
+    }
+  },
+  {
+    "id": "nb-public-housing",
+    "name": "Public Housing (Housing NB)",
+    "level": "New Brunswick",
+    "category": "Housing",
+    "amount": "Income ceilings from $45,000 (urban) or $50,500 (rural) for a one-bedroom home",
+    "summary": "Housing NB owns rental homes across the province for families and individuals with low-to-moderate incomes. Applicants are chosen based on demonstrated need.",
+    "note": "Some exceptions to the income limits may apply. Call Housing NB to ask about your situation or to apply.",
+    "requires": [
+      "nb",
+      "nbPublicHousingRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your household income is under the ceiling for your area and home size.",
+        "You live in crowded or inadequate housing.",
+        "Or you pay under 30% of income for rent, but adequate housing would cost 30% or more.",
+        "Or you pay 30% or more of income for rent, and adequate housing would too."
+      ],
+      "note": "You must be in at least one of the three housing situations."
+    },
+    "applyText": "Call Housing NB to get more information or to apply.",
+    "applyUrl": "https://www.gnb.ca/en/topic/family-home-community/housing-property/public-housing.html",
+    "source": "https://www.gnb.ca/en/topic/family-home-community/housing-property/public-housing.html",
+    "detail": {
+      "aboutList": {
+        "lead": "Income ceilings by household",
+        "items": [
+          "One bedroom, single person or couple: $45,000 in the eight major cities, $50,500 in rural areas.",
+          "Two bedrooms, living with another person: $57,500 urban, $59,500 rural.",
+          "Three bedrooms, living with more than 1 other person: $63,000 urban, $67,500 rural.",
+          "Social housing also includes not-for-profit and cooperative housing."
+        ]
+      },
+      "steps": [
+        "Check the income ceiling for your area and the bedrooms you need.",
+        "Check you are in one of the three housing situations.",
+        "Call Housing NB to apply."
+      ],
+      "documents": [],
+      "tips": [
+        "Rural means living outside city limits.",
+        "Housing NB is open Monday to Friday, 8:15 a.m. to 4:30 p.m.",
+        "You can also email hnb.info@gnb.ca with questions."
+      ],
+      "time": "Monday to Friday, 8:15 a.m. to 4:30 p.m.",
+      "phone": "1-833-733-7835"
+    }
+  },
+  {
+    "id": "nb-seniors-home-renovation-credit",
+    "name": "Seniors' Home Renovation Tax Credit",
+    "level": "New Brunswick",
+    "category": "Money & taxes",
+    "amount": "Up to $1,000 back each year (10% of up to $10,000 of eligible costs)",
+    "summary": "A refundable tax credit that helps seniors, and family members living with them, pay for changes that make a home safer and easier to use.",
+    "note": "Seniors and family members at all income levels can claim. Keep your receipts. You do not send them in, but the CRA may ask to see them.",
+    "requires": [
+      "nb",
+      "nbSeniorsHomeRenovationCreditRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "On the last day of the tax year, you live in New Brunswick.",
+        "You are a senior (65 or older) or a family member living with a senior.",
+        "The work is on your principal residence, the home you mainly live in."
+      ],
+      "note": "Income does not matter."
+    },
+    "applyText": "Claim the credit on your New Brunswick income tax return using the Seniors' Home Renovation Tax Credit form.",
+    "applyUrl": "https://www.gnb.ca/en/topic/family-home-community/seniors/senior-tax-credit.html",
+    "source": "https://www.gnb.ca/en/topic/family-home-community/seniors/senior-tax-credit.html",
+    "detail": {
+      "aboutList": {
+        "lead": "What counts as an eligible cost",
+        "items": [
+          "The work must improve access, improve mobility, or reduce the risk of harm in the home or land.",
+          "Examples: grab bars, handrails, wheelchair ramps, stair lifts, walk-in tubs and wheel-in showers.",
+          "Other examples: wider doors, lever handles, non-slip flooring, hands-free taps and motion-activated lighting.",
+          "If you do the work yourself or a relative does it free, you can claim materials but not labour.",
+          "Not eligible: roof repairs, new windows, heating or air conditioning, insulation and general maintenance.",
+          "Devices such as wheelchairs, walkers and smoke alarms are not eligible, nor are home care services."
+        ]
+      },
+      "steps": [
+        "Check the work helps a senior and is not mainly meant to raise the home's value.",
+        "Keep receipts from suppliers and contractors.",
+        "Claim expenses billed in the tax year on your tax return."
+      ],
+      "documents": [
+        "Receipts from suppliers and contractors (keep them, do not send them in)",
+        "Seniors' Home Renovation Tax Credit form"
+      ],
+      "tips": [
+        "For example, $150 of materials for a grab bar a relative installs can be claimed as $150.",
+        "Phone 1-800-669-7070 or email wwwfin@gnb.ca with questions."
+      ],
+      "time": "Monday to Friday, 8:15 a.m. to 4:30 p.m."
+    }
+  },
+  {
+    "id": "nb-childcare-assistance",
+    "name": "Childcare Financial Assistance",
+    "level": "New Brunswick",
+    "category": "Money (for parents)",
+    "amount": "Sliding scale for household income up to $80,000; free care possible at $37,500 or less",
+    "summary": "Helps low- and middle-income parents pay for child care. Includes children with a referral from a child program, such as early intervention.",
+    "note": "Parents with an income of $37,500 or less whose preschool child is in a designated facility may qualify for free childcare.",
+    "requires": [
+      "nb",
+      "nbChildcareAssistanceRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have a child aged 0 to 12 in an early learning or school-age program.",
+        "Both parents, if there are two, are working or enrolled in training or education.",
+        "Or you have a parent referral or a child program referral.",
+        "Your annual gross household income is up to $80,000."
+      ],
+      "note": "Benefits are set by gross household income before deductions."
+    },
+    "applyText": "Apply online through the Parent Portal. Use the account you used to accept your child's enrolment offer.",
+    "applyUrl": "https://www2.gnb.ca/content/gnb/en/corporate/promo/investing-in-early-learning-and-child-care/information-for-families/guide.html",
+    "source": "https://www2.gnb.ca/content/gnb/en/corporate/promo/investing-in-early-learning-and-child-care/information-for-families/guide.html",
+    "detail": {
+      "aboutList": {
+        "lead": "The two programs",
+        "items": [
+          "Parent Subsidy Program: preschool children (0-5, not yet in school) in a designated facility.",
+          "Childcare Assistance Program: preschool children in a non-designated facility, or ages 5-12 in school-age care.",
+          "Both use a sliding scale based on gross annual household income.",
+          "Referral types include medical, Social Development and high school referrals for parents.",
+          "Child program referrals include Early Intervention, Making Friends Learning Together and APSEA."
+        ]
+      },
+      "steps": [
+        "Sign in or register at GNB.CA/parentportal.",
+        "Choose Childcare Financial Assistance, then Apply.",
+        "Choose your application type: Regular, Parent Referral or Child Program Referral.",
+        "Upload the documents listed for your application type.",
+        "Confirm your child's enrolment details, then review and submit."
+      ],
+      "documents": [
+        "Documents depend on your application type and are listed in the Parent Portal",
+        "A referral letter, if applying by parent or child program referral"
+      ],
+      "tips": [
+        "If you expect an enrolment offer within 60 days, you can be pre-approved for up to 60 days.",
+        "If more than one child has a child program referral, apply for each child.",
+        "Missing documents may delay your application.",
+        "Tell the program about changes in income or marital status through the Parent Portal."
+      ],
+      "time": "Monday to Friday, 8:30 a.m. to 4:30 p.m.",
+      "phone": "1 833 221-9339"
+    }
+  },
+  {
+    "id": "nb-homeowner-repair",
+    "name": "Homeowner Repair Program",
+    "level": "New Brunswick",
+    "category": "Home",
+    "amount": "Forgivable loan up to $18,000 (repairs), $15,000 (accessibility) or $7,000 (seniors' adaptations)",
+    "summary": "Loans for low-income homeowners and seniors for major repairs, accessibility changes for people with disabilities, and adaptations for seniors. Part of the loan may not have to be repaid.",
+    "note": "Any repayable amount is at the provincial borrowing interest rate and can be repaid over up to 15 years. Call Housing NB to apply.",
+    "requires": [
+      "nb",
+      "nbHomeownerRepairRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your household is low-income and you own and live in the home.",
+        "The home needs major repairs or lacks basic facilities.",
+        "Disability changes must be housing-related or give access to permanent basic facilities.",
+        "Senior adaptations must help you live independently for longer."
+      ],
+      "note": "Repairs cover structural, electrical, plumbing, heating, fire safety or serious overcrowding."
+    },
+    "applyText": "Call Housing NB to get more information or to apply.",
+    "applyUrl": "https://www.gnb.ca/en/topic/family-home-community/housing-property/home-repair.html",
+    "source": "https://www.gnb.ca/en/topic/family-home-community/housing-property/home-repair.html",
+    "detail": {
+      "aboutList": {
+        "lead": "Maximum forgivable loan by purpose",
+        "items": [
+          "Homeowner repairs: up to $18,000, for households in core housing need with substandard housing.",
+          "Accessible modifications for disabled occupants: up to $15,000.",
+          "Landlords with a tenant with a disability may qualify for up to $15,000.",
+          "Seniors' home adaptations for daily living difficulties: up to $7,000.",
+          "The forgivable amount is based on the total cost of required repairs."
+        ]
+      },
+      "steps": [
+        "Check that your home needs one of the listed repairs or changes.",
+        "Call Housing NB.",
+        "Ask for the program that fits your need: repair, accessibility or seniors."
+      ],
+      "documents": [],
+      "tips": [
+        "Assistance is a loan, and a portion may not have to be repaid.",
+        "Housing NB is open Monday to Friday, 8:15 a.m. to 4:30 p.m.",
+        "You can also email hnb.info@gnb.ca."
+      ],
+      "time": "Monday to Friday, 8:15 a.m. to 4:30 p.m.",
+      "phone": "1-833-733-7835"
+    }
   }
 
 ];
@@ -15822,6 +16248,7 @@ const GLOSSARY = {
   "RASP": "Registry of Autism Service Providers",
   "RDSP": "Registered Disability Savings Plan",
   "RFSP": "Recreation Fee Subsidy Program",
+  "RRAP": "Residential Rehabilitation Assistance Program",
   "SAET": "School-Aged Extended Therapies",
   "SAFER": "Shelter Aid for Elderly Renters",
   "SAID": "Saskatchewan Assured Income for Disability",
@@ -15834,6 +16261,7 @@ const GLOSSARY = {
   "SIP": "Seniors Income Plan (Saskatchewan)",
   "SLP": "Speech-Language Pathologist",
   "SSAH": "Special Services at Home",
+  "TESS": "Training and Employment Support Services",
   "TTC": "Toronto Transit Commission",
   "TTE": "Training, Travel and Equipment",
   "TTY": "Text telephone for people who are Deaf or hard of hearing",
@@ -15858,6 +16286,12 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "nb-homeowner-repair": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-childcare-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-seniors-home-renovation-credit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-public-housing": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-hearing-aid-program": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-drug-plan": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "saint-john-pro-kids": "2026-10", // new 2026-10-17 from the official page (research/2026-10-new-brunswick/city-snapshots)
   "saint-john-accessible-transit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-new-brunswick/city-snapshots)
   "fredericton-para-transit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-new-brunswick/city-snapshots)

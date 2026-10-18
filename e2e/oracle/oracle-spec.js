@@ -996,8 +996,8 @@ const GATES = {
   },
   brandonCnibFreeTransitRoute: {
     evidence: "answers",
-    satisfy: { set: { disabilityVerified: "yes" } },
-    violations: [{ name: "not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" }],
+    satisfy: { add: { disabilities: ["vision"] } },
+    violations: [{ name: "no vision category: CNIB card not likely", fragment: { drop: { disabilities: ["vision"] } }, expect: "almost" }],
   },
   nbSocialAssistanceRoute: {
     evidence: "answers",
@@ -1080,12 +1080,40 @@ const GATES = {
   nbAmbulanceFeeExemptionRoute: external("Depends on receiving the assistance program the province names, which the wizard does not ask."),
   monctonCnibFreeTransitRoute: {
     evidence: "answers",
-    satisfy: { set: { disabilityVerified: "yes" } },
-    violations: [{ name: "not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" }],
+    satisfy: { add: { disabilities: ["vision"] } },
+    violations: [{ name: "no vision category: CNIB card not likely", fragment: { drop: { disabilities: ["vision"] } }, expect: "almost" }],
   },
   saintJohnProKidsRoute: {
     evidence: "answers",
+    satisfy: { set: { income: "low", ageBand: "6to11" } },
+    violations: [
+      { name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "an adult: the program is for children", fragment: { set: { ageBand: "19to59" } }, expect: "almost" },
+    ],
+  },
+  nbDrugPlanRoute: external("Depends on having no other drug coverage for the medication, which the wizard does not ask."),
+  nbHearingAidProgramRoute: external("Depends on holding the Social Development health card the policy lists, which the wizard does not ask."),
+  nbPublicHousingRoute: {
+    evidence: "answers",
     satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  nbSeniorsHomeRenovationCreditRoute: {
+    evidence: "answers",
+    satisfy: { set: { ageBand: "65plus" } },
+    violations: [{ name: "under 65: the family-member route is not asked", fragment: { set: { ageBand: "19to59" } }, expect: "almost" }],
+  },
+  nbChildcareAssistanceRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", ageBand: "6to11" } },
+    violations: [
+      { name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "an adult may have a young child: not asked", fragment: { set: { ageBand: "19to59" } }, expect: "almost" },
+    ],
+  },
+  nbHomeownerRepairRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" }, add: { circumstances: ["homeowner"] } },
     violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
   },
   kingstonMfapIncome: {
@@ -1667,6 +1695,12 @@ const PROGRAM_BEST_CASE = {
   "squamish-recreation-access":                    "ready",
   "terrace-affordable-recreation-access":          "almost",
   "white-rock-leisure-access":                     "ready",
+  "nb-drug-plan":                                  "almost",
+  "nb-hearing-aid-program":                        "almost",
+  "nb-public-housing":                             "ready",
+  "nb-seniors-home-renovation-credit":             "ready",
+  "nb-childcare-assistance":                       "ready",
+  "nb-homeowner-repair":                           "ready",
   "moncton-cnib-free-transit":                     "ready",
   "dieppe-accessible-transit":                     "ready",
   "fredericton-para-transit":                      "ready",

@@ -6,6 +6,37 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-18 — overnight: Manitoba live with a caution, New Brunswick live
+
+### Shipped
+- **Manitoba is live** (`?v=217`) with the caution you asked for: anyone who picks Manitoba sees it on their
+  results, on every Manitoba program page and on the Manitoba guides. It says the EIA → MSPD move is under way,
+  MSPD amounts are not published, EIA dental changed on September 1, some income limits are old or yearly,
+  Winnipeg Transit Plus has proposed rules not in effect, and cities are Winnipeg (and now Brandon) only.
+- **Manitoba finished** (`?v=218`): 5 more programs from a completeness check (disability employment help,
+  Rent Supplement, Prenatal Benefit, Brandon Access Transit, Brandon CNIB free rides). Everything we could not
+  build or confirm is tracked in `research/2026-10-manitoba/GAPS.md` (to re-check monthly).
+- **Help sections for every new province:** Ontario, Saskatchewan, Manitoba and New Brunswick now have form help,
+  legal and appeal help and 211 in the help section, plus disability organizations and student aid and
+  employment links. Each entry was checked on its own page by a second agent. (Ontario had been missing these.)
+- **New Brunswick is live** (`?v=221`): 26 provincial and 5 city programs (Dieppe, Fredericton, Saint John,
+  Moncton), each from its official page and checked by a separate reviewer, after a completeness check.
+  Gaps tracked in `research/2026-10-new-brunswick/GAPS.md`.
+- **Catalogue: 306 programs.** Six provinces covered.
+
+### Verified how
+- Unit tests (239) and the Chromium and WebKit browser suites (670) pass locally; CI runs all three browsers
+  before deploying.
+
+### Decisions we made for you
+- New Brunswick has no province-wide caution like Manitoba: its pages are thin in places, but nothing is
+  mid-transition. Individual records say when a page lists no criteria.
+- Programs decided by an assessment or by something the questions do not ask (other drug coverage, a health
+  card) show under "More to check", never as a full match.
+
+### Next
+- Province 7 (by the plan: all 10 provinces, then the redesign, then French).
+
 ## 2026-10-18 — Saskatchewan city programs
 
 ### Shipped
