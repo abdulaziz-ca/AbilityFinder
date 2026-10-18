@@ -117,10 +117,10 @@ const BASE_PERSONA = {
    are real entries in CITIES_BY_PROVINCE. */
 // 2026-10-17: Nanaimo and Kingston gained municipal records, so the defaults moved
 // to Fort St. John and Timmins (no local record; city-sweep "none found" / unreadable).
-const DEFAULT_CITY = { AB: "Camrose", BC: "Fort St. John", ON: "Timmins", SK: "Weyburn" };
+const DEFAULT_CITY = { AB: "Camrose", BC: "Fort St. John", ON: "Timmins", SK: "Weyburn", MB: "Dauphin" };
 
 /* Cities used to violate a city gate: same province, different community. */
-const OTHER_CITY = { AB: "Wetaskiwin", BC: "Williams Lake", ON: "Guelph", SK: "Martensville" };
+const OTHER_CITY = { AB: "Wetaskiwin", BC: "Williams Lake", ON: "Guelph", SK: "Martensville", MB: "Selkirk" };
 
 /* --------------------------------------------------------------------------
    FRAGMENTS
@@ -210,6 +210,7 @@ const GATES = {
   bc: province("BC"),
   on: province("ON"),
   sk: province("SK"),
+  mb: province("MB"),
   provinceCovered: {
     evidence: "answers",
     satisfy: { set: { province: "AB" } },
@@ -317,6 +318,7 @@ const GATES = {
   /* ------------------------------------------------------ BC municipalities */
   vancouver: municipality("Vancouver", "BC"),
   surrey: municipality("Surrey", "BC"),
+  winnipeg: municipality("Winnipeg", "MB"),
   swiftCurrent: municipality("Swift Current", "SK"),
   regina: municipality("Regina", "SK"),
   saskatoon: municipality("Saskatoon", "SK"),
@@ -905,6 +907,72 @@ const GATES = {
     violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
   },
   yorktonDiscountedMonthlyPassRoute: external("Depends on receiving the assistance program the city names, which the wizard does not ask."),
+  mbSupportsPersonsDisabilitiesRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", disabilityVerified: "yes" } },
+    violations: [
+      { name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "disability not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" },
+    ],
+  },
+  mbEiaRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "neither route established", fragment: { set: { income: "moderate", disabilityVerified: "no" } }, expect: "almost" }],
+  },
+  mbRentAssistRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  mbPharmacareRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  mbDisabilityHealthSupportsRoute: external("Depends on receiving the assistance program the province names, which the wizard does not ask."),
+  mbChildrensDisabilityServicesRoute: {
+    evidence: "answers",
+    satisfy: { set: { disabilityVerified: "yes" } },
+    violations: [{ name: "not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" }],
+  },
+  mbCommunityLivingDisabilityServicesRoute: external("Depends on the program's assessment of the help with personal care or property a person needs."),
+  mbHomeCareRoute: external("Depends on a regional health authority assessment of care needs, which the wizard cannot make."),
+  mbPrimaryCaregiverTaxCreditRoute: external("Depends on the person cared for being assessed at care level 2 or higher, which the wizard does not ask."),
+  mbChildBenefitRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", ageBand: "6to11" } },
+    violations: [
+      { name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "an adult may have no child: not asked", fragment: { set: { ageBand: "19to59" } }, expect: "almost" },
+    ],
+  },
+  mb55PlusRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", ageBand: "65plus" } },
+    violations: [
+      { name: "moderate income", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "55 to 59 sits inside the 19 to 59 band: not asked", fragment: { set: { ageBand: "19to59" } }, expect: "almost" },
+    ],
+  },
+  mbResidentialAdaptationsRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", disabilityVerified: "yes" } },
+    violations: [
+      { name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "disability not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" },
+    ],
+  },
+  winnipegRecreationFeeAssistanceRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  winnipegWinnpassRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
   kingstonMfapIncome: {
     evidence: "answers",
     satisfy: { set: { income: "low" } },
@@ -1484,6 +1552,22 @@ const PROGRAM_BEST_CASE = {
   "squamish-recreation-access":                    "ready",
   "terrace-affordable-recreation-access":          "almost",
   "white-rock-leisure-access":                     "ready",
+  "winnipeg-recreation-fee-assistance":            "ready",
+  "winnipeg-winnpass":                             "ready",
+  "winnipeg-transit-plus":                         "ready",
+  "mb-supports-persons-disabilities":              "ready",
+  "mb-eia":                                        "ready",
+  "mb-rent-assist":                                "ready",
+  "mb-pharmacare":                                 "ready",
+  "mb-disability-health-supports":                 "almost",
+  "mb-childrens-disability-services":              "ready",
+  "mb-community-living-disability-services":       "almost",
+  "mb-home-care":                                  "almost",
+  "mb-primary-caregiver-tax-credit":               "almost",
+  "mb-child-benefit":                              "ready",
+  "mb-55-plus":                                    "ready",
+  "mb-accessible-parking":                         "ready",
+  "mb-residential-adaptations":                    "ready",
   "swift-current-access-transit":                  "ready",
   "regina-affordable-access":                      "ready",
   "regina-paratransit":                            "ready",

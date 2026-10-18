@@ -4,12 +4,12 @@ Bullet surfaces (gate.unmet, eligibility.note, detail.aboutList.items) are flagg
 
 | Surface | Total | Flagged | Longest id | Chars |
 |---|---:|---:|---|---:|
-| gate.unmet | 396 | 115 | cwbEligibility.unmet | 626 |
-| eligibility.note | 173 | 44 | surrey-leisure-access.eligibility.note | 684 |
+| gate.unmet | 411 | 115 | cwbEligibility.unmet | 626 |
+| eligibility.note | 188 | 46 | surrey-leisure-access.eligibility.note | 684 |
 | detail.about | 134 | 95 | dtc.detail.about | 1697 |
-| detail.aboutList.items | 777 | 150 | dtc.detail.aboutList.items[1] | 636 |
-| summary | 254 | 26 | bc-clbc.summary | 377 |
-| note | 254 | 67 | surrey-leisure-access.note | 690 |
+| detail.aboutList.items | 835 | 150 | dtc.detail.aboutList.items[1] | 636 |
+| summary | 270 | 26 | bc-clbc.summary | 377 |
+| note | 270 | 67 | surrey-leisure-access.note | 690 |
 
 ## Flagged items, longest first
 
@@ -477,6 +477,7 @@ Bullet surfaces (gate.unmet, eligibility.note, detail.aboutList.items) are flagg
 - **detail.aboutList.items** — `grandeprairie-aish-pass.detail.aboutList.items[1]` (121 chars, 1 sentences): The Recreation Access Program is a separate application giving 75% off memberships, punch passes and registered programs.
 - **gate.unmet** — `notBcStudentAidDuplicate.unmet` (113 chars, 3 sentences): Use the StudentAid BC version of this federal grant; it is the same program with B.C.-specific application steps.
 - **detail.aboutList.items** — `windsor-affordable-pass.detail.aboutList.items[0]` (111 chars, 2 sentences): Transit Windsor's APP prices are $63 for an adult 30-day pass and $43.50 for a youth 30-day pass, before taxes.
+- **eligibility.note** — `winnipeg-winnpass.eligibility.note` (111 chars, 2 sentences): You must be a Winnipeg resident age 64 or under. Household limits for 1 to 3 people: $31,906, $39,721, $48,832.
 - **eligibility.note** — `ottawa-access-pass.eligibility.note` (110 chars, 2 sentences): You will be asked for your Para Transpo registration number. Discounted fares cannot be used when paying cash.
 - **eligibility.note** — `bc-msp-supplementary-benefits.eligibility.note.items[7]` (107 chars, 3 sentences): First Nations individuals with valid B.C. Medical Plan coverage through the First Nations Health Authority.
 - **detail.aboutList.items** — `bc-optical-supplement.detail.aboutList.items[0]` (107 chars, 3 sentences): Routine eye exams for adults ($44.83 with an optometrist or $48.90 with an ophthalmologist every two years)
@@ -485,6 +486,7 @@ Bullet surfaces (gate.unmet, eligibility.note, detail.aboutList.items) are flagg
 - **gate.unmet** — `bcBusPassStatus.unmet` (102 chars, 3 sentences): This requires B.C. disability assistance/PWD status or one of the listed low-income senior categories.
 - **detail.aboutList.items** — `windsor-affordable-pass.detail.aboutList.items[2]` (100 chars, 2 sentences): Transit Windsor charges $3.95 for a single adult, senior or youth fare, including a 2-hour transfer.
 - **detail.aboutList.items** — `ab-special-needs-housing.detail.aboutList.items[4]` (96 chars, 2 sentences): Alberta.ca refers to an income thresholds document rather than publishing a single income limit.
+- **eligibility.note** — `winnipeg-transit-plus.eligibility.note` (92 chars, 2 sentences): You must meet at least one of these. Some approvals cover only dialysis trips or a set date.
 - **gate.unmet** — `outsideMetroVancouver.unmet` (91 chars, 3 sentences): Use the TransLink program in Metro Vancouver; this listing is for B.C. Transit communities.
 - **detail.aboutList.items** — `grt-affordable-transit.detail.aboutList.items[1]` (90 chars, 2 sentences): $1.35 ATP stored value per ride, compared with $3 regular stored value and a $4 cash fare.
 - **detail.aboutList.items** — `toronto-fair-pass.detail.aboutList.items[2]` (88 chars, 2 sentences): After 47 paid trips in the same month you pay nothing more that month — a cap of $98.70.

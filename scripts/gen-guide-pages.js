@@ -24,6 +24,7 @@ vm.runInContext(
     '\n;globalThis.__BC_CITIES = typeof BC_CITIES !== "undefined" ? BC_CITIES : null;' +
     '\n;globalThis.__ON_CITIES = typeof ON_CITIES !== "undefined" ? ON_CITIES : null;' +
     '\n;globalThis.__SK_CITIES = typeof SK_CITIES !== "undefined" ? SK_CITIES : [];' +
+    '\n;globalThis.__MB_CITIES = typeof MB_CITIES !== "undefined" ? MB_CITIES : [];' +
     '\n;globalThis.__SHARED_CITIES = typeof SHARED_CITIES !== "undefined" ? SHARED_CITIES : {};' +
     '\n;globalThis.__ON_REGIONS = typeof ON_REGIONS !== "undefined" ? ON_REGIONS : [];',
   ctx
@@ -71,6 +72,13 @@ const skCities = ctx.__SK_CITIES || [];
 const sharedCities = ctx.__SHARED_CITIES || {};
 // Shared border cities (Lloydminster) stay with their Alberta records.
 const benefitIsSaskatchewan = (b) => b.level === "Saskatchewan" || (skCities.includes(b.level) && !sharedCities[b.level]);
+const mbEnabledMatch = /^const MB_ENABLED = (true|false);\s*$/m.exec(appSource);
+if (!mbEnabledMatch) {
+  throw new Error("gen:guides — could not find literal const MB_ENABLED = true/false in public/app.js");
+}
+const mbEnabled = mbEnabledMatch[1] === "true";
+const mbCities = ctx.__MB_CITIES || [];
+const benefitIsManitoba = (b) => b.level === "Manitoba" || mbCities.includes(b.level);
 const benefitIsBritishColumbia = (b) =>
   b.level === "British Columbia" || b.level === "Metro Vancouver" || bcCities.includes(b.level);
 const onRegions = ctx.__ON_REGIONS || [];
@@ -86,6 +94,7 @@ const enabledProvinceNames = [
   ...(bcEnabled ? ["British Columbia"] : []),
   ...(onEnabled ? ["Ontario"] : []),
   ...(skEnabled ? ["Saskatchewan"] : []),
+  ...(mbEnabled ? ["Manitoba"] : []),
 ];
 const provinceProse =
   enabledProvinceNames.length <= 1
@@ -95,8 +104,9 @@ let benefits = allBenefits;
 if (!bcEnabled) benefits = benefits.filter((b) => !benefitIsBritishColumbia(b));
 if (!onEnabled) benefits = benefits.filter((b) => !benefitIsOntario(b));
 if (!skEnabled) benefits = benefits.filter((b) => !benefitIsSaskatchewan(b));
+if (!mbEnabled) benefits = benefits.filter((b) => !benefitIsManitoba(b));
 console.log(
-  `BC_ENABLED=${bcEnabled} ON_ENABLED=${onEnabled} SK_ENABLED=${skEnabled} — excluded ${allBenefits.length - benefits.length} dark-province entries; generating ${benefits.length} entries.`
+  `BC_ENABLED=${bcEnabled} ON_ENABLED=${onEnabled} SK_ENABLED=${skEnabled} MB_ENABLED=${mbEnabled} — excluded ${allBenefits.length - benefits.length} dark-province entries; generating ${benefits.length} entries.`
 );
 
 const indexHtml = fs.readFileSync(INDEX, "utf8");
@@ -109,7 +119,7 @@ const styleHref = styleMatch[1].replace(/^\/?/, "/");
 // Same ?v=N as the stylesheet, so every guide asset moves with one bump.
 const assetQuery = (/\?v=[^"]+$/.exec(styleHref) || [""])[0];
 // Short scope label for the header tag, e.g. "Alberta + BC + Ontario".
-const scopeTag = ["Alberta", ...(bcEnabled ? ["BC"] : []), ...(onEnabled ? ["Ontario"] : []), ...(skEnabled ? ["Saskatchewan"] : [])].join(" + ");
+const scopeTag = ["Alberta", ...(bcEnabled ? ["BC"] : []), ...(onEnabled ? ["Ontario"] : []), ...(skEnabled ? ["Saskatchewan"] : []), ...(mbEnabled ? ["Manitoba"] : [])].join(" + ");
 
 const clean = (value) => String(value ?? "").replace(/\s+/g, " ").trim();
 const cleanGeneratedWhitespace = (value) => value.replace(/[ \t]+$/gm, "");

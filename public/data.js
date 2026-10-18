@@ -127,8 +127,14 @@ const SK_CITIES = [
   "Other / my town isn't listed",
 ];
 const SHARED_CITIES = { Lloydminster: ["AB", "SK"] };
-const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES, ON: ON_CITIES, SK: SK_CITIES };
-const COVERED_PROVINCES = ["AB", "BC", "ON", "SK"];
+/* Manitoba municipalities offered in the questionnaire (Winnipeg and Brandon have the
+   published city programs; the others are listed so residents can say where they live). */
+const MB_CITIES = [
+  "Brandon", "Dauphin", "Morden", "Portage la Prairie", "Selkirk", "Steinbach", "Thompson",
+  "Winkler", "Winnipeg", "Other / my town isn't listed",
+];
+const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES, ON: ON_CITIES, SK: SK_CITIES, MB: MB_CITIES };
+const COVERED_PROVINCES = ["AB", "BC", "ON", "SK", "MB"];
 
 /* national fallbacks (used when a jurisdiction isn't in the maps yet) */
 const FED_STUDENT_AID = "https://www.canada.ca/en/employment-social-development/services/education/grants/disabilities.html";
@@ -152,6 +158,22 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "winnipeg-transit-plus": { kind: "access", note: "Shared door-to-door rides for approved riders at regular transit fares" },
+  "winnipeg-winnpass": { kind: "discount", note: "50% off monthly passes and e-cash rides" },
+  "winnipeg-recreation-fee-assistance": { kind: "grant", note: "Facility pass, drop-in pass and a $300 Leisure Guide activity credit per person" },
+  "mb-residential-adaptations": { kind: "grant", note: "Forgivable loan up to $16,000, or $19,000 in the north" },
+  "mb-accessible-parking": { kind: "access", note: "$15 per permit" },
+  "mb-55-plus": { kind: "grant", note: "Quarterly payment up to $161.80 single or $173.90 in a couple" },
+  "mb-child-benefit": { kind: "grant", note: "Up to $420 tax free each year for every child" },
+  "mb-primary-caregiver-tax-credit": { kind: "grant", note: "$1,400 per year refundable tax credit" },
+  "mb-home-care": { kind: "access", note: "Services based on assessed need" },
+  "mb-community-living-disability-services": { kind: "access", note: "Access to planning and support services for adults with intellectual disabilities." },
+  "mb-childrens-disability-services": { kind: "access", note: "Access to supports and a CDS worker for families of children with disabilities." },
+  "mb-disability-health-supports": { kind: "access", note: "Access to approved health supplies and equipment for people in three Manitoba programs." },
+  "mb-pharmacare": { kind: "discount", note: "Lower drug costs once your yearly deductible is met." },
+  "mb-rent-assist": { kind: "grant", note: "A monthly rent benefit for low-income renters who are not on EIA." },
+  "mb-eia": { kind: "grant", note: "Monthly money for basic needs for people in financial need, including people with disabilities." },
+  "mb-supports-persons-disabilities": { kind: "grant", note: "Provincial support for people with severe and prolonged disabilities; no amounts published on these pages." },
   "swift-current-access-transit": { kind: "access", note: "accessible transit; $3.00 per one-way trip" },
   "yorkton-discounted-monthly-pass": { kind: "discount", note: "The discounted pass costs $27.50 a month, not the adult price of $90.00." },
   "yorkton-access-transit": { kind: "access", note: "Door-to-door rides for people with disabilities who cannot use regular transit." },
@@ -469,6 +491,22 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "winnipeg-transit-plus": { difficulty: 3, effort: "Application and in-person assessment", wait: "Reply within 30 business days" },
+  "winnipeg-winnpass": { difficulty: 3, effort: "Application form with documents", wait: "Not published" },
+  "winnipeg-recreation-fee-assistance": { difficulty: 2, effort: "One form with proof of need", wait: "Not published" },
+  "mb-residential-adaptations": { difficulty: 4, effort: "Application with a medical form and inspections", wait: "Not published" },
+  "mb-accessible-parking": { difficulty: 2, effort: "Healthcare provider submits the application online", wait: "About 10 business days" },
+  "mb-55-plus": { difficulty: 2, effort: "Printable application, unless you get OAS", wait: "Not published" },
+  "mb-child-benefit": { difficulty: 2, effort: "Printable application mailed in", wait: "Not published" },
+  "mb-primary-caregiver-tax-credit": { difficulty: 3, effort: "Registration form and a care level assessment", wait: "Not published" },
+  "mb-home-care": { difficulty: 3, effort: "Referral and assessment by your regional health authority", wait: "Not published" },
+  "mb-community-living-disability-services": { difficulty: 3, effort: "Application form and a psychologist's report.", wait: "Not published" },
+  "mb-childrens-disability-services": { difficulty: 3, effort: "Application form plus a diagnosis report.", wait: "Not published" },
+  "mb-disability-health-supports": { difficulty: 2, effort: "A health professional submits the request.", wait: "Not published" },
+  "mb-pharmacare": { difficulty: 2, effort: "One application form with consent.", wait: "Not published" },
+  "mb-rent-assist": { difficulty: 2, effort: "Application form and your tax return.", wait: "Not published" },
+  "mb-eia": { difficulty: 3, effort: "Phone or in-person application, then a review of income and assets.", wait: "Not published" },
+  "mb-supports-persons-disabilities": { difficulty: 3, effort: "Check eligibility, then follow the apply steps for your situation.", wait: "Not published" },
   "swift-current-access-transit": { difficulty: 1, effort: "Phone to arrange a trip", wait: "Not published" },
   "yorkton-discounted-monthly-pass": { difficulty: 2, effort: "Buy the pass in person at City Hall.", wait: "Not published" },
   "yorkton-access-transit": { difficulty: 3, effort: "Register in advance through SaskAbilities.", wait: "Not published" },
@@ -13150,6 +13188,821 @@ const BENEFITS = [
       ],
       "phone": "306-770-2263"
     }
+  },
+  {
+    "id": "mb-supports-persons-disabilities",
+    "name": "Manitoba Supports for Persons with Disabilities (MSPD)",
+    "level": "Manitoba",
+    "category": "Income support",
+    "amount": "Not published on these pages. The page lists two types of assistance.",
+    "summary": "A Manitoba program for people with severe and prolonged disabilities who are financially eligible for income assistance. It started April 1, 2023.",
+    "note": "The pages we read give no dollar amounts. Some people are instantly eligible. Others apply and are assessed. Decisions can be appealed.",
+    "requires": [
+      "mb",
+      "age18plus",
+      "mbSupportsPersonsDisabilitiesRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You have a severe, prolonged disability that limits daily living and qualify financially for income assistance.",
+        "Instant: EIA Disability (now Medical Barriers to Full Employment) plus a qualifying disability support.",
+        "Supports: Community Living disABILITY Services, a personal care home, or CPP Disability benefits.",
+        "Other Manitobans with severe and prolonged disabilities may apply and be assessed."
+      ],
+      "note": "If you apply, staff look at your financial situation and the unique impact of your disability."
+    },
+    "applyText": "See how to apply for MSPD",
+    "applyUrl": "https://www.gov.mb.ca/fs/manitobasupports/index.html",
+    "source": "https://www.gov.mb.ca/fs/manitobasupports/index.html",
+    "detail": {
+      "aboutList": {
+        "lead": "MSPD is a Manitoba program for people living with severe and prolonged disabilities.",
+        "items": [
+          "The page says benefits and supports come in two types of assistance.",
+          "Some people are welcomed into the program right away.",
+          "Others apply, and staff decide whether all requirements are met.",
+          "Decisions can be appealed to the Social Services Appeal Board."
+        ]
+      },
+      "steps": [
+        "Open the MSPD page and read the eligibility section.",
+        "Check whether you are instantly eligible or need to apply.",
+        "Follow the How To Apply section for your situation."
+      ],
+      "documents": [],
+      "tips": [
+        "The pages we read do not list amounts, so ask the program what you would receive.",
+        "Application depends on your current situation, so read the How To Apply page first."
+      ]
+    }
+  },
+  {
+    "id": "mb-eia",
+    "name": "Employment and Income Assistance (EIA)",
+    "level": "Manitoba",
+    "category": "Income support",
+    "amount": "One adult with a disability, no children: $1,277 a month in provincial benefits (EIA and Rent Assist), as of July 2026",
+    "summary": "Money for Manitobans in financial need who have no other way to support themselves or their families. Rent Assist helps with shelter costs.",
+    "note": "Since September 1, 2026, EIA pays only emergency dental work: apply to the Canadian Dental Care Plan, and contact EIA if not eligible. Starting December 2026, MSPD opens a Brandon office.",
+    "requires": [
+      "mb",
+      "mbEiaRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "General: you live in Manitoba and your monthly needs and housing costs are more than your income and assets.",
+        "Disability: you are 18 or older, in financial need, with a disability likely to last over a year.",
+        "Disability: the disability keeps you from earning enough to pay for basic needs."
+      ],
+      "note": "Married and common-law couples apply together."
+    },
+    "applyText": "How to apply for EIA",
+    "applyUrl": "https://www.gov.mb.ca/fs/eia/index.html",
+    "source": "https://www.gov.mb.ca/fs/eia/index.html",
+    "detail": {
+      "aboutList": {
+        "lead": "EIA gives money for basic needs and helps people who can work go back to work.",
+        "items": [
+          "It can help pay for food, clothing, personal and household needs.",
+          "It can help with basic dental, optical and prescription drugs.",
+          "The Disability and Health Supports Unit reviews requests for health supplies or equipment.",
+          "People with disabilities are not required to look for work to receive EIA.",
+          "You keep the first $200 of net monthly earnings and 30 per cent of the rest."
+        ]
+      },
+      "steps": [
+        "In Winnipeg, call to start your application or visit the 111 Rorie Street office.",
+        "Outside Winnipeg, call the toll free line to book an appointment, or visit your regional office.",
+        "Staff look at your income, assets and family to work out your benefits."
+      ],
+      "documents": [
+        "Benefits may be delayed if you have not provided requested documents."
+      ],
+      "tips": [
+        "If you have children or need accessibility services, the Winnipeg page says to go to 128 Market Avenue.",
+        "A first-come, first-served visit may not start if you arrive after 3:00 p.m.",
+        "For dental, the Canadian Dental Care Plan comes first unless you have other dental coverage.",
+        "Tell EIA if you have any private insurance."
+      ],
+      "phone": "204-948-4000 (Winnipeg) or 1-855-944-8111"
+    }
+  },
+  {
+    "id": "mb-rent-assist",
+    "name": "Rent Assist (not on EIA)",
+    "level": "Manitoba",
+    "category": "Housing",
+    "amount": "Based on your income and market rent for your family size; the page gives no set amount",
+    "summary": "A monthly rent benefit for low-income Manitobans who rent in the private market and do not receive EIA. You may qualify even if you work.",
+    "note": "Income limits apply. If you apply January to June, your tax return from two years ago is used. July to December uses last year's return.",
+    "requires": [
+      "mb",
+      "age18plus",
+      "mbRentAssistRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a Canadian citizen or permanent resident, and at least 18.",
+        "You pay rent or room and board for unsubsidized housing.",
+        "Your net annual income is under $29,120 for a single person.",
+        "$33,920 for a single person 55+, or a person who qualifies for the Disability Tax Credit or CPP Disability.",
+        "Other limits are $38,720 for two people, $50,240 for three or four, and $60,768 for five or more."
+      ],
+      "note": "You may not qualify if you rent from Manitoba Housing, own your home, or get another housing subsidy."
+    },
+    "applyText": "Apply for Rent Assist",
+    "applyUrl": "https://www.gov.mb.ca/fs/eia/non_rentassist_facts.html",
+    "source": "https://www.gov.mb.ca/fs/eia/non_rentassist_facts.html",
+    "detail": {
+      "aboutList": {
+        "lead": "Rent Assist pays a benefit toward rent, based on your income and the market rent for your family size.",
+        "items": [
+          "The benefit helps your household afford rent up to 80 per cent of median market rent.",
+          "Your benefit depends on household size, net income and whether you are over 55.",
+          "It also depends on whether you had CPP Disability benefits or the Disability Tax Credit.",
+          "It is paid monthly by direct deposit or cheque."
+        ]
+      },
+      "steps": [
+        "Use the online Rent Assist calculator to estimate your monthly benefit.",
+        "Contact Provincial Services to apply or to have a form mailed to you.",
+        "Claim your rent on your income taxes each year."
+      ],
+      "documents": [
+        "Your income tax return for the year used to assess you"
+      ],
+      "tips": [
+        "Your eligibility is reassessed once a year from your tax return.",
+        "You may not qualify if you live in a First Nations community, student housing or a care facility.",
+        "You may not qualify if you are in Canada on a work or study permit."
+      ],
+      "phone": "204-948-7368"
+    }
+  },
+  {
+    "id": "mb-pharmacare",
+    "name": "Manitoba Pharmacare",
+    "level": "Manitoba",
+    "category": "Health",
+    "amount": "Yearly deductible from $100 (no maximum); then 100% of eligible drug costs",
+    "summary": "Help with prescription costs for Manitobans whose income is seriously affected by high drug costs. Your deductible depends on your family income.",
+    "note": "The benefit year runs April 1 to March 31. Not all drugs are eligible. Ask a pharmacist or use the Drug Formulary lookup.",
+    "requires": [
+      "mb",
+      "mbPharmacareRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are eligible for Manitoba Health coverage.",
+        "Your prescriptions are not covered by other provincial or federal programs."
+      ],
+      "note": "The program is for eligible Manitobans regardless of disease or age."
+    },
+    "applyText": "Apply for Pharmacare",
+    "applyUrl": "https://www.gov.mb.ca/health/pharmacare/apply.html",
+    "source": "https://www.gov.mb.ca/health/pharmacare/index.html",
+    "detail": {
+      "aboutList": {
+        "lead": "Pharmacare sets a yearly deductible from your adjusted family income.",
+        "items": [
+          "After you pay the deductible on eligible drugs, Pharmacare pays 100 per cent of eligible costs.",
+          "The deductible uses Canada Revenue Agency income from two years ago.",
+          "The deductible can be changed if family income dropped by more than 10 per cent.",
+          "You can pay the deductible in monthly instalments on your Manitoba Hydro bill."
+        ]
+      },
+      "steps": [
+        "Fill out and sign the Pharmacare Application and Consent Authorization Form.",
+        "Send it to Manitoba Health.",
+        "Wait for a letter that gives your deductible amount."
+      ],
+      "documents": [
+        "Pharmacare Application and Consent Authorization Form",
+        "Newcomers and new 18-year-olds: a signed statement of 2024 income"
+      ],
+      "tips": [
+        "You can apply any time from April 1 to March 31.",
+        "You do not need to send receipts. The pharmacy system tracks your deductible.",
+        "Pharmacies may charge fees above what Pharmacare accepts, so ask your pharmacist."
+      ],
+      "phone": "204-786-7141"
+    }
+  },
+  {
+    "id": "mb-disability-health-supports",
+    "name": "Disability and Health Supports Unit (DHSU)",
+    "level": "Manitoba",
+    "category": "Health",
+    "amount": "Supplies and equipment as approved; no amounts published",
+    "summary": "A one-stop unit that reviews requests for health supplies, equipment and diet supplements for people in three Manitoba programs. A diagnosed medical need is required.",
+    "note": "A health professional submits the request for you. Each program's own rules are used to approve it.",
+    "requires": [
+      "mb",
+      "mbDisabilityHealthSupportsRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You take part in Employment and Income Assistance.",
+        "You take part in Children's disABILITY Services.",
+        "You take part in Community Living disABILITY Services."
+      ],
+      "note": "Supports are based on a diagnosed medical need."
+    },
+    "applyText": "See the DHSU page",
+    "applyUrl": "https://www.gov.mb.ca/fs/dhsu/index.html",
+    "source": "https://www.gov.mb.ca/fs/dhsu/index.html",
+    "detail": {
+      "aboutList": {
+        "lead": "The DHSU reviews and assesses requests from health professionals for program participants.",
+        "items": [
+          "It covers health-related supplies, equipment, and nutritional or diet supplements.",
+          "When a request is approved, the DHSU arranges delivery of the products.",
+          "Delivery is through the Province's Materials Distribution Agency."
+        ]
+      },
+      "steps": [
+        "Ask your health professional to submit a request through the online forms.",
+        "Contact your case worker about the supports available."
+      ],
+      "documents": [],
+      "tips": [
+        "Questions can go to your assigned case worker or to the DHSU email on the page."
+      ]
+    }
+  },
+  {
+    "id": "mb-childrens-disability-services",
+    "name": "Children's disABILITY Services (CDS)",
+    "level": "Manitoba",
+    "category": "Health (for children)",
+    "amount": "Supports for families; no amounts published",
+    "summary": "Supports for families raising a child with a developmental or physical disability, to help meet some of the extra needs. A diagnosis is required.",
+    "note": "Written confirmation of the child's diagnosis must be included with every application.",
+    "requires": [
+      "mb",
+      "child",
+      "mbChildrensDisabilityServicesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your child is under 18 and lives in Manitoba with birth, adoptive or extended family.",
+        "Your child has a medical diagnosis of one of the listed conditions."
+      ],
+      "note": "The full list of qualifying diagnoses is in the tips below."
+    },
+    "applyText": "Apply for CDS",
+    "applyUrl": "https://www.gov.mb.ca/fs/cds/index.html",
+    "source": "https://www.gov.mb.ca/fs/cds/index.html",
+    "detail": {
+      "aboutList": {
+        "lead": "CDS helps families care for their children at home, in their own communities.",
+        "items": [
+          "Since February 4, 2025, children living in First Nation communities may also use CDS.",
+          "For children 5 and under, autism diagnoses from community pediatricians are accepted.",
+          "While your child is eligible, a worker may stay involved until age 18 or until you no longer need services."
+        ]
+      },
+      "steps": [
+        "Fill out the Referral and Intake Application form.",
+        "Send it with a diagnostic assessment or medical report to your regional CDS office.",
+        "If your child qualifies, a CDS worker connects with you to talk about needs and goals."
+      ],
+      "documents": [
+        "Referral and Intake Application form",
+        "Diagnostic assessment or medical report",
+        "Written confirmation of the diagnosis"
+      ],
+      "tips": [
+        "Qualifying diagnoses: intellectual disability; developmental delay; autism spectrum disorder; lifelong physical disability with significant functional limitation in mobility; or a high probability of developmental delay due to a pre-existing condition.",
+        "Schools, medical professionals and child care facilities may refer you.",
+        "You can also apply directly."
+      ],
+      "phone": "204-945-8311"
+    }
+  },
+  {
+    "id": "mb-community-living-disability-services",
+    "name": "Community Living disABILITY Services (CLDS)",
+    "level": "Manitoba",
+    "category": "Community supports",
+    "amount": "Services and supports; no amounts published",
+    "summary": "Supports eligible adults with intellectual disabilities to live in their communities. It can include a person-centred plan about your goals.",
+    "note": "CLDS is voluntary. You can close your file at any time and re-open it later. A report on intellectual functioning is needed to apply.",
+    "requires": [
+      "mb",
+      "age18plus",
+      "developmental",
+      "mbCommunityLivingDisabilityServicesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have significantly impaired intellectual functioning and adaptive behaviour that existed before age 18.",
+        "You are 18 or older.",
+        "You need help with personal care or managing your property.",
+        "You are a Canadian citizen or legally entitled to live and work in Canada permanently.",
+        "You normally live in Manitoba, not as a visitor, transient or student from elsewhere."
+      ],
+      "note": "With registered treaty status, you first need an established permanent off-reserve residence in Manitoba."
+    },
+    "applyText": "Apply for CLDS",
+    "applyUrl": "https://manitoba.ca/fs/clds/eligible.html",
+    "source": "https://www.gov.mb.ca/fs/clds/index.html",
+    "detail": {
+      "aboutList": {
+        "lead": "CLDS follows the Adults Living with an Intellectual Disability Act, which protects your right to make your own decisions.",
+        "items": [
+          "A person-centred plan covers what matters to you and your goals.",
+          "CLDS can provide services that help you meet your goals.",
+          "Family, friends and people in your community can also support you."
+        ]
+      },
+      "steps": [
+        "Contact the Winnipeg or Rural intake office.",
+        "Send your CLDS Application Form with a report on intellectual functioning and adaptive behaviour.",
+        "If you are refused, you can appeal to the Social Services Appeal Board."
+      ],
+      "documents": [
+        "CLDS Application Form",
+        "Report from a registered or school psychologist"
+      ],
+      "tips": [
+        "Your school, family, an agency or a doctor can apply for you with your consent.",
+        "Winnipeg intake emails go to the address on the page."
+      ],
+      "phone": "204-945-0979 (Winnipeg) or 204-904-8412 (rural)"
+    }
+  },
+  {
+    "id": "mb-home-care",
+    "name": "Manitoba Home Care",
+    "level": "Manitoba",
+    "category": "Home support",
+    "amount": "Services based on assessed need",
+    "summary": "Home care is open to Manitobans of all ages. Your regional health authority assesses your needs and decides what services you get.",
+    "note": "Your family, community resources and other programs are also considered when services are decided.",
+    "requires": [
+      "mb",
+      "mbHomeCareRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Manitoba and need home care.",
+        "Your regional health authority assesses you and decides if you are eligible."
+      ],
+      "note": "The health authority decides the amount and type of service after a multi-disciplinary assessment."
+    },
+    "applyText": "Contact your regional health authority",
+    "applyUrl": "https://www.gov.mb.ca/health/homecare/index.html",
+    "source": "https://www.gov.mb.ca/health/homecare/index.html",
+    "detail": {
+      "aboutList": {
+        "lead": "Home care helps people of all ages with assessed needs.",
+        "items": [
+          "Services are based on assessed need, not age.",
+          "Your health authority makes a plan of care for you and your family.",
+          "It sets the amount and type of services you receive."
+        ]
+      },
+      "steps": [
+        "Contact the regional health authority where you live.",
+        "They accept your referral and assess your needs.",
+        "They set up a plan of care and arrange the services."
+      ],
+      "documents": [],
+      "tips": [
+        "You can download Your Guide to Home Care Services in Manitoba.",
+        "The program page links to the Manitoba Health Appeal Board."
+      ]
+    }
+  },
+  {
+    "id": "mb-primary-caregiver-tax-credit",
+    "name": "Primary Caregiver Tax Credit",
+    "level": "Manitoba",
+    "category": "Money & taxes",
+    "amount": "$1,400 per year",
+    "summary": "If you give unpaid care at home to an eligible person at home for more than 90 days, you can claim a $1,400 refundable credit each year.",
+    "note": "The credit is not income tested. You can claim it even if you have no taxable income.",
+    "requires": [
+      "mb",
+      "mbPrimaryCaregiverTaxCreditRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Manitoba and care for someone for longer than 90 days.",
+        "You give the care or supervision yourself, with no pay or reward of any kind.",
+        "The person is assessed at care level 2 or higher and lives in a private residence.",
+        "The person names only you as their primary caregiver.",
+        "You are not the spouse of someone paid to care for that person."
+      ],
+      "note": "The person must live in Manitoba, in an area covered by a Regional Health Authority."
+    },
+    "applyText": "Register for the credit",
+    "applyUrl": "https://www.gov.mb.ca/finance/tao/caregiver.html",
+    "source": "https://www.gov.mb.ca/finance/tao/caregiver.html",
+    "detail": {
+      "aboutList": {
+        "lead": "This credit supports family and friends who give unpaid care at home.",
+        "items": [
+          "It is a flat credit of $1,400 per year for the caregiver.",
+          "It may help with costs such as shopping, transport, outings and respite.",
+          "It builds on regional home care services."
+        ]
+      },
+      "steps": [
+        "Get the person's care level assessed.",
+        "Complete the Primary Caregiver registration form online or on paper.",
+        "If a doctor or nurse practitioner did the assessment, add the Level of Care Equivalency form.",
+        "Claim the credit on your tax return."
+      ],
+      "documents": [
+        "Primary Caregiver registration form",
+        "Level of Care Equivalency form, if a doctor or nurse practitioner assessed the person"
+      ],
+      "tips": [
+        "A registration lasts up to three years, then needs renewal.",
+        "Changing the primary caregiver needs a new form and a new 90-day wait.",
+        "Caregivers who receive EIA can claim the full credit.",
+        "Keep original documents in case Manitoba Finance or the CRA asks."
+      ]
+    }
+  },
+  {
+    "id": "mb-child-benefit",
+    "name": "Manitoba Child Benefit",
+    "level": "Manitoba",
+    "category": "Money (for parents)",
+    "amount": "Up to $35 per month per child",
+    "summary": "Lower income Manitoba families with children under 18 can get up to $35 a month per child, tax free. It also helps with the cost of children's prescription eyeglasses.",
+    "note": "A single parent of three earning $15,000 or less could get $1,260 a year. Partial benefits go to parents earning $15,000 to $20,000.",
+    "requires": [
+      "mb",
+      "mbChildBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Manitoba and have dependent children under 18 in your care.",
+        "You receive Canada Child Benefits for the children.",
+        "Your family income is below a set level, based on last year's income.",
+        "You do not get EIA, unless you get only its health benefits."
+      ]
+    },
+    "applyText": "Download the application",
+    "applyUrl": "https://www.gov.mb.ca/fs/eia/mcb.html",
+    "source": "https://www.gov.mb.ca/fs/eia/mcb.html",
+    "detail": {
+      "aboutList": {
+        "lead": "This benefit helps lower income families with the costs of raising children.",
+        "items": [
+          "It pays up to $420 tax free each year for every child.",
+          "Children's prescription glasses are covered too.",
+          "It is paid by direct deposit."
+        ]
+      },
+      "steps": [
+        "Download the guidelines and the printable application.",
+        "Fill out the application and mail it in.",
+        "Fill out the direct deposit form."
+      ],
+      "documents": [
+        "MCB application",
+        "Direct deposit form"
+      ],
+      "tips": [
+        "Your family income is checked against the previous year's income."
+      ],
+      "phone": "204-948-7368"
+    }
+  },
+  {
+    "id": "mb-55-plus",
+    "name": "55 PLUS Program",
+    "level": "Manitoba",
+    "category": "Income support",
+    "amount": "Up to $161.80 a quarter (single)",
+    "summary": "Manitobans aged 55 and over with lower incomes can get a quarterly payment. The maximum is $161.80 for a single person and $173.90 for each person in a couple.",
+    "note": "Partial benefits go to singles with income up to $9,746.40 and couples up to $16,255.20. Apply anyway if you are slightly above.",
+    "requires": [
+      "mb",
+      "mb55PlusRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 55 or older and live in Manitoba.",
+        "You have a valid Manitoba Health registration number.",
+        "Your net income from last year is within the allowable ranges.",
+        "You do not get EIA, unless you get only its health benefits."
+      ],
+      "note": "If you get federal Old Age Security benefits, your eligibility is worked out for you."
+    },
+    "applyText": "Download the application",
+    "applyUrl": "https://www.gov.mb.ca/fs/eia/55plus.html",
+    "source": "https://www.gov.mb.ca/fs/eia/55plus.html",
+    "detail": {
+      "aboutList": {
+        "lead": "This income supplement adds to the income of lower income older adults.",
+        "items": [
+          "Payments are mailed four times a year, in late April, July, October and January.",
+          "The Junior Component covers people with partial benefits at lower incomes.",
+          "The Senior Component depends on family make-up and OAS benefit levels.",
+          "The benefit year runs from April 1 to March 31."
+        ]
+      },
+      "steps": [
+        "Check if you already get OAS; if so, you do not need to apply.",
+        "If not, download the application form.",
+        "Print, complete and bring it to the office or fax it."
+      ],
+      "documents": [
+        "55 PLUS application",
+        "Direct deposit form"
+      ],
+      "tips": [
+        "You can apply at any time during the year.",
+        "Without OAS benefits, you must apply again every year.",
+        "Some deductions from gross income are allowed."
+      ],
+      "phone": "204-948-7368"
+    }
+  },
+  {
+    "id": "mb-accessible-parking",
+    "name": "Accessible Parking Permit (Manitoba Possible)",
+    "level": "Manitoba",
+    "category": "Daily living supports",
+    "amount": "$15 per permit",
+    "summary": "A permit lets you use designated accessible parking across Manitoba if you cannot walk more than 50 metres unassisted. A healthcare professional applies for you.",
+    "note": "Permanent permits last three years. Temporary permits last as long as your healthcare provider prescribes.",
+    "requires": [
+      "mb",
+      "bcParkingMobility"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are unable to walk more than 50 metres unassisted without great difficulty or danger to health and safety.",
+        "A regulated healthcare practitioner authorizes your application."
+      ],
+      "note": "You can get a permit even if you do not own a vehicle."
+    },
+    "applyText": "Ask your healthcare provider to apply",
+    "applyUrl": "https://www.manitobapossible.ca/parking-permits",
+    "source": "https://www.manitobapossible.ca/parking-permits",
+    "detail": {
+      "aboutList": {
+        "lead": "The program is regulated by the province and run by Manitoba Possible.",
+        "items": [
+          "A permit costs $15.",
+          "Motorcycle plate stickers are also available.",
+          "The permit works in any car if you, the holder, are also in it.",
+          "Lost, stolen or damaged permits are replaced for $6."
+        ]
+      },
+      "steps": [
+        "See your doctor, nurse practitioner, chiropractor, occupational therapist or physiotherapist.",
+        "They complete the online application for you.",
+        "Manitoba Possible contacts you for payment."
+      ],
+      "documents": [
+        "Application completed online by your healthcare provider"
+      ],
+      "tips": [
+        "Permanent permits are renewed without seeing a provider.",
+        "Temporary permits need a new application from your provider.",
+        "New residents need a Manitoba permit within three months."
+      ],
+      "time": "About 10 business days",
+      "phone": "204-975-3257"
+    }
+  },
+  {
+    "id": "mb-residential-adaptations",
+    "name": "Homeowner Residential Adaptations for Disabilities (RAD)",
+    "level": "Manitoba",
+    "category": "Home",
+    "amount": "Forgivable loan up to $16,000 ($19,000 north)",
+    "summary": "Low income homeowners can get a forgivable loan of up to $16,000 to make the home more accessible for a household member with a disability or limitation.",
+    "note": "The limit is $19,000 north of the 53rd parallel. Income limits on the page are marked effective January 1, 2019.",
+    "requires": [
+      "mb",
+      "mbResidentialAdaptationsRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a low income homeowner.",
+        "A household member has a disability or limitation that makes daily activities difficult.",
+        "Your household gross income is at or below the limit set for your community.",
+        "The home is your main residence in Manitoba, outside First Nations communities."
+      ],
+      "note": "Gross income counts everyone 18 or older in the home, before deductions."
+    },
+    "applyText": "Contact Manitoba Housing",
+    "applyUrl": "https://www.gov.mb.ca/housing/progs/h-rad.html",
+    "source": "https://www.gov.mb.ca/housing/progs/h-rad.html",
+    "detail": {
+      "aboutList": {
+        "lead": "The loan pays for permanent changes that relate directly to the disability.",
+        "items": [
+          "Winnipeg limits (2019) are $40,500 without dependants and $54,000 with dependants.",
+          "The loan is forgiven monthly over five years.",
+          "You repay it only if you sell, rent out, transfer or leave the home.",
+          "A program inspector decides which changes qualify."
+        ]
+      },
+      "steps": [
+        "Contact Manitoba Housing, Housing Delivery Branch.",
+        "Submit the application with the medical form.",
+        "Wait for loan approval before any work starts.",
+        "Approved work should be finished within six months of final approval."
+      ],
+      "documents": [
+        "Application",
+        "Medical form verifying the limitation or disability"
+      ],
+      "tips": [
+        "Work done before loan approval is not covered.",
+        "Payments are made when work is complete, with progress payments possible; advances are not allowed.",
+        "Work must meet building codes and standards."
+      ],
+      "phone": "204-945-5566"
+    }
+  },
+  {
+    "id": "winnipeg-recreation-fee-assistance",
+    "name": "Recreation Fee Assistance Program (Winnipeg)",
+    "level": "Winnipeg",
+    "category": "Recreation",
+    "amount": "Facility pass, drop-in pass and a $300 activity credit per person",
+    "summary": "Winnipeg residents and newcomers with a family income below the low income cut-off can get a facility pass, a drop-in pass and an activity credit.",
+    "note": "The activity credit is valid for 12 months from approval and has no cash value.",
+    "requires": [
+      "mb",
+      "winnipeg",
+      "winnipegRecreationFeeAssistanceRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a City of Winnipeg resident or a newcomer.",
+        "Your economic family income is below the low income cut-off (LICO)."
+      ],
+      "note": "Limits for 1, 2 and 3 people: $31,264, $38,922 and $47,851 (larger sizes on the page)."
+    },
+    "applyText": "Send the application form with proof of need by email, mail or in person.",
+    "applyUrl": "https://www.winnipeg.ca/recreation-leisure/recreation-facility-admission-passes-rentals/recreation-fee-assistance-program",
+    "source": "https://www.winnipeg.ca/recreation-leisure/recreation-facility-admission-passes-rentals/recreation-fee-assistance-program",
+    "detail": {
+      "aboutList": {
+        "lead": "You can get three types of benefit:",
+        "items": [
+          "A facility pass for unlimited admission, on a rechargeable 10-visit pass.",
+          "A 10-visit pass for drop-in active living programs such as Zumba and Aquafit.",
+          "A $300 credit per person for registered Leisure Guide activities.",
+          "The credit cannot buy admissions, memberships, rentals, gift cards or POS items."
+        ]
+      },
+      "steps": [
+        "Fill out the Recreation Fee Assistance Program application and list your whole economic family.",
+        "Check off the benefits you want.",
+        "Add your supporting document and a daytime phone number.",
+        "Send it by email to RecFeeAssist@winnipeg.ca, by mail, or in person at 395 Main St.",
+        "If approved, finish setting up your leisureONLINE account."
+      ],
+      "documents": [
+        "Application form (PDF)",
+        "An Employment and Income Assistance (EIA) case number",
+        "Or your most recent Canada Revenue Agency Notice of Assessment",
+        "Or a CPP Disability monthly statement of income",
+        "Or documents showing your landing date in Canada and UCI number"
+      ],
+      "tips": [
+        "Apply before the Leisure Guide registration dates if you want the credit.",
+        "If approved, you register for activities yourself.",
+        "A social worker or support worker may be able to give you a referral.",
+        "You can also apply in person at any indoor pool or fitness and leisure centre.",
+        "The page says other considerations may be made for special circumstances."
+      ],
+      "phone": "311"
+    }
+  },
+  {
+    "id": "winnipeg-winnpass",
+    "name": "WINNpass Low-Income Transit Pass (Winnipeg)",
+    "level": "Winnipeg",
+    "category": "Transit",
+    "amount": "50% off the full-fare monthly pass and e-cash rides",
+    "summary": "Winnipeg residents age 64 and under on low income can get half off the full-fare monthly transit pass and e-cash rides.",
+    "note": "Cards last one year and cost $5. You must re-apply every year.",
+    "requires": [
+      "mb",
+      "winnipeg",
+      "winnipegWinnpassRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You get Employment and Income Assistance without a transportation allowance equal to a bus pass.",
+        "You are a new permanent resident or refugee in Canada under a year who has not filed a tax return.",
+        "Your household income is below the Low Income Cut Off for your household size."
+      ],
+      "note": "You must be a Winnipeg resident aged 64 or under; the income limits are in the tips."
+    },
+    "applyText": "Apply online, in person, by mail or by fax at Winnipeg Transit.",
+    "applyUrl": "https://info.winnipegtransit.com/en/fares/winnpass",
+    "source": "https://info.winnipegtransit.com/en/fares/winnpass",
+    "detail": {
+      "aboutList": {
+        "lead": "Once approved, you get:",
+        "items": [
+          "50 percent off the full-fare rate for monthly transit passes.",
+          "50 percent off the full-fare rate for e-cash rides.",
+          "Other members of your household may also be eligible for the discount."
+        ]
+      },
+      "steps": [
+        "Download the WINNpass application instructions.",
+        "Apply online, or print or pick up a form at a Winnipeg Transit Customer Service Centre.",
+        "Return the form with documents to a Customer Service Centre, or mail it to 510 Main Street, or fax it.",
+        "Wait for a letter that says if you are approved and how to pick up your card."
+      ],
+      "documents": [
+        "Application form",
+        "Required documentation listed in the application instructions"
+      ],
+      "tips": [
+        "Household income limits on the page for 1 to 3 people: $31,906, $39,721 and $48,832 (larger households are listed there).",
+        "Winnipeg Transit recommends applying two months before your current eligibility period ends.",
+        "The card cannot be transferred, sold or shared."
+      ],
+      "time": "Approval letter by mail"
+    }
+  },
+  {
+    "id": "winnipeg-transit-plus",
+    "name": "Winnipeg Transit Plus",
+    "level": "Winnipeg",
+    "category": "Transit",
+    "amount": "Shared door-to-door rides at regular transit fares",
+    "summary": "Pre-booked shared door-to-door rides for people who cannot regularly use regular buses because of a physical disability. You must apply and be approved first.",
+    "note": "Fares match regular transit, including reduced senior, youth and post-secondary fares.",
+    "requires": [
+      "mb",
+      "winnipeg",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You need a wheelchair or scooter, ongoing or until a set date.",
+        "You cannot walk 175 metres outside, at all times or in winter only.",
+        "Your vision is 20/200 or less, or your visual field is under 20 degrees, even with lenses.",
+        "You have Alzheimer's or a related dementia that limits using regular buses with equal independence and safety."
+      ],
+      "note": "Some approvals cover only dialysis trips or last until a set date."
+    },
+    "applyText": "Apply online, or download the form to send by mail, fax or in person.",
+    "applyUrl": "https://info.winnipegtransit.com/en/winnipeg-transit-plus/become-a-registrant/application-process/",
+    "source": "https://info.winnipegtransit.com/en/winnipeg-transit-plus/winnipeg-transit-plus/",
+    "detail": {
+      "aboutList": {
+        "lead": "What the service offers:",
+        "items": [
+          "Rides run within Winnipeg in cars, SUVs, accessible vans and mini-buses.",
+          "Drivers help you from the outer ground-floor door to the vehicle and back.",
+          "Rides are shared, so the first pick-up is not always the first drop-off.",
+          "Visitors registered with a paratransit service at home can apply for temporary service."
+        ]
+      },
+      "steps": [
+        "Fill in the application online, or download the printable form.",
+        "Staff contact you by letter within 30 business days of receiving it.",
+        "You will likely attend the office for a functional assessment.",
+        "You are told in writing whether you are approved or denied."
+      ],
+      "documents": [
+        "Completed application form",
+        "Home paratransit registration number (visitors only)"
+      ],
+      "tips": [
+        "Visitors should apply at least 7 to 10 business days before the trip.",
+        "Pay with cash (exact change), tickets, a bus pass or fare payment from account.",
+        "The City is considering new eligibility rules, but they are only proposed and not in effect."
+      ],
+      "time": "Reply within 30 business days",
+      "phone": "(204) 986-5722"
+    }
   }
 
 ];
@@ -13261,6 +14114,22 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "winnipeg-transit-plus": "2026-10", // new 2026-10-17 from the official page (research/2026-10-manitoba/city-snapshots)
+  "winnipeg-winnpass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-manitoba/city-snapshots)
+  "winnipeg-recreation-fee-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-manitoba/city-snapshots)
+  "mb-residential-adaptations": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "mb-accessible-parking": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "mb-55-plus": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "mb-child-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "mb-primary-caregiver-tax-credit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "mb-home-care": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "mb-community-living-disability-services": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "mb-childrens-disability-services": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "mb-disability-health-supports": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "mb-pharmacare": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "mb-rent-assist": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "mb-eia": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "mb-supports-persons-disabilities": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "swift-current-access-transit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
   "yorkton-discounted-monthly-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
   "yorkton-access-transit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)

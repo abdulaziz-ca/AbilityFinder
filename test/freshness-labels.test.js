@@ -25,11 +25,11 @@ test('every record has exactly one honest label, agrees with queue and generated
     inherited += Number(f.inherited);
     const file = `public/guides/${record.id}.html`;
     // The routing placeholder and dark-province records have no static guide.
-    if (record.id === 'local-supports' || (ctx.levelOf(record.id) === 'Saskatchewan' && !/^const SK_ENABLED = true;/m.test(app))) { assert.equal(fs.existsSync(file), false); continue; }
+    if (record.id === 'local-supports' || (ctx.levelOf(record.id) === 'Saskatchewan' && !/^const SK_ENABLED = true;/m.test(app)) || (/^(Manitoba|Winnipeg|Brandon)$/.test(ctx.levelOf(record.id)) && !/^const MB_ENABLED = true;/m.test(app))) { assert.equal(fs.existsSync(file), false); continue; }
     const html = fs.readFileSync(file, 'utf8');
     assert.ok(html.includes(`<span class="verified">${f.wording}</span>`), record.id);
   }
-  assert.equal(queue.length, 254);
+  assert.equal(queue.length, 270);
   assert.equal(inherited, 39);
   assert.ok(app.includes('${vFresh.wording}'));
 });

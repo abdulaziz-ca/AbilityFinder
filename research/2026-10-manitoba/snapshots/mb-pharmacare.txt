@@ -1,0 +1,384 @@
+URL: https://www.gov.mb.ca/health/pharmacare/index.html | province: MB | program: Manitoba Pharmacare | fetched: 2026-10-18
+=== PAGE: https://www.gov.mb.ca/health/pharmacare/index.html (HTTP 200, 2900 chars)
+ 
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJ8B5BZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>
+ Header
+ Side Menu
+ Content
+ Footer
+ Search
+ Printer Friendly Français Site Map Contact Government
+ Keywords
+ MENU
+ - Resident and online services
+ ►
+ - Search Programs and Services
+ - Forms
+ - Publications
+ - Finding Work
+ - Lost Identification
+ - Moving to or Around Manitoba
+ - Communities around Manitoba
+ - Maps
+ - Online Services
+ - Social Media Directory
+ - Mobile Applications
+ - Business
+ ►
+ - Search for Business Information
+ - Starting a Business
+ - Business Research
+ - Financing a Business
+ - Registration, Legal and Licencing
+ - Doing Business with Government
+ - Entrepreneurship Manitoba
+ - BizPaL
+ - Government
+ ►
+ - Premier
+ - Cabinet Ministers
+ - Departments
+ - Agencies, Boards and Commissions
+ - Proactive Disclosure
+ - Legislative Assembly
+ - Manitoba Courts
+ - Manitoba Laws
+ - Visitors
+ ►
+ - Things to do
+ - Places to Go
+ - Where to Stay
+ - Events
+ - Trip Essentials
+ - Visitor Information Center
+Manitoba Health
+Manitoba Health > Manitoba Pharmacare Program
+ About the Manitoba Pharmacare Program
+ Notice: The Manitoba Enhanced Pharmacare Program was implemented effective April 15, 2025. More information on this program can be found here.
+ Pharmacare is a drug benefit program for eligible Manitobans, regardless of disease or age, whose income is seriously affected by high prescription drug costs.
+ Pharmacare coverage is based on both your total family income and the amount you pay for eligible prescription drugs. The total family income is adjusted to include a spouse and the number of dependents, if applicable.
+ Each year you are required to pay a portion of the cost of your eligible prescription drugs. This amount is your annual Pharmacare deductible. Pharmacare sets your deductible based on your adjusted family income.
+ You qualify for the Manitoba Pharmacare program if you meet all of the following criteria: 
+ - You are eligible for Manitoba Health coverage. 
+ - Your prescriptions are not covered by other provincial or federal programs.  
+ Manitoba Health
+ Non-Insured Benefits
+ 300 Carlton Street
+ Winnipeg, Manitoba R3B 3M9
+ Phone: 204-786-7141
+ Toll free: 1-800-297-8099
+ FAX: 204-786-6634
+ TTY/TDD Relay Service: 204-774-8618, outside Winnipeg: 711 or 1-800-855-0511
+ E-mail: pharmacare@gov.mb.ca
+ Pharmacare
+ - Pharmacare - Home
+ - Applying for Pharmacare 
+ - Pharmacare Questions
+ - Deductible Estimator
+ - Drug Formulary Lookup
+ - Forms and Worksheets
+ - Deductible Instalment Payment Program for Pharmacare 
+ - Information for Health Professionals
+ Other Programs and Initiatives
+ - Manitoba Enhanced Pharmacare Program
+ - Pharmacists Prescribing Contraceptives
+ - Biosimilars Initiative
+ - Changes to Dispensing Fees
+ Related Links
+ - Manitoba Drug Formulary
+ Close Window
+ manitoba.ca | 1-866-MANITOBA
+
+
+=== PAGE: https://www.gov.mb.ca/health/pharmacare/general.html (HTTP 200, 18101 chars)
+ 
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJ8B5BZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>
+ Header
+ Side Menu
+ Content
+ Footer
+ Search
+ Printer Friendly Français Site Map Contact Government
+ Keywords
+ MENU
+ - Resident and online services
+ ►
+ - Search Programs and Services
+ - Forms
+ - Publications
+ - Finding Work
+ - Lost Identification
+ - Moving to or Around Manitoba
+ - Communities around Manitoba
+ - Maps
+ - Online Services
+ - Social Media Directory
+ - Mobile Applications
+ - Business
+ ►
+ - Search for Business Information
+ - Starting a Business
+ - Business Research
+ - Financing a Business
+ - Registration, Legal and Licencing
+ - Doing Business with Government
+ - Entrepreneurship Manitoba
+ - BizPaL
+ - Government
+ ►
+ - Premier
+ - Cabinet Ministers
+ - Departments
+ - Agencies, Boards and Commissions
+ - Proactive Disclosure
+ - Legislative Assembly
+ - Manitoba Courts
+ - Manitoba Laws
+ - Visitors
+ ►
+ - Things to do
+ - Places to Go
+ - Where to Stay
+ - Events
+ - Trip Essentials
+ - Visitor Information Center
+Manitoba Health
+Manitoba Health > Manitoba Pharmacare Program
+ Pharmacare Questions
+ On This Page:
+ - General Questions
+ - Advanced Glucose Monitors FAQ
+ - Pharmacist Assessments: Uncomplicated Cystitis FAQ
+ General Questions
+ What is the Manitoba Pharmacare Program?
+ Pharmacare provides drug cost assistance to eligible Manitobans who do not have coverage under a federal or other provincial program. Pharmacare is income based, which means a deductible is calculated based on the total adjusted family income. Once the yearly deductible has been reached through the purchase of eligible prescription drugs at a pharmacy, Pharmacare will pay 100 per cent of eligible prescription costs for the remainder of the benefit year. The Pharmacare benefit year is April 1 to March 31 of the following year.  In order to be eligible for benefits, an application must be received in our office on or before March 31 of the current benefit year. For information on how to apply to Pharmacare please visit "Applying for Pharmacare".
+ What is an eligible prescription drug?
+ An eligible drug is one that is covered by Pharmacare. Not all drugs are eligible. To determine if a drug is eligible for coverage under Pharmacare, please ask a pharmacist or doctor, visit the online Drug Formulary Look Up or contact the Pharmacare office directly at 204-786-7141 or toll free at 1-800-297-8099.
+ What is an eligible prescription cost? Will my entire prescription count towards my deductible or be paid by Pharmacare?
+ Eligible prescription costs are used to determine when the yearly deductible has been reached. Once the deductible is reached, Pharmacare will pay 100 per cent of eligible prescription costs for the remainder of the benefit year.  
+ Eligible prescription costs is the ingredient cost of the drug plus any distribution costs plus the costs associated with the dispensing of the drug (the professional fee). Beginning August 18, 2017, the Pharmacare, Home Cancer Drug Program, and Palliative Care Drug Access Programs will accept a professional fee no more than $30.00 or up to $60.00 if the specified drug is a sterile compound.  
+ Can a pharmacy charge me a professional fee more than the amounts listed above? Are there other fees that I may be required to pay for pharmacy services?
+ Yes, there is no existing legislation that would prohibit a pharmacy from charging a professional fee higher than the amount permitted under Section 1.1 of the Regulation or for other fees that are not reimbursed by Manitoba's public drug plans.
+ All clients should talk to their pharmacy provider and make an educated decision about what they are willing to pay out-of-pocket. Pharmacists or a pharmacy owner must disclose the total price of the drug and professional fee: (a) to a patient at the patient's request; or (b) to a person responsible to pay for the drug if the person is authorized by law to obtain the information. The requirements were intended to support transparency in professional fees to enable informed decisions by consumers in choosing a pharmacy. In many cases, the professional fee charged by the pharmacy provider may change depending on the medication dispensed.
+ The following demonstrates how pharmacy fees are applied towards your deductible or which amounts the pharmacy may charge you directly: 
+ Total Ingredient Cost
+ Professional Fee
+ Amount Applied to your deductible or paid by Pharmacare
+ Amount paid by the client out-of-pocket
+ $100.00
+ $25.00
+ $125.00
+ $0.00
+ $100.00
+ $30.00
+ $130.00
+ $0.00
+ $100.00
+ $45.00
+ $130.00
+ $15.00
+ Please refer to the definition of “eligible prescription cost” above to understand the maximum amounts that are accepted by the Pharmacare, Home Cancer Drug Program, and Palliative Care Drug Access Programs.
+ What is a deductible?
+ A deductible is a specific dollar amount that must be paid each year before Pharmacare coverage begins. The minimum deductible for Pharmacare is $100, with no maximum deductible. Once an application has been processed, Pharmacare will send a notification letter indicating the deductible amount. To calculate a family deductible, please go to the online Pharmacare Deductible Estimator.
+ What year’s income is used to calculate the 2026/2027 deductible?
+ The deductible is based on Canada Revenue Agency income information from two years ago. Example: For the 2026/2027 Pharmacare benefit year, Pharmacare would use income information from the 2024 tax year.
+ How will the Pharmacist know when a deductible has been reached?
+ The amount paid towards a deductible is tracked by the Drug Programs Information Network (DPIN) computer system. The system will automatically notify the pharmacist once a deductible is met. There is no requirement to submit prescription receipts or send payment for the deductible amount to Pharmacare. The DPIN system also checks each prescription against drug history to help protect Manitobans from adverse drug interactions.
+ Can a Pharmacare deductible be changed if a family income has dropped this calendar year?
+ A provision is included in The Prescription Drugs Cost Assistance Act, which allows for an adjustment to be made to the Pharmacare deductible if a family's income is reduced by more than 10 per cent in the 2026 calendar year. 
+ Families with an income change of more than 10 per cent should complete a 2026/2027 Pharmacare Benefit Year Projected Income Worksheet and return it to our office along with required supporting documentation verifying the change in income. For more information, please call the Pharmacare office at 204-786-7141 or toll free at 1-800-297-8099. 
+ Can a Pharmacare deductible be paid in monthly instalments?
+ The Deductible Instalment Payment Program for Pharmacare is an option for eligible Manitobans to pay their annual Pharmacare deductible in monthly instalments. This option will give Manitobans who have high monthly drug costs a way to pay their Pharmacare deductible in interest-free monthly instalments as part of their Manitoba Hydro energy bill.
+ The Deductible Instalment Payment Program for Pharmacare Guideand Application, Consent and Authorization Formare available online, by contacting the program at 204-945-1733 (in Winnipeg) or toll free at 1-888-519-3492 (outside Winnipeg), or at Manitoba pharmacies.
+ What happens when a Manitoba resident turns 18 years of age?
+ Manitobans 18 and older are assigned their own Manitoba Health Registration number and will receive a registration certificate in the mail. A Pharmacare Application and Consent Authorization Formshould be completed and sent to the Pharmacare office for processing. Once the application has been processed, Pharmacare will send a notification letter indicating the deductible amount.
+ How will pension income splitting affect the Pharmacare deductible?
+ Pharmacare deductibles will not be affected by pension income splitting. Pharmacare deductibles for the 2026/2027 benefit year are calculated using income from line 150 of the 2024 Canada Revenue Agency Notice of Assessment. When receiving income information from the Canada Revenue Agency, consideration has been given to pension income splitting and procedures are in place to allow for automatic line 210 deductions when applicable.
+ Back to Top
+ Advanced Glucose Monitors FAQ
+ What are advanced glucose monitors (AGM)?
+ - AGM include both continuous glucose monitors (CGM) and flash glucose monitors (FGM).
+ - CGM and FGM are relatively new technologies that track glucose levels by using a tiny electrode called a glucose sensor implanted into the skin, and reducing the need to finger poke using a conventional blood glucose monitor. 
+ - Both systems allow users, and those they share information with, to monitor and measure glucose levels. While CGM offers continuous surveillance and reporting, FGM displays readings when scanned. 
+ - Manitobans should work with their health care professional to determine which device is most appropriate for their needs. 
+ How can I get coverage for AGM and when will coverage start? 
+ - Effective March 14, 2023, AGM coverage was expanded to include eligible clients of all ages with type 1 or type 2 diabetes who meet eligibility criteria. Previously (effective September 28, 2021), AGM were eligible benefits for clients living with type 1 diabetes aged 25 and younger who met the criteria.
+ - The expanded eligibility criteria for AGM is published in Bulletin 125 here: Bulletin Archive - Manitoba Drug Benefits and Interchangeability Formulary | Province of Manitoba.
+ - Additionally, Manitoba Health has changed the benefit status of AGM from an Exception Drug Status (EDS) benefit, which requires a prescriber to submit an application for coverage approval, to a Part 2 benefit (which still requires that a client meets criteria but does not require an application for coverage). This means improved access to AGM for clients and reduced workload for prescribers, since an application for EDS coverage is no longer required. 
+ - Contact your health care professional to discuss your eligibility.
+ Will I have to reach my deductible first to get AGM coverage?
+ - Yes, AGM are subject to Pharmacare deductibles.
+ - A deductible is the dollar amount you are required to pay before Pharmacare starts to pay for eligible benefits. Once a Pharmacare application has been processed, Pharmacare will send a notification letter indicating the deductible amount. To estimate a family deductible, please go to the online Pharmacare Deductible Estimator.
+ - Additional information can be found here: General Questions about Pharmacare | Province of Manitoba 
+ How often can I get a refill for my prescription for AGM?
+ - Eligible Pharmacare clients may have up to 100 days’ supply filled for drugs and other items covered on the Manitoba Formulary in any 90-day period in most situations.
+ Why has my approved quantity of Blood Glucose Test Strips (BGTS) changed now that I am using AGM?
+ - Effective March 14, 2023, the annual approved quantity of BGTS by treatment regimen was updated to reflect the BGTS requirements of clients who use AGM, including specific calibration requirements of different AGMs.
+ - If you are using AGM, you may occasionally need BGTS (for example, if you see an error code or if your symptoms do not match your AGM readings).
+ - The updated annual approved quantity of BGTS by treatment regimen is published in Bulletin 125 here: Bulletin Archive - Manitoba Drug Benefits and Interchangeability Formulary | Province of Manitoba
+ If I purchase AGM direct from a supplier, how do I submit for reimbursement?
+ - If you are eligible for AGM coverage and you purchase your AGM direct from a supplier, you can submit a claim to Pharmacare to have these costs count toward your annual deductible. Once your deductible has been reached, Manitoba Health will reimburse the cost of eligible AGM up to the established quantity limit per benefit year.
+ - If you submit a claim for AGM and you are not eligible for AGM coverage, your AGM costs will not count toward your Pharmacare deductible and will not be reimbursed.
+ - When adjudicating claims for reimbursement, Manitoba Health assesses each client’s drug utilization history to confirm that the eligibility criteria for AGM coverage is met.
+ - Claims for AGM costs must be submitted within six months of date of purchase to be counted toward your annual deductible (or to be reimbursed, if you have reached your deductible). Claims must include the client’s full name, Manitoba Health Registration Number, and original receipts/invoices.
+ - 
+ AGM reimbursement requests must be submitted to:
+ Manitoba Health
+ Non-Insured Benefits
+ 300 Carlton Street
+ Winnipeg, Manitoba, R3B 3M9
+ This information is also available in PDF format:
+FAQ: Diabetes Supports for Manitobans Advanced Glucose Monitors
+ Back to Top
+ Pharmacist Assessments: Uncomplicated Cystitis FAQ
+ What is uncomplicated cystitis?
+ Uncomplicated cystitis (bladder infection) is a specific type of urinary tract infection (UTI), which is limited to the bladder, caused by typical bacteria, and occurs in those with internal reproductive organs who have no structural or functional urinary tract abnormalities (e.g., catheter, impaired kidney function, spinal cord injury).
+ These are relatively low-risk, recurring infections and are often self-diagnosed. Treatment is generally through oral antibiotics.
+ The condition is considered "complicated" if the client is under 16 years of age, male, pregnant, breastfeeding an infant under one month of age, or has a medical condition that may affect the type of bacteria causing the infection (e.g., uncontrolled diabetes, immunocompromised). These clients would be referred to their primary care provider (e.g., family doctor, nurse practitioner, walk-in clinic) for diagnosis and care.
+ Who is eligible for this new coverage and what exactly does it include?
+ All Manitobans with an active Manitoba Health card are eligible for coverage of up to three uncomplicated cystitis pharmacist assessments per benefit year (April 1 – March 31), whether or not the assessment results in a prescription.
+ These assessments are at no cost to the client. 
+ Any prescription arising from the assessment may be covered according to the client's usual health insurance plan (e.g., Pharmacare, private insurance). 
+ Will I have to reach my deductible before I can get coverage for uncomplicated cystitis assessments by my pharmacist?
+ No. Manitoba Health provides coverage for up to three uncomplicated assessments per benefit year (April 1 – March 31). 
+ Any additional assessments in this period would not be covered by Manitoba Health. Clients may need to pay out-of-pocket costs to the pharmacy for additional assessments. 
+ When can my pharmacist prescribe for uncomplicated cystitis?
+ Pharmacists may only prescribe treatment for clients who have had a previous diagnosis of uncomplicated cystitis (e.g., is not your first episode of uncomplicated cystitis).
+ Pharmacists cannot prescribe treatment for clients who have had a cystitis episode in the past month. Instead, these clients would be referred to their primary care provider (e.g., family doctor, nurse practitioner, walk-in clinic).
+ Can any pharmacist assess for uncomplicated cystitis?
+ Only pharmacists who have completed the training program approved by the College of Pharmacists of Manitoba (CPhM) can assess and prescribe treatment for uncomplicated cystitis.
+ A list of pharmacists who have completed this training is available through the Pharmacist Public Register on the CPhM website (cphm.ca/protecting-the-public/find-a-pharmacy-or-pharmacy-professional/). Please contact pharmacies directly to ensure that a pharmacist who can offer this service is available when you are seeking an assessment.
+ How long will I have to wait for a pharmacist assessment?
+ Please contact your pharmacy regarding wait-times or appointments for assessments.
+ What medications can my pharmacist prescribe for uncomplicated cystitis?
+ Trained pharmacists may prescribe any drug Health Canada has authorized for the treatment of uncomplicated cystitis.
+ Will an assessment guarantee that I will get a prescription?
+ No. Not all pharmacist assessments for uncomplicated cystitis will result in a prescription. In some cases, your pharmacist may instead refer you to your primary care provider (e.g., family doctor, nurse practitioner, walk-in clinic) for further assessment and treatment.
+ If the pharmacist conducting the assessment determines a prescription is appropriate, clients may choose to fill the prescription at any pharmacy in Manitoba, including the same pharmacy where the assessment was conducted.
+ Any prescription arising from the assessment may be covered according to the client's usual health insurance plan (e.g., Pharmacare, private insurance). Please discuss cost and coverage considerations with your pharmacist during the assessment.
+ This information is also available in PDF format:
+FAQ: Pharmacist Assessments: Uncomplicated Cystitis
+ Back to Top
+ In the event that you have any questions or concerns please do not hesitate to contact us. Please Note:  when contacting us via e-mail, please DO NOT include your Personal Health Information Number (PHIN) for security reasons.
+ Manitoba Health
+ Non-Insured Benefits
+ 300 Carlton Street
+ Winnipeg, Manitoba R3B 3M9
+ Phone: 204-786-7141
+ Toll free: 1-800-297-8099
+ FAX: 204-786-6634
+ TTY/TDD Relay Service: 204-774-8618, outside Winnipeg: 711 or 1-800-855-0511
+ E-mail: pharmacare@gov.mb.ca
+ Pharmacare
+ - Pharmacare - Home
+ - Applying for Pharmacare 
+ - Pharmacare Questions
+ - Deductible Estimator
+ - Drug Formulary Lookup
+ - Forms and Worksheets
+ - Deductible Instalment Payment Program for Pharmacare 
+ - Information for Health Professionals
+ Other Programs and Initiatives
+ - Manitoba Enhanced Pharmacare Program
+ - Pharmacists Prescribing Contraceptives
+ - Biosimilars Initiative
+ - Changes to Dispensing Fees
+ Related Links
+ - Manitoba Drug Formulary
+ Close Window
+ manitoba.ca | 1-866-MANITOBA
+
+
+=== PAGE: https://www.gov.mb.ca/health/pharmacare/apply.html (HTTP 200, 3960 chars)
+ 
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJ8B5BZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>
+ Header
+ Side Menu
+ Content
+ Footer
+ Search
+ Printer Friendly Français Site Map Contact Government
+ Keywords
+ MENU
+ - Resident and online services
+ ►
+ - Search Programs and Services
+ - Forms
+ - Publications
+ - Finding Work
+ - Lost Identification
+ - Moving to or Around Manitoba
+ - Communities around Manitoba
+ - Maps
+ - Online Services
+ - Social Media Directory
+ - Mobile Applications
+ - Business
+ ►
+ - Search for Business Information
+ - Starting a Business
+ - Business Research
+ - Financing a Business
+ - Registration, Legal and Licencing
+ - Doing Business with Government
+ - Entrepreneurship Manitoba
+ - BizPaL
+ - Government
+ ►
+ - Premier
+ - Cabinet Ministers
+ - Departments
+ - Agencies, Boards and Commissions
+ - Proactive Disclosure
+ - Legislative Assembly
+ - Manitoba Courts
+ - Manitoba Laws
+ - Visitors
+ ►
+ - Things to do
+ - Places to Go
+ - Where to Stay
+ - Events
+ - Trip Essentials
+ - Visitor Information Center
+Manitoba Health
+Manitoba Health > Manitoba Pharmacare Program
+ Applying for Pharmacare
+ One-Time Program Enrolment
+ When Manitoba residents fill out and sign both the consent and declaration sections of the Pharmacare Application and Consent Authorization Form and send it to Manitoba Health, the Canada Revenue Agency electronically forwards to Manitoba Health the most recent income information. For example the 2024 income level will determine the annual Pharmacare deductible for the 2026/2027 benefit year. The annual deductible is established on April 1 of each benefit year. One-time program enrolment eliminates the need to submit a completed application form every year.  
+ Please note that Manitoba residents may apply to Pharmacare anytime during the benefit year (between April 1 and March 31). For example, March 31, 2027 is the last day to submit applications for the 2026/2027 benefit year. Manitobans that choose to withdraw from the one time enrolment must do so in writing to the Pharmacare office.
+ Are you a newcomer to Canada? Or are you 18 and have not filed your first tax return? Click here for more information on applying.
+ Information for newcomers to Canada
+ Newcomers who have not yet filed their first income tax returns applying for the Pharmacare program should complete and submit the Pharmacare Application and Consent Authorization Form along with a written statement, outlining their total global income in 2024 that is signed and dated. The global income is the income from all sources inside and outside Canada. Once the application has been processed, Pharmacare will send a notification letter indicating the deductible amount.
+ Over 18 and have not filed your first income tax return
+ Manitobans who are 18 and have not yet filed their first income tax returns and are applying for the Pharmacare Program should complete the Pharmacare Application and Consent Authorization Form and provide a written declaration of age and income for 2024 that is signed and dated. Once the application has been processed, Pharmacare will send a notification letter indicating the deductible amount.
+ Manitoba Health
+ Non-Insured Benefits
+ 300 Carlton Street
+ Winnipeg, Manitoba R3B 3M9
+ Phone: 204-786-7141
+ Toll free: 1-800-297-8099
+ FAX: 204-786-6634
+ TTY/TDD Relay Service: 204-774-8618, outside Winnipeg: 711 or 1-800-855-0511
+ E-mail: pharmacare@gov.mb.ca
+ Pharmacare
+ - Pharmacare - Home
+ - Applying for Pharmacare 
+ - Pharmacare Questions
+ - Deductible Estimator
+ - Drug Formulary Lookup
+ - Forms and Worksheets
+ - Deductible Instalment Payment Program for Pharmacare 
+ - Information for Health Professionals
+ Other Programs and Initiatives
+ - Manitoba Enhanced Pharmacare Program
+ - Pharmacists Prescribing Contraceptives
+ - Biosimilars Initiative
+ - Changes to Dispensing Fees
+ Related Links
+ - Manitoba Drug Formulary
+ Close Window
+ manitoba.ca | 1-866-MANITOBA

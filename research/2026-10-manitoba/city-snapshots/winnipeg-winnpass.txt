@@ -1,0 +1,167 @@
+URL: https://info.winnipegtransit.com/en/fares/winnpass | province: MB/Winnipeg | program: WINNpass low-income transit pass | fetched: 2026-10-18
+=== PAGE: https://info.winnipegtransit.com/en/fares/winnpass (HTTP 200, 10541 chars)
+Transit fares
+ You can pay for your transit trip with: 
+- Cash
+- Paper tickets
+- A reloadable peggo card
+There is a one-time cost of $5 to purchase a peggo card.
+ Register your peggo card
+ Where to buy Transit passes and tickets
+The cost to ride depends on the type of fare you use. Fares are broken down into five categories:
+ Full fare
+For people aged 17-64 years who aren’t attending high school or a post-secondary institution
+ Senior fare
+For people aged 65 and older
+Seniors must show photo ID to board
+ Free Youth Transit Pass 
+For students aged 11-21 enrolled in a Winnipeg-based public, independent, or home school program for the 2026-2027 school year.
+High school students should carry student ID with their bus pass and show it when they board. Students do not require a GoCARD if they have student ID.
+All Youth Pass holders must show a valid free youth transit pass to board.
+ Youth fare
+For youth 16 years old and younger
+For high school students 17 to 21 years old with a GoCARD
+Children who look older than their age may be asked for proof of age
+ Post-secondary fare
+For people who attend eligible universities, colleges, and trade schools
+Only available on post-secondary peggo cards
+Riders must show student ID to board
+ WINNpass fare
+For low-income people aged 64 and under
+Riders must meet WINNpass eligibility
+ Children 11 years old and younger ride free
+Children must be accompanied by a fare-paying customer to be eligible for free travel
+Children who look older than their age may be asked for proof of age
+2026 fares
+Single fares
+Single faresFull FareYouth FareSenior FarePost-Secondary
+Cash$3.45$2.95$2.95$3.45
+e-cash
+(Available in $5, $10, $15, $20, $30, and $50 denominations up to a maximum of $200)$3.10$2.30$1.55$3.10
+WINNpass e-cash$1.55$1.55N/AN/A
+Paper tickets
+(Available in a sheet of five or 10)$3.10$2.30$1.55N/A
+Unlimited e-passes
+peggo unlimited e-passesFull FareYouth FareSenior FarePost-Secondary
+24-hour e-pass$11.45$8.50$5.75N/A
+5-day e-pass$27.90$20.70$13.95N/A
+7-day e-pass$31.00$23.00$15.50$24.80
+28-day e-pass$110.05$81.65$55.05$88.05
+Monthly e-pass$119.35$88.55$59.70$95.50
+WINNpass monthly$59.70$59.70N/AN/A
+Special passes
+Special passesFull FareYouth FareSenior FarePost-Secondary
+Semester e-pass
+(Good for January-April, May-August, or September-December)N/AN/AN/A$324.65
+Max 5 paper pass
+(Good for five consecutive weekdays)$27.90N/AN/AN/A
+Superpass paper pass
+(Good for one Monday-Sunday period)$31.00$23.00$15.50N/A
+Monthly paper pass
+(Good from the first to last day of a single month)$119.35$88.55$59.70N/A
+Note: All transit fare product purchases are non-refundable.
+ Expand all
+ Collapse all
+ Photo ID 
+Photo IDs help bus operators ensure people pay the right fare for their age.
+Proof of age may be required for high school students, seniors, and children who look older than their age.
+Government-issued identification, school-issue student photo ID or GoCARDS, and Transit Photo ID cards all work as proof of age.
+Transit Photo ID cards can be purchased for $4.25 (including GST and PST) at the Osborne Transit Customer Service Centre.
+ Post-secondary passes 
+Eligible post-secondary students receive a discount on 7-day, 28-day, monthly, and semester peggo cards.
+You must purchase your post-secondary peggo card at your school. Staff will attach a validation sticker to your student ID at the point of purchase. You must show your student ID with this sticker visible to board a bus using your post-secondary peggo card.
+Operators can confiscate post-secondary cards if riders cannot present a valid ID. Your post-secondary pass is for your use only, and it is illegal to sell or transfer it to another person.
+You can reload your card online, in-person, or by calling 311.
+Eligibility requirements
+Full or part-time students enrolled in credit courses leading to a recognized degree, certificate, or diploma at one of the following Winnipeg institutions:
+- Universities and colleges recognized by an Act of the Manitoba Legislature
+- Private vocational institutions with a current certificate of registration issued by the Provincial Department of Advanced Education and Literacy
+- Adult education centers
+Students participating in apprenticeship and continuing education programs do not qualify for a Post-Secondary Student Pass.
+ WINNpass 
+The WINNpass program provides individuals with low income the opportunity to receive a 50 percent discount off the full-fare rate for monthly transit passes and e-cash rides.
+Eligibility requirements
+If you are a Winnipeg resident age 64 and under, you qualify for WINNpass if:
+- You are receiving Employment and Income Assistance and do not qualify for transportation allowance in the equivalent amount of a bus pass
+- You are a new permanent resident or a refugee who has been in Canada for less than a year and have not yet filed a tax return
+- You are a part of a household with income less than the Low Income Cut Off (amounts listed below)
+Number of people in householdTotal income
+1$31,906
+2$39,721
+3$48,832
+4$59,288
+5$67,244
+6$75,839
+7 or more$84,436
+If your application is approved, other members of your household may also be eligible for the discount.
+Apply for WINNpass
+Download the WINNpass application instructions
+ Online
+Apply for the first time or renew an existing application
+Apply for WINNpass
+ In person
+Print an application form or pick one up at any Winnipeg Transit Customer Service Centre 
+Return it to any Winnipeg Transit Customer Service Centre with the required documentation
+ By mail
+Print an application form or pick one up at any Winnipeg Transit Customer Service Centre 
+Mail it with the required documentation to:
+WINNpass, Winnipeg Transit Service Centre
+Main Floor, 510 Main Street
+R3B 1B9
+ By fax
+Print an application form or pick one up at any Winnipeg Transit Customer Service Centre 
+Fax it to 204-986-3245.
+Program approval
+You will receive a letter indicating whether you are approved for the program.
+This letter will provide instructions for picking up your WINNpass card.
+Cards are active for one year from the program acceptance date and are subject to a $5 card fee. They are non-transferable and must not be sold or shared.
+You will need to re-apply for this program on an annual basis. We recommend that you apply two months before your current eligibility period ends.
+ Fare-free travel for children 
+Winnipeg Transit offers fare-free travel for children 11 years old and younger who are riding with a fare-paying customer.
+While proof of age is not required, children must board and exit the bus at the same locations as the fare-paying customer they are riding with. A fare-paying customer can include a:
+- Parent
+- Guardian
+- Sibling
+- Grandparent
+- Babysitter
+Note: Children riding in the absence of a fare-paying customer are required to pay the appropriate fare amount. Organization–led excursions such as school and childcare centre field trips are also not eligible.
+This program eliminates financial barriers to public transit for families with children too young to stay at home. We also want to encourage members of the next generation to choose public transit.
+ Youth Transit Pass 
+The Free Youth Transit Pass Pilot provides a free transit pass to students aged 11-21 who are enrolled in Grades 7-12 at a Winnipeg-based public, independent, or home school program for the 2026-2027 school year.
+Passes will be valid from September 2026-August 2027 and are valid for any trip, route, or time of day, including Winnipeg Transit’s On Request service and Transit Plus (for students who meet eligibility requirements).
+The youth transit pass can be used for any transit trip- not just those to and from school. The program is designed to remove transportation barriers and improve youth access to school, recreation, employment, and community activities.
+Getting your pass
+Passes will be available from Winnipeg schools. Students should check with their school on availability.  
+Using your pass
+Schools will distribute passes along with a Transit Wallet to store both the pass and the student’s ID.
+All students must show their valid youth transit pass when boarding. High school students should also show their student ID.
+Lost or stolen passes
+Students will need to report their lost or stolen passes to their school.
+Planning your trip
+Students can plan their trips using Navigo or the Winnipeg Transit app.
+Travel tips
+Make the most of your transit travel with these travel tips.
+Transit safety
+The safety of our passengers is a top priority.
+Winnipeg Transit has invested more than $9.6 million in transit safety initiatives since 2017.
+Talk with your child about what to do if they ever feel uncomfortable or unsafe while riding transit. Encourage them to:
+- Move closer to other people on the bus or at a bus stop.
+- Sit near the front of the bus close to the bus operator.
+- Let the operator know if they feel unsafe or need assistance.
+- Get off the bus at a busy, well-lit stop.
+- Go into a public place for help if needed.
+- Call or text a trusted adult.
+Passenger behaviour
+Be a good transit passenger:
+- Follow the Code of Conduct.
+- Use the rear door to exit the bus when possible.
+- Give up your designated priority and courtesy seating when needed.
+- Use your headphones when listening to music.
+- Smoking and use of e-cigarettes or vapes are illegal on any Winnipeg Transit vehicle or in passenger shelters.
+ <div class="antibot-no-js antibot-message antibot-message-warning">You must have JavaScript enabled to use this form.</div> Was this information helpful?YesNo
+How can we make this web page better?
+Information collected will be used to improve our website. Do not use this form to submit a request for service or information because it will not be forwarded to departments for response. To submit a request for service or information, contact 311.
+ Your feedbackMaximum 1000 characters
+ This form is not intended to collect personal information; however, any personal information you choose to include in your comments is collected by the City of Winnipeg under the authority of section 36(1)(b) of the Freedom of Information and Protection of Privacy Act for the purpose of improving our website and will not be used or disclosed for any other purposes, except as authorized by law. Contact the Corporate Access and Privacy Officer by mail (City Clerk’s Department, Susan A. Thompson Building, 510 Main Street, Winnipeg MB, R3B 1B9) or by telephone (311) if you have any questions about the collection of this information.
+ Leave this field blank 
+ 

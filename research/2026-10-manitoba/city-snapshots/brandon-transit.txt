@@ -1,0 +1,34 @@
+URL: https://www.brandon.ca/transit | province: MB/Brandon | program: Brandon Transit Access Transit and special fare programs | fetched: 2026-10-18
+=== PAGE: https://www.brandon.ca/transit (HTTP 200, 1087 chars)
+
+ Brandon Transit
+ Section Menu
+ Ride Ready Pass
+ Free Transit for Youth!
+Beginning September 2026, the City of Brandon is introducing Ride Ready—a free transit program for youth. 
+Brandon Transit is committed to helping young people travel safely and independently, whether they're heading to school, work, extracurricular activities, or spending time with friends.
+ Special Programs
+Transit News
+ - 
+ Routes 3 & 7 Launch October 5, 2026!
+ - 
+ September 23, 2026 - Bus Stop Closure
+ - 
+ Route 23 Service Disruption
+ View More
+ Routes and Schedules
+ View Routes and Schedules to plan your next trip.
+ Routes and Schedules
+ BDN Transit App
+ With BDN Transit, you can easily plan a trip, view schedules, or see where a bus is in real-time, directly from your smartphone or desktop computer. All the information you need to ride transit is at your fingertips!
+ BDN Transit App
+ Contact Us
+Brandon Transit Info Centre
+723 Rosser Avenue - Unit A
+Brandon, MB R7A 0P3
+Phone: 204-729-2300
+Mon - Fri: 8:00 a.m. - 5:00 p.m. 
+Lunch: 12:00 p.m. - 1:00 p.m.
+Sat - Sun: Closed 
+Stat Holidays: Closed
+ 

@@ -1385,5 +1385,75 @@
     "short": "Check that you get the assistance program it names",
     "who": ["you"],
     "reason": "Saskatchewan city record yorkton-discounted-monthly-pass (2026-10-18)"
+  },
+  "mbSupportsPersonsDisabilitiesRoute": {
+    "short": "Check the disability and financial rules",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record mb-supports-persons-disabilities (2026-10-17)"
+  },
+  "mbEiaRoute": {
+    "short": "Check the income or disability route",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record mb-eia (2026-10-17)"
+  },
+  "mbRentAssistRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record mb-rent-assist (2026-10-17)"
+  },
+  "mbPharmacareRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record mb-pharmacare (2026-10-17)"
+  },
+  "mbDisabilityHealthSupportsRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Provincial-sweep record mb-disability-health-supports (2026-10-17)"
+  },
+  "mbChildrensDisabilityServicesRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record mb-childrens-disability-services (2026-10-17)"
+  },
+  "mbCommunityLivingDisabilityServicesRoute": {
+    "short": "Ask the program about an eligibility assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record mb-community-living-disability-services (2026-10-17)"
+  },
+  "mbHomeCareRoute": {
+    "short": "Ask for a care needs assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record mb-home-care (2026-10-17)"
+  },
+  "mbPrimaryCaregiverTaxCreditRoute": {
+    "short": "Check the care-level assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record mb-primary-caregiver-tax-credit (2026-10-17)"
+  },
+  "mbChildBenefitRoute": {
+    "short": "Check the income test and that you are raising a child",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record mb-child-benefit (2026-10-17)"
+  },
+  "mb55PlusRoute": {
+    "short": "Check your age and the income ranges",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record mb-55-plus (2026-10-17)"
+  },
+  "mbResidentialAdaptationsRoute": {
+    "short": "Check the disability and income limits",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record mb-residential-adaptations (2026-10-17)"
+  },
+  "winnipegRecreationFeeAssistanceRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Manitoba city record winnipeg-recreation-fee-assistance (2026-10-18)"
+  },
+  "winnipegWinnpassRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Manitoba city record winnipeg-winnpass (2026-10-18)"
   }
 }
