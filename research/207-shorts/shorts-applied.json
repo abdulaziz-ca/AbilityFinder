@@ -1350,5 +1350,40 @@
     "short": "Ask your audiologist whether your processor qualifies",
     "who": ["you", "program"],
     "reason": "Provincial-sweep record sk-cochlear-processor (2026-10-17)"
+  },
+  "reginaAffordableAccessRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Saskatchewan city record regina-affordable-access (2026-10-18)"
+  },
+  "saskatoonLeisureAccessProgramRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Saskatchewan city record saskatoon-leisure-access-program (2026-10-18)"
+  },
+  "saskatoonLowIncomeBusPassRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Saskatchewan city record saskatoon-low-income-bus-pass (2026-10-18)"
+  },
+  "reginaDiscounted31DayPassRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Saskatchewan city record regina-discounted-31-day-pass (2026-10-18)"
+  },
+  "mooseJawDiscountedMonthlyPassRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Saskatchewan city record moose-jaw-discounted-monthly-pass (2026-10-18)"
+  },
+  "saskatoonAccessibleParkingPermitSubsidyRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Saskatchewan city record saskatoon-accessible-parking-permit-subsidy (2026-10-18)"
+  },
+  "yorktonDiscountedMonthlyPassRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Saskatchewan city record yorkton-discounted-monthly-pass (2026-10-18)"
   }
 }

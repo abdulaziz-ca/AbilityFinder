@@ -18,7 +18,7 @@ Ontario, with federal, provincial, and municipal guides. It answers five questio
 **British Columbia is live, Ontario went live in September 2026, and Saskatchewan went live in
 October 2026 with provincial records only (cities come later).** `BC_ENABLED`, `ON_ENABLED` and
 `SK_ENABLED` in `public/app.js` are all `true`, and the
-catalog holds **240 benefits** — 16 federal, 24 Alberta, 52 British Columbia, 24 Ontario,
+catalog holds **253 benefits** — 16 federal, 24 Alberta, 52 British Columbia, 24 Ontario,
 22 Saskatchewan, and the remainder municipal. The residency question offers Alberta, British
 Columbia, Ontario, Saskatchewan, and "another province or territory"; the last of these still
 sees federal benefits only. Lloydminster is listed under both Alberta and Saskatchewan

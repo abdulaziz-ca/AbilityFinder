@@ -117,10 +117,10 @@ const BASE_PERSONA = {
    are real entries in CITIES_BY_PROVINCE. */
 // 2026-10-17: Nanaimo and Kingston gained municipal records, so the defaults moved
 // to Fort St. John and Timmins (no local record; city-sweep "none found" / unreadable).
-const DEFAULT_CITY = { AB: "Camrose", BC: "Fort St. John", ON: "Timmins", SK: "Yorkton" };
+const DEFAULT_CITY = { AB: "Camrose", BC: "Fort St. John", ON: "Timmins", SK: "Weyburn" };
 
 /* Cities used to violate a city gate: same province, different community. */
-const OTHER_CITY = { AB: "Wetaskiwin", BC: "Williams Lake", ON: "Guelph", SK: "Estevan" };
+const OTHER_CITY = { AB: "Wetaskiwin", BC: "Williams Lake", ON: "Guelph", SK: "Martensville" };
 
 /* --------------------------------------------------------------------------
    FRAGMENTS
@@ -317,6 +317,12 @@ const GATES = {
   /* ------------------------------------------------------ BC municipalities */
   vancouver: municipality("Vancouver", "BC"),
   surrey: municipality("Surrey", "BC"),
+  regina: municipality("Regina", "SK"),
+  saskatoon: municipality("Saskatoon", "SK"),
+  northBattleford: municipality("North Battleford", "SK"),
+  mooseJaw: municipality("Moose Jaw", "SK"),
+  princeAlbert: municipality("Prince Albert", "SK"),
+  yorkton: municipality("Yorkton", "SK"),
   brantford: municipality("Brantford", "ON"),
   dawsonCreek: municipality("Dawson Creek", "BC"),
   highRiver: municipality("High River", "AB"),
@@ -875,6 +881,29 @@ const GATES = {
     violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
   },
   skCochlearProcessorRoute: external("Depends on having a health-authority cochlear implant processor that meets the replacement criteria, which the wizard does not ask."),
+  reginaAffordableAccessRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  saskatoonLeisureAccessProgramRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  saskatoonLowIncomeBusPassRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  reginaDiscounted31DayPassRoute: external("Depends on receiving the assistance program the city names, which the wizard does not ask."),
+  mooseJawDiscountedMonthlyPassRoute: external("Depends on receiving the assistance program the city names, which the wizard does not ask."),
+  saskatoonAccessibleParkingPermitSubsidyRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  yorktonDiscountedMonthlyPassRoute: external("Depends on receiving the assistance program the city names, which the wizard does not ask."),
   kingstonMfapIncome: {
     evidence: "answers",
     satisfy: { set: { income: "low" } },
@@ -1454,6 +1483,19 @@ const PROGRAM_BEST_CASE = {
   "squamish-recreation-access":                    "ready",
   "terrace-affordable-recreation-access":          "almost",
   "white-rock-leisure-access":                     "ready",
+  "regina-affordable-access":                      "ready",
+  "regina-paratransit":                            "ready",
+  "saskatoon-access-transit":                      "ready",
+  "saskatoon-leisure-access-program":              "ready",
+  "saskatoon-low-income-bus-pass":                 "ready",
+  "north-battleford-handi-bus":                    "ready",
+  "regina-discounted-31-day-pass":                 "almost",
+  "moose-jaw-discounted-monthly-pass":             "almost",
+  "moose-jaw-paratransit":                         "ready",
+  "prince-albert-access-transit":                  "ready",
+  "saskatoon-accessible-parking-permit-subsidy":   "ready",
+  "yorkton-access-transit":                        "ready",
+  "yorkton-discounted-monthly-pass":               "almost",
   "sk-active-families-benefit":                    "ready",
   "sk-low-income-tax-credit":                      "ready",
   "sk-early-childhood-intervention":               "ready",

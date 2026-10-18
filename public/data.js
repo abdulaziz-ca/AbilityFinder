@@ -152,6 +152,19 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "yorkton-discounted-monthly-pass": { kind: "discount", note: "The discounted pass costs $27.50 a month, not the adult price of $90.00." },
+  "yorkton-access-transit": { kind: "access", note: "Door-to-door rides for people with disabilities who cannot use regular transit." },
+  "saskatoon-accessible-parking-permit-subsidy": { kind: "discount", note: "The yearly permit costs $50 plus GST instead of $100 plus GST." },
+  "prince-albert-access-transit": { kind: "access", note: "Door-to-door rides for people who cannot use public transit." },
+  "moose-jaw-paratransit": { kind: "access", note: "Door-to-door accessible rides for people who cannot use regular transit." },
+  "moose-jaw-discounted-monthly-pass": { kind: "discount", note: "The discounted monthly pass costs $25.00 on the fares table." },
+  "regina-discounted-31-day-pass": { kind: "discount", note: "The discounted 31-day pass costs $28." },
+  "north-battleford-handi-bus": { kind: "access", note: "On-demand rides for people who cannot use regular transit" },
+  "saskatoon-low-income-bus-pass": { kind: "discount", note: "Reduced monthly pass: adult $66.40, high school $47.20" },
+  "saskatoon-leisure-access-program": { kind: "access", note: "Free drop-in admission and one registered program per year" },
+  "saskatoon-access-transit": { kind: "access", note: "Shared door-to-door rides on accessible buses at regular fares" },
+  "regina-paratransit": { kind: "access", note: "Door-to-door shared rides for registered riders at regular fares" },
+  "regina-affordable-access": { kind: "discount", note: "50% to 80% off recreation; 20% off adult and youth transit passes" },
   "sk-cochlear-processor": { kind: "grant", note: "Cost-shared replacement; client co-pay of $840 per processor" },
   "sk-early-childhood-intervention": { kind: "access", note: "Home-based services; no cost is stated on the page" },
   "sk-low-income-tax-credit": { kind: "grant", note: "Refundable quarterly payment for low and modest incomes, paid with the GST Credit" },
@@ -455,6 +468,19 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "yorkton-discounted-monthly-pass": { difficulty: 2, effort: "Buy the pass in person at City Hall.", wait: "Not published" },
+  "yorkton-access-transit": { difficulty: 3, effort: "Register in advance through SaskAbilities.", wait: "Not published" },
+  "saskatoon-accessible-parking-permit-subsidy": { difficulty: 3, effort: "Apply for the subsidy first, then buy the permit at City Hall.", wait: "Not published" },
+  "prince-albert-access-transit": { difficulty: 3, effort: "Contact the Community Service Centre and book each ride ahead.", wait: "Not published" },
+  "moose-jaw-paratransit": { difficulty: 3, effort: "Fill in a form and mail or email it, then wait for a decision.", wait: "Within 21 days of a completed application" },
+  "moose-jaw-discounted-monthly-pass": { difficulty: 2, effort: "Bring proof of your program and buy the pass in person.", wait: "Not published" },
+  "regina-discounted-31-day-pass": { difficulty: 2, effort: "Call the Transit Information Centre, then buy the first pass in person.", wait: "Not published" },
+  "north-battleford-handi-bus": { difficulty: 2, effort: "Phone call", wait: "Not published" },
+  "saskatoon-low-income-bus-pass": { difficulty: 2, effort: "Form by mail with tax and address proof", wait: "Three to four weeks" },
+  "saskatoon-leisure-access-program": { difficulty: 2, effort: "Online form with tax and address proof", wait: "Three to six weeks" },
+  "saskatoon-access-transit": { difficulty: 3, effort: "Application on a separate page", wait: "Not published" },
+  "regina-paratransit": { difficulty: 3, effort: "Application, possible interview", wait: "Most within two weeks" },
+  "regina-affordable-access": { difficulty: 2, effort: "One form with income proof", wait: "About three weeks" },
   "sk-cochlear-processor": { difficulty: 3, effort: "Clinical assessment through the Saskatchewan Health Authority", wait: "Not published" },
   "sk-early-childhood-intervention": { difficulty: 1, effort: "Phone your regional program; self-referral is allowed", wait: "Not published" },
   "sk-low-income-tax-credit": { difficulty: 1, effort: "File your income tax return", wait: "Paid quarterly by the CRA" },
@@ -12460,6 +12486,625 @@ const BENEFITS = [
         "The program is administered by the Saskatchewan Health Authority under the direction of the Ministry of Health."
       ]
     }
+  },
+  {
+    "id": "regina-affordable-access",
+    "name": "Affordable Access Program (Regina)",
+    "level": "Regina",
+    "category": "Recreation",
+    "amount": "50% to 80% off recreation; 20% off transit passes",
+    "summary": "Regina residents with a household income under set limits get reduced rates on recreation programs and on adult and youth transit passes.",
+    "note": "Approval lasts until the end of each year. You must re-apply every year.",
+    "requires": [
+      "sk",
+      "regina",
+      "reginaAffordableAccessRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your household income is under the limit for your household size."
+      ],
+      "note": "Limits for 1 to 4 people: $27,478, $34,206, $42,053 and $51,058 (larger sizes on the page)."
+    },
+    "applyText": "Fill out the application form and include income verification.",
+    "applyUrl": "https://www.regina.ca/parks-recreation-culture/classes-programs/affordable-access-program/",
+    "source": "https://www.regina.ca/parks-recreation-culture/classes-programs/affordable-access-program/",
+    "detail": {
+      "aboutList": {
+        "lead": "Once approved, you get:",
+        "items": [
+          "Single admissions at 50 per cent off the regular price.",
+          "Leisure Passes at 80 per cent off the regular price.",
+          "Class registration at 80 per cent off, up to $160 off per family member.",
+          "Adult and Youth transit passes at 20 per cent off the regular price."
+        ]
+      },
+      "steps": [
+        "Fill out the Affordable Access Program Application Form.",
+        "Add the required income verification.",
+        "Submit it in person at the North West Leisure Centre, Sportplex or Sandra Schmirler Leisure Centre, or by email, fax or mail.",
+        "If approved, buy transit passes at the Transit Information Centre, 2124 11th Avenue."
+      ],
+      "documents": [
+        "Completed application form",
+        "Income verification"
+      ],
+      "tips": [
+        "Processing takes about three weeks on average, so apply early.",
+        "Passes that are already discounted (Discount, Post-Secondary, Senior) do not get the extra 20 per cent off."
+      ],
+      "time": "About three weeks to process",
+      "phone": "306-777-7733"
+    }
+  },
+  {
+    "id": "regina-paratransit",
+    "name": "Regina Paratransit",
+    "level": "Regina",
+    "category": "Transit",
+    "amount": "Shared door-to-door rides at regular transit fares",
+    "summary": "Scheduled shared door-to-door rides for people with a disability who are restricted in using regular buses some of the time. You must register first.",
+    "note": "Fares match regular transit. You must be registered before you can ride.",
+    "requires": [
+      "sk",
+      "regina",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You have trouble walking or wheeling to a bus stop.",
+        "You have trouble following directions or using regular buses.",
+        "You are easily confused or disoriented.",
+        "You have a risk of falling.",
+        "You cannot board a regular bus on your own.",
+        "You tire easily."
+      ],
+      "note": "You must be restricted in at least one of these ways."
+    },
+    "applyText": "Complete the electronic Paratransit application form.",
+    "applyUrl": "https://www.regina.ca/transportation-roads-parking/transit/paratransit/",
+    "source": "https://www.regina.ca/transportation-roads-parking/transit/paratransit/",
+    "detail": {
+      "aboutList": {
+        "lead": "There are five types of registration:",
+        "items": [
+          "Unconditional, for Regina residents who need Paratransit all the time.",
+          "Temporary, for a short-term disability such as a broken leg.",
+          "Winter, issued from November 1 until March 31.",
+          "Visitor, for people visiting Regina.",
+          "Conditional, for certain times or conditions, such as after dark."
+        ]
+      },
+      "steps": [
+        "Complete the electronic application to create your rider profile.",
+        "Staff review your eligibility and may contact the professionals you listed.",
+        "You may be asked to attend an in-person interview.",
+        "Once registered, book trips by phone, email or the app, up to seven days ahead."
+      ],
+      "documents": [
+        "Completed application with professionals listed"
+      ],
+      "tips": [
+        "Evening calls are easier, since the lines are busy during the day.",
+        "An unconditional registration ends if you do not ride for 18 months."
+      ],
+      "time": "Most applications are reviewed within two weeks",
+      "phone": "306-777-7726"
+    }
+  },
+  {
+    "id": "saskatoon-access-transit",
+    "name": "Access Transit (Saskatoon)",
+    "level": "Saskatoon",
+    "category": "Transit",
+    "amount": "On-demand shared rides at regular fares",
+    "summary": "On-demand rides on lift-equipped buses for people with a temporary or permanent disability who cannot use regular buses.",
+    "note": "Regular fares apply, paid the same ways as on regular buses.",
+    "requires": [
+      "sk",
+      "saskatoon",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have a temporary or permanent disability.",
+        "You cannot use regular transit because of physical or cognitive limits."
+      ],
+      "note": "The page links to a How to Apply section for the application."
+    },
+    "applyText": "See the How to Apply page on Saskatoon Transit.",
+    "applyUrl": "https://saskatoontransit.ca/access-transit/about-access-transit",
+    "source": "https://saskatoontransit.ca/access-transit/about-access-transit",
+    "detail": {
+      "aboutList": {
+        "lead": "The service works like this:",
+        "items": [
+          "It runs 7 days a week, including stat holidays, within Saskatoon.",
+          "Rides are shared, with a pick-up window of 0 to 20 minutes.",
+          "Operators help from one accessible door to another.",
+          "You can book up to four one-way trips per day."
+        ]
+      },
+      "steps": [
+        "Check the How to Apply page on Saskatoon Transit.",
+        "Book trips up to seven days in advance."
+      ],
+      "documents": [],
+      "tips": [
+        "Attendants are mandatory for riders who need help for medical or behavioural reasons.",
+        "Late cancellations and no-shows earn points that can limit your use."
+      ],
+      "time": "Not published",
+      "phone": "306-975-3555"
+    }
+  },
+  {
+    "id": "saskatoon-leisure-access-program",
+    "name": "Leisure Access Program (Saskatoon)",
+    "level": "Saskatoon",
+    "category": "Recreation",
+    "amount": "Free drop-ins, one registered program per year",
+    "summary": "Low-income Saskatoon residents get unlimited drop-in admission at Leisure Centres and one registered recreation program per year.",
+    "note": "Apply any time. You hear back by email in three to six weeks.",
+    "requires": [
+      "sk",
+      "saskatoon",
+      "saskatoonLeisureAccessProgramRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Saskatoon.",
+        "Your household income before tax is at or below the limit for your household size."
+      ],
+      "note": "Limits for 1 to 4 people: $27,478, $34,206, $42,053 and $51,058 (larger sizes on the page)."
+    },
+    "applyText": "Fill out the online application, or use the printable form.",
+    "applyUrl": "https://www.saskatoon.ca/parks-recreation-attractions/recreational-programs-activities/leisure-access-program",
+    "source": "https://www.saskatoon.ca/parks-recreation-attractions/recreational-programs-activities/leisure-access-program",
+    "detail": {
+      "aboutList": {
+        "lead": "The program includes:",
+        "items": [
+          "Unlimited admission to drop-in programs at the Leisure Centres.",
+          "One registered recreation program per year.",
+          "Complimentary tickets to the Nutrien Playland rides at Kinsmen Park.",
+          "Single-use family passes to the Western Development Museum, while supplies last.",
+          "Free child minding for children six and under at three centres."
+        ]
+      },
+      "steps": [
+        "Fill out the online application, or pick up a paper copy at any indoor leisure centre.",
+        "Attach last year's Notice of Assessment for each adult in the household.",
+        "Attach a utility bill or government letter showing your current address.",
+        "Wait for an email about your application."
+      ],
+      "documents": [
+        "Notice of Assessment from the Canada Revenue Agency",
+        "Utility bill or government-issued letter with your address"
+      ],
+      "tips": [
+        "Social service recipients use a different route, through the Social Services office.",
+        "Child minding is at Lakewood Civic Centre, Shaw Centre and Saskatoon Field House."
+      ],
+      "time": "Three to six weeks",
+      "phone": "306-975-3378"
+    }
+  },
+  {
+    "id": "saskatoon-low-income-bus-pass",
+    "name": "Low-Income Bus Pass (Saskatoon)",
+    "level": "Saskatoon",
+    "category": "Transit",
+    "amount": "Adult $66.40 a month; high school $47.20 a month",
+    "summary": "Low-income Saskatoon residents can buy a monthly bus pass at a reduced rate. You qualify using last year's Notice of Assessment.",
+    "note": "You are accepted for one year at a time and must requalify after that.",
+    "requires": [
+      "sk",
+      "saskatoon",
+      "saskatoonLowIncomeBusPassRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Saskatoon.",
+        "Your household income on last year's Notice of Assessment is under the limit."
+      ],
+      "note": "Limits for 1 to 4 people: $27,478, $34,206, $42,053 and $51,058 (larger sizes on the page)."
+    },
+    "applyText": "Fill out the online application, or use the printable form.",
+    "applyUrl": "https://saskatoontransit.ca/fares-passes/low-income-bus-pass-programs",
+    "source": "https://saskatoontransit.ca/fares-passes/low-income-bus-pass-programs",
+    "detail": {
+      "aboutList": {
+        "lead": "The monthly prices are in the tips below.",
+        "items": [
+          "A $5 activation fee applies to a new reloadable pass card."
+        ]
+      },
+      "steps": [
+        "Fill out the online application, or get a paper copy at a leisure centre or the Transit Customer Service Centre.",
+        "Include your Notice of Assessment and a utility bill with your address.",
+        "Mail it to Community Development, 3130 Laurier Drive, Saskatoon SK S7L 5J7.",
+        "Take the returned form to the Customer Services Centre, 226 23rd Street East, to buy the pass."
+      ],
+      "documents": [
+        "Notice of Assessment from the Canada Revenue Agency",
+        "Utility bill with your current address"
+      ],
+      "tips": [
+        "Low-income monthly pass prices: adult $66.40, high school $47.20.",
+        "The page says the Notice of Assessment is the only tool used to qualify you.",
+        "Rates stay the same after the July 1, 2026 fare change."
+      ],
+      "time": "Three to four weeks",
+      "phone": "306-975-3100"
+    }
+  },
+  {
+    "id": "north-battleford-handi-bus",
+    "name": "Battlefords Handi-Bus",
+    "level": "North Battleford",
+    "category": "Transit",
+    "amount": "On-demand rides, Monday to Friday",
+    "summary": "On-demand transportation for people who cannot use the regular transit service because of a disability. It runs Monday to Friday.",
+    "note": "The page does not state a fare or a registration process.",
+    "requires": [
+      "sk",
+      "northBattleford",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have a disability.",
+        "Because of it, you cannot use the regular transit service."
+      ]
+    },
+    "applyText": "Call to ask about the service and to book a ride.",
+    "applyUrl": "https://www.cityofnb.ca/roads-parking-transportation/public-transportation/",
+    "source": "https://www.cityofnb.ca/roads-parking-transportation/public-transportation/",
+    "detail": {
+      "aboutList": {
+        "lead": "What the service is:",
+        "items": [
+          "A specialized on-demand service for people with disabilities.",
+          "Jointly funded by North Battleford and the Town of Battleford."
+        ]
+      },
+      "steps": [
+        "Call to ask for more information or to book a ride."
+      ],
+      "documents": [],
+      "tips": [
+        "Regular buses run Monday to Friday, so check the page for route hours."
+      ],
+      "time": "Not published",
+      "phone": "306-445-7797"
+    }
+  },
+  {
+    "id": "regina-discounted-31-day-pass",
+    "name": "Regina Discounted 31-Day Transit Pass",
+    "level": "Regina",
+    "category": "Transit",
+    "amount": "$28 for a 31-day pass",
+    "summary": "A $28 Regina Transit 31-day pass for people on SAID, SIS, SES or SEI. The City runs it with the Saskatchewan Ministry of Social Services.",
+    "note": "Call the Transit Information Centre to find out how to get the pass. Your first discounted pass must be bought at the Transit Information Centre.",
+    "requires": [
+      "sk",
+      "regina",
+      "reginaDiscounted31DayPassRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You are in Saskatchewan Assured Income for Disability (SAID)",
+        "You are in Saskatchewan Income Support (SIS)",
+        "You are in the Saskatchewan Employment Supplement (SES)",
+        "You are in the Saskatchewan Employment Incentive (SEI)"
+      ]
+    },
+    "applyText": "See how to get the pass",
+    "applyUrl": "https://www.regina.ca/transportation-roads-parking/transit/fares-passes/",
+    "source": "https://www.regina.ca/transportation-roads-parking/transit/fares-passes/",
+    "detail": {
+      "aboutList": {
+        "lead": "The City of Regina and the Ministry of Social Services offer this pass to eligible low-income earners in Regina.",
+        "items": [
+          "The pass costs $28 and covers 31 days."
+        ]
+      },
+      "steps": [
+        "Check that you are in one of the four provincial programs",
+        "Call the Transit Information Centre to ask how to get your pass",
+        "Buy your first discounted pass at 2124 11th Avenue"
+      ],
+      "documents": [
+        "The page does not list documents. Ask the Transit Information Centre what to bring."
+      ],
+      "tips": [
+        "The Transit Information Centre is open Monday to Friday, 8:30 a.m. to 4:30 p.m."
+      ],
+      "phone": "306-777-7433"
+    }
+  },
+  {
+    "id": "moose-jaw-discounted-monthly-pass",
+    "name": "Moose Jaw Discounted Monthly Bus Pass",
+    "level": "Moose Jaw",
+    "category": "Transit",
+    "amount": "$25 monthly pass",
+    "summary": "A discounted Moose Jaw monthly bus pass for people on social assistance. You show proof that you are in an eligible program when you buy it.",
+    "note": "The pass looks the same as other passes. Proof of the program must be shown at the time you buy a pass.",
+    "requires": [
+      "sk",
+      "mooseJaw",
+      "mooseJawDiscountedMonthlyPassRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You are in Saskatchewan Income Support (SIS)",
+        "You are in the Saskatchewan Employment Incentive (SEI)",
+        "You are in Saskatchewan Assured Income Disability (SAID)",
+        "You are in the Saskatchewan Employment Supplement (SES)"
+      ],
+      "note": "Your proof must show your name, the program name and the date for the month you buy."
+    },
+    "applyText": "See fares and passes",
+    "applyUrl": "https://moosejaw.ca/transit/transit-fares-passes/",
+    "source": "https://moosejaw.ca/transit/transit-fares-passes/",
+    "detail": {
+      "aboutList": {
+        "lead": "The City partners with the Ministry of Social Services to sell monthly passes at a lower price.",
+        "items": [
+          "The discounted monthly pass costs $25.",
+          "The fares table lists the discounted price for fixed route and paratransit."
+        ]
+      },
+      "steps": [
+        "Get proof of your program, such as a cheque stub, program letter or bank statement",
+        "Buy the pass in person with your proof",
+        "Ask the Transit office if you have questions"
+      ],
+      "documents": [
+        "A cheque stub, a letter from the program or a bank statement with your name, the program name and the date for the month of purchase."
+      ],
+      "tips": [
+        "Passes are sold at City Hall, Yara Centre and Kinsmen Sportsplex."
+      ],
+      "phone": "306-694-4488"
+    }
+  },
+  {
+    "id": "moose-jaw-paratransit",
+    "name": "Moose Jaw Paratransit Service",
+    "level": "Moose Jaw",
+    "category": "Transit",
+    "amount": "Accessible door-to-door shared rides",
+    "summary": "A shared ride service from one accessible door to another. It is for people who cannot use regular transit because of a physical or mental challenge.",
+    "note": "You must apply and be approved first. Regular tickets and passes do not work on Paratransit, so ask for Paratransit ones.",
+    "requires": [
+      "sk",
+      "mooseJaw",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Moose Jaw, or you are a registered visitor",
+        "A physical or mental challenge stops you using the regular bus",
+        "You complete an application form and are approved"
+      ],
+      "note": "Visitors can also register."
+    },
+    "applyText": "See the Paratransit page",
+    "applyUrl": "https://moosejaw.ca/transit/paratransit-service/",
+    "source": "https://moosejaw.ca/transit/paratransit-service/",
+    "detail": {
+      "aboutList": {
+        "lead": "Paratransit is a shared ride service, not a taxi.",
+        "items": [
+          "Drivers help you between the van and the door.",
+          "It does not run on Sundays or statutory holidays.",
+          "Regular subscription trips are available for work, school or medical visits."
+        ]
+      },
+      "steps": [
+        "Get the application form online, at City Hall or at the Kinsmen Sportsplex",
+        "Send it to Moose Jaw Transit, 228 Main Street North, or email transit@moosejaw.ca",
+        "Wait for the written decision, then book your rides"
+      ],
+      "documents": [
+        "The completed application form."
+      ],
+      "tips": [
+        "Eligibility is decided in consultation with professionals you designate.",
+        "Cancel a trip at least 24 hours ahead, or you may be charged."
+      ],
+      "time": "Decision within 21 days of a complete application.",
+      "phone": "306-694-4488"
+    }
+  },
+  {
+    "id": "prince-albert-access-transit",
+    "name": "Prince Albert Access Transit",
+    "level": "Prince Albert",
+    "category": "Transit",
+    "amount": "Door-to-door rides with ramps and lifts",
+    "summary": "A door-to-door ride service for people who cannot use the public transit system. It has ramps and lifts for wheelchairs. The Community Service Centre runs it.",
+    "note": "Rides must be booked ahead. The page does not give fares, hours or how to register.",
+    "requires": [
+      "sk",
+      "princeAlbert",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You cannot use the public transit system",
+        "The reason is a permanent or temporary disability"
+      ]
+    },
+    "applyText": "See Access Transit",
+    "applyUrl": "https://www.citypa.ca/parking-streets-and-transportation/transit/access-transit/",
+    "source": "https://www.citypa.ca/parking-streets-and-transportation/transit/access-transit/",
+    "detail": {
+      "aboutList": {
+        "lead": "The Community Service Centre can help you get where you want to go.",
+        "items": [
+          "Access Transit is a door-to-door service.",
+          "Vehicles have ramps and lifts for wheelchair passengers."
+        ]
+      },
+      "steps": [
+        "Contact the Community Service Centre to ask how to book",
+        "Book each ride ahead of time"
+      ],
+      "documents": [
+        "The page does not list documents. Ask the Community Service Centre."
+      ],
+      "tips": [
+        "People over 60 can also use the Seniors Transportation service, booked 24 hours ahead."
+      ]
+    }
+  },
+  {
+    "id": "saskatoon-accessible-parking-permit-subsidy",
+    "name": "Saskatoon Accessible Parking Permit Subsidy",
+    "level": "Saskatoon",
+    "category": "Parking",
+    "amount": "Permit at half price, $50 plus GST a year",
+    "summary": "Low-income Saskatoon residents with a SaskAbilities placard can buy the City's Accessible Parking Permit at 50 percent off. You must be approved first.",
+    "note": "You need subsidy approval before you buy the permit. The prorated price is $25 plus GST from May 1.",
+    "requires": [
+      "sk",
+      "saskatoon",
+      "saskatoonAccessibleParkingPermitSubsidyRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a Saskatoon resident",
+        "You have a valid and current SaskAbilities Accessible Parking placard",
+        "Your household income is below the Low Income Cut-Off (LICO)"
+      ]
+    },
+    "applyText": "Apply for the subsidy",
+    "applyUrl": "https://www.saskatoon.ca/moving-around/parking/parking-programs-permits/parking-people-disability/accessible-parking-permit",
+    "source": "https://www.saskatoon.ca/moving-around/parking/parking-programs-permits/parking-people-disability/accessible-parking-permit",
+    "detail": {
+      "aboutList": {
+        "lead": "The permit lets you park on the street in pay parking zones without paying at a pay station.",
+        "items": [
+          "You can park up to 4 hours in regular pay spaces, accessible zones and loading zones.",
+          "The regular permit costs $100 plus GST a year.",
+          "The permit does not work in parking lots, residential zones or bus stops."
+        ]
+      },
+      "steps": [
+        "Fill in the online form, or print the form and mail or bring it to City Hall",
+        "Wait for your subsidy approval",
+        "Buy your permit at City Hall"
+      ],
+      "documents": [
+        "Your provincial disability placard and a piece of ID, when you buy the permit."
+      ],
+      "tips": [
+        "Permits expire at the end of October each year.",
+        "Questions go to parkingsubsidy@saskatoon.ca."
+      ]
+    }
+  },
+  {
+    "id": "yorkton-access-transit",
+    "name": "Yorkton Access Transit",
+    "level": "Yorkton",
+    "category": "Transit",
+    "amount": "Shared door-to-door rides",
+    "summary": "A shared door-to-door ride service for people with disabilities who cannot use regular public transportation. SaskAbilities runs it in Yorkton.",
+    "note": "You must register ahead of time. The page does not give Access Transit fares. Yorkton transit is due to change in January 2027.",
+    "requires": [
+      "sk",
+      "yorkton",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have a disability",
+        "You cannot use regular public transportation",
+        "You register in advance"
+      ]
+    },
+    "applyText": "See Access Transit",
+    "applyUrl": "https://www.yorkton.ca/living-in-yorkton/transit/",
+    "source": "https://www.yorkton.ca/living-in-yorkton/transit/",
+    "detail": {
+      "aboutList": {
+        "lead": "The City offers this service with SaskAbilities.",
+        "items": [
+          "It helps you travel safely and independently within Yorkton."
+        ]
+      },
+      "steps": [
+        "Call or email SaskAbilities to ask how to register",
+        "Register before your first ride"
+      ],
+      "documents": [
+        "The page does not list documents. Ask SaskAbilities."
+      ],
+      "tips": [
+        "The new service planned for January 2027 will combine regular and accessible transit."
+      ],
+      "phone": "306-621-6580"
+    }
+  },
+  {
+    "id": "yorkton-discounted-monthly-pass",
+    "name": "Yorkton Discounted Monthly Transit Pass",
+    "level": "Yorkton",
+    "category": "Transit",
+    "amount": "$27.50 monthly pass",
+    "summary": "A discounted Yorkton monthly bus pass for people in provincially sponsored social assistance programs. You buy it at City Hall.",
+    "note": "The page does not name the programs or say what proof to bring. Ask City Hall.",
+    "requires": [
+      "sk",
+      "yorkton",
+      "yorktonDiscountedMonthlyPassRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are in a provincially sponsored social assistance program"
+      ]
+    },
+    "applyText": "See transit fees",
+    "applyUrl": "https://www.yorkton.ca/living-in-yorkton/transit/",
+    "source": "https://www.yorkton.ca/living-in-yorkton/transit/",
+    "detail": {
+      "aboutList": {
+        "lead": "This pass costs less than the regular monthly pass.",
+        "items": [
+          "The adult monthly pass costs $90 in 2026.",
+          "The discounted pass is sold at City Hall."
+        ]
+      },
+      "steps": [
+        "Ask City Hall which programs and proof they accept",
+        "Buy the pass at City Hall"
+      ],
+      "documents": [
+        "The page does not list documents. Ask City Hall."
+      ],
+      "tips": [
+        "Transit runs Monday to Friday, 8 a.m. to 7 p.m. Hours may change on statutory holidays."
+      ]
+    }
   }
 
 ];
@@ -12571,6 +13216,19 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "yorkton-discounted-monthly-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
+  "yorkton-access-transit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
+  "saskatoon-accessible-parking-permit-subsidy": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
+  "prince-albert-access-transit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
+  "moose-jaw-paratransit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
+  "moose-jaw-discounted-monthly-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
+  "regina-discounted-31-day-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
+  "north-battleford-handi-bus": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
+  "saskatoon-low-income-bus-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
+  "saskatoon-leisure-access-program": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
+  "saskatoon-access-transit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
+  "regina-paratransit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
+  "regina-affordable-access": "2026-10", // new 2026-10-17 from the official page (research/2026-10-saskatchewan/city-snapshots)
   "sk-cochlear-processor": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "sk-early-childhood-intervention": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "sk-low-income-tax-credit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)

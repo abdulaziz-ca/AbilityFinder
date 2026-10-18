@@ -6,6 +6,25 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-18 — Saskatchewan city programs
+
+### Shipped
+- **13 city programs** (`?v=214`), each from its official page and checked by a separate reviewer:
+  - Regina: Affordable Access (recreation and transit discounts), Paratransit, and the $28 pass for SAID, SIS, SES
+    and SEI clients.
+  - Saskatoon: Access Transit, Leisure Access, the low-income bus pass, and the accessible parking permit subsidy.
+  - Moose Jaw: the $25 discounted monthly pass and Paratransit.
+  - Prince Albert: Access Transit.
+  - Yorkton: Access Transit and the discounted monthly pass.
+  - North Battleford: the Battlefords Handi-Bus.
+- **Catalogue: 253 programs.**
+
+### Decisions we made for you
+- Paratransit shows as a match when you say regular transit is hard to use, the same rule as HandyDART in B.C.
+- Not built: Prince Albert's discounted pass (its page does not say who qualifies) and Swift Current Access Transit
+  (the official page has been removed). Estevan, Weyburn, Martensville and Warman have no official program page,
+  so the "What we don't cover yet" page lists them.
+
 ## 2026-10-18 — Saskatchewan is live (provincial programs)
 
 ### Shipped

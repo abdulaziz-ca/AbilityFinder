@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 324 links. The monitor checks a bounded rotating batch every
+// 336 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -1323,6 +1323,66 @@ export const LINKS = [
   {
     "url": "https://www.saskatchewan.ca/residents/health/accessing-health-care-services/audiology-and-hearing-services",
     "label": "Cochlear Implant Processor Replacement Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.regina.ca/parks-recreation-culture/classes-programs/affordable-access-program/",
+    "label": "Affordable Access Program (Regina) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.regina.ca/transportation-roads-parking/transit/paratransit/",
+    "label": "Regina Paratransit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://saskatoontransit.ca/access-transit/about-access-transit",
+    "label": "Access Transit (Saskatoon) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatoon.ca/parks-recreation-attractions/recreational-programs-activities/leisure-access-program",
+    "label": "Leisure Access Program (Saskatoon) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://saskatoontransit.ca/fares-passes/low-income-bus-pass-programs",
+    "label": "Low-Income Bus Pass (Saskatoon) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.cityofnb.ca/roads-parking-transportation/public-transportation/",
+    "label": "Battlefords Handi-Bus — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.regina.ca/transportation-roads-parking/transit/fares-passes/",
+    "label": "Regina Discounted 31-Day Transit Pass — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://moosejaw.ca/transit/transit-fares-passes/",
+    "label": "Moose Jaw Discounted Monthly Bus Pass — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://moosejaw.ca/transit/paratransit-service/",
+    "label": "Moose Jaw Paratransit Service — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.citypa.ca/parking-streets-and-transportation/transit/access-transit/",
+    "label": "Prince Albert Access Transit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatoon.ca/moving-around/parking/parking-programs-permits/parking-people-disability/accessible-parking-permit",
+    "label": "Saskatoon Accessible Parking Permit Subsidy — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.yorkton.ca/living-in-yorkton/transit/",
+    "label": "Yorkton Access Transit — apply",
     "kind": "apply"
   },
   {

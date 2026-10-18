@@ -1,0 +1,205 @@
+URL: https://www.regina.ca/transportation-roads-parking/transit/fares-passes/ | province: SK/Regina | program: Discounted 31-day transit pass for SAID, SIS, SES and SEI | fetched: 2026-10-18
+=== PAGE: https://www.regina.ca/transportation-roads-parking/transit/fares-passes/ (HTTP 200, 8962 chars)
+
+ Fares & Passes
+ Riding transit is the route to saving money. Our rates are applicable for conventional transit service as well as Paratransit.
+ Pass Fares
+Monthly Pass
+Four Month Pass
+Semi-Annual Pass
+Annual Pass
+Adult (19 to 64 years)
+$97
+-
+$488
+-
+Youth (14 to 18 years)
+$66
+-
+$330
+-
+Post Secondary
+$86
+$286
+-
+-
+Senior (65 years and older)
+$33
+-
+$175
+$297
+Pass Fares
+ Adult (19 to 64 years)
+ Monthly Pass$97
+Four Month Pass-
+Semi-Annual Pass$488
+Annual Pass-
+ Youth (14 to 18 years)
+ Monthly Pass$66
+Four Month Pass-
+Semi-Annual Pass$330
+Annual Pass-
+ Post Secondary
+ Monthly Pass$86
+Four Month Pass$286
+Semi-Annual Pass-
+Annual Pass-
+ Senior (65 years and older)
+ Monthly Pass$33
+Four Month Pass-
+Semi-Annual Pass$175
+Annual Pass$297
+ Other Passes 
+31-Day Pass
+Affordable Adult*
+$78
+Affordable Youth*
+$53
+Discount**
+$28
+Child Pass***
+$0
+Other Passes 
+ * See the Affordable Access Program for more information.
+** See Discounted 31-Day Pass for more information. 
+*** See Child Pass for more information. 
+ Bulk Ride Fares
+Rides (10)
+Rides (20)
+Adult (19 to 64 years)
+$32
+$61
+Youth (14 to 18 years)
+$27
+$51
+Bulk Ride Fares
+ Adult (19 to 64 years)
+ Rides (10)$32
+Rides (20)$61
+ Youth (14 to 18 years)
+ Rides (10)$27
+Rides (20)$51
+ Stored Value
+Customers who purchase stored value can take advantage of fare capping . Each time you use your stored value, $3.20 will be deducted from your balance. Once you have done three trips in one day, each additional trip will be free, so you will be charged a maximum of $9.60 each day.
+If you use stored value over the course of the month, you will not be charged more than $97 a month (31 rides). If you ride more than 31 times in the month, each trip after that will be free.
+Depending on how much you ride, using stored value may be an economical way to use Regina Transit! Transfers will work as normal (90 minute window) if you are using stored value at no additional charge.
+Fare capping will be automatically applied to those paying a fare using open payments.
+Single Ride
+Daily Cap
+Monthly Cap
+Stored Value
+$3.20
+$9.60
+$97
+ Stored Value
+ Single Ride$3.20
+Daily Cap$9.60
+Monthly Cap$97
+ Cash Fare
+Single Fare
+Cash Fare
+$3.50
+Cash Fare
+ Cash Fare
+ Single Fare$3.50
+ Note: Exact coin fare is required per ride. Bus operators cannot make change.
+ What if I need to transfer?
+If you board a second bus within ninety (90) minutes of paying for your original trip and paid for your trip using an Umo card, Umo mobile app or open payment - the smart technology - in the system will identify your next trip as a transfer. Transfers are no longer available for cash payments. Customers paying cash who need to transfer will be required to pay a cash fare again when they board their second bus. 
+ Affordable Pass
+By partnering with the Community Services’ Affordable Access Program, the Affordable Pass Program allows lower-income residents access to a discounted monthly fare pass. To find out more information or apply visit Affordable Access ProgramOpens in new window.
+ Fare Assistance Program
+The Fare Assistance Program provides eligible non-profit organizations with bus rides and passes at no cost. Organizations are scored on how the organization/program provides community support, the reason assistance is required, management and accountability of usage logs and if the organization receives other forms of transportation assistance. Follow the steps below to apply:
+•   Carefully read the eligibility and criteria at the top of the application document
+•   Complete the Umo Card Usage LogOpens in new window
+•   Applications for the program will be accepted from November 1 to November 30 each year. Follow the instructions and submit your application form here.Opens in new window
+ Submit Your ApplicationOpens in new window
+ Discounted 31-Day Pass
+The City of Regina and the Saskatchewan Ministry of Social Services partner to offer a discounted pass program for eligible low-income earners in Regina for $28. 
+Discounted 31-Day Passes are available to people participating in one of the following provincial programs:
+•   Saskatchewan Assured Income for Disability (SAID)
+•   Saskatchewan Income Support (SIS)
+•   Saskatchewan Employment Supplement (SES)
+•   Saskatchewan Employment Incentive (SEI)
+For details on how to get your discounted 31-Day Pass, contact the Transit Information Centre (306-777-7433). 
+ Child Pass
+On August 5, 2025, all Children 13 and under riding Regina Transit without a fare-paying adult will be required to have a valid child transit pass, which must be scanned when boarding the bus. This new pass will confirm eligibility for those who ride for free and will provide valuable ridership data to ensure transit resources are allocated where they are needed the most. The pass will be available on an Umo card or through the Umo Mobility app. Please visit the Transit Information Centre at 2124 11th Avenue to provide proof of age to confirm your eligibility.
+Accepted Government Issued Proof of Age Documents:
+•   Health card
+•   SGI Identification card
+•   Birth certificate
+•   Any other form of Identification with your birth month and year on it
+The free child transit pass will remain valid until the last day of your birth month in the year you turn 14. After that, regular fares will apply.
+ U-Pass
+U–Pass is a program designed for University of Regina and Saskatchewan Indian Institute of Technologies students to allow them to use Regina Transit as much as they like for a once-per-semester fee. Contact the University of ReginaOpens in new window or SIIT for more information about the U-Pass.
+ Transit Employer Pass
+The Transit Employer Pass allows employees of participating companies to purchase a transit pass through payroll deduction. You can enroll for $80.83 per monthly pay period or $970 annually, for unlimited rides on Regina Transit. It's like getting two months for free!
+If your company is not currently enrolled in the Transit Employer Pass Program, have your manager phone Service Regina at 306-777-7000.
+ Umo Card
+The Umo card is a reloadable smart card that can be loaded with rides, a pass or stored value. Umo cards can be purchased at any Transit Agent for $5.
+Buying Fares
+It’s easy! Download the Umo Mobility app or pick up a reloadable Umo card from any Transit AgentOpens in new window. You can purchase rides, passes or stored value through the app, online hereOpens in new window or at any Transit Agent location. Please note, your first Senior, Affordable or Discount pass must be purchased at the Transit Information Centre, 2124 11th Avenue. Post-Secondary passes must be purchased at the Transit Information Centre, the University of Regina or at SaskPolytechic.
+Registering your Umo Card
+Once you have your Umo card, visit ca.umopass.com. Click Create an Account and register your card using the 16 digit code on the back of the card. It will ask you to create a username and password and agree to the terms and conditions.
+Replacing a Umo Card
+The cost to replace a lost, stolen or broken Umo card is $5. You must visit the Transit Information Centre (2124 11th Avenue) in order to replace your Umo card. If your Umo card has not been registered, your rides or passes cannot be replaced.
+ Transit Agents 
+Agent
+Hours of Operation
+Transit Information Centre
+2124 11th Ave
+Open Monday to Friday 8:30 a.m. to 4:30 p.m.
+City Hall
+2476 Victoria Ave
+Open Monday to Friday 8 a.m. to 4:45 p.m.
+River Heights Drugs
+2730 Montague St
+Open Monday to Friday 9 a.m. to 8 p.m.
+Open Saturday 9 a.m. to 6 p.m.
+Open Sunday 12:15 to 3 p.m.
+Saskatchewan Polytechnic Students Association
+4500 Wascana Pkwy
+Open Monday to Friday 8 a.m. to 4 p.m.
+Sherwood Co-op Pharmacy (South Albert)
+3801 Albert St
+Open Monday to Friday 9 a.m. to 8 p.m.
+Open Saturday & Sunday 9 a.m. to 5 p.m.
+Sherwood Co-op Food Store (Harbour Landing)
+4560 Parliament Ave
+Open Monday to Friday 9 a.m. to 9 p.m.
+Open Saturday & Sunday 9 a.m. to 8 p.m.
+Sherwood Co-op Food Store (Quance Street)
+2925 Quance Street
+Open Monday to Friday 8 a.m. to 9 p.m.
+Open Saturday & Sunday 8 a.m. to 8 p.m.
+Sherwood Co-op Food Store (Rochdale Crossings)
+5875 Rochdale Blvd
+Open Monday to Friday 8 a.m. to 9 p.m.
+Open Saturday & Sunday 8 a.m. to 8 p.m.
+Rexall Drugs
+420 Albert St
+Open Monday to Friday 9 a.m. to 9 p.m.
+Open Saturday & Sunday 9 a.m. to 6 p.m.
+Safeway Northgate Mall
+353 Albert St N
+Open Monday to Saturday 7 a.m. to 10 p.m.
+Open Sunday 7 a.m. to 9 p.m.
+Safeway Southland Mall
+3015 Gordon Road
+Open Monday to Saturday 7 a.m. to 10 p.m.
+Open Sunday 7 a.m. to 9 p.m.
+Safeway Aurora
+2000 Anaquod Road
+Open Monday to Saturday 7 a.m. to 10 p.m.
+Open Sunday 7 a.m. to 9 p.m.
+Safeway Cathedral
+2931 13th Avenue
+Open Monday to Saturday 7 a.m. to 10 p.m.
+Open Sunday 7 a.m. to 9 p.m.
+University of Regina
+Parking Services, College West Building
+3737 Wascana Parkway
+Open Monday to Friday 7:45am to 4:15 pm
+Transit Agents 
+ People Also Visited
+ - Schedules & Routes
+ - Affordable Access Program

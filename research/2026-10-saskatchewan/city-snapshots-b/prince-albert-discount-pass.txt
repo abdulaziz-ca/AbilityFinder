@@ -1,0 +1,58 @@
+URL: https://www.citypa.ca/parking-streets-and-transportation/transit/fares-and-passes | province: SK/Prince Albert | program: Discounted transit pass | fetched: 2026-10-18
+=== PAGE: https://www.citypa.ca/parking-streets-and-transportation/transit/fares-and-passes (HTTP 200, 851 chars)
+
+ Fares and Passes
+ Section Menu
+ As of September 2024
+ Fares
+Cash
+Book of 10
+Monthly
+Semester
+Adult
+$3.00
+$25.00
+$80.00
+N/A
+Senior (65+)
+$3.00
+$25.00
+$30.00
+N/A
+Post-Secondary
+$3.00
+$25.00
+$65.00
+$225.00
+Youth (14-18)
+$3.00
+$25.00
+$55.00
+N/A
+Child (U14)
+$3.00
+$25.00
+$40.00
+N/A
+Child (U10)
+Free with a Parent/Guardian
+Discounted
+$3.00
+N/A
+$25.00
+N/A
+Vendors
+- City Hall – 1084 Central Avenue
+- Gray Chemists – 681 15th Street West
+- PBCN Petro Canada – 3451 2nd Avenue West
+- Saskatchewan Polytechnic – Student Lounge at Technical Building
+- Medical Pharmacy – 1335 Central Avenue
+If your business or organization is interested in selling bus passes, please contact the Solutions Hub at (306) 953-4884.
+ Contact Us
+ City of Prince Albert
+1084 Central Avenue
+Prince Albert, SK S6V 7P3
+Phone: 306-953-4884
+After Hours Emergency: 306-953-4348
+Email Us
+ 
