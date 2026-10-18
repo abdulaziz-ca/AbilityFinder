@@ -9,8 +9,8 @@
 const BC_ENABLED = true;
 // Ontario rollout — dark until launch (ticket #91)
 const ON_ENABLED = true;
-// Saskatchewan rollout — dark until launch (provincial records first, cities later).
-const SK_ENABLED = false;
+// Saskatchewan: live with provincial records (cities come later).
+const SK_ENABLED = true;
 // Scope labels compose from the enabled-province set, so flipping a flag updates them everywhere.
 // Invariant: with ON_ENABLED=false (and BC_ENABLED=true) these produce exactly the prior Alberta+BC strings.
 const _SCOPE_FULL = ["Alberta", ...(BC_ENABLED ? ["British Columbia"] : []), ...(ON_ENABLED ? ["Ontario"] : []), ...(SK_ENABLED ? ["Saskatchewan"] : [])];
@@ -1919,6 +1919,7 @@ const REQS = {
     fixed: () => !hasDisability("other"),
     unmet: "This is for people with a cognitive disability and their families.",
   },
+  intellectualDisability: { met: () => hasDisability("intellectual"), fixed: true, unmet: "This is for a child with an intellectual disability." },
   brainInjuryDisability: { met: () => hasDisability("braininjury"), fixed: true, unmet: "This is for adults with an acquired brain injury." },
   hearingDisability: { met: () => hasDisability("hearing"), fixed: true, unmet: "This grant is specifically for Deaf or hard-of-hearing students." },
   learningDisability: { met: () => hasDisability("learning"), fixed: true, unmet: "This bursary is specifically for a recommended learning-disability assessment." },

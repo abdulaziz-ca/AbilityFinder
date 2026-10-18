@@ -6,6 +6,29 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-18 — Saskatchewan is live (provincial programs)
+
+### Shipped
+- **Saskatchewan** (`?v=213`): choose it in the questionnaire to see **22 provincial programs**, including SAID,
+  Income Support, the Housing Benefit, SAIL equipment, the drug plans, autism funding, home care, Adapt a Home,
+  EAPD, accessible parking, the Active Families Benefit (higher amount for a child with the DTC) and the
+  Low-Income Tax Credit. Each one was built from its official page and checked by a separate reviewer. A
+  completeness check added 4 more. **Catalogue: 240 programs.**
+- As you asked: general low-income programs are included, and **Lloydminster is under both Alberta and
+  Saskatchewan**. Its recreation program shows for residents of either province.
+- City programs come next. The questionnaire already lists 12 Saskatchewan cities, so the "What we don't cover yet"
+  page names them honestly until their programs are added.
+
+### Verified how
+- Built behind a hidden flag first, then switched on with everything regenerated. Unit tests (239), the Chromium
+  and WebKit browser suites (668) and the eligibility oracle all pass; CI also runs Firefox.
+
+### Decisions we made for you
+- Saskatchewan figures keep the dates their pages give, because SAID and the housing benefit changed this fall
+  and some pages mix old and new figures (for example the Seniors Income Plan's 2023 maximums).
+- Not built: programs with no published eligibility (ABI services, therapy services, housing for people with
+  intellectual disabilities). Full list in `research/2026-10-saskatchewan/PLAN.md`.
+
 ## 2026-10-17 — night: provincial sweep (Alberta, B.C., Ontario) and 15 reference websites
 
 ### Shipped

@@ -1,6 +1,15 @@
 # Saskatchewan — what adding it takes (research, 2026-10-17)
 
-Status: **research only. Nothing on the site has changed.** The owner decides what happens next.
+Status (2026-10-18): **live with 22 provincial records** (`?v=213`), per the owner's decisions: provincial first,
+cities later; general low-income programs included; Lloydminster under both Alberta and Saskatchewan. Built
+from official page snapshots (`snapshots/`), each reviewed by a separate agent. A completeness check
+(`sk-final-check.json`) added 4 more. Not built: housing and supports for people with intellectual disabilities
+(no eligibility rule beyond "meets CLSD requirements"), Acquired Brain Injury services and Therapy Services (no
+published eligibility), FASD services (single condition), KidsFirst (not disability-specific), the student grant
+(same as the federal grant), the closed Rental Housing Supplement. **Next: city programs** (Regina, Saskatoon,
+North Battleford first).
+
+Original scoping notes follow.
 Candidate list with official URLs: `sk-programs.json` (found by a research agent; each URL was fetched, but
 nothing has been drafted or reviewed yet).
 

@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 302 links. The monitor checks a bounded rotating batch every
+// 324 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -1213,6 +1213,116 @@ export const LINKS = [
   {
     "url": "https://www.ontario.ca/page/childrens-rehabilitation-services",
     "label": "Children's Rehabilitation Services (Children's Treatment Centres) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities/income-support-for-people-with-disabilities",
+    "label": "Saskatchewan Assured Income for Disability (SAID) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/family-and-social-support/financial-help/saskatchewan-income-support-sis",
+    "label": "Saskatchewan Income Support (SIS) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/family-and-social-support/financial-help/saskatchewan-employment-incentive-sei",
+    "label": "Saskatchewan Employment Incentive (SEI) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/housing-and-renting/renting-and-leasing/saskatchewan-housing-benefit",
+    "label": "Saskatchewan Housing Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities/saskatchewan-aids-to-independent-living",
+    "label": "Saskatchewan Aids to Independent Living (SAIL) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/health/prescription-drug-plans-and-health-coverage/extended-benefits-and-drug-plan/supplementary-health-benefits",
+    "label": "Supplementary Health Benefits — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/health/prescription-drug-plans-and-health-coverage/extended-benefits-and-drug-plan/family-health-benefits",
+    "label": "Family Health Benefits — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/health/prescription-drug-plans-and-health-coverage/extended-benefits-and-drug-plan/drug-cost-assistance",
+    "label": "Special Support Program (drug costs) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/health/accessing-health-care-services/seniors-drug-plan",
+    "label": "Seniors' Drug Plan — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/family-and-social-support/seniors-services/seniors-income-plan",
+    "label": "Seniors Income Plan (SIP) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/health/accessing-health-care-services/health-services-for-people-with-disabilities/autism-services",
+    "label": "Autism Spectrum Disorder Individualized Funding (ASD-IF) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities/financial-help-and-support-for-people-with-cognitive-disabilities",
+    "label": "Cognitive Disability Strategy (CDS) Support — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities/temporary-help-for-families-caring-for-a-child-with-intellectual-disabilities",
+    "label": "Family Respite Benefit (child with an intellectual disability) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/health/accessing-health-care-services/care-at-home-and-outside-the-hospital/home-care",
+    "label": "Home Care and Individualized Funding for Home Care — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/housing-and-renting/home-repairs-and-renovations/adapt-a-home-for-a-person-with-a-disability",
+    "label": "Home Repair Program - Adaptations for Independence — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/jobs-working-and-training/job-training-and-financial-support-programs/employability-assistance-for-persons-with-disabilities",
+    "label": "Employability Assistance for Persons with Disabilities (EAPD) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/family-and-social-support/seniors-services/seniors-living-in-personal-care-homes",
+    "label": "Personal Care Home Benefit (PCHB) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskabilities.ca/services/independent-living/accessible-parking/",
+    "label": "Accessible Parking Program (SaskAbilities) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/parks-culture-heritage-and-sport/sport-and-recreation/programs-and-supports/active-families-benefit",
+    "label": "Active Families Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/taxes-and-investments/tax-credits/low-income-tax-credit",
+    "label": "Saskatchewan Low-Income Tax Credit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/family-and-social-support/child-care/community-programs-for-families-with-young-children",
+    "label": "Early Childhood Intervention Program (ECIP) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/health/accessing-health-care-services/audiology-and-hearing-services",
+    "label": "Cochlear Implant Processor Replacement Program — apply",
     "kind": "apply"
   },
   {

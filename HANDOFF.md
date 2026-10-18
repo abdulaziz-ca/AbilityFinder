@@ -15,12 +15,14 @@ Ontario, with federal, provincial, and municipal guides. It answers five questio
 4. What should I apply for first?
 5. How do I apply?
 
-**British Columbia is live, and Ontario went live in September 2026.** `BC_ENABLED` and
-`ON_ENABLED` in `public/app.js` are both `true`, and the
+**British Columbia is live, Ontario went live in September 2026, and Saskatchewan went live in
+October 2026 with provincial records only (cities come later).** `BC_ENABLED`, `ON_ENABLED` and
+`SK_ENABLED` in `public/app.js` are all `true`, and the
 catalog holds **240 benefits** — 16 federal, 24 Alberta, 52 British Columbia, 24 Ontario,
-and the remainder municipal. The residency question offers Alberta, British Columbia,
-Ontario, and "another province or territory"; the last of these still sees federal
-benefits only.
+22 Saskatchewan, and the remainder municipal. The residency question offers Alberta, British
+Columbia, Ontario, Saskatchewan, and "another province or territory"; the last of these still
+sees federal benefits only. Lloydminster is listed under both Alberta and Saskatchewan
+(`SHARED_CITIES` in `public/data.js`).
 
 Provinces beyond Alberta and B.C. are parked in `archive/data-provinces-later.js`,
 which is **outside the deployed directory** and is not loaded or served (it was moved

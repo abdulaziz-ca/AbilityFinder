@@ -936,6 +936,7 @@ const GATES = {
     violations: [{ name: "no DTC yet", fragment: { set: { dtc: "no" } }, expect: "almost" }],
   },
   autismSelected: disabilityGate("autism"),
+  intellectualDisability: disabilityGate("intellectual"),
   brainInjuryDisability: disabilityGate("braininjury"),
   skCognitiveDisability: {
     evidence: "answers",

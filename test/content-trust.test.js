@@ -38,7 +38,7 @@ test('every live guide amount equals the qualified catalogue amount and generate
     assert.equal(staticHtml.match(/<p class="detail-amount">([^]*?)<\/p>/)?.[1], answer, `${b.id}: static amount`);
     compared++;
   }
-  assert.equal(compared, 217);
+  assert.equal(compared, 239);
 });
 test('privacy copy describes local saving, including the French wizard', () => {
   assert.doesNotMatch(translations, /never saved|jamais enregistrées|ne conservons ni n'envoyons/);

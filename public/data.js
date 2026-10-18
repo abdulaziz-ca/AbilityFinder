@@ -11962,7 +11962,7 @@ const BENEFITS = [
     "requires": [
       "sk",
       "child",
-      "developmental",
+      "intellectualDisability",
       "skFamilyRespiteIntellectualDisabilityRoute"
     ],
     "eligibility": {
