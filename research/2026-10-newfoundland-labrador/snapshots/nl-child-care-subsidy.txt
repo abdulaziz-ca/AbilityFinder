@@ -1,0 +1,1818 @@
+URL: https://www.gov.nl.ca/education/files/Child-Care-Subsidy-Policy-Manual-.pdf | province: NL | program: Child Care Subsidy | fetched: 2026-10-18
+=== PAGE: https://www.gov.nl.ca/education/files/Child-Care-Subsidy-Policy-Manual-.pdf (HTTP 200, 96195 chars)
+Child Care Subsidy
+                Policy Manual
+
+                  April 1, 2026
+
+
+
+
+[Type here]
+                                                                       Government of Newfoundland and Labrador
+                                                           Department of Education and Early Childhood Development
+
+
+
+
+                                  Record of Updates
+ Version Date                    Updates (sections updated)
+      1.0     2022-01-01         Initial Launch
+      1.1     2022-01-28         Switched Policy Numbers for ELCD-2021-SUB-J1 and
+                                 ELCD-2021-SUB-K1 (no policy information change).
+                                 Updated hyperlinks.
+      1.2       2022-04-21       ELCD-2021-SUB-B1 Service Needs - Revised 1(iii)(b)(v),
+                                 1(iv)(b)(v), Added 1(v)(c), Declaration of Income - Added
+                                 4(i)(a)(b). ELCD-2021-SUB-F1 Notice of Termination -
+                                 Added 2(iii)(a). ELCD-2021-SUB-J1 Verification of
+                                 Income - Added 6. ELCD-2021-SUB-K1 DRTS
+                                 Application Process - Revised 2(ii).
+1.3          2026-04-01         Residency requirements are revised and updated.
+
+                                Updated all relevant sections to reflect fiscal‑year language
+                                for processes and procedures on all applications, including:
+                                ELCD‑2021‑SUB‑A1 (Application Process & Backdating),
+                                ELCD‑2021‑SUB‑E1 (Renewals), ELCD‑2021‑SUB‑F1
+                                (Attendance / Paid Closure / Vacation),
+                                ELCD‑2021‑SUB‑H1 (Payment Process), and
+                                ELCD‑2021‑SUB‑I1 (Financial Measures –
+                                Over/Underpayments, Audits).
+
+                                Updated OGP fees to align with the OGP Policy and
+                                Standards Manual.
+
+
+
+
+                                                                                                  Page 2 of 39
+Version 1.3 2026-04-01       These Policies are subject to change.
+                                                                         Government of Newfoundland and Labrador
+                                                             Department of Education and Early Childhood Development
+
+
+                                      Table of Contents
+Topic                        Tab              Sub-Topics
+
+Program Overview
+Application Process          A1                 How to Apply
+                                                Application Process
+
+Determining Eligibility      B1                Eligibility Criteria
+                                               Service Needs
+                                               Financial Assessment
+                                               i. Income Test – General
+                                               ii. Income Test Assessment
+                                               iii. Declaration of Income
+                                               Residency Requirements
+
+Approval                     C1                Approvals
+                                               Effective Start and End Dates
+                                               Level of Service
+                                               Change in Circumstances
+
+Review and Appeals           D1                Request for Review/Appeal Process
+
+Renewals and Reviews          E1               Renewals
+                                               Reviews
+
+Attendance                    F1               Attendance – General
+                                               Sick Days
+                                               Absent Days
+                                               Vacation Days
+                                               Paid Closure days
+                                               Education and Training Semester Break Coverage
+                                               Notice of Termination
+
+Rates                        G1                 Maximum Rates
+
+Payment Process              H1                Child Care Subsidy Payments
+                                               Recording Attendance
+
+Financial Measures            I1                False Pretenses
+                                                Audits
+                                                Overpayments
+                                                Underpayments
+
+
+Documentation                  J1              Required Documentation – General
+
+
+                                                                                                    Page 3 of 39
+    Version 1.3 2026-04-01     These Policies are subject to change.
+                                                                       Government of Newfoundland and Labrador
+                                                           Department of Education and Early Childhood Development
+
+
+
+                                              Verification of Birth
+                                              Verification of Residency
+                                              Verification of Income
+                                              Verification of Training Allowance and Student
+                                              Loans
+                                              Verification of Education and Training
+                                              Verification of Job Search
+                                              Verification of Caregiving Benefits
+                                              Referral Forms
+                                              Verification of Joint/Shared Custody Arrangement
+                                              Verification of Spousal Support
+                                              Disability Related Transportation Supplement
+                                              (DRTS)
+
+Disability Related           K1               Disability Related Transportation Supplement
+Transportation Supplement                    (DRTS) - Criteria
+                                              Disability Related Transportation Supplement
+                                              (DRTS) – Application Process
+                                              Disability Related Transportation Supplement
+                                              (DRTS) – Invoice Process
+
+
+
+
+                                                                                                  Page 4 of 39
+    Version 1.3 2026-04-01   These Policies are subject to change.
+Program Overview:
+
+The Child Care Subsidy Program of the Department of Education (EDU) is an income tested
+program designed to assist families in Newfoundland and Labrador with the cost of child care
+fees at regulated child care services. The Child Care Subsidy Program enables eligible families
+to access regulated child care services by eliminating or minimizing child care costs, within
+available resources.
+
+The family has full responsibility for the choice of the regulated child care services the child will
+attend.
+
+Upon assessment of a family’s household net income, service eligibility and required child care
+needs, a family may be eligible for the full subsidy amount, or deemed ineligible for the Child
+Care Subsidy Program. If a Subsidy benefit is approved for the family, the Department will
+reimburse the approved Subsidy program rates directly to the regulated child care service
+provider, on behalf of the family. Any additional charges made by the child care service are the
+responsibility of the family, the Department will not reimburse the family or regulated child care
+service for any additional fees.
+
+
+
+
+                                                                                          Page 5 of 39
+Version 1.3 2026-04-01        These Policies are subject to change.
+                         CHILD CARE SUBSIDY PROGRAM:
+                             APPLICATION PROCESS
+
+
+
+Policy no.:                   ELCD-2021-SUB-A1
+
+Effective Date:               January 1, 2022
+
+Date Revised:                 April 1, 2026
+
+Policy Cross References:
+
+Legislative References:
+
+
+POLICY AND PROCEDURES:
+
+How to Apply
+
+1. An applicant can obtain the Child Care Subsidy Funding Application by:
+        i. Visiting the Departmental website at:
+            https://www.gov.nl.ca/education/childcare/childcaresubsidy/;
+        ii. Contacting a regional Early Learning and Child Development (ELICD) office by
+            phone and requesting the application be sent to them in the mail or by email
+            (Regional Child Care contact information can be found at):
+            https://www.gov.nl.ca/education/childcare/childcaresubsidy/;
+
+2. An application for a Child Care Subsidy may be submitted:
+        i. In person;
+        ii. By mail;
+        iii. Electronically (the form may be completed online but must be printed and signed
+             before submitting).
+
+Application Process
+
+1. An applicant (Parent/Guardian) must submit the Child Care Subsidy Funding Application
+   and all supporting documentation to their regional ELICD office for assessment. Child
+   Care Regional Office contact information can be found at:
+   https://www.gov.nl.ca/education/childcare/childcaresubsidy/.
+
+2. An application for Child Care Subsidy must be submitted on the departmental Child Care
+   Subsidy Funding Application Form.
+
+
+
+                                                                                     Page 6 of 39
+Version 1.3 2026-04-01      These Policies are subject to change.
+                                                                       Government of Newfoundland and Labrador
+                                                           Department of Education and Early Childhood Development
+
+
+
+3. An application for a Child Care Subsidy will not be approved until a completed Child Care
+   Subsidy Funding Application and all supporting documentation is provided.
+      i. If a fully completed Child Care Subsidy Funding Application is not submitted within
+           30 days after the initial application was submitted, the applicant’s Child Care Subsidy
+           file will be closed. A new fully completed Child Care Subsidy Funding Application will
+           be required to be submitted for any future Subsidy.
+      ii. If supporting documentation for the completed application form is not submitted to
+           the Department within 30 days after the initial application was submitted, the
+           applicant’s Child Care Subsidy file will be closed. A new application will be required
+           to be submitted for any future Subsidy.
+      iii. A Child Care Subsidy benefit will not be backdated beyond April 1st of that fiscal
+           year. If the completed application and/or supporting documentation is received 30
+           days after the initial application was submitted - except where extenuating
+           circumstances apply.
+      iv. The Provincial Director of Accountability and Reporting may make exceptions to
+           the time period referred to in this section, based upon the written
+           recommendation of a Regional Manager.
+
+4. Persons together as spouses/partners must make a joint application for Child Care Subsidy
+   and include income information of both partners.
+      i. The Child Care Subsidy Funding Application Form must be signed by both
+          parents/spouses, except where extenuating circumstance prevents the obtaining
+          of the second signature.
+
+5. In shared custody arrangements, separate applications must be submitted where both
+   parent(s)/guardian(s) are applying for Child Care Subsidy.
+
+6.   By signing the Child Care Subsidy Funding Application, the applicants(s) agrees to the
+     Terms and Conditions outlined in the Child Care Subsidy Funding Application.
+
+7.   Where Child Care Subsidy funding is approved, an Approval of Child Care Subsidy letter
+     will be sent to the applicant(s), and an Authorization to Provide Goods/Services form will be
+     sent to the regulated child care service.
+          i. The regulated child care services is paid the approved subsidy directly on behalf of
+             the parent(s)/guardian(s) once all invoicing procedures have been met.
+
+8. Where Child Care Subsidy funding is not approved, a Decline of Child Care Subsidy letter
+   will be provided to the applicant(s) outlining why the Subsidy funding was not approved.
+
+9. A Child Care Subsidy Funding Application is valid until March 31st of the current fiscal year.
+       i. Depending on the circumstance surrounding the Child Care Subsidy, a
+           new application may be required prior to the expiry of the current
+           application.
+       ii. If a new application is submitted, the most recent one will be considered valid,
+           and all others will be null and void for purposes of determining eligibility.
+
+
+                                                                                                Page 7 of 39
+Version 1.3 2026-04-01        These Policies are subject to change.
+                                                                          Government of Newfoundland and Labrador
+                                                              Department of Education and Early Childhood Development
+
+
+
+
+                           CHILD CARE SUBSIDY PROGRAM:
+                              DETERMINING ELIGIBLITY
+
+
+
+ Policy no.:                     ELCD-2021-SUB-B1
+
+ Effective Date:                 January 1, 2022
+
+ Date Revised:                    April 1, 2026
+
+ Policy Cross References:        ELCD-2021-SUB-J1, ELCD-2021-SUB-G1
+
+ Legislative References:
+
+
+ POLICY AND PROCEDURES:
+
+Eligibility Criteria
+
+ 1. To qualify for Child Care Subsidy the child must attend a regulated child care service in
+    Newfoundland and Labrador and the family must:
+       i. Submit a fully completed Child Care Subsidy Funding Application
+       ii. Meet service needs eligibility requirements
+       iii. Meet financial assessment eligibility requirements
+       iv. Meet residency requirements
+       v. Be a Canadian citizen (as defined in the Citizenship Act), permanent resident or have
+            protected person status (as defined in the Immigration and Refugee Protection Act),
+            an Asylum seeker/ Refugee Protection Claimant.
+
+ 2. Child Care Subsidy is determined as follows:
+         i. A fully completed application will be assessed based on the information and
+              documentation provided by the applicant. If approved, an effective start date with be
+              determined.
+                  a. The Department will only reimburse the regulated child care services as of
+                        the effective start date, and up to the end date.
+         ii. Service needs are assessed to determine if the need for child care meets program
+              eligibility, and if so, that the appropriate level of service of child care is approved.
+         iii. The financial assessment establishes if the applicant is financially eligible for the
+              program.
+         iv. If the applicant meets all eligibility requirements, they will be notified that they are
+              eligible for Subsidy.
+                  a. Eligible applicants who attend Non-Operating Grant Program (OGP) services
+                        are responsible for child care fees charged by their child care service provider
+                        over and above the Child Care Subsidy rates.
+                                                                                               Page 8 of 39
+ Version 1.3 2026-04-01             These Policies are subject to change.
+                                                                      Government of Newfoundland and Labrador
+                                                          Department of Education and Early Childhood Development
+
+               b. Eligible applicants who attend OGP services will not be charged for child care
+                  fees above the maximum rates as outlined in ELCD-2021-SUB-G1.
+       v. If the applicant does not meet program requirements for Child Care Subsidy, the
+           Department will send the applicant a Decline of Child Care Subsidy letter, notifying
+           them why their application was not successful.
+       vi. Submission of all required documentation as outlined in ELCD-2021-SUB-J1.
+
+
+Service Needs
+
+1. Both the applicant and spouse/partner must meet at least one of the following criteria to be
+   eligible for Child Care Subsidy:
+
+       i.   Employment
+              a. A Child Care Subsidy may be approved for reasons of employment. The days
+                 and hours of child care approved are determined by the number of hours per
+                 day and days per week the parent(s)/guardian(s) is employed.
+                 Parent(s)/guardian(s) who are scheduled to work at night and require child
+                 care during the day to allow them to rest may also be eligible for a Child Care
+                 Subsidy.
+
+       ii. Education and Training
+              a. Applicants enrolled in post-secondary courses, including online and
+                 correspondence courses, or in other educational training or programming,
+                 may be eligible to receive a Child Care Subsidy.
+              b. The applicant(s) must disclose any other support that they are receiving for
+                 child care expenses (e.g., training supports from Department of Immigration,
+                 Population Growth and Skills). Failure to notify the regional ELICD office of
+                 additional support for child care may result in an incorrect financial
+                 assessment.
+              c. The result of an incorrect financial assessment means the Department would
+                 overpay for regulated child care services. The Department would proceed to
+                 recover the overpayment and the applicant(s) would be responsible for
+                 reimbursing the regulated child care service for any overpayment of child
+                 care expenses.
+
+       iii. Child Development
+              a. A Child Care Subsidy may be provided for child development reasons for a
+                  child between the ages of birth until school entry. These developmental
+                  reasons can include:
+                      i.  A child diagnosed with a developmental, physical, cognitive, and/or
+                          neurological condition(s);
+                     ii.  A child who is at risk of delay over multiple developmental domains,
+                          such as: physical, cognitive, and/or communication.
+                    iii.  In extenuating circumstances, the Provincial Director of Accountability
+                          and Reporting may approve other developmental reason.
+
+
+                                                                                               Page 9 of 39
+Version 1.3 2026-04-01       These Policies are subject to change.
+                                                                         Government of Newfoundland and Labrador
+                                                             Department of Education and Early Childhood Development
+
+
+
+                b. A referral is required from a professional such as a family physician,
+                   pediatrician or clinician who has made the diagnosis, and/or has been
+                   involved in providing treatment.
+                       i.  The referral must provide details of the child’s developmental need,
+                           including any applicable information from assessments and/or
+                           observations.
+                      ii.  The referral must provide details to support how child care would be
+                           of benefit to the child’s exceptional needs.
+                     iii.  The referral can be submitted on the Child Care Subsidy Professional
+                           Referral form or in the form of a letter from the professional source -
+                           containing all the required information.
+                     iv.   A new referral form is required upon renewal of the Child Care
+                           Subsidy.
+                      v.   The referral form must be signed and dated within 3 months of
+                           application to the Child Care Subsidy Program.
+                     vi.   In exceptional circumstances a referral from another professional
+                           source may be considered by the Director of Accountability and
+                           Reporting.
+
+        iv. Injury, Illness, Disability, or Rehabilitation
+                a. A Child Care Subsidy may be provided as a result of an injury, illness, or
+                    disability of one of the following people:
+                         i. The child’s parent/guardian, who as a result of the injury, illness, or
+                              disability impacts the parent(s)/guardian(s) ability to meet the daily
+                              child care needs of the child.
+                         ii. A parent/guardian who provides care to a spouse or sibling of child as
+                              a result of an injury, illness, or disability, who as a result of the injury,
+                              illness, or disability impacts their ability to adequately care for both the
+                              spouse and the sibling of the child.
+                         iii. Other exceptional circumstances that may impact
+                              parent(s)/guardian(s) ability to meet the daily care needs of the child,
+                              may be approved by the Provincial Director of Accountability and
+                              Reporting.
+                b. A referral is required from a professional such as a family physician or
+                    clinician who has made the diagnosis, and/or has been involved in providing
+                    treatment.
+                         i. The referral must provide details of the parent/guardian condition and
+                              how it impacts the ability to meet the daily care needs of the
+                              child(ren).
+                         ii. The referral must provide details to support how child care would be
+                              of benefit to address the needs of the family.
+                         iii. The referral can be submitted on the Child Care Subsidy Professional
+                              Referral form or in the form of a letter from the professional source -
+                              containing all the required information.
+                         iv. A new referral form is required for renewal of the Child Care Subsidy.
+                         v. The referral form must be signed and dated within 3 months of
+                              application to the Child Care Subsidy Program.
+                                                                                              Page 10 of 39
+Version 1.3 2026-04-01            These Policies are subject to change.
+                                                                       Government of Newfoundland and Labrador
+                                                           Department of Education and Early Childhood Development
+
+
+
+                     vi. In exceptional circumstances a referral from another professional
+                          source may be considered by the Director of Accountability and
+                          Reporting.
+               c. A Child Care Subsidy may be provided to an applicant who is attending a
+                  rehabilitation program on an ongoing basis.
+                     i. A referral is required, as noted in b(i)(ii)(iii)(iv)(v) of this section.
+
+       v. Referral from Social Supports and Well Being (SSWB)
+             a. Families in receipt of support from the Department of SSWB may be eligible
+                 for Child Care Subsidy, including:
+                     i.  Protective Intervention;
+                    ii.  Kinship Services;
+                   iii.  In Care, with the exception of Family Based Care and Level 4
+                         placements, as they are not eligible for Child Care Subsidy.
+             b. A Child Care Subsidy Referral form (SSWB) must be submitted with the
+                 Child Care Subsidy Funding Application and upon renewal.
+             c. The referral form must be signed and dated within 3 months of application to
+                 the Child Care Subsidy Program.
+
+3. Recipients of Child Care Subsidy may be eligible to continue to receive Subsidy for the
+   following service needs:
+
+      i.   Job Search
+              a. A Child Care Subsidy benefit may be approved for an extension/continuation
+                 to allow parent(s)/guardian(s) who are currently in receipt of Child Care
+                 Subsidy and have recently lost their job, or upon completion of a post-
+                 secondary education/training program, time to find employment.
+              b. Should completion of an education/training program or employment end while
+                 the applicant is in receipt of Child Care Subsidy, the Subsidy may be
+                 extended for up to eight (8) weeks to allow for job search. The eight (8)
+                 weeks begins on the last day of work, according to the record of
+                 employment/letter from employer; or the last day of education/training
+                 program.
+              c. A Change in Circumstance form must be submitted to request the approval.
+                    i.   The applicant should make every effort to submit a change in
+                         circumstance form for the eight (8) week extension in advance to
+                         allow for approval to be put in place.
+                   ii.   A new Change in Circumstance form will be required if service
+                         needs (e.g., employment) changes during the eight (8) week job
+                         search period.
+              d. A new application will be required if the current application expires during the
+                 approved job search extension.
+
+
+
+
+                                                                                                Page 11 of 39
+Version 1.3 2026-04-01        These Policies are subject to change.
+                                                                      Government of Newfoundland and Labrador
+                                                          Department of Education and Early Childhood Development
+
+
+
+       ii. Caregiving Benefits
+              a. Should an applicant who is already in receipt of a Child Care Subsidy leave
+                 employment and go on Employment Insurance (EI) Caregiving Benefits, Child
+                 Care Subsidy will be extended for the length of time that the applicant is in
+                 receipt of those Benefits.
+              b. Subsidy can be extended in situations where EI Caregiving Benefits run out
+                 and the child or person receiving care is still critically ill.
+                    i.    The Provincial Director of Accountability and Reporting may
+                          approve Child Care Subsidy in situations where there is no
+                          entitlement for the EI Caregiving Benefits.
+              c. An applicant who is already in receipt of Child Care Subsidy may be eligible
+                 for Child Care Subsidy when the family is temporarily relocated while a parent
+                 or sibling of the child is receiving medical treatments.
+              d. A Change in Circumstance form must be submitted to request the approval.
+                    i.    A new Change in Circumstance form will be required if service
+                          needs (e.g., return to employment) changes.
+              e. A new application will be required if the current application expires during the
+                 approved period of the caregiving benefits.
+
+4. An applicant must complete a Change in Circumstance form to notify the Department of any
+   changes in service needs requirements.
+             a. This form must be submitted no later than 14 business days following the
+                 change in circumstance.
+
+Financial Assessment
+
+Income Test – General
+
+1. The income test is based on the family monthly net income and the number of children
+   attending regulated child care services. A family (one or two parent(s)/guardian(s)) are
+   entitled to full Child Care Subsidy if they meet the yearly net income thresholds and number
+   of children in the family who attend a regulated child care service, as noted below:
+       - A family with one child attending a regulated child care service with an assessed
+          yearly family net income of $41,000 or less.
+       - A family with two children attending a regulated child care service with an assessed
+          yearly family net income of $47,000 or less.
+       - A family with three children attending a regulated child care service with an assessed
+          yearly family net income of $53,000 or less.
+       - A family with four children attending a regulated child care service with an assessed
+          yearly family net income of $59,000 or less.
+       - A family with five children attending a regulated child care service with an assessed
+          yearly family net income of $65,000 or less.
+       - A family with six children attending a regulated child care service with an assessed
+          yearly family net income of $71,000 or less.
+       - A family with seven children attending a regulated child care service with an assessed
+          yearly family net income of $77,000 or less.
+
+                                                                                               Page 12 of 39
+Version 1.3 2026-04-01       These Policies are subject to change.
+                                                                       Government of Newfoundland and Labrador
+                                                           Department of Education and Early Childhood Development
+
+
+
+
+2. Families who do not meet the net income threshold and number of children attending
+   regulated child care criteria as noted above, will not be eligible for Child Care Subsidy.
+
+3. Eligible applicants who attend Non-OGP services are responsible for child care fees
+   charged by their child care service provider over and above the maximum rates for Non-
+   OGP service as outlined in ELCD-2021-SUB-G1.
+
+4. Eligible applicants who attend OGP services will not be charged for child care fees above
+   the maximum rates for an OGP service as outlined in ELCD-2021-SUB-G1.
+
+5. Applicants for the Child Care Subsidy program are income tested, with the exception of:
+             i.    Families in receipt of Income Support;
+            ii.    Caregivers under the Department of Social Supports and Well-
+                   being.
+           iii.    Families in receipt of the Special Child Welfare Allowance Program;
+           iv.     Intermediate and High School Students.
+
+6. Submit Verification of Income documentation as outlined in ELCD-2021-SUB-J1.
+
+Income Test Assessment
+
+1. The income test for Child Care Subsidy is based on the net monthly income of the family. Net
+    income, is income minus involuntary deductions at source. Voluntary deductions such as
+    savings bonds, insurance benefits, social club, etc. made through payroll deductions are not
+    included as deductions for the purpose of determining eligibility for Child Care Subsidy.
+
+Declaration of Income
+
+1. Applicant(s) are required to disclose all sources of income to determine eligibility for Child
+   Care Subsidy. Types of income include, but are not limited to:
+              i.  Employment Income
+             ii.  Spousal support payments
+            iii.  Employment Insurance Benefits
+            iv.   Skills Development Benefits
+             v.   Severance Pay
+            vi.   Workplace NL Benefits
+           vii.   Canada Pension Plan Benefits
+          viii.   Old Age Security
+            ix.   Pensions from Other Sources
+             x.   Scholarships, grants (including grant portion of Student Loan) or bursaries
+            xi.   Rental property income
+           xii.   Winnings from games of chance or a lottery
+          xiii.   Incentive allowances
+          xiv.    Hold back income e.g. teacher hold back summer pay
+           xv.    Federal relief programs
+
+                                                                                                Page 13 of 39
+Version 1.3 2026-04-01        These Policies are subject to change.
+                                                                       Government of Newfoundland and Labrador
+                                                           Department of Education and Early Childhood Development
+
+
+
+           xvi.    Early Learning and Child Care Supplement
+          xvii.    Income supplement
+          xviii.   Commission
+           xix.    Deferred salary
+           xx.     Side project income
+           xxi.    Gratuity
+
+2. Types of income that are not required to be disclosed, include, but are not limited to:
+             i.  The NL Income Supplement
+            ii.  Adoption Subsidy
+           iii.  Newfoundland and Labrador Child Benefit (NLCB)
+           iv.   Canada Child Benefit
+            v.   Mother Baby Nutritional Supplement to the NLCB
+           vi.   Income Tax Refunds
+          vii.   Student loan portion received by an applicant with dependents under the
+                 Canada-Newfoundland and Labrador Student Loan Program or successor
+                 program.
+          viii.  Income from rent from a relative with a disability
+           ix.   Support Trusts, for applicants who require supportive services
+            x.   Canada Pension Plan – Children’s Benefits; including the disabled
+                 contributor’s child benefit and the surviving child’s benefit.
+           xi.   Child Support
+
+3. For types of income not listed above, contact regional ELICD staff to determine if income
+   is required to be disclosed.
+
+4. For post-secondary students who do not receive a student loan, program cost such as
+   tuition, student fees that are identified on a student account summary will be considered
+   deductions.
+              i.   The following will not be considered program cost deductions:
+                       a. Late fees.
+                       b. Text books that are not listed on the student account summary or
+                            program cost form.
+Residency Requirements
+
+1. In order to be eligible for Child Care Subsidy the applicant must live in the province of
+   Newfoundland and Labrador (NL) to be eligible for, and to receive, Child Care Subsidy.
+               i. Applicant must also be a Canadian citizen (as defined in
+                   the Citizenship Act), permanent resident or have protected person
+                   status (as defined in the Immigration and Refugee Protection Act) an
+                   Asylum seeker/ Refugee Protection Claimant.
+
+2. Where an applicant leaves the province temporarily for any reason, including work, and their
+   child remains in the province, they can continue to be eligible for the Child Care Subsidy if
+   the following criteria are met:
+               i. The child is still attending the regulated child care service in the province, and
+                                                                                                Page 14 of 39
+Version 1.3 2026-04-01        These Policies are subject to change.
+                                                                        Government of Newfoundland and Labrador
+                                                            Department of Education and Early Childhood Development
+
+               ii. All other eligibility criteria continue to be met.
+
+
+
+
+                                                                                                 Page 15 of 39
+Version 1.3 2026-04-01        These Policies are subject to change.
+                                                                       Government of Newfoundland and Labrador
+                                                           Department of Education and Early Childhood Development
+
+
+
+
+                         CHILD CARE SUBSIDY PROGRAM:
+                                  APPROVAL
+
+
+
+
+Policy no.:                   ELCD-2021-SUB-C1
+
+Effective Date:               January 1, 2022
+
+Date Revised:                  April 1, 2026
+
+Policy Cross References:
+
+Legislative References:
+
+
+POLICY AND PROCEDURES:
+
+Approvals
+
+1. Where Child Care Subsidy funding is approved, an Approval of Child Care Subsidy letter
+   will be sent to the applicant(s), and an Authorization to Provide Goods/Services form will be
+   sent to the child care service. The regulated child care services is paid the subsidy on
+   behalf of the parent(s)/guardian(s).
+
+2. The Department will not subsidize any days in which the child attended the regulated child
+   care service before the effective start date or after the end date, as indicated in the Approval
+   of Child Care Subsidy letter provided to the applicant.
+              i. An initial approval will not begin on Statutory holiday or the day it is observed.
+              ii. Should circumstance change, (e.g., change in child care centre) a Change in
+                  Circumstances must be submitted to the regional ELCD office.
+                      a. Based on the change in circumstance review, previous approval
+                         letters may be null and void.
+
+The Child Care Subsidy approval is valid until March 31, regardless of the application initial date.
+Effective Start and End Dates
+
+1. Child Care Subsidy effective start and end date shown on the Approval of Child Care
+   Subsidy letter is the start date on which the child is eligible for subsidy and the last day the
+   child is approved for Child Care Subsidy.
+
+
+
+
+                                                                                                Page 16 of 39
+Version 1.3 2026-04-01        These Policies are subject to change.
+                                                                        Government of Newfoundland and Labrador
+                                                            Department of Education and Early Childhood Development
+
+
+
+2. Where the parent(s)/guardian(s) decides to enroll their child(ren) prior to approval of Child
+   Care Subsidy, it will be their responsibility to pay for the full child care fees should they not
+   qualify for Child Care Subsidy.
+
+3. Where the parent(s)/guardian(s) decides to continue to keep their child(ren) enrolled after
+   the end date of their Child Care Subsidy, it will be their responsibility to pay for the full child
+   care fees charged by the child care service should they not qualify for further subsidy.
+
+4. Should Child Care Subsidy be approved, the approval date may be backdated to the date
+   the application form is received at the regional ELICD office, to a maximum of 30 days, but
+   not prior to the current fiscal year.
+               i. It will be the responsibility of the parent(s)/guardian(s) to pay for the full child
+                   care fees should the child(ren) be attending a child care services prior to the
+                   effective start date.
+
+Level of Service
+
+1. The level of service is the maximum number of days/hours per week of child care that will be
+   paid for by the Child Care Subsidy program.
+
+2. Child Care Subsidy program staff determine the level of service to recommend for approval
+   based on the following:
+              i. Full-time child care may be available for eligible applicants:
+                       a. up to the licensed daily hours of operation of a child care service.
+                       b. up to a maximum of five days per week.
+              ii. Part-time child care may be available for eligible applicants:
+                       a. up to a maximum of 4.5 hours per day, five days per week, or;
+                               i. school-age benefits (before and after-school and afterschool
+                                    care) is in effect when school in session.
+                       b. full days, less than five day per week.
+              iii. All approvals for school age children attending school will be eligible for
+                   coverage for school closure days. School closure days include days outlined
+                   by school districts (e.g., holidays, Professional Development Days,
+                   Kinderstart Days, Administration Days), and unforeseen closures (e.g.,
+                   adverse weather, power outages, infrastructure failures).
+                       a. A child care services in not entitled to a school closure benefit, if the
+                           child does not attend the child care service during a school closure.
+              iv. Child Care Subsidy will not be paid for attendance that exceeds the approved
+                   level of service.
+                        a. It will be the responsibility of the parent(s)/guardian(s) to pay for the
+                            child care fees exceeding their approved level of service.
+
+
+
+
+                                                                                                 Page 17 of 39
+Version 1.3 2026-04-01         These Policies are subject to change.
+                                                                      Government of Newfoundland and Labrador
+                                                          Department of Education and Early Childhood Development
+
+
+
+
+Change in Circumstances
+
+1. The amount and time approved for Child Care Subsidy is considered to be valid only if no
+   changes have occurred in the family circumstances that may affect the amount of time or
+   financial support that has been approved.
+
+2. An applicant shall report to regional ELCD staff any circumstances which may affect the
+   applicant’s eligibility for Child Care Subsidy within 14 days, including but not limited to:
+               i.    Change in income;
+               ii. Change in marital or cohabitation status;
+               iii. Change in employment (e.g., hours of work, employment period);
+               iv. Change in enrollment in training/post-secondary programs;
+               v. Change in the number of children attending a regulated child care service;
+               vii. Change in living arrangements;
+               iv. Change in the reason for the application for a Child Care Subsidy;
+               v. Change in expenses incurred in earning income;
+               vi. Change of address or contact information;
+               viii. Change in child care service.
+
+3. An applicant must complete a Change in Circumstance form and submit it to the regional
+   ELICD office as soon as there is a change in circumstance.
+              i.  This form must be submitted no later than 14 business days following the
+                  change in circumstance.
+
+4. Submit documentation as requested by the regional ELCD staff to verify the change in
+   circumstance.
+
+5. Where there is a change in the Child Care Subsidy approval as a result of the applicant’s
+   change in circumstances, the applicant will be notified in writing outlining the outcome of the
+   assessment - all other previous approval letters will be null and void.
+
+6. Failure to notify the regional ELICD office of changes in circumstances may result in an
+   overpayment that must be repaid by the parent/guardian directly to the child care service
+   and/or Child Care Subsidy being cancelled.
+              i.   The Department may issue a credit note to recover overpayments that result
+                   in failure to notify a change in circumstance to the child care service.
+
+
+
+
+                                                                                               Page 18 of 39
+Version 1.3 2026-04-01       These Policies are subject to change.
+                                                                      Government of Newfoundland and Labrador
+                                                          Department of Education and Early Childhood Development
+
+
+
+
+                         CHILD CARE SUBSIDY PROGRAM:
+                         REVIEW AND APPEALS PROCESS
+
+
+
+Policy no.:                   ELCD-2021-SUB-D1
+
+Effective Date:               January 1, 2022
+
+Date Revised:                 April 1, 2026
+
+Policy Cross References:
+
+Legislative References:
+
+
+POLICY AND PROCEDURES:
+
+Request for Review/Appeal
+
+1. In cases where an applicant is not satisfied with the decision made by the Provincial Director
+   of Accountability and Reporting for their Child Care Subsidy eligibility, they may request to
+   have their application for subsidy reviewed.
+
+2. An applicant may request in writing to the Provincial Director of Accountability and
+   Reportig that a regional decision be reviewed.
+      i. The applicant must submit the written request within 30 days of the date noted on the
+          Decline of Child Care Subsidy or Notice of Child Care Subsidy Termination
+          letter.
+
+3. A review shall be performed within 15 business days of receipt of letter and the outcome of
+   the review shall be communicated in writing to the applicant or recipient upon the completion
+   of the review.
+
+4. Should the applicant or recipient not be satisfied with the outcome of a review, then they can
+   make an appeal, in writing, to the Assistant Deputy Minister of EDU.
+      i. The Assistant Deputy Minister will accept a written request for an appeal from
+          dissatisfied applicants or their representatives, up to 60 days from the date of receipt
+          of the outcome of a review.
+      ii. A review of the appeal shall be performed within 15 business days of receipt of letter
+          and the outcome of the appeal shall be communicated in writing to the applicant or
+          recipient upon the completion of the review.
+
+
+
+
+                                                                                               Page 19 of 39
+Version 1.3 2026-04-01       These Policies are subject to change.
+                                                                      Government of Newfoundland and Labrador
+                                                          Department of Education and Early Childhood Development
+
+
+
+
+                         CHILD CARE SUBSIDY PROGRAM:
+                            RENEWALS AND REVIEWS
+
+
+
+Policy no.:                   ELCD-2021-SUB-E1
+
+Effective Date:               January 1, 2022
+
+Date Revised:                 April 1, 2026
+
+Policy Cross References:
+
+Legislative References:
+
+
+POLICY AND PROCEDURES:
+
+Renewals
+
+1. A new application is required 60 days before the expiry date of the current Child Care
+   Subsidy Funding Application, to allow for adequate time for processing.
+       i. All applications expire at the end of the fiscal year. Applicants are not required
+            to submit a new application during the fiscal year unless requested by regional
+            ELICD staff.
+       ii. A change of circumstances form is required if there are any changes in
+            employment, address and change in childcare centre etc. during the fiscal year
+            in which the application is approved.
+       iii. A complete renewal application, including all required supporting documents,
+            must be submitted prior to the beginning of each fiscal year.
+       iv. Renewal applications submitted earlier than 90 days before the scheduled
+            renewal date will not be accepted. Applications may be submitted no earlier
+            than 30 days prior to March 31st
+                a. Failure to submit these documents may result in the interruption, or
+                   termination of benefits.
+2. Child Care Subsidy will not be paid for child care attendance before the effective start date
+   or after the end date.
+
+Reviews
+
+1. All Child Care Subsidy approvals expire on March 31 of the fiscal year. A review will
+   be conducted every three months to ensure that all required documentation remains
+   current. The review date will be set based on the length of the approval period
+
+2. Regional ELICD staff will provide parent/guardian with a Notice of Child Care
+   Subsidy Review letter.
+                                                                                               Page 20 of 39
+Version 1.3 2026-04-01       These Policies are subject to change.
+                                                                      Government of Newfoundland and Labrador
+                                                          Department of Education and Early Childhood Development
+
+       i.   Applicants will be responsible for completing and submitting review documents by
+            the date outlined in the letter.
+
+       a. Failure to submit these documents by the specified date may result in the interruption or
+       termination of benefits.
+
+
+
+
+                                                                                               Page 21 of 39
+Version 1.3 2026-04-01       These Policies are subject to change.
+                                                                      Government of Newfoundland and Labrador
+                                                          Department of Education and Early Childhood Development
+
+
+
+
+                         CHILD CARE SUBSIDY PROGRAM:
+                                 ATTENDANCE
+
+
+
+Policy no.:                   ELCD-2021-SUB-F1
+
+Effective Date:               January 1, 2022
+
+Date Revised:                 April 1, 2026
+
+Policy Cross References:
+
+Legislative References:
+
+
+POLICY AND PROCEDURES:
+
+Attendance – General
+
+1. Child Care Subsidy is provided because there has been a demonstrated need for child care.
+
+2. If the child is absent from the child care service due to illness or any other reason, the
+   parent/guardian must notify the child care service (NOT the regional office) on the first day
+   of absence.
+
+3. The parent(s)/guardian(s) are responsible for notifying the regional ELICD office when a child
+   for whom Child Care Subsidy has been approved is absent for 3 consecutive days when the
+   child was scheduled to be in attendance.
+
+4. Child Care Subsidy Monthly Attendance Records will be reviewed for a child’s attendance at
+   the child care service. If the Department identifies that there is a pattern of non-attendance,
+   without adequate explanation, it may result in a review of the approved Child Care Subsidy
+   and possible termination of benefits.
+
+Sick Days
+
+1. A child in receipt of Child Care Subsidy may be absent from a regulated child care service
+   due to sickness for a period of up to five (5) days per month, up to a maximum of forty (40)
+   days in a fiscal year without loss of subsidy coverage.
+      i. If a child is absent due to sickness for three (3) or more consecutive business days
+           during a month, a signed note from the parent/guardian (outlining the reason for
+           absence) or a note from a medical professional is required to be submitted to the
+           child care service provider.
+
+
+                                                                                               Page 22 of 39
+Version 1.3 2026-04-01       These Policies are subject to change.
+                                                                        Government of Newfoundland and Labrador
+                                                            Department of Education and Early Childhood Development
+
+
+
+                a. If documentation for reason of absence due to sickness is not provided or
+                     deemed acceptable by Department of EDU, the parent/guardian will be
+                     responsible for payment of the full cost of days absent.
+       ii.   Sick day allotment is per child; not per custody arrangement.
+
+2. The Director of Accountability and Reporting may approve payment in excess of five (5)
+   sick days per month or forty (40) days in a fiscal year , provided:
+       i. That the regional ELICD office is notified;
+       ii. A note from a medical professional is provided to the Department; and
+                a. If a medical note is not provided or deemed acceptable for days used for
+                     sickness in excess of five (5) days in a month or in excess of forty (40) days
+                     in a fiscal year, he parent/guardian will be responsible for payment of the full
+                     cost of days absent to the regulated child care service.
+       iii. That the child care service is unable to hold the space without payment while the
+            child is off on extended sick leave.
+
+3. Approvals for extended sick leave time will be reviewed after three months and may be
+   extended at the discretion of the Director of Accountability and Reporting.
+
+Absent Days
+
+1. A child in receipt of Child Care Subsidy may be absent from a regulated child care service,
+   for reasons other than sickness, up to a maximum of two (2) days per month without a loss
+   of subsidy coverage. The parent/guardian will be responsible for payment of the full cost of
+   days absent in excess of two (2) days.
+        i. Absent day allotment is per child; not per custody arrangement.
+
+       ii. In exceptional circumstances, additional absence days may be approved
+           by the Director of Accountability and Reporting Documentation to support
+           the reason for absence must be submitted to the Department for review.
+
+Vacation Days
+
+1. A child in receipt of Child Care Subsidy may be absent for a maximum of 10 business days
+   for vacation in a fiscal year without a loss of subsidy coverage.
+
+2. In shared custody arrangements, a child may be absent for a maximum of 10 business days
+   per parent without a loss of subsidy coverage.
+       i. Payment to the child care service provider for any vacation days over and above the
+           maximum vacation days will be the responsibility of the parent/guardian
+       ii. A copy of the court ordered shared custody agreement or other legal documentation
+           outlining the terms of the agreement is required to be on file.
+                  a. In the absence of legal documentation, regional ELICD staff may request
+                  in writing a signed letter that outlines the shared custody arrangement.
+
+
+
+                                                                                                 Page 23 of 39
+Version 1.3 2026-04-01         These Policies are subject to change.
+                                                                       Government of Newfoundland and Labrador
+                                                           Department of Education and Early Childhood Development
+
+
+
+Paid Closure Days
+
+1. A regulated child care service will receive Child Care Subsidy payment for the following
+   Statutory Holidays, as listed under the Shops Closing Act:
+       i. In all areas of the province,
+                a. Easter Sunday (fixed);
+                b. Labour Day;
+                c. Truth and Reconciliation Day
+                d. Thanksgiving Day;
+                e. Remembrance Day (November 11);
+                f. Christmas Day;
+                g. Boxing Day;
+                h. New Year’s Day;
+                i. Good Friday;
+                j. Victoria Day, and
+                k. Memorial/Canada Day (July 1)
+       ii. In the City of St. John’s, the day determined as Regatta Day.
+       iii. In the Town of Harbour Grace, the day determined as Regatta Day.
+       iv. In any other municipality, the day fixed by the Council as a civic holiday.
+
+2. Subsidy will not be paid for a statutory holiday if:
+      i. It precedes or follows the child’s first or last day at the child care service;
+      ii. The child is not enrolled to attend on that day;
+      iii. It does not meet all other policies under this Paid Closure Day section.
+
+3. Where the statutory holiday falls on a Saturday or Sunday (except Easter Sunday), the first
+   business day directly following the weekend may be substituted.
+
+4. A child care service may be eligible to claim for a statutory holiday at full day rate for a child
+   in receipt of an afterschool or before and afterschool benefit, under the following
+   circumstances:
+       i. There is an approved school closure benefit in place.
+       ii. The child was enrolled to attend the day of the statutory holiday.
+       iii. The child attended the child care service for the full day prior and full day after the
+            statutory holiday.
+
+5. A regulated child care service will receive Child Care Subsidy payment for the following
+   service closure days, as part of the payment of an approved Subsidy benefit:
+       i. Professional Learning (PL) Days: Child Care Subsidy will be paid for up to two
+          Professional Learning Days used by a child care service per fiscal year.
+                    a.   In order for Child Care Subsidy to be paid for Professional
+                         Learning (PL) days, they must be preapproved by the ELICD
+                         regional team.
+                    b.   Professional Development event must be acceptable to the Registrar
+                         of Child Care Services Certification for PD purposes.
+                    c.   Approval of PL days from the ELICD regional team must be
+                         submitted with the external invoice for the service period the PL days
+                                                                                                Page 24 of 39
+Version 1.3 2026-04-01        These Policies are subject to change.
+                                                                       Government of Newfoundland and Labrador
+                                                           Department of Education and Early Childhood Development
+
+                           occurred.
+
+       ii. Family Child Care Provider Vacation: The sole provider in a Family Child Care
+            service who closes for vacation or for other personal reasons will be paid for up to a
+            maximum of 10 business days in a calendar year.
+       iii. Unforeseen Closures: Child Care Subsidy will be paid for child care service closures
+            due to, but not limited to, (e.g.; storm days, leaks, floods).
+                        a. Child care service providers must notify the regional ELICD office if
+                            the service is anticipated to be closed for more than two consecutive
+                            business days.
+                        b. Where a child care service closes for any reason under this section,
+                            documentation of the closure must be attached to the Child Care
+                            Subsidy External Invoice. A determination will be made by regional
+                            ELICD office if the closure day(s) identified will be paid Child Care
+                            Subsidy.
+                        c. When the Department mandates closure of a regulated child care
+                            service; that service will receive notification whether there will be any
+                            coverage under the Child Care Subsidy program.
+
+6. Voluntary closures of a child care service are not covered under the Child Care Subsidy
+   program whether or not parent(s)/guardian(s) are charged fees for the closure.
+     i.   A service will not be reimbursed for any unforeseen circumstance that may arise
+          during a voluntary closure e.g., storm day.
+
+Education and Training Semester Break Coverage
+
+1. A semester break coverage may be approved and paid for a child who has been approved
+   for, or is in receipt, of a Child Care Subsidy, under the following circumstances:
+       i.   A semester break coverage fee is for a maximum of 30 days (in a fiscal year that is
+            required to ensure the child is able to return to the same child care service. This is
+            based on continuous enrollment in the school calendar semester.
+                         a. Coverage ends upon completion of an education/training program.
+      ii.   The 30 day coverage will be approved during the initial approval.
+     iii.   The applicant will be required to provide an enrollment verification letter at the start
+            of each semester.
+
+2. If a child care service closes for all or part of the summer months, Christmas break, Easter
+   break, or any other time of the year, Education and Training Semester Break Coverage will
+   not be paid for children who are already registered and would otherwise be in attendance.
+
+3. Education and Training Semester Break Coverage will not be paid for any time that
+   precedes the child’s first day of attendance at the child care service.
+                     a. If a child switches services during the period, the coverage fee will not
+                           be paid to the new service, if it precedes the child’s first day of
+                           attendance.
+
+
+
+                                                                                                Page 25 of 39
+Version 1.3 2026-04-01        These Policies are subject to change.
+                                                                      Government of Newfoundland and Labrador
+                                                          Department of Education and Early Childhood Development
+
+
+
+Notice of Termination
+
+1. If a parent/guardian removes a child from a child care service permanently, the
+   parent/guardian must follow the child care service’s policy on providing notice to that
+   service, and must also notify the regional office by giving a minimum two week notice. The
+   parent/guardian will be responsible for payment to the child care service for the period for
+   which notice was not provided.
+       i.  Child care service providers must immediately notify regional ELICD office when
+           such notice of termination is made by the parent/guardian. No payment shall be
+           made for any days after the child ceases to attend.
+
+2. If ELICD terminates the Child Care Subsidy, a two-week notice shall be given in writing to
+   the parent(s)/guardian(s) and the child care service provider.
+       i. A Notice of Child Care Subsidy Termination letter will be provided to the
+          parent(s)/guardian(s).
+      ii. A Termination of Child Care Subsidy letter will be provided to the child care
+          service.
+     iii. In circumstances whereby it has been identified that a client is in receipt of Child
+          Care Subsidy benefits for which they are not entitled, benefits may be terminated
+          from the date the parent(s)/guardian(s) was not entitled to Subsidy benefits or
+          immediately, without notice of termination.
+          a. Parent(s)/Guardian(s) will be responsible for payment to the child care service
+              after the date of termination.
+
+3. If a child care service provider terminates the child care arrangement, a two-week notice
+   shall be given in writing to the parent/guardian and regional ELICD office. Where such
+   notice is not provided, no payment shall be made for any days after the child ceases to
+   attend.
+       i.   Child Care Subsidy will not be paid for any days after the Child Care Subsidy end
+            date as noted on the Notice of Child Care Subsidy Termination letter.
+
+4. In exceptional circumstances the Director of Accountability and Reporting may approve
+   payment in absence of notification of termination.
+
+
+
+
+                                                                                               Page 26 of 39
+Version 1.3 2026-04-01       These Policies are subject to change.
+                                                                       Government of Newfoundland and Labrador
+                                                           Department of Education and Early Childhood Development
+
+
+
+
+                         CHILD CARE SUBSIDY PROGRAM:
+                                    RATES
+
+
+
+Policy no.:                   ELCD-2021-SUB-G1
+
+Effective Date:               January 1, 2022
+
+Date Revised:                  April 1, 2026
+
+Policy Cross References:      ELCD-2021-SUB-C1; ELCD-2021-SUB-F1
+
+Legislative References:
+
+
+POLICY AND PROCEDURES:
+
+Maximum Rates
+
+1. A Child Care Subsidy may be approved up to the maximum published Child Care Subsidy
+   rates and shall not be approved for more than 12 months within the current fiscal year.
+      i.  Up to maximum of $10 a day for all those regulated child care services participating
+          in OGP, as identified in Table 2 below.
+     ii.  Up to the maximum daily rates for all those regulated child care services not
+          participating in OGP, as identified in Table 1 below.
+
+2. If a child care service’s daily rates are below the daily maximum Child Care Subsidy rates,
+   the daily rate for the child care service will be paid to the service.
+
+3. A child care service cannot charge Child Care Subsidy more than once per day for any child
+   care space; including but not limited to:
+     i.    Charging Child Care Subsidy for a space that is occupied by another child when a
+           child in receipt of Subsidy is absent from the child care service.
+
+4. The Child Care Subsidy Program is not responsible for the payment of any fees charged by
+   a child care provider that:
+      i.   Exceed the approved published Child Care Subsidy rates or $10 per day at
+           services participating in the Operating Grant Program.
+     ii.   Exceed the approved level of service.
+                    a.     Child Care Subsidy cannot be paid for time that is not approved.
+                    b.     Child Care Subsidy will not pay for the child to attend longer than the
+                           number of hours approved.
+                    c.     A Regional Manager can make exceptions to the level of service
+                           outlined in ELCD-2021-SUB-C1.
+
+                                                                                                Page 27 of 39
+Version 1.3 2026-04-01        These Policies are subject to change.
+                                                                            Government of Newfoundland and Labrador
+                                                                Department of Education and Early Childhood Development
+
+
+       iii.   Are outside the approval period.
+       iv.    Are for early drop off or late pick up fees outside of the child care service licensed
+              hours of operation.
+       v.     A child is not entitled to as per attendance outlined in ELCD-2021-SUB-F1.
+       vi.    Are for fees that extend beyond the end of the two week notice period.
+                        a.    The parent(s)/guardian(s) will be responsible to pay any outstanding
+                              fees if they have not followed the child care service’s policy on
+                              providing notice.
+                        b.    Child Care Subsidy will not be paid for any days after the Child Care
+                              Subsidy end date as noted on the Notice of Child Care Subsidy
+                              Termination letter.
+      vii.    Are for any fees or monies owing to a child care service by a parent/guardian
+      viii.   Have been paid by another party (e.g., parent, guardian, other government
+              department).
+
+ 5. Types of fees that will not be covered by the Child Care Subsidy Program, include but not
+    limited to; field trips, registration fees, arts and craft supplies, extra-curricular activities.
+
+Maximum Daily Child Care Subsidy Rates – Non OGP TABLE 1
+ Age Range of Child          Age Range of              Full Day                        Part Day
+                             Homeroom
+ Birth up to two years old   Infant                    $44.00                          $23.00
+ One year and six months     Toddler                   $33.00                          $17.50
+ old up to three years old
+ Two years and nine          Preschool                 $30.00                          $16.00
+ months old and not
+ attending school
+ One year up to three        Infant / Toddler          $44.00 (Births to under         $23.00 (Births to under
+ years old                                             24 months)                      24 months)
+                                                       $33.00 (24 to under 36          $17.50 (24 to under 36
+                                                       months)                         months)
+ Two years up to five        Toddler / Preschool       $33.00 (24 to under 36          $17.50 (24 to under 36
+ years and nine months                                 months)                         months)
+ and not attending school                              $30.00 (3 years and             $16.00 (3 years and
+                                                       older)                          older)
+ Four years and nine         Younger and Older         $30.00 (when school is          $16.00 (when school is
+ months old up to 13         School Age                not in session during           not in session during
+ years old                                             summer break)                   summer break)
+ Birth up to 13 years old    FH Mixed Age Range        $44.00 (Births to under         $23.00 (Births to under
+                             (infant to older school   24 months)                      24 months)
+                             age)                      $33.00 (24 to under 36          $17.50 (24 to under 36
+                                                       months)                         months)
+                                                       $30.00 (3 years and             $16.00 (3 years and
+                                                       older)                          older)
+
+
+
+ When school is in session the following maximum daily rates will apply to all school aged
+ children, with the exception of children who are entitled to but not attending school.
+ After-School (when school is in session)                                       $14.00
+ Before and After-School (when school is in session)                            $16.00
+
+                                                                                                     Page 28 of 39
+ Version 1.3 2026-04-01          These Policies are subject to change.
+                                                                       Government of Newfoundland and Labrador
+                                                           Department of Education and Early Childhood Development
+
+
+
+
+Maximum OGP Daily Child Care Subsidy Rates - TABLE 2
+
+Age Group                                 Full Day                                  Part Time
+
+Infant                                       $10                                         $5
+Toddler                                      $10                                         $5
+Preschool                                    $10                                         $5
+School Age                                   $10                                         $5
+Afterschool (when school is
+                                                               $4.00
+in session)
+Before & After School
+                                                               $5.00
+(when school is in session)
+
+
+
+
+                                                                                                Page 29 of 39
+Version 1.3 2026-04-01        These Policies are subject to change.
+                                                                   Government of Newfoundland and Labrador
+                                                       Department of Education and Early Childhood Development
+
+
+
+
+                       CHILD CARE SUBSIDY PROGRAM:
+                             PAYMENT PROCESS
+
+
+
+Policy no.:                  ELCD-2021-SUB-H1
+
+Effective Date:              January 1, 2022
+
+Date Revised:                April 1, 2026
+
+Policy Cross References:     ELCD-2017-L2; ELCD-2021-SUB-I1
+
+Legislative References:      CCR: s. 45
+
+
+POLICY AND PROCEDURES:
+
+Child Care Subsidy Payments
+
+1. The Licensee or designate completes the Child Care Subsidy External Invoice and the Child
+   Care Subsidy Monthly Attendance Record and submits them to the Department for
+   payment. The Department verifies the monthly child care claim and issues payment to the
+   child care service.
+       i. All supporting documentation (e.g. doctor’s notes, parent notes) must be submitted
+           with the claim for Child Care Subsidy.
+       ii. Child Care Subsidy will not be paid if the required supporting documentation is not
+           submitted with the Child Care Subsidy External Invoice or for days the child is not
+           entitled to Child Care Subsidy.
+
+2. The Licensee or designate is to submit the Child Care Subsidy External Invoice and
+   supporting documentation within the first 5 business day of the month the service was
+   provided.
+      i. Failure to submit a fully completed invoice and all required documentation within 30
+           days, may result in a delay in payment.
+      ii. Child Care Subsidy benefits will be reimbursed at the published rates that were in
+           effect during the approval period.
+      iii. Contested invoices must be submitted within 90 days.
+      iv. Invoices cannot be submitted prior to the last business day in the month.
+      v. All Child Care Subsidy claims for services provided up to March 31 must be submitted
+           within the first 5 business days.
+      vi. The Licensee or designate is responsible for ensuring all invoices, attendance records,
+           and required documentation for March are complete and submitted by the cutoff date.
+      vii.
+
+3. Any claims which are submitted prior to the approved service being completed or are
+                                                                                 Page 30 of 39
+Version 1.3 2026-04-01     These Policies are subject to change.
+                                                                       Government of Newfoundland and Labrador
+                                                           Department of Education and Early Childhood Development
+
+   incomplete or inaccurate will not be processed and will be returned to the child care service
+   for correction.
+
+Recording Attendance
+
+1. The Department of Education, as per the Child Care Legislation, requires regulated child
+   care services to maintain a daily register that records the attendance for all children. Details
+   of the time of arrival and departure of each child must be recorded each day, as outlined in
+   ELCD-2017- L2 of the Child Care Policy and Standards Manual.
+       i. As outlined in ELCD-2021-SUB-I1, random audits of a child care service’s claim for
+            Child Care Subsidy will be completed by the Department.
+
+2. The Licensee or designate must transfer the attendance information from the daily register
+   for children in receipt of Subsidy to the Child Care Subsidy Monthly Attendance Record.
+
+3. The Child Care Subsidy Monthly Attendance Record must be submitted along with the Child
+   Care Subsidy External Invoice in order for payment to occur.
+
+4. The Child Care Subsidy Monthly Attendance Records will be reviewed by the Department
+   for a child’s attendance at the child care service.
+
+
+
+
+                                                                                                Page 31 of 39
+Version 1.3 2026-04-01        These Policies are subject to change.
+                                                                       Government of Newfoundland and Labrador
+                                                           Department of Education and Early Childhood Development
+
+
+
+
+                         CHILD CARE SUBSIDY PROGRAM:
+                              FINANCIAL MEASURES
+
+Policy no.:                   ELCD-2021-SUB-I1
+
+Effective Date:               January 1, 2022
+
+Date Revised:                  April 1, 2026
+
+Policy Cross References:
+
+Legislative References:
+
+
+POLICY AND PROCEDURES:
+
+False Pretenses
+
+1. A person shall not, on behalf of themselves or on behalf of another person, knowingly obtain
+   or receive a Child Care Subsidy that the person or the other person is not entitled to obtain
+   or receive.
+
+2. A person shall not provide a false or misleading statement in an application or provide any
+   false or misleading information to the Department.
+
+3. A person shall not knowingly aid or abet another person in applying for, obtaining or receiving
+   a Child Care Subsidy for which the person is not eligible.
+
+4. A person who has committed fraud in respect of Child Care Subsidy is guilty of an offence
+   and shall repay the Child Care Subsidy that was fraudulently obtained.
+
+5. Where a person has obtained a Child Care Subsidy under false pretenses, a referral must
+   be made by the Regional Manager to the Director of Accountability and Reporting, for follow
+   up by the Departmental Controller.
+
+6. Applicants have a responsibility to ensure their eligibility for Child Care Subsidy has been
+   established and the information provided by the applicant is true and accurate. Any change
+   in circumstance must be submitted to the Department to determine if eligibility is still being
+   met.
+
+7. Applicants cannot claim expenses on income tax for which they or another person (eligible
+   child’s parent, common-law partner – father/mother of eligible child) received, or is entitled to
+   receive, a reimbursement of the child care expenses.
+
+
+                                                                                                Page 32 of 39
+Version 1.3 2026-04-01        These Policies are subject to change.
+                                                                       Government of Newfoundland and Labrador
+                                                           Department of Education and Early Childhood Development
+
+
+
+         i. This includes any child care expenses that are paid or approved to be paid on
+            behalf of the applicant to the child care service by the Child Care Subsidy program.
+Audits
+
+
+
+1. A random selection of Child Care Subsidy files will be audited by the Department each fiscal
+   year. In the course of the file audit, the Department may request personal information that
+   may be necessary to conduct the file audit.
+
+2. A random selection of child care service’s claim for Child Care Subsidy will be audited by the
+   Department each fiscal year. The audit review may include, but is not limited to:
+          i. Contacting families;
+         ii. Cross referencing payment of fees with other government departments; and
+        iii. Requesting that the ELICD Inspector for a child care service collect
+             information from the daily register and/or make copies of the Register for
+             verification purpose.
+
+Overpayments
+
+1. An overpayment is defined as a Child Care Subsidy which was provided to a child care
+   service on behalf of a recipient, where it is determined that the beneficiary/recipient was not
+   entitled.
+
+2. The Department will determine who is responsible for making the repayment; the recipient or
+   the child care service provider.
+
+3. The Department will determine the amount of the overpayment and will work with the
+   recipient and/or child care service provider to develop an appropriate repayment schedule.
+
+4. New applications, including renewals, will not be processed until the outstanding balance is
+   paid or an agreement made to reduce the amount of Subsidy by a set rate until the
+   overpayment is paid in full.
+
+5. If the applicant refuses to pay the overpayment, their Subsidy will be suspended. Additional
+   steps will be taken to recover the overpayment.
+
+6. If the child care service provider refuses to pay the overpayment, all payments through the
+   Subsidy program will be suspended. If the provider still refuses to pay the overpayment, it
+   will be sent to the Government Accounting Division of the Treasury Board Secretariat.
+
+7. Where an overpayment has been created as a result of an error or omission by
+   Departmental staff, the overpayment is still valid and must be recovered.
+
+
+
+
+                                                                                                Page 33 of 39
+Version 1.3 2026-04-01        These Policies are subject to change.
+                                                                     Government of Newfoundland and Labrador
+                                                         Department of Education and Early Childhood Development
+
+
+
+Underpayments
+
+1. Underpayment means a Child Care Subsidy which was paid for a lower amount than that to
+   which the recipient was eligible.
+
+2. Where it is determined that, based on evidence satisfactory to the Department, a child care
+   service has received an underpayment the amount of the underpayment shall be paid to the
+   provider or recipient.
+         i.    Payment will only be made to the original child care service provider.
+
+3. Where a former recipient who is owed money from an underpayment also owes a debt to
+   the Crown, the money owing to the Crown may be recovered from the money owing to the
+   former recipient and the remainder, if any, shall be paid to the former recipient.
+
+
+
+
+                                                                                              Page 34 of 39
+Version 1.3 2026-04-01      These Policies are subject to change.
+                                                                       Government of Newfoundland and Labrador
+                                                           Department of Education and Early Childhood Development
+
+
+
+
+                         CHILD CARE SUBSIDY PROGRAM:
+                                DOCUMENTATION
+
+
+
+Policy no.:                    ELCD-2021-SUB-J1
+
+Effective Date:                January 1, 2022
+
+Date Revised:                  April 1, 2026
+
+Policy Cross References:
+
+Legislative References:
+
+
+POLICY AND PROCEDURES:
+
+Required Documentation – General
+
+1. In order to receive or continue with Child Care Subsidy, the applicant will be required to
+   submit applicable documentation as requested by regional ELICD staff. This may include
+   but not limited to the documentation listed in this policy.
+
+2. The applicant is responsible for the costs of obtaining documents.
+
+Verification of Birth (Required)
+
+1. Provide a copy of child’s birth certificate, baptismal record, passport or other legal
+    documentation that shows the child’s legal name and date of birth.
+
+Verification of Residency (Required)
+
+1. Documentation that show place of residency e.g. driver’s license, utility bill, pay stubs.
+2. If the applicant or their partner/spouse are not a Canadian citizen, they will need to provide a
+copy of one of the following:
+                 a. Permanent Resident Card
+                 b. Refugee Protection Claimant Documentation (RPCD)
+
+Verification of income (if applicable)
+
+1. Self-Employed, Commission-based employment.
+          i. Provide Notice of Assessment from Revenue Canada and T2125 (from the most
+             current tax year).
+
+
+                                                                                                Page 35 of 39
+Version 1.3 2026-04-01        These Policies are subject to change.
+                                                                        Government of Newfoundland and Labrador
+                                                            Department of Education and Early Childhood Development
+
+2. Currently Employed.
+          i. Provide a copy of all pay stubs for the last 30 days or an employer letter on
+              company letterhead.
+                         a. Letter from the employer must show the applicant’s name, net pay
+                            (including all deductions), and the covering period of the payment.
+
+3. About to start Employment.
+         i.   Written confirmation of employment on the company letterhead stating:
+              employment start and end dates; name, address and contact number of
+              employer; employment status (permanent, temporary, full or part time,
+              contractual, casual, etc.), rate of pay, deductions, hours per day and days per
+              week required to work.
+                     a. Letter must be signed by the employer.
+
+4. For other sources of income (e.g., Employment Insurance, Workplace Compensation,
+   Canada Pension), provide a copy of all pay stubs for the last 30 days.
+
+5. Those applicants who are not income tested, as outlined in ELCD-2021-SUB-B1, must
+   provide confirmation of involvement with the program.
+
+6. For post-secondary students, as outlined in ELCD-2021-SUB-B1, submit program cost form
+   or student account summary.
+
+Verification of Training Allowances and Student Loans (if applicable)
+
+1. Stub or letter of breakdown stating net amount
+2. Skills Development agreement
+3. Student Loan Notice of assessment.
+
+Verification of Education and Training (if applicable)
+
+1. Enrollment verification letter from the university, college, training institute, or provider
+   outlining:
+           i. Full-time or part-time studies;
+          ii. Start and end dates of course and program;
+         iii. The name, address, and contact number for the institution;
+         iv.  Confirmation of enrollment dated the first day of the semester and identifying the
+              length of the semester.
+
+2. Provide copy of school calendar (if applicable).
+
+3. A class schedule (to be sent within the first week after the start of scheduled classes);
+         i.   For students not enrolled in courses but teaching or conducting research (e.g.,
+              PhD program) an enrollment verification letter from the post-secondary institution
+              outlining if the student is enrolled in full-time or part-time studies.
+
+Referral Forms (if applicable)
+
+                                                                                                 Page 36 of 39
+Version 1.3 2026-04-01         These Policies are subject to change.
+                                                                      Government of Newfoundland and Labrador
+                                                          Department of Education and Early Childhood Development
+
+
+
+1. Reasons of Child Development.
+
+          i.   A Child Care Subsidy Professional Referral (as outlined in ELCD-2021-SUB-B1)
+               is required from a professional such as a family physician, pediatrician or
+               clinician who has made the diagnosis, and/or has been involved in providing
+               treatment.
+
+2. Reasons of Injury, Illness, Disability or Rehabilitation.
+        i.  A referral is required from a professional (as outlined in ELCD-2021-SUB-B1)
+            such as a family physician or clinician who has made the diagnosis, and/or has
+            been involved in providing treatment.
+
+3. SSWB Referral Form.
+       i.  A Child Care Subsidy (SSWB) Referral Form (as outlined in ELCD-2021-SUB-
+           B1) is required and must be recommended for approval by Social Worker and
+           approved by Clinical Program Supervisor.
+
+Verification of Job Search (if applicable)
+
+1. For reason of termination in employment, provide proof of last day of work:
+          i. Record of employment; or
+         ii. A signed and dated letter from the employer on their letterhead indicating the last
+             day of employment, and;
+        iii. Any other documentation required by regional ELICD staff to appropriately
+             assess the change in circumstance.
+
+2. For reason of completion of education/training, provide proof of last day of program:
+         i.  A signed and dated letter from the education/training institute on their letterhead
+             indicating the date the program ends.
+
+Verification of Caregiving Benefits (if applicable)
+
+1. Proof of Employment Insurance Benefits for Caregiving Benefits: Family caregiver benefit for
+   children, for adults or compassionate Care Benefits.
+
+2. Any other documentation required by regional ELICD staff to appropriately assess
+   the change in circumstance.
+         i.   In circumstance where there are no entitlement to EI Caregiving Benefits, a letter
+              of referral from a family physician (other clinician) or social worker will be
+              required before considering approval by the Provincial Director of Child Care.
+
+Verification of Joint/shared Custody Arrangements (if applicable)
+
+1. A copy of the court ordered shared custody agreement or other legal documentation
+   outlining the terms of the agreement.
+          i.   In the absence of legal documentation, regional ELICD staff may request
+
+                                                                                               Page 37 of 39
+Version 1.3 2026-04-01       These Policies are subject to change.
+                                                                      Government of Newfoundland and Labrador
+                                                          Department of Education and Early Childhood Development
+
+               in writing a signed letter that outlines the shared custody arrangement.
+
+
+Verification of Spousal Support (if applicable)
+
+1. Copy of legal documentation that indicates amount of spousal support being received or
+   paid.
+         i.   In the absence of legal documentation, regional ELICD staff may request
+              in writing a signed letter that outlines the amount of spousal support.
+
+Verification of Disability Related Transportation Supplement (DRTS)
+
+1. Written confirmation (as outlined in ELCD-2021-SUB-K1) of the physical disability from a
+   physician with direct knowledge of the disability.
+
+2. A consent for release of information.
+        i.    Consent is valid for one year from the date it was signed.
+
+
+
+
+                                                                                               Page 38 of 39
+Version 1.3 2026-04-01       These Policies are subject to change.
+                                                                        Government of Newfoundland and Labrador
+                                                            Department of Education and Early Childhood Development
+
+
+
+
+                CHILD CARE SUBSIDY PROGRAM:
+   DISABILITY RELATED TRANSPORTATION SUPPLEMENT (DRTS)
+
+
+
+Policy no.:                    ELCD-2021-SUB-K1
+
+Effective Date:                January 1, 2022
+
+Date Revised:                   April 1, 2026
+
+Policy Cross References:
+
+Legislative References:
+
+
+POLICY AND PROCEDURES:
+
+Disability Related Transportation Supplement (DRTS) – Criteria
+
+1. This supplement will ensure that children or parents/guardians with a physical disability
+   (permanent or temporary) and who have no means of transportation due to the disability
+   may receive a transportation supplement to and from the closest child care service to their
+   home (in extenuating circumstances an approved alternate child care service).
+
+2. This policy will apply to families that are approved for Child Care Subsidy and qualify for the
+   Disability Related Transportation Supplement (DRTS) based on the following criteria:
+       i. The DRTS will be considered when a child’s or parents physical disability prevents
+            them from walking to the closest child care service and the family has no access to a
+            vehicle.
+       ii. In shared custody situations, where DRTS has been approved due to parent’s
+            physical disability, transportation will only be covered for the days the child is with the
+            parent who has the approved DRTS.
+       iii. There is a maximum supplement per one-way trip of $10, with a maximum of two
+            one-way trips per day.
+       iv. Only one supplement will be approved for all children travelling to and from the same
+            address.
+       v. Transportation arrangements and costs are the sole responsibility of the
+            parent/guardian. The Department will not reimburse transportation to the vendor.
+       vi. Payment of the supplement to offset costs incurred will be made directly to the
+            parent/guardian based on monthly submitted invoices.
+       vii. Copy of the Departmental DRTS invoice will be provided by regional ELICD staff.
+
+                                                                                                 Page 39 of 39
+Version 1.3 2026-04-01         These Policies are subject to change.
+                                                                        Government of Newfoundland and Labrador
+                                                            Department of Education and Early Childhood Development
+
+
+
+ 3. DRTS will not be responsible for payment of fees for transportation that have been paid by
+    another party (e.g., parent, guardian, other government departments).
+
+Disability Related Transportation (DRTS) – Application Process
+
+ 1. The parent/guardian who has an approved Child Care Subsidy must submit a fully
+    completed application and supporting documentation to the ELICD office for
+    assessment.
+       i. Applications for the DRTS will be assessed by regional ELICD staff
+          and recommended to the Provincial Director of Child Care for
+          approval.
+
+ 2. Applications must be supported by written confirmation of the physical disability from a
+    physician with direct knowledge of the disability. Written confirmation must be:
+       i. On appropriate letterhead, signed and dated by the physician.
+       ii. Be signed and dated within 3 months of the application to DRTS.
+
+ 3. Provide a consent for release of information.
+       i. Consent is valid for one year from the date it was signed.
+
+ 4. Applications involving a request for transportation to an alternate child care service than the
+    closest child care service shall include documentation outlining why an alternate child care
+    service is being requested (e.g., accessibility). All alternate child care service requests
+    require the approval of the Provincial Director of Accountability and Reporting for DRTS.
+
+ 5. Parent(s)/guardian(s) will be notified by the Department in writing of the status of their
+    application for the DRTS.
+
+ Disability Related Transportation (DRTS) - Invoice Process
+
+ 1. Parent(s)/Guardian(s) must submit to the Department a completed Child Care Subsidy
+    DRTS External Invoice and copy of receipts or invoice for transportation paid within 30 days
+    of the end of the month the services was provided.
+        i. If private transportation is provided, submit a signed letter from the person providing
+            the transportation including the following information:
+                        a. Name of person providing transportation;
+                        b. Number of days transportation was provided; and
+                        c. Amount paid for transportation and the covering period.
+
+ 2. Child Care Subsidy Monthly Attendance Record may be reviewed to confirm a child’s
+    attendance at the child care service.
+
+
+
+
+                                                                                                 Page 40 of 39
+ Version 1.3 2026-04-01        These Policies are subject to change.

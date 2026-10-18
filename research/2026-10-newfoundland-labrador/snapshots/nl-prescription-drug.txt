@@ -1,0 +1,61 @@
+URL: https://www.gov.nl.ca/hcs/prescription/nlpdp-plan-overview/ | province: NL | program: NL Prescription Drug Program | fetched: 2026-10-18
+=== PAGE: https://www.gov.nl.ca/hcs/prescription/nlpdp-plan-overview/ (HTTP 200, 5961 chars)
+- 
+ Plan Overview - Health and Community Services 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+ You are using an outdated browser. Please upgrade your browser to improve your experience.
+ Warning: It seems JavaScript is either disabled or not supported by your browser. Please enable JavaScript to improve your experience.
+ Skip to content 
+ Health and Community Services > Prescription Drug Program (NLPDP) > Plan Overview 
+ Français 
+ The Newfoundland and Labrador Prescription Drug Program (NLPDP) provides financial assistance for the purchase of eligible prescription medications for those who reside in the province. There are five main plans under the program:
+- The Foundation Plan 
+- The 65Plus Plan 
+- The Access Plan 
+- The Assurance Plan 
+- The Select Needs Plan 
+ The Foundation Plan
+ The Foundation Plan provides 100 per cent coverage of eligible prescription drugs for those who need the greatest support. This includes persons and families in receipt of income support benefits through the Department of Advanced Education and Skills, and certain individuals receiving services through the regional health authorities, including children in the care of Child, Youth and Family Services, and individuals in supervised care.
+ How to apply: No application is necessary. A Prescription Drug Program card is automatically issued when the Department of Health and Community Services is notified that an individual is in receipt of the above noted services.
+ Service Standard : Upon confirmation that an individual is receiving income support benefits, a letter of eligibility will be posted by mail within 7 business days.
+ ^ Top of Page 
+ The 65Plus Plan
+ This plan provides coverage of eligible prescription drugs to residents 65 years of age and older who receive Old Age Security Benefits (OAS) and the Guaranteed Income Supplement (GIS). Beneficiaries will be responsible for payment of the dispensing fee up to a maximum of $6.
+ The Ostomy Subsidy Program
+ Those who qualify for a drug card under The 65Plus Plan also qualify for the Ostomy Subsidy Program. The program will reimburse for 75% of the retail cost of benefit ostomy items. The beneficiary is responsible for the remaining costs. The beneficiary is required to purchase the ostomy supplies and submit their original prescription receipts.
+ How to apply: No application is necessary. A Prescription Drug Program card is automatically issued when the Department of Health and Community Services is notified by Service Canada that an individual is in receipt of the Guaranteed Income Supplement (GIS) and Old Age Security benefits (OAS).
+ ^ Top of Page 
+ The Access Plan
+ The Access Plan gives individuals and families with low incomes access to eligible prescription medications. The amount of coverage is determined by net income level and family status. The program is available to:
+- families with children, including single parents, with net annual incomes of $42,870 or less;
+- couples without children with net annual incomes of $30,009 or less;
+- single individuals with net annual incomes of $27,151 or less.
+ How to apply: To apply for The Access Plan, you must complete an application form (226 KB). Forms are also available at pharmacies and physician offices. You may also call 1-888-859-3535 and ask that an application be mailed to you.
+ There is also automatic eligibility for specified dental health care services for 13-17 year olds in families who qualify for The Access Plan. The services are administered under the Newfoundland and Labrador Dental Health Program.
+ Information regarding the dental coverage can be obtained by calling 1-800-440-4405.
+ Service Standard : Upon receipt of an application and all necessary documentation for the Access Plan, a letter of eligibility will be posted by mail within 7 business days for 90 per cent of cases. Applications which are contingent on special authorization for approval may take additional time.
+ ^ Top of Page 
+ The Assurance Plan
+ This plan provides prescription drug coverage to individuals/families where eligible drug costs exceed:
+- 5% of net income for those who earn below $40,000
+- 7.5% of net income for those who earn from $40,000 to under $75,000
+- 10% of net income for those who earn from $75,000 to under $150,000
+ Qualifying applicants will be responsible for a co-payment depending on their income levels and drug costs
+ For example, a family with a net income of $30,000 had $5,000 in eligible drug costs in the previous year. As their drug costs exceed 5% of their net income ($1,500) they would be eligible for the Assurance plan. They would be responsible for paying $1,500 of their drug costs, resulting in a co-payment rate of 30%. Eligibility and co-payment rate are re-assessed every six months using the most recent income and drug cost data available.”
+ How to apply: To apply for The Assurance Plan, you must complete an application form (226 KB). Forms are also available at pharmacies and physician offices. You may also call 1-888-859-3535 and ask that an application be mailed to you.
+ Service Standard : Upon receipt of an application and all necessary documentation for the Assurance Plan, a letter of eligibility will be posted by mail within 7 business days for 90 per cent of cases. Applications which are contingent on special authorization for approval may take additional time.
+ ^ Top of Page 
+ The Select Needs Plan
+ The Select Needs Plan provides 100 per cent coverage for disease specific medications and supplies for residents with Cystic Fibrosis and Growth Hormone Deficiency.
+ How to apply: No application is necessary. When the Department of Health and Community Services is notified by Eastern Health that a client has been diagnosed with Cystic Fibrosis or Growth Hormone Deficiency they are given eligibility to the benefits offered under this plan.
+ ^ Top of Page 
+ Adobe® Acrobat® Reader software can be used for viewing PDF documents. Download Acrobat® Reader for free

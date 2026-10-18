@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 504 links. The monitor checks a bounded rotating batch every
+// 535 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -1966,6 +1966,136 @@ export const LINKS = [
     "kind": "apply"
   },
   {
+    "url": "https://www.gov.nl.ca/sswb/income-support/overview/",
+    "label": "Income Support — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.nl.ca/sswb/newfoundland-and-labrador-disability-benefit/",
+    "label": "Newfoundland and Labrador Disability Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.nl.ca/sswb/income-support/healthservices/",
+    "label": "Income Support Health Related Services — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.nl.ca/sswb/income-support/child/",
+    "label": "Newfoundland and Labrador Child Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.nl.ca/sswb/income-support/nutritionsupplement/",
+    "label": "Prenatal-Early Childhood Nutrition Supplement — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.nl.ca/hcs/prescription/nlpdp-plan-overview/",
+    "label": "Prescription Drug Program: Foundation Plan — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.nl.ca/seniors/seniors-health-care/special-assistance-program/",
+    "label": "Special Assistance Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.nl.ca/hcs/personsdisabilities/fundingprograms-hcs/",
+    "label": "Provincial Home Support Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.nl.ca/hcs/long-term-care/family-caregiving/",
+    "label": "Paid Family Caregiving Option — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.nlhc.nl.ca/housing-programs/home-modification-program-hmp/",
+    "label": "Home Modification Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.nlhc.nl.ca/housing-programs/provincial-home-repair-program-phrp/",
+    "label": "Provincial Home Repair Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.nlhc.nl.ca/housing-programs/rental-housing-program/",
+    "label": "Rental Housing Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.nlhc.nl.ca/wp-content/uploads/2023/08/CNLHB-QA-with-Conversion-Information.pdf",
+    "label": "Canada-NL Housing Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.nl.ca/fin/tax-programs-incentives/personal/income-supplement/",
+    "label": "NL Seniors' Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.nl.ca/education/files/Child-Care-Subsidy-Policy-Manual-.pdf",
+    "label": "Child Care Subsidy — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.nl.ca/motorregistration/accessible-parking-permit/application/",
+    "label": "Accessible Parking Permit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.nl.ca/education/studentaid/disabilities/",
+    "label": "Student Aid for Students with Disabilities (provincial supports) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.nl.ca/la/files/MTAP-FACT-Sheet_Aug-26.pdf",
+    "label": "Medical Transportation Assistance Program (MTAP) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://stjohns.ca/recreation-culture/recreation-programs/financial-supports/",
+    "label": "Children's recreation financial subsidy — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://stjohns.ca/recreation-culture/accessible-inclusive-recreation/attendant-passes/",
+    "label": "Attendant Pass — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://metrobus.com/alf/gobus_info.asp",
+    "label": "GoBus accessible transit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.paradise.ca/recycling-garbage-roads/accessible-transit-project/",
+    "label": "Accessible Transit Project — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.cornerbrook.com/bus-transit/",
+    "label": "CBT Link accessible transit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.nl.ca/sswb/movingintoworkforce/",
+    "label": "Moving into the Workforce — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.nl.ca/hcs/dentalservices/general-info/",
+    "label": "Dental Health Plan (children, youth and adults) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://nlhealthservices.ca/key-information/caregiver-benefit-2/",
+    "label": "Caregiver Benefit — apply",
+    "kind": "apply"
+  },
+  {
     "url": "https://vadsociety.ca",
     "label": "Help — Voice of Albertans with Disabilities (VAD)",
     "kind": "help"
@@ -2148,6 +2278,21 @@ export const LINKS = [
   {
     "url": "https://www.resourceabilities.ca",
     "label": "Help — ResourceAbilities",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.legalaid.nl.ca/",
+    "label": "Help — Legal Aid NL",
+    "kind": "help"
+  },
+  {
+    "url": "https://nl.211.ca/",
+    "label": "Help — 211 NL",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.empowernl.ca/",
+    "label": "Help — Empower – The Disability Resource Centre",
     "kind": "help"
   },
   {
@@ -2468,6 +2613,16 @@ export const LINKS = [
   {
     "url": "https://sci-pei.ca",
     "label": "org:pe-sci — Spinal Cord Injury PEI",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.sci-nl.ca/",
+    "label": "org:nl-sci — Spinal Cord Injury Newfoundland and Labrador",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.chha-nl.ca/",
+    "label": "org:nl-chha — Canadian Hard of Hearing Association – NL",
     "kind": "org"
   },
   {

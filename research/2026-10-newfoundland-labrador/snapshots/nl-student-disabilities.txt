@@ -1,0 +1,76 @@
+URL: https://www.gov.nl.ca/education/studentaid/disabilities/ | province: NL | program: StudentAidNL disability grants | fetched: 2026-10-18
+=== PAGE: https://www.gov.nl.ca/education/studentaid/disabilities/ (HTTP 200, 10275 chars)
+- 
+ Students with Disabilities - Education and Early Childhood Development 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+ You are using an outdated browser. Please upgrade your browser to improve your experience.
+ Warning: It seems JavaScript is either disabled or not supported by your browser. Please enable JavaScript to improve your experience.
+ Skip to content 
+ Home Student Aid Students with Disabilities 
+ The Canada-Newfoundland and Labrador Student Financial Assistance Program provides additional benefits to assist eligible students diagnosed with disabilities with overcoming their disability related barriers to post-secondary education.
+ Beginning in the 2022-23 academic year, the Canada-Newfoundland and Labrador Student Financial Assistance Program has expanded the eligibility of these programs to students whose disabilities are persistent or prolonged, not only permanent. Please continue below for more details.
+ Definitions
+ Permanent Disability is any impairment, including a physical, mental, intellectual, cognitive, learning, communication or sensory impairment  – or a functional limitation – that:
+- Restricts your ability to perform the daily activities necessary to pursue studies at a post-secondary school level or participate in the labour force, and
+- Is expected to remain with you for your expected life.
+ Persistent or Prolonged Disability is any impairment, including a physical, mental, intellectual, cognitive, learning, communication or sensory impairment – or a functional limitation – that:
+- Restricts your ability to perform the daily activities necessary to pursue studies at a post-secondary school level or to participate in the labour force;
+- Has lasted, or is expected to last, for a period of at least 12 months; and
+- Is not a permanent disability.
+ Functional Limitation or Impairment is any impairment, including a physical, mental, intellectual, cognitive, learning, communication or sensory impairment (functional limitation) that restricts your ability to perform the daily activities necessary to pursue studies at a post-secondary school level or to participate in the labour force.
+- Applying as a Student with a Disability 
+- Additional Funding Available for Students with Disabilities 
+- Canada Student Grant for Students with Disabilities (CSG-D) 
+- Canada Student Grant for Services and Equipment  – Students with Disabilities (CSG-DSE) 
+- Provincial Grant for High Need Students with Disabilities 
+ Applying as a Student with a Disability 
+ As a student with a verified disability: 
+- You may be eligible for a non-repayable grant of $2,800 per academic year.
+- You have access to extra weeks of funding (520 weeks) to complete your program with the help of student financial assistance.
+- You may qualify for full-time assistance with smaller, more manageable course loads (at least 40% of a full course load).
+- You may qualify for extra funding specifically designed to help you pay for exceptional educational-related expenses related to your verified disability. This may include such things as specialized equipment, computer hardware and/or software, learning support, tutoring services and more.
+ To be eligible, you must have a disability, which is defined as any impairment, including a physical, mental, intellectual, cognitive, learning, communication or sensory impairment – or a functional limitation – that: 
+- Restricts your ability to perform the daily activities necessary to pursue studies at a post-secondary school level or to participate in the labour force; and
+- Has lasted, or is expected to last, for a period of at least 12 month or is expected to remain for your expected life.
+   If you wish to declare yourself as a student with a permanent disability, or a student with a persistent or prolonged disability, you must provide verification of your disability via the Verification of Eligibility Form for Students with Disabilities . If you have a learning disability, you must submit a copy of your psycho-educational assessment or comprehensive educational assessment completed within the last five years or at the age of 18 or older that confirms the diagnosis of a learning disability and lists the functional limitations/impairments because of your confirmed learning disability.
+ If you have previously submitted documentation confirming your disability when applying for a federal or provincial student loan, you are not required to submit additional proof of your disability. Documentation is normally required only once, unless you have another diagnosis for which you require additional accommodations/services and/or equipment.
+ Students with disabilities are required to meet academic performance eligibility requirements.  
+ For example, students with disabilities are subject to the following policies to maintain eligibility for full-time student financial assistance:
+ Full-Time Assistance Requirements for Maintaining Eligibility 
+- Course Completion: Students with disabilities must complete 40% of a full course load during each period of study they receive financial assistance as a full-time student. If a student does not meet this requirement on two separate occasions, they will no longer be eligible for financial assistance for a 12-month period. A third occurrence will result in a loss of eligibility for at least 36 months.
+- Academic Progress Review: StudentAidNL may conduct an Academic Progress Review of a student’s file when a student’s program of study is at the mid-point or past the normal duration of program completion or when a scenario arises where there are indicators of concern about academic progression.   Depending on the outcome of this review, students may be restricted from receiving further student financial assistance.
+- Subsequent or Switching Programs  – Students must demonstrate that the program(s) represents academic progression, has good labour-market prospects, and will not result in an unmanageable level of debt. Students must submit a  letter of rationale  to support their decision. Students are encouraged to provide labour market research including contact with employees/employers in their chosen field.
+- Work Terms  – If registered in full-time studies, the student must confirm their start/end dates and their gross income for the work term period. If their work term is unpaid, they must provide confirmation from their employer or educational institutions.
+ Part-Time Assistance Requirements for Maintaining Eligibility 
+- Scholastic Standard: Students with a verified disability must successfully complete all courses for which they receive part-time funding.
+ Note: Students who become restricted under the full-time program are ineligible for the part-time program. Likewise, students who become restricted under the part-time program are restricted from the full-time program.
+ ^ Top of Page 
+ Additional Funding Available for Students with Disabilities 
+ There are three additional grants that may be available for students with a verified disability:
+- Canada Student Grant for Students with Disabilities (CSG-D): 
+ The Canada Student Grant for Students with Disabilities (CSG-D) is a grant that provides $2,800 each academic year (August 1 to July 31).
+ You can receive this grant once each year of your full-time or part-time studies (including undergraduate and graduate levels). As long as you continue to meet all other eligibility requirements through the Canada-Newfoundland and Labrador Student Financial Assistance Program, you may remain eligible for this grant: ( Eligibility – Education (gov.nl.ca) .
+ How to apply 
+- Submit an online application to StudentAidNL. You will indicate that you are applying as a student with a disability. (There is no separate application).
+- Complete the Verification of Eligibility Form for Students with Disabilities :
+ If you are applying as a student with a learning disability only, please complete Section A of the form and attach your psycho-educational assessment (or a comprehensive educational assessment) completed within the last 5 years or at the age of 18 or older.
+ For all other disabilities, an appropriate medical professional will be required to complete Sections B through E of the Verification of Eligibility Form. If you have another disability in addition to a learning disability, we will need both the educational assessment and the Verification of Eligibility form completed by a medical professional.
+ Receiving Your Funds 
+ The CSG-D is disbursed with other approved loans and/or grants, generally at the beginning of your study period. You will receive the full amount of the grant in the first study period in which you are eligible for funding. Receiving Your Funds – Education (gov.nl.ca) .
+- Canada Student Grant for Services and Equipment – Students with Disabilities (CSG-DSE) 
+ If you have education-related barriers related to your verified disability diagnosis, you may be eligible to receive the Canada Student Grant for Services and Equipment – Students with Disabilities ( CSG-DSE) .
+ This grant offers up to $20,000 per academic year (August 1 to July 31) for each year of full-time or part-time study (including undergraduate and graduate levels), provided you continue to meet the eligibility criteria. The assistance provided under this grant is separate from other eligible student financial assistance. It is designed to offset the education-related service and equipment expenses related to your disability diagnosis.
+ The application is completed by your school. You will meet with an official to discuss accommodations, services, and/or equipment that you may need to successfully complete your studies. An application is required each study period .
+ Please visit – CSG-DSE Application for more details on application and receiving your funds.
+- Provincial Grant for High Need Students with Disabilities 
+ This grant provides assistance to cover education-related costs associated with a disability diagnosis that exceed the amount available from the CSG-DSE outlined above ($20,000 per academic year).
+ You will be automatically assessed for this grant when the Application for Services and Equipment Grant for Students with Disabilities is reviewed. Funds will be disbursed through the same method as the CSG-DSE .

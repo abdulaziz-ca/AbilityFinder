@@ -19,15 +19,17 @@ const NB_ENABLED = true;
 const NS_ENABLED = true;
 // Prince Edward Island rollout — dark until launch.
 const PE_ENABLED = true;
+// Newfoundland and Labrador rollout — dark until launch.
+const NL_ENABLED = true;
 // Scope labels compose from the enabled-province set, so flipping a flag updates them everywhere.
 // Invariant: with ON_ENABLED=false (and BC_ENABLED=true) these produce exactly the prior Alberta+BC strings.
-const _SCOPE_FULL = ["Alberta", ...(BC_ENABLED ? ["British Columbia"] : []), ...(ON_ENABLED ? ["Ontario"] : []), ...(SK_ENABLED ? ["Saskatchewan"] : []), ...(MB_ENABLED ? ["Manitoba"] : []), ...(NB_ENABLED ? ["New Brunswick"] : []), ...(NS_ENABLED ? ["Nova Scotia"] : []), ...(PE_ENABLED ? ["Prince Edward Island"] : [])];
-const _SCOPE_DEMONYM = ["Albertans", ...(BC_ENABLED ? ["British Columbians"] : []), ...(ON_ENABLED ? ["Ontarians"] : []), ...(SK_ENABLED ? ["Saskatchewanians"] : []), ...(MB_ENABLED ? ["Manitobans"] : []), ...(NB_ENABLED ? ["New Brunswickers"] : []), ...(NS_ENABLED ? ["Nova Scotians"] : []), ...(PE_ENABLED ? ["Islanders"] : [])];
-const _SCOPE_ABBR = ["Alberta", ...(BC_ENABLED ? ["BC"] : []), ...(ON_ENABLED ? ["ON"] : []), ...(SK_ENABLED ? ["SK"] : []), ...(MB_ENABLED ? ["MB"] : []), ...(NB_ENABLED ? ["NB"] : []), ...(NS_ENABLED ? ["NS"] : []), ...(PE_ENABLED ? ["PEI"] : [])];
+const _SCOPE_FULL = ["Alberta", ...(BC_ENABLED ? ["British Columbia"] : []), ...(ON_ENABLED ? ["Ontario"] : []), ...(SK_ENABLED ? ["Saskatchewan"] : []), ...(MB_ENABLED ? ["Manitoba"] : []), ...(NB_ENABLED ? ["New Brunswick"] : []), ...(NS_ENABLED ? ["Nova Scotia"] : []), ...(PE_ENABLED ? ["Prince Edward Island"] : []), ...(NL_ENABLED ? ["Newfoundland and Labrador"] : [])];
+const _SCOPE_DEMONYM = ["Albertans", ...(BC_ENABLED ? ["British Columbians"] : []), ...(ON_ENABLED ? ["Ontarians"] : []), ...(SK_ENABLED ? ["Saskatchewanians"] : []), ...(MB_ENABLED ? ["Manitobans"] : []), ...(NB_ENABLED ? ["New Brunswickers"] : []), ...(NS_ENABLED ? ["Nova Scotians"] : []), ...(PE_ENABLED ? ["Islanders"] : []), ...(NL_ENABLED ? ["Newfoundlanders and Labradorians"] : [])];
+const _SCOPE_ABBR = ["Alberta", ...(BC_ENABLED ? ["BC"] : []), ...(ON_ENABLED ? ["ON"] : []), ...(SK_ENABLED ? ["SK"] : []), ...(MB_ENABLED ? ["MB"] : []), ...(NB_ENABLED ? ["NB"] : []), ...(NS_ENABLED ? ["NS"] : []), ...(PE_ENABLED ? ["PEI"] : []), ...(NL_ENABLED ? ["NL"] : [])];
 const _joinAnd = (a) => (a.length <= 1 ? (a[0] || "") : `${a.slice(0, -1).join(", ")} and ${a[a.length - 1]}`);
 const _joinOrComma = (a) => (a.length <= 1 ? (a[0] || "") : `${a.slice(0, -1).join(", ")}, or ${a[a.length - 1]}`);
 const _joinOr = (a) => (a.length <= 1 ? (a[0] || "") : `${a.slice(0, -1).join(", ")} or ${a[a.length - 1]}`);
-const SCOPE_LABEL = `Alberta${BC_ENABLED ? ", BC" : ""}${ON_ENABLED ? ", ON" : ""}${SK_ENABLED ? ", SK" : ""}${MB_ENABLED ? ", MB" : ""}${NB_ENABLED ? ", NB" : ""}${NS_ENABLED ? ", NS" : ""}${PE_ENABLED ? ", PEI" : ""} + federal`;
+const SCOPE_LABEL = `Alberta${BC_ENABLED ? ", BC" : ""}${ON_ENABLED ? ", ON" : ""}${SK_ENABLED ? ", SK" : ""}${MB_ENABLED ? ", MB" : ""}${NB_ENABLED ? ", NB" : ""}${NS_ENABLED ? ", NS" : ""}${PE_ENABLED ? ", PEI" : ""}${NL_ENABLED ? ", NL" : ""} + federal`;
 const SCOPE_LABEL_LONG = _joinAnd(_SCOPE_FULL);
 const SCOPE_RESIDENTS = _joinAnd(_SCOPE_DEMONYM);
 const SCOPE_GOVERNMENTS = `Canada, ${_joinOrComma(_SCOPE_FULL)}`;
@@ -52,7 +54,7 @@ const BLANK = () => ({
   onsetBefore18: null, // true | false  (dynamic: autism/intellectual)
   canWalkFar: null,    // true | false  (dynamic: physical)
   functionalNeeds: [],// selected functional impacts; never a diagnosis verdict
-  province: null,      // "AB" | "BC" | "ON" | "SK" | "MB" | "NB" | "NS" | "PE" | "QC" | "other"
+  province: null,      // "AB" | "BC" | "ON" | "SK" | "MB" | "NB" | "NS" | "PE" | "NL" | "QC" | "other"
   msp: null,           // "yes" | "no" | "unsure" (BC only)
   bcAssistance: null,  // "pwd" | "other" | "none" | "unsure" (BC only)
   circumstances: [],  // concrete ownership/education facts used by a few BC programs
@@ -1782,13 +1784,6 @@ const REQS = {
     fixed: false,
     unmet: "Your household income must be $35,000 or less; the form also lists two low-income benefits.",
   },
-  peOutOfProvinceTravelRoute: {
-    short: "Check the program's income test",
-    who: ["you", "program"],
-    met: () => lowIncome(),
-    fixed: false,
-    unmet: "Your net household income must be $50,000 or less, with Health PEI approval.",
-  },
   peAccessabilitySupportsRoute: {
     short: "Check the diagnosis and that you apply before age sixty-five",
     who: ["you", "professional"],
@@ -1907,6 +1902,216 @@ const REQS = {
     met: () => false,
     fixed: false,
     unmet: "This program is for seniors; a coordinator assesses your eligibility.",
+  },
+  nlIncomeSupportRoute: {
+    short: "Check the program's income test",
+    who: ["you", "program"],
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "You are eighteen or older, live in the province and pass a financial assessment.",
+  },
+  nlDisabilityBenefitRoute: {
+    short: "Check your Disability Tax Credit and the income limits",
+    who: ["you", "professional"],
+    met: () => lowIncome() && answers.dtc === "yes",
+    fixed: false,
+    unmet: "You are eighteen to sixty-four, have the Disability Tax Credit and meet the income limits.",
+  },
+  nlHealthRelatedServicesRoute: {
+    short: "Check that you get the assistance program it names",
+    who: ["you"],
+    met: () => false,
+    fixed: false,
+    unmet: "These services are for people who receive Income Support.",
+  },
+  nlChildBenefitRoute: {
+    short: "Check the income test and that you are raising a child",
+    who: ["you", "program"],
+    met: () => lowIncome() && isUnder18(),
+    fixed: false,
+    unmet: "Your family has children under eighteen and income below the program limit.",
+  },
+  nlPrenatalNutritionRoute: {
+    short: "Check the income test and your child's age",
+    who: ["you", "program"],
+    met: () => lowIncome() && ageIn("under6"),
+    fixed: false,
+    unmet: "You are pregnant or have a child under five, with a low income or on Income Support.",
+  },
+  nlFoundationPlanRoute: {
+    short: "Check that you get the assistance program it names",
+    who: ["you"],
+    met: () => false,
+    fixed: false,
+    unmet: "You receive Income Support or certain health authority services.",
+  },
+  nl65plusPlanRoute: {
+    short: "Check that you get the federal senior benefits",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "You are sixty-five or older and get both federal senior benefits, OAS and GIS.",
+  },
+  nlAccessPlanRoute: {
+    short: "Check the program's income test",
+    who: ["you", "program"],
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "Your net yearly income is at or under the limit for your family type.",
+  },
+  nlAssurancePlanRoute: {
+    short: "Check your drug costs against your income",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "Your eligible drug costs are above a set share of your net income.",
+  },
+  nlSpecialAssistanceRoute: {
+    short: "Ask for a financial assessment",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "You live in the community, need supplies for daily living and meet the financial criteria.",
+  },
+  nlHomeSupportRoute: {
+    short: "Ask for a home support assessment",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "You need home support and pass a functional and financial assessment.",
+  },
+  nlSpecialChildWelfareAllowanceRoute: {
+    short: "Check the disability documents the program asks for",
+    who: ["you", "professional"],
+    met: () => answers.disabilityVerified === "yes",
+    fixed: false,
+    unmet: "Your child under eighteen has a physical or intellectual disability and lives at home.",
+  },
+  nlDirectHomeServicesRoute: {
+    short: "Ask for a developmental assessment",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "Your infant or preschool child shows or is at risk for significant developmental delay.",
+  },
+  nlCommunityBehaviouralServicesRoute: {
+    short: "Ask about a referral",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "You are school-aged or older with a developmental disability and significant behaviour concerns.",
+  },
+  nlPaidFamilyCaregivingRoute: {
+    short: "Ask for a home support assessment",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "You are an adult home support client who needs personal or behaviour care a family member can give.",
+  },
+  nlHomeModificationRoute: {
+    short: "Check the income limit, disability and home ownership",
+    who: ["you", "program"],
+    met: () => lowIncome() && answers.disabilityVerified === "yes" && hasCircumstance("homeowner"),
+    fixed: false,
+    unmet: "You are a homeowner needing accessibility changes, under the yearly income limit.",
+  },
+  nlHomeRepairRoute: {
+    short: "Check the income limit and home ownership",
+    who: ["you", "program"],
+    met: () => lowIncome() && hasCircumstance("homeowner"),
+    fixed: false,
+    unmet: "You are a homeowner with combined yearly income under the limit for your area.",
+  },
+  nlRentalHousingRoute: {
+    short: "Check the program's income test",
+    who: ["you", "program"],
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "Your household income is low and you cannot find suitable, affordable rental housing.",
+  },
+  nlHousingBenefitRoute: {
+    short: "Check the housing need test",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "Your household net income may be at or under the limit and you are in severe core housing need.",
+  },
+  nlSeniorsBenefitRoute: {
+    short: "Check the program's income test",
+    who: ["you", "program"],
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "You are 64 or older by year end and your family net income is under the limit.",
+  },
+  nlIncomeSupplementRoute: {
+    short: "Check the program's income test",
+    who: ["you", "program"],
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "Your family net income is low; the credit phases out as income rises.",
+  },
+  nlChildCareSubsidyRoute: {
+    short: "Check the program's income test",
+    who: ["you", "program"],
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "Your yearly family net income is at or under the limit for your number of children.",
+  },
+  nlStudentDisabilitiesRoute: {
+    short: "Check the disability verification form",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "You need a verified disability that limits your studies or work.",
+  },
+  stJohnsChildrenRecreationSubsidyRoute: {
+    short: "Check the program's income test",
+    who: ["you", "program"],
+    met: () => lowIncome() && isUnder18(),
+    fixed: false,
+    unmet: "Need is judged by Statistics Canada's Low Income Cut Off, using family income and size.",
+  },
+  stJohnsAdultRecreationSubsidyRoute: {
+    short: "Check the program's income test",
+    who: ["you", "program"],
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "Need is judged by Statistics Canada's Low Income Cut Off, using family income and size.",
+  },
+  stJohnsAttendantPassRoute: {
+    short: "Check the disability documents the program asks for",
+    who: ["you", "professional"],
+    met: () => answers.disabilityVerified === "yes",
+    fixed: false,
+    unmet: "You live with a disability that needs a support person, verified by a professional.",
+  },
+  cornerBrookFreeTransitPassRoute: {
+    short: "Check that you get the assistance program it names",
+    who: ["you"],
+    met: () => false,
+    fixed: false,
+    unmet: "You receive income support or youth services, or you are a senior receiving GIS.",
+  },
+  nlMovingIntoWorkforceRoute: {
+    short: "Check that you get the assistance program it names",
+    who: ["you"],
+    met: () => false,
+    fixed: false,
+    unmet: "You must already receive Income Support.",
+  },
+  nlDentalProgramsRoute: {
+    short: "Check which dental program covers your age",
+    who: ["you", "program"],
+    met: () => ageIn("under6", "6to11"),
+    fixed: false,
+    unmet: "Children up to twelve are covered; older youth and adults need Income Support or a plan enrolment.",
+  },
+  nlCaregiverBenefitRoute: {
+    short: "Ask NL Health Services about an assessment",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "The senior you care for must be under the household income limit and have high care needs.",
   },
   kingstonMfapIncome: {
     short: "Check your income against the MFAP limit",
@@ -2913,6 +3118,10 @@ const REQS = {
   },
   vancouver: { met: () => answers.city === "Vancouver", fixed: true, unmet: "This is a City of Vancouver program." },
   surrey: { met: () => answers.city === "Surrey", fixed: true, unmet: "This is a City of Surrey program." },
+  stJohnS: { met: () => answers.city === "St. John's", fixed: true, unmet: "This is a local program for residents of the capital city." },
+  stJohnSArea: { met: () => ["St. John's", "Mount Pearl"].includes(answers.city), fixed: true, unmet: "This is a local program for residents of the capital city and Mount Pearl." },
+  paradise: { met: () => answers.city === "Paradise", fixed: true, unmet: "This is a local program for Paradise residents." },
+  cornerBrook: { met: () => answers.city === "Corner Brook", fixed: true, unmet: "This is a local program for Corner Brook residents." },
   bridgewater: { met: () => answers.city === "Bridgewater", fixed: true, unmet: "This is a local program for Bridgewater residents." },
   moncton: { met: () => answers.city === "Moncton", fixed: true, unmet: "This is a local program for Moncton residents." },
   dieppe: { met: () => answers.city === "Dieppe", fixed: true, unmet: "This is a local program for Dieppe residents." },
@@ -2992,7 +3201,7 @@ const resolveUrl = (u) => (typeof u === "function" ? u(answers) : u);
    journey (or vice versa). National entries use CA and remain visible in both. */
 function coverageApplies(record, province = answers.province) {
   const coverage = Array.isArray(record && record.coverage) ? record.coverage : [];
-  if (!province || !["AB", "BC", "ON", "SK", "MB", "NB", "NS", "PE"].includes(province)) return true;
+  if (!province || !["AB", "BC", "ON", "SK", "MB", "NB", "NS", "PE", "NL"].includes(province)) return true;
   return coverage.includes("CA") || coverage.includes(province);
 }
 
@@ -3006,6 +3215,7 @@ function coverageLabel(record) {
   if (coverage.includes("NB")) return "New Brunswick";
   if (coverage.includes("NS")) return "Nova Scotia";
   if (coverage.includes("PE")) return "Prince Edward Island";
+  if (coverage.includes("NL")) return "Newfoundland and Labrador";
   if (coverage.includes("AB")) return "Alberta";
   return "Check service area";
 }
@@ -3357,6 +3567,7 @@ const STEPS = [
       ...(NB_ENABLED ? [{ value: "NB", label: "New Brunswick" }] : []),
       ...(NS_ENABLED ? [{ value: "NS", label: "Nova Scotia" }] : []),
       ...(PE_ENABLED ? [{ value: "PE", label: "Prince Edward Island" }] : []),
+      ...(NL_ENABLED ? [{ value: "NL", label: "Newfoundland and Labrador" }] : []),
       { value: "other", label: BC_ENABLED ? "Another province or territory" : "No, another province or territory", sub: "you'll still see the Canada-wide programs in our catalog" },
     ],
     onPick(v) {
@@ -3546,6 +3757,7 @@ const STEPS = [
       (answers.province === "NB" && !NB_ENABLED) ||
       (answers.province === "NS" && !NS_ENABLED) ||
       (answers.province === "PE" && !PE_ENABLED) ||
+      (answers.province === "NL" && !NL_ENABLED) ||
       (CITIES_BY_PROVINCE[answers.province] || []).length === 0,
     options: ALBERTA_CITIES, // replaced at render time by the province's list
   },
@@ -3576,6 +3788,8 @@ const RECEIVES_OPTIONS = [
   { value: "ns-disability-support-program", province: "NS", label: "Disability Support Program (Flex or Independent Living Support)" },
   { value: "pe-social-assistance", province: "PE", label: "Social Assistance" },
   { value: "pe-accessability-supports", province: "PE", label: "AccessAbility Supports (including Assured Income)" },
+  { value: "nl-income-support", province: "NL", label: "Income Support" },
+  { value: "nl-disability-benefit", province: "NL", label: "Newfoundland and Labrador Disability Benefit" },
   { value: "cpp-disability", label: "CPP disability benefit" },
 ];
 const receivesChoices = (province) => RECEIVES_OPTIONS.filter((o) => !o.province || o.province === province);
@@ -3600,6 +3814,7 @@ const BROWSE_LEVELS = [
   ...(NB_ENABLED ? [{ key: "New Brunswick", label: "New Brunswick" }] : []),
   ...(NS_ENABLED ? [{ key: "Nova Scotia", label: "Nova Scotia" }] : []),
   ...(PE_ENABLED ? [{ key: "Prince Edward Island", label: "Prince Edward Island" }] : []),
+  ...(NL_ENABLED ? [{ key: "Newfoundland and Labrador", label: "Newfoundland and Labrador" }] : []),
   { key: "local", label: "Local / city" },
 ];
 
@@ -3619,8 +3834,8 @@ const PERSISTENCE_SELECTIONS = {
   circumstances: ["homeowner", "vehicleOwner", "recentGraduate", "none", "unsure"],
   receives: [...RECEIVES_OPTIONS.map((o) => o.value), "none", "unsure"],
   provinces: STEPS.find((step) => step.key === "province").options.map((item) => item.value),
-  cities: [...ALBERTA_CITIES, ...(BC_ENABLED ? BC_CITIES : []), ...(ON_ENABLED ? ON_CITIES : []), ...(SK_ENABLED ? SK_CITIES.filter((c) => !ALBERTA_CITIES.includes(c)) : []), ...(MB_ENABLED ? MB_CITIES : []), ...(NB_ENABLED ? NB_CITIES : []), ...(NS_ENABLED ? NS_CITIES : []), ...(PE_ENABLED ? PE_CITIES : [])],
-  citiesByProvince: { AB: ALBERTA_CITIES, BC: BC_ENABLED ? BC_CITIES : [], ON: ON_ENABLED ? ON_CITIES : [], SK: SK_ENABLED ? SK_CITIES : [], MB: MB_ENABLED ? MB_CITIES : [], NB: NB_ENABLED ? NB_CITIES : [], NS: NS_ENABLED ? NS_CITIES : [], PE: PE_ENABLED ? PE_CITIES : [] },
+  cities: [...ALBERTA_CITIES, ...(BC_ENABLED ? BC_CITIES : []), ...(ON_ENABLED ? ON_CITIES : []), ...(SK_ENABLED ? SK_CITIES.filter((c) => !ALBERTA_CITIES.includes(c)) : []), ...(MB_ENABLED ? MB_CITIES : []), ...(NB_ENABLED ? NB_CITIES : []), ...(NS_ENABLED ? NS_CITIES : []), ...(PE_ENABLED ? PE_CITIES : []), ...(NL_ENABLED ? NL_CITIES : [])],
+  citiesByProvince: { AB: ALBERTA_CITIES, BC: BC_ENABLED ? BC_CITIES : [], ON: ON_ENABLED ? ON_CITIES : [], SK: SK_ENABLED ? SK_CITIES : [], MB: MB_ENABLED ? MB_CITIES : [], NB: NB_ENABLED ? NB_CITIES : [], NS: NS_ENABLED ? NS_CITIES : [], PE: PE_ENABLED ? PE_CITIES : [], NL: NL_ENABLED ? NL_CITIES : [] },
   browseLevels: BROWSE_LEVELS.map((level) => level.key),
   benefitIds: BENEFITS.map((benefit) => benefit.id),
   progressStages: STAGES.map((stage) => stage.key),
@@ -4832,7 +5047,7 @@ function wireAbout() { wireInfoPage(["a-back", "a-back2"]); }
    else to look. The city lists are computed from the matcher: a listed city
    counts as covered when at least one local program does not refuse someone
    who lives there, so the page cannot drift from the catalogue. */
-const LOCAL_LEVELS_EXCLUDED = new Set(["Federal", "Alberta", "British Columbia", "Ontario", "Saskatchewan", "Manitoba", "New Brunswick", "Nova Scotia", "Prince Edward Island"]);
+const LOCAL_LEVELS_EXCLUDED = new Set(["Federal", "Alberta", "British Columbia", "Ontario", "Saskatchewan", "Manitoba", "New Brunswick", "Nova Scotia", "Prince Edward Island", "Newfoundland and Labrador"]);
 function citiesWithoutLocalPrograms() {
   const out = {};
   for (const [prov, cities] of Object.entries(CITIES_BY_PROVINCE)) {
@@ -4853,7 +5068,7 @@ function citiesWithoutLocalPrograms() {
 function renderCoverage() {
   const block = (h, body) => `<div class="legal-block"><h2>${h}</h2>${body}</div>`;
   const missing = citiesWithoutLocalPrograms();
-  const names = { AB: "Alberta", BC: "British Columbia", ON: "Ontario", ...(SK_ENABLED ? { SK: "Saskatchewan" } : {}), ...(MB_ENABLED ? { MB: "Manitoba" } : {}), ...(NB_ENABLED ? { NB: "New Brunswick" } : {}), ...(NS_ENABLED ? { NS: "Nova Scotia" } : {}), ...(PE_ENABLED ? { PE: "Prince Edward Island" } : {}) };
+  const names = { AB: "Alberta", BC: "British Columbia", ON: "Ontario", ...(SK_ENABLED ? { SK: "Saskatchewan" } : {}), ...(MB_ENABLED ? { MB: "Manitoba" } : {}), ...(NB_ENABLED ? { NB: "New Brunswick" } : {}), ...(NS_ENABLED ? { NS: "Nova Scotia" } : {}), ...(PE_ENABLED ? { PE: "Prince Edward Island" } : {}), ...(NL_ENABLED ? { NL: "Newfoundland and Labrador" } : {}) };
   const cityRows = Object.entries(missing).filter(([p]) => names[p]).map(([p, list]) =>
     `<p><b>${names[p]}:</b> ${list.length ? reqEscape(list.join(", ")) : "every listed community has at least one local program"}.</p>`).join("");
   const localCount = BENEFITS.filter((b) => !LOCAL_LEVELS_EXCLUDED.has(b.level)).length;
@@ -4872,7 +5087,7 @@ function renderCoverage() {
       <li>${icon("info")}<span>Some charity grants and community organizations: our <button class="linklike" data-cover-nav="grants">grants</button> and <button class="linklike" data-cover-nav="organizations">organizations</button> lists hold the ones we have checked.</span></li>
     </ul>`)}
     ${block("Language", `<p>The menus can switch to French, but program details are in English for now.</p>`)}
-    ${block("Where else to look", `<p>211 can point you to local programs: <a href="https://ab.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>Alberta 211</a>, <a href="https://bc.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>BC 211</a>, <a href="https://211ontario.ca" target="_blank" rel="noopener noreferrer" data-ext>211 Ontario</a>${SK_ENABLED ? `, <a href="https://sk.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Saskatchewan</a>` : ""}${MB_ENABLED ? `, <a href="https://mb.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Manitoba</a>` : ""}${NB_ENABLED ? `, <a href="https://nb.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 New Brunswick</a>` : ""}${NS_ENABLED ? `, <a href="https://ns.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Nova Scotia</a>` : ""}${PE_ENABLED ? `, <a href="https://pe.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Prince Edward Island</a>` : ""}. Elsewhere in Canada, visit <a href="https://211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211.ca</a>.</p>`)}
+    ${block("Where else to look", `<p>211 can point you to local programs: <a href="https://ab.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>Alberta 211</a>, <a href="https://bc.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>BC 211</a>, <a href="https://211ontario.ca" target="_blank" rel="noopener noreferrer" data-ext>211 Ontario</a>${SK_ENABLED ? `, <a href="https://sk.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Saskatchewan</a>` : ""}${MB_ENABLED ? `, <a href="https://mb.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Manitoba</a>` : ""}${NB_ENABLED ? `, <a href="https://nb.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 New Brunswick</a>` : ""}${NS_ENABLED ? `, <a href="https://ns.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Nova Scotia</a>` : ""}${PE_ENABLED ? `, <a href="https://pe.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Prince Edward Island</a>` : ""}${NL_ENABLED ? `, <a href="https://nl.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Newfoundland and Labrador</a>` : ""}. Elsewhere in Canada, visit <a href="https://211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211.ca</a>.</p>`)}
     ${block("Know a program we missed?", `<p>Tell us through the <button class="linklike js-feedback">feedback form</button>. We add a program only after we read its official page.</p>`)}
     <button class="back-link bottom" id="cv-back2">${icon("arrowLeft")} Back</button>
   </section>`;
@@ -5930,6 +6145,7 @@ function benefitProvince(b) {
   if (benefitIsNewBrunswick(b)) return "NB";
   if (benefitIsNovaScotia(b)) return "NS";
   if (benefitIsPrinceEdwardIsland(b)) return "PE";
+  if (benefitIsNewfoundlandandLabrador(b)) return "NL";
   if (benefitIsBritishColumbia(b)) return "BC";
   if (b.level === "Alberta" || ALBERTA_CITIES.includes(b.level) || b.level === "Spruce Grove area") return "AB";
   const r = b.requires;
@@ -6959,7 +7175,7 @@ function printResults() {
    BROWSE / SEARCH — explore every benefit without doing the wizard
    ========================================================================== */
 function benefitIsLocal(b) {
-  return !["Federal", "Alberta", "British Columbia", "Ontario", "Saskatchewan", "Manitoba", "New Brunswick", "Nova Scotia", "Prince Edward Island"].includes(b.level);
+  return !["Federal", "Alberta", "British Columbia", "Ontario", "Saskatchewan", "Manitoba", "New Brunswick", "Nova Scotia", "Prince Edward Island", "Newfoundland and Labrador"].includes(b.level);
 }
 function benefitIsBritishColumbia(b) {
   return b.level === "British Columbia" || b.level === "Metro Vancouver" || BC_CITIES.includes(b.level);
@@ -6987,6 +7203,9 @@ function benefitIsNovaScotia(b) {
 function benefitIsPrinceEdwardIsland(b) {
   return b.level === "Prince Edward Island" || PE_CITIES.includes(b.level);
 }
+function benefitIsNewfoundlandandLabrador(b) {
+  return b.level === "Newfoundland and Labrador" || NL_CITIES.includes(b.level);
+}
 function browseCatalog() {
   let list = BENEFITS;
   if (!BC_ENABLED) list = list.filter((b) => !benefitIsBritishColumbia(b));
@@ -6996,6 +7215,7 @@ function browseCatalog() {
   if (!NB_ENABLED) list = list.filter((b) => !benefitIsNewBrunswick(b));
   if (!NS_ENABLED) list = list.filter((b) => !benefitIsNovaScotia(b));
   if (!PE_ENABLED) list = list.filter((b) => !benefitIsPrinceEdwardIsland(b));
+  if (!NL_ENABLED) list = list.filter((b) => !benefitIsNewfoundlandandLabrador(b));
   return list;
 }
 function benefitSearchText(b) {

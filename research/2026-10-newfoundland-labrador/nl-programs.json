@@ -1,0 +1,410 @@
+{
+ "provincial": [
+  {
+   "name": "Income Support",
+   "url": "https://www.gov.nl.ca/sswb/income-support/overview/",
+   "fetched": true,
+   "who": "Age 18+, NL resident, application, eligible per financial assessment.",
+   "what": "Basic monthly (excl shelter/fuel/special needs): single $561; couple $1,122; single parent $729; couple w/ children $1,122. Rent/mortgage up to $522 single alone, $299 with roommate, $598 couple. Fuel supplement $71 Island/$132 Labrador; $150 cost-of-living allowance coastal Labrador. Non-basic: municipal taxes, eye exams/glasses, employment childcare, burial. Extended drug card 12 months after leaving.",
+   "apply": "Applying for Income Support page (gov.nl.ca/sswb/income-support/application/); signed complete application with documents. Email SSWBInfo@gov.nl.ca.",
+   "notes": "Dept now named Social Supports and Well-Being (SSWB); old /cssd/ URLs 404 or redirect. Disability-specific income support not described on page."
+  },
+  {
+   "name": "Newfoundland and Labrador Disability Benefit (NLDB)",
+   "url": "https://www.gov.nl.ca/sswb/newfoundland-and-labrador-disability-benefit/",
+   "fetched": true,
+   "who": "Ages 18-64, qualify for federal Disability Tax Credit, file tax return, valid DTC certificate, live in NL.",
+   "what": "Up to $400/month ($4,800/yr). Full benefit income below $29,402; partial between $29,402 and $42,404 (individual or couple with one DTC); couples both DTC partial up to $55,404.",
+   "apply": "No application required (page says so).",
+   "notes": "Start date not stated on page. Related Provincial RDSP contribution ($1,200/yr, ages 18-49, DTC + RDSP, income below $42,404) is NOT yet implemented; no start date."
+  },
+  {
+   "name": "Health Related Services (Income Support: vision, dental, hearing devices, diet)",
+   "url": "https://www.gov.nl.ca/sswb/income-support/healthservices/",
+   "fetched": true,
+   "who": "Primarily Income Support recipients; others may qualify after completing and being assessed on an Income Support application.",
+   "what": "Vision: $100 toward eye exam (12 mo children/36 mo adults); glasses up to $290 single vision/$350 bifocal. Dental: children universal to 12, 13-17 if family on IS or Access Plan; adult IS recipients exam, x-rays, fillings/extractions every 3 yrs, dentures every 8 yrs. Hearing/Deaf devices one-time: visual smoke detector up to $250, Alertmaster $155, TTY $422. Special diet allowance up to $60/month.",
+   "apply": "No separate application; apply for Income Support. Special diet line 1-877-729-7888.",
+   "notes": "Medical transportation no longer under IS (see MTAP)."
+  },
+  {
+   "name": "NL Child Benefit (NLCB)",
+   "url": "https://www.gov.nl.ca/sswb/income-support/child/",
+   "fetched": true,
+   "who": "Families with children under 18, net family income below $38,193 (full under $20,397).",
+   "what": "Max effective July 1 2026: 1 child $157.33/mo; 2 $324.17; 3 $503.33; 4 $695.83.",
+   "apply": "Paid via CRA with federal benefits; file taxes. Page gives no separate application.",
+   "notes": "Child benefit, not disability-specific."
+  },
+  {
+   "name": "Prenatal-Early Childhood Nutrition Supplement",
+   "url": "https://www.gov.nl.ca/sswb/income-support/nutritionsupplement/",
+   "fetched": false,
+   "who": "Pregnant or child under five (as summarized on NLCB page; details page not fetched).",
+   "what": "$150/month (per NLCB page).",
+   "apply": "See nutritionsupplement page.",
+   "notes": "Only seen via NLCB page summary."
+  },
+  {
+   "name": "NL Prescription Drug Program: Foundation, 65Plus, Access, Assurance, Select Needs plans",
+   "url": "https://www.gov.nl.ca/hcs/prescription/nlpdp-plan-overview/",
+   "fetched": true,
+   "who": "Foundation: income support recipients etc (automatic). 65Plus: 65+ receiving OAS and GIS (automatic). Access: net income <= $42,870 families w/ children, $30,009 couples, $27,151 singles. Assurance: drug costs above 5% of net income (<$40k), 7.5% ($40-75k), 10% ($75-150k), reassessed every 6 months. Select Needs: cystic fibrosis/growth hormone deficiency.",
+   "what": "Foundation/65Plus full coverage of eligible drugs; Access/Assurance co-payments apply.",
+   "apply": "Application form: gov.nl.ca/hcs/prescription/how-do-i-apply/ ; 1-888-859-3535; healthinfo@gov.nl.ca.",
+   "notes": "Select Needs is disease-specific: exclude from app. Access thresholds also seen in search results; fetch confirmed."
+  },
+  {
+   "name": "Special Assistance Program (medical equipment and supplies)",
+   "url": "https://www.gov.nl.ca/seniors/seniors-health-care/special-assistance-program/",
+   "fetched": true,
+   "who": "Live in community (not long-term care), need supplies/equipment for daily living, meet financial criteria in Income Based Financial Assessment Policy Manual.",
+   "what": "Dressings, catheters, incontinence supplies, oxygen, orthotics (braces, burn garments), wheelchairs, walkers, commodes.",
+   "apply": "Contact NL Health Services; page links to How to Apply (not fetched).",
+   "notes": "Financial thresholds not captured."
+  },
+  {
+   "name": "Provincial Home Support Program",
+   "url": "https://www.gov.nl.ca/hcs/personsdisabilities/fundingprograms-hcs/",
+   "fetched": true,
+   "who": "Functional and financial assessment by regional health authority for subsidy; seniors and adults/children with disabilities.",
+   "what": "Non-professional personal care, behavioural support, household management, respite; subsidized up to a ceiling.",
+   "apply": "Referral through NL Health Services (any person incl. self). Contacts: Eastern 709-752-4835; Central 1-833-210-8491; Western 709-695-6263; Labrador-Grenfell 1-833-284-4751.",
+   "notes": "Older source (2009 release, search only) said singles income <= $13,000 / couples <= $21,000 pay no contribution; likely dated."
+  },
+  {
+   "name": "Paid Family Caregiving Option (home support)",
+   "url": "https://www.gov.nl.ca/hcs/long-term-care/family-caregiving/",
+   "fetched": true,
+   "who": "Client of Adult Home Support Program with long-term need; pass clinical and financial assessment; caregiver relative (not spouse).",
+   "what": "Paid family caregiver: personal care up to 4 hr/day seniors, 5 hr/day adults with disabilities; homemaking limits; respite by invoice.",
+   "apply": "Contact regional health authority (numbers above), assessment and funding agreement.",
+   "notes": "Page based on 2015 release; confirm current."
+  },
+  {
+   "name": "Special Child Welfare Allowance Program (SCWAP)",
+   "url": "https://www.gov.nl.ca/hcs/personsdisabilities/fundingprograms-hcs/",
+   "fetched": true,
+   "who": "Family with child under 18 with physical or intellectual disability living at home; financial needs test.",
+   "what": "Monthly financial help toward disability-related services; amount by needs test.",
+   "apply": "Contact NL Health Services in your area.",
+   "notes": "Amount not stated."
+  },
+  {
+   "name": "Direct Home Services Program incl. intensive ABA (autism)",
+   "url": "https://www.gov.nl.ca/hcs/personsdisabilities/fundingprograms-hcs/",
+   "fetched": true,
+   "who": "Infants/preschoolers with or at risk of significant developmental delay; ABA: autism diagnosis, up to Grade 3 (per page).",
+   "what": "Free home-based early intervention; ABA home training.",
+   "apply": "Referral by family or provider to regional health authority.",
+   "notes": "2019 Autism Action Plan release said ABA to expand to age 21; unconfirmed."
+  },
+  {
+   "name": "Community Behavioural Services Program",
+   "url": "https://www.gov.nl.ca/hcs/personsdisabilities/fundingprograms-hcs/",
+   "fetched": true,
+   "who": "School-aged and older with developmental disability and significant behavioural concerns.",
+   "what": "Voluntary in-home/community behavioural support, reassessed every 6 months.",
+   "apply": "Referral by family, provider, or adult individual.",
+   "notes": ""
+  },
+  {
+   "name": "Residential options for adults with disabilities (Co-op Apartment, Alt Family Care, Board and Lodging Supplement, ILA, Shared Living)",
+   "url": "https://www.gov.nl.ca/hcs/personsdisabilities/fundingprograms-hcs/",
+   "fetched": true,
+   "who": "Adults with disabilities who meet criteria and cannot live with family (varies by option).",
+   "what": "Supported housing, supervision, supplements.",
+   "apply": "Contact NL Health Services.",
+   "notes": ""
+  },
+  {
+   "name": "NL Housing: Home Modification Program (HMP)",
+   "url": "https://www.nlhc.nl.ca/housing-programs/home-modification-program-hmp/",
+   "fetched": true,
+   "who": "Homeowners needing accessibility changes, income <= $51,500 ($65,000 Labrador), not NLHC clients.",
+   "what": "Forgivable loan up to $15,000 (forgiven after 5 years). Ramps, wider doors, roll-in showers, grab bars, etc.",
+   "apply": "Online via regional office or printed form; OT letter needed for major work only (changed Fall 2026).",
+   "notes": ""
+  },
+  {
+   "name": "NL Housing: Provincial Home Repair Program (PHRP)",
+   "url": "https://www.nlhc.nl.ca/housing-programs/provincial-home-repair-program-phrp/",
+   "fetched": true,
+   "who": "Household income below $42,500 ($65,000 Labrador), own and lived in home 5+ yrs, not NLHC client.",
+   "what": "Forgivable loan up to $10,000 ($13,000 Labrador); lifetime max $30,000.",
+   "apply": "Online via regional office or printed form.",
+   "notes": "Replaced HESP repairs."
+  },
+  {
+   "name": "NL Housing: Rental Housing Program (social housing)",
+   "url": "https://www.nlhc.nl.ca/housing-programs/rental-housing-program/",
+   "fetched": true,
+   "who": "Low income households incl. people with disabilities; limits not stated.",
+   "what": "Rent 25% of net monthly income.",
+   "apply": "Online or PDF application to regional office (Avalon 709-724-3197 etc.).",
+   "notes": "Accessible units not mentioned."
+  },
+  {
+   "name": "Canada-NL Housing Benefit",
+   "url": "https://www.nlhc.nl.ca/wp-content/uploads/2023/08/CNLHB-QA-with-Conversion-Information.pdf",
+   "fetched": false,
+   "who": "Total household net income <= $32,500 ($65,000 Labrador West/North Coast) per search results.",
+   "what": "Monthly rent benefit; amount based on ability to pay vs market rent; portable.",
+   "apply": "See NLHC; not confirmed.",
+   "notes": "Seen only in search results. Apr 2026 release: +$4M/yr (~500 households)."
+  },
+  {
+   "name": "NL Housing: Homeowner support programs (new, Sept 2026)",
+   "url": "https://www.nlhc.nl.ca/",
+   "fetched": false,
+   "who": "Not stated.",
+   "what": "Not stated.",
+   "apply": "Announced as launching week of Sept 22 2026.",
+   "notes": "Homepage mention only."
+  },
+  {
+   "name": "Home Heating Supplement (furnace and stove oil)",
+   "url": "https://www.gov.nl.ca/releases/?p=56828",
+   "fetched": true,
+   "who": "NL resident, adjusted family income <= $150,000, paid for oil heat.",
+   "what": "$200 to $500.",
+   "apply": "Online with invoice (250+ litres). OilSupplement@gov.nl.ca, 709-729-4645.",
+   "notes": "Deadline was Jan 15 2026; 2026 budget extends program per search; next intake unconfirmed."
+  },
+  {
+   "name": "NL Seniors' Benefit and NL Income Supplement",
+   "url": "https://www.gov.nl.ca/fin/tax-programs-incentives/personal/income-supplement/",
+   "fetched": true,
+   "who": "Seniors' Benefit: 64+ by Dec 31, family net income to $30,409 full, phase-out to $46,550. Income Supplement: low income families.",
+   "what": "Seniors' Benefit max $1,882 (from July 2026). NLIS max $520 (2025 yr) plus $231 for each person claiming DTC.",
+   "apply": "No application; file tax return. Quarterly payments.",
+   "notes": ""
+  },
+  {
+   "name": "Child Care Subsidy Program",
+   "url": "https://www.gov.nl.ca/education/files/Child-Care-Subsidy-Policy-Manual-.pdf",
+   "fetched": false,
+   "who": "Income-tested; regulated child care; manual v1.3 Apr 1 2026; includes Disability Related Transportation Supplement.",
+   "what": "Covers all or part of fees by income. Dec 2021 release: full subsidy threshold $41,000-$77,000 by children.",
+   "apply": "Application to regional ELICD office; print and sign.",
+   "notes": "Current thresholds not verified; PDF only seen via search."
+  },
+  {
+   "name": "Accessible Parking Permit (Service NL)",
+   "url": "https://www.gov.nl.ca/motorregistration/accessible-parking-permit/",
+   "fetched": true,
+   "who": "Persons with disabilities (criteria in guidelines PDF, not read).",
+   "what": "Permit per person, usable in any vehicle.",
+   "apply": "Application page /accessible-parking-permit/application/ ; 1-877-636-6867; accessparkingpermits@gov.nl.ca.",
+   "notes": "Fee/eligibility not captured."
+  },
+  {
+   "name": "StudentAidNL: Students with Disabilities grants",
+   "url": "https://www.gov.nl.ca/education/studentaid/disabilities/",
+   "fetched": true,
+   "who": "Disability lasting 12+ months or lifetime (permanent or persistent/prolonged); meet academic performance rules.",
+   "what": "CSG-D $2,800/yr; CSG-DSE up to $20,000/yr; Provincial Grant for High Need above that; 520 weeks.",
+   "apply": "Apply via StudentAidNL; school submits CSG-DSE. 709-729-5097.",
+   "notes": ""
+  },
+  {
+   "name": "Medical Transportation Assistance Program (MTAP, Labrador Affairs)",
+   "url": "https://www.gov.nl.ca/la/files/MTAP-FACT-Sheet_Aug-26.pdf",
+   "fetched": false,
+   "who": "Valid MCP, referral for specialized insured services not available locally; payer of last resort.",
+   "what": "Travel cost help.",
+   "apply": "MTAP claims mtap@gov.nl.ca; 1-877-475-2412; Income Support clients 1-833-729-6106.",
+   "notes": "Search results only; mixed on which dept administers."
+  },
+  {
+   "name": "Free transit passes for Income Support recipients (pilot, Metro St. John's)",
+   "url": "https://www.gov.nl.ca/releases/2020/aesl/0217n03/",
+   "fetched": false,
+   "who": "Income support recipients in St. John's/Mount Pearl/Paradise.",
+   "what": "Metrobus/GoBus passes.",
+   "apply": "Income Support 709-729-7888.",
+   "notes": "2020 release; current status unknown. Corner Brook page says provincially funded free passes for income support recipients, youth, and GIS seniors."
+  }
+ ],
+ "municipal": [
+  {
+   "name": "St. John's Recreation Financial Supports (children's, adult, REAL)",
+   "url": "https://stjohns.ca/recreation-culture/recreation-programs/financial-supports/",
+   "fetched": true,
+   "who": "St. John's residents; need by StatCan LICO; proof of residency and income.",
+   "what": "Full or partial subsidy; no amounts.",
+   "apply": "Application form + residency + Notice of Assessment. inclusion@stjohns.ca 709-576-8684.",
+   "notes": "City: St. John's"
+  },
+  {
+   "name": "St. John's Attendant Pass",
+   "url": "https://stjohns.ca/recreation-culture/accessible-inclusive-recreation/attendant-passes/",
+   "fetched": true,
+   "who": "Disability requiring support person; professional verification.",
+   "what": "Attendant free or discounted at venues; accepted on Metrobus.",
+   "apply": "Application to inclusion@stjohns.ca; 709-576-4556; 2-4 weeks.",
+   "notes": "City: St. John's"
+  },
+  {
+   "name": "St. John's Adaptive Equipment Lending and Recreation Support Services",
+   "url": "https://www.stjohns.ca/en/recreation-culture/inclusive-services.aspx",
+   "fetched": true,
+   "who": "Not stated.",
+   "what": "Free adaptive equipment lending; recreation support.",
+   "apply": "inclusion@stjohns.ca 709-576-2574.",
+   "notes": "City: St. John's"
+  },
+  {
+   "name": "St. John's Seniors Tax Reduction",
+   "url": "https://www.stjohns.ca/resident-services/property-taxes-assessments/seniors-tax-reductions/",
+   "fetched": true,
+   "who": "Owner-occupier, 65+ with GIS, or 60-64 with Allowance for the Survivor.",
+   "what": "25% reduction per tax rates page (search result); fetched page gives no amount.",
+   "apply": "Application + Service Canada letter; 709-576-8251.",
+   "notes": "City: St. John's"
+  },
+  {
+   "name": "GoBus accessible transit (St. John's and Mount Pearl)",
+   "url": "https://metrobus.com/alf/gobus_info.asp",
+   "fetched": true,
+   "who": "Disability preventing Metrobus use; assessment.",
+   "what": "Fares (2017 list): cash $2.50 adult, 10-ride $22.50, monthly $78; senior/youth $53 monthly.",
+   "apply": "Application form, assessment; gobus@metrobus.com 709-570-2131.",
+   "notes": "City: St. John's / Mount Pearl; fares possibly outdated."
+  },
+  {
+   "name": "Mount Pearl PEARL Program (recreation subsidy)",
+   "url": "https://www.mountpearl.ca/recreation/programs/community-funding-support/",
+   "fetched": true,
+   "who": "Mount Pearl residents with financial difficulty; community leader reference.",
+   "what": "Subsidy for one activity per person per season; amount not stated.",
+   "apply": "Pearl application form; Breanna Pelley 709-748-1000 ext 1213.",
+   "notes": "City: Mount Pearl"
+  },
+  {
+   "name": "Paradise Accessible Transit Project (subsidized taxi)",
+   "url": "https://www.paradise.ca/recycling-garbage-roads/accessible-transit-project/",
+   "fetched": true,
+   "who": "Paradise residents with physical, cognitive, sensory or visual limitation; health assessment.",
+   "what": "Free taxi rides within Paradise; town pays assessment.",
+   "apply": "Form to info@paradise.ca; assessment at Body Quest.",
+   "notes": "City: Paradise"
+  },
+  {
+   "name": "Corner Brook CBT Link accessible transit",
+   "url": "https://www.cornerbrook.com/bus-transit/",
+   "fetched": true,
+   "who": "Disability preventing conventional transit use; approved registration.",
+   "what": "Door-to-door within city; attendants ride free.",
+   "apply": "Call 709-637-1666 or download form; healthcare professional section.",
+   "notes": "City: Corner Brook"
+  },
+  {
+   "name": "Corner Brook Free Transit Pass Program",
+   "url": "https://www.cornerbrook.com/bus-transit/",
+   "fetched": true,
+   "who": "Income Support recipients, youth in services, GIS seniors.",
+   "what": "Free passes (province funded). Reduced senior monthly $60.",
+   "apply": "Pick up at City Hall with ID/proof of GIS.",
+   "notes": "City: Corner Brook"
+  },
+  {
+   "name": "Conception Bay South accessible community transportation",
+   "url": "https://theshoreline.ca/2020/02/20/getting-around-town/",
+   "fetched": false,
+   "who": "Vulnerable populations.",
+   "what": "Service in development per grant.",
+   "apply": "Unknown.",
+   "notes": "Search only; no fee assistance found."
+  },
+  {
+   "name": "Torbay / Portugal Cove-St. Philip's regional transit study",
+   "url": "https://www.gov.nl.ca/releases/2025/cssd-en/0331n04/",
+   "fetched": false,
+   "who": "n/a",
+   "what": "Feasibility study only.",
+   "apply": "n/a",
+   "notes": "No program yet."
+  },
+  {
+   "name": "Labrador West community transportation (Twin Cities 50+ Social Club)",
+   "url": "https://www.gov.nl.ca/releases/2020/cssd-en/0312n07/",
+   "fetched": false,
+   "who": "People with mobility issues in Labrador West.",
+   "what": "Transportation to appointments and events.",
+   "apply": "Unknown.",
+   "notes": "Grant 2019-20; current status unknown."
+  },
+  {
+   "name": "Happy Valley-Goose Bay Seniors Van (Labrador Friendship Centre)",
+   "url": "https://www.gov.nl.ca/releases/2020/cssd-en/0312n07/",
+   "fetched": false,
+   "who": "Seniors and caregivers.",
+   "what": "Weekday van.",
+   "apply": "Unknown.",
+   "notes": "Search only; not a town program."
+  }
+ ],
+ "checked_hubs": [
+  {
+   "url": "https://www.gov.nl.ca/cssd/income-support/",
+   "status": "ok, redirect to sswb"
+  },
+  {
+   "url": "https://www.gov.nl.ca/cssd/disability-supports/",
+   "status": "404"
+  },
+  {
+   "url": "https://www.gov.nl.ca/hcs/prescription/plan-overview/",
+   "status": "404"
+  },
+  {
+   "url": "https://www.gov.nl.ca/hcs/prescription/plan-overview/65plus/",
+   "status": "404"
+  },
+  {
+   "url": "https://www.nlhc.nl.ca/",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.nlhc.nl.ca/housing-programs/",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.gov.nl.ca/sswb/income-support/overview/",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.gov.nl.ca/hcs/personsdisabilities/fundingprograms-hcs/",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.gov.nl.ca/motorregistration/accessible-parking-permit/",
+   "status": "ok, mostly navigation"
+  },
+  {
+   "url": "https://stjohns.ca/",
+   "status": "ok (financial-supports, seniors tax, attendant)"
+  },
+  {
+   "url": "https://www.mountpearl.ca/",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.cornerbrook.com/bus-transit/",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.paradise.ca/",
+   "status": "ok"
+  },
+  {
+   "url": "https://nlhealthservices.ca",
+   "status": "not fetched directly; no pages returned in search"
+  },
+  {
+   "url": "Gander, Grand Falls-Windsor, Stephenville, Clarenville, CBS, Torbay, PCSP, HV-GB, Labrador City sites",
+   "status": "not fetched directly; searches found no resident programs; sites not blocked, just unchecked"
+  }
+ ]
+}

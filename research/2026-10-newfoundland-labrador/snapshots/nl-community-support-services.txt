@@ -1,0 +1,23 @@
+URL: https://www.gov.nl.ca/hcs/seniors/community-support-services/ | province: NL | program: Community Support Services | fetched: 2026-10-18
+=== PAGE: https://www.gov.nl.ca/hcs/seniors/community-support-services/ (HTTP 200, 895 chars)
+- 
+ Community Support Services - Health and Community Services 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+ You are using an outdated browser. Please upgrade your browser to improve your experience.
+ Warning: It seems JavaScript is either disabled or not supported by your browser. Please enable JavaScript to improve your experience.
+ Skip to content 
+ Health and Community Services > For Seniors > Community Support Services 
+ Seniors who wish to remain living at home can access various community support programs offered through the regional health authorities. Two of these include:
+- Home Support Program 
+- Special Assistance Program 
+ The cost of these programs are subsidized for individuals who have been assessed as eligible by staff of the regional health authority.
+ For further information on these and other community support services in your region contact your regional health authority.

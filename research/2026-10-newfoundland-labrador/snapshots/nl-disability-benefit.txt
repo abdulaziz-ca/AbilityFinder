@@ -1,0 +1,34 @@
+URL: https://www.gov.nl.ca/sswb/newfoundland-and-labrador-disability-benefit/ | province: NL | program: NL Disability Benefit | fetched: 2026-10-18
+=== PAGE: https://www.gov.nl.ca/sswb/newfoundland-and-labrador-disability-benefit/ (HTTP 200, 3017 chars)
+- 
+ Newfoundland and Labrador Disability Benefit - Social Supports and Well-Being 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+ You are using an outdated browser. Please upgrade your browser to improve your experience.
+ Warning: It seems JavaScript is either disabled or not supported by your browser. Please enable JavaScript to improve your experience.
+ Skip to content 
+ Social Supports and Well-Being > Newfoundland and Labrador Disability Benefit 
+ The provincial government is strengthening financial supports for persons with disabilities living with low incomes.
+ The Newfoundland and Labrador Disability Benefit includes  Up to $400 per month for those who qualify ($4,800 annually).  The monthly amount is available for Persons with Disabilities between the ages of  18-64  who qualify for the Government of Canada’s Disability Tax Credit (DTC). Income thresholds for this monthly benefit are between $29,402 and $42,404 for individuals and couples where one person is in receipt of the DTC, and between $29,402 and $55,404 for couples where both are in receipt of the DTC. Individuals and couples with incomes within these thresholds will receive a partial benefit amount, while those with incomes below $29,402 will receive the full $400 benefit.
+ There is no application required for the NLDB monthly benefit. Qualifying persons must file their income tax, have a valid DTC certificate, be a resident of Newfoundland and Labrador, and meet the above noted age and income criteria.
+ Provincial contribution to the Registered Disability Savings Plan (RDSP).
+ In June 2024, the provincial government announced a $1,200 annual contribution to a Person’s Registered Disability Savings Plan (RDSP) . Qualifying persons must have a DTC and RDSP. They must also be between the ages of  18-49.  Individuals and couples where one person is in receipt of the DTC with incomes below $42,404 will be eligible. This benefit was not implemented by the prior administration. Our government is working collaboratively with the federal government and financial institutions to evaluate options and determine a realistic and timely path forward. Details will be made public when available.
+ Resources Available  
+ If you require assistance navigating the Disability Tax Credit (DTC) process, the following resources are available:
+- Employment and Social Development Canada (ESDC) provide navigation resources to the Atlantic provinces through Independent Living Nova Scotia. Assistance can be accessed at  Disability Tax Credit Support – Independent Living Nova Scotia. 
+- The Plan Institute  has a website dedicated to Canada Disability Benefit and offers  one on one support  for Disability Tax Credit and other Federal program applications. They can also be contacted at 1-844-311-7526 or at  helpline@planinstitute.ca .
+ Quick Links 
+- 
+- Canada Disability Benefit 
+- Disability tax credit (DTC) 
+- Disability Tax Credit Support – Independent Living Nova Scotia 
+- Plan Institute 
+- Plan Institute – Disability Planning Helpline

@@ -166,8 +166,15 @@ const PE_CITIES = [
   "Summerside", "Alberton", "Tignish",
   "Other / my town isn't listed",
 ];
-const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES, ON: ON_CITIES, SK: SK_CITIES, MB: MB_CITIES, NB: NB_CITIES, NS: NS_CITIES, PE: PE_CITIES };
-const COVERED_PROVINCES = ["AB", "BC", "ON", "SK", "MB", "NB", "NS", "PE"];
+/* Newfoundland and Labrador municipalities offered in the questionnaire. */
+const NL_CITIES = [
+  "St. John's", "Conception Bay South", "Paradise", "Mount Pearl", "Corner Brook", "Grand Falls-Windsor",
+  "Gander", "Portugal Cove-St. Philip's", "Happy Valley-Goose Bay", "Torbay", "Labrador City", "Clarenville",
+  "Stephenville",
+  "Other / my town isn't listed",
+];
+const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES, ON: ON_CITIES, SK: SK_CITIES, MB: MB_CITIES, NB: NB_CITIES, NS: NS_CITIES, PE: PE_CITIES, NL: NL_CITIES };
+const COVERED_PROVINCES = ["AB", "BC", "ON", "SK", "MB", "NB", "NS", "PE", "NL"];
 
 /* national fallbacks (used when a jurisdiction isn't in the maps yet) */
 const FED_STUDENT_AID = "https://www.canada.ca/en/employment-social-development/services/education/grants/disabilities.html";
@@ -182,6 +189,7 @@ const STUDENT_AID = {
   NB: "https://www.gnb.ca/en/topic/education-training/post-secondary/student-aid/resources-students-disabilities.html",
   NS: "https://novascotia.ca/studentassistance/apply/new/StudentsWithDisabilities.asp",
   PE: "https://www.princeedwardisland.ca/en/information/workforce-and-advanced-learning/canada-student-grants-for-students-with-disabilities",
+  NL: "https://www.gov.nl.ca/education/studentaid/disabilities/",
 };
 const TWO_ELEVEN = { AB: "https://ab.211.ca/", BC: "https://bc.211.ca/",
   ON: "https://211ontario.ca",
@@ -190,6 +198,7 @@ const TWO_ELEVEN = { AB: "https://ab.211.ca/", BC: "https://bc.211.ca/",
   NB: "https://nb.211.ca/",
   NS: "https://ns.211.ca",
   PE: "https://pe.211.ca/about-us",
+  NL: "https://nl.211.ca/",
 };
 const EMPLOYMENT = {
   AB: "https://www.alberta.ca/disability-related-employment-supports",
@@ -200,6 +209,7 @@ const EMPLOYMENT = {
   NB: "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/tess-disabilities.html",
   NS: "https://novascotia.ca/employmentnovascotia/interventions/default.asp",
   PE: "https://resourceabilities.ca/job-seekers/",
+  NL: "https://www.sci-nl.ca/",
 };
 
 /* =============================================================================
@@ -210,6 +220,41 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "nl-caregiver-benefit": { kind: "grant", note: "$400 a month paid to the caregiver." },
+  "nl-dental-programs": { kind: "access", note: "Dental coverage for children, eligible youth and Foundation Plan adults." },
+  "nl-moving-into-workforce": { kind: "grant", note: "Extra income and bonuses while you move into work." },
+  "corner-brook-free-transit-pass": { kind: "access", note: "Free transit pass; type and length not published" },
+  "corner-brook-cbt-link": { kind: "access", note: "Accessible door-to-door rides; attendants ride free" },
+  "paradise-accessible-transit": { kind: "access", note: "Free taxi rides within town for registered residents with a disability" },
+  "st-johns-gobus": { kind: "access", note: "Registered riders get accessible rides; fares are pay as you go" },
+  "st-johns-attendant-pass": { kind: "access", note: "Free or discounted entry for a support person, set by each venue" },
+  "st-johns-adult-recreation-subsidy": { kind: "discount", note: "Full or partial subsidy of adult program fees" },
+  "st-johns-children-recreation-subsidy": { kind: "discount", note: "Full or partial subsidy of children's program fees" },
+  "nl-mtap": { kind: "discount", note: "Repays travel costs for specialized medical care away from home." },
+  "nl-student-disabilities": { kind: "grant", note: "Provincial grant for disability costs beyond the federal grant limit." },
+  "nl-accessible-parking": { kind: "access", note: "Free permit to use accessible parking spaces." },
+  "nl-child-care-subsidy": { kind: "grant", note: "Child care fees paid directly to your regulated child care service." },
+  "nl-income-supplement": { kind: "grant", note: "Yearly payment for low-income people and families, paid in four installments." },
+  "nl-seniors-benefit": { kind: "grant", note: "Yearly payment for older adults, paid in four installments." },
+  "nl-housing-benefit": { kind: "grant", note: "Monthly money toward rent that moves with you." },
+  "nl-rental-housing": { kind: "access", note: "Low-income rental housing with rent based on your income." },
+  "nl-home-repair": { kind: "grant", note: "Forgivable loan toward safety and energy repairs to your home." },
+  "nl-home-modification": { kind: "grant", note: "Forgivable loan toward accessibility changes to your home." },
+  "nl-paid-family-caregiving": { kind: "grant", note: "Pay a family member for approved home support." },
+  "nl-community-behavioural-services": { kind: "access", note: "Behaviour support at home and in the community." },
+  "nl-direct-home-services": { kind: "access", note: "Free home-based early help for children with developmental delay." },
+  "nl-special-child-welfare-allowance": { kind: "grant", note: "Monthly help with disability costs for a child at home." },
+  "nl-home-support": { kind: "grant", note: "Subsidized help at home, up to a ceiling." },
+  "nl-special-assistance": { kind: "access", note: "Medical supplies and equipment for people living at home." },
+  "nl-assurance-plan": { kind: "access", note: "Drug coverage when prescription costs are high for your income." },
+  "nl-access-plan": { kind: "access", note: "Prescription drug coverage for people with low incomes." },
+  "nl-65plus-plan": { kind: "access", note: "Prescription drug coverage for seniors on the Guaranteed Income Supplement." },
+  "nl-foundation-plan": { kind: "access", note: "Full coverage of eligible prescriptions for people on Income Support and some others." },
+  "nl-prenatal-nutrition": { kind: "grant", note: "Monthly food money during pregnancy and early childhood." },
+  "nl-child-benefit": { kind: "grant", note: "A monthly payment for low income families with children." },
+  "nl-health-related-services": { kind: "access", note: "Health coverage and allowances for people on Income Support." },
+  "nl-disability-benefit": { kind: "grant", note: "Up to four hundred dollars a month, paid without an application." },
+  "nl-income-support": { kind: "grant", note: "Monthly money for basic and shelter costs, with extra help for some needs." },
   "pe-adult-day-programs": { kind: "access", note: "Supervised day activities for seniors and a break for caregivers." },
   "pe-coach": { kind: "access", note: "An in-home health care team for frail seniors with complex needs." },
   "pe-children-complex-needs": { kind: "access", note: "Help finding, understanding and coordinating services for a child with complex needs." },
@@ -638,6 +683,41 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "nl-caregiver-benefit": { difficulty: 3, effort: "Application form, assessment and signed agreement", wait: "Not published" },
+  "nl-dental-programs": { difficulty: 2, effort: "Show proof of eligibility at the dental office", wait: "Not published" },
+  "nl-moving-into-workforce": { difficulty: 2, effort: "One phone call, then monthly earnings reports", wait: "Not published" },
+  "corner-brook-free-transit-pass": { difficulty: 2, effort: "Pick up at City Hall with ID, or wait for provincial contact", wait: "Not published" },
+  "corner-brook-cbt-link": { difficulty: 3, effort: "Print a form and get a healthcare professional to sign", wait: "Not published" },
+  "paradise-accessible-transit": { difficulty: 3, effort: "Apply, then attend a health assessment", wait: "Not published" },
+  "st-johns-gobus": { difficulty: 3, effort: "Apply with a health care professional and take an assessment", wait: "Not published" },
+  "st-johns-attendant-pass": { difficulty: 2, effort: "Fill in a form, add a photo and get it verified", wait: "2 to 4 weeks" },
+  "st-johns-adult-recreation-subsidy": { difficulty: 3, effort: "Fill in a form and gather residency and income proof", wait: "7-10 business days" },
+  "st-johns-children-recreation-subsidy": { difficulty: 3, effort: "Fill in a form and gather residency and income proof", wait: "7-10 business days" },
+  "nl-mtap": { difficulty: 3, effort: "Documents and an online claim form after travel", wait: "Flight pass processed in two business days" },
+  "nl-student-disabilities": { difficulty: 4, effort: "Online application, verification form and school meeting", wait: "Not published" },
+  "nl-accessible-parking": { difficulty: 2, effort: "Doctor-completed form, then email, fax or mail", wait: "5 to 10 business days" },
+  "nl-child-care-subsidy": { difficulty: 3, effort: "Application with income and service-need documents", wait: "Not published" },
+  "nl-income-supplement": { difficulty: 1, effort: "File your tax return; no application", wait: "Not published" },
+  "nl-seniors-benefit": { difficulty: 1, effort: "File your tax return; no application", wait: "Not published" },
+  "nl-housing-benefit": { difficulty: 3, effort: "Apply through the Rental Housing Program", wait: "Not published" },
+  "nl-rental-housing": { difficulty: 3, effort: "Online or paper form", wait: "Not published" },
+  "nl-home-repair": { difficulty: 2, effort: "Online or paper form", wait: "Not published" },
+  "nl-home-modification": { difficulty: 3, effort: "Online or paper form; a letter for major work", wait: "Not published" },
+  "nl-paid-family-caregiving": { difficulty: 4, effort: "In-person assessment, support plan and funding agreement", wait: "Not published" },
+  "nl-community-behavioural-services": { difficulty: 2, effort: "Referral and assessment", wait: "Not published" },
+  "nl-direct-home-services": { difficulty: 2, effort: "Referral and a home visit", wait: "Visit within one month; start when a space opens" },
+  "nl-special-child-welfare-allowance": { difficulty: 3, effort: "Contact health services; financial needs test", wait: "Not published" },
+  "nl-home-support": { difficulty: 3, effort: "Referral and two assessments", wait: "Not published" },
+  "nl-special-assistance": { difficulty: 3, effort: "Contact health services for a financial assessment", wait: "Not published" },
+  "nl-assurance-plan": { difficulty: 2, effort: "Application form", wait: "7 business days for most cases" },
+  "nl-access-plan": { difficulty: 2, effort: "Application form", wait: "7 business days for most cases" },
+  "nl-65plus-plan": { difficulty: 1, effort: "No application", wait: "Not published" },
+  "nl-foundation-plan": { difficulty: 1, effort: "No application", wait: "Letter within 7 business days" },
+  "nl-prenatal-nutrition": { difficulty: 2, effort: "Phone call or form while pregnant; federal application after birth", wait: "Not published" },
+  "nl-child-benefit": { difficulty: 2, effort: "Tax return and a federal child benefit application", wait: "Not published" },
+  "nl-health-related-services": { difficulty: 3, effort: "Must be on Income Support; some services need proof", wait: "Not published" },
+  "nl-disability-benefit": { difficulty: 2, effort: "No application; needs the Disability Tax Credit and a tax return", wait: "Not published" },
+  "nl-income-support": { difficulty: 3, effort: "Application with a financial assessment", wait: "Not published" },
   "pe-adult-day-programs": { difficulty: 2, effort: "Referral and an eligibility assessment", wait: "Not published" },
   "pe-coach": { difficulty: 3, effort: "Referral, assessment and panel approval", wait: "Not published" },
   "pe-children-complex-needs": { difficulty: 2, effort: "Call, email or online referral form", wait: "Response within 5 business days" },
@@ -2043,6 +2123,65 @@ const HELP_ORGS = [
     urlText: "resourceabilities.ca",
     focus: ["local", "accommodation"],
     coverage: ["PE"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "nl-legal-aid",
+    cat: "If you're denied — legal help & appeals",
+    name: "Legal Aid NL",
+    summary: "Legal Aid NL provides family and criminal law services to low-income residents of Newfoundland and Labrador through lawyers across the province.",
+    phone: "1-800-563-9911",
+    url: "https://www.legalaid.nl.ca/",
+    urlText: "legalaid.nl.ca",
+    focus: ["appeals", "rights"],
+    coverage: ["NL"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "nl-211",
+    cat: "Find local services near you",
+    name: "211 NL",
+    summary: "Live help 24/7 finding community, government and social services in Newfoundland and Labrador. Dial 2-1-1, text, chat or email.",
+    phone: "1-855-405-7446",
+    url: "https://nl.211.ca/",
+    urlText: "211 NL",
+    focus: ["local", "family"],
+    coverage: ["NL"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "nl-empower",
+    cat: "Find local services near you",
+    name: "Empower – The Disability Resource Centre",
+    summary: "Consumer-controlled non-profit in St. John's providing cross-disability services and supports; anyone with a disability can use its services.",
+    phone: "709-722-4031",
+    url: "https://www.empowernl.ca/",
+    urlText: "empowernl.ca",
+    focus: ["local", "accommodation"],
+    coverage: ["NL"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "nl-disability-alliance-canada",
+    cat: "Help with the forms",
+    name: "Disability Alliance Canada",
+    summary: "National non-profit (not NL-specific) offering free one-on-one advocate support for CPP Disability, the Disability Tax Credit and the Canada Disability Benefit.",
+    url: "https://www.disabilityalliancecanada.ca",
+    urlText: "disabilityalliancecanada.ca",
+    focus: ["dtc", "appeals", "tax"],
+    coverage: ["NL"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "nl-plan-institute",
+    cat: "Help with the forms",
+    name: "Plan Institute Disability Planning Helpline",
+    summary: "National not-for-profit (not NL-specific) with a free nationwide Disability Planning Helpline covering disability topics including the RDSP.",
+    phone: "1-844-311-7526",
+    url: "https://www.rdsp.com",
+    urlText: "rdsp.com",
+    focus: ["rdsp", "family"],
+    coverage: ["NL"],
     verified: "2026-10-18",
   },
 ];
@@ -18371,7 +18510,7 @@ const BENEFITS = [
     "requires": [
       "pe",
       "age18plus",
-      "peOutOfProvinceTravelRoute"
+      "medicalTravelNeed"
     ],
     "eligibility": {
       "mode": "all",
@@ -19455,6 +19594,1783 @@ const BENEFITS = [
         "Contact the program of interest for more details."
       ]
     }
+  },
+  {
+    "id": "nl-income-support",
+    "name": "Income Support",
+    "level": "Newfoundland and Labrador",
+    "category": "Income support",
+    "amount": "Monthly amount set by your family income and needs; single adult basic rate $561 a month",
+    "summary": "Monthly money for food, clothing, shelter and daily costs when your income is low. You may still qualify while working.",
+    "note": "The amount depends on your family income, household size and living arrangements.",
+    "requires": [
+      "nl",
+      "age18plus",
+      "nlIncomeSupportRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are at least eighteen years old.",
+        "You live in Newfoundland and Labrador.",
+        "You send in an application for benefits.",
+        "A financial assessment finds you eligible."
+      ]
+    },
+    "applyText": "Read the Applying for Income Support page for how to apply.",
+    "applyUrl": "https://www.gov.nl.ca/sswb/income-support/overview/",
+    "source": "https://www.gov.nl.ca/sswb/income-support/overview/",
+    "detail": {
+      "aboutList": {
+        "lead": "Income Support can include these benefits:",
+        "items": [
+          "The Family and Individual Benefit helps with food, clothing, personal care, household upkeep and utilities.",
+          "Shelter benefits cover rent and mortgage costs.",
+          "Some benefits depend on your situation, such as eye exams, glasses and child care for work or training.",
+          "Burial costs and municipal tax payments may also be covered.",
+          "Other departments may give you a drug card, medical supplies or medical transportation."
+        ]
+      },
+      "steps": [
+        "Read the Applying for Income Support page.",
+        "Send a signed, complete application with all required documents.",
+        "A financial assessment decides whether you are eligible."
+      ],
+      "documents": [
+        "Details of income for you, your spouse and dependent children.",
+        "Proof of any benefit you have applied for, such as CPP or Employment Insurance."
+      ],
+      "tips": [
+        "Monthly basic rates: single adult $561, single parent with children $729, couple $1122.",
+        "Rent or mortgage help is up to $522 for one person living alone, $299 with a roommate, $598 for a couple.",
+        "Fuel supplement is $71 on the Island and $132 in Labrador; coastal Labrador also gets $150 cost of living.",
+        "Basic rates do not include shelter, fuel or special needs.",
+        "Benefits are usually paid twice a month by direct deposit.",
+        "If earnings end your eligibility, you keep a drug card for 12 months."
+      ]
+    }
+  },
+  {
+    "id": "nl-disability-benefit",
+    "name": "Newfoundland and Labrador Disability Benefit",
+    "level": "Newfoundland and Labrador",
+    "category": "Income support",
+    "amount": "Up to $400 a month ($4,800 a year)",
+    "summary": "Monthly money for adults with disabilities and low incomes who have the federal Disability Tax Credit. You do not need to apply.",
+    "note": "Payments depend on your tax filing, your certificate and your income.",
+    "requires": [
+      "nl",
+      "adult",
+      "nlDisabilityBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are between eighteen and sixty-four years old.",
+        "You qualify for the federal Disability Tax Credit and have a valid certificate.",
+        "You live in Newfoundland and Labrador.",
+        "Your income is within the program limits.",
+        "You file your income tax."
+      ]
+    },
+    "applyText": "No application is needed. File your income tax and keep your Disability Tax Credit certificate valid.",
+    "applyUrl": "https://www.gov.nl.ca/sswb/newfoundland-and-labrador-disability-benefit/",
+    "source": "https://www.gov.nl.ca/sswb/newfoundland-and-labrador-disability-benefit/",
+    "detail": {
+      "aboutList": {
+        "lead": "This benefit works as follows:",
+        "items": [
+          "The full monthly benefit goes to people with incomes below the lower limit.",
+          "People with incomes between the limits receive a partial benefit.",
+          "Couples where both people have the credit have a higher upper limit."
+        ]
+      },
+      "steps": [
+        "Apply for the federal Disability Tax Credit if you do not have it.",
+        "File your income tax every year.",
+        "Qualifying people receive the monthly benefit without a separate application."
+      ],
+      "documents": [
+        "A valid Disability Tax Credit certificate."
+      ],
+      "tips": [
+        "Full $400 a month if income is below $29,402; partial benefit up to $42,404 for individuals.",
+        "Couples where one person has the credit: partial benefit up to $42,404.",
+        "Couples where both have the credit: partial benefit up to $55,404.",
+        "A $1,200 yearly RDSP contribution was announced but is not yet in place.",
+        "Help with the credit: Plan Institute helpline 1-844-311-7526."
+      ]
+    }
+  },
+  {
+    "id": "nl-health-related-services",
+    "name": "Income Support Health Related Services",
+    "level": "Newfoundland and Labrador",
+    "category": "Health",
+    "amount": "Eye exam $100; glasses up to $290 or $350; special diet up to $60 a month",
+    "summary": "Extra health help for people on Income Support. It covers vision, dental, drugs, medical equipment and hearing devices.",
+    "note": "You may qualify for some services without Income Support, but you must apply and be assessed first.",
+    "requires": [
+      "nl",
+      "nlHealthRelatedServicesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You receive Income Support."
+      ],
+      "note": "People not on Income Support may still qualify for some services after applying for Income Support and being assessed."
+    },
+    "applyText": "Contact the toll free number listed on the page, or apply for Income Support.",
+    "applyUrl": "https://www.gov.nl.ca/sswb/income-support/healthservices/",
+    "source": "https://www.gov.nl.ca/sswb/income-support/healthservices/",
+    "detail": {
+      "aboutList": {
+        "lead": "Services include:",
+        "items": [
+          "Vision care helps pay for routine eye exams and glasses.",
+          "A drug card covers eligible prescriptions, including dispensing fees.",
+          "Dental covers all children to 12, ages 13 to 17 on Income Support or Access Plan, and adults on Income Support.",
+          "Medical equipment and supplies include artificial limbs, glucose aids, bath aids and wheelchairs.",
+          "Deaf and hard of hearing people can get a one time visual smoke detector, phone or doorbell system, or TTY.",
+          "A special diet allowance helps with food for a medical condition such as diabetes."
+        ]
+      },
+      "steps": [
+        "Receive Income Support, or apply for it to be assessed.",
+        "Call the toll free number to ask about a service.",
+        "Give medical verification where the service needs it."
+      ],
+      "documents": [
+        "Medical verification for hearing devices, from a physician, audiologist or other approved professional.",
+        "Documentation of your condition for the special diet allowance."
+      ],
+      "tips": [
+        "Eye exam: $100 once every 12 months for children, once every 36 months for adults.",
+        "Glasses maximum: $290.00 single vision, $350.00 bi-focal.",
+        "Hearing devices: smoke detector up to $250.00, phone and doorbell system up to $155.00, TTY up to $422.00.",
+        "Monthly cost and upkeep of hearing devices is not covered.",
+        "Special diet allowance is up to $60 a month.",
+        "Medical transportation is now handled by the Department of Labrador Affairs: 1-833-729-6106."
+      ],
+      "phone": "1-877-729-7888"
+    }
+  },
+  {
+    "id": "nl-child-benefit",
+    "name": "Newfoundland and Labrador Child Benefit",
+    "level": "Newfoundland and Labrador",
+    "category": "Money (for parents)",
+    "amount": "Up to $157.33 a month for one child (from July 2026)",
+    "summary": "Provincial tax credit for families with low incomes and children under eighteen. It is paid with the federal child benefit.",
+    "note": "Payments run from July to June and are based on last year family income.",
+    "requires": [
+      "nl",
+      "nlChildBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your family has children under eighteen years old.",
+        "Your family income is below the program limit.",
+        "You file an income tax return every year."
+      ]
+    },
+    "applyText": "File your income tax return and apply for the Canada Child Benefit with the Canada Revenue Agency.",
+    "applyUrl": "https://www.gov.nl.ca/sswb/income-support/child/",
+    "source": "https://www.gov.nl.ca/sswb/income-support/child/",
+    "detail": {
+      "aboutList": {
+        "lead": "How the benefit works:",
+        "items": [
+          "Families below the lower income limit get the full benefit.",
+          "Families between the two limits get a reduced amount.",
+          "The Canada Revenue Agency pays it with federal child benefits in one monthly payment.",
+          "Families leaving Income Support for work keep this benefit.",
+          "It does not affect Income Support entitlement."
+        ]
+      },
+      "steps": [
+        "File your income tax return each year.",
+        "Apply for the Canada Child Benefit with the Canada Revenue Agency.",
+        "Receive the combined monthly payment."
+      ],
+      "documents": [
+        "Your yearly income tax return."
+      ],
+      "tips": [
+        "Income limits: full benefit under $20,397; reduced amount from $20,397 to $38,193.",
+        "Maximum yearly totals: one child $1888, two $3890, three $6040, four $8350.",
+        "Monthly maximums: one child $157.33, two $324.17, three $503.33, four $695.83.",
+        "Families with a child under five or who are pregnant may also qualify for the $150 a month nutrition supplement."
+      ]
+    }
+  },
+  {
+    "id": "nl-prenatal-nutrition",
+    "name": "Prenatal-Early Childhood Nutrition Supplement",
+    "level": "Newfoundland and Labrador",
+    "category": "Money (for parents)",
+    "amount": "$150 a month",
+    "summary": "Monthly money for extra food during pregnancy and until your child turns five. It is for people with low incomes.",
+    "note": "A one time extra payment is made in the month of a child birth.",
+    "requires": [
+      "nl",
+      "nlPrenatalNutritionRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are pregnant or have a child under five years old.",
+        "You live in Newfoundland and Labrador as a permanent resident.",
+        "You are eligible for the Child Benefit or you get Income Support."
+      ]
+    },
+    "applyText": "If pregnant, call the Coordinator or use the online application. If your child is born, apply for the Canada Child Benefit.",
+    "applyUrl": "https://www.gov.nl.ca/sswb/income-support/nutritionsupplement/",
+    "source": "https://www.gov.nl.ca/sswb/income-support/nutritionsupplement/",
+    "detail": {
+      "aboutList": {
+        "lead": "What to know:",
+        "items": [
+          "The benefit is paid monthly by direct deposit, with a mail option.",
+          "It is added to your child benefit payments once your child is born.",
+          "It continues until the month before your child turns five."
+        ]
+      },
+      "steps": [
+        "If pregnant, call the Coordinator or complete the online application.",
+        "If your child is born, apply for the Canada Child Benefit with the Canada Revenue Agency.",
+        "Receive the supplement with your child benefit payments."
+      ],
+      "documents": [
+        "The online application form, if you are pregnant."
+      ],
+      "tips": [
+        "Amount is $150 a month.",
+        "An extra one time $150 per child is paid in the birth month; multiple births get multiple payments.",
+        "The Coordinator can also share information on community supports."
+      ],
+      "phone": "1-800-508-4788"
+    }
+  },
+  {
+    "id": "nl-foundation-plan",
+    "name": "Prescription Drug Program: Foundation Plan",
+    "level": "Newfoundland and Labrador",
+    "category": "Health",
+    "amount": "100 per cent of eligible prescription drug costs",
+    "summary": "Full coverage of eligible prescription drugs for people who need the most support. Eligible people receive a card automatically.",
+    "note": "A letter of eligibility is mailed within seven business days after the department confirms Income Support.",
+    "requires": [
+      "nl",
+      "nlFoundationPlanRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You receive Income Support benefits.",
+        "Or you are a child in the care of Child, Youth and Family Services.",
+        "Or you receive certain services through a regional health authority, such as supervised care."
+      ]
+    },
+    "applyText": "No application is needed. A card is issued when the department is told you get these services.",
+    "applyUrl": "https://www.gov.nl.ca/hcs/prescription/nlpdp-plan-overview/",
+    "source": "https://www.gov.nl.ca/hcs/prescription/nlpdp-plan-overview/",
+    "detail": {
+      "aboutList": {
+        "lead": "About this plan:",
+        "items": [
+          "The plan covers the full cost of eligible prescription drugs.",
+          "The card is issued automatically."
+        ]
+      },
+      "steps": [
+        "Receive Income Support or the qualifying services.",
+        "The department is notified.",
+        "A drug card is issued and a letter of eligibility is mailed to you."
+      ],
+      "documents": [],
+      "tips": [
+        "Check the Prescription Drug Program page for the other plans."
+      ]
+    }
+  },
+  {
+    "id": "nl-65plus-plan",
+    "name": "Prescription Drug Program: 65Plus Plan",
+    "level": "Newfoundland and Labrador",
+    "category": "Health",
+    "amount": "Eligible prescription drugs covered; dispensing fee up to $6",
+    "summary": "Coverage of eligible prescription drugs for residents 65 and older who receive both federal OAS and GIS benefits.",
+    "note": "No application is needed.",
+    "requires": [
+      "nl",
+      "age65plus",
+      "nl65plusPlanRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are sixty-five or older.",
+        "You live in Newfoundland and Labrador.",
+        "You receive Old Age Security and the Guaranteed Income Supplement."
+      ]
+    },
+    "applyText": "No application is needed. A card is issued once Service Canada notifies the department.",
+    "applyUrl": "https://www.gov.nl.ca/hcs/prescription/nlpdp-plan-overview/",
+    "source": "https://www.gov.nl.ca/hcs/prescription/nlpdp-plan-overview/",
+    "detail": {
+      "aboutList": {
+        "lead": "About this plan:",
+        "items": [
+          "The plan covers eligible prescription drugs.",
+          "Plan members also qualify for the Ostomy Subsidy Program.",
+          "The program repays part of the cost of ostomy items."
+        ]
+      },
+      "steps": [
+        "Make sure you get both federal senior benefits.",
+        "Service Canada notifies the department.",
+        "A drug card is issued automatically."
+      ],
+      "documents": [
+        "For ostomy items, original prescription receipts."
+      ],
+      "tips": [
+        "You pay a dispensing fee of up to $6.",
+        "The Ostomy Subsidy repays 75% of the retail cost of benefit ostomy items."
+      ]
+    }
+  },
+  {
+    "id": "nl-access-plan",
+    "name": "Prescription Drug Program: Access Plan",
+    "level": "Newfoundland and Labrador",
+    "category": "Health",
+    "amount": "Coverage set by net income and family status",
+    "summary": "Help paying for prescription drugs for people and families with low incomes. The amount depends on income and family type.",
+    "note": "A letter of eligibility is usually mailed within seven business days.",
+    "requires": [
+      "nl",
+      "nlAccessPlanRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Newfoundland and Labrador.",
+        "Your net yearly income is at or under the limit for your family type."
+      ],
+      "note": "Limits are in the tips below."
+    },
+    "applyText": "Complete an application form, or call to have one mailed to you.",
+    "applyUrl": "https://www.gov.nl.ca/hcs/prescription/nlpdp-plan-overview/",
+    "source": "https://www.gov.nl.ca/hcs/prescription/nlpdp-plan-overview/",
+    "detail": {
+      "aboutList": {
+        "lead": "About this plan:",
+        "items": [
+          "Coverage depends on net income and family status.",
+          "Children aged thirteen to seventeen in these families get some dental services."
+        ]
+      },
+      "steps": [
+        "Complete the application form, from the website, a pharmacy or physician office.",
+        "Or call and ask for a form by mail.",
+        "Send the form with the needed documents.",
+        "A letter of eligibility is mailed to you."
+      ],
+      "documents": [
+        "Application form and the documents it asks for."
+      ],
+      "tips": [
+        "Income limits: families with children $42,870 or less; couples without children $30,009 or less; single people $27,151 or less.",
+        "The letter arrives within 7 business days in 90 per cent of cases; special authorization can take longer.",
+        "Dental information for ages 13 to 17: 1-800-440-4405."
+      ],
+      "phone": "1-888-859-3535"
+    }
+  },
+  {
+    "id": "nl-assurance-plan",
+    "name": "Prescription Drug Program: Assurance Plan",
+    "level": "Newfoundland and Labrador",
+    "category": "Health",
+    "amount": "Coverage once drug costs pass a share of your income",
+    "summary": "Help for people and families whose eligible drug costs are high compared to their income. Your share depends on income and drug costs.",
+    "note": "Eligibility and your share are checked again every six months.",
+    "requires": [
+      "nl",
+      "nlAssurancePlanRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Newfoundland and Labrador.",
+        "Your eligible drug costs are above a set share of your net income."
+      ],
+      "note": "The share depends on income, as listed in the tips."
+    },
+    "applyText": "Complete an application form, or call to have one mailed to you.",
+    "applyUrl": "https://www.gov.nl.ca/hcs/prescription/nlpdp-plan-overview/",
+    "source": "https://www.gov.nl.ca/hcs/prescription/nlpdp-plan-overview/",
+    "detail": {
+      "aboutList": {
+        "lead": "About this plan:",
+        "items": [
+          "You pay a co-payment based on your income and drug costs.",
+          "Eligibility and co-payment are reassessed every six months."
+        ]
+      },
+      "steps": [
+        "Complete the application form, from a pharmacy or physician office.",
+        "Or call and ask for a form by mail.",
+        "Send the form with the needed documents.",
+        "A letter of eligibility is mailed to you."
+      ],
+      "documents": [
+        "Application form and the documents it asks for."
+      ],
+      "tips": [
+        "Drug costs must exceed 5% of net income if you earn below $40,000.",
+        "The share is 7.5% for $40,000 to under $75,000 and 10% for $75,000 to under $150,000.",
+        "Example: $30,000 income and $5,000 drug costs in the previous year means a 30% co-payment.",
+        "The letter arrives within 7 business days in 90 per cent of cases."
+      ],
+      "phone": "1-888-859-3535"
+    }
+  },
+  {
+    "id": "nl-special-assistance",
+    "name": "Special Assistance Program",
+    "level": "Newfoundland and Labrador",
+    "category": "Daily living supports",
+    "amount": "Medical supplies and equipment",
+    "summary": "Basic medical supplies and equipment for daily living for people living in the community. You must meet financial criteria.",
+    "note": "The page does not give the income limits.",
+    "requires": [
+      "nl",
+      "nlSpecialAssistanceRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in the community, not in a long-term care home.",
+        "You need medical supplies or equipment for activities of daily living.",
+        "You meet the financial eligibility criteria."
+      ]
+    },
+    "applyText": "Contact NL Health Services in your area. The page points to a financial assessment policy manual.",
+    "applyUrl": "https://www.gov.nl.ca/seniors/seniors-health-care/special-assistance-program/",
+    "source": "https://www.gov.nl.ca/seniors/seniors-health-care/special-assistance-program/",
+    "detail": {
+      "aboutList": {
+        "lead": "The program covers:",
+        "items": [
+          "Medical supplies such as dressings, catheters and incontinence products.",
+          "Oxygen and related equipment.",
+          "Orthotics such as braces and burn garments.",
+          "Mobility and support equipment such as wheelchairs, walkers and commodes."
+        ]
+      },
+      "steps": [
+        "Contact NL Health Services in your area.",
+        "Your financial eligibility is checked against the program criteria."
+      ],
+      "documents": [],
+      "tips": [
+        "Read the Income Based Financial Assessment Policy Manual linked on the page."
+      ]
+    }
+  },
+  {
+    "id": "nl-home-support",
+    "name": "Provincial Home Support Program",
+    "level": "Newfoundland and Labrador",
+    "category": "Home support",
+    "amount": "Subsidy up to a maximum financial ceiling",
+    "summary": "Help at home with personal care, behaviour support, household tasks and respite. It adds to the care your family gives.",
+    "note": "Services are non-professional and meant to supplement family and other supports.",
+    "requires": [
+      "nl",
+      "nlHomeSupportRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You need home support services.",
+        "You go through a functional assessment by health authority staff.",
+        "You go through a financial assessment to get a subsidy."
+      ],
+      "note": "Anyone can refer you, including yourself."
+    },
+    "applyText": "Ask your regional health authority. Anyone can start a referral, including you.",
+    "applyUrl": "https://www.gov.nl.ca/hcs/personsdisabilities/fundingprograms-hcs/",
+    "source": "https://www.gov.nl.ca/hcs/personsdisabilities/fundingprograms-hcs/",
+    "detail": {
+      "aboutList": {
+        "lead": "Home support can include:",
+        "items": [
+          "Personal and behavioural supports.",
+          "Household management.",
+          "Respite at the minimum level needed to keep your independence.",
+          "Care from an approved agency or a worker you or your family hire."
+        ]
+      },
+      "steps": [
+        "Contact your regional health authority.",
+        "Anyone can refer, including the person who needs service.",
+        "Staff complete a functional and financial assessment."
+      ],
+      "documents": [],
+      "tips": [
+        "You can pay for home support privately instead of using the subsidy.",
+        "The page lists handbooks, a brochure and approved agencies."
+      ]
+    }
+  },
+  {
+    "id": "nl-special-child-welfare-allowance",
+    "name": "Special Child Welfare Allowance",
+    "level": "Newfoundland and Labrador",
+    "category": "Money (for parents)",
+    "amount": "Monthly amount set by a financial needs test",
+    "summary": "Money for families to buy items or services a child needs because of a physical or intellectual disability.",
+    "note": "The monthly amount is set for each family by a financial needs test.",
+    "requires": [
+      "nl",
+      "child",
+      "nlSpecialChildWelfareAllowanceRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your child is under eighteen years old.",
+        "Your child has a physical or intellectual disability.",
+        "Your child lives at home with the family.",
+        "You pass a financial needs test."
+      ]
+    },
+    "applyText": "Contact NL Health Services in your area.",
+    "applyUrl": "https://www.gov.nl.ca/hcs/personsdisabilities/fundingprograms-hcs/",
+    "source": "https://www.gov.nl.ca/hcs/personsdisabilities/fundingprograms-hcs/",
+    "detail": {
+      "aboutList": {
+        "lead": "About this allowance:",
+        "items": [
+          "It helps with the cost of services and supports.",
+          "Families can buy items and services needed because of the child disability."
+        ]
+      },
+      "steps": [
+        "Contact NL Health Services in your area.",
+        "A financial needs test sets your monthly amount."
+      ],
+      "documents": [],
+      "tips": [
+        "The page links a standards manual that is under review."
+      ]
+    }
+  },
+  {
+    "id": "nl-direct-home-services",
+    "name": "Direct Home Services Program",
+    "level": "Newfoundland and Labrador",
+    "category": "Health (for children)",
+    "amount": "No cost to the family",
+    "summary": "Free home visits to teach skills to young children who show, or are at risk for, significant developmental delay. Includes an autism program.",
+    "note": "A diagnosis of autism spectrum disorder by a qualified professional is needed for the intensive program.",
+    "requires": [
+      "nl",
+      "under6",
+      "nlDirectHomeServicesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your child is an infant or preschool age.",
+        "Your child shows, or is at risk for, significant developmental delay.",
+        "A parent or caregiver must be present at home visits and commit to working on the program."
+      ],
+      "note": "The intensive autism program also needs a diagnosis from a qualified professional."
+    },
+    "applyText": "Ask your regional health authority for a referral, or have a service provider refer you.",
+    "applyUrl": "https://www.gov.nl.ca/hcs/personsdisabilities/fundingprograms-hcs/",
+    "source": "https://www.gov.nl.ca/hcs/personsdisabilities/fundingprograms-hcs/",
+    "detail": {
+      "aboutList": {
+        "lead": "About the program:",
+        "items": [
+          "A child management specialist visits the home to teach skills and behaviour strategies.",
+          "Visits are weekly for six months and then every two weeks, depending on need.",
+          "Children are reassessed every six months.",
+          "An intensive behaviour program is offered for children with autism up to Grade three."
+        ]
+      },
+      "steps": [
+        "A family or service provider refers the child to the regional health authority.",
+        "A specialist visits within one month to explain the program and check eligibility.",
+        "Visits start when a space opens."
+      ],
+      "documents": [],
+      "tips": [
+        "Refer as soon as a delay is suspected.",
+        "A service provider needs the consent of the family to refer."
+      ]
+    }
+  },
+  {
+    "id": "nl-community-behavioural-services",
+    "name": "Community Behavioural Services Program",
+    "level": "Newfoundland and Labrador",
+    "category": "Daily living supports",
+    "amount": "Voluntary service delivered by health authorities",
+    "summary": "Home and community support for school-aged and older people with a developmental disability and significant behavioural concerns.",
+    "note": "People are reassessed every six months to check progress and eligibility.",
+    "requires": [
+      "nl",
+      "intellectualDisability",
+      "nlCommunityBehaviouralServicesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are school-aged or older.",
+        "You have a developmental disability.",
+        "You have significant behavioural concerns."
+      ],
+      "note": "Participation of parents or caregivers and consistent use of the plan are important to success."
+    },
+    "applyText": "Contact NL Health Services. Family, a service provider (with family consent) or an adult can refer.",
+    "applyUrl": "https://www.gov.nl.ca/hcs/personsdisabilities/fundingprograms-hcs/",
+    "source": "https://www.gov.nl.ca/hcs/personsdisabilities/fundingprograms-hcs/",
+    "detail": {
+      "aboutList": {
+        "lead": "About the program:",
+        "items": [
+          "Help is given in the home and community where behaviour concerns occur.",
+          "A behaviour management specialist visits regularly to assess and make a plan.",
+          "The program promotes inclusion and the least restrictive approach."
+        ]
+      },
+      "steps": [
+        "Family, a service provider, or the person if they are an adult, refers them.",
+        "A specialist does a functional assessment.",
+        "The specialist plans and checks an approach with you."
+      ],
+      "documents": [],
+      "tips": [
+        "A service provider needs the consent of the family to refer."
+      ]
+    }
+  },
+  {
+    "id": "nl-paid-family-caregiving",
+    "name": "Paid Family Caregiving Option",
+    "level": "Newfoundland and Labrador",
+    "category": "Home support",
+    "amount": "Personal care funding up to 4 hours a day for a senior, or 5 hours a day for an adult with a disability",
+    "summary": "Lets you pay a family member for approved home support. It is part of the Provincial Home Support Program.",
+    "note": "A client contribution may apply. Approval needs a viable assessment and an available subsidy; the page is a 2015 news release.",
+    "requires": [
+      "nl",
+      "age18plus",
+      "nlPaidFamilyCaregivingRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a new or current adult home support client with a long-term need for a subsidy.",
+        "You meet the clinical and financial assessment.",
+        "Your assessment shows a personal care or behaviour support need a family member can provide.",
+        "You agree to any financial contribution."
+      ],
+      "note": "Spouses and common law partners cannot be paid caregivers."
+    },
+    "applyText": "Contact your regional health authority.",
+    "applyUrl": "https://www.gov.nl.ca/hcs/long-term-care/family-caregiving/",
+    "source": "https://www.gov.nl.ca/hcs/long-term-care/family-caregiving/",
+    "detail": {
+      "aboutList": {
+        "lead": "What the option includes:",
+        "items": [
+          "Funding for personal care and behaviour support from a family member.",
+          "Funding for meal preparation and homemaking in some cases.",
+          "Respite when the caregiver lives with a client needing round the clock care.",
+          "Respite must be given by a person who is not family."
+        ]
+      },
+      "steps": [
+        "Tell your health authority you prefer this option.",
+        "Staff complete an in-person assessment and support plan.",
+        "A financial assessment is done and any contribution agreed.",
+        "A funding agreement is completed."
+      ],
+      "documents": [],
+      "tips": [
+        "Personal care limit: 4 hours a day for a senior, 5 hours a day for an adult with a disability.",
+        "Without a live-in caregiver: up to 1 hour a day of meal preparation and up to 2 hours a week of homemaking.",
+        "Eastern Health 709-752-4835; Central 1-833-210-8491; Western 709-695-6263; Labrador-Grenfell 1-833-284-4751.",
+        "Staff visit in person at least every quarter to check care."
+      ]
+    }
+  },
+  {
+    "id": "nl-home-modification",
+    "name": "Home Modification Program",
+    "level": "Newfoundland and Labrador",
+    "category": "Home",
+    "amount": "Forgivable loan up to $15,000",
+    "summary": "A forgivable loan for homeowners with low to moderate income who need accessibility changes so they can stay in their homes longer.",
+    "note": "NLHC says the program was changed and improved this fall. It is for people who are not NLHC clients.",
+    "requires": [
+      "nl",
+      "nlHomeModificationRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You own your home and need accessibility changes.",
+        "Your yearly income is at or under the limit for your area ($65,000 in Labrador).",
+        "You are not an NLHC client."
+      ]
+    },
+    "applyText": "Apply online through your nearest NLHC regional office, or print an application.",
+    "applyUrl": "https://www.nlhc.nl.ca/housing-programs/home-modification-program-hmp/",
+    "source": "https://www.nlhc.nl.ca/housing-programs/home-modification-program-hmp/",
+    "detail": {
+      "aboutList": {
+        "lead": "Eligible changes may include items such as:",
+        "items": [
+          "Ramp installation.",
+          "Wider doorways and halls for a wheelchair.",
+          "A roll-in or walk-in shower.",
+          "Grab bars, a comfort height toilet, lever-style door handles and handrails."
+        ]
+      },
+      "steps": [
+        "Pick your nearest NLHC regional office and apply online, or print the form.",
+        "For major work, get a letter from an Occupational Therapist.",
+        "NLHC gives the funding as a forgivable loan."
+      ],
+      "documents": [
+        "Occupational Therapist letter for major work such as bathroom changes or a ramp."
+      ],
+      "tips": [
+        "Income limit is $51,500 or less a year, or $65,000 in Labrador.",
+        "The loan is forgiven if you stay in the home for five years.",
+        "If you move out after three or four years, you may repay part of it.",
+        "A letter is not needed for minor work such as grab bars or handrails.",
+        "Regional offices: Avalon 709-724-3000; Corner Brook 709-639-5201; Gander 709-256-1300.",
+        "Regional offices: Goose Bay 709-896-1924; Grand Falls-Windsor 709-292-1000.",
+        "Regional offices: Marystown 709-279-5375; Stephenville 709-643-6826."
+      ]
+    }
+  },
+  {
+    "id": "nl-home-repair",
+    "name": "Provincial Home Repair Program",
+    "level": "Newfoundland and Labrador",
+    "category": "Home",
+    "amount": "Forgivable loan up to $10,000 ($13,000 in Labrador)",
+    "summary": "A forgivable loan for low-income homeowners to fix safety problems in their homes so they can stay in them longer.",
+    "note": "Changed this fall; it now includes the former Home Energy Savings Program. It is for people who are not NLHC clients.",
+    "requires": [
+      "nl",
+      "nlHomeRepairRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You own your home and have lived in it for at least five years.",
+        "Your combined yearly income is under the limit for your area.",
+        "You are not an NLHC client."
+      ]
+    },
+    "applyText": "Apply online through your nearest NLHC regional office, or print an application.",
+    "applyUrl": "https://www.nlhc.nl.ca/housing-programs/provincial-home-repair-program-phrp/",
+    "source": "https://www.nlhc.nl.ca/housing-programs/provincial-home-repair-program-phrp/",
+    "detail": {
+      "aboutList": {
+        "lead": "Minor repairs that could threaten safety or force you to leave your home are eligible, in these areas:",
+        "items": [
+          "Structural, heating and roofing repairs.",
+          "Water, electrical and septic repairs.",
+          "Energy efficiency repairs."
+        ]
+      },
+      "steps": [
+        "Pick your nearest NLHC regional office and apply online, or print the form.",
+        "NLHC gives the funding as a forgivable loan.",
+        "See the fact sheet on the page for the full list of repairs."
+      ],
+      "documents": [
+        "The page does not list documents."
+      ],
+      "tips": [
+        "Income limit is under $42,500 a year, or $65,000 in Labrador.",
+        "The loan is forgiven if you stay in the home for five years.",
+        "If you move out after three or four years, you may repay part of it.",
+        "You can apply again if you were funded more than five years ago.",
+        "The lifetime maximum is $30,000. No pre- or post-inspections are required.",
+        "Regional offices: Avalon 709-724-3196; Corner Brook 709-639-5201; Gander 709-256-1300.",
+        "Regional offices: Goose Bay 709-896-1920; Grand Falls-Windsor 709-292-1000.",
+        "Regional offices: Marystown 709-279-5375; Stephenville 709-643-6826."
+      ]
+    }
+  },
+  {
+    "id": "nl-rental-housing",
+    "name": "Rental Housing Program",
+    "level": "Newfoundland and Labrador",
+    "category": "Housing",
+    "amount": "Rent set at 25 per cent of net monthly income in non-profit housing (unless Income Support pays your rent)",
+    "summary": "Low-income rental housing for households that cannot find suitable, affordable rental housing on the private market. This includes people with disabilities.",
+    "note": "NLHC rents housing directly and also works with non-profit groups. The program is cost-shared by the provincial and federal governments.",
+    "requires": [
+      "nl",
+      "nlRentalHousingRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your total household income falls within certain income levels.",
+        "Your home is adequate but you pay over 30 per cent of income on rent and heat.",
+        "Or your home is unsuitable and suitable housing in your area would cost 30 per cent or more."
+      ],
+      "note": "The page lists these tests without saying how they combine; ask your regional office."
+    },
+    "applyText": "Apply online or print an application for your region.",
+    "applyUrl": "https://www.nlhc.nl.ca/housing-programs/rental-housing-program/",
+    "source": "https://www.nlhc.nl.ca/housing-programs/rental-housing-program/",
+    "detail": {
+      "aboutList": {
+        "lead": "NLHC rents housing to many groups, including:",
+        "items": [
+          "Families with low income and seniors.",
+          "Non-elderly single people and Aboriginal people.",
+          "Individuals with disabilities and others in need of housing.",
+          "Non-profit groups also offer housing; your regional office can give you a list."
+        ]
+      },
+      "steps": [
+        "Choose your region and apply online, or print the form.",
+        "Contact your nearest regional office with questions.",
+        "Ask the office for a list of non-profit housing groups in your area."
+      ],
+      "documents": [
+        "The page does not list documents."
+      ],
+      "tips": [
+        "Tenants whose rent is paid through Income Support are not on the 25 per cent rule.",
+        "Rents in non-profit housing are based on tenant income.",
+        "Federal and provincial subsidies cover the difference in non-profit housing.",
+        "Regional offices: Avalon 709-724-3197; Corner Brook 709-639-5201; Gander 709-256-1300.",
+        "Regional offices: Goose Bay 709-896-1920; Grand Falls-Windsor 709-292-1000.",
+        "Regional offices: Marystown 709-279-5375; Stephenville 709-643-6826."
+      ]
+    }
+  },
+  {
+    "id": "nl-housing-benefit",
+    "name": "Canada-NL Housing Benefit",
+    "level": "Newfoundland and Labrador",
+    "category": "Housing",
+    "amount": "Monthly rent help; the amount depends on household income",
+    "summary": "A monthly rent benefit for households in severe core housing need. It can move with you if you stay in good standing with your landlord and the new home passes an NLHC inspection.",
+    "note": "From an older NLHC question-and-answer sheet (uploaded 2023), so figures and availability may be out of date. There is no separate application; apply through the Rental Housing Program.",
+    "requires": [
+      "nl",
+      "nlHousingBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your household is in severe core housing need.",
+        "You may be eligible if your total household net income is at or under the limit for your area."
+      ],
+      "note": "Selection depends on application date, waitlist codes and availability, and NLHC may offer a rental unit instead."
+    },
+    "applyText": "Apply for the Rental Housing Program; you may be offered this benefit or an NLHC rental unit.",
+    "applyUrl": "https://www.nlhc.nl.ca/wp-content/uploads/2023/08/CNLHB-QA-with-Conversion-Information.pdf",
+    "source": "https://www.nlhc.nl.ca/wp-content/uploads/2023/08/CNLHB-QA-with-Conversion-Information.pdf",
+    "detail": {
+      "aboutList": {
+        "lead": "How the benefit works:",
+        "items": [
+          "The benefit is paid to you, and you pay your landlord.",
+          "With your consent, NLHC can pay the landlord directly.",
+          "You can choose where to live, if the home passes an NLHC fire and life safety inspection.",
+          "The benefit is the gap between what you can pay and the lower of actual rent or average market rent."
+        ]
+      },
+      "steps": [
+        "Apply for the Rental Housing Program.",
+        "If approved, find a home yourself or ask NLHC for a list of interested landlords.",
+        "NLHC inspects the home before you move in.",
+        "Get a transfer approved and the new unit inspected before any later move."
+      ],
+      "documents": [
+        "The sheet does not list documents; NLHC uses your application information."
+      ],
+      "tips": [
+        "Income limit is $32,500 or less, or $65,000 in Labrador West and the North Coast of Labrador.",
+        "Your share of rent is 25 per cent of net income.",
+        "The sheet's example: net income of $20,000 and rent of $820 gives a monthly benefit of about $404.",
+        "Rent Supplement clients were to be converted to this program as agreements expire, 2023 through 2026.",
+        "Check current figures, and whether the benefit is open, with NLHC; this sheet was uploaded in 2023."
+      ]
+    }
+  },
+  {
+    "id": "nl-seniors-benefit",
+    "name": "NL Seniors' Benefit",
+    "level": "Newfoundland and Labrador",
+    "category": "Money & taxes",
+    "amount": "Up to $1,882 a year",
+    "summary": "A yearly tax credit paid to older adults with low income. You do not need to apply; you only need to file your income tax return.",
+    "note": "Budget 2026 announced a 20% increase, in addition to indexation, effective July 2026. It is paid in quarterly installments.",
+    "requires": [
+      "nl",
+      "age60plus",
+      "nlSeniorsBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You were age sixty-four or older by the last day of the tax year.",
+        "Your family net income from the previous year is within the phase-out range (up to $46,550).",
+        "You filed your annual income tax return."
+      ]
+    },
+    "applyText": "You do not apply. File your income tax return and the Canada Revenue Agency pays the benefit.",
+    "applyUrl": "https://www.gov.nl.ca/fin/tax-programs-incentives/personal/income-supplement/",
+    "source": "https://www.gov.nl.ca/fin/tax-programs-incentives/personal/income-supplement/",
+    "detail": {
+      "aboutList": {
+        "lead": "How the benefit works:",
+        "items": [
+          "It is a refundable tax credit, paid even if you owe no tax.",
+          "It is the same for singles and couples.",
+          "Payments come with the federal GST Credit.",
+          "The province pays for it and the Canada Revenue Agency runs it."
+        ]
+      },
+      "steps": [
+        "File your annual income tax return.",
+        "The Canada Revenue Agency works out your benefit from your family net income.",
+        "Payments arrive in January, April, July and October."
+      ],
+      "documents": [
+        "No application or documents are needed."
+      ],
+      "tips": [
+        "Full benefit: family net income up to $30,409 (before, $30,078).",
+        "The benefit phases out at 11.66% as income rises from $30,409 to $46,550.",
+        "The maximum rose to $1,882 from $1,551.",
+        "Questions: Department of Finance, Tax and Fiscal Policy Branch, 709-729-3166."
+      ]
+    }
+  },
+  {
+    "id": "nl-income-supplement",
+    "name": "NL Income Supplement",
+    "level": "Newfoundland and Labrador",
+    "category": "Money & taxes",
+    "amount": "Yearly credit of $254 to $520, plus extra amounts (2025 benefit year)",
+    "summary": "A yearly tax credit for people, families and seniors with low income. Extra amounts apply for a spouse, eligible children or the Disability Tax Credit. You do not need to apply.",
+    "note": "The amounts shown are for one benefit year. It is paid in quarterly installments.",
+    "requires": [
+      "nl",
+      "nlIncomeSupplementRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have low family net income from the previous year.",
+        "You filed your annual income tax return."
+      ],
+      "note": "The page lists no age limit or other test."
+    },
+    "applyText": "You do not apply. File your income tax return and the Canada Revenue Agency pays the credit.",
+    "applyUrl": "https://www.gov.nl.ca/fin/tax-programs-incentives/personal/income-supplement/",
+    "source": "https://www.gov.nl.ca/fin/tax-programs-incentives/personal/income-supplement/",
+    "detail": {
+      "aboutList": {
+        "lead": "Added amounts can apply for:",
+        "items": [
+          "A spouse.",
+          "Eligible children.",
+          "Individuals claiming the Disability Tax Credit."
+        ]
+      },
+      "steps": [
+        "File your annual income tax return.",
+        "The Canada Revenue Agency works out your credit from your family net income.",
+        "Payments arrive in January, April, July and October."
+      ],
+      "documents": [
+        "No application or documents are needed."
+      ],
+      "tips": [
+        "Basic credit is $254; the maximum is $520.",
+        "Spouse $69; each eligible child $231; Disability Tax Credit claimant $231.",
+        "The credit phases in above $15,000 and the maximum applies from $20,000 to $40,000.",
+        "The phase-out starts at $40,000 of family net income, at a rate of 9%.",
+        "Questions: Department of Finance, Tax and Fiscal Policy Branch, 709-729-3166."
+      ]
+    }
+  },
+  {
+    "id": "nl-child-care-subsidy",
+    "name": "Child Care Subsidy",
+    "level": "Newfoundland and Labrador",
+    "category": "Money (for parents)",
+    "amount": "Up to $10 a day at Operating Grant services",
+    "summary": "Helps families with income below a set limit pay for regulated child care. Parents with an illness or disability, or a child with a developmental need, can qualify.",
+    "note": "From the latest policy manual (version dated April 1, 2026; policies may change). The province pays your service directly. Outside the Operating Grant you pay fees above the subsidy rates.",
+    "requires": [
+      "nl",
+      "nlChildCareSubsidyRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your child attends a regulated child care service in Newfoundland and Labrador.",
+        "You and any spouse or partner each have a service need, such as work or study.",
+        "Your yearly family net income is at or under the limit for your family size.",
+        "You live in the province and are a citizen, permanent resident or protected person, or a refugee claimant."
+      ],
+      "note": "Both you and any spouse or partner must meet a service need; families on Income Support are not income tested."
+    },
+    "applyText": "Submit a fully completed Child Care Subsidy Funding Application with your income documents.",
+    "applyUrl": "https://www.gov.nl.ca/education/files/Child-Care-Subsidy-Policy-Manual-.pdf",
+    "source": "https://www.gov.nl.ca/education/files/Child-Care-Subsidy-Policy-Manual-.pdf",
+    "detail": {
+      "aboutList": {
+        "lead": "A service need can be one of these:",
+        "items": [
+          "Employment, including night work.",
+          "Education or training.",
+          "Child development, from birth until school entry, with a professional referral.",
+          "Injury, illness, disability or rehabilitation of a parent, with a professional referral.",
+          "A referral from Social Supports and Well Being."
+        ]
+      },
+      "steps": [
+        "Submit the application form and your documents; missing documents must arrive within 30 days or the file closes.",
+        "The Department checks your service needs and your income.",
+        "You are told in writing if you are eligible or declined.",
+        "Report any change in service needs on a Change in Circumstance form within 14 business days."
+      ],
+      "documents": [
+        "Child Care Subsidy Funding Application.",
+        "Verification of income (if applicable) and proof of residency, such as a driver's licence or utility bill.",
+        "Professional referral form or letter, if your need is health or development related."
+      ],
+      "tips": [
+        "Full subsidy income limits: one child $41,000; two $47,000; three $53,000.",
+        "Four children $59,000; five $65,000; six $71,000; seven $77,000.",
+        "Part-time care at Operating Grant services is up to $5 a day.",
+        "Referral forms must be signed and dated within three months of applying.",
+        "Services outside the Operating Grant have their own daily rate limits."
+      ]
+    }
+  },
+  {
+    "id": "nl-accessible-parking",
+    "name": "Accessible Parking Permit",
+    "level": "Newfoundland and Labrador",
+    "category": "Daily living supports",
+    "amount": "Free permit",
+    "summary": "A free permit that lets you park in zones marked with the blue wheelchair logo. You can ask for a temporary or a permanent permit.",
+    "note": "The permit goes to the person who needs it, not to a vehicle. You do not need a driver's licence or a vehicle.",
+    "requires": [
+      "nl",
+      "bcParkingMobility"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "A doctor or nurse practitioner fills out your first application.",
+        "More medical information may be asked for to decide your application."
+      ],
+      "note": "The page does not list medical conditions; the Registrar decides how long the permit lasts."
+    },
+    "applyText": "Have your doctor or nurse practitioner complete the application, then send it in.",
+    "applyUrl": "https://www.gov.nl.ca/motorregistration/accessible-parking-permit/application/",
+    "source": "https://www.gov.nl.ca/motorregistration/accessible-parking-permit/application/",
+    "detail": {
+      "aboutList": {
+        "lead": "Good to know about the permit:",
+        "items": [
+          "It can be used in any vehicle where you are a passenger.",
+          "It cannot be loaned or transferred, and using one not issued to you is illegal.",
+          "Show it in the windshield with the number and expiry date visible.",
+          "Only one permit is issued per person."
+        ]
+      },
+      "steps": [
+        "Get the application from a Motor Registration office or the website.",
+        "Ask a doctor or nurse practitioner to fill it out the first time.",
+        "Email it, fax it, or mail or drop it at any Motor Registration Office.",
+        "Receive the permit by mail, or ask to pick it up at an office."
+      ],
+      "documents": [
+        "Accessible Parking Permit Application completed by a doctor or nurse practitioner."
+      ],
+      "tips": [
+        "A temporary permit is valid for six months and a permanent one for five years; the Registrar decides the length.",
+        "Processing takes 5 to 10 business days, and may change with volume.",
+        "Renew a permanent permit online at MyGovNL; no new doctor visit is needed.",
+        "A temporary permit cannot be renewed; send a new application.",
+        "Email accessparkingpermits@gov.nl.ca or fax 709-729-4360."
+      ],
+      "phone": "1-877-636-6867"
+    }
+  },
+  {
+    "id": "nl-student-disabilities",
+    "name": "Student Aid for Students with Disabilities (provincial supports)",
+    "level": "Newfoundland and Labrador",
+    "category": "Education",
+    "amount": "Provincial grant for costs above the federal services and equipment grant (no dollar amount listed)",
+    "summary": "Extra student aid for post-secondary students with a verified disability. A provincial grant may cover disability-related costs above the federal services and equipment grant.",
+    "note": "Only the Provincial Grant for High Need Students is provincial; the page also lists federal Canada Student Grants.",
+    "requires": [
+      "nl",
+      "nlStudentDisabilitiesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have a verified disability that limits your studies or work.",
+        "The disability has lasted or is expected to last at least twelve months, or for life.",
+        "You apply for student aid through StudentAidNL.",
+        "You meet the academic performance rules."
+      ]
+    },
+    "applyText": "Apply online to StudentAidNL as a student with a disability; there is no separate application.",
+    "applyUrl": "https://www.gov.nl.ca/education/studentaid/disabilities/",
+    "source": "https://www.gov.nl.ca/education/studentaid/disabilities/",
+    "detail": {
+      "aboutList": {
+        "lead": "Supports you may qualify for include:",
+        "items": [
+          "A Provincial Grant for High Need Students with Disabilities.",
+          "Extra weeks of funding to finish your program.",
+          "Full-time assistance with a smaller course load.",
+          "Extra funding for equipment, software, learning support or tutoring, through a federal grant."
+        ]
+      },
+      "steps": [
+        "Submit the online StudentAidNL application and say you have a disability.",
+        "Complete the Verification of Eligibility Form for Students with Disabilities.",
+        "Your school applies for the federal services and equipment grant each study period.",
+        "You are assessed for the provincial grant automatically when that application is reviewed."
+      ],
+      "documents": [
+        "Verification of Eligibility Form for Students with Disabilities.",
+        "For a learning disability, a recent psycho-educational or comprehensive educational assessment."
+      ],
+      "tips": [
+        "You have access to 520 weeks of funding and may qualify for full-time aid with at least 40% of a full course load.",
+        "For a learning disability, the assessment must be within the last five years or done at age eighteen or older.",
+        "Proof of disability is usually needed only once.",
+        "Complete 40% of a full course load each study period to keep full-time aid."
+      ]
+    }
+  },
+  {
+    "id": "nl-mtap",
+    "name": "Medical Transportation Assistance Program (MTAP)",
+    "level": "Newfoundland and Labrador",
+    "category": "Health",
+    "amount": "Travel costs repaid, with set limits for flights, nights and meals",
+    "summary": "Helps cover travel costs when you must leave your home area for specialized insured medical care. MTAP pays last, after other coverage.",
+    "note": "From the latest fact sheet. Labrador-Grenfell Health Zone residents can get an in-province flight pass before travel.",
+    "requires": [
+      "nl",
+      "medicalTravelNeed"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are an MCP beneficiary.",
+        "You travel outside your area of residence for specialized insured medical services.",
+        "For overnight help, you travel at least 200 km one way."
+      ],
+      "note": "Not covered: emergency visits, clinical trials, uninsured services, second opinions or travel to avoid wait times."
+    },
+    "applyText": "Submit the online claim form with your supporting documents after travel.",
+    "applyUrl": "https://www.gov.nl.ca/la/files/MTAP-FACT-Sheet_Aug-26.pdf",
+    "source": "https://www.gov.nl.ca/la/files/MTAP-FACT-Sheet_Aug-26.pdf",
+    "detail": {
+      "aboutList": {
+        "lead": "Eligible costs include:",
+        "items": [
+          "Economy airfare and private vehicle mileage.",
+          "Accommodations and meal allowances.",
+          "Ground transportation by taxi, bus or ferry, with some limits.",
+          "Specialist visits, chemotherapy, dialysis, radiation, MRIs and PET scans."
+        ]
+      },
+      "steps": [
+        "Ask your referring physician for a medical note if you need an escort.",
+        "Apply for a flight pass before travel, if you are eligible.",
+        "Attend your appointment and get a signed confirmation of attendance.",
+        "Send expenses to your private insurer first, if you have coverage.",
+        "Register for direct deposit and submit the online claim form."
+      ],
+      "documents": [
+        "Medical note for an escort, if needed.",
+        "Referral from a Newfoundland and Labrador specialist for out-of-province travel.",
+        "Confirmation of appointment or attendance.",
+        "Private insurance travel benefit assessment, if it applies.",
+        "Receipts, except for gas, meal allowances and private accommodation."
+      ],
+      "tips": [
+        "Overnight help needs travel of at least 200 km one way.",
+        "Mileage is 35 cents a km, with a 50 km one-way minimum (20 km for dialysis).",
+        "Non-LGH residents: in-province flights up to $850 per person round trip.",
+        "Hotel up to $130 a night in-province; $50 a night with private accommodation.",
+        "Meals are $29 per person per night in-province.",
+        "Flight pass requests go in at least two business days before travel, and approval comes before you book."
+      ],
+      "phone": "1-877-475-2412"
+    }
+  },
+  {
+    "id": "st-johns-children-recreation-subsidy",
+    "name": "Children's recreation financial subsidy",
+    "level": "St. John's",
+    "category": "Recreation",
+    "amount": "Full or partial subsidy for city after school, preschool and camp programs",
+    "summary": "The City of St. John's can pay all or part of the fee for children's after school, preschool and camp programs. It looks at need and Statistics Canada's Low Income Cut Off.",
+    "note": "You need proof of residency and proof of income. Apply by the deadline for the program you want.",
+    "requires": [
+      "nl",
+      "stJohnS",
+      "stJohnsChildrenRecreationSubsidyRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in St. John's and apply for an after school, preschool or camp program.",
+        "Your child is under sixteen for camps and meets the program's other rules.",
+        "Your need, judged by Statistics Canada's Low Income Cut Off, supports a subsidy."
+      ],
+      "note": "Applications may be approved for a full or partial subsidy."
+    },
+    "applyText": "See the Financial Supports page and children's application form",
+    "applyUrl": "https://stjohns.ca/recreation-culture/recreation-programs/financial-supports/",
+    "source": "https://stjohns.ca/recreation-culture/recreation-programs/financial-supports/",
+    "detail": {
+      "aboutList": {
+        "lead": "What the page says about this subsidy:",
+        "items": [
+          "It covers after school and preschool programs and camps.",
+          "The City can approve all or part of the fee, based on need.",
+          "One application is needed for each program."
+        ]
+      },
+      "steps": [
+        "Open the Financial Supports page and get the children's application form.",
+        "Fill in the form completely.",
+        "Attach the documents the form asks for.",
+        "Send it in before the deadline for your program.",
+        "Wait for the City to tell you the result."
+      ],
+      "documents": [
+        "Proof of residency showing your name and address, such as a utility bill or driver's license",
+        "Proof of income from all sources, such as a Canada Revenue Agency Notice of Assessment for the previous year",
+        "A Canada Child Tax Benefit Notice is another example of income proof"
+      ],
+      "tips": [
+        "Deadlines are Feb 1 for spring camp, Mar 1 for preschool and after school care, and Mar 17 for summer camp.",
+        "A deadline that falls on a weekend moves to the next Monday.",
+        "The page asks you to allow 7-10 business days for a reply.",
+        "The page's example is from 2022 (2021 income), so the tax year to use now is not stated there.",
+        "For Notice of Assessment, call 1-800-959-8281; for Child Tax Benefit Notice, call 1-800-387-1193."
+      ],
+      "time": "7-10 business days for a reply",
+      "phone": "709-576-8684"
+    }
+  },
+  {
+    "id": "st-johns-adult-recreation-subsidy",
+    "name": "Adult recreation financial subsidy",
+    "level": "St. John's",
+    "category": "Recreation",
+    "amount": "Full or partial subsidy for City of St. John's adult programs",
+    "summary": "The City of St. John's can pay all or part of the fee for its adult recreation programs. It is for residents over eighteen and looks at need.",
+    "note": "Applications are taken all year and depend on program availability. You need proof of residency and proof of income.",
+    "requires": [
+      "nl",
+      "stJohnS",
+      "stJohnsAdultRecreationSubsidyRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in St. John's and are over eighteen.",
+        "Your need, judged by Statistics Canada's Low Income Cut Off, supports a subsidy.",
+        "You meet the requirements of the City program you want."
+      ],
+      "note": "Applications may be approved for a full or partial subsidy."
+    },
+    "applyText": "See the Financial Supports page and adult application form",
+    "applyUrl": "https://stjohns.ca/recreation-culture/recreation-programs/financial-supports/",
+    "source": "https://stjohns.ca/recreation-culture/recreation-programs/financial-supports/",
+    "detail": {
+      "aboutList": {
+        "lead": "What the page says about this subsidy:",
+        "items": [
+          "It applies to programs run by the City.",
+          "The City can approve all or part of the fee, based on need.",
+          "Requests are considered based on program availability."
+        ]
+      },
+      "steps": [
+        "Open the Financial Supports page and get the adult application form.",
+        "Fill in the form completely.",
+        "Attach the documents the form asks for.",
+        "Send it in at any time of year.",
+        "Wait for the City to tell you the result."
+      ],
+      "documents": [
+        "Proof of residency showing your name and address, such as a utility bill or driver's license",
+        "Proof of income from all sources, such as a Canada Revenue Agency Notice of Assessment for the previous year"
+      ],
+      "tips": [
+        "The page asks you to allow 7-10 business days for a reply.",
+        "The page's example is from 2022 (2021 income), so the tax year to use now is not stated there.",
+        "For Notice of Assessment, call 1-800-959-8281.",
+        "Email inclusion@stjohns.ca if you need help with the form."
+      ],
+      "time": "7-10 business days for a reply",
+      "phone": "709-576-8684"
+    }
+  },
+  {
+    "id": "st-johns-attendant-pass",
+    "name": "Attendant Pass",
+    "level": "St. John's",
+    "category": "Recreation",
+    "amount": "Free or discounted entry for your support person, set by each venue",
+    "summary": "An Attendant Pass lets a support person go with you to events and activities for free or at a discount. A professional must verify your need.",
+    "note": "Each venue sets the free or discounted rate. Certain restrictions may apply.",
+    "requires": [
+      "nl",
+      "stJohnS",
+      "stJohnsAttendantPassRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live with a disability and need another person's support to join community activities.",
+                "A medical professional, social worker or disability agency representative verifies the request."
+      ],
+      "note": "The pass belongs to the person who needs support."
+    },
+    "applyText": "See the Attendant Passes page and application",
+    "applyUrl": "https://stjohns.ca/recreation-culture/accessible-inclusive-recreation/attendant-passes/",
+    "source": "https://stjohns.ca/recreation-culture/accessible-inclusive-recreation/attendant-passes/",
+    "detail": {
+      "aboutList": {
+        "lead": "Venues listed as accepting the pass:",
+        "items": [
+          "Arts and Culture Centre",
+          "Facilities and events run by the City",
+          "Mary Brown's Centre",
+          "Metrobus",
+          "The Rooms",
+          "The Works/Aquarena"
+        ]
+      },
+      "steps": [
+        "Complete the application or renewal form in the name of the person who needs support.",
+        "Ask a professional or agency who knows you to sign the verification.",
+        "Add a photo.",
+        "Send it by email, in person or by mail."
+      ],
+      "documents": [
+        "Completed application or renewal application",
+        "A photo",
+        "Verification from a medical professional, social worker or disability agency representative"
+      ],
+      "tips": [
+        "Other venues may accept the pass, so call ahead to confirm.",
+        "Apply by email to inclusion@stjohns.ca, in person at the Recreation Administrative Office, H.G.R. Mews Community Centre, 60 Blackler Ave, or by mail to P.O. Box 908.",
+        "Allow 2 to 4 weeks for processing.",
+        "Inclusive Services can also issue a pass for staff of agencies that support people."
+      ],
+      "time": "2 to 4 weeks",
+      "phone": "709-576-4556"
+    }
+  },
+  {
+    "id": "st-johns-gobus",
+    "name": "GoBus accessible transit",
+    "level": "St. John's",
+    "category": "Transit",
+    "amount": "Accessible paratransit rides within St. John's and Mount Pearl",
+    "summary": "GoBus is the paratransit service for St. John's and Mount Pearl. People with a disability that prevents them from using Metrobus can register to ride.",
+    "note": "Fares are pay as you go. Confirm current fares with GoBus before you travel.",
+    "requires": [
+      "nl",
+      "stJohnSArea",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have a disability that prevents you from using Metrobus, the regular transit system.",
+        "You take part in a transit assessment arranged and paid for by Metrobus.",
+        "A health care professional completes the medical section of your application."
+      ],
+      "note": "Eligibility is decided case by case and is not based on one health condition."
+    },
+    "applyText": "See the GoBus eligibility page and application",
+    "applyUrl": "https://metrobus.com/alf/gobus_info.asp",
+    "source": "https://metrobus.com/alf/gobus_info.asp",
+    "detail": {
+      "aboutList": {
+        "lead": "What the page says about eligibility:",
+        "items": [
+          "Unconditional eligibility may be granted to people who cannot use Metrobus at any time.",
+          "Temporary eligibility may be granted for a temporary disability, such as recovery from surgery.",
+          "Conditional eligibility may be granted for barriers like winter only or trips without accessible stops."
+        ]
+      },
+      "steps": [
+        "Fill in section one of the GoBus application yourself.",
+        "Ask a health care professional to complete section two.",
+        "Send the form to Accessible Transit Services at Metrobus.",
+        "Take part in the transit assessment when they contact you."
+      ],
+      "documents": [
+        "GoBus application form",
+        "Health care professional's completed section two"
+      ],
+      "tips": [
+        "Fares listed on the page are dated January 1, 2017 and may be out of date: adult and senior cash fare $2.50, child (12 to 17) cash fare $2.00.",
+        "Children under 12 ride free, and there is a one-time $5 fee for a new Go-Card.",
+        "Fees for the health care professional's section are the applicant's responsibility.",
+        "Send applications to gobus@metrobus.com or 25 Messenger Drive, St. John's.",
+        "For help with the application call 709-570-2131."
+      ],
+      "time": "Not published"
+    }
+  },
+  {
+    "id": "paradise-accessible-transit",
+    "name": "Accessible Transit Project",
+    "level": "Paradise",
+    "category": "Transit",
+    "amount": "Free taxi service within the Town of Paradise",
+    "summary": "The Town of Paradise covers the cost of taxi rides within town for residents with a disability. You are assessed by a health practitioner first.",
+    "note": "The Town pays for the assessment. Outside Paradise, the Town covers only the part of the trip inside the town.",
+    "requires": [
+      "nl",
+      "paradise",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Paradise and have a physical, cognitive, sensory or visual limitation.",
+        "A health practitioner at Body Quest Health and Wellness assesses you.",
+        "You apply to the Town using the application form."
+      ],
+      "note": "Participants get a Town-issued identification card."
+    },
+    "applyText": "See the Accessible Transit Project page and application form",
+    "applyUrl": "https://www.paradise.ca/recycling-garbage-roads/accessible-transit-project/",
+    "source": "https://www.paradise.ca/recycling-garbage-roads/accessible-transit-project/",
+    "detail": {
+      "aboutList": {
+        "lead": "How the program works:",
+        "items": [
+          "Registered riders use Newfound Cabs at no cost within town boundaries.",
+          "The taxi company bills the Town directly.",
+          "The driver applies the program discount when you show your ID card."
+        ]
+      },
+      "steps": [
+        "Download and complete the application form.",
+        "Email it, drop it off at Town Hall or mail it to the Town.",
+        "Attend the assessment at Body Quest Health and Wellness.",
+        "Show your ID card to a Newfound Cabs driver when you ride."
+      ],
+      "documents": [
+        "Completed application form"
+      ],
+      "tips": [
+        "Email info@paradise.ca, drop off at Town Hall or mail to 28 McNamara Drive.",
+        "The assessment is at 15 McNamara Drive.",
+        "Contact Newfound Cabs each time you need a ride."
+      ],
+      "phone": "709-782-1400"
+    }
+  },
+  {
+    "id": "corner-brook-cbt-link",
+    "name": "CBT Link accessible transit",
+    "level": "Corner Brook",
+    "category": "Transit",
+    "amount": "Door-to-door accessible rides anywhere within Corner Brook city limits",
+    "summary": "CBT Link is Corner Brook's door-to-door accessible transit. It is for residents whose disabilities prevent them from using the regular transit system.",
+    "note": "Standard transit fares apply unless you qualify for the Free Transit Pass Program. Approved attendants ride free.",
+    "requires": [
+      "nl",
+      "cornerBrook",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your disability prevents you from using the regular transit system.",
+        "You are approved and registered before you ride.",
+        "A healthcare professional completes the medical section of the application."
+      ],
+      "note": "Incomplete applications may delay processing."
+    },
+    "applyText": "See the Corner Brook Transit page and CBT Link application",
+    "applyUrl": "https://www.cornerbrook.com/bus-transit/",
+    "source": "https://www.cornerbrook.com/bus-transit/",
+    "detail": {
+      "aboutList": {
+        "lead": "Service details from the page:",
+        "items": [
+          "Trips are available anywhere within city limits during operating hours.",
+          "Approved attendants or support persons ride free with an eligible rider.",
+          "Approved riders book through the Blaise Transit App or by phone."
+        ]
+      },
+      "steps": [
+        "Call to request an application or download the form.",
+        "Print it and fill it in completely.",
+        "Ask a healthcare professional to complete the medical section.",
+        "Submit all pages."
+      ],
+      "documents": [
+        "Printed application form with all pages",
+        "Medical section completed by a healthcare professional"
+      ],
+      "tips": [
+        "Corner Brook Transit services are not available on statutory holidays.",
+        "Book rides in the Blaise Transit App or call 709-289-3124.",
+        "Only approved riders should pick Reduced Mobility in the app.",
+        "The page lists the regular adult cash fare as $3.25."
+      ],
+      "phone": "709-637-1666"
+    }
+  },
+  {
+    "id": "corner-brook-free-transit-pass",
+    "name": "Free Transit Pass Program",
+    "level": "Corner Brook",
+    "category": "Transit",
+    "amount": "Free transit pass for eligible residents",
+    "summary": "Corner Brook gives free transit passes to some residents, funded by the provincial government. It covers people on income support, youth services and seniors on GIS.",
+    "note": "The page does not say which pass type or how long a pass lasts.",
+    "requires": [
+      "nl",
+      "cornerBrook",
+      "cornerBrookFreeTransitPassRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You receive income support.",
+        "You are a youth receiving youth services.",
+        "You are a senior receiving the Guaranteed Income Supplement."
+      ],
+      "note": "Belonging to any one of these groups is enough."
+    },
+    "applyText": "See the Corner Brook Transit page",
+    "applyUrl": "https://www.cornerbrook.com/bus-transit/",
+    "source": "https://www.cornerbrook.com/bus-transit/",
+    "detail": {
+      "aboutList": {
+        "lead": "How to get your pass:",
+        "items": [
+          "Income support and youth services recipients are contacted directly by provincial representatives.",
+          "Seniors on GIS pick up passes at City Hall.",
+          "Seniors bring government-issued photo ID and proof of GIS benefits."
+        ]
+      },
+      "steps": [
+        "If you get GIS, request proof of GIS from Service Canada.",
+        "Go to City Hall with photo ID and proof of GIS.",
+        "Income support and youth services recipients wait for provincial contact."
+      ],
+      "documents": [
+        "Government-issued photo ID",
+        "Proof of GIS benefits from Service Canada"
+      ],
+      "tips": [
+        "Call Service Canada at 1-800-277-9914 for proof of GIS.",
+        "Funding comes from the Government of Newfoundland and Labrador.",
+        "The page names these three groups as eligible residents."
+      ]
+    }
+  },
+  {
+    "id": "nl-moving-into-workforce",
+    "name": "Moving into the Workforce",
+    "level": "Newfoundland and Labrador",
+    "category": "Employment",
+    "amount": "Job Start benefit of $250, up to two times per year",
+    "summary": "Extra money and supports for people on Income Support who start a job, so working leaves them better off.",
+    "note": "You must report all employment earnings each month to avoid an overpayment that has to be repaid.",
+    "requires": [
+      "nl",
+      "nlMovingIntoWorkforceRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You receive Income Support from Social Supports and Well-Being."
+      ]
+    },
+    "applyText": "Call a Client Services Officer in the Income Support program to report earnings and learn more.",
+    "applyUrl": "https://www.gov.nl.ca/sswb/movingintoworkforce/",
+    "source": "https://www.gov.nl.ca/sswb/movingintoworkforce/",
+    "detail": {
+      "aboutList": {
+        "lead": "Supports on the page include:",
+        "items": [
+          "A Job Start benefit for each new job you begin.",
+          "Full Income Support plus your pay for the first sixty days of work.",
+          "A rule that keeps part of your earnings when Income Support tops up your pay.",
+          "Bonuses for staying employed, and drug card coverage that carries on."
+        ]
+      },
+      "steps": [
+        "Call Income Support and ask which work incentives apply to you.",
+        "Report your employment earnings every month.",
+        "Ask about childcare help, which comes from Education (licensed) or Income Support (private)."
+      ],
+      "documents": [
+        "The page does not list documents."
+      ],
+      "tips": [
+        "Job Start benefit is $250, up to two times per year for new jobs.",
+        "After the first 60 days, the first $150 a month you earn is not deducted from your Income Support benefits.",
+        "Single parents may also get an Earned Income Supplement.",
+        "Continuation Bonuses are $250 at 6 months, $500 at 12 months and $1000 at 24 months of continuous work.",
+        "Up to $1,000 Employment Stability Assistance may help in a financial emergency that could stop you working.",
+        "Jobs, Growth and Rural Development can help with work expenses: 1-800-563-6600 or employmentprograms@gov.nl.ca."
+      ],
+      "phone": "1-877-729-7888"
+    }
+  },
+  {
+    "id": "nl-dental-programs",
+    "name": "Dental Health Plan (children, youth and adults)",
+    "level": "Newfoundland and Labrador",
+    "category": "Health",
+    "amount": "Covered basic dental services; dentures for adults on the Foundation Plan",
+    "summary": "Provincial dental coverage for all children, for youth in low-income families, and for adults on the Foundation Plan.",
+    "note": "This covers the provincial plans only; the page also links to the federal Canadian Dental Care Plan.",
+    "requires": [
+      "nl",
+      "nlDentalProgramsRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Children up to and including twelve years old are covered by the Children's Dental Health Program.",
+        "Youth aged thirteen to seventeen qualify if their family gets Income Support or they are in the Access Plan.",
+        "Adults 18 and older are covered if enrolled in the Foundation Plan of the Prescription Drug Program."
+      ],
+      "note": "Each plan covers different services."
+    },
+    "applyText": "Ask your dentist to confirm coverage; Access Plan applications go through the Prescription Drug Program.",
+    "applyUrl": "https://www.gov.nl.ca/hcs/dentalservices/general-info/",
+    "source": "https://www.gov.nl.ca/hcs/dentalservices/general-info/",
+    "detail": {
+      "aboutList": {
+        "lead": "What each plan covers:",
+        "items": [
+          "Children get exams, cleanings, fluoride (ages six to twelve), routine fillings, extractions and sealants.",
+          "Youth get exams and routine fillings and extractions, but no cleanings, fluoride or sealants.",
+          "Adults get basic services and standard dentures, but no cleanings or fluoride."
+        ]
+      },
+      "steps": [
+        "Book with a dentist and ask whether the treatment is covered.",
+        "Youth in the Access Plan: call the Prescription Drug Program to request an application.",
+        "Bring proof of eligibility to the dental office."
+      ],
+      "documents": [
+        "Valid MCP number.",
+        "Access Plan youth: the eligibility letter from the Prescription Drug Program.",
+        "Adults from Income Support: Department of Families and Affordability PIN and file number."
+      ],
+      "tips": [
+        "Children's exams are every six months and cleanings every twelve months.",
+        "Youth exams are on a two year cycle.",
+        "Adult basic services are on a three year cycle and dentures on an eight year cycle.",
+        "A standard denture leaves no cost to the patient; specialized dentures cost extra."
+      ],
+      "phone": "1-888-859-3535"
+    }
+  },
+  {
+    "id": "nl-caregiver-benefit",
+    "name": "Caregiver Benefit",
+    "level": "Newfoundland and Labrador",
+    "category": "Money",
+    "amount": "$400 per month",
+    "summary": "Monthly money for an unpaid caregiver who supports a lower-income senior with high care needs.",
+    "note": "The benefit is reportable income, so ask the Canada Revenue Agency about tax effects.",
+    "requires": [
+      "nl",
+      "age19plus",
+      "nlCaregiverBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "The caregiver is nineteen or older and lives in Newfoundland and Labrador.",
+        "The caregiver gives regular, significant care and is not paid to do so.",
+        "The care recipient is sixty-five or older and has high care needs set by NL Health Services.",
+        "The care recipient's household net income is at or under the limit for couples or single households.",
+        "The care recipient gets home and community support services from NL Health Services."
+      ],
+      "note": "Both the caregiver and the care recipient, who must also live in Newfoundland and Labrador, must meet the criteria."
+    },
+    "applyText": "Download the Caregiver Benefit Application Form from the page, or contact your zone.",
+    "applyUrl": "https://nlhealthservices.ca/key-information/caregiver-benefit-2/",
+    "source": "https://nlhealthservices.ca/key-information/caregiver-benefit-2/",
+    "detail": {
+      "aboutList": {
+        "lead": "Care that counts can include:",
+        "items": [
+          "Help to eat and drink, bathe, wash hair and dress.",
+          "Continence care and supervision.",
+          "Housekeeping and meal preparation."
+        ]
+      },
+      "steps": [
+        "Download the Caregiver Benefit Application Form.",
+        "Contact your zone's contact, or your case manager in Western or Central.",
+        "The caregiver signs an Agreement with NL Health Services."
+      ],
+      "documents": [
+        "Application form.",
+        "Signed Agreement with NL Health Services."
+      ],
+      "tips": [
+        "Income limit is $50,000 or less for couples or $37,200 or less for single households.",
+        "The care relationship must be expected to last beyond 90 days.",
+        "The care recipient needs a clinical assessment score (RAI-HC MAPLe) of 5.",
+        "Eastern-Urban: 709-752-4361. Eastern-Rural: 709-542-3511. Labrador Grenfell: 709-931-2450 ext 9317263."
+      ]
+    }
   }
 
 ];
@@ -19490,6 +21406,7 @@ const GLOSSARY = {
   "CDB": "Canada Disability Benefit",
   "CDCP": "Canadian Dental Care Plan",
   "CLBC": "Community Living BC",
+  "CNLHB": "Canada-Newfoundland and Labrador Housing Benefit",
   "COLT": "Cochrane On Demand Local Transit",
   "CPAP": "Continuous Positive Airway Pressure (a breathing machine)",
   "CPP": "Canada Pension Plan",
@@ -19524,11 +21441,14 @@ const GLOSSARY = {
   "LIM-AT": "Low-Income Measure After-Tax",
   "MBM": "Market Basket Measure",
   "MCFD": "Ministry of Children and Family Development",
+  "MCP": "Medical Care Plan (Newfoundland and Labrador health insurance)",
   "MHRTC": "Multigenerational Home Renovation Tax Credit",
   "MSDPR": "Ministry of Social Development and Poverty Reduction",
   "MSO": "Medical Services Only",
   "MSP": "Medical Services Plan",
   "MSPD": "Manitoba Supports for Persons with Disabilities",
+  "MTAP": "Medical Transportation Assistance Program",
+  "NLHC": "Newfoundland and Labrador Housing Corporation",
   "NOA": "Notice of Assessment",
   "OAP": "Ontario Autism Program",
   "OAS": "Old Age Security",
@@ -19587,6 +21507,41 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "nl-caregiver-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-dental-programs": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-moving-into-workforce": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "corner-brook-free-transit-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "corner-brook-cbt-link": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "paradise-accessible-transit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "st-johns-gobus": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "st-johns-attendant-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "st-johns-adult-recreation-subsidy": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "st-johns-children-recreation-subsidy": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "nl-mtap": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-student-disabilities": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-accessible-parking": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-child-care-subsidy": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-income-supplement": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-seniors-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-housing-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-rental-housing": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-home-repair": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-home-modification": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-paid-family-caregiving": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-community-behavioural-services": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-direct-home-services": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-special-child-welfare-allowance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-home-support": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-special-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-assurance-plan": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-access-plan": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-65plus-plan": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-foundation-plan": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-prenatal-nutrition": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-child-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-health-related-services": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-disability-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nl-income-support": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "pe-adult-day-programs": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "pe-coach": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "pe-children-complex-needs": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)

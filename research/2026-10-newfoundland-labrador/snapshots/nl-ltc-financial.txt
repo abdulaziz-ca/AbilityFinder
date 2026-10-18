@@ -1,0 +1,26 @@
+URL: https://www.gov.nl.ca/seniors/seniors-health-care/financial-information/ | province: NL | program: Long-term care and personal care home financial assessment | fetched: 2026-10-18
+=== PAGE: https://www.gov.nl.ca/seniors/seniors-health-care/financial-information/ (HTTP 200, 1170 chars)
+- 
+ Financial Information - Seniors 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+ You are using an outdated browser. Please upgrade your browser to improve your experience.
+ Warning: It seems JavaScript is either disabled or not supported by your browser. Please enable JavaScript to improve your experience.
+ Skip to content 
+ Seniors > Seniors Health Care > Financial Information 
+ Newfoundland and Labrador offers a range of financial supports to help seniors access health care and live well in their communities. These programs are designed to reduce financial barriers and promote independence, dignity, and well-being.
+ Key supports include:
+- Aging Well at Home Grant: Up to $400 per year for low-income seniors to help with services like snow clearing, grocery delivery, and prescription drop-offs. Aging Well Grant 
+- Caregiver Benefit: $400 per month for eligible caregivers providing unpaid support to seniors with complex needs. Caregiver Benefit 
+- Financial Subsidies for Home Support, Personal Care Homes, and Long Term Care (based on eligibility criteria). Income Based Financial Assessment Policy Manual for Long Term Care and Community Support Services

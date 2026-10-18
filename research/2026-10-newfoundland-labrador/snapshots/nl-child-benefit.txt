@@ -1,0 +1,49 @@
+URL: https://www.gov.nl.ca/sswb/income-support/child/ | province: NL | program: NL Child Benefit | fetched: 2026-10-18
+=== PAGE: https://www.gov.nl.ca/sswb/income-support/child/ (HTTP 200, 1976 chars)
+- 
+ The Newfoundland and Labrador Child Benefit (NLCB) - Social Supports and Well-Being 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+ You are using an outdated browser. Please upgrade your browser to improve your experience.
+ Warning: It seems JavaScript is either disabled or not supported by your browser. Please enable JavaScript to improve your experience.
+ Skip to content 
+ Social Supports and Well-Being > Income Support > The Newfoundland and Labrador Child Benefit (NLCB) 
+ Français 
+ This is a provincial tax credit for families whose income is less than $38,193 and have children under 18 years of age
+ If your net family income is below $20,397, you will receive the full benefit; however, there will be a reduced amount if your family income is between $20,397 & $38,193. This amount is based on your family income from the previous year. Payments run from July to June and are issued by the Canada Revenue Agency (CRA).
+ In addition, you can receive the Prenatal-Early Childhood Nutrition Supplement , ($150 a month) if your child is below the age of five or you are pregnant.
+ For information on federal benefits, visit the Child Benefit FAQ or the federal Child & Family Benefits section at CRA .
+ How Much NLCB Can I Receive?
+ Maximum NLCB Benefits Effective
+July 1, 2026 
+ Family Size 
+ Monthly Total 
+ Yearly Total 
+ 1 Child 
+ $157.33 
+ $1888 
+ 2 Children 
+ $324.17 
+ $3890 
+ 3 Children 
+ $503.33 
+ $6040 
+ 4 Children 
+ $695.83 
+ $8350 
+ Quick Facts – Newfoundland and Labrador Child Benefits
+- It helps approximately 9,000 low income families.
+- Became effective in July 1999.
+- The amount received is based on family size and income.
+- Families leaving Income Support for work keep their NLCB and other Child Benefits.
+- This benefit does not affect Income Support entitlement.
+- It is combined with federal child benefits into one monthly payment.
+- Parents must file an income tax return each year to verify eligibility for the NLCB and Canada Child Benefit (CCB).

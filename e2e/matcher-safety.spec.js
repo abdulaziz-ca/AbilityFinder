@@ -1818,7 +1818,7 @@ test("the city question is never asked when the province has no city list", asyn
         out[p] = {
           shown: visibleSteps().some((s) => s.id === "city"),
           options: (CITIES_BY_PROVINCE[p] || []).length,
-          dark: (p === "SK" && !SK_ENABLED) || (p === "MB" && !MB_ENABLED) || (p === "NB" && !NB_ENABLED) || (p === "NS" && !NS_ENABLED) || (p === "PE" && !PE_ENABLED),
+          dark: (p === "SK" && !SK_ENABLED) || (p === "MB" && !MB_ENABLED) || (p === "NB" && !NB_ENABLED) || (p === "NS" && !NS_ENABLED) || (p === "PE" && !PE_ENABLED) || (p === "NL" && !NL_ENABLED),
         };
       }
     } finally {

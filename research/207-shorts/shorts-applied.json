@@ -1786,11 +1786,6 @@
     "who": ["you", "program"],
     "reason": "Provincial-sweep record pe-home-energy-low-income (2026-10-17)"
   },
-  "peOutOfProvinceTravelRoute": {
-    "short": "Check the program's income test",
-    "who": ["you", "program"],
-    "reason": "Provincial-sweep record pe-out-of-province-travel (2026-10-17)"
-  },
   "peAccessabilitySupportsRoute": {
     "short": "Check the diagnosis and that you apply before age sixty-five",
     "who": ["you", "professional"],
@@ -1875,5 +1870,155 @@
     "short": "Ask Home Care for an assessment",
     "who": ["you", "program"],
     "reason": "Provincial-sweep record pe-adult-day-programs (2026-10-17)"
+  },
+  "nlIncomeSupportRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-income-support (2026-10-17)"
+  },
+  "nlDisabilityBenefitRoute": {
+    "short": "Check your Disability Tax Credit and the income limits",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record nl-disability-benefit (2026-10-17)"
+  },
+  "nlHealthRelatedServicesRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Provincial-sweep record nl-health-related-services (2026-10-17)"
+  },
+  "nlChildBenefitRoute": {
+    "short": "Check the income test and that you are raising a child",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-child-benefit (2026-10-17)"
+  },
+  "nlPrenatalNutritionRoute": {
+    "short": "Check the income test and your child's age",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-prenatal-nutrition (2026-10-17)"
+  },
+  "nlFoundationPlanRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Provincial-sweep record nl-foundation-plan (2026-10-17)"
+  },
+  "nl65plusPlanRoute": {
+    "short": "Check that you get the federal senior benefits",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-65plus-plan (2026-10-17)"
+  },
+  "nlAccessPlanRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-access-plan (2026-10-17)"
+  },
+  "nlAssurancePlanRoute": {
+    "short": "Check your drug costs against your income",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-assurance-plan (2026-10-17)"
+  },
+  "nlSpecialAssistanceRoute": {
+    "short": "Ask for a financial assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-special-assistance (2026-10-17)"
+  },
+  "nlHomeSupportRoute": {
+    "short": "Ask for a home support assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-home-support (2026-10-17)"
+  },
+  "nlSpecialChildWelfareAllowanceRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record nl-special-child-welfare-allowance (2026-10-17)"
+  },
+  "nlDirectHomeServicesRoute": {
+    "short": "Ask for a developmental assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-direct-home-services (2026-10-17)"
+  },
+  "nlCommunityBehaviouralServicesRoute": {
+    "short": "Ask about a referral",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-community-behavioural-services (2026-10-17)"
+  },
+  "nlPaidFamilyCaregivingRoute": {
+    "short": "Ask for a home support assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-paid-family-caregiving (2026-10-17)"
+  },
+  "nlHomeModificationRoute": {
+    "short": "Check the income limit, disability and home ownership",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-home-modification (2026-10-17)"
+  },
+  "nlHomeRepairRoute": {
+    "short": "Check the income limit and home ownership",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-home-repair (2026-10-17)"
+  },
+  "nlRentalHousingRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-rental-housing (2026-10-17)"
+  },
+  "nlHousingBenefitRoute": {
+    "short": "Check the housing need test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-housing-benefit (2026-10-17)"
+  },
+  "nlSeniorsBenefitRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-seniors-benefit (2026-10-17)"
+  },
+  "nlIncomeSupplementRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-income-supplement (2026-10-17)"
+  },
+  "nlChildCareSubsidyRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-child-care-subsidy (2026-10-17)"
+  },
+  "nlStudentDisabilitiesRoute": {
+    "short": "Check the disability verification form",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-student-disabilities (2026-10-17)"
+  },
+  "stJohnsChildrenRecreationSubsidyRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Newfoundland and Labrador city record st-johns-children-recreation-subsidy (2026-10-18)"
+  },
+  "stJohnsAdultRecreationSubsidyRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Newfoundland and Labrador city record st-johns-adult-recreation-subsidy (2026-10-18)"
+  },
+  "stJohnsAttendantPassRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "Newfoundland and Labrador city record st-johns-attendant-pass (2026-10-18)"
+  },
+  "cornerBrookFreeTransitPassRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Newfoundland and Labrador city record corner-brook-free-transit-pass (2026-10-18)"
+  },
+  "nlMovingIntoWorkforceRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Provincial-sweep record nl-moving-into-workforce (2026-10-17)"
+  },
+  "nlDentalProgramsRoute": {
+    "short": "Check which dental program covers your age",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-dental-programs (2026-10-17)"
+  },
+  "nlCaregiverBenefitRoute": {
+    "short": "Ask NL Health Services about an assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nl-caregiver-benefit (2026-10-17)"
   }
 }

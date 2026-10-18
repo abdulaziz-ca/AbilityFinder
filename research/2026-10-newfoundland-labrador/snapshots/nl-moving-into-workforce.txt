@@ -1,0 +1,31 @@
+URL: https://www.gov.nl.ca/sswb/movingintoworkforce/ | province: NL | program: Moving into the Workforce | fetched: 2026-10-18
+=== PAGE: https://www.gov.nl.ca/sswb/movingintoworkforce/ (HTTP 200, 3644 chars)
+- 
+ Moving into the Workforce - Social Supports and Well-Being 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+ You are using an outdated browser. Please upgrade your browser to improve your experience.
+ Warning: It seems JavaScript is either disabled or not supported by your browser. Please enable JavaScript to improve your experience.
+ Skip to content 
+ Social Supports and Well-Being > Moving into the Workforce 
+ If you are in receipt of Income Support, incentives and supports are available to assist you to move into the workforce. It is important to remember, you must report all employment earnings to prevent an overpayment of benefits. 
+- You may be eligible for a Job Start benefit of $250 up to two times per year for any new jobs you begin.
+- You can receive a Benefit Overlap of full Income Support benefits and your employment income for the first 60 days after you start work.
+- After the first 60 days of work, you may continue to qualify for Income Support as an Earnings Supplement . By working, you will have a higher overall monthly income. The first $150 per month you earn will not be deducted from your Income Support benefits. You will keep 75% of earnings from $150 to $225; 50% of earnings from $225 to $300; and 25% of any earnings above $300 per month. A family receiving supportive services can keep the first $250 of monthly earnings. In addition, expenses such as transportation and childcare will be considered.
+- Single parents are also eligible for an Earned Income Supplement , which is added to the monthly Income Support benefits.
+- You may receive Employment Stability Continuation Bonuses after 6 months ($250), 12 months ($500) and 24 months ($1000) of continuous employment.
+- If you receive Income Support as an earnings supplement, your Drug Card covering up to 100% of prescription drug costs, will continue. If you no longer need Income Support to supplement your earnings, your prescription drug coverage will be extended for the first 12 months. After the first 12 months, you may qualify for up to 80% prescription drug coverage by applying to the Newfoundland and Labrador Prescription Drug Program, by calling 1-888-859-3535.
+- If you have a financial emergency that may cause you to stop working, you may qualify for up to $1,000 Employment Stability Assistance to help you keep your job.
+- If you need childcare , help may be available through the Department of Education and Early Childhood Development (licensed) https://www.gov.nl.ca/education/childcare/childcaresubsidy/ or SSWB Income Support (private).
+- If you receive an income tax refund , the amount you receive will not affect your Income Support benefits.
+- You may be eligible for Employment Development Supports through the Department of Jobs, Growth and Rural Development (JGRD) to help with certain expenses you may have when going to work. JGRD may also help you with looking for a new job or going to school. You can reach out to JGRD by phone at 1-800-563-6600 (toll free) or email employmentprograms@gov.nl.ca . You can also visit the website https://www.gov.nl.ca/labourmarketinformation or complete the following form Request for Service – Jobs, Growth and Rural Development .
+- IMPORTANT : You must report your employment earnings each month to receive the correct amount of Income Support as a supplement to your earnings and to prevent an overpayment of benefits, which will need to be repaid
+- Please contact a Client Services Officer in the Income Support program at 1-877-729-7888 (toll free) to report your earnings and to learn more about incentives and supports that may be available to you as you move into the workforce.

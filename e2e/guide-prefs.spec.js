@@ -8,7 +8,7 @@ test("a guide follows the system light theme when nothing is saved", async ({ br
   const page = await context.newPage();
   await page.goto("/guides/aadl.html");
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
-  await expect(page.locator(".nav-tag")).toHaveText("Alberta + BC + Ontario + Saskatchewan + Manitoba + New Brunswick + Nova Scotia + Prince Edward Island");
+  await expect(page.locator(".nav-tag")).toHaveText("Alberta + BC + Ontario + Saskatchewan + Manitoba + New Brunswick + Nova Scotia + Prince Edward Island + Newfoundland and Labrador");
   await context.close();
 });
 
@@ -29,5 +29,5 @@ test("a saved theme, contrast and text size apply on a guide", async ({ browser 
 
 test("the guides index names every live province", async ({ page }) => {
   await page.goto("/guides/");
-  await expect(page.locator(".eyebrow").first()).toHaveText("Alberta, British Columbia, Ontario, Saskatchewan, Manitoba, New Brunswick, Nova Scotia and Prince Edward Island + federal benefits");
+  await expect(page.locator(".eyebrow").first()).toHaveText("Alberta, British Columbia, Ontario, Saskatchewan, Manitoba, New Brunswick, Nova Scotia, Prince Edward Island and Newfoundland and Labrador + federal benefits");
 });

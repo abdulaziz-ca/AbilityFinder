@@ -6,6 +6,27 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-18 — Newfoundland and Labrador live
+
+### Shipped
+- **Newfoundland and Labrador** (`?v=225`): 28 provincial and 7 city programs (St. John's, Mount Pearl, Paradise,
+  Corner Brook), each built from its official page and checked by a separate reviewer, plus a completeness check
+  of the department hub pages (added Moving into the Workforce, dental programs and the Caregiver Benefit). Help
+  sections: Legal Aid NL, 211 NL, Empower, Spinal Cord Injury NL, CHHA-NL. **Catalogue: 400 programs, nine
+  provinces.** Only Quebec is left.
+- Medical travel programs (NL MTAP and PEI's out-of-province travel) now use the wizard's existing "must travel for
+  medical care" answer, so people who said so can reach "ready".
+- Not built and tracked in `research/2026-10-newfoundland-labrador/GAPS.md`: the Home Heating Supplement (intake
+  closed January 2026), the Aging Well at Home Grant (page only covers 2025–26), Mount Pearl's PEARL subsidy (no
+  real test on the page), and Easter Seals NL (site behind a bot check, not bypassed).
+
+### Verified how
+- Unit tests (239) and the full Chromium suite (324) pass locally; CI runs all three browsers before deploying.
+
+### Decisions we made for you
+- Dental: children up to 12 can show "ready"; older youth and adults show "almost" because they qualify only through
+  Income Support or a drug plan enrolment the wizard does not ask about.
+
 ## 2026-10-18 — Prince Edward Island live
 
 ### Shipped

@@ -1,0 +1,136 @@
+URL: https://www.gov.nl.ca/hcs/dentalservices/general-info/ | province: NL | program: MCP Dental Services | fetched: 2026-10-18
+=== PAGE: https://www.gov.nl.ca/hcs/dentalservices/general-info/ (HTTP 200, 10029 chars)
+- 
+ Dental Services: General Info - Health and Community Services 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+ You are using an outdated browser. Please upgrade your browser to improve your experience.
+ Warning: It seems JavaScript is either disabled or not supported by your browser. Please enable JavaScript to improve your experience.
+ Skip to content 
+ Health and Community Services > Dental Services > Dental Services: General Info 
+ Français 
+- NEW Canadian Dental Care Plan 
+- Dental Health Plan 
+- Children’s Dental Health Program 
+- Income Support Program 
+- Low Income (Access) Program 
+- Adult Dental Program 
+- Surgical Dental Program 
+- Orthodontic Coverage for Cleft Lip and/or Palate Patients 
+- Provider Information 
+ Canadian Dental Care Plan (CDCP)
+- https://www.canada.ca/en/services/benefits/dental/dental-care-plan.html  
+ Dental Health Plan
+- Children’s Dental Health Program: 0 – 12 years
+- Income Support Program Youth: 13 – 17 years
+- Low Income (Access) Program Youth: 13 – 17 years
+- Adult Dental Program: 18 + years
+- Surgical Dental Program
+ ^ Top of Page 
+ Children’s Dental Health Program
+ The Children’s Dental Health Program provides universal access to eligible dental services for children up to and including 12 years of age. The eligible services are:
+- Examinations at six month intervals
+- Cleanings at 12 month intervals
+- Fluoride applications for children aged six to twelve years at 12 month intervals
+- Routine fillings and extractions
+- Sealants
+ Parents should discuss with their dentist if costs for a recommended treatment will be covered under the Children’s Dental Health Plan.
+ ^ Top of Page 
+ Income Support Program
+ The Income Support Program provides ‘Basic Services’ only, as listed in the Dental Health Plan Payment Schedule. For youths aged 13 – 17 years inclusive, whose family is/are in receipt of Income Support. Services limited to a two year cycle.
+ Eligible services include:
+- Examinations at two year intervals
+- Routine fillings and extractions
+ Ineligible services include:
+- Cleanings and fluorides are not eligible under this program
+- Sealants are not eligible under this program
+ The Department of Social Supports and Well-Being does not authorize the provision of, or payment for, any dental treatment. That department verifies only the patient’s inability to pay for treatment.
+ All recipients of Income Support are enrolled in the Foundation Plan of the Newfoundland and Labrador Prescription Drug Program and they must have a valid MCP number, a Department of Immigration, Skills and Labour identification number and a Department of Families and Affordability file number (Income Support Card). This information must be noted on all dental claim forms.
+ Note: Providers should verify the date and the validity of all numbers and be prepared to substantiate that validity for the date of the dental services rendered.
+ ^ Top of Page 
+ Low Income (Access) Program
+ The Low Income (Access) Program provides ‘Basic Services’ only, as listed in the Dental Health Plan Payment Schedule. For youth aged 13 – 17 years, inclusive, who are eligible and enrolled in the Access Plan of the Newfoundland and Labrador Prescription Drug Program (NLPDP). Eligible youth will be noted in a letter of eligibility sent to the family from NLPDP offices in Stephenville.
+ Eligible services include:
+- Low Income (Access) Program coverage for eligible youths is the same as the Income Support Program:
+- Examinations at two year intervals
+- Routine fillings and extractions
+ Ineligible services include:
+- Cleanings and fluorides are not eligible under this program
+- Sealants are not eligible under this program
+ Other information:
+- Applications and assessment for eligibility is through the NLPDP offices in Stephenville
+- Proof of eligibility must be given to the dental office at the time of presentation for treatment. This will include a valid MCP number and a letter from NLPDP clearly showing the name of the patient seeking treatment.
+ For information or to request an application for the Access Plan you may call: 1-888-859-3535 
+ ^ Top of Page 
+ Adult Dental Program
+ The Adult Dental Program provides ‘Basic Services’ as listed in the Dental Health Plan Payment Schedule. There is also a denture component. Dentures are limited to ‘Standard Dentures’ only. Basic services limited to a three year cycle. Dentures are limited to an eight year cycle.
+ The Adult Dental Program will pay up to the cost of standard dentures. Additional costs from the delivery of specialized dentures will be the responsibility of the patient. It is recommended that patients talk with the dental provider prior to commencement of treatment to be informed of any additional charges. If a standard denture is delivered, there will be no cost to the patient as per the no balance billing policy of the Dental Health Plan.
+- Limited to clients enrolled under the Foundation Plan of the Newfoundland and Labrador Prescription Drug Program (NLPDP).
+- No preventive services (no cleanings and/or fluorides)
+- Eligible services include an examination and two x-rays every three years, a panoramic radiograph every five years, routine fillings on a three year cycle, extractions, and there is a denture component allowing the delivery of standard dentures once every eight years.
+- Proof of eligibility required for billing purposes. Beneficiaries will need:
+- MCP number,
+- Department of Families and Affordability PIN number and
+- File number
+ This will be the vast majority of cases .For adults enrolled in The Foundation Plan but NOT transferred from Department of Social Supports and Well-Being (e.g.: ambulance cards from Regional Health Authorities), confirmation of enrollment should be obtained from NLPDP offices and the MCP number will be the only identification needed upon submission of claim.
+ Confirmation of eligibility by dental offices can be done via a toll free number: 1-888-859-3535 
+- FAQ’s for Beneficiaries 
+- New Annual Cap for Basic and Denture Services under the ADP(June 1, 2015) (67 KB)
+- Increase in Denture Fees and Budgeting(October 4, 2023) 
+ ^ Top of Page 
+ Surgical Dental Program
+ The Surgical Dental Program provides insured services under the Medical Care and Hospital Insurance Act. An insured service is defined as one that is:
+- Listed in Section 3.(1)(b) of the Medical Care Insured Services Regulations
+- Medically necessary. The clinical need of the provision and claim if an insured service may be evaluated by the Dental Consultant.
+ Policies on pre-existing conditions necessary to define ‘medical necessity’ must exist for the specific services to qualify as MCP insured services.
+ ^ Top of Page 
+ Orthodontic Coverage for Cleft Lip and/or Palate Patients
+ Orthodontic Coverage for Patients with Cleft Lip and Palate 
+ The Department of Health and Community Services is committed to supporting patients with cleft lip and/or palate. The Dental Consultant within the department, who assesses and facilitates approval of complex dental requests and claims, is available to answer questions from patients or parents.
+ Patients with cleft lip and/or palate may be entitled to coverage for orthodontic treatment.
+- It is important to note that approval from the Dental Consultant is required prior to any stage of treatment commencing. The orthodontist must request approval from the Dental Consultant by submitting a Prior Approval Request Form ( Prior Approval Request Form.xls ).
+- The cost of the first consultation may be covered once the Dental Consultant receives verification of the diagnosis of cleft lip and/or palate.
+- The first orthodontic assessment and any records needed to plan treatment, such as X-rays, may be covered up to the current MCP maximum rates. These rates may be lower than the fee charged by the orthodontist.
+- All orthodontic treatment plans for patients with cleft lip and/or palate must be reviewed by the Dental Monitoring Committee to confirm that the treatment is medically necessary. This review is not required for the first consultation or assessment.
+- To have a case reviewed, the orthodontist must provide:
+- A full treatment plan.
+- A copy of the approved diagnostic records.
+- A letter explaining why the treatment is medically necessary.
+- The maximum coverage for each treatment stage is $6,656.
+- The lifetime maximum coverage is $33,280.
+- In some cases, additional funding may be approved by the Dental Monitoring Committee if the treatment is medically necessary. However, the total amount approved cannot be more than the lifetime maximum.
+ Important: This coverage only applies to orthodontic treatment. Coverage for replacing teeth, crowns, or other restorative dental work is not included. These requests will be reviewed separately.
+ For more information, patients or parents can contact the Dental Consultant at (709) 758-1503 or HCSDentalConsultant@gov.nl.ca 
+ Provider Information
+ Memoranda of Agreements – Dental Health Plans 2026-2030
+ Memorandum of Agreement-Surgical Dental Program 
+ Memorandum of Agreement-Adult Dental Program 
+ Memorandum of Agreement – Children’s Dental Health Plan 
+ Adult Dental – Dentures – General Dentist 
+ Adult Dental – Dentures – Specialist 
+ Children’s Dental – Dental Hygienists 
+ Memoranda of Agreements – Dental Health Plans 2022-2026
+ Memorandum of Agreement-Surgical Dental Program 
+ Memorandum of Agreement-Adult Dental Program 
+ Memorandum of Agreement-Children’s Dental Program 
+ Preambles 
+- Dental Hygienist Letter for Preamble 2020 
+ Audit 
+- Audit 2018-2022 
+ Program Information/Forms 
+- Adult Dental Program Forms 
+- Dental Health Manual 
+- Referrals Out of Province for Insured Services under the Surgical Dental Program (172 KB)
+- Removal of surgical exposure and bracketing codes (379 KB)
+- Payer of Last Resort (125 KB)
+- Post Treatment Verification for Root Canal Therapy under the Childrens Dental Health Program (166 KB)
+ ^ Top of Page 
+ Adobe® Acrobat® Reader software can be used for viewing PDF documents. Download Acrobat® Reader for free

@@ -117,10 +117,10 @@ const BASE_PERSONA = {
    are real entries in CITIES_BY_PROVINCE. */
 // 2026-10-17: Nanaimo and Kingston gained municipal records, so the defaults moved
 // to Fort St. John and Timmins (no local record; city-sweep "none found" / unreadable).
-const DEFAULT_CITY = { AB: "Camrose", BC: "Fort St. John", ON: "Timmins", SK: "Weyburn", MB: "Dauphin", NB: "Bathurst", NS: "Lunenburg", PE: "Souris" };
+const DEFAULT_CITY = { AB: "Camrose", BC: "Fort St. John", ON: "Timmins", SK: "Weyburn", MB: "Dauphin", NB: "Bathurst", NS: "Lunenburg", PE: "Souris", NL: "Clarenville" };
 
 /* Cities used to violate a city gate: same province, different community. */
-const OTHER_CITY = { AB: "Wetaskiwin", BC: "Williams Lake", ON: "Guelph", SK: "Martensville", MB: "Selkirk", NB: "Campbellton", NS: "Antigonish", PE: "Tignish" };
+const OTHER_CITY = { AB: "Wetaskiwin", BC: "Williams Lake", ON: "Guelph", SK: "Martensville", MB: "Selkirk", NB: "Campbellton", NS: "Antigonish", PE: "Tignish", NL: "Stephenville" };
 
 /* --------------------------------------------------------------------------
    FRAGMENTS
@@ -214,6 +214,7 @@ const GATES = {
   nb: province("NB"),
   ns: province("NS"),
   pe: province("PE"),
+  nl: province("NL"),
   provinceCovered: {
     evidence: "answers",
     satisfy: { set: { province: "AB" } },
@@ -321,6 +322,10 @@ const GATES = {
   /* ------------------------------------------------------ BC municipalities */
   vancouver: municipality("Vancouver", "BC"),
   surrey: municipality("Surrey", "BC"),
+  stJohnS: municipality("St. John's", "NL"),
+  stJohnSArea: municipality("St. John's", "NL"),
+  paradise: municipality("Paradise", "NL"),
+  cornerBrook: municipality("Corner Brook", "NL"),
   bridgewater: municipality("Bridgewater", "NS"),
   moncton: municipality("Moncton", "NB"),
   dieppe: municipality("Dieppe", "NB"),
@@ -1245,11 +1250,6 @@ const GATES = {
     satisfy: { set: { income: "low" } },
     violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
   },
-  peOutOfProvinceTravelRoute: {
-    evidence: "answers",
-    satisfy: { set: { income: "low" } },
-    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
-  },
   peAccessabilitySupportsRoute: {
     evidence: "answers",
     satisfy: { set: { disabilityVerified: "yes", ageBand: "19to59" } },
@@ -1323,6 +1323,112 @@ const GATES = {
   peChildrenComplexNeedsRoute: external("Depends on the child's ongoing health needs, which the wizard does not ask in detail."),
   peCoachRoute: external("Depends on a frailty assessment and a referral from your care provider, which the wizard cannot check."),
   peAdultDayProgramsRoute: external("Depends on a Home Care coordinator's assessment, which the wizard cannot make."),
+  nlIncomeSupportRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  nlDisabilityBenefitRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", dtc: "yes" } },
+    violations: [
+      { name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "no Disability Tax Credit yet", fragment: { set: { dtc: "no" } }, expect: "almost" },
+    ],
+  },
+  nlHealthRelatedServicesRoute: external("Depends on receiving the assistance program the province names, which the wizard does not ask."),
+  nlChildBenefitRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", ageBand: "6to11" } },
+    violations: [
+      { name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "an adult may have no child: not asked", fragment: { set: { ageBand: "19to59" } }, expect: "almost" },
+    ],
+  },
+  nlPrenatalNutritionRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", ageBand: "under6" } },
+    violations: [
+      { name: "moderate income", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "an adult may be pregnant or have a young child: not asked", fragment: { set: { ageBand: "19to59" } }, expect: "almost" },
+    ],
+  },
+  nlFoundationPlanRoute: external("Depends on receiving the assistance program the province names, which the wizard does not ask."),
+  nl65plusPlanRoute: external("Depends on getting Old Age Security and the Guaranteed Income Supplement, which the wizard does not ask."),
+  nlAccessPlanRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  nlAssurancePlanRoute: external("Depends on your drug costs compared with your income, which the wizard does not ask."),
+  nlSpecialAssistanceRoute: external("Depends on your medical supply needs and a financial assessment, which the wizard cannot make."),
+  nlHomeSupportRoute: external("Depends on a functional and financial assessment, which the wizard cannot make."),
+  nlSpecialChildWelfareAllowanceRoute: {
+    evidence: "answers",
+    satisfy: { set: { disabilityVerified: "yes" } },
+    violations: [{ name: "not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" }],
+  },
+  nlDirectHomeServicesRoute: external("Depends on an assessment of your child's development, which the wizard cannot make."),
+  nlCommunityBehaviouralServicesRoute: external("Depends on a referral and an assessment of behaviour support needs, which the wizard cannot make."),
+  nlPaidFamilyCaregivingRoute: external("Depends on a home support assessment and an available subsidy, which the wizard cannot check."),
+  nlHomeModificationRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", disabilityVerified: "yes" }, add: { circumstances: ["homeowner"] } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  nlHomeRepairRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" }, add: { circumstances: ["homeowner"] } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  nlRentalHousingRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  nlHousingBenefitRoute: external("Depends on being in severe core housing need, which the wizard does not ask."),
+  nlSeniorsBenefitRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  nlIncomeSupplementRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  nlChildCareSubsidyRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  nlStudentDisabilitiesRoute: external("Depends on being a post-secondary student with a verified disability, which the wizard does not ask in detail."),
+  stJohnsChildrenRecreationSubsidyRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", ageBand: "6to11" } },
+    violations: [
+      { name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "an adult may have no child: not asked", fragment: { set: { ageBand: "19to59" } }, expect: "almost" },
+    ],
+  },
+  stJohnsAdultRecreationSubsidyRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  stJohnsAttendantPassRoute: {
+    evidence: "answers",
+    satisfy: { set: { disabilityVerified: "yes" } },
+    violations: [{ name: "not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" }],
+  },
+  cornerBrookFreeTransitPassRoute: external("Depends on receiving the assistance program the city names, which the wizard does not ask."),
+  nlMovingIntoWorkforceRoute: external("Depends on receiving the assistance program the province names, which the wizard does not ask."),
+  nlDentalProgramsRoute: {
+    evidence: "answers",
+    satisfy: { set: { ageBand: "6to11" } },
+    violations: [{ name: "older youth and adults need Income Support or a drug plan enrolment: not asked", fragment: { set: { ageBand: "19to59" } }, expect: "almost" }],
+  },
+  nlCaregiverBenefitRoute: external("Depends on NL Health Services assessing the care needs and income of a person aged sixty-five or older."),
   kingstonMfapIncome: {
     evidence: "answers",
     satisfy: { set: { income: "low" } },
@@ -1430,6 +1536,7 @@ const GATES = {
   dailyLivingLimit: needGate("dailyLiving"),
   equipmentNeed: needGate("equipment"),
   transitBarrier: needGate("transitBarrier"),
+  medicalTravelNeed: needGate("medicalTravel"),
   nutritionNeed: needGate("nutrition"),
   // Snapshot corrections 2026-10-15: absent answers leave alternative routes open.
   bcMedTransportNeed: {
@@ -1902,6 +2009,41 @@ const PROGRAM_BEST_CASE = {
   "squamish-recreation-access":                    "ready",
   "terrace-affordable-recreation-access":          "almost",
   "white-rock-leisure-access":                     "ready",
+  "nl-moving-into-workforce":                      "almost",
+  "nl-dental-programs":                            "ready",
+  "nl-caregiver-benefit":                          "almost",
+  "st-johns-children-recreation-subsidy":          "ready",
+  "st-johns-adult-recreation-subsidy":             "ready",
+  "st-johns-attendant-pass":                       "ready",
+  "st-johns-gobus":                                "ready",
+  "paradise-accessible-transit":                   "ready",
+  "corner-brook-cbt-link":                         "ready",
+  "corner-brook-free-transit-pass":                "almost",
+  "nl-income-support":                             "ready",
+  "nl-disability-benefit":                         "ready",
+  "nl-health-related-services":                    "almost",
+  "nl-child-benefit":                              "ready",
+  "nl-prenatal-nutrition":                         "ready",
+  "nl-foundation-plan":                            "almost",
+  "nl-65plus-plan":                                "almost",
+  "nl-access-plan":                                "ready",
+  "nl-assurance-plan":                             "almost",
+  "nl-special-assistance":                         "almost",
+  "nl-home-support":                               "almost",
+  "nl-special-child-welfare-allowance":            "ready",
+  "nl-direct-home-services":                       "almost",
+  "nl-community-behavioural-services":             "almost",
+  "nl-paid-family-caregiving":                     "almost",
+  "nl-home-modification":                          "ready",
+  "nl-home-repair":                                "ready",
+  "nl-rental-housing":                             "ready",
+  "nl-housing-benefit":                            "almost",
+  "nl-seniors-benefit":                            "ready",
+  "nl-income-supplement":                          "ready",
+  "nl-child-care-subsidy":                         "ready",
+  "nl-accessible-parking":                         "ready",
+  "nl-student-disabilities":                       "almost",
+  "nl-mtap":                                       "ready",
   "pe-home-care":                                  "almost",
   "pe-seniors-property-tax-deferral":              "ready",
   "pe-children-complex-needs":                     "almost",

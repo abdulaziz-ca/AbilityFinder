@@ -1,0 +1,128 @@
+URL: https://www.nlhc.nl.ca/wp-content/uploads/2023/08/CNLHB-QA-with-Conversion-Information.pdf | province: NL | program: Canada-NL Housing Benefit | fetched: 2026-10-18
+=== PAGE: https://www.nlhc.nl.ca/wp-content/uploads/2023/08/CNLHB-QA-with-Conversion-Information.pdf (HTTP 200, 8274 chars)
+Frequently Asked Questions
+                                   Canada – NL Housing Benefit
+
+Q:   What is the Canada – NL Housing Benefit?
+A:   The Canada-Newfoundland and Labrador Housing Benefit is intended to provide a portable
+     housing benefit to assist in improving housing affordability for residents in severe core housing
+     need. For those that qualify, monthly funding assistance will be provided to assist with the cost
+     of rent.
+
+
+Q:   What does “portable housing benefit” mean?
+A:   The portable housing benefit supports the objective of self-determination which is a key goal of
+     the National Housing Strategy. In relation to housing, this means that the individual or family
+     can decide where they want to live within certain parameters. Traditionally, Newfoundland and
+     Labrador Housing Corporation (NLHC) would provide specific addresses of where someone can
+     live under its programming based on when, where, and what home became available, but with
+     portability, the client/tenant can decide where they want to live. If the client maintains good
+     standing with their landlord and should decide to move, the rental benefit would transfer with
+     them, to support their rent in their new home, provided the new home meets NL Housing’s
+     inspection requirements to ensure the new location meets fire and life safety standards.
+
+
+Q:   How much funding will be allocated to this program?
+A:   The total funding that will be allocated to the program is $74.4 million. The funding increases
+     over the next 7 years (2021-22 through 2027-28). It is a 50%/50% cost-shared program between
+     the Federal and Provincial Governments. NLHC will be utilizing its existing rent supplement
+     program to meet the cost matching requirements. As a result, the traditional rent supplement
+     program will convert to the Canada – NL Housing Benefit program as rental agreements expire
+     with landlords from 2023 through 2026.
+
+Q:   How many households will be served with the new program?
+A:   NLHC is estimating that by March 2028 over 2,600 households would have benefited from the
+     program. This includes serving new, unique households and the transfer of traditional rent
+     supplements to the Canada – NL Housing Benefit program.
+
+
+Q:   How will NLHC ensure that the properties rented under this program meet fire and life safety
+     standards?
+A:   NLHC will continue with its current policy of requiring rental homes to be inspected before the
+     home can be occupied.
+
+Q:   How will I find a home? Will there be any assistance?
+A:   Once approved for the Canada – NL Housing Benefit program, clients may find a home through
+     any method available to them, such as local listings online (facebook, kijiji etc.) or contacting
+     local landlords or property management firms. NLHC will also provide a list of properties whose
+     owners have expressed interest in the Canada – NL Housing Benefit program, and their rental
+     property match your rental criteria. The home you choose may need to be inspected and
+     approved by NLHC prior to move-in.
+
+Q:   Is the assistance benefit paid to the client/tenant or landlord?
+A:   The benefit will be paid directly to the client/tenant who is responsible for paying their rent to
+     their landlord. The rental agreement will be between the client/tenant and landlord. With
+     client/tenant consent, NLHC can pay the rental assistance amount directly to the landlord.
+
+
+Q:   How do you apply for the program?
+A:   Applications for housing can be found at this website link Rental Housing Program -
+     Newfoundland and Labrador Housing Corporation (nlhc.nl.ca). There is no separate application
+     for this program. Applicants apply for the Rental Housing Program and assistance may be in the
+     form of an NLHC rental unit or the Canada – NL Housing Benefit Program. Client preference
+     cannot be guaranteed.
+
+
+Q:   How are you selected for the program?
+A:   Selections for housing are based on the date the application is received and NLHC’s prioritized
+     waitlist codes and will be offered based upon availability. Assistance may be in the form of an
+     NLHC rental unit or the Canada – NL Housing Benefit program, client preference cannot be
+     guaranteed.
+
+
+Q:   Who is eligible for the program?
+A:   The Canada – NL Housing Benefit is intended to serve households in the greatest need. Eligibility
+     for the program is based on net income. If your total household net income is less than or equal
+     to $32,500 ($65,000 in Labrador West and the North Coast of Labrador) you may be eligible.
+     These are the same income thresholds used to determine eligibility for other NLHC programs.
+     For more information on eligibility, you may visit the Rental Housing Program on our website:
+     Rental Housing Program - Newfoundland and Labrador Housing Corporation (nlhc.nl.ca).
+
+
+Q:   How much funding assistance will be provided monthly?
+A:   The amount of assistance provided for qualifying applicants will vary from household to
+     household based on the income the household earns. NL Housing will calculate the monthly
+     assistance amount based on information received in the application process. The amount of
+     benefit paid will be the difference or gap between the rent-geared-to-income calculation (25%
+     of net income) which determines the amount of rent the tenant can pay and the lower of actual
+     rent paid or the average market rent in the community as set by the Canada Mortgage and
+     Housing Corporation Rental Market Survey.
+
+     Example 1: John and Jane Doe have a net income of $20,000. They have identified a 2-bedroom
+     apartment to rent in St. John’s at a cost of $820 per month. The CMHC market survey rent for a
+     2-bedroom apartment in St. John’s is $974.
+
+     John and Jane Doe would receive a monthly Canada – NL Housing benefit of $403.33. This is
+     calculated in the following manner:
+         1. $20,000 / 12 months * 25% = $416.00 (this is the amount John and Jane Doe will
+            contribute towards rent based on their income)
+         2. $820 (rent) - $416.00 = $404.00 (Canada – NL Housing Benefit monthly amount)
+
+     Example 2: Susan has a net income of $25,000. She is renting a 1-bedroom apartment in Corner
+     Brook at a total cost of $1,000 per month. The CMHC market survey rent for a 1-bedroom
+     apartment in Corner Brook is $643.
+
+     Susan would receive a monthly Canada – NL Housing Benefit of $122.12 per month. This is
+     calculated in the following manner:
+         1. $25,000 / 12 months * 25% = $520.00 (this is the amount Susan will contribute towards
+             rent based on her income)
+         2. $643 (CMHC rental market survey) - $520.00 = $123.00 (Canada – NL Housing benefit
+             monthly amount).
+
+Q:   I’m being converted from the Rent Supplement Program into the Canada – NL Housing Benefit
+     program, what does this mean for me?
+A:   To meet Federal and Provincial cost sharing requirements, NLHC will be converting existing
+     clients from the Rent Supplement program to the Canada – NL Housing Benefit program. What
+     changes will I experience and how will this affect me?
+         • Your rental subsidy will be based on the higher of the Rent Supplement or the Canada –
+              NL Housing Benefit parameters noted above. This means that unless there are changes
+              to your income or household composition upon conversion, the subsidy should remain
+              at similar rates or increase when switched to the Canada – NL Housing Benefit program.
+         • Your heat subsidy will remain the same upon conversion.
+         • Your subsidy is now portable and will transfer with you, should you wish to move.
+     These conversion rules apply only until you exercise portability. Should you choose to move, the
+     rental and heating subsidies will revert to standard Canada – NL Housing Benefit program
+     parameters. Please consult with your assigned Housing Officer for more information.
+
+Q:   Am I required to notify NLHC prior to moving to a new rental unit?
+A:   Yes, you must have a transfer approved and new unit inspected prior to moving.
