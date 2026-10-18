@@ -1,0 +1,32 @@
+URL: https://www.saskatchewan.ca/residents/taxes-and-investments/tax-credits/low-income-tax-credit | province: SK | program: Saskatchewan Low-Income Tax Credit | fetched: 2026-10-18
+=== PAGE: https://www.saskatchewan.ca/residents/taxes-and-investments/tax-credits/low-income-tax-credit (HTTP 200, 2106 chars)
+
+ Low-Income Tax Credit
+ The Saskatchewan Low-Income Tax Credit (SLITC) is a fully refundable, non-taxable benefit paid to help Saskatchewan residents with low and modest incomes. You do not need to pay income tax in order to receive the benefits. To be eligible for benefits, you must file an income tax return as a resident of Saskatchewan and meet income and family criteria.
+Application Process
+There is no need to apply for the SLITC. When you file your income tax and benefit return, the Canada Revenue Agency (CRA) will determine your eligibility and tell you if you are entitled to the credit.
+The tax credit is delivered quarterly by the CRA in conjunction with its administration of the federal Goods and Services Tax Credit.
+Benefits
+The SLITC benefits are annually indexed to the rate of inflation. In addition, The Saskatchewan Affordability Act announced increases of 5 per cent per year, in addition to increases due to indexation, over the next four years, to the SLITC benefit amounts.
+Effective July 1, 2025, the SLITC benefits are as follows:
+ - The maximum basic adult component and the spousal/equivalent component increases from $398 each in the July 1, 2024, to June 30, 2025, benefit year, to $429 each for the July 1, 2025, to June 30, 2026, benefit year;
+ - The child component increases from $157 to $169 per child, to a maximum of $338 per family;
+ - The SLITC benefit is reduced by 2.88 per cent of family net income in excess of $38,590; and
+ - For families earning less than $38,590, the maximum annual benefit is now $1,196 for the July 1, 2025, to June 30, 2026, benefit year.
+ Related Items
+ - 
+Government of Canada Child and family benefits provincial and territorial programs
+ Link to Government of Canada web page for description of Saskatchewan Low-Income Tax Credit as well as payment amounts 
+ - 
+Saskatchewan Tax and Credits
+ Canada Revenue Agency Information on Saskatchewan Tax and Tax Credits
+ Contact List
+ For more information about Saskatchewan personal income tax, please contact:
+Canada Revenue Agency
+1-800-959-8281
+ Share
+ - 
+ - 
+ - 
+ - 
+ Print this page

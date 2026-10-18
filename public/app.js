@@ -1144,6 +1144,27 @@ const REQS = {
     fixed: false,
     unmet: "You are 65 or older, in a licensed personal care home, and your income is below set levels.",
   },
+  skActiveFamiliesBenefitRoute: {
+    short: "Check the family income limit and the child's age",
+    who: ["you", "program"],
+    met: () => answers.income !== "high" && (isUnder18() || ageIn("18")),
+    fixed: false,
+    unmet: "Family adjusted income of $120,000 or less, with a child 18 or younger in an eligible activity.",
+  },
+  skLowIncomeTaxCreditRoute: {
+    short: "Check the program's income test",
+    who: ["you", "program"],
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "You file a return as a resident and meet the income and family criteria.",
+  },
+  skCochlearProcessorRoute: {
+    short: "Ask your audiologist whether your processor qualifies",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "People with a cochlear implant who need a replacement external processor and meet the clinical indicators.",
+  },
   kingstonMfapIncome: {
     short: "Check your income against the MFAP limit",
     who: ["you", "program"],
@@ -2776,6 +2797,7 @@ const RECEIVES_OPTIONS = [
   { value: "adap", province: "AB", label: "ADAP (Alberta Disability Assistance Program)" },
   { value: "bc-disability-assistance-pwd", province: "BC", label: "B.C. disability assistance (PWD)" },
   { value: "odsp", province: "ON", label: "ODSP (Ontario Disability Support Program)" },
+  { value: "sk-said", province: "SK", label: "SAID (Saskatchewan Assured Income for Disability)" },
   { value: "cpp-disability", label: "CPP disability benefit" },
 ];
 const receivesChoices = (province) => RECEIVES_OPTIONS.filter((o) => !o.province || o.province === province);

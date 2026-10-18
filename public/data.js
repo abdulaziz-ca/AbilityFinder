@@ -152,6 +152,10 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "sk-cochlear-processor": { kind: "grant", note: "Cost-shared replacement; client co-pay of $840 per processor" },
+  "sk-early-childhood-intervention": { kind: "access", note: "Home-based services; no cost is stated on the page" },
+  "sk-low-income-tax-credit": { kind: "grant", note: "Refundable quarterly payment for low and modest incomes, paid with the GST Credit" },
+  "sk-active-families-benefit": { kind: "grant", note: "Refundable provincial tax benefit toward activity fees, up to $400 per child with the Disability Tax Credit" },
   "sk-accessible-parking": { kind: "access", note: "$10 fee each time a permit is issued; the health professional may charge a form fee" },
   "sk-personal-care-home-benefit": { kind: "grant", note: "Monthly amount is $3,500 minus your monthly income (half of combined income for couples)" },
   "sk-eapd": { kind: "access", note: "Funds disability-related supports for work or training; no dollar amount published" },
@@ -451,6 +455,10 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "sk-cochlear-processor": { difficulty: 3, effort: "Clinical assessment through the Saskatchewan Health Authority", wait: "Not published" },
+  "sk-early-childhood-intervention": { difficulty: 1, effort: "Phone your regional program; self-referral is allowed", wait: "Not published" },
+  "sk-low-income-tax-credit": { difficulty: 1, effort: "File your income tax return", wait: "Paid quarterly by the CRA" },
+  "sk-active-families-benefit": { difficulty: 1, effort: "Claim on your income tax return", wait: "Not published" },
   "sk-accessible-parking": { difficulty: 2, effort: "Form signed by a health professional, plus $10 fee", wait: "Not published" },
   "sk-personal-care-home-benefit": { difficulty: 3, effort: "Application form with income documents and direct deposit form", wait: "Not published" },
   "sk-eapd": { difficulty: 2, effort: "Phone SaskJobs, then write a career or service plan", wait: "Not published" },
@@ -12259,6 +12267,199 @@ const BENEFITS = [
       ],
       "phone": "306.385.7213"
     }
+  },
+  {
+    "id": "sk-active-families-benefit",
+    "name": "Active Families Benefit",
+    "level": "Saskatchewan",
+    "category": "Money (for parents)",
+    "amount": "Up to $300 per child, or up to $400 per child who qualifies for the federal Disability Tax Credit (2025 and later)",
+    "summary": "A refundable provincial tax benefit toward sport, recreation and culture fees for your child. The amount is higher for a child eligible for the federal Disability Tax Credit.",
+    "note": "For 2024 and earlier, it was up to $150 per child, or $200 if eligible for the Disability Tax Credit, with income of $60,000 or less.",
+    "requires": [
+      "sk",
+      "skActiveFamiliesBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are the parent or legal guardian of a child 18 or younger at the end of the tax year.",
+        "Your family's adjusted income is $120,000 or less.",
+        "Your child took part in an eligible sport, recreation or culture program."
+      ],
+      "note": "If parents live apart, only the parent who mainly cares for the child can claim."
+    },
+    "applyText": "Claim it on your Saskatchewan income tax return",
+    "applyUrl": "https://www.saskatchewan.ca/residents/parks-culture-heritage-and-sport/sport-and-recreation/programs-and-supports/active-families-benefit",
+    "source": "https://www.saskatchewan.ca/residents/parks-culture-heritage-and-sport/sport-and-recreation/programs-and-supports/active-families-benefit",
+    "detail": {
+      "aboutList": {
+        "lead": "The benefit helps with registration or membership fees for a child's activity.",
+        "items": [
+          "Up to $400 per child if your child qualifies for the Disability Tax Credit.",
+          "The activity must include instruction and supervision.",
+          "The activity must need registration and a paid registration or membership fee.",
+          "The provider must be located in Saskatchewan."
+        ]
+      },
+      "steps": [
+        "File your Saskatchewan personal income tax return for the year you are claiming.",
+        "Complete the Active Families Benefit section when you file.",
+        "Keep your receipts for six years in case you are asked to check your claim."
+      ],
+      "documents": [
+        "Receipts for registration or membership fees (keep them; do not send them with your return)"
+      ],
+      "tips": [
+        "Claim the fee in the year you pay it, not the year the activity takes place.",
+        "Only one parent can claim a child in a tax year, and each expense only once.",
+        "Equipment, uniforms, school-curriculum or child-care-hours activities, and fees paid with fundraising credits are not covered.",
+        "For help with the form, call the Canada Revenue Agency at 1-800-387-1193."
+      ],
+      "phone": "306-798-9043"
+    }
+  },
+  {
+    "id": "sk-low-income-tax-credit",
+    "name": "Saskatchewan Low-Income Tax Credit",
+    "level": "Saskatchewan",
+    "category": "Money & taxes",
+    "amount": "Up to $1,196 a year for families earning less than $38,590 (July 1, 2025 to June 30, 2026)",
+    "summary": "A refundable, non-taxable payment for Saskatchewan residents with low and modest incomes. You do not need to pay income tax to get it. There is no application.",
+    "note": "The benefit is reduced by 2.88 per cent of family net income above $38,590. Amounts are indexed to inflation each year.",
+    "requires": [
+      "sk",
+      "skLowIncomeTaxCreditRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You file an income tax return as a Saskatchewan resident.",
+        "You meet the income and family criteria.",
+        "The Canada Revenue Agency decides if you are entitled."
+      ],
+      "note": "You do not need to owe income tax to get the credit."
+    },
+    "applyText": "File your income tax return; the CRA decides",
+    "applyUrl": "https://www.saskatchewan.ca/residents/taxes-and-investments/tax-credits/low-income-tax-credit",
+    "source": "https://www.saskatchewan.ca/residents/taxes-and-investments/tax-credits/low-income-tax-credit",
+    "detail": {
+      "aboutList": {
+        "lead": "For July 1, 2025 to June 30, 2026, the maximum amounts are:",
+        "items": [
+          "$429 each for the basic adult and the spousal or equivalent component.",
+          "$169 per child, to a maximum of $338 per family.",
+          "Up to $1,196 a year for families earning less than $38,590."
+        ]
+      },
+      "steps": [
+        "File your income tax and benefit return.",
+        "The CRA works out if you are entitled and tells you.",
+        "The CRA pays the credit every three months."
+      ],
+      "documents": [
+        "Your income tax and benefit return"
+      ],
+      "tips": [
+        "There is no need to apply for this credit.",
+        "It is paid with the federal Goods and Services Tax Credit."
+      ],
+      "phone": "1-800-959-8281"
+    }
+  },
+  {
+    "id": "sk-early-childhood-intervention",
+    "name": "Early Childhood Intervention Program (ECIP)",
+    "level": "Saskatchewan",
+    "category": "Health (for children)",
+    "amount": "Home-based services (no cost stated)",
+    "summary": "Home-based specialized services for families of children with a developmental delay or disability, or at risk of one. No diagnosis is needed to start.",
+    "note": "ECIP is delivered in 14 regions by 12 community organizations and two school divisions.",
+    "requires": [
+      "sk",
+      "under6"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Your child has a developmental delay or disability.",
+        "Your child may be at risk of a developmental delay."
+      ],
+      "note": "Delays may be cognitive, physical, social, emotional or in communication."
+    },
+    "applyText": "Contact your regional ECIP",
+    "applyUrl": "https://www.saskatchewan.ca/residents/family-and-social-support/child-care/community-programs-for-families-with-young-children",
+    "source": "https://www.saskatchewan.ca/residents/family-and-social-support/child-care/community-programs-for-families-with-young-children",
+    "detail": {
+      "aboutList": {
+        "lead": "Services include:",
+        "items": [
+          "Child assessment and developmental strategies.",
+          "Information and case co-ordination.",
+          "Transition support and referrals."
+        ]
+      },
+      "steps": [
+        "Find your region on the official page.",
+        "Call your regional ECIP to refer your child.",
+        "A health care professional or educator can refer your child, with your consent."
+      ],
+      "documents": [
+        "No diagnosis is needed to start"
+      ],
+      "tips": [
+        "You can start as soon as you notice a delay, even from birth.",
+        "The program gives you activities to do at home and connects you to services as your child moves into school or other programming."
+      ]
+    }
+  },
+  {
+    "id": "sk-cochlear-processor",
+    "name": "Cochlear Implant Processor Replacement Program",
+    "level": "Saskatchewan",
+    "category": "Health",
+    "amount": "You pay an $840 co-pay per processor; the program is cost-shared",
+    "summary": "Help toward the cost of a replacement external sound processor for a cochlear implant, for children and adults. You pay an $840 co-pay per processor.",
+    "note": "Meant for people without coverage through other programs. Typical replacement is once every five to seven years, or the processor's lifespan.",
+    "requires": [
+      "sk",
+      "hearingDisability",
+      "skCochlearProcessorRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have a valid Saskatchewan health card.",
+        "Your sound processor was provided through the Saskatchewan Health Authority (used to set priority).",
+        "You meet the clinical indicators for a replacement."
+      ],
+      "note": "Clients are prioritized by greatest need; people with no sound are a priority."
+    },
+    "applyText": "Contact the Saskatchewan Health Authority",
+    "applyUrl": "https://www.saskatchewan.ca/residents/health/accessing-health-care-services/audiology-and-hearing-services",
+    "source": "https://www.saskatchewan.ca/residents/health/accessing-health-care-services/audiology-and-hearing-services",
+    "detail": {
+      "aboutList": {
+        "lead": "Priority is based on these criteria:",
+        "items": [
+          "Your current processor is within the five to seven year replacement time.",
+          "Your current processor has been deemed obsolete by the manufacturer.",
+          "Wanting newer technology while your processor works is not covered."
+        ]
+      },
+      "steps": [
+        "Contact the Saskatchewan Health Authority about a processor replacement.",
+        "Clients must meet the clinical indicators and are assessed based on greatest need."
+      ],
+      "documents": [
+        "Valid Saskatchewan health card"
+      ],
+      "tips": [
+        "Implants other than cochlear implants are not covered.",
+        "The program started on December 1, 2022.",
+        "The program is administered by the Saskatchewan Health Authority under the direction of the Ministry of Health."
+      ]
+    }
   }
 
 ];
@@ -12370,6 +12571,10 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "sk-cochlear-processor": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-early-childhood-intervention": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-low-income-tax-credit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "sk-active-families-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "sk-accessible-parking": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "sk-personal-care-home-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "sk-eapd": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)

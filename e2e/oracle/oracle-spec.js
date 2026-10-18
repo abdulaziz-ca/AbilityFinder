@@ -861,6 +861,20 @@ const GATES = {
     satisfy: { set: { income: "low" } },
     violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
   },
+  skActiveFamiliesBenefitRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "moderate", ageBand: "6to11" } },
+    violations: [
+      { name: "higher income: the $120,000 limit is not collected exactly", fragment: { set: { income: "high" } }, expect: "almost" },
+      { name: "an adult may have no child: not asked", fragment: { set: { ageBand: "19to59" } }, expect: "almost" },
+    ],
+  },
+  skLowIncomeTaxCreditRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  skCochlearProcessorRoute: external("Depends on having a health-authority cochlear implant processor that meets the replacement criteria, which the wizard does not ask."),
   kingstonMfapIncome: {
     evidence: "answers",
     satisfy: { set: { income: "low" } },
@@ -1439,6 +1453,10 @@ const PROGRAM_BEST_CASE = {
   "squamish-recreation-access":                    "ready",
   "terrace-affordable-recreation-access":          "almost",
   "white-rock-leisure-access":                     "ready",
+  "sk-active-families-benefit":                    "ready",
+  "sk-low-income-tax-credit":                      "ready",
+  "sk-early-childhood-intervention":               "ready",
+  "sk-cochlear-processor":                         "almost",
   "sk-said":                                       "ready",
   "sk-income-support":                             "ready",
   "sk-employment-incentive":                       "ready",

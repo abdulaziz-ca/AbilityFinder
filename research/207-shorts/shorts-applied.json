@@ -1335,5 +1335,20 @@
     "short": "Check the program's income test",
     "who": ["you", "program"],
     "reason": "Provincial-sweep record sk-personal-care-home-benefit (2026-10-17)"
+  },
+  "skActiveFamiliesBenefitRoute": {
+    "short": "Check the family income limit and the child's age",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record sk-active-families-benefit (2026-10-17)"
+  },
+  "skLowIncomeTaxCreditRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record sk-low-income-tax-credit (2026-10-17)"
+  },
+  "skCochlearProcessorRoute": {
+    "short": "Ask your audiologist whether your processor qualifies",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record sk-cochlear-processor (2026-10-17)"
   }
 }
