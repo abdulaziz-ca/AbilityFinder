@@ -393,6 +393,7 @@ const GATES = {
   age12plus: ageGate("19to59", "under6"),
   age16plus: ageGate("19to59", "under6"),
   age18plus: ageGate("19to59", "under6"),
+  age19plus: ageGate("19to59", "18"),
   age60plus: ageGate("60to64", "19to59"),
   age65plus: ageGate("65plus", "19to59"),
   adult: ageGate("19to59", "under6"),
