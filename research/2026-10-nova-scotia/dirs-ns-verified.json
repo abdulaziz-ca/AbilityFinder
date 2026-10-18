@@ -1,0 +1,238 @@
+{
+ "maps": {
+  "STUDENT_AID": {
+   "NS": {
+    "url": "https://novascotia.ca/studentassistance/apply/new/StudentsWithDisabilities.asp",
+    "source_note": "Nova Scotia Student Assistance page for students with disabilities: 40% course load counts as full-time, extra funding for disability costs, Post-Secondary Accessibility Services partner."
+   }
+  },
+  "TWO_ELEVEN": {
+   "NS": {
+    "url": "https://ns.211.ca",
+    "source_note": "211 Nova Scotia: free, confidential, 24/7; call or text 2-1-1."
+   }
+  },
+  "EMPLOYMENT": {
+   "NS": {
+    "url": "https://novascotia.ca/employmentnovascotia/interventions/default.asp",
+    "source_note": "Employment Nova Scotia interventions page; lists reachAbility workshops for unemployed Nova Scotians with disabilities. No better disability-specific official page found (dsp and dcs employment URLs 404)."
+   }
+  }
+ },
+ "HELP_ORGS": {
+  "NS": [
+   {
+    "id": "ns-legal-aid",
+    "cat": "If you're denied — legal help & appeals",
+    "name": "Nova Scotia Legal Aid",
+    "summary": "Helps Nova Scotians with criminal, family or social justice issues, including income security; offers legal information, summary advice and lawyer representation. Free online chats cover CPP Disability.",
+    "url": "https://www.nslegalaid.ca",
+    "urlText": "nslegalaid.ca",
+    "focus": [
+     "appeals",
+     "rights"
+    ],
+    "coverage": [
+     "NS"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "ns-lisns",
+    "cat": "If you're denied — legal help & appeals",
+    "name": "Legal Information Society of Nova Scotia",
+    "summary": "Charitable non-profit giving Nova Scotians legal information and resources since 1982. Legally trained staff reachable by phone, email or live chat (information, not legal advice).",
+    "phone": "902-455-3135",
+    "url": "https://www.legalinfo.org",
+    "urlText": "legalinfo.org",
+    "focus": [
+     "appeals",
+     "rights"
+    ],
+    "coverage": [
+     "NS"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "ns-human-rights",
+    "cat": "If you're denied — legal help & appeals",
+    "name": "Nova Scotia Human Rights Commission",
+    "summary": "Independent government agency administering the NS Human Rights Act. Offers an online inquiry form and Know Your Rights resources.",
+    "url": "https://humanrights.novascotia.ca",
+    "urlText": "humanrights.novascotia.ca",
+    "focus": [
+     "rights",
+     "accommodation"
+    ],
+    "coverage": [
+     "NS"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "ns-211",
+    "cat": "Find local services near you",
+    "name": "211 Nova Scotia",
+    "summary": "Free, confidential, 24/7 service connecting people to community, government and social services. Call or text 2-1-1; live chat and email also available.",
+    "phone": "2-1-1",
+    "url": "https://ns.211.ca",
+    "urlText": "ns.211.ca",
+    "focus": [
+     "local",
+     "family"
+    ],
+    "coverage": [
+     "NS"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "ns-dac",
+    "cat": "Help with the forms",
+    "name": "Disability Alliance Canada",
+    "summary": "National organization (not NS-specific) offering free one-on-one advocate support for the Disability Tax Credit, CPP Disability and Canada Disability Benefit.",
+    "url": "https://www.disabilityalliancecanada.ca",
+    "urlText": "disabilityalliancecanada.ca",
+    "focus": [
+     "dtc",
+     "tax"
+    ],
+    "coverage": [
+     "NS"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "ns-plan-helpline",
+    "cat": "Help with the forms",
+    "name": "Disability Planning Helpline (rdsp.com)",
+    "summary": "Free, nationwide (not NS-specific) Disability Planning Helpline that can help with disability-related topics including the RDSP.",
+    "phone": "1-844-311-7526",
+    "url": "https://www.rdsp.com",
+    "urlText": "rdsp.com",
+    "focus": [
+     "rdsp",
+     "family"
+    ],
+    "coverage": [
+     "NS"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "ns-dals",
+    "cat": "If you're denied — legal help & appeals",
+    "name": "Dalhousie Legal Aid Service",
+    "summary": "Law school clinic at Dalhousie's Schulich School of Law serving community members who have nowhere else to turn; has a Welfare Rights guide for people seeking income assistance in Nova Scotia.",
+    "phone": "902-423-8105",
+    "url": "https://www.dal.ca/faculty/law/dlas.html",
+    "urlText": "dal.ca/faculty/law/dlas",
+    "focus": [
+     "appeals",
+     "rights"
+    ],
+    "coverage": [
+     "NS"
+    ],
+    "verified": "2026-10-18"
+   }
+  ]
+ },
+ "ORGS_DIRECTORY": {
+  "NS": [
+   {
+    "id": "ns-ilns",
+    "name": "Independent Living Nova Scotia",
+    "url": "https://www.ilns.ca",
+    "region": "Nova Scotia",
+    "coverage": [
+     "NS"
+    ],
+    "whatTheyDo": "Offers programs and resources that help Nova Scotians with disabilities make their own decisions, remove barriers and build skills.",
+    "focus": "physical-disability",
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "ns-inclusion",
+    "name": "Inclusion Nova Scotia",
+    "url": "https://www.inclusionns.ca",
+    "region": "Nova Scotia",
+    "coverage": [
+     "NS"
+    ],
+    "whatTheyDo": "Provincial non-profit supporting people with intellectual disabilities and their families to live included lives, with programs like Life Transitions and Individual & Family Support.",
+    "focus": "developmental-disability",
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "ns-autism",
+    "name": "Autism Nova Scotia",
+    "url": "https://www.autismnovascotia.ca",
+    "region": "Nova Scotia",
+    "coverage": [
+     "NS"
+    ],
+    "whatTheyDo": "Provides programs, services and advocacy for Autistic people, families and caregivers through regional centres across the province.",
+    "focus": "autism",
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "ns-easter-seals",
+    "name": "Easter Seals Nova Scotia",
+    "url": "https://www.easterseals.ns.ca",
+    "region": "Nova Scotia",
+    "coverage": [
+     "NS"
+    ],
+    "whatTheyDo": "Runs Camp Tidnish, New Leaf Enterprises supported employment, Take PART recreation and an Assisted Mobility program for Nova Scotians with disabilities.",
+    "focus": "recreation",
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "ns-reachability",
+    "name": "reachAbility Association",
+    "url": "https://www.reachability.org",
+    "region": "Halifax, Nova Scotia",
+    "coverage": [
+     "NS"
+    ],
+    "whatTheyDo": "Non-profit offering free self-management and employment programs, plus training and consultation for employers.",
+    "focus": "employment",
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "ns-sci",
+    "name": "Spinal Cord Injury Nova Scotia",
+    "url": "https://www.sci-ns.ca",
+    "region": "Nova Scotia",
+    "coverage": [
+     "NS"
+    ],
+    "whatTheyDo": "Offers free, lifelong support to people with spinal cord injuries and other mobility disabilities, plus families and caregivers: counselling, advocacy, information, peer support and employment help.",
+    "focus": "physical-disability",
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "ns-sdhhns",
+    "name": "Society of Deaf and Hard of Hearing Nova Scotians",
+    "url": "https://www.sdhhns.org",
+    "region": "Nova Scotia",
+    "coverage": [
+     "NS"
+    ],
+    "whatTheyDo": "Coordinates qualified sign language interpreters across the province and offers community services and accessibility resources for Deaf and hard of hearing Nova Scotians.",
+    "focus": "deaf-hard-of-hearing",
+    "verified": "2026-10-18"
+   }
+  ]
+ },
+ "changes": [
+  "ns-lisns: removed unsupported 'free', added phone contact method",
+  "ns-human-rights: removed unsupported 'answers questions'",
+  "ns-211: clarified live chat",
+  "ns-reachability: employer training wording",
+  "added ns-dals, ns-sci, ns-sdhhns",
+  "abilityns.ca and deafhardofhearingns.ca did not resolve; Ability NS not added"
+ ]
+}

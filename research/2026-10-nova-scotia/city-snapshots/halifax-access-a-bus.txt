@@ -1,0 +1,21 @@
+URL: https://www.halifax.ca/transportation/halifax-transit/transit-programs-services/access-bus | province: NS/Halifax | program: Access-A-Bus | fetched: 2026-10-18
+=== PAGE: https://www.halifax.ca/transportation/halifax-transit/transit-programs-services/access-bus (HTTP 404, 679 chars)
+
+ Sorry, we can't find the page you're looking for.
+ What happened?
+ - We might have removed the page when we redesigned our website.
+ - The link you clicked might be old and does not work anymore.
+ - You might have accidentally typed the wrong URL in the address bar.
+Suggestions
+ - Use the main navigation menus in the header or the links in the footer to browse the content on our site.
+ Contact Information
+ For general transit inquiries, complaints, or compliments, please contact 311 or 1-800-835-6428.
+Phone
+Departures line: 902.480.8000 
+Access-A-Bus registration: 902.490.6681 
+Access-A-Bus bookings: 902.490.6999   
+Mail
+Halifax Transit
+PO Box 1749
+Halifax NS B3J 3A5
+ 

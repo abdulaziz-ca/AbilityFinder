@@ -1,0 +1,49 @@
+URL: https://novascotia.ca/dhw/CCS/caregiver-benefit.asp | province: NS | program: Caregiver Benefit Program | fetched: 2026-10-18
+=== PAGE: https://novascotia.ca/dhw/CCS/caregiver-benefit.asp (HTTP 200, 3634 chars)
+
+ <iframe src="//www.googletagmanager.com/ns.html?id=GTM-PH4H23"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe>
+ Health and Wellness
+ Caregiver Benefit
+Continuing Care
+Caregiver Benefit
+The Caregiver Benefit recognizes the important role of caregivers in their efforts to assist loved ones and friends. The program is intended for caregivers of low income adults who have a high level of disability or impairment, as determined by a Home Care assessment. If the caregiver and the care recipient both qualify for the program, the caregiver will receive $400 per month.
+ Eligibility Checklist
+ The person receiving care must:
+ - Be 19 years of age or older.
+ - Be a Nova Scotia resident.
+ - Be in a care relationship with a caregiver.
+ - Have a net annual household income within category A of the home care income table.
+ - Have been assessed by a Nova Scotia Health Authority care coordinator as having a high level or impairment of disability requiring significant care over time.
+ The caregiver must:
+ - Be 19 years of age or older.
+ - Be a Nova Scotia resident.
+ - Be in an ongoing care relationship with the person receiving care, providing 20 or more hours of assistance per week.
+ - Not already be receiving payment to provide assistance to the person for whom she/he is providing care.
+ - Be willing to sign an agreement that defines the terms and conditions for receiving the Caregiver Benefit.
+ How does the Caregiver Benefit work?
+ Both the caregiver and the person for whom he/she provides care must meet the program’s eligibility criteria. The Nova Scotia Health Authority determines eligibility through a referral and assessment process. The Caregiver Benefit is reportable income so caregivers should contact Canada Revenue Agency for information about tax implications.
+ How do I know if I qualify for the program?
+ If you feel you may qualify for the program you will need to contact Continuing Care at 1-800-225-7225 for an initial discussion about your situation. A referral may then be made to a care coordinator who will meet with you to do an assessment to identify your care needs and determine if you qualify for the program.
+ Applicants who are assessed as having high care needs have some combination of:
+ - Mild to significant problems with memory loss, decision-making and communication that affect daily functioning.
+ - High level of physical impairment.
+ - Many challenges in managing their personal needs.
+ - Serious behavioural problems.
+ - A high risk of falls.
+ - A high risk of long term care placement
+ Do I qualify financially?
+ To qualify financially for the program, you must have a net annual household income within category A of the home care income table. “Net Income” is the income identified on Line 236 of the Federal Income Tax Return or in the Notice of Assessment provided by the Canada Revenue Agency.
+ How do I apply for the Caregiver Benefit?
+ To apply, call Continuing Care, toll free at 1-800-225-7225. You, your caregiver or someone else (with your consent) can make an application. You will need to provide your name, Health Card Number and some additional information about your situation.
+ Policies and Standards
+ Policies and monitoring standards make sure that there is a consistent quality of care for those who need services outside of the hospital, in their home or in the community.
+ Visit Policies and Standards page.
+To apply, call Continuing Care, at 1-800-225-7225.
+ Caregiver Benefit (PDF)
+ Caregiver Benefit: French (PDF)
+ More Province of Nova Scotia
+ Français / English
+ Privacy
+ Terms
+ Crown copyright © 2021, Government of Nova Scotia. 

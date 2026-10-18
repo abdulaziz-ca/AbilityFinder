@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 422 links. The monitor checks a bounded rotating batch every
+// 437 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -1811,6 +1811,36 @@ export const LINKS = [
     "kind": "help"
   },
   {
+    "url": "https://www.nslegalaid.ca",
+    "label": "Help — Nova Scotia Legal Aid",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.legalinfo.org",
+    "label": "Help — Legal Information Society of Nova Scotia",
+    "kind": "help"
+  },
+  {
+    "url": "https://humanrights.novascotia.ca",
+    "label": "Help — Nova Scotia Human Rights Commission",
+    "kind": "help"
+  },
+  {
+    "url": "https://ns.211.ca",
+    "label": "Help — 211 Nova Scotia",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.disabilityalliancecanada.ca",
+    "label": "Help — Disability Alliance Canada",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.dal.ca/faculty/law/dlas.html",
+    "label": "Help — Dalhousie Legal Aid Service",
+    "kind": "help"
+  },
+  {
     "url": "https://www.waramps.ca/ways-we-help/child-amputees/",
     "label": "grant:champ — CHAMP Program",
     "kind": "grant"
@@ -2081,6 +2111,41 @@ export const LINKS = [
     "kind": "org"
   },
   {
+    "url": "https://www.ilns.ca",
+    "label": "org:ns-ilns — Independent Living Nova Scotia",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.inclusionns.ca",
+    "label": "org:ns-inclusion — Inclusion Nova Scotia",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.autismnovascotia.ca",
+    "label": "org:ns-autism — Autism Nova Scotia",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.easterseals.ns.ca",
+    "label": "org:ns-easter-seals — Easter Seals Nova Scotia",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.reachability.org",
+    "label": "org:ns-reachability — reachAbility Association",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.sci-ns.ca",
+    "label": "org:ns-sci — Spinal Cord Injury Nova Scotia",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.sdhhns.org",
+    "label": "org:ns-sdhhns — Society of Deaf and Hard of Hearing Nova Scotians",
+    "kind": "org"
+  },
+  {
     "url": "https://studentaid.alberta.ca/",
     "label": "Province fallback — student aid (AB)",
     "kind": "help"
@@ -2106,6 +2171,11 @@ export const LINKS = [
     "kind": "help"
   },
   {
+    "url": "https://novascotia.ca/studentassistance/apply/new/StudentsWithDisabilities.asp",
+    "label": "Province fallback — student aid (NS)",
+    "kind": "help"
+  },
+  {
     "url": "https://ab.211.ca/",
     "label": "Province fallback — 2-1-1 (AB)",
     "kind": "help"
@@ -2113,6 +2183,11 @@ export const LINKS = [
   {
     "url": "https://www.workbc.ca/plan-career/resources/people-disabilities",
     "label": "Province fallback — employment supports (BC)",
+    "kind": "help"
+  },
+  {
+    "url": "https://novascotia.ca/employmentnovascotia/interventions/default.asp",
+    "label": "Province fallback — employment supports (NS)",
     "kind": "help"
   },
   {

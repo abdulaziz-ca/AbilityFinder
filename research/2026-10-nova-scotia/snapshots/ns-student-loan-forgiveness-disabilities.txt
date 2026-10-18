@@ -1,0 +1,16 @@
+URL: https://novascotia.ca/student-loan-forgiveness-program-disabilities/ | province: NS | program: Student loan forgiveness for students with disabilities | fetched: 2026-10-18
+=== PAGE: https://novascotia.ca/student-loan-forgiveness-program-disabilities/ (HTTP 200, 1267 chars)
+
+ Nova Scotia Student Loan Forgiveness Program: disability
+ Students who need more time to complete their degree, diploma or certificate because of their disability can have their loans forgiven for more years of study.
+ Loan forgiveness works differently for students graduating with an undergraduate degree or for students graduating with a diploma or certificate:
+ - Undergraduate degrees loan forgiveness
+ - Certificates and diplomas loan forgiveness
+Eligibility
+To be eligible:
+- you must qualify as a student with a disability under Nova Scotia Student Assistance criteria
+- when you complete your program, you must have studied full-time at a reduced rate between 40% and 60% of a standard course load
+- you must complete your degree within 10 years of starting it or complete your diploma or certificate within 6 years of starting it
+All other criteria are the same as the Nova Scotia Student Loan Forgiveness Program for Undergraduate Degrees or the Nova Scotia Student Loan Forgiveness Program for Certificates and Diplomas.
+How to apply
+You don’t have to apply to be considered for the Loan Forgiveness - Disability Program. All students are automatically assessed for eligibility under the Nova Scotia Student Loan Forgiveness Program when they graduate.

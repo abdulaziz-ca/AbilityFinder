@@ -1,0 +1,56 @@
+URL: https://nspha.ca/applicants/eligibility | province: NS | program: Public housing (Nova Scotia Provincial Housing Agency) | fetched: 2026-10-18
+=== PAGE: https://nspha.ca/applicants/eligibility (HTTP 200, 5382 chars)
+
+ Am I Eligible?
+To qualify for public housing, you (and your household) must meet the eligibility criteria for the public housing program established by the Nova Scotia Provincial Housing Agency (NSPHA). 
+NSPHA operates on a rent-geared-to-income (RGI) model. This means that tenants pay rent based on their household income and composition. If your household includes at least one adult and one dependent, your RGI rate will be 25% of your total household income before taxes. Most other households have an RGI rate of 30% of total household income before taxes. If you receive Income Assistance, different rental rates apply. Please contact us for more details.
+ Eligibility Criteria
+- Your gross household income must be below the Household Income Limits (HILs) for the area you apply and the number of bedrooms your household needs. 
+- You and every member of your household is either a Canadian Citizen or have Permanent Resident status.
+- You must be able to live independently.
+- You must be a resident of Nova Scotia and presently living in the province.
+- If you own a residential property that could reasonably be used as suitable, safe, or accessible year-round housing, you may still be eligible for public housing if you agree to sell the property within one year of signing your lease. For more information on property ownership and eligibility, see our Property Ownership Policy or Tenant Handbook.  
+Additional requirements for current or previous public housing tenants:
+- If you were previously a public housing tenant and have outstanding arrears, you must commit to a repayment plan. 
+- If you are currently living in public housing, you must be listed as a household member for that unit. 
+ Priority Access
+Some applicants may also qualify for priority access based on their current living situation. Eligibility for priority access includes additional criteria and must be signed by one of the qualified professionals listed on the referral form. 
+Click here to learn more
+ Important Information for Applicants
+ Keep your Application Up-To-Date
+You should update your application any time there is a change that affects your household's housing needs, such as an increase in household size and contact information. If you applied online, you can make updates through our Application Portal. If you applied in-person, please contact your District Office.
+Maintaining your Eligibility
+Applicants must update their household composition and income yearly to maintain their eligibility. If you applied online, you can make updates through our Application Portal. If you applied in-person, please contact your District Office.
+ Applying for Housing Outside Your Municipality
+Eligible applicants may apply for public housing anywhere in Nova Scotia, regardless of where they live in the province by using the online applicant portal or by submitting a single application to any District Office (Metro, Western, Northern, Cape Breton). 
+It is no longer a requirement for public housing applicants to be residents of the municipality in which they are applying. Effective November 4, 2024, the Nova Scotia Provincial Housing Agency removed the Municipal Residency Requirement to help maximize every public housing unit in our portfolio and provide Nova Scotians with opportunity for placement in communities where they want to live.
+ Can I apply to live anywhere in Nova Scotia? 
+ Yes. As of November 4, 2024, NSPHA removed the Municipal Residency Requirement which required applicants to live in – or previously have lived in – the municipality where they were applying. Now, any eligible applicant can apply to live in public housing anywhere in the province, regardless of their current municipal residency as long as local income requirements are met (Household Income Limits or HILs are set by the federal government through CMHC).
+ What documents do I need to submit to verify that I meet the proof of residency requirements?
+ Proof of residency - Nova Scotia  
+Applicants must provide one of the following documents: 
+- Nova Scotia driver’s license or photo identification card 
+- Nova Scotia motor vehicle registration 
+- Nova Scotia health card 
+- Income Assistance benefit statement 
+- Letter from employer on company letterhead 
+- Rental/lease agreement signed by current landlord 
+- Child Tax benefit statement 
+- Property tax bill – current year 
+- Bank statement not older than six months 
+- Credit card statement not older than six months 
+- Pay stub from the past six months 
+- Most recent Notice of Assessment 
+- Mortgage document 
+- Utility bill not older than six months (e.g. phone, power, cable, water) 
+Proof of Canadian Citizenship or Permanent Residency 
+You will need to provide your social insurance number (SIN) as part of the application process. NSPHA staff will use this number to verify permanent status in Canada.  
+Present in the Province 
+Applicants who provide a Nova Scotia mailing address in their name will be deemed as present in the province. 
+If you do not have a fixed address, but are able to provide one of the following documents, you will be deemed to be present in the province at time of application: 
+- Nova Scotia driver’s license or photo identification card  
+- Nova Scotia motor vehicle registration 
+- Nova Scotia Health card 
+- Income Assistance benefit statement 
+- Letter from employer on company letterhead 
+ 

@@ -19,7 +19,7 @@ Ontario, with federal, provincial, and municipal guides. It answers five questio
 Brunswick went live in October 2026.** `BC_ENABLED`, `ON_ENABLED`, `SK_ENABLED`, `MB_ENABLED` and
 `NB_ENABLED` in `public/app.js` are all `true`; Manitoba shows a caution (`PROVINCE_NOTICES.MB` in `public/data.js`) while its programs change.
 The
-catalog holds **306 benefits** — 16 federal, 24 Alberta, 52 British Columbia, 24 Ontario,
+catalog holds **329 benefits** — 16 federal, 24 Alberta, 52 British Columbia, 24 Ontario,
 22 Saskatchewan, 16 Manitoba, 26 New Brunswick, and the remainder municipal. The residency question
 offers Alberta, British Columbia, Ontario, Saskatchewan, Manitoba, New Brunswick, and "another province or territory"; the last of these still
 sees federal benefits only. Lloydminster is listed under both Alberta and Saskatchewan

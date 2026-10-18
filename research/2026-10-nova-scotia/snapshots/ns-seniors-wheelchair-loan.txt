@@ -1,0 +1,34 @@
+URL: https://novascotia.ca/dhw/ccs/wheelchair-loan-program.asp | province: NS | program: Seniors wheelchair loan program | fetched: 2026-10-18
+=== PAGE: https://novascotia.ca/dhw/ccs/wheelchair-loan-program.asp (HTTP 200, 2590 chars)
+
+ <iframe src="//www.googletagmanager.com/ns.html?id=GTM-PH4H23"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe>
+ Health and Wellness
+ Seniors Community Wheelchair Loan Program
+Continuing Care
+Seniors Community Wheelchair Loan Program
+The Seniors Community Wheelchair Loan Program provides new and recycled wheelchairs (manual and/or electric) to eligible residents of Nova Scotia to support them in their homes and communities. 
+ How do I qualify for this program?
+ To qualify for this program, you:
+ - Are a resident of Nova Scotia with a valid Nova Scotia health card number;
+ - Are 65 years of age or older at the time of application;
+ - Have been assessed by an authorized health care provider (Occupational Therapist or Physiotherapist);
+ - Require assistance because of a long-term disability, chronic illness, or terminal illness;
+ - Agree to sign a consent form for the safe and proper use of your wheelchair;
+ - Have a net annual household income within category A of the home care income table. And
+ - Are not covered by other programs such as private insurance or other publicly funded organizations.
+ How do I know if this program is right for me?
+ To determine if you qualify for the Seniors Community Wheelchair Loan Program call Continuing Care at the toll-free number, 1-800-225-7225, if you are eligible, an occupational or physiotherapist will arrange a time to meet with you to complete an assessment.
+ Will the wheelchair fit me and meet my specific needs?
+ You will be assessed by a health care provider who is skilled in the fitting of wheelchairs. 
+ The assessment will determine proper fit and make sure the wheelchair you receive meets your needs, if you already have a chair through this program and your needs change, call Continuing Care for a reassessment. 
+ Note: If it is determined that a recycled wheelchair is available and can be adapted to suit your needs, that recycled wheelchair will be provided by this program. 
+ What happens if I move into Long Term Care?
+ You can keep the wheelchair as long as you are living in the community and it is serviceable. Upon entry to a long term care facility the wheelchair will remain with you and a referral for reassessment will be initiated. A transition plan will be put in place for you to get a wheelchair through the Specialized Equipment Program in long term care.
+To apply, call Continuing Care, at 1-800-225-7225.
+Seniors Community Wheelchair Loan Program (PDF)
+ More Province of Nova Scotia
+ Français / English
+ Privacy
+ Terms
+ Crown copyright © 2021, Government of Nova Scotia. 

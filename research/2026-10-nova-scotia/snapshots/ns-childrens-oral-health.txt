@@ -1,0 +1,20 @@
+URL: https://novascotia.ca/dhw/dental-programs/children-oral-health-program.asp | province: NS | program: Children's Oral Health Program | fetched: 2026-10-18
+=== PAGE: https://novascotia.ca/dhw/dental-programs/children-oral-health-program.asp (HTTP 200, 1566 chars)
+
+ Children's Oral Health Program
+ The children's oral health program covers basic dental care for children aged 14 and younger with a valid Nova Scotia health card.
+ Once a year, the program covers:
+ - 1 routine dental exam
+ - 2 routine x-rays
+ - 1 preventive service (for example, brushing and flossing instruction)
+ - 1 fluoride treatment
+ - scaling (1 unit for children 10 and younger; 2 units for children 11 to 14) 
+ Fillings, necessary extractions and nutritional counselling are also covered by the program. Additional fluoride treatments are sometimes covered, as determined by your dentist.
+ Residents must use their private insurance first, when applicable, before the program will provide coverage. If your child is eligible for the program, your dentist should not charge you any expense for those services that are covered. Your dentist should bill the provincial Medical Services Insurance (MSI) to receive payment based on the regulated fee. You are not responsible for the difference for costs that are covered under the program. If your private insurance covers the regulated fee, then MSI will not provide any additional top up.
+ If any additional services are required throughout the year, the dentist may charge you up to their own private rate.
+ Contact
+ For more information about dental programs, talk to your dentist or dental hygienist.
+ If you have questions about your dental bill or claim, contact the program administrator, toll-free at 1-833-739-4035 (8:30 am to 4:30 pm).
+ Related information
+ - Dental programs 
+ - Dentists resources

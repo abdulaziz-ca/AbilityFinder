@@ -1,0 +1,25 @@
+URL: https://novascotia.ca/coms/disabilities/WheelchairRecycling.html | province: NS | program: Wheelchair Recycling Program | fetched: 2026-10-18
+=== PAGE: https://novascotia.ca/coms/disabilities/WheelchairRecycling.html (HTTP 200, 1077 chars)
+
+ Wheelchair Recycling Program
+ The children’s wheelchair recycling program provides wheelchairs to
+ children who need a chair for the  first time or who have
+ outgrown  their current chair.
+ The program was developed under the guidance of an advisory
+ committee that includes the Abilities Foundation, Canadian
+ Paraplegic Association, Nova Scotia League of Equal Opportunities,
+ IWK Health Centre, Muscular Dystrophy Society, the Disabled Persons
+ Commission and the Department of Community Services.
+ This is a demonstration project funded by the Department of
+ Community Services and administered by the Abilities Foundation of
+ Nova Scotia.
+ The wheelchair recycling program provides wheelchairs to children
+ and adults with a net family income that falls within program
+ guidelines.
+ This project is funded by the Department of Community Services and
+ administered by the Abilities Foundation of Nova Scotia.
+ Next steps
+ More information, including how to apply, is available at the
+ Easter Seals Nova Scotia website
+ (home of the Abilities Foundation of Nova Scotia).
+ 

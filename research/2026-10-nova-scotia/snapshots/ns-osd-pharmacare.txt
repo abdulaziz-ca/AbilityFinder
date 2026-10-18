@@ -1,0 +1,26 @@
+URL: https://novascotia.ca/dhw/pharmacare/DCS-drug-program.asp | province: NS | program: Pharmacare for income assistance and DSP clients | fetched: 2026-10-18
+=== PAGE: https://novascotia.ca/dhw/pharmacare/DCS-drug-program.asp (HTTP 200, 2267 chars)
+
+ <iframe src="//www.googletagmanager.com/ns.html?id=GTM-PH4H23"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe>
+ Health and Wellness
+ Department of Opportunities and Social Development Pharmacare Benefits
+ Nova Scotia Pharmacare
+ Department of Opportunities and Social Development Pharmacare Benefits
+ The Department of Opportunities and Social Development Pharmacare Benefits Program provides prescription drug coverage, known as Pharmacare, to
+- Income Assistance clients (which includes Extended Pharmacare and Transitional Pharmacare clients)
+- Disability Support Program clients
+- Children in the care of child welfare through either a district office of the Department of Opportunities and Social Development or a Children's Aid Society/Family and Children's Services agency
+- Low Income Pharmacare for Children clients
+ Benefits
+The Department of Opportunities and Social Development Pharmacare Benefits Program helps eligible beneficiaries with the cost of certain prescribed drugs, devices, and related services dispensed by pharmacists in Nova Scotia. Benefits are indicated in the Nova Scotia Formulary.
+ Coverage for sensor-based glucose monitoring
+ You have several options for sensor-based glucose monitoring coverage. Options include the Sensor-based Glucose Monitoring Program, Seniors’ Pharmacare Program, Family Pharmacare Program and Department of Opportunities and Social Development Pharmacare Benefits Program. You can only have coverage under 1 program (compare the programs to determine what program best suits your personal and financial needs).
+If you're already enrolled in the Seniors’ Pharmacare Program, Family Pharmacare Program or receive benefits from the Department of Opportunities and Social Development, you can complete the Pharmacare Programs Request for Insured Coverage of Sensor-based Glucose Monitoring Products Form (PDF) to request sensor-based glucose monitoring coverage.
+ Additional Information
+ For more information on eligibility, enrolment, benefits and cost, visit the Department of Opportunities and Social Development Pharmacare Benefits website or call 1-877-424-1177.
+ More Province of Nova Scotia
+ Français / English
+ Privacy
+ Terms
+ Crown copyright © 2021, Government of Nova Scotia. 

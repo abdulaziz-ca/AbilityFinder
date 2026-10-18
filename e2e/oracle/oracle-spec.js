@@ -117,10 +117,10 @@ const BASE_PERSONA = {
    are real entries in CITIES_BY_PROVINCE. */
 // 2026-10-17: Nanaimo and Kingston gained municipal records, so the defaults moved
 // to Fort St. John and Timmins (no local record; city-sweep "none found" / unreadable).
-const DEFAULT_CITY = { AB: "Camrose", BC: "Fort St. John", ON: "Timmins", SK: "Weyburn", MB: "Dauphin", NB: "Bathurst" };
+const DEFAULT_CITY = { AB: "Camrose", BC: "Fort St. John", ON: "Timmins", SK: "Weyburn", MB: "Dauphin", NB: "Bathurst", NS: "Lunenburg" };
 
 /* Cities used to violate a city gate: same province, different community. */
-const OTHER_CITY = { AB: "Wetaskiwin", BC: "Williams Lake", ON: "Guelph", SK: "Martensville", MB: "Selkirk", NB: "Campbellton" };
+const OTHER_CITY = { AB: "Wetaskiwin", BC: "Williams Lake", ON: "Guelph", SK: "Martensville", MB: "Selkirk", NB: "Campbellton", NS: "Antigonish" };
 
 /* --------------------------------------------------------------------------
    FRAGMENTS
@@ -212,6 +212,7 @@ const GATES = {
   sk: province("SK"),
   mb: province("MB"),
   nb: province("NB"),
+  ns: province("NS"),
   provinceCovered: {
     evidence: "answers",
     satisfy: { set: { province: "AB" } },
@@ -319,6 +320,7 @@ const GATES = {
   /* ------------------------------------------------------ BC municipalities */
   vancouver: municipality("Vancouver", "BC"),
   surrey: municipality("Surrey", "BC"),
+  bridgewater: municipality("Bridgewater", "NS"),
   moncton: municipality("Moncton", "NB"),
   dieppe: municipality("Dieppe", "NB"),
   fredericton: municipality("Fredericton", "NB"),
@@ -1116,6 +1118,78 @@ const GATES = {
     satisfy: { set: { income: "low" }, add: { circumstances: ["homeowner"] } },
     violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
   },
+  nsIncomeAssistanceRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  nsDisabilitySupportProgramRoute: {
+    evidence: "answers",
+    satisfy: { set: { disabilityVerified: "yes" } },
+    violations: [{ name: "not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" }],
+  },
+  nsDirectFamilySupportChildrenRoute: {
+    evidence: "answers",
+    satisfy: { set: { disabilityVerified: "yes" } },
+    violations: [{ name: "not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" }],
+  },
+  nsCaregiverBenefitRoute: external("Depends on a Continuing Care assessment of the person receiving care and their income category, which the wizard cannot make."),
+  nsOsdPharmacareRoute: external("Depends on receiving the assistance program the province names, which the wizard does not ask."),
+  nsFamilyPharmacareRoute: external("Depends on not having other drug coverage, which the wizard does not ask."),
+  nsHarpRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  nsSeniorsCareGrantRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  nsSeniorsPropertyTaxRebateRoute: external("Depends on receiving the assistance program the province names, which the wizard does not ask."),
+  nsHousingRepairAccessibilityRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" }, add: { circumstances: ["homeowner"] } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  nsRentSupplementRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  nsPovertyReductionCreditRoute: external("Depends on receiving the assistance program the province names, which the wizard does not ask."),
+  nsChildrensOralHealthRoute: {
+    evidence: "answers",
+    satisfy: { set: { ageBand: "6to11" } },
+    violations: [{ name: "adult", fragment: { set: { ageBand: "19to59" } }, expect: "almost" }],
+  },
+  nsCommunityBusPassRoute: external("Depends on receiving the assistance program the province names, which the wizard does not ask."),
+  nsSeniorsWheelchairLoanRoute: external("Depends on an occupational or physical therapist assessment and a Continuing Care income category, which the wizard cannot confirm."),
+  nsDayProgramsRoute: {
+    evidence: "answers",
+    satisfy: { set: { disabilityVerified: "yes" } },
+    violations: [{ name: "not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" }],
+  },
+  nsPublicHousingRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  nsAmbulanceFeeWaiverRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  nsStudentLoanForgivenessDisabilitiesRoute: {
+    evidence: "answers",
+    satisfy: { set: { disabilityVerified: "yes" } },
+    violations: [{ name: "not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" }],
+  },
+  bridgewaterProKidsRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
   kingstonMfapIncome: {
     evidence: "answers",
     satisfy: { set: { income: "low" } },
@@ -1695,6 +1769,29 @@ const PROGRAM_BEST_CASE = {
   "squamish-recreation-access":                    "ready",
   "terrace-affordable-recreation-access":          "almost",
   "white-rock-leisure-access":                     "ready",
+  "bridgewater-pro-kids":                          "ready",
+  "ns-poverty-reduction-credit":                   "almost",
+  "ns-childrens-oral-health":                      "ready",
+  "ns-community-bus-pass":                         "almost",
+  "ns-seniors-wheelchair-loan":                    "almost",
+  "ns-day-programs":                               "ready",
+  "ns-public-housing":                             "ready",
+  "ns-preschool-autism":                           "ready",
+  "ns-ambulance-fee-waiver":                       "ready",
+  "ns-student-loan-forgiveness-disabilities":      "ready",
+  "ns-income-assistance":                          "ready",
+  "ns-disability-support-program":                 "ready",
+  "ns-direct-family-support-children":             "ready",
+  "ns-caregiver-benefit":                          "almost",
+  "ns-osd-pharmacare":                             "almost",
+  "ns-seniors-pharmacare":                         "ready",
+  "ns-family-pharmacare":                          "almost",
+  "ns-harp":                                       "ready",
+  "ns-seniors-care-grant":                         "ready",
+  "ns-seniors-property-tax-rebate":                "almost",
+  "ns-housing-repair-accessibility":               "ready",
+  "ns-rent-supplement":                            "ready",
+  "ns-accessible-parking":                         "ready",
   "nb-drug-plan":                                  "almost",
   "nb-hearing-aid-program":                        "almost",
   "nb-public-housing":                             "ready",

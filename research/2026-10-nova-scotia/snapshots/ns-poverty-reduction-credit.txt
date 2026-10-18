@@ -1,0 +1,27 @@
+URL: http://novascotia.ca/coms/PovertyReductionCredit.html | province: NS | program: Poverty Reduction Credit | fetched: 2026-10-18
+=== PAGE: http://novascotia.ca/coms/PovertyReductionCredit.html (HTTP 200, 2080 chars)
+
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PH4H23"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>
+ Skip to Content | Skip to Search | Skip to Navigation 
+ Opportunities and Social Development
+Poverty Reduction Credit
+The Poverty Reduction Credit (PRC) provides financial assistance to Nova Scotians without children who are living in poverty. If you have children, you may be eligible for other benefits like the Canada Child Benefit and the Nova Scotia Child Benefit.
+The PRC gives you tax-free quarterly payments if you are an eligible Nova Scotian.
+The credit will not affect any of your other federal or provincial benefits, like the Canadian Groceries and Essentials Benefit (formerly known as the GST rebate) or your Income Assistance.
+Eligibility
+You do not need to apply for the PRC. The Department of Opportunities and Social Development will determine if you are eligible in June of each year. If you are eligible, you will receive your first PRC payment in July.
+You are eligible if:
+- you are an individual or couple that received Income Assistance from January to December in the previous year. If you are a married or common-law couple, only one person in your household can receive the credit
+- you filed your Income Tax Return for the previous tax year
+- your annual adjusted income was below $16,000 in the previous tax year
+- you had no children in the previous tax year
+Payment
+If you are eligible for the PRC, you will get $125.00 in July, October, January and April ($500.00 in total for the year).
+You can receive the PRC by direct deposit. If you received Income Assistance by direct deposit, it will already be setup. If you need to set up direct deposit, call 1-866-424-1269.
+Contact
+Poverty Reduction Credit Line: 1-866-424-1269
+For information on your income tax return or the Canada Groceries and Essentials Benefit, call the Canada Revenue Agency at 1-800-959-8281.
+More Province of Nova Scotia
+ Français / English 
+ Privacy Terms Cookies Crown copyright © 2013, Province of Nova Scotia. Updated: 2013-04-24 

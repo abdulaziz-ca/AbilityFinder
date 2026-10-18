@@ -1,0 +1,383 @@
+{
+ "provincial": [
+  {
+   "name": "Employment Support and Income Assistance (ESIA)",
+   "url": "https://novascotia.ca/coms/employment/income_assistance/",
+   "who": "Nova Scotians unable to financially support themselves or family; caseworker confirms eligibility",
+   "what": "Monthly basic needs (food, shelter, clothing); Enhanced rate $1,022/mo single with disability/chronic condition; special needs",
+   "age_group": "adult",
+   "route": "income_or_disability",
+   "confidence": "high",
+   "fetched": true,
+   "notes": "Rates from what-you-receive.html (fetched): Standard single rent/own $738. Extra help for barrier-free access if physical disability. Pharmacare $5/Rx. Eligibility sub-page not fetched."
+  },
+  {
+   "name": "ESIA what you receive / rates (disability Enhanced rate)",
+   "url": "https://novascotia.ca/coms/employment/income_assistance/what-you-receive.html",
+   "who": "Single recipient with disability, chronic condition limiting work, 55+, 16-18, or fleeing abuse",
+   "what": "Enhanced rate $1,022/month; barrier-free housing top-up",
+   "age_group": "adult",
+   "route": "income_or_disability",
+   "confidence": "high",
+   "fetched": true,
+   "notes": "Same program as ESIA; fold into one record."
+  },
+  {
+   "name": "Disability Support Program (DSP) overview",
+   "url": "https://novascotia.ca/Coms/disabilities/FlexProgram.html",
+   "who": "Meet DSP general, financial and level-of-support eligibility per DSP policies",
+   "what": "Umbrella for Flex, ILS, Alternative Family Support, Licensed Homes for Special Care, day programs, Direct Family Support for Children, Workplace Support, Wheelchair Recycling",
+   "age_group": "all",
+   "route": "disability",
+   "confidence": "high",
+   "fetched": true,
+   "notes": "Hub list taken from Flex page links (fetched). The DSP landing page novascotia.ca/dhw/disability-support-program/ is 404; real hub is under /coms/disabilities/. Intake 1-877-424-1177."
+  },
+  {
+   "name": "DSP Flex Individualized Funding",
+   "url": "https://novascotia.ca/coms/disabilities/FlexProgram.html",
+   "who": "Adults with disability living at home with family or independently with family/network support; meets DSP + Level of Support criteria",
+   "what": "Individualized funding to buy disability-related supports; delays residential placement",
+   "age_group": "adult",
+   "route": "disability",
+   "confidence": "high",
+   "fetched": true,
+   "notes": "Flex policy PDF has detailed criteria; not fetched. 'Flex Residential' is not a separate program per search."
+  },
+  {
+   "name": "DSP Independent Living Support (ILS / ILS+)",
+   "url": "https://novascotia.ca/Coms/disabilities/IndependentLiving.html",
+   "who": "Semi-independent adults needing support to live on own; functional and financial assessment",
+   "what": "Funded hours of support from service provider (housekeeping, meals, transport, community)",
+   "age_group": "adult",
+   "route": "disability",
+   "confidence": "high",
+   "fetched": true,
+   "notes": "Search snippet of ILS policy PDF says updated Nov 2025 with ILS+ up to 84 hrs/week (policy PDF not fetched; verify). Page itself mentions no changes."
+  },
+  {
+   "name": "DSP Direct Family Support for Children (DFSC)",
+   "url": "https://novascotia.ca/coms/disabilities/DirectFamilySupportforChildren.html",
+   "who": "Child under 19, NS resident, living with family, clinician-diagnosed qualifying intellectual/physical disability; family income under DFSC guidelines",
+   "what": "Funding for supports at home and purchased respite; enhanced component for complex needs",
+   "age_group": "child",
+   "route": "income_or_disability",
+   "confidence": "high",
+   "fetched": true,
+   "notes": "Needs both disability and income test. Income guideline numbers not on page."
+  },
+  {
+   "name": "DSP Wheelchair Recycling Program",
+   "url": "https://novascotia.ca/coms/disabilities/WheelchairRecycling.html",
+   "who": "Children and adults whose net family income is within program guidelines",
+   "what": "Recycled/refurbished wheelchairs, run via Abilities Foundation / Easter Seals NS",
+   "age_group": "all",
+   "route": "income_or_disability",
+   "confidence": "medium",
+   "fetched": false,
+   "notes": "Search snippet only; page not fetched. Described partly as demonstration project; check current status."
+  },
+  {
+   "name": "DSP Community ACCESS-Ability Program (grants)",
+   "url": "https://cch.novascotia.ca/sites/default/files/inline/community-access-ability-program-guidelines.pdf",
+   "who": "Non-profits, Mi'kmaq councils, MASH entities (not individuals)",
+   "what": "Up to two-thirds of accessibility capital costs",
+   "age_group": "n/a",
+   "route": "assistance_only",
+   "confidence": "medium",
+   "fetched": false,
+   "notes": "Org grant, likely out of scope for individuals. Cap disputed ($10k vs $50k). Not fetched."
+  },
+  {
+   "name": "DSP Workplace Support Program",
+   "url": "https://novascotia.ca/Coms/disabilities/FlexProgram.html",
+   "who": "Not stated; listed in DSP nav",
+   "what": "Supported employment for DSP participants",
+   "age_group": "adult",
+   "route": "disability",
+   "confidence": "low",
+   "fetched": true,
+   "notes": "Only name seen in Flex page links; no description page found/fetched. Needs follow-up (no URL confirmed)."
+  },
+  {
+   "name": "Caregiver Benefit Program",
+   "url": "https://novascotia.ca/dhw/CCS/caregiver-benefit.asp",
+   "who": "Care recipient 19+, income in Home Care category A, high-level impairment assessed by NSH; caregiver 19+, 20+ hrs/week unpaid",
+   "what": "$400/month, taxable",
+   "age_group": "adult",
+   "route": "income_or_disability",
+   "confidence": "high",
+   "fetched": true,
+   "notes": "Apply Continuing Care 1-800-225-7225."
+  },
+  {
+   "name": "Self-Managed Care",
+   "url": "https://novascotia.ca/dhw/ccs/self-managed-care.asp",
+   "who": "Adults 19+ with physical disability, stable health, able to direct own care",
+   "what": "Funds to hire and manage own attendants; family cannot be hired",
+   "age_group": "adult",
+   "route": "disability",
+   "confidence": "medium",
+   "fetched": false,
+   "notes": "Search snippet; the URL returned 404 on fetch (moved). Verify. Related Home Support Direct Funding factsheet exists (old figures)."
+  },
+  {
+   "name": "Home Care / Continuing Care (home support)",
+   "url": "https://novascotia.ca/dhw/ccs/",
+   "who": "Adults assessed by NSH care coordinator; income-tested fees",
+   "what": "Home support and nursing at home",
+   "age_group": "adult",
+   "route": "assistance_only",
+   "confidence": "low",
+   "fetched": false,
+   "notes": "Not fetched; hub URL inferred from other fetched ccs paths. Verify before use."
+  },
+  {
+   "name": "Under 65 Long-Term Care Pharmacare Plan",
+   "url": "https://novascotia.ca/dhw/CCS/policies/policyManual/Under65_Pharmacare_Plan_Policy.pdf",
+   "who": "Under 65 residents of long-term care facility, valid health card, no other drug coverage",
+   "what": "Drug coverage",
+   "age_group": "adult",
+   "route": "assistance_only",
+   "confidence": "medium",
+   "fetched": false,
+   "notes": "Policy dated 2005; confirm current. Mentioned as exclusion on Family Pharmacare page (fetched)."
+  },
+  {
+   "name": "Department of Opportunities and Social Development Pharmacare Benefits",
+   "url": "https://novascotia.ca/dhw/pharmacare/DCS-drug-program.asp",
+   "who": "Income Assistance (incl Extended/Transitional), Disability Support Program clients, children in care, Low Income Pharmacare for Children",
+   "what": "Prescription drugs, devices per NS Formulary",
+   "age_group": "all",
+   "route": "income_or_disability",
+   "confidence": "high",
+   "fetched": true,
+   "notes": "Includes glucose monitoring coverage."
+  },
+  {
+   "name": "Seniors' Pharmacare Program",
+   "url": "https://novascotia.ca/dhw/pharmacare/seniors-pharmacare.asp",
+   "who": "65+, NS resident, valid health card, no other drug coverage",
+   "what": "Drug coverage; premium and copay with annual maximums, reduced/waived by income",
+   "age_group": "senior",
+   "route": "assistance_only",
+   "confidence": "high",
+   "fetched": true,
+   "notes": "Dollar amounts not on page; calculator exists."
+  },
+  {
+   "name": "Family Pharmacare Program",
+   "url": "https://novascotia.ca/dhw/pharmacare/family-pharmacare.asp",
+   "who": "NS resident with health card; CRA verifies family income; not covered by Seniors/Under 65/OSD plans",
+   "what": "Income-based deductible and copay maximums for drugs",
+   "age_group": "all",
+   "route": "assistance_only",
+   "confidence": "high",
+   "fetched": true,
+   "notes": "Page does not mention disability."
+  },
+  {
+   "name": "Heating Assistance Rebate Program (HARP)",
+   "url": "https://www.novascotia.ca/programs-and-services/heating-assistance-rebate-program-harp",
+   "who": "Low-income Nova Scotians responsible for home heating costs",
+   "what": "$400 per household rebate",
+   "age_group": "all",
+   "route": "income",
+   "confidence": "medium",
+   "fetched": true,
+   "notes": "Fetched page lacks limits. Search snippet: season 1 Oct-31 Mar; 2025-26 intake ended, new applications open 1 Oct 2026 (today 2026-10-18 so likely open). Income limits unconfirmed."
+  },
+  {
+   "name": "Seniors Care Grant",
+   "url": "https://www.novascotia.ca/apply-help-household-healthcare-and-home-heating-costs-seniors-care-grant",
+   "who": "65+ by 31 Mar 2027, household net income $45,100 or less, own home/lease",
+   "what": "$750 per household for household, health or heating costs 1 Apr 2026-31 Mar 2027",
+   "age_group": "senior",
+   "route": "income",
+   "confidence": "high",
+   "fetched": true,
+   "notes": "Deadline 1 Dec 2026."
+  },
+  {
+   "name": "Property Tax Rebate for Seniors",
+   "url": "https://www.novascotia.ca/programs-and-services/property-tax-rebate-seniors",
+   "who": "Low-income seniors (page gives no limits)",
+   "what": "Rebate on municipal residential property tax",
+   "age_group": "senior",
+   "route": "income",
+   "confidence": "medium",
+   "fetched": true,
+   "notes": "Details live on application page, not fetched."
+  },
+  {
+   "name": "Housing Repair and Accessibility Program",
+   "url": "https://www.novascotia.ca/programs-and-services/housing-repair-and-accessibility-program",
+   "who": "Homeowners with low or moderate incomes; medical form for accessibility",
+   "what": "Critical repairs plus accessibility adaptations",
+   "age_group": "all",
+   "route": "income_or_disability",
+   "confidence": "high",
+   "fetched": true,
+   "notes": "Appears to consolidate older Access-A-Home, SCAP, Emergency Repair, DRRAP (search shows old grant caps $6.5k-$18k, 2022). Verify old names are retired."
+  },
+  {
+   "name": "Canada-Nova Scotia Targeted Housing Benefit (rent supplement)",
+   "url": "https://www.novascotia.ca/programs-and-services/canada-nova-scotia-targeted-housing-benefit",
+   "who": "Homeowners/renters paying over 50% of gross income on housing",
+   "what": "Rent supplement or homeowner supplement",
+   "age_group": "all",
+   "route": "income",
+   "confidence": "medium",
+   "fetched": true,
+   "notes": "Disability not mentioned. Apply page beta.novascotia.ca/apply-rent-supplement-canada-nova-scotia-targeted-housing-benefit seen in search only. 2023 reports of backlog and rule change."
+  },
+  {
+   "name": "Public housing (Nova Scotia Provincial Housing Agency)",
+   "url": "https://nspha.ca/sites/default/files/2025-08/NSPHA-Application-08.29.2025.pdf",
+   "who": "Income below area limits, 19+ (18 with dependents), citizen/PR, NS resident",
+   "what": "Subsidized public housing, waitlist",
+   "age_group": "all",
+   "route": "income",
+   "confidence": "medium",
+   "fetched": false,
+   "notes": "Application PDF seen in search, not fetched. Housing NS now NSPHA."
+  },
+  {
+   "name": "Accessible Parking Permit and disabled plates",
+   "url": "https://novascotia.ca/sns/rmv/registration/mobility.asp",
+   "who": "Mobility disability certified by qualified medical practitioner",
+   "what": "Permit (no gov fee) or disabled plates",
+   "age_group": "all",
+   "route": "disability",
+   "confidence": "high",
+   "fetched": true,
+   "notes": "2026 Accessible-Parking Permits Regulations (novascotia.ca/just/regulations/regs/2026-232.pdf, search only) set 5-year permanent permits, practitioner list. Fetched page predates and gives no term."
+  },
+  {
+   "name": "Poverty Reduction Credit",
+   "url": "http://novascotia.ca/coms/PovertyReductionCredit.html",
+   "who": "Income Assistance full prior year, adjusted income under $16,000, no children",
+   "what": "$500/year in four $125 payments",
+   "age_group": "adult",
+   "route": "income",
+   "confidence": "medium",
+   "fetched": true,
+   "notes": "Page last updated 2013; verify amounts. No application."
+  },
+  {
+   "name": "Affordable Living Tax Credit",
+   "url": "https://beta.novascotia.ca/taxation-forms-and-documents",
+   "who": "Low and modest income individuals/families, via tax return",
+   "what": "Base $255 adult/couple + $60 per child (older figures), reduced above $30,000",
+   "age_group": "all",
+   "route": "income",
+   "confidence": "low",
+   "fetched": false,
+   "notes": "Official page redirect landed on generic forms page; amounts from search snippet only; CRA administers."
+  },
+  {
+   "name": "Nova Scotia Child Benefit",
+   "url": "https://novascotia.ca/coms/employment/other-benefits/",
+   "who": "Low-income families with children under 18 who get Canada Child Benefit",
+   "what": "Monthly payment via CCB",
+   "age_group": "child",
+   "route": "income",
+   "confidence": "low",
+   "fetched": true,
+   "notes": "Mentioned on fetched other-benefits page without detail; amounts conflicting in secondary sources. Possibly overlaps federal CCB listing."
+  },
+  {
+   "name": "Community Bus Pass (HRM and CBRM)",
+   "url": "https://novascotia.ca/bus-pass/",
+   "who": "ESIA recipients, spouses and dependants, DSP participants",
+   "what": "Free annual transit pass; CBRM launched Nov 2025",
+   "age_group": "all",
+   "route": "income_or_disability",
+   "confidence": "medium",
+   "fetched": false,
+   "notes": "Page seen in search; not fetched. Free CBRM pass launch Nov 4 2025 per news release; HRM permanent since 2021."
+  },
+  {
+   "name": "Children's Oral Health Program",
+   "url": "https://novascotia.ca/dhw/dental-programs/children-oral-health-program.asp",
+   "who": "Children 14 and under with valid health card",
+   "what": "Exams, x-rays, fluoride, fillings, extractions at no cost",
+   "age_group": "child",
+   "route": "assistance_only",
+   "confidence": "high",
+   "fetched": true,
+   "notes": "Universal, not income-tested; private insurance first. Info 1-833-739-4035."
+  },
+  {
+   "name": "Early Intensive Behavioural Intervention (EIBI)",
+   "url": "https://news.novascotia.ca/en/2020/11/23/more-children-benefit-early-intensive-behavioural-intervention",
+   "who": "Preschool children with autism",
+   "what": "Publicly funded EIBI before school",
+   "age_group": "child",
+   "route": "disability",
+   "confidence": "low",
+   "fetched": false,
+   "notes": "Only news releases found; no program page found. Do not publish without a program page."
+  }
+ ],
+ "municipal": [
+  {
+   "name": "Halifax Affordable Access Program (transit pass and recreation)",
+   "url": "https://www.halifax.ca/sites/default/files/documents/about-halifax/cc_affordable-access-program_2026-guidebook.pdf",
+   "who": "HRM residents under Low-Income Cut-Offs; household income proof",
+   "what": "50% off monthly adult transit pass; recreation fee assistance",
+   "age_group": "all",
+   "route": "income",
+   "confidence": "medium",
+   "fetched": false,
+   "notes": "fetch_blocked 403; content from search snippet. Applications from mid-May, pass year July-June."
+  },
+  {
+   "name": "Halifax Access-A-Bus",
+   "url": "https://www.halifax.ca/transportation/halifax-transit/transit-programs-services/access-bus",
+   "who": "People unable to use conventional transit (criteria unverified)",
+   "what": "Door-to-door accessible transit",
+   "age_group": "all",
+   "route": "disability",
+   "confidence": "low",
+   "fetched": false,
+   "notes": "fetch_blocked 403 (URL guessed, not seen in results) - verify."
+  },
+  {
+   "name": "Transit Cape Breton Handi-Trans",
+   "url": "https://cbrm.ns.ca/38c",
+   "who": "Clients unable to use conventional transit, registered",
+   "what": "Specialized accessible transit",
+   "age_group": "all",
+   "route": "disability",
+   "confidence": "medium",
+   "fetched": false,
+   "notes": "From search snippet; not fetched. Phone 902-539-4336."
+  }
+ ],
+ "checked_hubs": [
+  "https://www.novascotia.ca/programs-and-services",
+  "https://novascotia.ca/coms/employment/income_assistance/",
+  "https://novascotia.ca/coms/employment/other-benefits/",
+  "https://novascotia.ca/dhw/pharmacare/",
+  "https://novascotia.ca/coms/disabilities/FlexProgram.html",
+  "https://novascotia.ca/sns/rmv/registration/mobility.asp"
+ ],
+ "not_covered": [
+  "Truro",
+  "New Glasgow",
+  "Kentville",
+  "Amherst",
+  "Bridgewater",
+  "Yarmouth",
+  "Antigonish",
+  "Wolfville",
+  "Lunenburg",
+  "CBRM recreation",
+  "MSI ambulance",
+  "Student aid",
+  "Hearing/vision",
+  "Supported employment detail",
+  "Seniors Care Grant already included"
+ ]
+}

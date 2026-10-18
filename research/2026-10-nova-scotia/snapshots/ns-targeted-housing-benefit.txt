@@ -1,0 +1,10 @@
+URL: https://www.novascotia.ca/programs-and-services/canada-nova-scotia-targeted-housing-benefit | province: NS | program: Canada-Nova Scotia Targeted Housing Benefit | fetched: 2026-10-18
+=== PAGE: https://www.novascotia.ca/programs-and-services/canada-nova-scotia-targeted-housing-benefit (HTTP 200, 414 chars)
+
+ Canada-Nova Scotia Targeted Housing Benefit
+Homeowners
+ Apply for a homeowner’s supplement: Canada-Nova Scotia Targeted Housing Benefit
+Homeowners can apply for help to stay in their home if they pay more than 50% of their pre-tax (gross) household income on housing costs.
+Renters
+ Apply for a rent supplement: Canada-Nova Scotia Targeted Housing Benefit
+Renters can apply for help with the cost of their rent.

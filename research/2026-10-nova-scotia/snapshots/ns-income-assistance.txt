@@ -1,0 +1,227 @@
+URL: https://novascotia.ca/coms/employment/income_assistance/ | province: NS | program: Employment Support and Income Assistance (ESIA) | fetched: 2026-10-18
+=== PAGE: https://novascotia.ca/coms/employment/income_assistance/ (HTTP 200, 2469 chars)
+
+ Income Assistance
+ Income Assistance can help you if you are not able to financially
+ support yourself or your family. Depending on your situation, you
+ may get money for your basic needs (like food, clothing
+ and shelter) and sometimes for special needs. 
+ Employment Support Services (ESS) provides programs for Employment Support and Income
+ Assistance (ESIA) clients and their families to learn new skills,
+ find jobs and move towards independence. Programs are run by
+ government staff and local community organizations. ESS also
+ provides programming for youth at risk, to prevent attachment to
+ income assistance and to reduce poverty for future
+ generations. 
+ More About Income Assistance
+ - 
+ How to Apply
+ Call or visit us to get started with your application.
+ - Submit income statements
+ Active clients can submit their monthly income statements online.
+ - 
+ Who can receive Income Assistance
+ Learn about who can receive Income Assistance.
+ - 
+ What you receive on Income Assistance
+ Learn about what you receive on Income Assistance.
+ - 
+ Information for clients
+ More information for clients regarding payment dates, how to get
+ your payments, working while receiving IA, how going to school
+ affects IA, and money from other sources.
+ - 
+ Direct Deposits
+ Learn how to setup payments automatically deposited directly into
+ your bank account.
+ - 
+ Forms and Documents
+ Documents, appeals and more. Available in printable format.
+ - 
+ Help Paying for a Funeral
+ Income Assistance may be able to help pay for a funeral.
+ - 
+ Decision Review and Appeals
+ You may appeal any decision related to your application or the
+ amount of your assistance
+ - 
+ Employment Support and Income Assistance (ESIA) Policy Manual
+ (PDF)
+ This manual contains all of the policies that your caseworker uses
+ when making decisions.
+ Dental Administrator Information
+ For more information for dentists/denturists providing services for
+ Employment Support and Income Assistance (ESIA) clients, review the
+ documents below:
+ - 
+ ESIA Dentist Manual (PDF)
+ - 
+ ESIA Denturist Manual (PDF)
+ More information
+ - 
+ Other Benefits
+Learn more about the Poverty Reduction Credit, Nova Scotia
+ Child Benefit and the Canada Child Benefit.
+ - 
+ Employment Support Services
+ - 
+ Community Volunteer Income Tax Program (CVITP)
+ Help with preparing income tax and benefit returns.
+ - 
+ Employment Support and Income Assistance Act
+ - 
+ Employment Support and Income Assistance Regulations
+ 
+
+=== PAGE: https://novascotia.ca/coms/employment/income_assistance/what-you-receive.html (HTTP 200, 4681 chars)
+
+ What you receive on Income Assistance
+ If you qualify for Income Assistance, you will get assistance with
+ you or your family’s basic needs and depending on your
+ situation, you might get assistance with other expenses too.
+ On this page:
+ - 
+ Basic Needs Assistance
+ - 
+ Special Needs Assistance
+ - 
+ Prescription Drug Coverage
+ (Pharmacare)
+ Basic Needs Assistance
+ Standard Household Rate
+ If you need help with your basic needs, you can get an allowance
+ called a Standard Household Rate. The amount you get depends on the
+ number of people in your family and your living situation.
+ The Standard Household Rate is for basic needs such as food,
+ clothing, shelter, fuel, utilities and personal items. You may also
+ get help for any special needs you have. The amount you get is based
+ on your situation.
+ There are three different types of Standard Household Rates. Learn
+ more about them here:
+ - Rent/Own or Board
+ - Enhanced
+ - Essentials
+ Rent/Own or Board
+ If you board, rent a place to live or own a home, you will get the
+ Standard Household Rate – Rent/Own or Board as shown in the
+ below table: 
+ Household Composition
+ Standard Household Rate (Monthly)
+ Recipient
+ Dependent Child/Student Family Member
+ Rent/Own
+ Board
+ 1
+ 0
+ $738
+ $655
+ 1
+ 1
+ $1,035
+ $674
+ 1
+ 2 or more
+ $1,090
+ $719
+ 2
+ 0
+ $1,442
+ $1,085
+ 2
+ 1 or more
+ $1,497
+ $1,128
+ Enhanced
+ If you are an eligible single recipient who rents a place to live or
+ owns a home, and you either:
+ - have a disability,
+ - 
+ have a chronic mental, cognitive or physical condition that limits
+ participation in employment services,
+ - 
+ are age 55 or
+ older,                        
+ - are between the ages of 16 to 18 (inclusive), or
+ - are fleeing an abusive situation,
+ You will get the Enhanced Standard Household Rate of $1,022 per
+ month.
+ Essentials
+ If you do not:
+ - board,
+ - rent a place to live, or
+ - own a home,
+ Are temporarily in a:
+ - homeless shelter,
+ - transition house,
+ - hospital,
+ - rehabilitation program, or
+ - unsheltered or without a fixed address
+ You will get the Essentials Standard Household Rate of $410 per
+ month. Each adult and/or dependent child aged 18 to 20 in the family
+ will receive this rate.
+ Other basic needs support
+ You may be able to get more help for basic needs if:
+ - 
+ you have dependents between the ages of 18 to 20 living with you
+ - 
+ you or your family member has a physical disability or terminal
+ illness and need help with barrier-free access to, from or within
+ your home
+ For more information
+ If you have any questions, contact your caseworker or call
+ an office
+ in your area.
+ Special Needs Assistance
+ Special needs are things for your health and safety, and for work or
+ training. The special needs assistance you may get is based on your
+ personal situation.
+ - 
+ if you receive Income Assistance already, contact your caseworker
+ to request special needs assistance
+ - 
+ if you do not already receive Income Assistance, see information
+ on how to apply
+ - 
+ if you are making a one-time request for a special need and do not
+ require help with your basic needs, you can use the
+ same process to apply
+ Income Assistance can help with many special needs. A full list can
+ be found in the
+ ESIA Policy Manual (PDF).
+ For more information
+ You can learn more about special needs assistance in the
+ ESIA Policy Manual (PDF). You can also contact your caseworker or call
+ an office
+ in your area.
+ Prescription Drug Coverage (Pharmacare)
+ The Department of Opportunities and Social Development provides
+ prescription drug coverage (Pharmacare) to people receiving
+ Employment Support and Income Assistance (ESIA), including
+ Transitional Pharmacare clients.
+ How to use Pharmacare benefits
+ To use Pharmacare benefits:
+ - you must have a Nova Scotia Health Card
+ - show your health card at the pharmacy
+ - the pharmacist will check if the prescription is covered
+ - 
+ only medications and supplies listed in the
+ Nova Scotia Formulary
+ are covered (in the approved amounts)
+ If your health card is expired or you need a new one, visit Nova Scotia Health Card webpage or call 1-800-563-8880.
+ Visit Nova Scotia Pharmacare for more information on Pharmacare benefits.
+ Low Income Pharmacare for Children (LIPC)
+ is available for families who receive the
+ Nova Scotia Child Benefit
+ and are not on Income Assistance.
+ Costs
+ You pay $5 per prescription.
+ Some people qualify for a co-pay exemption (no fee). Contact your
+ caseworker if you qualify. 
+ Next steps
+ If you have any questions, contact your caseworker to determine
+ eligibility or call
+ an office
+ in your area.
+ If you are not an Income Assistance client, see information
+ on how to apply.
+ 

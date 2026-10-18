@@ -1610,5 +1610,105 @@
     "short": "Check the income limit and that you own your home",
     "who": ["you", "program"],
     "reason": "Provincial-sweep record nb-homeowner-repair (2026-10-17)"
+  },
+  "nsIncomeAssistanceRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-income-assistance (2026-10-17)"
+  },
+  "nsDisabilitySupportProgramRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record ns-disability-support-program (2026-10-17)"
+  },
+  "nsDirectFamilySupportChildrenRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record ns-direct-family-support-children (2026-10-17)"
+  },
+  "nsCaregiverBenefitRoute": {
+    "short": "Ask Continuing Care about an assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-caregiver-benefit (2026-10-17)"
+  },
+  "nsOsdPharmacareRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Provincial-sweep record ns-osd-pharmacare (2026-10-17)"
+  },
+  "nsFamilyPharmacareRoute": {
+    "short": "Check whether you have other drug coverage",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-family-pharmacare (2026-10-17)"
+  },
+  "nsHarpRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-harp (2026-10-17)"
+  },
+  "nsSeniorsCareGrantRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-seniors-care-grant (2026-10-17)"
+  },
+  "nsSeniorsPropertyTaxRebateRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Provincial-sweep record ns-seniors-property-tax-rebate (2026-10-17)"
+  },
+  "nsHousingRepairAccessibilityRoute": {
+    "short": "Check the income limit and that you own your home",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-housing-repair-accessibility (2026-10-17)"
+  },
+  "nsRentSupplementRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-rent-supplement (2026-10-17)"
+  },
+  "nsPovertyReductionCreditRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Provincial-sweep record ns-poverty-reduction-credit (2026-10-17)"
+  },
+  "nsChildrensOralHealthRoute": {
+    "short": "Check your child's age",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-childrens-oral-health (2026-10-17)"
+  },
+  "nsCommunityBusPassRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Provincial-sweep record ns-community-bus-pass (2026-10-17)"
+  },
+  "nsSeniorsWheelchairLoanRoute": {
+    "short": "Ask for a therapist assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-seniors-wheelchair-loan (2026-10-17)"
+  },
+  "nsDayProgramsRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record ns-day-programs (2026-10-17)"
+  },
+  "nsPublicHousingRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-public-housing (2026-10-17)"
+  },
+  "nsAmbulanceFeeWaiverRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-ambulance-fee-waiver (2026-10-17)"
+  },
+  "nsStudentLoanForgivenessDisabilitiesRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record ns-student-loan-forgiveness-disabilities (2026-10-17)"
+  },
+  "bridgewaterProKidsRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Nova Scotia city record bridgewater-pro-kids (2026-10-18)"
   }
 }

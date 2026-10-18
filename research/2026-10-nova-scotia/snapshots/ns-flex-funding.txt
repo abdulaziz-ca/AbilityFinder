@@ -1,0 +1,24 @@
+URL: https://novascotia.ca/coms/disabilities/FlexProgram.html | province: NS | program: Disability Support Program: Flex Individualized Funding | fetched: 2026-10-18
+=== PAGE: https://novascotia.ca/coms/disabilities/FlexProgram.html (HTTP 200, 855 chars)
+
+ Flex Program
+ Flex provides individualized funding to participants living at home
+ with their families or who live independently with support from
+ their families or personal support networks. That funding is used
+ to:
+ - 
+ purchase supports specific to a participant’s disability-related
+ needs and goals;
+ - 
+ promote the participant's independence, self-reliance, and social
+ inclusion; and
+ - 
+ offer an alternative to, prevent or delay a participant’s
+ placement in a DSP-funded residential support option.
+ To be eligible for the Flex program an applicant must meet all of
+ the DSP general eligibility requirements outlined in section 4.0 of
+ the DSP Program Policy, in sections 4.0 and 5.0 of the DSP Financial
+ Eligibility Policy, and meet the eligibility criteria outlined in
+ the Level of Support Policy.
+ Read more in the FLEX Policy (PDF).
+ 

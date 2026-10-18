@@ -1,0 +1,192 @@
+[
+ {
+  "name": "Nova Scotia Child Benefit",
+  "url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-nova-scotia.html",
+  "status": "MISSING",
+  "who": "Low and modest income families with a child under 18; partial benefit at adjusted family net income $26,000-$34,000",
+  "what": "Tax-free monthly payment up to $127.08 per child, paid with the Canada Child Benefit",
+  "age": "Child under 18",
+  "route": "Automatic when you apply for the CCB and file taxes; no separate application",
+  "reason": "Fetched CRA page (also novascotia.ca/coms/families/ChildBenefit.html fetched, older 2023 figures). Provincially funded, CRA administered."
+ },
+ {
+  "name": "Nova Scotia Affordable Living Tax Credit",
+  "url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-nova-scotia.html",
+  "status": "MISSING",
+  "who": "Nova Scotia residents with low income; reduced by 5% of adjusted family net income over $30,000",
+  "what": "Up to $255/yr per individual or couple plus $60 per child, paid quarterly with federal benefit payments",
+  "age": "Adult",
+  "route": "Automatic from tax return; no application",
+  "reason": "Current figures from CRA page (Jul 2026-Jun 2027). novascotia.ca finance page redirects to beta.novascotia.ca/taxation-forms-and-documents, not read."
+ },
+ {
+  "name": "Home Care (Nova Scotia Home Care, home support and nursing, income-based fees)",
+  "url": "https://novascotia.ca/dhw/ccs/home-care.asp",
+  "status": "MISSING",
+  "who": "Nova Scotians needing help at home, assessed by a Care Coordinator",
+  "what": "Home support (personal care, respite, housekeeping) and nursing; nursing free, home support fee by income and household size",
+  "age": "All ages (no age limit stated)",
+  "route": "Call Continuing Care 1-800-225-7225",
+  "reason": "Fee table PDF (2024/25 table, $12.45/hr, monthly caps $124.50-$622.50 per search snippet) fetched but unreadable by WebFetch; verify figures."
+ },
+ {
+  "name": "Home Support Direct Funding Program",
+  "url": "https://novascotia.ca/dhw/CCS/FactSheets/home-support-direct-funding-program-en.pdf",
+  "status": "MISSING",
+  "who": "NS resident with Health Card, unmet care needs, assessed eligible, able to hire/manage a care worker or appoint Care Manager",
+  "what": "Monthly funding deposited to your account to buy home support (personal care, respite, meals, light housekeeping)",
+  "age": "All ages (none stated)",
+  "route": "Call 1-800-225-7225 for assessment",
+  "reason": "Fetched via downloaded PDF text. Funded by Dept of Seniors and Long-Term Care."
+ },
+ {
+  "name": "Self-Managed Care Program",
+  "url": "https://novascotia.ca/dhw/CCS/FactSheets/Self-Managed-Care.pdf",
+  "status": "MISSING",
+  "who": "Adults 19+ with a physical disability, stable health, needing help with daily living, able to direct own care",
+  "what": "Funding to hire and manage your own care providers (not family members); may appoint a Care Manager",
+  "age": "19+",
+  "route": "Call 1-800-225-7225",
+  "reason": "Previously 404; fact sheet PDF now readable via text extraction. No HTML page found (hub lists it without link). Overlaps Home Support Direct Funding."
+ },
+ {
+  "name": "Supportive Care Program",
+  "url": "https://novascotia.ca/DHW/CCS/supportive-care-program-en.pdf",
+  "status": "STILL_GAP",
+  "who": "65+ (or any age with dementia or acquired brain injury) with cognitive impairment, 25+ hrs/month need, substitute decision maker",
+  "what": "Up to $1,000/month for home support; snow removal reimbursement up to $495/yr with income test",
+  "age": "65+ or dementia/ABI",
+  "route": "Call 1-800-225-7225",
+  "reason": "Search surfaced PDF but WebFetch returned 404 for both the .asp page and the PDF; details only from search summary (fetch_blocked). Retry with browser."
+ },
+ {
+  "name": "Under 65 Long-Term Care Pharmacare Plan",
+  "url": "https://novascotia.ca/dhw/CCS/policies/policyManual/Under65_Pharmacare_Plan_Policy.pdf",
+  "status": "MISSING",
+  "who": "Regular bed residents of an LTC facility under 65 with NS Health Card and no other drug coverage",
+  "what": "Prescription drug coverage per NS Formulary; no premium, co-pay or deductible",
+  "age": "Under 65",
+  "route": "Automatic via LTC admission; facility notifies Pharmacare",
+  "reason": "Fetched policy text (dated April 1 2005); no current program page found and not listed on Pharmacare hub, so medium confidence it is still active."
+ },
+ {
+  "name": "Home Lift Program",
+  "url": "https://novascotia.ca/dhw/ccs/home-lift-program.asp",
+  "status": "MISSING",
+  "who": "NS resident with Health Card receiving funded home care, assessed by OT/physio as needing a mechanical lift",
+  "what": "Free loan of floor or free-standing lift and sling",
+  "age": "All ages",
+  "route": "Via Care Coordinator / 1-800-225-7225",
+  "reason": "Fetched. Not in the already-built list."
+ },
+ {
+  "name": "Specialized Bed Loan (Health Equipment Loan Program)",
+  "url": "https://novascotia.ca/dhw/ccs/health-equipment.asp",
+  "status": "MISSING",
+  "who": "NS resident with Health Card meeting criteria set by Care Coordinator",
+  "what": "Free loan of electric bed, pressure-reduction mattress and rails; Red Cross delivers and maintains",
+  "age": "All ages",
+  "route": "Call 1-800-225-7225",
+  "reason": "Fetched."
+ },
+ {
+  "name": "Home Oxygen Service",
+  "url": "https://novascotia.ca/dhw/ccs/home-oxygen.asp",
+  "status": "MISSING",
+  "who": "People needing oxygen for medical reasons, referred by a designated physician; smoke-free",
+  "what": "Free oxygen concentrator, tubing, backup cylinder, portable system if eligible",
+  "age": "All ages",
+  "route": "Physician referral",
+  "reason": "Fetched. Could be viewed as condition-specific (respiratory) but equipment program; owner call."
+ },
+ {
+  "name": "Respite Care (LTC respite bed)",
+  "url": "https://novascotia.ca/dhw/ccs/respite-care.asp",
+  "status": "MISSING",
+  "who": "People needing personal care whose regular caregiver is unavailable; assessed by Care Coordinator",
+  "what": "Short stay in LTC respite bed up to 60 days/yr; reduced rate after income assessment",
+  "age": "All ages (option for children)",
+  "route": "Call 1-800-225-7225",
+  "reason": "Fetched."
+ },
+ {
+  "name": "Child Care Subsidy",
+  "url": "https://childcarenovascotia.ca/families/child-care-subsidy",
+  "status": "MISSING",
+  "who": "Families with assessed income under $70,000 and a child 12 or younger in licensed child care or approved Before and After Program",
+  "what": "Covers a portion of child care fees, paid to provider; reviewed annually",
+  "age": "Child 12 or under",
+  "route": "Apply via intake line 1-844-804-2084 / site",
+  "reason": "Fetched. Low-income family program; not disability-specific. Inclusion Support section exists, not read."
+ },
+ {
+  "name": "Alternative Family Support Program",
+  "url": "https://novascotia.ca/coms/disabilities/AlternativeFamilySupport.html",
+  "status": "MISSING",
+  "who": "Persons with disabilities needing support and supervision, via DSP",
+  "what": "Funding for room and board, support and supervision, respite in an approved private family home",
+  "age": "Not stated",
+  "route": "Call 1-877-424-1177",
+  "reason": "Fetched; may be folded into DSP record, check."
+ },
+ {
+  "name": "Licensed Homes for Special Care (Small Option, Group Homes)",
+  "url": "https://novascotia.ca/coms/disabilities/HomesForSpecialCare.html",
+  "status": "MISSING",
+  "who": "People with disabilities admitted after functional and financial assessment, via DSP",
+  "what": "Residential support and supervision in licensed homes; RRC/ARC/RCF admissions ceased Jan 1 2025",
+  "age": "Not stated",
+  "route": "Call 1-877-424-1177",
+  "reason": "Fetched; likely folded into DSP record, check."
+ },
+ {
+  "name": "Workplace Support Program",
+  "url": "https://news.novascotia.ca/en/2017/02/28/government-enhances-workplace-support-program",
+  "status": "STILL_GAP",
+  "who": "NS residents with disabilities needing technical aids, devices or attendant support to keep employment; 5+ hrs/week (2017)",
+  "what": "Funding for technical aids, assistive devices, attendant support at work",
+  "age": "Over-65 not excluded (2017)",
+  "route": "Unknown",
+  "reason": "Only 2017 news release fetched; novascotia.ca/coms/labourmarketagreement 404 and DSP hub no longer lists it. Possibly delivered via LMAPD, current status unverified."
+ },
+ {
+  "name": "Post-Secondary Accessibility Services grants (federal CSG administered by NS)",
+  "url": "https://novascotia.ca/post-secondary-accessibility-services/grants.asp",
+  "status": "COVERED",
+  "who": "Students with permanent disability",
+  "what": "Canada Student Grants for disability and services/equipment",
+  "age": "",
+  "route": "",
+  "reason": "Appeared in search only, not fetched; federal grants already in Federal list."
+ },
+ {
+  "name": "Dalhousie Hearing Aid Assistance Program (income assistance clients)",
+  "url": "https://dal.ca/faculty/health/scsd/dhaap-cs.html",
+  "status": "OUT_OF_SCOPE",
+  "who": "Income Assistance clients with caseworker",
+  "what": "New hearing aids",
+  "age": "Adult",
+  "route": "Via caseworker",
+  "reason": "Search snippet only, not fetched; university-run delivery of provincial benefit, unverified."
+ },
+ {
+  "name": "Diabetes Assistance Program",
+  "url": "https://novascotia.ca/dhw/pharmacare/",
+  "status": "STILL_GAP",
+  "who": "Under 65 with diabetes, no drug coverage (2005 release)",
+  "what": "Insulin, supplies",
+  "age": "Under 65",
+  "route": "",
+  "reason": "Not on Pharmacare hub fetched; single-condition anyway, so OUT_OF_SCOPE likely."
+ },
+ {
+  "name": "Nova Scotia Disability Tax Credit / Seniors Rent / Canada-NS Housing Benefit / eyeglasses / DAP",
+  "url": "",
+  "status": "STILL_GAP",
+  "who": "",
+  "what": "",
+  "age": "",
+  "route": "",
+  "reason": "No official NS page found in searches for a NS-specific disability tax credit, drug assistance for MSI, or eyeglass program; not verified absent."
+ }
+]

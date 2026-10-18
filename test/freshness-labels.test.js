@@ -25,11 +25,11 @@ test('every record has exactly one honest label, agrees with queue and generated
     inherited += Number(f.inherited);
     const file = `public/guides/${record.id}.html`;
     // The routing placeholder and dark-province records have no static guide.
-    if (record.id === 'local-supports' || (ctx.levelOf(record.id) === 'Saskatchewan' && !/^const SK_ENABLED = true;/m.test(app)) || (/^(Manitoba|Winnipeg|Brandon)$/.test(ctx.levelOf(record.id)) && !/^const MB_ENABLED = true;/m.test(app)) || (/^(New Brunswick|Dieppe|Fredericton|Saint John|Moncton|Riverview|Bathurst|Campbellton|Edmundston|Miramichi|Oromocto|Quispamsis|Rothesay)$/.test(ctx.levelOf(record.id)) && !/^const NB_ENABLED = true;/m.test(app))) { assert.equal(fs.existsSync(file), false); continue; }
+    if (record.id === 'local-supports' || (ctx.levelOf(record.id) === 'Saskatchewan' && !/^const SK_ENABLED = true;/m.test(app)) || (/^(Manitoba|Winnipeg|Brandon)$/.test(ctx.levelOf(record.id)) && !/^const MB_ENABLED = true;/m.test(app)) || (/^(New Brunswick|Dieppe|Fredericton|Saint John|Moncton|Riverview|Bathurst|Campbellton|Edmundston|Miramichi|Oromocto|Quispamsis|Rothesay)$/.test(ctx.levelOf(record.id)) && !/^const NB_ENABLED = true;/m.test(app)) || (/^(Nova\ Scotia|Amherst|Antigonish|Bridgewater|Dartmouth|Glace\ Bay|Halifax|Kentville|Lunenburg|New\ Glasgow|Sydney|Truro|Wolfville|Yarmouth)$/.test(ctx.levelOf(record.id)) && !/^const NS_ENABLED = true;/m.test(app))) { assert.equal(fs.existsSync(file), false); continue; }
     const html = fs.readFileSync(file, 'utf8');
     assert.ok(html.includes(`<span class="verified">${f.wording}</span>`), record.id);
   }
-  assert.equal(queue.length, 306);
+  assert.equal(queue.length, 329);
   assert.equal(inherited, 39);
   assert.ok(app.includes('${vFresh.wording}'));
 });

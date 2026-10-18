@@ -1,0 +1,50 @@
+URL: https://novascotia.ca/dhw/ehs/ambulance-fees.asp | province: NS | program: Ambulance fee waiver | fetched: 2026-10-18
+=== PAGE: https://novascotia.ca/dhw/ehs/ambulance-fees.asp (HTTP 200, 3867 chars)
+
+ <iframe src="//www.googletagmanager.com/ns.html?id=GTM-PH4H23"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe>
+ Health and Wellness
+ Ambulance Fees
+Emergency Health Services
+Ambulance Fees
+Ground Ambulance Fees are a non-insured service under the Canada Health Act. It is the responsibility of each province to determine to what extent, if any, it will subsidize the cost of the provision of ground ambulance services for its residents and visitors. For this reason, for any travel, foreign or domestic, individuals should always ensure they have a medical travel insurance policy before leaving the province.
+ Patient transports for non-Canadian and third party insured patients (any injury as a result of a motor vehicle accident (MVA), work related injury, or those covered by Federal Government plans), have distinct rates for medically essential transportation and inter-facility transport fees. Note: insurance is required to legally operate a motor vehicle in Nova Scotia and therefore anyone sustaining injury from an MVC will be billed the third-party rate regardless if they had insurance or not. 
+ If you are a Nova Scotia resident with a valid Nova Scotia health card (other than third party insured described above), the province pays the cost of transfers between approved facilities (e.g., hospitals).  Otherwise, you will be charged a fee as follows. If you have private insurance, contact your insurance provider as this fee may be covered.
+ EHS Ground Ambulance Service Fees (As of April 1st, 2015) 
+ Medically Essential Transportation
+ Inter-facility Transportation
+ Nova Scotians with a valid health card
+ (Other than third party insured services)
+ $146.55
+ $0.00
+ Non-Nova Scotians, Canadian Citizens
+ $732.95
+ $0.00
+ Non-Canadians & New Canadians
+ $1,099.35
+ $1,099.35
+ People who are defined as third party insured
+ (This includes people in an MVC, covered by Worker’s Compensation, or the federal government.)   
+ $732.95
+ $732.95
+ Nova Scotians who are mobility challenged where transport begins or ends at their place of residence and is transported to or from a considered medical appointment (does not include emergent transports). Mobility challenges must be confirmed by a written letter or prescription from a physician or nurse practitioner.
+ $108.95
+ N/A
+ Fee to transport to and from a hospital for residents of approved long-term care and residential care facilities 
+ $54.50
+ $0.00
+Unless otherwise arranged, all ambulance transports not involving a hospital (i.e., nursing home to nursing home) will be considered a "private call" and will be charged at a $732.95 rate.
+We recognize that not everyone can afford ambulance fees. That's why we have created the Ambulance Fee Assistance Program Form. 
+If an ambulance fee will create financial hardship, we will offer you a repayment schedule. If you aren’t able to pay your bill because you don’t have enough income, you can apply to have the fee waived. You must do this within 90 days of the date on the bill. Please note that we base that decision on Statistics Canada's Low Income Measure. 
+For more information, please call the EHS billing office at 902-832-8337 or toll-free at 1-888-280-8884.
+ Download Ambulance Fee Assistance Program Form in PDF format.
+ Download Ambulance Fee Assistance Income Limits in PDF format.
+Appeals
+If you disagree with the fee you were charged for ground ambulance service, you may appeal to the EHS Billing Office. You must do this within 30 days of the date on the bill. Call the billing office for more information at (902) 832-8337 or toll-free 1-888-280-8884.
+If your concerns are not resolved you may appeal to the Service Fee Appeal Committee. 
+ Download Service Fee Appeal Form in PDF format.
+ More Province of Nova Scotia
+ Français / English
+ Privacy
+ Terms
+ Crown copyright © 2021, Government of Nova Scotia. 

@@ -153,8 +153,15 @@ const NB_CITIES = [
   "Bathurst", "Campbellton", "Dieppe", "Edmundston", "Fredericton", "Miramichi", "Moncton",
   "Oromocto", "Quispamsis", "Riverview", "Rothesay", "Saint John", "Other / my town isn't listed",
 ];
-const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES, ON: ON_CITIES, SK: SK_CITIES, MB: MB_CITIES, NB: NB_CITIES };
-const COVERED_PROVINCES = ["AB", "BC", "ON", "SK", "MB", "NB"];
+/* Nova Scotia municipalities offered in the questionnaire. */
+const NS_CITIES = [
+  "Amherst", "Antigonish", "Bridgewater", "Dartmouth", "Glace Bay", "Halifax",
+  "Kentville", "Lunenburg", "New Glasgow", "Sydney", "Truro", "Wolfville",
+  "Yarmouth",
+  "Other / my town isn't listed",
+];
+const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES, ON: ON_CITIES, SK: SK_CITIES, MB: MB_CITIES, NB: NB_CITIES, NS: NS_CITIES };
+const COVERED_PROVINCES = ["AB", "BC", "ON", "SK", "MB", "NB", "NS"];
 
 /* national fallbacks (used when a jurisdiction isn't in the maps yet) */
 const FED_STUDENT_AID = "https://www.canada.ca/en/employment-social-development/services/education/grants/disabilities.html";
@@ -167,12 +174,14 @@ const STUDENT_AID = {
   SK: "https://www.saskatchewan.ca/residents/education-and-learning/saskatchewan-student-aid/student-loans-and-grants/supports-for-students-with-disabilities",
   MB: "https://edu.gov.mb.ca/msa/applying-for-student-aid/frequently-asked-questions-for-students-with-disabilities.html",
   NB: "https://www.gnb.ca/en/topic/education-training/post-secondary/student-aid/resources-students-disabilities.html",
+  NS: "https://novascotia.ca/studentassistance/apply/new/StudentsWithDisabilities.asp",
 };
 const TWO_ELEVEN = { AB: "https://ab.211.ca/", BC: "https://bc.211.ca/",
   ON: "https://211ontario.ca",
   SK: "https://sk.211.ca",
   MB: "https://mb.211.ca",
   NB: "https://nb.211.ca/",
+  NS: "https://ns.211.ca",
 };
 const EMPLOYMENT = {
   AB: "https://www.alberta.ca/disability-related-employment-supports",
@@ -181,6 +190,7 @@ const EMPLOYMENT = {
   SK: "https://www.saskatchewan.ca/residents/jobs-working-and-training/job-training-and-financial-support-programs/employability-assistance-for-persons-with-disabilities",
   MB: "https://gov.mb.ca/wd/ites/pwd_work/where.html",
   NB: "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/tess-disabilities.html",
+  NS: "https://novascotia.ca/employmentnovascotia/interventions/default.asp",
 };
 
 /* =============================================================================
@@ -191,6 +201,29 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "bridgewater-pro-kids": { kind: "grant", note: "Pays some or all of a child's recreation registration fee" },
+  "ns-student-loan-forgiveness-disabilities": { kind: "grant", note: "Student loans forgiven for more years of study; no dollar amount published." },
+  "ns-ambulance-fee-waiver": { kind: "discount", note: "Waives the ambulance bill if your income is too low." },
+  "ns-preschool-autism": { kind: "access", note: "Autism services for preschool children; no dollar value published." },
+  "ns-public-housing": { kind: "access", note: "Rent-geared-to-income housing; rent is 25% or 30% of household income." },
+  "ns-day-programs": { kind: "access", note: "Funded day programming; no dollar value published." },
+  "ns-seniors-wheelchair-loan": { kind: "access", note: "Wheelchair on loan; no dollar value published." },
+  "ns-community-bus-pass": { kind: "access", note: "Free annual bus pass; no dollar value published." },
+  "ns-childrens-oral-health": { kind: "access", note: "Covered basic dental care each year; no dollar value published." },
+  "ns-poverty-reduction-credit": { kind: "grant", note: "Four tax-free payments of $125 a year, as the page lists them (page dated 2013)." },
+  "ns-accessible-parking": { kind: "access", note: "Parking access; permits have no fee" },
+  "ns-rent-supplement": { kind: "grant", note: "Monthly rent supplement; amount varies" },
+  "ns-housing-repair-accessibility": { kind: "grant", note: "Up to $10,000 grant and $8,000 forgivable loan per stream" },
+  "ns-seniors-property-tax-rebate": { kind: "grant", note: "Rebate of up to $800" },
+  "ns-seniors-care-grant": { kind: "grant", note: "$750 reimbursement per household" },
+  "ns-harp": { kind: "grant", note: "$400 rebate per household" },
+  "ns-family-pharmacare": { kind: "access", note: "Access to drug coverage; you still pay up to your deductible and copayment maximum" },
+  "ns-seniors-pharmacare": { kind: "discount", note: "Prescription costs covered after a yearly premium and copayment." },
+  "ns-osd-pharmacare": { kind: "access", note: "Prescription drug coverage for clients of listed programs." },
+  "ns-caregiver-benefit": { kind: "grant", note: "$400 each month to the caregiver." },
+  "ns-direct-family-support-children": { kind: "grant", note: "Funding to buy respite services for family caregivers." },
+  "ns-disability-support-program": { kind: "grant", note: "Funding for individualized supports or service hours." },
+  "ns-income-assistance": { kind: "grant", note: "Monthly payments for basic needs, plus help with special needs." },
   "nb-homeowner-repair": { kind: "grant", note: "A loan where a portion is forgiven, for repairs, accessibility changes or seniors' adaptations." },
   "nb-childcare-assistance": { kind: "grant", note: "Pays part, or for some families all, of child care costs." },
   "nb-seniors-home-renovation-credit": { kind: "grant", note: "Gives back 10% of eligible home accessibility costs, up to $1,000 a year." },
@@ -560,6 +593,29 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "bridgewater-pro-kids": { difficulty: 2, effort: "Fill in a form and add tax or endorsement proof", wait: "Not published" },
+  "ns-student-loan-forgiveness-disabilities": { difficulty: 1, effort: "No application. Assessed when you graduate.", wait: "Not published" },
+  "ns-ambulance-fee-waiver": { difficulty: 2, effort: "Fill in a form and send it within 90 days.", wait: "Not published" },
+  "ns-preschool-autism": { difficulty: 3, effort: "Phone call. Ask your care provider about an assessment.", wait: "Not published" },
+  "ns-public-housing": { difficulty: 3, effort: "Online or in-person application with documents.", wait: "Not published" },
+  "ns-day-programs": { difficulty: 2, effort: "Contact a provider; no referral needed.", wait: "Some programs have waitlists" },
+  "ns-seniors-wheelchair-loan": { difficulty: 3, effort: "Phone call, then an assessment visit.", wait: "Not published" },
+  "ns-community-bus-pass": { difficulty: 2, effort: "Visit an office for a photo; the pass is mailed.", wait: "Not published" },
+  "ns-childrens-oral-health": { difficulty: 1, effort: "Your dentist bills the province for you.", wait: "Not published" },
+  "ns-poverty-reduction-credit": { difficulty: 1, effort: "No application. The department checks you each June.", wait: "First payment in July" },
+  "ns-accessible-parking": { difficulty: 2, effort: "Doctor certification, then an in-person or mail application", wait: "Not published" },
+  "ns-rent-supplement": { difficulty: 3, effort: "Online application with income proof", wait: "2 to 3 months" },
+  "ns-housing-repair-accessibility": { difficulty: 4, effort: "Detailed application, inspection and contractor quotes", wait: "1 to 3 days for emergency repairs; 3 to 12 months otherwise" },
+  "ns-seniors-property-tax-rebate": { difficulty: 2, effort: "Paper form by mail or drop-off", wait: "8 to 10 weeks" },
+  "ns-seniors-care-grant": { difficulty: 2, effort: "Short online form; keep receipts", wait: "About 8 weeks" },
+  "ns-harp": { difficulty: 2, effort: "Short online form", wait: "About 8 weeks" },
+  "ns-family-pharmacare": { difficulty: 2, effort: "Online or paper form with supporting documents", wait: "1 to 2 weeks" },
+  "ns-seniors-pharmacare": { difficulty: 2, effort: "Online or paper form with supporting documents", wait: "1 to 2 weeks" },
+  "ns-osd-pharmacare": { difficulty: 2, effort: "Call to confirm enrolment", wait: "Not published" },
+  "ns-caregiver-benefit": { difficulty: 3, effort: "Call, then complete an assessment", wait: "Not published" },
+  "ns-direct-family-support-children": { difficulty: 3, effort: "Call, then complete an assessment", wait: "Not published" },
+  "ns-disability-support-program": { difficulty: 3, effort: "Call, then complete assessments", wait: "Not published" },
+  "ns-income-assistance": { difficulty: 2, effort: "Call or visit an office and meet a caseworker", wait: "Not published" },
   "nb-homeowner-repair": { difficulty: 3, effort: "Phone call to start; repairs must be assessed", wait: "Not published" },
   "nb-childcare-assistance": { difficulty: 3, effort: "Online application with uploaded documents", wait: "Not published" },
   "nb-seniors-home-renovation-credit": { difficulty: 2, effort: "Claim on your tax return and keep receipts", wait: "Not published" },
@@ -1768,6 +1824,87 @@ const HELP_ORGS = [
     urlText: "rdsp.com",
     focus: ["rdsp", "dtc"],
     coverage: ["NB"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "ns-legal-aid",
+    cat: "If you're denied — legal help & appeals",
+    name: "Nova Scotia Legal Aid",
+    summary: "Helps Nova Scotians with criminal, family or social justice issues, including income security; offers legal information, summary advice and lawyer representation. Free online chats cover CPP Disability.",
+    url: "https://www.nslegalaid.ca",
+    urlText: "nslegalaid.ca",
+    focus: ["appeals", "rights"],
+    coverage: ["NS"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "ns-lisns",
+    cat: "If you're denied — legal help & appeals",
+    name: "Legal Information Society of Nova Scotia",
+    summary: "Charitable non-profit giving Nova Scotians legal information and resources since 1982. Legally trained staff reachable by phone, email or live chat (information, not legal advice).",
+    phone: "902-455-3135",
+    url: "https://www.legalinfo.org",
+    urlText: "legalinfo.org",
+    focus: ["appeals", "rights"],
+    coverage: ["NS"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "ns-human-rights",
+    cat: "If you're denied — legal help & appeals",
+    name: "Nova Scotia Human Rights Commission",
+    summary: "Independent government agency administering the NS Human Rights Act. Offers an online inquiry form and Know Your Rights resources.",
+    url: "https://humanrights.novascotia.ca",
+    urlText: "humanrights.novascotia.ca",
+    focus: ["rights", "accommodation"],
+    coverage: ["NS"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "ns-211",
+    cat: "Find local services near you",
+    name: "211 Nova Scotia",
+    summary: "Free, confidential, 24/7 service connecting people to community, government and social services. Call or text 2-1-1; live chat and email also available.",
+    phone: "2-1-1",
+    url: "https://ns.211.ca",
+    urlText: "ns.211.ca",
+    focus: ["local", "family"],
+    coverage: ["NS"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "ns-dac",
+    cat: "Help with the forms",
+    name: "Disability Alliance Canada",
+    summary: "National organization (not NS-specific) offering free one-on-one advocate support for the Disability Tax Credit, CPP Disability and Canada Disability Benefit.",
+    url: "https://www.disabilityalliancecanada.ca",
+    urlText: "disabilityalliancecanada.ca",
+    focus: ["dtc", "tax"],
+    coverage: ["NS"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "ns-plan-helpline",
+    cat: "Help with the forms",
+    name: "Disability Planning Helpline (rdsp.com)",
+    summary: "Free, nationwide (not NS-specific) Disability Planning Helpline that can help with disability-related topics including the RDSP.",
+    phone: "1-844-311-7526",
+    url: "https://www.rdsp.com",
+    urlText: "rdsp.com",
+    focus: ["rdsp", "family"],
+    coverage: ["NS"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "ns-dals",
+    cat: "If you're denied — legal help & appeals",
+    name: "Dalhousie Legal Aid Service",
+    summary: "Law school clinic at Dalhousie's Schulich School of Law serving community members who have nowhere else to turn; has a Welfare Rights guide for people seeking income assistance in Nova Scotia.",
+    phone: "902-423-8105",
+    url: "https://www.dal.ca/faculty/law/dlas.html",
+    urlText: "dal.ca/faculty/law/dlas",
+    focus: ["appeals", "rights"],
+    coverage: ["NS"],
     verified: "2026-10-18",
   },
 ];
@@ -16154,6 +16291,1180 @@ const BENEFITS = [
       "time": "Monday to Friday, 8:15 a.m. to 4:30 p.m.",
       "phone": "1-833-733-7835"
     }
+  },
+  {
+    "id": "ns-income-assistance",
+    "name": "Employment Support and Income Assistance",
+    "level": "Nova Scotia",
+    "category": "Income support",
+    "amount": "Monthly rate for basic needs, from $410 to $1,497",
+    "summary": "Money each month for food, clothing, shelter and other basic needs if you cannot support yourself or your family. Special needs may also be covered.",
+    "note": "Rates depend on household size and living situation. Single renters or owners with a disability, a limiting chronic condition, age 55 or older, age 16 to 18, or fleeing abuse get a higher rate.",
+    "requires": [
+      "ns",
+      "nsIncomeAssistanceRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are not able to financially support yourself or your family."
+      ],
+      "note": "The page lists who can receive Income Assistance on a separate page."
+    },
+    "applyText": "Call or visit a Community Services office to start your application.",
+    "applyUrl": "https://novascotia.ca/coms/employment/income_assistance/",
+    "source": "https://novascotia.ca/coms/employment/income_assistance/",
+    "detail": {
+      "aboutList": {
+        "lead": "What you can get:",
+        "items": [
+          "A Standard Household Rate for food, clothing, shelter, fuel, utilities and personal items.",
+          "A single adult with no children gets $738 a month if renting or owning, or $655 if boarding.",
+          "An Enhanced rate of $1,022 a month for some single renters or owners, including people with a disability.",
+          "Help with special needs for health and safety, and for work or training.",
+          "Help with barrier-free access at home for a physical disability or terminal illness.",
+          "Prescription drug coverage (Pharmacare), with a $5 charge per prescription."
+        ]
+      },
+      "steps": [
+        "Call or visit a Community Services office.",
+        "Ask to start an Income Assistance application.",
+        "Your caseworker decides on your basic needs and any special needs."
+      ],
+      "documents": [
+        "Nova Scotia Health Card, to use Pharmacare benefits."
+      ],
+      "tips": [
+        "Some people qualify for a co-pay exemption. Ask your caseworker.",
+        "You may appeal any decision about your application or the amount of your assistance.",
+        "Active clients can submit monthly income statements online."
+      ]
+    }
+  },
+  {
+    "id": "ns-disability-support-program",
+    "name": "Disability Support Program (Flex and Independent Living Support)",
+    "level": "Nova Scotia",
+    "category": "Daily living supports",
+    "amount": "Funding for support hours or disability-related supports",
+    "summary": "Two Disability Support Program options. Flex gives funding to buy supports if you live at home or independently. Independent Living Support funds service hours so you can live on your own.",
+    "note": "Independent Living Support is decided by a functional and financial assessment. Both options follow program policy.",
+    "requires": [
+      "ns",
+      "nsDisabilitySupportProgramRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Flex: you meet the program's general, financial and Level of Support policy criteria.",
+        "Independent Living Support: an assessment finds unmet needs the program can address."
+      ],
+      "note": "Eligibility follows Disability Support Program policy, as the pages say."
+    },
+    "applyText": "Call the Disability Support Program team or visit a Community Services office.",
+    "applyUrl": "https://novascotia.ca/coms/disabilities/FlexProgram.html",
+    "source": "https://novascotia.ca/Coms/disabilities/IndependentLiving.html",
+    "detail": {
+      "aboutList": {
+        "lead": "The two options:",
+        "items": [
+          "Flex pays for supports tied to your disability-related needs and goals.",
+          "Flex is for people at home with family or living independently with family or network support.",
+          "Flex can delay or prevent placement in a program-funded residential option.",
+          "Independent Living Support funds hours from an approved Service Provider.",
+          "Hours can help with household tasks, shopping, meals, transportation and community activities.",
+          "Independent Living Support is for people who are semi-independent and need support to live on their own."
+        ]
+      },
+      "steps": [
+        "Call the toll-free number to talk with the team.",
+        "The team answers questions and points you to community resources.",
+        "They support you through the Disability Support Program application."
+      ],
+      "documents": [
+        "The pages do not list documents. Ask the team what to bring."
+      ],
+      "tips": [
+        "Visit a Community Services office Monday to Friday, 8:30 am to 4:30 pm.",
+        "The full Flex and Independent Living Support policies are on each program page."
+      ],
+      "phone": "1-877-424-1177"
+    }
+  },
+  {
+    "id": "ns-direct-family-support-children",
+    "name": "Direct Family Support for Children",
+    "level": "Nova Scotia",
+    "category": "Money (for parents)",
+    "amount": "Funding for respite services",
+    "summary": "Funding for families to buy respite services, so family caregivers get scheduled breaks while their child with a disability lives at home. An enhanced amount may be available.",
+    "note": "The child must be under 19, live with family, and have a documented disability. Family net income must meet the program income guidelines.",
+    "requires": [
+      "ns",
+      "under19",
+      "nsDirectFamilySupportChildrenRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "The family and child are permanent residents of Nova Scotia.",
+        "The family and child are lawfully entitled to be in or remain in Canada.",
+        "The child is under 19 and lives in the home of a family member or guardian.",
+        "An approved clinician has diagnosed a qualifying disability, listed in the details below.",
+        "Family net income meets the program income guidelines.",
+        "The family agrees to take part in the assessment process."
+      ],
+      "note": "Qualifying disabilities are listed in the program details below."
+    },
+    "applyText": "Call the Disability Support Program team or visit a Community Services office.",
+    "applyUrl": "https://novascotia.ca/coms/disabilities/DirectFamilySupportforChildren.html",
+    "source": "https://novascotia.ca/coms/disabilities/DirectFamilySupportforChildren.html",
+    "detail": {
+      "aboutList": {
+        "lead": "Qualifying disabilities:",
+        "items": [
+          "A mild or moderate intellectual developmental disability with a significant behavioural challenge.",
+          "A severe intellectual developmental disability.",
+          "A significant physical disability that seriously limits age-appropriate daily activities.",
+          "A dual diagnosis made up of any of the above."
+        ]
+      },
+      "steps": [
+        "Call the toll-free number or visit an office.",
+        "The team answers questions and points you to community resources.",
+        "They support you through the application and assessment."
+      ],
+      "documents": [
+        "The page does not list documents. Ask the team what to bring."
+      ],
+      "tips": [
+        "A mild or moderate, or a severe, intellectual developmental disability must be documented within the last two years.",
+        "Visit a Community Services office Monday to Friday, 8:30 am to 4:30 pm.",
+        "Funding for the enhanced component needs the child and family to meet separate criteria."
+      ],
+      "phone": "1-877-424-1177"
+    }
+  },
+  {
+    "id": "ns-caregiver-benefit",
+    "name": "Caregiver Benefit",
+    "level": "Nova Scotia",
+    "category": "Money",
+    "amount": "$400 per month",
+    "summary": "If you give 20 or more hours of care a week to a low-income adult with a high level of disability, and both of you qualify, you get $400 a month.",
+    "note": "Both people must qualify. The benefit is reportable income, so ask the Canada Revenue Agency about tax.",
+    "requires": [
+      "ns",
+      "age19plus",
+      "nsCaregiverBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "The person receiving care is 19 or older and lives in Nova Scotia.",
+        "Their net annual household income is within category A of the home care income table.",
+        "A care coordinator has assessed a high level of impairment needing significant care over time.",
+        "The caregiver is 19 or older, lives in Nova Scotia, and gives 20 or more hours of help a week.",
+        "The caregiver is not already paid to care for this person and will sign an agreement."
+      ],
+      "note": "Both the caregiver and the person receiving care must meet the criteria."
+    },
+    "applyText": "Call Continuing Care. You, your caregiver or someone else (with your consent) can apply.",
+    "applyUrl": "https://novascotia.ca/dhw/CCS/caregiver-benefit.asp",
+    "source": "https://novascotia.ca/dhw/CCS/caregiver-benefit.asp",
+    "detail": {
+      "aboutList": {
+        "lead": "How the benefit works:",
+        "items": [
+          "The caregiver gets $400 per month when both people qualify.",
+          "The Nova Scotia Health Authority decides through a referral and assessment.",
+          "Net income is the amount on line 236 of the federal tax return or Notice of Assessment.",
+          "High care needs may include memory loss, high physical impairment or a high risk of falls."
+        ]
+      },
+      "steps": [
+        "Call Continuing Care for a first talk about your situation.",
+        "A referral may be made to a care coordinator.",
+        "The coordinator assesses care needs and decides if you qualify."
+      ],
+      "documents": [
+        "Name and Health Card number.",
+        "Some additional information about your situation."
+      ],
+      "tips": [
+        "Signing an agreement on the terms and conditions is required for the benefit.",
+        "Other signs of high care needs include serious behavioural problems or a high risk of long term care placement."
+      ],
+      "phone": "1-800-225-7225"
+    }
+  },
+  {
+    "id": "ns-osd-pharmacare",
+    "name": "Pharmacare for Income Assistance and Disability Support Program clients",
+    "level": "Nova Scotia",
+    "category": "Health",
+    "amount": "Prescription drug coverage",
+    "summary": "Prescription drug coverage for people on Income Assistance or in the Disability Support Program, and some children. It covers items listed in the Nova Scotia Formulary.",
+    "note": "Covered items are given by pharmacists in Nova Scotia.",
+    "requires": [
+      "ns",
+      "nsOsdPharmacareRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You are an Income Assistance client, including Extended or Transitional Pharmacare.",
+        "You are a Disability Support Program client.",
+        "You are a child in the care of child welfare.",
+        "You are a Low Income Pharmacare for Children client."
+      ]
+    },
+    "applyText": "Call to ask about eligibility, enrolment, benefits and cost.",
+    "applyUrl": "https://novascotia.ca/dhw/pharmacare/DCS-drug-program.asp",
+    "source": "https://novascotia.ca/dhw/pharmacare/DCS-drug-program.asp",
+    "detail": {
+      "aboutList": {
+        "lead": "What it covers:",
+        "items": [
+          "Certain prescribed drugs, devices and related services dispensed by pharmacists.",
+          "Benefits are listed in the Nova Scotia Formulary.",
+          "Sensor-based glucose monitoring may be covered by one program only."
+        ]
+      },
+      "steps": [
+        "Call to ask about eligibility and enrolment.",
+        "If you are on Income Assistance, ask your caseworker."
+      ],
+      "documents": [
+        "The page does not list documents."
+      ],
+      "tips": [
+        "You can only have sensor-based glucose coverage under 1 program.",
+        "Compare programs to see which suits your personal and financial needs."
+      ],
+      "phone": "1-877-424-1177"
+    }
+  },
+  {
+    "id": "ns-seniors-pharmacare",
+    "name": "Seniors' Pharmacare Program",
+    "level": "Nova Scotia",
+    "category": "Health",
+    "amount": "Annual premium based on household income, with annual maximums",
+    "summary": "Helps seniors with the cost of prescription drugs and some supplies if they have no other drug coverage. You pay a yearly premium and copayment, and the province covers the rest.",
+    "note": "Both the premium and the copayment have annual maximums. Some members may get a reduced or waived premium.",
+    "requires": [
+      "ns",
+      "age65plus"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 65 or older and live in Nova Scotia.",
+        "You have a Health Card that is not expired.",
+        "You do not have prescription drug coverage under other programs or plans."
+      ],
+      "note": "Each senior applies individually, regardless of marital status."
+    },
+    "applyText": "Complete the registration form online, or use the PDF form if you cannot.",
+    "applyUrl": "https://novascotia.ca/dhw/pharmacare/seniors-pharmacare.asp",
+    "source": "https://novascotia.ca/dhw/pharmacare/seniors-pharmacare.asp",
+    "detail": {
+      "aboutList": {
+        "lead": "How it works:",
+        "items": [
+          "It pays for drugs, supplies and related services listed in the Nova Scotia Formulary.",
+          "Your Health Card becomes your Pharmacare Card once enrolled.",
+          "The premium is based on household income; a calculator is on the page.",
+          "There is no cost to apply, but there is an annual premium."
+        ]
+      },
+      "steps": [
+        "Review the Seniors' Pharmacare Program Guide.",
+        "Complete the form online and check which supporting documents it needs.",
+        "Submit the form and documents. You can apply any time."
+      ],
+      "documents": [
+        "Health Card number for you and your spouse, if applicable.",
+        "Social Insurance Number for you and your spouse, if applicable.",
+        "Signatures from all adults, if applicable."
+      ],
+      "tips": [
+        "Renew by 1 April each year. Renewing on time is your responsibility.",
+        "It should take 1 to 2 weeks to hear back, and longer if more information is needed.",
+        "You should get an application package before your 65th birthday."
+      ],
+      "time": "1 to 2 weeks"
+    }
+  },
+  {
+    "id": "ns-family-pharmacare",
+    "name": "Family Pharmacare Program",
+    "level": "Nova Scotia",
+    "category": "Health",
+    "amount": "Help with prescription drug costs",
+    "summary": "Helps Nova Scotia families pay for prescription drugs, supplies and related services. It is for families with no drug coverage, or whose drug costs are a financial burden.",
+    "note": "No premium or fee to join. Your yearly deductible and copayment maximum depend on family size and income. Register any time and renew by 1 April each year.",
+    "requires": [
+      "ns",
+      "nsFamilyPharmacareRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Nova Scotia.",
+        "You have a Health Card that is not expired.",
+        "You agree that CRA can check your family income each year.",
+        "You agree to give your family size each year.",
+        "You do not get drug coverage from another named provincial plan."
+      ],
+      "note": "Only 1 person per family can register."
+    },
+    "applyText": "Register online or send the paper form",
+    "applyUrl": "https://novascotia.ca/dhw/pharmacare/family-pharmacare.asp",
+    "source": "https://novascotia.ca/dhw/pharmacare/family-pharmacare.asp",
+    "detail": {
+      "aboutList": {
+        "lead": "What the program does",
+        "items": [
+          "Pays for drugs, supplies and related services listed in the Nova Scotia Formulary.",
+          "Protects families with no drug coverage from high drug costs.",
+          "Also helps if your drug costs become a financial burden.",
+          "Your Health Card becomes your Pharmacare Card once you are enrolled."
+        ]
+      },
+      "steps": [
+        "Read the Family Pharmacare Program Guide.",
+        "Complete the registration form.",
+        "Gather the supporting documents listed on the form.",
+        "Submit it online (account needed) or send it by mail or fax."
+      ],
+      "documents": [
+        "Health Card number for each family member",
+        "Social Insurance Number for you and your spouse, if applicable",
+        "Your spouse available to sign, if applicable"
+      ],
+      "tips": [
+        "You pay the full drug cost until you reach your deductible.",
+        "Use the program calculator to see what your family would pay.",
+        "You are not eligible if you already have Seniors' Pharmacare, Under 65 Long Term Care Pharmacare, or Opportunities and Social Development Pharmacare."
+      ],
+      "time": "1 to 2 weeks"
+    }
+  },
+  {
+    "id": "ns-harp",
+    "name": "Heating Assistance Rebate Program",
+    "level": "Nova Scotia",
+    "category": "Money",
+    "amount": "$400 per household",
+    "summary": "Helps low-income Nova Scotians with the cost of home heating. The rebate is $400 for each household. You can apply from 1 October 2026 to 31 March 2027.",
+    "note": "You must pay for your own home heat. If your situation changed a lot since you filed 2025 taxes, you may still qualify. Contact Service Nova Scotia.",
+    "requires": [
+      "ns",
+      "nsHarpRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Your 2025 net income is $30,000 or less and you live alone with no kids or dependents.",
+        "Combined 2025 household net income is $45,000 or less and you live with kids, dependents or other adults.",
+        "You get Income Assistance from the Department of Opportunities and Social Development.",
+        "You get the Guaranteed Income Supplement or the Allowance from Service Canada."
+      ],
+      "note": "You must pay for your own heat; single parents need the Canada Child Benefit."
+    },
+    "applyText": "Apply online by 31 March 2027",
+    "applyUrl": "https://www.novascotia.ca/apply-heating-assistance-rebate-heating-assistance-rebate-program",
+    "source": "https://www.novascotia.ca/apply-heating-assistance-rebate-heating-assistance-rebate-program",
+    "detail": {
+      "aboutList": {
+        "lead": "What counts",
+        "items": [
+          "Heating oil, electric heat, natural gas, wood, wood pellets, coal and other heating sources are eligible.",
+          "Heat included in your rent is not eligible.",
+          "Electricity use under 5,000 kWh per year is not eligible.",
+          "Heating for investment, income, seasonal, recreation or business properties is not eligible."
+        ]
+      },
+      "steps": [
+        "Apply online, or use the paper form if you cannot.",
+        "Check the application for the supporting documents you need.",
+        "Submit it with all adults available to sign.",
+        "Check your application status online, if you applied online."
+      ],
+      "documents": [
+        "Social Insurance Number and date of birth of all adults in your home",
+        "2025 CRA Notice of Assessment for you and other adults",
+        "Canada Child Benefit form, if applicable",
+        "Heating bill or receipt, if the program asks"
+      ],
+      "tips": [
+        "Paper applications must be postmarked by 31 March 2027.",
+        "Include a heating bill if it is your first time or you moved.",
+        "The department never texts or emails to ask for banking details."
+      ],
+      "time": "About 8 weeks"
+    }
+  },
+  {
+    "id": "ns-seniors-care-grant",
+    "name": "Seniors Care Grant",
+    "level": "Nova Scotia",
+    "category": "Money",
+    "amount": "$750 per household",
+    "summary": "Helps low-income seniors pay for household services, healthcare services and home heating. The grant is $750 for each household. You can apply until 1 December 2026.",
+    "note": "Costs must be paid in the period 1 April 2026 to 31 March 2027. Only 1 person per household can apply.",
+    "requires": [
+      "ns",
+      "age65plus",
+      "nsSeniorsCareGrantRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 65 or older by 31 March 2027.",
+        "Your household net income is $45,100 or less.",
+        "You live in your own home or apartment.",
+        "Your name is on the title, lease or a Band administrative letter.",
+        "You paid or will pay for eligible services between 1 April 2026 and 31 March 2027."
+      ],
+      "note": "Apply by 1 December 2026."
+    },
+    "applyText": "Apply online by 1 December 2026",
+    "applyUrl": "https://www.novascotia.ca/apply-help-household-healthcare-and-home-heating-costs-seniors-care-grant",
+    "source": "https://www.novascotia.ca/apply-help-household-healthcare-and-home-heating-costs-seniors-care-grant",
+    "detail": {
+      "aboutList": {
+        "lead": "What it can cover",
+        "items": [
+          "Help with meals, laundry, cleaning and outdoor work like snow removal.",
+          "Healthcare services such as foot care, physiotherapy and mental health support.",
+          "Home heating costs, heating repairs and maintenance.",
+          "Phone and internet service, small home repairs and transportation."
+        ]
+      },
+      "steps": [
+        "Apply online, or use the paper form if you cannot.",
+        "Submit your completed application.",
+        "Keep your receipts in case the program asks for them."
+      ],
+      "documents": [
+        "Social Insurance Numbers and dates of birth of all adults in your home",
+        "Total amount spent or to be spent on eligible services",
+        "Proof of income, ownership or lease, only if asked"
+      ],
+      "tips": [
+        "Food, medications, and devices like phones or eyeglasses are not eligible.",
+        "You only send receipts if the program contacts you.",
+        "Staff can help with the application and questions about proof."
+      ],
+      "time": "About 8 weeks"
+    }
+  },
+  {
+    "id": "ns-seniors-property-tax-rebate",
+    "name": "Property Tax Rebate for Seniors",
+    "level": "Nova Scotia",
+    "category": "Money & taxes",
+    "amount": "50% of 2025 property taxes, up to $800",
+    "summary": "Helps low-income seniors with municipal residential property taxes. The rebate is 50% of what you paid in 2025, up to $800. You can apply until 31 December 2026.",
+    "note": "Your tax bill is the base. Some commercial, resource and exempt amounts are left out.",
+    "requires": [
+      "ns",
+      "age18plus",
+      "nsSeniorsPropertyTaxRebateRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your 2025 municipal residential property taxes are paid in full.",
+        "Your name is on the property title.",
+        "The property was your primary residence in 2025.",
+        "You get or are eligible for the Guaranteed Income Supplement or the Allowance in 2026."
+      ],
+      "note": "Seasonal homes and places you live only occasionally do not count."
+    },
+    "applyText": "Mail the application or drop it at Access Nova Scotia",
+    "applyUrl": "https://www.novascotia.ca/apply-property-tax-rebate-property-tax-rebate-seniors",
+    "source": "https://www.novascotia.ca/apply-property-tax-rebate-property-tax-rebate-seniors",
+    "detail": {
+      "aboutList": {
+        "lead": "How the rebate works",
+        "items": [
+          "Take your total taxes paid and remove commercial, resource and exempt amounts.",
+          "Divide what is left by 2 to get your rebate.",
+          "If the result is over $800, you receive $800.",
+          "Fire service taxes on your bill count toward the rebate."
+        ]
+      },
+      "steps": [
+        "Complete both sides of the rebate application.",
+        "Check the form for the supporting documents you need.",
+        "Mail it in, or drop it off at Access Nova Scotia."
+      ],
+      "documents": [
+        "Your Social Insurance Number, and your spouse's if applicable",
+        "2025 tax bills and receipts, or a Municipal Property Tax Sheet",
+        "Proof of Guaranteed Income Supplement or Allowance, if needed",
+        "Power of attorney or death certificate, if applying for someone else"
+      ],
+      "tips": [
+        "Many municipalities send tax details directly, so you may skip the bills.",
+        "Check with Service Canada if you are unsure about the Supplement or Allowance.",
+        "If you get your CRA tax refund by direct deposit, the rebate goes to that account; otherwise a cheque is mailed."
+      ],
+      "time": "8 to 10 weeks"
+    }
+  },
+  {
+    "id": "ns-housing-repair-accessibility",
+    "name": "Housing Repair and Accessibility Program",
+    "level": "Nova Scotia",
+    "category": "Home",
+    "amount": "Up to $18,000 per stream; larger projects may get a repayable loan",
+    "summary": "Helps low- and moderate-income homeowners pay for critical repairs and accessibility changes, like ramps and bathrooms. Each stream may fund up to $18,000.",
+    "note": "Each stream may give $10,000 as a grant and $8,000 as a forgivable loan, if you meet the loan conditions. Larger projects may get a repayable loan of up to $20,000 across both streams.",
+    "requires": [
+      "ns",
+      "nsHousingRepairAccessibilityRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You own and live in the home, and have lived there at least 1 year.",
+        "Household gross income is within the limits in the Program Guide.",
+        "You cannot pay for the work yourself; investments must be $25,000 or less.",
+        "Property taxes are paid up to date or on a payment plan for 3 months.",
+        "Property value is $360,000 or less in Halifax and East Hants, $280,000 elsewhere."
+      ],
+      "note": "The accessible stream needs a household disability; the repair stream needs a home 5+ years old."
+    },
+    "applyText": "Apply online or by mail",
+    "applyUrl": "https://www.novascotia.ca/apply-help-home-repairs-and-accessibility-adaptations-housing-repair-and-accessibility-program",
+    "source": "https://www.novascotia.ca/apply-help-home-repairs-and-accessibility-adaptations-housing-repair-and-accessibility-program",
+    "detail": {
+      "aboutList": {
+        "lead": "What it helps with",
+        "items": [
+          "Accessible stream: ramps, wider doors, chair lifts, bathrooms and kitchens.",
+          "Repair stream: structural, electrical, plumbing or heating hazards.",
+          "You can apply to either stream or both.",
+          "Costs for work done before approval are not eligible."
+        ]
+      },
+      "steps": [
+        "Read the Program Guide and complete the application.",
+        "Submit it with your supporting documents.",
+        "The department confirms eligibility and an inspector visits.",
+        "Get contractor quotes from the bid package and send them in."
+      ],
+      "documents": [
+        "CRA tax slips and Notice of Assessment for last tax year",
+        "Property tax bills and receipts",
+        "Confirmation of Medical Condition Form, if applicable",
+        "Signatures of all owners and household members 19 or older"
+      ],
+      "tips": [
+        "Do not start work before you are approved.",
+        "Emergency repairs, like no heat in winter, should take 1 to 3 days to review.",
+        "Non-emergency repairs should take 3 to 12 months.",
+        "There is no cost to apply."
+      ],
+      "time": "1 to 3 days (emergency); 3 to 12 months (other)"
+    }
+  },
+  {
+    "id": "ns-rent-supplement",
+    "name": "Canada-Nova Scotia Targeted Housing Benefit",
+    "level": "Nova Scotia",
+    "category": "Housing",
+    "amount": "Monthly rent supplement",
+    "summary": "Gives renters a monthly supplement to help pay rent. You keep getting it as long as you are eligible and renew each year.",
+    "note": "The amount depends on your gross household income, the lower of average market rent or your rent, and the bedrooms you need. Only 1 person per household can apply.",
+    "requires": [
+      "ns",
+      "nsRentSupplementRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You spend over 40% of gross household income on average market rent, not the rent you pay.",
+        "You live in Nova Scotia.",
+        "You are a Canadian citizen, permanent resident or Ukrainian citizen under CUAET.",
+        "Gross household income is below the current benefit income limits.",
+        "You rent an eligible unit and can show a lease or rent increase letter."
+      ],
+      "note": "With no lease yet, you can apply and have 90 days to find a rental."
+    },
+    "applyText": "Apply online (account needed)",
+    "applyUrl": "https://www.novascotia.ca/apply-rent-supplement-canada-nova-scotia-targeted-housing-benefit",
+    "source": "https://www.novascotia.ca/apply-rent-supplement-canada-nova-scotia-targeted-housing-benefit",
+    "detail": {
+      "aboutList": {
+        "lead": "Who cannot apply",
+        "items": [
+          "People in public housing.",
+          "People who get other government rent help or live in a subsidized unit (contact the program).",
+          "People who own a home or hold a life interest in one.",
+          "People who rent from a family member in the same building."
+        ]
+      },
+      "steps": [
+        "Read the Renter Guide.",
+        "Apply online, or use the paper form by mail or email.",
+        "Submit the supporting documents listed on the application.",
+        "Renew each year when you get your notice."
+      ],
+      "documents": [
+        "Proof of gross income for household members 18 or older not in school",
+        "Social Insurance Number for those household members",
+        "Lease or rent increase letter showing your address, if available",
+        "Proof of full-time enrolment for children 18 to 25 in school"
+      ],
+      "tips": [
+        "Renewal is your responsibility; watch for the notice by mail or email.",
+        "You also cannot apply if you owe the department or housing agency money without a repayment plan.",
+        "There is no cost to apply."
+      ],
+      "time": "2 to 3 months"
+    }
+  },
+  {
+    "id": "ns-accessible-parking",
+    "name": "Accessible Parking Permits and Plates",
+    "level": "Nova Scotia",
+    "category": "Daily living supports",
+    "amount": "Permit: no fee",
+    "summary": "Permits and licence plates let you park in spaces set aside for people with disabilities. Permits have no fee. Plates carry regular registration fees.",
+    "note": "A qualified medical practitioner must certify your application. The doctor may charge a fee. Plates are for vehicles where the principal driver has the disability.",
+    "requires": [
+      "ns",
+      "bcParkingMobility"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "A qualified medical practitioner certifies your application.",
+        "For plates, the principal driver of the vehicle is the person with the disability."
+      ],
+      "note": "Permanent and temporary permits are available."
+    },
+    "applyText": "Apply at a Registry of Motor Vehicles office",
+    "applyUrl": "https://novascotia.ca/sns/rmv/registration/mobility.asp",
+    "source": "https://novascotia.ca/sns/rmv/registration/mobility.asp",
+    "detail": {
+      "aboutList": {
+        "lead": "What you get",
+        "items": [
+          "A permit or plate that allows parking in any space for people with disabilities.",
+          "Permits can be permanent or temporary.",
+          "Permits are issued at all Registry of Motor Vehicles locations.",
+          "Plates suit passenger, light commercial and motorcycle vehicles."
+        ]
+      },
+      "steps": [
+        "Ask a qualified medical practitioner to certify your application.",
+        "For a permit, apply at any Registry of Motor Vehicles location.",
+        "For plates, apply in person at a Registry of Motor Vehicles location or by mail to the Processing and Distribution Centre.",
+        "Motorcycle plates go by mail, fax or drop-off."
+      ],
+      "documents": [
+        "Medical practitioner certification",
+        "Statement of Insurance form for plates",
+        "Identification (see the Identification Requirements on the page)"
+      ],
+      "tips": [
+        "Insurance information is needed each time plates are issued or renewed.",
+        "Motorcycle plates cannot be paid for with cash.",
+        "Faxed motorcycle applications must be paid by credit card."
+      ]
+    }
+  },
+  {
+    "id": "ns-poverty-reduction-credit",
+    "name": "Poverty Reduction Credit",
+    "level": "Nova Scotia",
+    "category": "Income support",
+    "amount": "$125 four times a year ($500 total), as the page lists it",
+    "summary": "A tax-free payment for people without children who got Income Assistance all of last year and had low income. You do not apply. The page was last updated in 2013.",
+    "note": "The page shows a 2013 update date. Check the amounts and rules with the Poverty Reduction Credit line before you count on them.",
+    "requires": [
+      "ns",
+      "nsPovertyReductionCreditRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a person or couple who got Income Assistance from January to December last year.",
+        "You filed your income tax return for last year.",
+        "Your adjusted income last year was below $16,000.",
+        "You had no children last year."
+      ],
+      "note": "In a married or common-law couple, only one person gets the credit."
+    },
+    "applyText": "No application. Call to ask about the credit or direct deposit.",
+    "applyUrl": "http://novascotia.ca/coms/PovertyReductionCredit.html",
+    "source": "http://novascotia.ca/coms/PovertyReductionCredit.html",
+    "detail": {
+      "aboutList": {
+        "lead": "How the credit works",
+        "items": [
+          "The department decides who is eligible each June.",
+          "Payments come in July, October, January and April.",
+          "The credit does not change your other federal or provincial benefits."
+        ]
+      },
+      "steps": [
+        "File your income tax return every year.",
+        "Keep getting Income Assistance for the full year.",
+        "Call if you need to set up direct deposit."
+      ],
+      "documents": [],
+      "tips": [
+        "Each payment is $125.00, for $500.00 a year in total.",
+        "People with children may qualify for the Canada Child Benefit and Nova Scotia Child Benefit instead."
+      ],
+      "phone": "1-866-424-1269"
+    }
+  },
+  {
+    "id": "ns-childrens-oral-health",
+    "name": "Children's Oral Health Program",
+    "level": "Nova Scotia",
+    "category": "Health (for children)",
+    "amount": "Basic dental care covered once a year, with no charge for covered services",
+    "summary": "Covers basic dental care for children 14 and younger who have a valid Nova Scotia health card. Your dentist bills the province, so you should pay nothing for covered services.",
+    "note": "Use private insurance first if you have it. Extra services may be charged at the dentist's own private rate.",
+    "requires": [
+      "ns",
+      "nsChildrensOralHealthRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your child is aged 14 or younger.",
+        "Your child has a valid Nova Scotia health card."
+      ],
+      "note": "Private insurance is used first, when it applies."
+    },
+    "applyText": "Ask your dentist to bill the program",
+    "applyUrl": "https://novascotia.ca/dhw/dental-programs/children-oral-health-program.asp",
+    "source": "https://novascotia.ca/dhw/dental-programs/children-oral-health-program.asp",
+    "detail": {
+      "aboutList": {
+        "lead": "Each year the program covers",
+        "items": [
+          "1 routine dental exam and 2 routine x-rays.",
+          "1 preventive service and 1 fluoride treatment.",
+          "Scaling: 1 unit for ages 10 and younger, 2 units for ages 11 to 14.",
+          "Fillings and necessary extractions, plus nutritional counselling."
+        ]
+      },
+      "steps": [
+        "Book a visit with your dentist.",
+        "Show your child's health card and any private insurance.",
+        "The dentist bills the province for covered services."
+      ],
+      "documents": [
+        "Your child's Nova Scotia health card",
+        "Private insurance details, if you have them"
+      ],
+      "tips": [
+        "Extra fluoride treatments are sometimes covered, as your dentist decides.",
+        "If insurance pays the full regulated fee, the province adds nothing more.",
+        "Call about a bill or claim, 8:30 am to 4:30 pm."
+      ],
+      "time": "Billing line open 8:30 am to 4:30 pm",
+      "phone": "1-833-739-4035"
+    }
+  },
+  {
+    "id": "ns-community-bus-pass",
+    "name": "Community Bus Pass (Halifax and Cape Breton)",
+    "level": "Nova Scotia",
+    "category": "Daily living supports",
+    "amount": "Free annual bus pass",
+    "summary": "A free yearly bus pass for income assistance and Disability Support Program clients in the Halifax and Cape Breton regions.",
+    "note": "Eligible family members may get one too. The page covers only these two municipalities.",
+    "requires": [
+      "ns",
+      "nsCommunityBusPassRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You get Employment Support and Income Assistance and live in Halifax or Cape Breton Regional Municipality.",
+        "You are in the Disability Support Program and live in either municipality."
+      ],
+      "note": "Spouses and some children of Income Assistance clients can also get a pass."
+    },
+    "applyText": "Visit a Department of Opportunities and Social Development office",
+    "applyUrl": "https://novascotia.ca/bus-pass/",
+    "source": "https://novascotia.ca/bus-pass/",
+    "detail": {
+      "aboutList": {
+        "lead": "Who else can get a pass",
+        "items": [
+          "Cape Breton: spouses of Income Assistance clients and children 5 to 21.",
+          "Halifax: spouses and children 13 to 21 not in the Student Transit Pass Program.",
+          "Children 12 or younger ride Halifax Transit free; children 5 or younger ride Transit Cape Breton free."
+        ]
+      },
+      "steps": [
+        "Go to a department office in your municipality with your family members.",
+        "The department takes your photo for the pass.",
+        "The department mails the pass to your home."
+      ],
+      "documents": [],
+      "tips": [
+        "Offices are open Monday to Friday, 8:30am to 4:30pm.",
+        "Tell your caseworker first if your address will change soon.",
+        "The photo is used only for your bus pass."
+      ],
+      "time": "Offices open Monday to Friday, 8:30am to 4:30pm",
+      "phone": "1-877-424-1177"
+    }
+  },
+  {
+    "id": "ns-seniors-wheelchair-loan",
+    "name": "Seniors Community Wheelchair Loan Program",
+    "level": "Nova Scotia",
+    "category": "Daily living supports",
+    "amount": "A new or recycled wheelchair on loan, manual or electric",
+    "summary": "Lends new or recycled wheelchairs to Nova Scotians 65 or older who have a long-term disability or illness. An assessment checks the fit.",
+    "note": "To find out if you qualify, you start by calling Continuing Care.",
+    "requires": [
+      "ns",
+      "age65plus",
+      "nsSeniorsWheelchairLoanRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Nova Scotia with a valid health card number.",
+        "You are 65 or older when you apply.",
+        "A therapist has assessed you.",
+        "A long-term disability, chronic illness or terminal illness means you need assistance.",
+        "Your household income is in category A of the home care income table.",
+        "Other programs, such as private insurance, do not cover you."
+      ],
+      "note": "You must also sign a consent form for safe use of the wheelchair."
+    },
+    "applyText": "Call Continuing Care to apply",
+    "applyUrl": "https://novascotia.ca/dhw/ccs/wheelchair-loan-program.asp",
+    "source": "https://novascotia.ca/dhw/ccs/wheelchair-loan-program.asp",
+    "detail": {
+      "aboutList": {
+        "lead": "What to know",
+        "items": [
+          "An occupational therapist or physiotherapist assesses you for fit.",
+          "A recycled chair is given if one can be adapted to your needs.",
+          "You keep the chair if you move into long term care."
+        ]
+      },
+      "steps": [
+        "Call Continuing Care to check if you qualify.",
+        "Meet the therapist who arranges your assessment.",
+        "Sign the consent form and receive your wheelchair."
+      ],
+      "documents": [
+        "Nova Scotia health card number"
+      ],
+      "tips": [
+        "Call again for a reassessment if your needs change.",
+        "In long term care, a transition plan helps you get a chair there."
+      ],
+      "phone": "1-800-225-7225"
+    }
+  },
+  {
+    "id": "ns-day-programs",
+    "name": "Community inclusion and day programs",
+    "level": "Nova Scotia",
+    "category": "Community supports",
+    "amount": "Funded day programs at non-profit providers; no dollar value published",
+    "summary": "The Disability Support Program funds day programs for adults and youth with disabilities. They offer skills training, supported employment, social outings and recreation. You refer yourself.",
+    "note": "Each program has its own focus, and some have waitlists. Contact a provider to ask about an orientation.",
+    "requires": [
+      "ns",
+      "nsDayProgramsRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are an adult or youth with a disability.",
+        "You choose a Disability Support Program funded day program near you."
+      ],
+      "note": "The page does not list further eligibility rules."
+    },
+    "applyText": "Contact a day program provider directly",
+    "applyUrl": "https://novascotia.ca/coms/disabilities/community-inclusion-day-programming.html",
+    "source": "https://novascotia.ca/coms/disabilities/community-inclusion-day-programming.html",
+    "detail": {
+      "aboutList": {
+        "lead": "Options include",
+        "items": [
+          "Skill development and training, such as computer training.",
+          "Supported employment with job coaching and resume help.",
+          "Social enterprise businesses with work experience.",
+          "Social and recreational activities, and a retirement stream for ages 55 and up."
+        ]
+      },
+      "steps": [
+        "Find a provider in your community on the page list.",
+        "Contact the program to ask about an orientation.",
+        "Ask if there is a waitlist."
+      ],
+      "documents": [],
+      "tips": [
+        "Not every program offers every option.",
+        "You do not need a referral from anyone."
+      ]
+    }
+  },
+  {
+    "id": "ns-public-housing",
+    "name": "Public Housing (Nova Scotia Provincial Housing Agency)",
+    "level": "Nova Scotia",
+    "category": "Housing",
+    "amount": "Rent is 25% or 30% of household income before taxes; Income Assistance rates differ",
+    "summary": "Rent-geared-to-income homes for households under the income limits for their area. Most pay 30% of income before taxes; a household with an adult and a dependent pays 25%.",
+    "note": "Income Assistance recipients pay different rent rates. Contact the agency for details.",
+    "requires": [
+      "ns",
+      "nsPublicHousingRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your gross household income is below the limit for your area and bedrooms.",
+        "Everyone in your household is a Canadian citizen or permanent resident.",
+        "You can live independently.",
+        "You live in Nova Scotia now.",
+        "Past tenants with arrears agree to a repayment plan."
+      ],
+      "note": "Owners of suitable housing may qualify if they agree to sell within one year."
+    },
+    "applyText": "Apply online or at a District Office",
+    "applyUrl": "https://nspha.ca/applicants/eligibility",
+    "source": "https://nspha.ca/applicants/eligibility",
+    "detail": {
+      "aboutList": {
+        "lead": "Good to know",
+        "items": [
+          "You can apply anywhere in Nova Scotia, not only where you live.",
+          "Some applicants can qualify for priority access with a signed referral form.",
+          "Income limits are set by the federal government through CMHC."
+        ]
+      },
+      "steps": [
+        "Check the income limit for your area and bedrooms.",
+        "Apply through the online portal or at any District Office.",
+        "Update your household and income details every year."
+      ],
+      "documents": [
+        "Proof of Nova Scotia residency",
+        "Social insurance number",
+        "Proof of citizenship or permanent residency"
+      ],
+      "tips": [
+        "District Offices are Metro, Western, Northern and Cape Breton.",
+        "Update your application when your household or contact details change."
+      ]
+    }
+  },
+  {
+    "id": "ns-preschool-autism",
+    "name": "Provincial Preschool Autism Service",
+    "level": "Nova Scotia",
+    "category": "Health (for children)",
+    "amount": "Needs-based autism services; no dollar value published",
+    "summary": "Services and support for preschool-age children with autism and their families across Nova Scotia. Support is matched to each child's strengths, needs and family priorities.",
+    "note": "Services end when the child enters grade primary. The page says these services are evolving.",
+    "requires": [
+      "ns",
+      "under6"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your child is of preschool age, before entering grade primary.",
+        "Your child has autism. If you have concerns about their development, talk to your care provider."
+      ],
+      "note": "The page lists no further rules; call to ask what applies."
+    },
+    "applyText": "Call the service or visit the IWK PPAS page",
+    "applyUrl": "https://novascotia.ca/autism/",
+    "source": "https://novascotia.ca/autism/",
+    "detail": {
+      "aboutList": {
+        "lead": "About the service",
+        "items": [
+          "IWK Health, Nova Scotia Health, Hearing and Speech Nova Scotia and Autism Nova Scotia run it together.",
+          "Support is customized to each child and family.",
+          "Parents and caregivers are treated as knowing their child best."
+        ]
+      },
+      "steps": [
+        "Talk to your care provider if you have concerns about your child's development.",
+        "Ask about autism assessments through the IWK referrals page.",
+        "Call the service or visit the IWK PPAS page."
+      ],
+      "documents": [],
+      "tips": [
+        "Direct Family Support for Children can also be used for preschool children."
+      ],
+      "phone": "1-833-200-7817"
+    }
+  },
+  {
+    "id": "ns-ambulance-fee-waiver",
+    "name": "Ambulance fee waiver",
+    "level": "Nova Scotia",
+    "category": "Health",
+    "amount": "Fee waived if your income is too low to pay it",
+    "summary": "People with a low income can ask to have an ambulance fee waived. There is a time limit to apply.",
+    "note": "Decisions are based on Statistics Canada's Low Income Measure. If the fee causes hardship, you are offered a repayment schedule.",
+    "requires": [
+      "ns",
+      "nsAmbulanceFeeWaiverRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You got an ambulance bill and cannot pay it because your income is too low.",
+        "You apply in time, no later than 90 days after the bill date."
+      ],
+      "note": "Your income is checked against Statistics Canada's Low Income Measure."
+    },
+    "applyText": "Fill in the Ambulance Fee Assistance Program Form",
+    "applyUrl": "https://novascotia.ca/dhw/ehs/ambulance-fees.asp",
+    "source": "https://novascotia.ca/dhw/ehs/ambulance-fees.asp",
+    "detail": {
+      "aboutList": {
+        "lead": "Related fees on the page",
+        "items": [
+          "Residents with a health card pay a lower fee for medically essential transport.",
+          "Mobility-challenged residents pay less for trips to medical appointments.",
+          "Transfers between approved facilities cost residents nothing."
+        ]
+      },
+      "steps": [
+        "Download the Ambulance Fee Assistance Program Form and the income limits.",
+        "Call the billing office to ask where to send the completed form, within the 90 days.",
+        "Call the billing office with questions."
+      ],
+      "documents": [
+        "Ambulance Fee Assistance Program Form",
+        "Ambulance Fee Assistance Income Limits (PDF on the page)"
+      ],
+      "tips": [
+        "The fee for residents with a health card was $146.55, as of April 1st, 2015.",
+        "You can appeal a fee within 30 days of the bill date.",
+        "Billing office local line: 902-832-8337."
+      ],
+      "phone": "1-888-280-8884"
+    }
+  },
+  {
+    "id": "ns-student-loan-forgiveness-disabilities",
+    "name": "Student loan forgiveness for students with disabilities",
+    "level": "Nova Scotia",
+    "category": "Education",
+    "amount": "Loans forgiven for more years of study; no dollar amount published",
+    "summary": "Students who need more time to finish a program because of a disability can have loans forgiven for more years of study. You do not apply.",
+    "note": "All students are automatically assessed for loan forgiveness when they graduate.",
+    "requires": [
+      "ns",
+      "age18plus",
+      "nsStudentLoanForgivenessDisabilitiesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Nova Scotia Student Assistance counts you as a student with a disability.",
+        "You studied full-time at a reduced rate of 40% to 60% of a standard course load.",
+        "You finish a degree within 10 years or a diploma or certificate within 6 years."
+      ],
+      "note": "Other rules match the regular Nova Scotia Student Loan Forgiveness Program."
+    },
+    "applyText": "No application needed",
+    "applyUrl": "https://novascotia.ca/student-loan-forgiveness-program-disabilities/",
+    "source": "https://novascotia.ca/student-loan-forgiveness-program-disabilities/",
+    "detail": {
+      "aboutList": {
+        "lead": "How it works",
+        "items": [
+          "It works differently for degrees than for diplomas or certificates.",
+          "It builds on the regular loan forgiveness programs.",
+          "The department checks you when you graduate."
+        ]
+      },
+      "steps": [
+        "Check that you qualify as a student with a disability under Student Assistance criteria.",
+        "Finish your program within the time limit.",
+        "The department assesses you at graduation."
+      ],
+      "documents": [],
+      "tips": [
+        "Check the regular forgiveness rules for your type of program."
+      ]
+    }
+  },
+  {
+    "id": "bridgewater-pro-kids",
+    "name": "PROKids recreation fee help",
+    "level": "Bridgewater",
+    "category": "Recreation",
+    "amount": "Covers some or all of the registration fee for a sport or recreation activity",
+    "summary": "PROKids is a Town of Bridgewater program. It helps children and youth whose families cannot afford sport, recreation or cultural activities.",
+    "note": "Only Town of Bridgewater residents can use this form.",
+    "requires": [
+      "ns",
+      "bridgewater",
+      "bridgewaterProKidsRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in the Town of Bridgewater and your child cannot join an activity because of cost.",
+        "Your total family income (line 15000) is under the limit for your family size.",
+        "You show your Notice of Assessment or a Community Services or Indigenous Assistance endorsement."
+      ],
+      "note": "The page gives no age rule beyond children and youth."
+    },
+    "applyText": "See the PROKids page and application form",
+    "applyUrl": "https://bridgewater.ca/town-services/parks-recreation-a-culture/p-r-o-kids",
+    "source": "https://bridgewater.ca/town-services/parks-recreation-a-culture/p-r-o-kids",
+    "detail": {
+      "aboutList": {
+        "lead": "Family income limits listed on the page:",
+        "items": [
+          "2 person family: under $39,721 a year.",
+          "3 person family: under $48,832 a year.",
+          "4 person family: under $59,288 a year.",
+          "5 person family: under $67,244 a year.",
+          "6 person family: under $75,839 a year.",
+          "7 person family: under $84,436 a year."
+        ]
+      },
+      "steps": [
+        "Open the PROKids page and get the application form.",
+        "Count your family size: parents in the household plus children 18 or younger.",
+        "Add your most recent Notice of Assessment for each parent or guardian, or an endorsement.",
+        "Ask Town of Bridgewater Recreation staff how to submit the form."
+      ],
+      "documents": [
+        "Most recent tax year Notice of Assessment, one for each parent or guardian",
+        "Or an endorsement from the Department of Community Services or Indigenous Assistance"
+      ],
+      "tips": [
+        "Lunenburg District and Chester District residents use their own municipality's form.",
+        "KidSport and Canadian Tire Jumpstart are other options for help with fees."
+      ],
+      "phone": "902-543-2274"
+    }
   }
 
 ];
@@ -16286,6 +17597,29 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "bridgewater-pro-kids": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "ns-student-loan-forgiveness-disabilities": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-ambulance-fee-waiver": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-preschool-autism": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-public-housing": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-day-programs": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-seniors-wheelchair-loan": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-community-bus-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-childrens-oral-health": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-poverty-reduction-credit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-accessible-parking": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-rent-supplement": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-housing-repair-accessibility": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-seniors-property-tax-rebate": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-seniors-care-grant": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-harp": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-family-pharmacare": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-seniors-pharmacare": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-osd-pharmacare": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-caregiver-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-direct-family-support-children": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-disability-support-program": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-income-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "nb-homeowner-repair": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "nb-childcare-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "nb-seniors-home-renovation-credit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
