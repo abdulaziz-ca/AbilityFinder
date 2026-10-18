@@ -1,0 +1,14 @@
+URL: https://www.fredericton.ca/en/resident-services/fredericton-transit/para-transit | province: NB/Fredericton | program: Fredericton Para Transit | fetched: 2026-10-18
+=== PAGE: https://www.fredericton.ca/en/resident-services/fredericton-transit/para-transit (HTTP 200, 1149 chars)
+
+ Para Transit
+ Para Transit will begin offering service on Sundays effective June 2, 2024.  Service is available between 9am and 6pm on Sundays.  Please contact the call centre if you are a registered client to book a trip.
+ Para transit
+Fredericton offers a para transit service for people with disabilities. This service is available to registered clients only.  Please review the links below for more information about applying for our service or call Service Fredericton at 506-460-2020.  
+Reservations for Para Transit are available by subscription (regular users, consistent times and destinations) in advance and all trips must be booked a day before. One way fares are $3 cash. Customers can buy 10 ride tickets for $27.50.  Attendants, where required, travel free of charge. 
+Para Transit operates Monday to Saturday between 7 a.m. and 11 p.m. and on Sunday between 9 a.m. and 6 p.m. Service is provided through accessible vehicles. 
+Registered clients only can call 506-460-2212 to book trips.
+ Related Documents
+ - Para Transit Policy Handbook
+ - Accessible Transit Policies for Passengers
+ - Para Transit Registration and Consent Form 

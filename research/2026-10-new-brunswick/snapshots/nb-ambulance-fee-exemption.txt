@@ -1,0 +1,29 @@
+URL: https://ambulancenb.ca/en/billing/ | province: NB | program: Ambulance fee exemption | fetched: 2026-10-18
+=== PAGE: https://ambulancenb.ca/en/billing/ (HTTP 200, 2021 chars)
+
+ Billing
+ If you call 911 and require transport to hospital by ambulance, you will receive an invoice in the mail. The fee for ambulance service for New Brunswick residents is $130.60. The fee for non-residents is $650.00.
+ Do you have private health insurance?
+Individuals with private health insurance (through work or other) pay their invoice upfront. Once payment is received in full, we will send an official receipt by mail, and then you submit the official receipt to the insurance company for re-imbursement.
+Are you covered under a provincial program?
+Certain groups are exempt from paying their bill upfront because of provincial programs that cover the cost. Those groups include:
+- Extra-Mural Program patients whose transport was requested by Extra-Mural
+- Entitled recipients of Social Assistance services
+- Guaranteed Income Supplement recipients
+- Patients living in a Nursing Home who have been issued a yellow health card
+- Residents transported for the purposes of Medical Assistance In Dying (MAID).
+Were you involved in a motor vehicle collision?
+Patients treated and transported to hospital with injuries resulting from a motor vehicle collision are required to pay their bill, which may be reimbursed by their automobile insurance provider. 
+What about transfers from one hospital to another? Do patients pay a fee for this transport?
+There is no cost for inter-facility transfers. This includes any transfer of an admitted patient from one hospital to another hospital for medical treatment.
+Get in touch with us
+We want to make this process as easy as possible for our patients. Please contact us directly with any questions about your bill.
+Toll Free: 1 (888) 657-3222
+In Greater Moncton: (506) 872-6554
+By e-mail: feeinquiry@ambulancenb.ca
+The following links provide additional information on ambulance billing and fees.
+- Ambulance Service Fee Policy
+- Ambulance Services Act
+- Annual Report on Fees - Department of Finance
+- Appeal Letter - Consent to Disclose Personal Health Information
+ 

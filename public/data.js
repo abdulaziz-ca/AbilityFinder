@@ -148,8 +148,13 @@ const PROVINCE_NOTICES = {
     ],
   },
 };
-const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES, ON: ON_CITIES, SK: SK_CITIES, MB: MB_CITIES };
-const COVERED_PROVINCES = ["AB", "BC", "ON", "SK", "MB"];
+/* New Brunswick municipalities offered in the questionnaire. */
+const NB_CITIES = [
+  "Bathurst", "Campbellton", "Dieppe", "Edmundston", "Fredericton", "Miramichi", "Moncton",
+  "Oromocto", "Quispamsis", "Riverview", "Rothesay", "Saint John", "Other / my town isn't listed",
+];
+const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES, ON: ON_CITIES, SK: SK_CITIES, MB: MB_CITIES, NB: NB_CITIES };
+const COVERED_PROVINCES = ["AB", "BC", "ON", "SK", "MB", "NB"];
 
 /* national fallbacks (used when a jurisdiction isn't in the maps yet) */
 const FED_STUDENT_AID = "https://www.canada.ca/en/employment-social-development/services/education/grants/disabilities.html";
@@ -183,6 +188,26 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "nb-ambulance-fee-exemption": { kind: "discount", note: "Ambulance bill ($130.60 for residents) is not paid upfront by listed groups." },
+  "nb-rrap": { kind: "grant", note: "A forgivable loan toward a secondary or garden suite for an adult with a disability." },
+  "nb-rent-supplement": { kind: "grant", note: "Rent reduced to 30% of adjusted household income in a subsidized unit." },
+  "nb-portable-rent-supplement": { kind: "grant", note: "Rent reduced to 30% of adjusted household income." },
+  "nb-health-services-equipment": { kind: "access", note: "Equipment and supplies at no cost to eligible Health Card holders, within limits." },
+  "nb-child-tax-benefit": { kind: "grant", note: "Up to $250 a year per child, reduced by income" },
+  "nb-low-income-seniors-benefit": { kind: "grant", note: "$629 a year for the 2026 benefit" },
+  "nb-extra-mural": { kind: "access", note: "Home healthcare services; no dollar value published" },
+  "nb-long-term-care-home-support": { kind: "access", note: "Subsidized home and care-home services; cost depends on income" },
+  "nb-preschool-autism": { kind: "access", note: "Autism intervention services; no dollar value published" },
+  "nb-healthy-smiles-clear-vision": { kind: "access", note: "Basic dental and vision care for eligible children; no dollar value published" },
+  "nb-prescription-drug-program": { kind: "discount", note: "Lower or no prescription costs, depending on your group" },
+  "nb-accessible-parking": { kind: "access", note: "Placard and permit are free; use is restricted to the holder" },
+  "nb-vehicle-retrofit": { kind: "grant", note: "Up to 80% of eligible costs, maximum $8,000" },
+  "nb-family-supports-children": { kind: "grant", note: "Supports or funds for a child's unmet needs; some families contribute" },
+  "nb-tess": { kind: "access", note: "Training and job supports tailored to the person" },
+  "nb-employment-support-services": { kind: "access", note: "Agency services for life skills, community life and work" },
+  "nb-self-managed-support": { kind: "grant", note: "Monthly lump sum to pay for your own services" },
+  "nb-disability-support-program": { kind: "access", note: "Personalized disability supports; you may pay a share based on income" },
+  "nb-social-assistance": { kind: "grant", note: "Monthly help with basic needs; amount depends on household income and family type" },
   "brandon-cnib-free-transit": { kind: "access", note: "Free regular Brandon Transit rides for CNIB registered clients" },
   "brandon-access-transit": { kind: "access", note: "Door-to-door rides for riders with disabilities at regular transit fares" },
   "mb-prenatal-benefit": { kind: "grant", note: "Up to $162.82 a month for six months, based on income." },
@@ -521,6 +546,26 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "nb-ambulance-fee-exemption": { difficulty: 1, effort: "Contact Ambulance NB if you are billed in error.", wait: "Not published" },
+  "nb-rrap": { difficulty: 4, effort: "Feasibility check, income proof and your 25% share of costs.", wait: "Not published" },
+  "nb-rent-supplement": { difficulty: 2, effort: "Phone call and application with income details.", wait: "Not published" },
+  "nb-portable-rent-supplement": { difficulty: 3, effort: "Application plus written proof of disability and income.", wait: "Not published" },
+  "nb-health-services-equipment": { difficulty: 3, effort: "Health Card check, plus a prescription or assessment for some items.", wait: "Not published" },
+  "nb-child-tax-benefit": { difficulty: 2, effort: "Handled through the Canada Child Benefit", wait: "Not published" },
+  "nb-low-income-seniors-benefit": { difficulty: 2, effort: "Online or paper form", wait: "Not published" },
+  "nb-extra-mural": { difficulty: 2, effort: "A request from you, your provider or a family member", wait: "Not published" },
+  "nb-long-term-care-home-support": { difficulty: 3, effort: "Call Social Development to book a needs assessment", wait: "Not published" },
+  "nb-preschool-autism": { difficulty: 2, effort: "Your child's professional sends the diagnosis form; the Department contacts you", wait: "Not published" },
+  "nb-healthy-smiles-clear-vision": { difficulty: 3, effort: "Enrol in the CDCP, then send a paper form by mail or fax", wait: "Not published" },
+  "nb-prescription-drug-program": { difficulty: 3, effort: "Pick the right group, then fill in a form and mail it", wait: "Not published" },
+  "nb-accessible-parking": { difficulty: 2, effort: "Form signed by a health professional, taken to a service centre", wait: "Not published" },
+  "nb-vehicle-retrofit": { difficulty: 2, effort: "Mail an application form", wait: "Not published" },
+  "nb-family-supports-children": { difficulty: 3, effort: "Phone referral, then work with a social worker", wait: "Not published" },
+  "nb-tess": { difficulty: 2, effort: "Contact a WorkingNB office", wait: "Not published" },
+  "nb-employment-support-services": { difficulty: 3, effort: "Needs Disability Support Program approval first", wait: "Not published" },
+  "nb-self-managed-support": { difficulty: 3, effort: "Discuss with your social worker; keep spending records", wait: "Not published" },
+  "nb-disability-support-program": { difficulty: 3, effort: "Apply online or by phone, then assessment and plan", wait: "Not published" },
+  "nb-social-assistance": { difficulty: 3, effort: "Phone screening, then an appointment with documents", wait: "Not published" },
   "brandon-cnib-free-transit": { difficulty: 2, effort: "CNIB registration", wait: "Not published" },
   "brandon-access-transit": { difficulty: 3, effort: "Two-part form, doctor signature", wait: "Not published" },
   "mb-prenatal-benefit": { difficulty: 2, effort: "Fill in a form and include a pregnancy note.", wait: "Not published" },
@@ -14456,6 +14501,992 @@ const BENEFITS = [
       "tips": [],
       "phone": "204-729-2300"
     }
+  },
+  {
+    "id": "nb-social-assistance",
+    "name": "Social Assistance Program (Income Assistance)",
+    "level": "New Brunswick",
+    "category": "Income support",
+    "amount": "Depends on household income and family type",
+    "summary": "Money for basic needs like food, rent, utilities and clothing when your household has low income. It may also help with child care, transportation and prescription drugs.",
+    "note": "The amount depends on total household income. Social Development adds up income from everyone in the household.",
+    "requires": [
+      "nb",
+      "nbSocialAssistanceRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your total household income is under the rate for your family type, so you are likely eligible."
+      ],
+      "note": "If you worked recently and may get Employment Insurance, check those benefits too."
+    },
+    "applyText": "Call Social Development to start",
+    "applyUrl": "https://www2.gnb.ca/content/gnb/en/services/services_renderer.10295.html",
+    "source": "https://www2.gnb.ca/content/gnb/en/services/services_renderer.10295.html",
+    "detail": {
+      "aboutList": {
+        "lead": "Income Assistance can also come with other help.",
+        "items": [
+          "Other benefits include health cards, the Emergency Fuel Benefit and Medical Transportation.",
+          "Emergency Special Benefits are also offered by the department.",
+          "People on Income Assistance may get help with learning, work and transitional case plans."
+        ]
+      },
+      "steps": [
+        "Gather your address, rent or mortgage costs, and details for each household member.",
+        "Call the screening and intake line to answer questions about whether you may be eligible.",
+        "If eligible, you get an appointment to complete the application package."
+      ],
+      "documents": [
+        "Mailing address and residence address if different",
+        "Rental or mortgage costs",
+        "Name, birthdate, Medicare number and Social Insurance Number for each household member",
+        "Income and assets for each household member"
+      ],
+      "tips": [
+        "Bring the checklist of documents the department lists to your appointment.",
+        "Assets means what each family member owns, like a car or a house."
+      ],
+      "phone": "1-833-733-7835"
+    }
+  },
+  {
+    "id": "nb-disability-support-program",
+    "name": "Disability Support Program",
+    "level": "New Brunswick",
+    "category": "Daily living supports",
+    "amount": "Supports set by your plan; you may pay a share based on income",
+    "summary": "One-on-one help to make a plan for adults with a long-term disability who need help to support themselves or take part in the community.",
+    "note": "A financial assessment sets what you pay toward approved supports. It does not cover services other government programs offer.",
+    "requires": [
+      "nb",
+      "nbDisabilitySupportProgramRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in New Brunswick and are 19 to 64.",
+        "You have a long-term disability.",
+        "You need help to support yourself personally or to take part in the community."
+      ]
+    },
+    "applyText": "Apply online or call Social Development",
+    "applyUrl": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/disability-support.html",
+    "source": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/disability-support.html",
+    "detail": {
+      "aboutList": {
+        "lead": "Support can include:",
+        "items": [
+          "Personal support in and outside the home, and respite care.",
+          "Help to take part in the community and to learn personal living skills.",
+          "Disability-specific transportation support.",
+          "Technical support and devices that meet policy guidelines.",
+          "Residential facility services and Meals on Wheels.",
+          "The Employment and Support Services Program."
+        ]
+      },
+      "steps": [
+        "Start on your own or with help from family or friends.",
+        "Or start with staff at Social Development or a community agency.",
+        "Or get help from an independent facilitator from Inclusion NB.",
+        "Apply online or call Social Development."
+      ],
+      "documents": [],
+      "tips": [
+        "Your income is considered when setting your share of the cost.",
+        "A facilitator from Inclusion NB can help you apply."
+      ],
+      "phone": "1-833-733-7835"
+    }
+  },
+  {
+    "id": "nb-self-managed-support",
+    "name": "Self-Managed Support",
+    "level": "New Brunswick",
+    "category": "Daily living supports",
+    "amount": "A lump sum paid at the start of every month",
+    "summary": "This option lets you manage your own services and get a monthly payment to cover them, if you are already in either program.",
+    "note": "You hire and direct your own providers. Keep detailed records of how you spend the funds.",
+    "requires": [
+      "nb",
+      "nbSelfManagedSupportRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are in the Disability Support Program or the Long-term Care Program."
+      ]
+    },
+    "applyText": "Talk to your social worker",
+    "applyUrl": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/self-support.html",
+    "source": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/self-support.html",
+    "detail": {
+      "aboutList": {
+        "lead": "With this option you take charge of your care.",
+        "items": [
+          "You coordinate, manage and direct the services in your plan.",
+          "You can hire family members who do not live in the residence.",
+          "You can carry over unused funding within the same calendar year.",
+          "Your social worker reviews your plan and spending at year end."
+        ]
+      },
+      "steps": [
+        "Tell your social worker you are interested.",
+        "They guide you through the process."
+      ],
+      "documents": [],
+      "tips": [
+        "The department recommends a separate bank account for these funds.",
+        "You arrange services, hire and train staff, and check their skills."
+      ]
+    }
+  },
+  {
+    "id": "nb-employment-support-services",
+    "name": "Employment and Support Services Program",
+    "level": "New Brunswick",
+    "category": "Employment",
+    "amount": "Services from a non-profit agency",
+    "summary": "Agencies help adults in the Disability Support Program build life skills, join community activities and find and keep work that fits their skills.",
+    "note": "An agency must be able to support you. The person referred must join the application and planning process.",
+    "requires": [
+      "nb",
+      "adult",
+      "nbEmploymentSupportServicesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are approved for support from the Disability Support Program.",
+        "One of the 38 contracted non-profit agencies can support you."
+      ]
+    },
+    "applyText": "Apply to the Disability Support Program",
+    "applyUrl": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/employment-support.html",
+    "source": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/employment-support.html",
+    "detail": {
+      "aboutList": {
+        "lead": "The agencies can help you:",
+        "items": [
+          "Gain life skills that promote independence.",
+          "Take part in volunteer, social and recreation opportunities.",
+          "Find and keep work that matches your skills and interests.",
+          "Work for appropriate wages in inclusive workplaces."
+        ]
+      },
+      "steps": [
+        "Apply for the Disability Support Program and ask for this service.",
+        "Or refer someone else.",
+        "A social worker contacts the person referred.",
+        "The person takes part in the application and planning."
+      ],
+      "documents": [],
+      "tips": [
+        "Not yet a Social Development client? Call the screening line."
+      ],
+      "phone": "1-833-733-7835"
+    }
+  },
+  {
+    "id": "nb-tess",
+    "name": "Training and Employment Support Services (TESS)",
+    "level": "New Brunswick",
+    "category": "Employment",
+    "amount": "Supports tailored to each person",
+    "summary": "Support for New Brunswickers with a permanent disability to take part in training, or to get, resume or keep a job.",
+    "note": "Support is tailored to the individual needs of the client. You may qualify whether or not you receive income support benefits.",
+    "requires": [
+      "nb",
+      "nbTessRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in New Brunswick.",
+        "You have a permanent physical, intellectual, psychiatric, cognitive or sensory disability."
+      ],
+      "note": "Any individual with a disability could be eligible, with or without income support."
+    },
+    "applyText": "Contact your nearest WorkingNB office",
+    "applyUrl": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/tess-disabilities.html",
+    "source": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/tess-disabilities.html",
+    "detail": {
+      "aboutList": {
+        "lead": "TESS aims to reduce the impact of your disability.",
+        "items": [
+          "It is part of the Employment Services Program.",
+          "Support may help you take part in training.",
+          "Support may help you get, resume or keep employment."
+        ]
+      },
+      "steps": [
+        "Find the nearest WorkingNB office on the page.",
+        "Contact them for more information."
+      ],
+      "documents": [],
+      "tips": [
+        "If you are hearing impaired, you can reach WorkingNB by TTY at 453-3957."
+      ]
+    }
+  },
+  {
+    "id": "nb-family-supports-children",
+    "name": "Family Supports for Children with Disabilities",
+    "level": "New Brunswick",
+    "category": "Community supports",
+    "amount": "Varies by your family support plan; families who have the means contribute",
+    "summary": "Helps families meet the unmet needs of a child with a disability, with a social worker. Examples are medical equipment, relief care and home support.",
+    "note": "The program is voluntary. Families work with a social worker. Families who have the means make a financial contribution.",
+    "requires": [
+      "nb",
+      "child",
+      "nbFamilySupportsChildrenRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a family with a child or children who have a disability and unmet needs."
+      ],
+      "note": "The page does not list further eligibility criteria."
+    },
+    "applyText": "Call Social Development for a referral",
+    "applyUrl": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/supports-children.html",
+    "source": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/supports-children.html",
+    "detail": {
+      "aboutList": {
+        "lead": "Examples of what the program can help with:",
+        "items": [
+          "Medical equipment, medical transportation and incontinence supplies.",
+          "Child care costs that exceed typical day-care or after-school costs.",
+          "Relief care and home support services.",
+          "Family support workers for social inclusion and skill-building.",
+          "Therapeutic-based recreation, and a health card for families without health insurance."
+        ]
+      },
+      "steps": [
+        "Call Social Development to refer your own family.",
+        "Or ask a professional working with your child to call for you.",
+        "Choose Social Worker Managed or Family Managed case management."
+      ],
+      "documents": [],
+      "tips": [
+        "Family Managed means you get the funds directly to arrange the services.",
+        "The Family Support Plan outlines your child's unmet needs."
+      ],
+      "phone": "1-833-733-7835"
+    }
+  },
+  {
+    "id": "nb-vehicle-retrofit",
+    "name": "Vehicle Retrofit Program",
+    "level": "New Brunswick",
+    "category": "Daily living supports",
+    "amount": "Up to 80% of eligible costs, to a maximum of $8,000",
+    "summary": "Helps pay for accessibility features in a vehicle, like lifts, ramps, hand controls and special seating. You pay the taxes.",
+    "note": "Individuals can apply for new changes every eight years. Organizations can apply every five years.",
+    "requires": [
+      "nb",
+      "nbVehicleRetrofitRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You are a New Brunswick resident with a physical disability.",
+        "You are a registered non-profit, municipality or company providing transportation for people with disabilities."
+      ]
+    },
+    "applyText": "Fill out the application form",
+    "applyUrl": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/vehicle-retrofit.html",
+    "source": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/vehicle-retrofit.html",
+    "detail": {
+      "aboutList": {
+        "lead": "The program can cover some of the cost of:",
+        "items": [
+          "Wheelchair or scooter lifts and ramps.",
+          "Changes to the roof, floor and doors.",
+          "Special-needs seating and hand controls.",
+          "Wheelchair tie-downs and passenger-restraint systems.",
+          "Other items may also be considered."
+        ]
+      },
+      "steps": [
+        "Fill out the online application form (PDF).",
+        "Mail it to Ability NB, Suite 102, 440 Wilsey Road, Fredericton, NB, E3B 7G5.",
+        "Ability NB reviews it and tells you the decision by mail."
+      ],
+      "documents": [
+        "Completed application form"
+      ],
+      "tips": [
+        "Sales tax on some features may be refunded by the Department of Finance.",
+        "Ability NB can help with your application: info@abilitynb.ca."
+      ],
+      "phone": "1-866-462-9555"
+    }
+  },
+  {
+    "id": "nb-accessible-parking",
+    "name": "Accessible (Disabled) Parking Permit",
+    "level": "New Brunswick",
+    "category": "Daily living supports",
+    "amount": "No charge for the placard and permit",
+    "summary": "A placard and permit for designated disabled parking spaces. It is for people with a significant mobility impairment.",
+    "note": "Apply at a Service New Brunswick centre. A physician, occupational therapist, nurse practitioner or physiotherapist must sign the application.",
+    "requires": [
+      "nb",
+      "bcParkingMobility"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have a significant mobility impairment, such as paralysis, lower limb amputation, or heart or lung disease.",
+        "This includes other health problems that make walking unassisted over 50 m in outdoor weather difficult."
+      ]
+    },
+    "applyText": "Apply at a Service New Brunswick centre",
+    "applyUrl": "https://www.gnb.ca/en/topic/driving-transportation/driving-safety/disabled-parking.html",
+    "source": "https://www.gnb.ca/en/topic/driving-transportation/driving-safety/disabled-parking.html",
+    "detail": {
+      "aboutList": {
+        "lead": "The permit is for one person only.",
+        "items": [
+          "It is not transferable and may not be loaned to anyone.",
+          "The placard must be clearly displayed in the vehicle.",
+          "The person it was issued for must be getting out of the vehicle at that stop.",
+          "You must obey all general parking laws."
+        ]
+      },
+      "steps": [
+        "Download the application form (PDF).",
+        "Ask your health professional to sign it.",
+        "Take it to a Service New Brunswick centre."
+      ],
+      "documents": [
+        "Application form signed by a health professional"
+      ],
+      "tips": [
+        "Return the placard to Service New Brunswick if it is expired, no longer needed, or defaced."
+      ],
+      "phone": "506-453-2410"
+    }
+  },
+  {
+    "id": "nb-prescription-drug-program",
+    "name": "New Brunswick Prescription Drug Program",
+    "level": "New Brunswick",
+    "category": "Health",
+    "amount": "Varies by plan: no cost, $4.00 per prescription, or a $50 yearly fee plus a co-payment",
+    "summary": "Helps pay for prescription drugs if you have a valid NB Medicare card and fit one of the listed groups, such as Social Development clients, seniors or certain medical conditions.",
+    "note": "Each group has its own plan, fees and form. Drugs covered are listed in the New Brunswick Formulary.",
+    "requires": [
+      "nb",
+      "nbPrescriptionDrugProgramRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You hold a valid health card from the Department of Social Development.",
+        "You are 65 or older, a permanent resident with a NB Medicare card and no other drug coverage.",
+        "You live in a registered nursing home or an adult residential facility.",
+        "You are a child in the Minister's care, or a special needs child.",
+        "You have cystic fibrosis, MS or a transplant (no other cover for those drugs), or HIV registered by a physician.",
+        "You are under 19 and have growth hormone deficiency, with no other coverage for those drugs."
+      ],
+      "note": "Residents with a valid NB Medicare card in these groups may be eligible."
+    },
+    "applyText": "See plans and forms",
+    "applyUrl": "https://www.gnb.ca/en/topic/health-wellness/nb-drug-plans/eligibility-prescription.html",
+    "source": "https://www.gnb.ca/en/topic/health-wellness/nb-drug-plans/eligibility-prescription.html",
+    "detail": {
+      "aboutList": {
+        "lead": "What you pay depends on your group.",
+        "items": [
+          "Social Development clients pay $4 per adult prescription and $2 per child prescription.",
+          "The most a Social Development family unit pays is $250 in a fiscal year.",
+          "Nursing home, adult residential facility and child-in-care plans have no fees or co-payments.",
+          "Cystic fibrosis, growth hormone, HIV and transplant plans: $50 a year, then 20% of cost up to $20.",
+          "Those plans have a $500 limit per family unit each plan year (July 1 to June 30).",
+          "The Multiple Sclerosis Plan has a $50 annual premium and an income-based co-payment.",
+          "Seniors who do not get the federal GIS can apply to the income-based New Brunswick Drug Plan."
+        ]
+      },
+      "steps": [
+        "Find your group on the official page and read its plan details.",
+        "For Social Development, nursing home or residential plans, Social Development decides eligibility.",
+        "For cystic fibrosis, growth hormone, MS or transplant plans, call the number listed to confirm your drug is covered before you register.",
+        "Fill in the plan's application form and mail it to New Brunswick Drug Plans, PO Box 690, Moncton, NB E1C 8M7.",
+        "Seniors get an application package automatically 60 days before they turn 65."
+      ],
+      "documents": [
+        "The plan's application form",
+        "Your valid New Brunswick Medicare card",
+        "For HIV, a letter from your other plan if it does not list the drugs"
+      ],
+      "tips": [
+        "Check each group on the page to find the plan that fits you.",
+        "Seniors on the federal Guaranteed Income Supplement (GIS) are eligible for the Seniors plan.",
+        "You must agree to share the personal information needed to run the plan when you enrol."
+      ],
+      "phone": "1-800-332-3692"
+    }
+  },
+  {
+    "id": "nb-healthy-smiles-clear-vision",
+    "name": "Healthy Smiles, Clear Vision",
+    "level": "New Brunswick",
+    "category": "Health (for children)",
+    "amount": "Dental and vision coverage for children; no dollar value published",
+    "summary": "New Brunswick's dental and vision plan for children of low-income families. It covers basic dental care, yearly eye exams, lenses and frames.",
+    "note": "Children need to be signed up for the federal dental plan to qualify for full coverage here.",
+    "requires": [
+      "nb",
+      "under19",
+      "nbHealthySmilesClearVisionRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in New Brunswick.",
+        "You have a dependent child aged 18 or younger.",
+        "Your child is enrolled in the federal Canadian Dental Care Plan (CDCP).",
+        "Your child has no other dental and vision coverage from a government program or private plan.",
+        "Your family net income is at or under the limit for your family size."
+      ],
+      "note": "Income is checked against last year's NB income tax return or Notice of Assessment."
+    },
+    "applyText": "Get the application form",
+    "applyUrl": "https://www2.gnb.ca/content/gnb/en/departments/social_development/promos/healthy_smiles_clear_vision.html",
+    "source": "https://www2.gnb.ca/content/gnb/en/departments/social_development/promos/healthy_smiles_clear_vision.html",
+    "detail": {
+      "aboutList": {
+        "lead": "Family net income limits, based on Market Basket Measure calculations from June 2025:",
+        "items": [
+          "2 people: $35,683; 3 people: $43,702.",
+          "4 people: $50,463; 5 people: $56,419.",
+          "6 people: $61,804; 7 people: $66,756.",
+          "8 people: $71,365.",
+          "Dental covers basic items such as regular exams, X-rays and extractions, plus sealants and fluoride.",
+          "Vision covers basic items such as a yearly exam, lenses and frames."
+        ]
+      },
+      "steps": [
+        "Check that your child is enrolled in the Canadian Dental Care Plan (CDCP).",
+        "Download the application form, or pick up a paper copy at a Service New Brunswick centre.",
+        "Paper copies are also at regional offices of the Department of Social Development.",
+        "Mail or fax the completed form to Healthy Smiles, Clear Vision, 644 Main Street, P.O. Box 220, Moncton, NB E1C 8L3.",
+        "The fax number is 1-506-867-4651."
+      ],
+      "documents": [
+        "The completed application form",
+        "Last year's NB income tax return or Notice of Assessment (income is checked against it)"
+      ],
+      "tips": [
+        "Children with dental and vision coverage through Social Development are moved over automatically.",
+        "Social Development clients do not need to apply.",
+        "For the CDCP, visit the Government of Canada page or a Service Canada Centre.",
+        "Questions about this plan go to Medavie Blue Cross."
+      ],
+      "phone": "1-855-839-9229"
+    }
+  },
+  {
+    "id": "nb-preschool-autism",
+    "name": "Preschool Autism Program",
+    "level": "New Brunswick",
+    "category": "Health (for children)",
+    "amount": "Intervention services; no dollar value published",
+    "summary": "Gives preschool children with autism spectrum disorder personalized intervention based on Applied Behaviour Analysis, delivered by VIVA Therapeutic Services.",
+    "note": "Services can run until your child starts school. The page says parent involvement often increases the benefit.",
+    "requires": [
+      "nb",
+      "under6",
+      "autismSelected",
+      "nbPreschoolAutismRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your child is a resident of New Brunswick, including First Nations communities.",
+        "A professional authorized to diagnose has diagnosed your child with autism spectrum disorder.",
+        "Your child was between 0 and 5 when diagnosed.",
+        "Your child has not yet entered school."
+      ]
+    },
+    "applyText": "See how to enrol",
+    "applyUrl": "https://www2.gnb.ca/content/gnb/en/services/services_renderer.13836.Preschool_Autism_Program.html",
+    "source": "https://www2.gnb.ca/content/gnb/en/services/services_renderer.13836.Preschool_Autism_Program.html",
+    "detail": {
+      "aboutList": {
+        "lead": "The program offers two types of intervention.",
+        "items": [
+          "Direct intervention is ongoing and intensive, given by behaviour assistants under a supervisor.",
+          "Direct intervention includes parent or guardian support and coaching.",
+          "Consultative intervention is low intensity and targets a specific challenge for the child or family.",
+          "It may include a small number of hours that can go up or down with your child's needs.",
+          "Services happen at home, in a childcare facility, or in limited cases a VIVA regional office."
+        ]
+      },
+      "steps": [
+        "A professional diagnoses autism spectrum disorder.",
+        "The professional sends a confirmation of diagnosis form to the Department.",
+        "The Department contacts you to explain the services.",
+        "With your consent, the Department starts the enrolment process."
+      ],
+      "documents": [
+        "Confirmation of Diagnosis Form (completed by the professional)",
+        "Language of Service Form",
+        "Consent for Release of Information to Agency"
+      ],
+      "tips": [
+        "You get a personalized learning plan made with a Behaviour Consultant or Clinical Supervisor.",
+        "Families receive services in their language of choice.",
+        "VIVA and schools work together to make the move to school smooth."
+      ],
+      "phone": "1-844-377-3819"
+    }
+  },
+  {
+    "id": "nb-long-term-care-home-support",
+    "name": "Long-Term Care Program (home support)",
+    "level": "New Brunswick",
+    "category": "Home support",
+    "amount": "Subsidized services; what you pay depends on your income",
+    "summary": "Seniors who need long-term help with daily activities may be eligible for subsidized services in their own home, a special care home or a nursing home.",
+    "note": "Needs are assessed by the Department of Social Development. Services are not covered by Medicare, and your income affects what you pay.",
+    "requires": [
+      "nb",
+      "nbLongTermCareHomeSupportRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 65 or older.",
+        "You need help with daily activities, such as mobility, bathing or preparing meals, on a long-term basis."
+      ],
+      "note": "An assessment of your needs comes first; the page says you may be eligible."
+    },
+    "applyText": "Ask for an assessment",
+    "applyUrl": "https://socialsupportsnb.ca/en/",
+    "source": "https://www2.gnb.ca/content/dam/gnb/Departments/sd-ds/pdf/LTC/LongTermCare-e.pdf",
+    "detail": {
+      "aboutList": {
+        "lead": "Services include:",
+        "items": [
+          "Home support helps with personal care, housekeeping and meal preparation at home.",
+          "Adult day centres give caregiver relief and social activities; seniors normally pay a small fee.",
+          "Special care homes give supervision and help with daily living.",
+          "Nursing homes are for people who are medically stable but need full-time nursing care.",
+          "Relief care gives families and caregivers a break, at home or in a care home."
+        ]
+      },
+      "steps": [
+        "Contact the Department of Social Development to ask for an assessment of your needs.",
+        "Someone you trust can be with you during the assessment.",
+        "The government may give financial help to people who cannot pay the full cost."
+      ],
+      "documents": [],
+      "tips": [
+        "Receiving long-term care services is voluntary. It is your choice.",
+        "To order the Going to a Nursing Home booklet, call the Public Legal Education and Information Service of New Brunswick at (506) 453-5369."
+      ],
+      "phone": "1-833-733-7835"
+    }
+  },
+  {
+    "id": "nb-extra-mural",
+    "name": "Extra-Mural Program (home healthcare)",
+    "level": "New Brunswick",
+    "category": "Home support",
+    "amount": "Publicly funded home healthcare; no dollar value published",
+    "summary": "Gives home healthcare at your home, special care home or nursing home, including nursing, therapy, palliative care and support for family caregivers.",
+    "note": "Care can be given at home, in a special care home or in a nursing home.",
+    "requires": [
+      "nb",
+      "nbExtraMuralRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in New Brunswick, any age.",
+        "You have a valid NB Medicare card, or are in the process of getting one.",
+        "Your health care needs can be met safely in the home."
+      ]
+    },
+    "applyText": "Request Extra-Mural services",
+    "applyUrl": "https://www.gnb.ca/en/topic/health-wellness/medicare-plans-programs/extra-mural.html",
+    "source": "https://www.gnb.ca/en/topic/health-wellness/medicare-plans-programs/extra-mural.html",
+    "detail": {
+      "aboutList": {
+        "lead": "The program can help when:",
+        "items": [
+          "You need help managing a chronic disease such as arthritis, COPD, diabetes or dementia.",
+          "You have had many hospital stays or emergency visits, or you are falling.",
+          "You have care needs after leaving hospital.",
+          "You have trouble with bathing, dressing, preparing meals or walking because of your health.",
+          "You need palliative and end-of-life care at home.",
+          "Your family or caregivers need help to care for you."
+        ]
+      },
+      "steps": [
+        "You, your primary care provider or a family member can request services.",
+        "Use the request link on the official page.",
+        "You get care coordination with you and your family as equal partners."
+      ],
+      "documents": [
+        "Valid NB Medicare card"
+      ],
+      "tips": [
+        "Services come from nurses, therapists, dietitians, social workers and patient care attendants.",
+        "The team can connect you with community resources, such as a wheelchair or bath bench.",
+        "Questions can go to the Extra-Mural reception line, Monday to Friday, 8:15 a.m. to 4:30 p.m., excluding holidays."
+      ],
+      "phone": "506-457-4800"
+    }
+  },
+  {
+    "id": "nb-low-income-seniors-benefit",
+    "name": "Low-Income Seniors' Benefit",
+    "level": "New Brunswick",
+    "category": "Income support",
+    "amount": "$629 a year (2026 benefit)",
+    "summary": "Gives $629 in annual financial support to eligible New Brunswick seniors who get certain federal Old Age Security benefits.",
+    "note": "The $629 is the 2026 amount. People may apply until Dec. 31.",
+    "requires": [
+      "nb",
+      "age18plus",
+      "nbLowIncomeSeniorsBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 60 or older and live in New Brunswick.",
+        "You get the Guaranteed Income Supplement (you must be 65 or older).",
+        "Or you get the Allowance or the Allowance for the Survivor (you must be 60 to 64)."
+      ],
+      "note": "If both spouses get the Guaranteed Income Supplement and live together, only one benefit is paid."
+    },
+    "applyText": "Apply for the benefit",
+    "applyUrl": "https://www.gnb.ca/en/news/n-b.2026.04.applications-for-2026-low-income-seniors-benefit-now-available.html",
+    "source": "https://www.gnb.ca/en/news/n-b.2026.04.applications-for-2026-low-income-seniors-benefit-now-available.html",
+    "detail": {
+      "aboutList": {
+        "lead": "What to know about the 2026 benefit:",
+        "items": [
+          "It pays $629 in annual financial support.",
+          "Spouses who live separately, such as one in a nursing home, can both get it.",
+          "Applications can be sent online or on forms from Service New Brunswick."
+        ]
+      },
+      "steps": [
+        "Apply online, or get a form at a Service New Brunswick location.",
+        "Apply any time until Dec. 31.",
+        "For details, email LISB-PAFR@snb.ca."
+      ],
+      "documents": [
+        "The application form"
+      ],
+      "tips": [
+        "The page shows 2026 information; ask whether the amount changes for later years.",
+        "Call the toll-free line if you are unsure whether you qualify."
+      ],
+      "phone": "1-833-796-0944"
+    }
+  },
+  {
+    "id": "nb-child-tax-benefit",
+    "name": "New Brunswick Child Tax Benefit and Working Income Supplement",
+    "level": "New Brunswick",
+    "category": "Money (for parents)",
+    "amount": "Up to $250 a year per dependent child, reduced by family income",
+    "summary": "A tax-free monthly payment to qualifying families with children under 18. A Working Income Supplement is added for families with earned income.",
+    "note": "It is paid together with the Canada Child Benefit in one monthly payment, and the Canada Revenue Agency (CRA) runs it.",
+    "requires": [
+      "nb",
+      "nbChildTaxBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a family with a child under 18.",
+        "For the Working Income Supplement, you also have earned income."
+      ],
+      "note": "The page lists no other conditions; call the number below to confirm."
+    },
+    "applyText": "See the program page",
+    "applyUrl": "https://www2.gnb.ca/content/gnb/en/departments/finance/taxes/child_tax_benefit.html",
+    "source": "https://www2.gnb.ca/content/gnb/en/departments/finance/taxes/child_tax_benefit.html",
+    "detail": {
+      "aboutList": {
+        "lead": "How the amounts work, as the page states them:",
+        "items": [
+          "Child Tax Benefit: $250 a year for each dependent child, less a share of family net income over $20,000.",
+          "Working Income Supplement: the lesser of $250 a year per family or 4% of earned income over $3,750.",
+          "The page also lists 5% of family net income over $20,921 for this supplement."
+        ]
+      },
+      "steps": [
+        "It is administered through the federal Canada Child Benefit program.",
+        "Contact the CRA to ask how to apply."
+      ],
+      "documents": [],
+      "tips": [
+        "That share is 2.5% with one child, or 5% with more than one child.",
+        "The province fully funds this benefit.",
+        "The page says benefits are combined with the Canada Child Benefit."
+      ],
+      "phone": "1-800-387-1193"
+    }
+  },
+  {
+    "id": "nb-health-services-equipment",
+    "name": "Health Services equipment and supplies (Social Development)",
+    "level": "New Brunswick",
+    "category": "Health",
+    "amount": "No cost for entitled items; limits apply",
+    "summary": "Equipment and supplies for health-card holders of Social Development: loaned mobility aids, orthopedic items, ostomy and incontinence supplies, and prosthetic, respiratory and ocular services.",
+    "note": "Each program has its own health card codes and rules. Cost limits apply, and you must have no other coverage to get full benefits.",
+    "requires": [
+      "nb",
+      "nbHealthServicesEquipmentRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a Social Development client or dependent, or have special health needs under provincial rules.",
+        "You hold the valid white or yellow Health Card that the program you want requires.",
+        "For full benefits, you must have no other coverage for the service."
+      ],
+      "note": "Each program lists its own card codes and benefit criteria."
+    },
+    "applyText": "See the Health Services programs",
+    "applyUrl": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities.html",
+    "source": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities.html",
+    "detail": {
+      "aboutList": {
+        "lead": "Health Services programs help with equipment and supplies not covered by other agencies or private insurance.",
+        "items": [
+          "Mobility and adaptive equipment is loaned at no cost for use in your home, within cost limits.",
+          "Loaned equipment must be prescribed by an occupational therapist or physiotherapist.",
+          "The orthopedic program covers custom braces, supports, special footwear, insoles, modifications and repairs.",
+          "Footwear is eligible every two years for adults and yearly for children.",
+          "Braces are eligible every five years for adults and yearly for children.",
+          "Ostomy, catheter and incontinence supplies are paid monthly, with quantities monitored.",
+          "Incontinence supplies cover people in a wheelchair or bed, or with ostomy or catheter needs only.",
+          "Prosthetic, respiratory and ocular prosthesis programs also exist; the page gives few details."
+        ]
+      },
+      "steps": [
+        "Call Health Services to ask which program fits and whether your Health Card qualifies.",
+        "Get the prescription or assessment the program needs, such as from an occupational therapist.",
+        "Use the ostomy and incontinence application form if you need those supplies."
+      ],
+      "documents": [
+        "Valid white or yellow Health Card",
+        "Prescription from an occupational therapist or physiotherapist, for loaned equipment"
+      ],
+      "tips": [
+        "Brand name ostomy products are considered only when generic ones are not available or will not meet your medical needs, with justification.",
+        "Other incontinence needs may be assessed as a special benefit under social assistance.",
+        "Loaned equipment is exchanged only when it is no longer safe or medically appropriate.",
+        "The page does not state eligibility rules for the prosthetic, respiratory and ocular programs."
+      ],
+      "time": "Monday to Friday, 8:15 a.m. to 4:30 p.m., except holidays",
+      "phone": "506-453-2001"
+    }
+  },
+  {
+    "id": "nb-portable-rent-supplement",
+    "name": "Portable Rent Supplement (persons with disabilities)",
+    "level": "New Brunswick",
+    "category": "Housing",
+    "amount": "You pay 30% of your adjusted household income in rent",
+    "summary": "A portable rent subsidy for people with a disability. It is tied to you rather than one unit, so you can choose your own housing.",
+    "note": "Income ceilings depend on bedrooms and on city or rural area. Applicants are chosen based on demonstrated need.",
+    "requires": [
+      "nb",
+      "nbPortableRentSupplementRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a single person or couple who can live independently with little or no support.",
+        "Your household income is under the ceiling for your area and bedrooms needed (see the tips).",
+        "Your housing situation meets one of the listed conditions (see the tips).",
+        "You have a verified disability, a disability pension, Extended Benefits or long-term mental health client status."
+      ],
+      "note": "Some exceptions to income limits may apply."
+    },
+    "applyText": "Call Housing NB to apply",
+    "applyUrl": "https://www.gnb.ca/en/topic/family-home-community/housing-property/portable-rent.html",
+    "source": "https://www.gnb.ca/en/topic/family-home-community/housing-property/portable-rent.html",
+    "detail": {
+      "aboutList": {
+        "lead": "Unlike the Rent Supplement Program, this subsidy is tied to you, not to one building or unit.",
+        "items": [
+          "You pay 30% of your adjusted household income in rent.",
+          "For couples, one may have mobility or independence issues if the other can care for their needs.",
+          "Housing NB chooses applicants based on demonstrated need."
+        ]
+      },
+      "steps": [
+        "Call Housing NB to ask about the program and to apply.",
+        "Have a health-care professional verify your disability in writing, or show proof of CPP Disability or Extended Benefits.",
+        "Mental health clients need written verification of long-term client status."
+      ],
+      "documents": [
+        "Written disability verification from a health-care professional",
+        "Proof of CPP Disability or Extended Benefits, if that is your route"
+      ],
+      "tips": [
+        "Income ceilings (eight major cities, then rural): $45,000 and $50,500 for one bedroom; $57,500 and $59,500 for two; $63,000 and $67,500 for three.",
+        "You must live in crowded or inadequate housing, or adequate local housing must cost 30% or more of your income.",
+        "A community group such as the New Brunswick Association for Community Living may refer you."
+      ],
+      "time": "Monday to Friday, 8:15 a.m. to 4:30 p.m., except holidays",
+      "phone": "1-833-733-7835"
+    }
+  },
+  {
+    "id": "nb-rent-supplement",
+    "name": "Rent Supplement Program",
+    "level": "New Brunswick",
+    "category": "Housing",
+    "amount": "Rent reduced to 30% of adjusted household income",
+    "summary": "Subsidized private-landlord units for households under income ceilings. Your rent is cut to 30% of your adjusted household income.",
+    "note": "The subsidy is tied to a particular unit. Applicants are chosen based on demonstrated need.",
+    "requires": [
+      "nb",
+      "nbRentSupplementRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your household income is under the ceiling for your area and bedrooms needed.",
+        "You are in at least one of three housing situations listed on the page (see the tips).",
+        "That includes crowded or inadequate housing, or adequate local housing costing 30% or more of your income."
+      ],
+      "note": "Some exceptions to income limits may apply."
+    },
+    "applyText": "Call Housing NB to apply",
+    "applyUrl": "https://www.gnb.ca/en/topic/family-home-community/housing-property/rent-suppplement.html",
+    "source": "https://www.gnb.ca/en/topic/family-home-community/housing-property/rent-suppplement.html",
+    "detail": {
+      "aboutList": {
+        "lead": "Housing NB has agreements with private landlords for several subsidized units.",
+        "items": [
+          "The program funds the gap between your rent and the unit's market value rent.",
+          "Otherwise it is a normal landlord-tenant relationship.",
+          "Tenants who qualify have rent reduced to 30% of adjusted household income."
+        ]
+      },
+      "steps": [
+        "Call Housing NB to ask about available units and to apply."
+      ],
+      "documents": [],
+      "tips": [
+        "Income ceilings (eight major cities, then rural): $45,000 and $50,500 for one bedroom; $57,500 and $59,500 for two; $63,000 and $67,500 for three.",
+        "You need to meet at least one of the housing situations on the page, not all of them.",
+        "A separate Portable Rent Supplement exists for people with disabilities."
+      ],
+      "time": "Monday to Friday, 8:15 a.m. to 4:30 p.m., except holidays",
+      "phone": "1-833-733-7835"
+    }
+  },
+  {
+    "id": "nb-rrap",
+    "name": "Rental RRAP and garden suites for adults with disabilities",
+    "level": "New Brunswick",
+    "category": "Home",
+    "amount": "Forgivable loan up to $36,000 for a secondary or garden suite",
+    "summary": "Homeowners can get a forgivable loan to add a secondary or garden suite for an adult with a disability. Landlord repair and conversion streams also exist.",
+    "note": "Owners pay 25% of the total cost. You must show equity or other financing for costs above the maximum loan.",
+    "requires": [
+      "nb",
+      "nbRrapRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You own an existing family residential property that can feasibly be converted for a suite.",
+        "The suite is for a person restricted or unable to perform an activity within the normal range.",
+        "Your income is below the housing income limit for your household size and location."
+      ],
+      "note": "The new unit must be modest in size and amenities."
+    },
+    "applyText": "Call Housing NB to apply",
+    "applyUrl": "https://www.gnb.ca/en/topic/family-home-community/housing-property/rehabilitation-conversion.html",
+    "source": "https://www.gnb.ca/en/topic/family-home-community/housing-property/rehabilitation-conversion.html",
+    "detail": {
+      "aboutList": {
+        "lead": "This page covers several streams; the suite stream helps families house an adult with a disability.",
+        "items": [
+          "The maximum forgivable loan for a secondary or garden suite or an extension is $36,000.",
+          "Landlords can get up to $36,000 per unit for repairs to units rented to low-income tenants.",
+          "Landlords can get up to $24,000 per bed unit for rooming house repairs.",
+          "A conversion stream funds turning non-residential property into affordable rental housing."
+        ]
+      },
+      "steps": [
+        "Call Housing NB to ask about the suite stream and to apply.",
+        "Show that your property can feasibly be converted to meet Housing NB requirements."
+      ],
+      "documents": [
+        "Proof of equity or other financing for costs above the maximum loan"
+      ],
+      "tips": [
+        "Suites can only be created on existing family residential properties.",
+        "Landlord repair streams need a property at least five years old that needs major repair.",
+        "Nursing homes, care facilities and special purpose housing are not eligible."
+      ],
+      "time": "Monday to Friday, 8:15 a.m. to 4:30 p.m., except holidays",
+      "phone": "1-833-733-7835"
+    }
+  },
+  {
+    "id": "nb-ambulance-fee-exemption",
+    "name": "Ambulance fee exemption",
+    "level": "New Brunswick",
+    "category": "Health",
+    "amount": "Resident fee is $130.60; listed groups do not pay it upfront",
+    "summary": "Some people do not pay the ambulance bill upfront because a provincial program covers it, including social assistance and Guaranteed Income Supplement recipients.",
+    "note": "The fee is $130.60 for New Brunswick residents and $650.00 for non-residents. Motor vehicle collision patients must pay.",
+    "requires": [
+      "nb",
+      "nbAmbulanceFeeExemptionRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You are an entitled recipient of Social Assistance services.",
+        "You receive the Guaranteed Income Supplement.",
+        "You live in a nursing home and have been issued a yellow health card.",
+        "You are an Extra-Mural Program patient whose transport Extra-Mural requested."
+      ],
+      "note": "Transport for Medical Assistance In Dying is also covered."
+    },
+    "applyText": "See ambulance billing",
+    "applyUrl": "https://ambulancenb.ca/en/billing/",
+    "source": "https://ambulancenb.ca/en/billing/",
+    "detail": {
+      "aboutList": {
+        "lead": "If you call 911 and need an ambulance to hospital, you receive an invoice in the mail.",
+        "items": [
+          "For listed groups, the provincial program pays the bill.",
+          "There is no cost for transfers of an admitted patient from one hospital to another.",
+          "People with private insurance pay upfront, then claim the receipt from their insurer."
+        ]
+      },
+      "steps": [
+        "If you are in a listed group and get a bill, contact Ambulance NB about it."
+      ],
+      "documents": [],
+      "tips": [
+        "Collision injuries are billed to you, and your auto insurance may reimburse you.",
+        "Email feeinquiry@ambulancenb.ca or call the Greater Moncton line, 506-872-6554."
+      ],
+      "phone": "1-888-657-3222"
+    }
   }
 
 ];
@@ -14586,6 +15617,26 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "nb-ambulance-fee-exemption": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-rrap": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-rent-supplement": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-portable-rent-supplement": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-health-services-equipment": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-child-tax-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-low-income-seniors-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-extra-mural": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-long-term-care-home-support": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-preschool-autism": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-healthy-smiles-clear-vision": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-prescription-drug-program": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-accessible-parking": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-vehicle-retrofit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-family-supports-children": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-tess": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-employment-support-services": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-self-managed-support": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-disability-support-program": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "nb-social-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "brandon-cnib-free-transit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-manitoba/city-snapshots)
   "brandon-access-transit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-manitoba/city-snapshots)
   "mb-prenatal-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)

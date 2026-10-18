@@ -1475,5 +1475,100 @@
     "short": "Check the disability documents the program asks for",
     "who": ["you", "professional"],
     "reason": "Manitoba city record brandon-cnib-free-transit (2026-10-18)"
+  },
+  "nbSocialAssistanceRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nb-social-assistance (2026-10-17)"
+  },
+  "nbDisabilitySupportProgramRoute": {
+    "short": "Check the age range and the long-term disability rule",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record nb-disability-support-program (2026-10-17)"
+  },
+  "nbSelfManagedSupportRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Provincial-sweep record nb-self-managed-support (2026-10-17)"
+  },
+  "nbEmploymentSupportServicesRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Provincial-sweep record nb-employment-support-services (2026-10-17)"
+  },
+  "nbTessRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record nb-tess (2026-10-17)"
+  },
+  "nbFamilySupportsChildrenRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record nb-family-supports-children (2026-10-17)"
+  },
+  "nbVehicleRetrofitRoute": {
+    "short": "Check the physical disability rule",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record nb-vehicle-retrofit (2026-10-17)"
+  },
+  "nbPrescriptionDrugProgramRoute": {
+    "short": "Check the income or disability route",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nb-prescription-drug-program (2026-10-17)"
+  },
+  "nbHealthySmilesClearVisionRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nb-healthy-smiles-clear-vision (2026-10-17)"
+  },
+  "nbPreschoolAutismRoute": {
+    "short": "Check the autism diagnosis",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record nb-preschool-autism (2026-10-17)"
+  },
+  "nbLongTermCareHomeSupportRoute": {
+    "short": "Ask for a long-term care assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nb-long-term-care-home-support (2026-10-17)"
+  },
+  "nbExtraMuralRoute": {
+    "short": "Ask your health provider about a referral",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nb-extra-mural (2026-10-17)"
+  },
+  "nbLowIncomeSeniorsBenefitRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Provincial-sweep record nb-low-income-seniors-benefit (2026-10-17)"
+  },
+  "nbChildTaxBenefitRoute": {
+    "short": "Check the income test and that you are raising a child",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nb-child-tax-benefit (2026-10-17)"
+  },
+  "nbHealthServicesEquipmentRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Provincial-sweep record nb-health-services-equipment (2026-10-17)"
+  },
+  "nbPortableRentSupplementRoute": {
+    "short": "Check the disability and income ceiling",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record nb-portable-rent-supplement (2026-10-17)"
+  },
+  "nbRentSupplementRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record nb-rent-supplement (2026-10-17)"
+  },
+  "nbRrapRoute": {
+    "short": "Check the activity restriction and income limit",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record nb-rrap (2026-10-17)"
+  },
+  "nbAmbulanceFeeExemptionRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Provincial-sweep record nb-ambulance-fee-exemption (2026-10-17)"
   }
 }

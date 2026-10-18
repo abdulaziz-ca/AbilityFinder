@@ -1,0 +1,58 @@
+URL: https://www.codiactranspo.ca/moncton-transport/accessibility | province: NB/Moncton | program: Codiac Transpo free rides for CNIB cardholders | fetched: 2026-10-18
+=== PAGE: https://www.codiactranspo.ca/moncton-transport/accessibility (HTTP 200, 3446 chars)
+
+ Search
+ Priority seating
+The first six seats at the front of the bus are designated priority seats and reserved for those with mobility needs.
+ Service Animals on the Bus
+Passengers who require the support of a service animal are permitted to bring their service animals into all Codiac Transpo facilities and on all vehicles. For the safety of all passengers, service animals must be securely leashed and under the care and control of the owner at all times. Passengers are not required to carry identification for their service animal.
+Note: Do not touch, pat, distract, or attempt to play with a service dog.
+ Wheelchair Accessible Routes
+ All routes are wheelchair accessible. 
+ What does a Wheelchair Accessible Low-Floor (ALF) bus mean for you? 
+Curb level entry, easy ramp access, wider doors and rear-facing wheelchair secure spaces gives riders more freedom and makes accessible travel comfortable and safe.
+ Guidelines
+- Most electric mobility scooters, due to their dimensions, are not permitted on Codiac Transpo buses. Certain mobility scooters, such as those that fold, are permitted with pre-approval from Codiac Transpo, to ensure that the scooters can fit on the ramp and in aisles. For pre-approval, please phone our office at 506-857-2008.
+- Customers must be able to independently board, pay, and disembark or travel with attendant assistance.
+- Customers with mobility issues must board and disembark via the front door ramp.
+ Wheeling On and Off an ALF Bus 
+- Allow other customers to first board and disembark.
+- Deposit fare in box. The operator can provide assistance if needed.
+- Back in to wheelchair location.
+- Keep backpacks/bags off the floor
+- Secure brake and seatbelt. Power off electric chairs. Securing the wheelchair is mandatory.
+ Audiovisual stop announcements
+ Codiac Transpo is in the process of implementing an audiovisual system to announce upcoming stops. The system includes recorded announcements as well as a screen at the front of the bus that displays the upcoming stop.
+It will be of particular assistance to those with visual and hearing impairments, but it benefits all passengers!
+How it works
+- The system announces the approaching stop.
+- Stops are announced by the nearest cross street (ex. Main-Cameron) where possible, and with street addresses when a cross street is not available (ex. 1111 Main). Stops may also use the name of a significant building (ex. People’s Park Tower). 
+- Not every stop is announced as sometimes stops are too close together to do so. The bus will still stop in between as requested, but the stop will not be announced over the sound system.
+Available on the following bus routes: 
+- 16 Hennessey
+- 50 Red
+- 51 Green
+- 60 Bessborough
+- 61 Elmwood
+- 62 Hildegard
+- 63 Lewisville
+- 64 Hospital
+- 65 Killam
+- 66 Caledonia
+- 67 Edinburgh
+- 68 Salisbury
+- 81 Riverview
+- 82 Riverview Place
+- 85 Riverview Connector
+- 86 Pinewood
+Additional routes are being worked on with the goal of having all buses providing this service as soon as possible.
+ Free transit for CNIB members and attendants
+Canadian National Institute for the Blind (CNIB) cardholders travel for free on all Codiac Transpo buses. You must show your valid CNIB card when you board.
+Travelling companions of individuals with disabilities who require assistance ride also ride for free with an attendant pass. You can obtain an attendant pass at the Codiac Transpo main office, 140 Millenium Blvd.
+ 
+
+=== PAGE: https://www.codiactranspo.ca/fares (HTTP 404, 50 chars)
+
+ Search
+ The requested page could not be found.
+ 

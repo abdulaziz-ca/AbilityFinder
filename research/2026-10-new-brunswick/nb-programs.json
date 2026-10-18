@@ -1,0 +1,295 @@
+{
+ "provincial": [
+  {
+   "name": "Social Assistance Program (Transitional Assistance + Extended Benefits)",
+   "url": "https://www2.gnb.ca/content/gnb/en/services/services_renderer.10295.html",
+   "who": "Households whose total income is below the rate for their family type. Extended Benefits: clients certified blind, deaf or disabled by the Medical Advisory Board (18+, per policy manual).",
+   "what": "Monthly income help for basics; Extended Benefits is the disability rate; includes health card, emergency fuel benefit, medical transportation.",
+   "age_group": "all (EBP 18+)",
+   "route": "income_or_disability",
+   "confidence": "high",
+   "notes": "Main page does not name TAP/EBP; categories confirmed on 2021 reform page and policy manual (search snippet). Nurse practitioners can sign disability forms. Apply by phone 1-833-733-7835. Reform page fetched OK."
+  },
+  {
+   "name": "Disability Support Program",
+   "url": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/disability-support.html",
+   "who": "NB residents 19 to 64 with a long-term disability needing help to support themselves or take part in community; financial assessment sets contribution.",
+   "what": "Personalized planning plus personal support, respite, daily-living training, disability transport, devices, residential services, Meals on Wheels.",
+   "age_group": "19-64",
+   "route": "disability",
+   "confidence": "high",
+   "notes": "Contribution income-tested but eligibility is not. Excludes services other programs provide and addiction-only needs. Overlaps Self-Managed Support, Employment and Support Services."
+  },
+  {
+   "name": "Self-Managed Support",
+   "url": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/self-support.html",
+   "who": "Clients of the Disability Support Program or Long-Term Care Program.",
+   "what": "Monthly lump sum so client directs and hires own support providers (family allowed if not in same residence).",
+   "age_group": "adult",
+   "route": "disability",
+   "confidence": "high",
+   "notes": "Option inside DSP/LTC, not a stand-alone entry route; consider folding into DSP."
+  },
+  {
+   "name": "Employment and Support Services Program",
+   "url": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/employment-support.html",
+   "who": "People approved for and receiving Disability Support Program services; supported by one of 38 contracted non-profit agencies.",
+   "what": "Life skills, community activities, job finding and inclusive paid work through agencies.",
+   "age_group": "adult",
+   "route": "disability",
+   "confidence": "high",
+   "notes": "Reached via DSP; call screening 1-833-733-7835."
+  },
+  {
+   "name": "Training and Employment Support Services (TESS) for Persons with Disabilities",
+   "url": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/tess-disabilities.html",
+   "who": "New Brunswickers with a permanent physical, intellectual, psychiatric, cognitive or sensory disability; no need to receive income support.",
+   "what": "Individually tailored help to take training, get, return to or keep a job.",
+   "age_group": "working age",
+   "route": "disability",
+   "confidence": "high",
+   "notes": "Apply at nearest WorkingNB office. Page does not state age limits or dollar amounts."
+  },
+  {
+   "name": "Family Supports for Children with Disabilities (FSCD)",
+   "url": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/supports-children.html",
+   "who": "Eligible families of children with a disability; page gives no criteria. Secondary sources: under 19, lifelong condition, not income-tested, but family contribution for those with means.",
+   "what": "Funds unmet needs: equipment, medical transport, incontinence supplies, respite, home support, therapeutic recreation, health card if no coverage.",
+   "age_group": "under 19",
+   "route": "disability",
+   "confidence": "medium",
+   "notes": "Official page does not state age/income; age 19 cut-off from secondary sources (Migraine Canada, not official). Social worker contact 1-833-733-7835."
+  },
+  {
+   "name": "Mobility and Adaptive Equipment Loan Program",
+   "url": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/mobility-equipment.html",
+   "who": "Social Development clients and dependents, or people with special health needs qualifying for assisted health care; valid Health Card; prescribed by OT or physio.",
+   "what": "Free loan of basic/complex adaptive aids and manual/power mobility aids (run with Easter Seals NB recycling).",
+   "age_group": "all",
+   "route": "assistance_only",
+   "confidence": "high",
+   "notes": "Gated by Social Development health card (not open to all disabled people). Red Cross loans excluded as charity."
+  },
+  {
+   "name": "Orthopedic Program (Health Services)",
+   "url": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/orthopedic.html",
+   "who": "Social Development clients and dependents with valid health card marked for supplementary/orthopedic, or special health needs; no other coverage.",
+   "what": "Braces, supports, orthopedic footwear and insoles; adults shoes every 2 years, braces every 5.",
+   "age_group": "all",
+   "route": "assistance_only",
+   "confidence": "high",
+   "notes": "Same Health Services family as prosthetic, respiratory, ocular prosthesis pages (listed on hub; only orthopedic and ostomy fetched)."
+  },
+  {
+   "name": "Ostomy/Incontinence Program",
+   "url": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/ostomy-incontinence.html",
+   "who": "Social Development clients and dependents with white health card showing Supplementary or OS, or yellow card with Y; no other coverage.",
+   "what": "Free ostomy, catheter and (limited) incontinence supplies paid monthly.",
+   "age_group": "all",
+   "route": "assistance_only",
+   "confidence": "high",
+   "notes": "Incontinence limited to wheelchair users, bedridden, ostomy/catheter users."
+  },
+  {
+   "name": "Prosthetic, Respiratory and Ocular Prosthesis Programs (Health Services)",
+   "url": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities.html",
+   "who": "Listed on hub as Health Services programs; eligibility assumed same Social Development health card basis but not fetched individually.",
+   "what": "Coverage for prosthetic services, respiratory equipment/supplies, ocularist services.",
+   "age_group": "all",
+   "route": "assistance_only",
+   "confidence": "medium",
+   "notes": "Individual pages (prosthetic.html, respiratory.html, ocular-prosthesis-program.html) NOT fetched; only hub confirmed. Fetch before ingesting."
+  },
+  {
+   "name": "Vehicle Retrofit Program",
+   "url": "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/vehicle-retrofit.html",
+   "who": "NB residents with a physical disability; also non-profits, municipalities, companies providing disability transport.",
+   "what": "Up to 80% of eligible vehicle accessibility features, max $8,000; once every 8 years (organizations 5).",
+   "age_group": "all",
+   "route": "disability",
+   "confidence": "high",
+   "notes": "No income test on page. Possible sales tax refund. Contact Ability NB 1-866-462-9555."
+  },
+  {
+   "name": "Accessible (Disabled) Parking Permit - New Brunswick",
+   "url": "https://www.gnb.ca/en/topic/driving-transportation/driving-safety/disabled-parking.html",
+   "who": "People with significant mobility impairment (cannot walk over 50 m unaided outdoors); signed by physician, OT, NP or physio.",
+   "what": "Free permit and placard, apply at Service New Brunswick.",
+   "age_group": "all",
+   "route": "disability",
+   "confidence": "high",
+   "notes": "Free. Expiry period not stated on page."
+  },
+  {
+   "name": "New Brunswick Prescription Drug Program (Social Development clients, seniors with GIS, special groups)",
+   "url": "https://www.gnb.ca/en/topic/health-wellness/nb-drug-plans/eligibility-prescription.html",
+   "who": "Valid NB Medicare card plus group: Social Development health card holders, seniors (65+) on GIS, nursing/residential facility residents, children in care and special-needs children.",
+   "what": "Prescription coverage; Social Development clients pay $4 per adult / $2 per child prescription, capped $250 per family per year.",
+   "age_group": "all",
+   "route": "income_or_disability",
+   "confidence": "high",
+   "notes": "Condition plans (CF, HIV, MS, transplant, growth hormone) out of scope. Special-needs children eligibility set by Social Development."
+  },
+  {
+   "name": "New Brunswick Drug Plan (income-based premium)",
+   "url": "https://www.gnb.ca/en/topic/health-wellness/nb-drug-plans/premiums-payments.html",
+   "who": "NB residents without other drug coverage who enrol; premium and copay set by family income (line 15000).",
+   "what": "Drug coverage with sliding premium ($72/yr lowest tier rising to $2,896; copay 30% capped $5.25-$36).",
+   "age_group": "all",
+   "route": "income",
+   "confidence": "high",
+   "notes": "From Nov 1, 2026 lowest tier $89/yr (income <= $19,571 individual), top $3,087. Not free; subsidy-like sliding scale. Dependants under 19 pay no premium."
+  },
+  {
+   "name": "Healthy Smiles, Clear Vision",
+   "url": "https://www2.gnb.ca/content/gnb/en/departments/social_development/promos/healthy_smiles_clear_vision.html",
+   "who": "Children 18 or younger living in NB, no other dental/vision coverage, enrolled in CDCP, family net income within limit (e.g. 2 people $35,683; 4 people $50,463).",
+   "what": "Basic dental and yearly eye exam, lenses and frames for children.",
+   "age_group": "0-18",
+   "route": "income",
+   "confidence": "high",
+   "notes": "Limits from June 2025 MBM; recheck yearly. Social Development child clients auto-transfer. Overlaps federal CDCP (requirement)."
+  },
+  {
+   "name": "Preschool Autism Program",
+   "url": "https://www2.gnb.ca/content/gnb/en/services/services_renderer.13836.Preschool_Autism_Program.html",
+   "who": "Child diagnosed with ASD, 5 or younger as of Dec 31, not in school, full-time NB resident (per 2020 handbook, not the page).",
+   "what": "Publicly funded evidence-based ABA intervention through contracted agency.",
+   "age_group": "preschool",
+   "route": "disability",
+   "confidence": "medium",
+   "notes": "fetch returned page shell with no content; eligibility from search snippet of parent handbook and Oct 2025 guidelines PDF (not fetched). Provider naming conflicts (VIVA vs AIS)."
+  },
+  {
+   "name": "Long-Term Care Program - Home Support (and nursing home subsidy)",
+   "url": "https://www2.gnb.ca/content/dam/gnb/Departments/sd-ds/pdf/LTC/LongTermCare-e.pdf",
+   "who": "Seniors 65+ with long-term functional needs after Social Development assessment; nursing home applicants 19+ assessed as needing that care; income/financial assessment for subsidy.",
+   "what": "Home support (personal care, housekeeping, respite), day activity, nursing home and special care home subsidy.",
+   "age_group": "65+ (nursing home 19+)",
+   "route": "income_or_disability",
+   "confidence": "medium",
+   "notes": "URL is a PDF from search results, NOT fetched; official topic page not located. March 2026 LTC plan changing home-care financial thresholds. Online estimator at socialsupportsnb.ca (not fetched)."
+  },
+  {
+   "name": "Extra-Mural Program (EMP)",
+   "url": "https://www.gnb.ca/en/topic/health-wellness/medicare-plans-programs/extra-mural.html",
+   "who": "Any NB resident with valid Medicare card whose health needs can be met safely at home.",
+   "what": "Publicly funded home healthcare: nursing, rehab, palliative, care coordination, in home, special care homes and nursing homes.",
+   "age_group": "all",
+   "route": "assistance_only",
+   "confidence": "high",
+   "notes": "Universal, not means- or disability-tested; page lists no fees. Include only if catalogue accepts universal health services."
+  },
+  {
+   "name": "Low-Income Seniors' Benefit",
+   "url": "https://www.gnb.ca/en/news/n-b.2026.04.applications-for-2026-low-income-seniors-benefit-now-available.html",
+   "who": "NB residents 60+ receiving federal GIS (65+) or Allowance / Allowance for the Survivor (60-64).",
+   "what": "$629 annual payment (2026); apply by Dec 31.",
+   "age_group": "60+",
+   "route": "income",
+   "confidence": "high",
+   "notes": "URL is the 2026 news release (annual); a stable program page exists at www2.gnb.ca/.../new-brunswick-low-income-seniors-benefit.html (seen in search, not fetched). Not disability-specific."
+  },
+  {
+   "name": "New Brunswick Child Tax Benefit and Working Income Supplement",
+   "url": "https://www2.gnb.ca/content/gnb/en/departments/finance/taxes/child_tax_benefit.html",
+   "who": "Qualifying families with children under 18 (CCB administered); WIS needs earned income.",
+   "what": "NBCTB up to $250 per child per year income-reduced; NBWIS up to $250 per family.",
+   "age_group": "families, under 18",
+   "route": "income",
+   "confidence": "high",
+   "notes": "Paid automatically with Canada Child Benefit. School Supplement ($100/child per search snippet) not on this page; unverified."
+  },
+  {
+   "name": "Portable Rent Supplement Program (persons with disabilities)",
+   "url": "https://www.gnb.ca/en/topic/family-home-community/housing-property/portable-rent.html",
+   "who": "Individuals/couples able to live independently, with long-term impairment verified by health professional, CPP-D or Extended Benefits, or mental health client; adjusted income under ceilings ($45,000 1-bed urban).",
+   "what": "Rent set at 30% of adjusted income; subsidy portable to any suitable unit.",
+   "age_group": "adult",
+   "route": "income_or_disability",
+   "confidence": "high",
+   "notes": "Apply Housing NB 1-833-733-7835. Also need housing-need test."
+  },
+  {
+   "name": "Rent Supplement Program",
+   "url": "https://www.gnb.ca/en/topic/family-home-community/housing-property/rent-suppplement.html",
+   "who": "Low-income households under income ceilings chosen by demonstrated need (details from search snippet).",
+   "what": "Rent reduced to 30% of adjusted household income in designated private units.",
+   "age_group": "all",
+   "route": "income",
+   "confidence": "medium",
+   "notes": "Page NOT fetched, only search snippet; URL spelling 'suppplement' as published."
+  },
+  {
+   "name": "Residential Rehabilitation Assistance Program (RRAP) incl. accessibility modification",
+   "url": "https://www.gnb.ca/en/topic/family-home-community/housing-property/rehabilitation-conversion.html",
+   "who": "Homeowners/landlords with income at or below Housing Income Limits for repairs and disability accessibility modifications (search snippet).",
+   "what": "Forgivable loan help for accessibility work and repairs; landlords up to $36,000/unit.",
+   "age_group": "all",
+   "route": "income_or_disability",
+   "confidence": "medium",
+   "notes": "Page not fetched; Housing Assistance for Persons with Disabilities page (services_renderer.19576) fetch returned no content. Homeowner accessibility caps unverified. Homeowner RRAP-Disabilities caps need check."
+  },
+  {
+   "name": "Ambulance fee exemption",
+   "url": "https://ambulancenb.ca/en/billing/",
+   "who": "Entitled Social Assistance recipients, GIS recipients, some Extra-Mural patients, nursing home residents with yellow health card.",
+   "what": "No upfront ambulance bill ($130.60 standard NB resident fee).",
+   "age_group": "all",
+   "route": "assistance_only",
+   "confidence": "high",
+   "notes": "A benefit inside other programs; consider folding into Social Assistance and GIS records."
+  },
+  {
+   "name": "Student aid for students with permanent disabilities (NB integrated)",
+   "url": "https://www.gnb.ca/en/topic/education-training/post-secondary/student-aid/full-time-students.html",
+   "who": "Students with a permanent or persistent/prolonged disability, verified by medical assessor.",
+   "what": "Canada Student Grant for Students with Disabilities $2,800/yr; services and equipment grant up to $20,000/yr; 40% course load counts as full time.",
+   "age_group": "post-secondary",
+   "route": "disability",
+   "confidence": "medium",
+   "notes": "Federal overlap (already catalogued); no NB-only grant found. Page itself not fetched (search snippets)."
+  }
+ ],
+ "municipal": [
+  {
+   "name": "Dieppe Accessible Transit (Transport adapte)",
+   "url": "https://www.dieppe.ca/en/vivre-ici/transports/transport-adapte/",
+   "who": "Dieppe residents who use a wheelchair permanently or have a significant persistent disability preventing safe transit use.",
+   "what": "Subsidized door-to-door trips: $3 one-way in Dieppe, $6 to Moncton/Riverview; monthly trip allotment.",
+   "age_group": "all",
+   "route": "disability",
+   "confidence": "high",
+   "notes": "Moncton/Riverview equivalents not found; Codiac Transpo covers Moncton, Dieppe, Riverview. 4-week processing. Page fetched OK."
+  },
+  {
+   "name": "Fredericton Para Transit",
+   "url": "https://www.fredericton.ca/en/resident-services/fredericton-transit/para-transit",
+   "who": "Registered clients with disabilities who cannot use fixed-route transit; city residents; age and finances not considered (2025 handbook per search).",
+   "what": "Door-to-door service $3 cash or 10 tickets $27.50; attendant free.",
+   "age_group": "all",
+   "route": "disability",
+   "confidence": "high",
+   "notes": "Register via Service Fredericton 506-460-2020. Handbook PDF unreadable via fetch. Low-income pass details unverified (only a 2019 news item); Transit Fare Assistance Program goes to agencies, not individuals."
+  },
+  {
+   "name": "Saint John Accessible Transit (formerly Handi-Bus)",
+   "url": "https://saintjohn.ca/en/news-and-notices/saint-john-ability-advisory-committee-champions-paratransit-service-new-name-logo-and-bus",
+   "who": "People with disabilities unable to use regular Saint John Transit.",
+   "what": "Specialized paratransit run by Independence Plus Inc.; $5.50 one-way per city FAQ (search snippet).",
+   "age_group": "all",
+   "route": "disability",
+   "confidence": "medium",
+   "notes": "Page is a news item; no registration or fare info on it. Phone 506-648-0609 from FAQ (not fetched). Find current Saint John Transit accessible page."
+  }
+ ],
+ "checked_hubs": [
+  "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities.html",
+  "https://www.gnb.ca/en/org/social-development.html",
+  "https://www2.gnb.ca/content/gnb/en/departments/social_development/promos/social_assistance_reform_2021.html",
+  "https://www2.gnb.ca/content/gnb/en/departments/social_development/policy_manual/benefits/content/health_card.html",
+  "https://www.gnb.ca/en/topic/health-wellness/nb-drug-plans/eligibility-prescription.html",
+  "FETCH_BLOCKED (403): https://www2.gnb.ca/content/gnb/en/departments/social_development/programs_and_services.html",
+  "NOT_CHECKED municipal: Moncton, Riverview, Miramichi, Edmundston, Bathurst, Quispamsis, Rothesay, Campbellton, recreation fee assistance, low-income transit passes"
+ ]
+}

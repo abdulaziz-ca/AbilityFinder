@@ -1,0 +1,113 @@
+URL: https://www.gnb.ca/en/topic/health-wellness/nb-drug-plans/premiums-payments.html | province: NB | program: New Brunswick Drug Plan (income-based premium) | fetched: 2026-10-18
+=== PAGE: https://www.gnb.ca/en/topic/health-wellness/nb-drug-plans/premiums-payments.html (HTTP 200, 7841 chars)
+
+ Premiums and co-payments
+ Premiums and co-payments for the New Brunswick Drug Plan are based on household income and reassessed each year.
+ On this page
+ - 
+ - 
+ - 
+ - 
+ - 
+ - 
+ Overview
+ Premiums and maximum co-payments for the New Brunswick Drug Plan are based on annual family or household income, as indicated by a Canada Revenue Agency (CRA) tax return for the previous year. 
+All plan members must pay a 30% co-payment up to a maximum amount per prescription. 
+ Premiums and co-payments
+ All adult plan members pay a monthly premium based on their family income and the following criteria: 
+- if two adults in the family enrol in the plan, then two premiums of the same amount must be paid 
+- if only one adult enrols in the plan, only one premium must be paid; however, it is still based on the family or household income  
+- eligible dependants will not pay premiums, but at least one parent or guardian must enrol and pay a premium for one or more eligible dependants to be covered 
+Premium payment is due on the first day of the coverage period. Monthly premiums will be automatically deducted from the provided bank account each month.  
+The premiums and maximum co-payments are as follows: 
+Effective November 1, 2025
+Gross Income Levels Premiums Co-payments 
+Individual Individual with children / Couple with or without children Monthly Premium 
+(per adult) Annual Premium (per adult) 30% Co-pay to a Maximum per Prescription 
+$19,168 or less $38,336 or less $6.00 $72 $5.25 
+$19,169 to $20,205 $38,337 to $40,087 $12.08 $145 $6.65 
+$20,206 to $21,179 $40,088 to $41,736 $24.17 $290 $8.10 
+$21,180 to $22,214 $41,737 to $43,488 $36.17 $434 $9.75 
+$22,215 to $23,251 $43,489 to $45,240 $48.25 $579 $12.65 
+$23,252 to $24,286 $45,241 to $46,992 $60.33 $724 $14.10 
+$24,287 to $25,261 $46,993 to $48,640 $72.42 $869 $15.55 
+$25,262 to $26,297 $48,641 to $50,391 $84.50 $1,014 $17.05 
+$26,298 to $27,333 $50,392 to $52,143 $96.58 $1,159 $18.45 
+$27,334 to $28,369 $52,144 to $53,895 $108.58 $1,303 $19.95 
+$28,370 to $29,344 $53,896 to $55,545 $120.75 $1,449 $21.40 
+$29,345 to $30,379 $55,546 to $57,297 $132.75 $1,593 $22.85 
+$30,380 to $31,415 $57,298 to $59,049 $144.83 $1,738 $24.30 
+$31,416 to $32,450 $59,050 to $60,800 $156.83 $1,882 $25.75 
+$32,451 to $42,710 $60,801 to $77,213 $168.92 $2,027 $27.20 
+$42,711 to $52,968 $77,214 to $93,626 $181.08 $2,173 $28.70 
+$52,969 to $63,226 $93,627 to $110,039 $193.08 $2,317 $30.15 
+$63,227 to $73,485 $110,040 to $126,453 $205.17 $2,462 $31.60 
+$73,486 to $83,742 $126,454 to $142,866 $217.17 $2,606 $33.10 
+$83,743 to $94,001 $142,867 to $159,279 $229.33 $2,752 $34.50 
+Over $94,002 Over $159,280 $241.33 $2,896 $36.00 
+ Effective November 1, 2026
+Gross Income Levels Premiums Co-payments 
+Individual Individual with children / Couple with or without children Monthly Premium 
+(per adult) Annual Premium (per adult) 30% Co-pay to a Maximum per Prescription 
+$19,571 or less$39,141 or less$7.42$89$5.25
+$19,572 to $20,629$39,142 to $40,929$13.83$166$6.65
+$20,630 to $21,624$40,930 to $42,612$26.67$320$8.10
+$21,625 to $22,680$42,613 to $44,401$39.42$473$9.75
+$22,681 to $23,739$44,402 to $46,190$52.25$627$12.65 
+$23,740 to $24,796$46,191 to $47,979$65.08$781$14.10 
+$24,797 to $25,791$47,980 to $49,661$77.83$934$15.55 
+$25,792 to $26,849$49,662 to $51,449$90.67$1,088$17.05
+$26,850 to $27,907$51,450 to $53,238$103.50$1,242$18.45 
+$27,908 to $28,965$53,239 to $55,027$116.25$1,395$19.95 
+$28,966 to $29,960$55,028 to $56,711$129.17$1,550$21.40 
+$29,961 to $31,017$56,712 to $58,500$141.92$1,703$22.85 
+$31,018 to $32,075$58,501 to $60,289$154.75$1,857$24.30
+$32,076 to $33,131$60,290 to $62,077$167.58$2,011$25.75
+$33,132 to $43,607$62,078 to $78,834$180.42$2,165$27.20 
+$43,608 to $54,080$78,835 to $95,592$193.33$2,320$28.70 
+$54,081 to $64,554$95,593 to $112,350$206.08$2,473$30.15 
+$64,555 to $75,028$112,351 to $129,109$218.92$2,627$31.60
+$75,029 to $85,501$129,110 to $145,866$231.58$2,779$33.10
+$85,502 to $95,975$145,867 to $162,624$244.50$2,934$34.50 
+Over $95,976Over $162,625$257.25$3,087$36.00 
+To update personal or payment information, members must complete the Information Changes – Personal, Income or Payment Form (PDF 628 KB) and submit it by mail or fax to:  
+New Brunswick Drug Plan 
+PO Box 690
+Moncton, NB
+E1C 8M7
+Fax: 1-888-455-8322
+ Household income
+ Premiums and co-payments are based on family income.
+Income means the total income as declared on line 15000 of the Income Tax Return, minus any elected split-pension amount on line 11600 (if applicable). The CRA determines which sources of income must be included in the amount reported on line 15000.
+If an applicant or their spouse does not file a tax return or consent to verify income is not received, the maximum annual premium will be charged. It is important to file a tax return each year so that the premium corresponds with the family income.
+New Brunswick Drug Plan premiums and co-payments are considered eligible medical expenses that can be claimed on an income tax return. Premium statements for the previous year will be mailed by the New Brunswick Drug Plan before the end of February.
+For further information, contact the Canada Revenue Agency (CRA) at 1-800-959-8281.
+ Overdue premiums
+ If premium payments are not received in full each month, coverage will be suspended or cancelled, and prescription drug claims will not be paid. 
+If coverage is suspended, an official notice of suspension will be sent in the mail. Suspended members will have 30 days from the suspension date to pay the amount owing in full. Drug claims will not be paid while coverage is suspended. If after 30 days payment has not been received, coverage will be cancelled.  Members and their spouse will be responsible to pay any amount owing. 
+To re-enroll in the New Brunswick Drug Plan at a future date, a reinstatement fee and a waiting period could apply, and all outstanding amounts owing must be paid in full. 
+Overdue premiums can be paid using one of the following methods: 
+    1. Sending a cheque or money order to:  
+        New Brunswick Drug Plan 
+        PO Box 690 
+        Moncton, NB   
+        E1C 8M7
+The New Brunswick Drug Plan ID Number must be included with the payment.  
+    2. By online payment following these instructions: 
+        a. access the financial institution’s online banking website 
+        b. navigate to the Pay a Bill section 
+        c. select Medavie Blue Cross – Individual as the payee 
+        d. enter the 9-digit Identification number (located on the drug plan card) in the Account             number field 
+        e. submit the payment by following the financial institution’s instructions 
+For assistance with online banking, contact the financial institution. 
+ Reassessment
+ A reassessment of premiums and maximum co-payments will occur annually based on family income, as indicated on the CRA tax return for the previous year. However, a reassessment of premiums can be requested at any time, except during the annual reassessment period from August 1 to October 31. 
+The New Brunswick Drug Plan does not refund or charge members for differences between monthly premiums before or after unscheduled reassessments. 
+The New Brunswick Drug Plan is reviewed annually to determine if adjustments to the premiums, co-payments or income levels are required to account for factors such as prescription drug costs and inflation. This annual review and adjustments help keep the Plan affordable for members while safeguarding its long-term sustainability. Any changes are effective November 1. 
+ Get help
+ For additional inquiries, contact us Monday to Friday between 8:00 a.m. and 5:00 p.m., excluding holidays.
+ New Brunswick Drug Plans 
+ Phone: 1-506-867-4515
+Toll free within New Brunswick: 1-800-332-3692
+Email: info@nbdrugs-medicamentsnb.ca   
+ Back to top

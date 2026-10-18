@@ -94,7 +94,7 @@ function buildLinkCatalogue({ benefits, helpOrgs, grants, orgs, studentAid, twoE
 }
 
 /** Benefits filtered exactly as the generator filters them when BC is disabled. */
-function benefitsInScope(benefits, bcCities, bcEnabled, onCities = [], onEnabled = true, skEnabled = true, mbEnabled = true, mbCities = []) {
+function benefitsInScope(benefits, bcCities, bcEnabled, onCities = [], onEnabled = true, skEnabled = true, mbEnabled = true, mbCities = [], nbEnabled = true, nbCities = []) {
   let list = benefits || [];
   if (!bcEnabled) {
     list = list.filter(
@@ -112,6 +112,7 @@ function benefitsInScope(benefits, bcCities, bcEnabled, onCities = [], onEnabled
   // Saskatchewan has provincial records only so far; shared border cities stay with Alberta.
   if (!skEnabled) list = list.filter((benefit) => benefit.level !== "Saskatchewan");
   if (!mbEnabled) list = list.filter((benefit) => benefit.level !== "Manitoba" && !(mbCities || []).includes(benefit.level));
+  if (!nbEnabled) list = list.filter((benefit) => benefit.level !== "New Brunswick" && !(nbCities || []).includes(benefit.level));
   return list;
 }
 
