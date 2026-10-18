@@ -118,8 +118,17 @@ const ON_CITIES = [
 /* Every province in COVERED_PROVINCES gets a key here, even when its list is still
    empty, so callers can tell "covered, no municipalities yet" from "not covered".
    app.js skips the city question whenever the chosen province's list is empty. */
-const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES, ON: ON_CITIES };
-const COVERED_PROVINCES = ["AB", "BC", "ON"];
+/* Saskatchewan municipalities offered in the questionnaire (provincial records first;
+   city programs come later). Lloydminster straddles the Alberta border and is listed
+   under both provinces; SHARED_CITIES says which provinces a border city belongs to. */
+const SK_CITIES = [
+  "Estevan", "Lloydminster", "Martensville", "Moose Jaw", "North Battleford", "Prince Albert",
+  "Regina", "Saskatoon", "Swift Current", "Warman", "Weyburn", "Yorkton",
+  "Other / my town isn't listed",
+];
+const SHARED_CITIES = { Lloydminster: ["AB", "SK"] };
+const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES, ON: ON_CITIES, SK: SK_CITIES };
+const COVERED_PROVINCES = ["AB", "BC", "ON", "SK"];
 
 /* national fallbacks (used when a jurisdiction isn't in the maps yet) */
 const FED_STUDENT_AID = "https://www.canada.ca/en/employment-social-development/services/education/grants/disabilities.html";

@@ -1775,6 +1775,7 @@ test("the city question is never asked when the province has no city list", asyn
         out[p] = {
           shown: visibleSteps().some((s) => s.id === "city"),
           options: (CITIES_BY_PROVINCE[p] || []).length,
+          dark: p === "SK" && !SK_ENABLED,
         };
       }
     } finally {
@@ -1784,7 +1785,9 @@ test("the city question is never asked when the province has no city list", asyn
   });
 
   for (const [province, state] of Object.entries(byProvince)) {
-    if (state.options === 0) {
+    if (state.dark) {
+      expect(state.shown, `${province} is dark, so the city step must be skipped`).toBe(false);
+    } else if (state.options === 0) {
       expect(state.shown, `${province} has no cities, so the city step must be skipped`).toBe(false);
     } else {
       expect(state.shown, `${province} has ${state.options} cities, so the step must be asked`).toBe(true);

@@ -9,15 +9,17 @@
 const BC_ENABLED = true;
 // Ontario rollout — dark until launch (ticket #91)
 const ON_ENABLED = true;
+// Saskatchewan rollout — dark until launch (provincial records first, cities later).
+const SK_ENABLED = false;
 // Scope labels compose from the enabled-province set, so flipping a flag updates them everywhere.
 // Invariant: with ON_ENABLED=false (and BC_ENABLED=true) these produce exactly the prior Alberta+BC strings.
-const _SCOPE_FULL = ["Alberta", ...(BC_ENABLED ? ["British Columbia"] : []), ...(ON_ENABLED ? ["Ontario"] : [])];
-const _SCOPE_DEMONYM = ["Albertans", ...(BC_ENABLED ? ["British Columbians"] : []), ...(ON_ENABLED ? ["Ontarians"] : [])];
-const _SCOPE_ABBR = ["Alberta", ...(BC_ENABLED ? ["BC"] : []), ...(ON_ENABLED ? ["ON"] : [])];
+const _SCOPE_FULL = ["Alberta", ...(BC_ENABLED ? ["British Columbia"] : []), ...(ON_ENABLED ? ["Ontario"] : []), ...(SK_ENABLED ? ["Saskatchewan"] : [])];
+const _SCOPE_DEMONYM = ["Albertans", ...(BC_ENABLED ? ["British Columbians"] : []), ...(ON_ENABLED ? ["Ontarians"] : []), ...(SK_ENABLED ? ["Saskatchewanians"] : [])];
+const _SCOPE_ABBR = ["Alberta", ...(BC_ENABLED ? ["BC"] : []), ...(ON_ENABLED ? ["ON"] : []), ...(SK_ENABLED ? ["SK"] : [])];
 const _joinAnd = (a) => (a.length <= 1 ? (a[0] || "") : `${a.slice(0, -1).join(", ")} and ${a[a.length - 1]}`);
 const _joinOrComma = (a) => (a.length <= 1 ? (a[0] || "") : `${a.slice(0, -1).join(", ")}, or ${a[a.length - 1]}`);
 const _joinOr = (a) => (a.length <= 1 ? (a[0] || "") : `${a.slice(0, -1).join(", ")} or ${a[a.length - 1]}`);
-const SCOPE_LABEL = `Alberta${BC_ENABLED ? ", BC" : ""}${ON_ENABLED ? ", ON" : ""} + federal`;
+const SCOPE_LABEL = `Alberta${BC_ENABLED ? ", BC" : ""}${ON_ENABLED ? ", ON" : ""}${SK_ENABLED ? ", SK" : ""} + federal`;
 const SCOPE_LABEL_LONG = _joinAnd(_SCOPE_FULL);
 const SCOPE_RESIDENTS = _joinAnd(_SCOPE_DEMONYM);
 const SCOPE_GOVERNMENTS = `Canada, ${_joinOrComma(_SCOPE_FULL)}`;
@@ -42,7 +44,7 @@ const BLANK = () => ({
   onsetBefore18: null, // true | false  (dynamic: autism/intellectual)
   canWalkFar: null,    // true | false  (dynamic: physical)
   functionalNeeds: [],// selected functional impacts; never a diagnosis verdict
-  province: null,      // "AB" | "BC" | "ON" | "QC" | "other"
+  province: null,      // "AB" | "BC" | "ON" | "SK" | "QC" | "other"
   msp: null,           // "yes" | "no" | "unsure" (BC only)
   bcAssistance: null,  // "pwd" | "other" | "none" | "unsure" (BC only)
   circumstances: [],  // concrete ownership/education facts used by a few BC programs
@@ -2085,7 +2087,7 @@ const resolveUrl = (u) => (typeof u === "function" ? u(answers) : u);
    journey (or vice versa). National entries use CA and remain visible in both. */
 function coverageApplies(record, province = answers.province) {
   const coverage = Array.isArray(record && record.coverage) ? record.coverage : [];
-  if (!province || !["AB", "BC", "ON"].includes(province)) return true;
+  if (!province || !["AB", "BC", "ON", "SK"].includes(province)) return true;
   return coverage.includes("CA") || coverage.includes(province);
 }
 
@@ -2094,6 +2096,7 @@ function coverageLabel(record) {
   if (coverage.includes("CA")) return "Canada-wide";
   if (coverage.includes("BC")) return "British Columbia";
   if (coverage.includes("ON")) return "Ontario";
+  if (coverage.includes("SK")) return "Saskatchewan";
   if (coverage.includes("AB")) return "Alberta";
   return "Check service area";
 }
@@ -2440,6 +2443,7 @@ const STEPS = [
       { value: "AB", label: BC_ENABLED ? "Alberta" : "Yes, I live in Alberta" },
       ...(BC_ENABLED ? [{ value: "BC", label: "British Columbia" }] : []),
       ...(ON_ENABLED ? [{ value: "ON", label: "Ontario" }] : []),
+      ...(SK_ENABLED ? [{ value: "SK", label: "Saskatchewan" }] : []),
       { value: "other", label: BC_ENABLED ? "Another province or territory" : "No, another province or territory", sub: "you'll still see the Canada-wide programs in our catalog" },
     ],
     onPick(v) {
@@ -2624,6 +2628,7 @@ const STEPS = [
     skipIf: () =>
       !COVERED_PROVINCES.includes(answers.province) ||
       (answers.province === "BC" && !BC_ENABLED) ||
+      (answers.province === "SK" && !SK_ENABLED) ||
       (CITIES_BY_PROVINCE[answers.province] || []).length === 0,
     options: ALBERTA_CITIES, // replaced at render time by the province's list
   },
@@ -2664,6 +2669,7 @@ const BROWSE_LEVELS = [
   { key: "Alberta", label: "Alberta" },
   { key: "British Columbia", label: "British Columbia" },
   ...(ON_ENABLED ? [{ key: "Ontario", label: "Ontario" }] : []),
+  ...(SK_ENABLED ? [{ key: "Saskatchewan", label: "Saskatchewan" }] : []),
   { key: "local", label: "Local / city" },
 ];
 
@@ -2683,8 +2689,8 @@ const PERSISTENCE_SELECTIONS = {
   circumstances: ["homeowner", "vehicleOwner", "recentGraduate", "none", "unsure"],
   receives: [...RECEIVES_OPTIONS.map((o) => o.value), "none", "unsure"],
   provinces: STEPS.find((step) => step.key === "province").options.map((item) => item.value),
-  cities: [...ALBERTA_CITIES, ...(BC_ENABLED ? BC_CITIES : []), ...(ON_ENABLED ? ON_CITIES : [])],
-  citiesByProvince: { AB: ALBERTA_CITIES, BC: BC_ENABLED ? BC_CITIES : [], ON: ON_ENABLED ? ON_CITIES : [] },
+  cities: [...ALBERTA_CITIES, ...(BC_ENABLED ? BC_CITIES : []), ...(ON_ENABLED ? ON_CITIES : []), ...(SK_ENABLED ? SK_CITIES.filter((c) => !ALBERTA_CITIES.includes(c)) : [])],
+  citiesByProvince: { AB: ALBERTA_CITIES, BC: BC_ENABLED ? BC_CITIES : [], ON: ON_ENABLED ? ON_CITIES : [], SK: SK_ENABLED ? SK_CITIES : [] },
   browseLevels: BROWSE_LEVELS.map((level) => level.key),
   benefitIds: BENEFITS.map((benefit) => benefit.id),
   progressStages: STAGES.map((stage) => stage.key),
@@ -3896,11 +3902,11 @@ function wireAbout() { wireInfoPage(["a-back", "a-back2"]); }
    else to look. The city lists are computed from the matcher: a listed city
    counts as covered when at least one local program does not refuse someone
    who lives there, so the page cannot drift from the catalogue. */
-const LOCAL_LEVELS_EXCLUDED = new Set(["Federal", "Alberta", "British Columbia", "Ontario"]);
+const LOCAL_LEVELS_EXCLUDED = new Set(["Federal", "Alberta", "British Columbia", "Ontario", "Saskatchewan"]);
 function citiesWithoutLocalPrograms() {
   const out = {};
   for (const [prov, cities] of Object.entries(CITIES_BY_PROVINCE)) {
-    const local = BENEFITS.filter((b) => !LOCAL_LEVELS_EXCLUDED.has(b.level) && benefitProvince(b) === prov);
+    const local = BENEFITS.filter((b) => !LOCAL_LEVELS_EXCLUDED.has(b.level) && benefitProvinces(b).includes(prov));
     out[prov] = cities.filter((city) => {
       if (/^Other/i.test(city)) return false;
       // Two plausible people (an adult and a child, low income, documented
@@ -3917,7 +3923,7 @@ function citiesWithoutLocalPrograms() {
 function renderCoverage() {
   const block = (h, body) => `<div class="legal-block"><h2>${h}</h2>${body}</div>`;
   const missing = citiesWithoutLocalPrograms();
-  const names = { AB: "Alberta", BC: "British Columbia", ON: "Ontario" };
+  const names = { AB: "Alberta", BC: "British Columbia", ON: "Ontario", ...(SK_ENABLED ? { SK: "Saskatchewan" } : {}) };
   const cityRows = Object.entries(missing).filter(([p]) => names[p]).map(([p, list]) =>
     `<p><b>${names[p]}:</b> ${list.length ? reqEscape(list.join(", ")) : "every listed community has at least one local program"}.</p>`).join("");
   const localCount = BENEFITS.filter((b) => !LOCAL_LEVELS_EXCLUDED.has(b.level)).length;
@@ -3936,7 +3942,7 @@ function renderCoverage() {
       <li>${icon("info")}<span>Some charity grants and community organizations: our <button class="linklike" data-cover-nav="grants">grants</button> and <button class="linklike" data-cover-nav="organizations">organizations</button> lists hold the ones we have checked.</span></li>
     </ul>`)}
     ${block("Language", `<p>The menus can switch to French, but program details are in English for now.</p>`)}
-    ${block("Where else to look", `<p>211 can point you to local programs: <a href="https://ab.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>Alberta 211</a>, <a href="https://bc.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>BC 211</a>, <a href="https://211ontario.ca" target="_blank" rel="noopener noreferrer" data-ext>211 Ontario</a>. Elsewhere in Canada, visit <a href="https://211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211.ca</a>.</p>`)}
+    ${block("Where else to look", `<p>211 can point you to local programs: <a href="https://ab.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>Alberta 211</a>, <a href="https://bc.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>BC 211</a>, <a href="https://211ontario.ca" target="_blank" rel="noopener noreferrer" data-ext>211 Ontario</a>${SK_ENABLED ? `, <a href="https://sk.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Saskatchewan</a>` : ""}. Elsewhere in Canada, visit <a href="https://211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211.ca</a>.</p>`)}
     ${block("Know a program we missed?", `<p>Tell us through the <button class="linklike js-feedback">feedback form</button>. We add a program only after we read its official page.</p>`)}
     <button class="back-link bottom" id="cv-back2">${icon("arrowLeft")} Back</button>
   </section>`;
@@ -4963,17 +4969,26 @@ function renderResults() {
 
 /* which province a benefit belongs to (federal / nationwide → null) */
 function benefitInResultsScope(b, model) {
-  const province = benefitProvince(b);
-  if (province && province !== model.province) return false;
+  const provinces = benefitProvinces(b);
+  if (provinces.length && !provinces.includes(model.province)) return false;
   if (b.requires.includes("okotoksArea")) {
     return model.province === "AB" && (!model.city || ["Other / my town isn't listed", "Okotoks", "Foothills County"].includes(model.city));
   }
   return true;
 }
 
+/* Border cities (Lloydminster) belong to two provinces: a local program there is
+   in scope for residents of either. Every other record has exactly one province. */
+function benefitProvinces(b) {
+  if (SHARED_CITIES[b.level]) return SHARED_CITIES[b.level].filter((p) => p !== "SK" || SK_ENABLED);
+  const p = benefitProvince(b);
+  return p ? [p] : [];
+}
+
 function benefitProvince(b) {
   // Local levels include regional delivery bodies, not only province gates.
   if (benefitIsOntario(b)) return "ON";
+  if (benefitIsSaskatchewan(b)) return "SK";
   if (benefitIsBritishColumbia(b)) return "BC";
   if (b.level === "Alberta" || ALBERTA_CITIES.includes(b.level) || b.level === "Spruce Grove area") return "AB";
   const r = b.requires;
@@ -6003,7 +6018,7 @@ function printResults() {
    BROWSE / SEARCH — explore every benefit without doing the wizard
    ========================================================================== */
 function benefitIsLocal(b) {
-  return !["Federal", "Alberta", "British Columbia", "Ontario"].includes(b.level);
+  return !["Federal", "Alberta", "British Columbia", "Ontario", "Saskatchewan"].includes(b.level);
 }
 function benefitIsBritishColumbia(b) {
   return b.level === "British Columbia" || b.level === "Metro Vancouver" || BC_CITIES.includes(b.level);
@@ -6014,10 +6029,16 @@ function benefitIsOntario(b) {
   // past the province filter if Ontario were ever staged dark again.
   return b.level === "Ontario" || ON_CITIES.includes(b.level) || ON_REGIONS.includes(b.level);
 }
+// Saskatchewan-only levels. A shared border city (Lloydminster) stays with its
+// Alberta records, so the dark flag never hides an existing Alberta program.
+function benefitIsSaskatchewan(b) {
+  return b.level === "Saskatchewan" || (SK_CITIES.includes(b.level) && !SHARED_CITIES[b.level]);
+}
 function browseCatalog() {
   let list = BENEFITS;
   if (!BC_ENABLED) list = list.filter((b) => !benefitIsBritishColumbia(b));
   if (!ON_ENABLED) list = list.filter((b) => !benefitIsOntario(b));
+  if (!SK_ENABLED) list = list.filter((b) => !benefitIsSaskatchewan(b));
   return list;
 }
 function benefitSearchText(b) {

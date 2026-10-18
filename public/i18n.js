@@ -882,19 +882,20 @@ function t(key) {
   const raw = d && d[key] != null ? d[key] : (I18N.en[key] != null ? I18N.en[key] : key);
   const bc = typeof BC_ENABLED !== "undefined" && BC_ENABLED;
   const on = typeof ON_ENABLED !== "undefined" && ON_ENABLED;
+  const sk = typeof SK_ENABLED !== "undefined" && SK_ENABLED;
   const scope = LANG === "fr"
     ? {
-        scopeBenefits: ["Alberta", ...(bc ? ["C.-B."] : []), ...(on ? ["Ontario"] : [])].join(" · ") + " + prestations fédérales",
-        scopeResidents: ["Albertains", ...(bc ? ["Britanno-Colombiens"] : []), ...(on ? ["Ontariens"] : [])].join(" et "),
-        scopeResidentsPrep: ["de l’Alberta", ...(bc ? ["de la Colombie-Britannique"] : []), ...(on ? ["de l’Ontario"] : [])].join(" et "),
-        scopeProgramList: ["albertains", ...(bc ? ["britanno-colombiens"] : []), ...(on ? ["ontariens"] : []), "fédéraux et municipaux"].join(", "),
-        scopeDestination: ["Alberta", ...(bc ? ["Colombie-Britannique"] : []), ...(on ? ["Ontario"] : [])].join(" ou "),
+        scopeBenefits: ["Alberta", ...(bc ? ["C.-B."] : []), ...(on ? ["Ontario"] : []), ...(sk ? ["Saskatchewan"] : [])].join(" · ") + " + prestations fédérales",
+        scopeResidents: ["Albertains", ...(bc ? ["Britanno-Colombiens"] : []), ...(on ? ["Ontariens"] : []), ...(sk ? ["Saskatchewanais"] : [])].join(" et "),
+        scopeResidentsPrep: ["de l’Alberta", ...(bc ? ["de la Colombie-Britannique"] : []), ...(on ? ["de l’Ontario"] : []), ...(sk ? ["de la Saskatchewan"] : [])].join(" et "),
+        scopeProgramList: ["albertains", ...(bc ? ["britanno-colombiens"] : []), ...(on ? ["ontariens"] : []), ...(sk ? ["saskatchewanais"] : []), "fédéraux et municipaux"].join(", "),
+        scopeDestination: ["Alberta", ...(bc ? ["Colombie-Britannique"] : []), ...(on ? ["Ontario"] : []), ...(sk ? ["Saskatchewan"] : [])].join(" ou "),
       }
     : {
         scopeBenefits: typeof SCOPE_LABEL !== "undefined" ? `${SCOPE_LABEL} benefits` : "Alberta + federal benefits",
         scopeResidents: typeof SCOPE_RESIDENTS !== "undefined" ? SCOPE_RESIDENTS : "Albertans",
         scopeResidentsPrep: "",
-        scopeProgramList: ["Alberta", ...(bc ? ["British Columbia"] : []), ...(on ? ["Ontario"] : []), "federal, and municipal"].join(", "),
+        scopeProgramList: ["Alberta", ...(bc ? ["British Columbia"] : []), ...(on ? ["Ontario"] : []), ...(sk ? ["Saskatchewan"] : []), "federal, and municipal"].join(", "),
         scopeDestination: typeof SCOPE_DESTINATION !== "undefined" ? SCOPE_DESTINATION : "Alberta",
       };
   return String(raw).replace(/\{(scopeBenefits|scopeResidents|scopeResidentsPrep|scopeProgramList|scopeDestination)\}/g, (_, name) => scope[name]);

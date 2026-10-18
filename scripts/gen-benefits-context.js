@@ -40,6 +40,8 @@ vm.runInContext(
     '\n;globalThis.__B = typeof BENEFITS !== "undefined" ? BENEFITS : null;' +
     '\n;globalThis.__BC_CITIES = typeof BC_CITIES !== "undefined" ? BC_CITIES : null;' +
     '\n;globalThis.__ON_CITIES = typeof ON_CITIES !== "undefined" ? ON_CITIES : null;' +
+    '\n;globalThis.__SK_CITIES = typeof SK_CITIES !== "undefined" ? SK_CITIES : [];' +
+    '\n;globalThis.__SHARED_CITIES = typeof SHARED_CITIES !== "undefined" ? SHARED_CITIES : {};' +
     '\n;globalThis.__ON_REGIONS = typeof ON_REGIONS !== "undefined" ? ON_REGIONS : [];' +
     '\n;globalThis.__HELP = typeof HELP_ORGS !== "undefined" ? HELP_ORGS : null;' +
     // Province fallback maps. These are reached only through answer-dependent link
@@ -83,6 +85,15 @@ const onCities = ctx.__ON_CITIES;
 if (!Array.isArray(onCities)) {
   throw new Error("gen:context — could not read ON_CITIES from data.js");
 }
+const skEnabledMatch = /^const SK_ENABLED = (true|false);\s*$/m.exec(appSource);
+if (!skEnabledMatch) {
+  throw new Error("gen:context — could not find literal const SK_ENABLED = true/false in public/app.js");
+}
+const skEnabled = skEnabledMatch[1] === "true";
+const skCities = ctx.__SK_CITIES || [];
+const sharedCities = ctx.__SHARED_CITIES || {};
+// Shared border cities (Lloydminster) stay with their Alberta records.
+const benefitIsSaskatchewan = (b) => b.level === "Saskatchewan" || (skCities.includes(b.level) && !sharedCities[b.level]);
 const benefitIsBritishColumbia = (b) =>
   b.level === "British Columbia" || b.level === "Metro Vancouver" || bcCities.includes(b.level);
 const onRegions = ctx.__ON_REGIONS || [];
@@ -91,8 +102,9 @@ const benefitIsOntario = (b) =>
 let benefits = allBenefits;
 if (!bcEnabled) benefits = benefits.filter((b) => !benefitIsBritishColumbia(b));
 if (!onEnabled) benefits = benefits.filter((b) => !benefitIsOntario(b));
+if (!skEnabled) benefits = benefits.filter((b) => !benefitIsSaskatchewan(b));
 console.log(
-  `BC_ENABLED=${bcEnabled} ON_ENABLED=${onEnabled} — excluded ${allBenefits.length - benefits.length} dark-province entries; generating ${benefits.length} entries.`
+  `BC_ENABLED=${bcEnabled} ON_ENABLED=${onEnabled} SK_ENABLED=${skEnabled} — excluded ${allBenefits.length - benefits.length} dark-province entries; generating ${benefits.length} entries.`
 );
 
 const clean = (s) => String(s ?? "").replace(/\s+/g, " ").trim();
