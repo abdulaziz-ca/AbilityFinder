@@ -1,0 +1,312 @@
+{
+ "provincial": [
+  {
+   "name": "Saskatchewan Assured Income for Disability (SAID)",
+   "url": "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities/income-support-for-people-with-disabilities",
+   "who": "SK resident 18+, citizen/PR/refugee, low resources, significant permanent disability; Disability Impact Assessment",
+   "gives": "Living Income benefit, Exceptional Needs benefits; earned income exemptions $7,500 single",
+   "age": "18+",
+   "route": "disability",
+   "confidence": "high",
+   "notes": "Rates restructured Sept 1 2026 (4 tiers to 2) per search snippet; page states no max amount."
+  },
+  {
+   "name": "Saskatchewan Income Support (SIS)",
+   "url": "https://www.saskatchewan.ca/residents/family-and-social-support/financial-help/saskatchewan-income-support-sis",
+   "who": "SK resident 18+, no/low income, citizen/PR/refugee, explored other options",
+   "gives": "Basic $375/adult, shelter $615-675 single, plus health/safety, diet, heating extras (rates May 1 2026)",
+   "age": "18+",
+   "route": "income",
+   "confidence": "high",
+   "notes": "Not disability-specific; gateway to Supplementary Health."
+  },
+  {
+   "name": "Saskatchewan Employment Incentive (SEI)",
+   "url": "https://www.saskatchewan.ca/residents/family-and-social-support/financial-help/saskatchewan-employment-incentive-sei",
+   "who": "18+, not on SIS/SAID, children 0-12 (13-17 w/ special circumstances) on CCB, earned income >= $500/mo, below family cap",
+   "gives": "Up to $400-600/mo, Supplementary Health review, discounted bus passes in 7 municipalities",
+   "age": "18+ parents",
+   "route": "income",
+   "confidence": "high",
+   "notes": "Replaces Saskatchewan Employment Supplement (SES) per other pages; not disability-specific."
+  },
+  {
+   "name": "Saskatchewan Housing Benefit (SHB)",
+   "url": "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities/rental-support-for-families-and-people-with-disabilities",
+   "who": "Renters paying 35%+ of income on shelter, assets < $300,000, under income limits; not on SIS/SAID",
+   "gives": "Help with rent and utility costs",
+   "age": "all adults",
+   "route": "income",
+   "confidence": "medium",
+   "notes": "Only verified via SRHS page (fetched): SRHS closed to new applicants 2018, benefits moved Aug 31 2026. SHB eligibility numbers from 211 search snippet, SHB page itself not fetched."
+  },
+  {
+   "name": "Saskatchewan Aids to Independent Living (SAIL)",
+   "url": "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities/saskatchewan-aids-to-independent-living",
+   "who": "SK resident with Health Services Number, referral from health professional, not covered by SGI/WCB/NIHB/Veterans",
+   "gives": "Prosthetics, mobility aids, respiratory/oxygen, nutrition, compression garments; special benefits (ostomy, paraplegia, insulin pump, aids to blind)",
+   "age": "all ages",
+   "route": "disability",
+   "confidence": "high",
+   "notes": "14 sub-programs, some special-benefit rules. Hub also lists sail page under /residents/health/.../sail (not fetched)."
+  },
+  {
+   "name": "Supplementary Health Benefits",
+   "url": "https://saskatchewan.ca/residents/health/prescription-drug-plans-and-health-coverage/extended-benefits-and-drug-plan/supplementary-health-benefits",
+   "who": "SAID, SIS or SEI recipients, wards, certain care-home residents",
+   "gives": "Extra health coverage (dental, vision, drugs, supplies)",
+   "age": "all ages",
+   "route": "assistance_only",
+   "confidence": "medium",
+   "notes": "Fetch failed (certificate error); eligibility from search snippet only. Automatic via SAID/SIS/SEI."
+  },
+  {
+   "name": "Family Health Benefits",
+   "url": "https://www.saskatchewan.ca/Residents/Health/Prescription-Drug-Plans-and-Health-Coverage/Extended-Benefits-and-Drug-Plan/Family-Health-Benefits",
+   "who": "Low-income working families passing income test (Social Services decides)",
+   "gives": "Children: dental, annual eye exam, glasses, ambulance, supplies, drugs; parents: eye exam, drugs with $100 deductible/35% copay",
+   "age": "children + parents",
+   "route": "income",
+   "confidence": "high",
+   "notes": "No thresholds published."
+  },
+  {
+   "name": "Special Support Program (drug plan)",
+   "url": "https://www.saskatchewan.ca/residents/health/prescription-drug-plans-and-health-coverage/extended-benefits-and-drug-plan/drug-cost-assistance/",
+   "who": "Residents with high drug costs relative to income; not covered by NIHB/Veterans",
+   "gives": "Income-tested drug deductible and copayment",
+   "age": "all ages",
+   "route": "income",
+   "confidence": "high",
+   "notes": "Calculator exists."
+  },
+  {
+   "name": "Seniors' Drug Plan",
+   "url": "https://www.saskatchewan.ca/residents/health/accessing-health-care-services/seniors-drug-plan",
+   "who": "65+, SK health card, net income <= $81,633 (2027 coverage)",
+   "gives": "$25 per eligible prescription",
+   "age": "65+",
+   "route": "income",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "name": "Seniors Income Plan (SIP)",
+   "url": "https://www.saskatchewan.ca/residents/family-and-social-support/seniors-services/seniors-income-plan",
+   "who": "65+, permanent SK resident, receiving OAS/GIS, low income",
+   "gives": "Up to $360/mo single ($325 each couple); $50 in special care home",
+   "age": "65+",
+   "route": "income",
+   "confidence": "high",
+   "notes": "No application; automatic. Page dates inconsistent."
+  },
+  {
+   "name": "Autism Spectrum Disorder Individualized Funding (ASD-IF)",
+   "url": "https://www.saskatchewan.ca/residents/health/accessing-health-care-services/health-services-for-people-with-disabilities/autism-services",
+   "who": "Child with ASD diagnosis, SK resident, one parent applies",
+   "gives": "Up to $8,000/yr under 6, $6,000/yr ages 6-11",
+   "age": "under 12",
+   "route": "assistance_only",
+   "confidence": "high",
+   "notes": "Also 1-833-304-1774."
+  },
+  {
+   "name": "Cognitive Disability Strategy (CDS) Support",
+   "url": "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities/financial-help-and-support-for-people-with-cognitive-disabilities",
+   "who": "Cognitive disability from early age with unmet need no other system supports",
+   "gives": "Cognitive Disability Consultants and income-tested Cognitive Disability Benefit",
+   "age": "not stated",
+   "route": "income_or_disability",
+   "confidence": "medium",
+   "notes": "No age or dollar amounts published."
+  },
+  {
+   "name": "Respite for families of a child with intellectual disabilities",
+   "url": "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities/temporary-help-for-families-caring-for-a-child-with-intellectual-disabilities",
+   "who": "Parents/guardians of child accepted by Community Living Service Delivery, income-tested",
+   "gives": "Monthly income-tested respite benefit",
+   "age": "under 18",
+   "route": "income_or_disability",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "name": "Individualized Funding for Home Care",
+   "url": "https://www.saskatchewan.ca/residents/health/accessing-health-care-services/care-at-home-and-outside-the-hospital/individualized-funding-for-home-care",
+   "who": "Qualify for home care support services, need long-term supportive care, can manage funding",
+   "gives": "Self-managed funding for personal care and home management",
+   "age": "not stated",
+   "route": "assistance_only",
+   "confidence": "high",
+   "notes": "Regular SHA home care not separately fetched."
+  },
+  {
+   "name": "Adapt a Home for a Person with a Disability (Home Repair Program)",
+   "url": "https://www.saskatchewan.ca/residents/housing-and-renting/home-repairs-and-renovations/adapt-a-home-for-a-person-with-a-disability",
+   "who": "Owner/landlord with household member with housing-related disability, income under limits ($58,100 1-bedroom), assets <= $300,000",
+   "gives": "Forgivable loan up to $23,000",
+   "age": "all ages",
+   "route": "income_or_disability",
+   "confidence": "high",
+   "notes": "Limits as of July 1 2026. Other Home Repair streams not fetched."
+  },
+  {
+   "name": "Employability Assistance for Persons with Disabilities (EAPD)",
+   "url": "https://www.saskatchewan.ca/residents/jobs-working-and-training/job-training-and-financial-support-programs/employability-assistance-for-persons-with-disabilities",
+   "who": "16+, entitled to work, self-declared disability, approved career/service plan",
+   "gives": "Funding for training, job-search and job-keeping supports; employer accommodation funding",
+   "age": "16+",
+   "route": "disability",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "name": "Housing and Support for People with Intellectual Disabilities / Approved Private Service Homes",
+   "url": "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities/housing-and-support-for-people-with-intellectual-disabilities",
+   "who": "Adults with intellectual disabilities (APSH: 18+)",
+   "gives": "Residential and supports",
+   "age": "18+",
+   "route": "disability",
+   "confidence": "medium",
+   "notes": "Listed on hub; sub-pages not fetched."
+  },
+  {
+   "name": "Canada-Saskatchewan Grant for Services and Equipment for Students with Disabilities",
+   "url": "https://www.saskatchewan.ca/residents/education-and-learning/scholarships-bursaries-grants/grants/canada-saskatchewan-grant-for-services-and-equipment-for-students-with-permanent-disabilities",
+   "who": "Post-secondary student with permanent or persistent/prolonged disability, verified, in student aid",
+   "gives": "Up to $22,000 per program year (non-repayable)",
+   "age": "post-secondary",
+   "route": "disability",
+   "confidence": "medium",
+   "notes": "Seen in search results only, not fetched. Overlaps federal Canada Student Grant for Students with Disabilities."
+  },
+  {
+   "name": "Accessible Parking Program (SaskAbilities / SGI)",
+   "url": "https://sgi.sk.ca/disabilities-parking-program",
+   "who": "Mobility-restricted; health professional confirms (per search)",
+   "gives": "Parking placard for designated spaces; 25% provincial park entry discount pilot",
+   "age": "all ages",
+   "route": "disability",
+   "confidence": "medium",
+   "notes": "SGI page fetched but returned only nav text. Program run by SaskAbilities, not SGI. Eligibility from search snippets; saskabilities.ca page not fetched."
+  }
+ ],
+ "municipal": [
+  {
+   "name": "Regina Paratransit",
+   "url": "https://www.regina.ca/transportation-roads-parking/transit/paratransit/",
+   "who": "Regina resident (or visitor) with disability restricting fixed-route transit",
+   "gives": "Door-to-door shared ride at regular transit fare",
+   "age": "all ages",
+   "route": "disability",
+   "confidence": "high",
+   "notes": "City: Regina"
+  },
+  {
+   "name": "Regina Affordable Access Program (recreation + transit)",
+   "url": "https://www.regina.ca/parks-recreation-culture/classes-programs/affordable-access-program/",
+   "who": "Household income below limit ($27,478 for 1 to $72,715 for 7+)",
+   "gives": "50% off drop-in, 80% off Leisure Passes/classes, 20% off transit passes",
+   "age": "all ages",
+   "route": "income",
+   "confidence": "high",
+   "notes": "City: Regina. SAID/CPP-D accepted as income proof per application form snippet."
+  },
+  {
+   "name": "Saskatoon Access Transit",
+   "url": "https://saskatoontransit.ca/access-transit/about-access-transit",
+   "who": "Temporary or permanent disability preventing fixed-route use",
+   "gives": "On-demand door-to-door ride at regular fare",
+   "age": "all ages",
+   "route": "disability",
+   "confidence": "high",
+   "notes": "City: Saskatoon. Application with health practitioner part per search."
+  },
+  {
+   "name": "Saskatoon Low-Income Bus Pass",
+   "url": "https://saskatoontransit.ca/fares-passes/low-income-bus-pass-programs",
+   "who": "Household income under limit ($27,478 for 1 to $72,715 for 7)",
+   "gives": "Adult pass $66.40/mo, high school $47.20/mo",
+   "age": "all ages",
+   "route": "income",
+   "confidence": "high",
+   "notes": "City: Saskatoon. Applied for via Leisure Access application."
+  },
+  {
+   "name": "Saskatoon Leisure Access Program",
+   "url": "https://www.saskatoon.ca/parks-recreation-attractions/recreational-programs-activities/leisure-access-program",
+   "who": "Low-income residents; social service recipients can apply via Social Services",
+   "gives": "Unlimited drop-in, one registered program/yr, passes",
+   "age": "all ages",
+   "route": "income",
+   "confidence": "medium",
+   "notes": "Page fetch returned only navigation text; details from search snippet. Income limit $72,715 (7+) cited there."
+  },
+  {
+   "name": "Saskatoon Accessible Parking Permit Subsidy",
+   "url": null,
+   "who": "Saskatoon resident with SaskAbilities placard and household income below LICO",
+   "gives": "50% subsidy on permit",
+   "age": "all ages",
+   "route": "income_or_disability",
+   "confidence": "medium",
+   "notes": "URL saskatoon.ca/moving-around/parking/parking-programs-permits/parking-people-disability fetched but only nav text returned; details from search snippet."
+  },
+  {
+   "name": "Moose Jaw discounted transit pass",
+   "url": "https://www.discovermoosejaw.com/articles/grace-period-for-discount-bus-passes-approved-by-city-council",
+   "who": "Enrolled in SIS, PTA, SAID or SES",
+   "gives": "$50/month pass vs $80 regular",
+   "age": "all ages",
+   "route": "assistance_only",
+   "confidence": "medium",
+   "notes": "Only a news article (discovermoosejaw.com), not an official moosejaw.ca page."
+  },
+  {
+   "name": "Moose Jaw Paratransit",
+   "url": null,
+   "who": "People unable to use regular transit due to physical/mental challenge",
+   "gives": "Door-to-door, $1.50/ride",
+   "age": "all ages",
+   "route": "disability",
+   "confidence": "medium",
+   "notes": "Only seen in sk.211.ca search results; no official page fetched."
+  },
+  {
+   "name": "Swift Current Access Transit",
+   "url": null,
+   "who": "Permanent mobility disability or non-visible condition (per SaskAbilities listing)",
+   "gives": "$3 per trip; run by SaskAbilities",
+   "age": "all ages",
+   "route": "disability",
+   "confidence": "medium",
+   "notes": "Official swiftcurrent.ca transit page returned 403 to fetch; details from search snippets."
+  },
+  {
+   "name": "Battlefords Handi-Bus (North Battleford)",
+   "url": "https://www.cityofnb.ca/roads-parking-transportation/public-transportation/",
+   "who": "Anyone who due to a disability cannot use regular transit",
+   "gives": "On-demand transport Mon-Fri",
+   "age": "all ages",
+   "route": "disability",
+   "confidence": "high",
+   "notes": "Fares not published; senior $50 and student $40 passes exist but not disability-specific."
+  },
+  {
+   "name": "Lloydminster Recreation Access Program",
+   "url": "https://www.lloydminster.ca/recreation-culture-community/social-programs-and-services/recreation-access-program",
+   "who": "Lloydminster resident under income limit ($32,111 single), or on AISH/SAID, or newcomer",
+   "gives": "$2 adult/$1 child admission, 75% off memberships",
+   "age": "all ages",
+   "route": "income_or_disability",
+   "confidence": "high",
+   "notes": "Same program as Alberta list; SAID accepted. Border-city overlap."
+  }
+ ],
+ "checked_hubs": [
+  "https://www.saskatchewan.ca/residents/family-and-social-support/people-with-disabilities",
+  "https://www.saskatchewan.ca/residents/health/prescription-drug-plans-and-health-coverage/extended-benefits-and-drug-plan/drug-cost-assistance/",
+  "https://www.yorkton.ca/parks-recreation-culture/recreation/ (search only)",
+  "NOT FOUND/no data: Prince Albert, Yorkton, Estevan, Weyburn, Martensville, Warman paratransit and fee assistance"
+ ]
+}
