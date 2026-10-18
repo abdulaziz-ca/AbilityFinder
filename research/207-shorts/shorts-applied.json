@@ -1455,5 +1455,25 @@
     "short": "Check the program's income test",
     "who": ["you", "program"],
     "reason": "Manitoba city record winnipeg-winnpass (2026-10-18)"
+  },
+  "mbEapdRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record mb-eapd (2026-10-17)"
+  },
+  "mbRentSupplementRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record mb-rent-supplement (2026-10-17)"
+  },
+  "mbPrenatalBenefitRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record mb-prenatal-benefit (2026-10-17)"
+  },
+  "brandonCnibFreeTransitRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "Manitoba city record brandon-cnib-free-transit (2026-10-18)"
   }
 }

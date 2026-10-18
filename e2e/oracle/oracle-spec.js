@@ -318,6 +318,7 @@ const GATES = {
   /* ------------------------------------------------------ BC municipalities */
   vancouver: municipality("Vancouver", "BC"),
   surrey: municipality("Surrey", "BC"),
+  brandon: municipality("Brandon", "MB"),
   winnipeg: municipality("Winnipeg", "MB"),
   swiftCurrent: municipality("Swift Current", "SK"),
   regina: municipality("Regina", "SK"),
@@ -973,6 +974,26 @@ const GATES = {
     satisfy: { set: { income: "low" } },
     violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
   },
+  mbEapdRoute: {
+    evidence: "answers",
+    satisfy: { set: { disabilityVerified: "yes" } },
+    violations: [{ name: "not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" }],
+  },
+  mbRentSupplementRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  mbPrenatalBenefitRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  brandonCnibFreeTransitRoute: {
+    evidence: "answers",
+    satisfy: { set: { disabilityVerified: "yes" } },
+    violations: [{ name: "not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" }],
+  },
   kingstonMfapIncome: {
     evidence: "answers",
     satisfy: { set: { income: "low" } },
@@ -1552,6 +1573,11 @@ const PROGRAM_BEST_CASE = {
   "squamish-recreation-access":                    "ready",
   "terrace-affordable-recreation-access":          "almost",
   "white-rock-leisure-access":                     "ready",
+  "brandon-access-transit":                        "ready",
+  "brandon-cnib-free-transit":                     "ready",
+  "mb-eapd":                                       "ready",
+  "mb-rent-supplement":                            "ready",
+  "mb-prenatal-benefit":                           "ready",
   "winnipeg-recreation-fee-assistance":            "ready",
   "winnipeg-winnpass":                             "ready",
   "winnipeg-transit-plus":                         "ready",

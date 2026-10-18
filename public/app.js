@@ -1314,6 +1314,34 @@ const REQS = {
     fixed: false,
     unmet: "Winnipeg residents 64 and under qualify through assistance, new arrival status, or low household income.",
   },
+  mbEapdRoute: {
+    short: "Check the disability documents the program asks for",
+    who: ["you", "professional"],
+    met: () => answers.disabilityVerified === "yes",
+    fixed: false,
+    unmet: "You need a disability and must be 16 or older and legally entitled to work in Manitoba.",
+  },
+  mbRentSupplementRoute: {
+    short: "Check the program's income test",
+    who: ["you", "program"],
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "Your household income must be under the CMHC Program Income Limits.",
+  },
+  mbPrenatalBenefitRoute: {
+    short: "Check the program's income test",
+    who: ["you", "program"],
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "You must be pregnant, live in Manitoba and have net family income under $32,000 a year.",
+  },
+  brandonCnibFreeTransitRoute: {
+    short: "Check the disability documents the program asks for",
+    who: ["you", "professional"],
+    met: () => answers.disabilityVerified === "yes",
+    fixed: false,
+    unmet: "You are a CNIB registered client.",
+  },
   kingstonMfapIncome: {
     short: "Check your income against the MFAP limit",
     who: ["you", "program"],
@@ -2319,6 +2347,7 @@ const REQS = {
   },
   vancouver: { met: () => answers.city === "Vancouver", fixed: true, unmet: "This is a City of Vancouver program." },
   surrey: { met: () => answers.city === "Surrey", fixed: true, unmet: "This is a City of Surrey program." },
+  brandon: { met: () => answers.city === "Brandon", fixed: true, unmet: "This is a local program for Brandon residents." },
   winnipeg: { met: () => answers.city === "Winnipeg", fixed: true, unmet: "This is a local program for Winnipeg residents." },
   swiftCurrent: { met: () => answers.city === "Swift Current", fixed: true, unmet: "This is a local program for Swift Current residents." },
   regina: { met: () => answers.city === "Regina", fixed: true, unmet: "This is a local program for Regina residents." },
@@ -2959,6 +2988,8 @@ const RECEIVES_OPTIONS = [
   { value: "bc-disability-assistance-pwd", province: "BC", label: "B.C. disability assistance (PWD)" },
   { value: "odsp", province: "ON", label: "ODSP (Ontario Disability Support Program)" },
   { value: "sk-said", province: "SK", label: "SAID (Saskatchewan Assured Income for Disability)" },
+  { value: "mb-supports-persons-disabilities", province: "MB", label: "Manitoba Supports for Persons with Disabilities (MSPD)" },
+  { value: "mb-eia", province: "MB", label: "EIA (Employment and Income Assistance)" },
   { value: "cpp-disability", label: "CPP disability benefit" },
 ];
 const receivesChoices = (province) => RECEIVES_OPTIONS.filter((o) => !o.province || o.province === province);

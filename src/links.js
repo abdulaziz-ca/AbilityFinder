@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 356 links. The monitor checks a bounded rotating batch every
+// 381 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -1486,6 +1486,31 @@ export const LINKS = [
     "kind": "source"
   },
   {
+    "url": "https://gov.mb.ca/wd/ites/pwd_work/where.html",
+    "label": "Employability Assistance for People with Disabilities (EAPD) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://gov.mb.ca/housing/progs/rent_supplement.html",
+    "label": "Rent Supplement (Manitoba Housing) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://gov.mb.ca/fs/healthybaby/prenatal-benefit.html",
+    "label": "Manitoba Prenatal Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.brandon.ca/roads-parking-transportation/brandon-transit/access-transit/",
+    "label": "Brandon Access Transit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.brandon.ca/roads-parking-transportation/brandon-transit/fares/special-programs/",
+    "label": "Free Brandon Transit for CNIB clients — apply",
+    "kind": "apply"
+  },
+  {
     "url": "https://vadsociety.ca",
     "label": "Help — Voice of Albertans with Disabilities (VAD)",
     "kind": "help"
@@ -1543,6 +1568,61 @@ export const LINKS = [
   {
     "url": "https://familysupportbc.com/",
     "label": "Help — Family Support Institute of BC",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.legalaid.on.ca/legal-clinics/",
+    "label": "Help — Community Legal Clinics (Legal Aid Ontario)",
+    "kind": "help"
+  },
+  {
+    "url": "https://archdisabilitylaw.ca",
+    "label": "Help — ARCH Disability Law Centre",
+    "kind": "help"
+  },
+  {
+    "url": "https://211ontario.ca",
+    "label": "Help — 211 Ontario",
+    "kind": "help"
+  },
+  {
+    "url": "https://disabilityalliancecanada.ca",
+    "label": "Help — Disability Alliance Canada",
+    "kind": "help"
+  },
+  {
+    "url": "https://pblsask.ca",
+    "label": "Help — Pro Bono Law Saskatchewan",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.classiclaw.ca",
+    "label": "Help — CLASSIC (Saskatoon)",
+    "kind": "help"
+  },
+  {
+    "url": "https://saskhrc.ca/",
+    "label": "Help — Saskatchewan Human Rights Commission",
+    "kind": "help"
+  },
+  {
+    "url": "https://sk.211.ca",
+    "label": "Help — 211 Saskatchewan",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.legalaid.mb.ca",
+    "label": "Help — Legal Aid Manitoba",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.manitobahumanrights.ca",
+    "label": "Help — Manitoba Human Rights Commission",
+    "kind": "help"
+  },
+  {
+    "url": "https://mb.211.ca",
+    "label": "Help — 211 Manitoba",
     "kind": "help"
   },
   {
@@ -1731,11 +1811,6 @@ export const LINKS = [
     "kind": "org"
   },
   {
-    "url": "https://archdisabilitylaw.ca",
-    "label": "org:arch-disability-law — ARCH Disability Law Centre",
-    "kind": "org"
-  },
-  {
     "url": "https://www.autismontario.com",
     "label": "org:autism-ontario — Autism Ontario",
     "kind": "org"
@@ -1761,18 +1836,68 @@ export const LINKS = [
     "kind": "org"
   },
   {
-    "url": "https://211ontario.ca",
-    "label": "org:211-ontario — 211 Ontario",
-    "kind": "org"
-  },
-  {
     "url": "https://stepstojustice.ca",
     "label": "org:steps-to-justice — Steps to Justice",
     "kind": "org"
   },
   {
+    "url": "https://www.saskabilities.ca",
+    "label": "org:saskabilities — SaskAbilities",
+    "kind": "org"
+  },
+  {
+    "url": "https://inclusionsk.com",
+    "label": "org:inclusion-saskatchewan — Inclusion Saskatchewan",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.scisask.ca",
+    "label": "org:sci-saskatchewan — Spinal Cord Injury Saskatchewan",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.sdhhs.com",
+    "label": "org:sdhhs — Saskatchewan Deaf and Hard of Hearing Services",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.autismresourcecentre.com",
+    "label": "org:autism-resource-centre-regina — Autism Resource Centre",
+    "kind": "org"
+  },
+  {
+    "url": "https://manitobapossible.ca",
+    "label": "org:manitoba-possible — Manitoba Possible",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.abilitiesmanitoba.org",
+    "label": "org:abilities-manitoba — Abilities Manitoba",
+    "kind": "org"
+  },
+  {
+    "url": "https://inclusionwinnipeg.org",
+    "label": "org:inclusion-winnipeg — Inclusion Winnipeg",
+    "kind": "org"
+  },
+  {
     "url": "https://studentaid.alberta.ca/",
     "label": "Province fallback — student aid (AB)",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.ontario.ca/page/osap-for-under-represented-learners",
+    "label": "Province fallback — student aid (ON)",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.saskatchewan.ca/residents/education-and-learning/saskatchewan-student-aid/student-loans-and-grants/supports-for-students-with-disabilities",
+    "label": "Province fallback — student aid (SK)",
+    "kind": "help"
+  },
+  {
+    "url": "https://edu.gov.mb.ca/msa/applying-for-student-aid/frequently-asked-questions-for-students-with-disabilities.html",
+    "label": "Province fallback — student aid (MB)",
     "kind": "help"
   },
   {

@@ -158,11 +158,21 @@ const NATIONAL_211 = "https://211.ca/";
 const STUDENT_AID = {
   AB: "https://studentaid.alberta.ca/",
   BC: "https://studentaidbc.ca/apply/how-to-apply-disability-funding",
+  ON: "https://www.ontario.ca/page/osap-for-under-represented-learners",
+  SK: "https://www.saskatchewan.ca/residents/education-and-learning/saskatchewan-student-aid/student-loans-and-grants/supports-for-students-with-disabilities",
+  MB: "https://edu.gov.mb.ca/msa/applying-for-student-aid/frequently-asked-questions-for-students-with-disabilities.html",
 };
-const TWO_ELEVEN = { AB: "https://ab.211.ca/", BC: "https://bc.211.ca/" };
+const TWO_ELEVEN = { AB: "https://ab.211.ca/", BC: "https://bc.211.ca/",
+  ON: "https://211ontario.ca",
+  SK: "https://sk.211.ca",
+  MB: "https://mb.211.ca",
+};
 const EMPLOYMENT = {
   AB: "https://www.alberta.ca/disability-related-employment-supports",
   BC: "https://www.workbc.ca/plan-career/resources/people-disabilities",
+  ON: "https://www.ontario.ca/page/working-and-earning-ontario-disability-support-program",
+  SK: "https://www.saskatchewan.ca/residents/jobs-working-and-training/job-training-and-financial-support-programs/employability-assistance-for-persons-with-disabilities",
+  MB: "https://gov.mb.ca/wd/ites/pwd_work/where.html",
 };
 
 /* =============================================================================
@@ -173,6 +183,11 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "brandon-cnib-free-transit": { kind: "access", note: "Free regular Brandon Transit rides for CNIB registered clients" },
+  "brandon-access-transit": { kind: "access", note: "Door-to-door rides for riders with disabilities at regular transit fares" },
+  "mb-prenatal-benefit": { kind: "grant", note: "Up to $162.82 a month for six months, based on income." },
+  "mb-rent-supplement": { kind: "grant", note: "Rent subsidy; the province covers the gap between your income-based rent and the approved market rent." },
+  "mb-eapd": { kind: "access", note: "Employment services and supports; no dollar amount published." },
   "winnipeg-transit-plus": { kind: "access", note: "Shared door-to-door rides for approved riders at regular transit fares" },
   "winnipeg-winnpass": { kind: "discount", note: "50% off monthly passes and e-cash rides" },
   "winnipeg-recreation-fee-assistance": { kind: "grant", note: "Facility pass, drop-in pass and a $300 Leisure Guide activity credit per person" },
@@ -506,6 +521,11 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "brandon-cnib-free-transit": { difficulty: 2, effort: "CNIB registration", wait: "Not published" },
+  "brandon-access-transit": { difficulty: 3, effort: "Two-part form, doctor signature", wait: "Not published" },
+  "mb-prenatal-benefit": { difficulty: 2, effort: "Fill in a form and include a pregnancy note.", wait: "Not published" },
+  "mb-rent-supplement": { difficulty: 2, effort: "Request and send in an application.", wait: "Not published" },
+  "mb-eapd": { difficulty: 2, effort: "Contact the counsellor or agency for your disability type.", wait: "Not published" },
   "winnipeg-transit-plus": { difficulty: 3, effort: "Application and in-person assessment", wait: "Reply within 30 business days" },
   "winnipeg-winnpass": { difficulty: 3, effort: "Application form with documents", wait: "Not published" },
   "winnipeg-recreation-fee-assistance": { difficulty: 2, effort: "One form with proof of need", wait: "Not published" },
@@ -1426,6 +1446,179 @@ const HELP_ORGS = [
     focus: ["local", "family"],
     coverage: ["BC"],
     verified: "2026-07-21",
+  },
+  {
+    id: "legal-aid-ontario-clinics-on",
+    cat: "If you're denied — legal help & appeals",
+    name: "Community Legal Clinics (Legal Aid Ontario)",
+    summary: "Legal clinics funded by Legal Aid Ontario give legal information, advice or representation. Enter your postal code in the clinic finder.",
+    phone: "1-800-668-8258",
+    url: "https://www.legalaid.on.ca/legal-clinics/",
+    urlText: "legalaid.on.ca",
+    focus: ["appeals", "odsp", "rights"],
+    coverage: ["ON"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "arch-disability-law-centre-on",
+    cat: "If you're denied — legal help & appeals",
+    name: "ARCH Disability Law Centre",
+    summary: "A specialty legal clinic that practises only disability rights law and serves people with disabilities who have low income in Ontario.",
+    url: "https://archdisabilitylaw.ca",
+    urlText: "archdisabilitylaw.ca",
+    focus: ["rights", "appeals", "accommodation", "odsp"],
+    coverage: ["ON"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "211-ontario",
+    cat: "Find local services near you",
+    name: "211 Ontario",
+    summary: "A helpline and website linking people to social services, programs and community supports.",
+    url: "https://211ontario.ca",
+    urlText: "211ontario.ca",
+    focus: ["local"],
+    coverage: ["ON"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "disability-alliance-canada-on",
+    cat: "Help with the forms",
+    name: "Disability Alliance Canada",
+    summary: "A national organization that says it serves people with disabilities across Canada. Offers free advocate support through CPP Disability and the Disability Tax Credit (DTC).",
+    url: "https://disabilityalliancecanada.ca",
+    urlText: "disabilityalliancecanada.ca",
+    focus: ["dtc", "appeals"],
+    coverage: ["ON"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "plan-institute-helpline-on",
+    cat: "Help with the forms",
+    name: "Disability Planning Helpline (Plan Institute)",
+    summary: "A free, nationwide (Canada-wide) helpline for disability planning questions, including the RDSP.",
+    phone: "1-844-311-7526",
+    url: "https://www.rdsp.com",
+    urlText: "rdsp.com",
+    focus: ["rdsp", "dtc"],
+    coverage: ["ON"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "pro-bono-law-saskatchewan-sk",
+    cat: "If you're denied — legal help & appeals",
+    name: "Pro Bono Law Saskatchewan",
+    summary: "Runs free legal clinics across Saskatchewan and a Panel Program that matches clients with volunteer lawyers.",
+    phone: "1-855-833-7257",
+    url: "https://pblsask.ca",
+    urlText: "pblsask.ca",
+    focus: ["appeals", "rights", "said"],
+    coverage: ["SK"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "classic-saskatoon-sk",
+    cat: "If you're denied — legal help & appeals",
+    name: "CLASSIC (Saskatoon)",
+    summary: "Provides free legal programming, services and supports for people who experience poverty and injustice in Saskatoon.",
+    phone: "306-657-6100",
+    url: "https://www.classiclaw.ca",
+    urlText: "classiclaw.ca",
+    focus: ["appeals", "rights", "local", "said"],
+    coverage: ["SK"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "saskatchewan-human-rights-commission-sk",
+    cat: "If you're denied — legal help & appeals",
+    name: "Saskatchewan Human Rights Commission",
+    summary: "Works to discourage and eliminate discrimination; has a Duty to Accommodate page and accommodation resources.",
+    phone: "1-800-667-9249",
+    url: "https://saskhrc.ca/",
+    urlText: "saskhrc.ca",
+    focus: ["rights", "accommodation"],
+    coverage: ["SK"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "211-saskatchewan",
+    cat: "Find local services near you",
+    name: "211 Saskatchewan",
+    summary: "Free, confidential information on health and social services by phone, text or chat, live answer 24/7.",
+    phone: "2-1-1",
+    url: "https://sk.211.ca",
+    urlText: "sk.211.ca",
+    focus: ["local"],
+    coverage: ["SK"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "disability-alliance-canada-sk",
+    cat: "Help with the forms",
+    name: "Disability Alliance Canada",
+    summary: "A national organization that says it serves people with disabilities across Canada. Offers free advocate support through CPP Disability and the Disability Tax Credit (DTC).",
+    url: "https://disabilityalliancecanada.ca",
+    urlText: "disabilityalliancecanada.ca",
+    focus: ["dtc", "appeals"],
+    coverage: ["SK"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "legal-aid-manitoba-mb",
+    cat: "If you're denied — legal help & appeals",
+    name: "Legal Aid Manitoba",
+    summary: "Free or affordable legal services for low-income adults and youth. Covers government benefit appeals (social assistance, CPP disability, Workers Compensation) and some human rights cases; decided case by case, with financial eligibility rules.",
+    url: "https://www.legalaid.mb.ca",
+    urlText: "legalaid.mb.ca",
+    focus: ["appeals", "rights", "eia", "mspd"],
+    coverage: ["MB"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "manitoba-human-rights-commission-mb",
+    cat: "If you're denied — legal help & appeals",
+    name: "Manitoba Human Rights Commission",
+    summary: "Administers The Human Rights Code, which prohibits disability discrimination in employment, services available to the public, contracts and housing. An Aug 21, 2026 notice on the site said phones were down; email hrc@gov.mb.ca with your name and phone number.",
+    url: "https://www.manitobahumanrights.ca",
+    urlText: "manitobahumanrights.ca",
+    focus: ["rights", "accommodation"],
+    coverage: ["MB"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "211-manitoba",
+    cat: "Find local services near you",
+    name: "211 Manitoba",
+    summary: "Free, confidential information on health and social services by phone, live answer 24/7, plus online and chat.",
+    phone: "2-1-1",
+    url: "https://mb.211.ca",
+    urlText: "mb.211.ca",
+    focus: ["local"],
+    coverage: ["MB"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "disability-alliance-canada-mb",
+    cat: "Help with the forms",
+    name: "Disability Alliance Canada",
+    summary: "A national organization that says it serves people with disabilities across Canada. Offers free advocate support through CPP Disability and the Disability Tax Credit (DTC).",
+    url: "https://disabilityalliancecanada.ca",
+    urlText: "disabilityalliancecanada.ca",
+    focus: ["dtc", "appeals"],
+    coverage: ["MB"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "plan-institute-helpline-mb",
+    cat: "Help with the forms",
+    name: "Disability Planning Helpline (Plan Institute)",
+    summary: "A free, nationwide (Canada-wide) helpline for disability planning questions, including the RDSP.",
+    phone: "1-844-311-7526",
+    url: "https://www.rdsp.com",
+    urlText: "rdsp.com",
+    focus: ["rdsp", "dtc"],
+    coverage: ["MB"],
+    verified: "2026-10-18",
   },
 ];
 
@@ -14017,6 +14210,252 @@ const BENEFITS = [
       "time": "Reply within 30 business days",
       "phone": "(204) 986-5722"
     }
+  },
+  {
+    "id": "mb-eapd",
+    "name": "Employability Assistance for People with Disabilities (EAPD)",
+    "level": "Manitoba",
+    "category": "Employment",
+    "amount": "Employment services and supports; no dollar amount published",
+    "summary": "Employment services for adults with disabilities who want to prepare for, find and keep a job. Help comes through a vocational counsellor or a designated agency.",
+    "note": "The page gives no dollar amount. Who serves you depends on your type of disability.",
+    "requires": [
+      "mb",
+      "age16plus",
+      "mbEapdRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Manitoba and have an intellectual, psychiatric, learning or physical disability.",
+        "You are 16 years of age or older.",
+        "You can legally work in Manitoba on a permanent basis.",
+        "You show a willingness to prepare for, get and keep a job."
+      ],
+      "note": "The page does not say how the disability must be shown."
+    },
+    "applyText": "Contact a vocational counsellor or designated agency",
+    "applyUrl": "https://gov.mb.ca/wd/ites/pwd_work/where.html",
+    "source": "https://gov.mb.ca/wd/ites/pwd_work/where.html",
+    "detail": {
+      "aboutList": {
+        "lead": "EAPD offers a wide range of employment-focused services for adults with disabilities.",
+        "items": [
+          "It helps you prepare for work, get a job and keep it.",
+          "Supported Employment Agencies help find real work in integrated settings.",
+          "Agencies also give you and your employer ongoing support.",
+          "The aim is work paying minimum wage or better, or the standard pay for the position."
+        ]
+      },
+      "steps": [
+        "Find your service line by disability type on the program page.",
+        "Intellectual, psychiatric or learning disability: email EAPD@gov.mb.ca to reach a vocational counsellor.",
+        "Visual disability: contact Vision Loss Rehabilitation Manitoba.",
+        "Spinal cord injury: contact SCI Manitoba.",
+        "Other physical disability, including Deaf or hard of hearing: contact Manitoba Possible."
+      ],
+      "documents": [],
+      "tips": [
+        "Employment and Training Centres deliver services under your Vocational Plan.",
+        "211 Manitoba is an online database of government, health and social services."
+      ]
+    }
+  },
+  {
+    "id": "mb-rent-supplement",
+    "name": "Rent Supplement (Manitoba Housing)",
+    "level": "Manitoba",
+    "category": "Housing",
+    "amount": "You pay rent geared to income; the province covers the gap to the approved market rent",
+    "summary": "Helps low-income families, seniors and special needs households rent in private or non-profit housing. You pay rent based on income, and the province pays the rest.",
+    "note": "The page gives no income limit figure. Limits are set each year by CMHC as Program Income Limits.",
+    "requires": [
+      "mb",
+      "age18plus",
+      "mbRentSupplementRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your total household income is less than the Program Income Limits set annually by CMHC.",
+        "You are a permanent legal resident of Canada.",
+        "You are 18 years of age or older.",
+        "You do not get any other shelter allowance or rental subsidy."
+      ],
+      "note": "The page names special needs households as a group the program serves."
+    },
+    "applyText": "Request an application",
+    "applyUrl": "https://gov.mb.ca/housing/progs/rent_supplement.html",
+    "source": "https://gov.mb.ca/housing/progs/rent_supplement.html",
+    "detail": {
+      "aboutList": {
+        "lead": "The province pays the gap between your income-based rent and the approved market rent.",
+        "items": [
+          "Manitoba Housing pays the monthly supplement to the housing provider.",
+          "You pay your own portion of the rent as usual.",
+          "Units are in private rental housing and non-profit affordable housing."
+        ]
+      },
+      "steps": [
+        "Ask for an application to be mailed, or pick one up at a Manitoba Housing Leasing Office.",
+        "You can also send an application straight to a non-profit housing organization that offers the program.",
+        "Check the program listing of non-profit housing organizations for availability."
+      ],
+      "documents": [],
+      "tips": [
+        "Space depends on availability at each housing organization.",
+        "The program offices are open 8:30 AM to 4:30 PM, Monday to Friday.",
+        "Email RentSuppInfo@gov.mb.ca with questions."
+      ],
+      "phone": "204-945-3131"
+    }
+  },
+  {
+    "id": "mb-prenatal-benefit",
+    "name": "Manitoba Prenatal Benefit",
+    "level": "Manitoba",
+    "category": "Money (for parents)",
+    "amount": "Up to $162.82 a month for six months, based on income",
+    "summary": "A monthly payment for six months to help you buy healthy food while pregnant. The amount depends on your income.",
+    "note": "You must apply while you are pregnant. Income assistance cheques are not affected by this benefit.",
+    "requires": [
+      "mb",
+      "mbPrenatalBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are pregnant.",
+        "You live in Manitoba.",
+        "Your net family income is less than $32,000 a year."
+      ],
+      "note": "Page lists a form if this year's income is much lower than your last tax return."
+    },
+    "applyText": "Apply for the Prenatal Benefit",
+    "applyUrl": "https://gov.mb.ca/fs/healthybaby/prenatal-benefit.html",
+    "source": "https://gov.mb.ca/fs/healthybaby/prenatal-benefit.html",
+    "detail": {
+      "aboutList": {
+        "lead": "The benefit pays a monthly income supplement and links you to pregnancy supports.",
+        "items": [
+          "It is a monthly supplement for six months.",
+          "It comes with a referral to community Public Health Services and resources.",
+          "It helps you connect with prenatal care early in pregnancy.",
+          "It includes a referral to a Healthy Baby Community Support program."
+        ]
+      },
+      "steps": [
+        "Choose an application option: the online E-Form, or a printable form.",
+        "On EIA or MSPD: use the shorter Registration Form, by mail or in person.",
+        "Not on EIA or MSPD: use the full Application Form, by mail or in person.",
+        "Include a note confirming your pregnancy."
+      ],
+      "documents": [
+        "A note confirming your pregnancy",
+        "SIN application form, if you have no Social Insurance Number",
+        "Extra form if you are 18 or younger and have not filed a tax return"
+      ],
+      "tips": [
+        "Forms are also at medical offices, community agencies and government offices.",
+        "Or pick one up at the Healthy Baby Prenatal Benefit Office, 100-114 Garry Street, Winnipeg.",
+        "Use the lower-income form if this year's income is much lower than your last return."
+      ],
+      "phone": "204-945-1301"
+    }
+  },
+  {
+    "id": "brandon-access-transit",
+    "name": "Brandon Access Transit",
+    "level": "Brandon",
+    "category": "Transit",
+    "amount": "Door-to-door rides at regular transit fares",
+    "summary": "Door-to-door rides in Brandon for people with disabilities who cannot use regular Brandon Transit. Fares are the same as regular transit.",
+    "note": "A doctor must sign the application. Incomplete forms are returned without processing.",
+    "requires": [
+      "mb",
+      "brandon",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You need a mobility aid to perform daily tasks.",
+        "You have a visual impairment that stops you reading signs.",
+        "You cannot safely step up or down a 40 cm (16-inch) step alone.",
+        "You cannot walk 200 m (660 feet) from home to your destination alone."
+      ],
+      "note": "You must be unable to use regular Brandon Transit services."
+    },
+    "applyText": "Apply for Access Transit",
+    "applyUrl": "https://www.brandon.ca/roads-parking-transportation/brandon-transit/access-transit/",
+    "source": "https://www.brandon.ca/roads-parking-transportation/brandon-transit/access-transit/",
+    "detail": {
+      "aboutList": {
+        "lead": "Access Transit gives you:",
+        "items": [
+          "Door-to-door transportation within the City of Brandon.",
+          "Pick-up and drop-off at accessible building entrances.",
+          "Call back service for medical appointments only.",
+          "A 24-hour message service for cancellations."
+        ]
+      },
+      "steps": [
+        "Fill in the application form (Form 1 of 2).",
+        "Ask your Medical Doctor to complete and sign the assessment form (Form 2 of 2).",
+        "Email both forms to accesstransit@brandon.ca, which is preferred.",
+        "Or drop them at 723 Rosser Ave Unit A or City Hall, or mail them to 410 9th Street, Brandon MB R7A 6A2."
+      ],
+      "documents": [
+        "Brandon Access Transit Application Form (Form 1/2)",
+        "Brandon Access Transit Assessment Form (Form 2/2), signed by your Medical Doctor"
+      ],
+      "tips": [
+        "Both forms must be completed; incomplete forms are returned without processing.",
+        "Book return trips when you book your ride, and be ready 15 minutes before pick-up.",
+        "Trips are booked Monday to Friday, 6:30 a.m. to 4:30 p.m."
+      ],
+      "phone": "204-729-2437"
+    }
+  },
+  {
+    "id": "brandon-cnib-free-transit",
+    "name": "Free Brandon Transit for CNIB clients",
+    "level": "Brandon",
+    "category": "Transit",
+    "amount": "Free rides on regular Brandon Transit",
+    "summary": "CNIB registered clients ride regular Brandon Transit for free. This does not cover Access Transit.",
+    "note": "The page says to visit CNIB for more details. Access Transit is excluded.",
+    "requires": [
+      "mb",
+      "brandon",
+      "brandonCnibFreeTransitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a CNIB registered client."
+      ],
+      "note": "Access Transit is not included."
+    },
+    "applyText": "See Brandon Transit special programs",
+    "applyUrl": "https://www.brandon.ca/roads-parking-transportation/brandon-transit/fares/special-programs/",
+    "source": "https://www.brandon.ca/roads-parking-transportation/brandon-transit/fares/special-programs/",
+    "detail": {
+      "aboutList": {
+        "lead": "This program gives you:",
+        "items": [
+          "Free rides on regular Brandon Transit.",
+          "No free rides on Access Transit."
+        ]
+      },
+      "steps": [
+        "Check with CNIB about being a CNIB registered client.",
+        "Visit CNIB for more details."
+      ],
+      "documents": [],
+      "tips": [],
+      "phone": "204-729-2300"
+    }
   }
 
 ];
@@ -14038,6 +14477,7 @@ const GLOSSARY = {
   "ACSD": "Assistance for Children with Severe Disabilities",
   "ADAP": "Alberta Disability Assistance Program",
   "ADP": "Assistive Devices Program",
+  "AHCIP": "Alberta Health Care Insurance Plan",
   "AHP": "At Home Program",
   "AISH": "Assured Income for the Severely Handicapped",
   "ARCH": "Affordable Recreation for Community Health",
@@ -14052,9 +14492,11 @@ const GLOSSARY = {
   "CDCP": "Canadian Dental Care Plan",
   "CLBC": "Community Living BC",
   "COLT": "Cochrane On Demand Local Transit",
+  "CPAP": "Continuous Positive Airway Pressure (a breathing machine)",
   "CPP": "Canada Pension Plan",
   "CPP-D": "Canada Pension Plan Disability",
   "CRA": "Canada Revenue Agency",
+  "CSIL": "Choice in Supports for Independent Living",
   "CUAET": "Canada-Ukraine Authorization for Emergency Travel",
   "CYSN": "Children and Youth with Support Needs",
   "DIA": "Disability Income Assistance",
@@ -14062,11 +14504,13 @@ const GLOSSARY = {
   "DSO": "Developmental Services Ontario",
   "DTC": "Disability Tax Credit",
   "EI": "Employment Insurance",
+  "EIA": "Employment and Income Assistance (Manitoba)",
   "FAR": "Financial Assistance for Recreation",
   "FASD": "Fetal Alcohol Spectrum Disorder",
   "FCSS": "Family and Community Support Services",
   "FNHA": "First Nations Health Authority",
   "FSCD": "Family Support for Children with Disabilities",
+  "GAINS": "Guaranteed Annual Income System (Ontario)",
   "GIS": "Guaranteed Income Supplement",
   "GST": "Goods and Services Tax",
   "HATC": "Home Accessibility Tax Credit",
@@ -14075,6 +14519,7 @@ const GLOSSARY = {
   "IRCC": "Immigration, Refugees and Citizenship Canada",
   "ISC": "Indigenous Services Canada",
   "LAP": "Leisure Access Program",
+  "LEAP": "Low-income Energy Assistance Program",
   "LICO": "Low Income Cut-Off",
   "LIFT": "Low-Income Fare Transit Program",
   "LIM-AT": "Low-Income Measure After-Tax",
@@ -14084,9 +14529,12 @@ const GLOSSARY = {
   "MSDPR": "Ministry of Social Development and Poverty Reduction",
   "MSO": "Medical Services Only",
   "MSP": "Medical Services Plan",
+  "MSPD": "Manitoba Supports for Persons with Disabilities",
   "NOA": "Notice of Assessment",
   "OAP": "Ontario Autism Program",
+  "OAS": "Old Age Security",
   "ODSP": "Ontario Disability Support Program",
+  "OESP": "Ontario Electricity Support Program",
   "OHIP": "Ontario Health Insurance Plan",
   "OT": "Occupational Therapist",
   "PAIRS": "Provincial Access, Information and Resource Services",
@@ -14097,17 +14545,27 @@ const GLOSSARY = {
   "PSI": "Personalized Supports Initiative",
   "PT": "Physical Therapist",
   "PWD": "Persons with Disabilities designation",
+  "RAHA": "Rebate for Accessible Home Adaptations",
   "RAMP": "Residential Access Modification Program",
   "RASP": "Registry of Autism Service Providers",
   "RDSP": "Registered Disability Savings Plan",
   "RFSP": "Recreation Fee Subsidy Program",
   "SAET": "School-Aged Extended Therapies",
   "SAFER": "Shelter Aid for Elderly Renters",
+  "SAID": "Saskatchewan Assured Income for Disability",
+  "SAIL": "Saskatchewan Aids to Independent Living",
+  "SEI": "Saskatchewan Employment Incentive",
+  "SES": "Saskatchewan Employment Supplement",
+  "SGI": "Saskatchewan Government Insurance",
+  "SHARP": "Seniors Home Adaptation and Repair Program",
   "SIN": "Social Insurance Number",
+  "SIP": "Seniors Income Plan (Saskatchewan)",
   "SLP": "Speech-Language Pathologist",
   "SSAH": "Special Services at Home",
   "TTC": "Toronto Transit Commission",
   "TTE": "Training, Travel and Equipment",
+  "TTY": "Text telephone for people who are Deaf or hard of hearing",
+  "WCB": "Workers' Compensation Board",
   "WSIB": "Workplace Safety and Insurance Board",
 };
 /* [abbreviation, expansion] pairs that appear in a program's own text, A to Z. */
@@ -14128,6 +14586,11 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "brandon-cnib-free-transit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-manitoba/city-snapshots)
+  "brandon-access-transit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-manitoba/city-snapshots)
+  "mb-prenatal-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "mb-rent-supplement": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "mb-eapd": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "winnipeg-transit-plus": "2026-10", // new 2026-10-17 from the official page (research/2026-10-manitoba/city-snapshots)
   "winnipeg-winnpass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-manitoba/city-snapshots)
   "winnipeg-recreation-fee-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-manitoba/city-snapshots)

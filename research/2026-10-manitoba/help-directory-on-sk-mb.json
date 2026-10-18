@@ -1,0 +1,424 @@
+{
+ "maps": {
+  "STUDENT_AID": {
+   "ON": {
+    "url": "https://osap.gov.on.ca/dc/POCONT1_074764",
+    "source_note": "OSAP page 'Assistance for Students with Disabilities' (CSG-DSE / BSWD application). Fetched. Note: page is part of the 2023-24 OSAP part-time application; consider checking for a current version."
+   },
+   "SK": {
+    "url": "https://www.saskatchewan.ca/residents/education-and-learning/saskatchewan-student-aid/student-loans-and-grants/supports-for-students-with-disabilities",
+    "source_note": "Saskatchewan Student Aid 'Supports for Students with Disabilities'. Fetched (www host; non-www host failed TLS)."
+   },
+   "MB": {
+    "url": "https://edu.gov.mb.ca/msa/applying-for-student-aid/frequently-asked-questions-for-students-with-disabilities.html",
+    "source_note": "Manitoba Student Aid FAQ for Students with Disabilities. Fetched."
+   }
+  },
+  "TWO_ELEVEN": {
+   "ON": {
+    "url": "https://211ontario.ca",
+    "source_note": "211 Ontario home page. Fetched; page lists no phone."
+   },
+   "SK": {
+    "url": "https://sk.211.ca",
+    "source_note": "211 Saskatchewan home page. Fetched; dial 2-1-1, 24/7, free."
+   },
+   "MB": {
+    "url": "https://mb.211.ca",
+    "source_note": "211 Manitoba home page. Fetched; dial 2-1-1, 24/7, free."
+   }
+  },
+  "EMPLOYMENT": {
+   "ON": {
+    "url": "https://www.ontario.ca/document/2026-2027-mccss-service-objectives-social-assistance/job-placement",
+    "source_note": "ontario.ca ODSP Employment Supports component (2026-27 service objectives). Fetched. No simpler public landing page confirmed (ontario.ca/page/employment-supports-people-disabilities was 404)."
+   },
+   "SK": {
+    "url": "https://www.saskatchewan.ca/residents/jobs-working-and-training/job-training-and-financial-support-programs/employability-assistance-for-persons-with-disabilities",
+    "source_note": "Employability Assistance for Persons with Disabilities (EAPD). Fetched (www host)."
+   },
+   "MB": {
+    "url": "https://gov.mb.ca/fs/manitobasupports/about/index.html",
+    "source_note": "Manitoba Supports for Persons with Disabilities 'about' page; mentions employment connection and higher earnings allowance. Fetched. Not a dedicated employment-program page."
+   }
+  }
+ },
+ "HELP_ORGS": {
+  "ON": [
+   {
+    "id": "legal-aid-ontario-clinics-on",
+    "cat": "If you're denied \u2014 legal help & appeals",
+    "name": "Community Legal Clinics (Legal Aid Ontario)",
+    "summary": "Legal clinics funded by Legal Aid Ontario give legal information, advice or representation. Enter your postal code in the clinic finder.",
+    "phone": "1-800-668-8258",
+    "url": "https://www.legalaid.on.ca/legal-clinics/",
+    "urlText": "legalaid.on.ca",
+    "focus": [
+     "appeals",
+     "odsp",
+     "rights"
+    ],
+    "coverage": [
+     "ON"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "arch-disability-law-centre-on",
+    "cat": "If you're denied \u2014 legal help & appeals",
+    "name": "ARCH Disability Law Centre",
+    "summary": "A specialty legal clinic that practises only disability rights law and serves people with disabilities who have low income in Ontario.",
+    "url": "https://archdisabilitylaw.ca",
+    "urlText": "archdisabilitylaw.ca",
+    "focus": [
+     "rights",
+     "appeals",
+     "accommodation",
+     "odsp"
+    ],
+    "coverage": [
+     "ON"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "211-ontario",
+    "cat": "Find local services near you",
+    "name": "211 Ontario",
+    "summary": "A helpline and website linking people to social services, programs and community supports.",
+    "url": "https://211ontario.ca",
+    "urlText": "211ontario.ca",
+    "focus": [
+     "local"
+    ],
+    "coverage": [
+     "ON"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "disability-alliance-canada-on",
+    "cat": "Help with the forms",
+    "name": "Disability Alliance Canada",
+    "summary": "A national organization that says it serves people with disabilities across Canada. Offers free advocate support through CPP Disability and the Disability Tax Credit (DTC).",
+    "url": "https://disabilityalliancecanada.ca",
+    "urlText": "disabilityalliancecanada.ca",
+    "focus": [
+     "dtc",
+     "appeals"
+    ],
+    "coverage": [
+     "ON"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "plan-institute-helpline-on",
+    "cat": "Help with the forms",
+    "name": "Disability Planning Helpline (Plan Institute)",
+    "summary": "A free, nationwide (Canada-wide) helpline for disability planning questions, including the RDSP.",
+    "phone": "1-844-311-7526",
+    "url": "https://www.rdsp.com",
+    "urlText": "rdsp.com",
+    "focus": [
+     "rdsp",
+     "dtc"
+    ],
+    "coverage": [
+     "ON"
+    ],
+    "verified": "2026-10-18"
+   }
+  ],
+  "SK": [
+   {
+    "id": "pro-bono-law-saskatchewan-sk",
+    "cat": "If you're denied \u2014 legal help & appeals",
+    "name": "Pro Bono Law Saskatchewan",
+    "summary": "Runs free legal clinics across Saskatchewan and a Panel Program that matches clients with volunteer lawyers.",
+    "phone": "1-855-833-7257",
+    "url": "https://pblsask.ca",
+    "urlText": "pblsask.ca",
+    "focus": [
+     "appeals",
+     "rights",
+     "said"
+    ],
+    "coverage": [
+     "SK"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "classic-saskatoon-sk",
+    "cat": "If you're denied \u2014 legal help & appeals",
+    "name": "CLASSIC (Saskatoon)",
+    "summary": "Provides free legal programming, services and supports for people who experience poverty and injustice in Saskatoon.",
+    "phone": "306-657-6100",
+    "url": "https://www.classiclaw.ca",
+    "urlText": "classiclaw.ca",
+    "focus": [
+     "appeals",
+     "rights",
+     "local",
+     "said"
+    ],
+    "coverage": [
+     "SK"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "saskatchewan-human-rights-commission-sk",
+    "cat": "If you're denied \u2014 legal help & appeals",
+    "name": "Saskatchewan Human Rights Commission",
+    "summary": "Works to discourage and eliminate discrimination; has a Duty to Accommodate page and accommodation resources.",
+    "phone": "1-800-667-9249",
+    "url": "https://saskhrc.ca/",
+    "urlText": "saskhrc.ca",
+    "focus": [
+     "rights",
+     "accommodation"
+    ],
+    "coverage": [
+     "SK"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "211-saskatchewan",
+    "cat": "Find local services near you",
+    "name": "211 Saskatchewan",
+    "summary": "Free, confidential information on health and social services by phone, text or chat, live answer 24/7.",
+    "phone": "2-1-1",
+    "url": "https://sk.211.ca",
+    "urlText": "sk.211.ca",
+    "focus": [
+     "local"
+    ],
+    "coverage": [
+     "SK"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "disability-alliance-canada-sk",
+    "cat": "Help with the forms",
+    "name": "Disability Alliance Canada",
+    "summary": "A national organization that says it serves people with disabilities across Canada. Offers free advocate support through CPP Disability and the Disability Tax Credit (DTC).",
+    "url": "https://disabilityalliancecanada.ca",
+    "urlText": "disabilityalliancecanada.ca",
+    "focus": [
+     "dtc",
+     "appeals"
+    ],
+    "coverage": [
+     "SK"
+    ],
+    "verified": "2026-10-18"
+   }
+  ],
+  "MB": [
+   {
+    "id": "legal-aid-manitoba-mb",
+    "cat": "If you're denied \u2014 legal help & appeals",
+    "name": "Legal Aid Manitoba",
+    "summary": "Free or affordable legal services for low-income adults and youth. Covers government benefit appeals (social assistance, CPP disability, Workers Compensation) and some human rights cases; decided case by case, with financial eligibility rules.",
+    "url": "https://www.legalaid.mb.ca",
+    "urlText": "legalaid.mb.ca",
+    "focus": [
+     "appeals",
+     "rights",
+     "eia",
+     "mspd"
+    ],
+    "coverage": [
+     "MB"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "manitoba-human-rights-commission-mb",
+    "cat": "If you're denied \u2014 legal help & appeals",
+    "name": "Manitoba Human Rights Commission",
+    "summary": "Administers The Human Rights Code, which prohibits disability discrimination in employment, services available to the public, contracts and housing. An Aug 21, 2026 notice on the site said phones were down; email hrc@gov.mb.ca with your name and phone number.",
+    "url": "https://www.manitobahumanrights.ca",
+    "urlText": "manitobahumanrights.ca",
+    "focus": [
+     "rights",
+     "accommodation"
+    ],
+    "coverage": [
+     "MB"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "211-manitoba",
+    "cat": "Find local services near you",
+    "name": "211 Manitoba",
+    "summary": "Free, confidential information on health and social services by phone, live answer 24/7, plus online and chat.",
+    "phone": "2-1-1",
+    "url": "https://mb.211.ca",
+    "urlText": "mb.211.ca",
+    "focus": [
+     "local"
+    ],
+    "coverage": [
+     "MB"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "disability-alliance-canada-mb",
+    "cat": "Help with the forms",
+    "name": "Disability Alliance Canada",
+    "summary": "A national organization that says it serves people with disabilities across Canada. Offers free advocate support through CPP Disability and the Disability Tax Credit (DTC).",
+    "url": "https://disabilityalliancecanada.ca",
+    "urlText": "disabilityalliancecanada.ca",
+    "focus": [
+     "dtc",
+     "appeals"
+    ],
+    "coverage": [
+     "MB"
+    ],
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "plan-institute-helpline-mb",
+    "cat": "Help with the forms",
+    "name": "Disability Planning Helpline (Plan Institute)",
+    "summary": "A free, nationwide (Canada-wide) helpline for disability planning questions, including the RDSP.",
+    "phone": "1-844-311-7526",
+    "url": "https://www.rdsp.com",
+    "urlText": "rdsp.com",
+    "focus": [
+     "rdsp",
+     "dtc"
+    ],
+    "coverage": [
+     "MB"
+    ],
+    "verified": "2026-10-18"
+   }
+  ]
+ },
+ "ORGS_DIRECTORY": {
+  "SK": [
+   {
+    "id": "saskabilities",
+    "name": "SaskAbilities",
+    "url": "https://www.saskabilities.ca",
+    "region": "Saskatchewan (check each program for locations)",
+    "coverage": [
+     "SK"
+    ],
+    "whatTheyDo": "Offers independent living, community, supported employment and other programs and services for people with disabilities.",
+    "focus": "navigation-advocacy",
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "inclusion-saskatchewan",
+    "name": "Inclusion Saskatchewan",
+    "url": "https://inclusionsk.com",
+    "region": "Saskatchewan",
+    "coverage": [
+     "SK"
+    ],
+    "whatTheyDo": "Supports people with intellectual disabilities, their families and community groups, working with government and partners to expand inclusion and choice.",
+    "focus": "developmental-disability",
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "sci-saskatchewan",
+    "name": "Spinal Cord Injury Saskatchewan",
+    "url": "https://www.scisask.ca",
+    "region": "Saskatoon and Regina offices",
+    "coverage": [
+     "SK"
+    ],
+    "whatTheyDo": "Supports people with spinal cord injuries and other physical disabilities, and their families, to live independently and take part in community life.",
+    "focus": "physical-disability",
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "sdhhs",
+    "name": "Saskatchewan Deaf and Hard of Hearing Services",
+    "url": "https://www.sdhhs.com",
+    "region": "Saskatoon and Regina offices",
+    "coverage": [
+     "SK"
+    ],
+    "whatTheyDo": "Provides services for Deaf and hard of hearing people, including ASL interpreting, family and vocational support, note-taking and assistive devices.",
+    "focus": "sensory",
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "autism-resource-centre-regina",
+    "name": "Autism Resource Centre",
+    "url": "https://www.autismresourcecentre.com",
+    "region": "Regina",
+    "coverage": [
+     "SK"
+    ],
+    "whatTheyDo": "Uses education and skill-building services to help autistic people grow their abilities and engage with their community.",
+    "focus": "autism",
+    "verified": "2026-10-18"
+   }
+  ],
+  "MB": [
+   {
+    "id": "manitoba-possible",
+    "name": "Manitoba Possible",
+    "url": "https://manitobapossible.ca",
+    "region": "Brandon, Dauphin, Morden, Selkirk, Steinbach, Thompson, Winnipeg",
+    "coverage": [
+     "MB"
+    ],
+    "whatTheyDo": "Runs programs and services for Manitobans with disabilities, their families and communities, working to eliminate barriers to full and equal participation.",
+    "focus": "physical-disability",
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "abilities-manitoba",
+    "name": "Abilities Manitoba",
+    "url": "https://www.abilitiesmanitoba.org",
+    "region": "Manitoba (member agencies)",
+    "coverage": [
+     "MB"
+    ],
+    "whatTheyDo": "A network of agencies supporting people with intellectual disabilities, offering advocacy, training, employment resources and e-learning.",
+    "focus": "developmental-disability",
+    "verified": "2026-10-18"
+   },
+   {
+    "id": "inclusion-winnipeg",
+    "name": "Inclusion Winnipeg",
+    "url": "https://inclusionwinnipeg.org",
+    "region": "Winnipeg",
+    "coverage": [
+     "MB"
+    ],
+    "whatTheyDo": "Supports people who face barriers to services and advocates for equal citizenship and inclusive communities.",
+    "focus": "navigation-advocacy",
+    "verified": "2026-10-18"
+   }
+  ]
+ },
+ "changes": [
+  "disability-alliance-canada-on: page says it serves people across Canada and lists free advocate support for CPP-D and DTC; summary now says national and drops 'benefit applications'/'does not say provinces'.",
+  "plan-institute-helpline-on: summary clarified as national (page: free nationwide Disability Planning Helpline).",
+  "disability-alliance-canada-sk: page says it serves people across Canada and lists free advocate support for CPP-D and DTC; summary now says national and drops 'benefit applications'/'does not say provinces'.",
+  "disability-alliance-canada-mb: page says it serves people across Canada and lists free advocate support for CPP-D and DTC; summary now says national and drops 'benefit applications'/'does not say provinces'.",
+  "plan-institute-helpline-mb: summary clarified as national (page: free nationwide Disability Planning Helpline).",
+  "legal-aid-manitoba-mb: reworded; page lists benefit appeals and human-rights public-interest cases, case by case, not blanket coverage.",
+  "manitoba-human-rights-commission-mb: wording tied to dated site notice; 'services available to the public'. Page lists 204-945-3007 / 1-888-884-8681 but phone field left empty due to the outage notice.",
+  "saskabilities: 'Province-wide' not stated on page; region and description reworded to match page.",
+  "inclusion-saskatchewan: region 'Province-wide' softened to 'Saskatchewan' (page says supports anyone in Saskatchewan).",
+  "manitoba-possible: region replaced with the listed service locations.",
+  "abilities-manitoba: 'Province-wide' not stated on page; region softened.",
+  "maps STUDENT_AID ON: loads and is correct topic, but page is 2023-24 part-time OSAP content; note added.",
+  "maps EMPLOYMENT MB: page only mentions help connecting to supports possibly incl. employment and higher earnings; kept with existing source_note."
+ ]
+}
