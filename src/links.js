@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 437 links. The monitor checks a bounded rotating batch every
+// 469 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -1668,6 +1668,166 @@ export const LINKS = [
   {
     "url": "https://www.gnb.ca/en/topic/family-home-community/housing-property/home-repair.html",
     "label": "Homeowner Repair Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/coms/employment/income_assistance/",
+    "label": "Employment Support and Income Assistance — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/coms/disabilities/FlexProgram.html",
+    "label": "Disability Support Program (Flex and Independent Living Support) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/Coms/disabilities/IndependentLiving.html",
+    "label": "Disability Support Program (Flex and Independent Living Support) — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://novascotia.ca/coms/disabilities/DirectFamilySupportforChildren.html",
+    "label": "Direct Family Support for Children — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/dhw/CCS/caregiver-benefit.asp",
+    "label": "Caregiver Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/dhw/pharmacare/DCS-drug-program.asp",
+    "label": "Pharmacare for Income Assistance and Disability Support Program clients — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/dhw/pharmacare/seniors-pharmacare.asp",
+    "label": "Seniors' Pharmacare Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/dhw/pharmacare/family-pharmacare.asp",
+    "label": "Family Pharmacare Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.novascotia.ca/apply-heating-assistance-rebate-heating-assistance-rebate-program",
+    "label": "Heating Assistance Rebate Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.novascotia.ca/apply-help-household-healthcare-and-home-heating-costs-seniors-care-grant",
+    "label": "Seniors Care Grant — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.novascotia.ca/apply-property-tax-rebate-property-tax-rebate-seniors",
+    "label": "Property Tax Rebate for Seniors — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.novascotia.ca/apply-help-home-repairs-and-accessibility-adaptations-housing-repair-and-accessibility-program",
+    "label": "Housing Repair and Accessibility Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.novascotia.ca/apply-rent-supplement-canada-nova-scotia-targeted-housing-benefit",
+    "label": "Canada-Nova Scotia Targeted Housing Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/sns/rmv/registration/mobility.asp",
+    "label": "Accessible Parking Permits and Plates — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "http://novascotia.ca/coms/PovertyReductionCredit.html",
+    "label": "Poverty Reduction Credit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/dhw/dental-programs/children-oral-health-program.asp",
+    "label": "Children's Oral Health Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/bus-pass/",
+    "label": "Community Bus Pass (Halifax and Cape Breton) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/dhw/ccs/wheelchair-loan-program.asp",
+    "label": "Seniors Community Wheelchair Loan Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/coms/disabilities/community-inclusion-day-programming.html",
+    "label": "Community inclusion and day programs — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://nspha.ca/applicants/eligibility",
+    "label": "Public Housing (Nova Scotia Provincial Housing Agency) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/autism/",
+    "label": "Provincial Preschool Autism Service — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/dhw/ehs/ambulance-fees.asp",
+    "label": "Ambulance fee waiver — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/student-loan-forgiveness-program-disabilities/",
+    "label": "Student loan forgiveness for students with disabilities — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://bridgewater.ca/town-services/parks-recreation-a-culture/p-r-o-kids",
+    "label": "PROKids recreation fee help — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-nova-scotia.html",
+    "label": "Nova Scotia Child Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/dhw/ccs/home-care.asp",
+    "label": "Nova Scotia Home Care — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/dhw/CCS/FactSheets/home-support-direct-funding-program-en.pdf",
+    "label": "Home Support Direct Funding Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/dhw/CCS/FactSheets/Self-Managed-Care.pdf",
+    "label": "Self-Managed Care Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/dhw/ccs/home-lift-program.asp",
+    "label": "Home Lift Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/dhw/ccs/health-equipment.asp",
+    "label": "Community Bed Loan Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://novascotia.ca/dhw/ccs/respite-care.asp",
+    "label": "Facility Based Respite Care — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://childcarenovascotia.ca/families/child-care-subsidy",
+    "label": "Nova Scotia Child Care Subsidy — apply",
     "kind": "apply"
   },
   {

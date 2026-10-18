@@ -1,0 +1,61 @@
+URL: https://novascotia.ca/dhw/ccs/home-care.asp | province: NS | program: Home Care (nursing and home support) | fetched: 2026-10-18
+=== PAGE: https://novascotia.ca/dhw/ccs/home-care.asp (HTTP 200, 5146 chars)
+
+ <iframe src="//www.googletagmanager.com/ns.html?id=GTM-PH4H23"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe>
+ Health and Wellness
+ Home Care
+ Continuing Care
+Home Care
+Home Care is available to all Nova Scotians who need help with care in their homes and communities. This service is offered through the Nova Scotia Health Authority (NSHA).
+Home Care Services supplement the help people already receive from their family, friends or community. Through Home Care, people are able to remain as independent as possible by staying in their home and community. It is always the first option for care in the community. 
+Home Care Services include:
+Home Support 
+ Home Support (such as personal care, respite and essential housekeeping)
+Nursing 
+ Nursing (such as dressing changes, catheter care, intravenous therapy and palliative care)
+ How do I access Home Care?
+ You can speak to someone about Home Care by calling Continuing Care at the toll-free number, 1-800-225-7225. If you require an assessment for Home Care, a Care Coordinator will arrange a time to meet with you to complete the assessment. The assessment will determine what care services you are eligible to receive based on your needs. Home Care adds to the help you currently have in your community. It does not replace existing care.
+ How much does Home Care cost?
+ Home Care costs are based on your income and the type of services you need. Some services, such as nursing, are free. A Care Coordinator will confirm costs during our assessment.
+ Will someone check in on me while I receive Home Care?
+ A Care Coordinator will check in with you and your caregivers/service providers on an ongoing basis. If your needs change, your services will change to reflect your Home Care needs. Care Coordinators can also connect you with programs in your community that offer additional supports. Some examples are meal programs, Adult Day programs and foot care clinics.
+ Will I have to wait to get service?
+ Every effort is made to provide the services you need quickly. Sometimes the demand for Home Care is so great in some areas, you may be placed on a wait list. If you are placed on a wait list, your Care Coordinator will keep you informed of your status. If your situation changes while you are on a wait list, you will need to let your Care Coordinator know so your needs can be updated.
+ What if my needs exceed what Home Care can provide?
+ You may need to consider other service options. A Care Coordinator can help with these decisions, including deter-mining whether long-term care is the right option for you.
+ Where are Home Care Agencies in Nova Scotia located? 
+ View Home Care Agency Directory (PDF)
+ What should I do if I have a concern or complaint about home care?
+ Contact your home care service provider if you have:
+ - concerns about the scheduling of visits
+ - received less time than what was agreed to
+ - questions about fees for cancelled visits
+ - felt that you have not been given proper care 
+ - felt that your dignity and privacy were not respected
+ If you have made a complaint to your home care service provider and are not satisfied with the response, please contact your Nova Scotia Health Authority Care Coordinator.
+ Contact your Nova Scotia Health Authority Care Coordinator if you:
+ - believe your home care needs have changed 
+ - have concerns about a change in your service hours
+ - have questions about home support fees 
+ If you have complaints that are unresolved after speaking to your service provider, care coordinator or local NSHA manager, or if you have feedback about the home care policy, email the Department of Seniors and Long Term Care: seniors@novascotia.ca.
+ What should I do if I am unsatisfied with the results of my care assessment?
+ If you are unsatisfied with the results of your care assessment, your care coordinator can explain how to request a decision review. You may also want to raise your concerns to the NSHA Continuing Care manager in your area. This information was provided to you during your initial visit with your Care Coordinator, however, if you need assistance, you can call toll free 1-800-225-7225 to find the NSHA Continuing Care manager in your area.
+ NSHA also has a patient feedback telephone line. Comments can be made by calling 1-844-884-4177 or by emailing healthcareexperience@nshealth.ca. 
+ Home Care video
+ Policies and Standards
+ Policies and monitoring standards make sure that there is a consistent quality of care for those who need services outside of the hospital, in their home or in the community.
+ Visit Policies and Standards page.
+ To apply, call Continuing Care, at 1-800-225-7225
+Download Home Care (PDF)
+Télécharger Que sont les soins à domicile? (PDF)
+Download Home Care Services Wait List (PDF)
+ Télécharger Liste d’attente pour les services de soins à domicile (PDF)
+Download Home Care Fee Structure (PDF) 
+Download Home Support Direct Funding Program (PDF)
+ Télécharger Programme de financement direct pour le soutien à domicile (PDF)
+ More Province of Nova Scotia
+ Français / English
+ Privacy
+ Terms
+ Crown copyright © 2021, Government of Nova Scotia. 

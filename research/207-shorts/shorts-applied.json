@@ -1710,5 +1710,50 @@
     "short": "Check the program's income test",
     "who": ["you", "program"],
     "reason": "Nova Scotia city record bridgewater-pro-kids (2026-10-18)"
+  },
+  "nsChildBenefitRoute": {
+    "short": "Check the income test and that you are raising a child",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-child-benefit (2026-10-17)"
+  },
+  "nsAffordableLivingTaxCreditRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-affordable-living-tax-credit (2026-10-17)"
+  },
+  "nsHomeCareRoute": {
+    "short": "Ask Continuing Care for an assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-home-care (2026-10-17)"
+  },
+  "nsHomeSupportDirectFundingRoute": {
+    "short": "Ask Continuing Care for an assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-home-support-direct-funding (2026-10-17)"
+  },
+  "nsSelfManagedCareRoute": {
+    "short": "Ask Continuing Care for an assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-self-managed-care (2026-10-17)"
+  },
+  "nsHomeLiftRoute": {
+    "short": "Ask Continuing Care for an assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-home-lift (2026-10-17)"
+  },
+  "nsSpecializedBedLoanRoute": {
+    "short": "Ask Continuing Care for an assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-specialized-bed-loan (2026-10-17)"
+  },
+  "nsRespiteCareRoute": {
+    "short": "Ask Continuing Care for an assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-respite-care (2026-10-17)"
+  },
+  "nsChildCareSubsidyRoute": {
+    "short": "Check the income limit and your child's age",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ns-child-care-subsidy (2026-10-17)"
   }
 }

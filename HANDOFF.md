@@ -15,13 +15,14 @@ Ontario, with federal, provincial, and municipal guides. It answers five questio
 4. What should I apply for first?
 5. How do I apply?
 
-**British Columbia is live, Ontario went live in September 2026, and Saskatchewan, Manitoba and New
-Brunswick went live in October 2026.** `BC_ENABLED`, `ON_ENABLED`, `SK_ENABLED`, `MB_ENABLED` and
-`NB_ENABLED` in `public/app.js` are all `true`; Manitoba shows a caution (`PROVINCE_NOTICES.MB` in `public/data.js`) while its programs change.
+**British Columbia is live, Ontario went live in September 2026, and Saskatchewan, Manitoba, New
+Brunswick and Nova Scotia went live in October 2026.** `BC_ENABLED`, `ON_ENABLED`, `SK_ENABLED`,
+`MB_ENABLED`, `NB_ENABLED` and `NS_ENABLED` in `public/app.js` are all `true`; Manitoba shows a caution (`PROVINCE_NOTICES.MB` in `public/data.js`) while its programs change.
 The
-catalog holds **329 benefits** — 16 federal, 24 Alberta, 52 British Columbia, 24 Ontario,
-22 Saskatchewan, 16 Manitoba, 26 New Brunswick, and the remainder municipal. The residency question
-offers Alberta, British Columbia, Ontario, Saskatchewan, Manitoba, New Brunswick, and "another province or territory"; the last of these still
+catalog holds **338 benefits** — 16 federal, 24 Alberta, 52 British Columbia, 24 Ontario,
+22 Saskatchewan, 16 Manitoba, 26 New Brunswick, 31 Nova Scotia, and the remainder municipal. The
+residency question offers Alberta, British Columbia, Ontario, Saskatchewan, Manitoba, New Brunswick,
+Nova Scotia, and "another province or territory"; the last of these still
 sees federal benefits only. Lloydminster is listed under both Alberta and Saskatchewan
 (`SHARED_CITIES` in `public/data.js`).
 

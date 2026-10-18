@@ -1,0 +1,44 @@
+URL: https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-nova-scotia.html | province: NS | program: Nova Scotia Affordable Living Tax Credit (CRA) | fetched: 2026-10-18
+=== PAGE: https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-nova-scotia.html (HTTP 200, 2268 chars)
+
+ Province of Nova Scotia
+ The Canada Revenue Agency (CRA) administers the following programs for the Province of Nova Scotia:
+- Program related to the Canada child benefit (CCB):
+- Nova Scotia child benefit
+- Program related to the Canada Groceries and Essentials Benefit (CGEB) (formerly known as the goods and services tax/harmonized sales tax (GST/HST) credit):
+- Nova Scotia affordable living tax credit
+ Nova Scotia child benefit (NSCB)
+This benefit is a tax-free amount paid monthly to help low- and modest-income families with the cost of raising children.  These amounts are combined with the CCB into a single monthly payment.
+From July 2026 to June 2027, you may be entitled to a monthly benefit of $127.08 for each child under 18 years of age in your care.
+If your adjusted family net income is between $26,000 and $34,000, you may get part of the benefit.
+This program is fully funded by the Nova Scotia provincial government.
+ More information
+ - T4114 – Canada Child Benefits pamphlet
+ - Payment information
+ Nova Scotia affordable living tax credit (NSALTC)
+This credit is a tax-free amount paid to low- and modest-income individuals and families to make life more affordable. It offsets the increase in the HST and provides additional income for these individuals and families. This amount is combined with the quarterly payments of the federal CGEB.
+For July 2026 to June 2027, the program provides a maximum annual credit of $255.00 for an individual or a couple, plus $60.00 for each child. The credit is reduced by 5% of adjusted family net income over $30,000.
+This program is fully funded by the Nova Scotia provincial government.
+ Other related information
+- RC4210 – Canada Groceries and Essentials Benefit pamphlet
+- Canada Groceries and Essentials Benefit
+ Related services and information
+- Direct deposit
+- My Account
+- Contact the CRA
+- CRA uncashed cheques
+ Page details
+ Give feedback about this page
+ Did you find what you were looking for?
+ Yes
+ Yes
+ No
+ If not, tell us why below:
+ Tell us why below:
+ Please provide more details
+ You will not receive a reply. Don't include personal information (telephone, email, SIN, financial, medical, or work details).
+ Maximum 300 characters
+ Submit
+ Thank you for your feedback.
+ 2026-07-30
+ 

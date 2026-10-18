@@ -6,6 +6,25 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-18 — Nova Scotia live
+
+### Shipped
+- **Nova Scotia** (`?v=223`): 31 provincial programs and Bridgewater's PROKids, each built from its official page
+  and checked by a separate reviewer, after two research passes and a completeness check. Help sections include
+  Nova Scotia Legal Aid, Dalhousie Legal Aid, the Legal Information Society, the Human Rights Commission, 211 and
+  seven disability organizations. **Catalogue: 338 programs, seven provinces.**
+- Not listed and tracked in `research/2026-10-nova-scotia/GAPS.md`: Halifax's own programs (Access-A-Bus,
+  Affordable Access), because halifax.ca refuses access and I did not try to get around it; Cape Breton's
+  Handi-Trans page, which was removed in a site redesign. The provincial Community Bus Pass (free passes for people
+  on income assistance or the Disability Support Program in Halifax and Cape Breton) is listed.
+
+### Verified how
+- Unit tests and the Chromium suite pass locally; WebKit showed a different single flaky failure on each local run
+  (timing), and CI runs all three browsers before deploying.
+
+### Next
+- Prince Edward Island, then Newfoundland and Labrador.
+
 ## 2026-10-18 — overnight: Manitoba live with a caution, New Brunswick live
 
 ### Shipped

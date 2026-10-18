@@ -1,0 +1,49 @@
+URL: https://novascotia.ca/dhw/ccs/health-equipment.asp | province: NS | program: Specialized Bed Loan | fetched: 2026-10-18
+=== PAGE: https://novascotia.ca/dhw/ccs/health-equipment.asp (HTTP 200, 4214 chars)
+
+ <iframe src="//www.googletagmanager.com/ns.html?id=GTM-PH4H23"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe>
+ Health and Wellness
+ Health Equipment Loan Program/Community Bed Loan Program
+Continuing Care
+Health Equipment Loan Program/Community Bed Loan Program
+The Health Equipment Loan Program (HELP), also known as the Community Bed Loan Program, provides hospital-type beds to eligible Nova Scotians who need specialized beds in their homes.
+ The program is funded by the Department of Health and Wellness and administered through the Nova Scotia Health Authority and the Canadian Red Cross – Nova Scotia region. The loaned beds are delivered and assembled in the client’s home by the Canadian Red Cross – Nova Scotia Region.
+ How do I know if I am eligible?
+ You are eligible to borrow a hospital-type bed through the HELP/Community Bed Loan Program if you:
+ - Are a resident of Nova Scotia with a valid Nova Scotia Health Card.
+ - Meet the criteria for the program as deemed by a Care Coordinator.
+ What is included in a hospital- type bed system?
+ When you receive a bed from the HELP/Community Bed Loan Program, you receive the following:
+ - A fully electric model bed.
+ - A foam pressure reduction mattress.
+ - A set of bed rails.
+ How much does this program cost?
+ There is no cost for specialized beds through the HELP/ Community Bed Loan Program.
+ How do I apply?
+ Call Continuing Care, toll-free, at 1-800-225-7225 to arrange for an assessment from a Care Coordinator.
+ What happens after my assessment?
+ Based on your assessment, the Care Coordinator will determine if you are eligible for the HELP/Community Bed Loan Program. If you are eligible, the Care Coordinator will contact the Canadian Red Cross and make arrangements on your behalf.
+ How do I get the bed into my home?
+ The Canadian Red Cross will take care of the delivery and assembly of your loaned bed. Staff from the Canadian Red Cross will contact you to find out the layout of your home and to set up a convenient time for the delivery of your bed. When you no longer need your bed, the Canadian Red Cross will pick it up from your home.
+ When I’m finished with the bed, can I give it someone else to use?
+ No. Your loaned bed is only for you. It has been modified for our needs and your home. When you are finished with the bed, please call the Canadian Red Cross toll free, at 1-888-496-0103 for pick-up.
+ Will someone show me how to use the bed?
+ When the Canadian Red Cross staff deliver and set up your bed, they will show you how to adjust the bed so you will always be comfortable and well positioned. They will also give you their toll free contact number, 1-888-496-0103, should you have questions about your bed.
+ Are the beds easy to use?
+ Each bed is a high quality piece of equipment that is simple to use and operate. However, if you have any questions or concerns after the bed has been delivered to your home, you can contact the Canadian Red Cross toll free, at 1-888-496-0103.
+ What if I need repairs made to my bed?
+ The Canadian Red Cross is responsible for maintaining the bed system and will either repair or replace the bed system, as necessary, in your home. If you require assistance, please contact the Canadian Red Cross toll free at 1-888-496-0103.
+ Who owns the bed system?
+ You are responsible for the loaned bed while it’s in your home, or must have someone else willing to do so, on your behalf. While you are the user of the bed, the bed and the accompanying parts (rails and mattress) belong to the Canadian Red Cross–Nova Scotia Region.
+ Policies and Standards
+ The  Department of Health and Wellness, Continuing Care Division has created  policies and monitoring standards to ensure that there is a consistent quality  of care for those who need services outside of the hospital, in  their home, or in the community. 
+ Visit Policies and Standards page.
+To apply, call Continuing Care, at 1-800-225-7225.
+Download Health Equipment Loan Program in PDF format.
+Télécharger Programme de prêt d’équipement médical / Programme de prêt de lit en format PDF.
+ More Province of Nova Scotia
+ Français / English
+ Privacy
+ Terms
+ Crown copyright © 2021, Government of Nova Scotia. 

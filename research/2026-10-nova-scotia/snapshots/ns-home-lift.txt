@@ -1,0 +1,37 @@
+URL: https://novascotia.ca/dhw/ccs/home-lift-program.asp | province: NS | program: Home Lift Program | fetched: 2026-10-18
+=== PAGE: https://novascotia.ca/dhw/ccs/home-lift-program.asp (HTTP 200, 3755 chars)
+
+ <iframe src="//www.googletagmanager.com/ns.html?id=GTM-PH4H23"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe>
+ Health and Wellness
+ Home Lift Program
+Home Lift Program
+The Home Lift Program loans mechanical lift systems so that Nova Scotians can stay in their own home and home care workers can safely deliver care.
+Through the program, Nova Scotians can access a mechanical lift system if it’s required for their care needs and helps them to remain in their own home. Mechanical lift systems allow home care workers to safely deliver care by properly lifting, transferring and positioning an individual who is unable to do so independently. 
+The program is funded by the Department of Seniors and Long-term Care and administered through the Nova Scotia Health Authority and the Canadian Red Cross – Nova Scotia region.
+How do I know if I am eligible?
+You’re eligible if you:
+- are a resident of Nova Scotia, with a valid Nova Scotia Health Card or be in the process of establishing permanent residence in Nova Scotia and have applied for coverage under Nova Scotia’s Health Insurance Plan
+- receive home care services from a home care agency funded by the Department of Seniors and Long-term Care
+- are assessed by an occupational therapist or physiotherapist as requiring a mechanical lift regularly as part of the home care services you receive for the safe delivery of care
+What is a home lift system?
+A home lift system is a mechanical device used to lift, transfer, and position a person who is unable to do so independently. Through this program, you can access a floor or free-standing lift and a sling to help meet care needs at home. 
+How much does this program cost?
+There is no fee for this program. A fee may be required for home care based on an individual’s income, family size and the care that is needed. A Nova Scotia Health Care Coordinator will confirm any costs as part of an initial assessment. 
+If I have insurance or have coverage through another program (like Veterans Affairs Canada or Non-Insured Health Benefits), am I still eligible for a home lift through the program?
+Having private insurance does not affect program eligibility. If you can access a home lift system through another publicly funded program but meet the eligibility requirements, you’re eligible for this program. This helps ensure home care workers have access to a lift when needed to provide care. You can contact your Care Coordinator to discuss individual circumstances.
+How do I access the program and request a lift?
+You or your caregivers can contact your Nova Scotia Health Care Coordinator. Referrals can come from a Care Coordinator or from an occupational therapist or physiotherapist who will work together to determine eligibility, complete assessments, and request lifts by submitting the completed assessment to the Canadian Red Cross.
+The Canadian Red Cross will notify clients with a date and time that a lift will be delivered.
+For more information, contact the Canadian Red Cross toll-free at 1-888-496-0103 or nsbedloans@redcross.ca.
+Policies and Standards
+The Department of Health and Wellness, Continuing Care Division has created policies and monitoring standards to ensure that there is a consistent quality of care for those who need services outside of the hospital, in their home, or in the community.
+Visit Policies and Standards page.
+To access the program, contact the Canadian Red Cross at 1-888-496-0103 or nsbedloans@redcross.ca.
+Download Home Lift Program Factsheet (PDF)
+ Télécharger la Fiche d’information sur le programme de prêt de lève-personne pour usage à domicile (PDF)
+ More Province of Nova Scotia
+ Français / English
+ Privacy
+ Terms
+ Crown copyright © 2021, Government of Nova Scotia. 

@@ -201,6 +201,15 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "ns-child-care-subsidy": { kind: "discount", note: "Part of child care fees paid for you" },
+  "ns-respite-care": { kind: "access", note: "Temporary care so caregivers can rest" },
+  "ns-specialized-bed-loan": { kind: "access", note: "Free equipment loan" },
+  "ns-home-lift": { kind: "access", note: "Free equipment loan" },
+  "ns-self-managed-care": { kind: "grant", note: "Funding to hire your own care providers" },
+  "ns-home-support-direct-funding": { kind: "grant", note: "Monthly funding based on assessed need" },
+  "ns-home-care": { kind: "access", note: "Services based on assessed need" },
+  "ns-affordable-living-tax-credit": { kind: "grant", note: "Tax-free credit paid quarterly" },
+  "ns-child-benefit": { kind: "grant", note: "Tax-free monthly payment for each child" },
   "bridgewater-pro-kids": { kind: "grant", note: "Pays some or all of a child's recreation registration fee" },
   "ns-student-loan-forgiveness-disabilities": { kind: "grant", note: "Student loans forgiven for more years of study; no dollar amount published." },
   "ns-ambulance-fee-waiver": { kind: "discount", note: "Waives the ambulance bill if your income is too low." },
@@ -593,6 +602,15 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "ns-child-care-subsidy": { difficulty: 3, effort: "Online application with supporting documents", wait: "Decision within 8 weeks" },
+  "ns-respite-care": { difficulty: 3, effort: "Phone call and an assessment", wait: "Not published" },
+  "ns-specialized-bed-loan": { difficulty: 2, effort: "Phone call and an assessment", wait: "Not published" },
+  "ns-home-lift": { difficulty: 3, effort: "Assessment by a therapist, then a request", wait: "Not published" },
+  "ns-self-managed-care": { difficulty: 4, effort: "Orientation session and a legal agreement", wait: "Not published" },
+  "ns-home-support-direct-funding": { difficulty: 4, effort: "Assessment, signed agreement, and acting as an employer", wait: "Not published" },
+  "ns-home-care": { difficulty: 3, effort: "Phone call, then an assessment", wait: "Wait lists in some areas" },
+  "ns-affordable-living-tax-credit": { difficulty: 1, effort: "Paid with the federal quarterly payments", wait: "Not published" },
+  "ns-child-benefit": { difficulty: 2, effort: "Apply through the Canada child benefit", wait: "Not published" },
   "bridgewater-pro-kids": { difficulty: 2, effort: "Fill in a form and add tax or endorsement proof", wait: "Not published" },
   "ns-student-loan-forgiveness-disabilities": { difficulty: 1, effort: "No application. Assessed when you graduate.", wait: "Not published" },
   "ns-ambulance-fee-waiver": { difficulty: 2, effort: "Fill in a form and send it within 90 days.", wait: "Not published" },
@@ -17465,6 +17483,438 @@ const BENEFITS = [
       ],
       "phone": "902-543-2274"
     }
+  },
+  {
+    "id": "ns-child-benefit",
+    "name": "Nova Scotia Child Benefit",
+    "level": "Nova Scotia",
+    "category": "Money (for parents)",
+    "amount": "You may be entitled to $127.08 a month for each child under 18 (July 2026 to June 2027)",
+    "summary": "A tax-free monthly payment for low- and modest-income families raising children. It is paid together with the Canada child benefit.",
+    "note": "The amount applies from July 2026 to June 2027. The Province of Nova Scotia pays for this benefit in full.",
+    "requires": [
+      "ns",
+      "nsChildBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have a child under 18 years of age in your care.",
+        "Your adjusted family net income is below $34,000."
+      ],
+      "note": "Between $26,000 and $34,000 of income, you may get part of the benefit."
+    },
+    "applyText": "Read about the benefit on the CRA page",
+    "applyUrl": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-nova-scotia.html",
+    "source": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-nova-scotia.html",
+    "detail": {
+      "aboutList": {
+        "lead": "The benefit helps with the cost of raising children.",
+        "items": [
+          "It is tax-free and paid monthly.",
+          "It is combined with the Canada child benefit in one payment.",
+        ]
+      },
+      "steps": [
+        "Read the CRA page for the Province of Nova Scotia.",
+        "The CRA page links the Canada child benefit pamphlet T4114 for more information.",
+        "Payment information is linked from the same page."
+      ],
+      "documents": [],
+      "tips": [
+        "You may be entitled to $127.08 a month for each child under 18 in your care.",
+        "The page gives the monthly amount as $127.08 for each child.",
+        "The CRA page says you may be entitled, so the amount depends on your income."
+      ]
+    }
+  },
+  {
+    "id": "ns-affordable-living-tax-credit",
+    "name": "Nova Scotia Affordable Living Tax Credit",
+    "level": "Nova Scotia",
+    "category": "Money & taxes",
+    "amount": "Up to $255 a year, plus $60 for each child (July 2026 to June 2027)",
+    "summary": "A tax-free credit for low- and modest-income people and families. It offsets the HST increase and is paid with the federal quarterly payments.",
+    "note": "The amounts apply from July 2026 to June 2027. The credit goes down as your income goes up.",
+    "requires": [
+      "ns",
+      "nsAffordableLivingTaxCreditRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a low- or modest-income individual or family.",
+        "The credit is reduced by 5% of adjusted family net income over $30,000."
+      ],
+      "note": "The maximum is $255 for an individual or a couple, plus $60 for each child."
+    },
+    "applyText": "Read about the credit on the CRA page",
+    "applyUrl": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-nova-scotia.html",
+    "source": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/provincial-territorial-programs/province-nova-scotia.html",
+    "detail": {
+      "aboutList": {
+        "lead": "The credit adds income to help with everyday costs.",
+        "items": [
+          "It is a tax-free amount.",
+          "It is combined with the quarterly payments of the federal CGEB.",
+          "The Province of Nova Scotia pays for it in full."
+        ]
+      },
+      "steps": [
+        "Read the CRA page for the Province of Nova Scotia.",
+        "See the Canada Groceries and Essentials Benefit pamphlet RC4210.",
+        "Payments come with your federal quarterly payments."
+      ],
+      "documents": [],
+      "tips": [
+        "The CGEB was formerly the GST/HST credit.",
+        "A larger family can get $60 more for each child."
+      ]
+    }
+  },
+  {
+    "id": "ns-home-care",
+    "name": "Nova Scotia Home Care",
+    "level": "Nova Scotia",
+    "category": "Home support",
+    "amount": "Services based on assessed need",
+    "summary": "Home Care brings nursing and home support to your home through Nova Scotia Health. A Care Coordinator assesses what you need and what you can get.",
+    "note": "Home Care adds to the help you already have from family, friends or community. It does not replace it.",
+    "requires": [
+      "ns",
+      "nsHomeCareRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Nova Scotia and need help with care at home.",
+        "A Care Coordinator assesses you and decides which services you get."
+      ],
+      "note": "Costs depend on your income and the services you need; some services, such as nursing, are free."
+    },
+    "applyText": "Call Continuing Care to ask about an assessment",
+    "applyUrl": "https://novascotia.ca/dhw/ccs/home-care.asp",
+    "source": "https://novascotia.ca/dhw/ccs/home-care.asp",
+    "detail": {
+      "aboutList": {
+        "lead": "Home Care helps you stay in your home and community.",
+        "items": [
+          "Home support covers personal care, respite and essential housekeeping.",
+          "Nursing covers dressing changes, catheter care, IV therapy and palliative care.",
+          "The assessment sets the services you are eligible for."
+        ]
+      },
+      "steps": [
+        "Call Continuing Care to talk about Home Care.",
+        "A Care Coordinator arranges a time to meet and assess you.",
+        "The Care Coordinator confirms costs during the assessment."
+      ],
+      "documents": [],
+      "tips": [
+        "Fees depend on your income and the care you need, as the page says.",
+        "In some areas you may be put on a wait list.",
+        "Tell your Care Coordinator if your needs change.",
+        "The Care Coordinator can link you to meal programs and adult day programs."
+      ],
+      "phone": "1-800-225-7225"
+    }
+  },
+  {
+    "id": "ns-home-support-direct-funding",
+    "name": "Home Support Direct Funding Program",
+    "level": "Nova Scotia",
+    "category": "Home support",
+    "amount": "Funding set by your assessment",
+    "summary": "If you are eligible, you may get funding to buy home support services yourself. These cover personal care, respite, meal preparation and light housekeeping.",
+    "note": "A Care Coordinator assesses your care needs and sets the funding. You hire and manage your own care worker.",
+    "requires": [
+      "ns",
+      "nsHomeSupportDirectFundingRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a Nova Scotia resident with a valid Health Card.",
+        "You have unmet care needs that affect daily functioning.",
+        "You need help with daily tasks like meals or housekeeping, or live in an area with a wait list.",
+        "An assessment confirms you are eligible.",
+        "You can hire and manage a Care Worker, alone or with a Care Manager.",
+        "You have a Substitute Decision Maker, if needed."
+      ],
+      "note": "Nova Scotia Health decides which areas have a wait list for home support."
+    },
+    "applyText": "Call to arrange an assessment",
+    "applyUrl": "https://novascotia.ca/dhw/CCS/FactSheets/home-support-direct-funding-program-en.pdf",
+    "source": "https://novascotia.ca/dhw/CCS/FactSheets/home-support-direct-funding-program-en.pdf",
+    "detail": {
+      "aboutList": {
+        "lead": "The program pays you so you choose your own home support.",
+        "items": [
+          "Approved funding is deposited into your bank account each month.",
+          "You or your Substitute Decision Maker hire and manage your care providers.",
+          "You may appoint a Care Manager to act for you."
+        ]
+      },
+      "steps": [
+        "Call Nova Scotia Health to ask about the program.",
+        "A Continuing Care Coordinator assesses your care needs.",
+        "If eligible, you sign a Letter of Understanding about the funding.",
+        "You hire your care providers and manage your care plan."
+      ],
+      "documents": [],
+      "tips": [
+        "You become an employer and must meet legal employer duties.",
+        "Over $500 a month, send in receipts every quarter.",
+        "At $500 a month or less, keep your receipts at home.",
+        "Tell your Care Coordinator right away if your health changes.",
+        "Funding may be adjusted, paused or stopped if your needs change."
+      ],
+      "phone": "1-800-225-7225"
+    }
+  },
+  {
+    "id": "ns-self-managed-care",
+    "name": "Self-Managed Care Program",
+    "level": "Nova Scotia",
+    "category": "Home support",
+    "amount": "Funding for the care providers you hire",
+    "summary": "Adults with a physical disability hire their own care providers and make their own care plans. Funding pays for hiring, training, managing and paying them.",
+    "note": "You cannot hire family members as your care providers. You may appoint an unpaid Care Manager to act for you.",
+    "requires": [
+      "ns",
+      "age19plus",
+      "nsSelfManagedCareRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 19 years or older.",
+        "You have a physical disability and are in stable health.",
+        "You need help with routine activities of daily living.",
+        "You can fully take part in decisions about your own care.",
+        "You can enter a legal agreement with Nova Scotia Health Authority."
+      ]
+    },
+    "applyText": "Call Continuing Care to learn more",
+    "applyUrl": "https://novascotia.ca/dhw/CCS/FactSheets/Self-Managed-Care.pdf",
+    "source": "https://novascotia.ca/dhw/CCS/FactSheets/Self-Managed-Care.pdf",
+    "detail": {
+      "aboutList": {
+        "lead": "You are the boss of your own care team.",
+        "items": [
+          "Care providers help with bathing, dressing, preparing meals and taking medication.",
+          "The Department does not set required qualifications for providers.",
+          "A Care Coordinator can recommend changes to your funding."
+        ]
+      },
+      "steps": [
+        "Call Continuing Care to learn about the program.",
+        "Go to the Self-Managed Care Orientation Session.",
+        "Sign the legal agreement and hire your care providers."
+      ],
+      "documents": [],
+      "tips": [
+        "A client guide explains what you need to do.",
+        "Funding can be stopped if you or your Care Coordinator ask within 30 days.",
+        "Continuing Care may stop funding if you break your agreement."
+      ],
+      "phone": "1-800-225-7225"
+    }
+  },
+  {
+    "id": "ns-home-lift",
+    "name": "Home Lift Program",
+    "level": "Nova Scotia",
+    "category": "Home",
+    "amount": "Free loan of a mechanical lift",
+    "summary": "The program loans a floor or free-standing lift and a sling. The lift helps home care workers move you safely so you can stay in your own home.",
+    "note": "There is no fee for the program. Home care may have a fee based on income, family size and care needed.",
+    "requires": [
+      "ns",
+      "nsHomeLiftRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Nova Scotia with a valid Health Card, or you have applied for coverage.",
+        "You get home care from an agency funded by the Department.",
+        "An occupational therapist or physiotherapist says you need a lift regularly."
+      ],
+      "note": "Neither private insurance nor other public coverage rules you out."
+    },
+    "applyText": "Contact your Care Coordinator or the Red Cross",
+    "applyUrl": "https://novascotia.ca/dhw/ccs/home-lift-program.asp",
+    "source": "https://novascotia.ca/dhw/ccs/home-lift-program.asp",
+    "detail": {
+      "aboutList": {
+        "lead": "A lift helps care happen safely at home.",
+        "items": [
+          "It lifts, transfers and positions a person who cannot do so alone.",
+          "The Canadian Red Cross delivers the lift at a set date and time.",
+          "Your Care Coordinator or therapist requests the lift for you."
+        ]
+      },
+      "steps": [
+        "You or your caregivers contact your Care Coordinator.",
+        "An occupational therapist or physiotherapist completes an assessment.",
+        "They send the assessment to the Canadian Red Cross.",
+        "The Red Cross tells you the delivery date and time."
+      ],
+      "documents": [],
+      "tips": [
+        "You can also contact the Canadian Red Cross at nsbedloans@redcross.ca.",
+        "A Care Coordinator can discuss your own situation."
+      ],
+      "phone": "1-888-496-0103"
+    }
+  },
+  {
+    "id": "ns-specialized-bed-loan",
+    "name": "Community Bed Loan Program",
+    "level": "Nova Scotia",
+    "category": "Health",
+    "amount": "Free loan of a hospital-type bed",
+    "summary": "The Health Equipment Loan Program loans a hospital-type bed to eligible Nova Scotians who need a specialized bed at home. There is no cost.",
+    "note": "The bed has a fully electric model, a foam pressure reduction mattress and bed rails. The Red Cross delivers and sets it up.",
+    "requires": [
+      "ns",
+      "nsSpecializedBedLoanRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a Nova Scotia resident with a valid Health Card.",
+        "A Care Coordinator decides you meet the program criteria."
+      ]
+    },
+    "applyText": "Call Continuing Care for an assessment",
+    "applyUrl": "https://novascotia.ca/dhw/ccs/health-equipment.asp",
+    "source": "https://novascotia.ca/dhw/ccs/health-equipment.asp",
+    "detail": {
+      "aboutList": {
+        "lead": "A specialized bed can make care at home safer.",
+        "items": [
+          "The bed is loaned to you and stays the property of the Red Cross.",
+          "Staff show you how to adjust the bed when they set it up.",
+          "The Red Cross repairs or replaces the bed when needed."
+        ]
+      },
+      "steps": [
+        "Call Continuing Care to arrange an assessment.",
+        "The Care Coordinator decides if you are eligible.",
+        "The Care Coordinator contacts the Canadian Red Cross for you.",
+        "The Red Cross sets a time to deliver and assemble the bed."
+      ],
+      "documents": [],
+      "tips": [
+        "The bed is for you only and cannot be given to someone else.",
+        "You are responsible for the bed while it is in your home.",
+        "Call the Red Cross at 1-888-496-0103 for repairs or pick-up."
+      ],
+      "phone": "1-800-225-7225"
+    }
+  },
+  {
+    "id": "ns-respite-care",
+    "name": "Facility Based Respite Care",
+    "level": "Nova Scotia",
+    "category": "Home support",
+    "amount": "Up to 60 days a year in a respite bed",
+    "summary": "Family caregivers can book a short stay for the person they care for in a licensed long-term care facility. Staff give care and meals during the stay.",
+    "note": "There is a standard charge. You can ask for a reduced rate with an application and an income assessment.",
+    "requires": [
+      "ns",
+      "nsRespiteCareRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "The person needs personal care and their regular caregiver is unavailable.",
+        "A Care Coordinator assesses their care needs and eligibility."
+      ],
+      "note": "Emergency stays are possible if a caregiver is suddenly lost and no replacement is available."
+    },
+    "applyText": "Call Continuing Care to apply",
+    "applyUrl": "https://novascotia.ca/dhw/ccs/respite-care.asp",
+    "source": "https://novascotia.ca/dhw/ccs/respite-care.asp",
+    "detail": {
+      "aboutList": {
+        "lead": "Respite gives caregivers a planned break.",
+        "items": [
+          "A stay can total up to 60 days within a calendar year.",
+          "From July 1 to October 1, no more than 30 days can be scheduled.",
+          "Beds are given on a first-come, first-served basis."
+        ]
+      },
+      "steps": [
+        "Call Continuing Care to apply for a respite bed.",
+        "A Care Coordinator checks care needs and eligibility.",
+        "The Care Coordinator arranges the bed once eligibility is confirmed."
+      ],
+      "documents": [
+        "Application form for a reduced rate"
+      ],
+      "tips": [
+        "Call for the current charge, because it may change.",
+        "In an emergency, if necessary, a person can be admitted before the application is finished, which must then be completed right after.",
+        "There is also an option available for children."
+      ],
+      "phone": "1-800-225-7225"
+    }
+  },
+  {
+    "id": "ns-child-care-subsidy",
+    "name": "Nova Scotia Child Care Subsidy",
+    "level": "Nova Scotia",
+    "category": "Money (for parents)",
+    "amount": "Pays part of your child care fees",
+    "summary": "The subsidy pays a portion of child care fees at licensed facilities, approved family home agencies and approved Before and After Programs.",
+    "note": "The Department of Education and Early Childhood Development pays the subsidy directly to your child care provider.",
+    "requires": [
+      "ns",
+      "nsChildCareSubsidyRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have a child 12 years old or younger in an approved child care setting.",
+        "Your assessed family income is under $70,000."
+      ],
+      "note": "Your eligibility is reviewed at least once every year."
+    },
+    "applyText": "Apply online",
+    "applyUrl": "https://childcarenovascotia.ca/families/child-care-subsidy",
+    "source": "https://childcarenovascotia.ca/families/child-care-subsidy",
+    "detail": {
+      "aboutList": {
+        "lead": "The subsidy lowers what you pay for child care.",
+        "items": [
+          "A caseworker assesses your application within 8 weeks.",
+          "An approved subsidy is backdated to the day your complete application arrived.",
+          "You can move the subsidy if your child changes approved location."
+        ]
+      },
+      "steps": [
+        "Gather your documents and your partner or spouse's documents.",
+        "Fill in the online application, which takes under 60 minutes.",
+        "A caseworker may contact you with questions.",
+        "The caseworker tells you when a decision is made."
+      ],
+      "documents": [
+        "Most recent Notice of Assessment",
+        "Proof of residency status, if not a citizen",
+        "Pay slips or an employment letter, if you work",
+        "Proof of school enrollment, if a student",
+        "Custody agreement, if you share custody"
+      ],
+      "tips": [
+        "The form is in English, so ask for help if you need it.",
+        "Each screen times out after 30 minutes.",
+        "Tell your caseworker about changes to income, address or custody.",
+        "Not reporting changes can mean repayment or a cancelled subsidy."
+      ],
+      "phone": "1-844-804-2084"
+    }
   }
 
 ];
@@ -17597,6 +18047,15 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "ns-child-care-subsidy": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-respite-care": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-specialized-bed-loan": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-home-lift": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-self-managed-care": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-home-support-direct-funding": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-home-care": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-affordable-living-tax-credit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ns-child-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "bridgewater-pro-kids": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
   "ns-student-loan-forgiveness-disabilities": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "ns-ambulance-fee-waiver": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)

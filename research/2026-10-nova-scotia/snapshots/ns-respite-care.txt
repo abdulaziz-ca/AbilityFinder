@@ -1,0 +1,37 @@
+URL: https://novascotia.ca/dhw/ccs/respite-care.asp | province: NS | program: Respite care in long-term care | fetched: 2026-10-18
+=== PAGE: https://novascotia.ca/dhw/ccs/respite-care.asp (HTTP 200, 3917 chars)
+
+ <iframe src="//www.googletagmanager.com/ns.html?id=GTM-PH4H23"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe>
+ Health and Wellness
+ Facility Based Respite Care
+Continuing Care
+Facility Based Respite Care
+Family caregivers provide personal care and support to help their loved ones stay in their homes and communities longer. However, this can put a lot of physical, mental and emotional stress on the caregivers themselves. To support them and their families, the Department of Health and Wellness helps caregivers by providing access to respite beds for their loved ones in licensed long-term care facilities (nursing homes) across the province. There is also an option available for children.
+ I’m the sole caregiver for my relative. What will happen to him/her if I go on vacation?
+ Licensed long-term care facilities provide beds to those who need temporary care when their regular caregiver is unavailable. Respite bed service is usually preplanned and scheduled; however, there are emergency services available for those unexpected and temporary events.
+ How does facility based respite care work?
+ A respite bed gives a person who needs personal care, a place to stay for a scheduled amount of time where he/she can continue to receive care and support from long-term care facility staff when his/her regular caregiver is unavailable. During his/her stay, the person gets the necessary care and support, including meals, from the facility staff, and returns home at the end of the scheduled time in the facility.
+ How long can someone stay in a respite bed?
+ A person may stay in a licensed respite bed for up to a total of 60 days within a calendar year. However, to ensure fair access to the beds during the high demand periods (July 1 to October 1), no more than 30 days can be scheduled.
+ How can I schedule a respite bed?
+ You can apply for a respite bed by calling 1-800-225-7225 (toll free). A Care Coordinator will assess the applicant’s care needs and eligibility. Once the applicant is confirmed eligible for the service, the Care Coordinator will arrange for a respite bed for the applicant on a first-come, first served basis.
+ How much does a respite bed cost?
+ There is a standard charge for a licensed respite bed. This charge may change, so please contact Continuing Care at 1-800-225-7225 for the current rate.
+ People in need of a respite bed or family member can apply to receive a reduced rate by completing an application form and undergoing an income assessment.
+ How quickly can a respite bed be found in an emergency?
+ In emergency situations, every effort is made to complete the application process prior to admission into a long-term care facility. However, if necessary, applicants can be admitted to a long-term care facility respite care bed before the application process is complete.
+ When is a situation considered an “emergency”?
+ A situation is considered an emergency when there is a sudden and/or temporary loss of a caregiver, and a replacement caregiver is not available.
+ In an emergency situation, the person needing care should be willing to accept the closest available respite bed and his/her authorized representative must agree to complete any outstanding parts of the person’s application immediately after admission to the respite bed.
+ Policies and Standards
+ The  Department of Health and Wellness, Continuing Care Division has created  policies and monitoring standards to ensure that there is a consistent quality  of care for those who need services outside of the hospital, in  their home, or in the community. 
+ Visit Policies and Standards page.
+To apply, call Continuing Care, at 1-800-225-7225.
+Download Facility Based Respite Care in PDF format.
+Télécharger Soins de relève en établissement en format PDF.
+ More Province of Nova Scotia
+ Français / English
+ Privacy
+ Terms
+ Crown copyright © 2021, Government of Nova Scotia. 

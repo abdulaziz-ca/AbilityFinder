@@ -15,8 +15,8 @@ const SK_ENABLED = true;
 const MB_ENABLED = true;
 // New Brunswick: live with provincial and city records.
 const NB_ENABLED = true;
-// Nova Scotia rollout — dark until launch.
-const NS_ENABLED = false;
+// Nova Scotia: live with provincial and city records.
+const NS_ENABLED = true;
 // Scope labels compose from the enabled-province set, so flipping a flag updates them everywhere.
 // Invariant: with ON_ENABLED=false (and BC_ENABLED=true) these produce exactly the prior Alberta+BC strings.
 const _SCOPE_FULL = ["Alberta", ...(BC_ENABLED ? ["British Columbia"] : []), ...(ON_ENABLED ? ["Ontario"] : []), ...(SK_ENABLED ? ["Saskatchewan"] : []), ...(MB_ENABLED ? ["Manitoba"] : []), ...(NB_ENABLED ? ["New Brunswick"] : []), ...(NS_ENABLED ? ["Nova Scotia"] : [])];
@@ -1674,6 +1674,69 @@ const REQS = {
     met: () => lowIncome(),
     fixed: false,
     unmet: "Family income must be under the limit for your size; an endorsement can verify it.",
+  },
+  nsChildBenefitRoute: {
+    short: "Check the income test and that you are raising a child",
+    who: ["you", "program"],
+    met: () => lowIncome() && isUnder18(),
+    fixed: false,
+    unmet: "Your adjusted family net income is below $34,000 and you have a child under 18.",
+  },
+  nsAffordableLivingTaxCreditRoute: {
+    short: "Check the program's income test",
+    who: ["you", "program"],
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "You are a low- or modest-income individual or family.",
+  },
+  nsHomeCareRoute: {
+    short: "Ask Continuing Care for an assessment",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "You need care at home, and a Care Coordinator assesses your needs.",
+  },
+  nsHomeSupportDirectFundingRoute: {
+    short: "Ask Continuing Care for an assessment",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "You have unmet care needs and an assessment confirms you are eligible.",
+  },
+  nsSelfManagedCareRoute: {
+    short: "Ask Continuing Care for an assessment",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "You are 19 or older with a physical disability and need help with daily living.",
+  },
+  nsHomeLiftRoute: {
+    short: "Ask Continuing Care for an assessment",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "You get funded home care and a therapist says you need a lift.",
+  },
+  nsSpecializedBedLoanRoute: {
+    short: "Ask Continuing Care for an assessment",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "A Care Coordinator assesses you and decides if you need a specialized bed.",
+  },
+  nsRespiteCareRoute: {
+    short: "Ask Continuing Care for an assessment",
+    who: ["you", "program"],
+    met: () => false,
+    fixed: false,
+    unmet: "The person needs personal care and a Care Coordinator confirms eligibility.",
+  },
+  nsChildCareSubsidyRoute: {
+    short: "Check the income limit and your child's age",
+    who: ["you", "program"],
+    met: () => lowIncome() && ageIn("under6", "6to11"),
+    fixed: false,
+    unmet: "Your assessed family income is under $70,000 and your child is 12 or younger.",
   },
   kingstonMfapIncome: {
     short: "Check your income against the MFAP limit",
@@ -3336,6 +3399,8 @@ const RECEIVES_OPTIONS = [
   { value: "mb-eia", province: "MB", label: "EIA (Employment and Income Assistance)" },
   { value: "nb-social-assistance", province: "NB", label: "Social Assistance (including Extended Benefits)" },
   { value: "nb-disability-support-program", province: "NB", label: "Disability Support Program" },
+  { value: "ns-income-assistance", province: "NS", label: "Employment Support and Income Assistance (ESIA)" },
+  { value: "ns-disability-support-program", province: "NS", label: "Disability Support Program (Flex or Independent Living Support)" },
   { value: "cpp-disability", label: "CPP disability benefit" },
 ];
 const receivesChoices = (province) => RECEIVES_OPTIONS.filter((o) => !o.province || o.province === province);
