@@ -1,0 +1,235 @@
+[
+ {
+  "candidate": "Ontario Drug Benefit (ODB) Program",
+  "status": "MISSING_IN_SCOPE",
+  "url": "https://www.ontario.ca/page/get-coverage-prescription-drugs",
+  "fetch_blocked": false,
+  "who": "Ontario residents 65+, or younger on ODSP/Ontario Works, in long-term care, receiving home and community care, or in Trillium",
+  "what": "Covers most prescription drug costs on the ODB formulary",
+  "age": "any",
+  "route": "assistance_only",
+  "evidence": "Receive Ontario Works or Ontario Disability Support Program benefits"
+ },
+ {
+  "candidate": "ODSP health and disability benefits",
+  "status": "MISSING_IN_SCOPE",
+  "url": "https://www.ontario.ca/page/ontario-disability-support-program-health-and-disability-benefits",
+  "fetch_blocked": false,
+  "who": "People receiving ODSP income support and their families (spouse, children under 18)",
+  "what": "Dental, vision, medical transportation, special necessities, assistive devices/hearing aids, guide dog benefit, extended/transitional health benefits",
+  "age": "any",
+  "route": "assistance_only",
+  "evidence": "If you receive ODSP income support, you and your family will get coverage for prescription drugs."
+ },
+ {
+  "candidate": "ODSP Special Diet Allowance",
+  "status": "MISSING_IN_SCOPE",
+  "url": "https://www.ontario.ca/document/ontario-disability-support-program-policy-directives-income-support/64-special-diet",
+  "fetch_blocked": false,
+  "who": "ODSP/OW benefit unit members with a medical condition on the Special Diets Schedule confirmed by an approved professional",
+  "what": "Monthly allowance for special diet, up to $250 per member",
+  "age": "any",
+  "route": "assistance_only",
+  "evidence": "The maximum Special Diet Allowance is $250 per month, per member of the benefit unit."
+ },
+ {
+  "candidate": "ODSP Employment Supports",
+  "status": "MISSING_IN_SCOPE",
+  "url": "https://www.ontario.ca/page/working-and-earning-ontario-disability-support-program",
+  "fetch_blocked": false,
+  "who": "ODSP recipients who work, train or run a business (Work-Related Benefit, child care, start-up, transition); Employment Ontario help for jobseekers with disabilities",
+  "what": "Work-Related Benefit up to $100/month, up to $500 start-up and transition benefits, child care coverage",
+  "age": "adult",
+  "route": "assistance_only",
+  "evidence": "Work-Related Benefit: Up to $100 per family member per month"
+ },
+ {
+  "candidate": "Ontario Works",
+  "status": "MISSING_IN_SCOPE",
+  "url": "https://www.ontario.ca/page/ontario-works",
+  "fetch_blocked": false,
+  "who": "People in financial need for food and housing, usually taking part in employment activities",
+  "what": "Money for living expenses and health benefits; up to $733/month basic needs and shelter for a single person",
+  "age": "adult",
+  "route": "income",
+  "evidence": "If you need financial assistance for food and housing, and are in financial need, you can apply."
+ },
+ {
+  "candidate": "Healthy Smiles Ontario",
+  "status": "MISSING_IN_SCOPE",
+  "url": "https://www.ontario.ca/page/get-dental-care",
+  "fetch_blocked": false,
+  "who": "Ontario residents 17 and under in households under the income limit; ACSD/OW/ODSP children enrolled automatically",
+  "what": "Free preventive, routine and emergency dental care",
+  "age": "child",
+  "route": "income",
+  "evidence": "free preventive, routine, and emergency dental services"
+ },
+ {
+  "candidate": "Developmental Services Ontario (DSO) adult developmental services",
+  "status": "MISSING_IN_SCOPE",
+  "url": "https://www.ontario.ca/page/programs-and-services-adults-developmental-disabilities-ontario",
+  "fetch_blocked": false,
+  "who": "Ontario residents 18+ with a developmental disability confirmed by a psychologist",
+  "what": "DSO application and assessment to connect to provincially funded developmental services, by priority score",
+  "age": "age18plus",
+  "route": "disability",
+  "evidence": "significant limitations in cognitive and adaptive functioning"
+ },
+ {
+  "candidate": "Ontario Electricity Support Program (OESP)",
+  "status": "MISSING_IN_SCOPE",
+  "url": "https://www.ontario.ca/page/find-programs-reduce-electricity-bill",
+  "fetch_blocked": false,
+  "who": "Low-income households; extra credit for certain electricity-heavy medical devices",
+  "what": "Monthly bill credit $35-$75, plus additional credit",
+  "age": "any",
+  "route": "income",
+  "evidence": "Base credit: $35 to $75 per month on your bill."
+ },
+ {
+  "candidate": "Bursary for Students with Disabilities (OSAP)",
+  "status": "MISSING_IN_SCOPE",
+  "url": "https://www.ontario.ca/page/osap-for-under-represented-learners",
+  "fetch_blocked": false,
+  "who": "Post-secondary students who self-identify as having a disability on the OSAP application",
+  "what": "Additional aid for disability-related educational services and equipment",
+  "age": "adult",
+  "route": "disability",
+  "evidence": "You must self-identify as having a disability when applying for OSAP."
+ },
+ {
+  "candidate": "Northern Health Travel Grant Program",
+  "status": "MISSING_IN_SCOPE",
+  "url": "https://www.ontario.ca/page/northern-health-travel-grant-program",
+  "fetch_blocked": false,
+  "who": "OHIP-insured residents of northern districts travelling 100 km+ one way for a referred specialist service",
+  "what": "41 cents/km travel grant, accommodation allowance, companion grant",
+  "age": "any",
+  "route": "income_or_disability",
+  "evidence": "Northern Ontario residents who need to travel long-distances for specialized medical services."
+ },
+ {
+  "candidate": "Ontario Health atHome respite care and home and community care",
+  "status": "MISSING_IN_SCOPE",
+  "url": "https://www.ontario.ca/page/respite-care",
+  "fetch_blocked": false,
+  "who": "Caregivers needing a break; care recipient with valid Ontario health card; LTC stays need age 18+ with nursing needs",
+  "what": "Respite at home, short LTC stays (up to 60 days/stay, 90/yr), adult day programs",
+  "age": "any",
+  "route": "disability",
+  "evidence": "They cannot be admitted for more than 90 days in a calendar year."
+ },
+ {
+  "candidate": "Family support and respite for children and youth with special needs (Enhanced Respite)",
+  "status": "MISSING_IN_SCOPE",
+  "url": "https://www.ontario.ca/page/family-support-and-respite-children-and-youth-special-needs",
+  "fetch_blocked": false,
+  "who": "Families of children under 18 at home who are medically fragile and/or technology-dependent needing 24-hour care",
+  "what": "Up to $4,213 per child per fiscal year for respite",
+  "age": "child",
+  "route": "disability",
+  "evidence": "You can receive up to $4,213 per child each fiscal year to spend on respite."
+ },
+ {
+  "candidate": "Ontario Seniors Dental Care Program",
+  "status": "MISSING_IN_SCOPE",
+  "url": "https://www.ontario.ca/seniorsdental",
+  "fetch_blocked": false,
+  "who": "Ontario residents 65+ with net income $25,480 or less (single) or $42,290 (couple) and no other dental benefits",
+  "what": "Free routine dental services (partial dentures)",
+  "age": "senior",
+  "route": "income",
+  "evidence": "provides free, routine dental services for low-income seniors"
+ },
+ {
+  "candidate": "Guaranteed Annual Income System (GAINS)",
+  "status": "MISSING_IN_SCOPE",
+  "url": "https://www.ontario.ca/page/guaranteed-annual-income-system-payments-seniors",
+  "fetch_blocked": false,
+  "who": "Ontario seniors 65+ receiving OAS and GIS with private income up to $4,416 single / $8,832 couple",
+  "what": "Up to $92/month non-taxable payment",
+  "age": "senior",
+  "route": "income",
+  "evidence": "monthly, non-taxable payment for low-income Ontario seniors"
+ },
+ {
+  "candidate": "Ontario Child Benefit",
+  "status": "MISSING_IN_SCOPE",
+  "url": "https://www.ontario.ca/page/ontario-child-benefit",
+  "fetch_blocked": false,
+  "who": "Low-to-moderate-income families with children under 18, assessed via Canada Child Benefit",
+  "what": "Up to $1,760 per child per year, paid monthly",
+  "age": "child",
+  "route": "income",
+  "evidence": "Low-income to moderate-income families can get up to $1,760 per child each year"
+ },
+ {
+  "candidate": "Ontario Trillium Benefit",
+  "status": "MISSING_IN_SCOPE",
+  "url": "https://www.ontario.ca/page/ontario-trillium-benefit",
+  "fetch_blocked": false,
+  "who": "Ontario residents who paid rent/property tax, or are eligible for the sales tax credit (CRA assesses)",
+  "what": "Combined energy, property tax and sales tax credits",
+  "age": "any",
+  "route": "income",
+  "evidence": "You need to be eligible for at least one of the three credits to receive the benefit."
+ },
+ {
+  "candidate": "Ontario Senior Homeowners' Property Tax Grant",
+  "status": "OUT_OF_SCOPE",
+  "url": "https://www.ontario.ca/page/seniors-finances",
+  "fetch_blocked": false,
+  "reason": "Senior homeowner tax grant for low-to-moderate income seniors; no published eligibility details on fetched page; seniors-only, not disability related",
+  "evidence": "up to $500 back on your property taxes"
+ },
+ {
+  "candidate": "Ontario Seniors Care at Home Tax Credit",
+  "status": "OUT_OF_SCOPE",
+  "url": "https://www.ontario.ca/page/seniors-finances",
+  "fetch_blocked": false,
+  "reason": "Page gives no eligibility or amount; no published eligibility",
+  "evidence": "tax credit for medical expenses"
+ },
+ {
+  "candidate": "Ontario Renovates (OPHI)",
+  "status": "OUT_OF_SCOPE",
+  "url": "https://www.ontario.ca/document/ontarios-third-action-plan-under-national-housing-strategy-2025-2028/nhs-programs",
+  "fetch_blocked": false,
+  "reason": "Delivered by service managers; low and moderate-income homeowners, accessibility only one possible use, no disability criterion; could be flagged medium if wanted",
+  "evidence": "low and moderate-income homeowner households"
+ },
+ {
+  "candidate": "OHIP-insured eye exams",
+  "status": "OUT_OF_SCOPE",
+  "url": "https://www.ontario.ca/page/what-ohip-covers",
+  "fetch_blocked": false,
+  "reason": "Universal OHIP coverage by age/condition (universal benefit); ODSP/OW extras already in ODSP health benefits",
+  "evidence": "People on the Ontario Disability Support Program or Ontario Works may be eligible for additional eye care."
+ },
+ {
+  "candidate": "Low-income Energy Assistance Program (LEAP)",
+  "status": "OUT_OF_SCOPE",
+  "url": "https://www.ontario.ca/page/find-programs-reduce-electricity-bill",
+  "fetch_blocked": false,
+  "reason": "Run by utilities/intake agencies (Ontario Energy Board), emergency arrears help; dedicated ontario.ca page 404; arguably low income",
+  "evidence": "urgent financial help if you're behind on electricity or natural gas bills"
+ },
+ {
+  "candidate": "Ontario disability amount / caregiver amount (provincial tax credits)",
+  "status": "OUT_OF_SCOPE",
+  "url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/archived-general-income-tax-benefit-package-2022/ontario/5006-pc/information-residents-ontario.html",
+  "fetch_blocked": false,
+  "reason": "Claimed on Form ON428 via CRA, mirrors federal DTC; no standalone Ontario program page found; fold into federal DTC",
+  "evidence": "Form ON428 line 58440"
+ },
+ {
+  "candidate": "Mandatory Special Necessities (inside ODSP/OW)",
+  "status": "COVERED",
+  "url": "https://www.ontario.ca/page/ontario-disability-support-program-health-and-disability-benefits",
+  "fetch_blocked": false,
+  "reason": "Part of ODSP health and disability benefits (candidate 2)",
+  "evidence": "Mandatory Special Necessities Benefit",
+  "record_id": "odsp"
+ }
+]

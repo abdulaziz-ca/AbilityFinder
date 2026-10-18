@@ -133,7 +133,17 @@
     "saanich-life": "no",
     "kelowna-recreation-assistance": "no",
     "coquitlam-far": "no",
-    "kamloops-arch": "no"
+    "kamloops-arch": "no",
+    "ab-blue-cross-non-group": "ready",
+    "ab-brain-injury": "no",
+    "ab-child-family-benefit": "almost",
+    "ab-home-care": "almost",
+    "ab-income-support": "ready",
+    "ab-rent-assistance-benefit": "ready",
+    "ab-seniors-benefit": "no",
+    "ab-seniors-dental-optical": "no",
+    "ab-seniors-special-needs-assistance": "no",
+    "ab-sharp": "no"
   },
   "P02-vancouver-worker-dtc": {
     "waterloo-ontario-renovates": "no",
@@ -269,7 +279,16 @@
     "saanich-life": "no",
     "kelowna-recreation-assistance": "no",
     "coquitlam-far": "no",
-    "kamloops-arch": "no"
+    "kamloops-arch": "no",
+    "bc-csil": "almost",
+    "bc-family-benefit": "no",
+    "bc-home-support": "almost",
+    "bc-income-assistance": "almost",
+    "bc-nursing-support-services": "no",
+    "bc-ppmb": "almost",
+    "bc-rental-assistance-program": "almost",
+    "bc-safer": "no",
+    "bc-hearing-supplements": "no"
   },
   "P03-surrey-autistic-child": {
     "waterloo-ontario-renovates": "no",
@@ -405,7 +424,16 @@
     "saanich-life": "no",
     "kelowna-recreation-assistance": "no",
     "coquitlam-far": "no",
-    "kamloops-arch": "no"
+    "kamloops-arch": "no",
+    "bc-csil": "almost",
+    "bc-family-benefit": "almost",
+    "bc-home-support": "almost",
+    "bc-income-assistance": "no",
+    "bc-nursing-support-services": "almost",
+    "bc-ppmb": "almost",
+    "bc-rental-assistance-program": "almost",
+    "bc-safer": "no",
+    "bc-hearing-supplements": "no"
   },
   "P04-toronto-senior-mobility": {
     "waterloo-ontario-renovates": "no",
@@ -541,7 +569,21 @@
     "saanich-life": "no",
     "kelowna-recreation-assistance": "no",
     "coquitlam-far": "no",
-    "kamloops-arch": "no"
+    "kamloops-arch": "no",
+    "on-child-benefit": "almost",
+    "on-dso-adult-services": "no",
+    "on-enhanced-respite": "no",
+    "on-gains": "ready",
+    "on-healthy-smiles": "no",
+    "on-ontario-works": "ready",
+    "on-seniors-dental": "ready",
+    "on-trillium-benefit": "ready",
+    "on-drug-benefit": "ready",
+    "on-home-community-care": "almost",
+    "on-northern-health-travel-grant": "almost",
+    "on-odsp-employment-supports": "almost",
+    "on-odsp-health-benefits": "almost",
+    "on-oesp": "ready"
   },
   "P05-ottawa-odsp": {
     "waterloo-ontario-renovates": "no",
@@ -677,7 +719,21 @@
     "saanich-life": "no",
     "kelowna-recreation-assistance": "no",
     "coquitlam-far": "no",
-    "kamloops-arch": "no"
+    "kamloops-arch": "no",
+    "on-child-benefit": "almost",
+    "on-dso-adult-services": "no",
+    "on-enhanced-respite": "no",
+    "on-gains": "no",
+    "on-healthy-smiles": "no",
+    "on-ontario-works": "ready",
+    "on-seniors-dental": "no",
+    "on-trillium-benefit": "ready",
+    "on-drug-benefit": "almost",
+    "on-home-community-care": "almost",
+    "on-northern-health-travel-grant": "almost",
+    "on-odsp-employment-supports": "almost",
+    "on-odsp-health-benefits": "almost",
+    "on-oesp": "ready"
   },
   "P06-edmonton-ld-student": {
     "waterloo-ontario-renovates": "no",
@@ -813,7 +869,17 @@
     "saanich-life": "no",
     "kelowna-recreation-assistance": "no",
     "coquitlam-far": "no",
-    "kamloops-arch": "no"
+    "kamloops-arch": "no",
+    "ab-blue-cross-non-group": "ready",
+    "ab-brain-injury": "no",
+    "ab-child-family-benefit": "almost",
+    "ab-home-care": "almost",
+    "ab-income-support": "ready",
+    "ab-rent-assistance-benefit": "ready",
+    "ab-seniors-benefit": "no",
+    "ab-seniors-dental-optical": "no",
+    "ab-seniors-special-needs-assistance": "no",
+    "ab-sharp": "no"
   },
   "P07-kelowna-moderate-nodtc": {
     "waterloo-ontario-renovates": "no",
@@ -949,7 +1015,16 @@
     "saanich-life": "no",
     "kelowna-recreation-assistance": "no",
     "coquitlam-far": "no",
-    "kamloops-arch": "no"
+    "kamloops-arch": "no",
+    "bc-csil": "almost",
+    "bc-family-benefit": "no",
+    "bc-home-support": "almost",
+    "bc-income-assistance": "almost",
+    "bc-nursing-support-services": "no",
+    "bc-ppmb": "almost",
+    "bc-rental-assistance-program": "almost",
+    "bc-safer": "no",
+    "bc-hearing-supplements": "no"
   },
   "P08-bc-pwd-victoria": {
     "waterloo-ontario-renovates": "no",
@@ -1085,7 +1160,16 @@
     "saanich-life": "no",
     "kelowna-recreation-assistance": "no",
     "coquitlam-far": "no",
-    "kamloops-arch": "no"
+    "kamloops-arch": "no",
+    "bc-csil": "almost",
+    "bc-family-benefit": "no",
+    "bc-home-support": "almost",
+    "bc-income-assistance": "almost",
+    "bc-nursing-support-services": "no",
+    "bc-ppmb": "almost",
+    "bc-rental-assistance-program": "almost",
+    "bc-safer": "no",
+    "bc-hearing-supplements": "no"
   },
   "P09-reddeer-deaf-worker": {
     "waterloo-ontario-renovates": "no",
@@ -1221,7 +1305,17 @@
     "saanich-life": "no",
     "kelowna-recreation-assistance": "no",
     "coquitlam-far": "no",
-    "kamloops-arch": "no"
+    "kamloops-arch": "no",
+    "ab-blue-cross-non-group": "almost",
+    "ab-brain-injury": "no",
+    "ab-child-family-benefit": "almost",
+    "ab-home-care": "almost",
+    "ab-income-support": "almost",
+    "ab-rent-assistance-benefit": "almost",
+    "ab-seniors-benefit": "no",
+    "ab-seniors-dental-optical": "no",
+    "ab-seniors-special-needs-assistance": "no",
+    "ab-sharp": "no"
   },
   "P10-ontario-child-wheelchair": {
     "waterloo-ontario-renovates": "no",
@@ -1357,7 +1451,21 @@
     "saanich-life": "no",
     "kelowna-recreation-assistance": "no",
     "coquitlam-far": "no",
-    "kamloops-arch": "no"
+    "kamloops-arch": "no",
+    "on-child-benefit": "almost",
+    "on-dso-adult-services": "no",
+    "on-enhanced-respite": "ready",
+    "on-gains": "no",
+    "on-healthy-smiles": "almost",
+    "on-ontario-works": "almost",
+    "on-seniors-dental": "no",
+    "on-trillium-benefit": "almost",
+    "on-drug-benefit": "almost",
+    "on-home-community-care": "almost",
+    "on-northern-health-travel-grant": "almost",
+    "on-odsp-employment-supports": "almost",
+    "on-odsp-health-benefits": "almost",
+    "on-oesp": "almost"
   },
   "P11-burnaby-high-income-dtc": {
     "waterloo-ontario-renovates": "no",
@@ -1493,7 +1601,16 @@
     "saanich-life": "no",
     "kelowna-recreation-assistance": "no",
     "coquitlam-far": "no",
-    "kamloops-arch": "no"
+    "kamloops-arch": "no",
+    "bc-csil": "almost",
+    "bc-family-benefit": "no",
+    "bc-home-support": "almost",
+    "bc-income-assistance": "almost",
+    "bc-nursing-support-services": "no",
+    "bc-ppmb": "almost",
+    "bc-rental-assistance-program": "almost",
+    "bc-safer": "no",
+    "bc-hearing-supplements": "no"
   },
   "P12-lethbridge-intellectual-adult": {
     "waterloo-ontario-renovates": "no",
@@ -1629,7 +1746,17 @@
     "saanich-life": "no",
     "kelowna-recreation-assistance": "no",
     "coquitlam-far": "no",
-    "kamloops-arch": "no"
+    "kamloops-arch": "no",
+    "ab-blue-cross-non-group": "ready",
+    "ab-brain-injury": "no",
+    "ab-child-family-benefit": "almost",
+    "ab-home-care": "almost",
+    "ab-income-support": "ready",
+    "ab-rent-assistance-benefit": "ready",
+    "ab-seniors-benefit": "no",
+    "ab-seniors-dental-optical": "no",
+    "ab-seniors-special-needs-assistance": "no",
+    "ab-sharp": "no"
   },
   "P13-kingston-vision-senior": {
     "waterloo-ontario-renovates": "no",
@@ -1765,7 +1892,21 @@
     "saanich-life": "no",
     "kelowna-recreation-assistance": "no",
     "coquitlam-far": "no",
-    "kamloops-arch": "no"
+    "kamloops-arch": "no",
+    "on-child-benefit": "almost",
+    "on-dso-adult-services": "no",
+    "on-enhanced-respite": "no",
+    "on-gains": "almost",
+    "on-healthy-smiles": "no",
+    "on-ontario-works": "almost",
+    "on-seniors-dental": "almost",
+    "on-trillium-benefit": "almost",
+    "on-drug-benefit": "ready",
+    "on-home-community-care": "almost",
+    "on-northern-health-travel-grant": "almost",
+    "on-odsp-employment-supports": "almost",
+    "on-odsp-health-benefits": "almost",
+    "on-oesp": "almost"
   },
   "P14-calgary-teen-mental": {
     "waterloo-ontario-renovates": "no",
@@ -1901,7 +2042,17 @@
     "saanich-life": "no",
     "kelowna-recreation-assistance": "no",
     "coquitlam-far": "no",
-    "kamloops-arch": "no"
+    "kamloops-arch": "no",
+    "ab-blue-cross-non-group": "almost",
+    "ab-brain-injury": "no",
+    "ab-child-family-benefit": "almost",
+    "ab-home-care": "almost",
+    "ab-income-support": "no",
+    "ab-rent-assistance-benefit": "almost",
+    "ab-seniors-benefit": "no",
+    "ab-seniors-dental-optical": "no",
+    "ab-seniors-special-needs-assistance": "no",
+    "ab-sharp": "no"
   },
   "P15-edmonton-senior": {
     "waterloo-ontario-renovates": "no",
@@ -2037,6 +2188,16 @@
     "saanich-life": "no",
     "kelowna-recreation-assistance": "no",
     "coquitlam-far": "no",
-    "kamloops-arch": "no"
+    "kamloops-arch": "no",
+    "ab-blue-cross-non-group": "almost",
+    "ab-brain-injury": "no",
+    "ab-child-family-benefit": "almost",
+    "ab-home-care": "almost",
+    "ab-income-support": "ready",
+    "ab-rent-assistance-benefit": "ready",
+    "ab-seniors-benefit": "ready",
+    "ab-seniors-dental-optical": "ready",
+    "ab-seniors-special-needs-assistance": "ready",
+    "ab-sharp": "ready"
   }
 }

@@ -1,0 +1,150 @@
+URL: https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/persons-with-persistent-multiple-barriers/persons-with-persistent-multiple-barriers-topic | province: BC | program: Persons with Persistent Multiple Barriers | fetched: 2026-10-17
+=== PAGE: https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/persons-with-persistent-multiple-barriers/persons-with-persistent-multiple-barriers-topic (HTTP 200, 9288 chars)
+Persons with Persistent Multiple Barriers - Province of British Columbia 
+- 
+- 
+ Home / British Columbians and our governments / Policies for Government / BCEA Policy and Procedure Manual / Persons with Persistent Multiple Barriers / Persons with Persistent Multiple Barriers 
+ More topics
+- Persons with Persistent Multiple Barriers 
+- Persons with Persistent Multiple Barriers 
+ Persons with Persistent Multiple Barriers
+ Last updated on July 22, 2026 Overview
+ The persons with persistent multiple barriers (PPMB) category provides assistance to recipients who have long-term barriers to employment that are not expected to be overcome in the short term. PPMB recipients are exempt from entering employability plans and do not have employability-related obligations, although they may participate on a voluntary basis. For more information, review employability plan . An earnings exemption is available to encourage recipients who want to work to try employment, gain experience, participate more fully in the community as they are able, and earn more income. Family units where one or both recipients are eligible for PPMB may be provided a higher support rate and additional supplements.
+ PPMB category applies to recipients who are eligible under the Employment and Assistance Act. PPMB is not included in the Employment and Assistance for Persons with Disabilities Act. Therefore, the PPMB category cannot be assessed for spouses of recipients with the Persons with Disabilities (PWD) designation. PPMB eligibility is assessed using a single two-part application form.
+ It is recognized that some recipients in this category may overcome their barriers over time and improve their employability while others may not. Some may have health conditions that worsen over time and require additional supports. This is why the PPMB category provides recipients with time and supports to overcome their barriers and move towards independence, or transition to other client categories, including the PWD designation.
+ Policy
+ Expand All  |  Collapse All 
+ Criteria
+ Effective: July 1, 2019
+ Recipients who qualify for persons with persistent multiple barriers (PPMB) are those who meet the following criteria:
+- Has a health condition that has lasted for at least one year and is likely to continue for at least two more years or has a health condition that has occurred frequently in the past year and is likely to continue for at least two more years. This health condition is a barrier that seriously impedes a person’s ability to search for, accept or continue in employment
+ AND
+- Has at least one additional barrier (listed under Barriers to Employment ) that seriously impedes the person from searching for, accepting or continuing in employment
+ Health condition
+ Effective: July 1, 2019
+ The recipient has a health condition, confirmed by an approved health professional, that:
+- Has continued for at least one year and is likely to continue for at least two more years
+ OR
+- Has occurred frequently in the past year and is likely to continue for at least two more years
+ and, that health condition, in the opinion of the Minister, is a barrier that seriously impedes the person’s ability to search for, accept or continue in employment.
+ An approved health professional is a: 
+- Medical practitioner
+- Nurse practitioner
+- Registered psychologist
+- Registered nurse or registered psychiatric nurse
+- Occupational therapist
+- Physical therapist
+- Registered social worker
+- Chiropractor
+- Registered clinical counsellor in good standing with the BC Association of Clinical Counsellors
+- School psychologist as defined by Independent School Act or the School Act
+ Seriously impedes
+ A health condition is considered to seriously impede the recipient’s ability to search for, accept, or continue in employment when, as a result of the health condition, the recipient is unable to participate in any type of employment that would enable independence from income assistance.
+ When determining if the health condition seriously impedes employment, the information provided by the health professional in Section 1 of the PPMB application form should be taken into consideration:
+- Impact of the health condition on the recipient’s ability to work full-time or only part-time
+- Impact of the health condition on the recipient’s ability to work on a regular or sporadic basis
+ Barriers to employment
+ Effective: July 1, 2019
+ The recipient has at least one additional barrier that seriously impedes the recipient’s ability to search for, accept, or continue in employment. A barrier is considered to seriously impede the recipient’s ability to search for, accept, or continue in employment when, because of the barrier, the recipient is unable to participate in employment that would enable independence from income assistance or that requires an accommodation to obtain or maintain employment. Employability supports, such as the Self-Employment Program (SEP) business deductions and exemptions, may be available. To learn more, review the Employability Supports topic.
+ Barriers that seriously impede employment are:
+- Currently experiencing homelessness or having experienced homelessness in the past 12 months
+- Currently experiencing domestic violence or having experienced domestic violence in the past six months
+- Less than Grade 12 education
+- Needing English language skills training
+- Not having basic skills for employment
+- Having a criminal record
+- Having accessed emergency health, mental health or addiction services multiple times within the past 12 months
+- Recent convention refugee (within the past 24 months) or currently a refugee claimant or person applying for protection
+- Former child in care (Ministry of Children and Family Development or similar Canadian jurisdiction)
+- Other severe barrier to employment listed on their application
+ Review period
+ Effective: July 1, 2019
+ The ministry is not currently performing regular reviews for PPMB recipients. Reviews will be completed in exceptional circumstances (i.e., the ministry has been supplied with inaccurate or new information). PPMB is not a permanent category and the ministry has the authority to review a person’s eligibility for PPMB.
+ Income assistance and supplements
+ Effective: October 1, 2012
+ Family units where one adult is eligible for PPMB may be eligible for:
+- Higher support rate (review income assistance rate table )
+- Medical coverage that includes general health supplements (review health supplement summary )
+- Dental supplements (review dental and orthodontic services )
+- Earnings exemption (review income treatment and exemptions )
+- Employability supports (review employability supports )
+ Procedures
+ Expand All  |  Collapse All 
+ Application for PPMB
+ Effective: July 1, 2026
+ To request a PPMB application, the ministry will confirm you are a recipient of income assistance or hardship assistance. Complete and submit the PPMB application (HR2892) . The ministry will contact you with an eligibility decision.
+ Reapplication for assistance
+ Effective:  July 1, 2019
+ Individuals in the PPMB category at the time when their case was closed can be reassessed for PPMB on reapplication if they have been off assistance for longer than 24 months. These individuals should submit a new PPMB Application Form (HR2892) . Former recipients who reapply for assistance within 24 months of leaving assistance retain their PPMB category. 
+ Related information
+ Expand All  |  Collapse All 
+ Acts and Regulations
+ Employment and Assistance Act
+ Section 1, Interpretation 
+ Section 2, Eligibility of Family Unit 
+ Employment and Assistance Regulation
+ Section 2, Persons who have persistent multiple barriers to employment 
+ Section 26, Effective date of eligibility, 3, 4 Effective date for higher support rate 
+ Definitions
+- Client 
+- Disability assistance 
+- Employability plan (EP) 
+- Family unit 
+- Hardship assistance 
+- Income assistance 
+- Medical practitioner 
+- Person with persistent multiple barriers (PPMB) 
+- Spouse  
+- WorkBC action plan 
+- WorkBC 
+ Resources
+ Rate tables 
+- All rate tables 
+- Fees for medical practitioners 
+ Forms and letters 
+- Employment and Assistance Reconsideration decision HR0101 
+- Employment and Assistance request for reconsideration HR0100 
+- First appointment – PPMB review HR3232 
+- Persons with persistent multiple barriers (PPMB) application form HR2892 
+- PPMB approval, HR3241 
+- PPMB denial- New PPMB applicant, HR3245 
+ Additional resources 
+- DSM IV codes 
+- ICD 9 codes 
+- ICD 9 codes and medical dictionary 
+- Persons with persistent multiple barriers 
+ Related links
+- Application Requirements 
+- Citizenship and Residency Requirements 
+- Dental and Orthodontic Services 
+- Employability Plan 
+- Employability supports 
+- Health supplement summary 
+- Income treatment and exemptions 
+- Reconsideration 
+- Work search 
+ Did you find what you were looking for? 
+ Yes No 
+ The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments.
+
+=== PAGE: https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance/persistent-multiple-barriers (HTTP 404, 1189 chars)
+- 
+- 
+- 
+ Home / British Columbians and our governments 
+ 404 - Oops, looks like we're lost
+ The page you’re looking for might have been removed, moved, or is temporarily unavailable.
+ We suggest:
+- Checking that the web URL has been entered correctly
+- Going to our Home Page and browse through our topics for the information you want
+- Looking for Services or Forms 
+- Using the Search function at the top of this page
+ Alternatively, you can contact the Service BC Contact Centre for general enquires Monday through Friday from 7:30am to 5pm Pacific Time.
+- Vancouver: 604 660-2421 
+- Victoria: 250 387-6121 
+- Toll-free within Canada and USA: 1 800 663-7867 
+- Outside of Canada/USA: 604 660-2421 
+ Telephone Device for the Deaf (TDD )
+- Across B.C.: 711 
+ If you would like to email us, please contact servicebc@gov.bc.ca .
+ The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments.

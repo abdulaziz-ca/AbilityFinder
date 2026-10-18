@@ -4,12 +4,12 @@ Bullet surfaces (gate.unmet, eligibility.note, detail.aboutList.items) are flagg
 
 | Surface | Total | Flagged | Longest id | Chars |
 |---|---:|---:|---|---:|
-| gate.unmet | 323 | 115 | cwbEligibility.unmet | 626 |
-| eligibility.note | 110 | 44 | surrey-leisure-access.eligibility.note | 684 |
+| gate.unmet | 357 | 115 | cwbEligibility.unmet | 626 |
+| eligibility.note | 142 | 44 | surrey-leisure-access.eligibility.note | 684 |
 | detail.about | 134 | 95 | dtc.detail.about | 1697 |
-| detail.aboutList.items | 500 | 150 | dtc.detail.aboutList.items[1] | 636 |
-| summary | 183 | 26 | bc-clbc.summary | 377 |
-| note | 183 | 67 | surrey-leisure-access.note | 690 |
+| detail.aboutList.items | 644 | 150 | dtc.detail.aboutList.items[1] | 636 |
+| summary | 216 | 26 | bc-clbc.summary | 377 |
+| note | 216 | 67 | surrey-leisure-access.note | 690 |
 
 ## Flagged items, longest first
 

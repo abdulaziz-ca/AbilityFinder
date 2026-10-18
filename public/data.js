@@ -143,6 +143,39 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "ab-sharp": { kind: "access", note: "Low-interest loan of up to $40,000 at the current rate of 4.45%" },
+  "ab-seniors-special-needs-assistance": { kind: "grant", note: "Up to $5,872 per benefit year toward eligible items" },
+  "ab-seniors-dental-optical": { kind: "discount", note: "Dental up to $5,000 every 5 years; glasses up to $230 every 3 years" },
+  "ab-seniors-benefit": { kind: "grant", note: "Monthly benefit; the maximum depends on residence type and marital status" },
+  "ab-rent-assistance-benefit": { kind: "grant", note: "Rent subsidy paid to the tenant; the amount depends on income and local rent" },
+  "ab-income-support": { kind: "grant", note: "Monthly money for basic needs; the amount depends on your needs and family size" },
+  "ab-home-care": { kind: "access", note: "Publicly funded health and personal care services; no dollar value published" },
+  "ab-child-family-benefit": { kind: "grant", note: "Base part up to $1,529 to $3,821 a year (July 2026 to June 2027), plus a working part up to $782 to $2,061" },
+  "ab-brain-injury": { kind: "access", note: "Help finding and coordinating supports; no dollar value published" },
+  "ab-blue-cross-non-group": { kind: "access", note: "Monthly premium of $63.50 (single) or $118.00 (family); $44.45 or $82.60 with the subsidy" },
+  "bc-hearing-supplements": { kind: "grant", note: "Pays for approved hearing aids and repairs; a separate monthly supplement exists." },
+  "bc-safer": { kind: "grant", note: "Monthly rent supplement paid by direct deposit on the last working day of the month." },
+  "bc-rental-assistance-program": { kind: "grant", note: "Monthly rent help paid by direct deposit, in arrears." },
+  "bc-ppmb": { kind: "grant", note: "Income assistance category that may bring a higher support rate and supplements." },
+  "bc-nursing-support-services": { kind: "access", note: "In-home nursing respite and school nursing support; cost not stated." },
+  "bc-income-assistance": { kind: "grant", note: "Monthly income support for people in need with no other resources." },
+  "bc-home-support": { kind: "access", note: "Subsidized home support with an income-based daily rate." },
+  "bc-family-benefit": { kind: "grant", note: "Tax-free monthly payment based on family income and number of children." },
+  "bc-csil": { kind: "grant", note: "Monthly funds to buy your own home support; you pay an income-based daily rate." },
+  "on-oesp": { kind: "discount", note: "monthly bill credit $35–$75 by income and household size; $52–$113 for special circumstances" },
+  "on-odsp-health-benefits": { kind: "access", note: "Health and disability benefits for ODSP recipients and families" },
+  "on-odsp-employment-supports": { kind: "grant", note: "Keep ODSP while earning, plus work-related benefits" },
+  "on-northern-health-travel-grant": { kind: "grant", note: "Partial reimbursement of long-distance medical travel" },
+  "on-home-community-care": { kind: "access", note: "Government-paid home care if you are assessed as eligible" },
+  "on-drug-benefit": { kind: "discount", note: "Most of the cost of listed prescription drugs" },
+  "on-trillium-benefit": { kind: "grant", note: "Tax-free payments for energy costs and sales and property taxes" },
+  "on-seniors-dental": { kind: "access", note: "Free routine dental care for eligible low-income seniors" },
+  "on-ontario-works": { kind: "grant", note: "Monthly money for living costs and health benefits" },
+  "on-healthy-smiles": { kind: "access", note: "Free dental care for eligible children and youth 17 and under" },
+  "on-gains": { kind: "grant", note: "Up to $92 a month, non-taxable" },
+  "on-enhanced-respite": { kind: "grant", note: "Up to $4,213 per child each fiscal year for respite" },
+  "on-dso-adult-services": { kind: "access", note: "Gateway to provincially funded adult developmental services" },
+  "on-child-benefit": { kind: "grant", note: "Up to $1,760 per child each year, paid monthly" },
   "west-vancouver-recreation-financial-assistance": { kind: "discount", note: "50% off FitPasses and activities, within yearly maximums." },
   "taber-fee-assistance": { kind: "discount", note: "50% off many Town recreation fees." },
   "sarnia-cnib-pass": { kind: "discount", note: "About $36 (a page note says $35.25) instead of $1,065 for the annual pass." },
@@ -389,6 +422,39 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "ab-sharp": { difficulty: 3, effort: "Application form, estimates and a land title caveat", wait: "Not published" },
+  "ab-seniors-special-needs-assistance": { difficulty: 3, effort: "Receipts or estimates, plus medical notes for some items", wait: "Not published" },
+  "ab-seniors-dental-optical": { difficulty: 2, effort: "Enrol in Seniors Financial Assistance, then claim", wait: "Not published" },
+  "ab-seniors-benefit": { difficulty: 2, effort: "Application form; income is checked with the CRA", wait: "Not published" },
+  "ab-rent-assistance-benefit": { difficulty: 3, effort: "Apply through a local housing provider", wait: "Not published" },
+  "ab-income-support": { difficulty: 3, effort: "Online application with ID and 60 days of bank statements", wait: "Typically 2 weeks" },
+  "ab-home-care": { difficulty: 3, effort: "Needs a professional assessment", wait: "Not published" },
+  "ab-child-family-benefit": { difficulty: 1, effort: "File your taxes; no separate form", wait: "Paid 4 times a year" },
+  "ab-brain-injury": { difficulty: 1, effort: "Contact a regional agency", wait: "Not published" },
+  "ab-blue-cross-non-group": { difficulty: 2, effort: "Application form, plus a second form for the subsidy", wait: "Coverage starts in the fourth month" },
+  "bc-hearing-supplements": { difficulty: 4, effort: "Hearing assessment, provider submission to Pacific Blue Cross, prior approval", wait: "Not published" },
+  "bc-safer": { difficulty: 3, effort: "Paper application with income, rent and ID documents", wait: "Not published" },
+  "bc-rental-assistance-program": { difficulty: 3, effort: "Paper application with income, rent and asset documents", wait: "Not published" },
+  "bc-ppmb": { difficulty: 3, effort: "PPMB application with a health professional's input", wait: "Not published" },
+  "bc-nursing-support-services": { difficulty: 3, effort: "Referral from your child's physician or nurse practitioner", wait: "Not published" },
+  "bc-income-assistance": { difficulty: 3, effort: "Online application, work search and eligibility assessment", wait: "Not published" },
+  "bc-home-support": { difficulty: 2, effort: "Contact health authority, then assessments", wait: "Not published" },
+  "bc-family-benefit": { difficulty: 1, effort: "File taxes and register for the Canada child benefit", wait: "Not published" },
+  "bc-csil": { difficulty: 3, effort: "Contact health authority, assessments, then act as an employer", wait: "Not published" },
+  "on-oesp": { difficulty: 2, effort: "Online or mail application with CRA consent", wait: "About 4 to 6 weeks for a decision" },
+  "on-odsp-health-benefits": { difficulty: 3, effort: "Ask your ODSP office; most benefits need a form and approval", wait: "Not published" },
+  "on-odsp-employment-supports": { difficulty: 2, effort: "Report earnings monthly and ask your caseworker for benefits", wait: "Not published" },
+  "on-northern-health-travel-grant": { difficulty: 3, effort: "Application with original receipts and a provider form", wait: "Not published" },
+  "on-home-community-care": { difficulty: 3, effort: "Phone call and an in-home needs assessment", wait: "Not published" },
+  "on-drug-benefit": { difficulty: 2, effort: "Automatic for some groups; others ask a caseworker or pharmacist", wait: "Not published" },
+  "on-trillium-benefit": { difficulty: 2, effort: "File your tax return with the ON-BEN form", wait: "Payments start in July if you file by April 30" },
+  "on-seniors-dental": { difficulty: 2, effort: "Online or mail application", wait: "Not published" },
+  "on-ontario-works": { difficulty: 3, effort: "Online, phone or in-person application with documents", wait: "Decision within four business days once all information is received" },
+  "on-healthy-smiles": { difficulty: 2, effort: "Online or mail application, or automatic enrolment", wait: "Not published" },
+  "on-gains": { difficulty: 1, effort: "Usually automatic if you get Old Age Security and the Guaranteed Income Supplement", wait: "Not published" },
+  "on-enhanced-respite": { difficulty: 3, effort: "Apply through a ministry regional office, then claim costs", wait: "Not published" },
+  "on-dso-adult-services": { difficulty: 3, effort: "Two assessment meetings with a DSO assessor", wait: "Not published" },
+  "on-child-benefit": { difficulty: 2, effort: "Apply for the Canada Child Benefit and file taxes each year", wait: "Not published" },
   "west-vancouver-recreation-financial-assistance": { difficulty: 4, effort: "Paper package, drop-off and interview", wait: "Two to six weeks" },
   "taber-fee-assistance": { difficulty: 3, effort: "FCSS application, then card pickup", wait: "Not published" },
   "sarnia-cnib-pass": { difficulty: 1, effort: "One visit with your CNIB card", wait: "Not published" },
@@ -9267,6 +9333,1805 @@ const BENEFITS = [
       "time": "Two to six weeks to review",
       "phone": "604-925-7279"
     }
+  },
+  {
+    "id": "on-child-benefit",
+    "name": "Ontario Child Benefit",
+    "level": "Ontario",
+    "category": "Money (for parents)",
+    "amount": "Up to $1,760 per child each year",
+    "summary": "A monthly payment for low-income to moderate-income families to help with the cost of raising children. The Canada Revenue Agency sets the amount for each family.",
+    "note": "There is no separate application. The Canada Child Benefit application also assesses you, and you must file taxes each year.",
+    "requires": [
+      "on",
+      "onChildBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a low-income to moderate-income family with children in your care.",
+        "You apply for the Canada Child Benefit through the Canada Revenue Agency.",
+        "You file your taxes every year, even if you have no income to declare."
+      ],
+      "note": "The amount depends on your family net income and the number of children under 18 in your care."
+    },
+    "applyText": "Apply for the Canada Child Benefit",
+    "applyUrl": "https://www.ontario.ca/page/ontario-child-benefit",
+    "source": "https://www.ontario.ca/page/ontario-child-benefit",
+    "detail": {
+      "aboutList": {
+        "lead": "The Ontario Child Benefit helps families with the cost of raising children, including a child with a disability.",
+        "items": [
+          "Pays up to $1,760 per child per year, in monthly payments, if you are eligible.",
+          "The amount depends on your adjusted family net income on your annual tax return.",
+          "The number of children in your care who are under 18 also affects the amount.",
+          "The Canada Revenue Agency runs the benefit for Ontario."
+        ]
+      },
+      "steps": [
+        "Send in your Canada Child Benefit application.",
+        "Every year, file your taxes, even with nothing to declare.",
+        "Wait for the Canada Revenue Agency to assess you for the Ontario Child Benefit and set your monthly payment."
+      ],
+      "documents": [
+        "Your income tax return each year"
+      ],
+      "tips": [
+        "Use the Canada Revenue Agency benefit calculator to see how much you may receive.",
+        "If you need help with your taxes, the page points to free tax help and free tax clinics."
+      ],
+      "phone": "1-800-387-1193"
+    }
+  },
+  {
+    "id": "on-dso-adult-services",
+    "name": "Developmental Services Ontario adult services",
+    "level": "Ontario",
+    "category": "Daily living supports",
+    "amount": "Services and supports, based on your assessed needs",
+    "summary": "Developmental Services Ontario (DSO) is the way in to provincially funded services for adults with a developmental disability. Staff help you apply, assess your needs and connect you with available supports.",
+    "note": "Going through the application does not guarantee that you will receive services right away. Your risk-based priority is compared with everyone else waiting.",
+    "requires": [
+      "on",
+      "age18plus",
+      "developmental",
+      "onDsoAdultServicesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have a developmental disability, confirmed by a registered psychologist or psychological associate.",
+        "You are at least 18 years old.",
+        "You live in Ontario."
+      ],
+      "note": "These general rules come from the 2008 Act on social inclusion of people with developmental disabilities."
+    },
+    "applyText": "Contact Developmental Services Ontario",
+    "applyUrl": "https://www.ontario.ca/page/programs-and-services-adults-developmental-disabilities-ontario",
+    "source": "https://www.ontario.ca/page/programs-and-services-adults-developmental-disabilities-ontario",
+    "detail": {
+      "aboutList": {
+        "lead": "This page explains the services and supports for adults with a developmental disability and their families.",
+        "items": [
+          "Helps you live, work and take part in your community.",
+          "Includes Passport funding, specialized clinical supports and Adult Protective Service Worker help.",
+          "Includes residential supports such as group living, supported independent living and the Host Family Program.",
+          "You can use part of your Passport funding for person-directed planning."
+        ]
+      },
+      "steps": [
+        "Contact your local Developmental Services Ontario office to apply.",
+        "Meet with a DSO assessor for the application for developmental services and supports (ADSS).",
+        "Meet again for the Supports Intensity Scale for adults (SIS-A), which measures the supports you need.",
+        "Staff use a province-wide tool to score your level of risk and set your priority for services."
+      ],
+      "documents": [
+        "Confirmation of your developmental disability from a registered psychologist or psychological associate"
+      ],
+      "tips": [
+        "Each of the two meetings may take a couple of hours.",
+        "Family caregivers can share their needs in the application.",
+        "Private providers are not government-funded; check what they offer and charge before you choose."
+      ]
+    }
+  },
+  {
+    "id": "on-enhanced-respite",
+    "name": "Enhanced Respite for medically fragile children",
+    "level": "Ontario",
+    "category": "Home support",
+    "amount": "Up to $4,213 per child each fiscal year",
+    "summary": "Pays families back for respite care for a child under 18 who is medically fragile or technology dependent and needs care 24 hours a day. You claim the cost of covered respite services or supports.",
+    "note": "The services and supports covered are the same as those covered by the Special Services at Home program.",
+    "requires": [
+      "on",
+      "child",
+      "onEnhancedRespiteRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your child is under 18 years of age.",
+        "Your child lives at home.",
+        "Your child needs intensive care and constant monitoring on a 24-hour basis.",
+        "Your child is medically fragile or technology dependent, in one of the listed ways."
+      ],
+      "note": "Listed ways include a ventilator, dialysis, IV drugs, tracheotomy care, suctioning, oxygen or tube feeding."
+    },
+    "applyText": "Contact your ministry regional office",
+    "applyUrl": "https://www.ontario.ca/page/family-support-and-respite-children-and-youth-special-needs",
+    "source": "https://www.ontario.ca/page/family-support-and-respite-children-and-youth-special-needs",
+    "detail": {
+      "aboutList": {
+        "lead": "Enhanced Respite gives families a break from round-the-clock care of a medically fragile child.",
+        "items": [
+          "Gives back the cost of covered respite when you make a claim.",
+          "Respite can be in your home or outside your home, from local agencies.",
+          "Funding is for families caring for a child who depends on medical or technological equipment.",
+          "Extra funding was added on July 1, 2022 to support personal support worker wages."
+        ]
+      },
+      "steps": [
+        "Contact the ministry regional office nearest to you to apply.",
+        "Arrange respite care with a local agency in or outside your home.",
+        "Make a claim to get the cost of covered respite back."
+      ],
+      "documents": [],
+      "tips": [
+        "Ask the regional office which respite supports are covered before you pay.",
+        "The same page also covers Special Services at Home, and Assistance for Children with Severe Disabilities."
+      ]
+    }
+  },
+  {
+    "id": "on-gains",
+    "name": "Guaranteed Annual Income System (GAINS)",
+    "level": "Ontario",
+    "category": "Income support",
+    "amount": "Up to $92 a month for the 2026 benefit year (July 1, 2026 to June 30, 2027)",
+    "summary": "A monthly, non-taxable payment for Ontario seniors with low income. It is paid on top of any federal OAS and GIS payments you may get.",
+    "note": "If you had no private income in 2025, you get the maximum amount. Different income limits apply if your spouse is under 65 or cannot get Old Age Security.",
+    "requires": [
+      "on",
+      "age65plus",
+      "onGainsRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 65 years or older.",
+        "You have been a Canadian resident for 10 years or more.",
+        "You have lived in Ontario for 12 months, or for 20 years in total since age 18.",
+        "You receive the federal Old Age Security (OAS) pension and Guaranteed Income Supplement (GIS).",
+        "Your private income is up to $4,416 (single) or $8,832 (couple)."
+      ],
+      "note": "Private income can include a workplace pension, the Canada Pension Plan and bank interest."
+    },
+    "applyText": "File your tax return or complete a GIS application",
+    "applyUrl": "https://www.ontario.ca/page/guaranteed-annual-income-system-payments-seniors",
+    "source": "https://www.ontario.ca/page/guaranteed-annual-income-system-payments-seniors",
+    "detail": {
+      "aboutList": {
+        "lead": "GAINS tops up the income of low-income seniors in Ontario.",
+        "items": [
+          "Paid about the 25th of each month, from July to June.",
+          "Your payment can change during the year if your private income or marital status changes.",
+          "The benefit year runs from July 1 to June 30 of the next year.",
+          "Tables on the page show your amount by age and marital status."
+        ]
+      },
+      "steps": [
+        "If you already get Old Age Security and the Guaranteed Income Supplement, you do not have to apply.",
+        "File your income tax return every year by April 30, even with no income to report.",
+        "Or complete a Guaranteed Income Supplement application and send it to your nearest Service Canada office.",
+        "Sign up for direct deposit through Service Canada."
+      ],
+      "documents": [
+        "Your income tax and benefit return"
+      ],
+      "tips": [
+        "If you disagree with a decision, contact the Ontario Ministry of Finance.",
+        "You can file a Notice of Objection within 90 days of the written decision being mailed."
+      ],
+      "phone": "1-800-277-9914"
+    }
+  },
+  {
+    "id": "on-healthy-smiles",
+    "name": "Healthy Smiles Ontario",
+    "level": "Ontario",
+    "category": "Health (for children)",
+    "amount": "Free preventive, routine and emergency dental care for children 17 and under",
+    "summary": "A government-funded dental program for children and youth 17 and under from low-income households. It pays for preventive, routine and emergency dental services.",
+    "note": "Cosmetic dentistry such as teeth whitening and braces is not covered. Your child may still qualify if they already have dental insurance.",
+    "requires": [
+      "on",
+      "child",
+      "onHealthySmilesRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Your child gets Temporary Care Assistance or Assistance for Children with Severe Disabilities.",
+        "You or your family get Ontario Works or the Ontario Disability Support Program.",
+        "Your child is 17 or under, lives in Ontario, and your family net income is at or under the table limit."
+      ],
+      "note": "As of July 1, 2026 the limit is $29,065 for 1 child, $31,265 for 2 children and $33,465 for 3 children."
+    },
+    "applyText": "Enrol in Healthy Smiles Ontario",
+    "applyUrl": "https://www.ontario.ca/page/get-dental-care",
+    "source": "https://www.ontario.ca/page/get-dental-care",
+    "detail": {
+      "aboutList": {
+        "lead": "Healthy Smiles Ontario pays for dental care for eligible children and youth.",
+        "items": [
+          "Covers check-ups, cleaning, fillings, x-rays, scaling and tooth extraction.",
+          "Covers urgent or emergency care, including a toothache.",
+          "Covers a child for up to one benefit year (August 1 to July 31) or until their 18th birthday.",
+          "Children in kindergarten and Grade 2 at public elementary schools can get free dental screening."
+        ]
+      },
+      "steps": [
+        "Check whether your child is enrolled automatically.",
+        "If not, apply online or by mail with the General Application Form.",
+        "Wait for the dental card to arrive by mail.",
+        "Show the card to your dental provider at each visit."
+      ],
+      "documents": [
+        "Your child's date of birth",
+        "A valid Ontario address",
+        "Your Social Insurance Number or Temporary Taxation Number",
+        "Proof you filed taxes in the previous year (or a guarantor form if you did not file)"
+      ],
+      "tips": [
+        "Ask your dentist if they take Healthy Smiles Ontario; your local public health unit can help find one.",
+        "Emergency or essential care lasts 6 months and a child can use it a maximum of 3 times in their lifetime.",
+        "Families on Ontario Works in a First Nations community are not enrolled automatically and must apply by mail."
+      ],
+      "phone": "1-844-296-6306"
+    }
+  },
+  {
+    "id": "on-ontario-works",
+    "name": "Ontario Works",
+    "level": "Ontario",
+    "category": "Income support",
+    "amount": "Up to $733 a month for basic needs and shelter if you are single",
+    "summary": "Money for living costs such as food and rent, plus health benefits, for people in financial need. In most cases you take part in employment-related activities to get the money.",
+    "note": "The Canada Disability Benefit is exempt as income and does not affect your Ontario Works eligibility or payment. You may get more for family members or other benefits.",
+    "requires": [
+      "on",
+      "onOntarioWorksRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You need financial assistance for food and housing.",
+        "You are in financial need."
+      ],
+      "note": "A worker checks your income and assets; if found not eligible, you have 30 days to ask for a review."
+    },
+    "applyText": "Apply for Ontario Works",
+    "applyUrl": "https://www.ontario.ca/page/ontario-works",
+    "source": "https://www.ontario.ca/page/ontario-works",
+    "detail": {
+      "aboutList": {
+        "lead": "Ontario Works helps people in financial need with living costs.",
+        "items": [
+          "Pays money toward living expenses, including food and rent.",
+          "Includes health benefits for you and your eligible family members.",
+          "You may get more if you have a spouse or child.",
+          "You may get extra money, for example for transport to medical appointments."
+        ]
+      },
+      "steps": [
+        "Apply online (20 to 30 minutes), by phone, or at your local Ontario Works office.",
+        "An intake worker reviews your application and may ask for more documents.",
+        "You are told within four business days if you are approved and how much you may receive.",
+        "Your Ontario Works office schedules an appointment to make a plan for employment-related activities."
+      ],
+      "documents": [
+        "Social insurance numbers, if applicable",
+        "OHIP cards",
+        "Birth certificates",
+        "Immigration papers",
+        "Tax returns",
+        "Banking information and bank statements",
+        "Proof of income, shelter costs and Ontario residency"
+      ],
+      "tips": [
+        "One application covers you and the immediate family who live with you.",
+        "All family members on the application should be with you when you start, so they can consent.",
+        "A plan for work activities may be waived for reasons such as an illness or caregiving responsibilities.",
+        "If you have a disability, one application can be used for Ontario Works or the Ontario Disability Support Program."
+      ],
+      "phone": "1-888-999-1142"
+    }
+  },
+  {
+    "id": "on-seniors-dental",
+    "name": "Ontario Seniors Dental Care Program",
+    "level": "Ontario",
+    "category": "Health",
+    "amount": "Free routine dental care",
+    "summary": "Free, routine dental care for low-income Ontario seniors 65 or older. It covers check-ups, fillings, x-rays, tooth removal and treatment for infection, pain and gum disease.",
+    "note": "Coverage ends on July 31 every year. Dentures are partially covered; some procedures have limits. You may still qualify if you also qualify for the Canadian Dental Care Plan.",
+    "requires": [
+      "on",
+      "age65plus",
+      "onSeniorsDentalRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 65 years of age or older.",
+        "You live in Ontario.",
+        "Your annual net income is $25,480 or less (single), or $42,290 or less (couple, combined).",
+        "You have no other dental benefits, apart from the Canadian Dental Care Plan."
+      ],
+      "note": "Other benefits include private insurance, Ontario Works and the Ontario Disability Support Program."
+    },
+    "applyText": "Apply to the Ontario Seniors Dental Care Program",
+    "applyUrl": "https://www.ontario.ca/page/dental-care-seniors",
+    "source": "https://www.ontario.ca/page/dental-care-seniors",
+    "detail": {
+      "aboutList": {
+        "lead": "The program pays for routine dental care for low-income seniors.",
+        "items": [
+          "Covers check-ups, scaling, fluoride and polishing.",
+          "Covers repairing broken teeth and cavities, and x-rays.",
+          "Covers removing teeth or abnormal tissue, with anesthesia.",
+          "Covers treating infection, pain and gum conditions."
+        ]
+      },
+      "steps": [
+        "Apply online or by mail.",
+        "If you and your spouse both apply, send two separate applications.",
+        "Wait for the welcome package and dental card by mail.",
+        "Show your card at each dental visit."
+      ],
+      "documents": [
+        "Your date of birth",
+        "A valid Ontario address",
+        "Your Social Insurance Number or Temporary Taxation Number",
+        "Proof you filed taxes last year (or a guarantor form if you did not file)"
+      ],
+      "tips": [
+        "Your local public health unit can help you apply and find where to get care.",
+        "Care is available through public health units and partner community health centres.",
+        "Most clients are re-checked automatically each year; you are told by mail if you must re-apply."
+      ],
+      "phone": "1-833-207-4435"
+    }
+  },
+  {
+    "id": "on-trillium-benefit",
+    "name": "Ontario Trillium Benefit",
+    "level": "Ontario",
+    "category": "Money & taxes",
+    "amount": "For the 2026 benefit year: up to $1,307 (age 18 to 64) or $1,488 (65 or older) from the energy and property tax credit, plus other credits",
+    "summary": "A tax-free payment that helps low-to-moderate income Ontario residents pay for energy costs, sales tax and property tax. It combines three credits, and you need to be eligible for at least one.",
+    "note": "You apply by filing your tax return and the ON-BEN form, even with no income. The Canada Revenue Agency decides if you are eligible. The last day to file is April 30.",
+    "requires": [
+      "on",
+      "onTrilliumBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Northern Ontario Energy Credit: you lived in Northern Ontario on December 31, 2025.",
+        "Ontario Energy and Property Tax Credit: you lived in Ontario on December 31, 2025.",
+        "Ontario Sales Tax Credit: you are an Ontario resident, 19 or older, or have a partner or child."
+      ],
+      "note": "Each credit also has conditions, such as age, family status, and rent or property tax paid in 2025."
+    },
+    "applyText": "File your tax return with the ON-BEN form",
+    "applyUrl": "https://www.ontario.ca/page/ontario-trillium-benefit",
+    "source": "https://www.ontario.ca/page/ontario-trillium-benefit",
+    "detail": {
+      "aboutList": {
+        "lead": "The three credits are paid together for the 2026 benefit year (July 2026 to June 2027).",
+        "items": [
+          "Northern Ontario Energy Credit: up to $189 if single, up to $290 for families.",
+          "Energy and Property Tax Credit: up to $290 if you live on a reserve or in a public long-term care home.",
+          "Sales Tax Credit: up to $378, plus up to $378 for a spouse and each dependent child under 19.",
+          "Amounts depend on your age, income, residence, family size and rent or property tax."
+        ]
+      },
+      "steps": [
+        "File your income tax and benefit return every year.",
+        "Fill out and enclose the ON-BEN application form from your tax package.",
+        "The Canada Revenue Agency tells you if you are entitled to the credits.",
+        "Choose how you want to be paid if you qualify for more than $500."
+      ],
+      "documents": [
+        "Your income tax return",
+        "Form ON-BEN"
+      ],
+      "tips": [
+        "If you are turning 18 before June 2027, file your tax return to be considered.",
+        "If you cannot prepare your return yourself, the Community Volunteer Income Tax Program may help.",
+        "If you file late, you still receive the benefit, but your payments may be delayed.",
+        "Beware of text messages claiming you are owed a payment; the Government of Ontario will not send them."
+      ]
+    }
+  },
+  {
+    "id": "on-drug-benefit",
+    "name": "Ontario Drug Benefit",
+    "level": "Ontario",
+    "category": "Health",
+    "amount": "Covers most of the cost of more than 5,900 listed drugs; what you pay (deductible and/or co-payment of up to $2 or $6.11 a prescription) depends on how you qualify",
+    "summary": "Covers most of the cost of prescription drugs on the Ontario Drug Benefit Formulary. You can qualify at 65, or sooner through social assistance, home care and other routes.",
+    "note": "Prescriptions must be filled in an Ontario pharmacy, and you may need to show your Ontario health card. Some drugs are Limited Use or covered only through the Exceptional Access Program.",
+    "requires": [
+      "on",
+      "onDrugBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You are 65 or older (you join automatically the month after you turn 65).",
+        "You get benefits from Ontario Works or the Ontario Disability Support Program.",
+        "You get professional home and community care services.",
+        "You live in a long-term care home or a Community Home for Opportunity.",
+        "You are 24 or younger and not covered by private insurance.",
+        "You are enrolled in the Trillium Drug Program."
+      ],
+      "note": "Some groups also need an Ontario health card number."
+    },
+    "applyText": "Learn how to get Ontario Drug Benefit coverage",
+    "applyUrl": "https://www.ontario.ca/page/get-coverage-prescription-drugs",
+    "source": "https://www.ontario.ca/page/get-coverage-prescription-drugs",
+    "detail": {
+      "aboutList": {
+        "lead": "The program pays most of the cost of listed prescription drugs.",
+        "items": [
+          "Covers more than 5,900 drugs on the Formulary and almost 1,500 more through the Exceptional Access Program.",
+          "Seniors pay the first $100 each program year, then a small co-payment per prescription.",
+          "Seniors in the Seniors Co-Payment Program pay no deductible and up to $2 a prescription.",
+          "Ontario Works and ODSP recipients pay up to $2 for each drug, with no deductible."
+        ]
+      },
+      "steps": [
+        "If you are turning 65, watch for the letter about 3 months before your birthday.",
+        "Go to your pharmacy on the first day of the month after you turn 65.",
+        "If you qualify another way, ask your caseworker, care coordinator or pharmacist how it works.",
+        "If you paid for a covered drug, submit your receipts online or by mail for a refund."
+      ],
+      "documents": [
+        "Ontario health card",
+        "Official prescription receipt signed by a pharmacist (for refunds)"
+      ],
+      "tips": [
+        "After the first $100, seniors pay up to $6.11 per prescription.",
+        "The first-year deductible for seniors can be lower than $100, depending on your birth month.",
+        "If you are 24 or younger and in some groups, you do not pay the $2.",
+        "The program also covers allergy shots, epinephrine injectors, some diabetes testing strips and some nutrition products."
+      ]
+    }
+  },
+  {
+    "id": "on-home-community-care",
+    "name": "Home and community care (Ontario Health atHome)",
+    "level": "Ontario",
+    "category": "Home support",
+    "amount": "Government pays for home care if you qualify; community support services may have a co-payment",
+    "summary": "Care at home for people of all ages who need it, including seniors and people with disabilities. It also covers respite so a caregiver can take a break. Ontario Health atHome decides what you are eligible for.",
+    "note": "If you qualify, the Ontario government pays for home care. Community support services can have a client co-payment. Respite at home is fully covered if you qualify, otherwise other providers charge a fee.",
+    "requires": [
+      "on",
+      "onHomeCommunityCareRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You need care at home, at school or in the community.",
+        "Ontario Health atHome assesses that you are eligible for the services.",
+        "You have a valid Ontario health card (for respite at home).",
+        "Your home is properly equipped for the services you need (for respite at home)."
+      ],
+      "note": "Homemaking needs personal support, or constant supervision due to cognitive impairment or acquired brain injury."
+    },
+    "applyText": "Call Ontario Health atHome",
+    "applyUrl": "https://www.ontario.ca/page/homecare-seniors",
+    "source": "https://www.ontario.ca/page/homecare-seniors",
+    "detail": {
+      "aboutList": {
+        "lead": "Ontario Health atHome provides home care and links you to community support services.",
+        "items": [
+          "Nursing, physiotherapy, occupational therapy, speech-language pathology, social work and healthy eating help.",
+          "Personal support such as bathing, dressing, eating and toileting.",
+          "Homemaking such as cleaning, laundry, shopping and meal planning.",
+          "Respite care at home, in a long-term care home for a short stay, or at an adult day program."
+        ]
+      },
+      "steps": [
+        "Call Ontario Health atHome or use their map to find care near you.",
+        "A case manager or care coordinator assesses your needs and eligibility, and may visit your home.",
+        "If you are eligible, you and anyone you choose make a home care plan.",
+        "Your care is scheduled with Ontario Health atHome or a service provider."
+      ],
+      "documents": [
+        "Ontario health card"
+      ],
+      "tips": [
+        "A short respite stay in long-term care can be up to 60 days, and no more than 90 days in a calendar year.",
+        "Adult day programs need a referral from Ontario Health atHome and usually charge a fee per day.",
+        "If you are refused, you can complain to Ontario Health atHome or appeal to the Health Services Appeal and Review Board."
+      ],
+      "phone": "1-833-515-1234"
+    }
+  },
+  {
+    "id": "on-northern-health-travel-grant",
+    "name": "Northern Health Travel Grant",
+    "level": "Ontario",
+    "category": "Health",
+    "amount": "41 cents per km (round trip) plus $175 to $1,150 for lodging (service dates on or after December 1, 2024)",
+    "summary": "Helps Northern Ontario residents pay part of the cost of travelling at least 100 km one way for specialist care. It does not cover all travel costs, such as meals or taxis.",
+    "note": "Send your application to the Ministry of Health within 12 months of the treatment date. You need a separate application for each round trip, and original receipts for lodging and tickets.",
+    "requires": [
+      "on",
+      "onNorthernHealthTravelGrantRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are an OHIP-insured Ontario resident on the date of treatment.",
+        "Your home is in a listed Northern Ontario district.",
+        "You are referred for specialist care or a procedure at a ministry-funded health-care facility.",
+        "You travelled at least 100 km one way to the nearest specialist or facility that could help."
+      ],
+      "note": "Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming."
+    },
+    "applyText": "Apply online for the Northern Health Travel Grant",
+    "applyUrl": "https://www.ontario.ca/page/northern-health-travel-grant-program",
+    "source": "https://www.ontario.ca/page/northern-health-travel-grant-program",
+    "detail": {
+      "aboutList": {
+        "lead": "The grant pays part of the cost of long trips for specialist medical care.",
+        "items": [
+          "Pays 41 cents per km, based on the round-trip distance, for car, air, bus or rail.",
+          "Pays a lodging allowance of $175 to $1,150 for medically necessary nights, if you paid for official lodging.",
+          "A companion of a hospitalized patient can get a lodging allowance if aged 16 or older and meeting the conditions.",
+          "Not covered: care linked to a WSIB claim, or travel paid by another program or employer."
+        ]
+      },
+      "steps": [
+        "Check that you meet the rules and that the care is not available closer.",
+        "Ask the specialist or facility to complete their part of the form.",
+        "Apply online, or by mail with the paper form.",
+        "Include original receipts for lodging and for air, bus or rail tickets."
+      ],
+      "documents": [
+        "Original itemized lodging receipts with the patient name, dates and fee",
+        "Original tickets, receipts or itinerary for air, bus or rail",
+        "Specialty-Service Provider Form (online application)"
+      ],
+      "tips": [
+        "Telemedicine may let you see a specialist without travelling; ask your provider.",
+        "Do not send meal or taxi receipts.",
+        "Do not photograph documents for the online form; scan them to PDF, because photos are often too large.",
+        "If patients share one car, only one grant is paid for the round trip."
+      ]
+    }
+  },
+  {
+    "id": "on-odsp-employment-supports",
+    "name": "ODSP employment supports and earnings rules",
+    "level": "Ontario",
+    "category": "Employment",
+    "amount": "Earn up to $1,000 a month without losing ODSP income support; Work-Related Benefit up to $100 per family member",
+    "summary": "If you get Ontario Disability Support Program (ODSP) income support, you can work and keep your support and benefits. Extra benefits help with child care and start-up costs for a job, training or a business.",
+    "note": "You must report all earnings every month, even if they are exempt. If you miss a reporting deadline, your payments and benefits may stop temporarily.",
+    "requires": [
+      "on",
+      "onOdspEmploymentSupportsRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You get ODSP income support.",
+        "You want to work, train or start your own business."
+      ],
+      "note": "Family members can qualify for some benefits, with different age and schooling rules for each benefit."
+    },
+    "applyText": "Contact your ODSP caseworker",
+    "applyUrl": "https://www.ontario.ca/page/working-and-earning-ontario-disability-support-program",
+    "source": "https://www.ontario.ca/page/working-and-earning-ontario-disability-support-program",
+    "detail": {
+      "aboutList": {
+        "lead": "ODSP lets you earn money while keeping your income support.",
+        "items": [
+          "Since February 1, 2023: up to $1,000 a month in net earnings with no reduction.",
+          "After the first $1,000, 25% of net earnings is also exempt.",
+          "The Work-Related Benefit gives up to $100 for each eligible family member who earns money.",
+          "The Employment and Training Start Up Benefit gives up to $500 in a 12-month period.",
+          "Up-front child care: the full cost of licensed care, or up to $600 per child in 12 months if unlicensed."
+        ]
+      },
+      "steps": [
+        "Tell your caseworker about the money you and your family earn.",
+        "Report your earnings each month through MyBenefits, the phone system, or the Employment/Training Income Report form.",
+        "Return the report by the seventh day of the following month.",
+        "Contact your caseworker to ask for the child care or start-up benefits, and send proof."
+      ],
+      "documents": [
+        "Pay stubs",
+        "Business income and expense records, if self-employed",
+        "Letter of employment or training registration",
+        "Proof you need to pay for child care in advance"
+      ],
+      "tips": [
+        "Report both gross and net pay.",
+        "If you earn nothing that month, put $0 on the form and still send it in.",
+        "If you stop working, tell your caseworker right away.",
+        "You do not need proof of employment costs to get the Work-Related Benefit; it is added automatically."
+      ]
+    }
+  },
+  {
+    "id": "on-odsp-health-benefits",
+    "name": "ODSP health and disability benefits (including Special Diet Allowance)",
+    "level": "Ontario",
+    "category": "Health",
+    "amount": "Varies by benefit; Special Diet Allowance up to $250 a month per person; Guide Dog Benefit $84 a month per dog",
+    "summary": "Health and disability benefits for people who get Ontario Disability Support Program (ODSP) income support, and their families. They help with drugs, dental, vision, assistive devices, medical travel and special diets.",
+    "note": "Many benefits need approval from your ODSP office or an approved health professional before you buy. Ask first so you are not left paying the cost yourself.",
+    "requires": [
+      "on",
+      "onOdspHealthBenefitsRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You get ODSP income support.",
+        "For some benefits, an approved health professional must complete a form.",
+        "For the Special Diet Allowance, you or a family member has a listed medical condition."
+      ],
+      "note": "People who leave ODSP may get the Extended or Transitional Health Benefit, with their own rules."
+    },
+    "applyText": "Contact your local ODSP office",
+    "applyUrl": "https://www.ontario.ca/page/ontario-disability-support-program-health-and-disability-benefits",
+    "source": "https://www.ontario.ca/page/ontario-disability-support-program-health-and-disability-benefits",
+    "detail": {
+      "aboutList": {
+        "lead": "The benefits cover many costs linked to a disability or medical condition.",
+        "items": [
+          "Prescription drugs on the Formulary, with a co-payment of up to $2 per prescription if you are 25 or older.",
+          "Basic dental for you and your spouse; children under 18 get Healthy Smiles Ontario.",
+          "Eye exams once every two years and eyeglasses once every three years, if OHIP does not cover them.",
+          "Medical transportation, if you spend $15 or more a month, and medically necessary supplies.",
+          "Help with hearing aids, mobility device repairs and costs the Assistive Devices Program does not cover.",
+          "Special Diet Allowance: up to $250 a month for each member with an approved medical condition.",
+          "Pregnancy and Breastfeeding Nutritional Allowance of $40 or $50 a month, until the baby is 12 months old."
+        ]
+      },
+      "steps": [
+        "Contact your local ODSP office and ask your caseworker for the form you need.",
+        "Take the form to an approved health care professional to fill in.",
+        "Return the form to your ODSP office in person or by mail.",
+        "Wait for a letter saying whether the expense is approved."
+      ],
+      "documents": [
+        "ODSP monthly statement or government photo ID",
+        "Ontario health card",
+        "Application for Special Diet Allowance (the original form)",
+        "Receipts for health costs, for the Extended Health Benefit"
+      ],
+      "tips": [
+        "You do not pay a fee to have the forms filled out.",
+        "Only the original Special Diet Allowance form is accepted, not a photocopy.",
+        "Residents of institutions are not eligible for the Special Diet Allowance.",
+        "If you disagree with a decision, ask for an internal review."
+      ],
+      "phone": "1-888-789-4199"
+    }
+  },
+  {
+    "id": "on-oesp",
+    "name": "Ontario Electricity Support Program (OESP)",
+    "level": "Ontario",
+    "category": "Home",
+    "amount": "$35 to $75 a month on your bill; $52 to $113 for some households",
+    "summary": "A monthly credit on your electricity bill for lower-income households. The amount depends on how many people live in the home and your combined after-tax household income.",
+    "note": "Households using certain electricity-intensive medical devices may get a higher credit, between $52 and $113 a month. People on Ontario Works or ODSP qualify automatically and apply through their caseworker.",
+    "requires": [
+      "on",
+      "onOespRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are the customer of an electricity utility, or a unit sub-meter provider bills you for your own meter.",
+        "Your household size and combined after-tax income are within the program's levels."
+      ],
+      "note": "Ontario Works and ODSP recipients automatically qualify and must contact their caseworker to apply."
+    },
+    "applyText": "Apply for OESP",
+    "applyUrl": "https://ontarioelectricitysupport.ca/",
+    "source": "https://www.oeb.ca/consumer-information-and-protection/bill-assistance-programs/ontario-electricity-support-program",
+    "detail": {
+      "aboutList": {
+        "lead": "The OESP puts an ongoing monthly credit directly on your electricity bill.",
+        "items": [
+          "For example, a 4-person home with $65,000 a year after tax gets a $40 credit each month.",
+          "The credit chart covers household after-tax amounts up to $71,000 a year.",
+          "Higher credits apply for Indigenous households, electric heating, or certain medical devices.",
+          "Credits last 2 years before you reapply, or 5 years if you are 65+ or get a CPP disability pension."
+        ]
+      },
+      "steps": [
+        "Gather your electricity bill, the names and birthdates of everyone in your home, and SINs for adults",
+        "Apply online at OESP.ca, by mail, or with help from a free intake agency",
+        "Sign the consent form that lets the CRA verify your household income for the program",
+        "Wait about 4 to 6 weeks for a decision; the credit appears on your bill about 6 to 8 weeks after approval"
+      ],
+      "documents": [
+        "Your electricity bill",
+        "Names and birthdates of everyone living in your home, as registered with the CRA",
+        "Social Insurance Numbers or temporary tax numbers for household members 18 and older"
+      ],
+      "tips": [
+        "If you have not filed a tax return recently, or your situation changed, apply through an intake agency and bring proof of income.",
+        "If you already get OESP, you must reapply to get a higher credit under the newer income levels.",
+        "If you qualify for OESP, you may also apply for emergency grants through the Low-income Energy Assistance Program (LEAP)."
+      ],
+      "time": "About 4 to 6 weeks for a decision",
+      "phone": "1-855-831-8151 (TTY 1-800-855-1155)"
+    }
+  },
+  {
+    "id": "bc-csil",
+    "name": "Choice in Supports for Independent Living (CSIL)",
+    "level": "British Columbia",
+    "category": "Home support",
+    "amount": "Monthly funds from your health authority; minimum $38.19 an hour (April 1, 2024)",
+    "summary": "Your health authority sends you money each month so you can hire and manage your own home support workers. For people with a significant physical disability who want more control.",
+    "note": "You pay a daily rate based on income, and no more than $300 a month if you or your spouse has earned income. You pay no daily rate if you get GIS, support and shelter allowance, or War Veterans Allowance.",
+    "requires": [
+      "bc",
+      "bcCsilRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are assessed as needing home support services as part of your care plan.",
+        "You are assessed as having high physical care needs and a physical disability, and are medically stable.",
+        "Your assessed needs can be met within CSIL, within available resources.",
+        "You agree to pay the assessed client rate.",
+        "You can safely manage CSIL, or a support group or representative acts as your employer."
+      ],
+      "note": "You must also meet the general eligibility criteria for home and community care services."
+    },
+    "applyText": "Contact your health authority",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/health/accessing-health-care/home-community-care/care-options-and-cost/choice-in-supports-for-independent-living",
+    "source": "https://www2.gov.bc.ca/gov/content/health/accessing-health-care/home-community-care/care-options-and-cost/choice-in-supports-for-independent-living",
+    "detail": {
+      "aboutList": {
+        "lead": "CSIL gives you control over who you hire, when services happen and how tasks are done.",
+        "items": [
+          "You become the employer and manage hiring, supervising and how the funds are spent.",
+          "Funding is the hourly rate times the home support hours your assessment says you need each month.",
+          "Your monthly contribution is taken out of the funding you receive."
+        ]
+      },
+      "steps": [
+        "Contact your health authority's home and community care office, or ask a health care professional to refer you.",
+        "Have your health authority assess your care needs and your finances.",
+        "Agree on funding in a written agreement between you and the health authority.",
+        "Hire and supervise your own care providers and manage the funds."
+      ],
+      "documents": [
+        "The page does not list documents. Ask your responsible assessor what to bring."
+      ],
+      "tips": [
+        "Read the CSIL Online Workbook to see what being an employer involves.",
+        "Tell your responsible assessor about any earned income during your financial assessment.",
+        "If the daily rate would cause serious financial hardship, you can ask for a temporary reduction.",
+        "If you cannot manage CSIL alone, a client support group or a representative can act as employer."
+      ],
+      "time": "Not published"
+    }
+  },
+  {
+    "id": "bc-family-benefit",
+    "name": "B.C. Family Benefit",
+    "level": "British Columbia",
+    "category": "Money (for parents)",
+    "amount": "Up to $1,750 first child, $1,100 second child, $900 each added child a year (July 2026 to June 2027)",
+    "summary": "A tax-free monthly payment for families with children under 18. The CRA pays it together with the Canada child benefit and works out the amount from your tax return.",
+    "note": "Amounts are for July 2026 to June 2027, based on 2025 income. Low-income single parents may get up to $500 more a year. Shared custody gets half the amount.",
+    "requires": [
+      "bc",
+      "child",
+      "bcFamilyBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your family has a child under 18.",
+        "Your child is registered for the Canada child benefit.",
+        "You (and your spouse or common-law partner) file a T1 income tax return."
+      ],
+      "note": "The amount depends on your family makeup and your adjusted family net income."
+    },
+    "applyText": "Register for the Canada child benefit",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/family-social-supports/affordability/family-benefit",
+    "source": "https://www2.gov.bc.ca/gov/content/family-social-supports/affordability/family-benefit",
+    "detail": {
+      "aboutList": {
+        "lead": "The CRA calculates the amount automatically from the tax returns you have filed.",
+        "items": [
+          "You get the maximum if 2025 adjusted family net income is less than $30,176.",
+          "Between $30,176 and $96,562 you get a reduced amount of at least $775, $750 or $725 per child.",
+          "Over $96,562 the amounts are reduced by 4 percent of the extra income until they reach zero.",
+          "The monthly payment is the annual amount divided by 12."
+        ]
+      },
+      "steps": [
+        "File your T1 tax return, and your spouse or partner files theirs.",
+        "If your child is not registered for the Canada child benefit, apply for it through the CRA.",
+        "The CRA uses that registration to decide your eligibility and pays you each month."
+      ],
+      "documents": [
+        "Your T1 Income Tax and Benefit Return"
+      ],
+      "tips": [
+        "Use the federal child and family benefits calculator to estimate your monthly amount.",
+        "If you move outside B.C., tell the CRA quickly to avoid an overpayment you would have to repay.",
+        "From July 2027 a disability supplement will be paid with this benefit for eligible children."
+      ],
+      "time": "Not published"
+    }
+  },
+  {
+    "id": "bc-home-support",
+    "name": "Home Support (Home and Community Care)",
+    "level": "British Columbia",
+    "category": "Home support",
+    "amount": "Subsidized service; daily rate based on income, and no more than $300 a month with earned income",
+    "summary": "Publicly subsidized help at home from community health workers with personal care such as bathing, dressing and mobility. It can also give a caregiver a break.",
+    "note": "Short-term care may not need the three-month residency. You pay no daily rate if you get GIS, support or shelter allowance, or a War Veterans Allowance.",
+    "requires": [
+      "bc",
+      "bcHomeSupportRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "A health authority professional assessed you as needing personal assistance or respite for your caregiver.",
+        "You agree to pay the assessed client rate."
+      ],
+      "note": "You must also meet the general eligibility criteria for home and community care services."
+    },
+    "applyText": "Contact your health authority",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/health/accessing-health-care/home-community-care/care-options-and-cost/home-support",
+    "source": "https://www2.gov.bc.ca/gov/content/health/accessing-health-care/home-community-care/care-options-and-cost/home-support",
+    "detail": {
+      "aboutList": {
+        "lead": "Home support helps you stay independent and live at home as long as possible.",
+        "items": [
+          "Help covers mobility, nutrition, lifts and transfers, bathing and dressing, cueing, grooming and toileting.",
+          "It may also include clean-up, laundry of soiled bedding or clothing, and meal preparation.",
+          "Hours are set by your health, your supports, your care goals and the risk to staff.",
+          "It is usually provided over months or years, or short term after a hospital discharge."
+        ]
+      },
+      "steps": [
+        "Contact the home and community care office of your health authority, or ask a health care professional to refer you.",
+        "Have a health authority professional do a clinical assessment of your need.",
+        "Complete the financial assessment with your responsible assessor.",
+        "Confirm that you accept the assessed client rate."
+      ],
+      "documents": [
+        "The page does not list documents. Ask your health authority what to bring."
+      ],
+      "tips": [
+        "Tell your responsible assessor about any earned income when you do your financial assessment.",
+        "If the daily rate would cause serious financial hardship, you can ask for a temporary reduction.",
+        "If you and your spouse both get home support, you are both assessed, but only one is charged per service day.",
+        "If your assessed daily rate is more than the actual cost, you pay no more than the actual cost."
+      ],
+      "time": "Not published"
+    }
+  },
+  {
+    "id": "bc-income-assistance",
+    "name": "Income Assistance",
+    "level": "British Columbia",
+    "category": "Income support",
+    "amount": "Monthly payment; the amount is not stated on this page",
+    "summary": "Monthly help for people in need who have no other resources, meant to support a move into work. It is a different program from disability assistance (PWD).",
+    "note": "Disability assistance (PWD) is listed separately. Income assistance asks for a three-week work search first, unless you are exempt. Some people with disabilities are exempt.",
+    "requires": [
+      "bc",
+      "age18plus",
+      "bcIncomeAssistanceRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You are out of work or not earning enough to meet your basic needs.",
+        "You are waiting for other sources of money to arrive.",
+        "You cannot work at all.",
+        "You urgently need food, shelter or medical attention."
+      ],
+      "note": "You must look for and use all other income and assets before you apply."
+    },
+    "applyText": "Apply on My Self Serve",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance",
+    "source": "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance",
+    "detail": {
+      "aboutList": {
+        "lead": "Income assistance is for people in need with no other resources.",
+        "items": [
+          "Income and disability assistance payments are issued monthly, but they are separate kinds of assistance.",
+          "This page does not state a payment amount, so check the rate tables.",
+          "The application also asks about EI or WCB benefits, outstanding warrants and sponsorship."
+        ]
+      },
+      "steps": [
+        "Use My Self Serve to check your eligibility and apply, or visit your local office if you cannot apply online.",
+        "Look for work for three weeks and keep a record on the Work Search Activities form, unless you are exempt.",
+        "If you do not find a job, attend an eligibility assessment in person or by phone.",
+        "If you are eligible, you begin to receive assistance."
+      ],
+      "documents": [
+        "Identification for you and your family",
+        "Your Social Insurance Number (SIN)",
+        "How much you pay for rent and utilities",
+        "Your bank account balance",
+        "How much you owe on your vehicle, if you have a car",
+        "Tenancy agreement or Shelter Information form, if you rent"
+      ],
+      "tips": [
+        "You may skip the work search if you are fleeing an abusive spouse or relative, are 65 or older, or cannot legally work in Canada.",
+        "Single parents of a child under three, and people with a condition that prevents a work search, may also skip it.",
+        "A work search is also not needed if you or a close family member is a person with disabilities (PWD).",
+        "Not eligible but still in need? You may be able to get hardship assistance, so contact the ministry.",
+        "If you disagree with a decision, speak to a worker first, then ask for a reconsideration."
+      ],
+      "time": "Not published",
+      "phone": "1-866-866-0800"
+    }
+  },
+  {
+    "id": "bc-nursing-support-services",
+    "name": "Nursing Support Services (BC Children's Hospital)",
+    "level": "British Columbia",
+    "category": "Health (for children)",
+    "amount": "In-home nursing respite and school nursing support; cost not stated",
+    "summary": "Scheduled in-home nursing respite so families get a break, and trained school staff who help children with complex medical needs do their care at school.",
+    "note": "Office services run Monday to Friday, 8 a.m. to 4 p.m. For specific questions, contact your local NSS Coordinator, not the central line.",
+    "requires": [
+      "bc",
+      "child",
+      "bcNursingSupportServicesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a child or youth in B.C. with a chronic, complex medical condition.",
+        "Your care, or part of it, needs a registered nurse's knowledge, judgement and skill.",
+        "A B.C.-licensed primary physician or nurse practitioner refers you."
+      ]
+    },
+    "applyText": "Ask for a referral",
+    "applyUrl": "https://www.bcchildrens.ca/clinics-services/nursing-support-services",
+    "source": "https://www.bcchildrens.ca/clinics-services/nursing-support-services",
+    "detail": {
+      "aboutList": {
+        "lead": "The program supports children and youth whose care needs a registered nurse's skill.",
+        "items": [
+          "It may include children with a tracheostomy, a ventilator (including BiPAP and CPAP) or a palliative diagnosis.",
+          "In-home respite is scheduled and intermittent, so families can have a break from daily medical care.",
+          "School staff are taught to help with diabetes care or tube feeds as the student builds independence.",
+          "School staff are also trained for rescue steps if a student is at risk of a seizure or adrenal crisis."
+        ]
+      },
+      "steps": [
+        "Ask your child's primary physician or nurse practitioner for a referral.",
+        "The referral is for home respite, delegated care in schools, or both.",
+        "Contact your local NSS Coordinator for help with your situation."
+      ],
+      "documents": [
+        "A referral from your child's primary physician or nurse practitioner licensed in B.C."
+      ],
+      "tips": [
+        "Email nss@cw.bc.ca with general questions about the services or how to make a referral.",
+        "The central inbox and phone do not handle specific queries about your child.",
+        "Referral details are on the program's referral page."
+      ],
+      "time": "Not published",
+      "phone": "236-427-9250"
+    }
+  },
+  {
+    "id": "bc-ppmb",
+    "name": "Persons with Persistent Multiple Barriers (PPMB)",
+    "level": "British Columbia",
+    "category": "Income support",
+    "amount": "May bring a higher support rate and extra supplements; see the rate table",
+    "summary": "An income assistance category for people with a long-term health condition and other barriers to work. You have no job search duties, and your family may get a higher rate and extra supplements.",
+    "note": "PPMB is part of income assistance, not disability assistance (PWD). Spouses of PWD recipients cannot be assessed for it. It is not permanent, and the ministry can review it.",
+    "requires": [
+      "bc",
+      "bcPpmbRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You get income assistance or hardship assistance.",
+        "In the Minister's opinion, your confirmed health condition seriously impedes searching for or keeping work.",
+        "The condition has lasted a year, or has happened often in the past year.",
+        "It is likely to continue for at least two more years.",
+        "You have at least one more barrier that seriously impedes you from searching for, accepting or keeping work."
+      ],
+      "note": "An approved health professional must confirm the health condition."
+    },
+    "applyText": "Ask the ministry for a PPMB application",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/persons-with-persistent-multiple-barriers/persons-with-persistent-multiple-barriers-topic",
+    "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/persons-with-persistent-multiple-barriers/persons-with-persistent-multiple-barriers-topic",
+    "detail": {
+      "aboutList": {
+        "lead": "PPMB differs from disability assistance (PWD) in who it covers and how it is assessed.",
+        "items": [
+          "PPMB is not part of the Employment and Assistance for Persons with Disabilities Act.",
+          "PPMB is assessed with its own two-part application, form HR2892.",
+          "PPMB recipients have no employability duties, but may take part on a voluntary basis.",
+          "A family with one eligible adult may get a higher support rate and an earnings exemption.",
+          "It may also get general health supplements, dental supplements and employability supports.",
+          "Barriers include homelessness now or in the past 12 months, or domestic violence in the past six months.",
+          "Others are less than Grade 12, English training needs, no basic work skills, or a criminal record.",
+          "Also counted are multiple emergency health, mental health or addiction service visits in 12 months.",
+          "Also counted are recent refugee status (within 24 months), former child in care, or another severe barrier."
+        ]
+      },
+      "steps": [
+        "Ask the ministry for a PPMB application. It first checks that you are a recipient.",
+        "Complete and submit the PPMB application (HR2892).",
+        "The ministry will contact you with an eligibility decision.",
+        "If you leave assistance and reapply within 24 months, you keep your PPMB category."
+      ],
+      "documents": [
+        "PPMB application (HR2892), with Section 1 completed by an approved health professional"
+      ],
+      "tips": [
+        "Approved health professionals include a medical practitioner, nurse practitioner, registered psychologist, and registered nurse or registered psychiatric nurse.",
+        "They also include an occupational therapist, physical therapist, registered social worker, chiropractor, registered clinical counsellor and school psychologist.",
+        "The ministry looks at whether your condition limits you to part-time or sporadic work.",
+        "If you were off assistance for longer than 24 months, you may be reassessed for PPMB when you reapply."
+      ],
+      "time": "Not published"
+    }
+  },
+  {
+    "id": "bc-rental-assistance-program",
+    "name": "Rental Assistance Program (RAP)",
+    "level": "British Columbia",
+    "category": "Housing",
+    "amount": "Pays a share of rent above 30% of household income, up to rent ceilings and benefit maximums",
+    "summary": "Monthly help with private-market rent for low-income families with at least one dependent child. A child of any age can count if they have a disability as defined by the CRA.",
+    "note": "RAP and income or disability assistance both pay a shelter subsidy, so you cannot get both. Existing clients must reapply each year.",
+    "requires": [
+      "bc",
+      "bcRentalAssistanceProgramRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your total before-tax household income is $60,000 or less a year.",
+        "You have at least one dependent child, mainly supported by you.",
+        "You have less than $100,000 in assets.",
+        "You file an annual income tax return.",
+        "More than 30% of your household income goes to rent or pad rental for a home you own.",
+        "You have lived in B.C. for 12 months.",
+        "You do not get income or disability assistance, unless it ended and you only get Medical Services Only.",
+        "You do not live in subsidized housing or own shares in a co-operative.",
+        "You do not share a kitchen or bathroom with your landlord or the homeowner.",
+        "You and your family meet the program residency and citizenship rules."
+      ],
+      "note": "A dependent child is under 19, under 25 in full-time school, or any age with a disability under CRA rules."
+    },
+    "applyText": "Get a RAP application",
+    "applyUrl": "https://www.bchousing.org/housing-assistance/rental-assistance-programs/RAP",
+    "source": "https://www.bchousing.org/housing-assistance/rental-assistance-programs/RAP",
+    "detail": {
+      "aboutList": {
+        "lead": "RAP reimburses a percentage of the gap between your rent and 30 percent of gross income.",
+        "items": [
+          "Payments are subject to maximum rent ceilings and maximum benefit amounts.",
+          "Rent ceilings since April 2025 are $1,950 for a family of 3 or less and $2,200 for 4 or more.",
+          "Assistance is based on your previous year's income.",
+          "Assets counted include real estate, stocks, cash and business equity.",
+          "Vehicles, RESPs, RRSPs and RDSPs do not count toward the asset limit."
+        ]
+      },
+      "steps": [
+        "Download the RAP application form, request one by mail, or pick one up at a BC Housing office.",
+        "Attach your supporting documents.",
+        "Submit by upload, drop-off at a BC Housing office, fax or mail.",
+        "BC Housing will contact you by mail to say if you are approved or ineligible, or need more information."
+      ],
+      "documents": [
+        "Proof of income: CRA consent form, or last year's T1 and Notice of Assessment",
+        "Proof of status in Canada for every household member",
+        "Proof of rent, such as a tenancy agreement",
+        "A void cheque or other direct deposit form",
+        "Proof of assets, such as bank statements",
+        "Proof of enrolment for children aged 19 to 24 in full-time school"
+      ],
+      "tips": [
+        "Giving CRA consent is optional, but it streamlines your application and yearly reapplication.",
+        "Send copies only. Do not send original documents.",
+        "Payments are made by direct deposit on the last working day of each month, so you need a bank account.",
+        "Rental assistance is non-taxable, but declare it on your taxes if you get more than $500 in a tax year.",
+        "If you go on income or disability assistance, tell BC Housing at once or you may owe a debt.",
+        "If CRA has not processed your tax return, you can still apply and have up to 90 days to send missing items."
+      ],
+      "time": "Not published",
+      "phone": "604-433-2218 or 1-800-257-7756"
+    }
+  },
+  {
+    "id": "bc-safer",
+    "name": "Shelter Aid for Elderly Renters (SAFER)",
+    "level": "British Columbia",
+    "category": "Housing",
+    "amount": "Monthly rent supplement (minimum $50 a month)",
+    "summary": "A monthly rent supplement for B.C. residents aged 60 or older with a low to moderate income who rent in the private market.",
+    "note": "You are not eligible if you or your family get income or disability assistance, unless it ended and you only get Medical Services Only. Existing clients reapply each year.",
+    "requires": [
+      "bc",
+      "age60plus",
+      "bcSaferRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are age 60 or older.",
+        "Your gross income is less than $3,333.34 a month or $40,000 a year.",
+        "You file an annual income tax return.",
+        "You have lived in B.C. for 12 months.",
+        "You pay more than 30% of your gross monthly household income on rent.",
+        "You and your spouse meet the Canadian citizenship requirements.",
+        "You do not live in subsidized housing, Ministry of Health-funded care, or co-op housing as a shareholder."
+      ],
+      "note": "If you own and live in a manufactured home, pad rental counts as rent."
+    },
+    "applyText": "Get a SAFER application",
+    "applyUrl": "https://www.bchousing.org/housing-assistance/rental-assistance-programs/SAFER",
+    "source": "https://www.bchousing.org/housing-assistance/rental-assistance-programs/SAFER",
+    "detail": {
+      "aboutList": {
+        "lead": "SAFER helps older renters in the private market pay their rent.",
+        "items": [
+          "The maximum rent ceiling as of April 2025 is $1,150 for both singles and couples.",
+          "If your rent is over the ceiling, you may not get an increase in your subsidy.",
+          "If your rent includes meals, care or personal services, rent is counted as 50% of what you pay."
+        ]
+      },
+      "steps": [
+        "Download the SAFER application form, request one by mail, or pick one up at a BC Housing office.",
+        "Attach your supporting documents.",
+        "Submit by upload, drop-off, fax or mail.",
+        "BC Housing will contact you by mail to say if you are approved, ineligible or need to send more.",
+        "Each year, complete the reapplication form sent three months before your birthday."
+      ],
+      "documents": [
+        "Tax information: CRA consent form, or last year's tax return and Notice of Assessment",
+        "Proof of current gross monthly income, if your income has stopped or dropped",
+        "Proof of age and status in Canada for you and your spouse",
+        "Proof of rent, such as a tenancy agreement",
+        "A void cheque or other direct deposit form"
+      ],
+      "tips": [
+        "Send copies only. Do not include original documents.",
+        "Receiving the BC Bus Pass or Provincial Seniors Supplement does not affect SAFER, but send your T5007 slip.",
+        "Your subsidy starts the month your application is received, and is paid in arrears.",
+        "SAFER is non-taxable, but declare it on your taxes if you get more than $500 in a tax year.",
+        "If you move or your rent changes, tell the SAFER office right away."
+      ],
+      "time": "Not published",
+      "phone": "604-433-2218 or 1-800-257-7756"
+    }
+  },
+  {
+    "id": "bc-hearing-supplements",
+    "name": "Hearing Instruments and Alternative Hearing Assistance Supplement",
+    "level": "British Columbia",
+    "category": "Health",
+    "amount": "Up to $2,000 per hearing aid; the alternative supplement amount is in the rate table",
+    "summary": "Pays for the least expensive, appropriate hearing aids, repairs and supplies for eligible recipients who lack the money. A separate monthly supplement helps with profound hearing loss in both ears.",
+    "note": "Hearing aids and repairs are not provided in a month you get the alternative supplement. Buy only after approval, or the ministry will not accept payment responsibility.",
+    "requires": [
+      "bc",
+      "bcAssistanceStatus",
+      "hearingDisability"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You are a recipient who is eligible for general health supplements.",
+        "You are a hard of hearing parent of a dependent child.",
+        "You are a child under 19 in a family eligible for MSP supplementary benefits (Healthy Kids).",
+        "You are in ministry-approved training.",
+        "In the Supervisor's opinion you need one to get a job, and going without is a direct barrier.",
+        "You are registered with the CNIB and are hard of hearing.",
+        "You have a hearing impairment and are the sole homemaking support for an adult with a cognitive impairment."
+      ],
+      "note": "Each route also needs an assessment, prior approval, the least expensive option and no other resources."
+    },
+    "applyText": "Ask a hearing provider to start approval",
+    "applyUrl": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/health-supplements-and-programs/medical-equipment-hearing-instruments",
+    "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/health-supplements-and-programs/medical-equipment-hearing-instruments",
+    "detail": {
+      "aboutList": {
+        "lead": "The main program covers hearing aids, bone anchored hearing aids, cochlear implants and repairs.",
+        "items": [
+          "New purchases include one year of batteries and one-time replacement coverage paid at $300 per aid.",
+          "Repairs must cost less than replacing, and the damage must not be from misuse.",
+          "Replacement is considered if it costs less than repair, there was no misuse, and 3 years have passed.",
+          "The alternative hearing assistance supplement is a separate monthly payment.",
+          "It is for permanent profound hearing loss in both ears.",
+          "You must not be able to benefit significantly from a hearing instrument for speech comprehension.",
+          "An audiologist or hearing instrument practitioner must assess you within the last 12 months.",
+          "It is not available if you got a hearing instrument in the last 36 months, unless the loss developed since."
+        ]
+      },
+      "steps": [
+        "Get a hearing assessment at the health authority hearing clinic, or the nearest hospital audiology department.",
+        "If those are unavailable, see an audiologist or registered hearing instrument practitioner. No referral is needed.",
+        "Your provider contacts Pacific Blue Cross (PBC) to start the eligibility check, before you buy anything.",
+        "The provider has 120 days to send PBC the records, and PBC makes the final decision.",
+        "Once authorized, you get a 60-day trial period.",
+        "For the alternative supplement, your hearing health professional contacts PBC, which notifies you in writing.",
+        "If denied, you can ask the ministry for a reconsideration (form HR0100)."
+      ],
+      "documents": [
+        "Assessment from an audiologist or a registered hearing instrument practitioner",
+        "For the alternative supplement, an assessment from the last 12 months confirming profound hearing loss in both ears",
+        "Other documents PBC asks your provider to send"
+      ],
+      "tips": [
+        "The ministry does not accept hearing instrument request documents. Your provider sends them straight to PBC.",
+        "You must use other resources first, such as PharmaCare, ICBC, WorkSafeBC, Veterans Affairs Canada or private insurance.",
+        "If insurance pays only part, the ministry may consider paying the rest.",
+        "The ministry is not responsible for fees for documentation for hearing instruments.",
+        "WorkBC Assistive Technology Services may help with communication and hearing devices at work."
+      ],
+      "time": "Not published"
+    }
+  },
+  {
+    "id": "ab-blue-cross-non-group",
+    "name": "Alberta Blue Cross Non-Group Coverage",
+    "level": "Alberta",
+    "category": "Health",
+    "amount": "Monthly premium: $63.50 (single) or $118.00 (family). Subsidized: $44.45 or $82.60.",
+    "summary": "Extra health coverage for Albertans under 65 and their dependants. It helps pay for prescriptions, diabetes supplies, ambulance and more. You pay a monthly premium.",
+    "note": "From October 1, 2026, private or employer plans pay first. Non-Group Coverage then pays the remaining eligible costs. Lower-income people may get a premium subsidy.",
+    "requires": [
+      "ab",
+      "abBlueCrossNonGroupRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are an Alberta resident under 65 years old.",
+        "You are registered under the Alberta Health Care Insurance Plan (AHCIP).",
+        "You pay the monthly premium."
+      ],
+      "note": "Premium subsidy: taxable income under $20,970 (single), $33,240 (family, no children) or $39,250 (with children)."
+    },
+    "applyText": "Open the official page on alberta.ca",
+    "applyUrl": "https://www.alberta.ca/non-group-coverage",
+    "source": "https://www.alberta.ca/non-group-coverage",
+    "detail": {
+      "aboutList": {
+        "lead": "What the plan covers",
+        "items": [
+          "Prescription drugs on the Alberta Drug Benefit List, with a 30% co-payment up to $35.",
+          "Diabetes supplies up to $2,400 a person each benefit year, no co-payment; the limit depends on how diabetes is managed.",
+          "Ground ambulance to and from a hospital, up to the rate set by the Alberta government.",
+          "Psychologist visits up to $60 each, to $300 per family each year.",
+          "Home nursing up to $200 per family each year, with a physician's written order.",
+          "A $50 yearly deductible applies to most other benefits."
+        ]
+      },
+      "steps": [
+        "Complete the application for Non-Group Coverage.",
+        "Send it to the AHCIP office.",
+        "To get a lower premium, also complete the Premium Subsidy application and use Line 260 of your tax return."
+      ],
+      "documents": [
+        "Line 260 of your federal tax return, and your spouse's or partner's, for the premium subsidy"
+      ],
+      "tips": [
+        "Coverage starts the first day of the fourth month after the AHCIP office gets your application.",
+        "If you had a plan before, apply within 30 days of its end date. Coverage may start as early as the next month.",
+        "You can ask for a subsidy for this benefit year plus two earlier ones.",
+        "It does not cover travel. Buy travel insurance for trips outside Alberta.",
+        "Albertans 65 and older use the Coverage for Seniors program instead."
+      ],
+      "time": "Coverage starts the first day of the fourth month after the AHCIP office gets your application."
+    }
+  },
+  {
+    "id": "ab-brain-injury",
+    "name": "Alberta Brain Injury Initiative",
+    "level": "Alberta",
+    "category": "Community supports",
+    "amount": "Service coordination and help finding supports. No dollar amount is published.",
+    "summary": "A network of agencies that helps adults with an acquired brain injury, and their families, find and use supports. A service coordinator looks at your needs and helps build a plan.",
+    "note": "Each agency serves set communities. Check the list on the official page to find the one that covers where you live.",
+    "requires": [
+      "ab",
+      "age18plus",
+      "brainInjuryDisability",
+      "abBrainInjuryRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are an adult with an acquired brain injury."
+      ],
+      "note": "Families of survivors can also get help from the service coordinators."
+    },
+    "applyText": "Open the official page on alberta.ca",
+    "applyUrl": "https://www.alberta.ca/brain-injury-supports",
+    "source": "https://www.alberta.ca/brain-injury-supports",
+    "detail": {
+      "aboutList": {
+        "lead": "A service coordinator can",
+        "items": [
+          "Give you information about brain injury and the supports that exist.",
+          "Assess what you need.",
+          "Work with you, your family and service providers on service plans and agreements.",
+          "Refer you to community supports and independent living skills development.",
+          "Help you find, apply for and coordinate benefits and services."
+        ]
+      },
+      "steps": [
+        "Find the agency that serves your community on the official page.",
+        "Contact it by phone or email."
+      ],
+      "documents": [],
+      "tips": [
+        "The Brain Injury Survival Guide is for survivors and families. Ask your regional agency for a printed copy.",
+        "The page also links to free brain injury videos on YouTube."
+      ]
+    }
+  },
+  {
+    "id": "ab-child-family-benefit",
+    "name": "Alberta Child and Family Benefit",
+    "level": "Alberta",
+    "category": "Money (for parents)",
+    "amount": "Base: up to $1,529 (1 child) to $3,821 (4 or more), July 2026 to June 2027. Working part: up to $782 to $2,061.",
+    "summary": "Payments for lower and middle-income families with children under 18. Getting AISH, Income Support or the Alberta child care subsidy does not stop you from getting it.",
+    "note": "The Canada Revenue Agency (CRA) pays in August, November, February and May. The amount depends on your family income and how many children you have.",
+    "requires": [
+      "ab",
+      "abChildFamilyBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are a parent of one or more children under 18.",
+        "You live in Alberta.",
+        "You file a tax return.",
+        "You meet the income criteria."
+      ],
+      "note": "In 2026–27, amounts are reduced once family net income goes over $28,116 or $47,115."
+    },
+    "applyText": "Open the official page on alberta.ca",
+    "applyUrl": "https://www.alberta.ca/alberta-child-and-family-benefit",
+    "source": "https://www.alberta.ca/alberta-child-and-family-benefit",
+    "detail": {
+      "aboutList": {
+        "lead": "How it works",
+        "items": [
+          "The base part goes to lower-income families, whether or not they earn employment income.",
+          "The working part starts when family employment income is over $2,760.",
+          "The working part grows by 15% of each extra dollar earned, up to the maximum.",
+          "Payments are not taxable and do not change your AISH or Income Support."
+        ]
+      },
+      "steps": [
+        "File your tax return each year.",
+        "If you qualify for the Canada Child Benefit, you are considered automatically.",
+        "If you have not applied for the Canada Child Benefit, apply for it online."
+      ],
+      "documents": [],
+      "tips": [
+        "Free tax clinics can prepare tax returns for eligible lower-income Albertans.",
+        "Payments under $10 in a quarter may be joined and paid less often.",
+        "Use the child and family benefits calculator to estimate your amount. Have your tax return handy.",
+        "If your family leaves Alberta, you may have to return money for the months you were away."
+      ],
+      "phone": "Canada Revenue Agency: 1-800-959-2809"
+    }
+  },
+  {
+    "id": "ab-home-care",
+    "name": "Home and Community Care (continuing care at home)",
+    "level": "Alberta",
+    "category": "Home support",
+    "amount": "Publicly funded health and personal care. You pay for medications, nutrition products and long-term supplies.",
+    "summary": "Health and personal care at home for people of any age, including help with dressing, bathing, meals and wound care. It also offers respite for caregivers.",
+    "note": "Services are meant to add to help from family, friends and community, not replace it. Day program clients pay a daily fee.",
+    "requires": [
+      "ab",
+      "abHomeCareRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Alberta.",
+        "A professional assessment finds that you have unmet care needs."
+      ],
+      "note": "Age, diagnosis and how long you need support do not decide who can get services."
+    },
+    "applyText": "Open the official page on alberta.ca",
+    "applyUrl": "https://www.alberta.ca/about-continuing-care",
+    "source": "https://www.alberta.ca/about-continuing-care",
+    "detail": {
+      "aboutList": {
+        "lead": "Services can include help with",
+        "items": [
+          "Dressing, eating and bathing.",
+          "Meal preparation and medication administration.",
+          "Wound care and respite.",
+          "Short-term care after an accident, injury or illness, or long-term care for disease, disability or aging."
+        ]
+      },
+      "steps": [
+        "Read how to access continuing care on the official page.",
+        "A professional assesses your unmet care needs."
+      ],
+      "documents": [],
+      "tips": [
+        "Providers are Assisted Living Alberta, contracted providers, or someone you hire under self-managed care.",
+        "Programs such as Alberta Aids to Daily Living (AADL) may help pay for basic medical equipment and supplies.",
+        "Palliative care coverage may help with drugs, diabetic supplies and ambulance if you are diagnosed as palliative."
+      ]
+    }
+  },
+  {
+    "id": "ab-income-support",
+    "name": "Alberta Income Support",
+    "level": "Alberta",
+    "category": "Income support",
+    "amount": "Money for basic needs. The amount depends on your needs, ability to work and family size.",
+    "summary": "Money for basic needs like food, clothing and shelter if you cannot pay for them. It can also include health benefits, employment services and help getting child support.",
+    "note": "You can work while on Income Support. Only a portion of your earnings is counted when your benefit is worked out.",
+    "requires": [
+      "ab",
+      "age18plus",
+      "abIncomeSupportRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in Alberta and are at least 18 years old.",
+        "You are a Canadian citizen, permanent resident, refugee or refugee claimant.",
+        "You cannot pay for your basic needs.",
+        "You have no more than $5,000 in RRSPs per adult and $10,000 equity in vehicles.",
+        "Your cash and savings are under the liquid asset limit.",
+        "You are willing to apply for other income programs, such as Employment Insurance.",
+        "You give personal and financial information for everyone in your household.",
+        "You will make and follow a plan with your Income Support worker.",
+        "You are looking for work, not earning enough, unable to work, or need job training help."
+      ],
+      "note": "Your income must not be more than what you would get from Income Support core benefits."
+    },
+    "applyText": "Apply online with an Alberta.ca account",
+    "applyUrl": "https://www.alberta.ca/income-support-how-to-apply",
+    "source": "https://www.alberta.ca/income-support-eligibility",
+    "detail": {
+      "aboutList": {
+        "lead": "Depending on your needs, you may get money for",
+        "items": [
+          "Basic expenses like food, clothing and shelter.",
+          "Childcare, special diets, and utility connection fees.",
+          "Work-related expenses and school expenses for children.",
+          "Unexpected emergencies and costs to leave family violence."
+        ]
+      },
+      "steps": [
+        "Create an Alberta.ca account. A verified account is recommended.",
+        "Gather your documents.",
+        "Apply online.",
+        "If you cannot apply online, contact your local Alberta Supports Centre to make an appointment."
+      ],
+      "documents": [
+        "Identification for you, your spouse or partner, and any dependents",
+        "Bank statements for the 60 days before you apply, for all accounts",
+        "A medical letter, if you cannot work for medical reasons"
+      ],
+      "tips": [
+        "Income Support staff need you to verify your account before they approve your application.",
+        "Emergency help for basic needs can be arranged in as little as 2 days. The 24-hour line is 1-866-644-5135.",
+        "Ask for an interpreter if you need one to finish the application.",
+        "The liquid asset limit is generally three times the core benefit you would get."
+      ],
+      "time": "The process typically takes 2 weeks.",
+      "phone": "Alberta Supports Contact Centre: 1-877-644-9992"
+    }
+  },
+  {
+    "id": "ab-rent-assistance-benefit",
+    "name": "Rent Assistance Benefit",
+    "level": "Alberta",
+    "category": "Housing",
+    "amount": "The amount is calculated from your household income and local market rent.",
+    "summary": "A long-term rent subsidy for Albertans with low income. It is paid directly to tenants and may be renewed each year.",
+    "note": "People are given priority based on need. Need looks at factors such as income, assets, number of dependants and your current housing.",
+    "requires": [
+      "ab",
+      "abRentAssistanceBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your income is below the local income limit for your community.",
+        "You are a Canadian citizen, permanent resident or refugee, or an applicant for refugee or immigrant status."
+      ],
+      "note": "People with a broken private sponsorship and Ukraine evacuees with emergency travel papers can also apply."
+    },
+    "applyText": "Use the Find Housing tool on alberta.ca",
+    "applyUrl": "https://www.alberta.ca/rent-assistance",
+    "source": "https://www.alberta.ca/rent-assistance",
+    "detail": {
+      "aboutList": {
+        "lead": "Benefit features",
+        "items": [
+          "It is available through most housing management bodies across Alberta.",
+          "There is no limit on yearly renewals if you are still eligible."
+        ]
+      },
+      "steps": [
+        "Answer a few questions in the Find Housing tool.",
+        "Pick a local housing provider that offers a program that suits you.",
+        "Contact the provider for a rent assistance application."
+      ],
+      "documents": [],
+      "tips": [
+        "A separate Temporary Rent Assistance Benefit lasts 2 years. It has extra rules, such as recent work and not getting Income Support, AISH or the Alberta Seniors Benefit.",
+        "Housing providers manage the program and choose tenants.",
+        "The Private Landlord Rent Supplement is closed. Current recipients move to this benefit when funding ends."
+      ],
+      "phone": "Alberta Supports Contact Centre: 1-877-644-9992"
+    }
+  },
+  {
+    "id": "ab-seniors-benefit",
+    "name": "Alberta Seniors Benefit",
+    "level": "Alberta",
+    "category": "Income support",
+    "amount": "Up to $3,946 a year (single) or $5,918 (couple) for homeowners, renters and lodge residents, when income used is $0.",
+    "summary": "Monthly money for lower-income seniors 65 and older. The amount depends on your income, where you live and whether you have a partner.",
+    "note": "From July 1, 2026, income guidelines are $32,690 or less (single) and $53,800 or less (couple), for people who get full Old Age Security.",
+    "requires": [
+      "ab",
+      "age65plus",
+      "abSeniorsBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 65 or older.",
+        "You lived in Alberta for at least 3 months right before you apply.",
+        "You are a Canadian citizen or permanent resident.",
+        "You get the Old Age Security (OAS) pension.",
+        "You meet the financial eligibility criteria."
+      ],
+      "note": "If you or your partner chose to delay OAS, you are not eligible."
+    },
+    "applyText": "Apply online or by mail",
+    "applyUrl": "https://www.alberta.ca/alberta-seniors-benefit",
+    "source": "https://www.alberta.ca/alberta-seniors-benefit",
+    "detail": {
+      "aboutList": {
+        "lead": "How your benefit is worked out",
+        "items": [
+          "It uses your income and your partner's, last calendar year, from your tax return.",
+          "It also depends on your residence type and your marital or cohabitation status.",
+          "In a continuing care home: up to $12,466 a year for a single senior, or $16,412 for a couple with one partner at home.",
+          "Other residence categories get up to $2,749 (single) or $5,496 (couple)."
+        ]
+      },
+      "steps": [
+        "Read the Seniors Financial Assistance information booklet.",
+        "Apply online, print the form, or call to ask for a form by mail.",
+        "Attach your supporting documents.",
+        "Send your documents online, by fax or by mail."
+      ],
+      "documents": [
+        "Proof of date of birth, unless you are 65 or older and get Old Age Security",
+        "A pre-printed void cheque or direct deposit form (optional)",
+        "Income estimate form, if your income dropped and you are applying for the first time"
+      ],
+      "tips": [
+        "If you apply online with a verified Alberta.ca account, you can skip the supporting documents step.",
+        "You may be paid up to 11 months back from the date the program gets your form, but not before age 65.",
+        "Tell the program if you move, your marital status changes, your income changes or your OAS changes.",
+        "The benefit year runs July 1 to June 30."
+      ],
+      "phone": "Alberta Supports Contact Centre: 1-877-644-9992"
+    }
+  },
+  {
+    "id": "ab-seniors-dental-optical",
+    "name": "Dental and Optical Assistance for Seniors",
+    "level": "Alberta",
+    "category": "Health",
+    "amount": "Dental: up to $5,000 every 5 years. Glasses: up to $230 every 3 years.",
+    "summary": "Help paying for basic dental care and prescription glasses for lower-income seniors 65 and older. You must first be approved for Seniors Financial Assistance programs.",
+    "note": "Dental coverage may not cover the full fees that dentists charge. Ask your dentist to request pre-authorization from Alberta Blue Cross first.",
+    "requires": [
+      "ab",
+      "age65plus",
+      "abSeniorsDentalOpticalRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 65 or older.",
+        "You are an Alberta resident and lived here at least 3 months before applying.",
+        "You are a Canadian citizen or admitted to Canada for permanent residence.",
+        "You are approved for Seniors Financial Assistance programs.",
+        "Your annual income is within the program limits."
+      ],
+      "note": "For 2026–27, coverage needs 2025 total income of $0 to $32,690 (single) or $0 to $65,380 (couple)."
+    },
+    "applyText": "Apply through Seniors Financial Assistance",
+    "applyUrl": "https://www.alberta.ca/dental-optical-assistance-seniors",
+    "source": "https://www.alberta.ca/dental-optical-assistance-seniors",
+    "detail": {
+      "aboutList": {
+        "lead": "What is covered",
+        "items": [
+          "Dental: exams, x-rays, cleaning, fillings, extractions, root canals, gum treatment and basic dentures.",
+          "Not covered: crowns, bridges, braces, implants, fluoride and cosmetic work.",
+          "Optical: prescription glasses, sunglasses, lenses, contact lenses, frames and repairs.",
+          "Not covered: eye exams, eye surgery, cataract surgery lenses and magnifiers."
+        ]
+      },
+      "steps": [
+        "Apply for Seniors Financial Assistance programs. Skip this if you already did.",
+        "Show your Alberta health card at the dental or optical office and say you are enrolled.",
+        "Ask the office to bill Alberta Blue Cross directly.",
+        "If they cannot, pay the bill and send in a reimbursement claim."
+      ],
+      "documents": [
+        "Alberta health card",
+        "Receipts and a completed claim form, if you claim a reimbursement"
+      ],
+      "tips": [
+        "Unused dental money does not carry into the next 5-year period. Unused optical money does not carry into the next 3-year period.",
+        "Claim within 12 months of the expense or it will not be paid.",
+        "For services covered by both plans, claim from the Canadian Dental Care Plan first.",
+        "If cataract surgery changes your prescription, you may get funding for another set of glasses. You need a medical note."
+      ],
+      "phone": "Alberta Blue Cross claims: 1-800-661-6995"
+    }
+  },
+  {
+    "id": "ab-seniors-special-needs-assistance",
+    "name": "Special Needs Assistance for Seniors",
+    "level": "Alberta",
+    "category": "Daily living supports",
+    "amount": "Up to $5,872 in a benefit year (July 1 to June 30).",
+    "summary": "Money toward set items for lower-income seniors 65 and older, such as CPAP machines, diabetes supplies, prescription costs, clothing, and appliances or furniture.",
+    "note": "A receipt or estimate is needed for all requests unless the page says otherwise. Items bought before you enrolled are not covered.",
+    "requires": [
+      "ab",
+      "age65plus",
+      "abSeniorsSpecialNeedsAssistanceRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 65 or older and an Alberta resident.",
+        "You are a Canadian citizen or lawfully admitted for permanent residence.",
+        "You have provided a Seniors Financial Assistance application.",
+        "You meet the financial criteria.",
+        "Neither you nor your spouse has deferred Old Age Security."
+      ],
+      "note": "In general, $32,690 or less (single) or $53,800 or less (couple) may qualify."
+    },
+    "applyText": "Make a claim through MyAlberta Seniors or by mail",
+    "applyUrl": "https://www.alberta.ca/seniors-special-needs-assistance",
+    "source": "https://www.alberta.ca/seniors-special-needs-assistance",
+    "detail": {
+      "aboutList": {
+        "lead": "How income sets what you can get",
+        "items": [
+          "Single with income of $28,290 or less: primary and secondary items.",
+          "Single with income of $28,291 to $32,690: primary items only.",
+          "Couple with income of $45,600 or less: primary and secondary items.",
+          "Couple with income of $45,601 to $53,800: primary items only.",
+          "Examples: CPAP up to $1,881 every 5 years, celiac groceries up to $63 a month, refrigerator up to $824 (one time only)."
+        ]
+      },
+      "steps": [
+        "Enrol in Seniors Financial Assistance programs if you have not.",
+        "Get a receipt or estimate with your name, Personal Health Number, address and phone number.",
+        "Add any medical notes the item needs.",
+        "Send your claim through MyAlberta Seniors, or by mail or fax."
+      ],
+      "documents": [
+        "Receipt or estimate for each item",
+        "Medical notes for items that need them"
+      ],
+      "tips": [
+        "The program accepts a receipt for an item bought up to 12 months before it gets your claim.",
+        "You must have been eligible when you bought the item.",
+        "Keep receipts for funded items for at least 2 years.",
+        "You can appeal a decision. The page lists the steps."
+      ],
+      "phone": "Alberta Supports Contact Centre: 1-877-644-9992"
+    }
+  },
+  {
+    "id": "ab-sharp",
+    "name": "Seniors Home Adaptation and Repair Program (SHARP)",
+    "level": "Alberta",
+    "category": "Home",
+    "amount": "A low-interest loan of $500 to $40,000. The current interest rate is 4.45%.",
+    "summary": "A low-interest home equity loan for seniors to repair or adapt their home, such as stair lifts, walk-in tubs or wider doorways. You do not make monthly repayments.",
+    "note": "The loan is due when you sell, are no longer a registered owner, or the home is no longer your main home. The government registers a caveat on your land title.",
+    "requires": [
+      "ab",
+      "age65plus",
+      "abSharpRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 65 or older. Only one spouse or partner needs to be 65 or older.",
+        "You are a registered owner of a home in a Land Titles Office.",
+        "Your annual income is $75,000 or less.",
+        "You keep at least 25% equity in your main home after the loan.",
+        "You are a Canadian citizen or lawfully admitted for permanent residence.",
+        "You have lived in Alberta for at least 3 months."
+      ],
+      "note": "Your income is taken from line 15000 of last year's tax return."
+    },
+    "applyText": "Apply with the Loan Application and Agreement",
+    "applyUrl": "https://www.alberta.ca/seniors-home-adaptation-repair-program",
+    "source": "https://www.alberta.ca/seniors-home-adaptation-repair-program",
+    "detail": {
+      "aboutList": {
+        "lead": "What the loan can pay for",
+        "items": [
+          "Repairs, adaptations and renovations to your main home.",
+          "Projects that help you stay safe, independent and mobile, or improve energy efficiency.",
+          "Work paid for in the 12 months before the program gets your application."
+        ]
+      },
+      "steps": [
+        "Read the information guide.",
+        "Complete and sign the Loan Application and Agreement.",
+        "Send it with your supporting documents online, by fax or by mail."
+      ],
+      "documents": [
+        "A written cost estimate or receipts for all project costs",
+        "Property tax assessment or bill",
+        "Direct deposit form or void cheque (optional)"
+      ],
+      "tips": [
+        "If you do not qualify for a loan, a single senior with income of $32,690 or less, or a couple with $53,800 or less, may be considered for a grant.",
+        "Charges such as a reverse mortgage, bankruptcy or foreclosure on your land title must be removed first.",
+        "If you sign a repair contract, apply within 45 days to keep your cancellation rights.",
+        "Interest is simple interest and is reviewed in April and October."
+      ],
+      "phone": "Alberta Supports Contact Centre (ask for a call back from a loan specialist): 1-877-644-9992"
+    }
   }
 
 ];
@@ -9378,6 +11243,39 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "ab-sharp": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ab-seniors-special-needs-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ab-seniors-dental-optical": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ab-seniors-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ab-rent-assistance-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ab-income-support": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ab-home-care": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ab-child-family-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ab-brain-injury": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "ab-blue-cross-non-group": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "bc-hearing-supplements": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "bc-safer": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "bc-rental-assistance-program": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "bc-ppmb": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "bc-nursing-support-services": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "bc-income-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "bc-home-support": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "bc-family-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "bc-csil": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "on-oesp": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "on-odsp-health-benefits": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "on-odsp-employment-supports": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "on-northern-health-travel-grant": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "on-home-community-care": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "on-drug-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "on-trillium-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "on-seniors-dental": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "on-ontario-works": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "on-healthy-smiles": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "on-gains": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "on-enhanced-respite": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "on-dso-adult-services": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "on-child-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "west-vancouver-recreation-financial-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
   "taber-fee-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)
   "sarnia-cnib-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-city-sweep/snapshots)

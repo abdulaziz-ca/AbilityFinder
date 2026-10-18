@@ -1532,8 +1532,10 @@ test("ready remains reachable while the Alberta child profile stays conditional"
     ageGroup: "child",
     income: "low",
   });
-  const abReady = Object.values(albertaLowIncomeChild).filter((r) => r.status === "ready");
-  expect(abReady).toHaveLength(0);
+  // Only the 2026-10-17 provincial income-tested benefits, whose rule is the
+  // income answer itself, may be ready; everything else stays conditional.
+  const abReady = Object.keys(albertaLowIncomeChild).filter((id) => albertaLowIncomeChild[id].status === "ready").sort();
+  expect(abReady).toEqual(["ab-blue-cross-non-group", "ab-child-family-benefit", "ab-rent-assistance-benefit"]);
   expect(albertaLowIncomeChild["child-health-benefit"].status).toBe("almost");
   expect(albertaLowIncomeChild["child-health-benefit"].needs.map((need) => need.text).join(" ")).toMatch(/government health-benefit coverage/i);
 

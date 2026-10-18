@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 265 links. The monitor checks a bounded rotating batch every
+// 300 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -1028,6 +1028,181 @@ export const LINKS = [
   {
     "url": "https://westvancouver.ca/parks-recreation/recreation-programs-services/financial-assistance-support",
     "label": "Recreation Financial Assistance Program (West Vancouver) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/ontario-child-benefit",
+    "label": "Ontario Child Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/programs-and-services-adults-developmental-disabilities-ontario",
+    "label": "Developmental Services Ontario adult services — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/family-support-and-respite-children-and-youth-special-needs",
+    "label": "Enhanced Respite for medically fragile children — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/guaranteed-annual-income-system-payments-seniors",
+    "label": "Guaranteed Annual Income System (GAINS) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/get-dental-care",
+    "label": "Healthy Smiles Ontario — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/ontario-works",
+    "label": "Ontario Works — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/dental-care-seniors",
+    "label": "Ontario Seniors Dental Care Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/ontario-trillium-benefit",
+    "label": "Ontario Trillium Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/get-coverage-prescription-drugs",
+    "label": "Ontario Drug Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/homecare-seniors",
+    "label": "Home and community care (Ontario Health atHome) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/northern-health-travel-grant-program",
+    "label": "Northern Health Travel Grant — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/working-and-earning-ontario-disability-support-program",
+    "label": "ODSP employment supports and earnings rules — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ontario.ca/page/ontario-disability-support-program-health-and-disability-benefits",
+    "label": "ODSP health and disability benefits (including Special Diet Allowance) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://ontarioelectricitysupport.ca/",
+    "label": "Ontario Electricity Support Program (OESP) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.oeb.ca/consumer-information-and-protection/bill-assistance-programs/ontario-electricity-support-program",
+    "label": "Ontario Electricity Support Program (OESP) — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/health/accessing-health-care/home-community-care/care-options-and-cost/choice-in-supports-for-independent-living",
+    "label": "Choice in Supports for Independent Living (CSIL) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/family-social-supports/affordability/family-benefit",
+    "label": "B.C. Family Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/health/accessing-health-care/home-community-care/care-options-and-cost/home-support",
+    "label": "Home Support (Home and Community Care) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance",
+    "label": "Income Assistance — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.bcchildrens.ca/clinics-services/nursing-support-services",
+    "label": "Nursing Support Services (BC Children's Hospital) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/persons-with-persistent-multiple-barriers/persons-with-persistent-multiple-barriers-topic",
+    "label": "Persons with Persistent Multiple Barriers (PPMB) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.bchousing.org/housing-assistance/rental-assistance-programs/RAP",
+    "label": "Rental Assistance Program (RAP) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.bchousing.org/housing-assistance/rental-assistance-programs/SAFER",
+    "label": "Shelter Aid for Elderly Renters (SAFER) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/health-supplements-and-programs/medical-equipment-hearing-instruments",
+    "label": "Hearing Instruments and Alternative Hearing Assistance Supplement — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.alberta.ca/non-group-coverage",
+    "label": "Alberta Blue Cross Non-Group Coverage — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.alberta.ca/brain-injury-supports",
+    "label": "Alberta Brain Injury Initiative — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.alberta.ca/alberta-child-and-family-benefit",
+    "label": "Alberta Child and Family Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.alberta.ca/about-continuing-care",
+    "label": "Home and Community Care (continuing care at home) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.alberta.ca/income-support-how-to-apply",
+    "label": "Alberta Income Support — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.alberta.ca/income-support-eligibility",
+    "label": "Alberta Income Support — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www.alberta.ca/rent-assistance",
+    "label": "Rent Assistance Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.alberta.ca/alberta-seniors-benefit",
+    "label": "Alberta Seniors Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.alberta.ca/dental-optical-assistance-seniors",
+    "label": "Dental and Optical Assistance for Seniors — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.alberta.ca/seniors-special-needs-assistance",
+    "label": "Special Needs Assistance for Seniors — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.alberta.ca/seniors-home-adaptation-repair-program",
+    "label": "Seniors Home Adaptation and Repair Program (SHARP) — apply",
     "kind": "apply"
   },
   {

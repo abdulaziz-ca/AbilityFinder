@@ -1,0 +1,143 @@
+URL: https://www.alberta.ca/non-group-coverage | province: AB | program: Alberta Blue Cross Non-Group Coverage | fetched: 2026-10-17
+=== PAGE: https://www.alberta.ca/non-group-coverage (HTTP 200, 14229 chars)
+
+ Skip to On this page
+ On this page:
+- October 1, 2026 changes
+- Overview
+- Eligibility
+- Apply for coverage
+- Benefits provided
+- What is not covered
+- Coordination of benefits
+- Monthly premiums
+- Premium subsidy program
+- Contact
+ October 1, 2026 changes
+Beginning October 1, 2026, changes to insurance coverage (Bill 11) will be in effect. It changes which plan pays first: where private or other coverage is available, it pays first, and government-sponsored coverage acts as the safety net. No eligible Albertan will lose access to government-sponsored drug coverage because of this change. For more information, see the Coordination of benefits section below.
+Overview
+The Non-Group Coverage program ensures all Albertans have access to an economical supplementary health benefits program. The program provides coverage for a variety of health-related services not covered by the Alberta Health Care Insurance Plan (AHCIP).
+- Alberta Blue Cross administers Non-Group Coverage on behalf of the Alberta government.
+- A monthly premium is charged for Non-Group Coverage.
+This program does not provide travel coverage. If you are planning to travel outside of the province or country, you should purchase travel insurance to cover emergency hospital and medical expenses.
+Eligibility
+Non-Group Coverage is available to all Alberta residents under 65 years of age and their dependants, as registered under the AHCIP.
+Single coverage – available to Alberta residents with no dependants
+Family coverage – available to Alberta residents and eligible dependants. The same dependants covered under the subscriber's AHCIP account must be included on the subscriber's Non-Group Coverage:
+- spouse
+- adult interdependent partner
+- unmarried children under 21 years of age who are fully dependent on the subscriber
+- unmarried children under 25 years of age who are in full-time attendance at an accredited educational institute
+- unmarried children 21 years of age or older who are fully dependent on the subscriber because of a mental or physical disability
+Government-sponsored supplementary plans cover pre-existing health conditions – no medical review is required.
+Albertans 65 years of age and over are eligible for the Coverage for Seniors program.
+Apply for coverage
+ Fillable PDF forms may not open properly on some mobile devices and web browsers. See the step-by-step guide or contact PDF form technical support.
+ Complete the application for Non-Group Coverage
+Coverage will start on the first day of the fourth month after the AHCIP office receives your application.
+Exceptions
+- If you had prior coverage and our office receives your application within 30 days of your previous plan end date, coverage may begin as early as the first day of the following month. This exception applies to ensure continuity of coverage and is subject to approval by AHCIP.
+- New Albertans from another part of Canada, who apply within 4 months of moving to Alberta, will have their coverage begin on the same day as their Alberta Health Care Insurance Plan coverage begins (the first day of the third month).
+- New Albertans from outside Canada, who apply within 3 months of moving to Alberta, will have their coverage begin on the first day of the third month.
+- To cancel Non-Group Coverage, contact the AHCIP office. Coverage will be cancelled the last day of the month in which notification is received.
+If a resident previously had coverage and has an outstanding balance, they must pay the balance before coverage can be reinstated.
+ Benefits provided
+A $50 annual deductible is applied to the total of all eligible health benefit expenses incurred in a benefit year, except for prescription drugs and diabetes supplies. The benefit year runs from July 1 to June 30. When no claim has been made for health benefits in a benefit year, any such expenses incurred during April, May or June that do not exceed $50 may be carried forward into the next benefit year and credited, in whole or in part, toward the deductible in that year.
+ Expand all
+ - 
+ Prescription drugs
+ The co-payment is 30% to a maximum of $35, effective April 1, 2026. A co-payment is the portion of the prescription cost you pay to your pharmacy when you have your prescription filled. For most prescriptions, you will not pay more than the co-payment maximum for each prescription.
+- Prescription drugs covered under the plan are listed in the Alberta Drug Benefit List.
+There are a few cases when you might have to pay more than the co-payment maximum:
+- if your drug is not listed in the Alberta Drug Benefit List
+- if you want a more expensive brand of drug than the least cost alternative or generic product, or
+- if the brand of drug you want costs more than the maximum cost set by the Alberta government for that drug
+To avoid surprises, ask your pharmacist about the cost of your prescription before it is filled.
+ - 
+ Diabetes coverage
+ Plan members with diabetes will receive coverage for eligible diabetes supplies purchased from a licensed pharmacy, up to a maximum of $2,400 per eligible person depending on the method of diabetes management. (Read the Coverage Maximums for Diabetes Supplies fact sheet). This benefit will be for each benefit year, that is, July 1 to June 30. Eligible diabetes supplies include test strips, needles, syringes, and lancets. There are no co-payments for these supplies.
+Continuous Glucose Monitors (CGMs) are available to Albertans living with diabetes who meet certain eligibility criteria. See the CGM Fact Sheet for more information about CGM coverage and eligibility criteria. Co-payments apply to continuous glucose monitors and these devices are not included in the annual maximum for diabetes supplies.
+The use of a CGM reduces or eliminates the need for blood glucose test strips. Albertans who receive funding for a CGM will have adjusted limits for blood glucose test strips, which will still provide for occasional use. Albertans who do not receive funding for a CGM will continue to have the same limits for blood glucose test strips. See the Coverage Maximums for Diabetes Supplies fact sheet for more information.
+ - 
+ Ambulance services
+ Ambulance services are covered to the maximum rate established by the Alberta government for treatment, and transportation to and from a general, active treatment hospital in the event of illness or injury.
+Transportation must be provided in a ground vehicle approved under the Emergency Health Services Act and regulations. It does not include interfacility transfer by ambulance.
+- Read more about ambulance service in Alberta.
+- Learn more about health care facilities.
+ - 
+ Clinical psychological services
+ Coverage for clinical psychological services are up to $60 per visit, to a maximum of $300 per family each benefit year, for treatment of mental or emotional illness by a registered chartered psychologist.
+ - 
+ Home nursing care
+ Coverage for home nursing care is up to $200 per family each benefit year for nursing care provided in the patient's home by written order of a physician. Home nursing care must be provided by a registered nurse or licensed practical nurse who is not a relative of the patient.
+ - 
+ Prosthetic and orthotic benefits
+ Coverage for prosthetic and orthotic benefits is up to 25% of the maximum allowable amount for items included on the benefit list. Coverage includes the purchase or repair of artificial eyes, prosthetic devices – except myoelectric-controlled prostheses – and braces required for 6 months or longer. A physician's written order is required. Foot orthotics are not included as a benefit.
+ - 
+ Mastectomy prosthesis
+ Coverage for mastectomy prostheses is up to 25% of the maximum allowable amount for the mastectomy prosthesis included on the benefit list. This does not apply to the purchase of a supporting brassiere.
+ - 
+ Hospital accommodation
+ In a publicly funded active treatment hospital, you are covered for the difference in cost for a private or semi-private hospital room. Show your Alberta Blue Cross card when you are admitted, as all Alberta hospitals bill Alberta Blue Cross directly.
+ What is not covered
+The following are not covered under the Non-Group Coverage program:
+- claims for benefit expenses incurred prior to the effective date of coverage
+- claims for benefit expenses received by Non-Group Coverage more than 12 months after the service was provided
+- services covered by the AHCIP
+- charges for drugs supplied directly and charged for by a physician, with the exception of allergy serums
+- registration, admission or user fees charged by a hospital
+- drug products not listed in the Alberta Drug Benefit List – ask your pharmacist or physician if your prescribed medication is on this list
+- travel insurance for emergency hospital and medical expenses outside of the province or country
+Coordination of benefits
+Alberta’s government-sponsored drug and supplemental health benefits plans are legislated as payor of last resort. For Albertans who have private or employer sponsored coverage, benefits are coordinated between their private or employer sponsored plans and applicable government-sponsored health benefit programs. This coordination helps ensure individuals receive the coverage they are eligible for under both plans.
+Changes for Albertans
+Albertans are required to inform their pharmacy about all drug and supplemental health benefit coverage that they may have, so that the pharmacist is able to coordinate all benefits at the point of dispensing. If an Albertan has private or employer sponsored drug and supplemental health benefit plan, this plan will be required to pay first, and government-sponsored plans will cover the remaining portion for eligible drug benefits. If private plan benefits are unavailable or exhausted, the Albertan’s government sponsored drug and supplemental benefit plan will continue to cover eligible drugs and supplemental benefits in accordance with existing program rules.
+Government-sponsored drug and supplemental benefits plans will continue to act as a safety net, providing drug and supplemental benefits coverage for any Albertan who requires access to drug and supplemental benefits. This legislation will help to ensure long-term financial sustainability of government programs, ensuring that those who are most vulnerable will have access to drug and supplemental health benefits coverage when no other option is available.
+Monthly premiums
+The current monthly premium rate for Non-Group coverage is:
+Table 1. Monthly full premium and subsidized rates for Non-Group coverage for singles and families
+Monthly RatesSingleFamily
+Full Premium$63.50$118.00
+Subsidized Premiums$44.45$82.60
+The addition or deletion of family members on your Alberta Health Care Insurance Plan account may affect your premium rate. Contact the AHCIP office for more information.
+Payment
+Premiums are billed by Alberta Blue Cross.
+Your Non-Group Coverage will be cancelled if premium payments are not maintained. If cancellation occurs due to non-payment, arrears must be cleared and a new application submitted before coverage can recommence. Coverage will then be reinstated the first day of the fourth month after Alberta Health receives the application.
+ Premium subsidy program
+If you are enrolled in Non-Group Coverage, the Premium Subsidy Program may help lower-income Albertans reduce their premiums. You can apply for a premium subsidy for the current benefit year plus two previous benefit years.
+- You will still pay up to the maximum co-payment for each prescription purchased.
+The benefit year starts April 1 of one year and ends March 30 of the next year. Eligibility for this program is based on taxable income of the registrant and their spouse/partner (if applicable).
+ Expand all
+ - 
+ Eligibility for premium assistance
+ All residents of Alberta are eligible to apply unless you are:
+- a new or returning resident from outside Canada, who has not yet lived in Alberta for 12 consecutive months
+- exempt from paying income tax for religious, charitable or communal reasons
+- a student from outside Canada who is temporarily in Canada
+- a senior – 65 years of age or older (seniors are eligible to apply for premium subsidy for premiums billed prior to their 65th birthday).
+ - 
+ Apply for premium subsidy
+ Premium subsidy is based on your taxable income. You are eligible for a subsidized premium based on your taxable income.
+You need to reference your federal income tax return, Line 260. Also reference your spouse's/partner's, if applicable, income tax return for the year you are applying for.
+If you did not file an income tax return and were claimed as a spouse, partner or dependant, you must indicate that on the application.
+If your combined taxable income (Line 260) is less than the income amount indicated below, you qualify for subsidized premiums.
+Table 2. Tax income levels for Non-Group premium subsidies for singles and families
+CategoryIncome
+Singleless than $20,970
+Family – no childrenless than $33,240
+Family – with childrenless than $39,250
+To apply for premium subsidy for the current benefit year, complete the Application for Alberta Blue Cross Non-Group Coverage Premium Subsidy.
+To apply for premium subsidy for the current and previous years, complete the Application for Alberta Blue Cross Non-Group Coverage Retroactive Premium Subsidy.
+ - 
+ Changes that may affect your eligibility
+ Your eligibility for premium subsidy may change if:
+- the Alberta Health Care Insurance Plan office is provided with updated income information by either you or the Canada Revenue Agency
+- you add a spouse/partner (due to marriage, etc.) when your premium rates are subsidized, we may require your spouse/partner to complete an application and provide Line 260 of their income tax return to determine your continuing eligibility for premium subsidy
+- you delete a spouse/partner (due to divorce, separation, etc.) when your premium rates are subsidized, we will re-assess your continuing eligibility for premium subsidy based on your income and family category
+ Contact
+Connect with Alberta Blue Cross about Non-Group benefits.
+ Previous
+ Alberta Aids to Daily Living (AADL)
+ Next
+ Coverage for Seniors Program
+ 

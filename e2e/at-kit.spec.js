@@ -24,8 +24,9 @@ for (const persona of personas) {
     // Fixed expectations, independent of the evaluator: changes need a kit review.
     const counts = {
       // Okotoks is no longer a lead outside its Alberta service area.
-      'ab-self': [0, 21], 'bc-child': [4, 20], 'on-family': [3, 16],
-      'bc-self': [10, 19], 'no-matches': [0, 11], returning: [0, 21],
+      // 2026-10-17 provincial sweep: income-tested provincial benefits added (kit reviewed).
+      'ab-self': [3, 23], 'bc-child': [6, 24], 'on-family': [6, 22],
+      'bc-self': [10, 24], 'no-matches': [0, 11], returning: [3, 23],
     };
     const [ready, almost] = counts[persona.id];
     await expect(page.locator('.benefit.ready')).toHaveCount(ready);
@@ -46,7 +47,7 @@ for (const persona of personas) {
       await expect(page.locator('#program-updates-status')).toBeFocused();
       await gotoReady(page);
       await expect(page.locator('.program-updates')).toHaveCount(0);
-      await expectGroupedTotal(page, 0, 21);
+      await expectGroupedTotal(page, ready, almost);
     } else {
       await expect(page.locator('.program-updates')).toHaveCount(0);
       await page.reload();

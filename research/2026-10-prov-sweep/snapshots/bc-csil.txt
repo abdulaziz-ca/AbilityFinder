@@ -1,0 +1,80 @@
+URL: https://www2.gov.bc.ca/gov/content/health/accessing-health-care/home-community-care/care-options-and-cost/choice-in-supports-for-independent-living | province: BC | program: Choice in Supports for Independent Living | fetched: 2026-10-17
+=== PAGE: https://www2.gov.bc.ca/gov/content/health/accessing-health-care/home-community-care/care-options-and-cost/choice-in-supports-for-independent-living (HTTP 200, 8281 chars)
+Choice in Supports for Independent Living - Province of British Columbia 
+- 
+- 
+ Home / Health / Accessing health care / Home and community care / Care Options and Cost / Choice in Supports for Independent Living 
+ More topics
+- Care Options and Cost 
+- Publicly Subsidized or Private Pay Services 
+- Community Nursing 
+- Community Rehabilitation 
+- Adult Day Services 
+- Home Support 
+- Choice in Supports for Independent Living 
+- Caregiver Respite/Relief 
+- End-of-Life Care 
+- Assisted Living 
+- Group Homes 
+- Family Care Homes 
+- Short-Stay Services 
+- Long-Term Care Services 
+ Choice in Supports for Independent Living
+ Last updated on September 10, 2025 Choice in Supports for Independent Living (CSIL) is a self-directed option for eligible home support clients. CSIL clients receive funds directly from their local health authority to purchase their own home support services. Clients become employers who manage all aspects of their home support, from hiring and supervising staff to overseeing how CSIL funds are spent.
+ People who cannot manage CSIL on their own may be eligible if a client support group or an individual designated as a representative through a Representation Agreement is acting as the CSIL employer.
+ CSIL clients have control over who they hire to provide personal assistance, when services are scheduled and how tasks are carried out.
+ Health authorities provide funding for services to the CSIL employer, as outlined in an agreement between the health authority and the CSIL employer, who then directly employs their own care providers. Health authorities determine the amount of funds based on assessment of need and the CSIL Categories of Need Guidelines at a minimum hourly rate of:
+- $34.73 effective April 1, 2022
+- $37.07 effective April 1, 2023
+- $38.19 effective April 1, 2024
+ For more information about CSIL and what is involved in becoming a CSIL employer, you can read the:
+- CSIL Online Workbook 
+ Is this care right for me?
+ Choice in Supports for Independent Living may be suitable if you have a significant physical disability and desire more control and flexibility in managing your home support services.
+ What are the Choice in Supports for Independent Living eligibility criteria?
+ In addition to meeting the general eligibility criteria for home and community care services, you are eligible for Choice in Supports for Independent Living (CSIL) if you:
+- have been assessed as requiring home support services as part of your care plan;
+- been assessed as having high physical care needs (HPCN), a physical disability, and are medically stable;
+- have assessed needs that can be met within CSIL, within available resources;
+- have agreed to pay the assessed client rate; and
+- can safely coordinate and manage CSIL services or have a client support group or a CSIL representative acting as a CSIL employer.
+ To read the general eligibility criteria for all home and community care services, go to:
+- Are You Eligible?  
+ How do I arrange for Choice in Supports for Independent Living services?
+ If you are interested in receiving Choice in Supports for Independent Living services or know of someone who might be in need of these services, you can contact your health authority's home and community care office or you can have a health care professional make a referral on your behalf.
+ For contact information and a detailed description of how to arrange for services, please see:
+- How to Arrange for Care  
+ How does Choice in Supports for Independent Living funding work?
+ As a Choice in Supports for Independent Living client, you receive a set amount of funding each month from the health authority to directly purchase your own home support services. The amount of funding you receive is calculated by multiplying the Choice in Supports for Independent Living hourly rate by the number of hours of home support service you require each month (based on a clinical assessment performed by your health authority). For example, if you were assessed as requiring 100 hours of home support per month and the hourly rate is $37.07, you would receive $3,707 per month (100 hours X $37.07 per hour).
+ Is there a cost for Choice in Supports for Independent Living services?
+ If you receive Choice in Supports for Independent Living services, you will pay a daily rate based on your income (and the income of your spouse, if applicable). Your daily rate is calculated by multiplying your “remaining annual income” (as defined in the Continuing Care Fees Regulation) by 0.00138889. For more information on how your remaining annual income is calculated, please see:
+- Continuing Care Fees Regulation  
+ To determine your monthly contribution, your responsible assessor will multiply your daily rate by the number of days you receive services in a month. Your monthly contribution will be deducted from the funding amount you receive from your health authority. You are expected to pay your monthly contribution into your Choice in Supports for Independent Living bank account.
+ If you or your spouse has earned income (as defined in the Continuing Care Fees Regulation) you will not be charged more than $300 per month for Choice in Supports for Independent Living services. Make sure you tell your responsible assessor about any earned income when you are completing your financial assessment.
+ If payment of your assessed daily rate would cause you or your family serious financial hardship, you may apply to your health authority for a temporary reduction of your daily rate. For more information, please see "What if I cannot afford my assessed daily rate?” , below.
+ You are not required to pay a daily rate for services if you receive one of the following government income benefits:  
+- Guaranteed Income Supplement, Spouse’s Allowance or Widowed Spouse’s Allowance under the  Old Age Security Act  (Canada). 
+- Support and shelter allowance under the  Employment and Assistance Act  or the  Employment and Assistance for Persons with Disabilities Act .  
+- War Veterans Allowance under the War Veterans Allowance Act (Canada) 
+ Information for Couples
+ If you and your spouse are both receiving publicly subsidized home support or Choice in Supports for Independent Living services, you and your spouse will both be assessed the full daily rate. However, only one of you (either you or your spouse) will be charged per service day. Your monthly rate will be recalculated if your living situation changes for any reason and you are no longer living with your spouse.
+ For more general information on the costs of publicly subsidized home and community care services in B.C., please see:
+- Who Pays for Your Care? 
+ What if I cannot afford my assessed daily rate?
+ If you are receiving publicly subsidized Choice in Supports for Independent Living services and payment of your assessed daily rate would cause you or your family serious financial hardship, you may be eligible for a reduced rate.
+ Serious financial hardship means that payment of your assessed daily rate would result in you (or your spouse, if applicable) being unable to pay for:
+- adequate food;
+- monthly mortgage/rent;
+- sufficient home heat;
+- prescribed medication; or
+- other required prescribed health-care services.
+ For more information on eligibility and how to apply for a temporary reduction of your daily rate, please see:
+- Temporary Reduction of Your Client Rate 
+ Who is my responsible assessor?
+ Your responsible assessor is a health authority employee who is responsible for completing your financial assessment(s).  The name and/or contact information for your responsible assessor is included in the client rate notification letter that is mailed out in the fall of each year.
+ Other Home and Community Care Services
+ For a full list of the types of care that are publicly subsidized in B.C., see:
+- Care Options and Costs 
+ Did you find what you were looking for? 
+ Yes No 
+ The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments.

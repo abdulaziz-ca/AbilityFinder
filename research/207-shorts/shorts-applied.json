@@ -1080,5 +1080,165 @@
     "short": "Check the program's income test",
     "who": ["you", "program"],
     "reason": "City-sweep record west-vancouver-recreation-financial-assistance (2026-10-17)"
+  },
+  "onChildBenefitRoute": {
+    "short": "Check the income test and that you are raising a child",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record on-child-benefit (2026-10-17)"
+  },
+  "onDsoAdultServicesRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record on-dso-adult-services (2026-10-17)"
+  },
+  "onEnhancedRespiteRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record on-enhanced-respite (2026-10-17)"
+  },
+  "onGainsRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record on-gains (2026-10-17)"
+  },
+  "onHealthySmilesRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record on-healthy-smiles (2026-10-17)"
+  },
+  "onOntarioWorksRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record on-ontario-works (2026-10-17)"
+  },
+  "onSeniorsDentalRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record on-seniors-dental (2026-10-17)"
+  },
+  "onTrilliumBenefitRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record on-trillium-benefit (2026-10-17)"
+  },
+  "onDrugBenefitRoute": {
+    "short": "Check which Ontario Drug Benefit route fits you",
+    "who": ["you"],
+    "reason": "Provincial-sweep record on-drug-benefit (2026-10-17)"
+  },
+  "onHomeCommunityCareRoute": {
+    "short": "Ask for a care needs assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record on-home-community-care (2026-10-17)"
+  },
+  "onNorthernHealthTravelGrantRoute": {
+    "short": "Check your district, referral and travel distance",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record on-northern-health-travel-grant (2026-10-17)"
+  },
+  "onOdspEmploymentSupportsRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Provincial-sweep record on-odsp-employment-supports (2026-10-17)"
+  },
+  "onOdspHealthBenefitsRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Provincial-sweep record on-odsp-health-benefits (2026-10-17)"
+  },
+  "onOespRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record on-oesp (2026-10-17)"
+  },
+  "bcCsilRoute": {
+    "short": "Ask for a care needs assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record bc-csil (2026-10-17)"
+  },
+  "bcFamilyBenefitRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record bc-family-benefit (2026-10-17)"
+  },
+  "bcHomeSupportRoute": {
+    "short": "Ask for a care needs assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record bc-home-support (2026-10-17)"
+  },
+  "bcIncomeAssistanceRoute": {
+    "short": "Check the income test; disability assistance (PWD) is a separate program",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record bc-income-assistance (2026-10-17)"
+  },
+  "bcNursingSupportServicesRoute": {
+    "short": "Ask for a nursing assessment of your child's care needs",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record bc-nursing-support-services (2026-10-17)"
+  },
+  "bcPpmbRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Provincial-sweep record bc-ppmb (2026-10-17)"
+  },
+  "bcRentalAssistanceProgramRoute": {
+    "short": "Check the income test, your dependent child and that you are not on assistance",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record bc-rental-assistance-program (2026-10-17)"
+  },
+  "bcSaferRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record bc-safer (2026-10-17)"
+  },
+  "abBlueCrossNonGroupRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ab-blue-cross-non-group (2026-10-17)"
+  },
+  "abBrainInjuryRoute": {
+    "short": "Check the disability documents the program asks for",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record ab-brain-injury (2026-10-17)"
+  },
+  "abChildFamilyBenefitRoute": {
+    "short": "Check the income test and that you are raising a child",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ab-child-family-benefit (2026-10-17)"
+  },
+  "abHomeCareRoute": {
+    "short": "Ask for a care needs assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ab-home-care (2026-10-17)"
+  },
+  "abIncomeSupportRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ab-income-support (2026-10-17)"
+  },
+  "abRentAssistanceBenefitRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ab-rent-assistance-benefit (2026-10-17)"
+  },
+  "abSeniorsBenefitRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ab-seniors-benefit (2026-10-17)"
+  },
+  "abSeniorsDentalOpticalRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ab-seniors-dental-optical (2026-10-17)"
+  },
+  "abSeniorsSpecialNeedsAssistanceRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ab-seniors-special-needs-assistance (2026-10-17)"
+  },
+  "abSharpRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record ab-sharp (2026-10-17)"
   }
 }
