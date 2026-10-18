@@ -6,6 +6,30 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-18 — Prince Edward Island live
+
+### Shipped
+- **Prince Edward Island** (`?v=224`): 27 provincial programs, each built from its official page and checked by a
+  separate reviewer. princeedwardisland.ca is behind a bot check: you passed it once in the browser pane and I read
+  the pages there (PDFs downloaded directly). A completeness check of PEI's topic pages added Home Care, COACH,
+  Adult Day Programs, Children with Complex Needs and the Seniors Property Tax Deferral. Help sections: 211 PEI,
+  ResourceAbilities, PEI Legal Aid, Disability Alliance Canada, Plan Institute. **Catalogue: 365 programs, eight
+  provinces.**
+- No PEI city programs: T3 Transit, Summerside Transit and the town sites have no low-income or disability
+  program. Tracked in `research/2026-10-pei/GAPS.md` with the dated PDFs (Home Renovation brochure 2021, dental
+  brochure about 2021–22) whose amounts need re-checking.
+
+### Verified how
+- Unit tests (239) and the full Chromium suite (324) pass locally; Firefox cannot launch in the local sandbox, so
+  CI runs all three browsers before deploying.
+
+### Decisions we made for you
+- Seniors Housing (60+, or 55+ with a disability) and AccessAbility Supports (apply before 65) show as "almost"
+  for the age bands the wizard cannot split, instead of hiding them.
+
+### Needs you
+- Re-checking PEI pages later needs you to pass the site's check again; agents cannot read it.
+
 ## 2026-10-18 — Nova Scotia live
 
 ### Shipped

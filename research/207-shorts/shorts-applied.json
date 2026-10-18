@@ -1755,5 +1755,125 @@
     "short": "Check the income limit and your child's age",
     "who": ["you", "program"],
     "reason": "Provincial-sweep record ns-child-care-subsidy (2026-10-17)"
+  },
+  "peCaregiverBenefitRoute": {
+    "short": "Ask Home Care for an assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-caregiver-benefit (2026-10-17)"
+  },
+  "peRenovationPersonsDisabilitiesRoute": {
+    "short": "Check the income limit, disability and home ownership",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record pe-renovation-persons-disabilities (2026-10-17)"
+  },
+  "peHomeRenovationSeniorsRoute": {
+    "short": "Check the income limit and home ownership",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-home-renovation-seniors (2026-10-17)"
+  },
+  "peSeniorsSafeAtHomeRoute": {
+    "short": "Check the income limit and home ownership",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-seniors-safe-at-home (2026-10-17)"
+  },
+  "peDentalCareRoute": {
+    "short": "Check the income or disability route",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-dental-care (2026-10-17)"
+  },
+  "peHomeEnergyLowIncomeRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-home-energy-low-income (2026-10-17)"
+  },
+  "peOutOfProvinceTravelRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-out-of-province-travel (2026-10-17)"
+  },
+  "peAccessabilitySupportsRoute": {
+    "short": "Check the diagnosis and that you apply before age sixty-five",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record pe-accessability-supports (2026-10-17)"
+  },
+  "peSocialAssistanceRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-social-assistance (2026-10-17)"
+  },
+  "peSeniorsHearingAidRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-seniors-hearing-aid (2026-10-17)"
+  },
+  "peFamilyHealthBenefitRoute": {
+    "short": "Check the income limit and that you are raising a child",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-family-health-benefit (2026-10-17)"
+  },
+  "peGenericDrugRoute": {
+    "short": "Check that you have no drug insurance and are under sixty-five",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-generic-drug (2026-10-17)"
+  },
+  "peFinancialAssistanceDrugRoute": {
+    "short": "Check that you get the assistance program it names",
+    "who": ["you"],
+    "reason": "Provincial-sweep record pe-financial-assistance-drug (2026-10-17)"
+  },
+  "peSeniorsIndependenceInitiativeRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-seniors-independence-initiative (2026-10-17)"
+  },
+  "peFamilyHousingRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-family-housing (2026-10-17)"
+  },
+  "peSeniorsHousingRoute": {
+    "short": "Check your age and the income limits",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-seniors-housing (2026-10-17)"
+  },
+  "peChildCareSubsidyRoute": {
+    "short": "Check the income test and your child's age",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-child-care-subsidy (2026-10-17)"
+  },
+  "peAutismFundingRoute": {
+    "short": "Check the autism diagnosis",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record pe-autism-funding (2026-10-17)"
+  },
+  "peSeverePermanentDisabilityBenefitRoute": {
+    "short": "Check your federal Severe Permanent Disability Benefit approval",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-severe-permanent-disability-benefit (2026-10-17)"
+  },
+  "peHomeCareRoute": {
+    "short": "Ask Home Care for an assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-home-care (2026-10-17)"
+  },
+  "peSeniorsPropertyTaxDeferralRoute": {
+    "short": "Check the income limit and home ownership",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-seniors-property-tax-deferral (2026-10-17)"
+  },
+  "peChildrenComplexNeedsRoute": {
+    "short": "Check the program's health criteria",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-children-complex-needs (2026-10-17)"
+  },
+  "peCoachRoute": {
+    "short": "Ask your care provider about a referral",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-coach (2026-10-17)"
+  },
+  "peAdultDayProgramsRoute": {
+    "short": "Ask Home Care for an assessment",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record pe-adult-day-programs (2026-10-17)"
   }
 }

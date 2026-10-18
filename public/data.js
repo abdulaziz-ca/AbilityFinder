@@ -160,8 +160,14 @@ const NS_CITIES = [
   "Yarmouth",
   "Other / my town isn't listed",
 ];
-const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES, ON: ON_CITIES, SK: SK_CITIES, MB: MB_CITIES, NB: NB_CITIES, NS: NS_CITIES };
-const COVERED_PROVINCES = ["AB", "BC", "ON", "SK", "MB", "NB", "NS"];
+/* Prince Edward Island municipalities offered in the questionnaire. */
+const PE_CITIES = [
+  "Charlottetown", "Cornwall, PEI", "Kensington", "Montague", "Souris", "Stratford, PEI",
+  "Summerside", "Alberton", "Tignish",
+  "Other / my town isn't listed",
+];
+const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES, ON: ON_CITIES, SK: SK_CITIES, MB: MB_CITIES, NB: NB_CITIES, NS: NS_CITIES, PE: PE_CITIES };
+const COVERED_PROVINCES = ["AB", "BC", "ON", "SK", "MB", "NB", "NS", "PE"];
 
 /* national fallbacks (used when a jurisdiction isn't in the maps yet) */
 const FED_STUDENT_AID = "https://www.canada.ca/en/employment-social-development/services/education/grants/disabilities.html";
@@ -175,6 +181,7 @@ const STUDENT_AID = {
   MB: "https://edu.gov.mb.ca/msa/applying-for-student-aid/frequently-asked-questions-for-students-with-disabilities.html",
   NB: "https://www.gnb.ca/en/topic/education-training/post-secondary/student-aid/resources-students-disabilities.html",
   NS: "https://novascotia.ca/studentassistance/apply/new/StudentsWithDisabilities.asp",
+  PE: "https://www.princeedwardisland.ca/en/information/workforce-and-advanced-learning/canada-student-grants-for-students-with-disabilities",
 };
 const TWO_ELEVEN = { AB: "https://ab.211.ca/", BC: "https://bc.211.ca/",
   ON: "https://211ontario.ca",
@@ -182,6 +189,7 @@ const TWO_ELEVEN = { AB: "https://ab.211.ca/", BC: "https://bc.211.ca/",
   MB: "https://mb.211.ca",
   NB: "https://nb.211.ca/",
   NS: "https://ns.211.ca",
+  PE: "https://pe.211.ca/about-us",
 };
 const EMPLOYMENT = {
   AB: "https://www.alberta.ca/disability-related-employment-supports",
@@ -191,6 +199,7 @@ const EMPLOYMENT = {
   MB: "https://gov.mb.ca/wd/ites/pwd_work/where.html",
   NB: "https://www.gnb.ca/en/topic/family-home-community/persons-with-disabilities/tess-disabilities.html",
   NS: "https://novascotia.ca/employmentnovascotia/interventions/default.asp",
+  PE: "https://resourceabilities.ca/job-seekers/",
 };
 
 /* =============================================================================
@@ -201,6 +210,33 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "pe-adult-day-programs": { kind: "access", note: "Supervised day activities for seniors and a break for caregivers." },
+  "pe-coach": { kind: "access", note: "An in-home health care team for frail seniors with complex needs." },
+  "pe-children-complex-needs": { kind: "access", note: "Help finding, understanding and coordinating services for a child with complex needs." },
+  "pe-seniors-property-tax-deferral": { kind: "discount", note: "Property tax payments put off, with no interest added." },
+  "pe-home-care": { kind: "access", note: "Health care and support services at home, based on assessed need." },
+  "pe-accessible-parking": { kind: "access", note: "Parking access" },
+  "pe-severe-permanent-disability-benefit": { kind: "grant", note: "Student loan cancelled for people with a severe permanent disability." },
+  "pe-autism-funding": { kind: "grant", note: "Funding for hiring an Autism Assistant, tutor or aide for a child with autism." },
+  "pe-child-care-subsidy": { kind: "grant", note: "Child care costs partly or fully paid to your provider." },
+  "pe-seniors-housing": { kind: "access", note: "Subsidized rent or a rent supplement for seniors and older adults with a disability." },
+  "pe-family-housing": { kind: "access", note: "Subsidized rent or a rent supplement for families with low income." },
+  "pe-seniors-independence-initiative": { kind: "grant", note: "Funding for services that help seniors stay at home." },
+  "pe-seniors-drug": { kind: "discount", note: "Approved medications covered apart from a small cost per prescription." },
+  "pe-financial-assistance-drug": { kind: "access", note: "Full medication costs covered for people on Social Assistance." },
+  "pe-generic-drug": { kind: "discount", note: "Caps your cost for each eligible generic prescription." },
+  "pe-catastrophic-drug": { kind: "discount", note: "Prescription costs covered after your household reaches its yearly cap." },
+  "pe-family-health-benefit": { kind: "discount", note: "Full cost of approved medications covered for low-income families with children." },
+  "pe-seniors-hearing-aid": { kind: "discount", note: "Rebate toward hearing aids, covering the full cost at lower incomes." },
+  "pe-social-assistance": { kind: "grant", note: "Monthly money for basic needs, with more help for other needs." },
+  "pe-accessability-supports": { kind: "grant", note: "Funding for supports set by an assessment, plus basic-needs money through Assured Income." },
+  "pe-out-of-province-travel": { kind: "discount", note: "Pays 50% or 100% of bus tickets for approved medical travel, by household income." },
+  "pe-home-energy-low-income": { kind: "grant", note: "Free home upgrades and a furnace cleaning voucher worth up to $80, at no cost to you." },
+  "pe-dental-care": { kind: "discount", note: "Pays part or all of covered dental services, from 20% to 100% by income." },
+  "pe-seniors-safe-at-home": { kind: "grant", note: "A grant for home safety and access changes, up to $5,000 over your lifetime, set by income." },
+  "pe-home-renovation-seniors": { kind: "grant", note: "An added grant of up to $4,000, lower at higher incomes, paid back to you after the work." },
+  "pe-renovation-persons-disabilities": { kind: "grant", note: "A grant of up to $16,000, lower at higher incomes, paid back to you after the work." },
+  "pe-caregiver-benefit": { kind: "grant", note: "A monthly payment of $250 to $1,500, set by household income, passed to the caregiver." },
   "ns-child-care-subsidy": { kind: "discount", note: "Part of child care fees paid for you" },
   "ns-respite-care": { kind: "access", note: "Temporary care so caregivers can rest" },
   "ns-specialized-bed-loan": { kind: "access", note: "Free equipment loan" },
@@ -602,6 +638,33 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "pe-adult-day-programs": { difficulty: 2, effort: "Referral and an eligibility assessment", wait: "Not published" },
+  "pe-coach": { difficulty: 3, effort: "Referral, assessment and panel approval", wait: "Not published" },
+  "pe-children-complex-needs": { difficulty: 2, effort: "Call, email or online referral form", wait: "Response within 5 business days" },
+  "pe-seniors-property-tax-deferral": { difficulty: 2, effort: "One form with tax documents", wait: "Not published" },
+  "pe-home-care": { difficulty: 2, effort: "Referral form, then an assessment", wait: "Not published" },
+  "pe-accessible-parking": { difficulty: 2, effort: "Medical signature, then an office visit", wait: "Not published" },
+  "pe-severe-permanent-disability-benefit": { difficulty: 4, effort: "Federal approval first, then a provincial application", wait: "Not published" },
+  "pe-autism-funding": { difficulty: 3, effort: "Specialist-led application or contact with AccessAbility Supports", wait: "Not published" },
+  "pe-child-care-subsidy": { difficulty: 2, effort: "Phone call and a needs assessment", wait: "Not published" },
+  "pe-seniors-housing": { difficulty: 3, effort: "Online or paper form, then an appointment", wait: "Not published" },
+  "pe-family-housing": { difficulty: 3, effort: "Online or paper form, then an appointment", wait: "Not published" },
+  "pe-seniors-independence-initiative": { difficulty: 2, effort: "Online or paper form, then a needs assessment", wait: "Not published" },
+  "pe-seniors-drug": { difficulty: 1, effort: "No application", wait: "Not published" },
+  "pe-financial-assistance-drug": { difficulty: 1, effort: "Handled through your Social Assistance file", wait: "Not published" },
+  "pe-generic-drug": { difficulty: 2, effort: "Short form online or on paper", wait: "Not published" },
+  "pe-catastrophic-drug": { difficulty: 3, effort: "Paper or online form with income verification", wait: "Not published" },
+  "pe-family-health-benefit": { difficulty: 3, effort: "Paper or online form with income verification", wait: "Not published" },
+  "pe-seniors-hearing-aid": { difficulty: 3, effort: "Phone or email screening, income and asset checks", wait: "Not published" },
+  "pe-social-assistance": { difficulty: 3, effort: "Phone call, intake appointment and documents", wait: "Not published" },
+  "pe-accessability-supports": { difficulty: 4, effort: "Phone screening, then an assessment", wait: "Not published" },
+  "pe-out-of-province-travel": { difficulty: 3, effort: "Form with tax documents; approval needed first", wait: "Not published" },
+  "pe-home-energy-low-income": { difficulty: 2, effort: "Mail a paper form with income proof and an electric bill", wait: "Not published" },
+  "pe-dental-care": { difficulty: 3, effort: "Request and return a signed paper form", wait: "Not published" },
+  "pe-seniors-safe-at-home": { difficulty: 3, effort: "Application with income proof and two estimates", wait: "Not published" },
+  "pe-home-renovation-seniors": { difficulty: 4, effort: "Application with income proof and two quotes", wait: "Not published" },
+  "pe-renovation-persons-disabilities": { difficulty: 4, effort: "Application with medical form, income proof and two quotes", wait: "Not published" },
+  "pe-caregiver-benefit": { difficulty: 3, effort: "Call, then an assessment and an intake appointment", wait: "Not published" },
   "ns-child-care-subsidy": { difficulty: 3, effort: "Online application with supporting documents", wait: "Decision within 8 weeks" },
   "ns-respite-care": { difficulty: 3, effort: "Phone call and an assessment", wait: "Not published" },
   "ns-specialized-bed-loan": { difficulty: 2, effort: "Phone call and an assessment", wait: "Not published" },
@@ -1923,6 +1986,63 @@ const HELP_ORGS = [
     urlText: "dal.ca/faculty/law/dlas",
     focus: ["appeals", "rights"],
     coverage: ["NS"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "pe-legal-aid",
+    cat: "If you're denied — legal help & appeals",
+    name: "PEI Legal Aid",
+    summary: "PEI Legal Aid gives legal representation and help to people with a low income who have serious legal needs in criminal, youth criminal, or family and civil law.",
+    url: "https://www.princeedwardisland.ca/en/information/justice-and-public-safety/legal-aid",
+    urlText: "princeedwardisland.ca",
+    focus: ["appeals", "rights"],
+    coverage: ["PE"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "pe-211",
+    cat: "Find local services near you",
+    name: "211 PEI",
+    summary: "Free, confidential 24/7 live help finding community, non-profit and government services (financial, education and employment among them). Dial 2-1-1, call, text or email.",
+    phone: "1-844-925-1257",
+    url: "https://pe.211.ca/about-us",
+    urlText: "211 PEI",
+    focus: ["local", "family"],
+    coverage: ["PE"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "pe-disability-alliance-canada",
+    cat: "Help with the forms",
+    name: "Disability Alliance Canada",
+    summary: "National non-profit (not PEI-specific) offering free advocate support for the Disability Tax Credit, CPP Disability and the Canada Disability Benefit, plus free guides.",
+    url: "https://www.disabilityalliancecanada.ca",
+    urlText: "disabilityalliancecanada.ca",
+    focus: ["dtc", "appeals", "tax"],
+    coverage: ["PE"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "pe-plan-institute",
+    cat: "Help with the forms",
+    name: "Plan Institute Disability Planning Helpline",
+    summary: "National not-for-profit (not PEI-specific) with a free nationwide Disability Planning Helpline covering disability topics including the RDSP.",
+    phone: "1-844-311-7526",
+    url: "https://www.rdsp.com",
+    urlText: "rdsp.com",
+    focus: ["rdsp", "family"],
+    coverage: ["PE"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "pe-resourceabilities",
+    cat: "Find local services near you",
+    name: "ResourceAbilities",
+    summary: "PEI non-profit promoting full participation and inclusion of people with disabilities: employment services, designated parking permits and inclusion training.",
+    url: "https://www.resourceabilities.ca",
+    urlText: "resourceabilities.ca",
+    focus: ["local", "accommodation"],
+    coverage: ["PE"],
     verified: "2026-10-18",
   },
 ];
@@ -17915,6 +18035,1426 @@ const BENEFITS = [
       ],
       "phone": "1-844-804-2084"
     }
+  },
+  {
+    "id": "pe-caregiver-benefit",
+    "name": "At Home Caregiver Benefit",
+    "level": "Prince Edward Island",
+    "category": "Money",
+    "amount": "$250 to $1,500 per month",
+    "summary": "Pays $250 to $1,500 a month to a person living at home with high care needs, based on household income. They pass it to their unpaid primary caregiver.",
+    "note": "This is from the province's handbook, which shows no date. Confirm current amounts. Home Care decides if you are eligible.",
+    "requires": [
+      "pe",
+      "peCaregiverBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "The person receiving care is 65 or older, or under 65 and approved by Home Care case by case.",
+        "Home Care assesses high ongoing care needs and likely long-term care, and the person accepts Home Care.",
+        "The person receiving care does not live in a care facility or long-term care home.",
+        "The caregiver is 18 or older, unpaid, and plays the main role in the care.",
+        "The caregiver lives in PEI with a valid health card (or has applied) and is a permanent resident of Canada."
+      ],
+      "note": "The person receiving care also needs an up-to-date Notice of Assessment from the Canada Revenue Agency."
+    },
+    "applyText": "Call to be connected to your local Home Care office. Then book an intake appointment.",
+    "applyUrl": "https://www.princeedwardisland.ca/sites/default/files/publications/at_home_caregiver_benefit_handbook.pdf",
+    "source": "https://www.princeedwardisland.ca/sites/default/files/publications/at_home_caregiver_benefit_handbook.pdf",
+    "detail": {
+      "aboutList": {
+        "lead": "How the benefit works:",
+        "items": [
+          "The amount depends on the care recipient's income from line 23600 of the tax assessment.",
+          "One payment goes to the care recipient, who pays it to the caregiver.",
+          "Home Care reassesses care needs every year, and you do not need to reapply.",
+          "You do not need to be on the long-term care wait list."
+        ]
+      },
+      "steps": [
+        "Call to reach your local Home Care office.",
+        "Home Care does an assessment, if one is needed.",
+        "Book an intake appointment with a Supports Coordinator.",
+        "The coordinator enrolls you and sets your monthly benefit."
+      ],
+      "documents": [
+        "Canada Revenue Agency Notice of Assessment.",
+        "Direct deposit information.",
+        "PEI health card number.",
+        "Social Insurance Number for the care recipient.",
+        "Signed Confirmation of Caregiver form."
+      ],
+      "tips": [
+        "An agent, such as a spouse or adult child, can act if the care recipient cannot join the financial assessment.",
+        "The caregiver completes a short logbook entry each month.",
+        "Tell your Supports Coordinator about changes in caregiving, such as an absence or stay of more than 30 days."
+      ],
+      "phone": "1-800-371-8245"
+    }
+  },
+  {
+    "id": "pe-renovation-persons-disabilities",
+    "name": "Renovation Program for Persons with Disabilities",
+    "level": "Prince Edward Island",
+    "category": "Home",
+    "amount": "Up to $16,000",
+    "summary": "A grant of up to $16,000 for homeowners with modest income and a permanent disability who need home renovations to fit their disability. The amount falls as income rises.",
+    "note": "This is from the province's July 2021 brochure. Confirm current amounts and income limits.",
+    "requires": [
+      "pe",
+      "peRenovationPersonsDisabilitiesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have a permanent disability and need renovations to your home.",
+        "Your combined household income is $50,000 or less.",
+        "You own the home or have a life interest in it.",
+        "The property is your principal residence and assessed at $300,000 or less.",
+        "You are a Canadian citizen or landed immigrant and a PEI permanent resident."
+      ],
+      "note": "You must not have reached the current maximum grant through earlier applications."
+    },
+    "applyText": "Fill in the application and send it with a Medical Verification Form and proof of income.",
+    "applyUrl": "https://www.princeedwardisland.ca/sites/default/files/publications/peihrp_brochure_july_2021.pdf",
+    "source": "https://www.princeedwardisland.ca/sites/default/files/publications/peihrp_brochure_july_2021.pdf",
+    "detail": {
+      "aboutList": {
+        "lead": "What the grant covers:",
+        "items": [
+          "The 2021 grant is $16,000 at $35,000 income or less, down to $2,000 at $47,001-$50,000.",
+          "It pays for renovations that fit your disability.",
+          "Work started before approval is not eligible.",
+          "Once you reach the maximum grant, you cannot get another for 15 years."
+        ]
+      },
+      "steps": [
+        "Fill in the application and attach your documents.",
+        "Wait for a letter that says if you are eligible.",
+        "Send two detailed cost estimates when asked.",
+        "After the work, send final invoices with the Request for Payment form."
+      ],
+      "documents": [
+        "Medical Verification Form as proof of disability.",
+        "Canada Revenue Agency Statement of Consent, or your latest Notice of Assessment.",
+        "Two detailed estimates for the repairs."
+      ],
+      "tips": [
+        "Only essential repairs qualify, not cosmetic upgrades.",
+        "You must keep the property for three years after the funding.",
+        "Your application stays active for up to one year from the date it is received."
+      ],
+      "phone": "1-855-374-7366"
+    }
+  },
+  {
+    "id": "pe-home-renovation-seniors",
+    "name": "Seniors Home Repair Program",
+    "level": "Prince Edward Island",
+    "category": "Home",
+    "amount": "Up to $4,000 extra",
+    "summary": "If you are 60 or older when you apply, you may be assessed for up to $4,000 in additional grant funding. It is part of the PEI Home Renovation Programs for homeowners with modest income.",
+    "note": "This is from the province's July 2021 brochure. Confirm current amounts and income limits.",
+    "requires": [
+      "pe",
+      "age60plus",
+      "peHomeRenovationSeniorsRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 60 or older on the day you apply.",
+        "Your combined household income is $50,000 or less.",
+        "You own the home or have a life interest in it.",
+        "The property is your principal residence and assessed at $300,000 or less.",
+        "You are a Canadian citizen or landed immigrant and a PEI permanent resident."
+      ]
+    },
+    "applyText": "Fill in the PEI Home Renovation Programs application and send it with proof of income.",
+    "applyUrl": "https://www.princeedwardisland.ca/sites/default/files/publications/peihrp_brochure_july_2021.pdf",
+    "source": "https://www.princeedwardisland.ca/sites/default/files/publications/peihrp_brochure_july_2021.pdf",
+    "detail": {
+      "aboutList": {
+        "lead": "What the grant covers:",
+        "items": [
+          "The 2021 seniors grant is $4,000 at $35,000 income or less, down to $2,000.",
+          "The brochure calls it additional grant funding and lists it in its own column of the grant table.",
+          "Work started before approval is not eligible.",
+          "Approvals are issued by mail."
+        ]
+      },
+      "steps": [
+        "Fill in the application and attach your documents.",
+        "Wait for a letter that says if you are eligible.",
+        "Send two detailed cost estimates when asked.",
+        "After the work, send final invoices with the Request for Payment form."
+      ],
+      "documents": [
+        "Canada Revenue Agency Statement of Consent, or your latest Notice of Assessment.",
+        "Two detailed estimates for the repairs."
+      ],
+      "tips": [
+        "Only essential repairs qualify, not cosmetic upgrades.",
+        "Heat pumps and storm doors are not eligible renovations."
+      ],
+      "phone": "1-855-374-7366"
+    }
+  },
+  {
+    "id": "pe-seniors-safe-at-home",
+    "name": "Seniors Safe @ Home Program",
+    "level": "Prince Edward Island",
+    "category": "Home",
+    "amount": "Up to $5,000 lifetime, per this brochure",
+    "summary": "Pays for minor home changes that help low and moderate income seniors with daily living stay in their home. This brochure lists a lifetime grant of up to $5,000, set by your income.",
+    "note": "This brochure shows no date. The July 2021 PEI renovation brochure lists up to $10,000 for this program, so confirm the current amount and income limits.",
+    "requires": [
+      "pe",
+      "age60plus",
+      "peSeniorsSafeAtHomeRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 60 or older on the date you apply.",
+        "Your combined income is $50,000 or less.",
+        "You, your spouse or a family member owns the home. Rentals are not eligible.",
+        "The property is your principal residence.",
+        "The changes relate to your loss of ability and keep you safe at home."
+      ],
+      "note": "You must be a Canadian citizen or landed immigrant and PEI permanent resident, not at the maximum grant."
+    },
+    "applyText": "Fill out the application form and send it with proof of income and two estimates.",
+    "applyUrl": "https://www.princeedwardisland.ca/sites/default/files/forms/seniorssafehomeprog-web_version.pdf",
+    "source": "https://www.princeedwardisland.ca/sites/default/files/forms/seniorssafehomeprog-web_version.pdf",
+    "detail": {
+      "aboutList": {
+        "lead": "What the grant covers:",
+        "items": [
+          "Changes must be housing related and permanently installed.",
+          "They must improve access to basic facilities or physical safety.",
+          "The grant is $5,000 at $35,000 income or less, down to $1,000 at $47,001 to $50,000.",
+          "Portable devices are not eligible."
+        ]
+      },
+      "steps": [
+        "Use the Self Assessment Guide to pick the changes you need.",
+        "Fill out the application form.",
+        "Send it in with your documents.",
+        "Finish the changes within 90 days of approval, then send invoices for payment."
+      ],
+      "documents": [
+        "Canada Revenue Agency Statement of Consent, or your latest Notice of Assessment.",
+        "Two detailed estimates for the changes."
+      ],
+      "tips": [
+        "Changes made before the approval date are not eligible.",
+        "The program works on a first come, first served basis.",
+        "You can apply more than once, up to the lifetime maximum."
+      ],
+      "phone": "1-855-374-7366"
+    }
+  },
+  {
+    "id": "pe-dental-care",
+    "name": "Provincial Dental Care Program",
+    "level": "Prince Edward Island",
+    "category": "Health",
+    "amount": "Coverage from 20% to 100%",
+    "summary": "Covers exams, fillings, extractions, limited cleanings and removable dentures for PEI residents on social or disability assistance, or whose family income is under the program's thresholds.",
+    "note": "The brochure shows no date. The income table is in it, so confirm the current figures with the program.",
+    "requires": [
+      "pe",
+      "peDentalCareRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You get Social Assistance or Assured Income, including AccessAbility Supports.",
+        "Your family income is within the program's financial threshold for your family size."
+      ],
+      "note": "You also need an active PEI Health Card."
+    },
+    "applyText": "Call to request an application form, or complete and return the original form.",
+    "applyUrl": "https://www.princeedwardisland.ca/sites/default/files/publications/provincial_dental_care_program_brochure.pdf",
+    "source": "https://www.princeedwardisland.ca/sites/default/files/publications/provincial_dental_care_program_brochure.pdf",
+    "detail": {
+      "aboutList": {
+        "lead": "What is covered:",
+        "items": [
+          "An annual exam once per 12 months, and emergency exams as required.",
+          "Fillings, limited root canal treatment and extractions.",
+          "Removable dentures once every 10 years, though you may pay lab fees.",
+          "Sealants and fluoride have age limits."
+        ]
+      },
+      "steps": [
+        "Complete the application form, or call to request one.",
+        "Fill it in and give consent for Health PEI to get your income from the Canada Revenue Agency.",
+        "Return the signed original form to Dental Public Health.",
+        "Get treatment at a private dental office or a Health PEI clinic."
+      ],
+      "documents": [
+        "Completed and signed original application form.",
+        "Consent for Health PEI to get your financial information."
+      ],
+      "tips": [
+        "A one-person household at $22,014 or less gets 100% coverage, per the brochure table.",
+        "A one-person household up to $30,820 gets 20% coverage.",
+        "You can use private dental offices or Health PEI clinics."
+      ],
+      "phone": "1-866-368-5460"
+    }
+  },
+  {
+    "id": "pe-home-energy-low-income",
+    "name": "Home Energy Low-income Program (HELP)",
+    "level": "Prince Edward Island",
+    "category": "Home",
+    "amount": "Free air-sealing and energy upgrades",
+    "summary": "Households with an income of $35,000 or less are eligible for free air-sealing. Other features are a programmable thermostat, a low-flow showerhead, bulbs and a furnace cleaning voucher (up to $80 value).",
+    "note": "This is from the program's application form, which shows no date. Confirm current rules with efficiency PEI.",
+    "requires": [
+      "pe",
+      "peHomeEnergyLowIncomeRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Your annual household income is $35,000 or less.",
+        "The form also lists receiving the National Child Benefit Supplement.",
+        "The form also lists receiving the Guaranteed Income Supplement."
+      ],
+      "note": "Registered in your name, or a year-round rental where you pay all heating; lived in November to April."
+    },
+    "applyText": "Fill out the form and mail it with your income proof and latest Maritime Electric bill.",
+    "applyUrl": "https://www.princeedwardisland.ca/sites/default/files/forms/help_program_application-efficiency_pei_1.pdf",
+    "source": "https://www.princeedwardisland.ca/sites/default/files/forms/help_program_application-efficiency_pei_1.pdf",
+    "detail": {
+      "aboutList": {
+        "lead": "What you get:",
+        "items": [
+          "A tradesperson does comprehensive air-sealing at no cost.",
+          "A programmable thermostat and a low-flow showerhead are installed.",
+          "A voucher covers a free furnace cleaning worth up to $80.",
+          "The form says you cannot apply again for the same property for 5 years."
+        ]
+      },
+      "steps": [
+        "Confirm you are eligible using the terms and conditions.",
+        "Fill out the form completely.",
+        "Mail it with originals of your proof of income and your latest electric bill.",
+        "You can also drop it off at an Access PEI office."
+      ],
+      "documents": [
+        "Your most recent GST, National Child Benefit Supplement or Guaranteed Income Supplement notice.",
+        "Original July GST Credit Notice as proof of income.",
+        "Maritime Electric bill showing last year's use."
+      ],
+      "tips": [
+        "Incomplete forms delay or disqualify your application.",
+        "The furnace voucher has no cash value and cannot be transferred.",
+        "The owner can allow or deny any contractor access."
+      ],
+      "phone": "1-877-734-6336"
+    }
+  },
+  {
+    "id": "pe-out-of-province-travel",
+    "name": "Out-of-Province Travel Support",
+    "level": "Prince Edward Island",
+    "category": "Health",
+    "amount": "50% to 100% bus ticket subsidy",
+    "summary": "Helps pay bus tickets for medical care outside PEI that Health PEI approved. The subsidy is 100% at $35,000 household income or less, 50% from $35,001 to $50,000.",
+    "note": "This is from the program's application form, which shows no date. Confirm current rates with the program.",
+    "requires": [
+      "pe",
+      "age18plus",
+      "peOutOfProvinceTravelRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Health PEI has approved your out-of-province medical services.",
+        "You live in PEI and hold a valid Personal Health Number.",
+        "Your net household income is $50,000 or less.",
+        "Your travel costs are not covered by other non-provincial government help."
+      ],
+      "note": "The applicant must be 18 or older, and the form lets you request an essential escort."
+    },
+    "applyText": "Send the application form with your Notice of Assessment by email, fax, mail or online.",
+    "applyUrl": "https://www.princeedwardisland.ca/sites/default/files/forms/out_of_province_travel_support_application.pdf",
+    "source": "https://www.princeedwardisland.ca/sites/default/files/forms/out_of_province_travel_support_application.pdf",
+    "detail": {
+      "aboutList": {
+        "lead": "How it works:",
+        "items": [
+          "The subsidy applies to Maritime Bus fares.",
+          "An essential escort is a parent or guardian of a child, or a person needed for safe travel.",
+          "Household income counts both the applicant and the spouse.",
+          "Maritime Bus is wheelchair accessible, with 72 hours notice."
+        ]
+      },
+      "steps": [
+        "Get approval from Health PEI for the out-of-province service.",
+        "Fill in the application form and sign the consent.",
+        "Attach the Notice of Assessment for you and your spouse.",
+        "Send it by email, fax, mail or online."
+      ],
+      "documents": [
+        "Canada Revenue Agency Notice of Assessment for you and your spouse.",
+        "Signed application form with declaration and consent."
+      ],
+      "tips": [
+        "Incomplete applications are returned.",
+        "Send new assessments if more than 12 months pass.",
+        "Tell the program if your household income changes."
+      ],
+      "phone": "(902) 368-5918"
+    }
+  },
+  {
+    "id": "pe-accessability-supports",
+    "name": "AccessAbility Supports",
+    "level": "Prince Edward Island",
+    "category": "Daily living supports",
+    "amount": "Funding set by assessment; respite up to $430 a month",
+    "summary": "Funding for Islanders under 65 with a diagnosed disability. It covers personal, housing, community and caregiver supports. Assured Income helps with basic needs.",
+    "note": "Page published September 17, 2026. Clients may pay part of their disability costs based on income.",
+    "requires": [
+      "pe",
+      "peAccessabilitySupportsRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have a disability diagnosed by a health professional.",
+        "The impairment is significant and expected to last 12 months or more.",
+        "You live in PEI and have a provincial health number.",
+        "You are a Canadian citizen or permanent resident.",
+        "You are under 65 when you apply."
+      ]
+    },
+    "applyText": "Call the screening line to book an assessment with a staff person.",
+    "applyUrl": "https://www.princeedwardisland.ca/en/information/social-development-and-seniors/accessability-supports",
+    "source": "https://www.princeedwardisland.ca/en/information/social-development-and-seniors/accessability-supports",
+    "detail": {
+      "aboutList": {
+        "lead": "Help is available in five areas of support:",
+        "items": [
+          "Personal supports include life skills training, assistive devices and in-home help.",
+          "Housing supports include vehicle and home changes and residential supports.",
+          "Community supports include peer connection, day programs and specialized transportation.",
+          "Caregiver supports include supervision funding, respite and behavioural supports.",
+          "Financial supports (Assured Income) help with food, clothing, shelter and supplies."
+        ]
+      },
+      "steps": [
+        "Call the screening line to check if you may be eligible.",
+        "Meet a staff person for an assessment of how disability affects your daily life.",
+        "Staff explain which supports can meet your needs.",
+        "The handbook says you can ask for an appeal of a decision within 30 days."
+      ],
+      "documents": [
+        "Identification for each adult family member.",
+        "Medical information from a health professional.",
+        "Direct deposit information.",
+        "Bank statements and pay stubs if you ask for Assured Income."
+      ],
+      "tips": [
+        "Vehicle changes: up to $6,000 every 8 years, set by an occupational therapist.",
+        "Home changes: up to $10,000 every 10 years, set by an occupational therapist.",
+        "Supervision and peer connection supports start at age 12.",
+        "You pay no client contribution if you get Assured Income or are under 18.",
+        "Bring a friend, family member or advocate to appointments."
+      ],
+      "phone": "1-877-569-0546"
+    }
+  },
+  {
+    "id": "pe-social-assistance",
+    "name": "Social Assistance Program",
+    "level": "Prince Edward Island",
+    "category": "Income support",
+    "amount": "Monthly amount set by your needs and income",
+    "summary": "Monthly help paying for food, clothing and shelter when your income cannot cover basic costs. You may also get help with child care, medicine and hearing aids.",
+    "note": "Page published March 25, 2024. The amount is assessed monthly and can change with your income and family.",
+    "requires": [
+      "pe",
+      "age18plus",
+      "peSocialAssistanceRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in PEI and are age 18 or older.",
+        "Your income cannot cover the basic costs of living."
+      ]
+    },
+    "applyText": "Call the social assistance screening line to book an intake appointment.",
+    "applyUrl": "https://www.princeedwardisland.ca/en/information/social-development-and-seniors/social-assistance-program",
+    "source": "https://www.princeedwardisland.ca/en/information/social-development-and-seniors/social-assistance-program",
+    "detail": {
+      "aboutList": {
+        "lead": "Social Assistance can help with these needs:",
+        "items": [
+          "Basic needs include food, clothing, household and personal items, and shelter.",
+          "Basic needs also include phone or internet costs and utilities.",
+          "Other needs may include child care, transportation and medications.",
+          "Other needs may also include hearing aids, eyeglasses and rent deposits.",
+          "Social Assistance enrols you automatically in the Financial Assistance Drug and Provincial Dental Care programs."
+        ]
+      },
+      "steps": [
+        "Call the screening line and book an intake appointment.",
+        "Bring your documents to the appointment.",
+        "A social supports coordinator reviews your situation and completes the application with you.",
+        "You sign the Applicant Declaration, a legal document, to agree to the program rules."
+      ],
+      "documents": [
+        "Identification for each adult family member.",
+        "Citizenship papers for each person born outside Canada.",
+        "Direct deposit information and bank statements.",
+        "Pay stubs for the previous 31 days, or other proof of income.",
+        "Utility bills and proof of expenses, and PEI resident confirmation."
+      ],
+      "tips": [
+        "You must report all income, earned and unearned.",
+        "The Canada Child Benefit, child support and HST refunds are not counted as income.",
+        "Cable TV, car payments and personal debts are not counted as expenses.",
+        "Tell your coordinator about any change in family or income."
+      ],
+      "phone": "1-877-569-0546"
+    }
+  },
+  {
+    "id": "pe-seniors-hearing-aid",
+    "name": "Seniors Hearing Aid Rebate Program",
+    "level": "Prince Edward Island",
+    "category": "Health",
+    "amount": "Rebate up to $6,000 per person",
+    "summary": "A rebate toward hearing aids for people 65 and older with hearing loss. Full cost is covered at lower incomes, and part of the cost above that.",
+    "note": "Page published December 12, 2024. Hearing aids are payable once every 5 years.",
+    "requires": [
+      "pe",
+      "age65plus",
+      "hearingDisability",
+      "peSeniorsHearingAidRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 65 or older.",
+        "An audiologist's test shows average hearing loss of 50 dB or more.",
+        "You give your household net income from line 23600 of your latest tax return.",
+        "You give proof of your assets, with $100,000 exempt."
+      ],
+      "note": "Full benefits need no other medical coverage; if you have some, the program may cover a co-pay gap."
+    },
+    "applyText": "Call or email the screening line to talk about your eligibility.",
+    "applyUrl": "https://www.princeedwardisland.ca/en/information/social-development-and-seniors/seniors-hearing-aid-rebate-program",
+    "source": "https://www.princeedwardisland.ca/en/information/social-development-and-seniors/seniors-hearing-aid-rebate-program",
+    "detail": {
+      "aboutList": {
+        "lead": "The program works like this:",
+        "items": [
+          "The rebate is up to $6,000 per person.",
+          "Each hearing aid can cost up to $3,000.",
+          "At or below the Market Basket Measure, the full cost is covered.",
+          "Above it, a sliding scale covers part of the cost, up to $100,000 household income."
+        ]
+      },
+      "steps": [
+        "Get a hearing assessment from a certified audiologist.",
+        "Contact the screening line or email screening@gov.pe.ca.",
+        "Staff review your income and assets.",
+        "Staff tell you how much of the cost is covered."
+      ],
+      "documents": [
+        "Hearing assessment from a certified audiologist.",
+        "Line 23600 of your most recent income tax return.",
+        "Proof of assets, such as bank statements or property deeds."
+      ],
+      "tips": [
+        "Call the screening line to talk about eligibility and the sliding scale.",
+        "The Market Basket Measure is $22,253 for one person (the page also shows $22,523 once).",
+        "For couples, the line is $31,470; above that, up to $100,000 is on a sliding scale.",
+        "Your main home and one vehicle not mainly for recreation do not count as assets."
+      ],
+      "phone": "1-877-569-0546"
+    }
+  },
+  {
+    "id": "pe-family-health-benefit",
+    "name": "Family Health Benefit Drug Program",
+    "level": "Prince Edward Island",
+    "category": "Health (for children)",
+    "amount": "Full drug cost covered; you pay the dispensing fee",
+    "summary": "Helps low-income families pay for approved prescriptions for parents and children. The program covers the full drug cost and you pay the pharmacy fee.",
+    "note": "Page published October 23, 2025. Coverage runs until September 30 and you must re-apply each year.",
+    "requires": [
+      "pe",
+      "peFamilyHealthBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in PEI as defined by the Drug Cost Assistance Act.",
+        "You have a valid PEI Health Card.",
+        "You filed your PEI tax return and agree to income checks.",
+        "You are a low-income family supporting a child under 19, or a full-time student under 25."
+      ]
+    },
+    "applyText": "Send the Family Health Benefit application form to PEI Pharmacare.",
+    "applyUrl": "https://www.princeedwardisland.ca/en/information/health-and-wellness/family-health-benefit-drug-program",
+    "source": "https://www.princeedwardisland.ca/en/information/health-and-wellness/family-health-benefit-drug-program",
+    "detail": {
+      "aboutList": {
+        "lead": "What the program covers:",
+        "items": [
+          "It covers approved prescriptions for you, your spouse and your dependents.",
+          "Medications must be on the PEI Pharmacare Formulary.",
+          "Some drugs need a Special Authorization Request from your prescriber or pharmacist.",
+          "Private insurance is billed first, then PEI Pharmacare covers what is left."
+        ]
+      },
+      "steps": [
+        "Fill out the Family Health Benefit application form.",
+        "Add proof of enrolment for any dependant who is a full-time student.",
+        "Submit it to PEI Pharmacare.",
+        "Re-apply online each year before coverage ends."
+      ],
+      "documents": [
+        "Completed Family Health Benefit application form.",
+        "Proof of enrolment for any full-time student dependant."
+      ],
+      "tips": [
+        "Income limit with 1 dependent is under $24,800; 2 is under $27,800.",
+        "Limit with 3 is under $30,800; 4 is under $33,800.",
+        "Add $3,000 for each dependent past 4.",
+        "Coverage is not retroactive.",
+        "Any community retail pharmacy in PEI can fill your prescriptions."
+      ],
+      "phone": "1-877-577-3737"
+    }
+  },
+  {
+    "id": "pe-catastrophic-drug",
+    "name": "Catastrophic Drug Program",
+    "level": "Prince Edward Island",
+    "category": "Health",
+    "amount": "Yearly cost cap of 3% to 6.5% of household income",
+    "summary": "Caps your yearly prescription costs at a share of household income. Once you reach the cap, eligible medications are covered for the rest of the year.",
+    "note": "Percentages are effective July 1, 2023. Coverage runs July 1 to June 30; you must re-apply each year.",
+    "requires": [
+      "pe"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in PEI as defined by the Drug Cost Assistance Act.",
+        "You have a valid PEI Health Card.",
+        "You filed your most recent tax return in PEI.",
+        "You agree to household income checks by the Canada Revenue Agency."
+      ]
+    },
+    "applyText": "Send the Catastrophic Drug Program application form to PEI Pharmacare.",
+    "applyUrl": "https://www.princeedwardisland.ca/en/information/health-and-wellness/catastrophic-drug-program",
+    "source": "https://www.princeedwardisland.ca/en/information/health-and-wellness/catastrophic-drug-program",
+    "detail": {
+      "aboutList": {
+        "lead": "How the yearly cap works:",
+        "items": [
+          "Up to $20,000 household income, you pay 3% of income before help starts.",
+          "Above that, the share rises in steps as income goes up.",
+          "Example: $55,000 household income at 4% gives a $2,200 cap.",
+          "Medications must be on the PEI Pharmacare Formulary.",
+          "Over-the-counter drugs and drugs paid by another public program are not covered."
+        ]
+      },
+      "steps": [
+        "Fill out the Catastrophic Drug Program application form.",
+        "Send it to PEI Pharmacare, or re-apply online.",
+        "Coverage starts on the date in your approval letter."
+      ],
+      "documents": [
+        "Completed Catastrophic Drug Program application form."
+      ],
+      "tips": [
+        "The top share is 6.5% of income, for households above $150,000.",
+        "Applying after July 1 pro-rates your cap for the time left until June 30.",
+        "Costs you pay at the pharmacy still count toward your cap.",
+        "Insurance premiums can lower your household income by up to $2,500 for the cap.",
+        "People in the Seniors' or Diabetes programs also qualify above their cap.",
+        "Coverage is not retroactive."
+      ],
+      "phone": "1-877-577-3737"
+    }
+  },
+  {
+    "id": "pe-generic-drug",
+    "name": "Generic Drug Program",
+    "level": "Prince Edward Island",
+    "category": "Health",
+    "amount": "Out-of-pocket cost capped at $19.95 per generic prescription",
+    "summary": "Limits what you pay for eligible generic prescriptions if you are under 65 and have no drug insurance.",
+    "note": "Page published June 25, 2026. Brand name, diabetes, narcotic and controlled, compounded and over-the-counter drugs are not covered.",
+    "requires": [
+      "pe",
+      "peGenericDrugRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have no private drug insurance coverage.",
+        "You are under 65.",
+        "You live in PEI as defined by the Drug Cost Assistance Act.",
+        "You have a valid PEI Health Card and an approved application."
+      ]
+    },
+    "applyText": "Apply online or hand in the form at Access PEI, a pharmacy or a doctor's office.",
+    "applyUrl": "https://www.princeedwardisland.ca/en/service/apply-for-the-generic-drug-program",
+    "source": "https://www.princeedwardisland.ca/en/service/apply-for-the-generic-drug-program",
+    "detail": {
+      "aboutList": {
+        "lead": "What the program covers:",
+        "items": [
+          "It covers eligible generic prescription drugs on the provincial formulary.",
+          "Some drugs are approved by special authorization only.",
+          "Drugs not on the PEI Pharmacare Formulary are not covered.",
+          "Manual claims are allowed only if a PEI pharmacy cannot dispense the drug."
+        ]
+      },
+      "steps": [
+        "Complete the online application, or fill in the paper form.",
+        "Hand in the paper form at Access PEI, a pharmacy, a doctor's office or a pharmacare office.",
+        "You need an approved application to be covered."
+      ],
+      "documents": [
+        "Completed Generic Drug Program application form."
+      ],
+      "tips": [
+        "The most you pay per eligible generic prescription is $19.95.",
+        "Coverage is not retroactive; past purchases are not repaid.",
+        "Diabetes drugs are covered through a different public program."
+      ]
+    }
+  },
+  {
+    "id": "pe-financial-assistance-drug",
+    "name": "Financial Assistance Drug Program",
+    "level": "Prince Edward Island",
+    "category": "Health",
+    "amount": "All approved medication costs covered",
+    "summary": "Covers the full cost of approved prescription and non-prescription medications for people approved for Social Assistance.",
+    "note": "Page published October 23, 2025. Medications under the High Cost Drug Program are also covered, effective June 1, 2023.",
+    "requires": [
+      "pe",
+      "peFinancialAssistanceDrugRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have a PEI Health Card.",
+        "You have been approved under the Social Assistance Act."
+      ]
+    },
+    "applyText": "You do not apply. The Social Assistance Program submits your application.",
+    "applyUrl": "https://www.princeedwardisland.ca/en/information/health-and-wellness/financial-assistance-drug-program",
+    "source": "https://www.princeedwardisland.ca/en/information/health-and-wellness/financial-assistance-drug-program",
+    "detail": {
+      "aboutList": {
+        "lead": "What the program covers:",
+        "items": [
+          "Both prescription and non-prescription medications can be covered.",
+          "Medications must be on the PEI Pharmacare Formulary.",
+          "Some medications need special authorization.",
+          "Private insurance is billed first, then PEI Pharmacare covers what is left."
+        ]
+      },
+      "steps": [
+        "Apply for Social Assistance.",
+        "The Social Assistance Program submits your drug program application.",
+        "Fill your prescriptions at any PEI community retail pharmacy."
+      ],
+      "documents": [
+        "No separate documents are listed on the page."
+      ],
+      "tips": [
+        "Coverage is not retroactive.",
+        "Your eligibility ends the day you leave PEI to live elsewhere.",
+        "Social Assistance clients are enrolled in this program automatically."
+      ],
+      "phone": "1-877-577-3737"
+    }
+  },
+  {
+    "id": "pe-seniors-drug",
+    "name": "Seniors' Drug Program",
+    "level": "Prince Edward Island",
+    "category": "Health",
+    "amount": "You pay $8.25 plus $7.69 of the pharmacy fee per prescription",
+    "summary": "Covers the cost of approved medications for PEI residents 65 and older. You pay a small amount per prescription and the program pays the rest.",
+    "note": "Page published October 23, 2025. You are enrolled automatically when you turn 65.",
+    "requires": [
+      "pe",
+      "age65plus"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 65 or older.",
+        "You live in PEI as defined by the Drug Cost Assistance Act.",
+        "You have a valid PEI Health Card."
+      ]
+    },
+    "applyText": "There is no application. You are enrolled automatically at 65.",
+    "applyUrl": "https://www.princeedwardisland.ca/en/information/health-and-wellness/seniors-drug-program",
+    "source": "https://www.princeedwardisland.ca/en/information/health-and-wellness/seniors-drug-program",
+    "detail": {
+      "aboutList": {
+        "lead": "What the program covers:",
+        "items": [
+          "It covers approved medications on the PEI Pharmacare Formulary.",
+          "Some medications need special authorization.",
+          "Private insurance is billed first, then PEI Pharmacare covers what is left."
+        ]
+      },
+      "steps": [
+        "Turn 65 with a valid PEI Health Card.",
+        "You are enrolled automatically.",
+        "Fill prescriptions at any PEI community retail pharmacy."
+      ],
+      "documents": [
+        "No documents are needed to enroll."
+      ],
+      "tips": [
+        "For each eligible prescription you pay $8.25 plus $7.69 of the pharmacy professional fee.",
+        "Coverage is not retroactive.",
+        "Your eligibility ends the day you leave PEI to live elsewhere."
+      ],
+      "phone": "1-877-577-3737"
+    }
+  },
+  {
+    "id": "pe-seniors-independence-initiative",
+    "name": "Seniors Independence Initiative",
+    "level": "Prince Edward Island",
+    "category": "Home support",
+    "amount": "Up to $1,800, based on income",
+    "summary": "Money for services that help seniors stay in their own homes, like housekeeping, meals, transportation and snow removal. The amount depends on income.",
+    "note": "Page published September 17, 2024. It adds to help from family, friends and other programs.",
+    "requires": [
+      "pe",
+      "age65plus",
+      "peSeniorsIndependenceInitiativeRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 65 or older.",
+        "You live independently or with a spouse.",
+        "Net household income is up to $32,753 single or $41,970 for a couple (line 236).",
+        "Combined assets are $100,000 or less, not counting home, land and vehicles."
+      ]
+    },
+    "applyText": "Apply online, with the downloaded form, or at any Access PEI office.",
+    "applyUrl": "https://www.princeedwardisland.ca/en/service/seniors-independence-initiative",
+    "source": "https://www.princeedwardisland.ca/en/service/seniors-independence-initiative",
+    "detail": {
+      "aboutList": {
+        "lead": "Funded services include:",
+        "items": [
+          "Light housekeeping and home maintenance.",
+          "Communication costs, including internet fees.",
+          "Snow removal and grass cutting.",
+          "Transportation and a medical alert system."
+        ]
+      },
+      "steps": [
+        "Apply online, download the form, or pick one up at an Access PEI office.",
+        "Staff contact you to assess your needs.",
+        "Call 1-877-569-0546 if you need help completing the application."
+      ],
+      "documents": [
+        "CRA Notice of Assessment showing line 236 net income.",
+        "The page lists no other documents; call 1-877-569-0546 for help with the application."
+      ],
+      "tips": [
+        "Singles: net income up to $22,253 gets $1,800; $22,254 to $25,753 gets $1,325.",
+        "Singles: $25,754 to $29,253 gets $950; $29,254 to $32,753 gets $575.",
+        "Couples: up to $31,470 gets $1,800; $31,471 to $34,970 gets $1,325.",
+        "Couples: $34,971 to $38,470 gets $950; $38,471 to $41,970 gets $575.",
+        "Email sii@gov.pe.ca to send your application digitally."
+      ],
+      "phone": "1-877-569-0546"
+    }
+  },
+  {
+    "id": "pe-family-housing",
+    "name": "Family Housing Program",
+    "level": "Prince Edward Island",
+    "category": "Housing",
+    "amount": "Most families pay 25% of household income for rent",
+    "summary": "Government-owned housing or rent supplements for families and individuals who cannot get or keep adequate housing because of low income or poor housing.",
+    "note": "Page published April 27, 2026. A local housing board assesses each application.",
+    "requires": [
+      "pe",
+      "peFamilyHousingRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Your household income is low.",
+        "Your current home is in poor condition.",
+        "You have other special circumstances that stop you getting adequate housing."
+      ],
+      "note": "A local housing board looks at dependents, income, housing cost, home condition and health needs."
+    },
+    "applyText": "Complete the online form or the Family Housing Application brochure form.",
+    "applyUrl": "https://www.princeedwardisland.ca/en/service/family-housing",
+    "source": "https://www.princeedwardisland.ca/en/service/family-housing",
+    "detail": {
+      "aboutList": {
+        "lead": "You may be approved for:",
+        "items": [
+          "Government-owned units from bachelor to four bedrooms with essential appliances.",
+          "Rent supplements for privately owned units in the community.",
+          "Tenants supply furniture and tenant's insurance, and pay heat and electricity.",
+          "Units are in Alberton, Charlottetown, Georgetown, Montague, Mount Stewart, O'Leary, Souris, Summerside and Tignish."
+        ]
+      },
+      "steps": [
+        "Complete the online form or the paper form.",
+        "A housing services representative calls to book an appointment.",
+        "Bring your documents to the appointment."
+      ],
+      "documents": [
+        "Recent CRA Notice of Assessment and tax summary.",
+        "Proof of residence, such as a PEI licence, utility bills or lease.",
+        "Verification of heat and electricity expenses.",
+        "Other income documents, such as pay stubs or pension verification."
+      ],
+      "tips": [
+        "Income limits as of April 24, 2026: $26,500 bachelor; $41,000 one bedroom.",
+        "Two bedroom $46,500; three bedroom $48,500; four bedroom $45,000.",
+        "Spending 30% or more of income on suitable housing is one factor the board looks at.",
+        "Housing offices: Summerside 902-888-8436; Charlottetown 902-368-5770.",
+        "Housing offices: Montague 902-838-0796; Souris 902-687-7098."
+      ]
+    }
+  },
+  {
+    "id": "pe-seniors-housing",
+    "name": "Seniors Housing Program",
+    "level": "Prince Edward Island",
+    "category": "Housing",
+    "amount": "Most tenants pay 25% of household income for rent",
+    "summary": "Rental help for seniors 60 and older, or 55 and older with a disability, who need housing. Choose government-owned housing or a rent supplement.",
+    "note": "Page published April 27, 2026. Income thresholds are as of April 24, 2026.",
+    "requires": [
+      "pe",
+      "peSeniorsHousingRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are 60 or older, or 55 or older and living with a disability.",
+        "You lack adequate housing or struggle to maintain your home.",
+        "Low income, poor housing or other special circumstances limit your independence."
+      ],
+      "note": "Staff also look at dependents, housing cost to income, home condition and health."
+    },
+    "applyText": "Complete the online form or the Seniors Housing Application brochure form.",
+    "applyUrl": "https://www.princeedwardisland.ca/en/service/seniors-housing",
+    "source": "https://www.princeedwardisland.ca/en/service/seniors-housing",
+    "detail": {
+      "aboutList": {
+        "lead": "You may be approved for:",
+        "items": [
+          "Government-owned bachelor, one-bedroom and a few two-bedroom units.",
+          "Some units are designed for people with a disability.",
+          "The program covers heating costs and ongoing maintenance.",
+          "Rent supplements help with rent in privately owned units."
+        ]
+      },
+      "steps": [
+        "Complete the online form or the paper form.",
+        "A housing services representative calls to book an appointment.",
+        "Bring your documents to the appointment."
+      ],
+      "documents": [
+        "Recent CRA Notice of Assessment and tax summary.",
+        "Documents to confirm your current residence.",
+        "Verification of heat and electricity expenses.",
+        "Other income documents."
+      ],
+      "tips": [
+        "Income limits as of April 24, 2026: $26,500 bachelor; $41,000 one bedroom.",
+        "Two bedroom $46,500; three bedroom $48,500; four bedroom $45,000.",
+        "Tenants pay electricity, TV, phone and internet, and must arrange electricity hook-up.",
+        "Housing offices: Summerside 902-888-8436; Charlottetown 902-368-5770.",
+        "Housing offices: Montague 902-838-0796; Souris 902-687-7098."
+      ]
+    }
+  },
+  {
+    "id": "pe-child-care-subsidy",
+    "name": "Child Care Subsidy Program",
+    "level": "Prince Edward Island",
+    "category": "Money (for parents)",
+    "amount": "Full or partial subsidy, set by a needs assessment",
+    "summary": "Helps pay for child care and daycare for children up to and including age 12. You may get a full or partial subsidy.",
+    "note": "Page published March 25, 2024. The subsidy is paid directly to your child care provider.",
+    "requires": [
+      "pe",
+      "peChildCareSubsidyRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in PEI and have a child aged 12 or under.",
+        "You are working, attending school or at home.",
+        "Your needs assessment and income support a subsidy."
+      ]
+    },
+    "applyText": "Call the child care subsidy office to get information or book an appointment.",
+    "applyUrl": "https://www.princeedwardisland.ca/en/information/social-development-and-seniors/help-for-child-care-expenses",
+    "source": "https://www.princeedwardisland.ca/en/information/social-development-and-seniors/help-for-child-care-expenses",
+    "detail": {
+      "aboutList": {
+        "lead": "How the subsidy works:",
+        "items": [
+          "Government pays your centre's rate up to the maximum for your child's age and care type.",
+          "Costs paid by a parent or another organization are subtracted first.",
+          "Your provider is paid directly.",
+          "You pay any difference between actual cost and the subsidy."
+        ]
+      },
+      "steps": [
+        "Try the online Child Care Subsidy Calculator.",
+        "Call the subsidy office to set up an appointment.",
+        "A needs assessment decides full or partial subsidy."
+      ],
+      "documents": [
+        "The page does not list documents."
+      ],
+      "tips": [
+        "The program is flexible and offers a range of support options.",
+        "Ask about your situation if you are at home or in school.",
+        "Bring your questions to the appointment."
+      ],
+      "phone": "1-877-569-0546"
+    }
+  },
+  {
+    "id": "pe-autism-funding",
+    "name": "Autism Funding",
+    "level": "Prince Edward Island",
+    "category": "Health (for children)",
+    "amount": "Preschool: 20 to 25 hours a week; school-age: yearly maximum",
+    "summary": "Funding to hire an Autism Assistant, tutor or aide for a child with autism. There is a preschool stream and a school-age stream.",
+    "note": "Page published July 2, 2026. Each stream has a different application route.",
+    "requires": [
+      "pe",
+      "child",
+      "autismSelected",
+      "peAutismFundingRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Preschool: a diagnosed autism child enrolled in the Early Years Autism Service.",
+        "School-age: a diagnosed child in a public or private school until graduation.",
+        "School-age: the child needs an adult's support for community activities or tutoring outside school."
+      ]
+    },
+    "applyText": "Preschool: your Early Years Autism Specialist applies for you. School-age: contact AccessAbility Supports.",
+    "applyUrl": "https://www.princeedwardisland.ca/en/information/education-and-early-years/autism-funding",
+    "source": "https://www.princeedwardisland.ca/en/information/education-and-early-years/autism-funding",
+    "detail": {
+      "aboutList": {
+        "lead": "Two types of funding:",
+        "items": [
+          "Preschool funding helps hire an Autism Assistant for a child in intensive behavioural intervention.",
+          "School-age funding helps pay one-on-one tutors and aides at home and in groups.",
+          "You or the designated organization sets hours and pay for school-age help."
+        ]
+      },
+      "steps": [
+        "Preschool: enrol your child in the Early Years Autism Service.",
+        "Preschool: your specialist completes and submits the application.",
+        "Preschool: sign the Autism Funding Agreement and send time tracking logs.",
+        "School-age: contact AccessAbility Supports to learn how to apply."
+      ],
+      "documents": [
+        "Preschool: signed Autism Funding Agreement.",
+        "Preschool: Time Tracking Logs for payment."
+      ],
+      "tips": [
+        "Preschool funding covers wages and benefits on the provincial EYC wage grid.",
+        "It includes 12.59% for employer-related costs, paid bi-weekly.",
+        "School-age: ask AccessAbility Supports for the current yearly maximum.",
+        "School-age contact: 1-888-482-5330 or autismfunding@gov.pe.ca.",
+        "Preschool contact: 902-438-4854 or earlyyearsautism@gov.pe.ca."
+      ]
+    }
+  },
+  {
+    "id": "pe-severe-permanent-disability-benefit",
+    "name": "Severe Permanent Disability Benefit",
+    "level": "Prince Edward Island",
+    "category": "Money & taxes",
+    "amount": "Your PEI student loan may be cancelled",
+    "summary": "May cancel your PEI student loan if you have a severe permanent disability. You must first be approved for the federal benefit.",
+    "note": "Page published May 24, 2016. You cannot get new student loans or grants after approval.",
+    "requires": [
+      "pe",
+      "peSeverePermanentDisabilityBenefitRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You have a severe permanent disability that you expect to last your life.",
+        "The disability stops you from post-secondary studies and from working.",
+        "You are already approved for the federal Severe Permanent Disability Benefit."
+      ]
+    },
+    "applyText": "Get federal approval first, then apply to the PEI Student Loan office.",
+    "applyUrl": "https://www.princeedwardisland.ca/en/information/workforce-advanced-learning-and-population/severe-permanent-disability-benefit",
+    "source": "https://www.princeedwardisland.ca/en/information/workforce-advanced-learning-and-population/severe-permanent-disability-benefit",
+    "detail": {
+      "aboutList": {
+        "lead": "What the benefit does:",
+        "items": [
+          "It cancels your PEI student loan.",
+          "The federal benefit cancels your federal student loan.",
+          "The disability is a limit caused by a physical or mental impairment."
+        ]
+      },
+      "steps": [
+        "Call the National Student Loans Service Centre to apply for the federal benefit.",
+        "After federal approval, contact the PEI Student Loan office.",
+        "Complete the provincial application."
+      ],
+      "documents": [
+        "Proof that you were approved for the federal benefit.",
+        "Supporting documentation for your application."
+      ],
+      "tips": [
+        "Once approved you cannot get any new student loans or grants.",
+        "Email studentloan@gov.pe.ca with questions.",
+        "The National Student Loans Service Centre number is 1-888-815-4514."
+      ],
+      "phone": "(902) 368-4640"
+    }
+  },
+  {
+    "id": "pe-accessible-parking",
+    "name": "Designated Parking Permit",
+    "level": "Prince Edward Island",
+    "category": "Daily living supports",
+    "amount": "Parking access",
+    "summary": "A permit lets you park in spaces set aside for people with disabilities. ResourceAbilities runs the program for the province.",
+    "note": "The page does not list a fee or say how long a permit lasts. Ask ResourceAbilities when you apply.",
+    "requires": [
+      "pe",
+      "bcParkingMobility"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are unable to walk more than 75 metres without serious difficulty or danger to safety or health.",
+        "A medical professional signs your application."
+      ],
+      "note": "Temporary permits are also available."
+    },
+    "applyText": "Apply at a ResourceAbilities office",
+    "applyUrl": "https://resourceabilities.ca/parking-permits/",
+    "source": "https://resourceabilities.ca/parking-permits/",
+    "detail": {
+      "aboutList": {
+        "lead": "What you get",
+        "items": [
+          "A permit to park in designated spaces across the Island.",
+          "Permanent and temporary permits are available."
+        ]
+      },
+      "steps": [
+        "Ask a medical professional to sign the application.",
+        "Bring the signed application to a ResourceAbilities office.",
+        "Renew online each year if you held a permit the year before."
+      ],
+      "documents": [
+        "Application signed by a medical professional"
+      ],
+      "tips": [
+        "Renewals for 2027 open on or after November 10, 2026.",
+        "If you did not have a permit last year, contact the office to renew."
+      ]
+    }
+  },
+  {
+    "id": "pe-home-care",
+    "name": "Home Care Program",
+    "level": "Prince Edward Island",
+    "category": "Home support",
+    "amount": "Nursing, home support and therapy, for a set period of time",
+    "summary": "Health care and support services in your own home, so you can live safely and with independence for as long as possible.",
+    "note": "Services are based on assessed need for a defined period of time.",
+    "requires": [
+      "pe",
+      "peHomeCareRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You need support to keep living safely at home.",
+        "You left hospital and are recovering from surgery or an acute condition.",
+        "You have an ongoing health issue needing more care than you or family can give."
+      ],
+      "note": "Services are provided based on assessed need."
+    },
+    "applyText": "Fill out the Home Care Referral Form and send it to your local Home Care office.",
+    "applyUrl": "https://www.princeedwardisland.ca/en/information/health-pei/home-care-program",
+    "source": "https://www.princeedwardisland.ca/en/information/health-pei/home-care-program",
+    "detail": {
+      "aboutList": {
+        "lead": "Home Care can include:",
+        "items": [
+          "Nursing care such as health monitoring, injections and wound care.",
+          "Home support with daily activities such as bathing and dressing.",
+          "Physiotherapy and occupational therapy for daily living, devices and home changes.",
+          "Dietitian services, social work and palliative care.",
+          "Assessment for long-term care if you need a high level of nursing care."
+        ]
+      },
+      "steps": [
+        "Fill out the Home Care Referral Form.",
+        "Send it to your local Home Care office.",
+        "Staff assess your needs; services are based on assessed need."
+      ],
+      "documents": [
+        "Home Care Referral Form."
+      ],
+      "tips": [
+        "You, your family, a care provider or your family doctor can make the referral.",
+        "Souris (902) 687-7096; Montague (902) 838-0786; Charlottetown (902) 368-4790.",
+        "Summerside (902) 888-8440; O'Leary (902) 859-8730.",
+        "The page also lists a Provincial Home Care Program Brochure."
+      ]
+    }
+  },
+  {
+    "id": "pe-seniors-property-tax-deferral",
+    "name": "Seniors Property Tax Deferral Program",
+    "level": "Prince Edward Island",
+    "category": "Money & taxes",
+    "amount": "Property taxes deferred; no interest builds up",
+    "summary": "Lets qualifying seniors put off paying property taxes on their main home. No interest is added while taxes are deferred.",
+    "note": "Deferred taxes are still charged and become payable when the owner dies or sells.",
+    "requires": [
+      "pe",
+      "age65plus",
+      "peSeniorsPropertyTaxDeferralRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are age sixty-five or older.",
+        "You lived in your main home at least six months in the year before applying.",
+        "Your household income is under $42,000 a year."
+      ],
+      "note": "You can defer taxes on only one property."
+    },
+    "applyText": "Fill out the Application for Real Property Tax Deferral Program for Senior Citizens and return it.",
+    "applyUrl": "https://www.princeedwardisland.ca/en/information/finance-and-affordability/seniors-property-tax-deferral-program",
+    "source": "https://www.princeedwardisland.ca/en/information/finance-and-affordability/seniors-property-tax-deferral-program",
+    "detail": {
+      "aboutList": {
+        "lead": "How the program works:",
+        "items": [
+          "You get a deferred tax certificate in the mail once accepted.",
+          "You still get your yearly tax bill but do not have to pay it.",
+          "Taxes keep being charged on the property while payment is deferred.",
+          "In a duplex or similar home, only the part you live in can be deferred."
+        ]
+      },
+      "steps": [
+        "Fill out the Application for Real Property Tax Deferral Program for Senior Citizens.",
+        "Attach last year's Notice of Assessment for each owner and each person living in the house.",
+        "Return it to Taxation and Property Records as the form directs."
+      ],
+      "documents": [
+        "Application for Real Property Tax Deferral Program for Senior Citizens.",
+        "Last year's income tax Notice of Assessment for each registered owner.",
+        "Notice of Assessment for any other person living in the house."
+      ],
+      "tips": [
+        "The yearly household income limit is less than $42,000.",
+        "Fax: (902) 368-6164. Email: taxandland@gov.pe.ca.",
+        "On more than one acre, or farm or commercial property, deferral may cover only the house and its lot."
+      ],
+      "phone": "(902) 368-4070"
+    }
+  },
+  {
+    "id": "pe-children-complex-needs",
+    "name": "Children with Complex Needs Program",
+    "level": "Prince Edward Island",
+    "category": "Health (for children)",
+    "amount": "Help finding and coordinating services",
+    "summary": "Supports children and youth with ongoing health, developmental, behavioural or mental health needs, and their families, to find and coordinate services.",
+    "note": "The program does not provide medical care, diagnosis or treatment.",
+    "requires": [
+      "pe",
+      "child",
+      "peChildrenComplexNeedsRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your child is under age eighteen.",
+        "Your child has a health condition lasting or expected to last at least three months.",
+        "Your child needs at least two of: ongoing medication, frequent medical care, or frequent therapies."
+      ],
+      "note": "Families may self-refer, or a service provider may refer for them."
+    },
+    "applyText": "Call, email or fill out the online Referral Form.",
+    "applyUrl": "https://services.princeedwardisland.ca/en/service/children-complex-needs-navigator-referral",
+    "source": "https://www.princeedwardisland.ca/en/service/children-with-complex-needs-program",
+    "detail": {
+      "aboutList": {
+        "lead": "The program can help by:",
+        "items": [
+          "Answering questions and explaining your options and next steps.",
+          "Connecting you with health care, education, community and social programs.",
+          "Helping bring providers together when it would benefit your child.",
+          "Supporting you through changes such as a new diagnosis or moving to adult services.",
+          "Connecting you with resources that may help with costs of medications, supplies, equipment or travel."
+        ]
+      },
+      "steps": [
+        "Check that your child meets the eligibility criteria.",
+        "Call, email or use the online Referral Form.",
+        "Wait for a team member to respond."
+      ],
+      "documents": [
+        "The page lists no documents."
+      ],
+      "tips": [
+        "Needs, at least two: ongoing prescribed medication or supplements.",
+        "Needs: frequent medical care, mental health services or extra educational supports.",
+        "Needs: frequent medical therapies such as physical, speech or occupational therapy.",
+        "When you call or email, give your child's name, your phone number, caregiver's name and a brief description of needs.",
+        "A team member responds within 5 business days.",
+        "Email: CWCNnavigator@ihis.org. Toll-free: 1-833-664-3461."
+      ],
+      "phone": "902-218-1253"
+    }
+  },
+  {
+    "id": "pe-coach",
+    "name": "COACH Program (Caring for Older Adults in the Community and at Home)",
+    "level": "Prince Edward Island",
+    "category": "Home support",
+    "amount": "In-home care team for frail seniors",
+    "summary": "A health care team supports frail seniors with complex needs to live at home longer and return home from hospital sooner.",
+    "note": "Admission is based on assessed need, prioritized by available resources, and approved by a panel.",
+    "requires": [
+      "pe",
+      "age65plus",
+      "peCoachRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You are an older adult, age sixty-five or older, with complex needs.",
+        "Your frailty assessment (Rockwood) score is 6 or greater.",
+        "You are mainly homebound due to cognitive or functional limits.",
+        "You have a referral from your primary care provider.",
+        "You live at home or in a Community Care Facility, not long-term care."
+      ],
+      "note": "The page lists more criteria, including geriatric syndromes such as dementia or falls."
+    },
+    "applyText": "Ask your primary care provider for a referral, or contact your local Home Care office.",
+    "applyUrl": "https://www.princeedwardisland.ca/en/information/health-pei/caring-for-older-adults-in-the-community-and-at-home-coach-program",
+    "source": "https://www.princeedwardisland.ca/en/information/health-pei/caring-for-older-adults-in-the-community-and-at-home-coach-program",
+    "detail": {
+      "aboutList": {
+        "lead": "The COACH team helps by:",
+        "items": [
+          "Focusing on supporting you to live at home.",
+          "Helping with moves to and from hospital and to long-term care if needed.",
+          "Including a nurse practitioner, your primary care provider and a Home Care Coordinator.",
+          "Adding other Home Care staff, Primary Care staff or a Geriatrician as your needs require."
+        ]
+      },
+      "steps": [
+        "Ask your primary care provider about a COACH referral.",
+        "A Home Care Coordinator or geriatric clinician can also refer you.",
+        "A panel of health professionals reviews and approves admission."
+      ],
+      "documents": [
+        "A referral from your primary care provider or another listed referrer."
+      ],
+      "tips": [
+        "The frailty score needed is a Rockwood Assessment score of 6 or greater.",
+        "COACH does not replace referrals to the Geriatric Program.",
+        "Souris (902) 687-7096; Montague (902) 838-0786; Charlottetown (902) 368-4790.",
+        "Summerside (902) 888-8440; O'Leary (902) 859-8730."
+      ]
+    }
+  },
+  {
+    "id": "pe-adult-day-programs",
+    "name": "Adult Day Programs",
+    "level": "Prince Edward Island",
+    "category": "Community supports",
+    "amount": "Supervised day program with lunch and snacks",
+    "summary": "A safe, supervised social outlet for seniors, and a break for caregiving families. Lunch and snacks are included.",
+    "note": "A coordinator assesses your eligibility, and you pay for your own transportation.",
+    "requires": [
+      "pe",
+      "peAdultDayProgramsRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "The page describes the program as being for seniors.",
+        "A coordinator completes an assessment to confirm you are eligible."
+      ],
+      "note": "The page does not list other criteria."
+    },
+    "applyText": "Contact your area Home Care office; a referral uses the Home Care Referral Form.",
+    "applyUrl": "https://www.princeedwardisland.ca/en/information/health-pei/adult-day-programs",
+    "source": "https://www.princeedwardisland.ca/en/information/health-pei/adult-day-programs",
+    "detail": {
+      "aboutList": {
+        "lead": "What the programs offer:",
+        "items": [
+          "Activities such as arts and crafts, games and theme-based activities.",
+          "Some locations offer personal care services.",
+          "Caregivers get time to run errands, work or rest.",
+          "A French-language program is offered in Abram Village."
+        ]
+      },
+      "steps": [
+        "Contact the Home Care office in your area.",
+        "You, family, a care provider or a family doctor can refer you.",
+        "A coordinator completes an assessment of your eligibility."
+      ],
+      "documents": [
+        "Home Care Referral Form."
+      ],
+      "tips": [
+        "Hours are generally 8 a.m. to 4 p.m. on set days.",
+        "Souris and St. Peters Bay (902) 687-7096; Montague (902) 838-0786.",
+        "Charlottetown (902) 368-4790; Summerside and Abram Village (902) 888-8440; Alberton (902) 859-8730.",
+        "Contact the program of interest for more details."
+      ]
+    }
   }
 
 ];
@@ -18047,6 +19587,33 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "pe-adult-day-programs": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-coach": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-children-complex-needs": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-seniors-property-tax-deferral": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-home-care": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-accessible-parking": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-severe-permanent-disability-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-autism-funding": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-child-care-subsidy": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-seniors-housing": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-family-housing": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-seniors-independence-initiative": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-seniors-drug": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-financial-assistance-drug": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-generic-drug": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-catastrophic-drug": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-family-health-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-seniors-hearing-aid": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-social-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-accessability-supports": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-out-of-province-travel": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-home-energy-low-income": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-dental-care": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-seniors-safe-at-home": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-home-renovation-seniors": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-renovation-persons-disabilities": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "pe-caregiver-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "ns-child-care-subsidy": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "ns-respite-care": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "ns-specialized-bed-loan": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)

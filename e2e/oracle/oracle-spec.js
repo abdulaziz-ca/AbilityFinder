@@ -117,10 +117,10 @@ const BASE_PERSONA = {
    are real entries in CITIES_BY_PROVINCE. */
 // 2026-10-17: Nanaimo and Kingston gained municipal records, so the defaults moved
 // to Fort St. John and Timmins (no local record; city-sweep "none found" / unreadable).
-const DEFAULT_CITY = { AB: "Camrose", BC: "Fort St. John", ON: "Timmins", SK: "Weyburn", MB: "Dauphin", NB: "Bathurst", NS: "Lunenburg" };
+const DEFAULT_CITY = { AB: "Camrose", BC: "Fort St. John", ON: "Timmins", SK: "Weyburn", MB: "Dauphin", NB: "Bathurst", NS: "Lunenburg", PE: "Souris" };
 
 /* Cities used to violate a city gate: same province, different community. */
-const OTHER_CITY = { AB: "Wetaskiwin", BC: "Williams Lake", ON: "Guelph", SK: "Martensville", MB: "Selkirk", NB: "Campbellton", NS: "Antigonish" };
+const OTHER_CITY = { AB: "Wetaskiwin", BC: "Williams Lake", ON: "Guelph", SK: "Martensville", MB: "Selkirk", NB: "Campbellton", NS: "Antigonish", PE: "Tignish" };
 
 /* --------------------------------------------------------------------------
    FRAGMENTS
@@ -213,6 +213,7 @@ const GATES = {
   mb: province("MB"),
   nb: province("NB"),
   ns: province("NS"),
+  pe: province("PE"),
   provinceCovered: {
     evidence: "answers",
     satisfy: { set: { province: "AB" } },
@@ -1218,6 +1219,110 @@ const GATES = {
       { name: "an adult may have a young child: not asked", fragment: { set: { ageBand: "19to59" } }, expect: "almost" },
     ],
   },
+  peCaregiverBenefitRoute: external("Depends on a Home Care assessment of the person receiving care, which the wizard cannot make."),
+  peRenovationPersonsDisabilitiesRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", disabilityVerified: "yes" }, add: { circumstances: ["homeowner"] } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  peHomeRenovationSeniorsRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" }, add: { circumstances: ["homeowner"] } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  peSeniorsSafeAtHomeRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" }, add: { circumstances: ["homeowner"] } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  peDentalCareRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "neither route established", fragment: { set: { income: "moderate", disabilityVerified: "no" } }, expect: "almost" }],
+  },
+  peHomeEnergyLowIncomeRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  peOutOfProvinceTravelRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  peAccessabilitySupportsRoute: {
+    evidence: "answers",
+    satisfy: { set: { disabilityVerified: "yes", ageBand: "19to59" } },
+    violations: [
+      { name: "disability not yet documented", fragment: { set: { disabilityVerified: "no" } }, expect: "almost" },
+      { name: "65 or older at application", fragment: { set: { ageBand: "65plus" } }, expect: "almost" },
+    ],
+  },
+  peSocialAssistanceRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  peSeniorsHearingAidRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  peFamilyHealthBenefitRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", ageBand: "6to11" } },
+    violations: [
+      { name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "an adult may have no child: not asked", fragment: { set: { ageBand: "19to59" } }, expect: "almost" },
+    ],
+  },
+  peGenericDrugRoute: {
+    evidence: "answers",
+    satisfy: { set: { ageBand: "19to59" } },
+    violations: [{ name: "65 or older: the Seniors' Drug Program applies", fragment: { set: { ageBand: "65plus" } }, expect: "almost" }],
+  },
+  peFinancialAssistanceDrugRoute: external("Depends on receiving the assistance program the province names, which the wizard does not ask."),
+  peSeniorsIndependenceInitiativeRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  peFamilyHousingRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  peSeniorsHousingRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", ageBand: "65plus" } },
+    violations: [
+      { name: "moderate income", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "55 to 59 with a disability sits inside the 19 to 59 band: not asked", fragment: { set: { ageBand: "19to59" } }, expect: "almost" },
+    ],
+  },
+  peChildCareSubsidyRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low", ageBand: "6to11" } },
+    violations: [
+      { name: "moderate income", fragment: { set: { income: "moderate" } }, expect: "almost" },
+      { name: "an adult may have a young child: not asked", fragment: { set: { ageBand: "19to59" } }, expect: "almost" },
+    ],
+  },
+  peAutismFundingRoute: {
+    evidence: "answers",
+    satisfy: { set: { autismDiagnosis: "yes" } },
+    violations: [{ name: "no diagnosis yet", fragment: { set: { autismDiagnosis: "no" } }, expect: "almost" }],
+  },
+  peSeverePermanentDisabilityBenefitRoute: external("Depends on approval for the federal Severe Permanent Disability Benefit, which the wizard does not ask."),
+  peHomeCareRoute: external("Depends on a Home Care assessment of your care needs, which the wizard cannot make."),
+  peSeniorsPropertyTaxDeferralRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" }, add: { circumstances: ["homeowner"] } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  peChildrenComplexNeedsRoute: external("Depends on the child's ongoing health needs, which the wizard does not ask in detail."),
+  peCoachRoute: external("Depends on a frailty assessment and a referral from your care provider, which the wizard cannot check."),
+  peAdultDayProgramsRoute: external("Depends on a Home Care coordinator's assessment, which the wizard cannot make."),
   kingstonMfapIncome: {
     evidence: "answers",
     satisfy: { set: { income: "low" } },
@@ -1797,6 +1902,33 @@ const PROGRAM_BEST_CASE = {
   "squamish-recreation-access":                    "ready",
   "terrace-affordable-recreation-access":          "almost",
   "white-rock-leisure-access":                     "ready",
+  "pe-home-care":                                  "almost",
+  "pe-seniors-property-tax-deferral":              "ready",
+  "pe-children-complex-needs":                     "almost",
+  "pe-coach":                                      "almost",
+  "pe-adult-day-programs":                         "almost",
+  "pe-caregiver-benefit":                          "almost",
+  "pe-renovation-persons-disabilities":            "ready",
+  "pe-home-renovation-seniors":                    "ready",
+  "pe-seniors-safe-at-home":                       "ready",
+  "pe-dental-care":                                "ready",
+  "pe-home-energy-low-income":                     "ready",
+  "pe-out-of-province-travel":                     "ready",
+  "pe-accessability-supports":                     "ready",
+  "pe-social-assistance":                          "ready",
+  "pe-seniors-hearing-aid":                        "ready",
+  "pe-family-health-benefit":                      "ready",
+  "pe-catastrophic-drug":                          "ready",
+  "pe-generic-drug":                               "ready",
+  "pe-financial-assistance-drug":                  "almost",
+  "pe-seniors-drug":                               "ready",
+  "pe-seniors-independence-initiative":            "ready",
+  "pe-family-housing":                             "ready",
+  "pe-seniors-housing":                            "ready",
+  "pe-child-care-subsidy":                         "ready",
+  "pe-autism-funding":                             "ready",
+  "pe-severe-permanent-disability-benefit":        "almost",
+  "pe-accessible-parking":                         "ready",
   "ns-child-benefit":                              "ready",
   "ns-affordable-living-tax-credit":               "ready",
   "ns-home-care":                                  "almost",

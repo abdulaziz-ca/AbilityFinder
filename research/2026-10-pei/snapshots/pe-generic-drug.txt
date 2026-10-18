@@ -1,0 +1,11 @@
+URL: https://www.princeedwardisland.ca/en/service/apply-for-the-generic-drug-program | province: PE | program: Generic Drug Program | fetched: 2026-10-18 (browser session after the owner passed the site's check)
+=== PAGE: https://www.princeedwardisland.ca/en/service/apply-for-the-generic-drug-program
+Apply for the Generic Drug Program
+Published date: June 25, 2026
+The Prince Edward Island Generic Drug Program is for Islanders under the age of 65 who do not have insurance. The program limits out-of-pocket costs for eligible generic prescription drugs to a maximum cost of $19.95.
+Am I eligible for the Generic Drug Program? You are eligible for the program if you: have no private drug insurance coverage; are under 65 years of age; are a PEI resident as defined by the Drug Cost Assistance Act; have a valid PEI Health Card; and have completed an application and have been approved for coverage.
+How can I apply for the program? Submit a completed Generic Drug Program Application Form in person at Access PEI locations, pharmacies, physician offices, or pharmacare offices. Complete an online application.
+What drugs are covered under the program? The program covers eligible generic prescription drugs that are listed on the provincial formulary. It does not include the following: brand name drugs; diabetes drugs (coverage already exists through a different public program); or narcotics, controlled and targeted substances; compounded drugs; over the counter drugs.
+Some medications in the PEI Pharmacare Formulary are approved on a special authorization basis only. If your medication is not included in the PEI Pharmacare Formulary, it will not be eligible for coverage.
+Coverage is not retroactive; you will not be reimbursed for medications you have already purchased.
+Claims are eligible for manual submission only if the medication or any formulation of the medication cannot be dispensed through a PEI pharmacy.

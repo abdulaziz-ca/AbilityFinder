@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 469 links. The monitor checks a bounded rotating batch every
+// 504 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -1831,6 +1831,141 @@ export const LINKS = [
     "kind": "apply"
   },
   {
+    "url": "https://www.princeedwardisland.ca/sites/default/files/publications/at_home_caregiver_benefit_handbook.pdf",
+    "label": "At Home Caregiver Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/sites/default/files/publications/peihrp_brochure_july_2021.pdf",
+    "label": "Renovation Program for Persons with Disabilities — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/sites/default/files/forms/seniorssafehomeprog-web_version.pdf",
+    "label": "Seniors Safe @ Home Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/sites/default/files/publications/provincial_dental_care_program_brochure.pdf",
+    "label": "Provincial Dental Care Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/sites/default/files/forms/help_program_application-efficiency_pei_1.pdf",
+    "label": "Home Energy Low-income Program (HELP) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/sites/default/files/forms/out_of_province_travel_support_application.pdf",
+    "label": "Out-of-Province Travel Support — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/information/social-development-and-seniors/accessability-supports",
+    "label": "AccessAbility Supports — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/information/social-development-and-seniors/social-assistance-program",
+    "label": "Social Assistance Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/information/social-development-and-seniors/seniors-hearing-aid-rebate-program",
+    "label": "Seniors Hearing Aid Rebate Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/information/health-and-wellness/family-health-benefit-drug-program",
+    "label": "Family Health Benefit Drug Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/information/health-and-wellness/catastrophic-drug-program",
+    "label": "Catastrophic Drug Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/service/apply-for-the-generic-drug-program",
+    "label": "Generic Drug Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/information/health-and-wellness/financial-assistance-drug-program",
+    "label": "Financial Assistance Drug Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/information/health-and-wellness/seniors-drug-program",
+    "label": "Seniors' Drug Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/service/seniors-independence-initiative",
+    "label": "Seniors Independence Initiative — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/service/family-housing",
+    "label": "Family Housing Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/service/seniors-housing",
+    "label": "Seniors Housing Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/information/social-development-and-seniors/help-for-child-care-expenses",
+    "label": "Child Care Subsidy Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/information/education-and-early-years/autism-funding",
+    "label": "Autism Funding — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/information/workforce-advanced-learning-and-population/severe-permanent-disability-benefit",
+    "label": "Severe Permanent Disability Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://resourceabilities.ca/parking-permits/",
+    "label": "Designated Parking Permit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/information/health-pei/home-care-program",
+    "label": "Home Care Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/information/finance-and-affordability/seniors-property-tax-deferral-program",
+    "label": "Seniors Property Tax Deferral Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://services.princeedwardisland.ca/en/service/children-complex-needs-navigator-referral",
+    "label": "Children with Complex Needs Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/service/children-with-complex-needs-program",
+    "label": "Children with Complex Needs Program — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/information/health-pei/caring-for-older-adults-in-the-community-and-at-home-coach-program",
+    "label": "COACH Program (Caring for Older Adults in the Community and at Home) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/information/health-pei/adult-day-programs",
+    "label": "Adult Day Programs — apply",
+    "kind": "apply"
+  },
+  {
     "url": "https://vadsociety.ca",
     "label": "Help — Voice of Albertans with Disabilities (VAD)",
     "kind": "help"
@@ -1998,6 +2133,21 @@ export const LINKS = [
   {
     "url": "https://www.dal.ca/faculty/law/dlas.html",
     "label": "Help — Dalhousie Legal Aid Service",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.princeedwardisland.ca/en/information/justice-and-public-safety/legal-aid",
+    "label": "Help — PEI Legal Aid",
+    "kind": "help"
+  },
+  {
+    "url": "https://pe.211.ca/about-us",
+    "label": "Help — 211 PEI",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.resourceabilities.ca",
+    "label": "Help — ResourceAbilities",
     "kind": "help"
   },
   {
@@ -2306,6 +2456,21 @@ export const LINKS = [
     "kind": "org"
   },
   {
+    "url": "https://www.peiacl.org",
+    "label": "org:pe-peiacl — PEI Association for Community Living",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.autismsociety.pe.ca",
+    "label": "org:pe-autism-society — Autism Society of PEI",
+    "kind": "org"
+  },
+  {
+    "url": "https://sci-pei.ca",
+    "label": "org:pe-sci — Spinal Cord Injury PEI",
+    "kind": "org"
+  },
+  {
     "url": "https://studentaid.alberta.ca/",
     "label": "Province fallback — student aid (AB)",
     "kind": "help"
@@ -2336,6 +2501,11 @@ export const LINKS = [
     "kind": "help"
   },
   {
+    "url": "https://www.princeedwardisland.ca/en/information/workforce-and-advanced-learning/canada-student-grants-for-students-with-disabilities",
+    "label": "Province fallback — student aid (PE)",
+    "kind": "help"
+  },
+  {
     "url": "https://ab.211.ca/",
     "label": "Province fallback — 2-1-1 (AB)",
     "kind": "help"
@@ -2348,6 +2518,11 @@ export const LINKS = [
   {
     "url": "https://novascotia.ca/employmentnovascotia/interventions/default.asp",
     "label": "Province fallback — employment supports (NS)",
+    "kind": "help"
+  },
+  {
+    "url": "https://resourceabilities.ca/job-seekers/",
+    "label": "Province fallback — employment supports (PE)",
     "kind": "help"
   },
   {
