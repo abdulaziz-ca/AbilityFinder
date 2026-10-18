@@ -25,6 +25,7 @@ vm.runInContext(
     '\n;globalThis.__ON_CITIES = typeof ON_CITIES !== "undefined" ? ON_CITIES : null;' +
     '\n;globalThis.__SK_CITIES = typeof SK_CITIES !== "undefined" ? SK_CITIES : [];' +
     '\n;globalThis.__MB_CITIES = typeof MB_CITIES !== "undefined" ? MB_CITIES : [];' +
+    '\n;globalThis.__NOTICES = typeof PROVINCE_NOTICES !== "undefined" ? PROVINCE_NOTICES : {};' +
     '\n;globalThis.__SHARED_CITIES = typeof SHARED_CITIES !== "undefined" ? SHARED_CITIES : {};' +
     '\n;globalThis.__ON_REGIONS = typeof ON_REGIONS !== "undefined" ? ON_REGIONS : [];',
   ctx
@@ -243,6 +244,7 @@ ${header()}
           ${STATUS[b.id] ? `<p class="status-badge status-${esc(STATUS[b.id].kind)}">${esc(STATUS[b.id].text)}</p>` : ""}
           <p class="detail-lede">${esc(b.summary)}</p>
         </header>
+        ${(() => { const n = benefitIsManitoba(b) ? (ctx.__NOTICES || {}).MB : null; return n ? `<div class="callout province-notice" role="note"><div><b>${esc(n.title)}</b><p>${esc(n.lede)}</p><ul>${n.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul></div></div>` : ""; })()}
         <div class="detail-body">
           <div class="detail-main">
             ${detail.aboutList && detail.aboutList.items && detail.aboutList.items.length

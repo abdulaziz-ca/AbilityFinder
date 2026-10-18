@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 337 links. The monitor checks a bounded rotating batch every
+// 356 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -1389,6 +1389,101 @@ export const LINKS = [
     "url": "https://www.swiftcurrent.ca/i-want-to-/learn-about-city-services/swift-transit",
     "label": "Access Transit (Swift Current) — apply",
     "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.mb.ca/fs/manitobasupports/index.html",
+    "label": "Manitoba Supports for Persons with Disabilities (MSPD) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.mb.ca/fs/eia/index.html",
+    "label": "Employment and Income Assistance (EIA) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.mb.ca/fs/eia/non_rentassist_facts.html",
+    "label": "Rent Assist (not on EIA) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.mb.ca/health/pharmacare/apply.html",
+    "label": "Manitoba Pharmacare — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.mb.ca/health/pharmacare/index.html",
+    "label": "Manitoba Pharmacare — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www.gov.mb.ca/fs/dhsu/index.html",
+    "label": "Disability and Health Supports Unit (DHSU) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.mb.ca/fs/cds/index.html",
+    "label": "Children's disABILITY Services (CDS) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://manitoba.ca/fs/clds/eligible.html",
+    "label": "Community Living disABILITY Services (CLDS) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.mb.ca/fs/clds/index.html",
+    "label": "Community Living disABILITY Services (CLDS) — official source",
+    "kind": "source"
+  },
+  {
+    "url": "https://www.gov.mb.ca/health/homecare/index.html",
+    "label": "Manitoba Home Care — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.mb.ca/finance/tao/caregiver.html",
+    "label": "Primary Caregiver Tax Credit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.mb.ca/fs/eia/mcb.html",
+    "label": "Manitoba Child Benefit — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.mb.ca/fs/eia/55plus.html",
+    "label": "55 PLUS Program — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.manitobapossible.ca/parking-permits",
+    "label": "Accessible Parking Permit (Manitoba Possible) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.gov.mb.ca/housing/progs/h-rad.html",
+    "label": "Homeowner Residential Adaptations for Disabilities (RAD) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.winnipeg.ca/recreation-leisure/recreation-facility-admission-passes-rentals/recreation-fee-assistance-program",
+    "label": "Recreation Fee Assistance Program (Winnipeg) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://info.winnipegtransit.com/en/fares/winnpass",
+    "label": "WINNpass Low-Income Transit Pass (Winnipeg) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://info.winnipegtransit.com/en/winnipeg-transit-plus/become-a-registrant/application-process/",
+    "label": "Winnipeg Transit Plus — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://info.winnipegtransit.com/en/winnipeg-transit-plus/winnipeg-transit-plus/",
+    "label": "Winnipeg Transit Plus — official source",
+    "kind": "source"
   },
   {
     "url": "https://vadsociety.ca",

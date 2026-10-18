@@ -1783,6 +1783,21 @@ test("dark Saskatchewan records cannot be browsed or rendered, and Lloydminster 
   }
 });
 
+test("Manitoba shows its caution on results and program pages, other provinces do not", async ({ page }) => {
+  await gotoReadyApp(page);
+  const probe = await page.evaluate(() => ({
+    mb: provinceNoticeHtml("MB"),
+    ab: provinceNoticeHtml("AB"),
+    mbGuide: renderDetail("mb-eia"),
+    abGuide: renderDetail("aish"),
+  }));
+  expect(probe.mb).toContain("Manitoba is new here");
+  expect(probe.mb).toContain("Manitoba Supports for Persons with Disabilities");
+  expect(probe.ab).toBe("");
+  expect(probe.mbGuide).toContain("province-notice");
+  expect(probe.abGuide).not.toContain("province-notice");
+});
+
 test("the city question is never asked when the province has no city list", async ({ page }) => {
   // Ontario went live with province-level records only, so CITIES_BY_PROVINCE.ON is
   // empty. Before this guard, COVERED_PROVINCES included ON so the step rendered with

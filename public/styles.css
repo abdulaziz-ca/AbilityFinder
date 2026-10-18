@@ -826,6 +826,9 @@ details.notmatch summary::-webkit-details-marker { display: none; }
 .callout .co-ic .ic { width: 17px; height: 17px; }
 .callout b { display: block; font-size: 0.92rem; margin-bottom: 2px; }
 .callout p { margin: 0; font-size: 0.9rem; color: var(--text-dim); line-height: 1.5; }
+.province-notice { margin: 0 0 16px; }
+.province-notice ul { margin: 8px 0 0; padding-left: 18px; font-size: 0.9rem; color: var(--text-dim); line-height: 1.5; }
+.province-notice li + li { margin-top: 4px; }
 
 .warn-list li::before { background: var(--warn) !important; }
 .p2-text { color: var(--text); font-size: 0.96rem; line-height: 1.6; margin: 0; }

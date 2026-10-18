@@ -11,8 +11,8 @@ const BC_ENABLED = true;
 const ON_ENABLED = true;
 // Saskatchewan: live with provincial records (cities come later).
 const SK_ENABLED = true;
-// Manitoba rollout — dark until launch (provincial records first, then Winnipeg).
-const MB_ENABLED = false;
+// Manitoba: live with provincial and Winnipeg records; PROVINCE_NOTICES.MB cautions users.
+const MB_ENABLED = true;
 // Scope labels compose from the enabled-province set, so flipping a flag updates them everywhere.
 // Invariant: with ON_ENABLED=false (and BC_ENABLED=true) these produce exactly the prior Alberta+BC strings.
 const _SCOPE_FULL = ["Alberta", ...(BC_ENABLED ? ["British Columbia"] : []), ...(ON_ENABLED ? ["Ontario"] : []), ...(SK_ENABLED ? ["Saskatchewan"] : []), ...(MB_ENABLED ? ["Manitoba"] : [])];
@@ -5214,6 +5214,12 @@ function renderNotNow(items) {
   </details>`;
 }
 
+function provinceNoticeHtml(code) {
+  const n = typeof PROVINCE_NOTICES !== "undefined" ? PROVINCE_NOTICES[code] : null;
+  if (!n) return "";
+  return `<div class="callout province-notice" role="note" lang="en"><span class="co-ic">${icon("info")}</span><div><b>${reqEscape(n.title)}</b><p>${reqEscape(n.lede)}</p><ul>${n.items.map((it) => `<li>${reqEscape(it)}</li>`).join("")}</ul></div></div>`;
+}
+
 function renderResults() {
   const evaluated = browseCatalog().filter((b) => benefitInResultsScope(b, answers)).map((b) => ({ b, r: evaluate(b) }));
   const groups = resultGroups(evaluated);
@@ -5235,6 +5241,7 @@ function renderResults() {
     ${groups.g1.length ? "" : `<p class="results-need-more"${enOnly()}>${t("res.needMore")}</p>`}
     <p>${resultsBlurb(ready.length, almost.length)}</p>
   </div>
+  ${provinceNoticeHtml(answers.province)}
   ${renderProgramUpdates(matched)}
   ${renderMoneyBand(ready, almost)}
   <div class="results-tools">
@@ -6774,6 +6781,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
     <div class="detail-body${inline ? " inline-guide-body" : ""}">
       <div class="detail-main">
         ${answerFirst}
+        ${inline || typeof provinceNoticeHtml !== "function" ? "" : provinceNoticeHtml(benefitProvince(b))}
         ${enNote}
 
         ${/* Essentials stay visible; secondary detail moves into the labelled

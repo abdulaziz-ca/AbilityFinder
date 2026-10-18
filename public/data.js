@@ -133,6 +133,21 @@ const MB_CITIES = [
   "Brandon", "Dauphin", "Morden", "Portage la Prairie", "Selkirk", "Steinbach", "Thompson",
   "Winkler", "Winnipeg", "Other / my town isn't listed",
 ];
+/* Province-wide caution shown when someone picks a province whose programs are
+   changing or not fully published. Shown on results, program pages and guides. */
+const PROVINCE_NOTICES = {
+  MB: {
+    title: "Manitoba is new here: please double-check before you rely on a detail",
+    lede: "We added Manitoba in October 2026, while some of its programs are changing. Each program here comes from its official page, but some details are not published yet, so confirm with the program before you count on an amount or rule.",
+    items: [
+      "Manitoba is moving people with a disability from Employment and Income Assistance (EIA) to the new Manitoba Supports for Persons with Disabilities program, and that program's page does not publish payment amounts yet.",
+      "Since September 1, 2026, EIA covers only emergency dental care and points people to the federal Canadian Dental Care Plan.",
+      "Some income limits are old (home adaptation limits are from 2019) or change every year (Rent Assist and Winnipeg programs).",
+      "Winnipeg Transit Plus has proposed new eligibility rules that are not in effect.",
+      "City programs are listed for Winnipeg only so far.",
+    ],
+  },
+};
 const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES, ON: ON_CITIES, SK: SK_CITIES, MB: MB_CITIES };
 const COVERED_PROVINCES = ["AB", "BC", "ON", "SK", "MB"];
 
@@ -13253,8 +13268,7 @@ const BENEFITS = [
       "mode": "any",
       "items": [
         "General: you live in Manitoba and your monthly needs and housing costs are more than your income and assets.",
-        "Disability: you are 18 or older, in financial need, with a disability likely to last over a year.",
-        "Disability: the disability keeps you from earning enough to pay for basic needs."
+        "Disability: 18+, with a disability likely to last over a year that keeps you from earning enough for basic needs."
       ],
       "note": "Married and common-law couples apply together."
     },
