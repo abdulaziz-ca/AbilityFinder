@@ -1,0 +1,70 @@
+URL: https://www.quebec.ca/famille-et-soutien-aux-personnes/inaptitude-perte-autonomie/services-soutien-domicile | province: QC | program: Soutien à domicile / Allocation autonomie à domicile (AAD, anciennement chèque e | fetched: 2026-10-18
+=== PAGE: https://www.quebec.ca/famille-et-soutien-aux-personnes/inaptitude-perte-autonomie/services-soutien-domicile (HTTP 200, 6552 chars)
+
+ - Accueil  
+- Famille et soutien aux personnes  
+- Inaptitude et perte d'autonomie  
+- Programmes et services offerts aux personnes en perte d’autonomie  
+- Services de soutien à domicile
+ L’allocation autonomie à domicile pour faciliter l'accès aux services de soutien à domicile
+ Changement de nom de la modalité
+ Depuis le 29 janvier 2026, la modalité chèque emploi-service porte maintenant le nom d’allocation autonomie à domicile (AAD).
+ Dans cette page :
+ Accès aux services de soutien à domicile
+Les personnes qui vivent à domicile et qui ont besoin d’aide pour accomplir certaines tâches (par exemple : ménage, préparation de repas, soins d’hygiène, habillement) peuvent avoir accès à des services de soutien à domicile.
+Ces services relèvent des établissements du réseau de la santé et des services sociaux, par l’entremise des centres locaux de services communautaires (CLSC).
+Les CLSC peuvent offrir eux-mêmes la gamme de soins et de services de soutien à domicile requis. Pour certains de ces soins et services et selon certaines conditions, ils peuvent aussi faire appel à un prestataire externe comme :
+- une entreprise d’économie sociale en aide à domicile;
+- une entreprise privée;
+- un organisme communautaire.
+Le CLSC peut également recommander que les services soient offerts par une personne engagée de gré à gré par l’usagère ou l’usager.
+ Évaluation des besoins
+Un intervenant ou une intervenante du CLSC évalue la situation de la personne et détermine d’abord si elle est admissible au soutien à domicile.
+Si la personne est admissible, l’intervenant ou l’intervenante évalue ses besoins et planifie les services à mettre en place. L’établissement attribue ensuite des heures de service selon les besoins et la situation de chaque usager ou usagère.
+Les services et le choix du ou de la prestataire tiennent compte, notamment :
+- de la situation de la personne usagère et de ses besoins;
+- de son état de santé;
+- de la sécurité de la personne et de celle de la personne qui offre son aide;
+- du type de soins et de services à fournir;
+- des compétences requises;
+- de l’expertise et de l’encadrement nécessaire;
+- du risque d’épuisement de l’entourage de la personne requérante.
+Le choix du ou des prestataires de services est toujours effectué en collaboration avec l’usagère ou l’usager et ses proches.
+Si vous ou un de vos proches pensez avoir besoin de services de soutien à domicile, contactez votre CLSC.
+Si, au terme de l’évaluation, il est recommandé d’avoir recours à du soutien à domicile offert par une personne engagée de gré à gré par la personne usagère, le CLSC peut proposer l’allocation autonomie à domicile.
+ L’allocation autonomie à domicile
+L’allocation autonomie à domicile (AAD) permet à l’usagère ou à l’usager de sélectionner et d’employer la personne qui fournira des services de soutien à domicile, dans le respect de certaines balises.
+De plus, l’allocation autonomie à domicile permet à une institution financière de devenir agent payeur pour le CLSC et gestionnaire, pour l’usagère ou l’usager, de la paie de la personne employée.
+ Depuis le 29 janvier, l’allocation autonomie à domicile (AAD) – auparavant appelée chèque emploi service – est appliquée selon un nouveau cadre de référence. Une période de transition est en cours afin de permettre une implantation progressive et de façon harmonisée. Les personnes qui utilisent déjà l’AAD n’ont pas de changement majeur à prévoir : les services continuent selon les modalités habituelles.
+L’AAD est une mesure souple et personnalisée. Elle vise à offrir un soutien à domicile adapté, sécuritaire et centré sur les besoins réels des personnes, tout en reconnaissant l’importance et les limites du rôle des personnes proches aidantes.
+L’AAD est l’une des options possibles pour recevoir des services de soutien à domicile, que les services soient offerts par une personne proche aidante ou par une tierce personne. Elle n’est pas accordée automatiquement. Pour y avoir accès, il faut d’abord être admissible au soutien à domicile et faire l’objet d’une évaluation des besoins par le CLSC.
+Les heures de services ne sont jamais attribuées automatiquement. Elles sont ajustées selon les besoins réels de l’usager ou de l’usagère. L’intervenant ou l’intervenante distingue :
+- ce qui fait normalement partie du rôle d’une personne proche aidante;
+- ce qui nécessite du soutien supplémentaire.
+Les tâches doivent contribuer au maintien à domicile et peuvent inclure :
+- l’aide personnelle (comme l’aide à l’habillage ou les soins d’hygiène);
+- l’aide domestique;
+- du répit pour la personne proche aidante.
+ Modalités prévues dans le cadre de référence
+Le nouveau cadre facilite l’embauche d’une personne proche aidante comme travailleur ou travailleuse de l’AAD, lorsque cela est jugé sécuritaire et approprié. Cette décision est prise avec l’intervenant ou l’intervenante du CLSC, selon les besoins et les capacités de chacun.
+Une personne proche aidante qui habite avec l’usager ou l’usagère ne peut pas être payée par l’AAD pour se donner du répit à elle-même.
+Il n’y a pas de formation obligatoire pour les personnes proches aidantes, mais elles doivent suivre les recommandations des intervenants et intervenantes pour assurer la sécurité et le bien‑être de toutes et de tous.
+L’AAD ne peut pas être combinée avec d’autres aides financières. Une personne proche aidante employée par l’AAD ne peut pas aussi recevoir :
+- le crédit d’impôt pour personne proche aidante;
+- l’aide financière de dernier recours;
+- de l’assurance-emploi.
+ Centre de traitement de l’allocation autonomie à domicile
+Le Centre de traitement assure le traitement des opérations liées à la paie, telles que :
+- le versement des salaires;
+- les prélèvements des cotisations prévues aux régimes de protection sociale;
+- la préparation et l’émission des feuillets fiscaux.
+Lorsque la situation de l’usagère ou de l’usager permet l’utilisation de l’AAD, le CLSC l’inscrit au Centre de traitement (institution financière désignée pour l’ensemble de la province). Le CLSC attribue ensuite des heures de service selon l’évaluation et la planification des services réalisées.
+Le CLSC alloue les sommes nécessaires pour payer les services requis par l’entremise du Centre de traitement de l’allocation autonomie à domicile. Avec cette allocation, aucun argent ne transite par l’usagère ou l’usager.
+ À consulter aussi
+ - 
+ Allocation autonomie à domicile – Cadre de référence
+ - 
+ Mieux chez soi – Politique nationale de soutien à domicile
+ Dernière mise à jour : 
+ 27 février 2026
+ 

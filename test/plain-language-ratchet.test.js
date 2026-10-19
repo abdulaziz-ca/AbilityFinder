@@ -32,8 +32,13 @@ function grade(text) {
 const E = loadEngine(path.join(__dirname, ".."));
 const programs = Array.from(E.BENEFITS).filter((b) => b.requires);
 
+// The Flesch-Kincaid grade is an English formula: it miscounts French syllables
+// and sentences, so French records (Québec, b.lang === "fr") are left out of the
+// grade baseline. The length and capitals rules below apply to every record.
+const englishPrograms = programs.filter((b) => b.lang !== "fr");
+
 test("summary, Good to know and tips stay at or below the plain-language baseline", () => {
-  const grades = programs.map((b) => grade([b.summary, b.note, ((b.detail && b.detail.tips) || []).join(" ")].join(" "))).sort((a, b) => a - b);
+  const grades = englishPrograms.map((b) => grade([b.summary, b.note, ((b.detail && b.detail.tips) || []).join(" ")].join(" "))).sort((a, b) => a - b);
   const median = grades[Math.floor(grades.length / 2)];
   assert.ok(median <= MAX_MEDIAN_GRADE + 0.05, `median grade ${median.toFixed(2)} exceeds ${MAX_MEDIAN_GRADE}`);
   const atNine = grades.filter((g) => g <= 9).length;

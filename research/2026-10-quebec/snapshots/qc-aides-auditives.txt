@@ -1,0 +1,20 @@
+URL: https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-auditives | province: QC | program: Programme d'aides auditives (RAMQ) | fetched: 2026-10-18
+=== PAGE: https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-auditives (HTTP 200, 824 chars)
+
+ - Accueil  
+- Santé  
+- Système et services de santé  
+- Aides techniques, déficiences et handicaps  
+- Programme d’aides auditives
+ Programme d’aides auditives
+Ce programme prend en charge les frais liés aux prothèses auditives et aux aides de suppléance à l’audition si vous êtes admissible. Il inclut l’achat, la réparation et le remplacement des aides dont vous avez besoin pour effectuer vos activités quotidiennes.
+Le programme couvre l’achat, la réparation et le remplacement d’une prothèse auditive.
+Exemples d’aides couvertes, qui compensent ou réduisent certains inconvénients liés à la perte d’audition :
+- Amplificateur téléphonique
+- Détecteur de sonneries de porte ou de téléphone
+- Réveille-matin adapté
+- Téléscripteur
+Obtenir plus d’information sur le programme
+ Dernière mise à jour : 
+ 23 février 2023
+ 

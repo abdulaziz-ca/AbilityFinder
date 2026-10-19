@@ -1,0 +1,114 @@
+URL: https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/montants-dates-versements-prestations/montant-prestation-reguliere/montants-prestations-programme-aide-sociale | province: QC | program: Allocation pour contraintes de santé (aussi appelée allocation pour contraintes  | fetched: 2026-10-18
+=== PAGE: https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/montants-dates-versements-prestations/montant-prestation-reguliere/montants-prestations-programme-aide-sociale (HTTP 200, 7006 chars)
+
+ - Accueil  
+- Famille et soutien aux personnes  
+- 
+- Programmes d’assistance sociale pour obtenir une aide financière  
+- Montants et dates de versements des prestations  
+- Montants des prestations régulières pour l’année en cours  
+- Montants des prestations du programme d’aide sociale
+ Montants des prestations du programme d’aide sociale
+Si vous êtes prestataire du programme d’aide sociale, voici les montants des prestations que vous pouvez obtenir selon votre situation, chaque mois.
+Le montant total de la prestation comprend une prestation de base uniforme pour les personnes seules ou pour les familles, à laquelle s’ajoute un ajustement à la prestation de base de 45 $. Le montant total de la prestation peut être augmenté si vous avez droit à une allocation pour contrainte de santé ou un ajustement.
+Le montant de prestation de base est différent pour les personnes qui ont un conjoint étudiant ou qui sont hébergés dans un établissement.
+ Revenu de travail autorisé
+ Un revenu de travail est permis sans que la prestation soit réduite. Pour un adulte seul, ce revenu est de 200 $ tandis que pour deux adultes, ce revenu est de 300 $. L’adulte aura droit à un montant supplémentaire s’il reçoit au moins 1 $ de prestation. Ce montant équivaut à 25 % du montant qui dépasse le revenu de travail permis.
+ Dans cette page :
+ Montant pour un adulte
+Adulte sans contraintes de santé
+Si vous êtes un adulte sans contraintes de santé, votre prestation de base est de 800 $ par mois à laquelle un ou des ajustements peuvent s’ajouter.
+ Exemple de calcul :
+ - Prestation de base : 800 $
+- Ajustement à la prestation de base : 45 $
+- Prestation totale : 845 $
+ Adulte avec contraintes de santé
+Si vous êtes un adulte avec des contraintes de santé, votre prestation de base est de 800 $ par mois à laquelle un ou des ajustements peuvent s’ajouter.
+ Exemple de calcul :
+ - Prestation de base : 800 $
+- Allocation pour contraintes de santé : 169 $
+- Ajustement à la prestation de base : 45 $
+- Prestation totale : 1 014 $
+ Montant pour un conjoint d'étudiant
+Conjoint d'étudiant sans contraintes de santé
+Si vous êtes un conjoint d’étudiant sans contraintes de santé, votre prestation de base est de 220 $ par mois à laquelle un ou des ajustements peuvent s’ajouter.
+ Exemple de calcul :
+ - Prestation de base : 220 $
+- Ajustement à la prestation de base : 45 $
+- Prestation totale : 265 $
+ Conjoint d'étudiant avec contraintes de santé
+Si vous êtes un conjoint d’étudiant avec des contraintes de santé, votre prestation de base est de 220 $ par mois à laquelle un ou des ajustements peuvent s’ajouter.
+ Exemple de calcul :
+ - Prestation de base : 220 $
+- Allocation pour contraintes de santé : 169 $
+- Ajustement à la prestation de base : 45 $
+- Prestation totale : 434 $
+ Montant pour une personne hébergée dans un établissement
+Une personne peut être hébergée dans l’un des établissements suivants :
+- un centre de réadaptation;
+- un centre d’hébergement et de soins de longue durée (CHSLD).
+Si vous êtes une personne hébergée dans l’un de ses établissements, vous pouvez obtenir une prestation. Consultez le site de la Régie de l'assurance maladie du Québec (RAMQ) pour connaître le montant.
+ Montant pour un adulte seul en réinsertion sociale
+Un adulte seul en réinsertion sociale peut être obligé de loger, sous ordre de la cour, dans l’un des établissements suivants :
+- un centre résidentiel communautaire;
+- un centre d’hébergement communautaire;
+- un foyer d’accueil.
+Si vous êtes logé dans l’un de ses établissements, vous pouvez obtenir une prestation. Consultez le site de la Régie de l'assurance maladie du Québec (RAMQ) pour connaître le montant de la prestation.
+ Montant pour un adulte seul recevant des services en toxicomanie
+Si vous êtes un adulte seul qui séjourne dans un centre qui offre des services en toxicomanie, vous pouvez obtenir une prestation.
+Pour connaître le montant de la prestation, consultez le site de la Régie de l'assurance maladie du Québec (RAMQ).
+ Montant pour une personne mineure hébergée avec son enfant à charge
+Une personne mineure peut être hébergée avec son enfant à charge dans l’un des établissements suivants :
+- un centre de réadaptation;
+- un centre d’hébergement et de soins de longue durée (CHSLD).
+Si vous êtes dans cette situation, vous pouvez obtenir une prestation. Consultez le site de la Régie de l'assurance maladie du Québec (RAMQ) pour connaître le montant de la prestation.
+ Montant pour deux adultes
+Deux adultes sans contraintes de santé
+Si vous êtes deux adultes sans contraintes de santé, votre prestation de base est de 1 238 $ par mois à laquelle un ou des ajustements peuvent s’ajouter.
+ Exemple de calcul :
+ - Prestation de base : 1 238 $
+- Ajustement à la prestation de base : 45 $
+- Prestation totale : 1 283 $
+ Deux adultes avec contraintes de santé
+Si vous êtes deux adultes avec des contraintes de santé, votre prestation de base est de 1 238 $ par mois à laquelle un ou des ajustements peuvent s’ajouter.
+ Exemple de calcul :
+ - Prestation de base : 1 238 $
+- Allocation pour contraintes de santé : 291 $
+- Ajustement à la prestation de base : 45 $
+- Prestation totale : 1 574 $
+ Montant pour deux adultes dans des situations différentes
+Si vous vivez avec un adulte et qu’un de vous a des contraintes de santé, vous pouvez obtenir une prestation de 1 238 $ à laquelle un ou des ajustements peuvent s’ajouter.
+ Exemple de calcul :
+ - Prestation de base : 1 238 $
+- Allocation pour contraintes de santé : 169 $
+- Ajustement à la prestation de base : 45 $
+- Prestation totale : 1 452 $
+ Exemple de calcul du supplément aux revenus de travail
+Voici l’exemple d’une personne qui reçoit une prestation d’aide sociale de 845 $ par mois.
+En plus de sa prestation, cette personne travaille et reçoit un salaire mensuel de 360 $. Une personne seule peut recevoir 200 $ en revenu de travail sans que sa prestation ne soit réduite. Dans cet exemple, le salaire dépasse de 160 $ les revenus de travail autorisés.
+160 $ seront alors retirés de sa prestation.
+845 $ - 160 $ = 685 $
+Sa prestation est de 685 $ après avoir comptabilisé ses revenus de travail.
+Avec l’application du supplément aux revenus de travail, 25 % des sommes qui dépassent les revenus de travail exclus du calcul seront ajoutés à sa prestation, soit 40 $ dans cet exemple (25 % x 160 $).
+685 $ + 40 $ = 725 $
+Sa prestation mensuelle sera donc de 725 $.
+Visionnez la capsule explicative pour connaître les détails de cette nouvelle mesure.
+ Dates de versement des prestations
+Vous pouvez consulter la date de vos prochaines prestations dans votre dossier en ligne.
+ Des questions au sujet du Programme d’aide sociale ou du Programme de solidarité sociale?
+ - 
+ 
+ De 8 h 30 à 16 h 30 du lundi au vendredi, à l’exception du mercredi, de 10 h à 16 h 30
+ - 
+ 
+ Région de Montréal et environs :
+ 514 873-4000
+ Ailleurs au Québec (sans frais) :
+ 1 877 767-8773
+ - 
+ 
+ Écrire au Centre de communication avec la clientèle
+ Dernière mise à jour : 
+ 1er
+ octobre 2026
+ 

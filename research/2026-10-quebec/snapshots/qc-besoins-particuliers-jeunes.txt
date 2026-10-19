@@ -1,0 +1,21 @@
+URL: https://www.quebec.ca/education/aide-financiere-aux-etudes/allocation-besoins-particuliers-jeunes/conditions-admissibilite | province: QC | program: Allocation pour des besoins particuliers – jeunes | fetched: 2026-10-18
+=== PAGE: https://www.quebec.ca/education/aide-financiere-aux-etudes/allocation-besoins-particuliers-jeunes/conditions-admissibilite (HTTP 200, 1284 chars)
+
+ Admissibilité au programme
+Le Programme d’allocation pour des besoins particuliers s’adresse à votre enfant si une déficience entrainant une incapacité significative et persistante limite ses apprentissages scolaires à la maison.
+Votre enfant doit fréquenter un établissement d’enseignement privé non subventionné reconnu et suivre un programme d’études reconnu.
+L’allocation vous permet d’obtenir des ressources matérielles recommandés par une professionnelle ou un professionnel de la santé qui sont nécessaires à la poursuite de ses études :
+- au préscolaire;
+- au primaire;
+- au secondaire.
+Aucun autre programme ne doit couvrir les mêmes besoins.
+ Conditions d'admissibilité
+Votre enfant doit répondre aux conditions suivantes :
+Avoir la citoyenneté canadienne, la résidence permanente ou un statut de personne réfugiée ou protégée.
+- Être une personne considérée comme résidente du Québec.
+- Être admise ou admis dans un établissement d’enseignement privé non subventionné reconnu et suivre un programme d’études reconnu.
+- Être aux études à temps plein ou avoir un minimum de 20 h de cours par mois.
+- Être atteinte ou atteint d’une déficience entraînant une incapacité significative et persistante confirmée par un ou une médecin.
+ Dernière mise à jour : 
+ 16 juillet 2026
+ 

@@ -1,0 +1,25 @@
+URL: https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-techniques-communication | province: QC | program: Programme d'aides techniques à la communication (PMATCOM) | fetched: 2026-10-18
+=== PAGE: https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-techniques-communication (HTTP 200, 1454 chars)
+
+ - Accueil  
+- Santé  
+- Système et services de santé  
+- Aides techniques, déficiences et handicaps  
+- Aides techniques à la communication
+ Aides techniques à la communication
+ Programme ministériel des aides techniques à la communication
+Le Programme ministériel des aides techniques à la communication (PMATCOM) permet le prêt d’équipements aux personnes présentant une déficience physique, intellectuelle ou un trouble du spectre de l’autisme entraînant des incapacités à communiquer.
+Les aides techniques couvertes par le PMATCOM se divisent en cinq catégories :
+- les aides à la communication orale;
+- les aides de suppléance à la communication orale;
+- l’accès à l’ordinateur;
+- le contrôle de l’environnement;
+- la téléphonie adaptée.
+Obtenir plus d’information sur le PMATCOM
+ Aides technologiques à l’information et à la communication pendant le parcours scolaire
+D’autres programmes et mesures sont proposés pour financer des aides technologiques à l’information et à la communication pendant le parcours scolaire.
+Le document Les aides technologiques à l’information et à la communication (ATIC) et le parcours scolaire présente une description sommaire de chaque programme ou mesure, la clientèle visée et des informations pratiques pour vous orienter vers les bonnes ressources.
+Consulter le document Les aides technologiques à l’information et à la communication (ATIC) et le parcours scolaire
+ Dernière mise à jour : 
+ 17 janvier 2024
+ 

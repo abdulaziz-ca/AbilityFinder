@@ -1,0 +1,50 @@
+URL: https://www.rtl-longueuil.qc.ca/transport-adapte/admission | province: QC | program: RTL Transport adapté | fetched: 2026-10-18
+=== PAGE: https://www.rtl-longueuil.qc.ca/transport-adapte/admission (HTTP 200, 2297 chars)
+
+ Admission
+ Transport adapté
+ Se déplacer en toute simplicité
+ Pour utiliser le transport adapté dans le Grand Montréal, vous devez avoir une carte OPUS du transport adapté valide et un dossier en règle qui confirme votre admissibilité, selon les critères de la politique d’admissibilité au transport adapté du ministère des Transports et de la Mobilité durable. 
+Si vous n’avez pas utilisé le transport adapté pendant plus de 2 ans, vous devez réactiver votre dossier en communiquant avec nous au 450 670-2992, option 3. 
+Les personnes habitant dans une institution spécialisée ou subventionnée qui bénéficient déjà d’un service de transport peuvent aussi utiliser le nôtre pour des raisons non médicales. 
+ Ouverture d’un dossier en transport adapté 
+- Remplissez le formulaire de demande d’admission (aussi disponible sur demande au 450 670-2992, option 3).- Pour l’évaluation de votre demande, envoyez-nous le formulaire, ainsi que la photo uniquement par la poste:
+Réseau de transport de l’agglomération de Longueuil 
+Comité d’admissibilité au transport adapté 
+1150, boulevard Marie-Victorin 
+Longueuil (Québec) J4G 2M4 
+ Mise à jour de votre dossier 
+Vous devez nous informer de tout changement à votre dossier:  
+- Adresse
+- Numéro de téléphone
+- Condition médicale
+- Aide à la mobilité (fauteuil roulant, canne, marchette, déambulateur, triporteur, quadriporteur, chien-guide ou d’assistance, panier à roulettes, etc.)
+- Besoin d’une personne accompagnatrice
+Pour mettre à jour votre dossier, communiquez avec l’administration du transport adapté: 
+- Par téléphone: entre 8h30 à 12h et 13h à 16h30 au 450 670-2992, option 3 
+- Par courriel: ta@rtl-longueuil.qc.ca
+- Le centre de réservations ne fait pas la mise à jour des dossiers.
+Si vous déménagez hors du territoire que nous desservons, contactez-nous par écrit ou par courriel pour demander l’envoi de votre dossier au nouveau transporteur:  
+Réseau de transport de l’agglomération de Longueuil
+Comité d’admissibilité au transport adapté 
+1150, boulevard Marie-Victorin 
+Longueuil (Québec) J4G 2M4 Par courriel: ta@rtl-longueuil.qc.ca
+ Service à la clientèle
+ Besoin d’aide pour ouvrir votre dossier d’admission, réserver ou annuler un déplacement en transport adapté, ou signaler un incident?
+ Contacter le Service à la clientèle
+ 
+
+=== PAGE: https://www.rtl-longueuil.qc.ca/fr-CA/transport-adapte/ (HTTP 200, 942 chars)
+
+ Transport adapté
+ À propos
+ Chaque année, on offre un service de transport adapté à plus de 5 000 personnes dans l’agglomération de Longueuil. Découvrez les critères d’admissibilité, le fonctionnement, les heures de service, le territoire desservi et plus!
+ Réserver un transport
+ Accédez au service automatisé ou appelez notre centre de réservations pour planifier facilement vos déplacements en transport adapté, 7 jours sur 7.
+ Titres et tarifs
+ Offert avec la carte OPUS ou à l’achat d’un titre de transport, le service de transport adapté vous mène jusqu’à destination partout sur le territoire de l'ARTM.
+ Admission
+ Pour vous déplacer en transport adapté dans le Grand Montréal, vous devez avoir une carte OPUS du transport adapté valide et un dossier en règle.
+ Service à la clientèle
+ Besoin d’un transport adapté? Profitez d’un service fiable et accessible. Contactez notre Service à la clientèle dès maintenant au 450 670-2992.
+ 

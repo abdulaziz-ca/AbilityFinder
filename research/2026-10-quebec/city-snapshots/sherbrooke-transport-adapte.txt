@@ -1,0 +1,93 @@
+URL: https://www.sts.qc.ca/transport-adapte/admission/ | province: QC | program: STS Transport adapté | fetched: 2026-10-18
+=== PAGE: https://www.sts.qc.ca/transport-adapte/admission/ (HTTP 200, 2355 chars)
+
+ Accueil / Transport adapté / Admission
+Admission
+Critères d’admission
+check
+Toute personne ayant une déficience entraînant une incapacité significative et persistante et qui est sujette à rencontrer des obstacles dans l’accomplissement d’activités courantes.
+check
+Toute personne à mobilité réduite se voyant contrainte dans ses déplacements.
+Vous possédez une des incapacités suivantes? Et bien, le service peut vous être offert!
+INCAPACITÉ :
+- de marcher 400 mètres sur un terrain uni.
+- de monter une marche de 35 cm de hauteur avec appui ou d’en descendre une sans appui.
+- d’effectuer l’ensemble d’un déplacement en transport en commun.
+- de s’orienter dans le temps ou dans l’espace.
+- de communiquer de façon verbale ou gestuelle.
+- de maîtriser des situations ou des comportements pouvant être préjudiciables à sa propre sécurité ou à celle des autres.
+Demande d’admission
+1
+REMPLISSEZ la partie 1 du Formulaire de demande d’admission au transport adapté.
+2
+CONTACTEZ un professionnel du réseau de la santé, ce dernier devra remplir la partie 2 du formulaire.
+3
+JOIGNEZ, au formulaire complété, une photo récente et une preuve d’âge*.
+Photocopie : certificat de naissance ou carte d’assurance maladie
+Une photo peut être prise à nos bureaux si les documents sont délivrés en personne. 
+4
+REMETTEZ en personne ou par la poste le Formulaire de demande d’admission au transport adapté.
+Société de transport de Sherbrooke
+Admission du transport adapté
+895, rue Cabana
+Sherbrooke (Québec), J1K 2M3
+Formulaires
+Demande d’admission au transport adapté
+Téléchargez-le
+Application for Paratransit eligibility
+Download
+Besoin d’aide?
+Communiquez avec le Service à la clientèle au 819 564-2687, poste 2.
+ Transport adapté
+- Accueil
+- RéservationToggle child menuDéveloppez
+ - Réservez un transport
+ - Informations utiles
+ - Accompagnement
+ - Organismes
+ - Heures de service
+- Annulation
+- Tarifs et achatsToggle child menuDéveloppez
+ - Titres et tarifs
+ - Points de vente
+- AdmissionToggle child menuDéveloppez
+ - Comité d’admission
+ - Visiteurs
+- Conseils pratiquesToggle child menuDéveloppez
+ - Réponse vocale interactive (RVI)
+ - Priorité des déplacements
+ - Territoire desservi
+ - Règles d’utilisation
+ - Voyage blanc
+ - Politique de qualité
+- SoutienToggle child menuDéveloppez
+ - Pour nous joindre
+ - Objets perdus
+ - Plaintes
+ - FAQ
+ - Formulaires
+ 
+
+=== PAGE: https://www.sts.qc.ca/transport-adapte/ (HTTP 200, 494 chars)
+
+Transport adapté
+Réservez un transport par téléphone
+En tout temps
+819 564-2687, poste 1
+Détails de réservation
+Se déplacer à Sherbrooke en transport adapté
+Admission
+Réservez votre transport adapté
+Annulez votre transport adapté
+Tarifs
+Actualités et nouvelles
+- 
+ Actualité 
+ Un nouveau Centre de services ouvre à la Station du Cégep
+- 
+ Actualité 
+ Mise à jour concernant l’annonce du prochain arrêt
+- 
+ Actualité 
+ La STS fière des résultats du sondage de satisfaction du transport adapté
+ 

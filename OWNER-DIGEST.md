@@ -6,6 +6,31 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-18 — Quebec live, in French
+
+### Shipped
+- **Quebec** (`?v=226`): 39 provincial and 10 city programs, written in French from each official French page
+  and checked by a separate French-language reviewer, after five research passes and a completeness check
+  against the government's own disability-program list. **All 10 provinces are now covered: 449 programs.**
+- **French done properly:** each Quebec record is marked French, so screen readers and translators read it
+  right in the English interface; Quebec's static guide pages are fully French (headings, navigation, dates).
+  A notice on Quebec results (English or French, matching the interface) explains this.
+- Help sections in French: OPHQ, aide juridique, Éducaloi, 211, AQRIPH and seven Quebec organizations.
+- The static guides' header now uses the same short province list as the app (it overlapped the logo).
+
+### Verified how
+- Unit tests (239) and the full Chromium suite (324) pass locally; screenshots of a Quebec guide in the English
+  and French interfaces checked. CI runs all three browsers before deploying.
+
+### Decisions we made for you
+- Quebec program text is French in both interface languages (as you asked); the interface itself is unchanged.
+- Programs whose rules sit with RAMQ or a professional assessment show as "almost", with the reason.
+
+### Needs you
+- **Revenu Québec** (tax credits) and **RAMQ** pages block automated reading. If you want the tax credits (solidarity,
+  caregiver, home support for seniors, severe and prolonged impairment), pass those sites' checks in the browser
+  pane like you did for PEI and I will read and add them. Tracked in `research/2026-10-quebec/GAPS.md`.
+
 ## 2026-10-18 — Newfoundland and Labrador live
 
 ### Shipped

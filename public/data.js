@@ -147,6 +147,26 @@ const PROVINCE_NOTICES = {
       "City programs are listed for Winnipeg only so far.",
     ],
   },
+  /* Québec records keep the official French wording; `fr` is shown when the
+     interface is in French. */
+  QC: {
+    title: "Québec programs are shown in French",
+    lede: "Each Québec program keeps the wording of its official French page. A few official sites block automated reading, so some details could not be checked.",
+    items: [
+      "Pages of the Régie de l'assurance maladie du Québec (RAMQ) could not be read. Hearing, vision and mobility aid programs send you to the official page for the full criteria.",
+      "Revenu Québec pages could not be read, so Québec tax credits (such as the solidarity tax credit and the caregiver credit) are not listed yet.",
+      "Some city fares and income limits come from older pages; each program says so.",
+    ],
+    fr: {
+      title: "Les programmes du Québec sont présentés en français",
+      lede: "Chaque programme du Québec reprend le texte de sa page officielle. Quelques sites officiels bloquent la lecture automatisée : certains détails n'ont donc pas pu être vérifiés.",
+      items: [
+        "Les pages de la Régie de l'assurance maladie du Québec (RAMQ) n'ont pas pu être lues. Les programmes d'aides auditives, visuelles et à la mobilité vous renvoient à la page officielle pour tous les critères.",
+        "Les pages de Revenu Québec n'ont pas pu être lues : les crédits d'impôt du Québec (comme le crédit d'impôt pour solidarité ou pour personne aidante) ne sont pas encore inscrits.",
+        "Certains tarifs et seuils de revenu municipaux viennent de pages plus anciennes; chaque programme le précise.",
+      ],
+    },
+  },
 };
 /* New Brunswick municipalities offered in the questionnaire. */
 const NB_CITIES = [
@@ -173,8 +193,15 @@ const NL_CITIES = [
   "Stephenville",
   "Other / my town isn't listed",
 ];
-const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES, ON: ON_CITIES, SK: SK_CITIES, MB: MB_CITIES, NB: NB_CITIES, NS: NS_CITIES, PE: PE_CITIES, NL: NL_CITIES };
-const COVERED_PROVINCES = ["AB", "BC", "ON", "SK", "MB", "NB", "NS", "PE", "NL"];
+/* Quebec municipalities offered in the questionnaire. */
+const QC_CITIES = [
+  "Montr\u00e9al", "Ville de Qu\u00e9bec", "Laval", "Gatineau", "Longueuil", "Sherbrooke",
+  "Saguenay", "L\u00e9vis", "Trois-Rivi\u00e8res", "Terrebonne", "Saint-Jean-sur-Richelieu", "Repentigny",
+  "Brossard", "Drummondville", "Saint-J\u00e9r\u00f4me", "Granby",
+  "Other / my town isn't listed",
+];
+const CITIES_BY_PROVINCE = { AB: ALBERTA_CITIES, BC: BC_CITIES, ON: ON_CITIES, SK: SK_CITIES, MB: MB_CITIES, NB: NB_CITIES, NS: NS_CITIES, PE: PE_CITIES, NL: NL_CITIES, QC: QC_CITIES };
+const COVERED_PROVINCES = ["AB", "BC", "ON", "SK", "MB", "NB", "NS", "PE", "NL", "QC"];
 
 /* national fallbacks (used when a jurisdiction isn't in the maps yet) */
 const FED_STUDENT_AID = "https://www.canada.ca/en/employment-social-development/services/education/grants/disabilities.html";
@@ -190,6 +217,7 @@ const STUDENT_AID = {
   NS: "https://novascotia.ca/studentassistance/apply/new/StudentsWithDisabilities.asp",
   PE: "https://www.princeedwardisland.ca/en/information/workforce-and-advanced-learning/canada-student-grants-for-students-with-disabilities",
   NL: "https://www.gov.nl.ca/education/studentaid/disabilities/",
+  QC: "https://www.quebec.ca/education/aide-financiere-aux-etudes/allocation-besoins-particuliers-adultes/admissibilite-programme",
 };
 const TWO_ELEVEN = { AB: "https://ab.211.ca/", BC: "https://bc.211.ca/",
   ON: "https://211ontario.ca",
@@ -199,6 +227,7 @@ const TWO_ELEVEN = { AB: "https://ab.211.ca/", BC: "https://bc.211.ca/",
   NS: "https://ns.211.ca",
   PE: "https://pe.211.ca/about-us",
   NL: "https://nl.211.ca/",
+  QC: "https://www.211qc.ca/",
 };
 const EMPLOYMENT = {
   AB: "https://www.alberta.ca/disability-related-employment-supports",
@@ -210,6 +239,7 @@ const EMPLOYMENT = {
   NS: "https://novascotia.ca/employmentnovascotia/interventions/default.asp",
   PE: "https://resourceabilities.ca/job-seekers/",
   NL: "https://www.sci-nl.ca/",
+  QC: "https://www.roseph.ca",
 };
 
 /* =============================================================================
@@ -220,6 +250,55 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "qc-artistes-handicap": { kind: "grant", note: "Aide supplémentaire liée au handicap, s'ajoutant à une bourse du CALQ." },
+  "qc-agir-tot": { kind: "access", note: "Services gratuits de dépistage et d'intervention précoce pour les enfants de moins de 7 ans." },
+  "qc-carte-accompagnement-autocar": { kind: "access", note: "Billet gratuit pour votre accompagnateur sur le réseau interurbain par autocar." },
+  "trois-rivieres-transport-adapte": { kind: "access", note: "Accès au service de transport adapté une fois admis" },
+  "trois-rivieres-tarification-sociale": { kind: "discount", note: "Rabais de 50 % sur le titre mensuel régulier" },
+  "sherbrooke-transport-adapte": { kind: "access", note: "Accès au service de transport adapté une fois admis" },
+  "gatineau-transport-adapte": { kind: "access", note: "Accès au service de transport adapté une fois admis" },
+  "gatineau-echo": { kind: "discount", note: "Abonnement mensuel à 62 $ au lieu de 116,50 $, ou 2,80 $ par passage (2026)" },
+  "quebec-equimobilite": { kind: "discount", note: "Laissez-passer mensuel à 51 $ et billet un passage à 2,05 $ pour les personnes à faible revenu" },
+  "exo-transport-adapte": { kind: "access", note: "Accès au service de transport adapté et à des tarifs réduits ou gratuits selon votre déplacement" },
+  "rtl-transport-adapte": { kind: "access", note: "Accès au service de transport adapté et à des tarifs réduits ou gratuits selon votre situation" },
+  "laval-transport-adapte": { kind: "access", note: "Accès au service de transport adapté et à des tarifs réduits ou gratuits selon votre situation" },
+  "montreal-transport-adapte": { kind: "access", note: "Accès au service de transport adapté et à des tarifs réduits ou gratuits selon votre situation" },
+  "qc-prets-bourses-dfm": { kind: "access", note: "Reconnaissance du statut d'étudiant à temps plein pour l'aide financière aux études." },
+  "qc-besoins-particuliers-jeunes": { kind: "grant", note: "Allocation pour des ressources matérielles liées aux études de votre enfant." },
+  "qc-besoins-particuliers-adultes": { kind: "grant", note: "Aide pour les formes de soutien liées à la déficience, nécessaires aux études." },
+  "qc-prestations-speciales": { kind: "grant", note: "Montant supplémentaire pour un besoin de santé ou une situation particulière." },
+  "qc-assurance-medicaments": { kind: "discount", note: "Protection de base à l'égard du coût des médicaments, avec franchise, coassurance et prime selon le revenu (2026-2027)." },
+  "qc-hlm": { kind: "discount", note: "Loyer fixé à 25 % de votre revenu, chauffage compris." },
+  "qc-allocation-logement": { kind: "grant", note: "Aide mensuelle pour le loyer, jusqu'à 170 $ par mois." },
+  "qc-carte-accompagnement-loisir": { kind: "access", note: "Entrée gratuite pour votre accompagnateur chez les partenaires de loisir, de culture et de tourisme." },
+  "qc-adaptation-vehicule": { kind: "grant", note: "Remboursement de frais d'adaptation d'un véhicule, sur pièces justificatives." },
+  "qc-vignette-stationnement": { kind: "access", note: "Accès aux espaces de stationnement réservés aux personnes handicapées." },
+  "qc-supplement-loyer": { kind: "discount", note: "Loyer réduit à 25 % de vos revenus; le programme paie la différence." },
+  "qc-adaptation-domicile": { kind: "grant", note: "Aide financière pour adapter un logement occupé par une personne handicapée." },
+  "qc-soutien-domicile": { kind: "access", note: "Services de soutien à domicile par le CLSC, avec une allocation possible pour employer votre aidant." },
+  "qc-services-deficience": { kind: "access", note: "Services de soutien et de développement pour les personnes avec une déficience ou un TSA et leur famille." },
+  "qc-transport-hebergement": { kind: "grant", note: "Remboursement de frais de déplacement, d'hébergement et de repas pour des services de santé." },
+  "qc-aides-communication": { kind: "access", note: "Prêt d'équipements pour communiquer, selon le programme." },
+  "qc-chaussures-orthetiques": { kind: "discount", note: "Chaussures orthétiques et appareillages, avec une franchise de 75 $ pour le sur mesure." },
+  "qc-tricycles": { kind: "access", note: "Prêt d'un tricycle ou d'un vélo adapté pour un enfant handicapé." },
+  "qc-ambulateurs": { kind: "access", note: "Prêt d'un ambulateur, sans frais ni franchise." },
+  "qc-triporteurs": { kind: "access", note: "Prêt d'un quadriporteur, sans frais ni franchise." },
+  "qc-aides-vie-quotidienne": { kind: "grant", note: "Équipements pour la vie quotidienne et domestique à la maison, sans frais ni franchise." },
+  "qc-chien-assistance": { kind: "grant", note: "Remboursement des frais liés à votre chien d'assistance à la motricité." },
+  "qc-aides-elimination": { kind: "grant", note: "Fournitures pour les fonctions d'élimination, sans frais ni franchise." },
+  "qc-appareils-deficience-physique": { kind: "access", note: "Programme d'aides techniques, si vous êtes admissible." },
+  "qc-aides-visuelles": { kind: "access", note: "Programme d'aides techniques, si vous êtes admissible." },
+  "qc-aides-auditives": { kind: "access", note: "Programme d'aides techniques, si vous êtes admissible." },
+  "qc-soutien-familles": { kind: "grant", note: "Allocation pour acheter du répit, du gardiennage, du dépannage ou de l'appui aux tâches." },
+  "qc-rente-invalidite": { kind: "grant", note: "Rente mensuelle imposable si vous ne pouvez plus travailler à temps plein à cause de votre santé." },
+  "qc-sehnse": { kind: "grant", note: "Aide financière en plus du SEH pour les parents d'un enfant très gravement atteint." },
+  "qc-supplement-enfant-handicape": { kind: "grant", note: "Aide financière non imposable pour les parents d'un enfant handicapé." },
+  "qc-allocation-famille": { kind: "grant", note: "Aide financière non imposable pour chaque enfant de moins de 18 ans." },
+  "qc-reussir": { kind: "grant", note: "Aide financière possible en plus des prêts et bourses, avec conservation du carnet de réclamation." },
+  "qc-objectif-emploi": { kind: "grant", note: "Soutien financier et accompagnement pendant votre démarche vers l'emploi." },
+  "qc-revenu-base": { kind: "grant", note: "Prestation avec plus de marge pour le travail, les biens et l'argent, et carnet de réclamation conservé." },
+  "qc-aide-sociale": { kind: "grant", note: "Prestation mensuelle pour vos besoins de base, plus haute avec des contraintes de santé." },
+  "qc-solidarite-sociale": { kind: "grant", note: "Prestation mensuelle pour vos besoins de base si vous avez des contraintes sévères de santé." },
   "nl-caregiver-benefit": { kind: "grant", note: "$400 a month paid to the caregiver." },
   "nl-dental-programs": { kind: "access", note: "Dental coverage for children, eligible youth and Foundation Plan adults." },
   "nl-moving-into-workforce": { kind: "grant", note: "Extra income and bonuses while you move into work." },
@@ -683,6 +762,55 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "qc-artistes-handicap": { difficulty: 3, effort: "Section du formulaire de bourse et factures à conserver", wait: "Non précisé" },
+  "qc-agir-tot": { difficulty: 1, effort: "Un appel au CLSC, puis évaluation de vos besoins", wait: "Non précisé" },
+  "qc-carte-accompagnement-autocar": { difficulty: 2, effort: "Formulaire et photo à envoyer par courriel; attestation parfois requise", wait: "4 à 6 semaines" },
+  "trois-rivieres-transport-adapte": { difficulty: 3, effort: "Remplir un formulaire et le faire compléter par un professionnel de la santé", wait: "Réponse écrite dans les 45 jours" },
+  "trois-rivieres-tarification-sociale": { difficulty: 3, effort: "Passer par un organisme communautaire, puis créer la carte CITÉ", wait: "Non précisé" },
+  "sherbrooke-transport-adapte": { difficulty: 3, effort: "Remplir un formulaire, le faire compléter par un professionnel et joindre une photo", wait: "Non précisé" },
+  "gatineau-transport-adapte": { difficulty: 3, effort: "Remplir un formulaire et le faire compléter par un professionnel de la santé", wait: "Réponse dans les 45 jours" },
+  "gatineau-echo": { difficulty: 3, effort: "Remplir un formulaire, fournir des preuves, puis passer à un point de service", wait: "Environ deux semaines pour certaines demandes" },
+  "quebec-equimobilite": { difficulty: 3, effort: "Remplir un formulaire, joindre des preuves, puis faire produire la carte OPUS", wait: "Jusqu'à 3 semaines pour la carte par la poste" },
+  "exo-transport-adapte": { difficulty: 3, effort: "Vérifier vos critères, puis faire une demande d’admission", wait: "Non précisé" },
+  "rtl-transport-adapte": { difficulty: 3, effort: "Remplir un formulaire et l’envoyer par la poste avec une photo", wait: "Réponse dans les 45 jours selon la politique du ministère des Transports" },
+  "laval-transport-adapte": { difficulty: 3, effort: "Remplir un formulaire, le faire remplir en partie par un professionnel et joindre 2 photos", wait: "Réponse dans les 45 jours" },
+  "montreal-transport-adapte": { difficulty: 3, effort: "Remplir un formulaire, le faire remplir en partie par un professionnel et joindre une photo", wait: "Réponse dans les 45 jours" },
+  "qc-prets-bourses-dfm": { difficulty: 3, effort: "Certificat médical et formulaire à envoyer par écrit", wait: "Non précisé" },
+  "qc-besoins-particuliers-jeunes": { difficulty: 3, effort: "Confirmation médicale et recommandation d'un professionnel de la santé", wait: "Non précisé" },
+  "qc-besoins-particuliers-adultes": { difficulty: 3, effort: "Rencontre avec votre établissement, confirmation médicale, puis demande", wait: "Non précisé" },
+  "qc-prestations-speciales": { difficulty: 3, effort: "Documents justificatifs, parfois autorisation préalable, puis envoi à Services Québec", wait: "Non précisé" },
+  "qc-assurance-medicaments": { difficulty: 1, effort: "Aucune demande propre à cette page; consultez la RAMQ", wait: "Non précisé" },
+  "qc-hlm": { difficulty: 3, effort: "Demande de logement subventionné, puis sélection par l'office d'habitation", wait: "Non précisé" },
+  "qc-allocation-logement": { difficulty: 2, effort: "Demande en ligne ou par téléphone auprès de Revenu Québec", wait: "Non précisé" },
+  "qc-carte-accompagnement-loisir": { difficulty: 2, effort: "Demande sur carteloisir.ca ou par téléphone", wait: "Non précisé" },
+  "qc-adaptation-vehicule": { difficulty: 4, effort: "Rapport d'ergothérapeute, soumissions et autorisation avant l'achat", wait: "Non précisé" },
+  "qc-vignette-stationnement": { difficulty: 2, effort: "Formulaire et, parfois, évaluation d'un professionnel", wait: "Non précisé" },
+  "qc-supplement-loyer": { difficulty: 3, effort: "Demande à l'office d'habitation de votre région", wait: "Non précisé" },
+  "qc-adaptation-domicile": { difficulty: 3, effort: "Formulaire d'inscription et preuve d'incapacité", wait: "Non précisé" },
+  "qc-soutien-domicile": { difficulty: 3, effort: "Évaluation des besoins par le CLSC", wait: "Non précisé" },
+  "qc-services-deficience": { difficulty: 3, effort: "Contact avec l'établissement, puis évaluation des besoins", wait: "Non précisé" },
+  "qc-transport-hebergement": { difficulty: 3, effort: "Contact avec l'établissement, prescription et pièces justificatives", wait: "Liste d'attente possible" },
+  "qc-aides-communication": { difficulty: 2, effort: "Vérifier les détails sur la page officielle", wait: "Non précisé" },
+  "qc-chaussures-orthetiques": { difficulty: 3, effort: "Contact avec l'établissement et attestation du médecin", wait: "Non précisé" },
+  "qc-tricycles": { difficulty: 3, effort: "Contact avec l'établissement et attestation médicale", wait: "Non précisé" },
+  "qc-ambulateurs": { difficulty: 3, effort: "Contact avec l'établissement et attestation du médecin", wait: "Non précisé" },
+  "qc-triporteurs": { difficulty: 3, effort: "Contact avec l'établissement et attestation du médecin", wait: "Non précisé" },
+  "qc-aides-vie-quotidienne": { difficulty: 3, effort: "Contact avec l'établissement et attestation médicale", wait: "Non précisé" },
+  "qc-chien-assistance": { difficulty: 4, effort: "Formulaire par la poste et évaluation", wait: "Non précisé" },
+  "qc-aides-elimination": { difficulty: 3, effort: "Contact avec l'établissement et attestation médicale", wait: "Non précisé" },
+  "qc-appareils-deficience-physique": { difficulty: 2, effort: "Vérifier l'admissibilité sur la page officielle", wait: "Non précisé" },
+  "qc-aides-visuelles": { difficulty: 2, effort: "Vérifier l'admissibilité sur la page officielle", wait: "Non précisé" },
+  "qc-aides-auditives": { difficulty: 2, effort: "Vérifier l'admissibilité sur la page officielle", wait: "Non précisé" },
+  "qc-soutien-familles": { difficulty: 3, effort: "Contact avec l'intervenant pivot ou l'établissement, puis évaluation", wait: "Non précisé" },
+  "qc-rente-invalidite": { difficulty: 4, effort: "Demande avec évaluation médicale par Retraite Québec", wait: "Normalement le quatrième mois après la reconnaissance de l'invalidité" },
+  "qc-sehnse": { difficulty: 4, effort: "Demande à Retraite Québec avec dossier de l'enfant", wait: "Non précisé" },
+  "qc-supplement-enfant-handicape": { difficulty: 3, effort: "Demande à Retraite Québec avec dossier de l'enfant", wait: "Non précisé" },
+  "qc-allocation-famille": { difficulty: 2, effort: "Demande en ligne et déclaration de revenus annuelle", wait: "Non précisé" },
+  "qc-reussir": { difficulty: 3, effort: "Demande de prêts et bourses, puis demande de services d'aide à l'emploi", wait: "Non précisé" },
+  "qc-objectif-emploi": { difficulty: 3, effort: "Demande, rencontre et activités du plan", wait: "Non précisé" },
+  "qc-revenu-base": { difficulty: 1, effort: "Aucune démarche si vous êtes admis automatiquement", wait: "Non précisé" },
+  "qc-aide-sociale": { difficulty: 3, effort: "Rencontre avec un agent d'aide financière", wait: "Non précisé" },
+  "qc-solidarite-sociale": { difficulty: 3, effort: "Rencontre avec un agent d'aide financière et rapport médical", wait: "Non précisé" },
   "nl-caregiver-benefit": { difficulty: 3, effort: "Application form, assessment and signed agreement", wait: "Not published" },
   "nl-dental-programs": { difficulty: 2, effort: "Show proof of eligibility at the dental office", wait: "Not published" },
   "nl-moving-into-workforce": { difficulty: 2, effort: "One phone call, then monthly earnings reports", wait: "Not published" },
@@ -2182,6 +2310,69 @@ const HELP_ORGS = [
     urlText: "rdsp.com",
     focus: ["rdsp", "family"],
     coverage: ["NL"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "qc-ophq",
+    lang: "fr",
+    cat: "Find local services near you",
+    name: "Office des personnes handicapées du Québec (OPHQ)",
+    summary: "Information sur plus de 150 programmes, conseils pour les situations complexes, aide aux démarches et accompagnement auprès des prestataires de services. Gratuit, dans toutes les régions. Du lundi au vendredi, 8 h 30 à 12 h et 13 h à 16 h 30.",
+    phone: "1 800 567-1465",
+    url: "https://www.quebec.ca/famille-et-soutien-aux-personnes/participation-sociale-personnes-handicapees/services-information-accompagnement-personnes-handicapees",
+    urlText: "quebec.ca/personnes-handicapees",
+    focus: ["local", "rights"],
+    coverage: ["QC"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "qc-aide-juridique",
+    lang: "fr",
+    cat: "If you're denied — legal help & appeals",
+    name: "Aide juridique du Québec (Commission des services juridiques)",
+    summary: "Réseau qui aide les gens partout au Québec à faire valoir leurs droits; des avocats sont offerts gratuitement ou moyennant une contribution. Les critères d'admissibilité sont sur une page distincte du site.",
+    url: "https://www.csj.qc.ca",
+    urlText: "csj.qc.ca",
+    focus: ["appeals", "rights"],
+    coverage: ["QC"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "qc-educaloi",
+    lang: "fr",
+    cat: "If you're denied — legal help & appeals",
+    name: "Éducaloi",
+    summary: "Organisme de bienfaisance qui explique la loi en langage clair, par sujet (famille, travail, logement, consommation, etc.). L'information est offerte gratuitement sur le site.",
+    url: "https://educaloi.qc.ca",
+    urlText: "educaloi.qc.ca",
+    focus: ["rights"],
+    coverage: ["QC"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "qc-211",
+    lang: "fr",
+    cat: "Find local services near you",
+    name: "211 Québec",
+    summary: "Trouvez des services communautaires et sociaux près de chez vous. Composez le 211, 24 h sur 24, 7 jours sur 7, ou clavardez (réponse en 35 minutes ou moins).",
+    phone: "211",
+    url: "https://www.211qc.ca/",
+    urlText: "211qc.ca",
+    focus: ["local", "family"],
+    coverage: ["QC"],
+    verified: "2026-10-18",
+  },
+  {
+    id: "qc-aqriph",
+    lang: "fr",
+    cat: "Find local services near you",
+    name: "Alliance québécoise pour l'intégration des personnes handicapées (AQRIPH)",
+    summary: "Regroupe 18 groupes régionaux et plus de 500 organismes locaux. Pour une situation personnelle, l'équipe peut vous écouter et vous orienter vers le groupe de votre région. Du lundi au vendredi, 9 h à 16 h 30.",
+    phone: "581 308-6770",
+    url: "https://aqriph.com",
+    urlText: "aqriph.com",
+    focus: ["local", "accommodation"],
+    coverage: ["QC"],
     verified: "2026-10-18",
   },
 ];
@@ -21371,6 +21562,2597 @@ const BENEFITS = [
         "Eastern-Urban: 709-752-4361. Eastern-Rural: 709-542-3511. Labrador Grenfell: 709-931-2450 ext 9317263."
       ]
     }
+  },
+  {
+    "id": "qc-solidarite-sociale",
+    "name": "Programme de solidarité sociale",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Income support",
+    "amount": "Adulte seul en 2026 : 1 215 $ par mois plus un ajustement de 103 $ (1 318 $ au total)",
+    "summary": "Aide financière mensuelle pour vos besoins de base, destinée aux ménages à faible revenu dont un adulte a des contraintes de santé sévères.",
+    "note": "Un agent ou une agente d'aide financière détermine votre admissibilité selon votre situation et vos besoins.",
+    "requires": [
+      "qc",
+      "qcSolidariteSocialeRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous ou au moins un adulte de votre famille avez des contraintes sévères de santé.",
+        "Un médecin doit constater ces contraintes dans un rapport médical.",
+        "Vos ressources (argent, biens, revenus) respectent les sommes maximales prévues par règlement.",
+        "Vous résidez au Québec."
+      ],
+      "note": "Avant 18 ans, vous devez aussi être marié, l'avoir déjà été ou être parent d'un enfant à charge."
+    },
+    "applyText": "Consultez la démarche à suivre pour faire une demande sur la page officielle.",
+    "applyUrl": "https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/presentation-programmes-aide-financiere/programme-aide-sociale-programme-solidarite-sociale",
+    "source": "https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/presentation-programmes-aide-financiere/programme-aide-sociale-programme-solidarite-sociale",
+    "detail": {
+      "aboutList": {
+        "lead": "Exemples de contraintes sévères de santé :",
+        "items": [
+          "Troubles de santé mentale ou déficience intellectuelle.",
+          "Maladies chroniques ou déficiences auditives.",
+          "Séquelles d'un accident ou incapacité physique limitant les déplacements."
+        ]
+      },
+      "steps": [
+        "Vérifiez votre admissibilité avec le simulateur SimulAide.",
+        "Faites votre demande selon la démarche décrite sur la page officielle.",
+        "Rencontrez la personne responsable de votre dossier, qui rend la décision."
+      ],
+      "documents": [
+        "Rapport médical d'un médecin qui constate vos contraintes sévères de santé."
+      ],
+      "tips": [
+        "Ligne téléphonique : de 8 h 30 à 16 h 30 du lundi au vendredi, sauf le mercredi (10 h à 16 h 30).",
+        "Le montant varie selon votre situation familiale, votre hébergement, vos revenus et vos contraintes de santé.",
+        "Un conjoint ou une conjointe peut être, entre autres, une personne mariée, unie civilement ou en union de fait (depuis au moins 12 mois) avec vous.",
+        "Appel sans frais : 1 877 767-8773.",
+        "Les montants officiels sont sur la page Montants et dates de versement des prestations."
+      ],
+      "phone": "514 873-4000"
+    }
+  },
+  {
+    "id": "qc-aide-sociale",
+    "name": "Programme d'aide sociale",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Income support",
+    "amount": "845 $ par mois pour un adulte seul (800 $ de base plus un ajustement de 45 $), ou 1 283 $ pour deux adultes",
+    "summary": "Aide financière mensuelle pour vos besoins de base quand vos ressources sont limitées; un montant s'ajoute en cas de contraintes temporaires de santé.",
+    "note": "Si vous avez des contraintes de santé qui vous empêchent de travailler pour une période limitée, votre prestation pourrait augmenter.",
+    "requires": [
+      "qc",
+      "qcAideSocialeRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vos ressources (argent, biens, revenus) respectent les sommes maximales prévues par règlement.",
+        "Vous résidez au Québec.",
+        "Vous n'avez pas de contraintes sévères de santé."
+      ],
+      "note": "Avant 18 ans, vous devez aussi être marié, l'avoir déjà été ou être parent d'un enfant à charge."
+    },
+    "applyText": "Consultez la démarche à suivre pour faire une demande sur la page officielle.",
+    "applyUrl": "https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/presentation-programmes-aide-financiere/programme-aide-sociale-programme-solidarite-sociale",
+    "source": "https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/presentation-programmes-aide-financiere/programme-aide-sociale-programme-solidarite-sociale",
+    "detail": {
+      "aboutList": {
+        "lead": "Exemples de contraintes de santé pour une période limitée :",
+        "items": [
+          "Fracture au pied.",
+          "Dépression ou anxiété.",
+          "20 semaines ou plus de grossesse."
+        ]
+      },
+      "steps": [
+        "Vérifiez votre admissibilité avec le simulateur SimulAide.",
+        "Faites votre demande selon la démarche décrite sur la page officielle.",
+        "Rencontrez la personne responsable de votre dossier, qui rend la décision."
+      ],
+      "documents": [
+        "Consultez la démarche à suivre sur la page officielle pour connaître le dossier de demande."
+      ],
+      "tips": [
+        "Ligne téléphonique : de 8 h 30 à 16 h 30 du lundi au vendredi, sauf le mercredi (10 h à 16 h 30).",
+        "Montants mensuels de l'année en cours : adulte sans contraintes de santé 845 $, avec contraintes 1 014 $.",
+        "Deux adultes : 1 283 $ sans contraintes de santé, 1 574 $ avec contraintes, 1 452 $ si un seul en a.",
+        "La prestation inclut un ajustement de 45 $ par mois sur la prestation de base.",
+        "L'allocation pour contraintes de santé est de 169 $ par mois (291 $ pour deux adultes avec contraintes).",
+        "Conjoint d'étudiant : prestation de base de 220 $ par mois, plus les ajustements.",
+        "Revenu de travail permis sans réduction : 200 $ pour un adulte seul, 300 $ pour deux adultes.",
+        "Au-delà, 25 % de la somme qui dépasse s'ajoute si vous recevez au moins 1 $ de prestation.",
+        "Hébergement en établissement : consultez le site de la RAMQ pour le montant.",
+        "Appel sans frais : 1 877 767-8773."
+      ],
+      "phone": "514 873-4000"
+    }
+  },
+  {
+    "id": "qc-revenu-base",
+    "name": "Programme de revenu de base",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Income support",
+    "amount": "Prestation de base de 1 336 $ par mois en 2026, plus 371 $ par mois si vous n'avez pas de conjoint",
+    "summary": "Pour les personnes qui ont des contraintes sévères de santé depuis longtemps : vous gagnez plus en travaillant et gardez plus de biens sans que votre prestation baisse.",
+    "note": "Si vous êtes admissible, vous êtes admis automatiquement et recevez un avis avant le premier versement.",
+    "requires": [
+      "qc",
+      "qcRevenuBaseRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Vous avez reçu des prestations de solidarité sociale ou bénéficié du carnet de réclamation.",
+        "Un de vos parents a reçu le SEHNSE de Retraite Québec quand vous étiez mineur.",
+        "Vous résidiez au Québec et receviez une rente d'invalidité de Retraite Québec.",
+        "Vous résidiez au Québec et receviez une pension d'invalidité du Régime de pensions du Canada.",
+        "Vous résidiez au Québec et receviez une allocation d'invalidité pour anciens combattants.",
+        "Vous receviez l'équivalent de l'allocation de solidarité sociale dans une réserve."
+      ],
+      "note": "Il faut ce statut pendant au moins 66 mois au cours des 72 derniers mois."
+    },
+    "applyText": "Vous n'avez aucune démarche à faire si vous respectez les critères d'admission.",
+    "applyUrl": "https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/presentation-programmes-aide-financiere/programme-revenu-base",
+    "source": "https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/presentation-programmes-aide-financiere/programme-revenu-base",
+    "detail": {
+      "aboutList": {
+        "lead": "Avantages du programme :",
+        "items": [
+          "Vous gardez votre carnet de réclamation (services dentaires, pharmaceutiques et soins de la vue).",
+          "Vous avez droit aux mêmes prestations spéciales qu'à la solidarité sociale, sauf celle pour frais scolaires.",
+          "Vous pouvez avoir plus de biens et d'argent que dans les autres programmes d'assistance sociale."
+        ]
+      },
+      "steps": [
+        "Si vous êtes admissible, vous n'avez aucune démarche à faire.",
+        "Vous recevez un avis quelques semaines avant le premier versement.",
+        "Pour refuser, informez un agent d'aide financière dans les six mois suivant l'admission.",
+        "Pour changer d'idée plus tard, remplissez le formulaire de changement de programme.",
+        "Pour revenir au programme, remplissez le formulaire de réadmission."
+      ],
+      "documents": [
+        "Formulaire Demande de changement de programme – Admission au Programme de revenu de base (PDF).",
+        "Formulaire Demande de réadmission (PDF)."
+      ],
+      "tips": [
+        "Ligne téléphonique : de 8 h 30 à 16 h 30 du lundi au vendredi, sauf le mercredi (10 h à 16 h 30).",
+        "Le programme est plus avantageux, mais vous n'êtes pas obligé d'y adhérer.",
+        "Après un refus, vous pouvez continuer à recevoir la solidarité sociale si vous respectez ses critères.",
+        "Transmettez les formulaires par Mon dossier, en personne ou par la poste à Services Québec.",
+        "Pour la réadmission, le critère des 66 mois de solidarité sociale n'est plus requis.",
+        "Un montant additionnel pour invalidité après la retraite compte aussi comme rente d'invalidité.",
+        "Appel sans frais : 1 877 767-8773."
+      ],
+      "phone": "514 873-4000"
+    }
+  },
+  {
+    "id": "qc-objectif-emploi",
+    "name": "Programme objectif emploi",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Employment",
+    "amount": "Prestation de base de l'aide sociale, plus une allocation de 70 $ à 400 $ par semaine",
+    "summary": "Accompagnement personnalisé et soutien financier pour intégrer le marché du travail, si vous demandez l'aide sociale pour la première fois.",
+    "note": "La participation est obligatoire si vous respectez les critères. Des sanctions financières peuvent s'appliquer si vous ne suivez pas votre plan.",
+    "requires": [
+      "qc",
+      "qcObjectifEmploiRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous êtes admissible à l'aide sociale pour le mois suivant le dépôt de votre demande.",
+        "Vous n'avez jamais participé au Programme objectif emploi.",
+        "Vous n'avez jamais reçu d'aide sociale en tant qu'adulte."
+      ],
+      "note": "Autre cas : vous avez commencé le programme sans finir les 12 mois obligatoires ni atteindre 24 mois."
+    },
+    "applyText": "Faites une demande d'aide financière de dernier recours en ligne, ou avec le formulaire en PDF.",
+    "applyUrl": "https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/presentation-programmes-aide-financiere/programme-objectif-emploi",
+    "source": "https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/presentation-programmes-aide-financiere/programme-objectif-emploi",
+    "detail": {
+      "aboutList": {
+        "lead": "Le programme comprend :",
+        "items": [
+          "Un Plan d'intégration en emploi adapté à vos besoins.",
+          "Des activités pour chercher un emploi, développer vos compétences ou vos habiletés sociales.",
+          "Le remboursement de certains frais (par exemple : garde, transport, scolarité, frais d'appoint)."
+        ]
+      },
+      "steps": [
+        "Faites une demande d'aide financière de dernier recours.",
+        "Un agent ou une agente d'aide à l'emploi vous rencontre pour évaluer vos besoins.",
+        "Vous établissez ensemble votre Plan d'intégration en emploi.",
+        "Vous réalisez les activités prévues et allez aux rencontres."
+      ],
+      "documents": [
+        "Formulaire Demande de services (3003-01), si vous demandez par papier.",
+        "Si vous vous présentez au bureau avec le formulaire papier : pièce d'identité avec photo délivrée par un organisme public."
+      ],
+      "tips": [
+        "Vous pourriez recevoir une allocation de participation de 70 $ par semaine (recherche intensive d'emploi ou habiletés sociales).",
+        "Allocation d'aide à l'emploi : 300 $ par semaine pour une formation générale, les projets de préparation à l'emploi ou l'initiative pour travailleurs expérimentés.",
+        "370 $ par semaine pour Jeunes en mouvement vers l'emploi, 400 $ pour une formation qualifiante.",
+        "Durée : 12 mois obligatoires sur 24 mois consécutifs au plus, avec prolongation possible.",
+        "Vous pouvez envoyer le formulaire par la poste au bureau de Services Québec le plus près."
+      ]
+    }
+  },
+  {
+    "id": "qc-reussir",
+    "name": "Programme d'aide et d'accompagnement social Réussir",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Education",
+    "amount": "Aide financière possible en plus des prêts et bourses (montant non précisé)",
+    "summary": "Formation professionnelle, collégiale ou universitaire à votre rythme, avec accompagnement et aide financière, si vos contraintes de santé sont sévères.",
+    "note": "Vous pouvez continuer de recevoir le carnet de réclamation, aussi appelé carte-médicaments. La page a été mise à jour le 8 octobre 2024.",
+    "requires": [
+      "qc",
+      "qcReussirRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous êtes reconnu comme ayant des contraintes sévères de santé.",
+        "Vous êtes admissible à la solidarité sociale ou au revenu de base.",
+        "Vous avez déposé une demande de prêts et bourses.",
+        "Vous êtes prêt à suivre un programme de formation professionnelle ou postsecondaire.",
+        "Vous avez reçu de l'assistance sociale 12 mois au cours des 24 derniers mois.",
+        "Vous n'êtes pas admissible à la Mesure de formation de la main-d'œuvre (MFOR)."
+      ]
+    },
+    "applyText": "Faites une demande par Mon dossier ou avec le formulaire en ligne.",
+    "applyUrl": "https://www.quebec.ca/emploi/perfectionner/formation/reussir",
+    "source": "https://www.quebec.ca/emploi/perfectionner/formation/reussir",
+    "detail": {
+      "aboutList": {
+        "lead": "Vous pourriez suivre :",
+        "items": [
+          "Une formation professionnelle.",
+          "Une formation collégiale.",
+          "Une formation universitaire."
+        ]
+      },
+      "steps": [
+        "Connectez-vous à Mon dossier — Aide à l'emploi – Assistance sociale, ou inscrivez-vous.",
+        "Ou remplissez le formulaire en ligne sans vous connecter à Mon dossier.",
+        "Vous pouvez aussi vous rendre dans un organisme d'aide à l'emploi près de chez vous."
+      ],
+      "documents": [
+        "Demande de prêts et bourses déposée."
+      ],
+      "tips": [
+        "Vérifiez les critères actuels sur la page officielle.",
+        "Vous pouvez aussi communiquer avec l'Office des personnes handicapées du Québec.",
+        "Appel sans frais : 1 877 767-8773."
+      ],
+      "phone": "514 873-4000"
+    }
+  },
+  {
+    "id": "qc-allocation-famille",
+    "name": "Allocation famille",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Money (for parents)",
+    "amount": "De 1 221 $ à 3 068 $ par enfant par année en 2026 (famille biparentale); jusqu'à 4 145 $ en famille monoparentale",
+    "summary": "Aide financière versée aux familles qui ont à leur charge un enfant de moins de 18 ans qui habite avec elles. Le montant dépend du revenu familial.",
+    "note": "Ce n'est pas un programme réservé aux enfants handicapés, mais il faut la recevoir pour demander les suppléments pour enfant handicapé.",
+    "requires": [
+      "qc",
+      "qcAllocationFamilleRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous ou votre conjoint êtes responsable des soins et de l'éducation d'un enfant de moins de 18 ans.",
+        "Vous habitez avec l'enfant ou l'avez fait juste avant son placement ou hébergement temporaire.",
+        "Vous vivez au Québec (selon la Loi sur les impôts).",
+        "Vous êtes citoyen canadien, résident permanent, personne protégée ou résident temporaire depuis 18 mois."
+      ],
+      "note": "Vous ne pouvez pas la recevoir si vous êtes famille d'accueil ou demandeur d'asile."
+    },
+    "applyText": "Faites une demande à Retraite Québec selon votre situation familiale.",
+    "applyUrl": "https://www.retraitequebec.gouv.qc.ca/fr/citoyens/enfants/allocation-famille",
+    "source": "https://www.retraitequebec.gouv.qc.ca/fr/citoyens/enfants/allocation-famille",
+    "detail": {
+      "aboutList": {
+        "lead": "Le montant est calculé selon :",
+        "items": [
+          "Le nombre d'enfants à charge de moins de 18 ans.",
+          "Votre situation conjugale (célibataire ou avec conjoint).",
+          "Le revenu familial de l'année précédente, à la ligne 275 de la déclaration de revenus du Québec."
+        ]
+      },
+      "steps": [
+        "Faites la demande qui correspond à votre situation (nouveau parent, parent immigré, garde partagée).",
+        "Estimez votre montant avec l'outil CalculAide.",
+        "Consultez votre avis annuel dans Mon dossier à la mi-juin.",
+        "Avisez Retraite Québec de tout changement de votre situation familiale."
+      ],
+      "documents": [
+        "Déclaration de revenus produite chaque année, même sans revenu à déclarer."
+      ],
+      "tips": [
+        "Famille biparentale en 2026 : 3 068 $ à 60 000 $ de revenu ou moins, 1 221 $ à 107 000 $ ou plus.",
+        "Famille monoparentale en 2026 : 4 145 $ à 44 000 $ ou moins, 1 651 $ à 107 000 $ ou plus.",
+        "Vous ne pouvez pas la recevoir si vous n'avez pas à payer d'impôt selon Revenu Québec.",
+        "Supplément pour fournitures scolaires : 127 $ par enfant, versé en juillet.",
+        "Versements en janvier, avril, juillet et octobre, ou chaque mois sur demande.",
+        "Sans déclaration de revenus à temps, les versements sont suspendus.",
+        "Rétroactivité possible jusqu'à 11 mois à partir de la réception de votre demande, si tous les critères sont respectés.",
+        "Ces sommes ne sont pas imposables."
+      ],
+      "time": "Versements en janvier, avril, juillet et octobre"
+    }
+  },
+  {
+    "id": "qc-supplement-enfant-handicape",
+    "name": "Supplément pour enfant handicapé (SEH)",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Money (for parents)",
+    "amount": "2 892 $ par enfant par année en 2026 (montant fixe)",
+    "summary": "Aide financière mensuelle versée aux parents pour les aider à répondre aux besoins d'un enfant handicapé.",
+    "note": "Le montant est le même pour chaque enfant admissible, peu importe la condition de l'enfant et le revenu familial.",
+    "requires": [
+      "qc",
+      "child",
+      "qcSupplementEnfantHandicapeRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous avez à votre charge un enfant de moins de 18 ans.",
+        "Il a une déficience physique ou un trouble des fonctions mentales qui le limite de façon importante.",
+        "La durée prévisible des incapacités est d'au moins un an.",
+        "Vous recevez l'Allocation famille pour cet enfant, ou la demandez en même temps."
+      ],
+      "note": "L'équipe de santé de Retraite Québec évalue la demande à partir de l'ensemble du dossier de l'enfant."
+    },
+    "applyText": "Transmettez votre demande de SEH à Retraite Québec, après ou avec celle de l'Allocation famille.",
+    "applyUrl": "https://www.retraitequebec.gouv.qc.ca/fr/citoyens/enfants/enfant-handicape/supplement-enfant-handicape",
+    "source": "https://www.retraitequebec.gouv.qc.ca/fr/citoyens/enfants/enfant-handicape/supplement-enfant-handicape",
+    "detail": {
+      "aboutList": {
+        "lead": "L'évaluation tient compte de :",
+        "items": [
+          "Vos renseignements et toute information médicale ou paramédicale pertinente.",
+          "Les rapports d'évaluation et notes de suivi du réseau de la santé.",
+          "Les renseignements de l'école, de la garderie ou des intervenants qui connaissent l'enfant."
+        ]
+      },
+      "steps": [
+        "Vérifiez que vous recevez l'Allocation famille pour l'enfant, sinon faites cette demande d'abord.",
+        "Transmettez votre demande de SEH à Retraite Québec.",
+        "Une équipe de médecins, d'orthophonistes, de psychologues et de personnel infirmier de Retraite Québec évalue la demande."
+      ],
+      "documents": [
+        "Si vous en avez : rapports d'évaluation, notes de suivi ou résultats d'examen de votre enfant."
+      ],
+      "tips": [
+        "Le SEH n'est pas imposable.",
+        "Un enfant peut être admissible à un programme sans l'être à un autre.",
+        "Les critères diffèrent de ceux d'autres programmes, dont ceux de l'Agence du revenu du Canada.",
+        "Le mois suivant les 18 ans de l'enfant, le supplément prend fin.",
+        "Le SEHNSE existe aussi pour les situations plus graves."
+      ]
+    }
+  },
+  {
+    "id": "qc-sehnse",
+    "name": "Supplément pour enfant handicapé nécessitant des soins exceptionnels (SEHNSE)",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Money (for parents)",
+    "amount": "14 580 $ (palier 1) ou 9 696 $ (palier 2) par enfant par année en 2026",
+    "summary": "Aide financière en plus pour les parents d'un enfant de moins de 18 ans gravement malade ou qui a des incapacités très importantes.",
+    "note": "Ce montant s'ajoute au SEH. Vérifiez les critères officiels de chaque situation sur la page de Retraite Québec.",
+    "requires": [
+      "qc",
+      "child",
+      "qcSehnseRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Votre enfant a moins de 18 ans et est dans l'une des situations A, B ou C ci-dessous.",
+        "Vous recevez l'Allocation famille et le SEH pour l'enfant, ou les demandez en même temps."
+      ],
+      "note": "L'équipe de santé de Retraite Québec évalue la demande à partir de l'ensemble du dossier de l'enfant."
+    },
+    "applyText": "Transmettez votre demande à Retraite Québec, après ou avec celles de l'Allocation famille et du SEH.",
+    "applyUrl": "https://www.retraitequebec.gouv.qc.ca/fr/citoyens/enfants/enfant-handicape/supplement-enfant-handicape-necessitant-soins-exceptionnels-sehnse",
+    "source": "https://www.retraitequebec.gouv.qc.ca/fr/citoyens/enfants/enfant-handicape/supplement-enfant-handicape-necessitant-soins-exceptionnels-sehnse",
+    "detail": {
+      "aboutList": {
+        "lead": "Les trois situations possibles :",
+        "items": [
+          "A : l'enfant a 2 ans et plus et des incapacités très importantes et multiples, d'au moins un an.",
+          "B : l'enfant a besoin de soins médicaux complexes à domicile, donnés par le parent formé.",
+          "C : l'enfant a moins de 2 ans et une maladie grave sans traitement connu."
+        ]
+      },
+      "steps": [
+        "Faites les demandes d'Allocation famille et de SEH si ce n'est pas déjà fait.",
+        "Retraite Québec analyse l'Allocation famille, puis le SEH, puis le SEHNSE.",
+        "Une équipe de santé de Retraite Québec évalue votre demande."
+      ],
+      "documents": [
+        "Si vous en avez : rapports d'évaluation, notes de suivi ou résultats d'examen de votre enfant."
+      ],
+      "tips": [
+        "Deux paliers existent : le palier 1 est plus exigeant et son montant est plus élevé.",
+        "Situation B : durée prévisible des soins d'au moins un an, avec une formation du parent en centre spécialisé.",
+        "Situation B : le parent doit aussi pouvoir répondre à tout changement de l'état clinique de l'enfant qui peut menacer sa vie.",
+        "Situation C : maladie chronique grave sans traitement connu avec incapacités graves, multiples et persistantes, ou maladie neurogénétique, congénitale ou métabolique sans traitement connu qui limite l'espérance de vie à l'enfance.",
+        "Les critères actuels sont en vigueur depuis le 1er juillet 2024."
+      ]
+    }
+  },
+  {
+    "id": "qc-rente-invalidite",
+    "name": "Rente d'invalidité du Régime de rentes du Québec",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Income support",
+    "amount": "Montant fixe de 610,43 $ par mois plus un montant variable, jusqu'à 1 737,67 $ par mois au total en 2026 (moins de 60 ans)",
+    "summary": "Rente mensuelle si vous arrêtez de travailler, ou si votre revenu de travail diminue de façon importante, à cause de votre état de santé.",
+    "note": "L'invalidité temporaire n'est pas couverte. La reconnaissance d'une invalidité par un autre organisme ne donne pas droit automatiquement à la rente.",
+    "requires": [
+      "qc",
+      "adult",
+      "qcRenteInvaliditeRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Votre état de santé vous fait arrêter de travailler ou réduit beaucoup votre revenu de travail.",
+        "Vous gagnez moins de 1 882 $ bruts par mois en 2026 et avez moins de 66 ans.",
+        "Retraite Québec vous reconnaît invalide avant vos 65 ans.",
+        "Vous avez assez cotisé au Régime de rentes du Québec.",
+        "Vous n'avez pas droit à une indemnité de remplacement du revenu non réduite de la CNESST.",
+        "Vous ne recevez pas de rente de retraite du Régime de pensions du Canada."
+      ]
+    },
+    "applyText": "Consultez la page Demande de prestations d'invalidité de Retraite Québec pour les démarches.",
+    "applyUrl": "https://www.retraitequebec.gouv.qc.ca/fr/citoyens/invalidite/prestations-invalidite-regime-rentes-quebec/rente-invalidite",
+    "source": "https://www.retraitequebec.gouv.qc.ca/fr/citoyens/invalidite/prestations-invalidite-regime-rentes-quebec/rente-invalidite",
+    "detail": {
+      "aboutList": {
+        "lead": "Pour être reconnu invalide, votre condition médicale doit être :",
+        "items": [
+          "Grave : elle vous empêche de faire à temps plein tout genre de travail.",
+          "Permanente : elle doit durer pour toujours sans amélioration possible.",
+          "Pas pris en compte : votre langue, votre lieu de résidence, le nombre d'emplois offerts dans votre région."
+        ]
+      },
+      "steps": [
+        "Consultez votre relevé de participation au RRQ dans Mon dossier pour savoir si vous avez assez cotisé.",
+        "Faites votre demande selon la page Demande de prestations d'invalidité.",
+        "Vous recevez une lettre de décision.",
+        "Si la demande est acceptée, la lettre indique le montant et la date du premier versement."
+      ],
+      "documents": [
+        "La liste des documents est sur la page Demande de prestations d'invalidité de Retraite Québec."
+      ],
+      "tips": [
+        "Premier versement : normalement le quatrième mois après la reconnaissance, sans rente pendant la période d'attente.",
+        "Entre 60 et 65 ans : 610,43 $ de rente d'invalidité plus votre rente de retraite du RRQ.",
+        "Un revenu de travail de 22 593 $ ou plus en 2026 a des conséquences sur votre rente.",
+        "La rente est imposable, mais Retraite Québec ne retient pas d'impôt automatiquement.",
+        "Accident de la route : communiquez avec la SAAQ. Accident de travail : communiquez avec la CNESST.",
+        "À 65 ans, la rente d'invalidité prend fin et vous recevez seulement votre rente de retraite.",
+        "Vous cotisez au RRQ si vous avez 18 ans ou plus et un revenu de travail de plus de 3 500 $ par année."
+      ]
+    }
+  },
+  {
+    "id": "qc-soutien-familles",
+    "name": "Programme de soutien aux familles",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Home support",
+    "amount": "Allocation directe, dont le montant est fixé par votre établissement territorial",
+    "summary": "Une allocation pour acheter du répit, du gardiennage, du dépannage ou de l'aide aux tâches quotidiennes si vous vivez avec un proche qui a une déficience ou un TSA.",
+    "note": "Le montant est déterminé par l'établissement territorial après l'évaluation des besoins de votre famille.",
+    "requires": [
+      "qc",
+      "qcSoutienFamillesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous résidez avec une personne ayant une déficience ou un TSA et vous vous en occupez chaque jour.",
+        "Vous êtes lié à cette personne par filiation (famille ou famille élargie).",
+        "Vous démontrez un besoin de soutien pour compenser le stress et la fatigue liés à ses besoins."
+      ],
+      "note": "Chaque établissement territorial gère le programme selon les ressources de son territoire."
+    },
+    "applyText": "Adressez-vous à l'intervenant pivot de votre proche ou à votre établissement territorial.",
+    "applyUrl": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-soutien-aux-familles",
+    "source": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-soutien-aux-familles",
+    "detail": {
+      "aboutList": {
+        "lead": "Le soutien est offert généralement sous quatre volets :",
+        "items": [
+          "Le répit, à domicile ou en hébergement temporaire dans une maison de répit.",
+          "Le gardiennage, quand vous devez vous absenter du domicile.",
+          "Le dépannage, pour une situation imprévue ou urgente, de courte durée.",
+          "L'appui aux tâches quotidiennes, comme les soins des enfants ou l'aide aux devoirs."
+        ]
+      },
+      "steps": [
+        "Communiquez avec l'intervenant pivot désigné pour votre proche.",
+        "Si la personne ne reçoit pas de services d'un établissement, joignez votre établissement territorial.",
+        "L'établissement évalue les besoins de votre famille et fixe le montant."
+      ],
+      "documents": [
+        "La page officielle ne précise aucun document à fournir."
+      ],
+      "tips": [
+        "Les besoins sont révisés périodiquement ou après un événement qui change la situation.",
+        "Le dépannage dure généralement au plus quelques semaines.",
+        "L'Office des personnes handicapées du Québec peut vous aider dans vos démarches.",
+        "Pour trouver votre établissement, consultez la page « Trouver votre établissement territorial »."
+      ]
+    }
+  },
+  {
+    "id": "qc-aides-auditives",
+    "name": "Programme d'aides auditives",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Health",
+    "amount": "Prise en charge des frais, si vous êtes admissible",
+    "summary": "Le programme prend en charge les frais des prothèses auditives et des aides de suppléance à l'audition, si vous êtes admissible.",
+    "note": "L'admissibilité dépend de critères que la page officielle ne détaille pas.",
+    "requires": [
+      "qc",
+      "hearingDisability",
+      "qcAidesAuditivesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous êtes admissible au programme."
+      ],
+      "note": "La page ne détaille pas ces critères : lisez la page officielle du programme."
+    },
+    "applyText": "Consultez la page officielle du programme pour connaître la démarche.",
+    "applyUrl": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-auditives",
+    "source": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-auditives",
+    "detail": {
+      "aboutList": {
+        "lead": "Le programme couvre notamment :",
+        "items": [
+          "L'achat, la réparation et le remplacement d'une prothèse auditive.",
+          "Un amplificateur téléphonique ou un détecteur de sonneries de porte ou de téléphone.",
+          "Un réveille-matin adapté ou un téléscripteur."
+        ]
+      },
+      "steps": [
+        "Ouvrez la page officielle du programme.",
+        "Vérifiez les critères d'admissibilité du programme.",
+        "Suivez la démarche indiquée pour faire votre demande."
+      ],
+      "documents": [
+        "La page ne précise pas les documents à fournir."
+      ],
+      "tips": [
+        "Ces aides compensent ou réduisent certains inconvénients liés à la perte d'audition.",
+        "Le programme paie aussi la réparation et le remplacement des aides dont vous avez besoin."
+      ]
+    }
+  },
+  {
+    "id": "qc-aides-visuelles",
+    "name": "Programme d'aides visuelles",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Health",
+    "amount": "Prêt d'aides visuelles et montant pour un chien-guide, si vous êtes admissible",
+    "summary": "Le programme prête des aides visuelles et verse un montant pour prendre soin d'un chien-guide, si vous êtes admissible.",
+    "note": "L'admissibilité dépend de critères que la page officielle ne détaille pas.",
+    "requires": [
+      "qc",
+      "visionDisability",
+      "qcAidesVisuellesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous êtes admissible au programme."
+      ],
+      "note": "La page ne détaille pas ces critères : lisez la page officielle du programme."
+    },
+    "applyText": "Consultez la page officielle du programme pour connaître la démarche.",
+    "applyUrl": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-visuelles",
+    "source": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-visuelles",
+    "detail": {
+      "aboutList": {
+        "lead": "Exemples d'aides prêtées :",
+        "items": [
+          "Lecture : télévisionneuse, système optique ou calculatrice.",
+          "Écriture : machine à écrire le braille.",
+          "Mobilité : canne blanche, détecteur électronique d'obstacles ou lunettes de vision nocturne."
+        ]
+      },
+      "steps": [
+        "Ouvrez la page officielle du programme.",
+        "Vérifiez les critères d'admissibilité du programme.",
+        "Suivez la démarche indiquée pour faire votre demande."
+      ],
+      "documents": [
+        "La page ne précise pas les documents à fournir."
+      ],
+      "tips": [
+        "Le programme couvre le prêt, le remplacement et la réparation des aides visuelles.",
+        "Ces aides compensent une perte de vision partielle ou totale dans vos activités quotidiennes."
+      ]
+    }
+  },
+  {
+    "id": "qc-appareils-deficience-physique",
+    "name": "Programme d'appareils suppléant à une déficience physique",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Health",
+    "amount": "Achat, remplacement et réparation de certaines aides techniques, selon les tarifs en vigueur",
+    "summary": "Le programme couvre l'achat, le remplacement et la réparation de certaines aides techniques pour compenser une incapacité motrice.",
+    "note": "L'admissibilité dépend de critères que la page officielle ne détaille pas.",
+    "requires": [
+      "qc",
+      "physicalDisability",
+      "qcAppareilsDeficiencePhysiqueRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous êtes admissible au programme."
+      ],
+      "note": "La page ne détaille pas ces critères : lisez la page officielle du programme."
+    },
+    "applyText": "Consultez la page officielle du programme pour connaître la démarche.",
+    "applyUrl": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/appareils-suppleant-a-une-deficience-physique",
+    "source": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/appareils-suppleant-a-une-deficience-physique",
+    "detail": {
+      "aboutList": {
+        "lead": "Les aides visées incluent :",
+        "items": [
+          "Plusieurs types d'orthèses et de prothèses.",
+          "Des aides à la marche, comme une béquille ou une canne.",
+          "Un fauteuil roulant, ainsi que des aides à la posture et à la verticalisation."
+        ]
+      },
+      "steps": [
+        "Ouvrez la page officielle du programme.",
+        "Vérifiez les critères d'admissibilité du programme.",
+        "Suivez la démarche indiquée pour faire votre demande."
+      ],
+      "documents": [
+        "La page ne précise pas les documents à fournir."
+      ],
+      "tips": [
+        "Les services couverts le sont selon les tarifs en vigueur.",
+        "Cela comprend l'ajustement d'un appareil, d'un composant ou d'un complément assuré."
+      ]
+    }
+  },
+  {
+    "id": "qc-aides-elimination",
+    "name": "Programme d'aides matérielles pour les fonctions d'élimination",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Daily living supports",
+    "amount": "Fournitures sans frais ni franchise",
+    "summary": "Le programme fournit directement le matériel pour un problème d'élimination urinaire ou intestinale lié à une déficience ou à un TSA, comme des culottes d'incontinence ou des cathéters.",
+    "note": "Il n'y a pas de frais ni de franchise. Les fournitures arrivent dans votre milieu de vie ou le plus près possible.",
+    "requires": [
+      "qc",
+      "qcAidesEliminationRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous résidez au Québec et avez une carte d'assurance maladie valide.",
+        "Vous vivez à domicile, en résidence privée pour aînés (RPA) ou en résidence de type familial (RTF).",
+        "Votre problème d'élimination est lié à une déficience physique ou intellectuelle, ou à un TSA.",
+        "Une note médicale certifie ce lien.",
+        "Vous avez essayé toutes les méthodes de réadaptation ou d'apprentissage, ou subi une chirurgie, avant votre demande.",
+        "Vous utilisez au moins une culotte ou une protection d'incontinence chaque jour."
+      ],
+      "note": "Les enfants ont des critères particuliers, selon leur âge et leur développement."
+    },
+    "applyText": "Communiquez avec votre établissement territorial.",
+    "applyUrl": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-materielles-fonctions-elimination",
+    "source": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-materielles-fonctions-elimination",
+    "detail": {
+      "aboutList": {
+        "lead": "Le matériel peut comprendre notamment :",
+        "items": [
+          "Des culottes d'incontinence.",
+          "Des cathéters, des sacs urinaires, des gants et des seringues.",
+          "Des solutions nettoyantes pour sac.",
+          "Du matériel pour les sondes sus-pubiennes (cystostomies)."
+        ]
+      },
+      "steps": [
+        "Communiquez avec votre établissement territorial.",
+        "Fournissez une attestation médicale relative à la déficience.",
+        "L'établissement évalue les besoins et fournit le matériel prévu."
+      ],
+      "documents": [
+        "Attestation médicale relative à la déficience."
+      ],
+      "tips": [
+        "Le programme s'adresse aussi aux personnes ayant une trachéostomie.",
+        "Vous n'êtes pas admissible si votre déficience ou incapacité est temporaire, ou liée uniquement au vieillissement, ou si vous êtes en soins palliatifs.",
+        "Vous n'êtes pas admissible si vous résidez en ressource intermédiaire, en CHSLD ou en centre hospitalier.",
+        "Si vous avez une assurance privée, le programme peut payer la partie non couverte.",
+        "Les fournitures de voyage ou de loisirs ne sont pas couvertes, ni le remboursement d'achats passés.",
+        "L'Office des personnes handicapées du Québec peut vous aider dans vos démarches."
+      ]
+    }
+  },
+  {
+    "id": "qc-chien-assistance",
+    "name": "Programme de remboursement de frais relatifs à l'utilisation d'un chien d'assistance à la motricité",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Daily living supports",
+    "amount": "210 $ au départ, puis 2 240 $ par année",
+    "summary": "Un remboursement de frais liés à un chien d'assistance à la motricité pour une personne ayant une déficience motrice permanente, avec un premier montant puis une somme annuelle possible pour l'entretien.",
+    "note": "Obtenir un chien d'une école de dressage ne garantit pas que vous serez admissible au remboursement.",
+    "requires": [
+      "qc",
+      "physicalDisability",
+      "qcChienAssistanceRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous résidez au Québec et avez une carte d'assurance maladie valide.",
+        "Vous avez une déficience motrice permanente avec une incapacité significative et persistante.",
+        "Vous avez besoin chaque jour du chien pour vous déplacer, vous appuyer ou prendre des objets.",
+        "Vous faites obéir votre chien de façon constante, à la maison comme en public.",
+        "Vous avez obtenu le chien d'une école accréditée par l'ADI ou l'IGDF."
+      ],
+      "note": "Le chien doit aussi répondre à des critères, comme être stérilisé et vacciné."
+    },
+    "applyText": "Envoyez par la poste le formulaire de demande d'évaluation à l'établissement de votre région.",
+    "applyUrl": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/chien-dassistance-remboursement-de-frais",
+    "source": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/chien-dassistance-remboursement-de-frais",
+    "detail": {
+      "aboutList": {
+        "lead": "Le chien d'assistance à la motricité vous aide notamment à :",
+        "items": [
+          "Vous déplacer, en tirant votre fauteuil roulant manuel ou en vous aidant à marcher.",
+          "Prendre des objets, en les ramassant ou en vous les rapportant.",
+          "Vous appuyer, lors des transferts et pour changer de position."
+        ]
+      },
+      "steps": [
+        "Remplissez le formulaire de demande d'évaluation et réunissez les documents demandés.",
+        "Postez le tout à l'établissement désigné pour votre région.",
+        "L'établissement évalue vos besoins, votre admissibilité et celle de votre chien.",
+        "La décision finale vous est transmise par la poste."
+      ],
+      "documents": [
+        "Formulaire de demande d'évaluation et tous les documents précisés dans celui-ci."
+      ],
+      "tips": [
+        "Le premier montant de 210 $ peut être obtenu à chaque remplacement du chien, mais pas plus d'une fois tous les deux ans.",
+        "Les 2 240 $ par année peuvent couvrir, par exemple, la nourriture, le toilettage et les soins vétérinaires, en deux versements.",
+        "À partir du deuxième versement, vous signez une déclaration confirmant que vous utilisez toujours le chien.",
+        "Si vous avez droit au remboursement, il est rétroactif à la date où l'établissement reçoit tous vos documents.",
+        "Vous pouvez faire une nouvelle demande pour être réévalué une seule fois tous les deux ans pour un même chien.",
+        "Vous n'êtes pas admissible si vous vivez en CHSLD ou en ressource intermédiaire publique.",
+        "Les frais d'un chien-guide relèvent du Programme d'aides visuelles de la RAMQ.",
+        "Capitale-Nationale, Bas-Saint-Laurent, Saguenay—Lac-Saint-Jean, Mauricie—Centre-du-Québec, Estrie, Côte-Nord, Gaspésie—Îles-de-la-Madeleine, Chaudière-Appalaches : Institut de réadaptation en déficience physique de Québec, (418) 529-9141, poste 6505.",
+        "Montréal, Outaouais, Abitibi-Témiscamingue, Laval, Lanaudière, Laurentides, Nord-du-Québec, Montérégie : Institut Gingras-Lindsay-de-Montréal, (514) 340-7058.",
+        "Les frais sont admissibles au crédit d'impôt fédéral non remboursable pour frais médicaux."
+      ]
+    }
+  },
+  {
+    "id": "qc-aides-vie-quotidienne",
+    "name": "Programme d'aides à la vie quotidienne et à la vie domestique",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Daily living supports",
+    "amount": "Aides techniques sans frais ni franchise (sauf le fauteuil autosouleveur)",
+    "summary": "Le programme fournit les équipements nécessaires à vos activités quotidiennes et domestiques à la maison si vous avez une déficience ou un TSA, pour plus d'autonomie et de sécurité.",
+    "note": "Les aides sont attribuées après une évaluation globale de vos besoins et de vos ressources.",
+    "requires": [
+      "qc",
+      "qcAidesVieQuotidienneRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous résidez au Québec, à l'adresse déclarée comme lieu de résidence.",
+        "Vous avez une déficience physique, organique ou intellectuelle significative et persistante, ou un TSA.",
+        "Vous recevez de l'aide d'un établissement territorial."
+      ],
+      "note": "Vous n'êtes pas admissible si vous vivez en CHSLD, en résidence intermédiaire ou en centre privé."
+    },
+    "applyText": "Communiquez avec votre établissement territorial.",
+    "applyUrl": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-vie-quotidienne-et-vie-domestique",
+    "source": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-vie-quotidienne-et-vie-domestique",
+    "detail": {
+      "aboutList": {
+        "lead": "Les aides couvrent la chambre, la salle de bain, la cuisine et les soins personnels, par exemple :",
+        "items": [
+          "Un lit réglable à commande électrique, un matelas ou une barre d'appui au lit.",
+          "Un siège de baignoire ou de douche, une chaise d'aisance ou un siège de toilette surélevé.",
+          "Un ouvre-pot, des ustensiles adaptés, des aides pour boire et pour manger.",
+          "Un lève-personne, une ceinture de transfert ou une planche de transfert.",
+          "Une rampe d'accès amovible, un système d'appel d'urgence ou un interphone."
+        ]
+      },
+      "steps": [
+        "Communiquez avec votre établissement territorial.",
+        "Fournissez une attestation médicale relative à la déficience.",
+        "L'établissement évalue vos besoins et vos ressources, puis attribue les aides."
+      ],
+      "documents": [
+        "Attestation médicale relative à la déficience."
+      ],
+      "tips": [
+        "Il n'y a pas de frais ni de franchise à payer, sauf pour le fauteuil autosouleveur.",
+        "Avec une assurance privée, le programme peut payer la partie non couverte des frais.",
+        "Vous devez assurer l'équipement et le retourner si vous ne l'utilisez plus ou en cas de décès.",
+        "Avec des prestations du ministère du Travail, de l'Emploi et de la Solidarité sociale, vous pourriez obtenir une prestation spéciale.",
+        "Vous n'êtes pas admissible si un autre programme ou une assurance privée couvre déjà le même type d'aide.",
+        "L'Office des personnes handicapées du Québec peut vous aider dans vos démarches."
+      ]
+    }
+  },
+  {
+    "id": "qc-triporteurs",
+    "name": "Programme d'attribution des triporteurs et des quadriporteurs",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Daily living supports",
+    "amount": "Prêt d'un quadriporteur, sans frais ni franchise",
+    "summary": "Le programme prête un quadriporteur (parfois un triporteur) aux personnes dont la marche est très limitée, pour se déplacer et rester dans leur milieu.",
+    "note": "L'appareil est attribué après une évaluation globale de vos besoins et de vos ressources.",
+    "requires": [
+      "qc",
+      "qcTriporteursRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous résidez au Québec.",
+        "Vous avez une déficience motrice, ou un déficit respiratoire ou cardiovasculaire sévère, qui limite votre marche.",
+        "Vous vivez à votre domicile ou en ressource d'hébergement de type familial.",
+        "Vous avez un lieu sécuritaire et accessible pour ranger l'appareil."
+      ],
+      "note": "Les distances de marche exactes sont dans les conseils ci-dessous."
+    },
+    "applyText": "Communiquez avec votre établissement territorial.",
+    "applyUrl": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-attribution-triporteurs-et-quadriporteurs",
+    "source": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-attribution-triporteurs-et-quadriporteurs",
+    "detail": {
+      "aboutList": {
+        "lead": "Le programme vise notamment :",
+        "items": [
+          "Les personnes qui ne peuvent pas marcher sur de moyennes et longues distances.",
+          "Les personnes atteintes d'une maladie cardiovasculaire ou respiratoire sévère."
+        ]
+      },
+      "steps": [
+        "Communiquez avec votre établissement territorial.",
+        "Fournissez une attestation de la déficience, remplie par un médecin ou une infirmière praticienne spécialisée.",
+        "L'établissement évalue vos besoins et vous prête l'appareil."
+      ],
+      "documents": [
+        "Attestation relative à la déficience physique ou à la déficience sévère du système cardio-respiratoire, remplie par un médecin ou une infirmière praticienne spécialisée."
+      ],
+      "tips": [
+        "Situation 1 : vous avez une incapacité significative et persistante à marcher sur moins de 30 mètres, et de la difficulté à propulser un fauteuil manuel sur moins de 150 mètres.",
+        "Situation 2 : marcher environ 30 mètres vous est très difficile à cause d'un grave problème respiratoire ou cardiaque.",
+        "Un triporteur peut être offert exceptionnellement s'il est l'aide la plus adéquate.",
+        "Vous n'êtes pas admissible si vous avez déjà une autre aide à la locomotion du gouvernement, comme un fauteuil roulant.",
+        "Vous n'êtes pas admissible si vous vivez dans un centre d'hébergement public ou privé.",
+        "Vous devez assurer l'appareil et le retourner si vous ne l'utilisez plus ou en cas de décès."
+      ]
+    }
+  },
+  {
+    "id": "qc-ambulateurs",
+    "name": "Programme d'attribution des ambulateurs",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Daily living supports",
+    "amount": "Prêt d'un ambulateur, sans frais ni franchise",
+    "summary": "Le programme prête un ambulateur (appareil à quatre roues avec siège) aux adultes ayant des incapacités à la marche, pour faciliter leurs déplacements sur de courtes et moyennes distances.",
+    "note": "L'appareil est attribué après une évaluation globale de vos besoins et de vos ressources.",
+    "requires": [
+      "qc",
+      "age18plus",
+      "physicalDisability",
+      "qcAmbulateursRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous résidez au Québec et vous êtes majeur.",
+        "Vous avez une déficience physique limitant votre locomotion ou une déficience sévère cardiorespiratoire.",
+        "Vous avez une capacité suffisante aux membres supérieurs pour utiliser les freins de façon sécuritaire.",
+        "Vous êtes autonome dans l'utilisation d'un ambulateur."
+      ]
+    },
+    "applyText": "Communiquez avec votre établissement territorial.",
+    "applyUrl": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-attribution-ambulateurs",
+    "source": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-attribution-ambulateurs",
+    "detail": {
+      "aboutList": {
+        "lead": "L'ambulateur comprend :",
+        "items": [
+          "Un cadre de métal léger à quatre roues.",
+          "Des poignées reliées à un système de freinage.",
+          "Un siège avec dossier, un panier et un mécanisme de pliage."
+        ]
+      },
+      "steps": [
+        "Communiquez avec votre établissement territorial.",
+        "Fournissez une attestation de la déficience, remplie par un médecin ou une infirmière praticienne spécialisée.",
+        "L'établissement évalue vos besoins et vous prête l'appareil."
+      ],
+      "documents": [
+        "Attestation relative à la déficience physique ou à la déficience sévère du système cardio-respiratoire, remplie par un médecin ou une infirmière praticienne spécialisée."
+      ],
+      "tips": [
+        "Il n'y a pas de frais ni de franchise à payer.",
+        "Avec une assurance privée ou l'aide sociale, le programme peut payer la partie non couverte.",
+        "Vous n'êtes pas admissible si vous avez un problème d'équilibre sévère.",
+        "Vous n'êtes pas admissible si vous avez déjà une autre aide à la locomotion du gouvernement, comme un quadriporteur.",
+        "Vous n'êtes pas admissible si vous vivez en CHSLD ou en ressource intermédiaire publique.",
+        "Vous devez assurer l'appareil et le retourner si vous ne l'utilisez plus ou en cas de décès."
+      ]
+    }
+  },
+  {
+    "id": "qc-tricycles",
+    "name": "Programme d'attribution des tricycles et des vélos adaptés",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Daily living supports",
+    "amount": "Prêt d'un tricycle ou d'un vélo adapté; 150 $ à payer par le parent",
+    "summary": "Le programme prête un tricycle ou un vélo adapté à une personne handicapée mineure, pour son autonomie et le développement de ses habiletés.",
+    "note": "Le parent doit payer une somme forfaitaire de 150 $ pour l'acquisition de l'appareil, qui est prêté.",
+    "requires": [
+      "qc",
+      "child",
+      "qcTricyclesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "La personne a une déficience physique ou intellectuelle avec des incapacités persistantes et significatives.",
+        "La personne est mineure.",
+        "Elle est incapable d'utiliser un tricycle ou un vélo standard.",
+        "Elle peut pédaler et diriger l'appareil adapté de façon autonome."
+      ]
+    },
+    "applyText": "Communiquez avec votre établissement territorial.",
+    "applyUrl": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-attribution-tricyles-et-velos-adaptes",
+    "source": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-attribution-tricyles-et-velos-adaptes",
+    "detail": {
+      "aboutList": {
+        "lead": "Le programme offre :",
+        "items": [
+          "Un tricycle ou un vélo spécialement conçu pour les besoins de l'usager.",
+          "La modification d'un tricycle ou d'un vélo, après évaluation."
+        ]
+      },
+      "steps": [
+        "Communiquez avec votre établissement territorial.",
+        "Fournissez une attestation médicale relative à la déficience.",
+        "L'établissement évalue les besoins et les ressources, puis prête l'appareil."
+      ],
+      "documents": [
+        "Attestation médicale relative à la déficience."
+      ],
+      "tips": [
+        "L'appareil est prêté, et la somme de 150 $ vise un tricycle, un vélo adapté ou un vélo à main.",
+        "Avec une assurance privée, le programme peut payer la partie non couverte des frais.",
+        "L'équipement doit être assuré et retourné si la personne ne l'utilise plus ou si elle décède.",
+        "Elle n'est pas admissible si un autre programme ou une assurance privée couvre déjà ce type d'aide.",
+        "Elle n'est pas admissible si elle vit en CHSLD ou en ressource intermédiaire publique."
+      ]
+    }
+  },
+  {
+    "id": "qc-chaussures-orthetiques",
+    "name": "Programme d'attribution de chaussures orthétiques et d'appareillage de chaussures",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Health",
+    "amount": "Franchise de 75 $ pour des chaussures faites sur mesure",
+    "summary": "Le programme aide à obtenir des chaussures orthétiques et des appareillages si vous avez une incapacité sévère à la marche et ne pouvez pas marcher sans les porter.",
+    "note": "Une franchise de 75 $ s'applique pour des chaussures faites sur mesure, mais pas pour l'adaptation d'une chaussure achetée.",
+    "requires": [
+      "qc",
+      "physicalDisability",
+      "qcChaussuresOrthetiquesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous résidez au Québec.",
+        "Vous avez, au pied ou à la cheville, des anomalies, des séquelles ou des déformations liées à une maladie.",
+        "Vous avez une incapacité permanente à la marche, sévère à très sévère, compensée seulement par ces chaussures."
+      ],
+      "note": "Les chaussures sont attribuées après une évaluation globale de vos besoins et de vos ressources."
+    },
+    "applyText": "Communiquez avec votre établissement territorial.",
+    "applyUrl": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-attribution-chaussures-orthetiques",
+    "source": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-attribution-chaussures-orthetiques",
+    "detail": {
+      "aboutList": {
+        "lead": "Le programme comprend :",
+        "items": [
+          "Une chaussure ou un couvre-chaussure moulé ou adapté, y compris une sandale ou une botte.",
+          "Un appareillage appliqué à des chaussures.",
+          "La combinaison de chaussures et d'appareillages."
+        ]
+      },
+      "steps": [
+        "Communiquez avec votre établissement territorial.",
+        "Fournissez une attestation de la déficience physique, remplie par un médecin ou une infirmière praticienne spécialisée.",
+        "L'établissement évalue vos besoins et attribue les aides."
+      ],
+      "documents": [
+        "Attestation relative à la déficience physique, remplie par un médecin ou une infirmière praticienne spécialisée."
+      ],
+      "tips": [
+        "Vous avez droit à deux paires de chaussures lors de la première demande.",
+        "Pour les moins de 18 ans, deux paires peuvent être remplacées selon la croissance.",
+        "Avec une assurance privée ou l'aide sociale, le programme peut payer la partie non couverte.",
+        "Vous n'êtes pas admissible si un autre programme ou une assurance privée couvre déjà ce type d'aide.",
+        "Vous n'êtes pas admissible si vous vivez en CHSLD ou en ressource intermédiaire publique."
+      ]
+    }
+  },
+  {
+    "id": "qc-aides-communication",
+    "name": "Programme d'aides techniques à la communication (PMATCOM)",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Daily living supports",
+    "amount": "Prêt d'équipements de communication",
+    "summary": "Le programme prête des aides techniques à la communication aux personnes qui ont de la difficulté à communiquer à cause d'une déficience ou d'un TSA.",
+    "note": "La page officielle ne détaille pas les critères ni la démarche : consultez-la pour en savoir plus sur le PMATCOM.",
+    "requires": [
+      "qc",
+      "qcAidesCommunicationRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous avez une déficience physique ou intellectuelle, ou un TSA.",
+        "Cette condition entraîne des incapacités à communiquer."
+      ]
+    },
+    "applyText": "Consultez la page officielle du programme pour connaître la démarche.",
+    "applyUrl": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-techniques-communication",
+    "source": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-techniques-communication",
+    "detail": {
+      "aboutList": {
+        "lead": "Les aides se divisent en cinq catégories :",
+        "items": [
+          "Les aides à la communication orale.",
+          "Les aides de suppléance à la communication orale.",
+          "L'accès à l'ordinateur.",
+          "Le contrôle de l'environnement.",
+          "La téléphonie adaptée."
+        ]
+      },
+      "steps": [
+        "Ouvrez la page officielle du PMATCOM.",
+        "Lisez-y le détail du programme.",
+        "Suivez la démarche qui y est indiquée."
+      ],
+      "documents": [
+        "La page ne précise pas les documents à fournir."
+      ],
+      "tips": [
+        "D'autres programmes financent des aides technologiques pendant le parcours scolaire.",
+        "Un document décrit sommairement chaque programme ou mesure, la clientèle visée et des informations pour vous orienter."
+      ]
+    }
+  },
+  {
+    "id": "qc-transport-hebergement",
+    "name": "Programme Transport-Hébergement",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Health",
+    "amount": "Remboursement des frais de transport, d'hébergement et de repas",
+    "summary": "Une aide financière qui rembourse vos frais de déplacement quand vous devez aller loin pour recevoir des soins ou des services en lien avec votre déficience.",
+    "note": "Les modalités varient d'une région à l'autre, et vous pourriez être sur une liste d'attente même si votre demande est jugée admissible.",
+    "requires": [
+      "qc",
+      "qcTransportHebergementRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous avez une déficience physique ou intellectuelle et vous résidez au Québec.",
+        "Le trajet aller-retour entre votre domicile et l'établissement dépasse 50 km, sauf exceptions.",
+        "L'établissement est le plus proche ou le plus approprié et offre des services liés à votre déficience.",
+        "Un médecin ou un professionnel autorisé a prescrit le déplacement à l'avance."
+      ],
+      "note": "Le mode de déplacement doit être le plus économique compte tenu de vos besoins."
+    },
+    "applyText": "Communiquez avec votre établissement territorial.",
+    "applyUrl": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-transport-hebergement",
+    "source": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-transport-hebergement",
+    "detail": {
+      "aboutList": {
+        "lead": "Le remboursement peut couvrir :",
+        "items": [
+          "Le transport par automobile (stationnement inclus), par taxi ou autrement.",
+          "L'hébergement et les repas.",
+          "Les frais de déplacement, d'hébergement et de repas de votre accompagnateur."
+        ]
+      },
+      "steps": [
+        "Communiquez avec votre établissement territorial.",
+        "Fournissez une attestation médicale relative à la déficience.",
+        "Joignez des pièces justificatives, comme des factures, à vos demandes de remboursement."
+      ],
+      "documents": [
+        "Attestation médicale relative à la déficience.",
+        "Pièces justificatives, comme des factures."
+      ],
+      "tips": [
+        "Les exceptions à la distance de 50 km : un enfant de 0 à 5 ans en centre de stimulation précoce, l'hémodialyse répétitive et les suivis intensifs.",
+        "Vous pouvez être accompagné si vous ne pouvez pas voyager seul ou si votre plan de services l'exige.",
+        "L'Office des personnes handicapées du Québec peut vous aider dans vos démarches."
+      ]
+    }
+  },
+  {
+    "id": "qc-services-deficience",
+    "name": "Services aux personnes ayant une déficience physique, intellectuelle ou un trouble du spectre de l'autisme (TSA)",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Community supports",
+    "amount": "Services sans frais ni franchise",
+    "summary": "Des services pour développer, maintenir et compenser vos incapacités, favoriser votre autonomie et votre participation sociale. Ils s'adressent aussi à votre famille et à vos proches.",
+    "note": "Une évaluation de vos besoins détermine les services à mettre en place.",
+    "requires": [
+      "qc",
+      "qcServicesDeficienceRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Vous avez une déficience physique, une déficience intellectuelle ou un TSA.",
+        "Ou vous êtes un enfant ayant un retard significatif de développement.",
+        "Ou vous avez un trouble de la communication sociale.",
+        "Les familles et les proches de ces personnes peuvent aussi recevoir des services."
+      ]
+    },
+    "applyText": "Communiquez avec votre établissement territorial pour faire une demande de services.",
+    "applyUrl": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/services-aux-personnes-ayant-une-deficience",
+    "source": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/services-aux-personnes-ayant-une-deficience",
+    "detail": {
+      "aboutList": {
+        "lead": "Il existe trois catégories de services :",
+        "items": [
+          "Le soutien et l'accompagnement à la réalisation des habitudes de vie.",
+          "Le développement ou la reprise des habitudes de vie.",
+          "Le soutien aux partenaires et à la collectivité."
+        ]
+      },
+      "steps": [
+        "Communiquez avec votre établissement territorial.",
+        "L'établissement évalue vos besoins.",
+        "Il choisit avec vous les services qui répondent à ces besoins."
+      ],
+      "documents": [
+        "La page ne précise pas les documents à fournir."
+      ],
+      "tips": [
+        "Parmi les services : aide à domicile, services résidentiels et activités valorisantes.",
+        "Il y a aussi des services de développement de l'enfant et d'intégration scolaire et socioprofessionnelle.",
+        "Les personnes admissibles reçoivent les services sans frais ni franchise.",
+        "L'Office des personnes handicapées du Québec peut vous aider dans vos démarches."
+      ]
+    }
+  },
+  {
+    "id": "qc-soutien-domicile",
+    "name": "Soutien à domicile et allocation autonomie à domicile (AAD)",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Home support",
+    "amount": "Heures de services attribuées selon vos besoins",
+    "summary": "Des services de soutien à domicile (ménage, repas, hygiène, habillement) par le CLSC. L'allocation autonomie à domicile vous permet d'employer la personne qui vous aide.",
+    "note": "Les heures de service ne sont jamais attribuées automatiquement : le CLSC les ajuste selon vos besoins réels.",
+    "requires": [
+      "qc",
+      "qcSoutienDomicileRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous vivez à domicile et avez besoin d'aide pour certaines tâches.",
+        "Un intervenant du CLSC évalue votre situation et vous juge admissible au soutien à domicile.",
+        "Pour l'allocation, le CLSC recommande une personne engagée de gré à gré."
+      ],
+      "note": "L'allocation autonomie à domicile n'est pas accordée automatiquement."
+    },
+    "applyText": "Si vous ou un proche pensez avoir besoin de soutien à domicile, contactez votre CLSC.",
+    "applyUrl": "https://www.quebec.ca/famille-et-soutien-aux-personnes/inaptitude-perte-autonomie/services-soutien-domicile",
+    "source": "https://www.quebec.ca/famille-et-soutien-aux-personnes/inaptitude-perte-autonomie/services-soutien-domicile",
+    "detail": {
+      "aboutList": {
+        "lead": "Les tâches doivent contribuer au maintien à domicile et peuvent inclure :",
+        "items": [
+          "L'aide personnelle, comme l'aide à l'habillage ou les soins d'hygiène.",
+          "L'aide domestique.",
+          "Du répit pour la personne proche aidante."
+        ]
+      },
+      "steps": [
+        "Contactez votre CLSC.",
+        "Un intervenant du CLSC évalue si vous êtes admissible, puis vos besoins.",
+        "Le CLSC attribue des heures de service et planifie les services.",
+        "Si l'allocation est recommandée, le CLSC vous inscrit au Centre de traitement."
+      ],
+      "documents": [
+        "La page officielle ne précise aucun document à fournir."
+      ],
+      "tips": [
+        "Depuis le 29 janvier 2026, le chèque emploi-service porte le nom d'allocation autonomie à domicile.",
+        "Avec l'allocation, aucun argent ne transite par vous : le Centre de traitement gère la paie.",
+        "Un proche aidant qui habite avec vous ne peut pas être payé pour se donner du répit à lui-même.",
+        "L'allocation ne peut pas être combinée avec d'autres aides financières.",
+        "Un proche aidant employé ne peut pas recevoir le crédit d'impôt pour personne proche aidante.",
+        "Il ne peut pas non plus recevoir l'aide financière de dernier recours ni l'assurance-emploi.",
+        "Une période de transition est en cours pour le nouveau cadre de référence."
+      ]
+    }
+  },
+  {
+    "id": "qc-adaptation-domicile",
+    "name": "Programme d'adaptation de domicile (PAD)",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Home",
+    "amount": "Aide financière pour les travaux d'adaptation (montant non précisé sur la page)",
+    "summary": "Le PAD de la Société d'habitation du Québec aide les personnes handicapées en rendant leur logement plus accessible, pour favoriser le maintien à domicile.",
+    "note": "L'aide est versée aux propriétaires qui font les travaux. D'autres conditions peuvent s'appliquer; vérifiez la page officielle.",
+    "requires": [
+      "qc",
+      "qcAdaptationDomicileRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous êtes citoyen canadien ou résident permanent.",
+        "Vous prouvez que votre incapacité est significative et persistante.",
+        "Le dernier versement d'une aide du PAD ou d'AccèsLogis pour adapter votre domicile date de plus de 5 ans."
+      ],
+      "note": "D'autres conditions peuvent s'appliquer."
+    },
+    "applyText": "Faites votre demande d'inscription au PAD de la Société d'habitation du Québec; les inscriptions sont ouvertes.",
+    "applyUrl": "https://www.quebec.ca/habitation-territoire/construction-renovation/adapter-etablissement-domicile-personnes-handicapees/programme-adaptation-domicile/a-propos-programme-adaptation-domicile",
+    "source": "https://www.quebec.ca/habitation-territoire/construction-renovation/adapter-etablissement-domicile-personnes-handicapees/programme-adaptation-domicile/a-propos-programme-adaptation-domicile",
+    "detail": {
+      "aboutList": {
+        "lead": "Le programme vise à vous permettre, malgré vos limitations :",
+        "items": [
+          "D'entrer dans votre domicile et d'en sortir.",
+          "D'accéder aux pièces essentielles, dont la chambre, la salle de bain et la cuisine.",
+          "De réaliser vos activités de façon sécuritaire."
+        ]
+      },
+      "steps": [
+        "Remplissez le formulaire d'inscription au PAD.",
+        "Choisissez une option : accompagnement professionnel, ou besoins et travaux autodéterminés.",
+        "Joignez la preuve de votre incapacité significative et persistante."
+      ],
+      "documents": [
+        "Preuve que votre incapacité est significative et persistante.",
+        "Formulaire de consentement, si vous autorisez Revenu Québec à confirmer votre admissibilité au crédit d'impôt pour déficience grave et prolongée."
+      ],
+      "tips": [
+        "Les inscriptions sont ouvertes depuis le 12 août 2026.",
+        "Si vous recevez le crédit d'impôt pour déficience grave et prolongée, Revenu Québec peut confirmer votre admissibilité à la SHQ, avec votre autorisation.",
+        "Le cadre normatif du programme et les formulaires sont sur la page officielle."
+      ]
+    }
+  },
+  {
+    "id": "qc-supplement-loyer",
+    "name": "Programme de supplément au loyer Québec (PSLQ)",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Housing",
+    "amount": "Votre loyer équivaut à 25 % de vos revenus totaux",
+    "summary": "Si votre ménage a un faible revenu, le PSLQ vous permet de vivre dans un logement privé, de coopérative ou d'OSBL en payant un loyer semblable à celui d'une habitation à loyer modique.",
+    "note": "Ce programme n'est pas propre aux personnes handicapées; il vise les ménages à faible revenu. L'office d'habitation vérifie votre admissibilité selon les normes du programme.",
+    "requires": [
+      "qc",
+      "qcSupplementLoyerRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Volet 1 : faible revenu, et vous respectez le Règlement sur l'attribution des logements à loyer modique.",
+        "Volet 2 : faible revenu et l'une des cinq situations critiques de la page."
+      ],
+      "note": "Chaque situation a ses modalités; communiquez avec l'office d'habitation de votre région."
+    },
+    "applyText": "Faites la demande à un office d'habitation, une coopérative, un OSBL ou un propriétaire privé de votre région.",
+    "applyUrl": "https://www.quebec.ca/habitation-territoire/location/aides-financieres-au-logement/programme-supplement-loyer-quebec/a-propos-du-programme",
+    "source": "https://www.quebec.ca/habitation-territoire/location/aides-financieres-au-logement/programme-supplement-loyer-quebec/a-propos-du-programme",
+    "detail": {
+      "aboutList": {
+        "lead": "Le volet 2 vise les ménages à faible revenu qui, entre autres :",
+        "items": [
+          "Sont sans logement ou le seront bientôt.",
+          "Sont victimes de violence familiale, y compris conjugale.",
+          "Sont en situation d'itinérance ou à risque de le devenir, et sont accompagnés par un organisme.",
+          "Sortent bientôt d'un hébergement en protection de la jeunesse et sont accompagnés dans leur démarche."
+        ]
+      },
+      "steps": [
+        "Communiquez avec l'office d'habitation de votre région pour connaître les modalités de votre situation.",
+        "Faites la demande à l'office, à une coopérative, à un OSBL ou à un propriétaire privé qui gère un immeuble visé.",
+        "L'office d'habitation vérifie votre admissibilité."
+      ],
+      "documents": [
+        "Les documents exigés ne sont pas précisés sur la page; demandez-les à l'office d'habitation."
+      ],
+      "tips": [
+        "Le PSLQ couvre la différence entre votre part et le loyer convenu avec le propriétaire.",
+        "Votre loyer est calculé sur vos revenus totaux de l'année civile précédant le début du bail.",
+        "Selon les services inclus au bail, comme le chauffage ou le stationnement, des frais peuvent s'ajouter.",
+        "Le cadre normatif du programme donne tous les détails."
+      ]
+    }
+  },
+  {
+    "id": "qc-vignette-stationnement",
+    "name": "Vignette de stationnement pour personnes handicapées",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Daily living supports",
+    "amount": "Vignette valide cinq ans (coût non précisé sur la page)",
+    "summary": "Si vous ne pouvez pas vous déplacer de façon autonome ou sans risque pour votre santé, la vignette vous permet de stationner dans les espaces réservés, comme conducteur ou comme passager.",
+    "note": "La vignette et le certificat qui l'accompagne sont délivrés par la Société de l'assurance automobile du Québec (SAAQ), qui prend la décision.",
+    "requires": [
+      "qc",
+      "bcParkingMobility"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Votre handicap cause une perte d'autonomie ou un risque pour votre santé et sécurité en déplacement.",
+        "Vous remplissez le formulaire de demande.",
+        "Dans certains cas, vous fournissez une évaluation démontrant une incapacité d'au moins six mois."
+      ],
+      "note": "La distance visée se fait sans moyen de transport; d'autres règles visent établissements et non-résidents."
+    },
+    "applyText": "Remplissez le formulaire de demande de la SAAQ, en ligne, par téléphone, par la poste ou en personne.",
+    "applyUrl": "https://saaq.gouv.qc.ca/blob/saaq/documents/publications/vignette-stationnement-handicapees.pdf",
+    "source": "https://saaq.gouv.qc.ca/blob/saaq/documents/publications/vignette-stationnement-handicapees.pdf",
+    "detail": {
+      "aboutList": {
+        "lead": "La vignette peut vous servir de plusieurs façons :",
+        "items": [
+          "Vous stationnez dans les espaces réservés, que vous soyez conducteur ou passager.",
+          "La vignette mobile peut passer d'un véhicule à l'autre.",
+          "Une vignette collée sur la plaque existe pour une motocyclette ou un cyclomoteur, sous conditions."
+        ]
+      },
+      "steps": [
+        "Obtenez le formulaire de demande de vignette sur le site de la SAAQ, par téléphone, par la poste ou en personne.",
+        "Faites remplir le formulaire d'évaluation de la situation de handicap, s'il est requis.",
+        "Envoyez le tout à la SAAQ, qui analyse votre demande et prend la décision."
+      ],
+      "documents": [
+        "Formulaire Demande de vignette de stationnement pour personnes handicapées.",
+        "Évaluation de la situation de handicap, dans certains cas."
+      ],
+      "tips": [
+        "La vignette est valide cinq ans pour une personne handicapée.",
+        "Un professionnel de la santé de la liste de la SAAQ remplit l'évaluation, par exemple un ergothérapeute, un médecin ou un travailleur social.",
+        "Vous payez les frais de l'évaluation, qui ne sont pas remboursés.",
+        "La SAAQ peut demander une évaluation additionnelle en tout temps.",
+        "Le coût de la vignette et du certificat est sur le site de la SAAQ."
+      ],
+      "time": "Valide cinq ans",
+      "phone": "1 800 361-7620"
+    }
+  },
+  {
+    "id": "qc-adaptation-vehicule",
+    "name": "Adaptation d'un véhicule pour personne à mobilité réduite (SAAQ et PAV)",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Daily living supports",
+    "amount": "Remboursement de frais d'adaptation (plafond non précisé sur la page)",
+    "summary": "Si un handicap physique vous empêche de conduire ou d'utiliser un véhicule, la SAAQ peut vous rembourser certains frais d'adaptation, que vous soyez conducteur ou non.",
+    "note": "Il existe deux voies : l'une pour un handicap causé par un accident de la route, l'autre pour toute autre cause. Après un accident, la SAAQ doit autoriser les travaux d'avance.",
+    "requires": [
+      "qc",
+      "qcAdaptationVehiculeRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Accident de la route : handicap physique permanent qui vous empêche de monter, descendre ou conduire en sécurité.",
+        "Votre handicap ne résulte pas d'un accident de la route et vous n'avez pas déjà une aide financière du même type."
+      ],
+      "note": "Un ergothérapeute doit recommander l'adaptation."
+    },
+    "applyText": "Communiquez avec la SAAQ selon la cause de votre handicap; sans accident de la route, envoyez le formulaire de demande.",
+    "applyUrl": "https://saaq.gouv.qc.ca/vehicule-artisanal-modifie-reconstruit/adaptation-achat-vehicule",
+    "source": "https://saaq.gouv.qc.ca/vehicule-artisanal-modifie-reconstruit/adaptation-achat-vehicule",
+    "detail": {
+      "aboutList": {
+        "lead": "Après un accident de la route, les frais remboursables comprennent :",
+        "items": [
+          "L'achat et l'installation des équipements recommandés.",
+          "Les modifications nécessaires à la carrosserie du véhicule.",
+          "La réparation et le remplacement de certains équipements hors garantie.",
+          "La vérification mécanique du véhicule après l'adaptation.",
+          "L'entraînement à la conduite, s'il est recommandé par un ergothérapeute."
+        ]
+      },
+      "steps": [
+        "Faites évaluer vos besoins par un ergothérapeute, qui transmet ses recommandations à la SAAQ.",
+        "Obtenez une soumission si les frais sont inférieurs à 2 000 $, ou deux s'ils sont plus élevés, auprès de fournisseurs accrédités ANCEM Canada.",
+        "Faites adapter le véhicule une fois que la SAAQ vous a indiqué la somme remboursable.",
+        "Faites vérifier l'adaptation si la SAAQ l'exige, puis entraînez-vous à conduire."
+      ],
+      "documents": [
+        "Rapport de l'ergothérapeute.",
+        "Une ou deux soumissions de fournisseurs accrédités.",
+        "Formulaire Demande d'aide financière pour l'adaptation d'un véhicule, si votre handicap ne résulte pas d'un accident de la route.",
+        "Rapport d'évaluation fonctionnelle de l'ergothérapeute, si vous avez un permis de conduire."
+      ],
+      "tips": [
+        "Le véhicule doit avoir 5 ans ou moins et moins de 100 000 kilomètres si votre handicap résulte d'un accident de la route.",
+        "Après un accident, vous ne pouvez pas faire une nouvelle demande avant 7 ans, sauf si votre condition physique change de façon significative.",
+        "Sans accident de la route, vous devez avoir l'intention d'utiliser le véhicule au moins 5 ans.",
+        "Le véhicule peut être le vôtre, celui d'un proche avec qui vous vous déplacez ou un véhicule loué à long terme, avec l'autorisation du locateur.",
+        "Si vous choisissez une solution plus coûteuse que la meilleure au moindre coût, vous payez la différence.",
+        "Accident de la route : région de Québec 418 646-9877, ailleurs au Québec 1 800 463-6890.",
+        "Autre cause : région de Québec 418 528-3421, ailleurs au Québec 1 800 525-7719."
+      ]
+    }
+  },
+  {
+    "id": "qc-carte-accompagnement-loisir",
+    "name": "Carte d'accompagnement loisir (CAL)",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Community supports",
+    "amount": "Carte gratuite; entrée gratuite pour votre accompagnateur",
+    "summary": "La carte CAL donne la gratuité d'entrée à l'accompagnateur d'une personne handicapée dans les organisations de loisir, de culture et de tourisme partenaires.",
+    "note": "La carte est gratuite. Elle est gérée par l'Association québécoise du loisir pour les personnes handicapées (AQLPH); la page de Kéroul renvoie à carteloisir.ca pour les détails.",
+    "requires": [
+      "qc",
+      "qcCarteAccompagnementLoisirRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous êtes une personne handicapée.",
+        "Vous résidez au Québec.",
+        "Vous avez cinq ans ou plus."
+      ],
+      "note": "Pour tous les détails d'admissibilité, consultez le site officiel de la carte."
+    },
+    "applyText": "Faites votre demande sur carteloisir.ca ou par téléphone; l'AQLPH gère la carte.",
+    "applyUrl": "https://www.keroul.qc.ca/en/travel/assistance-services",
+    "source": "https://www.keroul.qc.ca/en/travel/assistance-services",
+    "detail": {
+      "aboutList": {
+        "lead": "La carte CAL fonctionne ainsi :",
+        "items": [
+          "Votre accompagnateur entre gratuitement chez les partenaires.",
+          "La CAL remplace la VATL, un programme en vigueur depuis plus de 20 ans.",
+          "La carte est offerte gratuitement aux résidents du Québec dès l'âge de cinq ans."
+        ]
+      },
+      "steps": [
+        "Allez sur carteloisir.ca pour connaître les détails d'admissibilité.",
+        "Faites votre demande sur le site ou par téléphone."
+      ],
+      "documents": [
+        "Les documents exigés ne sont pas précisés sur la page de Kéroul; voyez carteloisir.ca."
+      ],
+      "tips": [
+        "Votre accompagnateur bénéficie de l'entrée gratuite auprès des organisations partenaires.",
+        "La page de Kéroul ne donne pas la liste des partenaires; elle se trouve sur carteloisir.ca."
+      ],
+      "phone": "833 693-2253"
+    }
+  },
+  {
+    "id": "qc-allocation-logement",
+    "name": "Programme Allocation-logement",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Housing",
+    "amount": "Jusqu'à 170 $ par mois pour le loyer",
+    "summary": "Une aide financière pour payer votre loyer si vous faites partie d'une famille ou si vous avez 50 ans ou plus. Les ménages admissibles peuvent recevoir jusqu'à 170 $ par mois.",
+    "note": "Revenu Québec gère le programme et confirme si vous y êtes admissible.",
+    "requires": [
+      "qc",
+      "qcAllocationLogementRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Vous faites partie d'une famille.",
+        "Vous avez 50 ans ou plus."
+      ],
+      "note": "Les critères détaillés se trouvent sur le site de Revenu Québec."
+    },
+    "applyText": "Faites votre demande et suivez votre dossier sur le site de Revenu Québec, ou téléphonez au service à la clientèle.",
+    "applyUrl": "https://www.quebec.ca/habitation-territoire/location/aides-financieres-au-logement/programme-allocation-logement",
+    "source": "https://www.quebec.ca/habitation-territoire/location/aides-financieres-au-logement/programme-allocation-logement",
+    "detail": {
+      "aboutList": {
+        "lead": "Ce que le programme offre :",
+        "items": [
+          "Un soutien au paiement de votre loyer, jusqu'à 170 $ par mois.",
+          "Le programme est financé par la Société d'habitation du Québec et la SCHL.",
+          "Revenu Québec en assure l'administration."
+        ]
+      },
+      "steps": [
+        "Allez sur le site de Revenu Québec pour vérifier les critères d'admissibilité.",
+        "Remplissez le formulaire de demande d'allocation-logement.",
+        "Suivez votre dossier auprès de Revenu Québec."
+      ],
+      "documents": [
+        "La page officielle ne précise aucun document à fournir."
+      ],
+      "tips": [
+        "Pour parler à quelqu'un : Québec, 418 266-1016; Montréal, 514 940-1481; ailleurs au Canada ou aux États-Unis, 1 855 291-6467 (sans frais).",
+        "Méfiez-vous des fraudeurs : la SHQ ne vous écrit jamais par texto au sujet du programme.",
+        "Ne cliquez sur aucun lien reçu par texto qui dit qu'un montant vient d'être déposé."
+      ]
+    }
+  },
+  {
+    "id": "qc-hlm",
+    "name": "Programme de logement sans but lucratif (Programme HLM)",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Housing",
+    "amount": "Loyer égal à 25 % de votre revenu",
+    "summary": "Un logement subventionné pour les ménages à faible revenu. Vous payez un loyer qui correspond à 25 % de votre revenu, chauffage compris.",
+    "note": "Les ménages sont sélectionnés selon leur condition socio-économique, et les listes d'attente peuvent s'appliquer.",
+    "requires": [
+      "qc",
+      "qcHlmRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous avez un faible revenu.",
+        "Vous pouvez répondre à vos besoins essentiels, seul ou avec l'aide d'un proche aidant ou d'un soutien extérieur.",
+        "Vous êtes citoyen canadien ou résident permanent et vous résidez au Québec.",
+        "Vous avez habité au Québec (ou sur le territoire du locateur) au moins 12 des 24 derniers mois."
+      ],
+      "note": "D'autres critères peuvent s'appliquer."
+    },
+    "applyText": "Consultez la page « Faire une demande de logement subventionné » sur Québec.ca.",
+    "applyUrl": "https://www.quebec.ca/habitation-territoire/location/aides-financieres-au-logement/programme-logement-sans-but-lucratif",
+    "source": "https://www.quebec.ca/habitation-territoire/location/aides-financieres-au-logement/programme-logement-sans-but-lucratif",
+    "detail": {
+      "aboutList": {
+        "lead": "Ce que le programme offre :",
+        "items": [
+          "Une subvention versée à l'office d'habitation de votre région pour réduire votre loyer.",
+          "Un loyer basé sur le revenu total de votre ménage pour l'année précédant le nouveau bail.",
+          "Une priorité sur les listes d'attente pour certaines situations exceptionnelles."
+        ]
+      },
+      "steps": [
+        "Consultez la page « Faire une demande de logement subventionné ».",
+        "Vérifiez les seuils de revenu maximal sur la page des plafonds de revenus.",
+        "Déposez votre demande selon les consignes de cette page."
+      ],
+      "documents": [
+        "La page officielle ne précise aucun document à fournir."
+      ],
+      "tips": [
+        "Selon les services compris dans le bail, des frais peuvent s'ajouter pour l'électricité, le stationnement ou un climatiseur.",
+        "Selon le type de HLM, des sommes peuvent être demandées pour des services spéciaux, comme des services infirmiers ou une cafétéria.",
+        "Certaines situations exceptionnelles, comme la violence conjugale ou un logement détruit par un sinistre, peuvent donner droit à une priorité sur les listes d'attente."
+      ]
+    }
+  },
+  {
+    "id": "qc-assurance-medicaments",
+    "name": "Régime public d'assurance médicaments",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Health",
+    "amount": "Du 1er juillet 2026 au 30 juin 2027 : prime annuelle de 0 à 789 $, franchise de 21,25 $, coassurance de 30 %",
+    "summary": "Le régime offre une protection de base à l'égard du coût des médicaments requis par votre état de santé. Pour 2026-2027, vous payez une franchise, une coassurance de 30 % et, selon votre revenu, une prime annuelle.",
+    "note": "Ces tarifs viennent d'un communiqué du 30 juin 2026 et valent pour l'année qui commence le 1er juillet.",
+    "requires": [
+      "qc",
+      "qcAssuranceMedicamentsRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Au Québec, toute la population est obligatoirement couverte par un régime d'assurance médicaments.",
+        "Votre participation financière tient compte notamment de votre situation économique."
+      ],
+      "note": "Consultez le site de la RAMQ pour connaître les montants qui s'appliquent à vous."
+    },
+    "applyText": "Consultez le site de la Régie de l'assurance maladie du Québec (ramq.gouv.qc.ca) pour les montants à payer.",
+    "applyUrl": "https://www.quebec.ca/nouvelles/actualites/details/ajustement-des-tarifs-pour-les-personnes-couvertes-par-le-regime-public-dassurance-medicaments-71515",
+    "source": "https://www.quebec.ca/nouvelles/actualites/details/ajustement-des-tarifs-pour-les-personnes-couvertes-par-le-regime-public-dassurance-medicaments-71515",
+    "detail": {
+      "aboutList": {
+        "lead": "Tarifs du 1er juillet 2026 au 30 juin 2027 :",
+        "items": [
+          "La franchise mensuelle est de 21,25 $ et la coassurance est de 30 %.",
+          "Maximum mensuel : 105,25 $ pour les adhérents et les 65 ans ou plus sans Supplément de revenu garanti (SRG).",
+          "Avec un SRG au taux de 1 à 93 %, le maximum mensuel est de 58,08 $."
+        ]
+      },
+      "steps": [
+        "Payez votre contribution à la pharmacie lors de l'achat d'un médicament.",
+        "Payez la prime annuelle à Revenu Québec lors de votre déclaration de revenus."
+      ],
+      "documents": [
+        "La page officielle ne précise aucun document à fournir."
+      ],
+      "tips": [
+        "La prime annuelle varie selon votre revenu et peut aller de 0 à 789 $.",
+        "La franchise est soustraite avant le calcul de la coassurance de 30 %.",
+        "Exemple pour un médicament de 60 $ : franchise de 21,25 $ plus coassurance de 11,63 $, soit 32,88 $."
+      ]
+    }
+  },
+  {
+    "id": "qc-prestations-speciales",
+    "name": "Prestations spéciales (programmes d'assistance sociale)",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Income support",
+    "amount": "Montant supplémentaire à votre prestation, selon le besoin",
+    "summary": "Si vous recevez une prestation d'aide sociale ou de solidarité sociale, un montant peut s'ajouter pour certains besoins, comme des lunettes, un déménagement ou un décès.",
+    "note": "Dans certains cas, le Ministère doit donner son accord avant l'achat.",
+    "requires": [
+      "qc",
+      "qcPrestationsSpecialesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous êtes prestataire d'un programme d'assistance sociale.",
+        "Vous avez un besoin de santé ou une situation particulière couverts par une prestation spéciale.",
+        "Vous fournissez les documents qui justifient votre demande."
+      ],
+      "note": "La page décrit un montant supplémentaire possible, selon les cas."
+    },
+    "applyText": "Transmettez votre demande en personne ou par la poste à votre bureau de Services Québec, ou en ligne.",
+    "applyUrl": "https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/montants-dates-versements-prestations/montants-supplementaires/obtenir-prestation-speciale",
+    "source": "https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/montants-dates-versements-prestations/montants-supplementaires/obtenir-prestation-speciale",
+    "detail": {
+      "aboutList": {
+        "lead": "Le montant sert à couvrir, par exemple :",
+        "items": [
+          "L'achat de lunettes ou l'obtention de fournitures médicales.",
+          "Un déménagement pour une raison de santé ou de salubrité.",
+          "Les frais funéraires, les soins dentaires, les transports médicaux et les médicaments."
+        ]
+      },
+      "steps": [
+        "Obtenez une autorisation préalable du Ministère si votre cas l'exige.",
+        "Rassemblez vos documents justificatifs et votre preuve d'achat.",
+        "Transmettez le tout à Services Québec, en personne, par la poste ou en ligne dans Mon dossier Aide à l'emploi - Assistance sociale."
+      ],
+      "documents": [
+        "Une ordonnance d'un professionnel de la santé.",
+        "Un certificat médical (formulaire SR-0040).",
+        "Une estimation des coûts d'un bien ou d'un service, lorsque requis.",
+        "Une preuve d'achat : reçu, facture ou formulaire remis par votre agente ou agent."
+      ],
+      "tips": [
+        "Une autorisation préalable est obligatoire pour une prothèse dentaire, des lunettes ou lentilles, un déménagement pour la santé ou la salubrité, des pertes lors d'un incendie ou d'une catastrophe naturelle, et un appareil respiratoire.",
+        "Envoyez votre demande au plus tard 90 jours après avoir obtenu le bien ou le service.",
+        "Centre de communication avec la clientèle, du lundi au vendredi de 8 h 30 à 16 h 30 (le mercredi, de 10 h à 16 h 30) : 514 873-4000 (région de Montréal et environs) ou 1 877 767-8773 (ailleurs au Québec, sans frais)."
+      ],
+      "time": "Envoyez votre demande au plus tard 90 jours après avoir obtenu le bien ou le service."
+    }
+  },
+  {
+    "id": "qc-besoins-particuliers-adultes",
+    "name": "Programme d'allocation pour des besoins particuliers (adultes)",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Education",
+    "amount": "Aide financière pour les formes de soutien liées à votre déficience",
+    "summary": "Une aide financière pour les formes de soutien liées à votre déficience dont vous avez besoin pour étudier, comme des services spécialisés, le transport adapté ou des ressources matérielles.",
+    "note": "Le programme paie seulement ce que d'autres programmes ne remboursent pas.",
+    "requires": [
+      "qc",
+      "qcBesoinsParticuliersAdultesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous avez la citoyenneté canadienne, la résidence permanente ou un statut de personne réfugiée ou protégée.",
+        "Vous êtes considéré comme résident du Québec.",
+        "Vous étudiez dans un établissement reconnu, au secondaire (formation professionnelle ou adultes), au collégial ou à l'université.",
+        "Vous avez une déficience avec incapacité significative et persistante, confirmée par un médecin."
+      ],
+      "note": "Sous le minimum de cours, seuls les services spécialisés et la transcription en braille sont remboursés."
+    },
+    "applyText": "Rencontrez d'abord la personne responsable de l'intégration des personnes handicapées de votre établissement.",
+    "applyUrl": "https://www.quebec.ca/education/aide-financiere-aux-etudes/allocation-besoins-particuliers-adultes/admissibilite-programme",
+    "source": "https://www.quebec.ca/education/aide-financiere-aux-etudes/allocation-besoins-particuliers-adultes/admissibilite-programme",
+    "detail": {
+      "aboutList": {
+        "lead": "Le programme peut couvrir des formes de soutien comme :",
+        "items": [
+          "Des services spécialisés liés à votre déficience.",
+          "Le transport adapté et l'allocation de logement.",
+          "Des ressources matérielles nécessaires à vos études."
+        ]
+      },
+      "steps": [
+        "Rencontrez la personne responsable de l'intégration des personnes handicapées de votre établissement.",
+        "Faites confirmer votre déficience par un médecin.",
+        "Présentez votre demande d'allocation à l'Aide financière aux études."
+      ],
+      "documents": [
+        "Une confirmation médicale de votre déficience entraînant une incapacité significative et persistante."
+      ],
+      "tips": [
+        "Consultez le guide d'accompagnement offert sur la page officielle.",
+        "Vous devez être inscrit à au moins 6 unités (crédits) ou 76 heures de cours par session, ou 20 heures d'enseignement par mois."
+      ]
+    }
+  },
+  {
+    "id": "qc-besoins-particuliers-jeunes",
+    "name": "Programme d'allocation pour des besoins particuliers (jeunes)",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Education",
+    "amount": "Ressources matérielles recommandées par un professionnel de la santé",
+    "summary": "Une allocation pour obtenir les ressources matérielles dont votre enfant a besoin pour ses études, si une déficience limite ses apprentissages scolaires à la maison.",
+    "note": "Pour un enfant d'un établissement d'enseignement privé non subventionné reconnu. Aucun autre programme ne doit couvrir les mêmes besoins.",
+    "requires": [
+      "qc",
+      "child",
+      "qcBesoinsParticuliersJeunesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Votre enfant a la citoyenneté canadienne, la résidence permanente ou un statut de personne réfugiée ou protégée.",
+        "Votre enfant est considéré comme résident du Québec.",
+        "Il fréquente un établissement d'enseignement privé non subventionné reconnu et suit un programme d'études reconnu.",
+        "Il est aux études à temps plein ou a au moins 20 heures de cours par mois.",
+        "Il a une déficience avec incapacité significative et persistante, confirmée par un médecin."
+      ],
+      "note": "Le programme vise le préscolaire, le primaire et le secondaire."
+    },
+    "applyText": "La page officielle présentée ici décrit les conditions; consultez l'Aide financière aux études pour déposer une demande.",
+    "applyUrl": "https://www.quebec.ca/education/aide-financiere-aux-etudes/allocation-besoins-particuliers-jeunes/conditions-admissibilite",
+    "source": "https://www.quebec.ca/education/aide-financiere-aux-etudes/allocation-besoins-particuliers-jeunes/conditions-admissibilite",
+    "detail": {
+      "aboutList": {
+        "lead": "L'allocation vous aide à obtenir :",
+        "items": [
+          "Des ressources matérielles recommandées par un professionnel de la santé.",
+          "Ce dont votre enfant a besoin pour poursuivre ses études au préscolaire, au primaire ou au secondaire."
+        ]
+      },
+      "steps": [
+        "Vérifiez que votre enfant répond à toutes les conditions.",
+        "Faites confirmer sa déficience par un médecin.",
+        "Consultez l'Aide financière aux études pour présenter la demande."
+      ],
+      "documents": [
+        "Une confirmation médicale de la déficience entraînant une incapacité significative et persistante."
+      ],
+      "tips": [
+        "Les ressources doivent être recommandées par une professionnelle ou un professionnel de la santé."
+      ]
+    }
+  },
+  {
+    "id": "qc-prets-bourses-dfm",
+    "name": "Prêts et bourses – déficience fonctionnelle majeure",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Education",
+    "amount": "Statut de personne réputée aux études à temps plein, pour les prêts et bourses",
+    "summary": "Avec une déficience fonctionnelle majeure, vos études à temps partiel peuvent compter comme des études à temps plein pour l'aide financière aux études.",
+    "note": "La page décrit la reconnaissance du statut, pas les montants des prêts et bourses.",
+    "requires": [
+      "qc",
+      "qcPretsBoursesDfmRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous étudiez à temps partiel et suivez au moins 20 heures de cours par mois.",
+        "Un médecin confirme une déficience avec incapacité significative et persistante."
+      ],
+      "note": "Avec des troubles épisodiques ou une autre déficience, des accommodements de l'Aide financière sont possibles."
+    },
+    "applyText": "Transmettez un certificat médical rempli par votre médecin, avec le formulaire de demande de dépôt direct.",
+    "applyUrl": "https://www.quebec.ca/education/aide-financiere-aux-etudes/prets-bourses-temps-plein/conditions-admissibilite/etudes-temps-plein",
+    "source": "https://www.quebec.ca/education/aide-financiere-aux-etudes/prets-bourses-temps-plein/conditions-admissibilite/etudes-temps-plein",
+    "detail": {
+      "aboutList": {
+        "lead": "Ce que cela change pour vous :",
+        "items": [
+          "Vous pourriez être considéré comme étudiant à temps plein même si vous étudiez à temps partiel.",
+          "Vous pouvez faire reconnaître votre situation pour l'année d'attribution précédente."
+        ]
+      },
+      "steps": [
+        "Demandez à votre médecin de remplir le certificat médical pour déficience entraînant une incapacité significative et persistante.",
+        "Joignez le formulaire de demande de dépôt direct.",
+        "Envoyez votre demande par écrit à l'Aide financière aux études."
+      ],
+      "documents": [
+        "Le certificat médical rempli par votre médecin.",
+        "Le formulaire de demande de dépôt direct.",
+        "Pour un enfant à charge : une preuve d'Allocation famille confirmant le supplément pour enfant handicapé."
+      ],
+      "tips": [
+        "L'année d'attribution va du 1er septembre au 31 août.",
+        "Vous avez jusqu'au 29 décembre qui suit la fin de cette année d'attribution pour soumettre votre demande."
+      ],
+      "time": "Jusqu'au 29 décembre suivant la fin de l'année d'attribution."
+    }
+  },
+  {
+    "id": "montreal-transport-adapte",
+    "name": "Transport adapté de la STM",
+    "level": "Montréal",
+    "lang": "fr",
+    "category": "Daily living supports",
+    "amount": "Service de transport porte à porte, tarif de 3,50 $ comptant dans la zone A, gratuit à 65 ans et plus qui résident à Montréal",
+    "summary": "Le transport adapté de la STM aide les personnes handicapées à se déplacer à Montréal. Il faut d’abord être admis. Les tarifs sont ceux de la grille de l’ARTM en vigueur le 1er juillet 2026.",
+    "note": "La demande se fait par écrit, et un professionnel qui a accès à votre diagnostic doit remplir une partie du formulaire.",
+    "requires": [
+      "qc",
+      "montrAl",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous avez une déficience qui cause une incapacité significative et persistante.",
+        "Cette incapacité limite grandement votre mobilité.",
+        "Le comité d’admission accepte votre demande."
+      ],
+      "note": "Le comité d’admission étudie chaque demande selon la politique du ministère des Transports."
+    },
+    "applyText": "Remplir le formulaire de demande d’admission de la STM",
+    "applyUrl": "https://www.stm.info/fr/ta/formulaires",
+    "source": "https://www.stm.info/fr/ta/formulaires",
+    "detail": {
+      "aboutList": {
+        "lead": "Ce que dit la grille tarifaire de l’ARTM du 1er juillet 2026 (certaines conditions s’appliquent) :",
+        "items": [
+          "Les enfants de 11 ans et moins voyagent gratuitement s’ils sont accompagnés d’une personne de 14 ans et plus.",
+          "Les personnes de 65 ans et plus qui résident à Montréal voyagent gratuitement dans la zone A.",
+          "Le tarif comptant à bord est de 3,50 $ pour la zone A, ou de 2,25 $ au tarif réduit.",
+          "Un accompagnateur peut voyager gratuitement selon le type d’accompagnement admis."
+        ]
+      },
+      "steps": [
+        "Imprimez le formulaire de demande d’admission au transport adapté.",
+        "Remplissez la partie 1 du formulaire.",
+        "Faites remplir la partie 2 par un professionnel du réseau de la santé ou du réseau scolaire qui a accès au diagnostic.",
+        "Joignez une photo récente et une preuve d’âge.",
+        "Envoyez le tout par courriel ou par la poste à l’adresse indiquée sur la page."
+      ],
+      "documents": [
+        "Le formulaire de demande d’admission, parties 1 et 2",
+        "Une photo récente",
+        "Une preuve d’âge, comme le certificat de naissance ou la carte d’assurance maladie"
+      ],
+      "tips": [
+        "Courriel : transport.adapte@stm.info. Poste : Centre de transport adapté, 3111, rue Jarry Est, Montréal (Québec) H1Z 2C2.",
+        "Le tarif réduit de 2,25 $ comptant dépend de conditions à vérifier auprès de la STM.",
+        "Pour déménager ou changer d’adresse, il faut remplir le formulaire d’avis de changement d’adresse."
+      ],
+      "time": "Réponse dans les 45 jours après la réception de la demande, selon la politique du ministère des Transports",
+      "phone": "514 280-8211, option 4"
+    }
+  },
+  {
+    "id": "laval-transport-adapte",
+    "name": "Transport adapté de la STL",
+    "level": "Laval",
+    "lang": "fr",
+    "category": "Daily living supports",
+    "amount": "Service de transport porte à porte, gratuit pour les 65 ans et plus qui résident à Laval",
+    "summary": "Le transport adapté de la STL aide les personnes handicapées à se déplacer à Laval. Il faut d’abord être admis. Un comité étudie votre demande et répond dans les 45 jours si elle est complète.",
+    "note": "Vous envoyez un formulaire d’admission, une preuve d’âge et 2 photos de format passeport par la poste ou par courriel.",
+    "requires": [
+      "qc",
+      "laval",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous avez une déficience qui cause une incapacité significative et persistante.",
+        "Cette incapacité limite grandement votre mobilité.",
+        "Le comité d’admission accepte votre demande."
+      ],
+      "note": "Le comité d’admission étudie chaque demande selon la politique du ministère des Transports."
+    },
+    "applyText": "Consulter la page d’admission de la STL",
+    "applyUrl": "https://stlaval.ca/admission-ta",
+    "source": "https://stlaval.ca/admission-ta",
+    "detail": {
+      "aboutList": {
+        "lead": "Ce que disent les pages de la STL et de l’ARTM (tarifs du 1er juillet 2026; certaines conditions s’appliquent) :",
+        "items": [
+          "Le service de la STL est gratuit pour les 65 ans et plus qui résident à Laval.",
+          "Les enfants de 11 ans et moins voyagent gratuitement s’ils sont accompagnés d’une personne de 14 ans et plus.",
+          "Le tarif comptant à bord est de 3,50 $ pour les zones B, C et D, ou de 2,25 $ au tarif réduit.",
+          "Si votre dossier exige une prise en charge à destination, une dérogation est possible selon votre autonomie."
+        ]
+      },
+      "steps": [
+        "Remplissez la partie 1 du formulaire d’admission au transport adapté.",
+        "Faites remplir la partie 2 par un professionnel de la santé ou du réseau scolaire qui connaît le diagnostic.",
+        "Signez le formulaire.",
+        "Joignez 2 photos de format passeport et une preuve d’âge (par courriel, vous pouvez joindre une photo en couleur et une photo de votre preuve d’âge).",
+        "Envoyez le tout par la poste ou par courriel."
+      ],
+      "documents": [
+        "Le formulaire d’admission rempli au complet et signé",
+        "2 photos de format passeport, claires et en couleur, identifiées à l’endos",
+        "Une preuve d’âge, comme le certificat de naissance ou la carte d’assurance maladie"
+      ],
+      "tips": [
+        "Courriel : transportadapte@stl.laval.qc.ca. Poste : Service de transport adapté, 2250, av. Francis-Hughes, Laval (Québec) H7S 2C3.",
+        "Si vous voulez qu’une personne agisse en votre nom, joignez le formulaire de procuration.",
+        "Le tarif réduit dépend de conditions à vérifier auprès de la STL."
+      ],
+      "time": "Réponse dans les 45 jours suivant la réception d’une demande jugée complète"
+    }
+  },
+  {
+    "id": "rtl-transport-adapte",
+    "name": "Transport adapté du RTL",
+    "level": "Longueuil",
+    "lang": "fr",
+    "category": "Daily living supports",
+    "amount": "Service de transport porte à porte, gratuit hors pointe, sous conditions, pour les 65 ans et plus de Brossard, Boucherville, Longueuil ou Saint-Lambert",
+    "summary": "Le transport adapté du RTL aide les personnes handicapées à se déplacer dans l’agglomération de Longueuil. Il faut une carte OPUS du transport adapté valide et un dossier en règle qui confirme votre admissibilité.",
+    "note": "Le RTL accepte les demandes d’admission uniquement par courrier.",
+    "requires": [
+      "qc",
+      "longueuilEtBrossardArea",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous avez une déficience qui cause une incapacité significative et persistante.",
+        "Cette incapacité limite grandement votre mobilité.",
+        "Le comité d’admission accepte votre demande."
+      ],
+      "note": "Le comité d’admission étudie chaque demande selon la politique du ministère des Transports."
+    },
+    "applyText": "Consulter la page d’admission du RTL",
+    "applyUrl": "https://www.rtl-longueuil.qc.ca/transport-adapte/admission",
+    "source": "https://www.rtl-longueuil.qc.ca/transport-adapte/admission",
+    "detail": {
+      "aboutList": {
+        "lead": "Ce que disent les pages du RTL et de l’ARTM (tarifs du 1er juillet 2026; certaines conditions s’appliquent) :",
+        "items": [
+          "Le RTL offre le service à plus de 5 000 personnes dans l’agglomération de Longueuil chaque année.",
+          "Gratuit hors pointe pour les 65 ans et plus qui résident à Brossard, Boucherville, Longueuil ou Saint-Lambert.",
+          "Les enfants de 11 ans et moins voyagent gratuitement s’ils sont accompagnés d’une personne de 14 ans et plus.",
+          "Le tarif comptant à bord est de 3,50 $ pour les zones B, C et D, ou de 2,25 $ au tarif réduit."
+        ]
+      },
+      "steps": [
+        "Remplissez le formulaire de demande d’admission.",
+        "Joignez la photo demandée.",
+        "Envoyez le formulaire et la photo par la poste seulement, au comité d’admissibilité du RTL."
+      ],
+      "documents": [
+        "Le formulaire de demande d’admission",
+        "Une photo"
+      ],
+      "tips": [
+        "Poste : Comité d’admissibilité au transport adapté, 1150, boulevard Marie-Victorin, Longueuil (Québec) J4G 2M4.",
+        "Courriel pour les changements au dossier : ta@rtl-longueuil.qc.ca.",
+        "Si vous n’avez pas utilisé le service depuis plus de 2 ans, vous devez réactiver votre dossier.",
+        "Le formulaire est aussi offert sur demande par téléphone."
+      ],
+      "time": "Réponse dans les 45 jours selon la politique du ministère des Transports",
+      "phone": "450 670-2992, option 3"
+    }
+  },
+  {
+    "id": "exo-transport-adapte",
+    "name": "Transport adapté d’exo",
+    "level": "Terrebonne",
+    "lang": "fr",
+    "category": "Daily living supports",
+    "amount": "Service de transport porte à porte, sur réservation, 7 jours sur 7",
+    "summary": "Le transport adapté d’exo est un service de transport collectif porte à porte pour les personnes handicapées qui résident sur son territoire. Seules les personnes admises peuvent l’utiliser.",
+    "note": "Vérifiez votre admissibilité sur la page d’exo, puis faites votre demande d’admission.",
+    "requires": [
+      "qc",
+      "terrebonne",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous avez une déficience qui cause une incapacité significative et persistante.",
+        "Cette incapacité limite grandement votre mobilité.",
+        "Le comité d’admission accepte votre demande."
+      ],
+      "note": "Le comité d’admission étudie chaque demande selon la politique du ministère des Transports."
+    },
+    "applyText": "Consulter les critères et la demande d’admission d’exo",
+    "applyUrl": "https://www.exo.quebec/fr/transport-adapte",
+    "source": "https://www.exo.quebec/fr/transport-adapte",
+    "detail": {
+      "aboutList": {
+        "lead": "Ce que disent la page d’exo et la grille tarifaire de l’ARTM du 1er juillet 2026 (certaines conditions s’appliquent) :",
+        "items": [
+          "Le service est offert 7 jours sur 7, 365 jours par année, sur réservation.",
+          "Si vous payez comptant à bord, le coût dépend des lieux d’origine et de destination.",
+          "Secteur Terrebonne-Mascouche : gratuit pour les 65 ans et plus qui résident à Terrebonne ou Mascouche.",
+          "Les enfants de 11 ans et moins voyagent gratuitement s’ils sont accompagnés d’une personne de 14 ans et plus."
+        ]
+      },
+      "steps": [
+        "Ouvrez la page d’exo sur le transport adapté et consultez les critères d’admissibilité.",
+        "Faites une demande d’admission en suivant les étapes de la page.",
+        "Une fois admis, consultez la page d’exo pour savoir comment réserver un déplacement."
+      ],
+      "documents": [
+        "Les documents demandés dans les étapes de la page d’exo"
+      ],
+      "tips": [
+        "Annulez ou modifiez une réservation pour laisser la place à d’autres personnes.",
+        "Le dépliant d’exo donne les tarifs, les horaires et les modes de paiement.",
+        "Le tarif réduit dépend de conditions à vérifier auprès d’exo.",
+        "Vérifiez auprès d’exo si votre municipalité est desservie par le transport adapté."
+      ],
+      "phone": "1 877 433-4004"
+    }
+  },
+  {
+    "id": "quebec-equimobilite",
+    "name": "ÉquiMobilité (tarif réduit pour faible revenu)",
+    "level": "Ville de Québec",
+    "lang": "fr",
+    "category": "Money",
+    "amount": "Laissez-passer mensuel à 51 $ et billet un passage à 2,05 $ au RTC",
+    "summary": "ÉquiMobilité offre des tarifs réduits du RTC aux personnes à faible revenu. Le laissez-passer mensuel coûte 51 $ et le billet un passage, 2,05 $.",
+    "note": "Les seuils de revenu de la page sont ceux de 2025 et peuvent avoir changé. Vérifiez les tarifs et les seuils actuels auprès de la Ville.",
+    "requires": [
+      "qc",
+      "villeDeQuBec",
+      "quebecEquimobiliteRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Vous utilisez le Service de transport adapté de la Capitale (STAC), et vous êtes alors admissible d'office.",
+        "Ou votre revenu personnel ou familial est sous le seuil de faible revenu avant impôts de 2025.",
+        "Par exemple, le seuil est de 31 906 $ pour une personne seule et de 39 721 $ pour 2 personnes."
+      ],
+      "note": "Les seuils vont jusqu'à 84 436 $ pour une famille de 7 personnes ou plus."
+    },
+    "applyText": "Voir la page ÉquiMobilité de la Ville de Québec et le formulaire de demande",
+    "applyUrl": "https://www.ville.quebec.qc.ca/citoyens/mobilite/transport-collectif/equimobilite.aspx",
+    "source": "https://www.ville.quebec.qc.ca/citoyens/mobilite/transport-collectif/equimobilite.aspx",
+    "detail": {
+      "aboutList": {
+        "lead": "Ce que dit la page :",
+        "items": [
+          "Le programme est en vigueur depuis le 1er mai 2023.",
+          "La Ville vérifie votre admissibilité et vous remet une preuve valide pour deux ans.",
+          "Le RTC produit ensuite votre carte OPUS ÉquiMobilité, sans frais."
+        ]
+      },
+      "steps": [
+        "Remplissez le formulaire de demande d'admissibilité de la Ville.",
+        "Joignez une pièce d'identité avec photo et une preuve de revenu.",
+        "Présentez-vous à un centre de services de la Ville ou postez votre demande avec une photo.",
+        "Avec votre preuve d'admissibilité, faites produire votre carte OPUS ÉquiMobilité au RTC dans les 30 jours.",
+        "Achetez vos titres au tarif ÉquiMobilité avec cette carte."
+      ],
+      "documents": [
+        "Pièce d'identité avec photo, ou formulaire de déclaration du répondant",
+        "Avis de cotisation 2024 ou 2025, ou autre preuve de revenu officielle",
+        "Ou carnet de réclamation du mois courant de l'aide sociale, de la solidarité sociale ou du revenu de base",
+        "Ou document de demandeur d'asile ou de statut de réfugié",
+        "Relevé d'allocation canadienne pour enfants, seulement si vous avez des enfants à charge"
+      ],
+      "tips": [
+        "Les usagers du STAC n'ont pas à demander de preuve à la Ville : communiquez directement avec le RTC.",
+        "Après deux ans, la carte expire et vous devez refaire la demande si vous êtes toujours admissible.",
+        "Si vous avez une carte OPUS Aîné, 18 ans et moins ou Étudiant+ et un revenu sous le seuil, il vous faut la carte ÉquiMobilité.",
+        "Pour une demande par la poste, comptez jusqu'à 3 semaines pour recevoir la carte.",
+        "Pour plus de détails, appelez le 311 ou le Réseau de transport de la Capitale."
+      ],
+      "time": "Jusqu'à 3 semaines pour la carte par la poste",
+      "phone": "418 627-2511, option 1"
+    }
+  },
+  {
+    "id": "gatineau-echo",
+    "name": "Programme ÉCHO (tarification sociale)",
+    "level": "Gatineau",
+    "lang": "fr",
+    "category": "Money",
+    "amount": "Abonnement mensuel à 62 $ au lieu de 116,50 $, ou 2,80 $ par passage (tarifs 2026)",
+    "summary": "Le programme ÉCHO de la STO réduit le prix du transport en commun pour les résidents de Gatineau à faible revenu. Il vise aussi les prestataires d'aide sociale et les nouveaux arrivants.",
+    "note": "Les tarifs de 2026 sont sujets à changements sans préavis. Vérifiez les prix et les seuils actuels auprès de la STO.",
+    "requires": [
+      "qc",
+      "gatineau",
+      "gatineauEchoRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Vous êtes résident de Gatineau et prestataire d'aide sociale.",
+        "Ou vous êtes résident de Gatineau arrivé au Canada il y a moins de 12 mois.",
+        "Ou vous êtes résident de Gatineau et votre revenu familial est sous le seuil de faible revenu après impôt."
+      ],
+      "note": "Les étudiants à temps complet de 20 ans et moins (au 1er septembre) ne sont pas admissibles."
+    },
+    "applyText": "Voir la page du programme ÉCHO de la STO",
+    "applyUrl": "https://www.sto.ca/tarifs/programme-echo/",
+    "source": "https://www.sto.ca/tarifs/programme-echo/",
+    "detail": {
+      "aboutList": {
+        "lead": "Ce que dit la page :",
+        "items": [
+          "Le tarif ÉCHO se charge sur une carte Multi personnalisée avec photo.",
+          "Il vaut pour le réseau régulier et pour le transport adapté.",
+          "L'admissibilité dure 12 mois et se renouvelle chaque année."
+        ]
+      },
+      "steps": [
+        "Vérifiez votre admissibilité et rassemblez vos documents.",
+        "Remplissez le formulaire en ligne ou en version imprimable.",
+        "Soumettez la demande en ligne ou en personne, avec les documents requis.",
+        "Une fois la confirmation reçue, allez à un point de service avec une pièce d'identité avec photo.",
+        "Recevez votre carte Multi avec le tarif ÉCHO."
+      ],
+      "documents": [
+        "Preuve de résidence à Gatineau, comme un permis de conduire, un bail ou une facture de service",
+        "Aide sociale : le plus récent carnet de réclamation du ministère de l'Emploi et de la Solidarité sociale",
+        "Nouvel arrivant : confirmation de résidence permanente, carte de résident permanent ou document de demandeur d'asile",
+        "Faible revenu : le plus récent relevé de l'Allocation canadienne pour l'épicerie et les besoins essentiels"
+      ],
+      "tips": [
+        "Le tarif régulier de 2026 est de 116,50 $ par mois et de 4,00 $ par passage.",
+        "Seuils après impôt (année non précisée sur la page) : de 21 911 $ pour 1 personne à 57 460 $ pour 7 ou plus.",
+        "Au transport adapté, le tarif ÉCHO est de 2,80 $ par passage et l'argent comptant est accepté.",
+        "Vous ne pouvez avoir le statut de nouvel arrivant qu'une seule fois.",
+        "La demande peut être acceptée sur-le-champ pour l'aide sociale et les nouveaux arrivants."
+      ],
+      "time": "Environ deux semaines pour certaines demandes",
+      "phone": "819 770-3242"
+    }
+  },
+  {
+    "id": "gatineau-transport-adapte",
+    "name": "Transport adapté de la STO",
+    "level": "Gatineau",
+    "lang": "fr",
+    "category": "Daily living supports",
+    "amount": "Service de transport adapté pour les personnes handicapées de Gatineau",
+    "summary": "Le transport adapté de la STO aide les personnes handicapées dont l'incapacité limite beaucoup les déplacements. Il faut d'abord être admis par le comité d'admission.",
+    "note": "La page ne donne pas le prix des passages. Consultez la page des tarifs de la STO. La politique du ministère des Transports fixe les critères.",
+    "requires": [
+      "qc",
+      "gatineau",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous avez une déficience entraînant une incapacité significative et persistante.",
+        "Vous avez des limitations de mobilité qui justifient un service de transport adapté.",
+        "Vous êtes résident permanent de Gatineau et le comité d'admission accepte votre demande."
+      ],
+      "note": "Seules les limitations prévues par la politique peuvent être retenues, comme ne pas pouvoir marcher 400 mètres."
+    },
+    "applyText": "Voir la page des demandes et conditions d'admission de la STO",
+    "applyUrl": "https://www.sto.ca/transport-adapte/demandes-et-conditions-dadmission/",
+    "source": "https://www.sto.ca/transport-adapte/demandes-et-conditions-dadmission/",
+    "detail": {
+      "aboutList": {
+        "lead": "Limitations qui peuvent justifier le service :",
+        "items": [
+          "Ne pas pouvoir marcher sur 400 mètres ou plus.",
+          "Ne pas pouvoir monter une marche de 35 centimètres avec appui, ou en descendre une sans appui.",
+          "Ne pas pouvoir faire tout un déplacement en transport régulier à cause d'une fatigabilité extrême.",
+          "Ne pas pouvoir s'orienter dans le temps ou l'espace, ou maîtriser des situations dangereuses."
+        ]
+      },
+      "steps": [
+        "Remplissez la partie 1 du formulaire de demande d'admission au transport adapté.",
+        "Faites remplir la partie 2 par un professionnel de la santé ou du réseau scolaire qui a accès à votre diagnostic.",
+        "Envoyez le formulaire par courriel, par la poste ou en personne à la STO.",
+        "Attendez la réponse. Si vous êtes admis, vous recevrez une lettre d'admission et le Guide de l'usager."
+      ],
+      "documents": [
+        "Formulaire de demande d'admission au transport adapté, parties 1 et 2"
+      ],
+      "tips": [
+        "Envoyez le formulaire par courriel à admission.ta@sto.ca.",
+        "Vous pouvez aussi le déposer à l'un des points de service de la STO à Gatineau.",
+        "L'incapacité de communiquer ne peut pas, à elle seule, justifier l'admission.",
+        "La réponse arrive dans les 45 jours suivant la réception de la demande."
+      ],
+      "time": "Réponse dans les 45 jours"
+    }
+  },
+  {
+    "id": "sherbrooke-transport-adapte",
+    "name": "Transport adapté de la STS",
+    "level": "Sherbrooke",
+    "lang": "fr",
+    "category": "Daily living supports",
+    "amount": "Service de transport adapté de la Société de transport de Sherbrooke",
+    "summary": "Le transport adapté de la STS s'adresse aux personnes ayant une déficience qui entraîne une incapacité significative et persistante, ou une mobilité réduite qui limite leurs déplacements.",
+    "note": "La page décrit l'admission, mais ne donne ni les tarifs ni les heures. Consultez la page des tarifs de la STS pour les prix.",
+    "requires": [
+      "qc",
+      "sherbrooke",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Vous avez une déficience entraînant une incapacité significative et persistante.",
+        "Ou vous avez une mobilité réduite qui vous contraint dans vos déplacements.",
+        "Vous avez l'une des incapacités de mobilité ou d'orientation que la page énumère."
+      ],
+      "note": "Un professionnel du réseau de la santé doit remplir la partie 2 du formulaire."
+    },
+    "applyText": "Voir la page d'admission au transport adapté de la STS",
+    "applyUrl": "https://www.sts.qc.ca/transport-adapte/admission/",
+    "source": "https://www.sts.qc.ca/transport-adapte/admission/",
+    "detail": {
+      "aboutList": {
+        "lead": "Incapacités nommées par la page :",
+        "items": [
+          "Ne pas pouvoir marcher 400 mètres sur un terrain uni.",
+          "Ne pas pouvoir monter une marche de 35 cm avec appui, ou en descendre une sans appui.",
+          "Ne pas pouvoir faire tout un déplacement en transport en commun.",
+          "Ne pas pouvoir s'orienter, communiquer (verbal ou gestuel) ou maîtriser des situations dangereuses."
+        ]
+      },
+      "steps": [
+        "Remplissez la partie 1 du formulaire de demande d'admission au transport adapté.",
+        "Contactez un professionnel du réseau de la santé pour qu'il remplisse la partie 2.",
+        "Joignez une photo récente et une preuve d'âge.",
+        "Remettez le formulaire en personne ou par la poste à la STS."
+      ],
+      "documents": [
+        "Formulaire de demande d'admission, parties 1 et 2",
+        "Photo récente",
+        "Preuve d'âge : photocopie du certificat de naissance ou de la carte d'assurance maladie"
+      ],
+      "tips": [
+        "Une photo peut être prise aux bureaux si vous remettez les documents en personne.",
+        "L'adresse est le 895, rue Cabana, Sherbrooke (Québec) J1K 2M3.",
+        "Le formulaire existe aussi en anglais sur la page.",
+        "Le service à la clientèle peut vous aider avec la demande."
+      ],
+      "phone": "819 564-2687, poste 2"
+    }
+  },
+  {
+    "id": "trois-rivieres-tarification-sociale",
+    "name": "Tarification sociale de la STTR",
+    "level": "Trois-Rivières",
+    "lang": "fr",
+    "category": "Money",
+    "amount": "Rabais de 50 % sur le titre mensuel régulier de la STTR",
+    "summary": "La tarification sociale de la STTR donne un rabais de 50 % sur le titre mensuel régulier aux personnes en situation de vulnérabilité. Un organisme communautaire accrédité évalue votre situation.",
+    "note": "La page ne donne ni revenu limite ni prix du titre. L'organisme communautaire évalue la vulnérabilité. Vérifiez les détails auprès de la STTR.",
+    "requires": [
+      "qc",
+      "troisRiviRes",
+      "troisRivieresTarificationSocialeRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous êtes en situation de vulnérabilité selon un organisme communautaire accrédité par la Ville.",
+        "Vous n'êtes pas admissible au titre jeunesse, destiné aux 21 ans et moins."
+      ],
+      "note": "L'admission est valide un an, puis vous devez refaire une demande."
+    },
+    "applyText": "Voir la page de la tarification sociale de la STTR",
+    "applyUrl": "https://sttr.qc.ca/tarification-sociale/",
+    "source": "https://sttr.qc.ca/tarification-sociale/",
+    "detail": {
+      "aboutList": {
+        "lead": "Ce que dit la page :",
+        "items": [
+          "Le programme vise à favoriser la mobilité et à réduire une charge financière récurrente.",
+          "Il repose sur un partenariat avec des organismes communautaires de Trois-Rivières.",
+          "Votre carte CITÉ avec photo donne accès au rabais."
+        ]
+      },
+      "steps": [
+        "Communiquez avec un organisme communautaire participant pour obtenir une recommandation.",
+        "L'organisme confirme votre admissibilité et la transmet à la STTR.",
+        "Faites émettre votre carte CITÉ avec photo au service à la clientèle de la STTR.",
+        "Rechargez la carte au service à la clientèle, chez un dépositaire ou en ligne."
+      ],
+      "documents": [
+        "Formulaire de recommandation rempli par l'organisme communautaire",
+        "Les pièces exigées pour la carte CITÉ ne sont pas précisées sur la page"
+      ],
+      "tips": [
+        "Le service à la clientèle est au 246, rue Saint-Roch, à Trois-Rivières.",
+        "La liste des organismes accrédités se trouve sur la page de la STTR.",
+        "Demandez sur place quelles pièces apporter."
+      ]
+    }
+  },
+  {
+    "id": "trois-rivieres-transport-adapte",
+    "name": "Transport adapté de la STTR",
+    "level": "Trois-Rivières",
+    "lang": "fr",
+    "category": "Daily living supports",
+    "amount": "Transport en commun adapté de porte à porte, sur réservation",
+    "summary": "Le transport adapté de la STTR est un service de porte à porte accessible, sur réservation seulement. Il s'adresse aux personnes handicapées admises selon les critères provinciaux.",
+    "note": "Il faut d'abord être admis. La page ne donne pas les tarifs. Le comité d'admission répond par écrit dans les 45 jours.",
+    "requires": [
+      "qc",
+      "troisRiviRes",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous avez une déficience significative et persistante qui limite vos activités normales.",
+        "Vous avez une limitation de mobilité que la politique du ministère des Transports reconnaît.",
+        "Le comité d'admission accepte votre dossier."
+      ],
+      "note": "L'incapacité de communiquer ne peut pas, à elle seule, justifier l'admission."
+    },
+    "applyText": "Voir la page du transport adapté de la STTR",
+    "applyUrl": "https://sttr.qc.ca/transport-adapte/",
+    "source": "https://sttr.qc.ca/transport-adapte/",
+    "detail": {
+      "aboutList": {
+        "lead": "Limitations de mobilité retenues par la page :",
+        "items": [
+          "Ne pas pouvoir marcher 400 mètres sur un terrain plat et uni.",
+          "Ne pas pouvoir monter une marche de 35 centimètres avec appui, ou en descendre une sans appui.",
+          "Ne pas pouvoir faire tout un déplacement en transport en commun régulier.",
+          "Ne pas pouvoir s'orienter ni maîtriser des situations dangereuses."
+        ]
+      },
+      "steps": [
+        "Obtenez le formulaire de demande d'admission auprès de la STTR et remplissez-le.",
+        "Faites remplir la deuxième partie par un médecin ou un professionnel de la santé.",
+        "Envoyez le formulaire au comité d'admission de la STTR.",
+        "Lisez la trousse d'admission reçue par la poste avant de réserver."
+      ],
+      "documents": [
+        "Formulaire de demande d'admission au transport adapté, deuxième partie remplie par un professionnel de la santé"
+      ],
+      "tips": [
+        "Une demande incomplète ou illisible est retournée, ce qui retarde l'accès au service.",
+        "Le service est offert du lundi au vendredi de 7 h à 23 h, le samedi de 8 h 15 à 23 h et le dimanche de 10 h à 18 h 30.",
+        "Vous pouvez réserver en ligne; les déplacements occasionnels se réservent avant midi du jour ouvrable précédent.",
+        "La confirmation peut être donnée par téléphone, mais les documents arrivent seulement par la poste."
+      ],
+      "time": "Réponse écrite dans les 45 jours",
+      "phone": "819 373-1778"
+    }
+  },
+  {
+    "id": "qc-carte-accompagnement-autocar",
+    "name": "Carte québécoise à l'accompagnement au transport interurbain en autocar",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Daily living supports",
+    "amount": "Billet gratuit pour votre accompagnateur; carte gratuite, valide 5 ans",
+    "summary": "Une carte gratuite qui permet à votre accompagnateur de voyager sans frais avec vous sur le réseau interurbain par autocar du Québec. Elle est valide 5 ans.",
+    "note": "Chaque transporteur applique sa propre procédure pour émettre le billet gratuit : vérifiez-la avant le départ.",
+    "requires": [
+      "qc",
+      "qcCarteAccompagnementAutocarRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous avez 8 ans ou plus et vous résidez au Québec.",
+        "Vous avez un handicap permanent et avez besoin d'un accompagnateur pour vos trajets interurbains.",
+        "Votre handicap correspond à au moins un des critères de la FTA (voir les conseils)."
+      ],
+      "note": "Dans certains cas, un professionnel de la santé doit attester votre besoin d'accompagnement."
+    },
+    "applyText": "Remplissez le formulaire de demande, joignez une photo récente et envoyez le tout à la Fédération des transporteurs par autobus.",
+    "applyUrl": "https://www.federationautobus.com/carte-a-laccompagnement",
+    "source": "https://www.federationautobus.com/carte-a-laccompagnement",
+    "detail": {
+      "aboutList": {
+        "lead": "La carte est émise par la Fédération des transporteurs par autobus (FTA), avec l'OPHQ et le ministère des Transports :",
+        "items": [
+          "Elle est la seule carte reconnue par les transporteurs interurbains par autocar du Québec.",
+          "Vous la présentez à l'achat de votre billet, et un billet gratuit est émis pour votre accompagnateur.",
+          "Votre accompagnateur doit avoir au moins 14 ans et savoir offrir un soutien adapté."
+        ]
+      },
+      "steps": [
+        "Téléchargez le formulaire de demande sur le site de la FTA.",
+        "Remplissez-le et joignez une photographie récente de vous.",
+        "Si c'est nécessaire, faites remplir la section prévue par un professionnel de la santé.",
+        "Envoyez le tout par courriel à vbeaulieu@federationautobus.com.",
+        "La FTA évalue votre admissibilité et émet la carte en 4 à 6 semaines."
+      ],
+      "documents": [
+        "Formulaire de demande de la carte.",
+        "Photographie récente.",
+        "Attestation d'un professionnel de la santé, si elle est requise."
+      ],
+      "tips": [
+        "Les critères : incapacité à vous déplacer seul, à vous orienter, à communiquer ou à assurer votre sécurité.",
+        "Un autre critère est l'incapacité à maîtriser des comportements qui pourraient nuire à la sécurité des voyageurs.",
+        "L'attestation n'est pas nécessaire si vous avez déjà une attestation de moins de trois ans, une carte de l'INCA ou une carte de transport adapté.",
+        "En cas de refus, vous recevez une lettre et pouvez demander une révision dans les 30 jours.",
+        "Avant l'échéance, une proposition de renouvellement est postée à votre adresse : avisez la FTA si vous déménagez.",
+        "Sans réponse écrite au renouvellement, vous devrez refaire une demande complète.",
+        "La carte ne peut pas être prêtée et doit servir selon vos besoins réels d'accompagnement."
+      ],
+      "time": "4 à 6 semaines pour l'émission de la carte"
+    }
+  },
+  {
+    "id": "qc-agir-tot",
+    "name": "Programme Agir tôt",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Health (for children)",
+    "amount": "Services gratuits",
+    "summary": "Des services gratuits pour repérer tôt les signes de difficultés de développement de votre enfant et l'orienter vers les bons services, avec du soutien pour vous comme parent.",
+    "note": "Les services sont volontaires et offerts dans tous les établissements territoriaux du Québec.",
+    "requires": [
+      "qc",
+      "qcAgirTotRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Votre enfant a moins de 7 ans.",
+        "Vous avez des inquiétudes sur son développement, ou un intervenant en a relevé des indices."
+      ],
+      "note": "Un médecin ou un intervenant peut aussi demander votre autorisation pour orienter votre enfant."
+    },
+    "applyText": "Communiquez avec votre CLSC, où un intervenant discutera avec vous de vos préoccupations.",
+    "applyUrl": "https://www.quebec.ca/famille-et-soutien-aux-personnes/enfance/developpement-des-enfants/outils-ressources-developpement-enfants/programme-agir-tot-depister-tot-pour-mieux-repondre-aux-besoins-des-enfants",
+    "source": "https://www.quebec.ca/famille-et-soutien-aux-personnes/enfance/developpement-des-enfants/outils-ressources-developpement-enfants/programme-agir-tot-depister-tot-pour-mieux-repondre-aux-besoins-des-enfants",
+    "detail": {
+      "aboutList": {
+        "lead": "Le programme comprend notamment :",
+        "items": [
+          "Un suivi du développement lors du vaccin de 18 mois, avec l'ABCdaire 18 mois si vous êtes d'accord.",
+          "Une évaluation des besoins de votre famille par un intervenant du programme.",
+          "Un dépistage par questionnaires en ligne, s'il est jugé pertinent.",
+          "Des services d'intervention précoce pour votre enfant et du soutien pour vous."
+        ]
+      },
+      "steps": [
+        "Communiquez avec votre CLSC pour parler de vos inquiétudes.",
+        "Un intervenant détermine avec vous le service approprié.",
+        "Une évaluation de vos besoins est réalisée si des indices de difficultés sont soulevés.",
+        "Vous pourriez être dirigé vers le dépistage ou vers des services d'intervention."
+      ],
+      "documents": [
+        "La page officielle ne précise aucun document à fournir."
+      ],
+      "tips": [
+        "Pour préparer le rendez-vous de 18 mois, consultez la capsule d'animation et l'aide-mémoire de la page officielle.",
+        "Le dépistage n'est pas obligatoire et n'est pas réalisé avec tous les enfants.",
+        "Les intervenants du service de garde ou de l'école peuvent participer à l'évaluation.",
+        "Les interventions visent aussi à préparer votre enfant à la maternelle.",
+        "Info-Social 811 offre des conseils psychosociaux jour et nuit."
+      ]
+    }
+  },
+  {
+    "id": "qc-artistes-handicap",
+    "name": "Soutien financier aux artistes et aux écrivains en situation de handicap",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Money",
+    "amount": "Montant supplémentaire ajouté à une bourse du CALQ; le maximum est indiqué dans chaque programme",
+    "summary": "Une aide s'ajoutant à votre bourse du Conseil des arts et des lettres du Québec (CALQ) pour couvrir des dépenses de projet liées à un handicap : accompagnement, interprétation, équipement.",
+    "note": "Le montant maximum figure sous la rubrique « Montant maximum » de chaque programme de bourses du CALQ.",
+    "requires": [
+      "qc",
+      "qcArtistesHandicapRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous êtes artiste ou écrivain, ou une personne du projet l'est.",
+        "Vous ou une personne participant au projet êtes en situation de handicap.",
+        "Vous recevez une bourse du CALQ pour ce projet; cette aide s'y ajoute."
+      ]
+    },
+    "applyText": "Remplissez la section prévue du formulaire de demande de bourse, de préférence par Mon Dossier CALQ.",
+    "applyUrl": "https://www.quebec.ca/culture/aide-financiere/soutien-financier-artistes-ecrivains-situation-handicap",
+    "source": "https://www.quebec.ca/culture/aide-financiere/soutien-financier-artistes-ecrivains-situation-handicap",
+    "detail": {
+      "aboutList": {
+        "lead": "Vous pourriez obtenir un remboursement pour des dépenses liées notamment :",
+        "items": [
+          "À la rémunération du personnel de soutien (accompagnement) et à ses frais de déplacement.",
+          "À l'interprétation en langue des signes.",
+          "À la location d'équipement adapté.",
+          "À des services de transcription."
+        ]
+      },
+      "steps": [
+        "Repérez le programme de bourses du CALQ qui convient à votre projet.",
+        "Remplissez la section sur l'accessibilité du formulaire de demande de bourse.",
+        "Déposez la demande au moins quatre semaines avant le début du projet.",
+        "Le CALQ confirme la réception par courriel."
+      ],
+      "documents": [
+        "Formulaire de demande de bourse, section d'aide supplémentaire remplie.",
+        "Factures justificatives, remises avec le rapport d'utilisation de la bourse."
+      ],
+      "tips": [
+        "Les inscriptions ont lieu en tout temps.",
+        "La date de dépôt en ligne ou le cachet de la poste fait foi.",
+        "Seul l'achat d'équipement spécialisé qui ne peut être loué, ou dont l'achat coûte moins que la location, est admissible.",
+        "Ces demandes sont traitées à l'interne et retirées des dossiers soumis à l'évaluation, pour protéger votre vie privée.",
+        "Les personnes inscrites à Mon Dossier CALQ suivent le traitement de leur demande en ligne."
+      ]
+    }
   }
 
 ];
@@ -21386,26 +24168,33 @@ const BENEFITS = [
    purpose. Guides list the ones that appear on that page. */
 const GLOSSARY = {
   "AAC": "Augmentative and Alternative Communication",
+  "AAD": "Allocation autonomie à domicile",
   "AADL": "Alberta Aids to Daily Living",
   "ABA": "Applied Behaviour Analysis",
   "ACHB": "Alberta Child Health Benefit",
   "ACSD": "Assistance for Children with Severe Disabilities",
   "ADAP": "Alberta Disability Assistance Program",
+  "ADI": "Assistance Dogs International",
   "ADP": "Assistive Devices Program",
   "AHCIP": "Alberta Health Care Insurance Plan",
   "AHP": "At Home Program",
   "AISH": "Assured Income for the Severely Handicapped",
+  "AQLPH": "Association québécoise pour le loisir des personnes handicapées",
   "ARCH": "Affordable Recreation for Community Health",
+  "ARTM": "Autorité régionale de transport métropolitain",
   "ASD": "Autism Spectrum Disorder",
   "ASL": "American Sign Language",
   "ATP": "Affordable Transit Program",
   "BCAAN": "British Columbia Autism Assessment Network",
   "BCANDS": "British Columbia Aboriginal Network on Disability Society",
+  "CAL": "Carte accompagnement loisir",
   "CAPCC": "Community Access for People in Continuing Care",
   "CCB": "Canada Child Benefit",
   "CDB": "Canada Disability Benefit",
   "CDCP": "Canadian Dental Care Plan",
+  "CHSLD": "Centre d’hébergement et de soins de longue durée",
   "CLBC": "Community Living BC",
+  "CLSC": "Centre local de services communautaires",
   "CNLHB": "Canada-Newfoundland and Labrador Housing Benefit",
   "COLT": "Cochrane On Demand Local Transit",
   "CPAP": "Continuous Positive Airway Pressure (a breathing machine)",
@@ -21430,8 +24219,10 @@ const GLOSSARY = {
   "GIS": "Guaranteed Income Supplement",
   "GST": "Goods and Services Tax",
   "HATC": "Home Accessibility Tax Credit",
+  "HLM": "Habitation à loyer modique",
   "HST": "Harmonized Sales Tax",
   "ICBC": "Insurance Corporation of British Columbia",
+  "IGDF": "International Guide Dog Federation",
   "IRCC": "Immigration, Refugees and Citizenship Canada",
   "ISC": "Indigenous Services Canada",
   "LAP": "Leisure Access Program",
@@ -21455,37 +24246,61 @@ const GLOSSARY = {
   "ODSP": "Ontario Disability Support Program",
   "OESP": "Ontario Electricity Support Program",
   "OHIP": "Ontario Health Insurance Plan",
+  "OSBL": "Organisme sans but lucratif",
   "OT": "Occupational Therapist",
+  "PAD": "Programme d’adaptation de domicile",
   "PAIRS": "Provincial Access, Information and Resource Services",
   "PAL": "Personal Assistant for Leisure Activities",
+  "PAV": "Programme d’adaptation de véhicule pour les personnes handicapées",
   "PDD": "Persons with Developmental Disabilities",
   "PLAY": "Positive Leisure Activities for Youth",
+  "PMATCOM": "Programme ministériel des aides techniques à la communication",
   "PPMB": "Persons with Persistent Multiple Barriers",
   "PSI": "Personalized Supports Initiative",
+  "PSLQ": "Programme de supplément au loyer Québec",
   "PT": "Physical Therapist",
   "PWD": "Persons with Disabilities designation",
   "RAHA": "Rebate for Accessible Home Adaptations",
   "RAMP": "Residential Access Modification Program",
+  "RAMQ": "Régie de l’assurance maladie du Québec",
   "RASP": "Registry of Autism Service Providers",
   "RDSP": "Registered Disability Savings Plan",
   "RFSP": "Recreation Fee Subsidy Program",
+  "RPA": "Résidence privée pour aînés",
   "RRAP": "Residential Rehabilitation Assistance Program",
+  "RRQ": "Régime de rentes du Québec",
+  "RTC": "Réseau de transport de la Capitale",
+  "RTF": "Ressource de type familial",
+  "RTL": "Réseau de transport de Longueuil",
+  "SAAQ": "Société de l’assurance automobile du Québec",
   "SAET": "School-Aged Extended Therapies",
   "SAFER": "Shelter Aid for Elderly Renters",
   "SAID": "Saskatchewan Assured Income for Disability",
   "SAIL": "Saskatchewan Aids to Independent Living",
+  "SCHL": "Société canadienne d’hypothèques et de logement",
+  "SEH": "Supplément pour enfant handicapé",
+  "SEHNSE": "Supplément pour enfant handicapé nécessitant des soins exceptionnels",
   "SEI": "Saskatchewan Employment Incentive",
   "SES": "Saskatchewan Employment Supplement",
   "SGI": "Saskatchewan Government Insurance",
   "SHARP": "Seniors Home Adaptation and Repair Program",
+  "SHQ": "Société d’habitation du Québec",
   "SIN": "Social Insurance Number",
   "SIP": "Seniors Income Plan (Saskatchewan)",
   "SLP": "Speech-Language Pathologist",
+  "SRG": "Supplément de revenu garanti",
   "SSAH": "Special Services at Home",
+  "STL": "Société de transport de Laval",
+  "STM": "Société de transport de Montréal",
+  "STO": "Société de transport de l’Outaouais",
+  "STS": "Société de transport de Sherbrooke",
+  "STTR": "Société de transport de Trois-Rivières",
   "TESS": "Training and Employment Support Services",
+  "TSA": "Trouble du spectre de l’autisme",
   "TTC": "Toronto Transit Commission",
   "TTE": "Training, Travel and Equipment",
   "TTY": "Text telephone for people who are Deaf or hard of hearing",
+  "VATL": "Vignette d’accompagnement touristique et de loisir",
   "WCB": "Workers' Compensation Board",
   "WSIB": "Workplace Safety and Insurance Board",
 };
@@ -21507,6 +24322,55 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "qc-artistes-handicap": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-agir-tot": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-carte-accompagnement-autocar": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "trois-rivieres-transport-adapte": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "trois-rivieres-tarification-sociale": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "sherbrooke-transport-adapte": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "gatineau-transport-adapte": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "gatineau-echo": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "quebec-equimobilite": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "exo-transport-adapte": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "rtl-transport-adapte": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "laval-transport-adapte": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "montreal-transport-adapte": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "qc-prets-bourses-dfm": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-besoins-particuliers-jeunes": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-besoins-particuliers-adultes": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-prestations-speciales": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-assurance-medicaments": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-hlm": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-allocation-logement": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-carte-accompagnement-loisir": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-adaptation-vehicule": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-vignette-stationnement": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-supplement-loyer": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-adaptation-domicile": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-soutien-domicile": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-services-deficience": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-transport-hebergement": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-aides-communication": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-chaussures-orthetiques": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-tricycles": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-ambulateurs": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-triporteurs": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-aides-vie-quotidienne": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-chien-assistance": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-aides-elimination": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-appareils-deficience-physique": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-aides-visuelles": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-aides-auditives": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-soutien-familles": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-rente-invalidite": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-sehnse": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-supplement-enfant-handicape": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-allocation-famille": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-reussir": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-objectif-emploi": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-revenu-base": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-aide-sociale": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-solidarite-sociale": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "nl-caregiver-benefit": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "nl-dental-programs": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "nl-moving-into-workforce": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)

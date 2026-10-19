@@ -1,0 +1,31 @@
+URL: https://www.quebec.ca/habitation-territoire/location/aides-financieres-au-logement/programme-logement-sans-but-lucratif | province: QC | program: Programme HLM | fetched: 2026-10-18
+=== PAGE: https://www.quebec.ca/habitation-territoire/location/aides-financieres-au-logement/programme-logement-sans-but-lucratif (HTTP 200, 2891 chars)
+
+ - Accueil  
+- Habitation et territoire  
+- Location  
+- Aides financières au logement  
+- Programme de logement sans but lucratif (Programme HLM)
+ Programme de logement sans but lucratif (Programme HLM)
+Le Programme de logement sans but lucratif, communément appelé « programme HLM », s’adresse à des ménages à faible revenu qui sont sélectionnés en fonction de leur condition socio-économique. Il permet aux locataires de payer un loyer correspondant à 25 % de leur revenu.
+La Société d’habitation du Québec finance en partie le programme en collaboration avec ses partenaires.
+Vous souhaitez bénéficier de ce programme? Consultez la page Faire une demande de logement subventionné.
+Admissibilité
+Vous êtes admissible au programme si vous avez un faible revenu et que vous répondez aux critères d’admissibilité du locateur suivants :
+- Vous pouvez, de façon autonome ou avec l'aide d'un soutien extérieur ou d'un proche aidant, assurer la satisfaction de vos besoins essentiels : soins personnels et tâches ménagères usuelles.
+- Vous êtes citoyen canadien ou résident permanent au sens de la Loi sur l'immigration et la protection des réfugiés, et vous résidez au Québec.
+- Vous avez habité pendant au moins 12 mois au cours des 24 mois précédant votre demande au Québec ou sur le territoire de sélection du locateur si ce dernier l'a prévu par règlement.  D'autres critères peuvent s'appliquer.
+Certaines personnes vivant des situations exceptionnelles peuvent être placées en priorité sur les listes d’attente comme les personnes victimes de violence conjugale ou celles dont le logement a été détruit par un sinistre.
+Pour connaître les seuils de revenu maximal permettant à un locataire d’être admissible à un logement en vertu du présent programme, consultez la page Plafonds de revenus, loyers médians et grilles de pondération.
+Aide offerte
+L'aide offerte prend la forme de subventions accordées à l’office d'habitation de votre région pour que vous ayez un plus petit montant à payer pour votre logement. Le loyer demandé pour la location sera basé sur le revenu total de votre ménage pour l'année précédant le nouveau bail. Il correspondra à 25 % de vos revenus, incluant les frais de chauffage.
+Toutefois, selon les services compris dans le bail, des frais peuvent s’ajouter pour payer les coûts d'électricité, de stationnement ou d'utilisation d'un climatiseur.
+Selon le type de HLM concerné, des sommes supplémentaires peuvent aussi être demandées pour des services spéciaux, comme des services infirmiers ou une cafétéria.
+ Référence
+ Consultez le cadre normatif du programme (PDF 479 Ko).
+ Partenaires
+ Pour toutes les consignes de gestion liées à ce programme, les partenaires de la SHQ sont invités à consulter la page qui lui est consacrée dans la section Informations pour les partenaires en habitation (Espace partenaires).
+ Dernière mise à jour : 
+ 1er
+ octobre 2026
+ 

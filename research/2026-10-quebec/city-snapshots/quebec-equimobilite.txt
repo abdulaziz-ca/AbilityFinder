@@ -1,0 +1,106 @@
+URL: https://www.ville.quebec.qc.ca/citoyens/mobilite/transport-collectif/equimobilite.aspx | province: QC | program: RTC Québec — ÉquiMobilité (tarif faible revenu) + STAC | fetched: 2026-10-18
+=== PAGE: https://www.ville.quebec.qc.ca/citoyens/mobilite/transport-collectif/equimobilite.aspx (HTTP 200, 8147 chars)
+
+ Mobilité
+ ÉquiMobilité
+ Le programme ÉquiMobilité vise à faciliter l’accès au transport en commun pour les personnes à faible revenu. Il est en vigueur depuis le 1er mai 2023.
+ Le programme offre des tarifs réduit à 51 $ pour le laissez-passer mensuel et à 2,05 $ pour les billets un passage, proposés par le Réseau de transport de la capitale (RTC).
+ Pour bénéficier des tarifs ÉquiMobilité, vous devez d’abord vérifier votre admissibilité et transmettre votre demande à la Ville, qui vous remettra alors votre preuve d’admissibilité. Celle-ci vous permettra d’obtenir votre carte OPUS ÉquiMobilité auprès du RTC.
+ L’ensemble de la démarche peut se faire en personne ou par voie postale.
+ Vidéo "Fonctionnement du programme Équimobilité."
+ Vidéo "Témoignages de Monique et d’Alexandre."
+ Demande de carte OPUS Équimobilité
+ Vérifiez votre admissibilité
+ Vous êtes admissible si vous appartenez à une des catégories suivantes :
+ - Vous êtes un usager du Service de transport adapté de la Capitale (STAC) : vous êtes automatiquement admissible. Communiquez directement avec le RTC.
+ - Votre revenu annuel personnel (si vous êtes une personne seule) ou familial (ligne 275 de l’avis de cotisation provincial et ligne 23600 de l’avis de cotisation fédéral) se situe sous le seuil de faible revenu en fonction des barèmes suivants :
+ Taille de la famille
+ Revenu annuel net avant impôt
+(Seuil de faible revenu avant impôts, 2025)
+ 1 personne
+ 31 906 $
+ 2 personnes
+ 39 721 $
+ 3 personnes
+ 48 832 $
+ 4 personnes
+ 59 288 $
+ 5 personnes
+ 67 244 $
+ 6 personnes
+ 75 839 $
+ 7 personnes ou plus
+ 84 436 $
+ À noter : si vous êtes détenteur de la carte OPUS Ainé, 18 ans et moins ou Étudiant+ et que votre revenu se situe sous le seuil de faible revenu, vous devrez vous procurer la carte OPUS ÉquiMobilité pour vous procurer des titres de transport au tarif ÉquiMobilité.
+ Présentez votre demande en personne
+ Pour obtenir votre preuve d'admissibilité auprès de la Ville :
+ 1. Remplissez le formulaire
+ - Formulaire de demande d’admissibilité (PDF : 120 Ko)
+ 2. Joignez les pièces justificatives
+ - Une pièce d’identité avec photo ou, lorsqu'il est impossible pour le requérant de fournir cette pièce, une copie du formulaire de déclaration du répondant , dûment signée par le répondant .
+ - Une copie de l’un des documents suivants : 
+ - L’avis de cotisation 2024 ou 2025 de Revenu Québec ou de l’Agence du revenu du Canada (avec celui du conjoint, le cas échéant)
+ - Une preuve de revenu officielle émise par le gouvernement du Québec ou le gouvernement du Canada
+ - Un carnet de réclamation des prestataires de l’aide sociale, de la solidarité sociale ou du revenu de base, du mois courant, fourni par le Ministère du travail, de l'emploi et de la solidarité sociale du Québec (MTESS)
+ - Un document du demandeur d'asile émis par le ministère Immigration, Réfugiés et Citoyenneté Canada
+ - Un document confirmant le statut de réfugié
+ - Une attestation, dûment signée par le répondant , qui confirme que le requérant est à faible revenu.
+ - Liste des pièces justificatives (PDF : 170 Ko)
+ - Un relevé d’allocation canadienne pour enfants, une preuve de crédit d’impôt pour frais de garde d’enfants ou un document officiel produit par une institution scolaire identifiant le nom des enfants et des parents (seulement si vous avez des enfants à charge)
+ 3. Présentez-vous dans l’un des centres de services
+ Consultez les coordonnées et les heures d'ouverture des centres de services de la Ville.
+ Une fois votre admissibilité vérifiée, nous signerons votre formulaire et nous vous le remettrons immédiatement. Ce formulaire signé est votre preuve d’admissibilité. Elle est valide pour deux ans.
+ Par la poste
+ Vous pouvez aussi transmettre votre demande par la poste.
+ Faites produire votre carte OPUS ÉquiMobilité
+ Avec votre preuve d’admissibilité, présentez-vous dans un centre d’information et de services du RTC. Votre carte sera produite sur place, sans frais.
+ Plusieurs centres se trouvent à proximité des deux bureaux d’arrondissement.
+ - Centre d’information et service d’accompagnement en mobilité intégrée (SAMI) : 820, avenue Ernest-Gagnon
+ - Librairie Charbourg : 8500, boul. Henri-Bourassa
+ - Pharmacie Jean Coutu – Laurier Québec : 2700, boul. Laurier
+ - Pharmacie Brunet, Luc Fortier : 2810, boul. Père-Lelièvre
+ - Pharmacie Horizon Santé – Les Galeries de la Canardière : 2485, boul. Sainte-Anne
+ - Pharmacie Uniprix : 369, rue de la Couronne
+ Vous disposez d’un délai de 30 jours suivant l’obtention de votre preuve d’admissibilité pour effectuer cette démarche.
+ Une fois que vous avez votre carte, vous pouvez acheter votre laissez-passer mensuel ou 1 billet dans n’importe quel point de vente du RTC ou sur l’application RTC Nomade paiement. Pour connaitre leur localisation, consultez la liste des points de vente et des centres de services.
+ Transmettez votre demande et recevez votre carte par la poste
+ Si vous choisissez de procéder par voie postale, vous n’avez pas à vous déplacer ni pour transmettre votre demande ni pour faire produire votre carte.
+ Cependant, en plus du formulaire et des pièces justificatives (PDF : 170 Ko), vous devez transmettre une photo répondant à certaines spécifications.
+ Prendre votre photo
+ Vous devez fournir une photo récente (moins d’un an). Vous n’êtes pas obligé de fournir une photo prise en pharmacie. Vous pouvez prendre votre photo avec un téléphone cellulaire. Vous pouvez la prendre vous-même ou demander l’aide d’un proche.
+ Si vous avez déjà en main une photo passeport ou d’assurance maladie (RAMQ), transmettez celle-là.
+ Votre photo doit :
+ - Vous montrer nu-tête (sans chapeau, casquette ou autre) et sans accessoire dans le visage (lunettes solaires, masque ou autre accessoire).
+ - Encadrer votre visage à partir des épaules.
+ - Être prise sur un fond pâle. Elle peut être en noir et blanc ou en couleur.
+ - Avoir à peu près 7 cm de haut par 5 cm de large.
+ Et vous pouvez sourire!
+ Adresse
+ Ville de Québec
+ Comptoir de services aux citoyens
+ 1130 route de l’Église, 2e étage
+ Québec (Québec) G1V 4X6
+ Réception de votre carte OPUS ÉquiMobilité
+ Si votre admissibilité est confirmée, la Ville se chargera de transmettre votre preuve d’admissibilité et votre photo au RTC qui vous enverra votre carte OPUS ÉquiMobilité par la poste, à l’adresse de votre choix. Veuillez compter un délai pouvant aller jusqu’à 3 semaines à partir de la transmission de votre demande.
+ Renouvellement de carte OPUS Équimobilité
+ Après deux ans, renouvelez votre carte OPUS ÉquiMobilité
+ Après deux ans, votre carte OPUS ÉquiMobilité expirera. Si vous êtes toujours admissible au programme, vous devrez vous en procurer une nouvelle (et jeter l’ancienne).
+ Pour éviter d’être pris au dépourvu, vérifiez la date d’expiration indiquée dans le coin supérieur droit de votre carte.
+ Votre carte OPUS ÉquiMobilité est échue ou vient à échéance bientôt?
+ Vous devez demander et obtenir une nouvelle preuve d'admissibilité auprès de la Ville de Québec en personne ou par la poste et suivre la procédure pour obtenir une nouvelle carte OPUS ÉquiMobilité.
+ Si vous n’êtes plus admissible au programme ÉquiMobilité, vous devrez vous procurer des titres de transport au tarif Général pour utiliser les services du RTC. S'il vous reste des billets sur votre carte échue, présentez-vous au centre d’information du RTC, situé au 820, avenue Ernest-Gagnon. Un agent sur place transférera vos billets sur une carte Occasionnelle.
+ Validité de votre nouvelle carte OPUS ÉquiMobilité
+ Votre nouvelle carte sera valide pendant deux ans.
+ Acheter des titres ÉquiMobilité sur RTC Nomade paiement
+ Le laissez-passer mensuel et le billet un passage au tarif ÉquiMobilité sont disponibles sur l’application RTC Nomade paiement.
+ Pour connaître les étapes à franchir afin de se procurer les titres à tarifs réduits ÉquiMobilité, consultez RTC Nomade paiement.
+ Renseignements supplémentaires
+ Communiquez avec le personnel du 311.
+ Composez le 418 627‑2511, option 1 pour joindre le Réseau de transport de la Capitale.
+ Partagez cette page :
+ Facebook
+ Twitter
+ LinkedIn
+ Ajouter aux favoris
+ Imprimer
+ Envoyer Ã  un ami

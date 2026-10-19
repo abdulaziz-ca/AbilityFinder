@@ -1,0 +1,45 @@
+URL: https://www.quebec.ca/habitation-territoire/location/aides-financieres-au-logement/programme-supplement-loyer-quebec/a-propos-du-programme | province: QC | program: Programme de supplément au loyer Québec (PSLQ) | fetched: 2026-10-18
+=== PAGE: https://www.quebec.ca/habitation-territoire/location/aides-financieres-au-logement/programme-supplement-loyer-quebec/a-propos-du-programme (HTTP 200, 4566 chars)
+
+ - Accueil  
+- Habitation et territoire  
+- 
+- Location  
+- Aides financières au logement  
+- Programme de supplément au loyer Québec  
+- À propos du Programme de supplément au loyer Québec
+ À propos du Programme de supplément au loyer Québec
+ À noter
+ Depuis le 1er avril 2023, l’octroi de suppléments au loyer se fait par l’entremise du Programme de supplément au loyer Québec (PSLQ). Seul le PSL Régulier découlant d’ententes ou d’accords Canada-Québec sur l’habitation sociale ne fait pas partie de cette intégration.
+Vous êtes propriétaire de logements sur le marché privé? Découvrez les avantages d’adhérer au Programme de supplément au loyer Québec.
+Les suppléments au loyer permettent à des ménages à faible revenu d’habiter dans des logements qui font partie du marché locatif privé ou qui appartiennent à des coopératives ou des organismes sans but lucratif (OSBL) d’habitation tout en payant un loyer similaire à celui qu’ils paieraient dans une habitation à loyer modique. Les locataires qui bénéficient d’un supplément au loyer paient un loyer correspondant à 25 % de leur revenu.
+Cette page présente un résumé des principales modalités du PSLQ. Pour tous les détails, consulter le cadre normatif du programme (PDF 376 Ko).
+Volet 1 – Régulier
+Admissibilité
+Le volet 1 s’adresse aux ménages à faible revenu en mesure de répondre à l’ensemble des exigences du Règlement sur l’attribution des logements à loyer modique.
+Volet 2 – Besoins exceptionnels en matière de logement
+Admissibilité
+Le volet 2 s’adresse aux ménages à faible revenu qui se trouvent dans l’une des cinq situations critiques suivantes et qui ne peuvent répondre, à brève échéance, aux exigences du Règlement sur l’attribution des logements à loyer modique :
+- être sans logement ou l’être incessamment;
+- Note : Un ménage à faible revenu qui est sans logis ou qui le sera incessamment peut être admissible à ce volet à certaines conditions, dont celles-ci : être victime d’une reprise de logement ou d’une éviction liée à une dégradation de sa situation financière, avoir subi un sinistre mineur ou n’avoir pas trouvé de logis malgré des recherches actives.
+- être victimes de violence familiale, y compris conjugale;
+- être en situation d’itinérance ou à risque de le devenir et être recommandés et accompagnés dans leur démarche par un organisme offrant des services d’intervention ou d’accompagnement;
+- être à la sortie imminente d’un service d’hébergement en protection de la jeunesse et être recommandés et accompagnés dans leur démarche d’intégration en logement;
+- être locataires d’un logement destiné à des ménages ayant des besoins particuliers en habitation et être inscrits à temps plein dans un établissement d’enseignement.
+L’office d’habitation vérifie l’admissibilité des ménages conformément aux normes du programme.
+Des modalités administratives spécifiques s’appliquent à chaque situation. Pour les connaître, communiquez avec l’office d’habitation de votre région.
+Pour bénéficier du PSLQ
+Il faut en faire la demande à un office d’habitation, une coopérative ou un OSBL de sa région ou à des propriétaires privés qui gèrent un immeuble dont la construction ou la rénovation a été subventionnée, entre autres, par le Programme d’habitation abordable Québec ou AccèsLogis Québec.
+Aide offerte
+Le PSLQ couvre la différence entre la part payable par le ménage et le loyer convenu avec le ou la propriétaire.
+Le loyer du ménage pour un logement couvert par le PSLQ, quel que soit le volet, équivaut à 25 % de ses revenus totaux (calculé selon le Règlement sur les conditions de location des logements à loyer modique (RLRQ, chapitre S-8, r. 3)) pour l’année civile précédant le début du bail.
+Toutefois, selon les services inclus dans le bail (électricité, stationnement, chauffage, eau chaude…), des frais peuvent être ajoutés.
+Pour offrir des logements subventionnés par le PSLQ
+Les municipalités qui désirent offrir des unités de supplément au loyer (peu importe le volet) sur leur territoire doivent, en collaboration avec l’office d’habitation de leur secteur, signer une entente avec la SHQ. À cette fin, elles sont invitées à communiquer avec l’office d’habitation de leur secteur afin d’amorcer les démarches.
+ Référence
+ Consultez le cadre normatif du programme (PDF 376 Ko).
+ Partenaires
+ Pour toutes les consignes de gestion liées à ce programme, les partenaires de la SHQ sont invités à consulter la page qui lui est consacrée dans la section Informations pour les partenaires en habitation (Espace partenaires).
+ Dernière mise à jour : 
+ 31 juillet 2026
+ 

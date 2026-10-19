@@ -94,7 +94,7 @@ function buildLinkCatalogue({ benefits, helpOrgs, grants, orgs, studentAid, twoE
 }
 
 /** Benefits filtered exactly as the generator filters them when BC is disabled. */
-function benefitsInScope(benefits, bcCities, bcEnabled, onCities = [], onEnabled = true, skEnabled = true, mbEnabled = true, mbCities = [], nbEnabled = true, nbCities = [], nsEnabled = true, nsCities = [], peEnabled = true, peCities = [], nlEnabled = true, nlCities = []) {
+function benefitsInScope(benefits, bcCities, bcEnabled, onCities = [], onEnabled = true, skEnabled = true, mbEnabled = true, mbCities = [], nbEnabled = true, nbCities = [], nsEnabled = true, nsCities = [], peEnabled = true, peCities = [], nlEnabled = true, nlCities = [], qcEnabled = true, qcCities = []) {
   let list = benefits || [];
   if (!bcEnabled) {
     list = list.filter(
@@ -116,6 +116,7 @@ function benefitsInScope(benefits, bcCities, bcEnabled, onCities = [], onEnabled
   if (!nsEnabled) list = list.filter((benefit) => benefit.level !== "Nova Scotia" && !(nsCities || []).includes(benefit.level));
   if (!peEnabled) list = list.filter((benefit) => benefit.level !== "Prince Edward Island" && !(peCities || []).includes(benefit.level));
   if (!nlEnabled) list = list.filter((benefit) => benefit.level !== "Newfoundland and Labrador" && !(nlCities || []).includes(benefit.level));
+  if (!qcEnabled) list = list.filter((benefit) => benefit.level !== "Quebec" && !(qcCities || []).includes(benefit.level));
   return list;
 }
 

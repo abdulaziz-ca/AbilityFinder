@@ -1,0 +1,1229 @@
+{
+ "guide_editions": [
+  {
+   "title": "Quebec.ca > Personnes handicapées (successor to OPHQ program guide)",
+   "url": "https://www.quebec.ca/personnes-handicapees",
+   "edition": "Hub last updated 13 septembre 2023; sub-pages 2023-10-04 to 2026-10-07",
+   "status": "fetched"
+  },
+  {
+   "title": "Guide des mesures fiscales provinciales et fédérales à l’intention des personnes handicapées, de leur famille et de leurs proches",
+   "url": "https://www.ophq.gouv.qc.ca/fileadmin/documents/Guides/Guide_mesures_fiscales_2016.pdf",
+   "edition": "Année d'imposition 2015, janvier 2016 (ISBN 978-2-550-74771-0). Newest PDF found: année 2017, janvier 2018 (BAnQ only, not fetched). No 2024/2025 PDF found; OPHQ says tax info moved to Quebec.ca",
+   "status": "fetched (2016); newer not located",
+   "provincial_fiches_2015_edition": [
+    "Montant pour déficience grave et prolongée des fonctions mentales ou physiques",
+    "Montant pour autres personnes à charge",
+    "Frais médicaux (non remboursable)",
+    "Frais pour soins médicaux non dispensés dans votre région",
+    "Crédit d’impôt pour aidant naturel",
+    "Crédit d’impôt pour relève bénévole",
+    "Crédit d’impôt pour répit à un aidant naturel",
+    "Crédit d’impôt pour maintien à domicile des aînés",
+    "Crédit d’impôt pour frais engagés par un aîné pour maintenir son autonomie",
+    "Crédit d’impôt pour frais médicaux",
+    "Crédit d’impôt pour activités des enfants",
+    "Crédit d’impôt pour frais de garde d’enfants",
+    "Prime au travail adaptée",
+    "Déduction pour produits et services de soutien à une personne handicapée",
+    "Exemption sur les services de santé, les appareils médicaux et les médicaments",
+    "Remboursement de taxes : véhicule adapté au transport d’une personne handicapée",
+    "Retrait d’un REER au bénéfice d’une personne atteinte d’une déficience fonctionnelle"
+   ]
+  },
+  {
+   "title": "Guide des programmes d'aide pour les personnes handicapées et leur famille",
+   "url": null,
+   "edition": "Not located as a current PDF; OPHQ brochure ophq.gouv.qc.ca/.../OPHQ_depliant_guides.pdf returned 404",
+   "status": "not found"
+  }
+ ],
+ "programs": [
+  {
+   "name_fr": "Montant pour déficience grave et prolongée des fonctions mentales ou physiques",
+   "body": "Revenu Québec",
+   "body_inferred": true,
+   "url": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/montant-pour-deficience-grave-et-prolongee-des-fonctions-mentales-ou-physiques/",
+   "desc_fr": "Réduit l'impôt des personnes ayant une déficience grave et prolongée (description paraphrasée)",
+   "category": "Mesures fiscales",
+   "source": "https://www.quebec.ca/personnes-handicapees/mesures-fiscales-rentes/credits-dimpots-et-deduction",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Crédit d'impôt pour achat d'une habitation",
+   "body": "Revenu Québec",
+   "body_inferred": true,
+   "url": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-achat-dune-habitation/",
+   "desc_fr": "Pour l'acheteur d'une habitation admissible devenant la résidence principale d'un proche handicapé",
+   "category": "Mesures fiscales",
+   "source": "https://www.quebec.ca/personnes-handicapees/mesures-fiscales-rentes/credits-dimpots-et-deduction",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Crédit d'impôt pour frais de garde d'enfants",
+   "body": "Revenu Québec",
+   "body_inferred": true,
+   "url": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-frais-de-garde-denfants/",
+   "desc_fr": "Mesure familiale pour frais de garde",
+   "category": "Mesures fiscales",
+   "source": "https://www.quebec.ca/personnes-handicapees/mesures-fiscales-rentes/credits-dimpots-et-deduction",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Crédit d'impôt pour frais médicaux",
+   "body": "Revenu Québec",
+   "body_inferred": true,
+   "url": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-frais-medicaux/",
+   "desc_fr": "Crédit remboursable pour frais médicaux",
+   "category": "Mesures fiscales",
+   "source": "https://www.quebec.ca/personnes-handicapees/mesures-fiscales-rentes/credits-dimpots-et-deduction",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Crédit d'impôt pour personne aidante",
+   "body": "Revenu Québec",
+   "body_inferred": true,
+   "url": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-personne-aidante/",
+   "desc_fr": "Soutient les proches aidants",
+   "category": "Mesures fiscales",
+   "source": "https://www.quebec.ca/personnes-handicapees/mesures-fiscales-rentes/credits-dimpots-et-deduction",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Crédits d'impôt relatifs à la prime au travail (Prime au travail adaptée)",
+   "body": "Revenu Québec",
+   "body_inferred": true,
+   "url": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credits-dimpot-relatifs-a-la-prime-au-travail/",
+   "desc_fr": "Encourage le maintien ou l'entrée sur le marché du travail",
+   "category": "Mesures fiscales",
+   "source": "https://www.quebec.ca/personnes-handicapees/mesures-fiscales-rentes/credits-dimpots-et-deduction",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Déduction pour produits et services de soutien à une personne handicapée",
+   "body": "Revenu Québec",
+   "body_inferred": true,
+   "url": "https://www.revenuquebec.ca/fr/citoyens/declaration-de-revenus/produire-votre-declaration-de-revenus/comment-remplir-votre-declaration-de-revenus/aide-par-ligne/201-a-260-revenu-net/ligne-250/point-7/",
+   "desc_fr": "Déduit les coûts de produits et services de soutien permettant de travailler, exploiter une entreprise ou suivre un cours",
+   "category": "Mesures fiscales",
+   "source": "https://www.quebec.ca/personnes-handicapees/mesures-fiscales-rentes/credits-dimpots-et-deduction",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Produits et services détaxés ou exonérés – Appareils médicaux et appareils fonctionnels",
+   "body": "Revenu Québec",
+   "body_inferred": true,
+   "url": "https://www.revenuquebec.ca/fr/citoyens/votre-situation/personne-handicapee/produits-et-services-detaxes-ou-exoneres/",
+   "desc_fr": "Certains appareils médicaux et fonctionnels sont généralement exonérés de taxes",
+   "category": "Mesures fiscales",
+   "source": "https://www.quebec.ca/personnes-handicapees/mesures-fiscales-rentes/remboursements-taxes",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Remboursement de la TVQ pour l'achat et l'installation d'un ouvre-porte automatique",
+   "body": "Revenu Québec",
+   "body_inferred": true,
+   "url": "https://www.revenuquebec.ca/fr/citoyens/votre-situation/personne-handicapee/remboursement-des-taxes/",
+   "desc_fr": "Remboursement de la taxe payée à l'achat et à l'installation d'un ouvre-porte automatique",
+   "category": "Mesures fiscales",
+   "source": "https://www.quebec.ca/personnes-handicapees/mesures-fiscales-rentes/remboursements-taxes",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Remboursement partiel de la taxe payée sur un véhicule adapté au transport d'une personne handicapée",
+   "body": "Revenu Québec",
+   "body_inferred": true,
+   "url": "https://www.revenuquebec.ca/fr/citoyens/votre-situation/personne-handicapee/remboursement-des-taxes/",
+   "desc_fr": "Remboursement partiel de la TPS/TVH et de la TVQ pour un véhicule admissible",
+   "category": "Mesures fiscales",
+   "source": "https://www.quebec.ca/personnes-handicapees/mesures-fiscales-rentes/remboursements-taxes",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Retrait d’un REER au bénéfice d’une personne atteinte d’une déficience fonctionnelle",
+   "body": "Revenu Québec",
+   "body_inferred": true,
+   "url": "https://www.revenuquebec.ca/fr/citoyens/votre-situation/personne-handicapee/retraits-dun-reer-au-benefice-dune-personne-atteinte-dune-deficience-fonctionnelle/",
+   "desc_fr": "Règles assouplies pour retirer des sommes d'un REER au profit d'une personne handicapée",
+   "category": "Mesures fiscales",
+   "source": "https://www.quebec.ca/personnes-handicapees/mesures-fiscales-rentes/rentes-invalidite-et-autres-mesures",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Cotisation au régime d’assurance médicaments du Québec (exemption)",
+   "body": "Revenu Québec / RAMQ",
+   "body_inferred": false,
+   "url": "https://www.revenuquebec.ca/fr/citoyens/declaration-de-revenus/payer-ou-etre-rembourse/paiement-des-cotisations/cotisation-au-regime-dassurance-medicaments-du-quebec/exemption-du-paiement-de-la-cotisation-au-regime-dassurance-medicaments-du-quebec/",
+   "desc_fr": "Exemptions de cotisation pour les personnes ayant une déficience fonctionnelle et les résidents de CHSLD",
+   "category": "Mesures fiscales",
+   "source": "https://www.quebec.ca/personnes-handicapees/mesures-fiscales-rentes/rentes-invalidite-et-autres-mesures",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Prestations d’invalidité (Régime de rentes du Québec)",
+   "body": "Retraite Québec",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/finances-impots-et-taxes/rentes/prestations-invalidite-regime-de-rentes-du-quebec",
+   "desc_fr": "Prestations pour une invalidité grave et permanente",
+   "category": "Rentes",
+   "source": "https://www.quebec.ca/personnes-handicapees/mesures-fiscales-rentes/rentes-invalidite-et-autres-mesures",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Supplément pour enfant handicapé",
+   "body": "Retraite Québec",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/famille-et-soutien-aux-personnes/enfance/supplements-pour-enfant-handicape",
+   "desc_fr": "Supplément versé aux parents qui prennent soin d'un enfant handicapé",
+   "category": "Famille",
+   "source": "https://www.quebec.ca/personnes-handicapees/mesures-fiscales-rentes/rentes-invalidite-et-autres-mesures",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Supplément pour enfant handicapé nécessitant des soins exceptionnels",
+   "body": "Retraite Québec",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/famille-et-soutien-aux-personnes/enfance/supplement-pour-enfant-handicape-necessitant-des-soins-exceptionnels",
+   "desc_fr": "Supplément pour un enfant ayant des incapacités importantes et multiples nécessitant des soins exceptionnels",
+   "category": "Famille",
+   "source": "https://www.quebec.ca/personnes-handicapees/mesures-fiscales-rentes/rentes-invalidite-et-autres-mesures",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Admissibilité au transport adapté",
+   "body": "Organismes de transport adapté (MTQ); non nommé sur la page",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/transports/routier-passagers/transport-adapte/admissibilite-transport-adapte",
+   "desc_fr": "Conditions d'admission au transport adapté et démarche pour soumettre une demande",
+   "category": "Transport",
+   "source": "https://www.quebec.ca/personnes-handicapees/deplacements-transport-adapte",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Adaptation de véhicules",
+   "body": "SAAQ",
+   "body_inferred": true,
+   "url": "https://saaq.gouv.qc.ca/personnes-mobilite-reduite/adaptation-achat-vehicule/",
+   "desc_fr": "Soutien financier pour aménager un véhicule et rembourser certains frais",
+   "category": "Transport",
+   "source": "https://www.quebec.ca/personnes-handicapees/deplacements-transport-adapte",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Vignette de stationnement pour personnes handicapées",
+   "body": "SAAQ",
+   "body_inferred": true,
+   "url": "https://saaq.gouv.qc.ca/personnes-mobilite-reduite/obtenir-vignette-stationnement/",
+   "desc_fr": "Démarches pour obtenir une vignette de stationnement",
+   "category": "Transport",
+   "source": "https://www.quebec.ca/personnes-handicapees/deplacements-transport-adapte",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Carte québécoise à l'accompagnement au transport interurbain en autocar",
+   "body": "Fédération des transporteurs par autobus (domaine)",
+   "body_inferred": true,
+   "url": "https://www.federationautobus.com/carte-a-laccompagnement#CarteQuebecoise",
+   "desc_fr": "Titre de transport gratuit pour l'accompagnateur en autocar interurbain",
+   "category": "Transport",
+   "source": "https://www.quebec.ca/personnes-handicapees/deplacements-transport-adapte",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Contrat d'intégration au travail pour l'embauche d'une personne handicapée",
+   "body": "Emploi-Québec / MTESS",
+   "body_inferred": false,
+   "url": "https://www.quebec.ca/personnes-handicapees/emploi-travail-adapte/contrat-integration-travail",
+   "desc_fr": "Remboursement à l'employeur de certains frais liés à l'intégration ou au maintien en emploi",
+   "category": "Emploi",
+   "source": "https://www.quebec.ca/personnes-handicapees/emploi-travail-adapte",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Services d'aide pour votre recherche d'emploi ou le maintien à l'emploi",
+   "body": "Services Québec",
+   "body_inferred": false,
+   "url": "https://www.quebec.ca/emploi/trouver-emploi-stage/programmes/integrer-emploi/services",
+   "desc_fr": "Activités, stages d'exploration de métiers et conseils pour la recherche d'emploi",
+   "category": "Emploi",
+   "source": "https://www.quebec.ca/personnes-handicapees/emploi-travail-adapte",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Subventions aux entreprises adaptées",
+   "body": "MTESS",
+   "body_inferred": false,
+   "url": "https://www.quebec.ca/personnes-handicapees/emploi-travail-adapte/subventions-entreprises-adaptees",
+   "desc_fr": "Aide financière aux entreprises adaptées pour embaucher des personnes handicapées",
+   "category": "Emploi",
+   "source": "https://www.quebec.ca/personnes-handicapees/emploi-travail-adapte",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Obtenir de l'aide à l'emploi en tant que prestataire de l'aide sociale…",
+   "body": "Services Québec",
+   "body_inferred": false,
+   "url": "https://www.quebec.ca/emploi/planifier-gerer-carriere/action",
+   "desc_fr": "Accompagnement et activités d'apprentissage pour prestataires d'un programme d'aide au revenu",
+   "category": "Emploi",
+   "source": "https://www.quebec.ca/personnes-handicapees/emploi-travail-adapte",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Formation et activités pour les personnes ayant des contraintes sévères de santé",
+   "body": "Services Québec",
+   "body_inferred": false,
+   "url": "https://www.quebec.ca/emploi/perfectionner/formation/reussir",
+   "desc_fr": "Aide financière pour suivre une formation à son rythme et activités de développement personnel",
+   "category": "Emploi",
+   "source": "https://www.quebec.ca/personnes-handicapees/emploi-travail-adapte",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Répertoire des organismes spécialisés en employabilité",
+   "body": "Services Québec",
+   "body_inferred": false,
+   "url": "https://www.quebec.ca/emploi/trouver-emploi-stage/organismes-aide/repertoire-organismes-specialises-employabilite",
+   "desc_fr": "Répertoire d'organismes offrant de l'aide à l'emploi aux personnes handicapées",
+   "category": "Emploi",
+   "source": "https://www.quebec.ca/personnes-handicapees/emploi-travail-adapte",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Aide financière à l'embauche d'une personne pour intégrer un emploi de façon durable",
+   "body": "Services Québec",
+   "body_inferred": false,
+   "url": "https://www.quebec.ca/entreprises-et-travailleurs-autonomes/administrer-gerer/embauche-gestion-personnel/recruter/aider-personne-integrer-emploi-maniere-durable",
+   "desc_fr": "Aide financière pour accueillir et intégrer durablement une personne motivée à travailler",
+   "category": "Emploi",
+   "source": "https://www.quebec.ca/personnes-handicapees/emploi-travail-adapte",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Offres de stages pour les personnes handicapées (DUOEmploi)",
+   "body": "Services Québec",
+   "body_inferred": false,
+   "url": "https://www.quebec.ca/entreprises-et-travailleurs-autonomes/administrer-gerer/embauche-gestion-personnel/duoemploi",
+   "desc_fr": "Possibilité pour un employeur d'offrir un stage",
+   "category": "Emploi",
+   "source": "https://www.quebec.ca/personnes-handicapees/emploi-travail-adapte",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Apprentissage pratique en milieu de travail (APMT)",
+   "body": "SPHERE-Québec (domaine)",
+   "body_inferred": true,
+   "url": "https://sphere-qc.ca/lapprentissage-pratique-en-milieu-de-travail-apmt-notre-nouvelle-mesure-phare/",
+   "desc_fr": "Soutien personnalisé pour développer des compétences et intégrer un emploi durable",
+   "category": "Emploi",
+   "source": "https://www.quebec.ca/personnes-handicapees/emploi-travail-adapte",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Être aux études à temps plein",
+   "body": "Aide financière aux études (MES)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/education/aide-financiere-aux-etudes/prets-bourses-temps-plein/conditions-admissibilite/etudes-temps-plein",
+   "desc_fr": "Statut de temps plein reconnu dans certaines situations de santé (Programme de prêts et bourses)",
+   "category": "Études",
+   "source": "https://www.quebec.ca/personnes-handicapees/etudes-scolarite",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Allocation pour des besoins particuliers - Adultes",
+   "body": "Aide financière aux études (MES)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/education/aide-financiere-aux-etudes/allocation-besoins-particuliers-adultes",
+   "desc_fr": "Allocation pour adultes ayant une déficience entraînant une incapacité importante et durable",
+   "category": "Études",
+   "source": "https://www.quebec.ca/personnes-handicapees/etudes-scolarite",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Allocation pour des besoins particuliers – Jeunes",
+   "body": "Aide financière aux études (MES)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/education/aide-financiere-aux-etudes/allocation-besoins-particuliers-jeunes",
+   "desc_fr": "Allocation pour jeunes ayant une déficience entraînant une incapacité importante et durable",
+   "category": "Études",
+   "source": "https://www.quebec.ca/personnes-handicapees/etudes-scolarite",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Soutien financier aux services de surveillance d’élèves handicapés",
+   "body": "Ministère de l'Éducation / MES (non nommé sur la page)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/education/soutien-financier/soutien-financier-services-surveillance-eleves-handicapes-12-a-21-ans",
+   "desc_fr": "Aide financière à des organismes offrant de la surveillance aux élèves handicapés de 12 à 21 ans",
+   "category": "Études",
+   "source": "https://www.quebec.ca/personnes-handicapees/etudes-scolarite",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Transition des élèves du secondaire vers le collégial",
+   "body": "Ministère de l'Éducation / MES (non nommé sur la page)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/education/prescolaire-primaire-et-secondaire/accompagnement-soutien-eleves/transition-secondaire-collegial/transition-des-eleves-handicapes",
+   "desc_fr": "Services de soutien pour préparer le passage au collégial",
+   "category": "Études",
+   "source": "https://www.quebec.ca/personnes-handicapees/etudes-scolarite",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Entrée au collégial pour les étudiants en situation de handicap",
+   "body": "Ministère de l'Éducation / MES (non nommé sur la page)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/education/prescolaire-primaire-et-secondaire/accompagnement-soutien-eleves/transition-secondaire-collegial/services-college",
+   "desc_fr": "Soutien offert aux étudiants en situation de handicap admis au collégial",
+   "category": "Études",
+   "source": "https://www.quebec.ca/personnes-handicapees/etudes-scolarite",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Transition des étudiants du collégial vers l'université",
+   "body": "Ministère de l'Éducation / MES (non nommé sur la page)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/education/accompagnement-etudiants/transition-etudiants-situation-handicap-collegial-universite/transition",
+   "desc_fr": "Services de soutien pour préparer le passage à l'université",
+   "category": "Études",
+   "source": "https://www.quebec.ca/personnes-handicapees/etudes-scolarite",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Entrée à l'université des étudiants en situation de handicap",
+   "body": "Ministère de l'Éducation / MES (non nommé sur la page)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/education/accompagnement-etudiants/transition-etudiants-situation-handicap-collegial-universite/entree-universite",
+   "desc_fr": "Services et mesures d'accommodement facilitant le passage à l'université",
+   "category": "Études",
+   "source": "https://www.quebec.ca/personnes-handicapees/etudes-scolarite",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Soutien aux élèves handicapés ou en difficulté d’adaptation ou d’apprentissage",
+   "body": "Ministère de l'Éducation / MES (non nommé sur la page)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/education/prescolaire-primaire-et-secondaire/ressources-outils-reseau-scolaire/eleves-handicapes-difficultes-adaptation-apprentissage",
+   "desc_fr": "Outils, formations et guides pour accompagner les élèves",
+   "category": "Études",
+   "source": "https://www.quebec.ca/personnes-handicapees/etudes-scolarite",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Intégration des enfants présentant des besoins de soutien particuliers",
+   "body": "Non nommé sur la page",
+   "body_inferred": false,
+   "url": "https://www.quebec.ca/famille-et-soutien-aux-personnes/enfance/garderies-et-services-de-garde/besoins-soutien-particulier",
+   "desc_fr": "Aide financière, formations et outils pour services de garde accueillant des enfants ayant des besoins particuliers",
+   "category": "Famille / protection",
+   "source": "https://www.quebec.ca/personnes-handicapees/famille-soutien-personnes",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme Agir tôt",
+   "body": "Non nommé sur la page",
+   "body_inferred": false,
+   "url": "https://www.quebec.ca/famille-et-soutien-aux-personnes/enfance/developpement-des-enfants/outils-ressources-developpement-enfants/programme-agir-tot-depister-tot-pour-mieux-repondre-aux-besoins-des-enfants",
+   "desc_fr": "Dépistage précoce des difficultés des enfants",
+   "category": "Famille / protection",
+   "source": "https://www.quebec.ca/personnes-handicapees/famille-soutien-personnes",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme de revenu de base",
+   "body": "MTESS (Solidarité sociale)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/presentation-programmes-aide-financiere/programme-revenu-base",
+   "desc_fr": "Aide financière pour les personnes ayant de sévères contraintes de santé",
+   "category": "Famille / protection",
+   "source": "https://www.quebec.ca/personnes-handicapees/famille-soutien-personnes",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programmes d'assistance sociale pour obtenir une aide financière",
+   "body": "MTESS",
+   "body_inferred": false,
+   "url": "https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere",
+   "desc_fr": "Présentation des programmes d'aide financière de dernier recours (Aide sociale, Solidarité sociale)",
+   "category": "Famille / protection",
+   "source": "https://www.quebec.ca/personnes-handicapees/famille-soutien-personnes",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Personnes proches aidantes",
+   "body": "Non nommé sur la page",
+   "body_inferred": false,
+   "url": "https://www.quebec.ca/famille-et-soutien-aux-personnes/personne-proche-aidante",
+   "desc_fr": "Reconnaissance du rôle des proches aidants et ressources de soutien",
+   "category": "Famille / protection",
+   "source": "https://www.quebec.ca/personnes-handicapees/famille-soutien-personnes",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Mesure d'assistance",
+   "body": "Justice Québec / Curateur public (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/justice-et-etat-civil/protection-legale/mesure-assistance",
+   "desc_fr": "Assistance par une ou deux personnes pour décisions, droits et biens",
+   "category": "Famille / protection",
+   "source": "https://www.quebec.ca/personnes-handicapees/famille-soutien-personnes",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Mandat de protection",
+   "body": "Justice Québec / Curateur public (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/justice-et-etat-civil/protection-legale/mandat-de-protection",
+   "desc_fr": "Désigner des personnes de confiance en cas d'inaptitude",
+   "category": "Famille / protection",
+   "source": "https://www.quebec.ca/personnes-handicapees/famille-soutien-personnes",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Tutelle au majeur",
+   "body": "Justice Québec / Curateur public (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/justice-et-etat-civil/protection-legale/tutelle-au-majeur",
+   "desc_fr": "Protection de la personne majeure, gestion du patrimoine et exercice des droits",
+   "category": "Famille / protection",
+   "source": "https://www.quebec.ca/personnes-handicapees/famille-soutien-personnes",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Accompagnement pour les personnes handicapées (service OPHQ)",
+   "body": "OPHQ",
+   "body_inferred": false,
+   "url": "https://www.quebec.ca/famille-et-soutien-aux-personnes/participation-sociale-personnes-handicapees/services-information-accompagnement-personnes-handicapees",
+   "desc_fr": "Soutien aux personnes handicapées, famille et proches pour accéder aux services",
+   "category": "Famille / protection",
+   "source": "https://www.quebec.ca/personnes-handicapees/famille-soutien-personnes",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme d'adaptation de domicile",
+   "body": "SHQ",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/habitation-territoire/construction-renovation/adapter-etablissement-domicile-personnes-handicapees/programme-adaptation-domicile",
+   "desc_fr": "Finance des travaux rendant un logement accessible à une personne handicapée",
+   "category": "Logement",
+   "source": "https://www.quebec.ca/personnes-handicapees/habitation-logement",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Allocation-logement",
+   "body": "Revenu Québec (domaine)",
+   "body_inferred": true,
+   "url": "https://www.revenuquebec.ca/fr/citoyens/votre-situation/faible-revenu/programme-allocation-logement/",
+   "desc_fr": "Aide financière aux ménages dont les frais de logement sont excessifs",
+   "category": "Logement",
+   "source": "https://www.quebec.ca/personnes-handicapees/habitation-logement",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme de logement sans but lucratif (Programme HLM)",
+   "body": "SHQ",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/habitation-territoire/location/aides-financieres-au-logement/programme-logement-sans-but-lucratif",
+   "desc_fr": "Logements pour ménages à faible revenu, loyer d'environ un quart du revenu",
+   "category": "Logement",
+   "source": "https://www.quebec.ca/personnes-handicapees/habitation-logement",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme d'habitation abordable Québec",
+   "body": "SHQ",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/habitation-territoire/construction-renovation/construction-logements-abordables/programme-habitation-abordable-quebec",
+   "desc_fr": "Réalisation de logements locatifs à prix modéré incl. besoins particuliers",
+   "category": "Logement",
+   "source": "https://www.quebec.ca/personnes-handicapees/habitation-logement",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme de supplément au loyer Québec",
+   "body": "SHQ",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/habitation-territoire/location/aides-financieres-au-logement/programme-supplement-loyer-quebec",
+   "desc_fr": "Loyer semblable à un HLM dans le secteur privé ou en coopérative",
+   "category": "Logement",
+   "source": "https://www.quebec.ca/personnes-handicapees/habitation-logement",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Carte accompagnement loisir",
+   "body": "Non précisé",
+   "body_inferred": false,
+   "url": "https://www.carteloisir.ca/",
+   "desc_fr": "Entrée gratuite à l'accompagnateur d'une personne handicapée chez les partenaires",
+   "category": "Loisir / culture",
+   "source": "https://www.quebec.ca/personnes-handicapees/loisir-sport-tourisme-culture",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Aide financière au loisir des personnes handicapées (PAFLPH)",
+   "body": "Ministère de l'Éducation (loisir et sport) (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/tourisme-loisirs-sport/aides-financieres-sport-loisir-activite-physique-plein-air/aides-financieres-developpement/aide-financiere-loisir-personnes-handicapees",
+   "desc_fr": "Soutient les organismes qui développent le loisir chez les personnes handicapées",
+   "category": "Loisir / culture",
+   "source": "https://www.quebec.ca/personnes-handicapees/loisir-sport-tourisme-culture",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Aide financière à l'accessibilité aux camps de vacances (PAFACV)",
+   "body": "Non précisé",
+   "body_inferred": false,
+   "url": "https://www.quebec.ca/tourisme-loisirs-sport/aides-financieres-sport-loisir-activite-physique-plein-air/aides-financieres-developpement/aide-financiere-accessibilite-camps-vacances",
+   "desc_fr": "Finance l'accès aux camps de vacances pour groupes ciblés dont personnes handicapées",
+   "category": "Loisir / culture",
+   "source": "https://www.quebec.ca/personnes-handicapees/loisir-sport-tourisme-culture",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Aide financière aux instances régionales du loisir pour personnes handicapées (PAFIRLPH)",
+   "body": "Non précisé",
+   "body_inferred": false,
+   "url": "https://www.quebec.ca/tourisme-loisirs-sport/aides-financieres-sport-loisir-activite-physique-plein-air/aides-financieres-developpement/aide-financiere-instances-regionales-loisir-personnes-handicapees",
+   "desc_fr": "Rend le loisir plus accessible aux personnes handicapées",
+   "category": "Loisir / culture",
+   "source": "https://www.quebec.ca/personnes-handicapees/loisir-sport-tourisme-culture",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Autorisation de chasse pour les personnes handicapées",
+   "body": "Non précisé (MELCCFP/Faune, non confirmé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/tourisme-loisirs-sport/activites-sportives-et-de-plein-air/chasse-sportive/autorisation-chasse-personnes-handicapees",
+   "desc_fr": "Permet de chasser légalement malgré certaines règles",
+   "category": "Loisir / culture",
+   "source": "https://www.quebec.ca/personnes-handicapees/loisir-sport-tourisme-culture",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Soutien financier aux artistes et aux écrivains en situation de handicap",
+   "body": "CALQ",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/culture/aide-financiere/soutien-financier-artistes-ecrivains-situation-handicap",
+   "desc_fr": "Couvre une partie des coûts liés au handicap pour boursiers du CALQ",
+   "category": "Loisir / culture",
+   "source": "https://www.quebec.ca/personnes-handicapees/loisir-sport-tourisme-culture",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Aide aux personnes handicapées pour la présentation d'une candidature ou d'une demande de bourse",
+   "body": "CALQ (domaine)",
+   "body_inferred": true,
+   "url": "https://www.calq.gouv.qc.ca/aide-aux-personnes-handicapees-pour-la-presentation-dune-candidature-ou-dune-demande-de-bourse",
+   "desc_fr": "Peut rembourser les services facilitant le dépôt d'une candidature",
+   "category": "Loisir / culture",
+   "source": "https://www.quebec.ca/personnes-handicapees/loisir-sport-tourisme-culture",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme d’attribution des tricycles et des vélos adaptés",
+   "body": "MSSS / CISSS-CIUSSS (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-attribution-tricyles-et-velos-adaptes",
+   "desc_fr": "Tricycles et vélos adaptés pour enfants",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme d’attribution des ambulateurs",
+   "body": "MSSS / CISSS-CIUSSS (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-attribution-ambulateurs",
+   "desc_fr": "Prêt d'un ambulateur",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme d’attribution des triporteurs et des quadriporteurs",
+   "body": "MSSS / CISSS-CIUSSS (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-attribution-triporteurs-et-quadriporteurs",
+   "desc_fr": "Prêt d'un véhicule à quatre roues",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme de remboursement de frais relatifs à l'utilisation d'un chien d'assistance à la motricité",
+   "body": "MSSS (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/chien-dassistance-remboursement-de-frais",
+   "desc_fr": "Remboursement partiel des frais d'un chien d'assistance",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme d’appareils suppléant à une déficience physique",
+   "body": "RAMQ",
+   "body_inferred": true,
+   "url": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/appareils-suppleant-a-deficience-physique",
+   "desc_fr": "Achat, remplacement et réparation d'orthèses, prothèses et autres aides",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme d'aides auditives",
+   "body": "RAMQ (selon programme; non nommé sur la page)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-auditives",
+   "desc_fr": "Achat, remplacement et réparation de prothèses auditives",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme d'aides visuelles",
+   "body": "MSSS / CISSS-CIUSSS (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-visuelles",
+   "desc_fr": "Prêt d'aides visuelles et subvention pour chien-guide",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Aides techniques à la communication",
+   "body": "MSSS (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-techniques-communication",
+   "desc_fr": "Information sur programmes pour difficultés de communication",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme de prothèses oculaires",
+   "body": "RAMQ",
+   "body_inferred": true,
+   "url": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/protheses-oculaires-oeil-artificiel",
+   "desc_fr": "Aide financière pour œil artificiel",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Services d'interprètes",
+   "body": "REQIS (domaine)",
+   "body_inferred": true,
+   "url": "https://reqis.org/ressources-utiles/#services-d%E2%80%99interpretes",
+   "desc_fr": "Services d'interprétation visuelle et tactile régionaux",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Services aux laryngectomisés et Programme d'aide à la communication",
+   "body": "CHUM (domaine)",
+   "body_inferred": true,
+   "url": "https://www.chumontreal.qc.ca/patients/sal-pac",
+   "desc_fr": "Réadaptation et fournitures pour laryngectomisés",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": true,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme d'aides matérielles pour les fonctions d'élimination",
+   "body": "MSSS (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-materielles-fonctions-elimination",
+   "desc_fr": "Fournitures pour déficiences des fonctions d'élimination",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Appareillage pour les personnes stomisées",
+   "body": "RAMQ",
+   "body_inferred": true,
+   "url": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/appareils-personnes-stomisees",
+   "desc_fr": "Somme forfaitaire pour appareils de stomie",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Alimentation entérale à domicile",
+   "body": "CHU Sainte-Justine (domaine)",
+   "body_inferred": true,
+   "url": "https://www.chusj.org/soins-services/A/Alimentation-enterale",
+   "desc_fr": "Services à domicile pour alimentation par sonde ou intraveineuse",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": true,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme national d'assistance ventilatoire à domicile (PNAVD)",
+   "body": "MSSS (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-national-assistance-ventilatoire-a-domicile-pnavd",
+   "desc_fr": "Soins, services et équipement de ventilation à domicile",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": true,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme national d'oxygénothérapie à domicile (PNOD)",
+   "body": "MSSS (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-national-oxygenotherapie-a-domicile-pnod",
+   "desc_fr": "Soins, services et équipement d'oxygénothérapie à domicile",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": true,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Bandages et vêtements de compression pour le lymphœdème",
+   "body": "RAMQ",
+   "body_inferred": true,
+   "url": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/vetements-compression-lymphoedeme",
+   "desc_fr": "Remboursement partiel des produits pour traiter le lymphœdème",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": true,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme d'attribution de chaussures orthétiques et d'appareillage de chaussures",
+   "body": "MSSS (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-attribution-chaussures-orthetiques",
+   "desc_fr": "Chaussures orthétiques sur mesure",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programmes d'aides techniques",
+   "body": "MSSS (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-techniques-pour-deficience-ou-tsa",
+   "desc_fr": "Aperçu des aides techniques pour déficience ou TSA",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme d'aides à la vie quotidienne et à la vie domestique",
+   "body": "MSSS / CISSS-CIUSSS (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-vie-quotidienne-et-vie-domestique",
+   "desc_fr": "Prêt d'équipement pour activités quotidiennes et domestiques",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme Transport-Hébergement",
+   "body": "MSSS (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-transport-hebergement",
+   "desc_fr": "Remboursement partiel des frais de déplacement vers établissements de santé",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme de soutien aux familles",
+   "body": "MSSS / CISSS-CIUSSS (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-soutien-aux-familles",
+   "desc_fr": "Allocations directes pour services de répit",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Services de soutien à domicile",
+   "body": "MSSS / CISSS-CIUSSS (non nommé)",
+   "body_inferred": true,
+   "url": "https://www.quebec.ca/famille-et-soutien-aux-personnes/inaptitude-perte-autonomie/services-soutien-domicile",
+   "desc_fr": "Allocation directe et chèque emploi-service pour soutien à domicile",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  },
+  {
+   "name_fr": "Programme d'exonération financière pour les services d'aide domestique",
+   "body": "RAMQ",
+   "body_inferred": true,
+   "url": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/aide-domestique",
+   "desc_fr": "Taux horaire réduit pour services d'une entreprise d'économie sociale",
+   "category": "Santé / aides techniques",
+   "source": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "disease_specific": false,
+   "guide_edition": "Quebec.ca hub pages (consulted 2026-10-18)",
+   "quote_note": "desc_fr is partly paraphrased from fetch summaries, not guaranteed verbatim"
+  }
+ ],
+ "orgs": [
+  {
+   "name_fr": "Office des personnes handicapées du Québec (OPHQ)",
+   "url": "https://www.quebec.ca/gouvernement/ministeres-organismes/office-personnes-handicapees",
+   "desc_fr": "L'Office des personnes handicapées du Québec (OPHQ) met tout en œuvre pour faire du Québec une société plus inclusive et accroître la participation sociale des personnes handicapées.",
+   "fetched": true,
+   "note": "ophq.gouv.qc.ca redirects to quebec.ca"
+  },
+  {
+   "name_fr": "Confédération des organismes de personnes handicapées du Québec (COPHAN)",
+   "url": "https://cophan.org",
+   "desc_fr": "Notre action vise à transformer les structures sociales, politiques et institutionnelles. (partial quote)",
+   "fetched": true,
+   "note": ""
+  },
+  {
+   "name_fr": "Alliance québécoise pour l'intégration des personnes handicapées (AQRIPH)",
+   "url": "https://aqriph.com",
+   "desc_fr": "Défendre collectivement les droits des personnes handicapées et de leurs proches, et promouvoir les intérêts des regroupements et organismes du milieu associatif",
+   "fetched": true,
+   "note": "Name on site differs from caller's guess (Regroupement...)"
+  },
+  {
+   "name_fr": "Société québécoise de la déficience intellectuelle (SQDI)",
+   "url": "https://www.sqdi.ca",
+   "desc_fr": "La SQDI est un regroupement provincial dédié à la déficience intellectuelle.",
+   "fetched": true,
+   "note": ""
+  },
+  {
+   "name_fr": "Fédération québécoise de l'autisme",
+   "url": "https://www.autisme.qc.ca",
+   "desc_fr": "nous pouvons nous mobiliser pour le respect absolu des droits des personnes autistes et leur famille (no formal mission line found)",
+   "fetched": true,
+   "note": ""
+  },
+  {
+   "name_fr": "Regroupement des aveugles et amblyopes du Montréal métropolitain (RAAMM)",
+   "url": "https://www.raamm.org",
+   "desc_fr": "Défendre les droits et promouvoir les intérêts des personnes ayant une déficience visuelle.",
+   "fetched": true,
+   "note": "Montréal-metro only, not Québec-wide; Québec-wide equivalent (RAAQ) not checked"
+  },
+  {
+   "name_fr": "Moelle épinière et motricité Québec (MÉMO-Qc)",
+   "url": "https://moelleepiniere.com",
+   "desc_fr": "œuvre à l'amélioration de la qualité de vie des personnes en situation de handicap particulièrement les personnes lésées médullaires ce, depuis 1946.",
+   "fetched": true,
+   "note": ""
+  },
+  {
+   "name_fr": "Kéroul",
+   "url": "https://www.keroul.qc.ca",
+   "desc_fr": "dont les actions visent à rendre le tourisme et la culture accessibles à tous (partial quote)",
+   "fetched": true,
+   "note": ""
+  },
+  {
+   "name_fr": "Commission des services juridiques / Aide juridique du Québec",
+   "url": "https://www.csj.qc.ca",
+   "desc_fr": "Le réseau de l'Aide juridique du Québec aide des centaines de milliers de personnes à faire valoir leurs droits (paraphrased); no phone on page",
+   "fetched": true,
+   "note": ""
+  },
+  {
+   "name_fr": "Éducaloi",
+   "url": "https://educaloi.qc.ca",
+   "desc_fr": "La loi expliquée en un seul endroit. (tagline; no mission statement found)",
+   "fetched": true,
+   "note": ""
+  },
+  {
+   "name_fr": "Association québécoise des personnes de petite taille",
+   "url": "",
+   "desc_fr": null,
+   "fetched": false,
+   "note": "not checked"
+  }
+ ],
+ "two11": {
+  "url": "https://www.211qc.ca",
+  "phone": "211",
+  "hours": "24h/24, 7 jours sur 7",
+  "chat": "Clavardez — Réponses assurées en 35 minutes ou moins",
+  "text_sms": "not mentioned",
+  "regions_note": "Site fetched shows only 'Grand Montréal Gatineau'; /regions page gave no per-region data; Capitale-Nationale etc. not verified",
+  "fetched": true
+ },
+ "ophq_contact": {
+  "toll_free": "1 800 567-1465",
+  "main": "819 475-8585",
+  "ttd": "1 800 567-1477",
+  "fax": "1 819 475-8753",
+  "email_general": "info@ophq.gouv.qc.ca",
+  "support_service_email": "aide@ophq.gouv.qc.ca",
+  "support_service_phone": "1 800 567-1465",
+  "hours": "Du lundi au vendredi, de 8 h 30 à 12 h et de 13 h à 16 h 30",
+  "address": "309, rue Brock, Drummondville (Québec) J2B 1C5",
+  "support_desc": "Cette aide est offerte gratuitement dans toutes les régions du Québec",
+  "source": [
+   "https://www.quebec.ca/gouvernement/ministeres-organismes/office-personnes-handicapees/coordonnees-structure/coordonnees",
+   "https://www.quebec.ca/famille-et-soutien-aux-personnes/participation-sociale-personnes-handicapees/services-information-accompagnement-personnes-handicapees"
+  ]
+ },
+ "checked": [
+  {
+   "url": "https://www.ophq.gouv.qc.ca",
+   "status": "303 -> quebec.ca"
+  },
+  {
+   "url": "https://www.ophq.gouv.qc.ca/fileadmin/centre_documentaire/Documents_de_reference/OPHQ_depliant_guides.pdf",
+   "status": "404"
+  },
+  {
+   "url": "https://www.ophq.gouv.qc.ca/fileadmin/documents/Guides/Guide_mesures_fiscales_2016.pdf",
+   "status": "ok (PDF, parsed locally)"
+  },
+  {
+   "url": "https://www.quebec.ca/personnes-handicapees",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.quebec.ca/personnes-handicapees/mesures-fiscales-rentes",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.quebec.ca/personnes-handicapees/deplacements-transport-adapte",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.quebec.ca/personnes-handicapees/emploi-travail-adapte",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.quebec.ca/personnes-handicapees/etudes-scolarite",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.quebec.ca/personnes-handicapees/famille-soutien-personnes",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.quebec.ca/personnes-handicapees/habitation-logement",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.quebec.ca/personnes-handicapees/loisir-sport-tourisme-culture",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.quebec.ca/personnes-handicapees/sante-aides-techniques",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.211qc.ca",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.211qc.ca/regions",
+   "status": "ok, no region data"
+  },
+  {
+   "url": "https://www.quebec.ca/gouvernement/ministeres-organismes/office-personnes-handicapees",
+   "status": "ok"
+  },
+  {
+   "url": "https://cophan.org",
+   "status": "ok"
+  },
+  {
+   "url": "https://aqriph.com",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.sqdi.ca",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.autisme.qc.ca",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.raamm.org",
+   "status": "ok"
+  },
+  {
+   "url": "https://moelleepiniere.com",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.keroul.qc.ca",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.csj.qc.ca",
+   "status": "ok"
+  },
+  {
+   "url": "https://educaloi.qc.ca",
+   "status": "ok"
+  }
+ ]
+}

@@ -1,0 +1,340 @@
+{
+ "municipal": [
+  {
+   "name": "ARTM grille tarifaire transport adapté (Montréal, Laval, Longueuil, exo secteurs)",
+   "cities": [
+    "Montréal",
+    "Laval",
+    "Longueuil",
+    "Brossard",
+    "Terrebonne",
+    "Repentigny",
+    "Saint-Jérôme"
+   ],
+   "url": "https://www.artm.quebec/wp-content/uploads/2026/06/22189-ARTM_Grille_tarifaire_TA_FR_VF.pdf",
+   "fetched": "2026-10-18",
+   "who": "People admitted to transport adapté in the ARTM territory.",
+   "what": "Fares effective 2026-07-01: cash on board 3,50 $ (zone A) ordinaire, 2,25 $ réduit 65+; monthly Tous modes A 110,00 $ ordinaire / 66,00 $ réduit. Quote: \"Gratuit en tout temps pour les enfants de 11 ans et moins, si accompagnés d’une personne de 14 ans et plus qui en assume la surveillance.\" Quote: \"Tous les services de transport collectif offerts en zone A sont gratuits pour les personnes âgées de 65 ans et plus qui résident à Montréal.\" Quote: \"Les services de transport adapté de la STL sont gratuits pour les personnes âgées de 65 ans et plus qui résident à Laval.\" Quote: \"Les services de transport adapté du RTL sont gratuits en dehors des heures de pointe pour les personnes âgées de 65 ans et plus qui résident à Brossard, Boucherville, Longueuil ou Saint-Lambert.\" Quote: \"Les services de transport adapté du secteur Terrebonne-Mascouche sont gratuits pour les personnes âgées de 65 ans et plus qui résident à Terrebonne ou Mascouche.\" Quote: \"à l’intérieur de la Ville de Saint-Jérôme.\" (transport adapté gratuit en tout temps).",
+   "apply": "Via your transit agency's admission process (see city entries). Reduced fare: \"Pour bénéficier du tarif réduit, certaines conditions s’appliquent. Informez-vous auprès de votre organisme de transport.\"",
+   "notes": "No low-income reduced fare in this grid. Text extracted from PDF with pdftotext; the Repentigny line was not found in the extract (L'Assomption MRC sector is free for 65+; Repentigny sector not confirmed)."
+  },
+  {
+   "name": "STM — Transport adapté (admission)",
+   "cities": [
+    "Montréal"
+   ],
+   "url": "https://www.stm.info/fr/ta/formulaires",
+   "fetched": "2026-10-18",
+   "who": "People with a disability admitted per MTMD policy. Quote: \"Seules les personnes handicapées dont les incapacités compromettent sérieusement la mobilité\" (EN page: \"Only handicapped persons whose disabilities seriously compromise their mobility are eligible for the Paratransit service.\") Temporary limitations don't qualify.",
+   "what": "Door-to-door paratransit with OPUS Transport adapté card. Companion: \"Pour un accompagnement obligatoire, une personne peut voyager gratuitement avec vous.\" Answer within 45 days.",
+   "apply": "\"Imprimez et remplissez la partie 1 du Formulaire de demande d'admission au Transport adapté.\" \"La partie 2 devra être remplie par un professionnel du réseau de la santé ou du réseau scolaire.\" \"joignez au formulaire une photo récente et une preuve d'âge.\" Send to transport.adapte@stm.info, or Centre de transport adapté, 3111 rue Jarry Est, Montréal H1Z 2C2, fax 514 280-5396; help 514 280-8211 option 4.",
+   "notes": "FR eligibility sentence is from the EN page paraphrase; the French wording of the first quote is from the STM EN/FR page as relayed by the fetch tool, check exact French. Companion rule from stm.info/fr/transport-adapte/propos/guide-du-transport-adapte."
+  },
+  {
+   "name": "STM — tarification sociale / low-income fare",
+   "cities": [
+    "Montréal"
+   ],
+   "url": "https://www.stm.info/fr",
+   "fetched": "2026-10-18",
+   "who": "N/A",
+   "what": "No official STM/ville de Montréal low-income fare page found. Only press/advocacy references to a Projet Montréal promise; not verified as adopted.",
+   "apply": "N/A",
+   "notes": "NOT FOUND on official site. Do not publish. Montréal 65+ ride free in zone A (per ARTM grid)."
+  },
+  {
+   "name": "Montréal — Programme d'adaptation de domicile (PAD) municipal",
+   "cities": [
+    "Montréal"
+   ],
+   "url": "https://montreal.ca/programmes/programme-dadaptation-de-domicile-pad",
+   "fetched": "2026-10-18",
+   "who": "Montréal residents with disability needing home adaptation (historical).",
+   "what": "Closed. Quote: \"n’est plus disponible à la suite de la décision du gouvernement du Québec\". Quote: \"Depuis le 1er avril 2025, la Ville n’est plus en mesure d’accepter de nouvelles demandes.\"",
+   "apply": "Quote: \"doit être soumise au PAD de la SHQ.\" Applications confirmed between 22 Nov 2024 and 31 Mar 2025 placed on SHQ waiting list.",
+   "notes": "Do NOT list as an active municipal program; point to SHQ PAD (provincial, covered by other part). Per search, SHQ also reported not accepting new registrations since 2025-04-01 (not verified on SHQ site)."
+  },
+  {
+   "name": "Montréal — accompagnement en loisir (PALÎM via AlterGo; Carte accompagnement loisir)",
+   "cities": [
+    "Montréal"
+   ],
+   "url": "https://montreal.ca/articles/portrait-des-services-daccompagnement-en-loisirs-59094",
+   "fetched": "2026-10-18",
+   "who": "Residents with a limitation (borough-run services; Anjou page).",
+   "what": "Funds support workers via organizations; individual benefit = free companion with Carte accompagnement loisir (AQLPH), recognized by Anjou.",
+   "apply": "Quote (Anjou): \"Ces services s’adressent aux personnes résidant à Anjou.\" Contact Les Complices d’Anjou 514 493-8286. AlterGo (altergo.net) runs PALÎM.",
+   "notes": "Page fetched is borough-specific (Anjou), not island-wide. AlterGo/PALÎM facts come from search results only, not from an official page fetched. Low confidence."
+  },
+  {
+   "name": "RTC Québec — ÉquiMobilité (tarif faible revenu) + STAC",
+   "cities": [
+    "Québec"
+   ],
+   "url": "https://www.ville.quebec.qc.ca/citoyens/mobilite/transport-collectif/equimobilite.aspx",
+   "fetched": "2026-10-18",
+   "who": "Residents with annual income below low-income threshold (1 pers 31 906 $; 2: 39 721 $; 3: 48 832 $; 4: 59 288 $; 5: 67 244 $; 6: 75 839 $; 7+: 84 436 $, 2025 figures). STAC users automatically eligible.",
+   "what": "Quote: \"51 $ pour le laissez-passer mensuel\"; \"2,05 $ pour les billets un passage\". Proof valid 2 years: \"Ce formulaire signé est votre preuve d’admissibilité. Elle est valide pour deux ans.\"",
+   "apply": "Fill form with proof of income/ID at a City service centre or by mail with photo; \"Une fois votre admissibilité vérifiée, nous signerons votre formulaire et nous vous le remettrons immédiatement.\" Then OPUS ÉquiMobilité card at RTC info centre within 30 days (\"Vous disposez d’un délai de 30 jours\"); by mail allow \"jusqu’à 3 semaines\".",
+   "notes": "Prices may have changed after the 2024-07-01 to 2026-06-30 fixed-price period; fetched page showed 51 $ / 2,05 $. Verify currency."
+  },
+  {
+   "name": "STAC (Québec) — transport adapté fares and ÉquiMobilité rates",
+   "cities": [
+    "Québec"
+   ],
+   "url": "https://rtcquebec.ca/en/paratransit-stac/fares",
+   "fetched": "2026-10-18",
+   "who": "STAC clients; all considered eligible for ÉquiMobilité.",
+   "what": "\"1 passage : 2,05$\"; \"Laissez-passer mensuel : 51,00$\". Quote: \"Il n'est donc pas nécessaire de demander une preuve d'admissibilité.\" OPUS-STAC card free, \"valide pendant 7 ans\". One companion rides free on RTC regular buses with STAC card (per page summary).",
+   "apply": "Request OPUS-STAC card online or by mail to SAMI office. Admission via STAC admission committee under MTMD policy.",
+   "notes": "Page fetched in English; French quotes as relayed. Companion line paraphrased by the fetch tool, not verbatim. Cash payment doesn't get the discount."
+  },
+  {
+   "name": "STO (Gatineau) — Programme ÉCHO (low-income fare)",
+   "cities": [
+    "Gatineau"
+   ],
+   "url": "https://www.sto.ca/tarifs/programme-echo/",
+   "fetched": "2026-10-18",
+   "who": "Gatineau residents on social assistance, newcomers <12 months, or family income under low-income threshold (1 pers 21 911 $ ... 7+ 57 460 $ after tax). Quote: \"Tous les résidents de Gatineau\". Full-time students 20 and under not eligible.",
+   "what": "2026: monthly 62 $ with ÉCHO vs 116,50 $ regular; per trip 2,80 $ vs 4,00 $ on Multi card.",
+   "apply": "Online form (recommended) or in person at a point de service with documents; after confirmation show \"une pièce d'identité avec photo\" to get Multi card at ÉCHO fare. echo@sto.ca, 819 770-3242.",
+   "notes": "\"Les tarifs peuvent changer sans préavis.\""
+  },
+  {
+   "name": "STO (Gatineau) — Transport adapté admission and fares",
+   "cities": [
+    "Gatineau"
+   ],
+   "url": "https://www.sto.ca/transport-adapte/demandes-et-conditions-dadmission/",
+   "fetched": "2026-10-18",
+   "who": "Quote: \"Seules les personnes handicapées dont l’incapacité compromet grandement la mobilité\"; must be permanent Gatineau resident and approved by committee.",
+   "what": "Fares: cash \"4,00 $ par passage\"; paper ticket \"4,75 $ l’unité\"; carnet of 12 \"57,00 $ par carnet de 12 billets\". Companion fare not stated on page.",
+   "apply": "Fill part 1 of \"Demande d'admission au transport adapté\", part 2 by a health/school professional; send to admission.ta@sto.ca, by mail or in person. Answer \"à l’intérieur des 45 jours suivant la réception de la demande\". Phone 819 770-3242.",
+   "notes": "Fares may differ from ARTM grid (STO is outside ARTM)."
+  },
+  {
+   "name": "STL (Laval) — Transport adapté admission and fares",
+   "cities": [
+    "Laval"
+   ],
+   "url": "https://stlaval.ca/admission-ta",
+   "fetched": "2026-10-18",
+   "who": "Quote: \"vous devez répondre aux critères d’admissibilité définis par le ministère des Transports et de la Mobilité durable\".",
+   "what": "Fares set by ARTM. Quote: \"Transport adapté gratuit seulement sur le territoire de Laval avec le titre Horizon 65+.\" (Laval residents 65+).",
+   "apply": "Mail to STL Service de transport adapté, 2250 av. Francis-Hughes, Laval H7S 2C3 or transportadapte@stl.laval.qc.ca. Documents: \"2 photos de format passeport claires et en couleur, identifiées à l’endos\", age proof, form (part 2 by professional). Answer within 45 days. Phone 450 688-6520; reservations 450 973-3111.",
+   "notes": "Fares page: https://stlaval.ca/tarifs-ta"
+  },
+  {
+   "name": "RTL (Longueuil) — Transport adapté",
+   "cities": [
+    "Longueuil",
+    "Brossard"
+   ],
+   "url": "https://www.rtl-longueuil.qc.ca/fr-CA/transport-adapte/",
+   "fetched": "2026-10-18",
+   "who": "People admitted per MTMD policy; need valid TA OPUS card.",
+   "what": "Quote: \"Offert avec la carte OPUS ou à l’achat d’un titre de transport.\" 65+ residents of Brossard, Boucherville, Longueuil, Saint-Lambert free off-peak (per ARTM grid).",
+   "apply": "Admission page URL guessed (/transport-adapte/admission) returned 404; admission steps not retrieved. Old RTL page lists address 1150 boul. Marie-Victorin, Longueuil J4G 2M4 (not verified current).",
+   "notes": "Admission details not verified from official current page."
+  },
+  {
+   "name": "STS (Sherbrooke) — Transport adapté",
+   "cities": [
+    "Sherbrooke"
+   ],
+   "url": "https://www.sts.qc.ca/transport-adapte/",
+   "fetched": "2026-10-18",
+   "who": "Per search of STS form: disability plus mobility limitations (inability to walk 400 m, climb 35 cm step); form V-2851.",
+   "what": "Fares in regulation R-073 (not read; fetch 404).",
+   "apply": "Reserve by phone 819 564-2687, poste 1. Admission form PDF: https://www.sts.qc.ca/wp-content/uploads/2021/11/Demande-dadmission-au-transport-adapte.pdf; send to service.clientele@sts.qc.ca or 895 rue Cabana, Sherbrooke J1K 2M3 (from search result summary).",
+   "notes": "No low-income fare or city accompaniment card found for Sherbrooke."
+  },
+  {
+   "name": "STS (Saguenay) — Tarification sociale",
+   "cities": [
+    "Saguenay"
+   ],
+   "url": "https://sts.saguenay.ca/infos-pratiques/tarification-sociale/fonctionnement",
+   "fetched": "2026-10-18",
+   "who": "18+, not a student, AND one of: family income below after-tax low-income threshold; Aide sociale/Solidarité sociale; newcomer <12 months without job.",
+   "what": "Quote: \"permettra aux personnes en situation de précarité d’avoir accès au transport en commun régulier et au transport adapté pour un montant de 50,50 $ par mois.\" (2023 communiqué; current price not confirmed.)",
+   "apply": "Quote: \"contacter l'un des organismes communautaires partenaires pour compléter un formulaire d'admissibilité\"; then photo Accès card at STS office (1331 rue Bersimis); valid 12 months; reload monthly. Cap of 500 clients in 2023 (current cap unknown).",
+   "notes": "Price from 2023 press release only; the current page did not state the price. Income thresholds on page were 2023."
+  },
+  {
+   "name": "STLévis — Transport adapté and tarification",
+   "cities": [
+    "Lévis"
+   ],
+   "url": "https://www.stlevis.ca/transport-adapte",
+   "fetched": "2026-10-18",
+   "who": "Quote: \"Le seul critère : Habiter à l’intérieur des villes de Lévis et de Saint-Lambert-de-Lauzon.\" (page text; MTMD eligibility still applies at admission form).",
+   "what": "Reg. 190 (2025-07-01): monthly Régulier 99.30 $, Ainé 74.75 $. TA fare/low-income not retrieved.",
+   "apply": "Phone 418 837-9552. Admission form: https://stlevis.ca/sites/default/files/public/assets/transport-adapte/documents/form-admis-stl-ta-jv2025.pdf (not read).",
+   "notes": "No low-income fare found for Lévis; ÉquiMobilité is Québec ville only."
+  },
+  {
+   "name": "STTR (Trois-Rivières) — Tarification sociale",
+   "cities": [
+    "Trois-Rivières"
+   ],
+   "url": "https://sttr.qc.ca/tarification-sociale/",
+   "fetched": "2026-10-18",
+   "who": "Quote: \"Être une personne en situation de vulnérabilité\" assessed by accredited community organization; \"Ne pas être admissible au titre jeunesse (21 ans et moins)\".",
+   "what": "Quote: \"rabais de 50 % sur le titre mensuel régulier\".",
+   "apply": "Referral by participating community organization; photo CITÉ card at STTR customer service, 246 rue Saint-Roch; reload at office, retailer or Espace client.",
+   "notes": ""
+  },
+  {
+   "name": "STTR (Trois-Rivières) — Transport adapté",
+   "cities": [
+    "Trois-Rivières"
+   ],
+   "url": "https://sttr.qc.ca/transport-adapte/",
+   "fetched": "2026-10-18",
+   "who": "Quote: \"Toute personne qui a une déficience significative et persistante\" with mobility limitations (e.g., cannot walk 400 m).",
+   "what": "Fares on separate page (\"Tarifs et dépositaires\") not read.",
+   "apply": "Form with part 2 by health professional, sent to STTR Comité d'admission; decision \"dans les 45 jours suivant la réception de votre formulaire\".",
+   "notes": ""
+  },
+  {
+   "name": "exo — Transport adapté (Terrebonne, Repentigny, Saint-Jérôme, Saint-Jean-sur-Richelieu area)",
+   "cities": [
+    "Terrebonne",
+    "Repentigny",
+    "Saint-Jérôme",
+    "Saint-Jean-sur-Richelieu"
+   ],
+   "url": "https://www.exo.quebec/fr/transport-adapte",
+   "fetched": "2026-10-18",
+   "who": "Quote: \"Vérifiez d'abord si vous répondez aux critères d'admissibilité, puis faites une demande d'admission.\"",
+   "what": "Fares in ARTM grid: Saint-Jérôme-internal TA free; Terrebonne/Mascouche 65+ free. Fares brochure not read.",
+   "apply": "Quote: \"Consultez les critères d'admissibilité et découvrez les étapes pour soumettre votre demande.\" (sub-page not retrieved).",
+   "notes": "Saint-Jean-sur-Richelieu is served by a different operator (Transbus per a regional guide, 450-348-3088; unverified) — not confirmed. Drummondville (Mobilibus/MRC de Drummond) uses form V-2851, tel 873-382-2266, per search only. Granby not researched."
+  },
+  {
+   "name": "Montréal/other cities: Carte accompagnement loisir (CAL) and VATL",
+   "cities": [
+    "Montréal",
+    "Longueuil",
+    "Brossard",
+    "Laval",
+    "Québec"
+   ],
+   "url": "https://www.quebec.ca/personnes-handicapees/loisir-sport-tourisme-culture",
+   "fetched": "2026-10-18",
+   "who": "People with disability needing a companion (provincial AQLPH program).",
+   "what": "Free entry for companion at partner venues. Longueuil city: VATL logo = free for companion (2014 doc, unverified current).",
+   "apply": "Via AQLPH (aqlph.qc.ca) — not municipal; belongs in provincial layer.",
+   "notes": "Search-only evidence; provincial program, not a municipal benefit. Saguenay has a municipal Programme d'accompagnement en loisir but the PDF link 404'd; Québec ville has an organization-facing 'Soutien au loisir inclusif' only."
+  }
+ ],
+ "checked_hubs": [
+  {
+   "url": "https://www.stm.info/fr/infos/accessibilite",
+   "status": "404"
+  },
+  {
+   "url": "https://www.stm.info/fr/ta/formulaires",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.stm.info/en/paratransit/admission",
+   "status": "ok (thin)"
+  },
+  {
+   "url": "https://www.artm.quebec/wp-content/uploads/2026/06/22189-ARTM_Grille_tarifaire_TA_FR_VF.pdf",
+   "status": "ok (pdf)"
+  },
+  {
+   "url": "https://www.ville.quebec.qc.ca/citoyens/mobilite/transport-collectif/equimobilite.aspx",
+   "status": "ok"
+  },
+  {
+   "url": "https://rtcquebec.ca/en/paratransit-stac/fares",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.rtcquebec.ca/accessibilite/transport-adapte",
+   "status": "404"
+  },
+  {
+   "url": "https://stlaval.ca/admission-ta",
+   "status": "ok"
+  },
+  {
+   "url": "https://stlaval.ca/tarifs-ta",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.sto.ca/transport-adapte/demandes-et-conditions-dadmission/",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.sto.ca/transport-adapte/tarifs/",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.sto.ca/tarifs/programme-echo/",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.rtl-longueuil.qc.ca/fr-CA/transport-adapte/",
+   "status": "ok (thin)"
+  },
+  {
+   "url": "https://www.rtl-longueuil.qc.ca/fr-CA/transport-adapte/admission",
+   "status": "404"
+  },
+  {
+   "url": "https://www.sts.qc.ca/transport-adapte/",
+   "status": "ok (menu only)"
+  },
+  {
+   "url": "https://www.sts.qc.ca/wp-content/uploads/2024/04/R-073-Titres-de-transport.pdf",
+   "status": "404"
+  },
+  {
+   "url": "https://sts.saguenay.ca/infos-pratiques/tarification-sociale/fonctionnement",
+   "status": "ok"
+  },
+  {
+   "url": "https://ville.saguenay.ca/files/services_aux_citoyens/sante_publique/personnes_handicapees/programme_d_accompagnement_en_loisir.pdf",
+   "status": "404"
+  },
+  {
+   "url": "https://www.stlevis.ca/transport-adapte",
+   "status": "ok (thin)"
+  },
+  {
+   "url": "https://stlevis.ca/sites/default/files/public/assets/stlevis/reglements-politiques/regl.190-tarification_annee_2025-2026_pour_publication.pdf",
+   "status": "ok (pdf)"
+  },
+  {
+   "url": "https://sttr.qc.ca/tarification-sociale/",
+   "status": "ok"
+  },
+  {
+   "url": "https://sttr.qc.ca/transport-adapte/",
+   "status": "ok"
+  },
+  {
+   "url": "https://www.exo.quebec/fr/transport-adapte",
+   "status": "ok (thin)"
+  },
+  {
+   "url": "https://montreal.ca/programmes/programme-dadaptation-de-domicile-pad",
+   "status": "ok"
+  },
+  {
+   "url": "https://montreal.ca/articles/portrait-des-services-daccompagnement-en-loisirs-59094",
+   "status": "ok (Anjou only)"
+  },
+  {
+   "url": "https://www.stm.info/fr/transport-adapte/propos/guide-du-transport-adapte",
+   "status": "ok"
+  }
+ ]
+}

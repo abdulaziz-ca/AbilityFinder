@@ -1,0 +1,35 @@
+URL: https://www.quebec.ca/habitation-territoire/construction-renovation/adapter-etablissement-domicile-personnes-handicapees/programme-adaptation-domicile/a-propos-programme-adaptation-domicile | province: QC | program: Programme d'adaptation de domicile (PAD) | fetched: 2026-10-18
+=== PAGE: https://www.quebec.ca/habitation-territoire/construction-renovation/adapter-etablissement-domicile-personnes-handicapees/programme-adaptation-domicile/a-propos-programme-adaptation-domicile (HTTP 200, 2405 chars)
+
+ À propos du Programme d'adaptation de domicile
+ Reprise des inscriptions
+ Les inscriptions au programme sont ouvertes depuis le 12 août 2026.
+Le Programme d’adaptation de domicile (PAD) de la Société d’habitation du Québec (SHQ) aide les personnes handicapées en rendant leur logement plus accessible.
+Il vise à permettre aux personnes qui ont des limitations dans leurs activités quotidiennes :
+- d’entrer dans leur domicile et d’en sortir;
+- d’accéder aux pièces essentielles : la chambre à coucher, la salle de bain, la cuisine, la salle à manger et le salon;
+- de réaliser leurs activités de façon sécuritaire.
+L’objectif du programme est de favoriser le maintien à domicile des personnes handicapées.
+Le PAD offre une aide financière aux propriétaires pour effectuer des travaux d’adaptation dans un logement occupé par une personne handicapée.
+Admissibilité
+Pour bénéficier du PAD, une personne handicapée doit :
+- être citoyenne canadienne ou résidente permanente;
+- fournir une preuve démontrant que son incapacité est significative et persistante.
+La personne ne doit pas :
+- avoir bénéficié d’une aide financière pour l’adaptation de son domicile dans le cadre du PAD ou d’une subvention pour adaptation de domicile du programme AccèsLogis Québec et dont le dernier versement de l’aide financière a eu lieu au cours des 5 dernières années.
+D’autres conditions peuvent s’appliquer.
+Les personnes qui reçoivent le crédit d’impôt Montant pour déficience grave et prolongée des fonctions mentales ou physiques peuvent autoriser Revenu Québec à confirmer leur admissibilité à ce crédit auprès de la SHQ. Pour ce faire, elles doivent remplir le formulaire de consentement (PDF 151 Ko) et le joindre au formulaire d’inscription au PAD.
+Options
+Au moment de l’inscription, les personnes handicapées peuvent choisir entre deux options :
+Option 1 – Accompagnement professionnel
+Option 2 – Besoins et travaux autodéterminés 
+ Référence
+ Cadre normatif du programme (PDF 482 Ko)
+Formulaire Annulation de la demande (PDF 97 Ko)
+Formulaire Changement d’option (PDF 106 Ko)
+Amélioration de l'habitat – Partenaires en habitation
+ Partenaires
+ Pour toutes les consignes de gestion liées à ce programme, les partenaires de la SHQ sont invités à consulter la page qui lui est consacrée dans la section Informations pour les partenaires en habitation (Espace partenaires).
+ Dernière mise à jour : 
+ 12 août 2026
+ 

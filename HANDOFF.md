@@ -16,14 +16,15 @@ Ontario, with federal, provincial, and municipal guides. It answers five questio
 5. How do I apply?
 
 **British Columbia is live, Ontario went live in September 2026, and Saskatchewan, Manitoba, New
-Brunswick, Nova Scotia, Prince Edward Island and Newfoundland and Labrador went live in October 2026.**
-`BC_ENABLED`, `ON_ENABLED`, `SK_ENABLED`, `MB_ENABLED`, `NB_ENABLED`, `NS_ENABLED`, `PE_ENABLED` and `NL_ENABLED`
-in `public/app.js` are all `true`; Manitoba shows a caution (`PROVINCE_NOTICES.MB` in `public/data.js`) while its programs change.
+Brunswick, Nova Scotia, Prince Edward Island, Newfoundland and Labrador and Quebec went live in October 2026.**
+`BC_ENABLED`, `ON_ENABLED`, `SK_ENABLED`, `MB_ENABLED`, `NB_ENABLED`, `NS_ENABLED`, `PE_ENABLED`, `NL_ENABLED` and
+`QC_ENABLED` in `public/app.js` are all `true`; Quebec records are written in French (`lang: "fr"`) and
+`PROVINCE_NOTICES.QC` explains it; Manitoba shows a caution (`PROVINCE_NOTICES.MB` in `public/data.js`) while its programs change.
 The
-catalog holds **400 benefits** — 16 federal, 24 Alberta, 52 British Columbia, 24 Ontario,
+catalog holds **449 benefits** — 16 federal, 24 Alberta, 52 British Columbia, 24 Ontario,
 22 Saskatchewan, 16 Manitoba, 26 New Brunswick, 31 Nova Scotia, 27 Prince Edward Island, 28 Newfoundland and
-Labrador, and the remainder municipal. The residency question offers Alberta, British Columbia, Ontario, Saskatchewan,
-Manitoba, New Brunswick, Nova Scotia, Prince Edward Island, Newfoundland and Labrador, and "another province or territory"; the last of these still
+Labrador, 39 Quebec, and the remainder municipal. The residency question offers Alberta, British Columbia, Ontario, Saskatchewan,
+Manitoba, New Brunswick, Nova Scotia, Prince Edward Island, Newfoundland and Labrador, Quebec, and "another province or territory"; the last of these still
 sees federal benefits only. Lloydminster is listed under both Alberta and Saskatchewan
 (`SHARED_CITIES` in `public/data.js`).
 

@@ -21,15 +21,17 @@ const NS_ENABLED = true;
 const PE_ENABLED = true;
 // Newfoundland and Labrador rollout — dark until launch.
 const NL_ENABLED = true;
+// Quebec rollout — dark until launch.
+const QC_ENABLED = true;
 // Scope labels compose from the enabled-province set, so flipping a flag updates them everywhere.
 // Invariant: with ON_ENABLED=false (and BC_ENABLED=true) these produce exactly the prior Alberta+BC strings.
-const _SCOPE_FULL = ["Alberta", ...(BC_ENABLED ? ["British Columbia"] : []), ...(ON_ENABLED ? ["Ontario"] : []), ...(SK_ENABLED ? ["Saskatchewan"] : []), ...(MB_ENABLED ? ["Manitoba"] : []), ...(NB_ENABLED ? ["New Brunswick"] : []), ...(NS_ENABLED ? ["Nova Scotia"] : []), ...(PE_ENABLED ? ["Prince Edward Island"] : []), ...(NL_ENABLED ? ["Newfoundland and Labrador"] : [])];
-const _SCOPE_DEMONYM = ["Albertans", ...(BC_ENABLED ? ["British Columbians"] : []), ...(ON_ENABLED ? ["Ontarians"] : []), ...(SK_ENABLED ? ["Saskatchewanians"] : []), ...(MB_ENABLED ? ["Manitobans"] : []), ...(NB_ENABLED ? ["New Brunswickers"] : []), ...(NS_ENABLED ? ["Nova Scotians"] : []), ...(PE_ENABLED ? ["Islanders"] : []), ...(NL_ENABLED ? ["Newfoundlanders and Labradorians"] : [])];
-const _SCOPE_ABBR = ["Alberta", ...(BC_ENABLED ? ["BC"] : []), ...(ON_ENABLED ? ["ON"] : []), ...(SK_ENABLED ? ["SK"] : []), ...(MB_ENABLED ? ["MB"] : []), ...(NB_ENABLED ? ["NB"] : []), ...(NS_ENABLED ? ["NS"] : []), ...(PE_ENABLED ? ["PEI"] : []), ...(NL_ENABLED ? ["NL"] : [])];
+const _SCOPE_FULL = ["Alberta", ...(BC_ENABLED ? ["British Columbia"] : []), ...(ON_ENABLED ? ["Ontario"] : []), ...(SK_ENABLED ? ["Saskatchewan"] : []), ...(MB_ENABLED ? ["Manitoba"] : []), ...(NB_ENABLED ? ["New Brunswick"] : []), ...(NS_ENABLED ? ["Nova Scotia"] : []), ...(PE_ENABLED ? ["Prince Edward Island"] : []), ...(NL_ENABLED ? ["Newfoundland and Labrador"] : []), ...(QC_ENABLED ? ["Quebec"] : [])];
+const _SCOPE_DEMONYM = ["Albertans", ...(BC_ENABLED ? ["British Columbians"] : []), ...(ON_ENABLED ? ["Ontarians"] : []), ...(SK_ENABLED ? ["Saskatchewanians"] : []), ...(MB_ENABLED ? ["Manitobans"] : []), ...(NB_ENABLED ? ["New Brunswickers"] : []), ...(NS_ENABLED ? ["Nova Scotians"] : []), ...(PE_ENABLED ? ["Islanders"] : []), ...(NL_ENABLED ? ["Newfoundlanders and Labradorians"] : []), ...(QC_ENABLED ? ["Quebecers"] : [])];
+const _SCOPE_ABBR = ["Alberta", ...(BC_ENABLED ? ["BC"] : []), ...(ON_ENABLED ? ["ON"] : []), ...(SK_ENABLED ? ["SK"] : []), ...(MB_ENABLED ? ["MB"] : []), ...(NB_ENABLED ? ["NB"] : []), ...(NS_ENABLED ? ["NS"] : []), ...(PE_ENABLED ? ["PEI"] : []), ...(NL_ENABLED ? ["NL"] : []), ...(QC_ENABLED ? ["QC"] : [])];
 const _joinAnd = (a) => (a.length <= 1 ? (a[0] || "") : `${a.slice(0, -1).join(", ")} and ${a[a.length - 1]}`);
 const _joinOrComma = (a) => (a.length <= 1 ? (a[0] || "") : `${a.slice(0, -1).join(", ")}, or ${a[a.length - 1]}`);
 const _joinOr = (a) => (a.length <= 1 ? (a[0] || "") : `${a.slice(0, -1).join(", ")} or ${a[a.length - 1]}`);
-const SCOPE_LABEL = `Alberta${BC_ENABLED ? ", BC" : ""}${ON_ENABLED ? ", ON" : ""}${SK_ENABLED ? ", SK" : ""}${MB_ENABLED ? ", MB" : ""}${NB_ENABLED ? ", NB" : ""}${NS_ENABLED ? ", NS" : ""}${PE_ENABLED ? ", PEI" : ""}${NL_ENABLED ? ", NL" : ""} + federal`;
+const SCOPE_LABEL = `Alberta${BC_ENABLED ? ", BC" : ""}${ON_ENABLED ? ", ON" : ""}${SK_ENABLED ? ", SK" : ""}${MB_ENABLED ? ", MB" : ""}${NB_ENABLED ? ", NB" : ""}${NS_ENABLED ? ", NS" : ""}${PE_ENABLED ? ", PEI" : ""}${NL_ENABLED ? ", NL" : ""}${QC_ENABLED ? ", QC" : ""} + federal`;
 const SCOPE_LABEL_LONG = _joinAnd(_SCOPE_FULL);
 const SCOPE_RESIDENTS = _joinAnd(_SCOPE_DEMONYM);
 const SCOPE_GOVERNMENTS = `Canada, ${_joinOrComma(_SCOPE_FULL)}`;
@@ -54,7 +56,7 @@ const BLANK = () => ({
   onsetBefore18: null, // true | false  (dynamic: autism/intellectual)
   canWalkFar: null,    // true | false  (dynamic: physical)
   functionalNeeds: [],// selected functional impacts; never a diagnosis verdict
-  province: null,      // "AB" | "BC" | "ON" | "SK" | "MB" | "NB" | "NS" | "PE" | "NL" | "QC" | "other"
+  province: null,      // "AB" | "BC" | "ON" | "SK" | "MB" | "NB" | "NS" | "PE" | "NL" | "QC" | "QC" | "other"
   msp: null,           // "yes" | "no" | "unsure" (BC only)
   bcAssistance: null,  // "pwd" | "other" | "none" | "unsure" (BC only)
   circumstances: [],  // concrete ownership/education facts used by a few BC programs
@@ -2113,6 +2115,334 @@ const REQS = {
     fixed: false,
     unmet: "The senior you care for must be under the household income limit and have high care needs.",
   },
+  qcSolidariteSocialeRoute: {
+    short: "Vérifiez vos contraintes sévères de santé et vos revenus",
+    who: ["you", "professional"],
+    lang: "fr",
+    met: () => lowIncome() && answers.disabilityVerified === "yes",
+    fixed: false,
+    unmet: "Vous ou un adulte de votre famille avez des contraintes sévères de santé et un faible revenu.",
+  },
+  qcAideSocialeRoute: {
+    short: "Vérifiez le critère de revenu du programme",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "Vos ressources sont sous les maximums prévus et vous n'avez pas de contraintes sévères de santé.",
+  },
+  qcRevenuBaseRoute: {
+    short: "Vérifiez votre historique à la solidarité sociale",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous avez des contraintes sévères de santé depuis longtemps, selon l'un des cas prévus.",
+  },
+  qcObjectifEmploiRoute: {
+    short: "Vérifiez si c'est votre première demande d'aide sociale",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous demandez l'aide sociale pour la première fois et y êtes admissible.",
+  },
+  qcReussirRoute: {
+    short: "Vérifiez que vous recevez le programme d’aide nommé",
+    who: ["you"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous êtes admissible à la solidarité sociale ou au revenu de base et avez des contraintes sévères.",
+  },
+  qcAllocationFamilleRoute: {
+    short: "Vérifiez que vous avez un enfant à charge",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => isUnder18(),
+    fixed: false,
+    unmet: "Vous avez un enfant de moins de 18 ans à charge et le montant dépend du revenu familial.",
+  },
+  qcSupplementEnfantHandicapeRoute: {
+    short: "Vérifiez les documents sur l’incapacité demandés",
+    who: ["you", "professional"],
+    lang: "fr",
+    met: () => answers.disabilityVerified === "yes",
+    fixed: false,
+    unmet: "Votre enfant de moins de 18 ans a une incapacité importante qui durera au moins un an.",
+  },
+  qcSehnseRoute: {
+    short: "Demandez l'évaluation des besoins de votre enfant",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Votre enfant de moins de 18 ans a des incapacités très importantes ou des soins complexes.",
+  },
+  qcRenteInvaliditeRoute: {
+    short: "Vérifiez vos cotisations et faites évaluer votre invalidité",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Retraite Québec doit vous reconnaître invalide avant 65 ans et vous devez avoir assez cotisé.",
+  },
+  qcSoutienFamillesRoute: {
+    short: "Demandez une évaluation au CLSC",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous vivez avec un proche ayant une déficience ou un TSA et vous en prenez soin chaque jour.",
+  },
+  qcAidesAuditivesRoute: {
+    short: "Vérifiez les critères du programme",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous avez une perte d'audition et vous êtes admissible au programme.",
+  },
+  qcAidesVisuellesRoute: {
+    short: "Vérifiez les critères du programme",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous avez une perte de vision partielle ou totale et vous êtes admissible au programme.",
+  },
+  qcAppareilsDeficiencePhysiqueRoute: {
+    short: "Vérifiez les critères du programme",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous avez une incapacité motrice et vous êtes admissible au programme.",
+  },
+  qcAidesEliminationRoute: {
+    short: "Demandez une note médicale",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous avez un problème d'élimination lié à une déficience ou à un TSA, établi par une note médicale.",
+  },
+  qcChienAssistanceRoute: {
+    short: "Vérifiez les conditions sur le chien et l'école",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous avez une déficience motrice permanente et un chien d'assistance à la motricité d'une école accréditée.",
+  },
+  qcAidesVieQuotidienneRoute: {
+    short: "Demandez une évaluation à l'établissement qui vous suit",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous avez une déficience significative et persistante ou un TSA et vous recevez l'aide d'un établissement.",
+  },
+  qcTriporteursRoute: {
+    short: "Demandez une évaluation à un ergothérapeute",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous avez une incapacité significative et persistante à la marche, motrice ou cardio-respiratoire sévère.",
+  },
+  qcAmbulateursRoute: {
+    short: "Demandez une évaluation à un professionnel",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous êtes majeur et avez une déficience physique qui limite votre locomotion.",
+  },
+  qcTricyclesRoute: {
+    short: "Demandez une évaluation pour votre enfant",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "L'enfant est mineur, a une déficience physique ou intellectuelle et ne peut pas utiliser un vélo standard.",
+  },
+  qcChaussuresOrthetiquesRoute: {
+    short: "Demandez une évaluation à un professionnel",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous avez une incapacité permanente à la marche, sévère à très sévère, liée au pied ou à la cheville.",
+  },
+  qcAidesCommunicationRoute: {
+    short: "Demandez une évaluation de vos besoins de communication",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous avez une déficience ou un TSA qui entraîne des incapacités à communiquer.",
+  },
+  qcTransportHebergementRoute: {
+    short: "Vérifiez la distance jusqu'à vos services",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous avez une déficience physique ou intellectuelle et des déplacements de plus de 50 km.",
+  },
+  qcServicesDeficienceRoute: {
+    short: "Vérifiez les documents sur l’incapacité demandés",
+    who: ["you", "professional"],
+    lang: "fr",
+    met: () => answers.disabilityVerified === "yes",
+    fixed: false,
+    unmet: "Vous avez une déficience physique, intellectuelle ou un TSA, ou vous êtes un proche de cette personne.",
+  },
+  qcSoutienDomicileRoute: {
+    short: "Demandez une évaluation au CLSC",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous vivez à domicile, avez besoin d'aide et êtes jugé admissible par le CLSC.",
+  },
+  qcAdaptationDomicileRoute: {
+    short: "Vérifiez les documents sur l’incapacité demandés",
+    who: ["you", "professional"],
+    lang: "fr",
+    met: () => answers.disabilityVerified === "yes",
+    fixed: false,
+    unmet: "Vous avez une incapacité significative et persistante et vous êtes citoyen ou résident permanent.",
+  },
+  qcSupplementLoyerRoute: {
+    short: "Vérifiez le critère de revenu du programme",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "Votre ménage a un faible revenu et respecte les règles d'un des deux volets.",
+  },
+  qcAdaptationVehiculeRoute: {
+    short: "Vérifiez les documents sur l’incapacité demandés",
+    who: ["you", "professional"],
+    lang: "fr",
+    met: () => answers.disabilityVerified === "yes",
+    fixed: false,
+    unmet: "Un handicap physique vous empêche de conduire ou d'utiliser un véhicule de façon sécuritaire.",
+  },
+  qcCarteAccompagnementLoisirRoute: {
+    short: "Vérifiez les documents sur l’incapacité demandés",
+    who: ["you", "professional"],
+    lang: "fr",
+    met: () => answers.disabilityVerified === "yes",
+    fixed: false,
+    unmet: "Vous êtes une personne handicapée résidant au Québec et vous avez cinq ans ou plus.",
+  },
+  qcAllocationLogementRoute: {
+    short: "Vérifiez le critère de revenu du programme",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "Le programme s'adresse aux familles et aux personnes de 50 ans ou plus; Revenu Québec confirme l'admissibilité.",
+  },
+  qcHlmRoute: {
+    short: "Vérifiez le critère de revenu du programme",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "Vous avez un faible revenu et vous répondez aux critères d'admissibilité du locateur.",
+  },
+  qcAssuranceMedicamentsRoute: {
+    short: "Vérifiez si vous avez accès à un régime collectif",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Toute la population est couverte; votre participation tient compte de votre situation économique.",
+  },
+  qcPrestationsSpecialesRoute: {
+    short: "Vérifiez que vous recevez le programme d’aide nommé",
+    who: ["you"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous recevez une prestation d'un programme d'assistance sociale, comme la solidarité sociale.",
+  },
+  qcBesoinsParticuliersAdultesRoute: {
+    short: "Vérifiez vos études et la confirmation médicale",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous avez une déficience avec incapacité significative et persistante, confirmée par un médecin.",
+  },
+  qcBesoinsParticuliersJeunesRoute: {
+    short: "Vérifiez l'école de l'enfant et la confirmation médicale",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Votre enfant a une déficience avec incapacité significative et persistante, confirmée par un médecin.",
+  },
+  qcPretsBoursesDfmRoute: {
+    short: "Vérifiez vos études et la confirmation de votre déficience",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous avez une déficience entraînant une incapacité significative et persistante, confirmée par votre médecin.",
+  },
+  quebecEquimobiliteRoute: {
+    short: "Vérifiez le critère de revenu ou d’incapacité",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => lowIncome() || answers.disabilityVerified === "yes",
+    fixed: false,
+    unmet: "Votre revenu est sous le seuil de faible revenu, ou vous utilisez le STAC.",
+  },
+  gatineauEchoRoute: {
+    short: "Vérifiez le critère de revenu du programme",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "Vous êtes sous le seuil de faible revenu, prestataire d'aide sociale ou nouvel arrivant.",
+  },
+  troisRivieresTarificationSocialeRoute: {
+    short: "Vérifiez le critère de revenu du programme",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => lowIncome(),
+    fixed: false,
+    unmet: "Un organisme communautaire accrédité juge que vous êtes en situation de vulnérabilité.",
+  },
+  qcCarteAccompagnementAutocarRoute: {
+    short: "Vérifiez les documents sur l’incapacité demandés",
+    who: ["you", "professional"],
+    lang: "fr",
+    met: () => answers.disabilityVerified === "yes",
+    fixed: false,
+    unmet: "Vous avez 8 ans ou plus et un handicap permanent qui exige un accompagnateur en autocar.",
+  },
+  qcAgirTotRoute: {
+    short: "Vérifiez l'âge de votre enfant",
+    who: ["you", "professional"],
+    lang: "fr",
+    met: () => ageIn("under6"),
+    fixed: false,
+    unmet: "Votre enfant a moins de 7 ans et son développement vous inquiète.",
+  },
+  qcArtistesHandicapRoute: {
+    short: "Vérifiez votre admissibilité aux bourses du CALQ",
+    who: ["you", "program"],
+    lang: "fr",
+    met: () => false,
+    fixed: false,
+    unmet: "Vous êtes artiste ou écrivain en situation de handicap, avec un projet financé par le CALQ.",
+  },
   kingstonMfapIncome: {
     short: "Check your income against the MFAP limit",
     who: ["you", "program"],
@@ -2869,6 +3199,8 @@ const REQS = {
   },
   intellectualDisability: { met: () => hasDisability("intellectual"), fixed: true, unmet: "This is for a child with an intellectual disability." },
   brainInjuryDisability: { met: () => hasDisability("braininjury"), fixed: true, unmet: "This is for adults with an acquired brain injury." },
+  visionDisability: { met: () => hasDisability("vision"), fixed: true, unmet: "This program is for people who are blind or have low vision." },
+  physicalDisability: { met: () => hasDisability("physical"), fixed: true, unmet: "This program is for people with a physical or mobility disability." },
   hearingDisability: { met: () => hasDisability("hearing"), fixed: true, unmet: "This grant is specifically for Deaf or hard-of-hearing students." },
   learningDisability: { met: () => hasDisability("learning"), fixed: true, unmet: "This bursary is specifically for a recommended learning-disability assessment." },
   // The bursary pays for the assessment, so no documentation is needed first
@@ -3118,6 +3450,14 @@ const REQS = {
   },
   vancouver: { met: () => answers.city === "Vancouver", fixed: true, unmet: "This is a City of Vancouver program." },
   surrey: { met: () => answers.city === "Surrey", fixed: true, unmet: "This is a City of Surrey program." },
+  montrAl: { met: () => answers.city === "Montr\u00e9al", fixed: true, unmet: "This is a local program for Montréal residents." },
+  laval: { met: () => answers.city === "Laval", fixed: true, unmet: "This is a local program for Laval residents." },
+  longueuilEtBrossardArea: { met: () => ["Longueuil", "Brossard"].includes(answers.city), fixed: true, unmet: "This is a local program for Longueuil et Brossard residents." },
+  terrebonne: { met: () => answers.city === "Terrebonne", fixed: true, unmet: "This is a local program for Terrebonne residents." },
+  villeDeQuBec: { met: () => answers.city === "Ville de Qu\u00e9bec", fixed: true, unmet: "This is a local program for Ville de Québec residents." },
+  gatineau: { met: () => answers.city === "Gatineau", fixed: true, unmet: "This is a local program for Gatineau residents." },
+  sherbrooke: { met: () => answers.city === "Sherbrooke", fixed: true, unmet: "This is a local program for Sherbrooke residents." },
+  troisRiviRes: { met: () => answers.city === "Trois-Rivi\u00e8res", fixed: true, unmet: "This is a local program for Trois-Rivières residents." },
   stJohnS: { met: () => answers.city === "St. John's", fixed: true, unmet: "This is a local program for residents of the capital city." },
   stJohnSArea: { met: () => ["St. John's", "Mount Pearl"].includes(answers.city), fixed: true, unmet: "This is a local program for residents of the capital city and Mount Pearl." },
   paradise: { met: () => answers.city === "Paradise", fixed: true, unmet: "This is a local program for Paradise residents." },
@@ -3201,7 +3541,7 @@ const resolveUrl = (u) => (typeof u === "function" ? u(answers) : u);
    journey (or vice versa). National entries use CA and remain visible in both. */
 function coverageApplies(record, province = answers.province) {
   const coverage = Array.isArray(record && record.coverage) ? record.coverage : [];
-  if (!province || !["AB", "BC", "ON", "SK", "MB", "NB", "NS", "PE", "NL"].includes(province)) return true;
+  if (!province || !["AB", "BC", "ON", "SK", "MB", "NB", "NS", "PE", "NL", "QC"].includes(province)) return true;
   return coverage.includes("CA") || coverage.includes(province);
 }
 
@@ -3216,6 +3556,7 @@ function coverageLabel(record) {
   if (coverage.includes("NS")) return "Nova Scotia";
   if (coverage.includes("PE")) return "Prince Edward Island";
   if (coverage.includes("NL")) return "Newfoundland and Labrador";
+  if (coverage.includes("QC")) return "Quebec";
   if (coverage.includes("AB")) return "Alberta";
   return "Check service area";
 }
@@ -3397,7 +3738,7 @@ function evaluate(benefit, scopedConfirmations = confirmedFacts) {
         text = "This needs Disability Tax Credit approval. If you are not sure whether you have it, check your CRA account or apply.";
       }
       const useCue = !(key === "dtc" && answers.dtc === "unsure");
-      needs.push({ key, text, action: req.action,
+      needs.push({ key, text, action: req.action, lang: req.lang,
         short: useCue ? req.short : undefined, who: useCue ? req.who : undefined });
     }
   }
@@ -3568,6 +3909,7 @@ const STEPS = [
       ...(NS_ENABLED ? [{ value: "NS", label: "Nova Scotia" }] : []),
       ...(PE_ENABLED ? [{ value: "PE", label: "Prince Edward Island" }] : []),
       ...(NL_ENABLED ? [{ value: "NL", label: "Newfoundland and Labrador" }] : []),
+      ...(QC_ENABLED ? [{ value: "QC", label: "Quebec" }] : []),
       { value: "other", label: BC_ENABLED ? "Another province or territory" : "No, another province or territory", sub: "you'll still see the Canada-wide programs in our catalog" },
     ],
     onPick(v) {
@@ -3758,6 +4100,7 @@ const STEPS = [
       (answers.province === "NS" && !NS_ENABLED) ||
       (answers.province === "PE" && !PE_ENABLED) ||
       (answers.province === "NL" && !NL_ENABLED) ||
+      (answers.province === "QC" && !QC_ENABLED) ||
       (CITIES_BY_PROVINCE[answers.province] || []).length === 0,
     options: ALBERTA_CITIES, // replaced at render time by the province's list
   },
@@ -3790,6 +4133,9 @@ const RECEIVES_OPTIONS = [
   { value: "pe-accessability-supports", province: "PE", label: "AccessAbility Supports (including Assured Income)" },
   { value: "nl-income-support", province: "NL", label: "Income Support" },
   { value: "nl-disability-benefit", province: "NL", label: "Newfoundland and Labrador Disability Benefit" },
+  { value: "qc-solidarite-sociale", province: "QC", label: "Programme de solidarité sociale" },
+  { value: "qc-revenu-base", province: "QC", label: "Programme de revenu de base" },
+  { value: "qc-aide-sociale", province: "QC", label: "Programme d’aide sociale" },
   { value: "cpp-disability", label: "CPP disability benefit" },
 ];
 const receivesChoices = (province) => RECEIVES_OPTIONS.filter((o) => !o.province || o.province === province);
@@ -3815,6 +4161,7 @@ const BROWSE_LEVELS = [
   ...(NS_ENABLED ? [{ key: "Nova Scotia", label: "Nova Scotia" }] : []),
   ...(PE_ENABLED ? [{ key: "Prince Edward Island", label: "Prince Edward Island" }] : []),
   ...(NL_ENABLED ? [{ key: "Newfoundland and Labrador", label: "Newfoundland and Labrador" }] : []),
+  ...(QC_ENABLED ? [{ key: "Quebec", label: "Quebec" }] : []),
   { key: "local", label: "Local / city" },
 ];
 
@@ -3834,8 +4181,8 @@ const PERSISTENCE_SELECTIONS = {
   circumstances: ["homeowner", "vehicleOwner", "recentGraduate", "none", "unsure"],
   receives: [...RECEIVES_OPTIONS.map((o) => o.value), "none", "unsure"],
   provinces: STEPS.find((step) => step.key === "province").options.map((item) => item.value),
-  cities: [...ALBERTA_CITIES, ...(BC_ENABLED ? BC_CITIES : []), ...(ON_ENABLED ? ON_CITIES : []), ...(SK_ENABLED ? SK_CITIES.filter((c) => !ALBERTA_CITIES.includes(c)) : []), ...(MB_ENABLED ? MB_CITIES : []), ...(NB_ENABLED ? NB_CITIES : []), ...(NS_ENABLED ? NS_CITIES : []), ...(PE_ENABLED ? PE_CITIES : []), ...(NL_ENABLED ? NL_CITIES : [])],
-  citiesByProvince: { AB: ALBERTA_CITIES, BC: BC_ENABLED ? BC_CITIES : [], ON: ON_ENABLED ? ON_CITIES : [], SK: SK_ENABLED ? SK_CITIES : [], MB: MB_ENABLED ? MB_CITIES : [], NB: NB_ENABLED ? NB_CITIES : [], NS: NS_ENABLED ? NS_CITIES : [], PE: PE_ENABLED ? PE_CITIES : [], NL: NL_ENABLED ? NL_CITIES : [] },
+  cities: [...ALBERTA_CITIES, ...(BC_ENABLED ? BC_CITIES : []), ...(ON_ENABLED ? ON_CITIES : []), ...(SK_ENABLED ? SK_CITIES.filter((c) => !ALBERTA_CITIES.includes(c)) : []), ...(MB_ENABLED ? MB_CITIES : []), ...(NB_ENABLED ? NB_CITIES : []), ...(NS_ENABLED ? NS_CITIES : []), ...(PE_ENABLED ? PE_CITIES : []), ...(NL_ENABLED ? NL_CITIES : []), ...(QC_ENABLED ? QC_CITIES : [])],
+  citiesByProvince: { AB: ALBERTA_CITIES, BC: BC_ENABLED ? BC_CITIES : [], ON: ON_ENABLED ? ON_CITIES : [], SK: SK_ENABLED ? SK_CITIES : [], MB: MB_ENABLED ? MB_CITIES : [], NB: NB_ENABLED ? NB_CITIES : [], NS: NS_ENABLED ? NS_CITIES : [], PE: PE_ENABLED ? PE_CITIES : [], NL: NL_ENABLED ? NL_CITIES : [], QC: QC_ENABLED ? QC_CITIES : [] },
   browseLevels: BROWSE_LEVELS.map((level) => level.key),
   benefitIds: BENEFITS.map((benefit) => benefit.id),
   progressStages: STAGES.map((stage) => stage.key),
@@ -5047,7 +5394,7 @@ function wireAbout() { wireInfoPage(["a-back", "a-back2"]); }
    else to look. The city lists are computed from the matcher: a listed city
    counts as covered when at least one local program does not refuse someone
    who lives there, so the page cannot drift from the catalogue. */
-const LOCAL_LEVELS_EXCLUDED = new Set(["Federal", "Alberta", "British Columbia", "Ontario", "Saskatchewan", "Manitoba", "New Brunswick", "Nova Scotia", "Prince Edward Island", "Newfoundland and Labrador"]);
+const LOCAL_LEVELS_EXCLUDED = new Set(["Federal", "Alberta", "British Columbia", "Ontario", "Saskatchewan", "Manitoba", "New Brunswick", "Nova Scotia", "Prince Edward Island", "Newfoundland and Labrador", "Quebec"]);
 function citiesWithoutLocalPrograms() {
   const out = {};
   for (const [prov, cities] of Object.entries(CITIES_BY_PROVINCE)) {
@@ -5068,7 +5415,7 @@ function citiesWithoutLocalPrograms() {
 function renderCoverage() {
   const block = (h, body) => `<div class="legal-block"><h2>${h}</h2>${body}</div>`;
   const missing = citiesWithoutLocalPrograms();
-  const names = { AB: "Alberta", BC: "British Columbia", ON: "Ontario", ...(SK_ENABLED ? { SK: "Saskatchewan" } : {}), ...(MB_ENABLED ? { MB: "Manitoba" } : {}), ...(NB_ENABLED ? { NB: "New Brunswick" } : {}), ...(NS_ENABLED ? { NS: "Nova Scotia" } : {}), ...(PE_ENABLED ? { PE: "Prince Edward Island" } : {}), ...(NL_ENABLED ? { NL: "Newfoundland and Labrador" } : {}) };
+  const names = { AB: "Alberta", BC: "British Columbia", ON: "Ontario", ...(SK_ENABLED ? { SK: "Saskatchewan" } : {}), ...(MB_ENABLED ? { MB: "Manitoba" } : {}), ...(NB_ENABLED ? { NB: "New Brunswick" } : {}), ...(NS_ENABLED ? { NS: "Nova Scotia" } : {}), ...(PE_ENABLED ? { PE: "Prince Edward Island" } : {}), ...(NL_ENABLED ? { NL: "Newfoundland and Labrador" } : {}), ...(QC_ENABLED ? { QC: "Quebec" } : {}) };
   const cityRows = Object.entries(missing).filter(([p]) => names[p]).map(([p, list]) =>
     `<p><b>${names[p]}:</b> ${list.length ? reqEscape(list.join(", ")) : "every listed community has at least one local program"}.</p>`).join("");
   const localCount = BENEFITS.filter((b) => !LOCAL_LEVELS_EXCLUDED.has(b.level)).length;
@@ -5087,7 +5434,7 @@ function renderCoverage() {
       <li>${icon("info")}<span>Some charity grants and community organizations: our <button class="linklike" data-cover-nav="grants">grants</button> and <button class="linklike" data-cover-nav="organizations">organizations</button> lists hold the ones we have checked.</span></li>
     </ul>`)}
     ${block("Language", `<p>The menus can switch to French, but program details are in English for now.</p>`)}
-    ${block("Where else to look", `<p>211 can point you to local programs: <a href="https://ab.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>Alberta 211</a>, <a href="https://bc.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>BC 211</a>, <a href="https://211ontario.ca" target="_blank" rel="noopener noreferrer" data-ext>211 Ontario</a>${SK_ENABLED ? `, <a href="https://sk.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Saskatchewan</a>` : ""}${MB_ENABLED ? `, <a href="https://mb.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Manitoba</a>` : ""}${NB_ENABLED ? `, <a href="https://nb.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 New Brunswick</a>` : ""}${NS_ENABLED ? `, <a href="https://ns.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Nova Scotia</a>` : ""}${PE_ENABLED ? `, <a href="https://pe.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Prince Edward Island</a>` : ""}${NL_ENABLED ? `, <a href="https://nl.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Newfoundland and Labrador</a>` : ""}. Elsewhere in Canada, visit <a href="https://211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211.ca</a>.</p>`)}
+    ${block("Where else to look", `<p>211 can point you to local programs: <a href="https://ab.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>Alberta 211</a>, <a href="https://bc.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>BC 211</a>, <a href="https://211ontario.ca" target="_blank" rel="noopener noreferrer" data-ext>211 Ontario</a>${SK_ENABLED ? `, <a href="https://sk.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Saskatchewan</a>` : ""}${MB_ENABLED ? `, <a href="https://mb.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Manitoba</a>` : ""}${NB_ENABLED ? `, <a href="https://nb.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 New Brunswick</a>` : ""}${NS_ENABLED ? `, <a href="https://ns.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Nova Scotia</a>` : ""}${PE_ENABLED ? `, <a href="https://pe.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Prince Edward Island</a>` : ""}${NL_ENABLED ? `, <a href="https://nl.211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Newfoundland and Labrador</a>` : ""}${QC_ENABLED ? `, <a href="https://www.211qc.ca/" target="_blank" rel="noopener noreferrer" data-ext>211 Quebec</a>` : ""}. Elsewhere in Canada, visit <a href="https://211.ca/" target="_blank" rel="noopener noreferrer" data-ext>211.ca</a>.</p>`)}
     ${block("Know a program we missed?", `<p>Tell us through the <button class="linklike js-feedback">feedback form</button>. We add a program only after we read its official page.</p>`)}
     <button class="back-link bottom" id="cv-back2">${icon("arrowLeft")} Back</button>
   </section>`;
@@ -5339,11 +5686,11 @@ function renderOrganizations() {
     <article class="org-card" data-org-id="${ttsEscape(organization.id)}">
       <header>
         <span class="org-card-icon" aria-hidden="true">${icon("help")}</span>
-        <div><h2>${ttsEscape(organization.name)}</h2><p class="org-region">${ttsEscape(organization.region)}</p></div>
+        <div><h2>${ttsEscape(organization.name)}</h2><p class="org-region"${recAttr(organization)}>${ttsEscape(organization.region)}</p></div>
       </header>
       <dl>
-        <div><dt>${t("orgs.region")}</dt><dd>${ttsEscape(organization.region)}</dd></div>
-        <div><dt>${t("orgs.what")}</dt><dd>${ttsEscape(organization.whatTheyDo)}</dd></div>
+        <div><dt>${t("orgs.region")}</dt><dd${recAttr(organization)}>${ttsEscape(organization.region)}</dd></div>
+        <div><dt>${t("orgs.what")}</dt><dd${recAttr(organization)}>${ttsEscape(organization.whatTheyDo)}</dd></div>
       </dl>
       <a class="org-link" href="${ttsEscape(organization.url)}" target="_blank" rel="noopener noreferrer">${t("orgs.website")} ${icon("external")}</a>
       ${orgVerifiedLabel(organization) ? `<p class="org-verified">${icon("check")}${t("orgs.verified").replace("{date}", orgVerifiedLabel(organization))}</p>` : ""}
@@ -6009,7 +6356,7 @@ function renderAlreadyGet(items) {
   return `<section class="result-group result-group-have" aria-labelledby="g0-title" lang="en">
     <h2 class="result-group-h" id="g0-title">${t("grp.g0")} (${items.length})</h2>
     <p class="result-group-sub">${t("grp.g0Sub")}</p>
-    <ul class="compact-rows">${items.map((e) => `<li class="compact-row" data-result-group="g0" data-id="${reqEscape(e.b.id)}"><b class="cr-name">${reqEscape(e.b.name)}</b> — <span class="cr-have">${t("grp.g0Tag")}</span> · ${guideLink(e.b)}</li>`).join("")}</ul>
+    <ul class="compact-rows">${items.map((e) => `<li class="compact-row" data-result-group="g0" data-id="${reqEscape(e.b.id)}"><b class="cr-name"${recLang(e.b) !== "en" ? ` lang="${recLang(e.b)}"` : ""}>${reqEscape(e.b.name)}</b> — <span class="cr-have">${t("grp.g0Tag")}</span> · ${guideLink(e.b)}</li>`).join("")}</ul>
   </section>`;
 }
 
@@ -6019,7 +6366,7 @@ function renderOtherPrograms(items) {
   return `<section class="result-group result-group-other" aria-labelledby="g2-title" lang="en">
     <h2 class="result-group-h" id="g2-title">${t("grp.g2")} (${items.length})</h2>
     <p class="result-group-sub">${t("grp.g2Sub")}</p>
-    <ul class="compact-rows">${items.map((e) => `<li class="compact-row" data-result-group="g2" data-id="${reqEscape(e.b.id)}"><span class="cr-if">If ${reqEscape(e.situation)}:</span> <b class="cr-name">${reqEscape(e.b.name)}</b> — ${guideLink(e.b)}</li>`).join("")}</ul>
+    <ul class="compact-rows">${items.map((e) => `<li class="compact-row" data-result-group="g2" data-id="${reqEscape(e.b.id)}"><span class="cr-if">If ${reqEscape(e.situation)}:</span> <b class="cr-name"${recLang(e.b) !== "en" ? ` lang="${recLang(e.b)}"` : ""}>${reqEscape(e.b.name)}</b> — ${guideLink(e.b)}</li>`).join("")}</ul>
   </section>`;
 }
 
@@ -6039,7 +6386,7 @@ function renderNotNow(items) {
     const startRecord = start && BENEFITS.find((b) => b.id === start);
     return `<div class="later-reason" data-later-reason="${reason}">
       <p class="later-why"><b>${head}</b>${startRecord ? ` — ${guideLink(startRecord, link)}` : ""}</p>
-      <ul class="compact-rows">${rows.map((e) => `<li class="compact-row" data-result-group="g3" data-id="${reqEscape(e.b.id)}"><b class="cr-name">${reqEscape(e.b.name)}</b> — ${guideLink(e.b)}</li>`).join("")}</ul>
+      <ul class="compact-rows">${rows.map((e) => `<li class="compact-row" data-result-group="g3" data-id="${reqEscape(e.b.id)}"><b class="cr-name"${recLang(e.b) !== "en" ? ` lang="${recLang(e.b)}"` : ""}>${reqEscape(e.b.name)}</b> — ${guideLink(e.b)}</li>`).join("")}</ul>
     </div>`;
   }).join("");
   return `<details class="result-group result-group-later" lang="en">
@@ -6052,7 +6399,9 @@ function renderNotNow(items) {
 function provinceNoticeHtml(code) {
   const n = typeof PROVINCE_NOTICES !== "undefined" ? PROVINCE_NOTICES[code] : null;
   if (!n) return "";
-  return `<div class="callout province-notice" role="note" lang="en"><span class="co-ic">${icon("info")}</span><div><b>${reqEscape(n.title)}</b><p>${reqEscape(n.lede)}</p><ul>${n.items.map((it) => `<li>${reqEscape(it)}</li>`).join("")}</ul></div></div>`;
+  // A notice may carry a French version (n.fr), shown when the interface is French.
+  const v = LANG === "fr" && n.fr ? n.fr : n;
+  return `<div class="callout province-notice" role="note" lang="${v === n.fr ? "fr" : "en"}"><span class="co-ic">${icon("info")}</span><div><b>${reqEscape(v.title)}</b><p>${reqEscape(v.lede)}</p><ul>${v.items.map((it) => `<li>${reqEscape(it)}</li>`).join("")}</ul></div></div>`;
 }
 
 function renderResults() {
@@ -6146,6 +6495,7 @@ function benefitProvince(b) {
   if (benefitIsNovaScotia(b)) return "NS";
   if (benefitIsPrinceEdwardIsland(b)) return "PE";
   if (benefitIsNewfoundlandandLabrador(b)) return "NL";
+  if (benefitIsQuebec(b)) return "QC";
   if (benefitIsBritishColumbia(b)) return "BC";
   if (b.level === "Alberta" || ALBERTA_CITIES.includes(b.level) || b.level === "Spruce Grove area") return "AB";
   const r = b.requires;
@@ -6207,7 +6557,7 @@ function renderHelpOrg(o) {
   return `
   <div class="help-card">
     <h3>${o.name}</h3>
-    <p class="summary">${o.summary}</p>
+    <p class="summary"${recAttr(o)}>${o.summary}</p>
     <div class="help-actions">${tel}${web}</div>
   </div>`;
 }
@@ -6541,8 +6891,13 @@ function reqEscape(value) {
 function reqCount(n) {
   return t(n === 1 ? "req.count.one" : "req.count.other").replace("{n}", n);
 }
+/* Requirement lists sit in lang="en" containers; a gate written in French
+   (Québec route gates carry lang: "fr") marks its own item. */
+function needLang(n) {
+  return n && n.lang && n.lang !== "en" ? ` lang="${n.lang}"` : "";
+}
 function reqPrint(needs) {
-  return needs.length ? `<section lang="en"><h2>${t("req.heading")}</h2><ul>${needs.map(n => `<li>${reqEscape(n.text)}</li>`).join("")}</ul></section>` : "";
+  return needs.length ? `<section lang="en"><h2>${t("req.heading")}</h2><ul>${needs.map(n => `<li${needLang(n)}>${reqEscape(n.text)}</li>`).join("")}</ul></section>` : "";
 }
 function renderRequirements(b, needs, surface = "detail", nextAction = null) {
   const heading = reqEscape(`req-${surface}-${b.id}`);
@@ -6559,9 +6914,9 @@ function renderRequirements(b, needs, surface = "detail", nextAction = null) {
     <p class="req-context">${t("req.context")}</p>
     <div data-fact-requirements="${b.id}">${groups.map(g => {
       const rows = ordered.filter(n => groupFor(n) === g);
-      return rows.length ? `<div class="req-group${g === "other" ? " req-fallback" : ""}"><h${level + 1} class="req-group-title">${t(`req.${g}`)}</h${level + 1}><ul class="req-list" lang="en">${rows.map(n => `<li class="req-cue" data-req-key="${reqEscape(n.key)}">${reqEscape(n.short || n.text)}${!n.short || direct ? action(n) : ""}</li>`).join("")}</ul></div>` : "";
+      return rows.length ? `<div class="req-group${g === "other" ? " req-fallback" : ""}"><h${level + 1} class="req-group-title">${t(`req.${g}`)}</h${level + 1}><ul class="req-list" lang="en">${rows.map(n => `<li class="req-cue" data-req-key="${reqEscape(n.key)}"${needLang(n)}>${reqEscape(n.short || n.text)}${!n.short || direct ? action(n) : ""}</li>`).join("")}</ul></div>` : "";
     }).join("")}
-    ${migrated.length && !direct ? `<details class="req-full"><summary>${reqEscape(t("req.full").replace("{name}", () => b.name))}</summary><ol class="req-full-list" lang="en">${migrated.map(n => `<li data-req-key="${reqEscape(n.key)}"><p class="req-cue">${reqEscape(n.short)}</p><p class="req-wording">${reqEscape(n.text)}</p>${action(n)}</li>`).join("")}</ol></details>` : ""}
+    ${migrated.length && !direct ? `<details class="req-full"><summary>${reqEscape(t("req.full").replace("{name}", () => b.name))}</summary><ol class="req-full-list" lang="en">${migrated.map(n => `<li data-req-key="${reqEscape(n.key)}"${needLang(n)}><p class="req-cue">${reqEscape(n.short)}</p><p class="req-wording">${reqEscape(n.text)}</p>${action(n)}</li>`).join("")}</ol></details>` : ""}
   </div>${factChecks(b, surface)}</section>`;
 }
 function reqPreview(b, needs) {
@@ -6569,7 +6924,7 @@ function reqPreview(b, needs) {
   if (needs.length === 1 && !needs[0].short && [...needs[0].text].length <= 120) shown.push(needs[0]);
   const more = needs.length - shown.length;
   const slug = b.id.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-  return `<section class="needs req-preview" lang="en" aria-labelledby="req-card-${reqEscape(b.id)}"><h4 class="needs-h" id="req-card-${reqEscape(b.id)}">${t("req.heading")}</h4><div data-fact-requirements="${b.id}"><p class="req-count">${reqCount(needs.length)}</p>${shown.length ? `<ul class="req-list" lang="en">${shown.map(n => `<li class="req-cue">${reqEscape(n.short || n.text)}</li>`).join("")}</ul>` : ""}${more ? `<p class="req-other">${t("req.otherChecks").replace("{n}", more)}</p>` : ""}<a class="req-guide-link js-req-guide" href="/guides/${reqEscape(slug)}" data-id="${reqEscape(b.id)}">${reqEscape(t("req.guide").replace("{name}", () => b.name))}</a></div>${factChecks(b, "card")}</section>`;
+  return `<section class="needs req-preview" lang="en" aria-labelledby="req-card-${reqEscape(b.id)}"><h4 class="needs-h" id="req-card-${reqEscape(b.id)}">${t("req.heading")}</h4><div data-fact-requirements="${b.id}"><p class="req-count">${reqCount(needs.length)}</p>${shown.length ? `<ul class="req-list" lang="en">${shown.map(n => `<li class="req-cue"${needLang(n)}>${reqEscape(n.short || n.text)}</li>`).join("")}</ul>` : ""}${more ? `<p class="req-other">${t("req.otherChecks").replace("{n}", more)}</p>` : ""}<a class="req-guide-link js-req-guide" href="/guides/${reqEscape(slug)}" data-id="${reqEscape(b.id)}">${reqEscape(t("req.guide").replace("{name}", () => b.name))}</a></div>${factChecks(b, "card")}</section>`;
 }
 
 function factChecks(b, surface) {
@@ -6635,20 +6990,20 @@ function benefitCard(b, r, rank) {
       ? reqPreview(b, r.needs) : "";
 
   const v = valueParts(b);
-  const valueHtml = `<span class="amount">${v.est ? `<span class="amount-tag">Published maximum</span>` : ""}${v.head}</span>${v.sub ? `<span class="amount-sub">${v.sub}</span>` : ""}`;
+  const valueHtml = `<span class="amount">${v.est ? `<span class="amount-tag">Published maximum</span>` : ""}<span${recAttr(b)}>${v.head}</span></span>${v.sub ? `<span class="amount-sub"${recAttr(b)}>${v.sub}</span>` : ""}`;
   return `
   <div data-fact-program="${b.id}" class="benefit ${r.status} ${stage ? "stage-" + stage : ""}">
     <div class="benefit-row">
       <div class="benefit-main">
         <div class="top">
           ${rankBadge}
-          <h3 id="benefit-title-${b.id}">${b.name}</h3>
+          <h3 id="benefit-title-${b.id}"${recAttr(b)}>${b.name}</h3>
           <span class="program-kind ${benefitType(b)}">${benefitTypeLabel(b)}</span>
           <span class="tag lvl">${b.level}</span>
         </div>
         <span class="tag match-status" data-fact-status="${b.id}">${matchStatusLabel(r.status)}</span>
         ${matchStatusNote(r.status)}${r.checkedFacts ? '<p class="checked-facts-note" lang="en">Includes facts you checked on this device.</p>' : ""}
-        ${statusBadge(b)}<p class="summary">${b.summary}</p>
+        ${statusBadge(b)}<p class="summary"${recAttr(b)}>${b.summary}</p>
         ${metaRow(b)}
         ${needsHtml}
       </div>
@@ -7175,7 +7530,7 @@ function printResults() {
    BROWSE / SEARCH — explore every benefit without doing the wizard
    ========================================================================== */
 function benefitIsLocal(b) {
-  return !["Federal", "Alberta", "British Columbia", "Ontario", "Saskatchewan", "Manitoba", "New Brunswick", "Nova Scotia", "Prince Edward Island", "Newfoundland and Labrador"].includes(b.level);
+  return !["Federal", "Alberta", "British Columbia", "Ontario", "Saskatchewan", "Manitoba", "New Brunswick", "Nova Scotia", "Prince Edward Island", "Newfoundland and Labrador", "Quebec"].includes(b.level);
 }
 function benefitIsBritishColumbia(b) {
   return b.level === "British Columbia" || b.level === "Metro Vancouver" || BC_CITIES.includes(b.level);
@@ -7206,6 +7561,9 @@ function benefitIsPrinceEdwardIsland(b) {
 function benefitIsNewfoundlandandLabrador(b) {
   return b.level === "Newfoundland and Labrador" || NL_CITIES.includes(b.level);
 }
+function benefitIsQuebec(b) {
+  return b.level === "Quebec" || QC_CITIES.includes(b.level);
+}
 function browseCatalog() {
   let list = BENEFITS;
   if (!BC_ENABLED) list = list.filter((b) => !benefitIsBritishColumbia(b));
@@ -7216,6 +7574,7 @@ function browseCatalog() {
   if (!NS_ENABLED) list = list.filter((b) => !benefitIsNovaScotia(b));
   if (!PE_ENABLED) list = list.filter((b) => !benefitIsPrinceEdwardIsland(b));
   if (!NL_ENABLED) list = list.filter((b) => !benefitIsNewfoundlandandLabrador(b));
+  if (!QC_ENABLED) list = list.filter((b) => !benefitIsQuebec(b));
   return list;
 }
 function benefitSearchText(b) {
@@ -7275,17 +7634,17 @@ function browseFiltered() {
 /* a status-agnostic card for browsing (no eligibility judgement) */
 function browseCard(b) {
   const v = valueParts(b);
-  const valueHtml = `<span class="amount">${v.est ? `<span class="amount-tag">Published maximum</span>` : ""}${v.head}</span>${v.sub ? `<span class="amount-sub">${v.sub}</span>` : ""}`;
+  const valueHtml = `<span class="amount">${v.est ? `<span class="amount-tag">Published maximum</span>` : ""}<span${recAttr(b)}>${v.head}</span></span>${v.sub ? `<span class="amount-sub"${recAttr(b)}>${v.sub}</span>` : ""}`;
   return `
   <div class="benefit browse-card${browseDis !== "all" && isDisSpecific(b, browseDis) ? " dis-match" : ""}">
     <div class="benefit-row">
       <div class="benefit-main">
         <div class="top">
-          <h3>${b.name}</h3>
+          <h3${recAttr(b)}>${b.name}</h3>
           <span class="tag lvl">${b.level}</span>
           ${browseDis !== "all" && isDisSpecific(b, browseDis) ? `<span class="tag dis-tag">${icon("check")} Aimed at this</span>` : ""}
         </div>
-        ${statusBadge(b)}<p class="summary">${b.summary}</p>
+        ${statusBadge(b)}<p class="summary"${recAttr(b)}>${b.summary}</p>
         ${metaRow(b)}
       </div>
       <div class="benefit-side">
@@ -7415,13 +7774,24 @@ function wireBrowse() {
 /* =============================================================================
    DETAIL — the in-app guide for one benefit
    ========================================================================== */
-function listBlock(title, ic, items, ordered) {
+/* Language of a record's own text. Québec records keep the official French
+   wording (b.lang === "fr"); every element that shows record text carries
+   lang="fr" when the interface is in another language, so screen readers and
+   browser translation read it correctly. Records without b.lang are English. */
+function recLang(b) {
+  return (b && b.lang) || "en";
+}
+function recAttr(b) {
+  return b && b.lang && b.lang !== LANG ? ` lang="${b.lang}"` : "";
+}
+
+function listBlock(title, ic, items, ordered, attr = "") {
   if (!items || !items.length) return "";
   const tag = ordered ? "ol" : "ul";
   return `
   <div class="guide-block">
     <div class="guide-h">${icon(ic)} ${title}</div>
-    <${tag} class="guide-list">${items.map((i) => `<li>${i}</li>`).join("")}</${tag}>
+    <${tag} class="guide-list"${attr}>${items.map((i) => `<li>${i}</li>`).join("")}</${tag}>
   </div>`;
 }
 
@@ -7532,10 +7902,11 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   const meta = [];
   if (d.time) meta.push(`<div class="meta-item"><span>${t("meta.time")}</span>${d.time}</div>`);
   if (d.phone) meta.push(`<div class="meta-item"><span>${t("meta.contact")}</span>${d.phone}</div>`);
-  const enNote = LANG !== "en" ? `<div class="note">${t("det.enNote")}</div>` : "";
+  const A = recAttr(b);
+  const enNote = LANG !== "en" && recLang(b) === "en" ? `<div class="note">${t("det.enNote")}</div>` : "";
 
   const v = valueParts(b);
-  const valueHead = `<div class="detail-amount">${reqEscape(b.amount)}</div>${v.sub ? `<div class="detail-amount-sub">${v.sub}</div>` : ""}`;
+  const valueHead = `<div class="detail-amount"${A}>${reqEscape(b.amount)}</div>${v.sub ? `<div class="detail-amount-sub"${A}>${v.sub}</div>` : ""}`;
   const valueSection = b.amount ? `<section class="guide-block guide-value"><h2 class="guide-h">${icon("info")} What it can provide</h2>${valueHead}</section>` : "";
 
   // Optional structured amount breakdown. When a benefit's value has bands or
@@ -7546,7 +7917,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   // catalogue content (not model output), interpolated like every other benefit
   // field here; the guide generator escapes the same cells for the static pages.
   const tiersSection = b.amountTiers && b.amountTiers.rows && b.amountTiers.rows.length
-    ? `<section class="guide-block guide-tiers"><h2 class="guide-h">${icon("info")} ${b.amountTiers.caption || "How the amount is worked out"}</h2><div class="tier-scroll"><table class="amount-tiers"><thead><tr>${b.amountTiers.headers.map((h) => `<th scope="col">${h}</th>`).join("")}</tr></thead><tbody>${b.amountTiers.rows.map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join("")}</tr>`).join("")}</tbody></table></div></section>`
+    ? `<section class="guide-block guide-tiers"><h2 class="guide-h">${icon("info")} ${b.amountTiers.caption || "How the amount is worked out"}</h2><div class="tier-scroll"><table class="amount-tiers"${A}><thead><tr>${b.amountTiers.headers.map((h) => `<th scope="col">${h}</th>`).join("")}</tr></thead><tbody>${b.amountTiers.rows.map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join("")}</tr>`).join("")}</tbody></table></div></section>`
     : "";
 
   // "What it covers" — a benefit's list of covered services/items, held as a
@@ -7555,7 +7926,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   // keeps the record's own framing ("CLBC funds and coordinates:").
   const coversList = d.coversList && d.coversList.items && d.coversList.items.length ? d.coversList : null;
   const coversSection = coversList
-    ? `<section class="guide-block"><h2 class="guide-h">${icon("info")} ${t("guide.covers")}</h2>${coversList.lead ? `<p class="eligibility-lead">${coversList.lead}</p>` : ""}<ul class="eligibility-list">${coversList.items.map((it) => `<li>${it}</li>`).join("")}</ul></section>`
+    ? `<section class="guide-block"><h2 class="guide-h">${icon("info")} ${t("guide.covers")}</h2>${coversList.lead ? `<p class="eligibility-lead"${A}>${coversList.lead}</p>` : ""}<ul class="eligibility-list"${A}>${coversList.items.map((it) => `<li>${it}</li>`).join("")}</ul></section>`
     : "";
 
   // Progressive disclosure (#201): secondary content sits inside labelled native
@@ -7567,12 +7938,12 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   const aboutText = d.about && d.about !== b.summary ? d.about : "";
   const aboutLong = aboutText.length > 240;
   const aboutListData = d.aboutList && d.aboutList.items && d.aboutList.items.length ? d.aboutList : null;
-  const aboutVisible = aboutText && !aboutLong && !aboutListData ? `<p class="detail-about">${aboutText}</p>` : "";
+  const aboutVisible = aboutText && !aboutLong && !aboutListData ? `<p class="detail-about"${A}>${aboutText}</p>` : "";
   const moreList = (summary, items, extraCls) => (items && items.length)
-    ? `<section class="guide-block"><h2 class="guide-h">${summary}</h2><ul class="guide-list${extraCls ? " " + extraCls : ""}">${items.map((it) => `<li>${it}</li>`).join("")}</ul></section>`
+    ? `<section class="guide-block"><h2 class="guide-h">${summary}</h2><ul class="guide-list${extraCls ? " " + extraCls : ""}"${A}>${items.map((it) => `<li>${it}</li>`).join("")}</ul></section>`
     : "";
   const aboutMore = (aboutListData || aboutLong || p2.plainTest)
-    ? `<section class="guide-block"><h2 class="guide-h">${t("guide.moreAbout")}</h2>${aboutListData ? `${aboutListData.lead ? `<p class="detail-about">${aboutListData.lead}</p>` : ""}<ul class="eligibility-list">${aboutListData.items.map((it) => `<li>${it}</li>`).join("")}</ul>` : (aboutLong ? `<p class="detail-about">${aboutText}</p>` : "")}${p2.plainTest}</section>`
+    ? `<section class="guide-block"><h2 class="guide-h">${t("guide.moreAbout")}</h2>${aboutListData ? `${aboutListData.lead ? `<p class="detail-about"${A}>${aboutListData.lead}</p>` : ""}<ul class="eligibility-list"${A}>${aboutListData.items.map((it) => `<li>${it}</li>`).join("")}</ul>` : (aboutLong ? `<p class="detail-about"${A}>${aboutText}</p>` : "")}${p2.plainTest}</section>`
     : "";
   const documentsMore = moreList(t("guide.need"), d.documents);
   const tipsMore = moreList(t("guide.tips"), d.tips);
@@ -7587,11 +7958,11 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   const di = difficultyInfo(mm.difficulty);
   const facts = [];
   if (mm.difficulty) facts.push(["Difficulty", `<span class="fact-diff ${di.cls}"><span class="dots">${di.dots}</span> ${di.label}</span>`]);
-  if (mm.effort) facts.push(["Application", mm.effort]);
+  if (mm.effort) facts.push(["Application", `<span${A}>${mm.effort}</span>`]);
   // One row for one fact: the record's own timing text when it has one, else
   // the short meta wait. Two rows ("Wait for a decision" and "Processing") often
   // disagreed (site audit 2026-10, C-CONTENT-TRUST P1-09/P2-07).
-  if (d.time || mm.wait) facts.push(["How long", d.time || mm.wait]);
+  if (d.time || mm.wait) facts.push(["How long", `<span${A}>${d.time || mm.wait}</span>`]);
   if (d.phone) facts.push(["Phone", d.phone]);
   facts.push(["Level", b.level]);
   const factsHtml = facts.map(([k, val]) => `<div class="fact"><dt>${k}</dt><dd>${val}</dd></div>`).join("");
@@ -7617,8 +7988,8 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
     : `<span data-fact-status="${b.id}" class="af-a af-status ${sideStatus.cls}">${sideStatus.txt}</span>${matchStatusNote(r.status)}${r.checkedFacts ? '<p class="checked-facts-note" lang="en">Includes facts you checked on this device.</p>' : ""}`;
   const answerFirst = inline ? "" : `<section class="answer-first" aria-label="${t("af.aria")}">
         <div class="af-cell"><span class="af-q">${t("af.eligible")}</span>${afEligible}</div>
-        ${b.amount ? `<div class="af-cell"><span class="af-q">${t("af.howMuch")}</span><span class="af-a">${reqEscape(b.amount)}</span></div>` : ""}
-        <div class="af-cell"><span class="af-q">${t("af.howApply")}</span>${b.applyUrl ? `<a class="af-apply-link" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${applyLabel(b)} ${icon("external")}</a>` : `<span class="af-a">${applyLabel(b)}</span>`}${d.time ? `<span class="af-meta">${t("meta.time")}: ${d.time}</span>` : ""}</div>
+        ${b.amount ? `<div class="af-cell"><span class="af-q">${t("af.howMuch")}</span><span class="af-a"${A}>${reqEscape(b.amount)}</span></div>` : ""}
+        <div class="af-cell"><span class="af-q">${t("af.howApply")}</span>${b.applyUrl ? `<a class="af-apply-link" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext><span${A}>${applyLabel(b)}</span> ${icon("external")}</a>` : `<span class="af-a"${A}>${applyLabel(b)}</span>`}${d.time ? `<span class="af-meta">${t("meta.time")}: <span${A}>${d.time}</span></span>` : ""}</div>
       </section>`;
 
   return `
@@ -7629,8 +8000,8 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
       <div class="detail-tags">
         <span class="tag lvl">${b.level}</span>
       </div>
-      <h1 class="detail-title">${b.name}</h1>
-      ${statusBadge(b)}<p class="detail-lede">${b.summary}</p>
+      <h1 class="detail-title"${A}>${b.name}</h1>
+      ${statusBadge(b)}<p class="detail-lede"${A}>${b.summary}</p>
     </header>`}
 
     <div class="detail-body${inline ? " inline-guide-body" : ""}">
@@ -7642,16 +8013,16 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
         ${/* Essentials stay visible; secondary detail moves into the labelled
               "More …" expanders below so the page isn't a wall of text (#201). */ ""}
         ${aboutVisible}
-        ${b.note ? `<section class="guide-block"><h2 class="guide-h">${t("guide.goodToKnow")}</h2><div class="note">${b.note}</div></section>` : ""}
+        ${b.note ? `<section class="guide-block"><h2 class="guide-h">${t("guide.goodToKnow")}</h2><div class="note"${A}>${b.note}</div></section>` : ""}
         ${b.eligibility && b.eligibility.items && b.eligibility.items.length
-          ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="eligibility-lead">${b.eligibility.mode === "any" ? t("guide.mustMeetAny") : t("guide.mustMeetAll")}</p><ul class="eligibility-list">${b.eligibility.items.map((it) => `<li>${it}</li>`).join("")}</ul>${b.eligibility.note ? (b.eligibility.note.items ? `<p class="eligibility-lead">${b.eligibility.note.lead}</p><ul class="eligibility-list">${b.eligibility.note.items.map((it) => `<li>${it}</li>`).join("")}</ul><p class="detail-about eligibility-note">${b.eligibility.note.after}</p>` : `<p class="detail-about eligibility-note">${b.eligibility.note}</p>`) : ""}</section>`
-          : b.requiresNote ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="detail-about">${b.requiresNote}</p></section>` : ""}
+          ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="eligibility-lead">${b.eligibility.mode === "any" ? t("guide.mustMeetAny") : t("guide.mustMeetAll")}</p><ul class="eligibility-list"${A}>${b.eligibility.items.map((it) => `<li>${it}</li>`).join("")}</ul>${b.eligibility.note ? (b.eligibility.note.items ? `<p class="eligibility-lead"${A}>${b.eligibility.note.lead}</p><ul class="eligibility-list"${A}>${b.eligibility.note.items.map((it) => `<li>${it}</li>`).join("")}</ul><p class="detail-about eligibility-note"${A}>${b.eligibility.note.after}</p>` : `<p class="detail-about eligibility-note"${A}>${b.eligibility.note}</p>`) : ""}</section>`
+          : b.requiresNote ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="detail-about"${A}>${b.requiresNote}</p></section>` : ""}
         ${valueSection}
         ${tiersSection}
         ${coversSection}
         ${b.id === "dtc" ? `<div class="dtc-prep-guide-cta"><button class="apply" type="button" data-open-dtc-prep>${icon("print")}${t("dtcPrep.guideButton")}</button></div>` : ""}
         ${p2.tax}
-        ${listBlock(t("guide.how"), "compass", guideSteps, true)}
+        ${listBlock(t("guide.how"), "compass", guideSteps, true, d.steps && d.steps.length ? A : "")}
         ${b.needsPractitioner && !inline ? practitionerFinder(b) : ""}
         ${p2.related}
         ${aboutMore}
@@ -7672,7 +8043,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
           ${nextAction ? `<a class="apply side-next-action" href="${nextAction.action.url}" target="_blank" rel="noopener noreferrer" data-ext>${nextAction.action.text} ${icon("external")}</a>` : ""}
           <dl class="side-facts">${factsHtml}</dl>
           <div class="side-actions">
-            ${b.applyUrl ? `<a class="apply" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${applyLabel(b)} ${icon("external")}</a>` : ""}
+            ${b.applyUrl ? `<a class="apply" href="${resolveUrl(b.applyUrl)}" target="_blank" rel="noopener noreferrer" data-ext><span${A}>${applyLabel(b)}</span> ${icon("external")}</a>` : ""}
             ${b.declarationUrl ? `<a class="source-link" href="${resolveUrl(b.declarationUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.declarationText || "Required dependent declaration"} ${icon("external")}</a>` : ""}
             <a class="source-link" href="${resolveUrl(b.source)}" target="_blank" rel="noopener noreferrer" data-ext>${t("det.official")} ${icon("external")}</a>
             ${inline ? "" : `<button class="source-link copy-link" type="button" data-copy-guide-link="${b.id}">Copy link to this guide</button>`}
@@ -7683,7 +8054,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
       </aside>
     </div>
 
-    ${inline ? "" : `${backBtn("d-back2")}</div>${unmet.length ? `<article class="print-action-plan" aria-hidden="true" lang="en"><h1>${reqEscape(b.name)}</h1><p>${reqEscape(b.summary)}</p><p><b>Official link:</b> ${reqEscape(resolveUrl(b.applyUrl || b.source))}</p>${reqPrint(unmet)}</article>` : ""}`}`;
+    ${inline ? "" : `${backBtn("d-back2")}</div>${unmet.length ? `<article class="print-action-plan" aria-hidden="true" lang="en"><h1 lang="${recLang(b)}">${reqEscape(b.name)}</h1><p lang="${recLang(b)}">${reqEscape(b.summary)}</p><p><b>Official link:</b> ${reqEscape(resolveUrl(b.applyUrl || b.source))}</p>${reqPrint(unmet)}</article>` : ""}`}`;
 }
 
 function renderDetail(id) {

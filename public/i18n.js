@@ -888,19 +888,20 @@ function t(key) {
   const ns = typeof NS_ENABLED !== "undefined" && NS_ENABLED;
   const pe = typeof PE_ENABLED !== "undefined" && PE_ENABLED;
   const nl = typeof NL_ENABLED !== "undefined" && NL_ENABLED;
+  const qc = typeof QC_ENABLED !== "undefined" && QC_ENABLED;
   const scope = LANG === "fr"
     ? {
-        scopeBenefits: ["Alberta", ...(bc ? ["C.-B."] : []), ...(on ? ["Ontario"] : []), ...(sk ? ["Saskatchewan"] : []), ...(mb ? ["Manitoba"] : []), ...(nb ? ["N.-B."] : []), ...(ns ? ["N.-É."] : []), ...(pe ? ["Î.-P.-É."] : []), ...(nl ? ["T.-N.-L."] : [])].join(" · ") + " + prestations fédérales",
-        scopeResidents: ["Albertains", ...(bc ? ["Britanno-Colombiens"] : []), ...(on ? ["Ontariens"] : []), ...(sk ? ["Saskatchewanais"] : []), ...(mb ? ["Manitobains"] : []), ...(nb ? ["Néo-Brunswickois"] : []), ...(ns ? ["Néo-Écossais"] : []), ...(pe ? ["Insulaires"] : []), ...(nl ? ["Terre-Neuviens et Labradoriens"] : [])].join(" et "),
-        scopeResidentsPrep: ["de l’Alberta", ...(bc ? ["de la Colombie-Britannique"] : []), ...(on ? ["de l’Ontario"] : []), ...(sk ? ["de la Saskatchewan"] : []), ...(mb ? ["du Manitoba"] : []), ...(nb ? ["du Nouveau-Brunswick"] : []), ...(ns ? ["de la Nouvelle-Écosse"] : []), ...(pe ? ["de l’Île-du-Prince-Édouard"] : []), ...(nl ? ["de Terre-Neuve-et-Labrador"] : [])].join(" et "),
-        scopeProgramList: ["albertains", ...(bc ? ["britanno-colombiens"] : []), ...(on ? ["ontariens"] : []), ...(sk ? ["saskatchewanais"] : []), ...(mb ? ["manitobains"] : []), ...(nb ? ["néo-brunswickois"] : []), ...(ns ? ["néo-écossais"] : []), ...(pe ? ["prince-édouardiens"] : []), ...(nl ? ["terre-neuviens"] : []), "fédéraux et municipaux"].join(", "),
-        scopeDestination: ["Alberta", ...(bc ? ["Colombie-Britannique"] : []), ...(on ? ["Ontario"] : []), ...(sk ? ["Saskatchewan"] : []), ...(mb ? ["Manitoba"] : []), ...(nb ? ["Nouveau-Brunswick"] : []), ...(ns ? ["Nouvelle-Écosse"] : []), ...(pe ? ["Île-du-Prince-Édouard"] : []), ...(nl ? ["Terre-Neuve-et-Labrador"] : [])].join(" ou "),
+        scopeBenefits: ["Alberta", ...(bc ? ["C.-B."] : []), ...(on ? ["Ontario"] : []), ...(sk ? ["Saskatchewan"] : []), ...(mb ? ["Manitoba"] : []), ...(nb ? ["N.-B."] : []), ...(ns ? ["N.-É."] : []), ...(pe ? ["Î.-P.-É."] : []), ...(nl ? ["T.-N.-L."] : []), ...(qc ? ["QC"] : [])].join(" · ") + " + prestations fédérales",
+        scopeResidents: ["Albertains", ...(bc ? ["Britanno-Colombiens"] : []), ...(on ? ["Ontariens"] : []), ...(sk ? ["Saskatchewanais"] : []), ...(mb ? ["Manitobains"] : []), ...(nb ? ["Néo-Brunswickois"] : []), ...(ns ? ["Néo-Écossais"] : []), ...(pe ? ["Insulaires"] : []), ...(nl ? ["Terre-Neuviens et Labradoriens"] : []), ...(qc ? ["Québécois"] : [])].join(" et "),
+        scopeResidentsPrep: ["de l’Alberta", ...(bc ? ["de la Colombie-Britannique"] : []), ...(on ? ["de l’Ontario"] : []), ...(sk ? ["de la Saskatchewan"] : []), ...(mb ? ["du Manitoba"] : []), ...(nb ? ["du Nouveau-Brunswick"] : []), ...(ns ? ["de la Nouvelle-Écosse"] : []), ...(pe ? ["de l’Île-du-Prince-Édouard"] : []), ...(nl ? ["de Terre-Neuve-et-Labrador"] : []), ...(qc ? ["du Québec"] : [])].join(" et "),
+        scopeProgramList: ["albertains", ...(bc ? ["britanno-colombiens"] : []), ...(on ? ["ontariens"] : []), ...(sk ? ["saskatchewanais"] : []), ...(mb ? ["manitobains"] : []), ...(nb ? ["néo-brunswickois"] : []), ...(ns ? ["néo-écossais"] : []), ...(pe ? ["prince-édouardiens"] : []), ...(nl ? ["terre-neuviens"] : []), ...(qc ? ["québécois"] : []), "fédéraux et municipaux"].join(", "),
+        scopeDestination: ["Alberta", ...(bc ? ["Colombie-Britannique"] : []), ...(on ? ["Ontario"] : []), ...(sk ? ["Saskatchewan"] : []), ...(mb ? ["Manitoba"] : []), ...(nb ? ["Nouveau-Brunswick"] : []), ...(ns ? ["Nouvelle-Écosse"] : []), ...(pe ? ["Île-du-Prince-Édouard"] : []), ...(nl ? ["Terre-Neuve-et-Labrador"] : []), ...(qc ? ["Québec"] : [])].join(" ou "),
       }
     : {
         scopeBenefits: typeof SCOPE_LABEL !== "undefined" ? `${SCOPE_LABEL} benefits` : "Alberta + federal benefits",
         scopeResidents: typeof SCOPE_RESIDENTS !== "undefined" ? SCOPE_RESIDENTS : "Albertans",
         scopeResidentsPrep: "",
-        scopeProgramList: ["Alberta", ...(bc ? ["British Columbia"] : []), ...(on ? ["Ontario"] : []), ...(sk ? ["Saskatchewan"] : []), ...(mb ? ["Manitoba"] : []), ...(nb ? ["New Brunswick"] : []), ...(ns ? ["Nova Scotia"] : []), ...(pe ? ["Prince Edward Island"] : []), ...(nl ? ["Newfoundland and Labrador"] : []), "federal, and municipal"].join(", "),
+        scopeProgramList: ["Alberta", ...(bc ? ["British Columbia"] : []), ...(on ? ["Ontario"] : []), ...(sk ? ["Saskatchewan"] : []), ...(mb ? ["Manitoba"] : []), ...(nb ? ["New Brunswick"] : []), ...(ns ? ["Nova Scotia"] : []), ...(pe ? ["Prince Edward Island"] : []), ...(nl ? ["Newfoundland and Labrador"] : []), ...(qc ? ["Quebec"] : []), "federal, and municipal"].join(", "),
         scopeDestination: typeof SCOPE_DESTINATION !== "undefined" ? SCOPE_DESTINATION : "Alberta",
       };
   return String(raw).replace(/\{(scopeBenefits|scopeResidents|scopeResidentsPrep|scopeProgramList|scopeDestination)\}/g, (_, name) => scope[name]);

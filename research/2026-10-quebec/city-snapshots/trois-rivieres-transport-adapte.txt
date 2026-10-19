@@ -1,0 +1,78 @@
+URL: https://sttr.qc.ca/transport-adapte/ | province: QC | program: STTR (Trois-Rivières) — Transport adapté | fetched: 2026-10-18
+=== PAGE: https://sttr.qc.ca/transport-adapte/ (HTTP 200, 7269 chars)
+
+ - Accueil
+- 
+- Transport adapté
+ Transport adapté
+Planifier votre itinéraire
+ Lieu de départ
+ Lieu d’arrivée
+ Calculer l'itinéraire
+Consultez les horaires des circuits
+ Voir les horaires
+ Transport adapté
+ Transport adapté
+ Le service de transport adapté de la STTR comprend également un service de transport en commun adapté (collectif) de porte à porte accessible, fonctionnant sur réservation seulement. Il s’adresse aux personnes handicapées au sens de la Loi et qui répondent aux critères d’éligibilité établis par la Politique d’admissibilité au transport adapté du ministère des Transports et de la Mobilité durable du Québec.
+Pour en bénéficier, il faut d’abord y être admis.
+Admission
+Conditions d’admissibilité
+Le comité d’admission détermine l’admissibilité d’une personne en analysant son dossier. Les décisions d’admissibilité sont basées sur les critères établis dans la Politique d’admissibilité au transport adapté du ministère des Transports et de la Mobilité durable eu Québec.
+Qui est admissible ?
+Toute personne qui a une déficience significative et persistante et qui est limitée dans l’accomplissement de ses activités normales, une personne considérée comme handicapée, sur le plan de la mobilité et des limitations justifiant l’utilisation d’un service de transport adapté.
+Seules les limitations de mobilité suivantes peuvent être retenues aux fins de l’admissibilité:
+- L’incapacité de marcher 400 mètres sur un terrain plat et uni;
+- L’incapacité de monter une marche de 35 centimètres de hauteur avec appui, ou d’en descendre une équivalente sans appui;
+- L’incapacité d’effectuer la totalité d’un déplacement en transport en commun régulier;
+- L’incapacité de s’orienter de façon fonctionnelle dans le temps ou dans l’espace;
+- L’incapacité à maîtriser des situations ou des comportements pouvant être préjudiciables à sa propre sécurité ou à celle des autres;
+- L’incapacité de communiquer de façon verbale ou gestuelle ( cette incapacité ne peut toutefois être retenue à elle seule pour des fins d’admissibilité).
+Heures de service du transport adapté
+Voici les heures pendant lequel le service de transport adapté est offert :
+- Du lundi au vendredi, de 7h00 à 23h00;
+- Le samedi de 8h15 à 23h00;
+- Le dimanche de 10h00 à 18h30.
+Guide de l’usager du transport adapté
+Nous avons élaboré un guide pour permettre aux usagers du transport adapté de bien comprendre les modalités de ce service. En plus d’expliquer son fonctionnement, celui-ci précise les responsabilités des usagers et des membres de notre personnel. Vous pouvez consulter le guide en cliquant ici.
+ Procédures d'admission
+ Pour être admis(e) au service de transport adapté, vous devez présenter une demande d’admission. Vous pouvez obtenir une copie du formulaire de demande d’admission au transport adapté en cliquant ici ou en communiquant avec le service à la clientèle au 819 373-1778.
+La personne qui présente une demande d’admissibilité au service doit faire compléter la deuxième partie du formulaire par un médecin ou un professionnel du réseau de la santé et des services sociaux. Les informations obtenues doivent permettre d’évaluer l’incapacité associée au handicap.
+Une fois le formulaire de demande d’admission dûment complété et signé par qui de droit, nous le faire parvenir à l’adresse suivante:
+Comité d’admission de la STTR
+2000, rue Bellefeuille, C.P. 696
+Trois-Rivières (Québec)
+G9A 5J3
+Le comité d’admission vous fera part de sa décision par écrit, dans les 45 jours suivant la réception de votre formulaire. Veuillez noter que toute demande incomplète ou illisible sera retournée à l’expéditeur, ce qui retardera le traitement de votre demande ainsi que votre accès au transport adapté. Il est bien important de répondre à toutes les questions se rapportant à votre situation.
+Il est de la responsabilité de l'usager d'informer la STTR de tout changement au dossier, tel que modification de l'adresse, du numéro de téléphone, etc.
+ Nouvelle admission au transport adapté : avant votre premier déplacement
+ Vous venez d’être admis(e) au transport adapté ? Avant de réserver votre premier déplacement, vous devez avoir reçu et lu votre trousse d’admission, qui vous est envoyée par la poste.
+Cette trousse contient des renseignements importants pour utiliser le service de façon sécuritaire, notamment votre lettre d’admission, les règles d’utilisation du transport adapté ainsi que la façon de réserver, de modifier ou d’annuler un déplacement. Il est essentiel d’en prendre connaissance avant d’utiliser le service.
+Veuillez noter que la confirmation de votre admission peut vous être donnée par téléphone, mais que vos documents vous sont transmis uniquement par la poste. Il n’est pas possible de réserver un déplacement au transport adapté pour venir chercher vos documents à la STTR. Vous pourrez réserver votre premier déplacement une fois vos documents reçus et lus.
+ Réservations pour une personne
+ Il est maintenant possible de réserver votre déplacement en ligne ! Pour ce faire, rendez-vous sur notre nouvelle plateforme en cliquant ici.
+Les réservations pour des déplacements occasionnels doivent être faites en avant midi du jour ouvrable précédent. Les demandes de déplacement le jour même ne sont pas acceptées.
+Voici un rappel des renseignements requis lors de votre réservation :
+- Votre numéro de client
+- La date de votre déplacement
+- L’adresse de départ
+- L’adresse exacte de destination
+- L’heure de rendez-vous (s’il y a lieu)
+- L’heure de retour
+- L’aide à la mobilité utilisée (ex: canne, déambulateur, fauteuil motorisé. etc.)
+- La présence d’un accompagnateur s’il y a lieu.
+Modification d’une réservation
+La répartition peut modifier une réservation si celle-ci reste dans le délai de 48 hrs.
+Les modifications de dernière minute peuvent être demandées, mais nous ne pouvons garantir le changement. Le client aura donc le choix de conserver sa réservation d’origine ou de faire la demande au risque de perdre son transport.
+ Réservations pour un groupe
+ Si vous désirez effectuer une réservation pour plusieurs personnes à la fois, vous devez nous faire parvenir un courriel à info@sttr.qc.ca.
+Votre courriel doit nous être acheminé le plus rapidement possible et inclure les informations suivantes :
+- Heure de début de l’activité;
+- Heure de fin de l’activité;
+- Prénom et nom des usagers;
+- Numéro de client de chaque usager.
+ Annulations
+ Pour annuler une réservation, communiquez avec le service à la clientèle du transport adapté au 819 373-1778.
+Dans le cas où le service à la clientèle est fermé, vous pouvez annuler votre déplacement en composant le 819-380-8868.  Prenez note qu’aucune réservation ou modification à une réservation ne sera effectuée par le biais de ce numéro.
+Si vous omettez d’annuler votre transport et que le transporteur se déplace pour rien, le retour du client sera automatiquement annulé dans les 30 prochaines minutes. Les transports en blanc seront notés et comptabilisés à votre dossier.
+ Informations et conformité – Aides à la mobilité
+ Pour répondre aux questions fréquentes sur votre fauteuil roulant, triporteur, quadriporteur ou aide à la mobilité, et garantir leur conformité à nos normes de sécurité, nous vous invitons à télécharger ce document conçu spécialement pour vous.

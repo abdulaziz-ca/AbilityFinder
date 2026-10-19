@@ -1,0 +1,139 @@
+URL: https://www.retraitequebec.gouv.qc.ca/fr/citoyens/enfants/allocation-famille | province: QC | program: Allocation famille | fetched: 2026-10-18
+=== PAGE: https://www.retraitequebec.gouv.qc.ca/fr/citoyens/enfants/allocation-famille (HTTP 200, 14117 chars)
+
+ L'Allocation famille
+ L'Allocation famille est une aide financière qui comprend trois types de prestations :
+ Tout afficher
+ Allocation famille
+ L'Allocation famille est une aide financière versée à toutes les familles admissibles qui ont à leur charge un enfant de moins de 18 ans qui habite avec elles.
+Pour pouvoir recevoir l'Allocation famille, vous ou encore votre conjoint ou conjointe devez remplir toutes ces conditions :
+- Être responsable des soins et de l'éducation d'un enfant de moins de 18 ans.
+- Habiter avec l'enfant ou avoir habité avec lui juste avant qu'il soit placé ou hébergé temporairement par un établissement du réseau de la santé et des services sociaux.
+- Vivre au Québec (selon la Loi sur les impôts).
+- Avoir l'un des statuts suivants :- citoyen canadien;
+- résident permanent;
+- résident temporaire qui habite au Canada depuis les 18 derniers mois;
+- personne protégée.
+Vous ne pouvez pas recevoir l'Allocation famille si :
+- vous êtes la famille d'accueil d'un enfant;
+- vous n'avez pas à payer d'impôt selon Revenu Québec;
+- vous attendez d'obtenir un statut de personne protégée (demandeur d'asile);
+- votre enfant est marié ou vit en union de fait, et son conjoint ou sa conjointe a reçu un crédit transféré d'un ou une partenaire à l'autre.
+Consultez la section Quand faire une demande ou un changement dans votre dossier? pour connaître les démarches à effectuer selon votre situation.
+Le montant de l'Allocation famille est calculé deux fois par année, à moins d'un changement de situation conjugale (séparation ou union) et/ou d'un changement de situation familiale (modification des conditions de garde d'un enfant). Vous devez d'ailleurs nous aviser de tout changement apporté à votre situation familiale en cours d'année pour pouvoir recevoir les versements auxquels vous avez droit et ainsi éviter de devoir rembourser des sommes reçues en trop. Les sections Web Démarches en cas de séparation ou Démarches lors d'une union expliquent comment nous informer d'un changement de situation conjugale. La section Web Je partage la garde de l'enfant présente les démarches à faire selon votre temps de garde par mois.
+Bon à savoir
+Pour recevoir l'Allocation famille, votre conjointe ou conjoint et vous devez produire une déclaration de revenus chaque année, même si vous n'avez aucun revenu à déclarer. Si l'une de vos déclarations n'a pas été envoyée avant la date limite fixée par Revenu Québec, les versements de l'Allocation famille seront suspendus jusqu'à ce que cette déclaration de revenus soit produite.
+Le mois suivant les 18 ans de l'enfant, vous ne recevrez plus l'Allocation famille ni, le cas échéant, le supplément pour enfant handicapé. De même, s'il y a lieu, votre enfant ne sera plus admissible à la rente d'orphelin ni à la rente d'enfant de cotisant invalide.
+Si votre enfant de moins de 18 ans décède, consultez les mesures spéciales concernant le maintien du versement de l'Allocation famille aux parents endeuillés.
+Bon à savoir
+Nous excluons du calcul de votre rente de retraite du Régime de rentes du Québec les mois où vous avez eu droit à des prestations familiales du Québec ou du Canada, comme l’Allocation famille et l’allocation canadienne pour enfants, pour un enfant de moins de 7 ans. Cette période peut parfois se prolonger jusqu’à la fin de l’année où l’enfant atteint 18 ans. C’est le cas si vous recevez pour cet enfant le supplément pour enfant handicapé nécessitant des soins exceptionnels (SEHNSE).
+Ces mois sont exclus du calcul de votre rente seulement si vous recevez ces prestations à votre nom. Cela fait augmenter la moyenne utilisée pour calculer votre rente, ce qui vous avantage.
+ Supplément pour l'achat de fournitures scolaires 
+ Il est versé une fois par année, en juillet, pour l'année scolaire à venir. Son montant est le même pour tous les enfants admissibles. Consultez notre section Web 
+ Supplément pour l'achat de fournitures scolaires pour en savoir plus.
+ Suppléments pour enfant handicapé 
+ Deux aides financières pour enfant handicapé sont offertes : le supplément pour enfant handicapé et le supplément pour enfant handicapé nécessitant des soins exceptionnels. Consultez notre section Web 
+ Un enfant handicapé pour en savoir plus.
+ Outil de calcul et montants
+ L'outil CalculAide permet d'estimer le montant de l'Allocation famille lors d'une première demande ou à la suite d'un changement de situation familiale.
+Calcul de l'Allocation en fonction de la situation familiale
+Le montant de l'Allocation famille est déterminé en fonction du revenu familial, au 31 décembre de l'année précédente, comme ils sont indiqués dans la déclaration de revenus envoyée à Revenu Québec.
+Ainsi, le montant de l'Allocation famille varie d'une famille à l'autre. Il est calculé chaque année en mai et mis à jour en juillet selon :
+- le nombre d'enfants à charge de moins de 18 ans qui habitent avec la famille;
+- le nombre d'enfants en garde partagée ou exclusive;
+- la situation conjugale (célibataire ou avec conjoint ou conjointe);
+- le revenu familial (montant inscrit à la ligne 275 de la déclaration de revenus du Québec), établi selon l'une de ces situations :- revenus additionnés des deux parents qui forment un couple;
+- revenus additionnés des deux conjoints ou conjointes qui forment une famille recomposée;
+- revenu personnel du parent, dans le cas d'une famille monoparentale.
+Montants de l'Allocation famille selon le revenu familial en 2026Revenu familialMontants de l'Allocation famille
+Famille biparentale
+60 000 $ ou moins3 068 $
+107 000 $ ou plus1 221 $
+Famille monoparentale
+44 000 $ ou moins4 145 $
+107 000 $ ou plus1 651 $
+Bon à savoir
+Pour recevoir l'Allocation famille, votre conjointe ou conjoint et vous devez produire une déclaration de revenus chaque année, même si vous n'avez aucun revenu à déclarer.
+Calcul de l'Allocation en fonction du coût de la vie
+Les montants maximum et minimum de l'Allocation famille sont aussi rajusté au coût de la vie automatiquement chaque année en janvier. À la fin décembre, il est possible de voir ces nouvelles sommes versées pour l'année suivante dans la section « Mes prestations » de Mon dossier.
+Le montant du supplément pour l'achat de fournitures scolaires est le même pour chaque enfant admissible, peu importe le revenu familial.
+Les montants des suppléments pour enfant handicapé (SEH et SEHNSE) sont les mêmes pour chaque enfant admissible, peu importe la condition de l'enfant et le revenu familial.
+Montants annuels maximaux et minimaux – 2026
+Allocation famille
+Supplément pour l'achat de fournitures scolaires
+Suppléments pour enfant handicapé
+Allocation famille
+- Montant annuel maximal par enfant : 3 068$
++ 1 077$ famille monoparentale
+- Montant annuel minimal par enfant : 1 221$
++ 430$ famille monoparentale
+Supplément pour l'achat de fournitures scolaires
+- Montant annuel fixe par enfant : 127$
+Suppléments pour enfant handicapé
+- Montant annuel fixe par enfant pour le SEH : 2 892$
+- Montant annuel fixe par enfant pour le SEHNSE :
+14 580$ (palier 1)
+9 696$ (palier 2)
+Pour plus de détails sur les montants de l'Allocation famille, consultez nos tableaux.
+Consultez votre avis annuel en juin
+Il est possible de voir les nouveaux montants des versements à la mi-juin dans l'avis annuel Le lien s’ouvrira dans une nouvelle fenêtre. déposé dans la section « Mes documents » de Mon dossier. Cet avis concerne les sommes que vous recevrez pour une période de 12 mois, de juillet à juin. Il est important de vérifier l'exactitude des renseignements sur la situation familiale, car les sommes versées varient notamment selon le nombre d'enfants à charge et en garde partagée.
+Dans Mon dossier, vous pourrez choisir le mode de communication 100 % numérique pour ne rien manquer grâce aux notifications. Ainsi, vous saurez tout de suite quand votre avis annuel sera disponible dans votre dossier numérique.
+Si les renseignements ne sont pas exacts, informez-nous par Internet en remplissant les demandes qui correspondent à votre nouvelle situation familiale (demande d'Allocation famille, demande de changement de situation conjugale, etc.) ou par téléphone. Ainsi, vous vous assurez de recevoir toutes les sommes auxquelles vous avez droit et évitez d'avoir à rembourser des sommes reçues en trop.
+Avis annuel concernant
+l'Allocation famille
+Si votre avis est à zéro, c'est que nous n'avons pas reçu de Revenu Québec les informations de votre déclaration de revenus. Nous n'avons pas pu calculer le nouveau montant de l'Allocation famille que vous recevez. Cette aide financière est donc suspendue jusqu'au moment où nous recevrons ces informations de Revenu Québec. Une fois que vous avez reçu votre avis de cotisation de Revenu Québec, il faut prévoir 20 jours ouvrables avant que vous receviez de nouveau l'Allocation famille, selon le nouveau calcul annuel. Prenez note que nous pouvons vous verser rétroactivement l'Allocation famille seulement pour une période maximale de trois ans.
+Bon à savoir
+L'Allocation famille, le supplément pour l'achat de fournitures scolaires et les suppléments pour enfant handicapé ne sont pas imposables. Nous n'envoyons donc pas de relevé pour ces crédits d'impôt.
+ Dates de paiement et modalités de versement 
+ Vous recevrez l'Allocation famille quatre fois par année, soit en janvier, en avril, en juillet et en octobre, aux 
+ dates de paiement prévues. Pour recevoir les versements tous les mois, vous devez faire une 
+ demande de changement de fréquence des versements. Dans ce cas, les versements sont faits le 
+ premier jour ouvrable de chaque mois.
+Évitez les retards postaux ou les pertes de chèques. Inscrivez-vous au 
+ dépôt direct pour recevoir vos versements de façon sécuritaire et modifier vos coordonnées bancaires facilement.
+Modalités de versement
+L'Allocation famille et les suppléments sont versés à une seule personne par famille. Des règles servent à identifier qui recevra les paiements pour la famille :
+- À la suite d'une première naissance au Québec, l'Allocation famille est attribuée à la mère.
+- Quand les parents sont deux mères, l'Allocation famille est versée à la mère qui a accouché.
+- Quand les parents sont deux pères, l'Allocation famille est versée au père biologique ou à celui qui demande cette aide financière.
+- Quand la famille s'agrandit ou qu'une nouvelle demande est faite pour cette même famille, par exemple en cas d'adoption, l'Allocation famille est attribuée à la personne qui reçoit déjà les versements pour cette famille.
+- Lorsque le parent fait une demande d'Allocation famille, par exemple s'il est nouvellement arrivé au Québec ou si sa situation familiale et/ou conjugale change, cette aide financière est attribuée à la personne qui fait la demande.
+ Les conjointes ou conjoints peuvent demander un 
+ changement de bénéficiaire à l'intérieur d'une même famille.
+Enfant en garde partagée
+Si l'enfant est en garde partagée, l'Allocation famille est versée aux deux parents en même temps, et ce, sans interruption et selon la fréquence choisie par chacun (tous les trois mois ou chaque mois). Nous déterminons qu'une garde partagée existe quand l'enfant habite en alternance entre 40 % et 60 % du temps par mois avec chaque parent. Pour savoir comment nous informer d'une modification des conditions de garde d'un enfant, consultez notre section Web 
+ Je partage la garde d'un enfant.
+Famille recomposée
+Pour les 
+ familles recomposées, si les deux conjointes ou conjoints sont admissibles à l'Allocation famille :
+- la personne ayant le plus grand nombre d'enfants recevra le paiement;
+- si les deux conjointes ou conjoints ont le même nombre d'enfants, le paiement sera versé à la personne ayant l'enfant le plus jeune. Cependant, si ce plus jeune enfant est l'enfant du couple, le paiement sera attribué à la mère.
+Si une seule personne est admissible à l'Allocation famille, celle-ci lui sera versée.
+Versement rétroactif
+Vous pouvez recevoir l'Allocation famille rétroactivement si tous les critères définis sont respectés. Ainsi, vous recevrez l'équivalent des sommes que vous auriez obtenues pour une période maximale de 11 mois à compter de la date où nous recevons votre demande.
+Somme à rembourser
+Un changement de situation familiale peut avoir un effet sur les montants auxquels vous avez droit. Si vous avez reçu des sommes en trop, vous devrez les rembourser. Ce remboursement s'effectuera à partir de vos prochains versements. Il sera égal à :
+- 50 % de vos prochains versements si votre revenu familial annuel est inférieur ou égal à 50 000 $. Nous pourrions retenir plus de 50 % de ces versements si les sommes qu'il reste à payer ne suffisent pas à rembourser votre dette. Dans certains cas, nous pourrions retenir plus de 50 % de vos versements, même si votre revenu est inférieur ou égal à 50 000 $;
+- 100 % de vos prochains versements si votre revenu familial annuel dépasse 50 000 $.
+Si vous n'êtes plus admissible à l'Allocation famille et que vous avez reçu des sommes en trop, vous devrez les rembourser, comme indiqué dans la communication reçue.
+Bon à savoir
+Pour recevoir l'Allocation famille, votre conjointe ou conjoint et vous devez produire une déclaration de revenus chaque année, même si vous n'avez aucun revenu à déclarer.
+ Quand faire une demande ou un changement dans votre dossier?
+- Je suis un nouveau parent
+- Je suis un parent immigré
+- Je suis un parent adoptif
+- Je partage la garde de l'enfant
+- Je suis le parent d'un enfant handicapé
+- Je suis le parent d'un enfant placé ou hébergé
+- Je suis une famille d'accueil
+- Je quitte le Québec
+ Bon à savoir
+ Consultez votre avis annuel déposé dans 
+ Mon dossier à la mi-juin. Cet avis concerne les sommes que vous recevrez pour une période de 12 mois, de juillet à juin. Vérifiez l'exactitude des renseignements pour vous assurer de recevoir toutes les sommes auxquelles vous avez droit.
+ À consulter aussi
+- CalculAide
+- Banque de prénoms
+- Régime québécois d'assurance parentale Le lien s’ouvrira dans une nouvelle fenêtre.
+- Grossesse et parentalité Le lien s’ouvrira dans une nouvelle fenêtre.
+- Union parentale Le lien s’ouvrira dans une nouvelle fenêtre.
+ 

@@ -1,0 +1,120 @@
+URL: https://www.retraitequebec.gouv.qc.ca/fr/citoyens/invalidite/prestations-invalidite-regime-rentes-quebec/rente-invalidite | province: QC | program: Rente d'invalidité du Régime de rentes du Québec | fetched: 2026-10-18
+=== PAGE: https://www.retraitequebec.gouv.qc.ca/fr/citoyens/invalidite/prestations-invalidite-regime-rentes-quebec/rente-invalidite (HTTP 200, 12456 chars)
+
+ Rente d'invalidité du Régime de rentes du Québec
+ Vous arrêtez de travailler ou votre revenu de travail diminue de façon importante en raison de votre état de santé? Vous pourriez avoir droit à une rente d'invalidité.
+- Pouvez-vous recevoir une rente d'invalidité?
+- Montant et versements
+- Demande de rente d'invalidité
+Pouvez-vous recevoir une rente d'invalidité?
+Vous pouvez demander une rente d'invalidité si :
+- vous arrêtez de travailler ou votre revenu de travail diminue de façon importante en raison de votre état de santé;
+- vous gagnez moins de 
+ 1 882 $ bruts (avant impôts) par mois en 
+ 2026;
+- vous avez moins de 66 ans.
+Pour que votre demande soit acceptée, vous devez respecter ces quatre conditions :
+- Être reconnue ou reconnu invalide par l'équipe médicale de Retraite Québec avant vos 65 ans.
+- Avoir 
+ assez cotisé au Régime de rentes du Québec (RRQ).
+- Ne pas avoir droit à une indemnité de remplacement du revenu non réduite de la Commission des normes, de l'équité, de la santé et de la sécurité du travail (CNESST).
+- Ne pas recevoir une rente de retraite du Régime de pensions du Canada.
+Si vous devenez invalide à cause d'un accident de la route, vous devez communiquer avec la 
+ Société de l'assurance automobile du Québec (SAAQ) Le lien s’ouvrira dans une nouvelle fenêtre..
+Si votre invalidité est causée par un accident de travail, vous devez communiquer avec la Commission des normes, de l'équité, de la santé et de la sécurité du travail (CNESST) Le lien s’ouvrira dans une nouvelle fenêtre.. 
+Votre invalidité pourrait-elle être reconnue par l'équipe médicale de Retraite Québec?
+L'équipe médicale de Retraite Québec peut vous déclarer invalide si votre condition médicale est grave. Celle-ci doit donc vous empêcher de faire à temps plein tout genre de travail. De plus, elle doit être 
+ permanente, c'est-à-dire qu'elle doit 
+ durer pour toujours sans aucune amélioration possible.
+Nous ne considérons pas votre invalidité comme grave si :
+- vous pouvez avoir un emploi adapté à vos limitations;
+- cet emploi vous rapporte 
+ 1 882 $ ou plus bruts (avant impôts) par mois en 2026.
+De plus, si vous avez 
+ entre 60 et 65 ans, nous pouvons aussi vous déclarer invalide si votre état de santé vous empêche de faire votre travail habituel ou vous oblige à réduire votre temps de travail depuis au moins 3 mois. Pour chacun de ces mois, votre revenu de travail ne doit pas dépasser 1 882 $ en 2026.
+ D'autres organismes reconnaissent votre invalidité
+ Une compagnie d'assurance ou un autre organisme pourrait reconnaître votre invalidité. Ceci ne vous donne pas droit automatiquement à une rente d'invalidité du 
+ RRQ. Les critères d'admissibilité de ces organismes peuvent être différents.
+ L'invalidité temporaire (ou incapacité temporaire de travailler) n'est pas couverte par le RRQ.
+Les éléments suivants ne sont pas pris en compte dans l'évaluation médicale de votre capacité à travailler :
+- votre langue;
+- votre lieu de résidence;
+- le nombre d'emplois offerts dans votre région.
+Avez-vous assez cotisé au Régime de rentes du Québec?
+Vous cotisez au 
+ RRQ si :
+- vous avez 18 ans ou plus;
+- votre revenu de travail dépasse  
+ ​3 500 $ par année.
+Vous avez moins de 60 ans? Vous avez assez cotisé au Régime de rentes du Québec pour recevoir une rente d'invalidité si vous vous trouvez dans l'une des situations suivantes :
+- Vous avez cotisé durant au moins deux des trois dernières années de votre période de cotisation.
+- Vous avez cotisé durant au moins 5 des 10 dernières années de votre période de cotisation.
+- Vous avez cotisé durant la moitié des années de votre période de cotisation et pendant au moins deux années.
+Si vous avez entre 60 et 65 ans, vous pourriez recevoir une rente d'invalidité si vous avez cotisé durant au moins 3 des 6 dernières années de votre période de cotisation.
+Celle-ci commence le mois qui suit votre 18e anniversaire. Elle se termine le mois où Retraite Québec vous reconnaît invalide.
+Si vous avez cotisé au Régime de pensions du Canada, vos cotisations nous permettront de déterminer votre droit à une rente d'invalidité et le montant de votre rente.
+Vous avez cotisé au régime de pensions d'un pays qui a conclu une entente internationale de sécurité sociale avec le Québec? Vos cotisations pourraient vous permettre de recevoir une rente d'invalidité du RRQ.
+Consultez votre relevé de participation au Régime de rentes du Québec. Ainsi, vous saurez si vous avez assez cotisé pour avoir droit à des prestations d'invalidité.
+Montant et versements
+Si vous avez moins de 60 ans, la rente d'invalidité du 
+ RRQ que vous recevrez chaque mois varie selon votre situation. Elle se compose :
+- d'un montant de 
+ 610,43 $, qui est le même pour l'ensemble des bénéficiaires;
+- d'un 
+ montant qui varie selon les revenus de travail inscrits à votre dossier au Régime de rentes du Québec.
+En 
+ 2026, la rente d'invalidité du 
+ RRQ peut atteindre un maximum de 
+ 1 737,67 $ par mois. Elle est indexée chaque année en janvier, donc 
+ réajustée au coût de la vie. Elle est réajustée dès l'année qui suit son premier versement.
+ Estimation de votre rente
+ Vous trouverez une estimation de votre rente d'invalidité sur votre  relevé de participation au 
+ RRQ dans Mon dossier.
+ Si vous avez entre 60 et 65 ans, vous recevrez chaque mois :
+- une rente d'invalidité dont le montant est identique pour l'ensemble des bénéficiaires. Pour 2026, ce montant est de 610,43 $. Il est réajusté au coût de la vie chaque année;
+- une rente de retraite du RRQ. Votre rente de retraite est calculée selon les revenus de travail que vous avez gagnés entre vos 18 ans et le mois où vous avez commencé à recevoir votre rente d'invalidité. Elle varie aussi selon l'âge où vous commencez à la recevoir.
+Votre rente de retraite remplace la portion de la rente d'invalidité qui varie selon les revenus de travail inscrits dans votre dossier et que vous ne recevez plus à partir de 60 ans.
+Votre rente de retraite diminue pour chaque mois où vous la recevez avant 65 ans. Selon votre situation, elle pourrait aussi diminuer pour chaque mois où vous aurez reçu une rente d'invalidité entre 60 et 65 ans avant janvier 2024. Pour plus d'information, consultez la page Ajustement de la rente de retraite pour les personnes invalides. Lorsque vous aurez 65 ans, votre rente de retraite ne sera plus réduite. Vous aurez donc 100 % de celle-ci.
+Si vous recevez déjà une rente d'invalidité et que vous avez moins de 60 ans
+Le versement de votre rente d'invalidité sera modifié quand vous atteindrez 60 ans. Vous commencerez automatiquement à recevoir votre rente de retraite. Celle-ci remplacera alors une partie de votre rente d'invalidité. Vous n'avez aucune démarche à faire.
+Si vous recevez d'autres prestations
+Si vous recevez une rente de conjoint survivant, votre rente d'invalidité peut en faire diminuer le montant.
+Si vous recevez une indemnité de remplacement du revenu de la Société de l'assurance automobile du Québec (SAAQ), des règles particulières s'appliquent au versement de votre rente. Pour en savoir plus, téléphonez-nous.
+Des prestations versées par un autre pays ne peuvent pas réduire le montant de votre rente d'invalidité du RRQ. Par contre, ces prestations peuvent diminuer si vous recevez une rente d'invalidité.
+Assurances invalidité privées
+Vous recevez peut-être déjà des prestations d'invalidité d'une compagnie d'assurance privée. Ces prestations pourraient être coordonnées avec la rente d'invalidité du RRQ.
+Si vous avez entre 60 et 65 ans, ces prestations pourraient également être coordonnées avec la rente de retraite du RRQ que vous recevez en même temps que votre rente d'invalidité.
+Autrement dit, selon la date où nous reconnaîtrons votre invalidité, votre compagnie d'assurance pourrait réduire ou annuler vos prestations. Vous pourriez aussi devoir rembourser vos prestations déjà reçues, en tout ou en partie. Pour en savoir plus sur votre contrat d'assurance, communiquez avec votre compagnie d'assurance.
+Somme imposable
+Votre rente d'invalidité est imposable. Vous devez donc payer de l'impôt sur ce revenu. Nous ne prélèverons pas automatiquement de l'impôt sur votre rente. Par contre, vous pouvez nous demander une retenue d'impôt à la source.
+Au début de chaque année, vous recevez un feuillet d'impôt à joindre à votre déclaration de revenus. Ce feuillet indique la somme des prestations d'invalidité que vous avez reçues l'année d'avant. Cette somme a un effet sur le calcul de l'impôt, parce qu'elle s'ajoute à votre revenu.
+Si vous recevez un versement rétroactif, donc pour des années passées, celui-ci et les intérêts qui s'y rattachent sont aussi imposables. Ils s'ajoutent à vos revenus de l'année où vous avez reçu ce versement.
+Pour que ce versement s'ajoute plutôt aux revenus de l'année correspondante, vous devez cocher la case 404 de votre déclaration de revenus du Québec. Puis, vous devez remplir le formulaire Étalement d'un paiement rétroactif, d'arrérages de pension alimentaire ou d'un remboursement de pension alimentaire (TP-766.2) Le lien s’ouvrira dans une nouvelle fenêtre., disponible sur le site Web de Revenu Québec, et le joindre à votre déclaration de revenus.
+Premier versement
+Une fois que vous aurez envoyé votre demande, vous recevrez une lettre de décision. Si votre demande est acceptée, cette lettre vous indiquera le montant de votre premier versement et la date où vous le recevrez. Notez qu'il y a une période d'attente durant laquelle vous ne recevrez aucune rente. Normalement, vous recevrez votre premier versement le quatrième mois qui suit celui où nous avons reconnu votre invalidité.
+Exemple de période d'attente avant un premier versementJanvierFévrierMarsAvrilMai
+Nous considérons qu'une personne est devenue invalide.Période d'attenteLa période d'attente est terminée. Le versement de la rente commence.
+Par la suite, vous recevrez votre rente d'invalidité le dernier jour ouvrable de chaque mois. Consultez les dates de paiement.
+Vous aviez droit à une indemnité de remplacement du revenu non réduite de la Commission des normes, de l'équité, de la santé et de la sécurité du travail (CNESST)? Vous pourriez recevoir votre rente d'invalidité à partir du mois qui suit celui où vous avez cessé d'avoir droit à cette indemnité.
+Fin du versement de votre rente
+Vous ne recevrez plus votre rente d'invalidité dans l'une des situations suivantes :
+- Votre état de santé s'améliore.
+- Votre revenu de travail augmente ou vous retournez au travail.
+- Vous avez droit à une indemnité de remplacement du revenu non réduite de la Commission des normes, de l'équité, de la santé et de la sécurité du travail (CNESST) pendant plus de 15 jours.
+- Vous atteignez 65 ans.
+Votre rente d'invalidité arrête aussi d'être versée le mois de votre décès.
+Votre état de santé s'améliore
+Vous ne recevrez plus de rente d'invalidité si vous n'êtes plus invalide. Avisez-nous de tout changement lié à votre état de santé. Cela vous évitera de devoir rembourser des sommes reçues en trop.
+Votre revenu de travail augmente ou vous retournez au travail
+Tout revenu de travail de 22 593 $ ou plus en 2026 a des conséquences sur votre rente d'invalidité. Si vous pensez que vos revenus de travail pourraient atteindre ou dépasser ce montant, communiquez avec nous. Vous éviterez ainsi de devoir rembourser une somme reçue en trop. Le versement de votre rente d'invalidité pourrait se terminer avant vos 65 ans. En effet, si vos revenus ne nous permettent plus de vous reconnaître invalide, la rente d'invalidité prendra fin le mois suivant où le montant de 22 593 $ a été atteint.
+À partir de 65 ans
+Vous ne recevrez plus votre rente d'invalidité. Vous recevrez seulement votre rente de retraite. Celle-ci ne sera plus réduite. Vous recevrez donc 100 % de cette rente. Vous n'avez aucune démarche à faire. Ce changement sera fait automatiquement.
+Vous pourriez aussi recevoir une pension de la Sécurité de la vieillesse Le lien s’ouvrira dans une nouvelle fenêtre. versée par le gouvernement du Canada. Vous devrez toutefois la demander.
+Demande de rente d'invalidité
+Vous souhaitez demander une rente d'invalidité? Consultez la page Demande de prestations d'invalidité pour connaître les démarches à effectuer.
+À consulter aussi
+- Rente d'enfant de cotisant invalide
+- La rente d'invalidité du RRQ : Pour qui? Quand? Pourquoi? : épisode de balado
+- Recours en cas d'insatisfaction
+- Remboursement des frais de déplacement, de repas et de séjour
+ 

@@ -1,0 +1,77 @@
+URL: https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/montants-dates-versements-prestations/montant-prestation-reguliere/montants-prestations-programme-solidarite-sociale | province: QC | program: Montants – Programme de solidarité sociale | fetched: 2026-10-18
+=== PAGE: https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/montants-dates-versements-prestations/montant-prestation-reguliere/montants-prestations-programme-solidarite-sociale (HTTP 200, 4803 chars)
+
+ - Accueil  
+- Famille et soutien aux personnes  
+- 
+- Programmes d’assistance sociale pour obtenir une aide financière  
+- Montants et dates de versements des prestations  
+- Montants des prestations régulières pour l’année en cours  
+- Montants des prestations du programme de solidarité sociale
+ Montants des prestations du programme de solidarité sociale
+Si vous êtes prestataire du programme de solidarité sociale, voici les montants des prestations que vous pouvez obtenir selon votre situation, chaque mois.
+Le montant total de la prestation comprend une prestation de base uniforme pour les personnes seules ou pour les familles, à laquelle s’ajoute un ajustement à la prestation de base de 45 $. Le montant total de la prestation peut être augmenté si vous avez droit à une allocation pour contrainte de santé ou un ajustement.
+ Revenu de travail autorisé
+ Un revenu de travail est permis sans que la prestation soit réduite. Pour un adulte seul, ce revenu est de 200 $ tandis que pour deux adultes, ce revenu est de 300 $. L’adulte aura droit à un montant supplémentaire s’il reçoit au moins 1 $ de prestation. Ce montant équivaut à 25 % du montant qui dépasse le revenu de travail permis.
+ Dans cette page :
+ Montant pour un adulte
+Si vous êtes un adulte seul, votre allocation de solidarité sociale est de 1 215 $ par mois à laquelle s’ajoute un ajustement à la prestation de base de 103 $.
+ Exemple de calcul :
+ - Allocation de solidarité sociale : 1 215 $
+- Ajustement à la prestation de base : 103 $
+- Prestation totale : 1 318 $
+ Montant pour un conjoint d'étudiant
+Si vous êtes un adulte conjoint d’étudiant, votre allocation de solidarité sociale est de 615 $ par mois à laquelle s’ajoute un ajustement à la prestation de base de 103 $. 
+ Exemple de calcul :
+ - Allocation de solidarité sociale : 615 $
+- Ajustement à la prestation de base : 103 $
+- Prestation totale : 718 $
+ Montant pour un adulte seul en réinsertion sociale
+L’adulte seul en réinsertion sociale peut être obligé de loger dans l’un des établissements suivants :
+- un centre résidentiel communautaire.
+- un centre d’hébergement communautaire.
+- un foyer d’accueil.
+Si vous êtes logé dans l’un de ses établissements, vous pouvez obtenir une prestation. Consultez le site de la Régie de l'assurance maladie du Québec (RAMQ) pour connaître le montant de la prestation.
+ Montant pour un adulte seul recevant des services en toxicomanie
+Un adulte peut avoir à séjourner dans un centre qui offre des services en toxicomanie.
+Pour connaître le montant de la prestation, consulter le site de la Régie de l'assurance maladie du Québec (RAMQ).
+ Montant pour une personne mineure hébergée avec son enfant à charge
+Une personne mineure peut être hébergée avec son enfant à charge dans l’un des établissements suivants :
+- un centre de réadaptation;
+- un centre d’hébergement et de soins de longue durée (CHSLD).
+Pour connaître le montant de la prestation, consulter le site de la Régie de l'assurance maladie du Québec (RAMQ).
+ Montant pour deux adultes
+Si vous vivez avec un adulte et qu’un de vous a des contraintes sévères de santé, vous pouvez obtenir une allocation de solidarité sociale de 1 816 $ par mois à laquelle s’ajoute un ajustement à la prestation de base de 118 $.
+ Exemple de calcul :
+ - Allocation de solidarité sociale : 1 816 $
+- Ajustement à la prestation : 118 $
+- Prestation totale : 1 934 $
+ Exemple de calcul du supplément aux revenus de travail
+Voici l’exemple d’une personne qui reçoit une allocation de solidarité sociale de 1 318 $ par mois.
+En plus de sa prestation, cette personne travaille et reçoit un salaire mensuel de 360 $. Dans cet exemple, le salaire dépasse de 160 $ les revenus de travail exclus du calcul qui sont établis à 200 $ pour une personne seule.
+160 $ seront alors retirés de sa prestation.
+1 318 $ - 160 $ = 1 158 $
+Sa prestation est de 1 158 $ après avoir comptabilisé ses revenus de travail.
+Avec l’application du supplément aux revenus de travail, 25 % des sommes qui dépassent les revenus de travail exclus du calcul seront ajoutés à sa prestation, soit 40 $ dans cet exemple (25 % x 160 $).
+1 158 $ + 40 $ = 1 198 $
+Sa prestation mensuelle sera donc de 1 198 $.
+Visionnez la capsule explicative pour connaître les détails de cette nouvelle mesure.
+ Dates de versement des prestations
+Vous pouvez consulter la date de vos prochaines prestations dans votre dossier en ligne.
+ Des questions au sujet du Programme d’aide sociale ou du Programme de solidarité sociale?
+ - 
+ 
+ De 8 h 30 à 16 h 30 du lundi au vendredi, à l’exception du mercredi, de 10 h à 16 h 30
+ - 
+ 
+ Région de Montréal et environs :
+ 514 873-4000
+ Ailleurs au Québec (sans frais) :
+ 1 877 767-8773
+ - 
+ 
+ Écrire au Centre de communication avec la clientèle
+ Dernière mise à jour : 
+ 1er
+ octobre 2026
+ 

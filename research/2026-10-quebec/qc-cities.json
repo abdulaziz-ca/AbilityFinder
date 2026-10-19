@@ -1,0 +1,98 @@
+[
+ {
+  "name": "Montréal",
+  "population_2021": 1762949,
+  "label_suggestion": "Montréal",
+  "note": "Also an island agglomeration; unambiguous in Canada but 'Montreal' with no accent is common in English. Populations are approximate 2021 census figures from model memory, NOT fetched from Statistics Canada; verify before shipping."
+ },
+ {
+  "name": "Québec",
+  "population_2021": 549459,
+  "label_suggestion": "Québec (ville)",
+  "note": "Clashes with province name; use 'Québec (ville)'. Populations are approximate 2021 census figures from model memory, NOT fetched from Statistics Canada; verify before shipping."
+ },
+ {
+  "name": "Laval",
+  "population_2021": 438366,
+  "label_suggestion": "Laval",
+  "note": "Laval is also a university and a commune in France; no other Canadian city. Populations are approximate 2021 census figures from model memory, NOT fetched from Statistics Canada; verify before shipping."
+ },
+ {
+  "name": "Gatineau",
+  "population_2021": 291041,
+  "label_suggestion": "Gatineau",
+  "note": "Part of Ottawa-Gatineau CMA; transit STO also serves cross-river trips to Ontario. Populations are approximate 2021 census figures from model memory, NOT fetched from Statistics Canada; verify before shipping."
+ },
+ {
+  "name": "Longueuil",
+  "population_2021": 254483,
+  "label_suggestion": "Longueuil",
+  "note": "RTL also serves Brossard, Boucherville, Saint-Lambert. Populations are approximate 2021 census figures from model memory, NOT fetched from Statistics Canada; verify before shipping."
+ },
+ {
+  "name": "Sherbrooke",
+  "population_2021": 172950,
+  "label_suggestion": "Sherbrooke (QC)",
+  "note": "Sherbrooke also exists in Nova Scotia (village) and Sherbrooke St in Montréal; suggest '(QC)' suffix. Populations are approximate 2021 census figures from model memory, NOT fetched from Statistics Canada; verify before shipping."
+ },
+ {
+  "name": "Lévis",
+  "population_2021": 149683,
+  "label_suggestion": "Lévis",
+  "note": "Lévis serves Lévis and Saint-Lambert-de-Lauzon. Populations are approximate 2021 census figures from model memory, NOT fetched from Statistics Canada; verify before shipping."
+ },
+ {
+  "name": "Saguenay",
+  "population_2021": 144781,
+  "label_suggestion": "Saguenay",
+  "note": "Same name as the river/region; fine. Populations are approximate 2021 census figures from model memory, NOT fetched from Statistics Canada; verify before shipping."
+ },
+ {
+  "name": "Trois-Rivières",
+  "population_2021": 139163,
+  "label_suggestion": "Trois-Rivières",
+  "note": "Trois-Rivières; no clash. Populations are approximate 2021 census figures from model memory, NOT fetched from Statistics Canada; verify before shipping."
+ },
+ {
+  "name": "Terrebonne",
+  "population_2021": 119944,
+  "label_suggestion": "Terrebonne (QC)",
+  "note": "Terrebonne also exists as a place in Oregon (US) and Terrebonne BC (unincorporated); suggest '(QC)' suffix. Populations are approximate 2021 census figures from model memory, NOT fetched from Statistics Canada; verify before shipping."
+ },
+ {
+  "name": "Saint-Jean-sur-Richelieu",
+  "population_2021": 98036,
+  "label_suggestion": "Saint-Jean-sur-Richelieu",
+  "note": "Fine; distinct from Saint John NB and St. John's NL, but users may confuse them. Populations are approximate 2021 census figures from model memory, NOT fetched from Statistics Canada; verify before shipping."
+ },
+ {
+  "name": "Brossard",
+  "population_2021": 91300,
+  "label_suggestion": "Brossard",
+  "note": "No clash. Populations are approximate 2021 census figures from model memory, NOT fetched from Statistics Canada; verify before shipping."
+ },
+ {
+  "name": "Repentigny",
+  "population_2021": 86550,
+  "label_suggestion": "Repentigny",
+  "note": "No clash. Populations are approximate 2021 census figures from model memory, NOT fetched from Statistics Canada; verify before shipping."
+ },
+ {
+  "name": "Saint-Jérôme",
+  "population_2021": 80213,
+  "label_suggestion": "Saint-Jérôme",
+  "note": "No clash. Populations are approximate 2021 census figures from model memory, NOT fetched from Statistics Canada; verify before shipping."
+ },
+ {
+  "name": "Drummondville",
+  "population_2021": 79258,
+  "label_suggestion": "Drummondville",
+  "note": "No clash. Populations are approximate 2021 census figures from model memory, NOT fetched from Statistics Canada; verify before shipping."
+ },
+ {
+  "name": "Granby",
+  "population_2021": 69025,
+  "label_suggestion": "Granby (QC)",
+  "note": "Granby also exists in Colorado/Massachusetts (US); fine in Canada. Populations are approximate 2021 census figures from model memory, NOT fetched from Statistics Canada; verify before shipping."
+ }
+]

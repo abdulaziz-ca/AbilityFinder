@@ -1,0 +1,90 @@
+URL: https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/presentation-programmes-aide-financiere/programme-objectif-emploi | province: QC | program: Programme objectif emploi | fetched: 2026-10-18
+=== PAGE: https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/presentation-programmes-aide-financiere/programme-objectif-emploi (HTTP 200, 7977 chars)
+
+ - Accueil  
+- Emploi  
+- 
+- Trouver un emploi ou un stage  
+- Programmes d’aide en emploi  
+- Aide pour intégrer un emploi  
+- Intégrer un emploi et acquérir de l’autonomie financière
+ Intégrer un emploi et acquérir de l’autonomie financière
+Le Programme objectif emploi s’adresse à vous si vous n’avez jamais participé au Programme ou reçu d’aide financière de dernier recours.
+Lors de votre participation au Programme objectif emploi, vous recevrez un accompagnement soutenu et personnalisé, ainsi qu’un soutien financier tout au long de votre démarche. Ce soutien vous aidera à intégrer le marché du travail et à atteindre votre autonomie financière.
+Un Plan d'intégration en emploi sera élaboré avec vous pour vous offrir un parcours adapté à vos besoins. Les activités à réaliser vous permettront de :
+- rechercher un emploi;
+- développer vos compétences;
+- développer des habiletés sociales.
+ Une aide gratuite pour vos déclarations de revenus
+ Vous pouvez peut-être obtenir gratuitement de l’aide pour remplir vos déclarations de revenus. Celles-ci peuvent vous permettre de bénéficier de différents crédits d’impôt. Découvrez le Service d’aide en impôt – Programme des bénévoles et les cliniques d’impôts. Renseignez-vous à leur sujet sur le site du service 211 ou auprès du centre d’action bénévole de votre région.
+ Dans cette page :
+ Admissibilité
+Vous avez l’obligation de participer au Programme objectif emploi si vous répondez aux critères suivants :
+- Vous êtes admissible à une aide financière du Programme d'aide sociale pour le mois suivant le dépôt de votre demande.
+- Vous n’avez jamais participé au Programme objectif emploi.
+- Vous n’avez jamais reçu, en tant qu’adulte, une aide financière du Programme d’aide sociale.
+ou
+- Vous avez débuté votre participation au Programme objectif emploi, mais vous n’avez pas complété la période de participation de 12 mois obligatoire ni atteint la durée maximale de 24 mois consécutifs.
+ Engagements et obligations
+La personne participante et le ministère de l’Emploi et de la Solidarité sociale s'engagent à respecter les obligations prévues dans la Loi sur l’aide aux personnes et aux familles.
+Le Ministère doit :
+- verser un soutien financier pour soutenir les efforts de la personne;
+- offrir un accompagnement soutenu et personnalisé durant toute la durée de la participation au Programme;
+- offrir des services diversifiés et de qualité;
+- modifier le Plan d’intégration en emploi de la personne lorsque la situation est nécessaire.
+La personne participante doit :
+- réaliser les activités convenues et indiquées dans son Plan;
+- se présenter aux rencontres prévues avec son agente ou agent d’aide à l’emploi tout au long de sa participation au Programme;
+- informer le Ministère de tout changement pouvant affecter sa participation ou les montants de l’aide financière accordés;
+- accepter tout emploi offert lorsqu’il correspond au profil d’emploi de la personne;
+- maintenir le lien d'emploi pour la durée de participation au programme;
+- fournir tout document ou renseignement nécessaires à la vérification de l’admissibilité au Programme ou pour le calcul du montant de l’aide financière qui sera accordée tout au long de la participation.
+Si vous ne respectez pas les engagements prévus dans votre Plan d’intégration en emploi, des sanctions financières peuvent s'appliquer.
+ Élaboration du Plan d'intégration en emploi
+Au moment du dépôt de votre demande d’aide financière, une agente ou un agent d’aide à l’emploi vous rencontrera. Cette personne fera une entrevue d’évaluation et d’aide à l’emploi pour discuter de votre situation et de vos besoins. Cette rencontre permet d’établir votre Plan d’intégration en emploi qui tient compte, entre autres :
+- de votre profil;
+- du type d’emploi recherché;
+- des caractéristiques du marché du travail.
+Exemple de situations où le programme peut vous aider
+Voici quelques situations pour lesquelles le Plan d’intégration en emploi peut être proposé, modifié et adapté au besoin, selon votre situation tout au long de la participation au Programme, par exemple :
+- Si vous êtes en mesure d’intégrer rapidement un emploi, vous pourrez participer à des activités d’aide à la recherche d’emploi.
+- Si vous devez développer des compétences avant d’être en mesure d’intégrer un emploi, vous pourrez entreprendre une formation ou acquérir une expérience de travail.
+- Si vous devez d’abord résoudre des difficultés personnelles ou sociales, vous pourrez réaliser des activités en développement des habiletés sociales avant d’aller plus loin dans votre parcours.
+ Soutien financier
+En participant au Programme objectif emploi, vous recevez un soutien financier selon votre situation familiale, l’activité et la mesure inscrite à votre Plan d’intégration en emploi. Voici les types de soutien financier offerts.
+Prestation de base du Programme objectif emploi
+La prestation de base d’objectif emploi est équivalente à la prestation de base accordée au Programme d’aide sociale selon votre situation familiale. Les montants sont augmentés (indexés) chaque année, au 1er janvier.
+Pour connaître les montants des prestations, consultez la page Montants des prestations de base du Programme objectif emploi chaque mois.
+Allocation de participation
+En plus de votre prestation de base d’objectif emploi, vous pourriez recevoir une allocation de participation de 70 $ par semaine.
+Pour la recevoir, vous devez participer à des activités des volets Recherche intensive d’emploi ou Développement des habiletés sociales.
+Allocation d’aide à l’emploi
+Si vous participez à des activités du volet Développement des compétences, vous recevrez une allocation d’aide à l’emploi. Cette allocation est de 300 $ par semaine si vous participez à :
+- la Mesure de formation de la main-d’œuvre (pour une formation générale);
+- la mesure Projets de préparation à l’emploi;
+- la mesure Initiative ciblée pour les travailleurs expérimentés.
+Si vous participez à la mesure Jeunes en mouvement vers l’emploi, l’allocation est de 370 $ par semaine.
+Si vous suivez une formation qualifiante de la Mesure de formation de la main-d’œuvre, vous recevrez une allocation d’aide à l’emploi de 400 $ par semaine.
+Dans ce volet, vous pourriez aussi participer à différents programmes de soutien à l’embauche qui vous permettraient de recevoir un salaire versé par l’employeur.
+Remboursement de frais supplémentaires
+Selon votre situation, vous pouvez aussi obtenir le remboursement de certains frais supplémentaires, par exemple :
+- frais d’appoint,
+- frais de garde,
+- frais de transport,
+- frais de scolarité.
+ Durée de la participation au Programme
+La participation obligatoire au Programme objectif emploi est d’une durée totale de 12 mois, sur une période maximale de 24 mois consécutifs.
+Au besoin, après les 12 mois obligatoires, votre participation peut être prolongée pour vous permettre de compléter l’activité prévue à votre Plan d’intégration en emploi. La prolongation de la participation ne peut pas dépasser 24 mois.
+ Participation au Programme objectif emploi
+Lorsque vous faites une demande d’aide financière de dernier recours et que vous répondez aux critères d’admissibilité, vous avez l’obligation de participer au Programme objectif emploi.
+Après le dépôt de votre demande, une agente ou un agent d’aide à l’emploi vous contactera pour évaluer vos besoins et vous proposer une activité d’intégration à l’emploi adaptée à votre situation.
+Faire une demande en ligne
+Vous pouvez aussi imprimer et remplir le formulaire en format PDF : Demande de services (3003-01) (PDF 874 Ko). En arrivant au bureau de Services Québec avec le formulaire rempli, vous devrez aussi avoir avec vous une pièce d'identité avec photo délivrée par un organisme public.
+Il est aussi possible d'envoyer ce formulaire par la poste au bureau de Services Québec le plus près de votre résidence.
+ À consulter aussi
+ - 
+ Déclarer un changement dans votre situation
+ Dernière mise à jour : 
+ 1er
+ avril 2026
+ 

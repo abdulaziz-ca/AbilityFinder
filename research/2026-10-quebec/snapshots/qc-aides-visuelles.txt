@@ -1,0 +1,19 @@
+URL: https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-visuelles | province: QC | program: Programme d'aides visuelles | fetched: 2026-10-18
+=== PAGE: https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-visuelles (HTTP 200, 831 chars)
+
+ - Accueil  
+- Santé  
+- Système et services de santé  
+- Aides techniques, déficiences et handicaps  
+- Programme d’aides visuelles
+ Programme d’aides visuelles
+Ce programme vous permet d’avoir accès à des aides visuelles et de recevoir un montant pour prendre soin d’un chien-guide si vous êtes admissible. Les aides visuelles prêtées compensent une perte de vision partielle ou totale et vous soutiennent dans vos activités quotidiennes.
+Le programme couvre le prêt, le remplacement et la réparation des aides visuelles.
+Exemples d’aides prêtées :
+- Lecture : télévisionneuse, système optique, calculatrice
+- Écriture : machine à écrire le braille
+- Mobilité : canne blanche, détecteur électronique d’obstacles, lunettes de vision nocturne
+Obtenir plus d’information sur le programme
+ Dernière mise à jour : 
+ 23 février 2023
+ 

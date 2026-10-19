@@ -2020,5 +2020,210 @@
     "short": "Ask NL Health Services about an assessment",
     "who": ["you", "program"],
     "reason": "Provincial-sweep record nl-caregiver-benefit (2026-10-17)"
+  },
+  "qcSolidariteSocialeRoute": {
+    "short": "Vérifiez vos contraintes sévères de santé et vos revenus",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record qc-solidarite-sociale (2026-10-17)"
+  },
+  "qcAideSocialeRoute": {
+    "short": "Vérifiez le critère de revenu du programme",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-aide-sociale (2026-10-17)"
+  },
+  "qcRevenuBaseRoute": {
+    "short": "Vérifiez votre historique à la solidarité sociale",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-revenu-base (2026-10-17)"
+  },
+  "qcObjectifEmploiRoute": {
+    "short": "Vérifiez si c'est votre première demande d'aide sociale",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-objectif-emploi (2026-10-17)"
+  },
+  "qcReussirRoute": {
+    "short": "Vérifiez que vous recevez le programme d’aide nommé",
+    "who": ["you"],
+    "reason": "Provincial-sweep record qc-reussir (2026-10-17)"
+  },
+  "qcAllocationFamilleRoute": {
+    "short": "Vérifiez que vous avez un enfant à charge",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-allocation-famille (2026-10-17)"
+  },
+  "qcSupplementEnfantHandicapeRoute": {
+    "short": "Vérifiez les documents sur l’incapacité demandés",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record qc-supplement-enfant-handicape (2026-10-17)"
+  },
+  "qcSehnseRoute": {
+    "short": "Demandez l'évaluation des besoins de votre enfant",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-sehnse (2026-10-17)"
+  },
+  "qcRenteInvaliditeRoute": {
+    "short": "Vérifiez vos cotisations et faites évaluer votre invalidité",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-rente-invalidite (2026-10-17)"
+  },
+  "qcSoutienFamillesRoute": {
+    "short": "Demandez une évaluation au CLSC",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-soutien-familles (2026-10-17)"
+  },
+  "qcAidesAuditivesRoute": {
+    "short": "Vérifiez les critères du programme",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-aides-auditives (2026-10-17)"
+  },
+  "qcAidesVisuellesRoute": {
+    "short": "Vérifiez les critères du programme",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-aides-visuelles (2026-10-17)"
+  },
+  "qcAppareilsDeficiencePhysiqueRoute": {
+    "short": "Vérifiez les critères du programme",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-appareils-deficience-physique (2026-10-17)"
+  },
+  "qcAidesEliminationRoute": {
+    "short": "Demandez une note médicale",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-aides-elimination (2026-10-17)"
+  },
+  "qcChienAssistanceRoute": {
+    "short": "Vérifiez les conditions sur le chien et l'école",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-chien-assistance (2026-10-17)"
+  },
+  "qcAidesVieQuotidienneRoute": {
+    "short": "Demandez une évaluation à l'établissement qui vous suit",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-aides-vie-quotidienne (2026-10-17)"
+  },
+  "qcTriporteursRoute": {
+    "short": "Demandez une évaluation à un ergothérapeute",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-triporteurs (2026-10-17)"
+  },
+  "qcAmbulateursRoute": {
+    "short": "Demandez une évaluation à un professionnel",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-ambulateurs (2026-10-17)"
+  },
+  "qcTricyclesRoute": {
+    "short": "Demandez une évaluation pour votre enfant",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-tricycles (2026-10-17)"
+  },
+  "qcChaussuresOrthetiquesRoute": {
+    "short": "Demandez une évaluation à un professionnel",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-chaussures-orthetiques (2026-10-17)"
+  },
+  "qcAidesCommunicationRoute": {
+    "short": "Demandez une évaluation de vos besoins de communication",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-aides-communication (2026-10-17)"
+  },
+  "qcTransportHebergementRoute": {
+    "short": "Vérifiez la distance jusqu'à vos services",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-transport-hebergement (2026-10-17)"
+  },
+  "qcServicesDeficienceRoute": {
+    "short": "Vérifiez les documents sur l’incapacité demandés",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record qc-services-deficience (2026-10-17)"
+  },
+  "qcSoutienDomicileRoute": {
+    "short": "Demandez une évaluation au CLSC",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-soutien-domicile (2026-10-17)"
+  },
+  "qcAdaptationDomicileRoute": {
+    "short": "Vérifiez les documents sur l’incapacité demandés",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record qc-adaptation-domicile (2026-10-17)"
+  },
+  "qcSupplementLoyerRoute": {
+    "short": "Vérifiez le critère de revenu du programme",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-supplement-loyer (2026-10-17)"
+  },
+  "qcAdaptationVehiculeRoute": {
+    "short": "Vérifiez les documents sur l’incapacité demandés",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record qc-adaptation-vehicule (2026-10-17)"
+  },
+  "qcCarteAccompagnementLoisirRoute": {
+    "short": "Vérifiez les documents sur l’incapacité demandés",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record qc-carte-accompagnement-loisir (2026-10-17)"
+  },
+  "qcAllocationLogementRoute": {
+    "short": "Vérifiez le critère de revenu du programme",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-allocation-logement (2026-10-17)"
+  },
+  "qcHlmRoute": {
+    "short": "Vérifiez le critère de revenu du programme",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-hlm (2026-10-17)"
+  },
+  "qcAssuranceMedicamentsRoute": {
+    "short": "Vérifiez si vous avez accès à un régime collectif",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-assurance-medicaments (2026-10-17)"
+  },
+  "qcPrestationsSpecialesRoute": {
+    "short": "Vérifiez que vous recevez le programme d’aide nommé",
+    "who": ["you"],
+    "reason": "Provincial-sweep record qc-prestations-speciales (2026-10-17)"
+  },
+  "qcBesoinsParticuliersAdultesRoute": {
+    "short": "Vérifiez vos études et la confirmation médicale",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-besoins-particuliers-adultes (2026-10-17)"
+  },
+  "qcBesoinsParticuliersJeunesRoute": {
+    "short": "Vérifiez l'école de l'enfant et la confirmation médicale",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-besoins-particuliers-jeunes (2026-10-17)"
+  },
+  "qcPretsBoursesDfmRoute": {
+    "short": "Vérifiez vos études et la confirmation de votre déficience",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-prets-bourses-dfm (2026-10-17)"
+  },
+  "quebecEquimobiliteRoute": {
+    "short": "Vérifiez le critère de revenu ou d’incapacité",
+    "who": ["you", "program"],
+    "reason": "Quebec city record quebec-equimobilite (2026-10-18)"
+  },
+  "gatineauEchoRoute": {
+    "short": "Vérifiez le critère de revenu du programme",
+    "who": ["you", "program"],
+    "reason": "Quebec city record gatineau-echo (2026-10-18)"
+  },
+  "troisRivieresTarificationSocialeRoute": {
+    "short": "Vérifiez le critère de revenu du programme",
+    "who": ["you", "program"],
+    "reason": "Quebec city record trois-rivieres-tarification-sociale (2026-10-18)"
+  },
+  "qcCarteAccompagnementAutocarRoute": {
+    "short": "Vérifiez les documents sur l’incapacité demandés",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record qc-carte-accompagnement-autocar (2026-10-17)"
+  },
+  "qcAgirTotRoute": {
+    "short": "Vérifiez l'âge de votre enfant",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record qc-agir-tot (2026-10-17)"
+  },
+  "qcArtistesHandicapRoute": {
+    "short": "Vérifiez votre admissibilité aux bourses du CALQ",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-artistes-handicap (2026-10-17)"
   }
 }

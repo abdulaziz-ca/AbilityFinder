@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 535 links. The monitor checks a bounded rotating batch every
+// 596 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -2096,6 +2096,246 @@ export const LINKS = [
     "kind": "apply"
   },
   {
+    "url": "https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/presentation-programmes-aide-financiere/programme-aide-sociale-programme-solidarite-sociale",
+    "label": "Programme de solidarité sociale — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/presentation-programmes-aide-financiere/programme-revenu-base",
+    "label": "Programme de revenu de base — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/presentation-programmes-aide-financiere/programme-objectif-emploi",
+    "label": "Programme objectif emploi — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/emploi/perfectionner/formation/reussir",
+    "label": "Programme d'aide et d'accompagnement social Réussir — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.retraitequebec.gouv.qc.ca/fr/citoyens/enfants/allocation-famille",
+    "label": "Allocation famille — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.retraitequebec.gouv.qc.ca/fr/citoyens/enfants/enfant-handicape/supplement-enfant-handicape",
+    "label": "Supplément pour enfant handicapé (SEH) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.retraitequebec.gouv.qc.ca/fr/citoyens/enfants/enfant-handicape/supplement-enfant-handicape-necessitant-soins-exceptionnels-sehnse",
+    "label": "Supplément pour enfant handicapé nécessitant des soins exceptionnels (SEHNSE) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.retraitequebec.gouv.qc.ca/fr/citoyens/invalidite/prestations-invalidite-regime-rentes-quebec/rente-invalidite",
+    "label": "Rente d'invalidité du Régime de rentes du Québec — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-soutien-aux-familles",
+    "label": "Programme de soutien aux familles — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-auditives",
+    "label": "Programme d'aides auditives — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-visuelles",
+    "label": "Programme d'aides visuelles — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/appareils-suppleant-a-une-deficience-physique",
+    "label": "Programme d'appareils suppléant à une déficience physique — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-materielles-fonctions-elimination",
+    "label": "Programme d'aides matérielles pour les fonctions d'élimination — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/chien-dassistance-remboursement-de-frais",
+    "label": "Programme de remboursement de frais relatifs à l'utilisation d'un chien d'assistance à la motricité — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-vie-quotidienne-et-vie-domestique",
+    "label": "Programme d'aides à la vie quotidienne et à la vie domestique — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-attribution-triporteurs-et-quadriporteurs",
+    "label": "Programme d'attribution des triporteurs et des quadriporteurs — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-attribution-ambulateurs",
+    "label": "Programme d'attribution des ambulateurs — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-attribution-tricyles-et-velos-adaptes",
+    "label": "Programme d'attribution des tricycles et des vélos adaptés — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-attribution-chaussures-orthetiques",
+    "label": "Programme d'attribution de chaussures orthétiques et d'appareillage de chaussures — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-techniques-communication",
+    "label": "Programme d'aides techniques à la communication (PMATCOM) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/programme-transport-hebergement",
+    "label": "Programme Transport-Hébergement — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/services-aux-personnes-ayant-une-deficience",
+    "label": "Services aux personnes ayant une déficience physique, intellectuelle ou un trouble du spectre de l'autisme (TSA) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/famille-et-soutien-aux-personnes/inaptitude-perte-autonomie/services-soutien-domicile",
+    "label": "Soutien à domicile et allocation autonomie à domicile (AAD) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/habitation-territoire/construction-renovation/adapter-etablissement-domicile-personnes-handicapees/programme-adaptation-domicile/a-propos-programme-adaptation-domicile",
+    "label": "Programme d'adaptation de domicile (PAD) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/habitation-territoire/location/aides-financieres-au-logement/programme-supplement-loyer-quebec/a-propos-du-programme",
+    "label": "Programme de supplément au loyer Québec (PSLQ) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://saaq.gouv.qc.ca/blob/saaq/documents/publications/vignette-stationnement-handicapees.pdf",
+    "label": "Vignette de stationnement pour personnes handicapées — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://saaq.gouv.qc.ca/vehicule-artisanal-modifie-reconstruit/adaptation-achat-vehicule",
+    "label": "Adaptation d'un véhicule pour personne à mobilité réduite (SAAQ et PAV) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.keroul.qc.ca/en/travel/assistance-services",
+    "label": "Carte d'accompagnement loisir (CAL) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/habitation-territoire/location/aides-financieres-au-logement/programme-allocation-logement",
+    "label": "Programme Allocation-logement — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/habitation-territoire/location/aides-financieres-au-logement/programme-logement-sans-but-lucratif",
+    "label": "Programme de logement sans but lucratif (Programme HLM) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/nouvelles/actualites/details/ajustement-des-tarifs-pour-les-personnes-couvertes-par-le-regime-public-dassurance-medicaments-71515",
+    "label": "Régime public d'assurance médicaments — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/famille-et-soutien-aux-personnes/programmes-assistance-sociale-aide-financiere/montants-dates-versements-prestations/montants-supplementaires/obtenir-prestation-speciale",
+    "label": "Prestations spéciales (programmes d'assistance sociale) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/education/aide-financiere-aux-etudes/allocation-besoins-particuliers-adultes/admissibilite-programme",
+    "label": "Programme d'allocation pour des besoins particuliers (adultes) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/education/aide-financiere-aux-etudes/allocation-besoins-particuliers-jeunes/conditions-admissibilite",
+    "label": "Programme d'allocation pour des besoins particuliers (jeunes) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/education/aide-financiere-aux-etudes/prets-bourses-temps-plein/conditions-admissibilite/etudes-temps-plein",
+    "label": "Prêts et bourses – déficience fonctionnelle majeure — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.stm.info/fr/ta/formulaires",
+    "label": "Transport adapté de la STM — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://stlaval.ca/admission-ta",
+    "label": "Transport adapté de la STL — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.rtl-longueuil.qc.ca/transport-adapte/admission",
+    "label": "Transport adapté du RTL — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.exo.quebec/fr/transport-adapte",
+    "label": "Transport adapté d’exo — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ville.quebec.qc.ca/citoyens/mobilite/transport-collectif/equimobilite.aspx",
+    "label": "ÉquiMobilité (tarif réduit pour faible revenu) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.sto.ca/tarifs/programme-echo/",
+    "label": "Programme ÉCHO (tarification sociale) — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.sto.ca/transport-adapte/demandes-et-conditions-dadmission/",
+    "label": "Transport adapté de la STO — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.sts.qc.ca/transport-adapte/admission/",
+    "label": "Transport adapté de la STS — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://sttr.qc.ca/tarification-sociale/",
+    "label": "Tarification sociale de la STTR — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://sttr.qc.ca/transport-adapte/",
+    "label": "Transport adapté de la STTR — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.federationautobus.com/carte-a-laccompagnement",
+    "label": "Carte québécoise à l'accompagnement au transport interurbain en autocar — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/famille-et-soutien-aux-personnes/enfance/developpement-des-enfants/outils-ressources-developpement-enfants/programme-agir-tot-depister-tot-pour-mieux-repondre-aux-besoins-des-enfants",
+    "label": "Programme Agir tôt — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.quebec.ca/culture/aide-financiere/soutien-financier-artistes-ecrivains-situation-handicap",
+    "label": "Soutien financier aux artistes et aux écrivains en situation de handicap — apply",
+    "kind": "apply"
+  },
+  {
     "url": "https://vadsociety.ca",
     "label": "Help — Voice of Albertans with Disabilities (VAD)",
     "kind": "help"
@@ -2293,6 +2533,31 @@ export const LINKS = [
   {
     "url": "https://www.empowernl.ca/",
     "label": "Help — Empower – The Disability Resource Centre",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.quebec.ca/famille-et-soutien-aux-personnes/participation-sociale-personnes-handicapees/services-information-accompagnement-personnes-handicapees",
+    "label": "Help — Office des personnes handicapées du Québec (OPHQ)",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.csj.qc.ca",
+    "label": "Help — Aide juridique du Québec (Commission des services juridiques)",
+    "kind": "help"
+  },
+  {
+    "url": "https://educaloi.qc.ca",
+    "label": "Help — Éducaloi",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.211qc.ca/",
+    "label": "Help — 211 Québec",
+    "kind": "help"
+  },
+  {
+    "url": "https://aqriph.com",
+    "label": "Help — Alliance québécoise pour l'intégration des personnes handicapées (AQRIPH)",
     "kind": "help"
   },
   {
@@ -2626,6 +2891,41 @@ export const LINKS = [
     "kind": "org"
   },
   {
+    "url": "https://www.sqdi.ca",
+    "label": "org:qc-sqdi — Société québécoise de la déficience intellectuelle (SQDI)",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.autisme.qc.ca",
+    "label": "org:qc-fqa — Fédération québécoise de l'autisme",
+    "kind": "org"
+  },
+  {
+    "url": "https://moelleepiniere.com",
+    "label": "org:qc-memo — Moelle épinière et motricité Québec",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.keroul.qc.ca",
+    "label": "org:qc-keroul — Kéroul",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.raaq.qc.ca",
+    "label": "org:qc-raaq — Regroupement des aveugles et amblyopes du Québec (RAAQ)",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.aqlph.qc.ca",
+    "label": "org:qc-aqlph — Association québécoise pour le loisir des personnes handicapées (AQLPH)",
+    "kind": "org"
+  },
+  {
+    "url": "https://www.aqepa.org",
+    "label": "org:qc-aqepa — Association du Québec pour enfants avec problèmes auditifs (AQEPA)",
+    "kind": "org"
+  },
+  {
     "url": "https://studentaid.alberta.ca/",
     "label": "Province fallback — student aid (AB)",
     "kind": "help"
@@ -2678,6 +2978,11 @@ export const LINKS = [
   {
     "url": "https://resourceabilities.ca/job-seekers/",
     "label": "Province fallback — employment supports (PE)",
+    "kind": "help"
+  },
+  {
+    "url": "https://www.roseph.ca",
+    "label": "Province fallback — employment supports (QC)",
     "kind": "help"
   },
   {

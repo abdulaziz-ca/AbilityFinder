@@ -1,0 +1,34 @@
+URL: https://www.retraitequebec.gouv.qc.ca/fr/citoyens/enfants/enfant-handicape/supplement-enfant-handicape-necessitant-soins-exceptionnels-sehnse | province: QC | program: Supplément pour enfant handicapé nécessitant des soins exceptionnels (SEHNSE) | fetched: 2026-10-18
+=== PAGE: https://www.retraitequebec.gouv.qc.ca/fr/citoyens/enfants/enfant-handicape/supplement-enfant-handicape-necessitant-soins-exceptionnels-sehnse (HTTP 200, 4935 chars)
+
+ Supplément pour enfant handicapé nécessitant des soins exceptionnels
+ Le gouvernement du Québec a annoncé, lors du discours sur le budget provincial 2024-2025, des modifications des critères d'admissibilité aux programmes d'aide financière pour enfant handicapé. Ces modifications sont en vigueur depuis le 1er juillet 2024.
+Notez qu'en raison des délais nécessaires pour adapter les systèmes administratifs, le traitement des demandes de SEHNSE pour la nouvelle situation C commencera en octobre 2024. Les premiers versements liés à cette situation seront donc effectués à partir de la fin de l'automne 2024, avec une possibilité de recevoir des versements pour les mois écoulés depuis le 1er juillet 2024.
+Conditions d'admissibilité au supplément pour enfant handicapé nécessitant des soins exceptionnels
+Le supplément pour enfant handicapé nécessitant des soins exceptionnels (SEHNSE) est une aide financière pour les parents qui ont à leur charge un enfant de 
+ moins de 18 ans qui se trouve dans l'une des situations suivantes :
+Situation AL'enfant a deux ans et plus et présente des déficiences physiques ou un trouble des fonctions mentales qui entraînent des incapacités très importantes et multiples l'empêchant de réaliser de manière autonome les habitudes de vie d'un enfant de son âge.
+Durée prévisible des incapacités : au moins un an
+Situation BL'enfant a entre 0 et 18 ans et a besoin de soins médicaux complexes à domicile pour lesquels le parent a reçu une formation dans un centre spécialisé qui lui permet de maîtriser les techniques propres à l'utilisation de l'équipement nécessaire. Les soins doivent être prodigués par le parent. Ce dernier doit aussi être en mesure de répondre à tout changement de l'état clinique de l'enfant qui peut représenter une menace pour sa vie.
+Durée prévisible des soins : au moins un an
+Situation CL'enfant a moins de deux ans et se trouve dans l'une des situations suivantes :
+- Il a une maladie chronique grave installée, sans traitement connu, et présente à la fois :
+- des incapacités graves, multiples et persistantes, y compris des incapacités motrices très sévères;
+- une symptomatologie quotidienne importante et persistante qui nécessite de multiples soins médicaux complexes;
+- Il a une maladie neurogénétique, congénitale ou métabolique, sans traitement connu, qui limite l'espérance de vie à l'enfance et qui est associée à une symptomatologie très importante dès les premiers mois de vie en raison d'incapacités graves, multiples et persistantes.
+Le SEHNSE est un montant qui s'ajoute au supplément pour enfant handicapé (SEH). Il vise à augmenter le soutien financier accordé aux parents pour les aider à subvenir aux besoins d'un enfant qui est gravement malade ou qui a des incapacités très importantes. Les parents doivent assumer des responsabilités hors du commun quant aux soins de l'enfant et à la vigilance nécessaire pour assurer sa sécurité.
+Une équipe de professionnelles et professionnels de la santé de Retraite Québec évalue les demandes de SEHNSE. Elle est composée de médecins, d'orthophonistes, de psychologues et de personnel infirmier.
+L'admissibilité au SEHNSE est établie à partir de l'ensemble des renseignements contenus dans le dossier de votre enfant. En plus des renseignements fournis par la famille qui dépose une demande, l'équipe de professionnelles et professionnels de la santé de Retraite Québec tient compte de toute information pertinente qui provient de sources médicales ou paramédicales (littérature scientifique contemporaine, rapports d'évaluation et notes de suivi rédigés par des professionnelles et professionnels du réseau de la santé, résultats d'examen, etc.). Les renseignements transmis par l'école, la garderie, les intervenantes psychosociales ou les intervenants psychosociaux qui connaissent bien votre enfant sont également considérés.
+Paliers
+Le SEHNSE comporte deux paliers d'admissibilité. En fonction de la gravité de sa condition et de son âge, un enfant peut être admissible au palier 1 ou au palier 2.
+Les conditions d'admissibilité sont plus exigeantes pour le palier 1 que pour le palier 2. C'est pourquoi un montant plus élevé est accordé au premier palier qu'au deuxième.
+Conditions préalables
+La famille de l'enfant doit recevoir pour lui :
+- l'Allocation famille;
+- le supplément pour enfant handicapé (SEH).
+Si vous ne recevez pas l'Allocation famille pour l'enfant concerné par la demande de SEHNSE, vous devez faire 
+ une demande d'Allocation famille avant de transmettre votre demande pour les deux suppléments pour enfant handicapé (SEH et SEHNSE) ou au même moment.
+Si vous transmettez vos trois demandes au même moment, votre 
+ demande d'Allocation famille sera analysée en premier. Si vous êtes admissible à l'Allocation famille pour votre enfant, votre 
+ demande de SEH sera ensuite analysée. Si votre enfant est reconnu admissible au SEH, votre demande de SEHNSE sera analysée en dernier.
+ 

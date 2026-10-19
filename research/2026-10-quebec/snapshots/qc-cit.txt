@@ -1,0 +1,57 @@
+URL: https://www.quebec.ca/personnes-handicapees/emploi-travail-adapte/contrat-integration-travail | province: QC | program: Contrat d'intégration au travail (CIT) pour l'embauche d'une personne handicapée | fetched: 2026-10-18
+=== PAGE: https://www.quebec.ca/personnes-handicapees/emploi-travail-adapte/contrat-integration-travail (HTTP 200, 4273 chars)
+
+ - Accueil  
+- Programmes gouvernementaux destinés aux personnes handicapées  
+- Emploi et travail adapté  
+- Contrat d’intégration au travail pour l’embauche d’une personne handicapée
+ Contrat d’intégration au travail pour l’embauche d’une personne handicapée
+Un contrat d’intégration au travail est une aide financière accordée pour soutenir l’embauche et le maintien en emploi d’une personne handicapée dans un milieu de travail régulier.
+ Dans cette page :
+ Présentation et objectifs
+Les personnes handicapées peuvent avoir des besoins précis dans leur milieu de travail. L’environnement de travail doit être adapté selon les capacités de la personne à répondre aux exigences de l’emploi. Il est possible de rembourser à l’employeur certains frais nécessaires pour l’intégration ou le maintien en emploi de ces personnes.
+ Admissibilité 
+Caractéristiques de l'entreprise admissible
+Pour être admissible, votre entreprise ou votre organisme doit collaborer à l’intégration et au maintien en emploi d’une personne handicapée et être enregistré au Registre des entreprises du Québec.
+Un milieu de travail où plusieurs personnes handicapées participent au programme Contrat d’intégration au travail pourrait ne pas être reconnu comme un milieu de travail régulier. Un pourcentage maximal de postes subventionnés par l’employeur peut être déterminé sur le plan régional.
+Caractéristiques de la personne admissible
+Pour être admissible au contrat d’intégration au travail, la personne doit répondre au critère suivant :
+- Être une personne handicapée répondant à la définition intégrée dans la Loi assurant l’exercice des droits des personnes handicapées en vue de leur intégration scolaire, professionnelle et sociale.
+Et à l’un des critères suivants :
+- Être prestataire de l’assurance-emploi (chômage).
+- Être prestataire d’une aide financière de dernier recours.
+- Ne pas recevoir de soutien public du revenu (assurance-emploi ou aide financière de dernier recours).
+- Ne pas recevoir de soutien offert par un autre régime public (Commission des normes, de l’équité, de la santé et de la sécurité du travail, Société de l’assurance automobile du Québec, Régime de rentes du Québec). La personne peut bénéficier du contrat d’intégration au travail pour des services non couverts par le régime concerné.
+- Être un étudiant à temps partiel ou à temps plein (sous certaines conditions).
+Caractéristiques de l’emploi admissible
+L’emploi occupé par la personne qui est admissible au programme doit correspondre à ses capacités et ne trop pas la confronter à ses incapacités. Voici les caractéristiques de l’emploi admissible :
+- Les tâches doivent être conformes aux capacités de la personne.
+- L’emploi doit être d’un minimum de 12 heures par semaine.
+- L’emploi doit être un poste vacant ou additionnel.
+- Il peut s’agir d’un emploi temporaire ou permanent.
+- Le poste occupé doit être situé au Québec.
+ Frais remboursables 
+L’aide financière peut prendre plusieurs formes :
+- Un soutien au salaire pour compenser le manque de productivité de la personne handicapée et l’encadrement supplémentaire qu’exigent ses incapacités fonctionnelles.  
+- La couverture de certaines dépenses supplémentaires telles que l’adaptation du poste de travail ou l’accessibilité du lieu de travail pour la personne embauchée.
+De plus, le programme permet le remboursement des frais suivants :
+- soutien au salaire;
+- évaluation;
+- accompagnement;
+- compensation salariale pour traitements médicaux;
+- accessibilité des lieux de travail;
+- adaptation du poste de travail (sur le lieu de travail et en télétravail à la maison);
+- interprétariat;
+- aide technologique permettant l’accompagnement et le soutien à l’accomplissement de la tâche;
+- considérations spéciales.
+ Démarche
+Pour faire une demande d’admission, vous pouvez communiquer avec le bureau de Services Québec le plus près de chez vous.
+ Aide et ressources
+Pour obtenir de plus amples renseignements, communiquez avec le Centre d’assistance au placement au 1 888-EMPLOIS (1 888-367-5647).
+Si vous avez besoin d’aide dans vos démarches, communiquez avec l’Office des personnes handicapées du Québec.
+ À consulter aussi
+ - 
+ Contenu officiel du programme Contrat d’intégration au travail
+ Dernière mise à jour : 
+ 19 septembre 2024
+ 

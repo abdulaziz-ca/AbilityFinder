@@ -396,6 +396,7 @@ function loadLinkSources() {
       "globalThis.__nsCities = typeof NS_CITIES !== 'undefined' ? NS_CITIES : []; " +
       "globalThis.__peCities = typeof PE_CITIES !== 'undefined' ? PE_CITIES : []; " +
       "globalThis.__nlCities = typeof NL_CITIES !== 'undefined' ? NL_CITIES : []; " +
+      "globalThis.__qcCities = typeof QC_CITIES !== 'undefined' ? QC_CITIES : []; " +
       "globalThis.__help = HELP_ORGS; globalThis.__grants = GRANTS_DIRECTORY; " +
       "globalThis.__orgs = ORGS_DIRECTORY; " +
       // Province fallback maps. This mirror must expose exactly what
@@ -428,7 +429,7 @@ function expectedGeneratedLinks() {
   const onEnabled = /^const ON_ENABLED = true;\s*$/m.test(appSource);
   const skEnabled = /^const SK_ENABLED = true;\s*$/m.test(appSource);
   const { links, skippedDynamic } = buildLinkCatalogue({
-    benefits: benefitsInScope(sources.__benefits, sources.__bcCities, bcEnabled, sources.__onCities, onEnabled, skEnabled, /^const MB_ENABLED = true;\s*$/m.test(appSource), sources.__mbCities, /^const NB_ENABLED = true;\s*$/m.test(appSource), sources.__nbCities, /^const NS_ENABLED = true;\s*$/m.test(appSource), sources.__nsCities, /^const PE_ENABLED = true;\s*$/m.test(appSource), sources.__peCities, /^const NL_ENABLED = true;\s*$/m.test(appSource), sources.__nlCities),
+    benefits: benefitsInScope(sources.__benefits, sources.__bcCities, bcEnabled, sources.__onCities, onEnabled, skEnabled, /^const MB_ENABLED = true;\s*$/m.test(appSource), sources.__mbCities, /^const NB_ENABLED = true;\s*$/m.test(appSource), sources.__nbCities, /^const NS_ENABLED = true;\s*$/m.test(appSource), sources.__nsCities, /^const PE_ENABLED = true;\s*$/m.test(appSource), sources.__peCities, /^const NL_ENABLED = true;\s*$/m.test(appSource), sources.__nlCities, /^const QC_ENABLED = true;\s*$/m.test(appSource), sources.__qcCities),
     helpOrgs: sources.__help,
     grants: sources.__grants || [],
     orgs: sources.__orgs || [],
@@ -478,7 +479,9 @@ function expectedBenefitsContextSource() {
     /^const PE_ENABLED = true;\s*$/m.test(appSource),
     sources.__peCities,
     /^const NL_ENABLED = true;\s*$/m.test(appSource),
-    sources.__nlCities
+    sources.__nlCities,
+    /^const QC_ENABLED = true;\s*$/m.test(appSource),
+    sources.__qcCities
   );
   const clean = (value) => String(value ?? "").replace(/\s+/g, " ").trim();
   const byId = new Map(benefits.map((benefit) => [benefit.id, benefit]));

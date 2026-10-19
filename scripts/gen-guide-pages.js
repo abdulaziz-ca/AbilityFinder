@@ -29,6 +29,7 @@ vm.runInContext(
     '\n;globalThis.__NS_CITIES = typeof NS_CITIES !== "undefined" ? NS_CITIES : [];' +
     '\n;globalThis.__PE_CITIES = typeof PE_CITIES !== "undefined" ? PE_CITIES : [];' +
     '\n;globalThis.__NL_CITIES = typeof NL_CITIES !== "undefined" ? NL_CITIES : [];' +
+    '\n;globalThis.__QC_CITIES = typeof QC_CITIES !== "undefined" ? QC_CITIES : [];' +
     '\n;globalThis.__NOTICES = typeof PROVINCE_NOTICES !== "undefined" ? PROVINCE_NOTICES : {};' +
     '\n;globalThis.__SHARED_CITIES = typeof SHARED_CITIES !== "undefined" ? SHARED_CITIES : {};' +
     '\n;globalThis.__ON_REGIONS = typeof ON_REGIONS !== "undefined" ? ON_REGIONS : [];',
@@ -112,6 +113,13 @@ if (!nlEnabledMatch) {
 const nlEnabled = nlEnabledMatch[1] === "true";
 const nlCities = ctx.__NL_CITIES || [];
 const benefitIsNewfoundlandandLabrador = (b) => b.level === "Newfoundland and Labrador" || nlCities.includes(b.level);
+const qcEnabledMatch = /^const QC_ENABLED = (true|false);\s*$/m.exec(appSource);
+if (!qcEnabledMatch) {
+  throw new Error("gen:guides — could not find literal const QC_ENABLED = true/false in public/app.js");
+}
+const qcEnabled = qcEnabledMatch[1] === "true";
+const qcCities = ctx.__QC_CITIES || [];
+const benefitIsQuebec = (b) => b.level === "Quebec" || qcCities.includes(b.level);
 const benefitIsBritishColumbia = (b) =>
   b.level === "British Columbia" || b.level === "Metro Vancouver" || bcCities.includes(b.level);
 const onRegions = ctx.__ON_REGIONS || [];
@@ -132,6 +140,7 @@ const enabledProvinceNames = [
   ...(nsEnabled ? ["Nova Scotia"] : []),
   ...(peEnabled ? ["Prince Edward Island"] : []),
   ...(nlEnabled ? ["Newfoundland and Labrador"] : []),
+  ...(qcEnabled ? ["Quebec"] : []),
 ];
 const provinceProse =
   enabledProvinceNames.length <= 1
@@ -146,8 +155,9 @@ if (!nbEnabled) benefits = benefits.filter((b) => !benefitIsNewBrunswick(b));
 if (!nsEnabled) benefits = benefits.filter((b) => !benefitIsNovaScotia(b));
 if (!peEnabled) benefits = benefits.filter((b) => !benefitIsPrinceEdwardIsland(b));
 if (!nlEnabled) benefits = benefits.filter((b) => !benefitIsNewfoundlandandLabrador(b));
+if (!qcEnabled) benefits = benefits.filter((b) => !benefitIsQuebec(b));
 console.log(
-  `BC_ENABLED=${bcEnabled} ON_ENABLED=${onEnabled} SK_ENABLED=${skEnabled} MB_ENABLED=${mbEnabled} NB_ENABLED=${nbEnabled} NS_ENABLED=${nsEnabled} PE_ENABLED=${peEnabled} NL_ENABLED=${nlEnabled} — excluded ${allBenefits.length - benefits.length} dark-province entries; generating ${benefits.length} entries.`
+  `BC_ENABLED=${bcEnabled} ON_ENABLED=${onEnabled} SK_ENABLED=${skEnabled} MB_ENABLED=${mbEnabled} NB_ENABLED=${nbEnabled} NS_ENABLED=${nsEnabled} PE_ENABLED=${peEnabled} NL_ENABLED=${nlEnabled} QC_ENABLED=${qcEnabled} — excluded ${allBenefits.length - benefits.length} dark-province entries; generating ${benefits.length} entries.`
 );
 
 const indexHtml = fs.readFileSync(INDEX, "utf8");
@@ -160,9 +170,11 @@ const styleHref = styleMatch[1].replace(/^\/?/, "/");
 // Same ?v=N as the stylesheet, so every guide asset moves with one bump.
 const assetQuery = (/\?v=[^"]+$/.exec(styleHref) || [""])[0];
 // Short scope label for the header tag, e.g. "Alberta + BC + Ontario".
-const scopeTag = ["Alberta", ...(bcEnabled ? ["BC"] : []), ...(onEnabled ? ["Ontario"] : []), ...(skEnabled ? ["Saskatchewan"] : []), ...(mbEnabled ? ["Manitoba"] : []), ...(nbEnabled ? ["New Brunswick"] : []), ...(nsEnabled ? ["Nova Scotia"] : []), ...(peEnabled ? ["Prince Edward Island"] : []), ...(nlEnabled ? ["Newfoundland and Labrador"] : [])].join(" + ");
+// Same short form as the app header (_SCOPE_ABBR): ten full province names overflow the nav.
+const scopeTag = ["Alberta", ...(bcEnabled ? ["BC"] : []), ...(onEnabled ? ["ON"] : []), ...(skEnabled ? ["SK"] : []), ...(mbEnabled ? ["MB"] : []), ...(nbEnabled ? ["NB"] : []), ...(nsEnabled ? ["NS"] : []), ...(peEnabled ? ["PEI"] : []), ...(nlEnabled ? ["NL"] : []), ...(qcEnabled ? ["QC"] : [])].join(" + ")
 
-const clean = (value) => String(value ?? "").replace(/\s+/g, " ").trim();
+// Non-breaking spaces stay: French typography uses them before ":" and "$".
+const clean = (value) => String(value ?? "").replace(/[^\S\u00a0\u202f]+/g, " ").trim();
 const cleanGeneratedWhitespace = (value) => value.replace(/[ \t]+$/gm, "");
 const esc = (value) => clean(value)
   .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
@@ -183,9 +195,66 @@ const officialLinks = (b) => {
     links.push({ url: staticUrl, label });
   };
   add(b.applyUrl, clean(b.applyText) || (() => { try { return `Open the official page on ${new URL(b.applyUrl).hostname.replace(/^www2?\./, "")}`; } catch { return "Apply or learn more"; } })());
-  add(b.source, "Official government source");
+  add(b.source, labelsFor(b).official);
   return links;
 };
+/* Guide labels. Québec records (b.lang === "fr") keep the official French wording,
+   so their static page is French throughout: page language, headings, navigation
+   and footer. Every other page uses the English labels, unchanged. */
+const GUIDE_LABELS = {
+  en: {
+    level: (x) => x, category: (x) => x, verified: (x) => x,
+    html: "en", home: "AbilityFinder home", find: "Find benefits", guides: "Program guides",
+    privacy: "Privacy &amp; disclaimer",
+    independent: "AbilityFinder is independent and not affiliated with any government. Always confirm details with the official source.",
+    whatItIs: "What it is", goodToKnow: "Good to know", mustMeet: "What you must meet",
+    mustAny: "The program requires at least one of these:", mustAll: "You must meet all of these:",
+    amount: "Amount or value", tiers: "How the amount is worked out", glance: "At a glance",
+    difficulty: "Difficulty", application: "Application", howLong: "How long", covers: "What it covers",
+    how: "How to apply", need: "What you may need", tips: "Practical tips", timing: "Timing",
+    abbr: "Abbreviations on this page", phone: "Phone", confirm: "Confirm before applying",
+    nextH: "Your next step", nextP: "Open the official program page, check the current rules, and use its application route.",
+    foot: "Benefit rules and amounts can change. Confirm the current details before applying.",
+    cta: "Answer a few questions to see benefits you may qualify for",
+    official: "Official government source", easy: "Easy", medium: "Medium", hard: "Hard",
+    steps: [
+      "Open the official program page and review the current eligibility rules, dates and application method.",
+      "Gather the documents named on the official application page; requirements can change.",
+      "Apply through the official link below, then keep a copy or confirmation number for follow-up.",
+    ],
+  },
+  fr: {
+    level: (x) => (x === "Quebec" ? "Québec" : x),
+    category: (x) => ({ "Income support": "Soutien du revenu", "Health": "Santé", "Health (for children)": "Santé (enfants)", "Home support": "Soutien à domicile", "Home": "Domicile", "Housing": "Logement", "Money": "Aide financière", "Money (for parents)": "Aide financière (parents)", "Money & taxes": "Argent et impôts", "Education": "Éducation", "Employment": "Emploi", "Daily living supports": "Soutien à la vie quotidienne", "Community supports": "Soutien communautaire" })[x] || x,
+    verified: (x) => {
+      const months = { January: "janvier", February: "février", March: "mars", April: "avril", May: "mai", June: "juin", July: "juillet", August: "août", September: "septembre", October: "octobre", November: "novembre", December: "décembre" };
+      const m = /^(Info verified|Part of the) (\w+) (\d{4})(?: catalogue review)?$/.exec(x);
+      if (!m) return x;
+      const when = `${months[m[2]] || m[2]} ${m[3]}`;
+      return m[1] === "Info verified" ? `Information vérifiée en ${when}` : `Revue du catalogue de ${when}`;
+    },
+    html: "fr-CA", home: "Accueil AbilityFinder", find: "Trouver des prestations", guides: "Guides des programmes",
+    privacy: "Confidentialité et avis",
+    independent: "AbilityFinder est indépendant et n’est affilié à aucun gouvernement. Confirmez toujours les détails auprès de la source officielle.",
+    whatItIs: "En quoi consiste le programme", goodToKnow: "Bon à savoir", mustMeet: "Conditions à remplir",
+    mustAny: "Le programme exige au moins une de ces conditions :", mustAll: "Vous devez remplir toutes ces conditions :",
+    amount: "Montant ou valeur", tiers: "Calcul du montant", glance: "En bref",
+    difficulty: "Difficulté", application: "Demande", howLong: "Délai", covers: "Ce qui est couvert",
+    how: "Comment faire une demande", need: "Ce dont vous pourriez avoir besoin", tips: "Conseils pratiques", timing: "Délais",
+    abbr: "Sigles sur cette page", phone: "Téléphone", confirm: "À confirmer avant de faire une demande",
+    nextH: "Prochaine étape", nextP: "Ouvrez la page officielle du programme, vérifiez les règles en vigueur et suivez sa démarche de demande.",
+    foot: "Les règles et les montants peuvent changer. Confirmez les détails à jour avant de faire une demande.",
+    cta: "Répondez à quelques questions pour voir les prestations auxquelles vous pourriez avoir droit",
+    official: "Source gouvernementale officielle", easy: "Facile", medium: "Moyenne", hard: "Difficile",
+    steps: [
+      "Ouvrez la page officielle du programme et lisez les règles d’admissibilité, les dates et la façon de faire une demande.",
+      "Réunissez les documents demandés sur la page officielle; les exigences peuvent changer.",
+      "Faites votre demande au moyen du lien officiel ci-dessous, puis gardez une copie ou un numéro de confirmation.",
+    ],
+  },
+};
+const labelsFor = (b) => GUIDE_LABELS[b && b.lang === "fr" ? "fr" : "en"];
+
 const list = (title, items, ordered = false) => {
   if (!Array.isArray(items) || !items.length) return "";
   const tag = ordered ? "ol" : "ul";
@@ -236,24 +305,24 @@ function head({ title, desc, canonical }) {
     </style>
   </head>`;
 }
-function header() {
+function header(L = GUIDE_LABELS.en) {
   return `    <header class="nav">
       <div class="nav-inner">
-        <a class="brand" href="https://abilityfinder.ca/" aria-label="AbilityFinder home"><span class="brand-name">AbilityFinder</span></a>
+        <a class="brand" href="https://abilityfinder.ca/" aria-label="${L.home}"><span class="brand-name">AbilityFinder</span></a>
         <div class="nav-right">
           <span class="nav-tag">${scopeTag}</span>
-          <a class="guide-link" href="https://abilityfinder.ca/">Find benefits</a>
-          <a class="guide-link" href="https://abilityfinder.ca/guides/">Program guides</a>
+          <a class="guide-link" href="https://abilityfinder.ca/">${L.find}</a>
+          <a class="guide-link" href="https://abilityfinder.ca/guides/">${L.guides}</a>
         </div>
       </div>
     </header>`;
 }
-function footer() {
+function footer(L = GUIDE_LABELS.en) {
   return `      <footer class="site-footer">
         <div class="sf-brand">AbilityFinder</div>
         <div class="sf-links">
-          <a class="guide-link" href="https://abilityfinder.ca/?view=privacy">Privacy &amp; disclaimer</a>
-          <span class="sf-note">AbilityFinder is independent and not affiliated with any government. Always confirm details with the official source.</span>
+          <a class="guide-link" href="https://abilityfinder.ca/?view=privacy">${L.privacy}</a>
+          <span class="sf-note">${L.independent}</span>
         </div>
       </footer>`;
 }
@@ -264,62 +333,59 @@ function benefitPage(b) {
   const desc = description(b.summary);
   const detail = b.detail || {};
   const meta = benefitMeta[b.id] || {};
-  const difficulty = meta.difficulty <= 2 ? "Easy" : meta.difficulty === 3 ? "Medium" : meta.difficulty ? "Hard" : "";
-  const steps = Array.isArray(detail.steps) && detail.steps.length ? detail.steps : [
-    "Open the official program page and review the current eligibility rules, dates and application method.",
-    "Gather the documents named on the official application page; requirements can change.",
-    "Apply through the official link below, then keep a copy or confirmation number for follow-up.",
-  ];
+  const L = labelsFor(b);
+  const difficulty = meta.difficulty <= 2 ? L.easy : meta.difficulty === 3 ? L.medium : meta.difficulty ? L.hard : "";
+  const steps = Array.isArray(detail.steps) && detail.steps.length ? detail.steps : L.steps;
   const links = officialLinks(b);
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="${L.html}">
 ${head({ title: `${b.name} — AbilityFinder`, desc, canonical })}
   <body>
-${header()}
+${header(L)}
     <div class="wrap">
       <main class="detail">
         <header class="detail-hero">
-          <p class="eyebrow">${esc(b.level)} · ${esc(b.category)}</p>
+          <p class="eyebrow">${esc(L.level(b.level))} · ${esc(L.category(b.category))}</p>
           <h1 class="detail-title">${esc(b.name)}</h1>
           ${STATUS[b.id] ? `<p class="status-badge status-${esc(STATUS[b.id].kind)}">${esc(STATUS[b.id].text)}</p>` : ""}
           <p class="detail-lede">${esc(b.summary)}</p>
         </header>
-        ${(() => { const n = benefitIsManitoba(b) ? (ctx.__NOTICES || {}).MB : null; return n ? `<div class="callout province-notice" role="note"><div><b>${esc(n.title)}</b><p>${esc(n.lede)}</p><ul>${n.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul></div></div>` : ""; })()}
+        ${(() => { const N = ctx.__NOTICES || {}; const n = benefitIsManitoba(b) ? N.MB : benefitIsQuebec(b) && N.QC ? (N.QC.fr || N.QC) : null; return n ? `<div class="callout province-notice" role="note"><div><b>${esc(n.title)}</b><p>${esc(n.lede)}</p><ul>${n.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul></div></div>` : ""; })()}
         <div class="detail-body">
           <div class="detail-main">
             ${detail.aboutList && detail.aboutList.items && detail.aboutList.items.length
-              ? `<section class="guide-block"><h2 class="guide-h">What it is</h2>${detail.aboutList.lead ? `<p class="detail-about">${esc(detail.aboutList.lead)}</p>` : ""}<ul class="eligibility-list">${detail.aboutList.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul></section>`
-              : detail.about ? `<section class="guide-block"><h2 class="guide-h">What it is</h2><p class="detail-about">${esc(detail.about)}</p></section>` : ""}
-            ${b.note ? `<section class="guide-block"><h2 class="guide-h">Good to know</h2><p class="detail-about">${esc(b.note)}</p></section>` : ""}
+              ? `<section class="guide-block"><h2 class="guide-h">${L.whatItIs}</h2>${detail.aboutList.lead ? `<p class="detail-about">${esc(detail.aboutList.lead)}</p>` : ""}<ul class="eligibility-list">${detail.aboutList.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul></section>`
+              : detail.about ? `<section class="guide-block"><h2 class="guide-h">${L.whatItIs}</h2><p class="detail-about">${esc(detail.about)}</p></section>` : ""}
+            ${b.note ? `<section class="guide-block"><h2 class="guide-h">${L.goodToKnow}</h2><p class="detail-about">${esc(b.note)}</p></section>` : ""}
             ${b.eligibility && b.eligibility.items && b.eligibility.items.length
-              ? `<section class="guide-block"><h2 class="guide-h">What you must meet</h2><p class="eligibility-lead">${b.eligibility.mode === "any" ? "The program requires at least one of these:" : "You must meet all of these:"}</p><ul class="eligibility-list">${b.eligibility.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul>${b.eligibility.note ? (b.eligibility.note.items ? `<p class="eligibility-lead">${esc(b.eligibility.note.lead)}</p><ul class="eligibility-list">${b.eligibility.note.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul><p class="detail-about eligibility-note">${esc(b.eligibility.note.after)}</p>` : `<p class="detail-about eligibility-note">${esc(b.eligibility.note)}</p>`) : ""}</section>`
-              : b.requiresNote ? `<section class="guide-block"><h2 class="guide-h">What you must meet</h2><p class="detail-about">${esc(b.requiresNote)}</p></section>` : ""}
-            ${b.amount ? `<section class="guide-block"><h2 class="guide-h">Amount or value</h2><p class="detail-amount">${esc(b.amount)}</p></section>` : ""}
-            ${b.amountTiers && b.amountTiers.rows && b.amountTiers.rows.length ? `<section class="guide-block"><h2 class="guide-h">${esc(b.amountTiers.caption || "How the amount is worked out")}</h2><div class="tier-scroll"><table class="amount-tiers"><thead><tr>${b.amountTiers.headers.map((h) => `<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${b.amountTiers.rows.map((row) => `<tr>${row.map((cell) => `<td>${esc(cell)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></section>` : ""}
-            ${difficulty || meta.effort || (meta.wait && !detail.time) ? `<section class="guide-block"><h2 class="guide-h">At a glance</h2><dl class="guide-list">${difficulty ? `<div><dt>Difficulty</dt><dd>${esc(difficulty)}</dd></div>` : ""}${meta.effort ? `<div><dt>Application</dt><dd>${esc(meta.effort)}</dd></div>` : ""}${meta.wait && !detail.time ? `<div><dt>How long</dt><dd>${esc(meta.wait)}</dd></div>` : ""}</dl></section>` : ""}
-            ${detail.coversList && detail.coversList.items && detail.coversList.items.length ? `<section class="guide-block"><h2 class="guide-h">What it covers</h2>${detail.coversList.lead ? `<p class="eligibility-lead">${esc(detail.coversList.lead)}</p>` : ""}<ul class="eligibility-list">${detail.coversList.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul></section>` : ""}
-            ${list("How to apply", steps, true)}
-            ${list("What you may need", detail.documents)}
-            ${list("Practical tips", detail.tips)}
-            ${detail.time ? `<section class="guide-block"><h2 class="guide-h">Timing</h2><p class="detail-about">${esc(detail.time)}</p></section>` : ""}
-            ${(() => { const terms = glossaryTermsFor(b); return terms.length ? `<section class="guide-block"><h2 class="guide-h">Abbreviations on this page</h2><dl class="guide-list">${terms.map(([a, e]) => `<div><dt><abbr title="${esc(e)}">${esc(a)}</abbr></dt><dd>${esc(e)}</dd></div>`).join("")}</dl></section>` : ""; })()}
-            ${detail.phone ? `<section class="guide-block"><h2 class="guide-h">Phone</h2><p class="detail-about">${esc(detail.phone)}</p></section>` : ""}
+              ? `<section class="guide-block"><h2 class="guide-h">${L.mustMeet}</h2><p class="eligibility-lead">${b.eligibility.mode === "any" ? L.mustAny : L.mustAll}</p><ul class="eligibility-list">${b.eligibility.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul>${b.eligibility.note ? (b.eligibility.note.items ? `<p class="eligibility-lead">${esc(b.eligibility.note.lead)}</p><ul class="eligibility-list">${b.eligibility.note.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul><p class="detail-about eligibility-note">${esc(b.eligibility.note.after)}</p>` : `<p class="detail-about eligibility-note">${esc(b.eligibility.note)}</p>`) : ""}</section>`
+              : b.requiresNote ? `<section class="guide-block"><h2 class="guide-h">${L.mustMeet}</h2><p class="detail-about">${esc(b.requiresNote)}</p></section>` : ""}
+            ${b.amount ? `<section class="guide-block"><h2 class="guide-h">${L.amount}</h2><p class="detail-amount">${esc(b.amount)}</p></section>` : ""}
+            ${b.amountTiers && b.amountTiers.rows && b.amountTiers.rows.length ? `<section class="guide-block"><h2 class="guide-h">${esc(b.amountTiers.caption || L.tiers)}</h2><div class="tier-scroll"><table class="amount-tiers"><thead><tr>${b.amountTiers.headers.map((h) => `<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${b.amountTiers.rows.map((row) => `<tr>${row.map((cell) => `<td>${esc(cell)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></section>` : ""}
+            ${difficulty || meta.effort || (meta.wait && !detail.time) ? `<section class="guide-block"><h2 class="guide-h">${L.glance}</h2><dl class="guide-list">${difficulty ? `<div><dt>${L.difficulty}</dt><dd>${esc(difficulty)}</dd></div>` : ""}${meta.effort ? `<div><dt>${L.application}</dt><dd>${esc(meta.effort)}</dd></div>` : ""}${meta.wait && !detail.time ? `<div><dt>${L.howLong}</dt><dd>${esc(meta.wait)}</dd></div>` : ""}</dl></section>` : ""}
+            ${detail.coversList && detail.coversList.items && detail.coversList.items.length ? `<section class="guide-block"><h2 class="guide-h">${L.covers}</h2>${detail.coversList.lead ? `<p class="eligibility-lead">${esc(detail.coversList.lead)}</p>` : ""}<ul class="eligibility-list">${detail.coversList.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul></section>` : ""}
+            ${list(L.how, steps, true)}
+            ${list(L.need, detail.documents)}
+            ${list(L.tips, detail.tips)}
+            ${detail.time ? `<section class="guide-block"><h2 class="guide-h">${L.timing}</h2><p class="detail-about">${esc(detail.time)}</p></section>` : ""}
+            ${(() => { const terms = glossaryTermsFor(b); return terms.length ? `<section class="guide-block"><h2 class="guide-h">${L.abbr}</h2><dl class="guide-list">${terms.map(([a, e]) => `<div><dt><abbr title="${esc(e)}">${esc(a)}</abbr></dt><dd>${esc(e)}</dd></div>`).join("")}</dl></section>` : ""; })()}
+            ${detail.phone ? `<section class="guide-block"><h2 class="guide-h">${L.phone}</h2><p class="detail-about">${esc(detail.phone)}</p></section>` : ""}
           </div>
           <aside class="detail-side">
             <div class="side-card">
-            <span class="side-status maybe">Confirm before applying</span>
-            <div class="side-next"><h2>Your next step</h2><p>Open the official program page, check the current rules, and use its application route.</p></div>
+            <span class="side-status maybe">${L.confirm}</span>
+            <div class="side-next"><h2>${L.nextH}</h2><p>${L.nextP}</p></div>
             <ul class="guide-list">
 ${links.map((x) => `              <li><a class="guide-link" href="${esc(x.url)}">${esc(x.label)}</a></li>`).join("\n")}
             </ul>
-            <p class="side-foot"><span class="verified">${esc(ctx.guideFreshness(b).wording)}</span></p>
-            <p class="detail-foot">Benefit rules and amounts can change. Confirm the current details before applying.</p>
-            <p><a class="btn btn-primary" href="https://abilityfinder.ca/">Answer a few questions to see benefits you may qualify for</a></p>
+            <p class="side-foot"><span class="verified">${esc(L.verified(ctx.guideFreshness(b).wording))}</span></p>
+            <p class="detail-foot">${L.foot}</p>
+            <p><a class="btn btn-primary" href="https://abilityfinder.ca/">${L.cta}</a></p>
             </div>
           </aside>
         </div>
       </main>
-${footer()}
+${footer(L)}
     </div>
   </body>
 </html>

@@ -46,6 +46,7 @@ vm.runInContext(
     '\n;globalThis.__NS_CITIES = typeof NS_CITIES !== "undefined" ? NS_CITIES : [];' +
     '\n;globalThis.__PE_CITIES = typeof PE_CITIES !== "undefined" ? PE_CITIES : [];' +
     '\n;globalThis.__NL_CITIES = typeof NL_CITIES !== "undefined" ? NL_CITIES : [];' +
+    '\n;globalThis.__QC_CITIES = typeof QC_CITIES !== "undefined" ? QC_CITIES : [];' +
     '\n;globalThis.__SHARED_CITIES = typeof SHARED_CITIES !== "undefined" ? SHARED_CITIES : {};' +
     '\n;globalThis.__ON_REGIONS = typeof ON_REGIONS !== "undefined" ? ON_REGIONS : [];' +
     '\n;globalThis.__HELP = typeof HELP_ORGS !== "undefined" ? HELP_ORGS : null;' +
@@ -134,6 +135,13 @@ if (!nlEnabledMatch) {
 const nlEnabled = nlEnabledMatch[1] === "true";
 const nlCities = ctx.__NL_CITIES || [];
 const benefitIsNewfoundlandandLabrador = (b) => b.level === "Newfoundland and Labrador" || nlCities.includes(b.level);
+const qcEnabledMatch = /^const QC_ENABLED = (true|false);\s*$/m.exec(appSource);
+if (!qcEnabledMatch) {
+  throw new Error("gen:context — could not find literal const QC_ENABLED = true/false in public/app.js");
+}
+const qcEnabled = qcEnabledMatch[1] === "true";
+const qcCities = ctx.__QC_CITIES || [];
+const benefitIsQuebec = (b) => b.level === "Quebec" || qcCities.includes(b.level);
 const benefitIsBritishColumbia = (b) =>
   b.level === "British Columbia" || b.level === "Metro Vancouver" || bcCities.includes(b.level);
 const onRegions = ctx.__ON_REGIONS || [];
@@ -148,8 +156,9 @@ if (!nbEnabled) benefits = benefits.filter((b) => !benefitIsNewBrunswick(b));
 if (!nsEnabled) benefits = benefits.filter((b) => !benefitIsNovaScotia(b));
 if (!peEnabled) benefits = benefits.filter((b) => !benefitIsPrinceEdwardIsland(b));
 if (!nlEnabled) benefits = benefits.filter((b) => !benefitIsNewfoundlandandLabrador(b));
+if (!qcEnabled) benefits = benefits.filter((b) => !benefitIsQuebec(b));
 console.log(
-  `BC_ENABLED=${bcEnabled} ON_ENABLED=${onEnabled} SK_ENABLED=${skEnabled} MB_ENABLED=${mbEnabled} NB_ENABLED=${nbEnabled} NS_ENABLED=${nsEnabled} PE_ENABLED=${peEnabled} NL_ENABLED=${nlEnabled} — excluded ${allBenefits.length - benefits.length} dark-province entries; generating ${benefits.length} entries.`
+  `BC_ENABLED=${bcEnabled} ON_ENABLED=${onEnabled} SK_ENABLED=${skEnabled} MB_ENABLED=${mbEnabled} NB_ENABLED=${nbEnabled} NS_ENABLED=${nsEnabled} PE_ENABLED=${peEnabled} NL_ENABLED=${nlEnabled} QC_ENABLED=${qcEnabled} — excluded ${allBenefits.length - benefits.length} dark-province entries; generating ${benefits.length} entries.`
 );
 
 const clean = (s) => String(s ?? "").replace(/\s+/g, " ").trim();

@@ -1,0 +1,357 @@
+URL: https://www.stlevis.ca/transport-adapte | province: QC | program: STLévis — Transport adapté and tarification | fetched: 2026-10-18
+=== PAGE: https://www.stlevis.ca/transport-adapte (HTTP 200, 16372 chars)
+
+Nous respectons votre vie privée.
+Nous utilisons des cookies pour améliorer votre expérience de navigation, diffuser des publicités ou des contenus personnalisés et analyser notre trafic. En cliquant sur « Tout accepter », vous consentez à notre utilisation des cookies.
+Personnaliser
+ Tout rejeter
+ Accepter tout
+Personnaliser les préférences en matière de consentement 
+Nous utilisons des cookies pour vous aider à naviguer efficacement et à exécuter certaines fonctionnalités. Vous trouverez des informations détaillées sur tous les cookies sous chaque catégorie de consentement ci-dessous.
+Les cookies qui sont catégorisés comme « nécessaires » sont stockés sur votre navigateur car ils sont essentiels pour permettre les fonctionnalités de base du site. ... Afficher plus
+Nécessaire
+Toujours actif
+Les cookies nécessaires sont cruciaux pour les fonctions de base du site Web et celui-ci ne fonctionnera pas comme prévu sans eux.Ces cookies ne stockent aucune donnée personnellement identifiable.
+- Cookie
+XSRF-TOKEN
+- durée
+2 heure
+- la description
+Wix a placé ce témoin à des fins de sécurité.
+- Cookie
+cookieyes-consent
+- durée
+1 an
+- la description
+CookieYes place ce témoin pour mémoriser les préférences des utilisateurs en matière de consentement afin que leurs préférences soient respectées lors des visites ultérieures de ce site. Il ne collecte ni ne stocke aucune information personnelle sur les visiteurs du site.
+Fonctionnelle
+Les cookies fonctionnels permettent d'exécuter certaines fonctionnalités telles que le partage du contenu du site Web sur des plateformes de médias sociaux, la collecte de commentaires et d'autres fonctionnalités tierces.
+Aucun cookie à afficher.
+Analytique
+Les cookies analytiques sont utilisés pour comprendre comment les visiteurs interagissent avec le site Web. Ces cookies aident à fournir des informations sur le nombre de visiteurs, le taux de rebond, la source de trafic, etc.
+- Cookie
+_ga
+- durée
+1 an 1 mois 4 jour
+- la description
+Google Analytics utilise ce témoin pour calculer les données relatives aux visiteurs, aux sessions et aux campagnes et suivre l’utilisation du site pour le rapport d’analyse du site. Le témoin stocke les informations de manière anonyme et attribue un numéro généré de manière aléatoire pour reconnaître les visiteurs uniques.
+- Cookie
+_gcl_au
+- durée
+3 mois
+- la description
+Google Tag Manager place le témoin pour expérimenter l’efficacité publicitaire des sites web utilisant leurs services.
+- Cookie
+_ga_*
+- durée
+1 an 1 mois 4 jour
+- la description
+Google Analytics sets this cookie to store and count page views.
+- Cookie
+ga_original_location
+- durée
+7 jour
+- la description
+Description is currently not available.
+- Cookie
+CLID
+- durée
+1 an
+- la description
+Microsoft Clarity définit ce cookie pour stocker des informations sur la façon dont les visiteurs interagissent avec le site internet. Ce cookie permet de fournir un rapport d'analyse. La collecte de données comprend le nombre de visiteurs, l'endroit où ils visitent le site internet et les pages visitées.
+- Cookie
+_clck
+- durée
+1 an
+- la description
+Microsoft Clarity définit ce cookie pour conserver l'identification de l'utilisateur Clarity du navigateur et les paramètres exclusifs à ce site internet. Cela garantit que les actions effectuées lors de visites ultérieures du même site internet seront liées au même identifiant utilisateur.
+- Cookie
+_fbp
+- durée
+3 mois
+- la description
+Facebook définit ce témoin pour afficher des publicités lorsque vous êtes sur Facebook ou sur une plateforme numérique alimentée par la publicité de Facebook après avoir visité le site Internet.
+- Cookie
+_clsk
+- durée
+1 jour
+- la description
+Microsoft Clarity définit ce cookie pour stocker et consolider les pages vues par un utilisateur dans un seul enregistrement de session.
+- Cookie
+MR
+- durée
+7 jour
+- la description
+This cookie, set by Bing, is used to collect user information for analytics purposes.
+- Cookie
+SM
+- durée
+session
+- la description
+Le cookie Microsoft Clarity définit ce cookie pour synchroniser le MUID entre les domaines Microsoft.
+Performance
+Les cookies de performance sont utilisés pour comprendre et analyser les indices de performance clés du site Web, ce qui permet de fournir une meilleure expérience utilisateur aux visiteurs.
+- Cookie
+societe_de_transport_de_levis_session
+- durée
+2 heure
+- la description
+Description is currently not available.
+- Cookie
+SRM_B
+- durée
+1 an 24 jour
+- la description
+Utilisé par Microsoft Advertising comme un identifiant unique pour les visiteurs.
+Publicité
+Les cookies de publicité sont utilisés pour fournir aux visiteurs des publicités personnalisées basées sur les pages visitées précédemment et analyser l'efficacité de la campagne publicitaire.
+- Cookie
+test_cookie
+- durée
+15 minute
+- la description
+doubleclick.net place ce témoin pour déterminer si le navigateur de l’utilisateur accepte les témoins.
+- Cookie
+MUID
+- durée
+1 an 24 jour
+- la description
+Bing utilise ce témoin pour reconnaître les navigateurs uniques qui visitent les sites Microsoft. Ce témoin est utilisé pour la publicité, l’analyse des sites et d’autres opérations.
+- Cookie
+ANONCHK
+- durée
+10 minute
+- la description
+Le cookie ANONCHK, défini par Bing, est utilisé pour stocker l'identifiant de session d'un utilisateur et vérifier les clics des annonces sur le moteur de recherche Bing. Ce cookie contribue également à l'établissement de rapports et à la personnalisation.
+Non classé
+Les autres cookies non classés sont ceux qui sont en cours d'analyse et qui n'ont pas encore été classés dans une catégorie.
+Aucun cookie à afficher.
+Tout rejeter
+ Enregistrer mes préférences
+ Accepter tout
+Powered by 
+ <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T7PPH5C9"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe>
+ État du réseau
+ Société de transport de Lévis
+ Ouvrir la navigation
+ - Travaux routiers!
+ - Accueil
+ - Nous joindre
+ - Carrière
+ - Intranet
+ - 
+ Réduire texte
+ Grossir texte
+Trouver
+ État du réseau
+ Nouveau plan du réseau
+ Nouveau plan du réseau disponible
+ Consulter
+ BANQUE DE CANDIDATURES - PERSONNEL CHAUFFEUR D’AUTOBUS URBAIN 
+ En savoir plus
+ Fermer l'alerte
+ Nouveau - Transit sur votre Apple Watch 
+ En savoir plus
+ Fermer l'alerte
+ ×
+ Offre
+d'emploi
+ Chauffeurs.es d'autobus urbain
+ Gagne entre
+56 000 $ et 85 000 $
+ - Primes de soir et de fin de semaine
+ - Fonds de pension à prestation déterminée
+ - Conciliation travail et vie
+ Postulez ici
+ Société de transport de Lévis
+ ×
+ INFORMATIONS EN APPLICATION DE LA
+ LOI SUR L’ACCÈS AUX DOCUMENTS DES ORGANISMES PUBLICS ET SUR LA PROTECTION DES RENSEIGNEMENTS PERSONNELS (RLRQ, C. A-2.1)
+ - La carte OPUS enregistrée est considérée comme étant une carte OPUS personnalisée. Les
+ renseignements personnels recueillis afin d’émettre la carte OPUS personnalisée sont les
+ renseignements qui sont nécessaires, soit pour vérifier, octroyer ou renouveler le statut des
+ personnes qui sont habilitées à obtenir et utiliser une carte OPUS personnalisée donnant accès
+ à un privilège tarifaire des titres de transport, soit pour le renouvellement, la modification, le
+ remplacement, la réactivation ou l’annulation d’une carte OPUS personnalisée, le cas échéant;
+ - 
+ Ces renseignements personnels sont recueillis par l’organisme émetteur de la carte OPUS
+ personnalisée, pour lui-même, pour la Société de transport de Montréal (STM) qui a la
+ responsabilité d’exploiter le système informatique du Système intégré de vente de titres et
+ de perception des recettes de transport en commun («Système intégré») au bénéfice des
+ Organismes de transport qui participent au Système intégré ;
+ - 
+ Les Organismes de transport qui participent au Système intégré sont : l’Autorité régionale
+ de transport métropolitain, le Réseau de transport de la Capitale, la Société de transport de
+ Lévis, le Réseau de transport de Longueuil, le Réseau de transport métropolitain, la Société
+ de transport de Laval, la Société de transport de Montréal, le Réseau express métropolitain
+ et la MRC Joliette;
+ - 
+ Les fins pour lesquelles les renseignements personnels en question sont recueillis sont les
+ suivantes : a) l’émission, le renouvellement, la modification, le remplacement, la réactivation
+ ou l’annulation de cartes OPUS personnalisées par les Organismes de transport qui parti-
+ cipent au Système intégré ; b) la vente de titres et la perception des recettes de transport en
+ commun ainsi que la répartition de certaines de ces recettes ; c) le remboursement ou la res-
+ titution de titres ; d) la gestion du Système intégré ; e) la prévention, la détection ou la répres-
+ sion de la fraude ; f) la planification du transport en commun (sous forme dépersonnalisée).
+ - 
+ Les catégories de personnes qui pourront, dans l’exercice de leurs fonctions, avoir accès
+ à ces renseignements personnels au sein des Organismes de transport qui participent au
+ Système intégré sont les suivantes : les agents de service à la clientèle, les agents de vente
+ de titres de transport ainsi que les employés et consultants de ces Organismes de trans-
+ port qui doivent prendre connaissance de tels renseignements afin d’exercer des fonctions
+ reliées à la vente de titres, à la perception ou à la répartition des recettes de transport en
+ commun, à la gestion du Système intégré ou à la planification du transport en commun;
+ - 
+ Dans la mesure où les renseignements personnels sont communiqués à des tiers ou à
+ l’extérieur du Québec, le tout sera fait conformément à la
+ Loi sur l’accès aux documents des organismes publics et sur la protection des renseignements personnels ;
+ - 
+ Les renseignements personnels en question sont recueillis sur une base facultative. Les
+ usagers du transport en commun peuvent à leur choix acheter des titres de transport en
+ commun sur des cartes anonymes qui ne donnent lieu à la collecte d’aucun renseignement
+ personnel et qui ne confèrent aucun privilège tarifaire ;
+ - 
+ Le client qui refuse de fournir les renseignements personnels requis pour l’émission d’une
+ carte OPUS personnalisée ou qui refuse d’établir son identité lors d’une modification, d’un
+ remplacement, d’une réactivation ou d’une annulation d’une carte OPUS personnalisée ou
+ pour obtenir un remboursement ou la restitution d’un titre pourra se voir refuser le service
+ ou le privilège demandé ;
+ - 
+ Les règles de conservation approuvées par Bibliothèque et Archives nationales du Québec
+ sont appliquées quant à la conservation et destruction des renseignements personnels ;
+ - 
+ Toute personne ayant fourni des renseignements personnels afin d’obtenir une carte OPUS
+ personnalisée ou de la faire renouveler, modifier, remplacer, réactiver ou annuler a le droit
+ de consulter les renseignements personnels détenus à son sujet, d’en obtenir copie ou de
+ requérir la rectification des renseignements inexacts, incomplets, équivoques ou recueillis
+ en contravention de la loi. Pour ce faire, une demande écrite justifiant l’identité du deman-
+ deur doit être adressée au Responsable de l’accès à l’information et de la protection des
+ renseignements personnels de la Société de transport de Montréal (STM), qui a la respon-
+ sabilité d’exploiter le système informatique du Système intégré, à l’adresse suivante :
+ 800, rue De La Gauchetière Ouest, bureau 1170, Montréal (Québec), H5A 1J6
+ J'accepte
+ Transport collectif adapté
+ - Transport adapté
+- Admission
+- Réservations
+- Réservations de groupe
+- Territoire desservi
+- Tarifs
+- Règles à suivre
+- Congés fériés
+- Opération tempête
+- Accessibilité
+- Camp d'été
+- Qualité du service
+ Heures de services
+ Lundi au Vendredi
+ 6h à 23h
+ Samedi
+ 6h30 à 23h
+ Dimanche
+ 7h à 21h
+ Un service de transport collectif adapté pour les usagers de la rive sud!
+Le service du transport adapté de la STLévis offre un transport en commun adapté, de porte accessible à porte accessible; c’est-à-dire un service de transport qui répond au besoin général de la clientèle. Le jumelage des déplacements et la ponctualité de chacun sont essentiels pour rendre le service efficace et efficient.
+Le service s’efforce de répondre à un maximum de demandes de déplacements et fait tout son possible pour offrir un service de qualité au meilleur coût pour l’ensemble de la collectivité.
+Le service de transport adapté de la Société de transport de Lévis permet aux personnes vivant avec un handicap de se déplacer d'un point à un autre dans un véhicule sécuritaire. Le seul critère : Habiter à l’intérieur des villes de Lévis et de Saint-Lambert-de-Lauzon.
+Heures de service
+Les services de transport de la STLévis sont offerts selon l’horaire suivant :
+ - Du lundi au vendredi de 6h à 23h
+ - Le samedi de 6h30 à 23h
+ - Le dimanche ainsi que le 25 décembre et 1er janvier de 7h à 21h
+ - 24 et 31 décembre de 7h à 20h 
+Il est à noter que les heures inscrites plus haut indiquent les heures de la première et de la dernière prise en charge.
+Représentation de la clientèle du transport adapté
+Conformément aux dispositions de la Loi sur les sociétés de transport en commun, les clients du transport adapté ont un représentant au Conseil d’administration de la Société.
+Plaintes, suggestions, commentaires et renseignements
+Le client qui formule une plainte contribue à l'amélioration du service et ne doit d'aucune manière craindre de perdre son droit au transport.
+Il est possible d'acheminer les plaintes, commentaires, suggestions ou demandes de renseignements par téléphone, par le formulaire web ou par la poste aux coordonnées suivantes :
+Service à la clientèle
+Société de transport de Lévis (STLévis)
+1100, rue Saint-Omer
+Lévis (Québec) G6V 6N4
+Téléphone : 418 837-9552
+Heures d'ouverture : du lundi au vendredi de 8 h à 17 h 30.
+Suivez-nous sur notre page Facebook @TA.STLevis 
+En dehors de ces heures, une boite vocale sera disponible pour accueillir les appels, il sera possible de laisser un message, un agent vous rappellera dès que possible sur les heures normales d'opérations.
+Documents destinés aux usagers du Transport adapté
+ - Guide pratique du transport adapté: Cliquez ici
+ - Consultez le Guide des Règles et Procédures pour le transport adapté : Cliquez ici
+ - Consultez la Politique de Qualité des services au transport adapté : Cliquez ici 
+Transporteurs
+Le service du transport adapté de la Société de transport de Lévis est associé à de nombreux partenaires-transporteurs qui sont fiers d'offrir les services de déplacements à nos usagers. Ceux-ci sont des partenaires ayant à coeur les besoins spécifiques de nos usagers admis à notre service de transport adapté.
+Afin de bien les identifier, nous avons amorcé la mise en place sur les véhicules un autocollant confirmant le partenariat avec la STLévis. Cette initiative démontre envers nos utilisateurs un gage de transport qui respecte les normes de service prévues pour nos utilisateurs.
+Partenaires Transporteurs
+ - STAC 
+ - Groupe Auger Inc.
+ - Taxi Lévis 9000
+ - Taxi 4000
+ - Taxi 5000
+ - Autobus Fleur de Lys
+Transporteur adapté privé
+ - Transport adapté T.R.E.S
+ - 581-632-0648
+ Haut de page
+ Espace horaires & parcours
+ - Rechercher un horaire et un parcours
+ - Planificateur d'itinéraire
+ - État du réseau
+ - Tableau des modifications
+ - Parc-Relais-Bus
+ - Service de taxi collectif
+ - Service de navettes
+ - Autobus à proximité
+ - Horaire : Jours fériés
+ - Abribus
+ Espace transport adapté
+ - Transport adapté
+ - Admission
+ - Réservations
+ - Territoire desservi
+ - Accessibilité
+ - Tarifs
+ - Règles à suivre
+ - Congés fériés
+ - Opération tempête
+ - Qualité du service
+ Restez en contact
+ Je désire être notifié par courriel sur ces sujets :
+ InfoParcours
+ Communiqués
+ Autres communications
+ Envoyer
+ Espace tarifs & points de vente
+ - Tarification
+ - Nomade Paiement
+ - Points de vente
+ - Carte Opus
+ - AdoBus
+ Espace STLévis
+ - À propos
+ - Conseil d'administration
+ - Emplois
+ - Appel d'offre
+ - Données ouvertes
+ - Règlements
+ - Partenaires
+ - Lobbyisme
+ - Projets durable
+ Besoin de renseignement?
+ Heures d'ouverture:
+Lundi au Vendredi 8 h à 17 h 30
+ Téléphone
+1 (418) 837-2401
+ Service clientèle
+ lundi au vendredi 8 h à 17 h 30  
+ Transport adapté
+lundi au vendredi 8h à 17 h / samedi 8h à 23h / dimanche 8h à 21h
+ Facebook
+ Twitter
+ Instagram
+ RSS
+ ©2026 Société de transport de Lévis. Tous droits réservés.
+ - Confidentialité
+ - Conditions d’utilisation
+ - Nétiquette
+ Une réalisation de : 
