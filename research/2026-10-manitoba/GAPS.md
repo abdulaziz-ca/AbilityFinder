@@ -13,7 +13,7 @@ Things we could not build or could not state, with why. When one changes, build 
 | Social housing (rent geared to income) | Overview only; eligibility page 404. Not built. | Quarterly |
 | Affordable Energy Program | Moved from Manitoba Hydro to Efficiency Manitoba; no official page found. Not built. | Quarterly |
 | Northern Patient Transportation | Official page 404 / unreadable PDF. Not built. | Quarterly |
-| Morden Community Handi-Van | Site is behind a bot check; not bypassed. Not built. | Quarterly |
+| Morden Community Handi-Van | Read 2026-10-19 from the page the owner opened in Safari (Cloudflare check for automated browsers, not bypassed); added. Page gives no fares or eligibility process. | Quarterly — needs the owner's browser |
 | Selkirk Mobility | Page says "eligible clients" without saying who. Not built. | Quarterly |
 | Steinbach Handi-Transit | Run by Serving Seniors Inc.; city page 404. Not built. | Quarterly |
 | Portage la Prairie, Dauphin handi-vans; Winkler | Only news items; no official eligibility page. Not built. | Quarterly |

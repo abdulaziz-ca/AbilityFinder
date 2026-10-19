@@ -9,7 +9,7 @@
 | Home Energy Assistance Program | Ended (not renewed). | — |
 | Out-of-province hostel and meal allowance | Not disability-specific; not built. | — |
 | NB Drug Plan premiums | Change every November 1 (the 2026 table is in the record). | Each November |
-| Ability New Brunswick (directory) | Site returns 403 to automated checks; not listed. | Quarterly |
+| Ability New Brunswick (directory) | Read 2026-10-19 in the owner's Chrome; added to the directory. | Yearly |
 | CNIB, Deaf and Hard of Hearing Services (directory) | No New Brunswick page could be fetched. | Quarterly |
 | Moncton recreation assistance | City page loads only a language selector. Not built. | Quarterly |
 | Fredericton Transit Fare Assistance | Agencies apply, individuals cannot; not built as a personal program. | — |

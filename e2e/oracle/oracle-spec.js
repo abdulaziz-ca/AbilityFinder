@@ -323,6 +323,8 @@ const GATES = {
   /* ------------------------------------------------------ BC municipalities */
   vancouver: municipality("Vancouver", "BC"),
   surrey: municipality("Surrey", "BC"),
+  morden: municipality("Morden", "MB"),
+  halifaxArea: municipality("Halifax", "NS"),
   montrAl: municipality("Montr\u00e9al", "QC"),
   laval: municipality("Laval", "QC"),
   longueuilEtBrossardArea: municipality("Longueuil", "QC"),
@@ -1573,6 +1575,31 @@ const GATES = {
   qcCreditMaintienDomicileRoute: external("S'adresse aux personnes de 70 ans ou plus, un âge que le questionnaire ne distingue pas."),
   qcProthesesOculairesRoute: external("Dépend d'une ordonnance d'un ophtalmologiste pour une prothèse oculaire."),
   qcLunettesEnfantsRoute: external("Dépend d'une ordonnance de lunettes ou de verres de contact."),
+  qcServicesDentairesRoute: {
+    evidence: "answers",
+    satisfy: { set: { ageBand: "under6" } },
+    violations: [{ name: "older children and adults need a claim booklet: not asked", fragment: { set: { ageBand: "19to59" } }, expect: "almost" }],
+  },
+  qcServicesOptometriquesRoute: {
+    evidence: "answers",
+    satisfy: { set: { ageBand: "65plus" } },
+    violations: [{ name: "adults 18 to 64 need a claim booklet for 12 months: not asked", fragment: { set: { ageBand: "19to59" } }, expect: "almost" }],
+  },
+  halifaxAffordableTransitPassRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  halifaxRecreationAccessRoute: {
+    evidence: "answers",
+    satisfy: { set: { income: "low" } },
+    violations: [{ name: "moderate income: the program's own income test is not collected", fragment: { set: { income: "moderate" } }, expect: "almost" }],
+  },
+  mordenHandiVanRoute: {
+    evidence: "answers",
+    satisfy: { set: { ageBand: "65plus" } },
+    violations: [{ name: "younger, no transit barrier recorded", fragment: { set: { ageBand: "19to59", functionalNeeds: ["none"] } }, expect: "almost" }],
+  },
   kingstonMfapIncome: {
     evidence: "answers",
     satisfy: { set: { income: "low" } },
@@ -2155,6 +2182,12 @@ const PROGRAM_BEST_CASE = {
   "squamish-recreation-access":                    "ready",
   "terrace-affordable-recreation-access":          "almost",
   "white-rock-leisure-access":                     "ready",
+  "morden-handi-van":                              "ready",
+  "halifax-access-a-bus":                          "ready",
+  "halifax-affordable-transit-pass":               "ready",
+  "halifax-recreation-access":                     "ready",
+  "qc-services-dentaires":                         "ready",
+  "qc-services-optometriques":                     "ready",
   "qc-credit-solidarite":                          "ready",
   "qc-credit-personne-aidante":                    "almost",
   "qc-deficience-grave-prolongee":                 "ready",

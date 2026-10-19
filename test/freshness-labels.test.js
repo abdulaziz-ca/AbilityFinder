@@ -34,7 +34,7 @@ test('every record has exactly one honest label, agrees with queue and generated
     const label = /<html lang="fr-CA">/.test(html) ? fr : f.wording;
     assert.ok(html.includes(`<span class="verified">${label}</span>`), record.id);
   }
-  assert.equal(queue.length, 457);
+  assert.equal(queue.length, 463);
   assert.equal(inherited, 39);
   assert.ok(app.includes('${vFresh.wording}'));
 });

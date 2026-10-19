@@ -2260,5 +2260,30 @@
     "short": "Faites faire un examen de la vue",
     "who": ["you", "program"],
     "reason": "Provincial-sweep record qc-lunettes-enfants (2026-10-17)"
+  },
+  "qcServicesDentairesRoute": {
+    "short": "Vérifiez l'âge ou votre carnet de réclamation",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-services-dentaires (2026-10-17)"
+  },
+  "qcServicesOptometriquesRoute": {
+    "short": "Vérifiez votre âge ou votre carnet de réclamation",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-services-optometriques (2026-10-17)"
+  },
+  "halifaxAffordableTransitPassRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Nova Scotia city record halifax-affordable-transit-pass (2026-10-18)"
+  },
+  "halifaxRecreationAccessRoute": {
+    "short": "Check the program's income test",
+    "who": ["you", "program"],
+    "reason": "Nova Scotia city record halifax-recreation-access (2026-10-18)"
+  },
+  "mordenHandiVanRoute": {
+    "short": "Check that you are a senior or have limited mobility",
+    "who": ["you", "professional"],
+    "reason": "Manitoba city record morden-handi-van (2026-10-18)"
   }
 }

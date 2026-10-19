@@ -2,7 +2,7 @@
 
 | Item | Why it is not complete | Re-check |
 |---|---|---|
-| Halifax Access-A-Bus, Affordable Access Program | halifax.ca blocks automated and browser access ("Unable to access this page"); not bypassed. The provincial Community Bus Pass covers income assistance and DSP clients in Halifax. | Monthly |
+| Halifax Access-A-Bus, Affordable Access Program | Read 2026-10-19 in the owner's Chrome (halifax.ca refuses automated browsers); Access-A-Bus, Affordable Access Transit Pass and Recreation Access added. Property tax program not built (not disability-related). | Quarterly — needs the owner's browser |
 | Cape Breton Handi-Trans / Access-A-Bus | Old page removed in a CBRM site redesign; service renamed. Phone 902-539-4336 per search only. | Monthly |
 | Supportive Care Program | Official page and PDF return 404. | Monthly |
 | Workplace Support Program | Only a 2017 news release; current page 404. | Quarterly |

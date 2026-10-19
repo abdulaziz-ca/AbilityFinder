@@ -15,5 +15,5 @@
 | Select Needs drug plan | Covers named conditions only (cystic fibrosis, growth hormone deficiency); out of scope. | — |
 | Employment supports for people with disabilities | HCS page still names the old LMAPD program and departments; no current provincial page found. | Quarterly |
 | Income Support bus pass pilot (Metrobus) | Only a 2020 release; current status unknown. | Quarterly |
-| Easter Seals NL, Autism Society NL, NL Association for Community Living, CNIB NL (directory) | Site behind a bot check (Easter Seals, not bypassed), domain or certificate errors, or 404. | Quarterly |
+| Autism Society NL, NL Association for Community Living, CNIB NL (directory); Easter Seals NL added 2026-10-19 from the owner's browser session | Domain or certificate errors, or 404. | Quarterly |
 | Conception Bay South, Gander, Grand Falls-Windsor, Happy Valley-Goose Bay, Labrador City, Stephenville, Clarenville, Torbay, Portugal Cove-St. Philip's | No town disability or low-income program found (studies or grant-funded community groups only). | Quarterly |

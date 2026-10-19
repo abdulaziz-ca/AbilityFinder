@@ -248,6 +248,12 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "morden-handi-van": { kind: "access", note: "Rides for older adults and people with limited mobility; fares not published" },
+  "halifax-recreation-access": { kind: "discount", note: "Discount of 25, 50 or 100 per cent, applied for one year" },
+  "halifax-affordable-transit-pass": { kind: "discount", note: "Monthly adult pass at half price for one year" },
+  "halifax-access-a-bus": { kind: "access", note: "Shared door-to-door rides; fares are not given on the page" },
+  "qc-services-optometriques": { kind: "access", note: "Services optométriques couverts gratuitement selon l'âge et la situation." },
+  "qc-services-dentaires": { kind: "access", note: "Soins dentaires couverts gratuitement pour les enfants de moins de 10 ans et les prestataires avec carnet." },
   "qc-lunettes-enfants": { kind: "discount", note: "Remboursement fixe de 300 $ pour des lunettes ou des verres de contact." },
   "qc-protheses-oculaires": { kind: "grant", note: "Aide financière pour une prothèse oculaire et un conformateur." },
   "qc-pefsad": { kind: "discount", note: "Réduction du tarif horaire des services d'aide à domicile." },
@@ -768,6 +774,12 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "morden-handi-van": { difficulty: 1, effort: "Phone or email to book", wait: "Not published" },
+  "halifax-recreation-access": { difficulty: 2, effort: "Fill in a form with proof of need before registering", wait: "Not published" },
+  "halifax-affordable-transit-pass": { difficulty: 3, effort: "Fill in a form with proof of income, apply from mid-May", wait: "Not published" },
+  "halifax-access-a-bus": { difficulty: 3, effort: "Fill in a three-part form and get a care provider to complete one part", wait: "Not published" },
+  "qc-services-optometriques": { difficulty: 1, effort: "Présenter sa carte et son carnet chez un optométriste participant", wait: "Non précisé" },
+  "qc-services-dentaires": { difficulty: 1, effort: "Présenter sa carte et son carnet chez un dentiste participant", wait: "Non précisé" },
   "qc-lunettes-enfants": { difficulty: 2, effort: "Demande de remboursement en ligne avec les renseignements de l'achat", wait: "Au plus tard 3 semaines après l'envoi de la demande" },
   "qc-protheses-oculaires": { difficulty: 2, effort: "Obtenir une ordonnance, puis consulter un oculariste", wait: "Non précisé" },
   "qc-pefsad": { difficulty: 2, effort: "Contacter une entreprise reconnue, qui transmet la demande", wait: "Non précisé" },
@@ -24305,7 +24317,8 @@ const BENEFITS = [
         "Attestation d'assistance soutenue (TP-1029.AN.A), si la personne aidée n'est pas de votre famille"
       ],
       "tips": [
-        "Un montant additionnel pourrait s'ajouter si vous avez payé des services spécialisés de relève, à inscrire à la ligne 266.",
+        "Pour l'année 2026, les montants passent à 1 525 $ ou 3 050 $, selon le ministère des Finances.",
+        "Services spécialisés de relève : un montant additionnel de 30 % des frais payés, jusqu'à 1 560 $ par personne aidée (ligne 266).",
         "Plusieurs personnes aidantes peuvent partager le crédit pour la même personne aidée si chacune l'a aidée au moins 90 jours en 2025.",
         "Si vous avez déjà transmis l'attestation de déficience, vous n'avez pas à la renvoyer.",
         "L'attestation d'assistance soutenue se renouvelle tous les trois ans."
@@ -24623,6 +24636,331 @@ const BENEFITS = [
         "Ne sont pas couverts : les achats hors du Québec, les articles usagés ou sans ordonnance, et les lunettes de soleil, de sport ou contre la lumière bleue."
       ]
     }
+  },
+  {
+    "id": "qc-services-dentaires",
+    "name": "Services dentaires couverts par la RAMQ",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Health",
+    "amount": "Services dentaires gratuits; la liste varie selon votre situation",
+    "summary": "Des soins dentaires gratuits pour les enfants de moins de 10 ans et les prestataires avec carnet de réclamation, et la chirurgie buccale à l'hôpital.",
+    "note": "Le ministère de l'Emploi et de la Solidarité sociale fixe les conditions des prestataires avec carnet. Plusieurs soins ne sont pas couverts.",
+    "requires": [
+      "qc",
+      "qcServicesDentairesRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "L'enfant a moins de 10 ans.",
+        "Vous êtes prestataire d'un programme d'aide financière avec carnet de réclamation.",
+        "La chirurgie buccale à l'hôpital est couverte avec une carte d'assurance maladie valide."
+      ],
+      "note": "Les personnes à charge d'un prestataire sont aussi visées, selon les conditions fixées par le ministère."
+    },
+    "applyText": "Présentez votre carte d'assurance maladie, et votre carnet s'il y a lieu, à un dentiste ou à un denturologiste participant.",
+    "applyUrl": "https://www.ramq.gouv.qc.ca/fr/citoyens/assurance-maladie/services-dentaires",
+    "source": "https://www.ramq.gouv.qc.ca/fr/citoyens/assurance-maladie/services-dentaires",
+    "detail": {
+      "aboutList": {
+        "lead": "Pour un enfant de cet âge, les services gratuits comprennent notamment :",
+        "items": [
+          "L'examen annuel, l'examen d'urgence et la radiographie.",
+          "L'obturation, la couronne et le traitement de canal.",
+          "L'anesthésie locale ou générale et la frénectomie."
+        ]
+      },
+      "steps": [
+        "Choisissez un dentiste ou un denturologiste qui participe au régime public.",
+        "Présentez votre carte d'assurance maladie valide, et votre carnet de réclamation valide s'il y a lieu.",
+        "Pour la chirurgie buccale, les services sont rendus en milieu hospitalier."
+      ],
+      "documents": [
+        "Carte d'assurance maladie valide",
+        "Carnet de réclamation valide, s'il y a lieu"
+      ],
+      "tips": [
+        "L'extraction de dents et de racines est couverte seulement pour ces deux groupes.",
+        "Ne sont pas couverts, notamment : blanchiment, facette, implant dentaire, orthodontie, parodontie et prothèses sur implants.",
+        "Sous certaines conditions, des hygiénistes dentaires autonomes qui ont signé un accord avec la RAMQ offrent des services couverts, en cabinet, en clinique mobile ou à domicile.",
+        "Le Régime canadien de soins dentaires peut couvrir une partie des coûts; la RAMQ ne gère pas ce programme."
+      ]
+    }
+  },
+  {
+    "id": "qc-services-optometriques",
+    "name": "Services optométriques couverts par la RAMQ",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Health",
+    "amount": "Services optométriques couverts gratuitement; la liste varie selon votre situation",
+    "summary": "Des services d'optométrie gratuits pour les moins de 18 ans, les 65 ans ou plus et certains prestataires avec carnet de réclamation.",
+    "note": "Toute personne assurée a droit à un examen d'urgence chez l'optométriste en cas d'affection subite de l'œil, comme une conjonctivite.",
+    "requires": [
+      "qc",
+      "qcServicesOptometriquesRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "Vous avez moins de 18 ans et une carte d'assurance maladie valide.",
+        "Vous avez 65 ans ou plus et une carte d'assurance maladie valide.",
+        "Vous avez entre 18 et 64 ans et un carnet de réclamation depuis au moins 12 mois de suite.",
+        "Vous avez entre 60 et 64 ans, recevez l'Allocation depuis au moins 12 mois de suite et avez un carnet valide."
+      ],
+      "note": "Pour les 18 à 64 ans, un examen complet est couvert 1 fois toutes les 2 années civiles."
+    },
+    "applyText": "Présentez votre carte d'assurance maladie, et votre carnet s'il y a lieu, à un optométriste participant.",
+    "applyUrl": "https://www.ramq.gouv.qc.ca/fr/citoyens/assurance-maladie/services-optometriques",
+    "source": "https://www.ramq.gouv.qc.ca/fr/citoyens/assurance-maladie/services-optometriques",
+    "detail": {
+      "aboutList": {
+        "lead": "Les services couverts sans frais comprennent notamment :",
+        "items": [
+          "L'examen complet et l'évaluation de la vision des couleurs.",
+          "L'examen lié à une condition particulière, comme le strabisme.",
+          "La prescription de lunettes ou de verres de contact.",
+          "L'orientation vers un autre professionnel de la santé."
+        ]
+      },
+      "steps": [
+        "Choisissez un optométriste qui participe au régime public.",
+        "Présentez votre carte d'assurance maladie valide et, si vous en avez un, votre carnet de réclamation valide."
+      ],
+      "documents": [
+        "Carte d'assurance maladie valide",
+        "Carnet de réclamation valide, s'il y a lieu"
+      ],
+      "tips": [
+        "Chez les moins de 18 ans et les 65 ans ou plus, l'examen complet est couvert une fois par année civile.",
+        "Avec un carnet, la mention « OUI » doit figurer sous « Message » de la section Examens des yeux.",
+        "Exemples de services non couverts : l'achat de lunettes, leur ajustement, l'examen pour un permis de conduire et la photo de rétine.",
+        "Les moins de 18 ans peuvent être remboursés pour des lunettes grâce au programme Mieux voir pour réussir."
+      ]
+    }
+  },
+  {
+    "id": "halifax-access-a-bus",
+    "name": "Access-A-Bus",
+    "level": "Halifax",
+    "category": "Daily living supports",
+    "amount": "Shared door-to-door rides for people who cannot use regular Halifax Transit",
+    "summary": "Access-A-Bus is a shared, door-to-door ride service from Halifax Transit. It is for people who cannot use regular transit because of a physical or cognitive disability.",
+    "note": "You must apply before you ride. Your level of eligibility depends on your needs.",
+    "requires": [
+      "ns",
+      "halifaxArea",
+      "transitBarrier"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You need a wheelchair or scooter.",
+        "You cannot step up or down a 35 cm step without help.",
+        "You cannot walk 175 metres outside without help.",
+        "Your vision is 20/200 or less (legally blind).",
+        "Physical or cognitive disabilities stop you from using regular transit."
+      ],
+      "note": "The page says you may qualify if you meet these descriptions."
+    },
+    "applyText": "Complete the Access-A-Bus application form and mail it to Halifax Transit",
+    "applyUrl": "https://www.halifax.ca/transportation/halifax-transit/access-a-bus",
+    "source": "https://www.halifax.ca/transportation/halifax-transit/access-a-bus",
+    "detail": {
+      "aboutList": {
+        "lead": "What the page says about the service:",
+        "items": [
+          "Rides are shared and door to door.",
+          "Trips can be for medical appointments or social, personal and recreational activities.",
+          "Some people need the service for all trips, others only in winter, alone or for specific trips.",
+          "Eligibility can be permanent, temporary, seasonal or conditional."
+        ]
+      },
+      "steps": [
+        "Get the Access-A-Bus application form, which has three parts.",
+        "Complete Part A, the Declaration, or have an agent complete it if you cannot.",
+        "Complete Part B, the Application; an agent can do this if you cannot.",
+        "Ask your attending care provider to complete Part C, the Professional Declaration.",
+        "Mail the form to Halifax Transit, Attn: Access-A-Bus Registration, 200 Ilsley Avenue, Dartmouth, NS B3B 1V1."
+      ],
+      "documents": [
+        "Completed Access-A-Bus application form (Parts A, B and C)",
+        "Part C completed by a physician, nurse practitioner, occupational therapist or physiotherapist"
+      ],
+      "tips": [
+        "Temporary eligibility lasts a three month period only.",
+        "Book 24 hours ahead, or anytime within 7 days for standing medical appointments or weekly errands.",
+        "For regular trips, book two trips: one to and one from the place.",
+        "You can book up to five trips per day and get an immediate confirmation.",
+        "Wheelchairs and scooters need four anchor points; size limits are on the page.",
+        "Registration questions: 902-490-6681, or email contactus@311.halifax.ca."
+      ],
+      "phone": "902-490-6999"
+    }
+  },
+  {
+    "id": "halifax-affordable-transit-pass",
+    "name": "Affordable Access Transit Pass",
+    "level": "Halifax",
+    "category": "Money",
+    "amount": "Monthly adult transit pass at half the regular price for one year",
+    "summary": "The Affordable Access Transit Pass lets qualified adults buy a monthly adult transit pass at half price. It runs from July to the following June.",
+    "note": "It is not for people getting Nova Scotia Community Services assistance, such as Income Assistance or the Disability Support Program.",
+    "requires": [
+      "ns",
+      "halifaxArea",
+      "halifaxAffordableTransitPassRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Your household income is $59,000 or less for 2026/27.",
+        "You are an adult, eighteen years of age or over.",
+        "You do not receive assistance from the Nova Scotia Department of Community Services.",
+        "You do not have a valid Welcomed in Halifax Card."
+      ],
+      "note": "This covers Child, Youth and Family Supports, Income Assistance and Employment Support, Disability Support."
+    },
+    "applyText": "Apply through the Halifax Affordable Access Program",
+    "applyUrl": "https://www.halifax.ca/about-halifax/affordable-access-program/about-affordable-access-program",
+    "source": "https://www.halifax.ca/about-halifax/affordable-access-program/about-affordable-access-program",
+    "detail": {
+      "aboutList": {
+        "lead": "What the program gives:",
+        "items": [
+          "You buy a monthly adult pass for half the regular price.",
+          "Once approved, you can use the program until June of the following year.",
+          "One application can also go to other Affordable Access programs."
+        ]
+      },
+      "steps": [
+        "Apply when applications open in mid-May each year.",
+        "Fill in the application form.",
+        "Include proof of financial need.",
+        "Wait for approval, then buy your discounted pass."
+      ],
+      "documents": [
+        "Completed application form",
+        "Current Notice of Assessment from the Canada Revenue Agency for every household member 18 or older",
+        "Or a proof of income statement (option c print) from the Canada Revenue Agency showing line 15000",
+        "Or a referral from a community professional at a recognized community-based agency"
+      ],
+      "tips": [
+        "Applications are processed first come, first served.",
+        "The regular adult pass is $90 and you pay $45.",
+        "The regular Regional Express XPass is $139 and you pay $69.50.",
+        "Applicants are evaluated using Statistics Canada's Low Income Cut-Offs for the current year.",
+        "If you need help with your application, call 311."
+      ],
+      "time": "Not published"
+    }
+  },
+  {
+    "id": "halifax-recreation-access",
+    "name": "Recreation Access Program (Halifax)",
+    "level": "Halifax",
+    "category": "Money",
+    "amount": "Pays part or all of recreation program and membership costs",
+    "summary": "The Recreation Access Program pays part or all of the cost of Halifax Recreation programs and facility memberships for children, youth and adults in financial need.",
+    "note": "Apply before you pay for registration. The program does not repay what you have already paid.",
+    "requires": [
+      "ns",
+      "halifaxArea",
+      "halifaxRecreationAccessRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "You live in the Halifax region.",
+        "You can show proof of financial need.",
+        "You have not yet paid for the recreation programming."
+      ],
+      "note": "Approval is based on Statistics Canada's 2026 Low Income Cut-Offs before taxes."
+    },
+    "applyText": "Apply through the Halifax Affordable Access Program",
+    "applyUrl": "https://www.halifax.ca/about-halifax/affordable-access-program/about-affordable-access-program",
+    "source": "https://www.halifax.ca/about-halifax/affordable-access-program/about-affordable-access-program",
+    "detail": {
+      "aboutList": {
+        "lead": "What the program gives:",
+        "items": [
+          "It covers part (25 or 50 per cent) or all (100 per cent) of the cost.",
+          "It applies to programs and facility memberships.",
+          "Once approved, the discount applies to your account for one calendar year from approval."
+        ]
+      },
+      "steps": [
+        "Fill in the application form before you pay for registration.",
+        "Include proof of financial need.",
+        "Wait for the approval email.",
+        "Register separately online or through your local community centre."
+      ],
+      "documents": [
+        "Completed application form",
+        "Current Notice of Assessment from the Canada Revenue Agency for every household member 18 or older",
+        "Or a letter from the Nova Scotia Department of Opportunities and Social Development",
+        "Or a referral from a community professional at a recognized community-based agency",
+        "Or a valid Welcomed in Halifax Card with photo ID"
+      ],
+      "tips": [
+        "This is not a program registration form.",
+        "Not covered: private swim lessons, birthday parties, third-party, drop-in, voucher, rental, personal training.",
+        "Multi-district facilities are included, but only full one-month memberships.",
+        "There are no deadlines, but you must reapply each year from the month you first applied.",
+        "The municipality may limit access when necessary.",
+        "If you need help with your application, call 311."
+      ],
+      "time": "Not published"
+    }
+  },
+  {
+    "id": "morden-handi-van",
+    "name": "Community Handi-Van",
+    "level": "Morden",
+    "category": "Daily living supports",
+    "amount": "Transportation service for seniors and people with mobility limitations",
+    "summary": "The Morden Community Handi-Van provides transportation for seniors and persons with mobility limitations. The page gives no fares and no eligibility process.",
+    "note": "Book by phone or email. The page does not say what the service costs or how you register.",
+    "requires": [
+      "mb",
+      "morden",
+      "mordenHandiVanRoute"
+    ],
+    "eligibility": {
+      "mode": "any",
+      "items": [
+        "You are a senior.",
+        "You are a person with a mobility limitation."
+      ],
+      "note": "The page gives no further eligibility rules or application process."
+    },
+    "applyText": "Phone or email the Handi-Van office to book",
+    "applyUrl": "https://morden.ca/community-handi-van",
+    "source": "https://morden.ca/community-handi-van",
+    "detail": {
+      "aboutList": {
+        "lead": "What the page says:",
+        "items": [
+          "Office hours are Monday to Friday, 8 am to 5 pm.",
+          "You can arrange service after office hours by phoning in advance."
+        ]
+      },
+      "steps": [
+        "Phone the Handi-Van office or send an email.",
+        "Ask to book a ride, ideally at least 48 hours ahead."
+      ],
+      "documents": [],
+      "tips": [
+        "Reservations should be made at least 48 hours in advance if possible.",
+        "Evenings and weekends need advance arrangement by phone.",
+        "Email mrdhandi@mymts.net.",
+        "The office is at Homestead South, 400 Loren Dr, Morden, MB R6M 0E2.",
+        "The page does not list fares, so ask when you book."
+      ],
+      "time": "Not published",
+      "phone": "204-822-5047"
+    }
   }
 
 ];
@@ -24792,6 +25130,12 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "morden-handi-van": "2026-10", // new 2026-10-17 from the official page (research/2026-10-manitoba/city-snapshots)
+  "halifax-recreation-access": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "halifax-affordable-transit-pass": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "halifax-access-a-bus": "2026-10", // new 2026-10-17 from the official page (research/2026-10-nova-scotia/city-snapshots)
+  "qc-services-optometriques": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-services-dentaires": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "qc-lunettes-enfants": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "qc-protheses-oculaires": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "qc-pefsad": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)

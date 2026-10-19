@@ -1,21 +1,27 @@
-URL: https://www.halifax.ca/transportation/halifax-transit/transit-programs-services/access-bus | province: NS/Halifax | program: Access-A-Bus | fetched: 2026-10-18
-=== PAGE: https://www.halifax.ca/transportation/halifax-transit/transit-programs-services/access-bus (HTTP 404, 679 chars)
-
- Sorry, we can't find the page you're looking for.
- What happened?
- - We might have removed the page when we redesigned our website.
- - The link you clicked might be old and does not work anymore.
- - You might have accidentally typed the wrong URL in the address bar.
-Suggestions
- - Use the main navigation menus in the header or the links in the footer to browse the content on our site.
- Contact Information
- For general transit inquiries, complaints, or compliments, please contact 311 or 1-800-835-6428.
-Phone
-Departures line: 902.480.8000 
-Access-A-Bus registration: 902.490.6681 
-Access-A-Bus bookings: 902.490.6999   
-Mail
-Halifax Transit
-PO Box 1749
-Halifax NS B3J 3A5
- 
+URL: https://www.halifax.ca/transportation/halifax-transit/access-a-bus | province: NS | program: Halifax Transit Access-A-Bus | fetched: 2026-10-18 (owner's Chrome, page text)
+=== PAGE: https://www.halifax.ca/transportation/halifax-transit/access-a-bus
+Access-A-Bus
+Access-A-Bus is a shared ride, door-to-door, transit service for persons who are unable to use the conventional transit system due to physical or cognitive disabilities. Access-A-Bus is available to provide transportation to medical appointments and to allow you to participate in social, personal, and recreational activities.
+Who can use Access-A-Bus
+You may qualify for the Access-A-Bus service if you:
+- require use of wheelchair or scooter
+- are unable to step up or down a 35cm step unassisted
+- are unable to walk 175 metres outside unassisted
+- have 20/200 vision or less (legally blind)
+- are unable to utilize conventional transit due to cognitive or physical disabilities
+Some people may have disabilities that call for Access-A-Bus service for all trips, while others may only need the service when traveling alone, in the winter, or for specific trips.
+Your level of eligibility will be based on your needs. The possible levels of eligibility are: permanent; temporary (3 month period only); seasonal (winter time); conditional (travelling alone, dialysis).
+How to register for Access-A-Bus
+You must apply for Access-A-Bus before becoming a passenger on this service. To register, complete the Access-A-Bus application form.
+The application form for Access-A-Bus has 3 parts:
+- Part A - Declaration: to be completed by the applicant or an agent of the applicant, if the applicant is unable to complete or understand the Declaration.
+- Part B - Access-A-Bus Application: to be completed by the applicant or an agent of the applicant, if the applicant is unable to complete the Application Form.
+- Part C - Professional Declaration: to be completed by the applicant's Attending Professional Care Provider (Physician, Nurse Practitioner, Occupational Therapist, Physiotherapist).
+Please complete the application form and return, via mail to: Halifax Transit, Attn: Access-A-Bus Registration, 200 Ilsley Avenue, Dartmouth, Nova Scotia B3B 1V1
+Questions or Concerns? Contact Access-A-Bus at 902-490-6999 or email contactus@311.halifax.ca
+How to request Access-A-Bus service
+Call 902-490-6999 to request Access-A-Bus service.
+You can book a trip 24 hours prior to the intended travel date, or anytime within a 7-day period if you have standing medical appointments and/or weekly errands. For regular appointments or errands, you need to book two trips—one to and one from the location.
+You can book up to five trips per day and you will receive an immediate confirmation of the booking.
+Assistive mobility devices: Access-A-Bus allows wheelchairs and mobility scooters. Maximum size restrictions are: Wheelchairs 32" X 45"; Three-wheeled scooters 40" X 21.125"; Four-wheeled scooters 40.25" X 21.25". All wheelchairs and mobility scooters will require four anchors or tie down points to secure the device on the bus.
+Contact: Access-A-Bus registration 902.490.6681; Access-A-Bus bookings 902.490.6999.

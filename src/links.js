@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 604 links. The monitor checks a bounded rotating batch every
+// 611 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -2376,6 +2376,31 @@ export const LINKS = [
     "kind": "apply"
   },
   {
+    "url": "https://www.ramq.gouv.qc.ca/fr/citoyens/assurance-maladie/services-dentaires",
+    "label": "Services dentaires couverts par la RAMQ — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ramq.gouv.qc.ca/fr/citoyens/assurance-maladie/services-optometriques",
+    "label": "Services optométriques couverts par la RAMQ — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.halifax.ca/transportation/halifax-transit/access-a-bus",
+    "label": "Access-A-Bus — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.halifax.ca/about-halifax/affordable-access-program/about-affordable-access-program",
+    "label": "Affordable Access Transit Pass — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://morden.ca/community-handi-van",
+    "label": "Community Handi-Van — apply",
+    "kind": "apply"
+  },
+  {
     "url": "https://vadsociety.ca",
     "label": "Help — Voice of Albertans with Disabilities (VAD)",
     "kind": "help"
@@ -2861,6 +2886,11 @@ export const LINKS = [
     "kind": "org"
   },
   {
+    "url": "https://www.abilitynb.ca/",
+    "label": "org:nb-ability-nb — Ability New Brunswick",
+    "kind": "org"
+  },
+  {
     "url": "https://www.easterseals.nb.ca",
     "label": "org:nb-easter-seals — Easter Seals New Brunswick",
     "kind": "org"
@@ -2928,6 +2958,11 @@ export const LINKS = [
   {
     "url": "https://www.chha-nl.ca/",
     "label": "org:nl-chha — Canadian Hard of Hearing Association – NL",
+    "kind": "org"
+  },
+  {
+    "url": "https://eastersealsnl.ca/",
+    "label": "org:nl-easter-seals — Easter Seals Newfoundland and Labrador",
     "kind": "org"
   },
   {

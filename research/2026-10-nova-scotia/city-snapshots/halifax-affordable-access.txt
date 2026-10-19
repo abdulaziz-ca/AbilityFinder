@@ -1,11 +1,28 @@
-URL: https://www.halifax.ca/recreation/programs-activities/affordable-access-program | province: NS/Halifax | program: Affordable Access Program | fetched: 2026-10-18
-=== PAGE: https://www.halifax.ca/recreation/programs-activities/affordable-access-program (HTTP 404, 391 chars)
+URL: https://www.halifax.ca/about-halifax/affordable-access-program/about-affordable-access-program | province: NS | program: Halifax Affordable Access Program (Transit Pass, Recreation Access) | fetched: 2026-10-18 (owner's Chrome, page text)
+=== PAGE: https://www.halifax.ca/about-halifax/affordable-access-program/about-affordable-access-program
+The Affordable Access Program allows qualified residents to apply for municipal subsidized programs. This application allows residents to apply once and have their application package sent to all the programs that they wish to apply for. If you need help with your application, call 311.
+Affordable Access Transit Pass: Allows participants to purchase a monthly adult transit pass for 50 per cent of the regular price for one year. The program begins in July of each year and once you have received approval you will have access to the program until June of the following year.
+Recreation Access Program: Provides either partial (25 or 50 per cent) or full (100 per cent) payment for recreation programs and facility memberships for children, youth, and adults in financial need. Once your application has been approved, the discount is applied to your account for one calendar year from the approval date. This is not a program registration form. Please register separately for programs online or by contacting your local community centre.
+Property Tax Exemption and Deferral Program: Helps homeowners pay their property tax through a payment plan, a deferral of property tax or a deferral of local improvement charges.
 
- Sorry, we can't find the page you're looking for.
- What happened?
- - We might have removed the page when we redesigned our website.
- - The link you clicked might be old and does not work anymore.
- - You might have accidentally typed the wrong URL in the address bar.
-Suggestions
- - Use the main navigation menus in the header or the links in the footer to browse the content on our site.
- 
+=== PAGE: https://www.halifax.ca/about-halifax/affordable-access-program/affordable-access-program-qualifications
+All applicants are evaluated based on Statistics Canada's Low Income Cut-Offs for the current year. For some programs, applications are reviewed on a first-come, first-served basis.
+Recreation Access Program — You are eligible if: You are a resident of the Halifax region. You can provide proof of financial need. You have not yet paid for recreation programming.
+You must provide: A completed application form. Proof of financial need must be included with your application and be one of the following: Current Notice of Assessment for all household (family unit) members 18 years or older from the Canada Revenue Agency; a letter from the Nova Scotia Department of Opportunities and Social Development; a referral from a community professional who is qualified to assess financial need and is associated with a recognized community-based agency; or a valid Welcomed in Halifax Card (WIH) with a photo ID.
+Approval is based on the per the Recreation Access Program Statistics Canada's 2026 Low income cut-offs (LICOs) before taxes table. The program does not reimburse individuals who have already paid. If you have already paid, you can apply for assistance for another season. The municipality has the right to limit access when necessary.
+Affordable Access Transit Pass Program — You are eligible if: You have a household (family unit) income of $59,000 or less for 2026/27. You are not receiving assistance from the Nova Scotia Department of Community Service. These services include: Child, Youth and Family Supports, Income Assistance and Employment Support, Disability Support Program. You do not have a valid Welcomed in Halifax Card (WIH). You are an adult (18 years of age or over).
+You must provide: A completed application form. Proof of financial need: Current Notice of Assessment for all household (family unit) members 18 years or older from the Canada Revenue Agency; a proof of income statement (option 'c' print) from the Canada Revenue Agency showing total income on line 15000; or a referral from a community professional who is qualified to assess financial need and is associated with a recognized community-based agency.
+
+=== PAGE: https://www.halifax.ca/about-halifax/affordable-access-program/affordable-access-transit-pass-program
+The Affordable Access Transit Pass Program will provide passes to qualified applicants. Participants in the program will be able to purchase monthly adult transit passes for 50 per cent off the regular pass price.
+Regular Adult Pass: Regular Rate $90; 50% discount $45. Regional Express XPass: Regular Rate $139; 50% discount $69.50.
+
+=== PAGE: https://www.halifax.ca/about-halifax/affordable-access-program/recreation-funding-access-application
+The Recreation Access Program is part of the Affordable Access Program and provides recreation opportunities to children, youth and adults in financial need. Depending on the need, the cost of recreation programs and facility memberships could be 25, 50 or 100 per cent covered by the program. All recreation programs offered by Halifax Recreation are eligible for this program with the exception of the following: private swim lessons; birthday parties; programs offered by third-party services; drop-in programs; vouchers; facility (space) rentals; personal training.
+Proof of financial need must accompany your application.
+Starting in January 2026, multi-district facilities (Canada Games Centre, Cole Harbour Place, St. Margaret's Centre, Zatzman Sportsplex) are included. The program offers full one-month memberships only.
+Application guidelines: You must live in the Halifax region. You must fill out the application prior to paying for your registration. Once you have been notified of approval by email, please contact your local recreation centre to register for programs.
+
+=== PAGE: https://www.halifax.ca/about-halifax/affordable-access-program/application-deadlines
+Affordable Access Transit Pass: Applications accepted starting mid-May each year and applications are processed on a first come first served basis. Program is open from July to June of the following year.
+Recreation Access Program: There are no deadlines associated with this program. You must reapply on an annual basis from the month you first applied.
