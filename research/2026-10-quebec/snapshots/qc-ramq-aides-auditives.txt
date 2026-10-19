@@ -1,0 +1,24 @@
+URL: https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/aides-auditives | province: QC | program: Programme d'aides auditives (RAMQ) | fetched: 2026-10-18 (browser session after the owner passed the site's check)
+=== PAGE: https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/aides-auditives
+Aides auditives
+Le Programme d'aides auditives couvre l'attribution, la réparation et le remplacement des aides auditives dont vous avez besoin pour effectuer vos activités quotidiennes. Ces aides incluent les prothèses auditives et les aides de suppléance à l'audition.
+Personnes admissibles
+Pour être admissible au programme, vous devez avoir une carte d'assurance maladie valide et respecter ces conditions :
+- 11 ans ou moins : Avoir une déficience auditive susceptible de compromettre le développement de la parole et du langage
+- 12 à 18 ans : Avoir une déficience auditive moyenne d'au moins 25 décibels à une oreille pour les fréquences exigées
+- 19 ans ou plus aux études : Avoir une déficience auditive moyenne d'au moins 25 décibels à une oreille pour les fréquences exigées
+- 19 ans ou plus : Avoir une déficience auditive moyenne d'au moins 35 décibels à l'oreille ayant la capacité auditive la plus grande pour les fréquences exigées
+- Personne ayant une autre déficience : Avoir une déficience auditive accompagnée d'une autre déficience empêchant l'intégration sociale, scolaire ou professionnelle (exemple : surdicécité)
+Services couverts par le programme
+Le programme couvre l'attribution, la réparation et le remplacement d'une prothèse auditive et d'aides de suppléance à l'audition.
+Prothèses auditives — Appareils couverts : prothèses auditives intra-auriculaires et contours d'oreille
+Aides de suppléance à l'audition — Aides couvertes : aides qui compensent ou réduisent certains inconvénients liés à la perte d'audition (exemples : amplificateur téléphonique, détecteur de sonneries de porte ou de téléphone, réveille-matin adapté)
+Couverture d'une 2e prothèse auditive : Vous pouvez bénéficier d'une 2e prothèse auditive couverte seulement si vous avez la recommandation d'un ou d'une audiologiste. Vous devez aussi respecter l'une des conditions suivantes : avoir 18 ans ou moins; avoir une déficience visuelle; avoir 19 ans ou plus et avoir besoin d'une 2e prothèse auditive pour améliorer de manière significative vos études ou votre travail.
+Marche à suivre pour obtenir une aide auditive
+Étape 1 — Procurez-vous les documents requis pour bénéficier du programme
+Prothèse auditive : Enfant de 11 ans ou moins — Attestation de la nécessité d'une prothèse auditive obtenue auprès de l'audiologiste. Personne âgée de 12 à 64 ans — Audiogramme obtenu auprès de l'oto-rhino-laryngologiste (ORL) ou de l'audiologiste; Attestation de la nécessité d'une prothèse auditive obtenue auprès de l'ORL ou de l'audiologiste. Personne âgée de 65 ans ou plus — Audiogramme obtenu auprès de l'audiologiste; Attestation de la nécessité d'une prothèse auditive obtenue auprès de l'audiologiste.
+Aide de suppléance à l'audition : Audiogramme obtenu auprès de l'audiologiste; Évaluation globale des déficiences et des limitations fonctionnelles obtenue auprès de l'audiologiste ou de l'orthophoniste; Recommandation d'une aide de suppléance à l'audition obtenue auprès de l'audiologiste.
+Étape 2 — Procurez-vous les documents complémentaires requis : Étudiant ou étudiante — Attestation de fréquentation scolaire démontrant que vous suivez un programme d'études reconnu. Travailleur ou travailleuse — Attestation démontrant que vous recevez un salaire ou un avantage pour votre travail. Personne ayant une autre déficience en plus de la déficience auditive — Attestation de la déficience visuelle provenant d'un établissement reconnu ou Attestation de l'autre déficience provenant d'un professionnel ou d'une professionnelle de la santé.
+Étape 3 — Rencontrez votre spécialiste : Audioprothésiste du Québec pour obtenir une prothèse auditive; Distributeur du Québec pour obtenir une aide de suppléance à l'audition. Cette rencontre doit être faite au plus tard 1 an après la délivrance des documents exigés.
+Honoraires, garantie et piles : Les honoraires des audioprothésistes et des distributeurs sont couverts par le programme lors de l'attribution, du remplacement et de la réparation d'une aide auditive. Vous n'avez donc rien à payer pour ces services si vous bénéficiez du programme. Toutefois, l'entretien de l'aide auditive est à vos frais, par exemple son nettoyage, sa vérification et son analyse. La garantie est d'au moins 1 an pour une aide auditive. Les piles sont couvertes lors de l'attribution et du remplacement d'une aide auditive. Par contre, le remplacement normal des piles quand vous utilisez l'aide est à vos frais.
+Perte, vol, bris ou négligence : La couverture exclut le coût de réparation et de remplacement des aides perdues, volées, détruites ou utilisées avec négligence.

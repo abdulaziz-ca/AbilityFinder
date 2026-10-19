@@ -1,0 +1,48 @@
+URL: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-personne-aidante/ | province: QC | program: Crédit d'impôt pour personne aidante | fetched: 2026-10-18 (browser session after the owner passed the site's check)
+=== PAGE: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-personne-aidante/quels-sont-les-types-de-personnes-aidees-admissibles-en-ce-qui-concerne-le-credit-dimpot-pour-personne-aidante/
+Voici les types de personnes aidées qui peuvent vous donner droit à ce crédit d'impôt, selon leur âge et leur situation.
+Personne de 18 ans ou plus atteinte d'une déficience et ayant besoin d'assistance
+La personne aidée doit remplir les conditions suivantes :
+- elle est âgée de 18 ans ou plus au 31 décembre 2025;
+- elle est atteinte d'une déficience grave et prolongée des fonctions mentales ou physiques qui, selon l'attestation de déficience remplie par une professionnelle ou un professionnel de la santé, fait en sorte qu'elle a besoin d'assistance pour accomplir une activité courante de la vie quotidienne;
+- son logement (qui constitue son lieu principal de résidence) est situé au Québec.
+Liens familiaux : Cette personne peut être votre conjointe ou conjoint; une ou un membre de votre famille proche ou de celle de votre conjointe ou conjoint : enfant, petit-enfant, neveu, nièce, frère, sœur, parent, grand-parent, oncle, tante, grand-oncle ou grand-tante; un autre ascendant direct ou celui de votre conjointe ou conjoint.
+Liens non familiaux : La personne aidée peut être une personne sans lien familial avec vous. Dans ce cas, une attestation d'assistance soutenue, remplie par une professionnelle ou un professionnel du réseau de la santé et des services sociaux, doit certifier que vous fournissez à cette personne une assistance soutenue pour qu'elle puisse accomplir une activité courante de la vie quotidienne.
+Personne de 70 ans ou plus
+La personne aidée doit remplir les conditions suivantes :
+- elle est âgée de 70 ans ou plus au 31 décembre 2025;
+- elle n'est pas votre conjointe ou conjoint;
+- son logement (qui constitue son lieu principal de résidence) est situé au Québec.
+Liens familiaux : une ou un membre de votre famille proche ou de celle de votre conjointe ou conjoint : parent, grand-parent, oncle, tante, grand-oncle ou grand-tante; un autre ascendant direct ou celui de votre conjointe ou conjoint.
+Attention : Vous aidez une personne âgée de 70 ans ou plus atteinte d'une déficience grave et prolongée et ayant besoin d'assistance pour accomplir une activité de la vie quotidienne? Si c'est le cas, vous avez avantage à demander le crédit d'impôt relativement à une personne de 18 ans ou plus atteinte d'une déficience et ayant besoin d'assistance.
+
+=== PAGE: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-personne-aidante/conditions-dadmissibilite-de-base/
+Le crédit d'impôt pour personne aidante peut vous offrir un soutien financier si vous prenez soin d'une personne aidée admissible.
+Pour que vous puissiez bénéficier du crédit d'impôt, toutes les conditions qui suivent doivent être remplies, selon votre situation.
+Lieu de résidence
+- Vous résidiez au Québec le 31 décembre 2025.
+- Si vous avez cohabité avec la personne aidée, cela devait être dans une habitation dont vous ou la personne aidée (ou votre conjointe ou conjoint respectif) étiez propriétaires, copropriétaires, locataires, colocataires ou sous-locataires.
+- La personne aidée n'habitait pas dans un logement situé dans une résidence privée pour aînés ni dans un logement situé dans une installation du réseau public.
+- La personne aidée a résidé au Canada tout au long de la période d'aide ou de cohabitation, selon le cas.
+Période d'aide ou de cohabitation
+- La période d'aide ou de cohabitation, selon le cas, doit avoir duré au moins 365 jours consécutifs, dont au moins 183 jours pendant l'année 2025.
+- La période de 365 jours consécutifs doit avoir commencé en 2024 ou en 2025 (si elle a commencé en 2025, elle peut se terminer en 2026).
+Autres conditions d'admissibilité
+- Aucune personne, sauf votre conjointe ou conjoint, ne demande un des montants suivants à votre égard pour l'année 2025 : le montant pour autres personnes à charge et le montant transféré par un enfant majeur aux études postsecondaires; un montant pour des frais pour soins médicaux non dispensés dans votre région; un montant pour des frais médicaux.
+- Aucune personne ne demande à votre égard le crédit d'impôt pour personne aidante pour l'année 2025.
+- Vous n'avez reçu aucune rémunération pour l'aide que vous avez fournie à la personne aidée admissible.
+- Vous ou votre conjointe ou conjoint, s'il y a lieu, n'étiez pas exonéré d'impôt pour l'année 2025.
+
+=== PAGE: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-personne-aidante/montant-du-credit-dimpot-pour-personne-aidante/
+Si vous remplissez toutes les conditions d'admissibilité, vous pourriez avoir droit à un crédit d'impôt pour personne aidante pouvant atteindre 1 494 $ ou 2 988 $, selon votre situation.
+Le fait de cohabiter ou non avec la personne aidée, le type de personne aidée et le revenu net de celle-ci peuvent modifier le montant auquel vous pourriez avoir droit.
+- Personne de 18 ans ou plus atteinte d'une déficience et ayant besoin d'assistance, sans cohabitation : de 0 $ à 1 494 $
+- Personne de 18 ans ou plus atteinte d'une déficience et ayant besoin d'assistance, avec cohabitation : de 1 494 $ à 2 988 $ (un montant additionnel pourrait être ajouté si vous avez payé pour des services spécialisés de relève)
+- Personne de 70 ans ou plus, avec cohabitation seulement : 1 494 $
+
+=== PAGE: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-personne-aidante/demande-du-credit-dimpot-personne-aidante/
+Vous pouvez demander le crédit d'impôt pour personne aidante en remplissant l'annexe H lors de la production de votre déclaration de revenus.
+Si vous avez payé des frais pour des services spécialisés de relève, n'oubliez pas de remplir la ligne 266 de cette annexe.
+Si vous préférez recevoir une somme chaque mois et que vous remplissez les conditions d'admissibilité aux versements anticipés, vous pouvez faire une demande de versements anticipés.
+Formulaires à joindre : Attestation de déficience (TP-752.0.14) — à fournir pour confirmer la déficience grave et prolongée et le besoin d'assistance de la personne aidée; si vous l'avez déjà transmis, vous n'avez pas à nous le transmettre à nouveau. Attestation d'assistance soutenue (TP-1029.AN.A) — à fournir également si vous n'avez aucun lien familial avec la personne aidée; à renouveler tous les trois ans.
+Partage du crédit d'impôt : Vous et d'autres personnes aidantes pourriez partager le crédit d'impôt relativement à la même personne aidée si vous et chacune des personnes aidantes avez cohabité avec la personne aidée ou l'avez soutenue pendant une période d'au moins 90 jours en 2025, et couvrez ensemble une période d'au moins 365 jours consécutifs, dont au moins 183 jours en 2025.

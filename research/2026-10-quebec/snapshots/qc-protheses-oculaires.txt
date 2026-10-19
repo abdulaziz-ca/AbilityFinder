@@ -1,0 +1,26 @@
+URL: https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/protheses-oculaires-oeil-artificiel | province: QC | program: Programme de prothèses oculaires (RAMQ) | fetched: 2026-10-18 (browser session after the owner passed the site's check)
+=== PAGE: https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/protheses-oculaires-oeil-artificiel
+Prothèses oculaires ou œil artificiel
+Le Programme de prothèses oculaires permet d'obtenir une aide financière pour l'achat, l'entretien et le remplacement d'une prothèse oculaire, qu'on nomme parfois « œil artificiel ». Un montant forfaitaire est aussi accordé pour l'achat et l'installation d'un conformateur (coquille de plastique).
+Personnes admissibles
+Pour être admissible au programme, vous devez avoir une carte d'assurance maladie valide. De plus, vous devez avoir besoin d'une prothèse oculaire pour l'une des raisons suivantes :
+- Vous avez perdu un œil, par exemple lors d'une chirurgie ou d'un accident
+- Vous avez un œil atrophié ou sans vision utile
+- Vous avez une maladie inflammatoire de l'œil (ophtalmie ou micro-ophtalmie) depuis la naissance
+Une prothèse oculaire a uniquement une fonction esthétique, elle n'aide pas à retrouver la vue.
+Services couverts par le programme
+Le programme accorde un montant maximal pour les services suivants :
+- Achat et remplacement d'une prothèse oculaire par œil, une fois tous les 5 ans
+- Entretien et réparation de la prothèse oculaire une fois par année
+- Achat et installation d'un conformateur, une coquille temporaire qui sert à conserver la forme de la cavité, une fois l'œil enlevé, avant d'installer la prothèse
+Vous devrez payer la différence si la facture dépasse le maximum prévu. Si vous détenez une assurance privée, elle pourrait couvrir la différence.
+Exception au délai de 5 ans : Le remplacement d'une prothèse oculaire peut être couvert même si les 5 ans ne sont pas écoulés. Il doit être recommandé par votre ophtalmologiste à la suite d'un changement de la cavité orbitaire.
+Montants maximaux accordés
+- Prothèse oculaire : 1 650 $ pour une prothèse sur mesure fabriquée par un oculariste certifié par le National Examining Board of Ocularists des États-Unis; 225 $ pour une prothèse usinée; 75 $ par année pour l'entretien et la réparation, excluant l'année suivant l'achat
+- Conformateur : 278 $ pour un modèle avec cuisson; 165 $ pour un modèle sans cuisson
+Marche à suivre pour obtenir une prothèse
+Lors d'une 1re demande, vous devez obtenir une ordonnance de l'ophtalmologiste. Cette ordonnance doit préciser que votre cavité orbitaire ou votre globe oculaire est en état de recevoir une prothèse.
+- Obtenez une ordonnance pour une prothèse oculaire auprès d'un ophtalmologiste.
+- Prenez rendez-vous avec un ou une oculariste. Présentez-lui l'ordonnance et votre carte d'assurance maladie valide. S'il y a lieu, présentez aussi votre carnet de réclamation valide.
+Conditions de remboursement : Certains ocularistes ont signé une entente avec la RAMQ. Nous leur remboursons directement le montant alloué. Si vous recevez des services d'un autre oculariste, vous devez payer les frais et nous demander ensuite un remboursement.
+Carnet de réclamation : Si vous détenez un carnet de réclamation, les frais liés à la prothèse oculaire et au conformateur sont entièrement remboursés par le programme.

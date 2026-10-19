@@ -1,0 +1,10 @@
+URL: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-remboursable-pour-frais-medicaux/ | province: QC | program: Crédit d'impôt remboursable pour frais médicaux | fetched: 2026-10-18 (browser session after the owner passed the site's check)
+=== PAGE: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-remboursable-pour-frais-medicaux/
+Crédit d'impôt remboursable pour frais médicaux
+Vous pouvez demander un crédit d'impôt remboursable pour des frais médicaux si vous remplissez les conditions suivantes :
+- vous résidiez au Québec et vous aviez 18 ans ou plus le 31 décembre de l'année visée par la demande;
+- vous avez résidé au Canada pendant toute cette année;
+- votre revenu de travail est égal ou supérieur au montant minimal établi pour cette année;
+- vous avez demandé, dans votre déclaration de revenus, un montant pour frais médicaux ou la déduction pour produits et services de soutien à une personne handicapée.
+Pour plus de renseignements ou pour calculer votre revenu de travail, voyez les instructions concernant le point 1 de la ligne 462 dans le Guide de la déclaration de revenus (TP-1.G).
+Pour connaître la liste des frais médicaux admissibles, consultez la publication Les frais médicaux (IN-130).

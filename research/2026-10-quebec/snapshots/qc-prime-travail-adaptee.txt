@@ -1,0 +1,28 @@
+URL: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credits-dimpot-relatifs-a-la-prime-au-travail/ | province: QC | program: Prime au travail adaptée (crédits d'impôt relatifs à la prime au travail) | fetched: 2026-10-18 (browser session after the owner passed the site's check)
+=== PAGE: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credits-dimpot-relatifs-a-la-prime-au-travail/
+Les crédits d'impôt relatifs à la prime au travail sont des crédits d'impôt remboursables que vous pouvez demander dans la déclaration de revenus (annexe P). Un crédit d'impôt remboursable est une somme qui peut vous être accordée même si vous n'avez pas d'impôt à payer.
+Par ailleurs, si vous ou votre conjointe ou conjoint présentez des contraintes sévères à l'emploi, il pourrait être plus avantageux pour vous ou cette personne de recevoir la prime au travail adaptée.
+
+=== PAGE: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credits-dimpot-relatifs-a-la-prime-au-travail/conditions-dadmissibilite-aux-credits-dimpot-relatifs-a-la-prime-au-travail/
+Pour avoir droit à l'un ou l'autre des crédits d'impôt relatifs à la prime au travail, vous devez remplir toutes les conditions de base suivantes :
+- vous résidiez au Québec le 31 décembre de l'année pour laquelle la demande est faite et vous avez le statut soit de citoyen canadien, soit d'Indien, soit de résident permanent, soit de personne à qui le Canada a accordé le droit d'asile;
+- vous aviez 18 ans ou plus le 31 décembre de l'année pour laquelle la demande est faite ou vous aviez moins de 18 ans et étiez dans l'une des situations suivantes : vous aviez une conjointe ou un conjoint au 31 décembre, vous étiez le père ou la mère d'un enfant qui résidait avec vous, vous étiez reconnue ou reconnu comme mineure ou mineur émancipé par une autorité compétente;
+- vous ou votre conjointe ou conjoint au 31 décembre, s'il y a lieu, déclarez soit des revenus d'emploi, soit une subvention de recherche, soit des prestations du Programme de protection des salariés, soit des revenus provenant d'une entreprise que vous et votre conjointe ou conjoint, ou l'une ou l'un des deux, exploitiez seules ou seuls, ou comme associées ou associés y participant activement;
+- personne n'a reçu à votre égard l'Allocation famille versée par Retraite Québec, sauf si vous avez eu 18 ans avant le 1er décembre de l'année pour laquelle la demande est faite;
+- vous n'étiez pas étudiante ou étudiant à temps plein (si vous l'étiez, vous n'avez pas droit aux crédits d'impôt relatifs à la prime au travail, sauf si, au 31 décembre de l'année pour laquelle la demande est faite, vous étiez le père ou la mère d'un enfant qui résidait avec vous).
+Vous n'avez pas droit aux crédits d'impôt relatifs à la prime au travail si vous étiez en détention dans une prison ou un établissement semblable le 31 décembre de l'année pour laquelle la demande est faite et si vous y avez passé plus de 183 jours dans cette année.
+Prime au travail adaptée
+Vous pourriez avoir droit à la prime au travail adaptée si vous remplissez les conditions de base et les conditions suivantes :
+- vous ou votre conjointe ou conjoint avez un revenu de travail annuel de plus de 1 200 $;
+- votre revenu familial est inférieur aux revenus présentés dans le tableau ci-dessous.
+Revenu familial maximal à partir duquel vous n'avez plus droit à la prime au travail adaptée pour l'année d'imposition 2025 : Personne seule 40 371 $; Couple sans enfant 61 961 $; Famille monoparentale 59 293 $; Couple avec au moins un enfant 78 438 $.
+Si vous avez droit à la prime au travail adaptée, vous recevrez le montant le plus élevé entre la prime au travail et la prime au travail adaptée.
+Vous devez également remplir l'une ou l'autre des conditions suivantes pour avoir droit à la prime au travail adaptée :
+- vous ou votre conjointe ou conjoint avez reçu, au cours de l'année ou au cours de l'une des cinq années précédentes, en raison de contraintes sévères à l'emploi, des prestations du Programme de solidarité sociale ou du Programme de revenu de base;
+- vous ou votre conjointe ou conjoint avez droit, pour l'année, au crédit d'impôt pour déficience grave et prolongée des fonctions mentales ou physiques (vous nous avez déjà fourni le formulaire Attestation de déficience [TP-752.0.14] ou une copie du formulaire fédéral Certificat pour le crédit d'impôt pour personnes handicapées [T2201] comme attestation).
+
+=== PAGE: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credits-dimpot-relatifs-a-la-prime-au-travail/montant/
+Le montant des crédits d'impôt relatifs à la prime au travail est calculé en fonction de votre revenu de travail et de votre revenu familial. Il tient compte de votre situation familiale.
+Prime au travail adaptée annuelle maximale pour l'année d'imposition 2025 : Personne seule 2 257,33 $; Couple sans enfant 3 501,46 $; Famille monoparentale 4 149,50 $; Couple avec au moins un enfant 5 149,20 $. Lorsque votre revenu atteint un certain seuil, le montant de la prime diminue en conséquence.
+Versements anticipés : La somme qui peut vous être versée par anticipation pour la prime au travail adaptée correspond à 50 % de la prime à laquelle vous estimez avoir droit pour l'année si vous désignez un enfant comme personne à charge; 75 % de cette prime si vous ne désignez pas d'enfant comme personne à charge.
+Prime au travail adaptée annuelle maximale pour l'année d'imposition 2026 : Personne seule 2 294,59 $; Couple sans enfant 3 559,12 $; Famille monoparentale 4 218,00 $; Couple avec au moins un enfant 5 234,00 $.

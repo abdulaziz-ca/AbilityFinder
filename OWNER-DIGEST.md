@@ -6,6 +6,19 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-18 — Quebec tax credits and RAMQ programs added
+
+### Shipped
+- After you passed the Revenu Québec and RAMQ checks in the browser pane, I read 14 official pages there and added
+  8 programs in French: the solidarity tax credit, caregiver tax credit, severe and prolonged impairment amount,
+  adapted work premium, seniors' home-support credit (70+), home-help discount (PEFSAD), ocular prostheses and
+  300 $ for children's glasses. Hearing, vision and physical-aid programs and the drug plan were rewritten from
+  their RAMQ pages, so they now state the real criteria. **Catalogue: 457 programs.** `?v=227`.
+- The Quebec notice no longer says these sites could not be read.
+
+### Verified how
+- Unit tests (239) and the full Chromium suite pass locally; every record was checked by a separate reviewer.
+
 ## 2026-10-18 — Quebec live, in French
 
 ### Shipped

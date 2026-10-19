@@ -5,9 +5,8 @@ reading were not bypassed.
 
 | Item | Why it is not complete | Re-check |
 |---|---|---|
-| Revenu Québec tax measures (crédit d'impôt pour solidarité, personne aidante, maintien à domicile des aînés, frais médicaux, montant pour déficience grave et prolongée, prime au travail adaptée, TVQ refunds, REER withdrawal) | revenuquebec.ca returns HTTP 403 to automated reading; the Finance ministry fiches sit behind a Radware check. Not bypassed, not listed. A notice on Québec results says so. | Monthly — owner may pass a check in the browser pane, as for PEI |
-| RAMQ program pages (aides auditives, visuelles, appareils suppléant à une déficience physique, prothèses oculaires, PEFSAD, services dentaires et optométriques) | ramq.gouv.qc.ca is behind a Cloudflare check. Hearing, vision and physical aid records are built from quebec.ca and send people to the official page for criteria; PEFSAD, ocular prostheses and dental/optometry are not built. | Monthly |
-| Régime public d'assurance médicaments | Built from the 30 June 2026 news release (rates to 30 June 2027); no evergreen quebec.ca page. | July 2027 |
+| Revenu Québec tax measures | Read 2026-10-18 in a browser session after the owner passed the check; solidarity, caregiver, severe and prolonged impairment, adapted work premium and seniors' home-support credits added. Medical-expenses credit not built (page states no amount); TVQ refunds and REER withdrawal not built. | Yearly (new tax year) |
+| RAMQ program pages | Read 2026-10-18 after the owner passed the check: hearing, vision and physical-aid records rewritten from RAMQ; PEFSAD, ocular prostheses and children's glasses added; drug plan now from RAMQ's rates page. Dental and optometry pages not yet read. | Yearly (rates change 1 July) |
 | Allocation-logement | quebec.ca page gives no income or asset test; Revenu Québec page blocked. | Quarterly |
 | Saguenay tarification sociale | Page gives no reduced price; 2023 thresholds. Dropped by review. | Quarterly |
 | Lévis transport adapté | Landing page only (no admission criteria or fares). Dropped by review. | Quarterly |

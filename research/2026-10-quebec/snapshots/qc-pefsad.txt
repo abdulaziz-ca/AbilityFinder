@@ -1,0 +1,23 @@
+URL: https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/aide-a-domicile | province: QC | program: Programme d'exonération financière pour les services d'aide à domicile (RAMQ) | fetched: 2026-10-18 (browser session after the owner passed the site's check)
+=== PAGE: https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/aide-a-domicile
+Aide à domicile
+Le Programme d'exonération financière pour les services d'aide à domicile vous permet de bénéficier d'une réduction du tarif horaire pour des services à domicile offerts par une entreprise d'économie sociale. Ces services incluent notamment l'entretien ménager, la lessive, la préparation des repas et l'accompagnement lors de vos achats.
+Personnes admissibles
+Pour être admissible au programme, vous devez :
+- Être couvert par le régime d'assurance maladie
+- Avoir 18 ans ou plus
+- Avoir recours aux services d'une entreprise d'économie sociale en aide à domicile reconnue par le MSSS
+Services offerts
+- Entretien ménager léger : balayage, époussetage, nettoyage (exemples : réfrigérateur, baignoire)
+- Entretien ménager lourd : grand ménage, déblaiement de l'entrée principale du domicile (neige et feuilles)
+- Entretien des vêtements : lessive, repassage
+- Préparation de repas, excluant les diètes particulières (sans gluten, sans arachides, etc.)
+- Approvisionnement et autres courses (exemple : accompagnement à l'épicerie, à la banque ou à la pharmacie)
+Certaines entreprises n'offrent pas tous ces services.
+Marche à suivre pour demander une aide à domicile
+Étape 1 — Préparation de votre demande : Communiquez avec une entreprise d'économie sociale en aide à domicile. Elle vous présentera les services offerts et vous fournira les formulaires à remplir. Elle pourra aussi vous accompagner dans la préparation de votre demande.
+Étape 2 — Transmission de votre demande : C'est l'entreprise d'économie sociale en aide à domicile qui nous transmettra votre demande. Nous vous informerons, ainsi que l'entreprise, de l'aide qui vous est accordée.
+Montant de l'aide offerte
+Le programme offre une aide fixe de 4 $ par heure de service à toute personne admissible. À ce montant peut s'ajouter une aide variable (entre 2,76 $ et 22,08 $ par heure) établie selon votre âge, votre revenu et votre situation familiale. Vous devez payer la différence entre le tarif horaire de l'entreprise et le montant total de l'aide accordée.
+Nous mettons à votre disposition un outil pour estimer le montant auquel vous pourriez avoir droit pour de l'aide à domicile.
+Renseignements supplémentaires : Par téléphone — Montréal : 514 873-9504; Sans frais : 1 888 594-5155.

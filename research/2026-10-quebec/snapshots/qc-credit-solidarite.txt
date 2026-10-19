@@ -1,0 +1,54 @@
+URL: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-solidarite/ | province: QC | program: Crédit d'impôt pour solidarité | fetched: 2026-10-18 (browser session after the owner passed the site's check)
+=== PAGE: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-solidarite/
+Crédit d'impôt pour solidarité – Citoyens
+Le crédit d'impôt pour solidarité est un crédit d'impôt remboursable destiné à soutenir les ménages à faible ou à moyen revenu.
+Vous pourriez y avoir droit pour la période de versement allant de juillet 2026 à juin 2027 si vous remplissiez les conditions d'admissibilité au 31 décembre 2025.
+
+=== PAGE: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-solidarite/composantes-du-credit-dimpot-pour-solidarite/
+Le crédit d'impôt pour solidarité est formé de trois composantes :
+- la composante relative au logement;
+- la composante relative à la TVQ;
+- la composante relative à la résidence sur le territoire d'un village nordique.
+Il n'est pas nécessaire d'être admissible à toutes les composantes pour recevoir ce crédit.
+Par exemple, vous pourriez avoir droit au crédit d'impôt pour solidarité même si, au 31 décembre 2025, vous habitiez dans un logement non admissible (par exemple, dans une habitation à loyer modique [HLM]). Dans ce cas, nous tiendrons seulement compte des composantes relatives à la TVQ et à la résidence sur le territoire d'un village nordique, s'il y a lieu.
+
+=== PAGE: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-solidarite/conditions-a-remplir/
+Le crédit d'impôt pour solidarité vise à soutenir les personnes qui ont un revenu modeste et qui vivent au Québec.
+Conditions d'admissibilité
+Vous pourriez avoir droit au crédit d'impôt pour solidarité pour la période de versement de juillet 2026 à juin 2027 si, au 31 décembre 2025, vous remplissiez toutes les conditions suivantes :
+- vous aviez 18 ans ou plus (si vous aviez moins de 18 ans, vous pourriez avoir droit au crédit d'impôt si vous étiez dans l'une des situations suivantes : vous aviez une conjointe ou un conjoint, ou vous étiez le père ou la mère d'un enfant qui résidait avec vous, ou vous étiez reconnue ou reconnu comme mineur émancipé par une autorité compétente [par exemple, un tribunal]);
+- vous résidiez au Québec;
+- vous ou votre conjointe ou conjoint étiez soit une citoyenne ou un citoyen canadien, soit une personne qui a le statut de résident permanent ou une personne protégée, au sens de la Loi sur l'immigration et la protection des réfugiés, soit une personne qui a le statut de résident temporaire ou la ou le titulaire d'un permis de séjour temporaire, au sens de la Loi sur l'immigration et la protection des réfugiés, ayant habité au Canada pendant les 18 derniers mois.
+Situations ne donnant pas droit au crédit d'impôt
+Vous n'avez pas droit au crédit d'impôt si vous êtes dans l'une des situations suivantes :
+- au 31 décembre 2025, vous étiez en détention dans une prison ou un établissement semblable et vous avez été ainsi détenue ou détenu au cours de l'année 2025 pendant une ou plusieurs périodes totalisant plus de 183 jours;
+- Retraite Québec a versé pour vous une somme à titre d'Allocation famille pour le mois de décembre 2025 (sauf si vous avez atteint l'âge de 18 ans au cours de ce mois);
+- au 31 décembre 2025, vous et votre conjointe ou conjoint, s'il y a lieu, étiez des demandeuses ou demandeurs d'asile.
+Revenu familial
+Il est possible que vous remplissiez toutes les conditions donnant droit à ce crédit d'impôt, mais que vous ne le receviez pas parce que votre revenu familial égale ou dépasse le revenu familial maximal y donnant droit.
+Pour connaître le montant du crédit d'impôt auquel vous pourriez avoir droit en fonction de votre revenu familial, utilisez l'Outil d'estimation des versements du crédit d'impôt pour solidarité.
+Inscription au dépôt direct
+En règle générale, pour recevoir le crédit d'impôt pour solidarité, vous devez avoir fait votre inscription au dépôt direct.
+Vous n'avez pas fait votre inscription au dépôt direct? Si c'est le cas, vous pouvez vous y inscrire
+- soit en utilisant le service en ligne d'inscription au dépôt direct, accessible dans Mon dossier pour les citoyens;
+- soit en vous inscrivant en ligne via votre institution financière (vérifiez si votre institution financière offre ce service);
+- soit en joignant à votre déclaration de revenus un spécimen de chèque d'une institution financière ayant un établissement au Canada, portant la mention « ANNULÉ » au recto ainsi que vos nom et numéro d'assurance sociale;
+- soit en remplissant le formulaire Demande d'inscription au dépôt direct (LM-3) et en le joignant à votre déclaration de revenus.
+La période de versement s'échelonnera de juillet 2026 à juin 2027.
+
+=== PAGE: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-solidarite/demande-du-credit/
+Pour avoir droit au crédit d'impôt pour solidarité, vous devez remplir toutes les conditions qui s'y rattachent et avoir produit votre déclaration de revenus. Pour vous assurer d'obtenir tous les montants auxquels vous pourriez avoir droit pour chacune des composantes du crédit d'impôt pour solidarité, vous devez en faire la demande en remplissant l'annexe D de votre déclaration de revenus ou en utilisant nos services en ligne, accessibles dans Mon dossier pour les citoyens. Si vous avez droit au crédit d'impôt et que vous n'en faites pas la demande au moyen de cette annexe ou de nos services en ligne, nous vous verserons uniquement le montant de base et le montant pour conjointe ou conjoint, s'il y a lieu, de la composante relative à la TVQ.
+En règle générale, pour recevoir le crédit d'impôt, vous devez avoir fait votre inscription au dépôt direct.
+Conjoint : Si, au 31 décembre 2025, vous aviez une conjointe ou un conjoint et qu'elle ou il habitait avec vous, une seule personne doit remplir l'annexe D pour demander le crédit d'impôt pour solidarité pour votre couple.
+Si, au 31 décembre 2025, vous aviez une conjointe ou un conjoint mais que vous n'habitiez pas ensemble, par exemple parce que l'une ou l'un d'entre vous habitait de façon permanente dans un centre d'hébergement et de soins de longue durée (CHSLD), chaque personne du couple doit remplir une annexe D distincte pour demander le crédit d'impôt pour solidarité.
+Vous avez oublié de transmettre votre demande? Pour recevoir tous les montants relatifs au crédit d'impôt pour solidarité auxquels vous pourriez avoir droit pour une période de versement, vous devez en faire la demande dans les quatre ans suivant le 31 décembre de l'année d'imposition prise en compte dans le calcul du crédit pour cette période.
+
+=== PAGE: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-solidarite/calcul-du-credit-dimpot-pour-solidarite/
+Pour la période de versement de juillet 2026 à juin 2027, le crédit d'impôt pour solidarité est calculé selon votre situation au 31 décembre 2025. Pour le calculer, nous additionnons les montants auxquels vous pourriez avoir droit pour chacune des trois composantes de ce crédit d'impôt, soit la composante relative à la TVQ, la composante relative au logement et la composante relative à la résidence sur le territoire d'un village nordique.
+Le résultat obtenu peut être réduit en fonction de votre revenu familial.
+Votre revenu familial correspond au montant de la ligne 275 de votre déclaration. Si, au 31 décembre 2025, vous aviez une conjointe ou un conjoint, votre revenu familial correspond au montant de la ligne 275 de votre déclaration plus le montant de la ligne 275 de la déclaration de votre conjointe ou conjoint.
+Si votre revenu familial égale ou dépasse le revenu familial maximal inscrit dans le tableau ci-dessous, vous ne recevrez pas le crédit d'impôt pour solidarité. S'il est inférieur, remplissez l'annexe D.
+Revenu familial maximal selon la situation familiale au 31 décembre 2025 (Montant de base (A) / Revenu additionnel (B) / Revenu familial maximal (A + B) = C) :
+- Particulier avec conjointe ou conjoint : 70 395 $ / 2 634 $ par enfant à charge / À déterminer
+- Famille monoparentale : 64 545 $ / 2 634 $ par enfant à charge / À déterminer
+- Particulier sans conjointe ou conjoint : 64 545 $ / Sans objet / 64 545 $

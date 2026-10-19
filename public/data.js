@@ -151,18 +151,16 @@ const PROVINCE_NOTICES = {
      interface is in French. */
   QC: {
     title: "Québec programs are shown in French",
-    lede: "Each Québec program keeps the wording of its official French page. A few official sites block automated reading, so some details could not be checked.",
+    lede: "Each Québec program keeps the wording of its official French page, so details match what the province publishes.",
     items: [
-      "Pages of the Régie de l'assurance maladie du Québec (RAMQ) could not be read. Hearing, vision and mobility aid programs send you to the official page for the full criteria.",
-      "Revenu Québec pages could not be read, so Québec tax credits (such as the solidarity tax credit and the caregiver credit) are not listed yet.",
+      "Tax credits (such as the solidarity tax credit and the caregiver credit) show the tax year or payment period they apply to.",
       "Some city fares and income limits come from older pages; each program says so.",
     ],
     fr: {
       title: "Les programmes du Québec sont présentés en français",
-      lede: "Chaque programme du Québec reprend le texte de sa page officielle. Quelques sites officiels bloquent la lecture automatisée : certains détails n'ont donc pas pu être vérifiés.",
+      lede: "Chaque programme du Québec reprend le texte de sa page officielle, pour que les détails correspondent à ce que publie le gouvernement.",
       items: [
-        "Les pages de la Régie de l'assurance maladie du Québec (RAMQ) n'ont pas pu être lues. Les programmes d'aides auditives, visuelles et à la mobilité vous renvoient à la page officielle pour tous les critères.",
-        "Les pages de Revenu Québec n'ont pas pu être lues : les crédits d'impôt du Québec (comme le crédit d'impôt pour solidarité ou pour personne aidante) ne sont pas encore inscrits.",
+        "Les crédits d'impôt (comme le crédit d'impôt pour solidarité ou pour personne aidante) indiquent l'année d'imposition ou la période de versement visée.",
         "Certains tarifs et seuils de revenu municipaux viennent de pages plus anciennes; chaque programme le précise.",
       ],
     },
@@ -250,6 +248,14 @@ const EMPLOYMENT = {
    official source). These are ESTIMATES — actual amounts depend on the person.
    ========================================================================== */
 const BENEFIT_VALUES = {
+  "qc-lunettes-enfants": { kind: "discount", note: "Remboursement fixe de 300 $ pour des lunettes ou des verres de contact." },
+  "qc-protheses-oculaires": { kind: "grant", note: "Aide financière pour une prothèse oculaire et un conformateur." },
+  "qc-pefsad": { kind: "discount", note: "Réduction du tarif horaire des services d'aide à domicile." },
+  "qc-credit-maintien-domicile": { kind: "discount", note: "Aide fiscale pour des dépenses de services de maintien à domicile." },
+  "qc-prime-travail-adaptee": { kind: "grant", note: "Crédit d'impôt remboursable pour les travailleurs ayant des contraintes sévères à l'emploi." },
+  "qc-deficience-grave-prolongee": { kind: "discount", note: "Montant qui réduit l'impôt à payer, sans chiffre précisé sur la page officielle." },
+  "qc-credit-personne-aidante": { kind: "discount", note: "Crédit d'impôt pouvant atteindre 2 988 $ pour la personne aidante." },
+  "qc-credit-solidarite": { kind: "grant", note: "Crédit d'impôt remboursable pour les ménages à revenu faible ou moyen." },
   "qc-artistes-handicap": { kind: "grant", note: "Aide supplémentaire liée au handicap, s'ajoutant à une bourse du CALQ." },
   "qc-agir-tot": { kind: "access", note: "Services gratuits de dépistage et d'intervention précoce pour les enfants de moins de 7 ans." },
   "qc-carte-accompagnement-autocar": { kind: "access", note: "Billet gratuit pour votre accompagnateur sur le réseau interurbain par autocar." },
@@ -267,7 +273,7 @@ const BENEFIT_VALUES = {
   "qc-besoins-particuliers-jeunes": { kind: "grant", note: "Allocation pour des ressources matérielles liées aux études de votre enfant." },
   "qc-besoins-particuliers-adultes": { kind: "grant", note: "Aide pour les formes de soutien liées à la déficience, nécessaires aux études." },
   "qc-prestations-speciales": { kind: "grant", note: "Montant supplémentaire pour un besoin de santé ou une situation particulière." },
-  "qc-assurance-medicaments": { kind: "discount", note: "Protection de base à l'égard du coût des médicaments, avec franchise, coassurance et prime selon le revenu (2026-2027)." },
+  "qc-assurance-medicaments": { kind: "discount", note: "Couverture publique des médicaments, avec prime, franchise et coassurance du 1er juillet 2026 au 30 juin 2027." },
   "qc-hlm": { kind: "discount", note: "Loyer fixé à 25 % de votre revenu, chauffage compris." },
   "qc-allocation-logement": { kind: "grant", note: "Aide mensuelle pour le loyer, jusqu'à 170 $ par mois." },
   "qc-carte-accompagnement-loisir": { kind: "access", note: "Entrée gratuite pour votre accompagnateur chez les partenaires de loisir, de culture et de tourisme." },
@@ -286,9 +292,9 @@ const BENEFIT_VALUES = {
   "qc-aides-vie-quotidienne": { kind: "grant", note: "Équipements pour la vie quotidienne et domestique à la maison, sans frais ni franchise." },
   "qc-chien-assistance": { kind: "grant", note: "Remboursement des frais liés à votre chien d'assistance à la motricité." },
   "qc-aides-elimination": { kind: "grant", note: "Fournitures pour les fonctions d'élimination, sans frais ni franchise." },
-  "qc-appareils-deficience-physique": { kind: "access", note: "Programme d'aides techniques, si vous êtes admissible." },
-  "qc-aides-visuelles": { kind: "access", note: "Programme d'aides techniques, si vous êtes admissible." },
-  "qc-aides-auditives": { kind: "access", note: "Programme d'aides techniques, si vous êtes admissible." },
+  "qc-appareils-deficience-physique": { kind: "access", note: "Appareils couverts si vous avez une déficience physique et remplissez les conditions de l'appareil." },
+  "qc-aides-visuelles": { kind: "access", note: "Aides visuelles prêtées après évaluation, et montant pour un chien-guide." },
+  "qc-aides-auditives": { kind: "access", note: "Aides auditives et honoraires couverts si vous répondez aux critères d'âge et de perte d'audition." },
   "qc-soutien-familles": { kind: "grant", note: "Allocation pour acheter du répit, du gardiennage, du dépannage ou de l'appui aux tâches." },
   "qc-rente-invalidite": { kind: "grant", note: "Rente mensuelle imposable si vous ne pouvez plus travailler à temps plein à cause de votre santé." },
   "qc-sehnse": { kind: "grant", note: "Aide financière en plus du SEH pour les parents d'un enfant très gravement atteint." },
@@ -762,6 +768,14 @@ const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
 const BENEFIT_META = {
+  "qc-lunettes-enfants": { difficulty: 2, effort: "Demande de remboursement en ligne avec les renseignements de l'achat", wait: "Au plus tard 3 semaines après l'envoi de la demande" },
+  "qc-protheses-oculaires": { difficulty: 2, effort: "Obtenir une ordonnance, puis consulter un oculariste", wait: "Non précisé" },
+  "qc-pefsad": { difficulty: 2, effort: "Contacter une entreprise reconnue, qui transmet la demande", wait: "Non précisé" },
+  "qc-credit-maintien-domicile": { difficulty: 2, effort: "Garder les factures et remplir l'annexe J", wait: "Non précisé" },
+  "qc-prime-travail-adaptee": { difficulty: 3, effort: "Remplir l'annexe P de la déclaration de revenus", wait: "Non précisé" },
+  "qc-deficience-grave-prolongee": { difficulty: 3, effort: "Obtenir l'attestation d'un professionnel, puis la joindre à la déclaration", wait: "Non précisé" },
+  "qc-credit-personne-aidante": { difficulty: 3, effort: "Obtenir les attestations, puis remplir l'annexe H", wait: "Non précisé" },
+  "qc-credit-solidarite": { difficulty: 2, effort: "Remplir l'annexe D de la déclaration de revenus", wait: "Versements de juillet 2026 à juin 2027" },
   "qc-artistes-handicap": { difficulty: 3, effort: "Section du formulaire de bourse et factures à conserver", wait: "Non précisé" },
   "qc-agir-tot": { difficulty: 1, effort: "Un appel au CLSC, puis évaluation de vos besoins", wait: "Non précisé" },
   "qc-carte-accompagnement-autocar": { difficulty: 2, effort: "Formulaire et photo à envoyer par courriel; attestation parfois requise", wait: "4 à 6 semaines" },
@@ -779,7 +793,7 @@ const BENEFIT_META = {
   "qc-besoins-particuliers-jeunes": { difficulty: 3, effort: "Confirmation médicale et recommandation d'un professionnel de la santé", wait: "Non précisé" },
   "qc-besoins-particuliers-adultes": { difficulty: 3, effort: "Rencontre avec votre établissement, confirmation médicale, puis demande", wait: "Non précisé" },
   "qc-prestations-speciales": { difficulty: 3, effort: "Documents justificatifs, parfois autorisation préalable, puis envoi à Services Québec", wait: "Non précisé" },
-  "qc-assurance-medicaments": { difficulty: 1, effort: "Aucune demande propre à cette page; consultez la RAMQ", wait: "Non précisé" },
+  "qc-assurance-medicaments": { difficulty: 2, effort: "Répondre aux questions du service d'inscription de la RAMQ", wait: "Non précisé" },
   "qc-hlm": { difficulty: 3, effort: "Demande de logement subventionné, puis sélection par l'office d'habitation", wait: "Non précisé" },
   "qc-allocation-logement": { difficulty: 2, effort: "Demande en ligne ou par téléphone auprès de Revenu Québec", wait: "Non précisé" },
   "qc-carte-accompagnement-loisir": { difficulty: 2, effort: "Demande sur carteloisir.ca ou par téléphone", wait: "Non précisé" },
@@ -798,9 +812,9 @@ const BENEFIT_META = {
   "qc-aides-vie-quotidienne": { difficulty: 3, effort: "Contact avec l'établissement et attestation médicale", wait: "Non précisé" },
   "qc-chien-assistance": { difficulty: 4, effort: "Formulaire par la poste et évaluation", wait: "Non précisé" },
   "qc-aides-elimination": { difficulty: 3, effort: "Contact avec l'établissement et attestation médicale", wait: "Non précisé" },
-  "qc-appareils-deficience-physique": { difficulty: 2, effort: "Vérifier l'admissibilité sur la page officielle", wait: "Non précisé" },
-  "qc-aides-visuelles": { difficulty: 2, effort: "Vérifier l'admissibilité sur la page officielle", wait: "Non précisé" },
-  "qc-aides-auditives": { difficulty: 2, effort: "Vérifier l'admissibilité sur la page officielle", wait: "Non précisé" },
+  "qc-appareils-deficience-physique": { difficulty: 3, effort: "Choisir un lieu autorisé; ordonnance parfois requise", wait: "Non précisé" },
+  "qc-aides-visuelles": { difficulty: 2, effort: "Une demande et une évaluation dans un établissement de réadaptation", wait: "Non précisé" },
+  "qc-aides-auditives": { difficulty: 3, effort: "Documents d'un audiologiste ou d'un ORL, puis rendez-vous chez un audioprothésiste", wait: "Non précisé" },
   "qc-soutien-familles": { difficulty: 3, effort: "Contact avec l'intervenant pivot ou l'établissement, puis évaluation", wait: "Non précisé" },
   "qc-rente-invalidite": { difficulty: 4, effort: "Demande avec évaluation médicale par Retraite Québec", wait: "Normalement le quatrième mois après la reconnaissance de l'invalidité" },
   "qc-sehnse": { difficulty: 4, effort: "Demande à Retraite Québec avec dossier de l'enfant", wait: "Non précisé" },
@@ -22113,9 +22127,9 @@ const BENEFITS = [
     "level": "Quebec",
     "lang": "fr",
     "category": "Health",
-    "amount": "Prise en charge des frais, si vous êtes admissible",
-    "summary": "Le programme prend en charge les frais des prothèses auditives et des aides de suppléance à l'audition, si vous êtes admissible.",
-    "note": "L'admissibilité dépend de critères que la page officielle ne détaille pas.",
+    "amount": "Attribution, réparation et remplacement des aides auditives, honoraires inclus",
+    "summary": "Le programme couvre l'attribution, la réparation et le remplacement des prothèses auditives et des aides de suppléance à l'audition dont vous avez besoin pour vos activités quotidiennes.",
+    "note": "Les critères varient selon votre âge et le degré de votre perte d'audition. Lisez la page officielle de la RAMQ.",
     "requires": [
       "qc",
       "hearingDisability",
@@ -22124,33 +22138,44 @@ const BENEFITS = [
     "eligibility": {
       "mode": "all",
       "items": [
-        "Vous êtes admissible au programme."
+        "Vous avez une carte d'assurance maladie valide.",
+        "Enfant de 11 ans ou moins : déficience auditive pouvant nuire à la parole et au langage.",
+        "De 12 à 18 ans, ou 19 ans ou plus aux études : perte moyenne d'au moins 25 décibels à une oreille.",
+        "Adulte de 19 ans ou plus : perte moyenne d'au moins 35 décibels à l'oreille qui entend le mieux.",
+        "Autre déficience en plus de l'audition qui empêche l'intégration sociale, scolaire ou professionnelle."
       ],
-      "note": "La page ne détaille pas ces critères : lisez la page officielle du programme."
+      "note": "Les fréquences exigées pour la perte moyenne sont celles du programme."
     },
-    "applyText": "Consultez la page officielle du programme pour connaître la démarche.",
-    "applyUrl": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-auditives",
-    "source": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-auditives",
+    "applyText": "Obtenez vos documents auprès d'un audiologiste (ou d'un ORL, selon votre âge), puis rencontrez un audioprothésiste ou un distributeur.",
+    "applyUrl": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/aides-auditives",
+    "source": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/aides-auditives",
     "detail": {
       "aboutList": {
-        "lead": "Le programme couvre notamment :",
+        "lead": "Le programme couvre :",
         "items": [
-          "L'achat, la réparation et le remplacement d'une prothèse auditive.",
-          "Un amplificateur téléphonique ou un détecteur de sonneries de porte ou de téléphone.",
-          "Un réveille-matin adapté ou un téléscripteur."
+          "Les prothèses auditives intra-auriculaires et les contours d'oreille.",
+          "Les aides de suppléance, comme un amplificateur téléphonique ou un réveille-matin adapté.",
+          "Les honoraires des audioprothésistes et des distributeurs pour l'attribution, le remplacement et la réparation.",
+          "Une 2e prothèse, sur recommandation d'un audiologiste, dans certains cas."
         ]
       },
       "steps": [
-        "Ouvrez la page officielle du programme.",
-        "Vérifiez les critères d'admissibilité du programme.",
-        "Suivez la démarche indiquée pour faire votre demande."
+        "Procurez-vous les documents requis auprès de l'audiologiste ou de l'oto-rhino-laryngologiste (ORL).",
+        "Procurez-vous les documents complémentaires si vous êtes aux études, au travail ou avez une autre déficience.",
+        "Rencontrez un audioprothésiste du Québec pour une prothèse, ou un distributeur du Québec pour une aide de suppléance.",
+        "Faites cette rencontre au plus tard 1 an après la délivrance des documents exigés."
       ],
       "documents": [
-        "La page ne précise pas les documents à fournir."
+        "Prothèse auditive, enfant de 11 ans ou moins : attestation de la nécessité d'une prothèse, obtenue auprès de l'audiologiste.",
+        "Prothèse auditive, 12 ans ou plus : audiogramme et attestation de la nécessité d'une prothèse (ORL ou audiologiste jusqu'à 64 ans, audiologiste dès 65 ans).",
+        "Aide de suppléance : audiogramme, évaluation globale des déficiences et des limitations fonctionnelles (audiologiste ou orthophoniste), et recommandation de l'audiologiste.",
+        "Au besoin : attestation de fréquentation scolaire, attestation de salaire ou d'avantage de travail, ou attestation de l'autre déficience."
       ],
       "tips": [
-        "Ces aides compensent ou réduisent certains inconvénients liés à la perte d'audition.",
-        "Le programme paie aussi la réparation et le remplacement des aides dont vous avez besoin."
+        "Vous n'avez rien à payer pour les honoraires si vous bénéficiez du programme.",
+        "L'entretien de l'aide, comme le nettoyage, la vérification et l'analyse, est à vos frais.",
+        "La garantie est d'au moins 1 an. Les piles sont couvertes à l'attribution et au remplacement, mais le remplacement normal des piles est à vos frais.",
+        "Le coût de réparation ou de remplacement d'une aide perdue, volée, détruite ou utilisée avec négligence n'est pas couvert."
       ]
     }
   },
@@ -22160,9 +22185,9 @@ const BENEFITS = [
     "level": "Quebec",
     "lang": "fr",
     "category": "Health",
-    "amount": "Prêt d'aides visuelles et montant pour un chien-guide, si vous êtes admissible",
-    "summary": "Le programme prête des aides visuelles et verse un montant pour prendre soin d'un chien-guide, si vous êtes admissible.",
-    "note": "L'admissibilité dépend de critères que la page officielle ne détaille pas.",
+    "amount": "Prêt d'aides visuelles; 265 $ pour un chien-guide, puis 2 240 $ par année",
+    "summary": "Le programme vous prête des aides visuelles qui compensent une perte de vision partielle ou totale. Il verse aussi un montant pour prendre soin d'un chien-guide.",
+    "note": "L'évaluation de votre déficience visuelle sert à vérifier si vous répondez aux conditions du programme.",
     "requires": [
       "qc",
       "visionDisability",
@@ -22171,33 +22196,41 @@ const BENEFITS = [
     "eligibility": {
       "mode": "all",
       "items": [
-        "Vous êtes admissible au programme."
+        "Vous êtes assuré par le régime d'assurance maladie.",
+        "Vous avez une déficience visuelle permanente qui vous empêche de lire ou d'écrire.",
+        "Ou elle vous empêche de circuler dans un environnement non familier.",
+        "Ou elle vous empêche de réaliser des activités liées à vos habitudes de vie ou à vos rôles sociaux."
       ],
-      "note": "La page ne détaille pas ces critères : lisez la page officielle du programme."
+      "note": "Un seul de ces empêchements suffit; l'évaluation doit montrer des besoins fonctionnels."
     },
-    "applyText": "Consultez la page officielle du programme pour connaître la démarche.",
-    "applyUrl": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-visuelles",
-    "source": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-visuelles",
+    "applyText": "Demandez une aide visuelle à un établissement de réadaptation spécialisé en déficience visuelle.",
+    "applyUrl": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/aides-visuelles",
+    "source": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/aides-visuelles",
     "detail": {
       "aboutList": {
-        "lead": "Exemples d'aides prêtées :",
+        "lead": "Le programme couvre :",
         "items": [
-          "Lecture : télévisionneuse, système optique ou calculatrice.",
-          "Écriture : machine à écrire le braille.",
-          "Mobilité : canne blanche, détecteur électronique d'obstacles ou lunettes de vision nocturne."
+          "Le prêt, le remplacement et la réparation des aides visuelles.",
+          "Pour la lecture : télévisionneuse, système optique ou calculatrice.",
+          "Pour la mobilité : canne blanche, détecteur électronique d'obstacles ou lunettes de vision nocturne.",
+          "Pour l'écriture : machine à écrire le braille."
         ]
       },
       "steps": [
-        "Ouvrez la page officielle du programme.",
-        "Vérifiez les critères d'admissibilité du programme.",
-        "Suivez la démarche indiquée pour faire votre demande."
+        "Faites une demande d'aide visuelle à un établissement reconnu en réadaptation pour la déficience visuelle.",
+        "Faites évaluer votre déficience visuelle et vos besoins par cet établissement.",
+        "Présentez votre carte d'assurance maladie valide : l'évaluation est sans frais.",
+        "Si vous êtes admissible, l'établissement vous prête des aides et vous apprend à bien les utiliser."
       ],
       "documents": [
-        "La page ne précise pas les documents à fournir."
+        "Carte d'assurance maladie valide."
       ],
       "tips": [
-        "Le programme couvre le prêt, le remplacement et la réparation des aides visuelles.",
-        "Ces aides compensent une perte de vision partielle ou totale dans vos activités quotidiennes."
+        "L'évaluation se fait après la correction de la vue par des lunettes ou lentilles prescrites, sauf si votre vue a été augmentée de plus de 4 dioptries ou améliorée par un système optique spécial.",
+        "Chien-guide : vous avez droit à 265 $ pour en obtenir un, puis à 2 240 $ par année pour en prendre soin.",
+        "Les étudiants et les travailleurs peuvent recevoir d'autres aides, comme un ordinateur ou un afficheur braille.",
+        "Retournez toute aide non utilisée à l'établissement qui vous l'a prêtée.",
+        "Le coût d'une aide perdue, volée, brisée ou utilisée avec négligence n'est pas couvert."
       ]
     }
   },
@@ -22207,9 +22240,9 @@ const BENEFITS = [
     "level": "Quebec",
     "lang": "fr",
     "category": "Health",
-    "amount": "Achat, remplacement et réparation de certaines aides techniques, selon les tarifs en vigueur",
-    "summary": "Le programme couvre l'achat, le remplacement et la réparation de certaines aides techniques pour compenser une incapacité motrice.",
-    "note": "L'admissibilité dépend de critères que la page officielle ne détaille pas.",
+    "amount": "Achat, remplacement et réparation d'orthèses, de prothèses et d'aides à la marche",
+    "summary": "Le programme couvre l'achat, le remplacement et la réparation d'aides techniques qui compensent une incapacité motrice, comme les orthèses, les prothèses, les fauteuils roulants et les aides à la marche.",
+    "note": "Chaque appareil a ses propres conditions. Vérifiez la page officielle de la RAMQ.",
     "requires": [
       "qc",
       "physicalDisability",
@@ -22218,33 +22251,41 @@ const BENEFITS = [
     "eligibility": {
       "mode": "all",
       "items": [
-        "Vous êtes admissible au programme."
-      ],
-      "note": "La page ne détaille pas ces critères : lisez la page officielle du programme."
+        "Vous avez une déficience physique.",
+        "Vous avez une carte d'assurance maladie valide.",
+        "Vous remplissez les conditions associées à l'appareil dont vous avez besoin."
+      ]
     },
-    "applyText": "Consultez la page officielle du programme pour connaître la démarche.",
-    "applyUrl": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/appareils-suppleant-a-une-deficience-physique",
-    "source": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/appareils-suppleant-a-une-deficience-physique",
+    "applyText": "Rendez-vous dans un établissement ou un laboratoire autorisé; une ordonnance est parfois requise.",
+    "applyUrl": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/appareils-suppleant-a-deficience-physique",
+    "source": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/appareils-suppleant-a-deficience-physique",
     "detail": {
       "aboutList": {
-        "lead": "Les aides visées incluent :",
+        "lead": "Le programme couvre :",
         "items": [
-          "Plusieurs types d'orthèses et de prothèses.",
-          "Des aides à la marche, comme une béquille ou une canne.",
-          "Un fauteuil roulant, ainsi que des aides à la posture et à la verticalisation."
+          "Les orthèses et les prothèses.",
+          "Les aides à la locomotion : fauteuils roulants, bases de positionnement, orthomobiles et poussettes adaptées.",
+          "Les aides à la marche : béquilles, cannes, cadres de marche et ambulateurs pédiatriques.",
+          "Les aides à la posture et à la verticalisation."
         ]
       },
       "steps": [
-        "Ouvrez la page officielle du programme.",
-        "Vérifiez les critères d'admissibilité du programme.",
-        "Suivez la démarche indiquée pour faire votre demande."
+        "Vérifiez si vous avez besoin d'une ordonnance pour l'appareil.",
+        "Pour une orthèse, une prothèse ou une aide à la marche, allez dans un établissement public ou un laboratoire privé autorisé.",
+        "Pour une aide à la locomotion, à la posture ou à la verticalisation, allez dans un établissement public autorisé.",
+        "Pour une réparation ou un remplacement, allez dans un lieu autorisé, idéalement celui d'où provient l'appareil."
       ],
       "documents": [
-        "La page ne précise pas les documents à fournir."
+        "Carte d'assurance maladie valide.",
+        "Ordonnance, seulement dans les cas où la RAMQ l'exige."
       ],
       "tips": [
-        "Les services couverts le sont selon les tarifs en vigueur.",
-        "Cela comprend l'ajustement d'un appareil, d'un composant ou d'un complément assuré."
+        "L'ordonnance décrit votre déficience et l'incapacité, la nécessité de l'appareil et des recommandations d'utilisation.",
+        "Elle peut venir d'un médecin spécialiste, d'un omnipraticien ou d'une infirmière praticienne spécialisée.",
+        "Orthèse : portez-la tous les jours, à la demande de votre médecin ou infirmière praticienne, pour qu'elle reste assurée, au moins 6 mois (membre inférieur), 3 mois (tronc) ou 1 mois (membre supérieur).",
+        "Moins de 19 ans et orthèse pour corriger une déformation : aucune période minimale. Une aide à la marche doit servir chaque jour pendant au moins 1 an.",
+        "Non couverts, par exemple : ambulateur pour adulte, bas élastiques, chaussures orthopédiques, corset en tissu, orthèse plantaire, orthèse portée seulement pour un sport, triporteur et quadriporteur.",
+        "Certaines de ces aides relèvent d'autres programmes gouvernementaux. Le coût d'un appareil perdu, volé, brisé ou utilisé avec négligence n'est pas couvert."
       ]
     }
   },
@@ -23194,44 +23235,52 @@ const BENEFITS = [
     "level": "Quebec",
     "lang": "fr",
     "category": "Health",
-    "amount": "Du 1er juillet 2026 au 30 juin 2027 : prime annuelle de 0 à 789 $, franchise de 21,25 $, coassurance de 30 %",
-    "summary": "Le régime offre une protection de base à l'égard du coût des médicaments requis par votre état de santé. Pour 2026-2027, vous payez une franchise, une coassurance de 30 % et, selon votre revenu, une prime annuelle.",
-    "note": "Ces tarifs viennent d'un communiqué du 30 juin 2026 et valent pour l'année qui commence le 1er juillet.",
+    "amount": "Du 1er juillet 2026 au 30 juin 2027 : prime de 0 à 789 $, franchise de 21,25 $, coassurance de 30 %",
+    "summary": "L'assurance médicaments est obligatoire pour toute personne installée au Québec de façon permanente. Le régime public de la RAMQ couvre environ 8 000 médicaments pour les personnes sans régime privé.",
+    "note": "Certaines personnes sont assurées sans frais. Les tarifs sont ajustés chaque année le 1er juillet.",
     "requires": [
       "qc",
       "qcAssuranceMedicamentsRoute"
     ],
     "eligibility": {
-      "mode": "all",
+      "mode": "any",
       "items": [
-        "Au Québec, toute la population est obligatoirement couverte par un régime d'assurance médicaments.",
-        "Votre participation financière tient compte notamment de votre situation économique."
+        "Vous n'avez pas accès à un régime privé.",
+        "Vous avez 65 ans ou plus et n'adhérez pas à un régime privé.",
+        "Vous recevez une aide financière avec carnet de réclamation.",
+        "Vous êtes mineur établi au Québec et vos parents n'ont pas accès à un régime privé."
       ],
-      "note": "Consultez le site de la RAMQ pour connaître les montants qui s'appliquent à vous."
+      "note": "Si vous avez accès à un régime privé, vous devez en général y adhérer."
     },
-    "applyText": "Consultez le site de la Régie de l'assurance maladie du Québec (ramq.gouv.qc.ca) pour les montants à payer.",
-    "applyUrl": "https://www.quebec.ca/nouvelles/actualites/details/ajustement-des-tarifs-pour-les-personnes-couvertes-par-le-regime-public-dassurance-medicaments-71515",
-    "source": "https://www.quebec.ca/nouvelles/actualites/details/ajustement-des-tarifs-pour-les-personnes-couvertes-par-le-regime-public-dassurance-medicaments-71515",
+    "applyText": "Répondez aux questions du service d'inscription de la RAMQ pour connaître la démarche qui correspond à votre situation.",
+    "applyUrl": "https://www.ramq.gouv.qc.ca/fr/citoyens/assurance-medicaments/connaitre-conditions-admissibilite-regime-public",
+    "source": "https://www.ramq.gouv.qc.ca/fr/citoyens/assurance-medicaments/connaitre-conditions-admissibilite-regime-public",
     "detail": {
       "aboutList": {
-        "lead": "Tarifs du 1er juillet 2026 au 30 juin 2027 :",
+        "lead": "Les personnes suivantes sont généralement assurées sans frais :",
         "items": [
-          "La franchise mensuelle est de 21,25 $ et la coassurance est de 30 %.",
-          "Maximum mensuel : 105,25 $ pour les adhérents et les 65 ans ou plus sans Supplément de revenu garanti (SRG).",
-          "Avec un SRG au taux de 1 à 93 %, le maximum mensuel est de 58,08 $."
+          "Les détenteurs d'un carnet de réclamation valide.",
+          "Les enfants de personnes assurées par le régime public : moins de 18 ans, sans accès à un régime privé.",
+          "Les 18 à 25 ans aux études à temps plein, sans régime privé ni conjoint, vivant chez leurs parents ou tuteur.",
+          "Les personnes visées par le Règlement ayant une déficience fonctionnelle survenue avant 18 ans, sous conditions.",
+          "Les 65 ans ou plus qui reçoivent 94 % ou plus du Supplément de revenu garanti maximal."
         ]
       },
       "steps": [
-        "Payez votre contribution à la pharmacie lors de l'achat d'un médicament.",
-        "Payez la prime annuelle à Revenu Québec lors de votre déclaration de revenus."
+        "Répondez aux questions du service d'inscription ou de désinscription de la RAMQ.",
+        "Suivez la démarche qui correspond à votre situation.",
+        "À 65 ans, votre inscription est automatique; si un régime privé est offert, vous devez faire un choix."
       ],
       "documents": [
-        "La page officielle ne précise aucun document à fournir."
+        "Aucun document n'est précisé sur cette page."
       ],
       "tips": [
-        "La prime annuelle varie selon votre revenu et peut aller de 0 à 789 $.",
-        "La franchise est soustraite avant le calcul de la coassurance de 30 %.",
-        "Exemple pour un médicament de 60 $ : franchise de 21,25 $ plus coassurance de 11,63 $, soit 32,88 $."
+        "Tarifs du 1er juillet 2026 au 30 juin 2027 : prime annuelle de 0 $ à 789 $ par personne, selon le revenu familial net, payée à Revenu Québec.",
+        "Franchise mensuelle de 21,25 $, puis coassurance de 30 % du coût des médicaments couverts.",
+        "Contribution maximale : 105,25 $ par mois et 1 263 $ par année.",
+        "Plafond réduit dès 65 ans si vous recevez moins de 94 % du SRG maximal : 58,08 $ par mois et 697 $ par année.",
+        "Un enfant de 18 ans ou plus peut garder sa couverture avec un statut d'enfant à charge : appelez la RAMQ.",
+        "Sans assurance médicaments, vous devrez payer à Revenu Québec un montant équivalant à la prime du régime public."
       ]
     }
   },
@@ -24153,6 +24202,427 @@ const BENEFITS = [
         "Les personnes inscrites à Mon Dossier CALQ suivent le traitement de leur demande en ligne."
       ]
     }
+  },
+  {
+    "id": "qc-credit-solidarite",
+    "name": "Crédit d'impôt pour solidarité",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Money & taxes",
+    "amount": "Montant variable selon votre situation familiale et votre revenu familial",
+    "summary": "Un crédit d'impôt remboursable, versé de juillet 2026 à juin 2027, qui soutient les ménages à revenu faible ou moyen.",
+    "note": "Le crédit peut être réduit, ou ne pas être versé, si votre revenu familial atteint le maximum prévu pour votre situation.",
+    "requires": [
+      "qc",
+      "age18plus",
+      "qcCreditSolidariteRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous aviez 18 ans ou plus au 31 décembre 2025, avec quelques exceptions pour les moins de 18 ans.",
+        "Vous résidiez au Québec au 31 décembre 2025.",
+        "Vous ou votre conjoint étiez citoyen, résident permanent, personne protégée ou résident temporaire depuis 18 mois.",
+        "Votre revenu familial est inférieur au maximum prévu pour votre situation familiale."
+      ],
+      "note": "Pas de crédit si détention de plus de 183 jours en 2025, demande d'asile ou Allocation famille en décembre."
+    },
+    "applyText": "Remplissez l'annexe D de votre déclaration de revenus ou utilisez Mon dossier pour les citoyens.",
+    "applyUrl": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-solidarite/",
+    "source": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-solidarite/",
+    "detail": {
+      "aboutList": {
+        "lead": "Le crédit additionne jusqu'à trois composantes :",
+        "items": [
+          "La composante relative au logement.",
+          "La composante relative à la TVQ.",
+          "La composante relative à la résidence dans un village nordique."
+        ]
+      },
+      "steps": [
+        "Produisez votre déclaration de revenus pour l'année 2025.",
+        "Remplissez l'annexe D ou faites la demande dans Mon dossier pour les citoyens.",
+        "Inscrivez-vous au dépôt direct, car le crédit est versé ainsi en règle générale.",
+        "Si vous avez un conjoint qui habite avec vous, une seule personne remplit l'annexe D pour le couple."
+      ],
+      "documents": [
+        "Annexe D de la déclaration de revenus",
+        "Au besoin, formulaire Demande d'inscription au dépôt direct (LM-3)"
+      ],
+      "tips": [
+        "Revenu familial maximal au 31 décembre 2025 : 70 395 $ avec conjoint, 64 545 $ pour une famille monoparentale ou une personne seule.",
+        "Un revenu additionnel de 2 634 $ par enfant à charge s'ajoute au maximum d'un couple ou d'une famille monoparentale.",
+        "Sans l'annexe D, vous ne recevez que le montant de base de la composante TVQ, avec le montant pour conjoint s'il y a lieu.",
+        "Un outil d'estimation des versements est offert sur le site de Revenu Québec.",
+        "Si vous avez oublié de faire la demande, vous avez quatre ans après le 31 décembre de l'année d'imposition."
+      ],
+      "time": "Versements de juillet 2026 à juin 2027"
+    }
+  },
+  {
+    "id": "qc-credit-personne-aidante",
+    "name": "Crédit d'impôt pour personne aidante",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Money & taxes",
+    "amount": "Jusqu'à 1 494 $ ou 2 988 $ pour l'année d'imposition 2025, selon votre situation",
+    "summary": "Un crédit d'impôt pour la personne qui prend soin d'un proche ayant une déficience ou âgé de 70 ans ou plus.",
+    "note": "Le crédit va à la personne aidante. Le montant varie selon la cohabitation, le type de personne aidée et son revenu net.",
+    "requires": [
+      "qc",
+      "qcCreditPersonneAidanteRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous résidiez au Québec le 31 décembre 2025.",
+        "Vous avez aidé la personne ou cohabité avec elle au moins 365 jours consécutifs, dont 183 jours en 2025.",
+        "La personne aidée a 70 ans ou plus, ou 18 ans ou plus avec une déficience grave et un besoin d'assistance.",
+        "Vous n'avez reçu aucune rémunération pour votre aide."
+      ],
+      "note": "La personne aidée ne doit pas vivre en résidence privée pour aînés ni dans une installation publique."
+    },
+    "applyText": "Demandez le crédit en remplissant l'annexe H de votre déclaration de revenus.",
+    "applyUrl": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-personne-aidante/",
+    "source": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-personne-aidante/",
+    "detail": {
+      "aboutList": {
+        "lead": "Voici les montants selon le type de personne aidée :",
+        "items": [
+          "Personne de 18 ans ou plus avec déficience, sans cohabitation : de 0 $ à 1 494 $.",
+          "Même type de personne, avec cohabitation : de 1 494 $ à 2 988 $.",
+          "Personne de 70 ans ou plus, avec cohabitation seulement : 1 494 $."
+        ]
+      },
+      "steps": [
+        "Vérifiez que la personne aidée correspond à l'un des types admissibles.",
+        "Faites remplir l'attestation de déficience par une ou un professionnel de la santé, au besoin.",
+        "Remplissez l'annexe H lors de la production de votre déclaration de revenus.",
+        "Si vous préférez une somme chaque mois, vous pouvez demander des versements anticipés."
+      ],
+      "documents": [
+        "Attestation de déficience (TP-752.0.14)",
+        "Attestation d'assistance soutenue (TP-1029.AN.A), si la personne aidée n'est pas de votre famille"
+      ],
+      "tips": [
+        "Un montant additionnel pourrait s'ajouter si vous avez payé des services spécialisés de relève, à inscrire à la ligne 266.",
+        "Plusieurs personnes aidantes peuvent partager le crédit pour la même personne aidée si chacune l'a aidée au moins 90 jours en 2025.",
+        "Si vous avez déjà transmis l'attestation de déficience, vous n'avez pas à la renvoyer.",
+        "L'attestation d'assistance soutenue se renouvelle tous les trois ans."
+      ]
+    }
+  },
+  {
+    "id": "qc-deficience-grave-prolongee",
+    "name": "Montant pour déficience grave et prolongée des fonctions mentales ou physiques",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Money & taxes",
+    "amount": "Un montant qui réduit votre impôt à payer (la page officielle n'indique pas de chiffre)",
+    "summary": "Un montant que vous pouvez demander dans votre déclaration de revenus pour réduire l'impôt que vous devez payer.",
+    "note": "Ce montant réduit votre impôt à payer; la page officielle ne donne pas de somme en dollars.",
+    "requires": [
+      "qc",
+      "age18plus",
+      "qcDeficienceGraveProlongeeRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous aviez 18 ans ou plus dans l'année.",
+        "Vous avez une déficience grave et prolongée des fonctions mentales ou physiques.",
+        "Un professionnel de la santé admissible atteste votre déficience."
+      ],
+      "note": "Si vous avez eu 18 ans dans l'année, le montant pourrait être réduit en partie ou en totalité."
+    },
+    "applyText": "Joignez l'attestation de déficience à votre déclaration de revenus.",
+    "applyUrl": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/montant-pour-deficience-grave-et-prolongee-des-fonctions-mentales-ou-physiques/",
+    "source": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/montant-pour-deficience-grave-et-prolongee-des-fonctions-mentales-ou-physiques/",
+    "detail": {
+      "aboutList": {
+        "lead": "Votre déficience doit durer ou devoir durer au moins 12 mois consécutifs, et vous êtes dans l'un de ces deux cas :",
+        "items": [
+          "Même avec de l'aide, vous êtes presque toujours incapable de voir ou très limité au quotidien.",
+          "Pour une maladie chronique, vous recevez des soins essentiels à une fonction vitale au moins 2 fois par semaine."
+        ]
+      },
+      "steps": [
+        "Faites remplir l'attestation de déficience par un professionnel de la santé admissible.",
+        "Joignez-la à votre déclaration de revenus.",
+        "Voyez les instructions de la ligne 376 du Guide de la déclaration de revenus."
+      ],
+      "documents": [
+        "Attestation de déficience (TP-752.0.14), ou copie du formulaire fédéral T2201 dans la plupart des cas"
+      ],
+      "tips": [
+        "Le temps de soins doit être d'au moins 14 heures par semaine, déplacements et récupération compris, pour le deuxième cas.",
+        "Depuis 2021, les soins pour le diabète de type 1 remplissent ce critère de soins essentiels.",
+        "Avisez Revenu Québec si votre état de santé s'est amélioré depuis votre dernière attestation.",
+        "Si un proche demande le crédit pour personne aidante à votre égard, il doit fournir le formulaire TP-752.0.14."
+      ]
+    }
+  },
+  {
+    "id": "qc-prime-travail-adaptee",
+    "name": "Prime au travail adaptée",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Money & taxes",
+    "amount": "De 2 257,33 $ à 5 149,20 $ (maximum annuel) pour 2025, et de 2 294,59 $ à 5 234,00 $ pour 2026, selon votre situation familiale",
+    "summary": "Un crédit d'impôt remboursable pour les travailleurs ayant des contraintes sévères à l'emploi ou une déficience grave et prolongée.",
+    "note": "Si vous y avez droit, vous recevez le montant le plus élevé entre la prime au travail et la prime au travail adaptée.",
+    "requires": [
+      "qc",
+      "age18plus",
+      "qcPrimeTravailAdapteeRoute",
+      "noPostSecondaryStudents"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous résidiez au Québec le 31 décembre avec un statut admissible, et aviez 18 ans ou plus, sauf exceptions.",
+        "Vous ou votre conjoint gagnez un revenu de travail annuel de plus de 1 200 $.",
+        "Votre revenu familial est inférieur au maximum prévu pour votre situation familiale.",
+        "Vous ou votre conjoint avez reçu des prestations pour contraintes sévères ou avez droit au crédit pour déficience."
+      ],
+      "note": "Les étudiants à temps plein n'y ont pas droit, sauf s'ils sont parents d'un enfant qui habite avec eux."
+    },
+    "applyText": "Demandez la prime au travail adaptée dans votre déclaration de revenus, à l'annexe P.",
+    "applyUrl": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credits-dimpot-relatifs-a-la-prime-au-travail/",
+    "source": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credits-dimpot-relatifs-a-la-prime-au-travail/",
+    "detail": {
+      "aboutList": {
+        "lead": "Prime maximale pour l'année d'imposition 2025 :",
+        "items": [
+          "Personne seule : 2 257,33 $, et couple sans enfant : 3 501,46 $.",
+          "Famille monoparentale : 4 149,50 $, et couple avec au moins un enfant : 5 149,20 $.",
+          "Pour 2026, elle va de 2 294,59 $ pour une personne seule à 5 234,00 $ pour un couple avec enfant."
+        ]
+      },
+      "steps": [
+        "Vérifiez les conditions de base et les conditions de la prime adaptée.",
+        "Remplissez l'annexe P de votre déclaration de revenus.",
+        "Au besoin, demandez des versements anticipés pour recevoir une partie de la prime pendant l'année."
+      ],
+      "documents": [
+        "Annexe P de la déclaration de revenus",
+        "Attestation de déficience (TP-752.0.14) ou formulaire fédéral T2201, si vous les avez déjà fournis"
+      ],
+      "tips": [
+        "Revenu familial maximal pour 2025 : 40 371 $ pour une personne seule et 61 961 $ pour un couple sans enfant.",
+        "Pour 2025, le maximum est de 59 293 $ pour une famille monoparentale et de 78 438 $ pour un couple avec enfant.",
+        "Les prestations de la Solidarité sociale ou du Revenu de base peuvent avoir été reçues dans les cinq années précédentes.",
+        "Les versements anticipés correspondent à 50 % de la prime estimée si vous désignez un enfant à charge, et à 75 % sinon.",
+        "Un crédit remboursable peut vous être accordé même si vous n'avez pas d'impôt à payer."
+      ]
+    }
+  },
+  {
+    "id": "qc-credit-maintien-domicile",
+    "name": "Crédit d'impôt pour maintien à domicile des aînés",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Home support",
+    "amount": "Montant variable selon votre situation et votre revenu familial (aucun taux n'est donné sur la page)",
+    "summary": "Une aide fiscale pour une partie des dépenses de services de maintien à domicile, que vous soyez propriétaire, locataire ou hébergé chez un proche.",
+    "note": "Le calcul tient compte de l'endroit où vous habitez, de votre situation familiale, de votre autonomie et de votre revenu familial.",
+    "requires": [
+      "qc",
+      "age65plus",
+      "qcCreditMaintienDomicileRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous résidiez au Québec au 31 décembre 2025.",
+        "Vous aviez 70 ans ou plus au 31 décembre 2025."
+      ],
+      "note": "Votre niveau d'autonomie n'empêche pas de demander le crédit."
+    },
+    "applyText": "Remplissez l'annexe J de votre déclaration de revenus ou demandez des versements anticipés.",
+    "applyUrl": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-maintien-a-domicile/",
+    "source": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-maintien-a-domicile/",
+    "detail": {
+      "aboutList": {
+        "lead": "Voici des exemples de services admissibles si vous habitez dans votre maison :",
+        "items": [
+          "Les soins personnels, comme l'aide pour le bain ou l'habillage.",
+          "Les repas, dont la popote roulante, et la livraison de l'épicerie ou des médicaments.",
+          "L'entretien ménager, le déneigement et la tonte du gazon.",
+          "La surveillance, comme un service d'appel d'urgence."
+        ]
+      },
+      "steps": [
+        "Conservez les factures des services payés.",
+        "Remplissez l'annexe J de votre déclaration de revenus, ou faites une demande de versements anticipés.",
+        "Pour les versements anticipés, utilisez Mon dossier pour les citoyens ou le formulaire de votre type de logement."
+      ],
+      "documents": [
+        "Factures et pièces justificatives des services",
+        "Annexe J de la déclaration de revenus"
+      ],
+      "tips": [
+        "Les services admissibles diffèrent selon votre type de logement. Si vous avez eu 70 ans dans l'année, seuls les services rendus après vos 70 ans comptent.",
+        "Seul le coût des services compte. Le coût des produits n'est pas compris.",
+        "Vous ne pouvez pas réclamer le crédit pour frais médicaux pour les mêmes dépenses.",
+        "Faites votre demande de versements anticipés jusqu'au 1er décembre de l'année visée.",
+        "Si votre conjoint y a aussi droit, une seule personne fait la demande. Gardez vos factures six ans après l'année d'imposition."
+      ]
+    }
+  },
+  {
+    "id": "qc-pefsad",
+    "name": "Programme d'exonération financière pour les services d'aide à domicile",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Home support",
+    "amount": "Aide fixe de 4 $ par heure, plus une aide variable de 2,76 $ à 22,08 $ par heure",
+    "summary": "Une réduction du tarif horaire pour des services d'aide à domicile offerts par une entreprise d'économie sociale.",
+    "note": "Vous payez la différence entre le tarif de l'entreprise et l'aide accordée. Certaines entreprises n'offrent pas tous les services.",
+    "requires": [
+      "qc",
+      "age18plus"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous êtes couvert par le régime d'assurance maladie.",
+        "Vous avez 18 ans ou plus.",
+        "Vous faites appel à une entreprise d'économie sociale en aide à domicile reconnue par le MSSS."
+      ],
+      "note": "L'aide variable dépend de votre âge, de votre revenu et de votre situation familiale."
+    },
+    "applyText": "Communiquez avec une entreprise d'économie sociale en aide à domicile reconnue.",
+    "applyUrl": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/aide-a-domicile",
+    "source": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/aide-a-domicile",
+    "detail": {
+      "aboutList": {
+        "lead": "Les services offerts comprennent notamment :",
+        "items": [
+          "L'entretien ménager léger ou lourd, dont le déblaiement de l'entrée principale.",
+          "La lessive et le repassage.",
+          "La préparation de repas, sauf les diètes particulières.",
+          "L'accompagnement à l'épicerie, à la banque ou à la pharmacie."
+        ]
+      },
+      "steps": [
+        "Communiquez avec une entreprise reconnue; elle vous présente ses services et vous fournit les formulaires.",
+        "L'entreprise transmet votre demande à la RAMQ.",
+        "La RAMQ vous informe, ainsi que l'entreprise, de l'aide qui vous est accordée."
+      ],
+      "documents": [
+        "Formulaires fournis par l'entreprise d'économie sociale"
+      ],
+      "tips": [
+        "Un outil d'estimation du montant de l'aide est offert sur le site de la RAMQ.",
+        "L'entreprise peut vous accompagner dans la préparation de votre demande."
+      ],
+      "phone": "514 873-9504"
+    }
+  },
+  {
+    "id": "qc-protheses-oculaires",
+    "name": "Programme de prothèses oculaires",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Health",
+    "amount": "Jusqu'à 1 650 $ pour une prothèse sur mesure d'un oculariste certifié par le National Examining Board of Ocularists des États-Unis, 225 $ pour une prothèse usinée",
+    "summary": "Une aide financière pour acheter, entretenir et remplacer une prothèse oculaire (œil artificiel), et pour un conformateur.",
+    "note": "Vous payez la différence si la facture dépasse le maximum. Une assurance privée pourrait la couvrir.",
+    "requires": [
+      "qc",
+      "qcProthesesOculairesRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "Vous avez une carte d'assurance maladie valide.",
+        "Vous avez perdu un œil, ou avez un œil atrophié ou sans vision utile.",
+        "Vous avez une maladie inflammatoire de l'œil depuis la naissance."
+      ],
+      "note": "Il suffit de remplir l'une des trois conditions liées à l'œil, en plus de la carte valide."
+    },
+    "applyText": "Obtenez une ordonnance d'un ophtalmologiste, puis prenez rendez-vous avec un oculariste.",
+    "applyUrl": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/protheses-oculaires-oeil-artificiel",
+    "source": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/protheses-oculaires-oeil-artificiel",
+    "detail": {
+      "aboutList": {
+        "lead": "Le programme accorde un montant maximal pour :",
+        "items": [
+          "L'achat et le remplacement d'une prothèse par œil, une fois tous les 5 ans.",
+          "L'entretien et la réparation de la prothèse, une fois par année.",
+          "L'achat et l'installation d'un conformateur, une coquille temporaire."
+        ]
+      },
+      "steps": [
+        "Pour une 1re demande, obtenez une ordonnance d'un ophtalmologiste.",
+        "Prenez rendez-vous avec un oculariste et présentez l'ordonnance et votre carte d'assurance maladie.",
+        "Si votre oculariste n'a pas d'entente avec la RAMQ, payez les frais et demandez ensuite un remboursement."
+      ],
+      "documents": [
+        "Ordonnance de l'ophtalmologiste",
+        "Carte d'assurance maladie valide",
+        "Carnet de réclamation valide, s'il y a lieu"
+      ],
+      "tips": [
+        "Maximums : 75 $ par année pour l'entretien (sauf l'année suivant l'achat), 278 $ pour un conformateur avec cuisson et 165 $ sans cuisson.",
+        "Avec un carnet de réclamation, les frais de prothèse et de conformateur sont entièrement remboursés.",
+        "Un remplacement avant 5 ans peut être couvert si votre ophtalmologiste le recommande après un changement de la cavité orbitaire.",
+        "Une prothèse oculaire a seulement une fonction esthétique et ne redonne pas la vue."
+      ]
+    }
+  },
+  {
+    "id": "qc-lunettes-enfants",
+    "name": "Mieux voir pour réussir : lunettes et verres de contact pour les enfants",
+    "level": "Quebec",
+    "lang": "fr",
+    "category": "Health (for children)",
+    "amount": "300 $ par demande, montant fixe",
+    "summary": "Un remboursement de 300 $ pour des lunettes ou des verres de contact prescrits à votre enfant, quel que soit le prix payé.",
+    "note": "Le montant est fixe. Il ne change pas selon le coût de l'achat ni le nombre de lunettes achetées.",
+    "requires": [
+      "qc",
+      "child",
+      "qcLunettesEnfantsRoute"
+    ],
+    "eligibility": {
+      "mode": "all",
+      "items": [
+        "L'enfant a moins de 18 ans à la date de commande de l'achat.",
+        "L'enfant est assuré par le régime d'assurance maladie.",
+        "Un optométriste ou un ophtalmologiste autorisé a prescrit des lunettes ou des lentilles correctrices."
+      ],
+      "note": "L'examen de la vue est couvert par l'assurance maladie pour les moins de 18 ans."
+    },
+    "applyText": "Faites une demande en ligne pour votre enfant, dans Carnet santé Québec ou avec le formulaire de remboursement.",
+    "applyUrl": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/lunettes-verres-contact-enfants",
+    "source": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/lunettes-verres-contact-enfants",
+    "detail": {
+      "aboutList": {
+        "lead": "Les achats admissibles chez un opticien ou un optométriste du Québec sont :",
+        "items": [
+          "Des lunettes avec verres et monture.",
+          "Le remplacement des verres ou de la monture.",
+          "Des verres de contact."
+        ]
+      },
+      "steps": [
+        "Faites examiner la vue de votre enfant et obtenez une ordonnance.",
+        "Achetez les lunettes ou les verres de contact au Québec, en magasin ou en ligne.",
+        "Demandez le remboursement en ligne dans les 12 mois suivant la date de commande."
+      ],
+      "documents": [
+        "Ordonnance et facture à conserver 5 ans",
+        "Type d'achat, montant total, date de commande et numéro de TVQ du marchand"
+      ],
+      "tips": [
+        "Vous recevez le remboursement au plus tard 3 semaines après l'envoi, avec un délai de plus par la poste ou après la mi-décembre.",
+        "Vous devez attendre 24 mois avant une nouvelle demande pour le même enfant.",
+        "Une demande par la poste est requise si vous n'êtes pas le parent, si l'enfant est en famille d'accueil (DPJ) ou si vous n'êtes pas admissible à l'assurance maladie alors que votre enfant l'est.",
+        "Ne sont pas couverts : les achats hors du Québec, les articles usagés ou sans ordonnance, et les lunettes de soleil, de sport ou contre la lumière bleue."
+      ]
+    }
   }
 
 ];
@@ -24322,6 +24792,14 @@ const BENEFIT_STATUS = {
 };
 
 const BENEFIT_VERIFIED = {
+  "qc-lunettes-enfants": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-protheses-oculaires": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-pefsad": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-credit-maintien-domicile": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-prime-travail-adaptee": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-deficience-grave-prolongee": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-credit-personne-aidante": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
+  "qc-credit-solidarite": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "qc-artistes-handicap": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "qc-agir-tot": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)
   "qc-carte-accompagnement-autocar": "2026-10", // new 2026-10-17 from the official page (research/2026-10-prov-sweep/snapshots)

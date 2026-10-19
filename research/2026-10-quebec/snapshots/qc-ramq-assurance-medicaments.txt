@@ -1,0 +1,34 @@
+URL: https://www.ramq.gouv.qc.ca/fr/citoyens/assurance-medicaments/connaitre-conditions-admissibilite-regime-public | province: QC | program: Régime public d'assurance médicaments (RAMQ) | fetched: 2026-10-18 (browser session after the owner passed the site's check)
+=== PAGE: https://www.ramq.gouv.qc.ca/fr/citoyens/assurance-medicaments/connaitre-conditions-admissibilite-regime-public
+Connaître les conditions d'admissibilité au régime public
+L'assurance médicaments est obligatoire au Québec. En général, vous êtes admissible au régime public d'assurance médicaments géré par la RAMQ si vous n'avez pas accès à un régime privé.
+- L'assurance médicaments est obligatoire pour toute personne installée au Québec de façon permanente.
+- 2 types de régimes offrent cette couverture : les régimes privés ou le régime public. La RAMQ administre la portion publique de l'assurance médicaments, alors que des compagnies d'assurance offrent des régimes privés.
+- Le régime public couvre environ 8 000 médicaments.
+- En général, si vous êtes admissible à un régime privé, vous avez l'obligation d'y adhérer et d'en faire bénéficier votre conjoint ou conjointe et vos enfants. Sinon, vous devez vous inscrire au régime public.
+Conditions d'admissibilité au régime public en bref
+Vous êtes généralement admissible au régime public d'assurance médicaments si :
+- Vous n'avez pas accès à un régime privé
+- Vous avez 65 ans ou plus et n'adhérez pas à un régime privé
+- Vous êtes prestataire d'un programme d'aide financière avec carnet de réclamation
+- Vous êtes une personne mineure établie au Québec et vos parents n'ont pas accès à un régime privé
+- Vous êtes une personne mineure en séjour temporaire au Québec pendant plus de 6 mois
+À partir de son 18e anniversaire, votre enfant peut conserver sa couverture par le régime public à condition d'avoir un statut d'enfant à charge. Vous devez nous appeler pour nous en informer.
+Vous voulez vous inscrire au régime public ou vous en désinscrire? Répondez aux quelques questions de notre service M'inscrire au régime public d'assurance médicaments ou m'en désinscrire pour savoir quelle démarche correspond à votre situation.
+Régime privé ou public à 65 ans ou plus? À 65 ans, votre inscription au régime public d'assurance médicaments est automatique. Vous n'avez donc aucune démarche à faire. Toutefois, si vous êtes admissible à un régime privé, vous devez faire un choix.
+Conséquences du non-respect des obligations : Vous n'êtes pas couvert par une assurance médicaments? Vous devrez payer à Revenu Québec un montant équivalant à la prime du régime public.
+
+=== PAGE: https://www.ramq.gouv.qc.ca/fr/citoyens/assurance-medicaments/tarifs-vigueur
+Tarifs en vigueur
+Les tarifs en vigueur pour le régime public d'assurance médicaments sont ajustés chaque année le 1er juillet. Certaines personnes sont assurées sans frais.
+Tarifs du 1er juillet 2026 au 30 juin 2027
+- Prime annuelle (cotisation payée à Revenu Québec dans votre déclaration de revenus) : de 0 $ à 789 $ par personne, selon le revenu familial net
+- Franchise mensuelle (montant fixe payé lors de vos 1ers achats du mois) : 21,25 $
+- Coassurance (pourcentage du coût des médicaments couverts que vous payez, une fois la franchise soustraite) : 30 %
+- Contribution maximale : par mois 105,25 $; par année 1 263 $; exception pour les personnes de 65 ans ou plus qui reçoivent moins de 94 % du Supplément de revenu garanti maximal : par mois 58,08 $; par année 697 $
+Personnes assurées sans frais
+Les personnes suivantes sont généralement couvertes gratuitement par le régime public d'assurance médicaments :
+- Personne détenant un carnet de réclamation valide
+- Enfant de personnes assurées par le régime public : de moins de 18 ans, sans accès à un régime privé; de 18 à 25 ans, sans accès à un régime privé, fréquentant à temps plein un établissement d'enseignement secondaire, collégial ou universitaire, sans conjoint ou conjointe, ayant son domicile chez ses parents ou son tuteur
+- Personne ayant une déficience fonctionnelle survenue avant l'âge de 18 ans et visée par le Règlement sur le régime général d'assurance médicaments, sans accès à un régime privé, sans conjoint ou conjointe, ayant son domicile chez ses parents ou son tuteur, ne recevant pas de prestation d'un programme d'aide financière avec carnet de réclamation
+- Personne de 65 ans ou plus recevant 94 % ou plus du Supplément de revenu garanti maximal

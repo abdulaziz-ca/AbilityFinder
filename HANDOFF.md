@@ -21,9 +21,9 @@ Brunswick, Nova Scotia, Prince Edward Island, Newfoundland and Labrador and Queb
 `QC_ENABLED` in `public/app.js` are all `true`; Quebec records are written in French (`lang: "fr"`) and
 `PROVINCE_NOTICES.QC` explains it; Manitoba shows a caution (`PROVINCE_NOTICES.MB` in `public/data.js`) while its programs change.
 The
-catalog holds **449 benefits** — 16 federal, 24 Alberta, 52 British Columbia, 24 Ontario,
+catalog holds **457 benefits** — 16 federal, 24 Alberta, 52 British Columbia, 24 Ontario,
 22 Saskatchewan, 16 Manitoba, 26 New Brunswick, 31 Nova Scotia, 27 Prince Edward Island, 28 Newfoundland and
-Labrador, 39 Quebec, and the remainder municipal. The residency question offers Alberta, British Columbia, Ontario, Saskatchewan,
+Labrador, 47 Quebec, and the remainder municipal. The residency question offers Alberta, British Columbia, Ontario, Saskatchewan,
 Manitoba, New Brunswick, Nova Scotia, Prince Edward Island, Newfoundland and Labrador, Quebec, and "another province or territory"; the last of these still
 sees federal benefits only. Lloydminster is listed under both Alberta and Saskatchewan
 (`SHARED_CITIES` in `public/data.js`).

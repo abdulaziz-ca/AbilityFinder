@@ -1,0 +1,24 @@
+URL: https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/aides-visuelles | province: QC | program: Programme d'aides visuelles (RAMQ) | fetched: 2026-10-18 (browser session after the owner passed the site's check)
+=== PAGE: https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/aides-visuelles
+Aides visuelles
+Le programme d'aides visuelles vous permet d'avoir accès à des aides visuelles et de recevoir un montant pour prendre soin d'un chien-guide si vous êtes admissible. Les aides visuelles prêtées compensent une perte de vision partielle ou totale et vous soutiennent dans vos activités quotidiennes.
+Personnes admissibles
+Pour être admissible au programme, vous devez être assuré par le régime d'assurance maladie. Vous devez aussi avoir une déficience visuelle permanente qui vous empêche d'effectuer l'une des actions suivantes :
+- Lire ou écrire
+- Circuler dans un environnement non familier
+- Réaliser des activités liées à vos habitudes de vie ou à vos rôles sociaux (exemples : étudiant, travailleur, parent)
+Conditions d'admissibilité : L'évaluation de votre déficience visuelle permet de vérifier si elle correspond aux conditions d'admissibilité du programme. Cette évaluation doit démontrer que vous avez des besoins fonctionnels découlant de votre déficience. Elle a lieu après la correction de la vue par des lunettes ou des verres de contact (lentilles) prescrits, sauf si votre vue a été augmentée de plus de 4 dioptries ou si elle a été améliorée par un système optique spécial.
+Marche à suivre pour obtenir une aide visuelle
+- Faites une demande d'aide visuelle dans un établissement reconnu spécialisé dans la réadaptation pour les personnes ayant une déficience visuelle.
+- Faites évaluer votre déficience visuelle et vos besoins par cet établissement.
+- Présentez votre carte d'assurance maladie valide, puisque l'évaluation est sans frais (entièrement couverte).
+Si vous êtes admissible, l'établissement vous prêtera des aides visuelles et vous apprendra à bien les utiliser.
+Services couverts par le programme : Le programme couvre le prêt, le remplacement et la réparation des aides visuelles. Vous devez retourner toute aide non utilisée à l'établissement qui vous l'a prêtée.
+Perte, vol, bris ou négligence : La couverture exclut le coût de réparation et de remplacement des aides perdues, volées, brisées ou utilisées avec négligence.
+Exemples d'aides prêtées
+- Lecture : télévisionneuse, système optique, calculatrice
+- Écriture : machine à écrire le braille
+- Mobilité : canne blanche, détecteur électronique d'obstacles, lunettes de vision nocturne
+Montants pour un chien-guide : Vous avez droit à un montant de 265 $ pour obtenir un chien-guide. Ensuite, vous recevrez 2 240 $ par année pour en prendre soin.
+Exemples d'aides pour les étudiants et les travailleurs : Télévisionneuse compatible avec un ordinateur; Ordinateur; Afficheur et imprimante braille; Système de géopositionnement satellitaire.
+Conditions pour être reconnu comme étudiant ou travailleur : Étudier à temps plein ou être réputé étudier à temps plein dans un programme menant à l'obtention d'un diplôme, d'un certificat ou d'une autre attestation d'études; Suivre un programme de formation pour accéder à un ordre professionnel; Suivre un programme de formation d'Emploi-Québec en vue d'exercer un travail rémunéré; Apprendre à lire ou à écrire le français ou l'anglais dans le cadre d'un programme relevant du ministère de l'Immigration, de la Francisation et de l'Intégration; Commencer un processus d'intégration ou de réintégration à un travail rémunéré; Avoir besoin d'aides visuelles pour maintenir un travail rémunéré ou obtenir de l'avancement dans votre travail.

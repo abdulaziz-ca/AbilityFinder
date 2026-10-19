@@ -2072,18 +2072,18 @@
     "reason": "Provincial-sweep record qc-soutien-familles (2026-10-17)"
   },
   "qcAidesAuditivesRoute": {
-    "short": "Vérifiez les critères du programme",
-    "who": ["you", "program"],
+    "short": "Faites évaluer votre audition",
+    "who": ["you", "professional"],
     "reason": "Provincial-sweep record qc-aides-auditives (2026-10-17)"
   },
   "qcAidesVisuellesRoute": {
-    "short": "Vérifiez les critères du programme",
-    "who": ["you", "program"],
+    "short": "Faites évaluer votre vision dans un centre de réadaptation",
+    "who": ["you", "professional"],
     "reason": "Provincial-sweep record qc-aides-visuelles (2026-10-17)"
   },
   "qcAppareilsDeficiencePhysiqueRoute": {
-    "short": "Vérifiez les critères du programme",
-    "who": ["you", "program"],
+    "short": "Vérifiez les conditions liées à votre appareil",
+    "who": ["you", "professional"],
     "reason": "Provincial-sweep record qc-appareils-deficience-physique (2026-10-17)"
   },
   "qcAidesEliminationRoute": {
@@ -2225,5 +2225,40 @@
     "short": "Vérifiez votre admissibilité aux bourses du CALQ",
     "who": ["you", "program"],
     "reason": "Provincial-sweep record qc-artistes-handicap (2026-10-17)"
+  },
+  "qcCreditSolidariteRoute": {
+    "short": "Vérifiez le critère de revenu du programme",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-credit-solidarite (2026-10-17)"
+  },
+  "qcCreditPersonneAidanteRoute": {
+    "short": "Vérifiez les conditions sur la personne aidée",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-credit-personne-aidante (2026-10-17)"
+  },
+  "qcDeficienceGraveProlongeeRoute": {
+    "short": "Faites remplir l'attestation de déficience",
+    "who": ["you", "professional"],
+    "reason": "Provincial-sweep record qc-deficience-grave-prolongee (2026-10-17)"
+  },
+  "qcPrimeTravailAdapteeRoute": {
+    "short": "Vérifiez vos revenus de travail",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-prime-travail-adaptee (2026-10-17)"
+  },
+  "qcCreditMaintienDomicileRoute": {
+    "short": "Vérifiez que vous avez soixante-dix ans ou plus",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-credit-maintien-domicile (2026-10-17)"
+  },
+  "qcProthesesOculairesRoute": {
+    "short": "Demandez une ordonnance à votre ophtalmologiste",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-protheses-oculaires (2026-10-17)"
+  },
+  "qcLunettesEnfantsRoute": {
+    "short": "Faites faire un examen de la vue",
+    "who": ["you", "program"],
+    "reason": "Provincial-sweep record qc-lunettes-enfants (2026-10-17)"
   }
 }

@@ -3,7 +3,7 @@
 // Sources of truth: public/data.js (BENEFITS.applyUrl/.source, HELP_ORGS),
 // public/grants-data.js (GRANTS_DIRECTORY), public/orgs-data.js (ORGS_DIRECTORY)
 //
-// 596 links. The monitor checks a bounded rotating batch every
+// 604 links. The monitor checks a bounded rotating batch every
 // three hours, so this catalog can grow past the Workers FREE plan's 50
 // external-subrequest per-invocation limit without dropping coverage.
 // 4 dynamic (function) URLs are skipped — they depend on the
@@ -2141,17 +2141,17 @@ export const LINKS = [
     "kind": "apply"
   },
   {
-    "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-auditives",
+    "url": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/aides-auditives",
     "label": "Programme d'aides auditives — apply",
     "kind": "apply"
   },
   {
-    "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/aides-visuelles",
+    "url": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/aides-visuelles",
     "label": "Programme d'aides visuelles — apply",
     "kind": "apply"
   },
   {
-    "url": "https://www.quebec.ca/sante/systeme-et-services-de-sante/aides-techniques-deficiences-et-handicaps/appareils-suppleant-a-une-deficience-physique",
+    "url": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/appareils-suppleant-a-deficience-physique",
     "label": "Programme d'appareils suppléant à une déficience physique — apply",
     "kind": "apply"
   },
@@ -2246,7 +2246,7 @@ export const LINKS = [
     "kind": "apply"
   },
   {
-    "url": "https://www.quebec.ca/nouvelles/actualites/details/ajustement-des-tarifs-pour-les-personnes-couvertes-par-le-regime-public-dassurance-medicaments-71515",
+    "url": "https://www.ramq.gouv.qc.ca/fr/citoyens/assurance-medicaments/connaitre-conditions-admissibilite-regime-public",
     "label": "Régime public d'assurance médicaments — apply",
     "kind": "apply"
   },
@@ -2333,6 +2333,46 @@ export const LINKS = [
   {
     "url": "https://www.quebec.ca/culture/aide-financiere/soutien-financier-artistes-ecrivains-situation-handicap",
     "label": "Soutien financier aux artistes et aux écrivains en situation de handicap — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-solidarite/",
+    "label": "Crédit d'impôt pour solidarité — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-personne-aidante/",
+    "label": "Crédit d'impôt pour personne aidante — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/montant-pour-deficience-grave-et-prolongee-des-fonctions-mentales-ou-physiques/",
+    "label": "Montant pour déficience grave et prolongée des fonctions mentales ou physiques — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credits-dimpot-relatifs-a-la-prime-au-travail/",
+    "label": "Prime au travail adaptée — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-maintien-a-domicile/",
+    "label": "Crédit d'impôt pour maintien à domicile des aînés — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/aide-a-domicile",
+    "label": "Programme d'exonération financière pour les services d'aide à domicile — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/protheses-oculaires-oeil-artificiel",
+    "label": "Programme de prothèses oculaires — apply",
+    "kind": "apply"
+  },
+  {
+    "url": "https://www.ramq.gouv.qc.ca/fr/citoyens/programmes-aide/lunettes-verres-contact-enfants",
+    "label": "Mieux voir pour réussir : lunettes et verres de contact pour les enfants — apply",
     "kind": "apply"
   },
   {

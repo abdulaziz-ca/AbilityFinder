@@ -1,0 +1,38 @@
+URL: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-maintien-a-domicile/ | province: QC | program: Crédit d'impôt pour maintien à domicile des aînés | fetched: 2026-10-18 (browser session after the owner passed the site's check)
+=== PAGE: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-maintien-a-domicile/
+Crédit d'impôt pour maintien à domicile des aînés
+Le crédit d'impôt pour maintien à domicile des aînés s'adresse aux personnes âgées qui sont propriétaires ou locataires, ou qui habitent chez une ou un proche. Il permet à ces personnes de recevoir une aide fiscale pour certaines dépenses liées à des services de maintien à domicile.
+Conditions d'admissibilité
+Vous pourriez avoir droit au crédit d'impôt pour maintien à domicile des aînés si vous remplissez les deux conditions d'admissibilité suivantes au 31 décembre 2025 :
+- vous résidiez au Québec;
+- vous aviez 70 ans ou plus.
+Important : Saviez-vous que, si vous remplissez ces deux conditions, vous pouvez demander le crédit d'impôt, peu importe votre niveau d'autonomie?
+Si vous avez eu 70 ans dans l'année, seules les dépenses payées pour des services rendus à partir du moment où vous avez atteint 70 ans donnent droit à ce crédit d'impôt.
+Les services admissibles à ce crédit d'impôt diffèrent selon votre situation (maison, résidence privée pour aînés, immeuble de logements, copropriété).
+
+=== PAGE: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-maintien-a-domicile/maison-services-maintien-a-domicile/
+Si vous habitez dans votre propre maison, vous pouvez demander le crédit d'impôt pour des dépenses payées par vous ou votre conjointe ou conjoint pour obtenir certains services de maintien à domicile. Il s'agit de services que vous ou votre conjointe ou conjoint payez à chaque utilisation ou selon les termes d'un contrat.
+Ils peuvent être rendus par une personne que vous employez ou par une entreprise (par exemple, une travailleuse ou un travailleur autonome, un organisme coopératif ou une entreprise d'économie sociale). Cette personne ou cette entreprise doit vous remettre une facture.
+Seul le coût des services donne droit au crédit d'impôt pour maintien à domicile des aînés. Le coût des produits nécessaires pour rendre les services n'est pas compris.
+Services admissibles (exemples tirés des tableaux de la page) :
+- Services de soins personnels : habillage, hygiène (par exemple, l'aide pour le bain), alimentation, mobilisation ou transferts.
+- Services liés aux repas : aide pour préparer les repas; préparation et livraison des repas par un organisme communautaire à but non lucratif (par exemple, une popote roulante); service de livraison de repas par un restaurant.
+- Services infirmiers : soins fournis par un(e) infirmier(-ière) ou un(e) infirmier(-ière) auxiliaire à l'endroit où vous habitez.
+- Services de surveillance et d'encadrement : surveillance de nuit ou continue (par exemple, le gardiennage); télésurveillance centrée sur la personne (par exemple, un service d'appel d'urgence).
+- Services de soutien civique : accompagnement pour aller à la pharmacie ou à l'épicerie, ou pour aller voter.
+- Approvisionnement : livraison de l'épicerie; livraison des médicaments.
+- Entretien des vêtements, entretien ménager, entretien extérieur (déneigement, tonte du gazon, nettoyage des fenêtres et des gouttières, etc.).
+Exclusions : coût des produits (nourriture, médicaments, produits de nettoyage); travaux de construction, de rénovation ou de réparation; travaux pour lesquels une licence délivrée en vertu de la Loi sur le bâtiment est exigée; services rendus hors du Québec ou par votre conjointe ou conjoint ou une personne à charge.
+Les services d'aide à la personne ne doivent pas être rendus par une personne qui demande le crédit d'impôt pour personne aidante à votre égard.
+
+=== PAGE: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-maintien-a-domicile/demande-du-credit-maintien-a-domicile/
+Vous pouvez demander le crédit d'impôt pour maintien à domicile des aînés soit en remplissant l'annexe J lors de la production de votre déclaration de revenus; soit en faisant une demande de versements anticipés.
+Si vous avez une conjointe ou un conjoint et qu'elle ou il a aussi droit au crédit d'impôt, une seule personne peut faire la demande du crédit d'impôt pour votre couple.
+Important : Si vous demandez le crédit d'impôt pour maintien à domicile des aînés pour certaines dépenses, vous ne pouvez pas demander de crédit d'impôt pour frais médicaux relativement à ces mêmes dépenses.
+Veuillez conserver vos factures et vos autres pièces justificatives concernant les services pour lesquels vous demandez le crédit d'impôt. Vous devez généralement les conserver pendant six ans après l'année d'imposition à laquelle elles se rapportent.
+Versements anticipés : à l'aide du service en ligne de demande de versements anticipés, accessible dans Mon dossier pour les citoyens, ou en remplissant le formulaire correspondant à l'endroit où vous habitez. Les versements anticipés se font obligatoirement par dépôt direct dans votre compte bancaire.
+Vous avez jusqu'au 1er décembre d'une année pour faire une demande de versements anticipés du crédit d'impôt pour cette même année.
+
+=== PAGE: https://www.revenuquebec.ca/fr/citoyens/credits-dimpot/credit-dimpot-pour-maintien-a-domicile/calcul-du-credit-dimpot/
+Le crédit d'impôt pour maintien à domicile des aînés est calculé selon votre situation. Les facteurs pris en considération sont, entre autres, l'endroit où vous habitez, votre situation familiale, votre niveau d'autonomie et votre revenu familial.
+Afin d'estimer le montant auquel vous pourriez avoir droit si vous demandez des versements anticipés du crédit d'impôt, utilisez l'outil d'estimation.
