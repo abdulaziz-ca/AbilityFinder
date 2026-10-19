@@ -1,4 +1,7 @@
 const { test, expect } = require("@playwright/test");
+// Wait for the SPA to finish wiring before clicking (see e2e/app-ready.js): a
+// click on #askFab before the listener exists is silently lost.
+const { gotoReady } = require("./app-ready");
 
 const SSE = (text) => `event: delta\ndata: ${JSON.stringify({ text })}\n\n`;
 
@@ -31,7 +34,7 @@ async function ask(page, q) {
 }
 
 test("REL-02: reaching the conversation cap reveals Start-new and recovers", async ({ page }) => {
-  await page.goto("/");
+  await gotoReady(page);
   await page.route("**/api/ask", (route) => route.fulfill({
     status: 400,
     contentType: "application/json",
@@ -63,7 +66,7 @@ test("REL-02: reaching the conversation cap reveals Start-new and recovers", asy
 });
 
 test("REL-02: starting a new conversation does not clear questionnaire/profile", async ({ page }) => {
-  await page.goto("/");
+  await gotoReady(page);
   // Enter the wizard and answer a question so questionnaire/profile state exists.
   await page.locator(".js-start").first().click();
   const question = page.locator("#wizard-question");
@@ -92,7 +95,7 @@ test("REL-03: a stalled assistant fetch times out and restores controls", async 
   // 1.5 s, not 400 ms: on a slow runner the Stop button could appear and vanish
   // inside 400 ms, so asserting it was visible raced the timeout itself.
   await page.addInitScript(() => { window.__ASK_TIMEOUT_MS = 1500; });
-  await page.goto("/");
+  await gotoReady(page);
   await page.route("**/api/ask", async (route) => {
     await new Promise((resolve) => setTimeout(resolve, 3000));
     await route.abort().catch(() => {});
@@ -109,7 +112,7 @@ test("REL-03: a stalled assistant fetch times out and restores controls", async 
 });
 
 test("REL-03: the user can stop an in-progress response", async ({ page }) => {
-  await page.goto("/");
+  await gotoReady(page);
   await page.route("**/api/ask", async (route) => {
     await new Promise((resolve) => setTimeout(resolve, 3000));
     await route.abort().catch(() => {});
@@ -128,7 +131,7 @@ test("REL-03: the user can stop an in-progress response", async ({ page }) => {
 
 test("REL-03: no duplicate assistant requests while busy", async ({ page }) => {
   let count = 0;
-  await page.goto("/");
+  await gotoReady(page);
   await page.route("**/api/ask", async (route) => {
     count += 1;
     await new Promise((resolve) => setTimeout(resolve, 1500));
@@ -148,7 +151,7 @@ test("REL-03: no duplicate assistant requests while busy", async ({ page }) => {
 
 test("REL-03: feedback timeout preserves the message and allows one clean retry", async ({ page }) => {
   await page.addInitScript(() => { window.__FB_TIMEOUT_MS = 400; });
-  await page.goto("/");
+  await gotoReady(page);
   await page.route("**/api/feedback", async (route) => {
     await new Promise((resolve) => setTimeout(resolve, 3000));
     await route.abort().catch(() => {});
@@ -181,7 +184,7 @@ test("REL-03: feedback timeout preserves the message and allows one clean retry"
 });
 
 test("REL-02/03: accessible names and EN/FR copy", async ({ page }) => {
-  await page.goto("/");
+  await gotoReady(page);
   await expect(page.locator("#askStop")).toHaveAttribute("aria-label", "Stop response");
 
   await page.route("**/api/ask", (route) => route.fulfill({
