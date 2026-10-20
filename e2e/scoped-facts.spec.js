@@ -1,5 +1,5 @@
 const {test, expect} = require('@playwright/test');
-const {gotoReady, waitForAppReady} = require('./app-ready');
+const { gotoReadyAllPrograms: gotoReady, waitForAppReadyAllPrograms: waitForAppReady } = require('./app-ready');
 const {buildProgramCases} = require('./oracle/build-personas');
 const ids = ['grt-taxi-coupons', 'grt-cnib-pass', 'grt-affordable-transit'];
 async function seed(page, id, subject = 'self', target = 'results') {

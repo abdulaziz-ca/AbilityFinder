@@ -38,6 +38,8 @@ async function inspectHandyDart(page, cityMode) {
 test.beforeEach(async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("#app h1")).toBeVisible();
+  // These cases probe BC records directly, so load every province pack.
+  await page.evaluate(() => typeof ensurePacks === "function" ? ensurePacks(COVERED_PROVINCES) : null);
 });
 
 test("live handyDART catalog routes verified cities and safe fallbacks", async ({ page }) => {

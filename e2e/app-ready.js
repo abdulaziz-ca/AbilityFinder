@@ -22,4 +22,20 @@ async function gotoReady(page, path = "/") {
   await waitForAppReady(page);
 }
 
-module.exports = { waitForAppReady, gotoReady };
+// Tests that inspect the whole catalogue in the page (BENEFITS, the oracle,
+// cross-province counts) need every province pack, not only the federal set
+// the app loads at boot. Real visitors load packs through the app's own render
+// gate; this only makes catalogue-wide probes see the full catalogue.
+async function loadAllPrograms(page) {
+  await page.evaluate(() => typeof ensurePacks === "function" ? ensurePacks(COVERED_PROVINCES) : null);
+}
+async function waitForAppReadyAllPrograms(page) {
+  await waitForAppReady(page);
+  await loadAllPrograms(page);
+}
+async function gotoReadyAllPrograms(page, path = "/") {
+  await gotoReady(page, path);
+  await loadAllPrograms(page);
+}
+
+module.exports = { waitForAppReady, gotoReady, loadAllPrograms, waitForAppReadyAllPrograms, gotoReadyAllPrograms };

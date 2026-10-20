@@ -4,6 +4,8 @@ const { buildAll } = require('./oracle/build-personas');
 test('converted context stays on guides while unresolved checks prevent false readiness', async ({ page }) => {
   await page.goto('/');
   await page.waitForFunction(() => typeof evaluateAnswers === 'function');
+  // The engine probes below need every province, not only the federal set loaded at boot.
+  await page.evaluate(() => typeof ensurePacks === "function" ? ensurePacks(COVERED_PROVINCES) : null);
   const catalogue = await page.evaluate(() => BENEFITS.map(b => ({ id: b.id, requires: b.requires })));
   const ids = ['cdb-adult', 'rdsp', 'bc-cy-disability-benefit'];
   const cases = buildAll(catalogue).filter(c => ids.includes(c.id));

@@ -1,5 +1,5 @@
 const { test, expect } = require("@playwright/test");
-const { gotoReady, waitForAppReady } = require("./app-ready");
+const { gotoReadyAllPrograms: gotoReady, waitForAppReadyAllPrograms: waitForAppReady } = require("./app-ready");
 const { buildAll } = require("./oracle/build-personas");
 const { BASE_PERSONA } = require("./oracle/oracle-spec");
 

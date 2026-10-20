@@ -6,6 +6,8 @@ async function catalogEntry(page, id) {
   // touching its globals, so a slow or restarting dev server surfaces as a
   // clear wait rather than a confusing ReferenceError.
   await page.waitForFunction(() => typeof window.valueParts === "function");
+  // The engine probes below need every province, not only the federal set loaded at boot.
+  await page.evaluate(() => typeof ensurePacks === "function" ? ensurePacks(COVERED_PROVINCES) : null);
   return page.evaluate((benefitId) => {
     const benefit = BENEFITS.find((entry) => entry.id === benefitId);
     return {

@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const { gotoReady } = require('./app-ready');
+const { gotoReadyAllPrograms: gotoReady } = require('./app-ready');
 for (const inherited of [true, false]) {
   test(`${inherited ? 'catalogue' : 'individual'} review label on detail`, async ({ page }) => {
     await gotoReady(page);

@@ -39,6 +39,8 @@ async function gotoReadyApp(page) {
   await page.waitForFunction(
     () => typeof window.evaluateAnswers === "function" && typeof BENEFITS !== "undefined",
   );
+  // The oracle covers the whole catalogue, so load every province pack.
+  await page.evaluate(() => typeof ensurePacks === "function" ? ensurePacks(COVERED_PROVINCES) : null);
 }
 
 async function readCatalogue(page) {

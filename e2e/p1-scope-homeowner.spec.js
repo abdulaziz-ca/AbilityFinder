@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const { gotoReady } = require('./app-ready');
+const { gotoReadyAllPrograms: gotoReady } = require('./app-ready');
 for (const [province, city] of [['AB','Calgary'], ['BC','Vancouver'], ['ON','Kitchener']]) {
   test(`${province} results, counts, scenario and print exclude other-province locals`, async ({ page }) => {
     await gotoReady(page);

@@ -62,6 +62,8 @@ async function evaluateProfile(page, overrides = {}) {
   // touching its globals, so a slow or restarting dev server surfaces as a
   // clear wait rather than a confusing ReferenceError.
   await page.waitForFunction(() => typeof window.evaluateAnswers === "function");
+  // The engine probes below need every province, not only the federal set loaded at boot.
+  await page.evaluate(() => typeof ensurePacks === "function" ? ensurePacks(COVERED_PROVINCES) : null);
   return evaluateLoadedProfile(page, overrides);
 }
 
@@ -124,6 +126,8 @@ test("RAMP can never reach ready", async ({ page }) => {
   // touching its globals, so a slow or restarting dev server surfaces as a
   // clear wait rather than a confusing ReferenceError.
   await page.waitForFunction(() => typeof window.evaluateAnswers === "function");
+  // The engine probes below need every province, not only the federal set loaded at boot.
+  await page.evaluate(() => typeof ensurePacks === "function" ? ensurePacks(COVERED_PROVINCES) : null);
 
   for (const income of ["low", "moderate", "high"]) {
     for (const ageBand of ["19to59", "65plus"]) {

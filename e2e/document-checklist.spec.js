@@ -1,5 +1,5 @@
 const { test, expect } = require("@playwright/test");
-const { gotoReady } = require("./app-ready");
+const { gotoReadyAllPrograms: gotoReady } = require("./app-ready");
 const { BASE_PERSONA } = require("./oracle/oracle-spec");
 const persona = { ...BASE_PERSONA, disabilities: ["physical"], city: "Camrose", dtc: "yes", citizenPR: true, situation: ["working"] };
 
