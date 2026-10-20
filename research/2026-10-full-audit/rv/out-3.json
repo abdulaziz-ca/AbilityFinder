@@ -1,0 +1,178 @@
+[
+  {
+    "id": "airdrie-fair-access",
+    "snapshot": "ok",
+    "confirmed": 16,
+    "differs": [],
+    "blocking_not_on_page": [
+      {
+        "field": "benefit.detail.about; benefit.detail.aboutList.lead",
+        "claim": "formerly the Airdrie Participant Support Program",
+        "why": "Neither captured page gives this former name. The snapshots also do not identify the eligible services behind the services-and-programs link, so coverage of transit passes and Genesis Place cannot be verified from these files."
+      }
+    ],
+    "verdict": "keep"
+  },
+  {
+    "id": "bc-monthly-nutritional-supplement",
+    "snapshot": "ok",
+    "confirmed": 24,
+    "differs": [
+      {
+        "field": "benefit.summary",
+        "old": "who need extra nutrition to avoid serious decline",
+        "new": "who need extra nutrition to prevent imminent danger to life and have no other family resources to pay for it",
+        "quote": "necessary to prevent imminent danger to life. In addition, the ministry must be satisfied that there are no other resources available to the family unit to pay for the items",
+        "why": "The summary weakens the medical threshold and omits the resource condition."
+      }
+    ],
+    "blocking_not_on_page": [],
+    "verdict": "fix-then-bump"
+  },
+  {
+    "id": "aish",
+    "snapshot": "ok",
+    "confirmed": 30,
+    "differs": [],
+    "blocking_not_on_page": [
+      {
+        "field": "benefit.detail.tips[3]",
+        "claim": "If you receive AISH or ADAP, report the outcome of your CDB and/or DTC application to Alberta, including the approved CDB amount or a denial. Alberta says that when no CDB decision had been made by February 28, 2026, $200 was reduced from April 2026 benefits.",
+        "why": "The snapshots require applying for other eligible income, including CDB, but do not state this reporting rule, decision deadline, $200 reduction, or April 2026 effective date."
+      },
+      {
+        "field": "extra.taxNote",
+        "claim": "AISH is not taxable. Other income and assets can affect assistance. If you receive AISH or ADAP, Alberta requires you to report the outcome of your Canada Disability Benefit and/or Disability Tax Credit application, including the approved CDB amount or a denial.",
+        "why": "The income-and-assets effect is supported, but tax treatment and the CDB/DTC outcome-reporting obligation are not stated on either captured page."
+      }
+    ],
+    "verdict": "keep"
+  },
+  {
+    "id": "child-health-benefit",
+    "snapshot": "ok",
+    "confirmed": 28,
+    "differs": [],
+    "blocking_not_on_page": [
+      {
+        "field": "benefit.note; benefit.detail.tips[0]",
+        "claim": "the Child and Youth Support Program",
+        "why": "The captured eligibility exclusion list names Income Support, AISH and Non-Insured Health Benefits, but not the Child and Youth Support Program. This additional disqualifying coverage cannot be verified."
+      }
+    ],
+    "verdict": "keep"
+  },
+  {
+    "id": "bc-property-tax-deferment-disabilities",
+    "snapshot": "ok",
+    "confirmed": 19,
+    "differs": [],
+    "blocking_not_on_page": [
+      {
+        "field": "benefit.amount",
+        "claim": "interest is 2% above the prime rate, plus a $60 application fee and a $10 annual renewal fee",
+        "why": "The eligibility snapshot links to Interest and fees but does not give an interest rate or either fee."
+      },
+      {
+        "field": "benefit.note; benefit.detail.tips[1]",
+        "claim": "For taxes deferred for the 2026 tax year and later, interest compounds monthly.",
+        "why": "No compounding rule or 2026 effective date appears in the snapshot."
+      },
+      {
+        "field": "benefit.detail.steps[3]; benefit.detail.time",
+        "claim": "May 1 to December 31 each year",
+        "why": "The snapshot points to Before you apply but does not state this application window."
+      }
+    ],
+    "verdict": "keep"
+  },
+  {
+    "id": "windsor-affordable-pass",
+    "snapshot": "ok",
+    "confirmed": 20,
+    "differs": [],
+    "blocking_not_on_page": [
+      {
+        "field": "benefit.amount; benefit.summary; benefit.detail.about; benefit.detail.aboutList.items[0]; benefit.detail.aboutList.items[3]; values.note",
+        "claim": "$63 adult or $43.50 youth",
+        "why": "Only the APP overview is captured. It does not publish pass prices or a 30-day pass duration; no Transit Windsor fare page is included."
+      },
+      {
+        "field": "benefit.detail.aboutList.items[1]; values.note",
+        "claim": "$124 for an adult aged 20 to 59, $85 for a youth aged 13 to 19, and $63 for a senior aged 60 and over",
+        "why": "Regular fares, fare-category ages and Smart Pass duration are absent from the snapshot."
+      },
+      {
+        "field": "benefit.detail.aboutList.items[2]",
+        "claim": "$3.95 for a single adult, senior or youth fare, including a 2-hour transfer",
+        "why": "Single fares and transfer duration are not on the captured page."
+      },
+      {
+        "field": "benefit.eligibility.items[0]; benefit.detail.steps[1]",
+        "claim": "at least 30 days",
+        "why": "The captured page does not state a minimum residency period."
+      },
+      {
+        "field": "benefit.eligibility.items[1]",
+        "claim": "A combined household income that is at, or below, the Market Basket Measure (MBM) thresholds",
+        "why": "The page states eligibility depends on household income, family size and funding but sends readers to a separate, uncaptured Eligibility Requirements page. It does not identify MBM as the income limit."
+      }
+    ],
+    "verdict": "keep"
+  },
+  {
+    "id": "bc-raha",
+    "snapshot": "ok",
+    "confirmed": 17,
+    "differs": [],
+    "blocking_not_on_page": [
+      {
+        "field": "benefit.amount; benefit.detail.about; benefit.detail.aboutList.items[0]; benefit.detail.tips[3]",
+        "claim": "Up to $20,000 in rebates, as a lifetime maximum per household",
+        "why": "The overview links to the Maximum Rebate Schedule but gives neither a dollar maximum nor a lifetime limit."
+      },
+      {
+        "field": "benefit.eligibility.items[2]; benefit.requiresNote",
+        "claim": "combined household assets are less than $100,000, not counting the value of the home being adapted",
+        "why": "No asset limit or asset exclusions appear in this snapshot."
+      },
+      {
+        "field": "benefit.eligibility.items[3]; benefit.requiresNote",
+        "claim": "combined annual gross household income is less than $146,270.00",
+        "why": "No numeric income limit is given on the captured overview."
+      },
+      {
+        "field": "benefit.detail.about; benefit.detail.aboutList.items[2]; benefit.detail.time",
+        "claim": "within 8 weeks, and pays within 3 weeks",
+        "why": "Neither assessment nor payment turnaround is stated in the snapshot."
+      },
+      {
+        "field": "benefit.eligibility; benefit.requiresNote; benefit.detail.about; benefit.detail.aboutList.items[3]; benefit.detail.aboutList.items[4]",
+        "claim": "The home is the principal residence of the owner(s) and of the person needing the adaptations.",
+        "why": "Detailed principal-residence, immigration-status, household-definition, property-value, rental-unit and co-operative rules are behind uncaptured linked pages. The overview confirms only the broad disability, low-income and homeowner/tenant routes, not these detailed eligibility assertions."
+      },
+      {
+        "field": "benefit.note; values.note",
+        "claim": "Adaptations completed before BC Housing gives written approval are not eligible for a rebate.",
+        "why": "The snapshot gives 180 days from written approval to complete work, but does not explicitly state the exclusion for previously completed work."
+      }
+    ],
+    "verdict": "keep"
+  },
+  {
+    "id": "mississauga-activeassist",
+    "snapshot": "ok",
+    "confirmed": 37,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump"
+  },
+  {
+    "id": "handydart-bctransit",
+    "snapshot": "bad",
+    "confirmed": 0,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "keep"
+  }
+]

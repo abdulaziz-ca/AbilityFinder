@@ -1,0 +1,78 @@
+{
+ "id": "bc-medical-transportation",
+ "benefit": {
+  "id": "bc-medical-transportation",
+  "name": "Medical Transportation Supplement",
+  "level": "British Columbia",
+  "category": "Health",
+  "amount": "May pay $0.36 per kilometre by private vehicle, plus bus, ferry, air or train fares, accommodation for overnight travel, and travel escort costs if required",
+  "summary": "Helps pay for extraordinary transportation costs to and from essential medical treatment, using the least expensive appropriate transportation.",
+  "requires": [
+   "bc",
+   "bcMedTransportRoute",
+   "bcMedTransportNeed"
+  ],
+  "eligibility": {
+   "mode": "any",
+   "items": [
+    "You are on disability assistance.",
+    "You are on income assistance in the Persons with Persistent Multiple Barriers category.",
+    "You receive income assistance and reside in a special care facility.",
+    "You are on Medical Services Only.",
+    "You receive Transitional Health Services after income assistance in the PPMB category.",
+    "You receive Transitional Health Services after income assistance while residing in a special care facility.",
+    "You are a person or child approved as facing a life-threatening health need, with a direct and immediate life-threatening need for medical transportation.",
+    "You are a child in a family receiving income assistance, disability assistance, hardship assistance, MSO or Transitional Health Services."
+   ],
+   "note": "The supplement is not available if you are only receiving income assistance."
+  },
+  "requiresNote": "You may be eligible through disability assistance; income assistance in PPMB; income assistance while residing in a special care facility; or Medical Services Only. Other routes are Transitional Health Services after income assistance in PPMB or while residing in a special care facility; a person or child approved as facing a life-threatening health need with a direct and immediate life-threatening need for medical transportation; or a child in a family receiving income assistance, disability assistance, hardship assistance, MSO or Transitional Health Services. Only receiving income assistance is not a route on its own. You do not have resources available to cover your medical transportation costs.",
+  "note": "Ask for pre-approval before you travel. In exceptional circumstances where you could not get funding beforehand, the ministry can consider a request afterwards, but do not count on it. Ambulance bills and the cost to buy, maintain, repair or insure a vehicle are not covered. Trips for non-essential services are not covered either.",
+  "applyText": "Submit form HR3320",
+  "applyUrl": "https://myselfserve.gov.bc.ca/",
+  "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/health-supplements-and-programs/medical-transportation",
+  "detail": {
+   "about": "Helps pay for extraordinary transportation costs to and from essential medical treatment. Essential treatment means services under the Medicare Protection Act or Hospital Insurance Act with a medical practitioner, nurse practitioner, specialist or hospital. Meal allowances are normally not provided; in exceptional circumstances the ministry may issue up to $8 per meal. Travel escort costs may be paid if required. Costs may only be considered when accompanying a child under 19 or an adult incapable of travelling alone due to verified medical reasons.",
+   "aboutList": {
+    "lead": "Helps pay for extraordinary transportation costs to and from essential medical treatment. Essential treatment means services under the Medicare Protection Act or Hospital Insurance Act with a medical practitioner, nurse practitioner, specialist or hospital.",
+    "items": [
+     "Meal allowances are normally not provided; in exceptional circumstances the ministry may issue up to $8 per meal.",
+     "Travel escort costs may be paid if required.",
+     "Costs may only be considered when accompanying a child under 19 or an adult incapable of travelling alone due to verified medical reasons."
+    ]
+   },
+   "steps": [
+    "Ask for pre-approval before booking travel through My Self Serve, by phone, mail, fax or at a ministry office",
+    "Complete the medical transportation request form HR3320",
+    "Attach proof of the treatment and appointment, such as a provider note, appointment card, email, screenshot or Travel Assistance Program form",
+    "Explain the least expensive appropriate travel method and whether an escort or overnight stay is medically required",
+    "Keep approval and travel receipts in case the ministry requests them"
+   ],
+   "documents": [
+    "Form HR3320",
+    "Proof of the medical appointment and why the treatment is essential",
+    "Travel dates, destination, distance and expected fare or accommodation cost",
+    "Medical confirmation that an escort or special travel method is required, if applicable"
+   ],
+   "tips": [
+    "Request approval before you travel; after-the-fact payment is limited to exceptional circumstances",
+    "For repeated treatment, ask whether approval can cover ongoing trips for up to 12 months",
+    "The ministry chooses the least expensive appropriate transportation, so explain accessibility or medical barriers clearly"
+   ],
+   "time": "Apply before arranging the trip",
+   "phone": "1-866-866-0800"
+  }
+ },
+ "values": {
+  "kind": "coverage",
+  "excludeFromEstimate": true,
+  "note": "essential medical travel costs"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Travel request + medical confirmation",
+  "wait": "Ask before arranging travel"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

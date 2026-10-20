@@ -1,0 +1,73 @@
+{
+ "id": "bc-healthy-kids",
+ "benefit": {
+  "id": "bc-healthy-kids",
+  "name": "BC Healthy Kids Program",
+  "level": "British Columbia",
+  "category": "Health",
+  "amount": "Up to $2,000 in basic dental every two years per child, prescription glasses once a year, plus hearing instruments",
+  "summary": "Helps pay for basic dental care, prescription eyewear and hearing assistance for children under 19 in low-income families not on income, disability or hardship assistance.",
+  "requires": [
+   "bc",
+   "under19",
+   "bcMsp",
+   "notBcAssistance",
+   "bcHealthyKidsIncome"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "Your family qualifies for MSP supplementary benefits — an adjusted net income of $42,000 or less.",
+    "You are not receiving income assistance, disability assistance or hardship assistance."
+   ],
+   "note": "Children in families on assistance get equivalent dental and optical coverage through the ministry supplements instead."
+  },
+  "requiresNote": "Your family qualifies for MSP supplementary benefits — that means an adjusted net income of $42,000 or less — and you are not receiving income assistance, disability assistance or hardship assistance. Children in families on assistance get equivalent dental and optical coverage through the ministry supplements instead.",
+  "note": "Coverage stays active until the end of the month of your child's 19th birthday. If your child reaches the $2,000 dental limit, emergency treatment is still available, but only for the immediate relief of pain.",
+  "applyText": "Apply for health & drug coverage",
+  "applyUrl": "https://my.gov.bc.ca/ahdc",
+  "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/family/child-teen-health/dental-eyeglasses",
+  "detail": {
+   "about": "Dental is up to $2,000 of basic services every two years. Optical is prescription glasses once a year, including lenses and basic frames. Hearing instruments include hearing aids, bone-anchored hearing aids, cochlear implants, repairs and related items — the least expensive appropriate option, based on an assessment by an audiologist or hearing instrument practitioner, when the family has no other resources to pay. Adjusted net income is your net income after deductions for age, family size, disability, and income from the Universal Child Care Benefit and a Registered Disability Savings Plan.",
+   "aboutList": {
+    "lead": "Dental is up to $2,000 of basic services every two years.",
+    "items": [
+     "Optical is prescription glasses once a year, including lenses and basic frames.",
+     "Hearing instruments include hearing aids, bone-anchored hearing aids, cochlear implants, repairs and related items — the least expensive appropriate option, based on an assessment by an audiologist or hearing instrument practitioner, when the family has no other resources to pay.",
+     "Adjusted net income is your net income after deductions for age, family size, disability, and income from the Universal Child Care Benefit and a Registered Disability Savings Plan."
+    ]
+   },
+   "steps": [
+    "Apply for MSP supplementary benefits through the provincial health and drug coverage application",
+    "File income taxes every year and keep the family's MSP information current",
+    "Before treatment, ask the dental, optical or hearing provider to confirm the child's Healthy Kids coverage and any amount you would have to pay",
+    "Show the child's BC Services Card or CareCard at the appointment",
+    "For hearing instruments, have the provider obtain any required pre-authorization before ordering"
+   ],
+   "documents": [
+    "Child's BC Services Card or CareCard",
+    "Family income information used for MSP supplementary benefits",
+    "Provider assessment and recommendation for hearing instruments, when applicable"
+   ],
+   "tips": [
+    "Not every provider charges only the program fee; ask about extra charges before agreeing to treatment",
+    "Tell Health Insurance BC when the family size, address or marital status changes",
+    "Families on income, disability or hardship assistance receive comparable dental and optical supplements through the ministry instead"
+   ],
+   "time": "Ask Health Insurance BC when you apply",
+   "phone": "1-866-866-0800"
+  }
+ },
+ "values": {
+  "kind": "coverage",
+  "excludeFromEstimate": true,
+  "note": "children: dental (<=$2,000/2yr), glasses, hearing"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Health-benefit application + income information",
+  "wait": "Not published — ask the program"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

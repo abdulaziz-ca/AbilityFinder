@@ -1,0 +1,63 @@
+{
+ "id": "bc-medical-equipment-devices",
+ "benefit": {
+  "id": "bc-medical-equipment-devices",
+  "needsPractitioner": true,
+  "name": "Medical Equipment & Devices Supplement",
+  "level": "British Columbia",
+  "category": "Equipment",
+  "amount": "Full cost of pre-approved equipment — e.g., scooters up to $3,500 ($4,500 bariatric), floor/ceiling lifts up to $4,200 (more only if the excess is from unusual installation expenses); wheelchairs, walkers, hospital beds and bathing aids at ministry rates",
+  "summary": "The ministry buys, repairs and replaces essential medical equipment — canes to power wheelchairs, hospital beds, transfer aids, pressure-relief mattresses, specialized glucose meters — for people on assistance with no other way to pay.",
+  "requires": [
+   "bc",
+   "bcAssistanceStatus",
+   "equipmentNeed"
+  ],
+  "note": "Pre-approval is required: the ministry must approve the request before purchase, except in cases of a life-threatening emergency, and it is the payer of last resort — other available resources (for example ICBC, WorkSafeBC or private insurance) must be considered first. Co-funding may be considered when other resources cannot pay the entire cost.",
+  "applyText": "Request via My Self Serve",
+  "applyUrl": "https://myselfserve.gov.bc.ca/",
+  "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/health-supplements-and-programs/medical-equipment-and-devices",
+  "detail": {
+   "about": "Covered items include canes, crutches, walkers, manual and power wheelchairs, scooters, grab bars, bath seats, commodes, lift devices, hospital beds, pressure-relief mattresses and non-conventional glucose meters. The item must be prescribed by a medical practitioner or nurse practitioner, and/or the medical need confirmed by the assessment of a relevant therapist (occupational or physical therapist). Many items also need a therapist assessment. Most equipment can be replaced every five years (wheelchair seating after two; canes, crutches and walkers as needed). Scooters intended primarily for recreational or sports use, lift chairs, automatic turning beds and containment type beds are not provided.",
+   "aboutList": {
+    "lead": "Covered items include canes, crutches, walkers, manual and power wheelchairs, scooters, grab bars, bath seats, commodes, lift devices, hospital beds, pressure-relief mattresses and non-conventional glucose meters.",
+    "items": [
+     "The item must be prescribed by a medical practitioner or nurse practitioner, and/or the medical need confirmed by the assessment of a relevant therapist (occupational or physical therapist). Many items also need a therapist assessment.",
+     "Most equipment can be replaced every five years (wheelchair seating after two; canes, crutches and walkers as needed).",
+     "Scooters intended primarily for recreational or sports use, lift chairs, automatic turning beds and containment type beds are not provided."
+    ]
+   },
+   "steps": [
+    "Contact the ministry through My Self Serve or 1-866-866-0800 to start an equipment request",
+    "Get a prescription from your doctor or nurse practitioner, and/or an assessment from a relevant therapist confirming the medical need",
+    "Complete an occupational or physical therapist assessment where required (wheelchairs, seating, scooters, lifts)",
+    "Submit supplier quote(s); wait for written ministry pre-approval",
+    "The ministry pays the supplier directly; repairs are requested the same way"
+   ],
+   "documents": [
+    "Doctor or nurse practitioner prescription and/or therapist assessment confirming the medical need",
+    "Occupational/physical therapist assessment for mobility and positioning items",
+    "Supplier quote"
+   ],
+   "tips": [
+    "Never buy first — the ministry will not accept payment responsibility for equipment purchased without prior approval, except in cases of a life-threatening emergency",
+    "If you need specific features, ask your OT to note why the least-expensive option would not meet your medical need.",
+    "Repairs and batteries can be covered between replacement cycles"
+   ],
+   "time": "Weeks to a couple of months depending on assessments, quotes and pre-approval",
+   "phone": "1-866-866-0800"
+  }
+ },
+ "values": {
+  "kind": "coverage",
+  "excludeFromEstimate": true,
+  "note": "pre-approved medical equipment at ministry rates"
+ },
+ "meta": {
+  "difficulty": 4,
+  "effort": "Prescription, assessment and supplier quote before purchase",
+  "wait": "Varies with assessments and pre-approval"
+ },
+ "extra": null,
+ "verified": "2026-07"
+}

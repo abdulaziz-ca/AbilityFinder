@@ -1,0 +1,612 @@
+[
+ {
+  "id": "bc-additional-home-owner-grant",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/home-owner-grant/person-with-disabilities"
+  ]
+ },
+ {
+  "id": "bc-at-home-medical",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program",
+   "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program/at-home-program-eligibility"
+  ]
+ },
+ {
+  "id": "bc-fair-pharmacare",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/fair-pharmacare-plan",
+   "https://my.gov.bc.ca/ahdc"
+  ]
+ },
+ {
+  "id": "bc-healthy-kids",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/health/managing-your-health/family/child-teen-health/dental-eyeglasses",
+   "https://my.gov.bc.ca/ahdc"
+  ]
+ },
+ {
+  "id": "bc-medical-transportation",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/health-supplements-and-programs/medical-transportation",
+   "https://myselfserve.gov.bc.ca/"
+  ]
+ },
+ {
+  "id": "bc-property-tax-deferment-disabilities",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/property-tax-deferment-program/eligibility"
+  ]
+ },
+ {
+  "id": "bc-raha",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.bchousing.org/housing-assistance/BC-RAHA"
+  ]
+ },
+ {
+  "id": "bc-sales-tax-credit",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/sales-tax"
+  ]
+ },
+ {
+  "id": "calgary-fair-entry",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.calgary.ca/social-services/low-income/fair-entry-subsidy.html"
+  ]
+ },
+ {
+  "id": "canada-caregiver-credit",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/canada-caregiver-amount.html"
+  ]
+ },
+ {
+  "id": "canadian-dental-care-plan",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.canada.ca/en/services/benefits/dental/dental-care-plan.html"
+  ]
+ },
+ {
+  "id": "child-disability-benefit",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/child-disability-benefit.html"
+  ]
+ },
+ {
+  "id": "edmonton-fare-assistance",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.edmonton.ca/ets/fare-assistance"
+  ]
+ },
+ {
+  "id": "grandeprairie-aish-pass",
+  "verified": "2026-07",
+  "urls": [
+   "https://cityofgp.com/roads-transportation/public-transit/transit-access-program",
+   "https://cityofgp.com/roads-transportation/public-transit/fares-superpass"
+  ]
+ },
+ {
+  "id": "handydart-translink",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.translink.ca/handydart"
+  ]
+ },
+ {
+  "id": "kelowna-recreation-assistance",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.kelowna.ca/parks-recreation/recreation-sport/recreation-programs-registration/financial-assistance-recreation"
+  ]
+ },
+ {
+  "id": "medical-expense-tax-credit",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-33099-33199-eligible-medical-expenses-you-claim-on-your-tax-return.html"
+  ]
+ },
+ {
+  "id": "rdsp",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.canada.ca/en/employment-social-development/programs/disability/savings.html"
+  ]
+ },
+ {
+  "id": "reddeer-fee-assistance",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.reddeer.ca/recreation-and-culture/recreation/facility-admission-fees--pass-prices/fee-assistance-program/",
+   "https://www.reddeer.ca/city-services/transit/fares-and-passes/transit-fare-assistance-pass/"
+  ]
+ },
+ {
+  "id": "taxisaver-translink",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.translink.ca/rider-guide/transit-accessibility/how-to-use-accessible-transit"
+  ]
+ },
+ {
+  "id": "vancouver-leisure-access",
+  "verified": "2026-07",
+  "urls": [
+   "https://vancouver.ca/parks-recreation-culture/leisure-access-card.aspx"
+  ]
+ },
+ {
+  "id": "victoria-life",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.victoria.ca/parks-recreation/recreation/accessibility-inclusion/life-program"
+  ]
+ },
+ {
+  "id": "woodbuffalo-lift",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.rmwb.ca/LIFT",
+   "https://forms.rmwb.ca/Community-Services/LIFT-Program-Application"
+  ]
+ },
+ {
+  "id": "aadl",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.alberta.ca/aadl-eligibility-and-application-for-benefits",
+   "https://www.alberta.ca/alberta-aids-to-daily-living"
+  ]
+ },
+ {
+  "id": "airdrie-fair-access",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.airdrie.ca/index.cfm?serviceID=2157",
+   "https://www.airdrie.ca/index.cfm?serviceID=2414"
+  ]
+ },
+ {
+  "id": "bc-pharmacare-plan-c",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/plan-c"
+  ]
+ },
+ {
+  "id": "bc-pwd-designation",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/pwd-designation-and-application/designation-application",
+   "https://myselfserve.gov.bc.ca/"
+  ]
+ },
+ {
+  "id": "bc-supported-child-development",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/early-childhood-intervention"
+  ]
+ },
+ {
+  "id": "bc-workbc-employment-services",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.workbc.ca/get-support/workbc-centre-services"
+  ]
+ },
+ {
+  "id": "child-health-benefit",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.alberta.ca/alberta-child-health-benefit"
+  ]
+ },
+ {
+  "id": "cwb-disability",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-45300-canada-workers-benefit-cwb.html"
+  ]
+ },
+ {
+  "id": "disability-supports-deduction",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-21500-disability-supports-deduction.html"
+  ]
+ },
+ {
+  "id": "dres",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.alberta.ca/disability-related-employment-supports"
+  ]
+ },
+ {
+  "id": "handycard-translink",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.translink.ca/rider-guide/transit-accessibility/handydart"
+  ]
+ },
+ {
+  "id": "handydart-bctransit",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.bctransit.com/"
+  ]
+ },
+ {
+  "id": "local-supports",
+  "verified": "2026-07",
+  "urls": [
+   "https://ab.211.ca/",
+   "https://bc.211.ca/",
+   "https://211ontario.ca"
+  ]
+ },
+ {
+  "id": "pdd",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.alberta.ca/persons-with-developmental-disabilities-pdd"
+  ]
+ },
+ {
+  "id": "stalbert-subsidy",
+  "verified": "2026-07",
+  "urls": [
+   "https://stalbert.ca/city/fcss/programs-services/subsidy/"
+  ]
+ },
+ {
+  "id": "strathcona-subsidy",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.strathcona.ca/community-families/affordable-services/",
+   "https://www.strathcona.ca/community-families/affordable-services/subsidized-fares/"
+  ]
+ },
+ {
+  "id": "adap",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.alberta.ca/alberta-disability-assistance-program",
+   "https://www.alberta.ca/how-to-apply-for-aish-and-adap"
+  ]
+ },
+ {
+  "id": "bc-access-grant-deaf-students",
+  "verified": "2026-07",
+  "urls": [
+   "https://studentaidbc.ca/sites/all/files/school-officials/policy_manual_26_27.pdf",
+   "https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-deaf-students"
+  ]
+ },
+ {
+  "id": "bc-assistance-program-students-disabilities",
+  "verified": "2026-07",
+  "urls": [
+   "https://studentaidbc.ca/explore/grants-scholarships/bc-assistance-program-students-disabilities"
+  ]
+ },
+ {
+  "id": "bc-at-home-saet",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/assets/gov/family-and-social-supports/children-teens-with-support-needs/at_home_program_guide.pdf",
+   "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program/medical-benefits"
+  ]
+ },
+ {
+  "id": "bc-autism-funding-6-18",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/funding-amount",
+   "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/apply"
+  ]
+ },
+ {
+  "id": "bc-autism-funding-under-6",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/funding-amount",
+   "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/apply"
+  ]
+ },
+ {
+  "id": "bc-csg-services-equipment",
+  "verified": "2026-07",
+  "urls": [
+   "https://studentaidbc.ca/explore/grants-scholarships/canada-student-grant-services-and-equipment-students-disabilities",
+   "https://studentaidbc.ca/apply/how-to-apply-disability-funding"
+  ]
+ },
+ {
+  "id": "bc-dental-supplement",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance/supplements/dental"
+  ]
+ },
+ {
+  "id": "bc-disability-assistance-pwd",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/disability-assistance-rate-table",
+   "https://myselfserve.gov.bc.ca/"
+  ]
+ },
+ {
+  "id": "bc-learning-disability-assessment-bursary",
+  "verified": "2026-07",
+  "urls": [
+   "https://studentaidbc.ca/explore/grants-scholarships/learning-disability-assessment-bursary"
+  ]
+ },
+ {
+  "id": "bc-medical-equipment-devices",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/health-supplements-and-programs/medical-equipment-and-devices",
+   "https://myselfserve.gov.bc.ca/"
+  ]
+ },
+ {
+  "id": "bc-monthly-nutritional-supplement",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/health-supplements-and-programs-rate-table",
+   "https://www2.gov.bc.ca/assets/gov/british-columbians-our-governments/policies-for-government/bc-employment-assistance-policy-procedure-manual/forms/pdfs/hr2847.pdf"
+  ]
+ },
+ {
+  "id": "bc-msp-supplementary-benefits",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents/benefits/services-covered-by-msp/supplementary-benefits"
+  ]
+ },
+ {
+  "id": "bc-optical-supplement",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/health-supplements-and-programs-rate-table",
+   "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance/supplements/optical"
+  ]
+ },
+ {
+  "id": "cdb-adult",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.canada.ca/en/services/benefits/disability/canada-disability-benefit.html"
+  ]
+ },
+ {
+  "id": "cpp-childrens-benefit",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-childrens-benefit.html"
+  ]
+ },
+ {
+  "id": "kamloops-arch",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.kamloops.ca/recreation-culture/programs-activities/accessible-recreation/arch-program"
+  ]
+ },
+ {
+  "id": "multigenerational-home-renovation-tax-credit",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-45355-mhrtc.html"
+  ]
+ },
+ {
+  "id": "ramp",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.alberta.ca/residential-access-modification-program"
+  ]
+ },
+ {
+  "id": "ab-capcc",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.alberta.ca/community-access-continuing-care"
+  ]
+ },
+ {
+  "id": "adult-health-benefit",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.alberta.ca/alberta-adult-health-benefit"
+  ]
+ },
+ {
+  "id": "aish",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.alberta.ca/aish-eligibility",
+   "https://www.alberta.ca/how-to-apply-for-aish-and-adap"
+  ]
+ },
+ {
+  "id": "bc-clbc",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.communitylivingbc.ca/what-support-is-available/",
+   "https://www.communitylivingbc.ca/who-does-clbc-support/eligible-clbc-support/"
+  ]
+ },
+ {
+  "id": "bc-fnha-health-benefits",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/first-nations-health-authority-clients",
+   "https://www.fnha.ca/benefits"
+  ]
+ },
+ {
+  "id": "bc-work-able-internship",
+  "verified": "2026-07",
+  "urls": [
+   "https://www2.gov.bc.ca/gov/content/careers-myhr/job-seekers/internship-co-op-opportunities/work-able"
+  ]
+ },
+ {
+  "id": "cpp-disability",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.canada.ca/en/services/benefits/publicpensions/cpp-disability-benefit.html"
+  ]
+ },
+ {
+  "id": "dtc",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit.html",
+   "https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/t2201.html"
+  ]
+ },
+ {
+  "id": "excise-gasoline-tax-refund",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/excise-gasoline-tax-refund.html",
+   "https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/xe8.html"
+  ]
+ },
+ {
+  "id": "leduc-subsidies",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.leduc.ca/community/family-community-support-services/housing-financial-support"
+  ]
+ },
+ {
+  "id": "parking-placard",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.alberta.ca/parking-placard-disabilities",
+   "https://www.alberta.ca/get-parking-placard-people-disabilities"
+  ]
+ },
+ {
+  "id": "sparc-parking-permit",
+  "verified": "2026-07",
+  "urls": [
+   "https://www.sparc.bc.ca/parking-permits/"
+  ]
+ },
+ {
+  "id": "grt-affordable-transit",
+  "verified": "2026-09",
+  "urls": [
+   "https://www.grt.ca/fares-and-payment/affordable-transit-program/"
+  ]
+ },
+ {
+  "id": "grt-mobilityplus",
+  "verified": "2026-09",
+  "urls": [
+   "https://www.grt.ca/mobilityplus/apply-for-mobilityplus/"
+  ]
+ },
+ {
+  "id": "london-ontario-renovates",
+  "verified": "2026-09",
+  "urls": [
+   "https://london.ca/living-london/building-renovating/home-repair-accessibility-funding"
+  ]
+ },
+ {
+  "id": "mississauga-activeassist",
+  "verified": "2026-09",
+  "urls": [
+   "https://www.mississauga.ca/recreation-and-sports/sports-and-activities/assistance-programs/active-assist/"
+  ]
+ },
+ {
+  "id": "odsp",
+  "verified": "2026-09",
+  "urls": [
+   "https://www.ontario.ca/page/ontario-disability-support-program"
+  ]
+ },
+ {
+  "id": "ottawa-access-pass",
+  "verified": "2026-09",
+  "urls": [
+   "https://www.octranspo.com/en/fares/reduced-fares/"
+  ]
+ },
+ {
+  "id": "ottawa-community-pass",
+  "verified": "2026-09",
+  "urls": [
+   "https://www.octranspo.com/en/fares/reduced-fares/"
+  ]
+ },
+ {
+  "id": "ottawa-equipass",
+  "verified": "2026-09",
+  "urls": [
+   "https://www.octranspo.com/en/fares/reduced-fares/"
+  ]
+ },
+ {
+  "id": "ottawa-hand-in-hand",
+  "verified": "2026-09",
+  "urls": [
+   "https://ottawa.ca/en/recreation-and-parks/register-courses-and-camps/registration-terms-and-cancellations/financial-support-ottawa-hand-hand"
+  ]
+ },
+ {
+  "id": "windsor-affordable-pass",
+  "verified": "2026-09",
+  "urls": [
+   "https://www.citywindsor.ca/residents/social-services/social-policy-and-pathway-to-potential/pathway-to-potential/p2p-programs/affordable-pass-program"
+  ]
+ },
+ {
+  "id": "hamilton-fare-assist",
+  "verified": "2026-09",
+  "urls": [
+   "https://www.hamilton.ca/home-neighbourhood/hsr/fares/hsr-fare-assist"
+  ]
+ },
+ {
+  "id": "on-parking-permit",
+  "verified": "2026-09",
+  "urls": [
+   "https://www.ontario.ca/page/get-accessible-parking-permit"
+  ]
+ },
+ {
+  "id": "windsor-recreation-assistance",
+  "verified": "2026-09",
+  "urls": [
+   "https://www.citywindsor.ca/residents/social-services/social-policy-and-pathway-to-potential/pathway-to-potential/p2p-programs/recreation-assistance-program"
+  ]
+ }
+]

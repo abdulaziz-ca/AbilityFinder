@@ -1,0 +1,65 @@
+{
+ "id": "dres",
+ "benefit": {
+  "id": "dres",
+  "name": "Disability Related Employment Supports (DRES)",
+  "level": "Alberta",
+  "category": "Employment",
+  "amount": "Potential funding for approved disability-related accommodations",
+  "summary": "May fund approved accommodations for an Albertan who is employed or heading into employment. Their documented permanent or long-term disability must create a barrier to education, training, or employment.",
+  "requires": [
+   "age16plus",
+   "ab",
+   "disabilityDoc",
+   "dresResidencyAndStatus",
+   "dresDisabilityBarrier",
+   "dresEmploymentRoute"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "You are 16 or older.",
+    "You reside in Alberta.",
+    "You are legally entitled to work or train in Canada.",
+    "You are a Canadian citizen, permanent resident, or Convention Refugee.",
+    "You are employed or employment destined.",
+    "You may be eligible for funding if you have a disability that is documented permanent or long-term and creating a barrier to education, training and/or employment."
+   ]
+  },
+  "requiresNote": "You must be 16 or older, reside in Alberta, be legally entitled to work or train in Canada, and be a Canadian citizen, permanent resident, or Convention Refugee. You must be employed or employment destined. You may be eligible for funding if your disability is documented permanent or long-term and creating a barrier to education, training and/or employment.",
+  "note": "Alberta's published examples include: assistive devices, equipment or technology; ASL interpreting and captioning; an academic aide or note taker; communication or hearing devices for work; workplace access or changes; and work-related vehicle changes. Education or training supports are not available while you attend Alberta Education-funded K–12 or a publicly funded Alberta post-secondary institution. Contact the school or institution for disability accommodations. A separate eligible work route may still be considered.",
+  "applyText": "Open the official page on alberta.ca",
+  "applyUrl": "https://www.alberta.ca/disability-related-employment-supports",
+  "source": "https://www.alberta.ca/disability-related-employment-supports",
+  "detail": {
+   "about": "DRES may fund approved accommodations that address a documented permanent or long-term disability barrier for an employed or employment-destined person. Published examples are assistive devices, equipment or technology; ASL interpreting and captioning; an academic aide or note taker; communication or hearing devices for work; workplace access or modification; and work-related vehicle modifications. It does not fund medical treatments or therapies, daily-living items, job matching, employment and skills training, or wage subsidies.",
+   "steps": [
+    "Open the official DRES page and use its current contact route to ask about an employment or employment-destined accommodation.",
+    "Confirm the Alberta residency, age, legal entitlement, immigration-status, disability-duration, disability-barrier and employment-route criteria.",
+    "Describe the disability-related barrier and the specific accommodation requested, using only the current DRES coverage rules."
+   ],
+   "documents": [
+    "Documentation that the disability is permanent or long-term and creates a barrier to education, training or employment",
+    "Information confirming Alberta residency and legal entitlement to work or train in Canada",
+    "Information confirming Canadian citizen, permanent resident or Convention Refugee status",
+    "Information showing that you are employed or employment destined and identifying the requested accommodation"
+   ],
+   "tips": [
+    "Alberta's published examples of what is covered include: assistive devices, equipment or technology; ASL interpreting and captioning; an academic aide or note taker; communication or hearing devices for work; workplace access or changes; and work-related vehicle changes.",
+    "If the request is for education or training while you attend Alberta Education-funded K–12 or a publicly funded Alberta post-secondary institution, contact the school or institution for disability accommodations. This does not by itself rule out a separate eligible work route."
+   ],
+   "phone": "Alberta Supports Contact Centre 780-644-9992 or 1-877-644-9992"
+  }
+ },
+ "values": {
+  "kind": "services",
+  "note": "may fund approved disability-related accommodations for work or eligible education or training routes"
+ },
+ "meta": {
+  "difficulty": 3,
+  "effort": "Application + disability documentation",
+  "wait": "varies"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

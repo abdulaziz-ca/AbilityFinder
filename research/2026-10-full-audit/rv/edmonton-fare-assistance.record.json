@@ -1,0 +1,48 @@
+{
+ "id": "edmonton-fare-assistance",
+ "benefit": {
+  "id": "edmonton-fare-assistance",
+  "name": "Edmonton Ride Transit & Leisure Access",
+  "level": "Edmonton",
+  "category": "Getting around & recreation",
+  "amount": "Reduced-cost monthly Arc transit card ($35 or $50 a month, depending on household income) + Leisure Access Pass",
+  "summary": "A subsidized monthly Arc transit card plus reduced-cost access to City of Edmonton recreation facilities.",
+  "requires": [
+   "edmonton",
+   "lowIncomeOrDisabilityIncome"
+  ],
+  "note": "You may be eligible if your household income is at or under the City's limits. The limits depend on household size. You may also be eligible if you get AISH or CPP Disability Benefits, among other programs the City lists. Use the City's eligibility questions to check.",
+  "applyText": "Open the official page on edmonton.ca",
+  "applyUrl": "https://www.edmonton.ca/ets/fare-assistance",
+  "source": "https://www.edmonton.ca/ets/fare-assistance",
+  "detail": {
+   "about": "City of Edmonton programs that give lower-income residents a discounted monthly transit pass (the Ride Transit Program) and reduced-cost recreation access (the Leisure Access Program).",
+   "steps": [
+    "Complete the Leisure Access / Ride Transit application.",
+    "Include proof of income or proof you receive AISH / CPP-D.",
+    "Once approved, buy your reduced-cost monthly Arc card (the City lists $35 or $50 a month depending on household income) and use your Leisure Access pass."
+   ],
+   "documents": [
+    "Proof of income or AISH / CPP-D statement",
+    "Edmonton address"
+   ],
+   "tips": [
+    "Use the City's eligibility questions to check the Ride Transit Program and/or the Leisure Access Pass.",
+    "If you get AISH or CPP Disability Benefits, the City's eligibility check says you may be eligible without meeting the income limit."
+   ],
+   "time": "Approximately 8 to 12 weeks for approval. If you ask for your Arc card by mail, allow up to 10 more business days; you can pick it up in person instead.",
+   "phone": "City of Edmonton 311"
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "note": "Reduced-cost monthly Arc card ($35 or $50 depending on household income) + Leisure Access Pass"
+ },
+ "meta": {
+  "difficulty": 1,
+  "effort": "Application + proof of income",
+  "wait": "8–12 weeks"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

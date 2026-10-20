@@ -1,0 +1,69 @@
+{
+ "id": "sparc-parking-permit",
+ "benefit": {
+  "id": "sparc-parking-permit",
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "Mobility limitation confirmed by a medical professional — for example you use a wheelchair or a mobility aid like a cane or crutches, or your health prevents you from walking far."
+   ],
+   "note": "You don't need to own a vehicle."
+  },
+  "needsPractitioner": true,
+  "name": "Accessible Parking Permit (SPARC BC)",
+  "level": "British Columbia",
+  "category": "Parking",
+  "amount": "Fees are set by SPARC BC; confirm the current fee on their site. Permanent permits are valid 3 years; temporary permits are valid 1-12 months and are not renewable.",
+  "summary": "BC's accessible parking placard for people with mobility limitations. Hang it from the rear-view mirror. It is valid whether you drive or ride as a passenger.",
+  "requires": [
+   "bc",
+   "bcParkingMobility"
+  ],
+  "requiresNote": "Mobility limitation confirmed by a medical professional — for example you use a wheelchair or a mobility aid like a cane or crutches, or your health prevents you from walking far. You don't need to own a vehicle.",
+  "note": "SPARC BC is the non-profit that runs BC's permit program. SPARC BC sets the fees. Check the current fee and any hardship help on its site.",
+  "applyText": "Apply through SPARC BC",
+  "applyUrl": "https://www.sparc.bc.ca/parking-permits/",
+  "source": "https://www.sparc.bc.ca/parking-permits/",
+  "detail": {
+   "about": "SPARC BC issues the accessible parking permits recognized in designated spaces across British Columbia. Two types exist: permanent (valid 3 years, renewable) and temporary (1 to 12 months, not renewable — reapply if still needed). The permit belongs to the person, not a car, and must be displayed on the rear-view mirror while parked.",
+   "aboutList": {
+    "lead": "SPARC BC issues the accessible parking permits recognized in designated spaces across British Columbia.",
+    "items": [
+     "Two types exist: permanent (valid 3 years, renewable) and temporary (1 to 12 months, not renewable — reapply if still needed).",
+     "The permit belongs to the person, not a car, and must be displayed on the rear-view mirror while parked."
+    ]
+   },
+   "steps": [
+    "Download the application form from sparc.bc.ca or call 604-718-7744 / 1-888-718-7794 for a copy",
+    "Have the referral section completed by a medical professional with a valid MSP number",
+    "Check SPARC BC's site for the current fee and submit it with the application; ask about hardship assistance if needed",
+    "Allow 2 to 3 weeks for processing",
+    "Display the permit on the rear-view mirror whenever parked in an accessible space"
+   ],
+   "documents": [
+    "Application form including the medical professional referral section",
+    "Payment of the current fee listed by SPARC BC, unless hardship assistance applies"
+   ],
+   "tips": [
+    "The permit is yours, not the vehicle's. Use it in any car you drive or ride in.",
+    "Renew permanent permits online at online.sparc.bc.ca before they expire. Expired permits can't be renewed online.",
+    "Temporary permits can't be renewed. Send a new application if you still need one.",
+    "Email permits@sparc.bc.ca with questions"
+   ],
+   "time": "2 to 3 weeks from when your application is received",
+   "phone": "604-718-7744 or toll-free 1-888-718-7794"
+  }
+ },
+ "values": {
+  "kind": "access",
+  "excludeFromEstimate": true,
+  "note": "accessible parking placard; fee set by SPARC BC"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Application + medical-professional referral",
+  "wait": "About 2–3 weeks"
+ },
+ "extra": null,
+ "verified": "2026-07"
+}

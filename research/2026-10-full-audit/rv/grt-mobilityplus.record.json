@@ -1,0 +1,68 @@
+{
+ "id": "grt-mobilityplus",
+ "benefit": {
+  "id": "grt-mobilityplus",
+  "name": "MobilityPLUS specialized transit (Grand River Transit)",
+  "level": "Region of Waterloo",
+  "category": "Transit",
+  "amount": "$15 for 5 tickets or $104 for a monthly pass; $6.75 for 5 tickets with ATP approval",
+  "summary": "MobilityPLUS runs in the urban areas of Waterloo Region. It is for eligible, registered customers whose disability affects their ability to travel on GRT buses or ION trains.",
+  "note": "This application is for residents of Cambridge, Kitchener and Waterloo. A separate specialized service exists for township residents.",
+  "requires": [
+   "waterlooUrban",
+   "waterlooMobilityPlusTransit"
+  ],
+  "needsPractitioner": true,
+  "eligibility": {
+   "mode": "any",
+   "items": [
+    "Unconditional — a disability prevents you from using conventional transit",
+    "Conditional — environmental or physical barriers limit your ability to consistently use conventional transit; you may be able to use conventional transit for all or part of a trip but may qualify for specialized transit under specific circumstances for some or all of your trip",
+    "Temporary — a temporary disability that prevents you from using conventional transit and requires specialized transit for a defined period of time"
+   ],
+   "note": "MobilityPLUS is only available to people who are eligible and registered."
+  },
+  "applyText": "Apply for MobilityPLUS",
+  "applyUrl": "https://www.grt.ca/mobilityplus/apply-for-mobilityplus/",
+  "source": "https://www.grt.ca/mobilityplus/apply-for-mobilityplus/",
+  "detail": {
+   "about": "Grand River Transit MobilityPLUS operates within the urban areas of Waterloo Region. It provides specialized transit to eligible, registered customers who have a disability that impacts their ability to travel on GRT buses or ION trains. Eligibility may be unconditional, conditional or temporary. The application is for Cambridge, Kitchener and Waterloo residents; a separate specialized service exists for township residents.",
+   "aboutList": {
+    "lead": "MobilityPLUS is specialized transit for eligible, registered Cambridge, Kitchener and Waterloo residents.",
+    "items": [
+     "Unconditional eligibility is for a person with a disability that prevents them from using conventional transit.",
+     "Conditional eligibility is for a person whose disability means environmental or physical barriers limit their ability to consistently use conventional transit. They may use conventional transit for all or part of a trip but qualify for specialized transit under specific circumstances for some or all of their trip.",
+     "Temporary eligibility is for a person with a temporary disability that prevents them from using conventional transit and requires specialized transit for a defined period of time.",
+     "MobilityPLUS tickets cost $15 for a strip of 5 and a monthly pass costs $104.",
+     "With ATP approval, a strip of 5 MobilityPLUS tickets costs $6.75."
+    ]
+   },
+   "steps": [
+    "Complete Part A yourself or have your delegate complete it",
+    "Have a professional who can speak to your disability and ability to take conventional transit complete the Part B Health/Disability Professional form",
+    "Submit the two-part application"
+   ],
+   "documents": [
+    "Part A, completed by you or your delegate",
+    "Part B Health/Disability Professional form, completed by a health/disability professional who can speak to your disability and ability to take conventional transit"
+   ],
+   "tips": [
+    "Appropriate professionals could include (but are not limited to) a physician, nurse practitioner, psychiatrist, psychologist, optometrist, physiotherapist, occupational therapist, social worker, orientation and mobility specialist, kinesiologist, managers from pre-approved adult day programs or long-term care centres, and other professionals approved by the Region.",
+    "Township residents use a separate specialized service. This page does not give its rules.",
+    "If you live on a low income, apply for ATP too. It lowers a strip of 5 MobilityPLUS tickets from $15 to $6.75."
+   ]
+  }
+ },
+ "values": {
+  "kind": "access",
+  "excludeFromEstimate": true,
+  "note": "specialized transit; $15 for 5 tickets or $104 monthly, with ATP tickets $6.75 for 5"
+ },
+ "meta": {
+  "difficulty": 3,
+  "effort": "Two-part application, including a Health/Disability Professional form",
+  "wait": "Not published"
+ },
+ "extra": null,
+ "verified": "2026-09"
+}

@@ -1,0 +1,61 @@
+{
+ "id": "bc-monthly-nutritional-supplement",
+ "benefit": {
+  "id": "bc-monthly-nutritional-supplement",
+  "needsPractitioner": true,
+  "name": "Monthly Nutritional Supplement",
+  "level": "British Columbia",
+  "category": "Health",
+  "amount": "Up to $180/month for dietary items plus up to $45/month for vitamins or minerals",
+  "summary": "Extra monthly money on top of disability assistance for PWD recipients whose severe condition causes chronic, progressive deterioration of health, and who need extra nutrition to avoid serious decline.",
+  "requires": [
+   "bc",
+   "age18plus",
+   "bcPwdStatus",
+   "nutritionNeed",
+   "lowIncome"
+  ],
+  "note": "A practitioner must confirm at least two symptoms. Examples are malnutrition, underweight status, significant weight loss, significant muscle-mass loss, significant neurological degeneration, deterioration of a vital organ, or moderate-to-severe immune suppression.",
+  "applyText": "Get form HR2847 (PDF)",
+  "applyUrl": "https://www2.gov.bc.ca/assets/gov/british-columbians-our-governments/policies-for-government/bc-employment-assistance-policy-procedure-manual/forms/pdfs/hr2847.pdf",
+  "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/health-supplements-and-programs-rate-table",
+  "detail": {
+   "about": "The MNS is for people on disability assistance with the PWD designation who have a severe medical condition causing chronic, progressive deterioration of health with wasting-type symptoms, and who need additional nutritional items or vitamins and minerals to prevent imminent danger to life. Current maximums (Health Supplements & Programs rate table, effective August 1, 2023) are $180/month for dietary items and $45/month for vitamins or minerals.",
+   "aboutList": {
+    "lead": "The MNS is for people on disability assistance with the PWD designation who have a severe medical condition causing chronic, progressive deterioration of health with wasting-type symptoms, and who need additional nutritional items or vitamins and minerals to prevent imminent danger to life.",
+    "items": [
+     "Current maximums (Health Supplements & Programs rate table, effective August 1, 2023) are $180/month for dietary items and $45/month for vitamins or minerals."
+    ]
+   },
+   "steps": [
+    "Get form HR2847 (Application for Monthly Nutritional Supplement) from your ministry office, My Self Serve or the link above",
+    "Complete Part B yourself",
+    "Have a medical practitioner, nurse practitioner or registered dietitian complete Part C describing your condition, symptoms and the items needed",
+    "Submit the form; the ministry's Health Assistance staff review and decide"
+   ],
+   "documents": [
+    "Form HR2847 with the practitioner or dietitian section completed"
+   ],
+   "tips": [
+    "A registered dietitian can complete Part C. This is often faster than waiting for a specialist appointment.",
+    "Be specific about each symptom: two or more must be documented for approval",
+    "If denied, request reconsideration. Better medical detail can help a reconsideration."
+   ],
+   "time": "Typically a few weeks after the ministry receives the completed form",
+   "phone": "1-866-866-0800"
+  }
+ },
+ "values": {
+  "kind": "cash",
+  "excludeFromEstimate": true,
+  "monthlyMax": 225,
+  "note": "conditional supplement (<=$180 diet + <=$45 vitamins) stacked on PWD"
+ },
+ "meta": {
+  "difficulty": 3,
+  "effort": "Form HR2847 + practitioner or dietitian section",
+  "wait": "Not published — ask the ministry"
+ },
+ "extra": null,
+ "verified": "2026-07"
+}

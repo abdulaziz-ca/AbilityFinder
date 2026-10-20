@@ -1,0 +1,105 @@
+[
+  {
+    "id": "bc-at-home-saet",
+    "snapshot": "ok",
+    "confirmed": 24,
+    "differs": [
+      {"field":"benefit.detail.about","old":"A separate $1,920/year is available","new":"Up to a separate $1,920/year may be provided","quote":"A maximum of $1,920 may be provided for any one of chiropractic or massage services","why":"Preserve the discretionary maximum rather than promise funding."},
+      {"field":"benefit.detail.aboutList.items[1]","old":"A separate $1,920/year is available","new":"Up to a separate $1,920/year may be provided","quote":"A maximum of $1,920 may be provided for any one of chiropractic or massage services","why":"Preserve the discretionary maximum."},
+      {"field":"benefit.detail.tips[3]","old":"Post-surgical rehab can go over the annual maximum. Ask for an exception.","new":"Exceptions to the annual maximum are considered for post-surgical rehab. Ask for an exception.","quote":"Exceptions to this maximum will be considered for children requiring post-surgical rehabilitation services.","why":"An exception is considered, not assured."}
+    ],
+    "blocking_not_on_page": [
+      {"field":"benefit.note","claim":"This began April 1, 2026.","why":"The snapshot says starting April 2026, not April 1; it does not confirm that families have already moved."},
+      {"field":"benefit.note","claim":"SAET stays available until March 31, 2027, or until your child transitions, whichever comes first. All SAET authorizations are being updated to match that end date.","why":"The snapshot only says new families can still apply until March 2027; no service end date or authorization update is stated."},
+      {"field":"benefit.note","claim":"The new benefit is fully operational provincewide from April 1, 2027.","why":"This implementation date does not appear in either snapshot section."},
+      {"field":"benefit.detail.tips[2]","claim":"the new $6,500/$17,000 allocation","why":"Neither allocation appears in the snapshot."}
+    ],
+    "verdict": "keep"
+  },
+  {
+    "id": "handycard-translink",
+    "snapshot": "ok",
+    "confirmed": 16,
+    "differs": [],
+    "blocking_not_on_page": [
+      {"field":"benefit.amount","claim":"Free photo ID card","why":"The page identifies a photo-identity card but does not state that the card itself is free."},
+      {"field":"benefit.amount","claim":"half-price TaxiSaver coupons","why":"TaxiSaver and its discount are not described on this snapshot."},
+      {"field":"benefit.detail.tips[0]","claim":"HandyCard applicants must be at least 12","why":"No HandyCard minimum age is stated; the HandyDART child fare rule does not establish HandyCard eligibility."}
+    ],
+    "verdict": "keep"
+  },
+  {
+    "id": "bc-at-home-medical",
+    "snapshot": "ok",
+    "confirmed": 24,
+    "differs": [
+      {"field":"benefit.detail.steps[1]","old":"children under 3 may be asked for extra supporting information","new":"children under 3 will be asked for extra supporting information","quote":"if the child applying is under 3 years old, additional supporting documentation will be requested","why":"The source makes this requirement definite."}
+    ],
+    "blocking_not_on_page": [
+      {"field":"benefit.amount","claim":"wheelchair seating to $9,000, lifts to $8,000, hospital bed to $4,000, scooter to $3,700, dental $700 a year, optical $150 a year, plus 100% of eligible prescription drugs and designated medical supplies through PharmaCare Plan F","why":"This record's snapshot contains only the program landing and eligibility pages, not the guide or Plan F page; none of these amounts or the 100% coverage is stated."},
+      {"field":"benefit.note","claim":"PharmaCare Plan F coverage ends the same day. Start the adult disability assistance application about six months before that birthday.","why":"The snapshot states the medical-benefit age cutoff, but not the Plan F cutoff or the six-month adult application timing; these also recur in detail."}
+    ],
+    "verdict": "keep"
+  },
+  {
+    "id": "london-ontario-renovates",
+    "snapshot": "ok",
+    "confirmed": 40,
+    "differs": [
+      {"field":"benefit.note","old":"Applications are processed first come, first served until the money runs out, so applying early matters.","new":"Applications close October 30, 2026 at 4:30 p.m. They are processed first come, first served, subject to funding and eligibility, so applying early matters.","quote":"Ontario Renovates applications will be accepted until Friday, October 30, 2026 at 4:30 p.m. Applications received after this date will not be accepted.","why":"The record omits the newly stated hard closing deadline."},
+      {"field":"meta.wait","old":"Not published — first come, first served until funds run out","new":"Not published — first come, first served; applications close October 30, 2026 at 4:30 p.m.","quote":"Applications are processed on a first-come, first-served basis, subject to available program funding and eligibility requirements.","why":"Funding availability alone no longer describes the intake cutoff."}
+    ],
+    "blocking_not_on_page": [],
+    "verdict": "fix-then-bump"
+  },
+  {
+    "id": "bc-disability-assistance-pwd",
+    "snapshot": "ok",
+    "confirmed": 17,
+    "differs": [],
+    "blocking_not_on_page": [
+      {"field":"benefit.note","claim":"Starting January 1, 2026, you can earn up to $16,200 a year before earnings change your payment. The limit is $23,400 for a couple where one of you has PWD and $32,400 where both do.","why":"Neither the rate table nor My Self Serve snapshot states earnings exemptions or their effective date."},
+      {"field":"benefit.note; benefit.detail.tips[4-6]","claim":"There is no monthly cap; you always keep 100% of earnings; the earnings exemption runs January 1 to December 31 and does not carry over.","why":"No earnings exemption rules, annual dates or retention percentage appear in the supplied pages."},
+      {"field":"benefit.detail.about; benefit.detail.aboutList.items[1]","claim":"100% drug coverage under PharmaCare Plan C","why":"The snapshot does not state Plan C coverage or a coverage percentage."},
+      {"field":"benefit.detail.tips[3]","claim":"At 65 most recipients move to federal Old Age Security and GIS.","why":"No age-65 transition rule appears in the snapshot."},
+      {"field":"benefit.detail.tips[7]","claim":"The ministry sends you a letter once you reach 75% of your exemption","why":"The notification threshold is not stated."},
+      {"field":"benefit.detail.tips[9]","claim":"File monthly report HR0081 by the fifth of the month","why":"My Self Serve supports monthly reporting but provides no fifth-of-month deadline."}
+    ],
+    "verdict": "keep"
+  },
+  {
+    "id": "bc-supported-child-development",
+    "snapshot": "ok",
+    "confirmed": 12,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump"
+  },
+  {
+    "id": "dres",
+    "snapshot": "ok",
+    "confirmed": 29,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump"
+  },
+  {
+    "id": "sparc-parking-permit",
+    "snapshot": "ok",
+    "confirmed": 18,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump"
+  },
+  {
+    "id": "pdd",
+    "snapshot": "ok",
+    "confirmed": 6,
+    "differs": [],
+    "blocking_not_on_page": [
+      {"field":"benefit.note; benefit.detail.steps[1]; benefit.detail.documents[0]","claim":"developmental disability began before age 18","why":"The landing page links to eligibility but does not state an onset-age requirement."},
+      {"field":"benefit.detail.documents[1]","claim":"age 18+","why":"The supplied page says adults but does not publish a numeric age threshold."}
+    ],
+    "verdict": "keep"
+  }
+]

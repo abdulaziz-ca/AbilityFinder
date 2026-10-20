@@ -1,0 +1,59 @@
+{
+ "id": "reddeer-fee-assistance",
+ "benefit": {
+  "id": "reddeer-fee-assistance",
+  "name": "Red Deer Transit & Recreation Fee Assistance",
+  "level": "Red Deer",
+  "category": "Getting around & recreation",
+  "amount": "$34/month transit pass + up to $200/year per eligible person for recreation programs (pending available funding)",
+  "summary": "A reduced monthly transit pass plus help with City recreation fees. If you are on AISH, you may automatically qualify when you show the City your documents.",
+  "requires": [
+   "reddeer",
+   "lowIncomeOrDisabilityIncome"
+  ],
+  "note": "If you're on AISH or Income Support, you may automatically qualify when you provide the listed document. You may not need to send a Notice of Assessment. The transit pass is a permanent program (not a pilot). Both programs need renewing each year.",
+  "applyText": "Open the official page on reddeer.ca",
+  "applyUrl": "https://www.reddeer.ca/city-services/transit/fares-and-passes/transit-fare-assistance-pass/",
+  "source": "https://www.reddeer.ca/recreation-and-culture/recreation/facility-admission-fees--pass-prices/fee-assistance-program/",
+  "detail": {
+   "about": "Two City of Red Deer programs. The Transit Fare Assistance Pass drops a monthly pass to $34 no matter which type you'd normally buy (regular passes run $62–$75). The Recreation Fee Assistance Program adds a Recreation Pass Card for drop-in use plus, pending available funding, up to $200 a year per eligible person toward Safe & Healthy Communities program registrations.",
+   "aboutList": {
+    "lead": "Two City of Red Deer programs.",
+    "items": [
+     "The Transit Fare Assistance Pass drops a monthly pass to $34 no matter which type you'd normally buy (regular passes run $62–$75).",
+     "The Recreation Fee Assistance Program adds a Recreation Pass Card for drop-in use.",
+     "Plus, pending available funding, up to $200 a year per eligible person toward Safe & Healthy Communities program registrations."
+    ]
+   },
+   "steps": [
+    "Apply online for Recreation Fee Assistance, or for the Transit Fare Assistance Pass — being approved for recreation also qualifies you for transit.",
+    "If you're on AISH, Income Support or Guaranteed Income Supplement, provide that document — the City says you may automatically qualify.",
+    "Otherwise attach your CRA Notice of Assessment so they can check you against the low-income line.",
+    "Allow up to 10 business days (recreation applications may take longer due to high volume), then buy the $34 pass.",
+    "Re-apply every year — approval expires."
+   ],
+   "documents": [
+    "Proof you're on AISH / Income Support / GIS — or a CRA Notice of Assessment",
+    "Government-issued ID, and proof of residence if your ID does not show your current Red Deer address"
+   ],
+   "tips": [
+    "One application can cover both. Being approved for Recreation Fee Assistance is itself a way to qualify for the transit pass.",
+    "Recreation funding is 'pending available funding'. Apply early in the year, not late.",
+    "Sorensen Station staff will help you apply in person if the online form is hard to use."
+   ],
+   "time": "Transit pass: up to 10 business days. Recreation: the City says processing may take over 10 business days due to high volume.",
+   "phone": "Fee Assistance Program: 403-309-8411 (or feeassistance@reddeer.ca)"
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "note": "$34/mo transit pass + up to $200/yr recreation"
+ },
+ "meta": {
+  "difficulty": 1,
+  "effort": "Online form + proof",
+  "wait": "up to 10 business days"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

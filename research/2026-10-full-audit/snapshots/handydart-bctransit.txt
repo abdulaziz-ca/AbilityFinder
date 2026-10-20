@@ -1,0 +1,294 @@
+URL: https://www.bctransit.com/ | province: X | program: handydart-bctransit | fetched: 2026-10-19
+=== PAGE: https://www.bctransit.com/ (HTTP 200, 4404 chars)
+﻿
+- 
+- 
+- 
+ Choose a Transit System | BC Transit 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+ Skip To Content 
+ Alerts 
+ Change Transit System
+ Search transit system 
+ 100 Mile House 
+ Agassiz-Harrison 
+ Ashcroft-Cache Creek-Clinton 
+ Bella Coola Valley 
+ Boundary 
+ Bulkley-Nechako 
+ Campbell River 
+ Central Fraser Valley 
+ Chilliwack 
+ Clearwater 
+ Columbia Valley 
+ Comox Valley 
+ Cowichan Valley 
+ Cranbrook 
+ Creston Valley 
+ Dawson Creek 
+ Elk Valley 
+ Fort St. John 
+ Hazeltons 
+ Hope 
+ Kamloops 
+ Kelowna 
+ Kimberley 
+ Kitimat 
+ Merritt 
+ Mount Waddington 
+ Nanaimo 
+ Pemberton Valley 
+ Port Alberni 
+ Port Edward 
+ Powell River 
+ Prince George 
+ Prince Rupert 
+ Quesnel 
+ Revelstoke 
+ Salt Spring Island 
+ Shuswap 
+ Smithers 
+ South Okanagan-Similkameen 
+ Squamish 
+ Sunshine Coast 
+ Terrace 
+ Vernon 
+ Victoria 
+ West Coast 
+ West Kootenay 
+ Whistler 
+ Williams Lake 
+ Or Search Our Transit System Directory 
+ Welcome to BC Transit
+ Plan a Trip
+ Sorry, no location data could be found. Specifying a location will provide you with accurate results for your region. 
+ To Start Planning Your Trip, Enter Your Starting Location:
+ Use Current Location: 
+ Share Location 
+ Or: 
+ Search a Location: 
+ Go 
+ Closest Transit Systems found near you:
+ Not Sure Where To Start?
+ Check out our community list by region:
+ Explore Transit Systems 
+ Community List
+ Filter by Region: 
+ All Regions 
+ Kootenays North Central Okanagan South Coast Vancouver Island 
+ Filter 
+ Community Name 
+ Transit System 
+ 100 Mile House 
+ 100 Mile House 
+ 103 Mile House 
+ 100 Mile House 
+ 108 Mile House 
+ 100 Mile House 
+ 150 Mile House 
+ Williams Lake 
+ Abbotsford 
+ Central Fraser Valley 
+ Aberdeen 
+ Kamloops 
+ Agassiz 
+ Agassiz-Harrison 
+ Ainsworth Hot Springs 
+ West Kootenay 
+ Akisqunuk Village 
+ Columbia Valley 
+ Aldergrove 
+ Central Fraser Valley 
+ Argenta 
+ West Kootenay 
+ Armstrong 
+ Vernon 
+ Ashcroft 
+ Ashcroft-Cache Creek-Clinton 
+ Balfour 
+ West Kootenay 
+ Balfour Ferry 
+ West Kootenay 
+ Barnhartvale 
+ Kamloops 
+ Barriere 
+ Clearwater 
+ Batchelor Heights 
+ Kamloops 
+ Bella Coola 
+ Bella Coola Valley 
+ Birch Island 
+ Clearwater 
+ Black Creek 
+ Comox Valley 
+ Black Mountain 
+ Kelowna 
+ Blackpool 
+ Clearwater 
+ Blewitt 
+ West Kootenay 
+ Blind Bay 
+ Shuswap 
+ Blue River 
+ Clearwater 
+ Boundary 
+ Boundary 
+ Bowser 
+ Nanaimo 
+ Brackendale 
+ Squamish 
+ Brentwood Bay 
+ Victoria 
+ Brocklehurst 
+ Kamloops 
+ Buckley Bay 
+ Comox Valley 
+ Bulkley-Nechako 
+ Bulkley-Nechako 
+ Burt Bridge 
+ Bella Coola Valley 
+ Cache Creek 
+ Ashcroft-Cache Creek-Clinton 
+ Campbell River 
+ Campbell River 
+ Canal Flats 
+ Columbia Valley 
+ Canoe 
+ Shuswap 
+ Castlegar 
+ West Kootenay 
+ Central Fraser Valley 
+ Central Fraser Valley 
+ Charlie Lake 
+ Fort St. John 
+ Chase 
+ Kamloops 
+ Chemainus 
+ Cowichan Valley 
+ Chilliwack 
+ Chilliwack 
+ Clearwater 
+ Clearwater 
+ Clinton 
+ Ashcroft-Cache Creek-Clinton 
+ Coal Harbour 
+ Mount Waddington 
+ Cobble Hill 
+ Cowichan Valley 
+ Coldstream 
+ Vernon 
+ Columbia Valley 
+ Columbia Valley 
+ Colwood 
+ Victoria 
+ Comox 
+ Comox Valley 
+ Comox Valley 
+ Comox Valley 
+ Courtenay 
+ Comox Valley 
+ Cowichan Bay 
+ Cowichan Valley 
+ Cowichan Valley 
+ Cowichan Valley 
+ Cranbrook 
+ Cranbrook 
+ Crawford 
+ Kelowna 
+ Creston 
+ Creston Valley 
+ Creston Valley 
+ Creston Valley 
+ Crofton 
+ Cowichan Valley 
+ Cultus Lake 
+ Chilliwack 
+ Cumberland 
+ Comox Valley 
+ Dallas 
+ Kamloops 
+ Dawson Creek 
+ Dawson Creek 
+ Decker Lake 
+ Bulkley-Nechako 
+ Deep Bay 
+ Nanaimo 
+ Deep Creek 
+ Shuswap 
+ Duncan 
+ Cowichan Valley 
+ Duncan Lake 
+ Bulkley-Nechako 
+ Eagle Bay 
+ Shuswap 
+ Edgewater 
+ Columbia Valley 
+ Edgewood 
+ West Kootenay 
+ Eholt 
+ Boundary 
+ Elk Valley 
+ Elk Valley 
+ Elkford 
+ Elk Valley 
+ Endako 
+ Bulkley-Nechako 
+ Enderby 
+ Vernon 
+ Erickson 
+ Creston Valley 
+ Esquimalt 
+ Victoria 
+ Fairmont Hot Springs 
+ Columbia Valley 
+ Fanny Bay 
+ Comox Valley 
+ Fernie 
+ Elk Valley 
+ Fernwood Dock 
+ Salt Spring Island 
+ Firvale 
+ Bella Coola Valley 
+ Fort Fraser 
+ Bulkley-Nechako 
+ Fort Rupert 
+ Mount Waddington 
+ Fort St. John 
+ Fort St. John 
+ Four Mile House 
+ Bella Coola Valley 
+ Fraser Lake 
+ Bulkley-Nechako 
+ Fruitvale 
+ West Kootenay 
+ Fulford 
+ Salt Spring Island 
+ Gallagher’s Canyon 
+ Kelowna 
+ Ganges Village 
+ Salt Spring Island 
+ Garibaldi Highlands 
+ Squamish 
+ Genoa Bay 
+ Cowichan Valley 
+ Gibsons 
+ Sunshine Coast 
+ Gitanmaax 
+ Hazeltons 
+ Gitaus 
+ Terrace 
+ Gitsegukla 
+ Hazeltons

@@ -90,7 +90,7 @@ test("the matcher gates are conservative and do not gate on the income band", ()
 });
 
 test("the record is dated and points at the official page", () => {
-  assert.equal(BENEFIT_VERIFIED[TARGET_ID], "2026-07");
+  assert.equal(BENEFIT_VERIFIED[TARGET_ID], "2026-10");
   assert.equal(benefit.applyUrl, CANONICAL_URL);
   assert.equal(benefit.source, CANONICAL_URL);
 });

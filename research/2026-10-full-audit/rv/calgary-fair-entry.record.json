@@ -1,0 +1,48 @@
+{
+ "id": "calgary-fair-entry",
+ "benefit": {
+  "id": "calgary-fair-entry",
+  "name": "Calgary Fair Entry — Transit & Recreation",
+  "level": "Calgary",
+  "category": "Getting around & recreation",
+  "amount": "Transit pass $6.30–$63/month by income band + lower-cost recreation",
+  "summary": "One application gets you a low-income monthly transit pass and lower-cost City of Calgary pools, fitness and recreation programs.",
+  "requires": [
+   "calgary",
+   "lowIncome"
+  ],
+  "note": "Apply once through Fair Entry. The transit pass has three 2026 income bands: $6.30, $44.10 or $63.00 per month.",
+  "applyText": "Apply through Calgary Fair Entry",
+  "applyUrl": "https://www.calgary.ca/social-services/low-income/fair-entry-subsidy.html",
+  "source": "https://www.calgary.ca/social-services/low-income/fair-entry-subsidy.html",
+  "detail": {
+   "about": "A single City of Calgary application ('Fair Entry') that qualifies you for several low-income discounts at once — the sliding-scale monthly transit pass and lower-cost recreation admission and programs. Calgary does not publish a fixed percentage for recreation fee assistance.",
+   "steps": [
+    "Gather proof of income for your household.",
+    "Apply online through Fair Entry (or in person).",
+    "Once approved, buy the low-income transit pass and use your Fee Assistance card for recreation."
+   ],
+   "documents": [
+    "Proof of income (e.g. tax assessment or benefit statements)",
+    "Calgary address"
+   ],
+   "tips": [
+    "One approval covers transit and recreation. You do not apply separately.",
+    "The transit pass price changes with income. There are three 2026 bands: $6.30, $44.10 or $63.00 per month."
+   ],
+   "time": "Usually processed within a couple of weeks.",
+   "phone": "City of Calgary 311"
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "note": "transit $6.30–$63/mo by income band + lower-cost recreation"
+ },
+ "meta": {
+  "difficulty": 1,
+  "effort": "Online + proof of income",
+  "wait": "1–2 weeks"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

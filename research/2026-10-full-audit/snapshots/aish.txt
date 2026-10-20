@@ -1,0 +1,214 @@
+URL: https://www.alberta.ca/aish-eligibility | province: X | program: aish | fetched: 2026-10-19
+=== PAGE: https://www.alberta.ca/aish-eligibility (HTTP 200, 6875 chars)
+- 
+- 
+- 
+- 
+ AISH eligibility | Alberta.ca 
+- 
+- 
+- 
+ Skip to On this page 
+ Skip to Explore pages in 
+ Explore pages in:
+ Assured Income for the Severely Handicapped (AISH) 
+- 
+ Eligibility
+- 
+ What you get 
+- 
+ Appeal a decision 
+- 
+ About the AISH policy manual 
+ General (age and residency criteria)
+- You are at least 18 years old and not eligible to receive an Old Age Security pension.
+- You live in Alberta and are a Canadian citizen or permanent resident.
+- You are not residing in a correctional institution or a facility designated under the Mental Health Act Forms and Designation Regulation, such as Alberta Hospital Edmonton.
+ Financial criteria
+- AISH looks at the income and assets you and your spouse or partner have.
+- When you apply for, or get AISH, you and your spouse or partner must: 
+- apply for all other income you may be eligible for, such as Canada Pension Plan Disability (CPP-D), Canada Disability Benefit, Employment Insurance (EI) or Workers’ Compensation Board (WCB) benefits
+- not have income or assets that are higher than the AISH program allows
+ Income
+- AISH typically considers income reported on your income tax form and your spouse or partner’s income tax form.
+- AISH does not consider a dependent child’s income.
+- How AISH treats income depends on: 
+- the type of income
+- whether you are single or in a family with a spouse or partner and / or dependent children, and
+- who receives the income
+- Some income is exempt – this means it is not counted and does not affect your AISH monthly living allowance. It includes things like: 
+- cash gifts
+- income tax refunds
+- registered disability savings plan (RDSP) payments
+- registered retirement savings plan (RRSP) payments
+- Some income is partially exempt – this means it is counted at part of its value and may affect your AISH monthly living allowance. These are examples of partially exempt incomes: 
+- employment income such as a wage paid by an employer, a training allowance or severance pay
+- self-employment income such as business, farming or professional income
+- passive business income such as interest, dividends, capital gains, trust and rental income
+- a spouse/cohabiting partner’s pension income such as Canada Pension Plan Disability (CPP-D), Employment Insurance (EI) and Workers’ Compensation Board (WCB) benefits
+- Some income is non-exempt – this means it is counted at full value and subtracted dollar-for-dollar from your AISH monthly living allowance. These are examples of non-exempt incomes: 
+- spousal support payments
+- an applicant’s/client’s pension income such as Canada Pension Plan Disability (CPP-D), Employment Insurance (EI) and Workers’ Compensation Board (WCB) benefits
+- Allowable income deductions, such as most Canada Revenue Agency employment deductions (for example, CPP and EI), are applied before exemptions. Find out more about how AISH treats income in the Your Guide to Disability Income Assistance .
+ Assets
+- Assets are items of value like cash, investments, property and vehicles that you and your spouse or partner have.
+- Some assets are exempt – this means they are not-counted and include things like: 
+- a home or quarter section you live in
+- a vehicle
+- a second vehicle adapted for a disability
+- clothing
+- reasonable household items
+- registered disability savings plans (RDSPs)
+- a trust
+- Some assets are non-exempt – this means they are counted. Non-exempt assets cannot be worth more than $100,000 when they are added together and may include: 
+- cash
+- chequing or savings accounts
+- tax-free savings accounts (TFSAs)
+- registered retirement savings plans (RRSPs)
+- cash inheritances
+- a recreational property or home
+- recreational vehicles
+- Clients who receive assets are provided a temporary asset exemption and have 365 days to invest the asset in an exempt asset or it will be counted as a non-exempt asset and may impact ongoing program eligibility. This money may include: 
+- an inheritance
+- a gift
+- funds from selling the main home or quarter section where you lived and that AISH already considered exempt
+- funds from selling your main or adapted vehicle that AISH already considered exempt
+- funds from an insurance pay-out to cover damages to, or loss of, your main home or vehicle that AISH already considered exempt
+- Find out more about how AISH treats assets in the Your Guide to Disability Income Assistance .
+ Income compared to assets
+- Income and assets are different.
+- Income is money you receive, such as employment earnings, pension payments, or withdrawals from a Registered Retirement Savings Plan (RRSP). Assets are things you own that have value, such as cash, savings, investments, property, or money held in an RRSP or Tax-free Savings Account (TFSA).
+- Example: RRSP payments are treated as exempt income, while money held in an RRSP is considered an a non-exempt asset and counts toward the asset limit. Note: money held in a Registered Disability Savings Plan (RDSP) is considered an exempt asset and does not count towards the asset limit.
+ Medical eligibility criteria
+- You must have a severe disability that permanently prevents employment.
+- AISH will review the medical treatments, therapies, rehabilitation services, and training options available that may help improve your impairment.
+- Find out more about how AISH considers your medical situation in the Your Guide to Disability Income Assistance and the Disability Income Assistance Adjudication Guide – July 2026.
+ Transition period
+ The following information applies to AISH clients who transitioned to ADAP in July 2026.
+ If you met one or more of the following eligibility criteria, you were automatically approved for AISH:
+- individuals with a severe and profound developmental disability, or who are deemed eligible for or are receiving Persons with Developmental Disabilities services
+- individuals with palliative or terminal medical conditions
+- individuals living in continuing care homes
+- individuals 60 years of age or older
+ Current ADAP clients who transitioned from AISH to ADAP and want to apply for AISH can access a shortened application using non-medical information already on file. A complete Disability Income Assistance Medical Report will be required.
+ Alberta's government will cover the cost of one Disability Income Assistance Medical Report for AISH clients who transitioned to ADAP and later choose to be assessed for AISH. This support is not time-limited and will be available whenever clients choose to access it.
+ Publication
+- AISH Legislation 
+ Contact
+ Get information for Alberta Support Centre offices and other supports.
+ Related
+- Disability Income Assistance (DIA) Application 
+- AISH/ADAP Policy Manual 
+- Foster care and people in care 
+- Report suspected fraud 
+- Adjudication Guide 
+ Back to 
+ Assured Income for the Severely Handicapped (AISH) 
+ Next 
+ What you get
+
+=== PAGE: https://www.alberta.ca/how-to-apply-for-aish-and-adap (HTTP 200, 5722 chars)
+- 
+- 
+- 
+- 
+ How to apply for AISH and ADAP | Alberta.ca 
+- 
+- 
+- 
+ Skip to On this page 
+ Skip to Explore pages in 
+ Explore pages in:
+ Disability Income Assistance 
+- 
+ Alberta Disability Assistance Program 
+- 
+ Assured Income for the Severely Handicapped (AISH) 
+- 
+ How to apply
+- 
+ Payment details 
+- 
+ Report a change 
+- 
+ Overpayments and underpayments 
+- 
+ Terms and definitions 
+- 
+ Contact us 
+- 
+ Apply for federal disability supports 
+ How to apply for AISH and ADAP
+ Disability Income Assistance (DIA) Application
+ Apply online
+ DIA applicants are encouraged to apply online for an easy, intuitive and secure way to submit information. You can start a new application or continue your current application.
+ Current ADAP clients who transitioned from AISH to ADAP and want to apply for AISH can access a shortened application using non-medical information already on file. A complete Disability Income Assistance Medical Report will be required.
+ Apply for AISH and ADAP online 
+ If you need assistance with your Disability Income Assistance Application online, call the Alberta Supports Contact Centre at 1-877-644-9992 or in Edmonton 780-644-9992 .
+ If you cannot apply online
+ If you cannot apply online, complete the Disability Income Assistance Application form 
+ Fillable PDF forms may not open properly on some mobile devices and web browsers. See the step-by-step guide or contact PDF form technical support .
+ Your health professional will need to complete the Disability Assistance Medical Report
+ You can submit your Disability Assistance Medical Report as part of your online DIA application if the health professional has provided it to you, or ask your health professional to submit the completed Disability Assistance Medical Report to AISH and ADAP by:
+- Fax: 1-877-969-3006 (toll free, Alberta)
+- Mail: AISH and ADAP, PO Box 17000 Station Main, Edmonton, Alberta  T5J 4B3
+ Note, your health professional may charge you for this service.
+- You are responsible for paying the fee to the health professional to complete the medical report.
+- If you are on Income Support, the cost to fill in these reports may be covered – contact your Income Support worker.
+- If you are not on Income Support, but need financial help – find out how to  apply for other benefits , while waiting for AISH or ADAP.
+ Submit your documents and complete your application
+- Make sure to include all required documents with your DIA Application.
+- Please ensure you include your Notice of Assessment (NOA) when submitting your documentation.
+- Save or print copies of your application and supporting documents for your files.
+- Submit your DIA Application and supporting documents online or by: 
+- Fax:  1-877-969-3006 (toll free, Alberta)
+- Mail: AISH and ADAP, PO Box 17000 Station Main, Edmonton, Alberta  T5J 4B3
+ After you apply
+ An AISH and ADAP staff member may request additional information if you have not provided all of the general, financial or medical information required.
+- If you have questions about the status of your Disability Income Assistance Application, phone: 587-759-6810  (Edmonton area), or 1-877-759-6810  (toll free, Alberta).
+- If your application is approved: 
+- you will receive a phone call and a letter confirming you are eligible for AISH or ADAP
+- you will be contacted by phone or mail to schedule a meeting with an AISH or ADAP worker
+- your benefits will be backdated to the month AISH or ADAP received all of the information that was required to approve your application
+- If your application is not approved you will receive a letter explaining: 
+- why you are not eligible for AISH or ADAP – this may be due to general, financial, or medical reasons
+- how to update AISH or ADAP with more information showing a change in your situation
+- how to  appeal the decision 
+- how to contact the  Disability Income Assistance Application Processing Centre  or the nearest  Alberta Supports office  if you have questions
+- where to find out about other financial and health benefit programs you may qualify for
+ Resources
+- Your Guide to Completing the Disability Income Assistance Application 
+- Health Professional's Guide to Completing the Disability Income Assistance Application 
+- Your Guide to Disability Income Assistance 
+- AISH and ADAP Financial Benefits Summary 
+- Disability Income Assistance Application form download and print
+- Disability Assistance Medical Report form download and print
+ Applying for other benefits while waiting
+ Contact Alberta Supports for help finding and applying for other benefits and services to meet your needs, such as Income Support and health benefits.
+ Applying for federal disability supports
+- Canada Disability Benefit 
+- Disability Tax Credit 
+ Get help applying for federal disability supports:
+- Organizations providing disability benefits navigation services 
+- Voice of Albertans with Disabilities 
+- Canada Disability Benefit and Disability Tax Credit - Fact Sheet for AISH Recipients 
+ Filing your taxes
+- Personal Income Tax 
+- Free Tax Clinics 
+ Reopening your AISH file
+- If you leave AISH or ADAP , you may have your file reopened quickly if: 
+- it has been less than 2 years since you got your last AISH benefits
+- you did not leave AISH or ADAP due to a change in your medical condition
+- Contact AISH or ADAP if these criteria apply to you.
+- If these criteria do not apply, you will need to reapply.
+ Contact
+ Get information for Alberta Supports offices and other supports.
+ Take the survey about the information on this page.
+ Related
+- AISH/ADAP Policy Manual 
+- PDF form technical support 
+- Foster care and people in care 
+ Previous 
+ Assured Income for the Severely Handicapped (AISH) 
+ Next 
+ Payment details

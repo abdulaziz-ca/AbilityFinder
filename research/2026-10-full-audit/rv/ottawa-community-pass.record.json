@@ -1,0 +1,66 @@
+{
+ "id": "ottawa-community-pass",
+ "benefit": {
+  "id": "ottawa-community-pass",
+  "name": "Community Pass — OC Transpo discount for ODSP recipients (Ottawa)",
+  "level": "Ottawa",
+  "category": "Transit",
+  "amount": "$43.25 a month, or $1.75 a ride",
+  "summary": "A discounted OC Transpo pass for Ottawa residents who get ODSP. It covers every route, including Para Transpo, with no top-up charge. The Access pass costs the same but does not include this.",
+  "note": "Community and Access passes both cost $43.25 a month, but Access holders pay a $2.75 top-up for every Para Transpo ride while the Community Pass includes Para Transpo with no top-up. If you receive ODSP and use Para Transpo, the Community Pass is the cheaper of the two. The rural fare is not included in either.",
+  "requires": [
+   "ottawa",
+   "ottawaOdspReceipt"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "You are an Ottawa resident",
+    "You receive benefits under the Ontario Disability Support Program"
+   ],
+   "note": "To prove it you need your ODSP number — the 9-digit identification number on an ODSP document — together with a Presto card number or a Para Transpo ID number. Discounted fares cannot be used when paying cash; you need a Presto card."
+  },
+  "applyText": "See reduced fares",
+  "applyUrl": "https://www.octranspo.com/en/fares/reduced-fares/",
+  "source": "https://www.octranspo.com/en/fares/reduced-fares/",
+  "detail": {
+   "about": "The Community Pass is OC Transpo's discounted fare for Ottawa residents who receive ODSP benefits. It costs $43.25 a month, or $1.75 per ride, and lets you ride on all routes including Para Transpo without paying a top-up. The rural fare is not included.",
+   "aboutList": {
+    "lead": "The Community Pass is OC Transpo's ODSP discount.",
+    "items": [
+     "$43.25 for a monthly pass, or $1.75 per ride.",
+     "Valid on all routes, including Para Transpo, with no top-up charge.",
+     "The Para Transpo rural fare is not included.",
+     "You must use a Presto card — discounted fares are not available when paying cash.",
+     "For comparison, the regular adult fare is $4.10 a ride and $138.50 a month."
+    ]
+   },
+   "steps": [
+    "Get your ODSP identification number from an ODSP document",
+    "Get a Presto card, or have your Para Transpo ID number to hand",
+    "Set the Community discount on your card at an OC Transpo Customer Service Centre, or by calling OC Transpo Customer Service — discounted monthly passes cannot be set anywhere else",
+    "Buy monthly passes up to 14 days before the month starts; a pass is valid only for the calendar month it is bought for"
+   ],
+   "documents": [
+    "Your 9-digit ODSP identification number from an ODSP document",
+    "A Presto card number, or a Para Transpo ID number"
+   ],
+   "tips": [
+    "If you use Para Transpo and get ODSP, choose the Community Pass over the Access pass. It is the same $43.25, but with no $2.75 Para Transpo top-up per ride.",
+    "You must set up discounted monthly passes at a Customer Service Centre or by phone, not at a store.",
+    "If verification is needed, a lawyer, notary, registered social worker, or a member of one of the regulated health colleges can act as a guarantor."
+   ]
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "note": "$43.25/month or $1.75/ride, all routes including Para Transpo with no top-up"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Set the discount at a Customer Service Centre with your ODSP number and Presto card",
+  "wait": "Not published"
+ },
+ "extra": null,
+ "verified": "2026-09"
+}

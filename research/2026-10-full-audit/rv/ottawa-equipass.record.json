@@ -1,0 +1,65 @@
+{
+ "id": "ottawa-equipass",
+ "benefit": {
+  "id": "ottawa-equipass",
+  "name": "EquiPass — OC Transpo low-income discount (Ottawa)",
+  "level": "Ottawa",
+  "category": "Transit",
+  "amount": "$58.25 a month, or $1.75 a ride — about half an adult pass",
+  "summary": "A discounted OC Transpo pass for Ottawa residents whose family income is below the federal low income threshold, provided they do not already receive transportation benefits from Social Services.",
+  "note": "You cannot get EquiPass if you get transportation benefits from Social Services. If you get ODSP, look at the Community Pass instead. It costs less at $43.25 and includes Para Transpo.",
+  "requires": [
+   "ottawa",
+   "lowIncome"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "Your family income is below the low income threshold set by the Government of Canada",
+    "You do not receive transportation benefits from Social Services"
+   ],
+   "note": "You apply with a completed EquiPass Application and Consent Form plus a Notice of Assessment from the Canada Revenue Agency for the most recent taxation year. If you do not have a Notice of Assessment, other documentation can be used instead."
+  },
+  "applyText": "See reduced fares",
+  "applyUrl": "https://www.octranspo.com/en/fares/reduced-fares/",
+  "source": "https://www.octranspo.com/en/fares/reduced-fares/",
+  "detail": {
+   "about": "EquiPass is OC Transpo's fare discount for people on a low income. A monthly EquiPass costs $58.25, roughly half the $138.50 adult monthly pass, and the per-ride EquiPass fare is $1.75 against an adult fare of $4.10.",
+   "aboutList": {
+    "lead": "EquiPass is OC Transpo's low-income fare discount.",
+    "items": [
+     "$58.25 for a monthly pass, about half the $138.50 adult pass.",
+     "$1.75 per ride, against $4.10 for an adult.",
+     "You must not be receiving transportation benefits from Social Services.",
+     "You must use a Presto card — discounted fares are not available when paying cash."
+    ]
+   },
+   "steps": [
+    "Complete the EquiPass Application and Consent Form",
+    "Include your Canada Revenue Agency Notice of Assessment for the most recent taxation year, or other accepted documentation if you do not have one",
+    "Set the EquiPass discount at an OC Transpo Customer Service Centre, or by calling OC Transpo Customer Service",
+    "Buy the monthly pass up to 14 days before the month begins"
+   ],
+   "documents": [
+    "A completed EquiPass Application and Consent Form",
+    "A Canada Revenue Agency Notice of Assessment for the most recent taxation year, or other accepted documentation"
+   ],
+   "tips": [
+    "If you get ODSP, the Community Pass costs less at $43.25. It covers Para Transpo without a top-up.",
+    "A lawyer, notary, registered social worker or a member of a regulated health college can act as a guarantor on the application.",
+    "Paying per ride with Presto is capped at $12.25 a day. Over a month, it is capped at the monthly pass price."
+   ]
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "note": "$58.25/month or $1.75/ride, about half the adult fare"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Application and consent form plus a CRA Notice of Assessment",
+  "wait": "Not published"
+ },
+ "extra": null,
+ "verified": "2026-09"
+}

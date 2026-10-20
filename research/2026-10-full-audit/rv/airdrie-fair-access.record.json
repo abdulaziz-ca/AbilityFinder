@@ -1,0 +1,55 @@
+{
+ "id": "airdrie-fair-access",
+ "benefit": {
+  "id": "airdrie-fair-access",
+  "name": "Airdrie Fair Access",
+  "level": "Airdrie",
+  "category": "Getting around & recreation",
+  "amount": "25–75% off transit passes + Genesis Place recreation",
+  "summary": "One income-tested application covering Airdrie transit passes and Genesis Place recreation, at 25%, 50% or 75% off depending on income.",
+  "requires": [
+   "airdrie",
+   "lowIncomeOrDisabilityIncome"
+  ],
+  "note": "Airdrie checks your household income against its limits. The page does not say that being on AISH qualifies you automatically. An AISH or ADAP form showing your eligibility period is one of the accepted proof-of-income documents. AISH/ADAP recipients get a two-year term instead of one year.",
+  "applyText": "Open the official page on airdrie.ca",
+  "applyUrl": "https://www.airdrie.ca/index.cfm?serviceID=2414",
+  "source": "https://www.airdrie.ca/index.cfm?serviceID=2157",
+  "detail": {
+   "about": "The City of Airdrie's single low-income subsidy (formerly the Airdrie Participant Support Program). One application covers transit passes and Genesis Place recreation admissions, passes and registered programs. The discount is tiered: 75%, 50% or 25% depending where your household income falls against the low-income cut-off before tax.",
+   "aboutList": {
+    "lead": "The City of Airdrie's single low-income subsidy (formerly the Airdrie Participant Support Program).",
+    "items": [
+     "One application covers transit passes and Genesis Place recreation admissions, passes and registered programs.",
+     "The discount is tiered: 75%, 50% or 25% depending where your household income falls against the low-income cut-off before tax."
+    ]
+   },
+   "steps": [
+    "Apply online through the Airdrie Fair Access form — it's a one-step application.",
+    "Show household income; the tier you land in (75 / 50 / 25%) is worked out from it.",
+    "Call Community Links on 403-945-3900 if you want help with the form."
+   ],
+   "documents": [
+    "Proof of household income",
+    "Proof of an Airdrie address"
+   ],
+   "tips": [
+    "Income up to 25% above the low-income cut-off still gets you the 25% tier. Don't assume you earn too much.",
+    "If you use Access Airdrie (paratransit), ask whether your subsidy applies to it. The program page doesn't say either way, so check."
+   ],
+   "time": "Ask when you apply.",
+   "phone": "City of Airdrie: 403-948-8800 · Community Links: 403-945-3900"
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "note": "25–75% off transit + Genesis Place recreation"
+ },
+ "meta": {
+  "difficulty": 1,
+  "effort": "One online form",
+  "wait": "ask when you apply"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

@@ -1,0 +1,152 @@
+[
+ {
+  "id": "bc-medical-equipment-devices",
+  "snapshot": "ok",
+  "confirmed": 12,
+  "differs": [],
+  "blocking_not_on_page": [],
+  "verdict": "bump"
+ },
+ {
+  "id": "bc-autism-funding-6-18",
+  "snapshot": "ok",
+  "confirmed": 8,
+  "differs": [],
+  "blocking_not_on_page": [
+   {
+    "field": "benefit.note / detail.time",
+    "claim": "Autism Funding ends March 31, 2027; final aligned funding periods may be prorated to March 31, 2027",
+    "why": "Page only says it accepts new applications 'until March 2027' and that the current system is in effect until March 2027; no end date of March 31 or proration stated (March 31, 2027 appears only in the youth-aging-out sentence)."
+   },
+   {
+    "field": "detail.about / detail.tips",
+    "claim": "Normal TTE limit is 20%; BC increased allowable TTE to 50% for the final aligned funding period",
+    "why": "Page states the 50%/20% rules for plan lengths and 20% for youth aging out, but never says a normal 20% limit or an increase for a final aligned period."
+   },
+   {
+    "field": "detail.tips",
+    "claim": "Services delivered by March 31, 2027; direct-payment supporting documents due May 31, 2027; final invoices due September 30, 2027",
+    "why": "These dates are not on the fetched pages."
+   }
+  ],
+  "verdict": "keep"
+ },
+ {
+  "id": "bc-msp-supplementary-benefits",
+  "snapshot": "ok",
+  "confirmed": 20,
+  "differs": [
+   {
+    "field": "benefit.detail.tips",
+    "old": "If your children are under 19, families deemed eligible",
+    "new": "Families deemed eligible",
+    "quote": "Under Healthy Kids, families deemed eligible for Supplementary Benefits may be eligible for basic dental treatment, optical care, and hearing assistance",
+    "why": "Page gives no age limit (under 19) for Healthy Kids; it says children in low and moderate income families."
+   }
+  ],
+  "blocking_not_on_page": [],
+  "verdict": "fix-then-bump"
+ },
+ {
+  "id": "bc-additional-home-owner-grant",
+  "snapshot": "ok",
+  "confirmed": 14,
+  "differs": [],
+  "blocking_not_on_page": [
+   {
+    "field": "benefit.amount / detail.about",
+    "claim": "2026 additional grant up to $845 (Capital, Fraser Valley, Metro Vancouver) or $1,045 elsewhere; regular grant $570/$770",
+    "why": "No grant amounts on the page."
+   },
+   {
+    "field": "detail.about",
+    "claim": "2026 threshold $2,075,000, reduced by $5 per $1,000 above it",
+    "why": "Page mentions a threshold but no figure or reduction rate."
+   },
+   {
+    "field": "detail.tips",
+    "claim": "The higher northern and rural amount ends January 1, 2027",
+    "why": "Not on the page."
+   }
+  ],
+  "verdict": "keep"
+ },
+ {
+  "id": "bc-work-able-internship",
+  "snapshot": "ok",
+  "confirmed": 16,
+  "differs": [
+   {
+    "field": "benefit.eligibility.items[2]",
+    "old": "You self-identify as having a disability.",
+    "new": "You self-identify as having a disability, are a resident of British Columbia and are legally entitled to work in Canada.",
+    "quote": "Self-identify as having a disability - Resident of British Columbia - Legally entitled to work in Canada",
+    "why": "Dropped two eligibility conditions."
+   },
+   {
+    "field": "benefit.requiresNote",
+    "old": ", and self-identify as having a disability.",
+    "new": ", self-identify as having a disability, are a resident of British Columbia, and are legally entitled to work in Canada.",
+    "quote": "Resident of British Columbia - Legally entitled to work in Canada",
+    "why": "Dropped two eligibility conditions."
+   }
+  ],
+  "blocking_not_on_page": [],
+  "verdict": "fix-then-bump"
+ },
+ {
+  "id": "reddeer-fee-assistance",
+  "snapshot": "ok",
+  "confirmed": 14,
+  "differs": [
+   {
+    "field": "benefit.detail.steps[1]",
+    "old": "If you're on AISH, Income Support or Guaranteed Income Supplement, provide that document",
+    "new": "If you're on AISH or Income Support, provide that document (Guaranteed Income Supplement qualifies for the transit pass only)",
+    "quote": "This is not Guaranteed Income Supplement. Guaranteed Income Supplement is not a qualifier.",
+    "why": "Recreation page says GIS is not a qualifier; only the transit page lists GIS."
+   },
+   {
+    "field": "benefit.detail.documents[0]",
+    "old": "AISH / Income Support / GIS",
+    "new": "AISH / Income Support (or GIS, for the transit pass only)",
+    "quote": "Guaranteed Income Supplement is not a qualifier.",
+    "why": "Same GIS distinction."
+   }
+  ],
+  "blocking_not_on_page": [],
+  "verdict": "fix-then-bump"
+ },
+ {
+  "id": "ramp",
+  "snapshot": "ok",
+  "confirmed": 17,
+  "differs": [],
+  "blocking_not_on_page": [],
+  "verdict": "bump"
+ },
+ {
+  "id": "edmonton-fare-assistance",
+  "snapshot": "ok",
+  "confirmed": 8,
+  "differs": [],
+  "blocking_not_on_page": [],
+  "verdict": "bump"
+ },
+ {
+  "id": "aadl",
+  "snapshot": "ok",
+  "confirmed": 9,
+  "differs": [],
+  "blocking_not_on_page": [],
+  "verdict": "bump"
+ },
+ {
+  "id": "ab-capcc",
+  "snapshot": "ok",
+  "confirmed": 12,
+  "differs": [],
+  "blocking_not_on_page": [],
+  "verdict": "bump"
+ }
+]

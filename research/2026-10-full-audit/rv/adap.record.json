@@ -1,0 +1,84 @@
+{
+ "id": "adap",
+ "benefit": {
+  "id": "adap",
+  "needsPractitioner": true,
+  "name": "Alberta Disability Assistance Program (ADAP)",
+  "level": "Alberta",
+  "category": "Money",
+  "amount": "Up to $1,740/month + health, personal and employment benefits",
+  "summary": "Alberta disability income assistance when a severe disability significantly impedes employment, continuously or episodically, but does not prevent it.",
+  "requires": [
+   "adapAge",
+   "ab",
+   "citizenPR",
+   "adapMedical",
+   "adapFinancial"
+  ],
+  "note": "The same combined application assesses ADAP and AISH. This guide can only flag that ADAP may be worth asking about — Alberta makes the eligibility decision.",
+  "applyText": "Apply for Alberta disability income assistance",
+  "applyUrl": "https://www.alberta.ca/how-to-apply-for-aish-and-adap",
+  "source": "https://www.alberta.ca/alberta-disability-assistance-program",
+  "detail": {
+   "about": "ADAP is Alberta disability income assistance for adults whose severe disability significantly impedes employment continuously or episodically. To be medically eligible, the severe disability must be determined to significantly restrict but not prevent a person from being employed. It can include a core monthly financial benefit, health benefits, personal benefits and employment supports.",
+   "steps": [
+    "Use Alberta's combined AISH/ADAP application — it assesses which program fits; you do not make two separate applications.",
+    "Complete your part and arrange the required medical report with a medical professional registered in Alberta.",
+    "Provide the residency, status and financial information requested by Alberta Supports."
+   ],
+   "documents": [
+    "Medical report describing how the disability significantly impedes employment",
+    "Proof of Alberta residency + Canadian citizenship / PR",
+    "Financial details (income and assets)",
+    "Disability Income Assistance (DIA) application form, if you cannot apply online",
+    "Disability Assistance Medical Report, completed by your health professional"
+   ],
+   "tips": [
+    "Describe functional limits and fluctuating or episodic barriers — not only your diagnosis name.",
+    "One application is enough: Alberta decides whether AISH or ADAP is the appropriate program.",
+    "Use Alberta's AISH/ADAP benefit estimator for a household-specific estimate before relying on any amount.",
+    "If you receive ADAP or AISH, report the outcome of your CDB and/or DTC application to Alberta, including the approved CDB amount or a denial. Alberta says that when no CDB decision had been made by February 28, 2026, $200 was reduced from April 2026 benefits.",
+    "Getting help with the online application: phone the Alberta Supports Contact Centre at 1-877-644-9992, or 780-644-9992 in Edmonton.",
+    "Your health professional may charge you a fee to complete the Disability Assistance Medical Report, and you are responsible for paying it. If you are on Income Support that cost may be covered — ask your Income Support worker. For AISH clients who transitioned to ADAP and later choose to be assessed for AISH, Alberta says it will cover the cost of one Disability Income Assistance Medical Report; this support is not time-limited.",
+    "Benefits are backdated to the month AISH or ADAP received all of the information needed to approve your application, so sending every document sooner can mean an earlier start date for your benefits.",
+    "To check where your application is, phone 587-759-6810 in the Edmonton area, or 1-877-759-6810 toll free within Alberta.",
+    "If you leave AISH or ADAP, your file may be reopened quickly if it has been less than 2 years since you got your last AISH benefits and you did not leave AISH or ADAP due to a change in your medical condition. Contact AISH or ADAP if this applies to you; if not, you will need to reapply."
+   ],
+   "time": "Ask Alberta Supports for the current processing time.",
+   "phone": "DIA Application Processing Centre (applications and status): 1-877-759-6810"
+  }
+ },
+ "values": {
+  "kind": "cash",
+  "excludeFromEstimate": true,
+  "note": "monthly financial benefit plus health, personal and employment benefits"
+ },
+ "meta": {
+  "difficulty": 4,
+  "effort": "Application + medical report",
+  "wait": "Check with Alberta Supports"
+ },
+ "extra": {
+  "confirm": "a severe disability that significantly impedes employment continuously or episodically, plus Alberta's age, residency, status and financial rules",
+  "taxNote": "Alberta's combined assessment decides the current benefit and how household income or assets affect it. If you receive ADAP or AISH, Alberta requires you to report the outcome of your Canada Disability Benefit and/or Disability Tax Credit application, including the approved CDB amount or a denial.",
+  "faqs": [
+   {
+    "q": "Do I have to choose AISH or ADAP?",
+    "a": "No. Alberta's one application assesses both programs and places eligible applicants in the program that fits."
+   },
+   {
+    "q": "Can a fluctuating condition count?",
+    "a": "ADAP's official eligibility describes barriers that significantly impede employment continuously or episodically. Alberta makes the decision from the full application and medical report."
+   }
+  ],
+  "related": [
+   "aish",
+   "dtc",
+   "cdb-adult",
+   "cpp-disability",
+   "aadl",
+   "adult-health-benefit"
+  ]
+ },
+ "verified": "2026-07"
+}

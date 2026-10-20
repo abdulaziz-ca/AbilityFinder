@@ -1,0 +1,65 @@
+{
+ "id": "bc-assistance-program-students-disabilities",
+ "benefit": {
+  "id": "bc-assistance-program-students-disabilities",
+  "needsPractitioner": true,
+  "name": "B.C. Assistance Program for Students with Disabilities",
+  "level": "British Columbia",
+  "category": "Education",
+  "amount": "Up to $10,000, or up to $12,000 if an attendant is required at school",
+  "summary": "Funding for exceptional education-related services and adaptive equipment. Use it after the federal services and equipment grant runs out.",
+  "requires": [
+   "bc",
+   "student",
+   "disabilityDoc"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "You are enrolled at a designated private or public post-secondary institution in B.C.",
+    "You have a permanent disability, or a persistent or prolonged disability."
+   ],
+   "note": "It also covers students in developmental programs or courses."
+  },
+  "requiresNote": "You are enrolled at a designated private or public post-secondary institution in B.C. and have a permanent disability, or a persistent or prolonged disability. It also covers students in developmental programs or courses.",
+  "note": "You can only get this grant once you have used up all available funds through the Canada Student Grant for Services and Equipment – Students with Disabilities. Apply for that federal grant first. The page does not say whether these amounts are per year or a lifetime limit.",
+  "applyText": "See how to apply for disability funding",
+  "applyUrl": "https://studentaidbc.ca/explore/grants-scholarships/bc-assistance-program-students-disabilities",
+  "source": "https://studentaidbc.ca/explore/grants-scholarships/bc-assistance-program-students-disabilities",
+  "detail": {
+   "about": "This grant funds exceptional education-related services and adaptive equipment after all available funding from the Canada Student Grant for Services and Equipment – Students with Disabilities has been used. Apply for the federal grant first.",
+   "steps": [
+    "Have StudentAid BC verify your disability status",
+    "Meet with the school's accessibility services office to document disability-related services and equipment",
+    "Apply first for the Canada Student Grant for Services and Equipment – Students with Disabilities",
+    "If eligible costs exceed that grant, have the accessibility office submit the B.C. Assistance Program request and quotes",
+    "Wait for written approval before purchasing equipment or committing to services"
+   ],
+   "documents": [
+    "Verified disability status",
+    "Accessibility-services assessment of required services or equipment",
+    "Supplier quotes or service-cost estimates",
+    "Evidence that the federal services-and-equipment grant has been used"
+   ],
+   "tips": [
+    "Do not buy equipment before you have written funding approval",
+    "The official page does not say whether the maximum is annual or lifetime. Ask StudentAid BC before you plan around it."
+   ],
+   "time": "Varies with assessment, quotes and funding review",
+   "phone": "1-800-561-1818"
+  }
+ },
+ "values": {
+  "kind": "grant",
+  "excludeFromEstimate": true,
+  "annualMax": 10000,
+  "note": "student-only; up to $12,000 if an attendant is required"
+ },
+ "meta": {
+  "difficulty": 3,
+  "effort": "Student aid + documented exceptional education costs",
+  "wait": "After other disability funding is assessed"
+ },
+ "extra": null,
+ "verified": "2026-07"
+}

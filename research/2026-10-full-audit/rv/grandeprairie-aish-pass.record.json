@@ -1,0 +1,56 @@
+{
+ "id": "grandeprairie-aish-pass",
+ "benefit": {
+  "id": "grandeprairie-aish-pass",
+  "name": "Grande Prairie AISH Transit Pass & Recreation Access",
+  "level": "Grande Prairie",
+  "category": "Getting around & recreation",
+  "amount": "$10.25/month transit pass + 75% off recreation",
+  "summary": "If you're on AISH, a monthly Grande Prairie transit pass costs $10.25 instead of $74.25. This is the deepest municipal transit discount in the province that we've found.",
+  "requires": [
+   "grandeprairie",
+   "municipalProgramEligibility"
+  ],
+  "note": "Important: AISH and ADAP recipients are not part of the general Transit Access Program. You get your own, cheaper pass instead ($10.25 vs $37.13). Ask for the AISH pass by name at City Hall.",
+  "applyText": "Open the official page on cityofgp.com",
+  "applyUrl": "https://cityofgp.com/roads-transportation/public-transit/fares-superpass",
+  "source": "https://cityofgp.com/roads-transportation/public-transit/transit-access-program",
+  "detail": {
+   "about": "Grande Prairie prices a monthly transit SUPERPASS at $10.25 for AISH recipients, against $74.25 at the regular adult rate. It's separate from the city's general low-income Transit Access Program, which AISH recipients are explicitly excluded from — because this is the better deal. The Recreation Access Program is a separate application giving 75% off memberships, punch passes and registered programs.",
+   "aboutList": {
+    "lead": "Grande Prairie prices a monthly transit SUPERPASS at $10.25 for AISH recipients, against $74.25 at the regular adult rate.",
+    "items": [
+     "It's separate from the city's general low-income Transit Access Program, which AISH recipients are explicitly excluded from — because this is the better deal.",
+     "The Recreation Access Program is a separate application giving 75% off memberships, punch passes and registered programs."
+    ]
+   },
+   "steps": [
+    "For the transit pass: go to City Hall (10205 98 Street) and ask for the AISH monthly pass — bring your AISH documentation.",
+    "For recreation: apply separately to the Recreation Access Program, online or in person.",
+    "In-person applications are approved on the spot — about 10 minutes. Online takes about 2 days."
+   ],
+   "documents": [
+    "Proof you receive AISH (or ADAP)",
+    "Proof of a Grande Prairie address",
+    "For recreation: household income and any dependent children's details"
+   ],
+   "tips": [
+    "Don't let anyone put you in the Transit Access Program instead. It is a 50% discount ($37.13), and the AISH pass is $10.25. Say 'AISH pass' clearly.",
+    "The Recreation Access Program uses a higher income line than most (the low-income cut-off plus 30%). Apply even if you've been refused elsewhere."
+   ],
+   "time": "Same day in person; about 2 days online.",
+   "phone": "City of Grande Prairie: 780-538-0300 or 311"
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "note": "$10.25/mo transit pass (vs $74.25) + 75% off recreation"
+ },
+ "meta": {
+  "difficulty": 1,
+  "effort": "Ask at City Hall",
+  "wait": "same day in person"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

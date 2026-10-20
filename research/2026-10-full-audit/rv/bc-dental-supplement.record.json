@@ -1,0 +1,67 @@
+{
+ "id": "bc-dental-supplement",
+ "benefit": {
+  "id": "bc-dental-supplement",
+  "eligibility": {
+   "mode": "any",
+   "items": [
+    "Adults may be able to get basic dental coverage if they receive disability assistance, qualify as a person with persistent multiple barriers (PPMB), or are eligible for general health supplements.",
+    "Children under 19 in families on any assistance are covered."
+   ],
+   "note": "Everyone on assistance can get emergency dental treatment to relieve pain. Adults on income assistance may also be eligible for dentures if their complete upper and/or lower teeth were removed in the previous six months to relieve pain."
+  },
+  "name": "Dental Supplements (Income & Disability Assistance)",
+  "level": "British Columbia",
+  "category": "Health",
+  "amount": "Up to $1,000 per 2 calendar years for adults (current period Jan 2025–Dec 2026); up to $2,000 per 2 years for children under 19, plus $1,000/year for hospital dental under general anesthesia",
+  "summary": "Basic dental care for people on disability assistance, such as check-ups, fillings, extractions and dentures. The ministry pays the dentist directly. Emergency treatment to relieve pain is covered for everyone on assistance.",
+  "requires": [
+   "bc",
+   "bcAssistanceStatus"
+  ],
+  "requiresNote": "Adults may be able to get basic dental coverage if they receive disability assistance, qualify as a person with persistent multiple barriers (PPMB), or are eligible for general health supplements; children under 19 in families on any assistance are covered. Everyone on assistance can get emergency dental treatment to relieve pain. Adults on income assistance may also be eligible for dentures if their complete upper and/or lower teeth were removed in the previous six months to relieve pain.",
+  "note": "The adult limit resets on January 1 of every odd-numbered year. The current $1,000 window runs January 2025 through December 2026. Unused room disappears in January 2027. Amounts and covered services are in BC's health supplements rate table. Check the current limits there.",
+  "applyText": "See what's covered",
+  "applyUrl": "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance/supplements/dental",
+  "source": "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance/supplements/dental",
+  "detail": {
+   "about": "Coverage includes restorations, extractions, preventative care, partial and replacement dentures, and crowns or bridges in certain cases, billed under ministry fee schedules. Adults with eligibility get up to $1,000 over each two-calendar-year period. Children get up to $2,000 plus an extra $1,000 per year for hospital dental treatment under general anesthesia. Emergency dental to relieve pain is available to everyone on assistance regardless of the limit.",
+   "aboutList": {
+    "lead": "Coverage includes restorations, extractions, preventative care, partial and replacement dentures, and crowns or bridges in certain cases, billed under ministry fee schedules.",
+    "items": [
+     "Adults with eligibility get up to $1,000 over each two-calendar-year period.",
+     "Children get up to $2,000 plus an extra $1,000 per year for hospital dental treatment under general anesthesia.",
+     "Emergency dental to relieve pain is available to everyone on assistance regardless of the limit."
+    ]
+   },
+   "steps": [
+    "Confirm you receive disability assistance or otherwise qualify for general health supplements",
+    "Book any dentist, denturist or dental hygienist and show your BC Services Card",
+    "The office confirms your coverage with the ministry's insurer (Pacific Blue Cross) before treatment",
+    "The ministry pays the provider directly — ask in advance about any costs above the fee schedule"
+   ],
+   "documents": [
+    "BC Services Card or Personal Health Number"
+   ],
+   "tips": [
+    "Ministry fee-schedule rates are below many dentists' usual fees. Ask the office to bill within the schedule, or to tell you the difference before work starts.",
+    "Plan larger treatment around the 2-year cycle, so a January reset gives you a fresh $1,000",
+    "Dentures have their own rules and limits. Ask the ministry before you order."
+   ],
+   "time": "No application is described on the page — if you receive assistance you may be able to have basic dental costs covered; the provider verifies it at booking",
+   "phone": "1-866-866-0800"
+  }
+ },
+ "values": {
+  "kind": "coverage",
+  "excludeFromEstimate": true,
+  "note": "basic dental for people on assistance"
+ },
+ "meta": {
+  "difficulty": 1,
+  "effort": "Provider confirms ministry coverage",
+  "wait": "Coverage checked by the provider"
+ },
+ "extra": null,
+ "verified": "2026-07"
+}

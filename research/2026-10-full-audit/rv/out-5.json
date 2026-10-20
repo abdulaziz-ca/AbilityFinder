@@ -1,0 +1,30 @@
+[
+{"id":"bc-pwd-designation","snapshot":"ok","confirmed":14,"differs":[],"blocking_not_on_page":[],"verdict":"bump"},
+{"id":"bc-autism-funding-under-6","snapshot":"ok","confirmed":9,"differs":[],"blocking_not_on_page":[
+{"field":"benefit.note / detail.tips / detail.time","claim":"Program ends March 31, 2027; final aligned funding periods prorated to March 31, 2027; TTE limit raised from 20% to 50% for the final aligned period ending March 31, 2027","why":"Snapshot only says it accepts applications until March 2027 and that requests must not exceed 50% (or 20% for youth aging out before March 31, 2027). No March 31, 2027 end date, no proration, no 'normally 20%' for under-6."},
+{"field":"detail.tips","claim":"Service delivery by March 31, 2027; supporting documents due May 31, 2027; final invoices due September 30, 2027","why":"No such deadlines in snapshot."},
+{"field":"detail.tips","claim":"From July 2026 ministry contacts families about the new Disability Benefit ($6,500 or $17,000/year)","why":"Snapshot says families will be contacted before March 2027; no July 2026 date and no dollar amounts."},
+{"field":"detail.steps","claim":"BCAAN is free via physician referral","why":"Not on the fetched pages."}],"verdict":"keep"},
+{"id":"taxisaver-translink","snapshot":"ok","confirmed":10,"differs":[],"blocking_not_on_page":[],"verdict":"bump"},
+{"id":"grt-affordable-transit","snapshot":"ok","confirmed":14,"differs":[],"blocking_not_on_page":[
+{"field":"benefit.amount / note / values.note","claim":"$47 monthly pass vs $104; $1.35 stored value vs $3 / $4 cash; $6.75 for 5 MobilityPLUS tickets vs $15","why":"The fare price table ('ATP fare prices') is not in the snapshot text; none of these dollar amounts appear. Income limits, documents and eligibility are confirmed."}],"verdict":"keep"},
+{"id":"grandeprairie-aish-pass","snapshot":"ok","confirmed":9,"differs":[],"blocking_not_on_page":[
+{"field":"benefit.amount / summary / detail.about / values.note","claim":"75% off recreation (Recreation Access Program)","why":"Percentage not in snapshot; the pages cover transit only."},
+{"field":"detail.tips","claim":"Recreation Access Program income line is LICO plus 30%; online approval about 2 days; in person about 10 minutes","why":"The LICO +30% on the page belongs to the Transit Access Program; recreation program and timings not on page."},
+{"field":"benefit.summary","claim":"deepest municipal transit discount in the province that we've found","why":"Comparative claim not supported by snapshot."}],"verdict":"keep"},
+{"id":"windsor-recreation-assistance","snapshot":"ok","confirmed":14,"differs":[],"blocking_not_on_page":[
+{"field":"benefit.eligibility.items[0]","claim":"Lived within Windsor-Essex County for at least 30 days and able to demonstrate residency","why":"The 30-day residency rule is not on this page (it refers to a separate Eligibility Requirements page)."},
+{"field":"benefit.eligibility.items[1]","claim":"Combined household income at or below the Market Basket Measure thresholds","why":"MBM is not mentioned in snapshot; page only says eligibility is based on household income, family size and funding."},
+{"field":"detail.documents","claim":"Accepted proof of income/residency lists and Letter of Endorsement","why":"Not on this page (process detail, non-blocking on its own)."}],"verdict":"keep"},
+{"id":"kamloops-arch","snapshot":"ok","confirmed":10,"differs":[],"blocking_not_on_page":[
+{"field":"detail.tips[2..3], benefit.note","claim":"KamPASS exclusions (disability assistance recipients, seniors eligible for BC Bus Pass, under-18s, U-PASS students, CNIB, above LICO) and that ARCH approval does not establish KamPASS eligibility","why":"Snapshot only says KamPASS applications go through the ARCH application; the exclusions are on a different page."},
+{"field":"detail.about","claim":"Applicants automatically considered for both programs; qualified participants can use both or just one","why":"Not on the ARCH page."}],"verdict":"keep"},
+{"id":"ottawa-access-pass","snapshot":"ok","confirmed":8,"differs":[],"blocking_not_on_page":[
+{"field":"benefit.amount / note / detail","claim":"$2.75 top-up per Para Transpo ride","why":"Top-up amount not in snapshot (page says Community Pass has no top-up, and Access pass saves one-third of cash fare)."},
+{"field":"detail.tips","claim":"Fare capping never costs more than $12.25 in a day","why":"Not in snapshot."},
+{"field":"detail.steps","claim":"Buy the monthly pass up to 14 days before the month begins","why":"Not in snapshot (a date/deadline claim)."}],"verdict":"keep"},
+{"id":"bc-dental-supplement","snapshot":"ok","confirmed":13,"differs":[],"blocking_not_on_page":[],"verdict":"bump"},
+{"id":"ottawa-hand-in-hand","snapshot":"ok","confirmed":12,"differs":[
+{"field":"benefit.summary","old":"residents with a low income, a family member with a disability, or who already take part in a community or social service agency program","new":"residents who can show financial need","quote":"Applicants must meet one of the following eligibility requirements: ... Evidence of being in receipt of Ontario Works","why":"Page lists proof-of-need routes only; no 'family member with a disability' or 'agency program participant' group."},
+{"field":"benefit.eligibility.note","old":"evidence of receiving Essential Health and Social Supports,","new":"evidence of receiving Ontario Works, a Child Care Subsidy, Essential Health and Social Supports,","quote":"Evidence of being in receipt of Ontario Works / Evidence of being in receipt of a Child Care Subsidy","why":"Two accepted routes were dropped from the list."}],"blocking_not_on_page":[],"verdict":"fix-then-bump"}
+]

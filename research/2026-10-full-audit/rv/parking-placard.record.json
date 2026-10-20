@@ -1,0 +1,60 @@
+{
+ "id": "parking-placard",
+ "benefit": {
+  "id": "parking-placard",
+  "needsPractitioner": true,
+  "name": "Disability Parking Placard",
+  "level": "Alberta",
+  "category": "Getting around",
+  "amount": "Low-cost accessible parking permit",
+  "summary": "A placard that lets you use accessible parking spaces.",
+  "requires": [
+   "ab",
+   "abPlacardMobility",
+   "certifier"
+  ],
+  "note": "You may be eligible if you can't walk more than 50 metres (164 feet). You may also be eligible if a loss of vision greatly limits your safe and independent mobility in parking areas.",
+  "applyText": "Apply for a parking placard",
+  "applyUrl": "https://www.alberta.ca/get-parking-placard-people-disabilities",
+  "source": "https://www.alberta.ca/parking-placard-disabilities",
+  "detail": {
+   "about": "A permit that lets you park in designated accessible spaces. Blue placards are for long-term disabilities (valid 5 years); red placards are for temporary ones (3–12 months).",
+   "steps": [
+    "Get the application form and have a medical practitioner complete their section.",
+    "Take it to any registry agent (e.g. an AMA centre)."
+   ],
+   "documents": [
+    "Application form with the medical section completed",
+    "Government-issued ID"
+   ],
+   "tips": [
+    "You don't need to own a vehicle. The placard belongs to you, not a car.",
+    "A physician, occupational therapist, physiotherapist, surgeon, podiatrist, nurse practitioner or chiropractor can complete the medical section."
+   ],
+   "time": "Issued at the registry, often same-day.",
+   "phone": "Any Alberta registry agent"
+  }
+ },
+ "values": {
+  "kind": "access",
+  "note": "low-cost accessible parking permit"
+ },
+ "meta": {
+  "difficulty": 1,
+  "effort": "Short form + a registry visit",
+  "wait": "often same day"
+ },
+ "extra": {
+  "faqs": [
+   {
+    "q": "Do I need to own a car?",
+    "a": "No — the placard belongs to you and works in any vehicle you're travelling in."
+   },
+   {
+    "q": "Who can complete the medical section?",
+    "a": "Alberta lists a physician, occupational therapist, physiotherapist, surgeon, podiatrist, nurse practitioner or chiropractor. Check with the practitioner before booking."
+   }
+  ]
+ },
+ "verified": "2026-07"
+}

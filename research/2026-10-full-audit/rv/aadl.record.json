@@ -1,0 +1,57 @@
+{
+ "id": "aadl",
+ "benefit": {
+  "id": "aadl",
+  "name": "Alberta Aids to Daily Living (AADL)",
+  "level": "Alberta",
+  "category": "Health & equipment",
+  "amount": "Funding for medical equipment & supplies (you pay a small share)",
+  "summary": "Helps pay for equipment and supplies you need for a long-term illness, disability or condition — wheelchairs, hearing aids, breathing supplies and much more.",
+  "requires": [
+   "ab",
+   "equipmentNeed",
+   "ahcipRegistered",
+   "aadlAssessment",
+   "aadlOtherPayer"
+  ],
+  "note": "Covers a wide range of devices. You usually pay 25% (capped per year). Low-income households can have that waived.",
+  "applyText": "Open the official page on alberta.ca",
+  "applyUrl": "https://www.alberta.ca/alberta-aids-to-daily-living",
+  "source": "https://www.alberta.ca/aadl-eligibility-and-application-for-benefits",
+  "detail": {
+   "about": "A provincial program that funds basic medical equipment and supplies for Albertans with a long-term disability, chronic illness or terminal illness — mobility aids, hearing aids, vision aids, breathing equipment, diabetic and ostomy supplies, and more.",
+   "steps": [
+    "See an AADL-authorized health professional (e.g. an OT, audiologist, or specialist) who assesses what you need.",
+    "They complete the authorization for the specific equipment.",
+    "Get the item from an approved vendor; AADL covers its share directly."
+   ],
+   "documents": [
+    "Alberta Health Care (personal health) number",
+    "An assessment from an authorized professional for the specific item"
+   ],
+   "tips": [
+    "You don't apply to a general office. You go through an authorizer (often an OT, physio, or audiologist). Ask your doctor for a referral.",
+    "The 25% cost-share is capped each year. Low-income Albertans and people receiving income assistance do not pay it."
+   ],
+   "time": "Depends on the assessment and vendor.",
+   "phone": "AADL: 780-427-0731 (toll-free via 310-0000)"
+  }
+ },
+ "values": {
+  "kind": "coverage",
+  "note": "covers ~75% of approved equipment & supplies"
+ },
+ "meta": {
+  "difficulty": 3,
+  "effort": "Assessment with an OT / authorizer",
+  "wait": "varies"
+ },
+ "extra": {
+  "taxNote": "You usually pay a 25% cost-share (capped each year) — you do not pay it if you are low-income or receiving income assistance.",
+  "related": [
+   "aish",
+   "adult-health-benefit"
+  ]
+ },
+ "verified": "(inherited)"
+}

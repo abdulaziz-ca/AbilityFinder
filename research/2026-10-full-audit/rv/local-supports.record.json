@@ -1,0 +1,46 @@
+{
+ "id": "local-supports",
+ "benefit": {
+  "id": "local-supports",
+  "name": "Local transit & recreation discounts",
+  "level": "Your community",
+  "category": "Getting around & recreation",
+  "amount": "Varies by community",
+  "summary": "Many cities and towns run their own low-income or disability discounts on transit passes and recreation. 2-1-1 can help you find yours.",
+  "requires": [
+   "provinceCovered",
+   "cityOther"
+  ],
+  "note": "Programs are named and run differently in every community. 2-1-1 is a free, confidential service that finds the ones near you.",
+  "applyText": "Find supports near me (2-1-1)",
+  "detail": {
+   "about": "Beyond the biggest cities, many municipalities offer their own low-income or disability discounts on transit and recreation — but they're all named and delivered differently. 2-1-1 is a free, confidential service that connects you to the specific programs in your community. In most of Canada you can reach it 24 hours a day, in more than 150 languages. In BC, 211 navigators are available 9am to 9pm, Monday to Friday, excluding statutory holidays.",
+   "steps": [
+    "Visit your provincial 2-1-1 site, or simply dial 2-1-1 from any phone.",
+    "Tell them your town and what you need (transit, recreation, financial help).",
+    "They can point you to local programs and how to apply."
+   ],
+   "documents": [
+    "Your city or town name",
+    "A rough idea of your household income"
+   ],
+   "tips": [
+    "Dialing 2-1-1 is free. In most of Canada it is open 24 hours a day, in many languages. In BC, navigators are available 9am to 9pm on weekdays, excluding holidays.",
+    "Also search your town's own website for 'recreation fee assistance' or 'low-income transit pass'."
+   ],
+   "time": "Immediate — it's an information service.",
+   "phone": "Dial 2-1-1"
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "note": "varies by community"
+ },
+ "meta": {
+  "difficulty": 1,
+  "effort": "Call 2-1-1",
+  "wait": "immediate"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

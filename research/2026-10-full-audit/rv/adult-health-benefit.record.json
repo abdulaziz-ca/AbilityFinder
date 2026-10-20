@@ -1,0 +1,58 @@
+{
+ "id": "adult-health-benefit",
+ "benefit": {
+  "id": "adult-health-benefit",
+  "name": "Alberta Adult Health Benefit",
+  "level": "Alberta",
+  "category": "Health",
+  "amount": "Dental care, prescription drugs, eye exams and glasses, and more — ask your provider what is paid for",
+  "summary": "Health coverage for adults in lower-income households. It covers prescriptions, dental, eye care, and essential diabetic supplies.",
+  "requires": [
+   "adult",
+   "ab",
+   "citizenPR",
+   "adultHealthIncome",
+   "adultHealthGateway"
+  ],
+  "note": "Helps cover the cost of medication if you're on a lower income and not already covered by AISH.",
+  "applyText": "Open the official page on alberta.ca",
+  "applyUrl": "https://www.alberta.ca/alberta-adult-health-benefit",
+  "source": "https://www.alberta.ca/alberta-adult-health-benefit",
+  "detail": {
+   "about": "Ongoing health coverage for adults and families with lower incomes — prescription drugs, dental, optical, emergency ambulance, and diabetic supplies — at no monthly premium.",
+   "steps": [
+    "Check the income guidelines on the page.",
+    "Complete the Alberta Adult Health Benefit application.",
+    "Sign the consent for the Canada Revenue Agency to verify your income, add documentation of your high ongoing prescription drug needs if it applies, and submit the form by email, mail or fax."
+   ],
+   "documents": [
+    "Signed Consent for Canada Revenue Agency to Verify Income (part of the application form)",
+    "Alberta Health Care number",
+    "If it applies: documentation of high ongoing prescription drug needs, such as a pharmacy dispensing history report"
+   ],
+   "tips": [
+    "If you leave AISH or Income Support because you started working, you may keep this coverage. Ask specifically.",
+    "If your application is denied because of your income, Alberta describes a way to ask for a reassessment with extra income documents. The steps depend on when you were denied."
+   ],
+   "time": "A few weeks to process.",
+   "phone": "Health Benefits Contact Centre: 780-427-6848, or toll free 1-877-469-5437"
+  }
+ },
+ "values": {
+  "kind": "coverage",
+  "note": "prescriptions, dental, optical, ambulance and diabetes supplies — Alberta publishes no annual dollar value"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Form + consent for CRA to verify income",
+  "wait": "a few weeks"
+ },
+ "extra": {
+  "taxNote": "If you leave AISH or Income Support because you started working, you may be able to keep this coverage — ask specifically.",
+  "related": [
+   "aish",
+   "aadl"
+  ]
+ },
+ "verified": "2026-07"
+}

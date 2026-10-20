@@ -1,0 +1,59 @@
+{
+ "id": "bc-optical-supplement",
+ "benefit": {
+  "id": "bc-optical-supplement",
+  "name": "Optical Supplements (Glasses & Eye Exams)",
+  "level": "British Columbia",
+  "category": "Health",
+  "amount": "Routine eye exam up to $44.83 with an optometrist or $48.90 with an ophthalmologist once every 2 years; new prescription glasses at the ministry's maximum rates, plus new lenses if your eye doctor confirms a change in your prescription",
+  "summary": "Eye exams and prescription eyewear for everyone on income or disability assistance. Show your BC Services Card at any eye clinic, and the ministry pays the optometrist or optician directly.",
+  "requires": [
+   "bc",
+   "bcAssistanceStatus"
+  ],
+  "note": "MSP already covers children's routine eye exams. The supplement pays for their glasses. You may be responsible for costs above the ministry's fee schedule, so ask the clinic first.",
+  "applyText": "See what's covered",
+  "applyUrl": "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance/supplements/optical",
+  "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/health-supplements-and-programs-rate-table",
+  "detail": {
+   "about": "Everyone receiving income or disability assistance gets specified optical services: routine eye exams for adults ($44.83 with an optometrist or $48.90 with an ophthalmologist every two years), new eyeglasses up to ministry maximum rates, new lenses if your eye doctor confirms a change in your prescription, and necessary repairs to lenses or frames. Payment goes straight from the ministry to the optometrist or optician.",
+   "aboutList": {
+    "lead": "Everyone receiving income or disability assistance gets specified optical services:",
+    "items": [
+     "Routine eye exams for adults ($44.83 with an optometrist or $48.90 with an ophthalmologist every two years)",
+     "New eyeglasses up to ministry maximum rates",
+     "New lenses if your eye doctor confirms a change in your prescription",
+     "And necessary repairs to lenses or frames",
+     "Payment goes straight from the ministry to the optometrist or optician."
+    ]
+   },
+   "steps": [
+    "Take your BC Services Card to any eye clinic",
+    "The clinic verifies your coverage through Pacific Blue Cross",
+    "Get your exam and choose frames within the ministry rate (or pay the difference)",
+    "The ministry pays the provider directly"
+   ],
+   "documents": [
+    "BC Services Card"
+   ],
+   "tips": [
+    "Ask the clinic which frames are fully covered at ministry rates before choosing",
+    "If your eye doctor confirms a change in your prescription, new lenses are covered"
+   ],
+   "time": "No application — coverage verified at the clinic on the spot",
+   "phone": "1-866-866-0800"
+  }
+ },
+ "values": {
+  "kind": "coverage",
+  "excludeFromEstimate": true,
+  "note": "eye exam + glasses at ministry rates"
+ },
+ "meta": {
+  "difficulty": 1,
+  "effort": "Show your BC Services Card to the provider",
+  "wait": "Coverage checked by the provider"
+ },
+ "extra": null,
+ "verified": "2026-07"
+}

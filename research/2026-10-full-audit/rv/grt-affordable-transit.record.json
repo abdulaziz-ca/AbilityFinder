@@ -1,0 +1,107 @@
+{
+ "id": "grt-affordable-transit",
+ "benefit": {
+  "id": "grt-affordable-transit",
+  "name": "Affordable Transit Program (Grand River Transit)",
+  "level": "Region of Waterloo",
+  "category": "Transit",
+  "amount": "$47 monthly pass, $1.35 stored value per ride, or $6.75 for 5 MobilityPLUS tickets",
+  "amountTiers": {
+   "caption": "Household net income at or below this limit",
+   "headers": [
+    "Household size",
+    "Net income limit"
+   ],
+   "rows": [
+    [
+     "1 person",
+     "$31,875"
+    ],
+    [
+     "2 people",
+     "$45,078"
+    ],
+    [
+     "3 people",
+     "$55,208"
+    ],
+    [
+     "4 people",
+     "$63,749"
+    ],
+    [
+     "5 people",
+     "$71,724"
+    ],
+    [
+     "6 people",
+     "$78,077"
+    ]
+   ]
+  },
+  "summary": "The Affordable Transit Program gives discounted GRT fares to Waterloo Region residents on a low income. Eligibility depends on total household income.",
+  "note": "ATP costs $47 for a monthly pass instead of $104. Stored value is $1.35 per ride instead of the regular $3 stored-value fare or $4 cash fare. A strip of 5 ATP MobilityPLUS tickets costs $6.75 instead of $15.",
+  "requires": [
+   "waterlooRegion",
+   "lowIncome",
+   "atpApproval"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "You are 18 or older",
+    "You live in the Region of Waterloo",
+    "You are not a full-time college or university student",
+    "Your household net income is at or below the limit"
+   ],
+   "note": "Income is household NET income: add line 23600 from each member's tax return. A household includes people you live with, are related to and financially support. Everyone counts even if they do not need a pass, and members over 18 must provide income information. If approved, all household members can buy the discounted fares, including all children 17 or younger."
+  },
+  "applyText": "Apply for the Affordable Transit Program",
+  "applyUrl": "https://www.grt.ca/fares-and-payment/affordable-transit-program/",
+  "source": "https://www.grt.ca/fares-and-payment/affordable-transit-program/",
+  "detail": {
+   "about": "The Affordable Transit Program offers a discount on the price of GRT fare products for Waterloo Region residents living with low income. Eligibility is based on total household income and is managed by the Region of Waterloo Department of Community Services. The ATP monthly pass is $47 compared with the $104 regular monthly pass. ATP stored value is $1.35 per ride compared with $3 regular stored value and a $4 cash fare. ATP MobilityPLUS tickets are $6.75 for a strip of 5 compared with $15 regular.",
+   "aboutList": {
+    "lead": "ATP discounts GRT fares for Waterloo Region households living with low income.",
+    "items": [
+     "$47 for an ATP monthly pass, compared with $104 for a regular monthly pass.",
+     "$1.35 ATP stored value per ride, compared with $3 regular stored value and a $4 cash fare.",
+     "$6.75 for a strip of 5 ATP MobilityPLUS tickets, compared with $15 regular.",
+     "Eligibility is managed by the Region of Waterloo Department of Community Services.",
+     "If approved, all household members can buy discounted fares, including all children 17 or younger."
+    ]
+   },
+   "steps": [
+    "Add line 23600 from each household member's tax return and compare the total with the table",
+    "Gather the documents for your household's route",
+    "Apply online at https://webapps.regionofwaterloo.ca/ATP/ApplicationWizard/Step/Info when the online application is available. The GRT page says it is temporarily unavailable.",
+    "While it is unavailable you can still apply or get help from 8:30 to 4:30, Monday to Friday. Call Employment and Income Services at 519-883-2100 option 1, contact your Ontario Works caseworker directly, or visit a Community Services Welcome Space (150 Main St. Cambridge, 20 Weber St. Kitchener, 99 Regina St. S. Waterloo).",
+    "The GRT page says applications received during the interruption are processed within 7 days.",
+    "Ask for help at a Community Service Welcome Space if you need help completing the application"
+   ],
+   "documents": [
+    "If you receive Ontario Works or ODSP: your date of birth and your SAMS Member ID or SIN",
+    "If you do not receive Ontario Works or ODSP: proof of address — a valid driver's licence, Ontario photo ID card, government-issued mail, current utility bill, rent receipt or lease, or mortgage document",
+    "If you do not receive Ontario Works or ODSP: proof of income for each income-earning household member — a CRA Notice of Assessment showing line 23600, CRA Proof of income statement (Option C), or a letter from a Registered Social Worker",
+    "If you were a student in the last calendar year: proof of completion or graduation documents",
+    "If you are new to Canada in the current calendar year, you can submit one of: a PR or citizenship card, a refugee protection document, a verification of claim, a work permit, or confirmation of permanent residence"
+   ],
+   "tips": [
+    "Your household includes people you live with, are related to and support financially. Count everyone, even if they do not need a pass.",
+    "Household members over 18 must give income information.",
+    "If you are a registered MobilityPLUS customer on a low income, apply for ATP too. It lowers the cost of MobilityPLUS tickets."
+   ]
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "note": "$47 monthly pass vs $104 regular; $1.35 stored value per ride vs $3 regular and $4 cash; $6.75 for 5 MobilityPLUS tickets vs $15 regular"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Online application with household income information and supporting documents",
+  "wait": "Not published"
+ },
+ "extra": null,
+ "verified": "2026-09"
+}

@@ -1,0 +1,74 @@
+{
+ "id": "windsor-affordable-pass",
+ "benefit": {
+  "id": "windsor-affordable-pass",
+  "name": "Affordable Pass Program (Windsor)",
+  "level": "Windsor",
+  "category": "Transit",
+  "amount": "Transit Windsor 30-day APP pass: $63 adult or $43.50 youth, before taxes",
+  "summary": "A fee subsidy for Windsor-Essex residents and households on a low income. For approved applicants, Transit Windsor lists a 30-day bus pass at $63 for adults or $43.50 for youth, before taxes.",
+  "note": "These are Transit Windsor's prices. Eligibility rules may differ between municipalities. If you live elsewhere in Windsor-Essex, contact your local municipal transit department. Funding is first come, first served. The local transit department decides all approvals, based on local demand and budgets.",
+  "requires": [
+   "windsor",
+   "lowIncome",
+   "p2pIncomeTest"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "Residents who have lived within Windsor-Essex County for at least 30 days and who are able to demonstrate residency",
+    "A combined household income that is at, or below, the Market Basket Measure (MBM) thresholds"
+   ],
+   "note": "The programme page does not list the MBM thresholds; for further details it directs you to contact your local municipal transit department. International students, full-time post-secondary students and foreign workers are not eligible, although exceptions may apply within municipalities. Eligibility criteria may differ across municipalities."
+  },
+  "applyText": "See Affordable Pass details",
+  "applyUrl": "https://www.citywindsor.ca/residents/social-services/social-policy-and-pathway-to-potential/pathway-to-potential/p2p-programs/affordable-pass-program",
+  "source": "https://www.citywindsor.ca/residents/social-services/social-policy-and-pathway-to-potential/pathway-to-potential/p2p-programs/affordable-pass-program",
+  "detail": {
+   "about": "Pathway to Potential is a poverty-reduction strategy for the Windsor-Essex region, jointly funded by the City of Windsor and County of Essex. Its Affordable Pass Program is a fee subsidy that provides affordable transportation for Windsor-Essex residents and households living on a low income by subsidizing eligible residents' bus-pass costs before taxes. Transit Windsor publishes 30-day APP prices of $63 for an adult and $43.50 for a youth. Eligibility criteria may differ across municipalities, so applicants must contact their local municipal transit department.",
+   "aboutList": {
+    "lead": "The Affordable Pass Program lowers bus-pass costs for approved Windsor-Essex residents living on a low income.",
+    "items": [
+     "Transit Windsor's APP prices are $63 for an adult 30-day pass and $43.50 for a youth 30-day pass, before taxes.",
+     "Transit Windsor's regular Smart Pass prices are $124 for an adult aged 20 to 59, $85 for a youth aged 13 to 19, and $63 for a senior aged 60 and over.",
+     "Transit Windsor charges $3.95 for a single adult, senior or youth fare, including a 2-hour transfer.",
+     "The APP adult 30-day price and Transit Windsor's regular senior 30-day price are both $63, so the APP is worth less to a rider who is already 60 or over.",
+     "Other municipalities may have different eligibility criteria; contact your local municipal transit department if you live elsewhere in Windsor-Essex."
+    ]
+   },
+   "steps": [
+    "Ask your local municipal transit department for the Market Basket Measure threshold for your family size — the programme page does not list it",
+    "Gather your proof of residency and your combined-household-income documents — you must also have lived within Windsor-Essex County for at least 30 days",
+    "Apply through your local municipal transit department; funding is available on a first-come, first-served basis",
+    "If Transit Windsor approves you, get the APP pass at the Windsor International Transit Terminal, 300 Chatham Street West — it is available only there, with proof of identification",
+    "Tell your municipality about any change to financial, residency or other circumstances within 30 days of the change taking effect"
+   ],
+   "documents": [
+    "Preferred proof of income: a Canada Child Benefit notice, a Notice of Assessment, or proof of Ontario Works or Ontario Disability Support Program benefits",
+    "One proof of residency: Ontario Driver's Licence, Ontario Health Card, Ontario Photo Card, current utility bill, property tax bill, lease or rental agreement, mortgage statement, or current bank statement",
+    "Proof of identification when getting a Transit Windsor APP pass at the Windsor International Transit Terminal",
+    "Additional documentation may be requested",
+    "If you cannot provide the required documents, or your circumstances recently changed in a way they do not reflect, a Letter of Endorsement may be used. It should be on professional letterhead, include the referring agency's contact information and the client's full name, outline the benefits the subsidy would provide, and indicate the barriers preventing application. Acceptance is at the discretion of the municipality"
+   ],
+   "tips": [
+    "Funding is first come, first served.",
+    "Each eligible person can get the discount for 12 months from the date of approval.",
+    "The local transit department decides all approvals. They depend on local demand and budgets.",
+    "Report any change to your finances, residency or other circumstances within 30 days of it taking effect. If you do not, the provider reserves the right to end your eligibility.",
+    "You cannot transfer your eligibility. You cannot sell, transfer, trade, give away or share passes.",
+    "You can only get the Transit Windsor APP pass at the Windsor International Transit Terminal, 300 Chatham Street West. Bring proof of identification."
+   ]
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "note": "Transit Windsor APP 30-day pass: $63 adult or $43.50 youth, before taxes; regular 30-day Smart Pass: $124 adult, $85 youth or $63 senior"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Application through the local municipal transit department with proof of income and residency",
+  "wait": "Not published — funding is first-come, first-served and subject to local demands and budgets"
+ },
+ "extra": null,
+ "verified": "2026-09"
+}

@@ -1,0 +1,108 @@
+[
+  {
+    "id": "bc-workbc-employment-services",
+    "snapshot": "ok",
+    "confirmed": 18,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump"
+  },
+  {
+    "id": "odsp",
+    "snapshot": "ok",
+    "confirmed": 34,
+    "differs": [],
+    "blocking_not_on_page": [
+      {"field": "benefit.eligibility.items[0]", "claim": "At least 18 years old (you can start applying up to six months before your 18th birthday)", "why": "The snapshot does not state the minimum eligibility age or the six-month early-application window."},
+      {"field": "benefit.eligibility.items[2]", "claim": "Non-exempt assets at or under $40,000 for a single person, or $50,000 for a couple", "why": "The snapshot requests asset information but does not give asset limits."},
+      {"field": "benefit.eligibility.note", "claim": "a substantial mental or physical impairment that is continuous or recurrent and is expected to last one year or more", "why": "The snapshot refers to the legislative definition but does not reproduce its duration or impairment criteria."},
+      {"field": "benefit.note; benefit.detail.tips[3]", "claim": "CPP-D or QPP-D recipients are in a prescribed class and skip disability determination", "why": "The snapshot confirms that prescribed-class members skip the package, but does not identify CPP-D or QPP-D recipients as members."},
+      {"field": "benefit.detail.steps[4]; benefit.detail.tips[2]", "claim": "Return the Disability Determination Package within 90 days; otherwise the application is withdrawn unless a written extension is approved", "why": "The snapshot gives a 90-business-day adjudication response time, not a 90-day package submission deadline or withdrawal/extension rules."}
+    ],
+    "verdict": "keep"
+  },
+  {
+    "id": "bc-fair-pharmacare",
+    "snapshot": "ok",
+    "confirmed": 24,
+    "differs": [],
+    "blocking_not_on_page": [
+      {"field": "benefit.amount; benefit.amountTiers.rows", "claim": "$13,750 or less: 100% from the first prescription; up to $30,000: no deductible and a $100–$800 family maximum; above $30,000: a deductible applies", "why": "The snapshot links to assistance levels but contains no income-band table establishing these thresholds or maximums."},
+      {"field": "benefit.note; benefit.detail.tips[3]; benefit.detail.tips[4]", "claim": "Plan B provides 100% coverage of eligible prescription drugs and pharmacy services for permanent residents of enrolled facilities, with the listed facility and stay exclusions", "why": "Neither snapshot section describes Plan B, its coverage percentage or its eligibility/exclusions."},
+      {"field": "benefit.detail.tips[5]", "claim": "Since March 1, 2026, Plan NP has covered many diabetes medications, contraceptives and menopausal hormone therapy at no cost", "why": "The snapshot does not describe Plan NP or establish its start date or no-cost coverage."},
+      {"field": "benefit.detail.tips[6]; benefit.detail.tips[7]", "claim": "Plan NP prescriptions do not count toward the deductible or family maximum; the named diabetes drugs and Special Authority requirements are covered as described", "why": "The snapshot contains no Plan NP deductible treatment, formulary or Special Authority list."},
+      {"field": "benefit.detail.tips[8]", "claim": "On April 1, 2026, Plan NP expanded to cover certain diabetes-related supplies and devices.", "why": "The snapshot does not state this expansion or date."},
+      {"field": "benefit.detail.tips[9]", "claim": "Full-cost nicotine gum, lozenges and patches for one continuous course of up to 12 weeks (84 days) per calendar year, resetting January 1; prescription stop-smoking drugs through the named plans", "why": "The snapshot does not describe smoking-cessation coverage, duration, reset date or the listed alternative plans."}
+    ],
+    "verdict": "keep"
+  },
+  {
+    "id": "adult-health-benefit",
+    "snapshot": "ok",
+    "confirmed": 17,
+    "differs": [
+      {"field": "benefit.summary", "old": "Health coverage for adults in lower-income households.", "new": "Health coverage for lower-income adults who are pregnant, have high ongoing prescription drug needs, or are leaving Income Support or AISH due to excess employment, self-employment or CPP-D income.", "quote": "You may be eligible if you:\n- are pregnant\n- have high ongoing prescription drug needs\n- are leaving the Income Support or Assured Income for the Severely Handicapped (AISH) programs due to excess income from employment, self-employment or CPP-D benefits", "why": "Low income alone does not establish eligibility; the summary drops the qualifying pathways."},
+      {"field": "benefit.detail.about", "old": "Ongoing health coverage for adults and families with lower incomes", "new": "Ongoing health coverage for lower-income households where an adult is pregnant, has high ongoing prescription drug needs, or is leaving Income Support or AISH due to excess employment, self-employment or CPP-D income", "quote": "You may be eligible if you:\n- are pregnant\n- have high ongoing prescription drug needs\n- are leaving the Income Support or Assured Income for the Severely Handicapped (AISH) programs due to excess income from employment, self-employment or CPP-D benefits", "why": "The description omits the qualifying pathways."}
+    ],
+    "blocking_not_on_page": [
+      {"field": "benefit.detail.about", "claim": "at no monthly premium", "why": "The snapshot lists covered services but does not establish a zero monthly premium."}
+    ],
+    "verdict": "keep"
+  },
+  {
+    "id": "kelowna-recreation-assistance",
+    "snapshot": "ok",
+    "confirmed": 38,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump"
+  },
+  {
+    "id": "woodbuffalo-lift",
+    "snapshot": "ok",
+    "confirmed": 25,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump"
+  },
+  {
+    "id": "parking-placard",
+    "snapshot": "ok",
+    "confirmed": 16,
+    "differs": [],
+    "blocking_not_on_page": [
+      {"field": "benefit.amount; values.note", "claim": "Low-cost accessible parking permit", "why": "The snapshot does not establish a placard price or characterize it as low-cost."},
+      {"field": "benefit.detail.about", "claim": "Blue placards are for long-term disabilities", "why": "The snapshot confirms five-year long-term placards and red temporary visitor placards, but does not establish the blue colour for long-term placards."}
+    ],
+    "verdict": "keep"
+  },
+  {
+    "id": "bc-optical-supplement",
+    "snapshot": "ok",
+    "confirmed": 23,
+    "differs": [
+      {"field": "benefit.detail.about", "old": "($44.83 with an optometrist or $48.90 with an ophthalmologist every two years)", "new": "(up to $44.83 with an optometrist or $48.90 with an ophthalmologist every two years)", "quote": "Up to $48.90 for routine eye exams once every two years", "why": "These are maximum reimbursements, not fixed payments; retain the source's up-to qualification."},
+      {"field": "benefit.detail.aboutList.items[0]", "old": "($44.83 with an optometrist or $48.90 with an ophthalmologist every two years)", "new": "(up to $44.83 with an optometrist or $48.90 with an ophthalmologist every two years)", "quote": "Up to $48.90 for routine eye exams once every two years", "why": "The repeated description also drops the maximum-payment qualification."}
+    ],
+    "blocking_not_on_page": [],
+    "verdict": "fix-then-bump"
+  },
+  {
+    "id": "stalbert-subsidy",
+    "snapshot": "ok",
+    "confirmed": 20,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump"
+  },
+  {
+    "id": "bc-assistance-program-students-disabilities",
+    "snapshot": "ok",
+    "confirmed": 12,
+    "differs": [],
+    "blocking_not_on_page": [
+      {"field": "values.annualMax", "claim": "10000 as an annual maximum", "why": "The snapshot confirms grants up to $10,000 ($12,000 if an attendant is required), but does not establish an annual period. The record itself acknowledges that the period is unspecified; no sourced replacement annual number is available."}
+    ],
+    "verdict": "keep"
+  }
+]

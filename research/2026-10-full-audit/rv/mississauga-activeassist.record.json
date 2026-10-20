@@ -1,0 +1,70 @@
+{
+ "id": "mississauga-activeassist",
+ "benefit": {
+  "id": "mississauga-activeassist",
+  "name": "ActiveAssist fee assistance (Mississauga)",
+  "level": "Mississauga",
+  "category": "Recreation",
+  "amount": "$275 a year for each eligible family member",
+  "summary": "Fee assistance that helps Mississauga residents in low-income households, and newcomers with refugee status, join City recreation and culture programs. Each eligible person on the application gets a credit for the year.",
+  "note": "The credit cannot be refunded and is good for one year. You re-apply with supporting documents every year. You cannot get ActiveAssist at the same time as another City fee assistance program, such as the Jerry Love Children's Fund.",
+  "requires": [
+   "mississauga",
+   "lowIncome"
+  ],
+  "eligibility": {
+   "mode": "any",
+   "items": [
+    "An individual or family without dependants under 18, with net individual or combined family income below the Low Income Cut Off",
+    "A family with dependants under 18, with combined net family income below the Low Income Cut Off, shown with documentation such as Canada Child Benefits forms",
+    "A newcomer with refugee status, shown with a Confirmation of Permanent Residency, a Refugee Protection Claimant Document, or a document issued under a special IRCC program such as a CUAET visa, issued within the past year"
+   ],
+   "note": "You are not eligible if you are a child under 18 applying alone — a parent or legal guardian must apply with you — if you are a full-time college or university student with no dependants, or if you already receive another City fee assistance program. Low Income Cut Off amounts, updated May 1, 2026: $26,440 for 1 person, $32,179 for 2, $40,071 for 3, $49,991 for 4, $56,925 for 5, $63,131 for 6, and $69,337 for 7 or more."
+  },
+  "applyText": "Apply for ActiveAssist",
+  "applyUrl": "https://www.mississauga.ca/recreation-and-sports/sports-and-activities/assistance-programs/active-assist/",
+  "source": "https://www.mississauga.ca/recreation-and-sports/sports-and-activities/assistance-programs/active-assist/",
+  "detail": {
+   "about": "ActiveAssist is the City of Mississauga's fee assistance program. It gives residents in low-income households, and newcomers with refugee status, access to recreation and culture programs. Each eligible family member listed on the application receives a non-refundable credit of $275 valid for one year, and applicants reapply with supporting documents annually.",
+   "aboutList": {
+    "lead": "ActiveAssist helps Mississauga residents afford City recreation and culture programs.",
+    "items": [
+     "$275 for each eligible family member listed on the application.",
+     "The credit is non-refundable and valid for one year.",
+     "Open to low-income households and to newcomers with refugee status.",
+     "You reapply and provide supporting documents every year.",
+     "You cannot combine it with another City fee assistance program such as the Jerry Love Children's Fund."
+    ]
+   },
+   "steps": [
+    "Check your net income against the Low Income Cut Off amount for your family size, or gather your refugee status document if that is your route",
+    "Complete the Fee Assistance Program Application at your local community centre, or apply online",
+    "Provide one or more original current supporting documents when you submit",
+    "The City processes applications within 15 business days",
+    "Once approved you receive an email with your account start date and registration information"
+   ],
+   "documents": [
+    "Documentation showing net individual or combined family income below the Low Income Cut Off",
+    "For a family with dependants under 18, documentation indicating those dependants, such as Canada Child Benefits forms",
+    "For a newcomer with refugee status, a Confirmation of Permanent Residency, Refugee Protection Claimant Document, or a document under a special IRCC program such as a CUAET visa, issued within the past year"
+   ],
+   "tips": [
+    "A child under 18 cannot apply alone. A parent or legal guardian fills out the application with them.",
+    "Full-time college and university students with no dependants are not eligible.",
+    "Bring original, current documents, not photocopies, when you submit the application.",
+    "Each eligible family member on the application gets their own $275, so list everyone who qualifies."
+   ]
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "note": "$275 per eligible family member per year, non-refundable"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Application at a community centre or online with original supporting documents",
+  "wait": "Within 15 business days"
+ },
+ "extra": null,
+ "verified": "2026-09"
+}

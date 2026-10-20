@@ -1,0 +1,53 @@
+{
+ "id": "bc-supported-child-development",
+ "benefit": {
+  "id": "bc-supported-child-development",
+  "name": "Supported Child Development",
+  "level": "British Columbia",
+  "category": "Family",
+  "amount": "Consulting and support services so a child with extra support needs can take part in inclusive child care",
+  "summary": "Community programs that help children with extra support needs take part in regular, fully inclusive child care. They support the family and the child care centre, not just the child.",
+  "requires": [
+   "bc",
+   "child",
+   "childcare"
+  ],
+  "requiresNote": "For children with extra support needs who are attending or want to attend a child care setting in BC.",
+  "note": "Ask your public health nurse or physician, or contact your local Ministry of Children and Family Development office. Aboriginal Supported Child Development offers the same supports in a way that is culturally relevant and meaningful. See ascdp.bc.ca.",
+  "applyText": "Find your local program",
+  "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/early-childhood-intervention",
+  "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/early-childhood-intervention",
+  "detail": {
+   "about": "Supported Child Development is a set of community-based programs offering consulting and support to children, families and child care centres so children with extra support needs can participate in inclusive child care. Aboriginal Supported Child Development provides culturally relevant support.",
+   "steps": [
+    "Use the provincial early-intervention page to find the Supported Child Development program serving your community",
+    "Contact the program directly, or ask a public health nurse or physician to help with the referral",
+    "Tell the program which child care setting the child attends or hopes to attend and what participation barriers are present",
+    "Work with the program and child care provider on an individual support plan"
+   ],
+   "documents": [
+    "Child and parent or guardian contact information",
+    "Information from the child care provider about participation and support needs",
+    "Relevant developmental or health reports if the local program requests them"
+   ],
+   "tips": [
+    "Contact the program even if the child does not yet have a child care placement",
+    "Ask about Aboriginal Supported Child Development if culturally grounded service is a better fit",
+    "Availability and intake steps are local, so the community program is the official contact"
+   ],
+   "time": "Intake and availability vary by community"
+  }
+ },
+ "values": {
+  "kind": "services",
+  "excludeFromEstimate": true,
+  "note": "consulting/support for inclusive child care"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Contact the local program for intake",
+  "wait": "Varies by community and available services"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

@@ -1,0 +1,86 @@
+{
+ "id": "bc-msp-supplementary-benefits",
+ "benefit": {
+  "id": "bc-msp-supplementary-benefits",
+  "name": "MSP Supplementary Benefits",
+  "level": "British Columbia",
+  "category": "Health",
+  "amount": "$23 per visit toward acupuncture, chiropractic, massage therapy, naturopathy, physical therapy or non-surgical podiatry, up to a combined 10 visits each calendar year",
+  "summary": "Partial MSP coverage for visits to six kinds of practitioners. It is for people who may be eligible, including lower-income B.C. residents and people enroled with MSP through the At Home Program or as Mental Health Clients. Families deemed eligible may also be eligible for the Healthy Kids Program.",
+  "requires": [
+   "bc",
+   "bcMsp",
+   "bcSupplementaryBenefitsEligibility"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "You (and your spouse, if you have one) are enrolled in MSP.",
+    "You may be eligible through your income or through one of the other groups the ministry lists.",
+    "You live in B.C., have lived in Canada as a citizen or permanent resident for at least the last 12 months before applying, and are not exempt from paying income tax under another act."
+   ],
+   "note": {
+    "lead": "Those who may be eligible include:",
+    "items": [
+     "Adjusted net income last year of less than $42,000 (your family may qualify).",
+     "Income Assistance recipients.",
+     "Convention refugees.",
+     "Inmates of B.C. Correctional Facilities.",
+     "People enroled with MSP through the At Home Program.",
+     "Residents of long term care facilities receiving the Guaranteed Income Supplement.",
+     "People enroled with MSP as Mental Health Clients.",
+     "First Nations individuals with valid B.C. Medical Plan coverage through the First Nations Health Authority."
+    ],
+    "after": "Adjusted net income is last year's net income confirmed by CRA — combined with your spouse's if you have one — after certain deductions. There is no cost to apply. Coverage does not apply to treatment received outside British Columbia."
+   }
+  },
+  "requiresNote": "You must be enroled in MSP, and your spouse too if you have one, before Supplementary Benefits can be approved. You may be eligible through your income or through one of the other groups the ministry lists. You live in B.C., have lived in Canada as a citizen or permanent resident for at least the last 12 months before applying, and are not exempt from paying income tax under another act. Those who may be eligible include:\n- Adjusted net income last year of less than $42,000 (your family may qualify).\n- Income Assistance recipients.\n- Convention refugees.\n- Inmates of B.C. Correctional Facilities.\n- People enroled with MSP through the At Home Program.\n- Residents of long term care facilities receiving the Guaranteed Income Supplement.\n- People enroled with MSP as Mental Health Clients.\n- First Nations individuals with valid B.C. Medical Plan coverage through the First Nations Health Authority.\n Adjusted net income is last year's net income confirmed by CRA — combined with your spouse's if you have one — after certain deductions. There is no cost to apply. Coverage does not apply to treatment received outside British Columbia.",
+  "note": "The $23 is a contribution, not the full fee — many practitioners are opted out of MSP and are allowed to charge more, and you pay the difference. Ask what the visit costs and what MSP covers before you book. The 10 visits are a combined limit across all six service types, not 10 of each.",
+  "applyText": "Apply for Supplementary Benefits",
+  "applyUrl": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents/benefits/services-covered-by-msp/supplementary-benefits",
+  "source": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents/benefits/services-covered-by-msp/supplementary-benefits",
+  "detail": {
+   "about": "MSP contributes $23 per visit for a combined annual limit of 10 visits each calendar year, for acupuncture, chiropractic, massage therapy, naturopathy, physical therapy and non-surgical podiatry from approved providers. Eligibility is assessed from last year's net income as confirmed by the Canada Revenue Agency, or the combined net income of you and your spouse, less certain deductions. The figure that remains is called adjusted net income, and if it is less than $42,000 your family may qualify. People enroled with MSP through the At Home Program, and people enroled with MSP as Mental Health Clients, may also be eligible. Applying is free, and once approved you generally do not need to reapply while you stay eligible for MSP, because income is re-verified each year automatically. MSP does not cover supplementary benefit services received outside the province.",
+   "aboutList": {
+    "lead": "MSP contributes $23 per visit for a combined annual limit of 10 visits each calendar year, for acupuncture, chiropractic, massage therapy, naturopathy, physical therapy and non-surgical podiatry from approved providers.",
+    "items": [
+     "Eligibility is assessed from last year's net income as confirmed by the Canada Revenue Agency, or the combined net income of you and your spouse, less certain deductions.",
+     "The figure that remains is called adjusted net income, and if it is less than $42,000 your family may qualify.",
+     "People enroled with MSP through the At Home Program, and people enroled with MSP as Mental Health Clients, may also be eligible.",
+     "Applying is free, and once approved you generally do not need to reapply while you stay eligible for MSP, because income is re-verified each year automatically.",
+     "MSP does not cover supplementary benefit services received outside the province."
+    ]
+   },
+   "steps": [
+    "Make sure MSP enrolment is complete for you and your spouse if you have one",
+    "Complete the BC Application for Health and Drug Coverage, which applies for MSP enrolment, Supplementary Benefits and Fair PharmaCare on one form",
+    "Give CRA permission on the application to release your Notice of Assessment so your income can be verified",
+    "If you are newly eligible for MSP, book a B.C. driver licensing office appointment to get your Photo BC Services Card"
+   ],
+   "documents": [
+    "The BC Application for Health and Drug Coverage",
+    "Your and your spouse's CRA Notice of Assessment or Reassessment information: on the application you give CRA permission to release it; if you apply by mail, include copies with the form",
+    "Your Personal Health Number if you already have one"
+   ],
+   "tips": [
+    "The 10 visits are a combined limit across all six service types, so they run down together",
+    "$23 is a contribution, not the full fee. Ask the practitioner what you will owe before booking.",
+    "Keep filing your taxes every year. MSP checks your income automatically from your CRA return, and your eligibility may be affected if you do not file.",
+    "Tell MSP if you marry or start living in a marriage-like relationship, because that changes how your income is assessed",
+    "If your children are under 19, families deemed eligible for Supplementary Benefits may be eligible for basic dental treatment, optical care and hearing assistance through the Healthy Kids Program"
+   ]
+  }
+ },
+ "values": {
+  "kind": "coverage",
+  "excludeFromEstimate": true,
+  "note": "$23 per visit toward six covered services, up to a combined 10 visits each calendar year"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Register with MSP (no cost)",
+  "wait": "varies"
+ },
+ "extra": null,
+ "verified": "2026-07"
+}

@@ -1,0 +1,107 @@
+{
+ "id": "victoria-life",
+ "benefit": {
+  "id": "victoria-life",
+  "name": "L.I.F.E. Program (Leisure Involvement For Everyone)",
+  "level": "Victoria",
+  "category": "Recreation",
+  "amount": "Two years of unlimited free drop-ins at Victoria Recreation Centre (opening planned early 2027) and public skating at Save-On-Foods Memorial Arena, 52 free regional drop-ins a year, plus a program credit of $80 to $120 depending on age",
+  "summary": "Victoria's low-income recreation membership. It runs two years from your approval date, not by calendar year, and covers drop-ins at Victoria Recreation Centre (opening planned early 2027), public skating and regional partner drop-ins.",
+  "requires": [
+   "bc",
+   "victoria",
+   "lowIncome"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "You are a City of Victoria resident with a fixed address, have lived there for the previous 30 days, and can demonstrate proof of residency.",
+    "Your household income is at or below the Statistics Canada low-income threshold for your household size (see the table below). All family members and dependants at the same address are included."
+   ]
+  },
+  "amountTiers": {
+   "caption": "Income eligibility — Statistics Canada low-income threshold by household size",
+   "headers": [
+    "Household size",
+    "Household income at or below"
+   ],
+   "rows": [
+    [
+     "1 person",
+     "$29,640"
+    ],
+    [
+     "2",
+     "$38,493"
+    ],
+    [
+     "3",
+     "$47,145"
+    ],
+    [
+     "4",
+     "$55,076"
+    ],
+    [
+     "5",
+     "$62,464"
+    ],
+    [
+     "6",
+     "$70,451"
+    ],
+    [
+     "7",
+     "$78,436"
+    ]
+   ]
+  },
+  "requiresNote": "You must be a City of Victoria resident with a fixed address, have lived there for the previous 30 days, and be able to demonstrate proof of residency. Household income must be at or below the Statistics Canada low-income threshold: $29,640 for 1 person, $38,493 for 2, $47,145 for 3, $55,076 for 4, $62,464 for 5, $70,451 for 6 and $78,436 for 7. All family members and dependants at the same address are included.",
+  "note": "Membership is valid for two years. The two years start on your approval date, so you do not have to apply in January. The registered-programming credit is for the whole two-year term, not for each year.",
+  "applyText": "Apply for the L.I.F.E. Program",
+  "applyUrl": "https://www.victoria.ca/parks-recreation/recreation/accessibility-inclusion/life-program",
+  "source": "https://www.victoria.ca/parks-recreation/recreation/accessibility-inclusion/life-program",
+  "detail": {
+   "about": "The two-year membership combines unlimited drop-ins at Victoria Recreation Centre (opening planned early 2027) and public skating, a regional 52-visit benefit and a one-time registered-program credit. If you cannot provide the standard documents you may still be eligible to apply using an adjudicator. The City only accepts adjudicator applications when all required information is provided and audits all adjudicator forms.",
+   "aboutList": {
+    "lead": "The two-year membership includes:",
+    "items": [
+     "Unlimited drop-ins at Victoria Recreation Centre (opening planned early 2027) and public skating.",
+     "A regional 52-visit benefit and a one-time registered-program credit.",
+     "If you cannot provide the standard documents you may still be eligible to apply using an adjudicator.",
+     "The City only accepts adjudicator applications when all required information is provided and audits all adjudicator forms."
+    ]
+   },
+   "steps": [
+    "Complete one L.I.F.E. application for family members living at the same address",
+    "Gather current proof of City of Victoria residence and income documents for household adults",
+    "If you cannot provide the documents, you may be able to use an adjudicator: a community professional familiar with your financial and residential situation completes the adjudicator form",
+    "Submit through the method on the current City form",
+    "After approval, obtain the regional visit sticker each calendar year and use the program credit before the two-year term ends"
+   ],
+   "documents": [
+    "Completed L.I.F.E. application",
+    "Utility bill, phone bill or rental agreement from the last three months",
+    "Most recent CRA Notice of Assessment for household members aged 19 and older, or completed adjudicator verification"
+   ],
+   "tips": [
+    "The $80 or $120 program credit is for the whole two-year term, not for each year",
+    "You must renew the regional 52-visit sticker each calendar year",
+    "Before you choose the discounted regional annual pass, ask staff which benefit option is better"
+   ],
+   "time": "Membership lasts two years from approval"
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "excludeFromEstimate": true,
+  "note": "2 yrs free drop-ins (opens early 2027) + $80-120 program credit"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Application + residency and income proof",
+  "wait": "Confirm with the City"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

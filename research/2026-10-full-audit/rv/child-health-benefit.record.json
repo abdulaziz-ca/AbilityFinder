@@ -1,0 +1,58 @@
+{
+ "id": "child-health-benefit",
+ "benefit": {
+  "id": "child-health-benefit",
+  "name": "Alberta Child Health Benefit",
+  "level": "Alberta",
+  "category": "Health (for children)",
+  "amount": "Covers eligible prescription drugs, basic and preventative dental care and eyeglasses for children in low-income households",
+  "summary": "Health coverage for children under 18 in lower-income families. There is also a conditional route for 18- and 19-year-olds still in high school through grade 12.",
+  "requires": [
+   "achbAge",
+   "ab",
+   "citizenPR",
+   "lowIncome",
+   "achbOlderDependent",
+   "achbFamilyResidencyStatus",
+   "achbCoverageCoordination"
+  ],
+  "note": "The applicant and family members must live in Alberta and be Canadian citizens or permanent residents. Income Support, AISH, the Child and Youth Support Program, and Non-Insured Health Benefits are excluded government coverage. Private plans are used first. They are not exclusions. For services covered by both ACHB and the Canadian Dental Care Plan, claims go to the Canadian Dental Care Plan first.",
+  "applyText": "Open the official page on alberta.ca",
+  "applyUrl": "https://www.alberta.ca/alberta-child-health-benefit",
+  "source": "https://www.alberta.ca/alberta-child-health-benefit",
+  "declarationText": "Declaration for an 18- or 19-year-old dependent (AEHB3654)",
+  "declarationUrl": "https://cfr.forms.gov.ab.ca/Form/AEHB3654",
+  "detail": {
+   "about": "No-premium prescription, dental, optical and other eligible health coverage for children under 18 in lower-income Alberta families. A child aged 18 or 19 can qualify only while living at home and attending high school through grade 12, with declaration AEHB3654.",
+   "steps": [
+    "Check the income guidelines and confirm the whole family's Alberta residency, citizenship or permanent-resident status, and other government health coverage.",
+    "Complete the Alberta Child Health Benefit application.",
+    "For an eligible 18- or 19-year-old living at home and attending high school through grade 12, also submit Declaration of 18 and 19 Year Old Dependent AEHB3654: https://cfr.forms.gov.ab.ca/Form/AEHB3654",
+    "Submit the application with proof of income."
+   ],
+   "documents": [
+    "Proof of family income",
+    "Your children's Alberta Health Care numbers",
+    "Declaration AEHB3654 for an eligible 18- or 19-year-old dependent"
+   ],
+   "tips": [
+    "Income Support, AISH, the Child and Youth Support Program, and Non-Insured Health Benefits for First Nations and Inuit are excluded government health-benefit coverage.",
+    "Private or other health insurance is not an exclusion. Use it first. ACHB may cover remaining eligible costs.",
+    "If you also have the Canadian Dental Care Plan, claims for services covered by both plans go to the Canadian Dental Care Plan first. ACHB may then cover remaining eligible dental costs."
+   ],
+   "time": "A few weeks to process.",
+   "phone": "Health Benefits Contact Centre: 780-427-6848 or 1-877-469-5437"
+  }
+ },
+ "values": {
+  "kind": "coverage",
+  "note": "eligible prescription drugs, basic and preventative dental care and eyeglasses for children in low-income households"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Form + proof of income",
+  "wait": "a few weeks"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

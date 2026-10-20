@@ -1,0 +1,55 @@
+{
+ "id": "taxisaver-translink",
+ "benefit": {
+  "id": "taxisaver-translink",
+  "name": "TaxiSaver Program (TransLink)",
+  "level": "Metro Vancouver",
+  "category": "Transit",
+  "amount": "Half-price taxi coupons — $25.00 buys one book with $50.00 worth of coupons, maximum two books per month",
+  "summary": "Half-price taxi coupons for HandyCard holders.",
+  "requires": [
+   "bc",
+   "metroVancouver",
+   "transitBarrier",
+   "translinkHandyCard"
+  ],
+  "requiresNote": "You must be a TransLink HandyCard member.",
+  "note": "Order by cheque or money order with a self-addressed envelope. Or buy in person at the TransLink Customer Service Centre at Waterfront Station, which takes cash, debit or credit. If you buy in person, you or your representative must show the original HandyCard.",
+  "applyText": "Get a HandyCard, then order TaxiSavers",
+  "applyUrl": "https://www.translink.ca/rider-guide/transit-accessibility/how-to-use-accessible-transit",
+  "source": "https://www.translink.ca/rider-guide/transit-accessibility/how-to-use-accessible-transit",
+  "detail": {
+   "about": "TaxiSavers are coupon books for ordinary participating taxi trips. They are separate from taxis dispatched by HandyDART as part of a booked HandyDART trip.",
+   "steps": [
+    "Get and keep an active TransLink HandyCard",
+    "Choose mail order or in-person purchase at the TransLink Customer Service Centre at Waterfront Station",
+    "For mail order, send a cheque or money order with the required self-addressed envelope",
+    "For an in-person purchase, bring the original HandyCard; a representative may purchase for you if they bring it",
+    "Show the HandyCard to the taxi driver and use coupons toward the participating taxi fare"
+   ],
+   "documents": [
+    "Original TransLink HandyCard",
+    "Cheque or money order for mail orders, or accepted payment for an in-person purchase"
+   ],
+   "tips": [
+    "One $25 book contains $50 in coupons and the limit is two books per month",
+    "You can use post-dated cheques to pre-order future months",
+    "Call before travelling to Waterfront Station if you need accessibility or current counter-hour information"
+   ],
+   "time": "In person is immediate when stock and eligibility are confirmed; mail delivery varies",
+   "phone": "604-953-3680"
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "excludeFromEstimate": true,
+  "note": "half-price taxi coupons for HandyCard holders"
+ },
+ "meta": {
+  "difficulty": 1,
+  "effort": "HandyCard first, then order coupons",
+  "wait": "After HandyCard approval"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

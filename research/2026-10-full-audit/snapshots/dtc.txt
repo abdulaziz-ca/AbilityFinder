@@ -1,0 +1,5 @@
+URL: https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit.html | province: X | program: dtc | fetched: 2026-10-19
+=== PAGE: https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit.html (HTTP 000, 0 chars)
+
+
+=== PAGE: https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/t2201.html (HTTP 000, 0 chars)

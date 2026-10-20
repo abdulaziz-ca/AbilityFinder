@@ -1,0 +1,76 @@
+{
+ "id": "bc-autism-funding-6-18",
+ "benefit": {
+  "id": "bc-autism-funding-6-18",
+  "needsPractitioner": true,
+  "name": "Autism Funding: Ages 6-18",
+  "level": "British Columbia",
+  "category": "Money",
+  "amount": "Up to $6,000/year",
+  "summary": "Yearly funding for autism intervention, therapies, life-skills programs, camps and out-of-school tutoring for children and youth aged 6 to 18.",
+  "requires": [
+   "bc",
+   "age6to18",
+   "autismSelected",
+   "autismDiagnosis"
+  ],
+  "requiresNote": "Child or youth aged 6-18 with an autism spectrum disorder diagnosis meeting BC standards",
+  "note": "Autism Funding accepts new applications until March 2027 and ends March 31, 2027. The ministry says it will contact all recipients about their eligibility to transfer to the BC Children and Youth Disability Benefit ahead of the transition. Final aligned funding periods may be prorated to March 31, 2027.",
+  "applyText": "Apply for autism funding",
+  "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/apply",
+  "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/funding-amount",
+  "detail": {
+   "about": "Administrative costs are limited to up to $50 a month for a bookkeeper, or $600 per funding period for direct payment accountant fees. The normal training, travel and equipment (TTE) limit is 20%. For the final aligned funding period ending March 31, 2027, BC increased the allowable TTE portion to 50%. Requests must not exceed 50% of a child/youth’s annual funding amount for benefit plans that are 12 months or less. For benefit plans that are 13 months or longer, the limit is 50% on the adjusted portion, with the first 12 months being available at 20%. Families are encouraged to check their TTE balance on MyFamily Services (MyFS) or call Autism Funding to confirm their balance (Toll Free: 1 877 777-3530). For families with youth aging out (turning 19) prior to March 31, 2027, requests for travel, training and equipment purchases must not exceed 20%.",
+   "coversList": {
+    "lead": "Up to $6,000 per year per child for:",
+    "items": [
+     "Behaviour consultants or analysts",
+     "Speech-language pathologists",
+     "Occupational or physical therapists",
+     "Behaviour interventionists (should be supervised by one of the professionals listed above)",
+     "Life skills and social skills programs",
+     "Out-of-school learning support and tutoring",
+     "Dietary counselling from registered dieticians",
+     "Family counselling",
+     "Specialized therapeutic camps for autism"
+    ]
+   },
+   "steps": [
+    "Have an autism diagnosis on file (BCAAN or qualified private assessment)",
+    "Apply online with a Basic BCeID or send the Application for Autism Funding to mcf.autismfundingintake@gov.bc.ca, or go through your local CYSN office",
+    "Sign the funding agreement and hire providers for the eligible services (behaviour interventionists should be supervised by a listed professional)",
+    "Submit invoices for direct payment or claim reimbursements"
+   ],
+   "documents": [
+    "Proof of age and residency (for example a birth certificate or BC Services Card)",
+    "BCAAN assessment: the BCAAN Clinical Outcome (PANTER) Form (BCAAN assessment reports are optional)",
+    "Private (non-BCAAN) assessment: form CF0904 and a diagnostic report showing the ADOS-2 and ADI-R were used, signed by the assessor",
+    "Assessment outside B.C.: form CF0905 and a copy of the original diagnostic report or assessment information",
+    "Basic BCeID account for the online portal",
+    "Assessment outside B.C.: a new assessment may be required if the BC specialist cannot confirm that the previous diagnosis meets the DSM-5 criteria"
+   ],
+   "tips": [
+    "For ages 6-18, providers do not have to be RASP-listed for every service type. So therapy, tutoring and camps are easier to fund than under the Under-6 program.",
+    "The normal training, travel and equipment limit is 20%, but BC raised it to 50% for the final aligned funding period ending March 31, 2027. Requests must not exceed 50% of a child/youth’s annual funding amount for benefit plans that are 12 months or less. For benefit plans that are 13 months or longer, the limit is 50% on the adjusted portion, with the first 12 months being available at 20%. Families are encouraged to check their TTE balance on MyFamily Services (MyFS) or call Autism Funding to confirm their balance (Toll Free: 1 877 777-3530).",
+    "Approved services and purchases must be delivered by March 31, 2027; direct-payment supporting documents are due May 31, 2027, and final invoices or reimbursement requests are due September 30, 2027",
+    "For families with youth aging out (turning 19) before March 31, 2027, requests for travel, training and equipment purchases must not exceed 20%.",
+    "Ask your CYSN office about the transition schedule if you have not been contacted by fall 2026"
+   ],
+   "time": "New applications are accepted until March 2027. The program and final aligned funding periods end March 31, 2027; later paperwork deadlines do not extend the service-delivery date.",
+   "phone": "1-877-777-3530"
+  }
+ },
+ "values": {
+  "kind": "grant",
+  "excludeFromEstimate": true,
+  "annualMax": 6000,
+  "note": "open to Mar 2027; replaced by bc-cy-disability-benefit — mutually exclusive"
+ },
+ "meta": {
+  "difficulty": 3,
+  "effort": "Application + diagnosis form for your assessment route",
+  "wait": "Ask Autism Funding about current processing"
+ },
+ "extra": null,
+ "verified": "2026-07"
+}

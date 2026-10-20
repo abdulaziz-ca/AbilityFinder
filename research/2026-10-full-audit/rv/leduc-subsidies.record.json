@@ -1,0 +1,47 @@
+{
+ "id": "leduc-subsidies",
+ "benefit": {
+  "id": "leduc-subsidies",
+  "name": "Leduc Transit & Recreation Subsidies",
+  "level": "Leduc",
+  "category": "Getting around & recreation",
+  "amount": "Half-price monthly bus pass of your choice (local, commuter or LATS)",
+  "summary": "Financial-navigation support that can provide a half-price monthly bus pass. You choose a local, commuter or LATS pass. The Recreation Assistance Program is now closed. It will reopen for new applications in January 2027.",
+  "requires": [
+   "leduc",
+   "lowIncome"
+  ],
+  "note": "Leduc lists half-price monthly bus passes. You can choose a local, commuter or LATS monthly pass. All Recreation Assistance Program funding for 2026 has been fully allocated. The program is now closed and will reopen for new applications in January 2027.",
+  "applyText": "Contact Leduc FCSS about subsidies",
+  "applyUrl": "https://www.leduc.ca/community/family-community-support-services/housing-financial-support",
+  "source": "https://www.leduc.ca/community/family-community-support-services/housing-financial-support",
+  "detail": {
+   "about": "Leduc Family and Community Support Services can help qualifying residents access a half-price monthly bus pass as part of its housing and financial-navigation support. The Recreation Assistance Program is now closed and will reopen for new applications in January 2027.",
+   "steps": [
+    "Contact Leduc FCSS for a financial-navigation appointment.",
+    "Ask about the transit subsidy when discussing your situation. Ask when the Recreation Assistance Program reopens.",
+    "Follow their directions for the documents needed to assess eligibility."
+   ],
+   "documents": [
+    "Proof of Leduc residence",
+    "Financial information requested by FCSS"
+   ],
+   "tips": [
+    "You choose a local, commuter or LATS monthly pass. Ask specifically about LATS if you use specialized transit.",
+    "The City’s page describes an assessment. Do not assume you are eligible until FCSS confirms it."
+   ],
+   "time": "Ask FCSS when you contact them."
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "note": "half-price monthly bus pass of your choice (local, commuter or LATS); recreation program now closed, reopening for new applications in January 2027"
+ },
+ "meta": {
+  "difficulty": 1,
+  "effort": "Contact FCSS for an assessment",
+  "wait": "Ask when you apply"
+ },
+ "extra": null,
+ "verified": "2026-07"
+}

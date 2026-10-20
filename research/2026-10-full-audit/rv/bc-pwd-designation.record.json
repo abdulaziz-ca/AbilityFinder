@@ -1,0 +1,78 @@
+{
+ "id": "bc-pwd-designation",
+ "benefit": {
+  "id": "bc-pwd-designation",
+  "needsPractitioner": true,
+  "name": "Persons with Disabilities (PWD) Designation",
+  "level": "British Columbia",
+  "category": "Money",
+  "amount": "No direct payment on its own. The designation is required to access disability assistance, and a recipient with it may be eligible for higher rates, health supplements, an annual earnings exemption and a bus pass.",
+  "summary": "BC's disability status for adults 18 and over with a severe impairment expected to last at least two years. You need it to get disability assistance.",
+  "requires": [
+   "bc",
+   "age18plus",
+   "dailyLivingLimit",
+   "bcPwdMedical",
+   "bcPwdDesignationFinancial"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "You are 18 or older.",
+    "You are financially eligible, or likely to be within six months.",
+    "You have a severe mental or physical impairment likely to continue for at least two years that significantly restricts daily living and requires an assistive device, the significant help or supervision of another person, or the services of an assistance animal."
+   ]
+  },
+  "requiresNote": "You are 18 or older; are financially eligible or likely to be within six months; and have a severe mental or physical impairment likely to continue for at least two years that significantly restricts daily living and requires an assistive device, the significant help or supervision of another person, or the services of an assistance animal.",
+  "note": "The test is about what you can do, not your diagnosis. The impairment must directly and significantly restrict your ability to do daily living activities. And you must need an assistive device, the significant help or supervision of another person, or the services of an assistance animal.",
+  "applyText": "Start on My Self Serve",
+  "applyUrl": "https://myselfserve.gov.bc.ca/",
+  "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/pwd-designation-and-application/designation-application",
+  "detail": {
+   "about": "The standard application is form HR2883. Five prescribed classes can use the prescribed-class application (HR3642) instead: people enrolled in BC PharmaCare Plan P (palliative care); people the Ministry of Children and Family Development has determined to be eligible for the At Home Program; people Community Living BC has determined to be eligible for its supports and services; people determined as disabled by the Government of Canada and eligible for the CPP Disability Benefit or Post-Retirement Disability Benefit; and people designated as a Person with Disabilities by Indigenous Services Canada in the BC region. Prescribed-class applicants must still meet all other eligibility requirements (identification, financial, residency, etc.).",
+   "aboutList": {
+    "lead": "The standard application is form HR2883. Five prescribed classes can use the prescribed-class application (HR3642) instead:",
+    "items": [
+     "People enrolled in BC PharmaCare Plan P (palliative care).",
+     "People the Ministry of Children and Family Development has determined to be eligible for the At Home Program.",
+     "People Community Living BC has determined to be eligible for its supports and services.",
+     "People determined as disabled by the Government of Canada and eligible for the CPP Disability Benefit or Post-Retirement Disability Benefit.",
+     "People designated as a Person with Disabilities by Indigenous Services Canada in the BC region.",
+     "Prescribed-class applicants must still meet all other eligibility requirements (identification, financial, residency, etc.)."
+    ]
+   },
+   "steps": [
+    "Start an assistance application through My Self Serve so the ministry can first check financial eligibility",
+    "Ask the ministry for the PWD designation application (HR2883) after you start the assistance application",
+    "Complete the applicant section, then have a doctor or nurse practitioner complete the medical report",
+    "Have a medical practitioner, nurse practitioner or other prescribed professional complete the assessor report",
+    "Submit all sections and keep a copy; respond if the ministry asks for more information"
+   ],
+   "documents": [
+    "Identification, income, asset and shelter information for the assistance application",
+    "PWD designation application HR2883",
+    "Medical and functional information describing how the impairment restricts daily living and what help or supervision is required"
+   ],
+   "tips": [
+    "You can start the PWD application at age 17 and a half. Disability assistance cannot begin before age 18.",
+    "If you are in a prescribed class, ask whether the prescribed-class HR3642 application applies instead of the standard application",
+    "The ministry gives the HR2883 application to people who intend to apply for disability assistance. It is not given out only so people can qualify for other programs.",
+    "Ask each professional to describe your functional restrictions and support needs, not only the diagnosis"
+   ],
+   "time": "The ministry does not publish one guaranteed decision time",
+   "phone": "1-866-866-0800"
+  }
+ },
+ "values": {
+  "kind": "access",
+  "excludeFromEstimate": true,
+  "note": "gateway designation — no payment on its own"
+ },
+ "meta": {
+  "difficulty": 4,
+  "effort": "Assistance application + PWD medical sections",
+  "wait": "Not published — ask the ministry"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

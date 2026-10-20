@@ -1,0 +1,64 @@
+{
+ "id": "bc-learning-disability-assessment-bursary",
+ "benefit": {
+  "id": "bc-learning-disability-assessment-bursary",
+  "needsPractitioner": true,
+  "name": "Learning Disability Assessment Bursary",
+  "level": "British Columbia",
+  "category": "Education",
+  "amount": "Up to $3,500",
+  "summary": "Covers the up-front cost of a learning disability assessment. This assessment is what opens the door to disability funding and academic accommodations.",
+  "requires": [
+   "bc",
+   "student",
+   "learningDisability",
+   "bcLdAssessmentReferral"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "You qualify for student funding through StudentAid BC.",
+    "You are enrolled full-time or part-time in post-secondary level courses at a designated public post-secondary institution in B.C.",
+    "The accessibility services office at your school has recommended that you have a learning disability assessment."
+   ]
+  },
+  "requiresNote": "You qualify for student funding through StudentAid BC, you are enrolled full-time or part-time in post-secondary level courses at a designated public post-secondary institution in B.C., and the accessibility services office at your school has recommended that you have a learning disability assessment.",
+  "note": "Your school's accessibility services office must recommend you. This is part of the eligibility. Start by contacting the accessibility services office at the school you plan to attend.",
+  "applyText": "Contact your school's accessibility services office",
+  "applyUrl": "https://studentaidbc.ca/explore/grants-scholarships/learning-disability-assessment-bursary",
+  "source": "https://studentaidbc.ca/explore/grants-scholarships/learning-disability-assessment-bursary",
+  "detail": {
+   "about": "This bursary covers up to $3,500 of the up-front cost of a learning disability assessment when the accessibility services office at an eligible B.C. public post-secondary institution recommends the assessment.",
+   "steps": [
+    "Apply for StudentAid BC funding and confirm that the school is an eligible B.C. public post-secondary institution",
+    "Meet with the school's accessibility services office and ask whether it recommends a current learning-disability assessment",
+    "Have the accessibility office start the bursary process before booking the assessment",
+    "Use the approved qualified assessor and submit the required invoice or receipt through the school process"
+   ],
+   "documents": [
+    "StudentAid BC funding eligibility",
+    "Accessibility-services recommendation",
+    "Assessment quote or invoice and the completed assessment documentation requested by the school"
+   ],
+   "tips": [
+    "Start with accessibility services. Booking an assessment on your own does not make you eligible for the bursary.",
+    "Ask how the assessor will be paid and what amount, if any, you must pay up front"
+   ],
+   "time": "Ask the school's accessibility services office",
+   "phone": "StudentAid BC: 1-800-561-1818"
+  }
+ },
+ "values": {
+  "kind": "grant",
+  "excludeFromEstimate": true,
+  "annualMax": 3500,
+  "note": "one-time, toward a learning-disability assessment"
+ },
+ "meta": {
+  "difficulty": 3,
+  "effort": "Accessibility-office referral + assessment paperwork",
+  "wait": "Confirm timing with your school"
+ },
+ "extra": null,
+ "verified": "2026-07"
+}

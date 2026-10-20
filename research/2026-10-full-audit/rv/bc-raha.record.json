@@ -1,0 +1,79 @@
+{
+ "id": "bc-raha",
+ "benefit": {
+  "id": "bc-raha",
+  "needsPractitioner": true,
+  "name": "B.C. Rebate for Accessible Home Adaptations (BC RAHA)",
+  "level": "British Columbia",
+  "category": "Health & equipment",
+  "amount": "Up to $20,000 in rebates, as a lifetime maximum per household",
+  "summary": "A B.C. rebate that pays back part of the cost of home adaptations for independent living. It is for lower-income households where someone has a permanent disability or loss of physical ability. Homeowners apply on their own. Tenants apply together with their landlord.",
+  "requires": [
+   "bc",
+   "homeAccessNeed",
+   "rahaEligibility"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "You or someone in your household has a permanent disability or loss of physical ability.",
+    "The home is the principal residence of the owner(s) and of the person needing the adaptations.",
+    "Your combined household assets are less than $100,000, not counting the value of the home being adapted.",
+    "Your combined annual gross household income is less than $146,270.00.",
+    "Everyone who owns the home, and the person needing the adaptations, is a Canadian citizen, authorized to take up permanent residence in Canada, or a Convention refugee, and not under private sponsorship."
+   ],
+   "note": "BC Housing also checks your community together with the assessed value of the home, so there is no single home-value cutoff. For this program \"household\" means the owner(s) plus any relative permanently living in the home. Some adaptations need an assessment from an occupational therapist or physical therapist."
+  },
+  "requiresNote": "You or someone in your household must have a permanent disability or loss of physical ability, and the home must be the principal residence of the owner(s) and of the person needing the adaptations. Your combined household assets must be less than $100,000, not counting the value of the home being adapted, and your combined annual gross household income must be less than $146,270.00. BC Housing also checks your community together with the assessed value of the home, so there is no single home-value cutoff. Everyone who owns the home, and the person needing the adaptations, must be a Canadian citizen, authorized to take up permanent residence in Canada, or a Convention refugee, and not under private sponsorship. For this program \"household\" means the owner(s) plus any relative permanently living in the home. Some adaptations need an assessment from an occupational therapist or physical therapist.",
+  "note": "Adaptations completed before BC Housing gives written approval are not eligible for a rebate. Once approved you have 180 days to finish the work.",
+  "applyText": "Apply for BC RAHA",
+  "applyUrl": "https://www.bchousing.org/housing-assistance/BC-RAHA",
+  "source": "https://www.bchousing.org/housing-assistance/BC-RAHA",
+  "detail": {
+   "about": "BC RAHA provides rebates so people can adapt their home for independent living. The lifetime maximum is $20,000 per household, and individual adaptations have their own caps set out in BC Housing.s Maximum Rebate Schedule. Applications are taken first-come, first-served until the funding for the year runs out, and the funding renews on April 1 each year. BC Housing aims to assess a completed application within 8 weeks, and pays within 3 weeks of receiving the final documents once the work is done. If you rent, the unit must be a legal, self-contained home with its own full kitchen and bathroom, and the tenant must be living independently rather than in assisted living. Tenants apply jointly with their landlord, and members of a housing co-operative use the landlord-and-tenant route.",
+   "aboutList": {
+    "lead": "BC RAHA provides rebates so people can adapt their home for independent living.",
+    "items": [
+     "The lifetime maximum is $20,000 per household, and individual adaptations have their own caps set out in BC Housing's Maximum Rebate Schedule.",
+     "Applications are taken first-come, first-served until the funding for the year runs out, and the funding renews on April 1 each year.",
+     "BC Housing aims to assess a completed application within 8 weeks, and pays within 3 weeks of receiving the final documents once the work is done.",
+     "If you rent, the unit must be a legal, self-contained home with its own full kitchen and bathroom, and the tenant must be living independently rather than in assisted living.",
+     "Tenants apply jointly with their landlord, and members of a housing co-operative use the landlord-and-tenant route."
+    ]
+   },
+   "steps": [
+    "Check the property and adaptation eligibility pages, and use the BC RAHA Calculator to see whether you might qualify",
+    "Get an occupational therapist or physical therapist assessment if your adaptation needs one",
+    "Submit the BC RAHA Homeowner Application, or the Landlord and Tenant Application if you rent, with the documents it lists",
+    "Wait for written approval from BC Housing before any work starts, then complete the work within 180 days"
+   ],
+   "documents": [
+    "The BC RAHA Homeowner Application, or the Landlord and Tenant Application if you rent",
+    "An occupational therapist or physical therapist assessment where the adaptation requires one",
+    "Contractor quotes",
+    "Proof of household income and assets as listed in the application"
+   ],
+   "tips": [
+    "Do not start work before written approval, because anything finished first is not eligible",
+    "Funding renews April 1 and applications are first-come first-served, so apply early in the year",
+    "You have 180 days from written approval to finish",
+    "The $20,000 is a lifetime maximum for the household, not per adaptation",
+    "BC Housing publishes an eligibility calculator at bcrahacalculator.bchousing.org. It takes a few minutes. It tells you if you are likely to qualify before you fill in the full application."
+   ],
+   "time": "BC Housing aims to assess completed applications within 8 weeks, and pays within 3 weeks after the work is done and documents are received.",
+   "phone": "604-433-2218 in the Lower Mainland, or toll free 1-800-257-7756"
+  }
+ },
+ "values": {
+  "kind": "grant",
+  "excludeFromEstimate": true,
+  "note": "lifetime maximum per household; adaptations completed before written approval are not eligible"
+ },
+ "meta": {
+  "difficulty": 4,
+  "effort": "BC Housing application + possible OT/PT assessment",
+  "wait": "varies"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

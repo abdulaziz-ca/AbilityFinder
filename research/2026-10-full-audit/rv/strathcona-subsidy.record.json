@@ -1,0 +1,51 @@
+{
+ "id": "strathcona-subsidy",
+ "benefit": {
+  "id": "strathcona-subsidy",
+  "name": "Strathcona County Everybody Rides & Everybody Gets to Play",
+  "level": "Sherwood Park",
+  "category": "Getting around & recreation",
+  "amount": "Reduced transit fare cap + free annual Active Pass+",
+  "summary": "Reduced transit fares on your Arc card and a no-cost annual Active Pass+ for County recreation facilities, for residents on a limited income.",
+  "requires": [
+   "strathcona",
+   "lowIncomeOrDisabilityIncome"
+  ],
+  "note": "These programs are based on income, not disability. The income line is roughly $33,675/year for one person. AISH is below that, so it's worth applying.",
+  "applyText": "Open the official page on strathcona.ca",
+  "applyUrl": "https://www.strathcona.ca/community-families/affordable-services/subsidized-fares/",
+  "source": "https://www.strathcona.ca/community-families/affordable-services/",
+  "detail": {
+   "about": "Two Strathcona County programs. Everybody Rides puts a reduced monthly fare cap on your Arc card profile for local and commuter travel. Everybody Gets to Play gives a free annual Active Pass+ for County recreation facilities plus reduced fees on programs.",
+   "steps": [
+    "Call Family and Community Services at 780-464-4044, or go to 401 Festival Lane (Community Centre, 2nd floor).",
+    "Bring ID, proof you live in the County, and your Notice of Assessment (see the documents list for the exceptions).",
+    "Ask about both programs in the one visit — they're separate but handled by the same team."
+   ],
+   "documents": [
+    "Photo ID",
+    "Proof of a Strathcona County address",
+    "Notice of Assessment (NOA) from the Canada Revenue Agency — a 2025 NOA is required starting June 1, 2026, and a 2024 NOA is no longer accepted",
+    "If your NOA no longer reflects your current finances, bring 3 months of bank statements as well",
+    "New refugee or permanent resident in the first year with no NOA: 3 months of bank statements from a Canadian bank"
+   ],
+   "tips": [
+    "The County raised its income limits. A refusal from years ago is not a reason to skip re-applying.",
+    "Everybody Rides works by changing the fare cap on your Arc card. You keep using the same card."
+   ],
+   "time": "Ask when you apply — it isn't published.",
+   "phone": "Family and Community Services: 780-464-4044"
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "note": "Reduced transit fare cap + free annual Active Pass+"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Call or visit FCSS",
+  "wait": "ask when you apply"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

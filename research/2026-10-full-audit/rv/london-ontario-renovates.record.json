@@ -1,0 +1,80 @@
+{
+ "id": "london-ontario-renovates",
+ "benefit": {
+  "id": "london-ontario-renovates",
+  "name": "Ontario Renovates home repair and accessibility funding (London)",
+  "level": "London",
+  "category": "Home",
+  "amount": "A 10-year forgivable loan up to $25,000 — the first $5,000 is a grant for accessibility work",
+  "summary": "Federal and provincial funding, run by the City of London. It helps lower- and moderate-income homeowners make their home accessible or do essential repairs. They must be seniors aged 60 or older, or people with disabilities.",
+  "note": "Funding is limited. Applications are processed first come, first served until the money runs out, so applying early matters. You may be asked for more documents, such as a medical form, when they assess accessibility changes.",
+  "requires": [
+   "london",
+   "londonRenovatesEligibility"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "A senior aged 60 or older, or a person with a disability",
+    "Annual gross household income at or below $95,000, from line 15000 of last year's Notice of Assessment",
+    "Total household liquid assets at or below $30,000, counting TFSAs, GICs, bonds, mutual funds and savings accounts",
+    "The home is your sole and principal residence in London or Middlesex County",
+    "Property tax assessment value at or below $320,000 — the assessed value, not the resale value",
+    "Mortgage payments and property taxes are up to date, and the home is insured for its full value"
+   ],
+   "note": "You are not eligible if you have received Ontario Renovates funding before, or if your household previously received funding from the Affordable Housing Program or the Off-Reserve Aboriginal Housing (Trust) Program. Community or social housing as defined under the Housing Services Act 2011 is excluded."
+  },
+  "applyText": "See how to apply",
+  "applyUrl": "https://london.ca/living-london/building-renovating/home-repair-accessibility-funding",
+  "source": "https://london.ca/living-london/building-renovating/home-repair-accessibility-funding",
+  "detail": {
+   "about": "The Ontario Renovates Program is funded by the federal and provincial governments and delivered locally by the City of London. It gives financial assistance to low-to-moderate income seniors aged 60 or older and to people with disabilities, to increase accessibility or complete essential repairs in their home. Assistance is a one-time 10-year forgivable loan of up to $25,000. If you are approved for accessibility modifications, the first $5,000 of that is a one-time grant rather than a loan.",
+   "aboutList": {
+    "lead": "Ontario Renovates helps London homeowners make their home accessible or carry out essential repairs.",
+    "items": [
+     "A one-time 10-year forgivable loan of up to $25,000.",
+     "For accessibility modifications, the first $5,000 is a grant, not a loan.",
+     "For seniors aged 60 or older and people with disabilities.",
+     "Accessibility work can include ramps, chair and bath lifts, handrails, grab bars, raised toilets, levered handles, accessible shower stalls, personal emergency response systems, height adjustable countertops and fire alarms.",
+     "Essential repairs can include heating systems, roofs, walls, floors, foundations, chimneys, doors and windows, electrical, plumbing, septic systems and vents."
+    ]
+   },
+   "steps": [
+    "Check the income, liquid asset and property assessment limits before applying",
+    "Get three estimates for the proposed repairs or modifications, and take photographs of the work areas",
+    "Complete the 2026 Homeowner Application with supporting documentation",
+    "Include photo ID for every adult homeowner, your CRA Notice of Assessment, property tax assessment, and confirmation of mortgage and insurance",
+    "Apply as early as you can — funding is limited and processed first come, first served"
+   ],
+   "documents": [
+    "Completed and signed Ontario Renovates application forms with supporting documentation",
+    "Government-issued photo ID for all homeowners, such as a driver's licence, passport, citizenship document or Ontario photo card",
+    "Your CRA Notice of Assessment",
+    "Property tax assessment showing the assessed value and that payments are up to date",
+    "Confirmation of mortgage and of insurance coverage",
+    "A list of liquid assets for every household member aged 18 and over",
+    "Three estimates for the proposed repairs or modifications, plus pictures of the proposed work"
+   ],
+   "tips": [
+    "Do not start the work before you are approved. Work started or finished before approval is not eligible.",
+    "Cosmetic work is not covered. This includes driveway paving, painting and flooring. Landscaping, central air conditioning and solar panels are also not covered.",
+    "You may be asked for a medical form when they assess accessibility changes.",
+    "You can only get Ontario Renovates funding once.",
+    "Send questions to housingprograms@london.ca or call 519-661-2489 extension 7831."
+   ],
+   "phone": "519-661-2489 ext. 7831"
+  }
+ },
+ "values": {
+  "kind": "grant",
+  "excludeFromEstimate": true,
+  "note": "10-year forgivable loan up to $25,000; first $5,000 a grant for accessibility modifications"
+ },
+ "meta": {
+  "difficulty": 3,
+  "effort": "Application package with income, property and asset documents plus three repair estimates",
+  "wait": "Not published — first come, first served until funds run out"
+ },
+ "extra": null,
+ "verified": "2026-09"
+}

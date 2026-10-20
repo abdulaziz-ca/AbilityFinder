@@ -1,0 +1,66 @@
+{
+ "id": "bc-workbc-employment-services",
+ "benefit": {
+  "id": "bc-workbc-employment-services",
+  "name": "WorkBC Employment Services",
+  "level": "British Columbia",
+  "category": "Work",
+  "amount": "Free employment services, including work experience and wage subsidies. Funding support for training, transportation, dependent care and employment-related disability supports may be available, typically for clients with an employment plan.",
+  "summary": "BC's free public employment service. Help finding work, possible funding support for training, and possible financial supports, with services built specifically for people with disabilities.",
+  "requires": [
+   "bc",
+   "age16plus",
+   "bcWorkBcRoute"
+  ],
+  "requiresNote": "Check whether you are eligible by applying online at apply.workbc.ca. Staff can support you in completing your application.",
+  "note": "If you have a disability, job search help includes working with employers to shape or customize jobs to meet your needs. Funding for assistive technology is covered by a separate program in this catalog: WorkBC Assistive Technology Services.",
+  "applyText": "Apply online at WorkBC",
+  "applyUrl": "https://www.workbc.ca/get-support/workbc-centre-services",
+  "source": "https://www.workbc.ca/get-support/workbc-centre-services",
+  "detail": {
+   "about": "WorkBC centres provide free employment services including job-search help, work experience and wage subsidies. Funding support for training and employment-related disability supports may be available, typically for clients with an employment plan. A WorkBC counsellor reviews eligibility and builds the plan with you.",
+   "aboutList": {
+    "lead": "WorkBC centre services and possible funding:",
+    "items": [
+     "Free employment services including job-search help, work experience and wage subsidies.",
+     "Funding support for training and employment-related disability supports may be available, typically for clients with an employment plan.",
+     "A WorkBC counsellor reviews eligibility and builds the plan with you."
+    ]
+   },
+   "steps": [
+    "Get a Basic BCeID or set up online access with a BC Services Card",
+    "Register for Online Employment Services and select WorkBC Employment Services",
+    "Complete the application, including work status, barriers and the WorkBC centre you want to use",
+    "Upload requested documents and communicate with the centre through the secure portal",
+    "Meet an employment counsellor to confirm eligibility and create a personal action plan"
+   ],
+   "documents": [
+    "Valid Social Insurance Number",
+    "Information showing you are legally allowed to work in B.C.",
+    "Work and education history",
+    "Information about disability-related employment barriers if requesting specialized supports"
+   ],
+   "tips": [
+    "You do not need a phone number or a fixed mailing address to submit the online application",
+    "Centre staff can help you complete the application",
+    "People with disabilities can qualify in more work or student situations. These include being at risk of losing a job or being in the final year of school",
+    "Financial supports are typically for clients who are case managed through WorkBC. That means you have an employment plan and work with an employment specialist.",
+    "Dependent care covers childcare while you are job searching."
+   ],
+   "time": "The local WorkBC centre decides eligibility after reviewing the completed application",
+   "phone": "Contact your selected WorkBC centre"
+  }
+ },
+ "values": {
+  "kind": "services",
+  "excludeFromEstimate": true,
+  "note": "free employment services"
+ },
+ "meta": {
+  "difficulty": 1,
+  "effort": "Online registration or local WorkBC intake",
+  "wait": "Contact your WorkBC centre"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

@@ -1,0 +1,70 @@
+{
+ "id": "hamilton-fare-assist",
+ "benefit": {
+  "id": "hamilton-fare-assist",
+  "name": "HSR Fare Assist (Hamilton)",
+  "level": "Hamilton",
+  "category": "Transit",
+  "amount": "50% off single-ride PRESTO fares for a year",
+  "summary": "Half-price single-ride PRESTO fares on Hamilton transit. It is for households below the Low-Income Measure, including people who get ODSP or CPP Disability. It covers accessible DARTS trips and regular buses. It covers everyone eligible in the household.",
+  "note": "The discount does not apply to monthly or annual passes. It lasts one year from approval, and you re-apply each year. Fare Assist became permanent on January 1, 2026. It replaced two earlier programs. One was the Affordable Transit Pass for Ontario Works recipients. The other was the Temporary Transit Fare Special Program for people who use a personal mobility device such as a wheelchair, scooter or walker, and for CNIB cardholders.",
+  "requires": [
+   "hamilton",
+   "hamiltonFareRoute"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "You live in Hamilton",
+    "You receive Ontario Works or ODSP, or your total household income is below the Statistics Canada Low-Income Measure for your family size"
+   ],
+   "note": "Eligibility is based on total household income regardless of where the income comes from — employment, Ontario Works, ODSP, the Canada Pension Plan disability benefit, Employment Insurance, or WSIB payments all count the same way. Recent refugees, newcomers to Canada, and people aged 18 or 19 who have not yet filed a tax return may also qualify. After-tax income limits by family size: $30,255 for 1 person, $42,787 for 2, $52,403 for 3, $60,510 for 4, $67,652 for 5, $74,109 for 6, $80,047 for 7, $85,574 for 8, $90,765 for 9 and $95,675 for 10."
+  },
+  "applyText": "Apply for Fare Assist",
+  "applyUrl": "https://www.hamilton.ca/home-neighbourhood/hsr/fares/hsr-fare-assist",
+  "source": "https://www.hamilton.ca/home-neighbourhood/hsr/fares/hsr-fare-assist",
+  "detail": {
+   "about": "Fare Assist gives Hamilton residents living below the Statistics Canada Low-Income Measure a 50 per cent discount on single-ride PRESTO fares, for themselves and their family, for one year following approval. Eligibility is based on total household income regardless of income source. The discount applies to both conventional and accessible transit, so it covers trips taken on DARTS vehicles as well as HSR buses. The City estimates about 88,000 Hamiltonians will benefit.",
+   "aboutList": {
+    "lead": "Fare Assist halves single-ride PRESTO fares for lower-income Hamilton households.",
+    "items": [
+     "50 per cent off current single-ride PRESTO fares, for one year after approval.",
+     "Applies to accessible transit as well as conventional buses, including trips on DARTS vehicles.",
+     "Covers every eligible member of the household, including a spouse and children aged 13 to 17. Children 12 and under already ride free with PRESTO.",
+     "After 11 paid PRESTO trips in the same week, from Monday 12:01 a.m. to Sunday 11:59 p.m., you are not charged again that week.",
+     "It does not apply to monthly or annual passes."
+    ]
+   },
+   "steps": [
+    "Check your total household income against the Low-Income Measure for your family size",
+    "Apply through the City of Hamilton — if you receive Ontario Works or ODSP you give your Member ID; otherwise your total household income, from any source, must be below the Low-Income Measure for your family size",
+    "Once approved, the 50 per cent discount applies to single-ride PRESTO fares for one year",
+    "Load funds onto your PRESTO card as you need them",
+    "Re-apply each year to keep the discount"
+   ],
+   "documents": [
+    "If you receive Ontario Works or ODSP: your Member ID. Everyone else: a current Notice of Assessment for all family members",
+    "Your PRESTO card, which the discount is applied to",
+    "Identification showing your current address, such as a driver's license, health card or government-issued ID"
+   ],
+   "tips": [
+    "The discount covers DARTS accessible transit trips, not only regular HSR buses.",
+    "Where your income comes from does not matter. ODSP, CPP Disability, WSIB, Employment Insurance, Ontario Works and employment income are all treated the same.",
+    "Recent refugees, newcomers, and 18- or 19-year-olds who have not filed a tax return yet may still qualify.",
+    "The weekly cap means you ride free after 11 paid trips in the same Monday-to-Sunday week.",
+    "You may have been on the old Affordable Transit Pass or the mobility-device and CNIB fare program. Fare Assist replaced both on January 1, 2026."
+   ]
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "note": "50% off single-ride PRESTO fares for one year; does not apply to monthly or annual passes"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Application with your Ontario Works or ODSP Member ID, or a Notice of Assessment for each family member",
+  "wait": "Not published"
+ },
+ "extra": null,
+ "verified": "2026-09"
+}

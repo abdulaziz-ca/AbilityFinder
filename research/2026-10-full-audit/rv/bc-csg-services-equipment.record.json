@@ -1,0 +1,63 @@
+{
+ "id": "bc-csg-services-equipment",
+ "benefit": {
+  "id": "bc-csg-services-equipment",
+  "needsPractitioner": true,
+  "name": "Canada Student Grant for Services and Equipment – Students with Disabilities",
+  "level": "British Columbia",
+  "category": "Education",
+  "amount": "Up to $20,000 per loan year",
+  "summary": "Up to $20,000 per year for disability-related education services and equipment, such as notetakers, tutors, interpreters and technical aids. It is for post-secondary students with disabilities and goes through StudentAid BC.",
+  "requires": [
+   "bc",
+   "student",
+   "disabilityDoc"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "You qualify for a federal student loan.",
+    "You study full-time or part-time at a designated institution.",
+    "You have a verified permanent or persistent/prolonged disability.",
+    "You have exceptional education-related costs caused by your disability."
+   ]
+  },
+  "requiresNote": "You must qualify for a federal student loan, study full-time or part-time at a designated institution, have a verified permanent or persistent/prolonged disability, and have exceptional education-related costs caused by your disability.",
+  "note": "This grant is on top of the $2,800 Canada Student Grant for Students with Disabilities. If you use up the full $20,000 and still have costs, the B.C. Assistance Program for Students with Disabilities can add up to $10,000-$12,000 more.",
+  "applyText": "Apply through StudentAid BC",
+  "applyUrl": "https://studentaidbc.ca/apply/how-to-apply-disability-funding",
+  "source": "https://studentaidbc.ca/explore/grants-scholarships/canada-student-grant-services-and-equipment-students-disabilities",
+  "detail": {
+   "about": "This grant pays for the specific services and equipment you need because of your disability while studying — things like notetakers, tutors, interpreters, assistive software and other technical aids. It is non-repayable and is assessed through your StudentAid BC application after your disability status is verified.",
+   "steps": [
+    "Complete a StudentAid BC application and get your disability status verified (Disability Verification Form from a qualified medical assessor; some disabilities, such as Specific Learning Disorders, have different verification requirements — see the form's instructions).",
+    "Work with your school's accessibility services office to identify the services and equipment you need.",
+    "Your school's accessibility services officer sends the Equipment Request form to Assistive Technology BC (for equipment), or the Services Request form to StudentAid BC (for services).",
+    "For equipment, Assistive Technology BC contacts you to review your needs and your equipment is ordered. For services, you get a notification when your request is complete."
+   ],
+   "documents": [
+    "Verified disability status with StudentAid BC",
+    "Documentation of the services or equipment you need and their costs (your school's accessibility office helps prepare this)"
+   ],
+   "tips": [
+    "Book an appointment early with your school's accessibility services office. They know this process well and often start the paperwork for you.",
+    "Keep receipts for everything the grant pays for."
+   ],
+   "time": "About 6 weeks for disability verification, then with your funding assessment",
+   "phone": "1-800-561-1818"
+  }
+ },
+ "values": {
+  "kind": "grant",
+  "excludeFromEstimate": true,
+  "annualMax": 20000,
+  "note": "same program as federal csg-dse via StudentAid BC — never double-counted"
+ },
+ "meta": {
+  "difficulty": 3,
+  "effort": "StudentAid BC application + disability status application (Appendix 8 if you applied before June 19, 2026) + services or equipment request through your school",
+  "wait": "With your student-aid assessment"
+ },
+ "extra": null,
+ "verified": "2026-07"
+}

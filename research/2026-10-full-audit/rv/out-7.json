@@ -1,0 +1,46 @@
+[
+{"id":"on-parking-permit","snapshot":"ok","confirmed":14,
+ "differs":[{"field":"benefit.detail.aboutList.items[3]","old":"can bring a fine of up to $5,000 and loss of the permit","new":"could bring a fine of up to $5,000, and the permit may be seized","quote":"If you use the permit without the permit holder, you could be fined up to $5,000 and the permit may be seized.","why":"Hedge hardened: 'could'/'may be seized' became a firm 'loss of the permit'."}],
+ "blocking_not_on_page":[],"verdict":"fix-then-bump"},
+{"id":"bc-access-grant-deaf-students","snapshot":"ok","confirmed":9,"differs":[],"blocking_not_on_page":[],"verdict":"bump"},
+{"id":"local-supports","snapshot":"ok","confirmed":3,"differs":[],
+ "blocking_not_on_page":[
+  {"field":"benefit.detail.about / tips","claim":"more than 150 languages","why":"Number of languages is not on the AB or BC 211 pages (BC page shows no language count)."},
+  {"field":"benefit.detail.about / tips","claim":"In most of Canada 24 hours a day","why":"Only Alberta page says 24/7; BC page says 9am-9pm weekdays. 'Most of Canada' is not stated."}],
+ "verdict":"keep"},
+{"id":"bc-fnha-health-benefits","snapshot":"ok","confirmed":16,
+ "differs":[
+  {"field":"benefit.eligibility.note (also benefit.requiresNote)","old":"You are not eligible if you have health insurance provided by the federal government, or by a First Nations organization as part of a self-government agreement with Canada.","new":"You may not be eligible if you have coverage through a treaty and land claims agreement, or a written contribution arrangement between a First Nations organization and a government, that B.C.'s Minister of Health has identified as resulting in ineligibility.","quote":"Some individuals do not qualify for Plan W because they have coverage through other agreements with Canada. These include: A treaty and land claims agreement ... (unless that treaty and land claims agreement has been identified by the provincial Minister of Health as not resulting in ineligibility)","why":"Page names treaty/land-claims and contribution arrangements, conditional on Minister identification; 'federal government health insurance' and 'self-government agreement' are not on the page. Apply the same replacement in benefit.requiresNote."},
+  {"field":"benefit.detail.tips[2]","old":"If you already have health insurance from the federal government, or through a First Nations self-government agreement with Canada, you are not eligible for this program","new":"You may not be eligible if you have coverage through a treaty and land claims agreement, or a written contribution arrangement between a First Nations organization and a government, that B.C.'s Minister of Health has identified as resulting in ineligibility","quote":"Some individuals do not qualify for Plan W because they have coverage through other agreements with Canada.","why":"Same as above; hedge and specifics differ."}],
+ "blocking_not_on_page":[],"verdict":"fix-then-bump"},
+{"id":"victoria-life","snapshot":"ok","confirmed":20,"differs":[],"blocking_not_on_page":[],"verdict":"bump"},
+{"id":"bc-csg-services-equipment","snapshot":"ok","confirmed":9,"differs":[],
+ "blocking_not_on_page":[
+  {"field":"benefit.note","claim":"$2,800 Canada Student Grant for Students with Disabilities (on top of)","why":"$2,800 amount is not in this snapshot."},
+  {"field":"benefit.note","claim":"B.C. Assistance Program for Students with Disabilities can add up to $10,000-$12,000 more","why":"Amount not in this snapshot."}],
+ "verdict":"keep"},
+{"id":"ottawa-community-pass","snapshot":"ok","confirmed":9,"differs":[],
+ "blocking_not_on_page":[
+  {"field":"benefit.note / tips","claim":"Access holders pay a $2.75 top-up per Para Transpo ride","why":"$2.75 not on page; page says Access pass saves one-third of cash fare on Para Transpo trips."},
+  {"field":"benefit.detail.aboutList.items[4]","claim":"regular adult fare is $138.50 a month","why":"$138.50 not on page."},
+  {"field":"benefit.detail.steps[3]","claim":"buy monthly passes up to 14 days before the month starts","why":"14-day window not on page."}],
+ "verdict":"keep"},
+{"id":"ottawa-equipass","snapshot":"ok","confirmed":6,"differs":[],
+ "blocking_not_on_page":[
+  {"field":"benefit.amount / values.note","claim":"$58.25 a month","why":"Page only says EquiPass costs approximately half an Adult pass; no dollar amount."},
+  {"field":"benefit.amount","claim":"$1.75 a ride","why":"$1.75 on page is the ODSP Community fare, not EquiPass."},
+  {"field":"benefit.detail.about","claim":"$138.50 adult monthly pass; $12.25 daily cap","why":"Not on page."}],
+ "verdict":"keep"},
+{"id":"bc-healthy-kids","snapshot":"ok","confirmed":14,"differs":[],
+ "blocking_not_on_page":[
+  {"field":"benefit.eligibility.items[1]","claim":"not receiving income, disability or hardship assistance","why":"Exclusion not on page."},
+  {"field":"benefit.note","claim":"Coverage stays active until end of the month of the child's 19th birthday","why":"Page says only 'under 19 years old'."},
+  {"field":"benefit.detail.about","claim":"adjusted net income definition (deductions for age, family size, disability, UCCB, RDSP); hearing 'when the family has no other resources to pay'","why":"Not on page."}],
+ "verdict":"keep"},
+{"id":"bc-sales-tax-credit","snapshot":"ok","confirmed":10,"differs":[],"blocking_not_on_page":[],"verdict":"bump"},
+{"id":"calgary-fair-entry","snapshot":"ok","confirmed":3,"differs":[],
+ "blocking_not_on_page":[
+  {"field":"benefit.amount / note / tips / values.note","claim":"Transit pass $6.30, $44.10 or $63.00 per month by income band","why":"No transit amounts on the page."},
+  {"field":"benefit.detail.time / meta.wait","claim":"Usually processed within a couple of weeks / 1-2 weeks","why":"Processing time not stated; page only reports current online processing date."}],
+ "verdict":"keep"}
+]

@@ -1,0 +1,58 @@
+{
+ "id": "stalbert-subsidy",
+ "benefit": {
+  "id": "stalbert-subsidy",
+  "name": "St. Albert Transit & Recreation Subsidy",
+  "level": "St. Albert",
+  "category": "Getting around & recreation",
+  "amount": "Free local fares within St. Albert + free annual recreation membership for AISH and ADAP recipients",
+  "summary": "St. Albert's subsidy gives eligible residents free local fares within St. Albert and free local Handibus tickets for approved riders. AISH and ADAP recipients are eligible for a free annual membership at City-run recreation facilities.",
+  "requires": [
+   "stalbert",
+   "municipalProgramEligibility"
+  ],
+  "note": "AISH and ADAP recipients are eligible for a free annual recreation membership. The City's page also says your total annual household income (before taxes) must be within the low-income limits set by Statistics Canada. It does not say whether that rule applies to AISH or ADAP recipients, so confirm with the City.",
+  "applyText": "Open the official page on stalbert.ca",
+  "applyUrl": "https://stalbert.ca/city/fcss/programs-services/subsidy/",
+  "source": "https://stalbert.ca/city/fcss/programs-services/subsidy/",
+  "detail": {
+   "about": "St. Albert's Family and Community Support Services runs one subsidy covering transit and recreation. For eligible residents: free local fares within St. Albert; free local tickets for approved Handibus riders for travel within St. Albert; 65% off monthly adult commuter fares for travel between St. Albert and Edmonton; AISH and ADAP recipients are eligible for a free annual membership at City-run recreation facilities, including Servus Credit Union Place, Fountain Park Recreation Centre and Grosvenor Outdoor Pool.",
+   "aboutList": {
+    "lead": "St. Albert's Family and Community Support Services runs one subsidy covering transit and recreation. For eligible residents:",
+    "items": [
+     "Free local fares within St. Albert",
+     "Free local tickets for approved Handibus riders for travel within St. Albert",
+     "65% off monthly adult commuter fares for travel between St. Albert and Edmonton",
+     "AISH and ADAP recipients are eligible for a free annual membership at City-run recreation facilities, including Servus Credit Union Place, Fountain Park Recreation Centre and Grosvenor Outdoor Pool"
+    ]
+   },
+   "steps": [
+    "Fill in the subsidy application on the City's subsidy page.",
+    "Say that you receive AISH or ADAP — AISH and ADAP recipients are eligible for the free annual recreation membership.",
+    "If you use the Handibus, ask about approved-rider status at the same time.",
+    "Call 780-459-1756 if you get stuck."
+   ],
+   "documents": [
+    "Proof you receive AISH or ADAP",
+    "Proof of a St. Albert address"
+   ],
+   "tips": [
+    "You can't claim this if another source already funds the same thing. If a program already pays your bus fare, sort that out first.",
+    "The commuter fare between St. Albert and Edmonton is separate from free local fares. Ask about both if you travel in."
+   ],
+   "time": "Allow a couple of weeks.",
+   "phone": "St. Albert FCSS: 780-459-1756"
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "note": "Free local fares + free annual rec membership (AISH/ADAP)"
+ },
+ "meta": {
+  "difficulty": 1,
+  "effort": "One FCSS form",
+  "wait": "1–2 weeks"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

@@ -1,0 +1,63 @@
+{
+ "id": "handydart-translink",
+ "benefit": {
+  "id": "handydart-translink",
+  "name": "HandyDART (TransLink)",
+  "level": "Metro Vancouver",
+  "category": "Transit",
+  "amount": "Every trip is a 1-Zone fare — $2.85 adult / $2.30 concession with Compass stored value, $3.50 adult / $2.30 concession in cash",
+  "summary": "Door-to-door shared-ride transit across Metro Vancouver for people who cannot use regular public transit for all trips without assistance. Any distance, always a 1-Zone fare.",
+  "requires": [
+   "bc",
+   "metroVancouver",
+   "transitBarrier"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "You live in Metro Vancouver.",
+    "You have a physical, sensory or cognitive disability that means you cannot use conventional public transit for all trips without assistance."
+   ],
+   "note": "TransLink states there is no age or income test."
+  },
+  "requiresNote": "You live in Metro Vancouver and have a physical, sensory or cognitive disability that means you cannot use conventional public transit for all trips without assistance. TransLink states no age or income test.",
+  "note": "This is a Metro Vancouver service. Outside Metro Vancouver, look for BC Transit handyDART instead. Fares shown are current as of July 1, 2026 — TransLink usually changes fares on July 1.",
+  "applyText": "Download the HandyDART & HandyCard application",
+  "applyUrl": "https://www.translink.ca/handydart",
+  "source": "https://www.translink.ca/handydart",
+  "detail": {
+   "about": "The earliest pickup is 6 a.m. and the last drop-off is 2 a.m. You can book your trip as far as seven days in advance and up until 4 p.m. the day before your trip. One combined HandyDART and HandyCard application form covers both services.",
+   "steps": [
+    "Download and complete the combined HandyDART and HandyCard application",
+    "Describe the parts of conventional transit you cannot navigate without help, including temporary or changing barriers",
+    "Include the optional medical verification if it will help explain the functional barrier",
+    "Submit the application using the instructions on the form and wait for Access Transit to contact you",
+    "After approval, call to book trips one to seven days ahead; bookings for the next day must be requested before 4 p.m."
+   ],
+   "documents": [
+    "Completed HandyDART and HandyCard application",
+    "Recent photo for the HandyCard portion",
+    "Optional functional or medical verification"
+   ],
+   "tips": [
+    "Explain what happens from your door to the stop, on the vehicle and during transfers. Eligibility is about the functional trip, not a diagnosis.",
+    "A HandyDART taxi replacement costs the regular HandyDART fare; it is not a TaxiSaver trip",
+    "Tell the booking agent about mobility aids, an attendant, a service dog or vehicle limitations"
+   ],
+   "time": "TransLink says it processes HandyDART applications within 10 days of confirming receipt, and asks you to allow 4 to 6 weeks for HandyCard applications.",
+   "phone": "604-953-3680"
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "excludeFromEstimate": true,
+  "note": "1-zone fare door-to-door transit"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Application + health-professional section",
+  "wait": "HandyDART application processed within 10 days of confirming receipt; HandyCard 4 to 6 weeks"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

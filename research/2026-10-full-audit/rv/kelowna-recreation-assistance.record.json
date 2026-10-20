@@ -1,0 +1,104 @@
+{
+ "id": "kelowna-recreation-assistance",
+ "benefit": {
+  "id": "kelowna-recreation-assistance",
+  "name": "Financial Assistance for Recreation (KFAP)",
+  "level": "Kelowna",
+  "category": "Recreation",
+  "amount": "A credit toward a Parkinson Recreation Centre pass or City programs",
+  "summary": "Kelowna's recreation subsidy for residents on a low income. It gives a credit you can spend on a facility pass or on programs.",
+  "requires": [
+   "bc",
+   "kelowna",
+   "lowIncome",
+   "citizenPR",
+   "notPostSecondaryStudent"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "You are a Canadian citizen or permanent resident currently residing in Kelowna as a full-time resident.",
+    "You meet the family net income threshold based on the after-tax Low Income Cut-off (see the table below). You must also meet income verification requirements and have all the necessary documentation. People receiving government financial assistance are eligible to apply, as are people who do not receive it but are experiencing financial hardship and meet the guidelines."
+   ],
+   "note": "Post-secondary students are not eligible, though they can ask for the discounted student rate on passes instead. Also not eligible: temporary residents and visitors, including anyone on a study or work permit; immigrants classified as business class, investor or entrepreneur; and anyone banned from City recreation facilities, including Parkinson Recreation Centre and the Kelowna-area YMCAs. Recreation Services may exercise discretion when determining eligibility for Financial Assistance for individuals with previous suspensions or bans."
+  },
+  "amountTiers": {
+   "caption": "City of Kelowna — Low Income Cut-Offs (LICO) 2025 (family net income after tax)",
+   "headers": [
+    "Family size",
+    "Family net income"
+   ],
+   "rows": [
+    [
+     "1",
+     "$26,926"
+    ],
+    [
+     "2",
+     "$33,519"
+    ],
+    [
+     "3",
+     "$41,208"
+    ],
+    [
+     "4",
+     "$50,032"
+    ],
+    [
+     "5",
+     "$56,744"
+    ],
+    [
+     "6",
+     "$64,000"
+    ],
+    [
+     "7",
+     "$71,254"
+    ]
+   ]
+  },
+  "requiresNote": "You must be a Canadian citizen or permanent resident currently residing in Kelowna as a full-time resident, and meet the family net income threshold based on the after-tax Low Income Cut-off published by Statistics Canada. The City 2025 LICO table lists $26,926 for a family of 1, $33,519 for 2, $41,208 for 3, $50,032 for 4, $56,744 for 5, $64,000 for 6 and $71,254 for 7. You must also meet income verification requirements and have all the necessary documentation. People receiving government financial assistance are eligible to apply, as are people who do not receive it but are experiencing financial hardship and meet the guidelines. Post-secondary students are not eligible, though they can ask for the discounted student rate on passes instead. Also not eligible: temporary residents and visitors, including anyone on a study or work permit; immigrants classified as business class, investor or entrepreneur; and anyone banned from City recreation facilities, including Parkinson Recreation Centre and the Kelowna-area YMCAs. Recreation Services may exercise discretion when determining eligibility for Financial Assistance for individuals with previous suspensions or bans.",
+  "note": "To apply, email the Access to Recreation Department. The assessment may take up to two weeks from the date you submit, if all required information is received. The income assessment counts income from all sources. This includes disability benefits and workers' compensation, as well as employment, investments, pensions, child and foster child support, rental income and funds held in trust.",
+  "applyText": "Email Access to Recreation to apply",
+  "applyUrl": "https://www.kelowna.ca/parks-recreation/recreation-sport/recreation-programs-registration/financial-assistance-recreation",
+  "source": "https://www.kelowna.ca/parks-recreation/recreation-sport/recreation-programs-registration/financial-assistance-recreation",
+  "detail": {
+   "about": "Kelowna assesses combined household income from all sources and places an approved credit on the recreation account for passes or City programs.",
+   "steps": [
+    "Email the Access to Recreation Department to request the current application process",
+    "Gather proof of a Kelowna address from the last three months",
+    "Get a CRA Income Statement (Option C print, not Notice of Assessment) for each household member who contributes income or expenses",
+    "Submit the completed application and all supporting documents",
+    "Wait for approval before buying a pass or program; approved credit can then be used during registration"
+   ],
+   "documents": [
+    "Recent utility, cable or internet bill, rental agreement, or government document showing a Kelowna address",
+    "CRA Income Statement for contributing household members",
+    "Government-assistance confirmation when using that qualifying route",
+    "Citizenship or permanent-resident information requested by the form"
+   ],
+   "tips": [
+    "Past purchases are not covered, so wait for approval",
+    "All income sources count, including disability benefits and income from outside Canada",
+    "A clerk at Parkinson Recreation Centre can check whether processing is complete",
+    "You must re-apply every year. You can resubmit up to one month before your current term ends.",
+    "If you are a post-secondary student, you cannot use this program. You can still get the discounted student rate on a pass. Show a valid student ID and proof of full-time enrolment."
+   ],
+   "time": "The assessment may take up to two weeks from the date of submission, provided all required information is received."
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "excludeFromEstimate": true,
+  "note": "credit toward a pass or City programs"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Email application + income assessment",
+  "wait": "Up to 2 weeks from submission, if all information is received"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

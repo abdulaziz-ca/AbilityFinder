@@ -1,0 +1,2 @@
+URL: https://www.canada.ca/en/services/benefits/disability/canada-disability-benefit.html | province: X | program: cdb-adult | fetched: 2026-10-19
+=== PAGE: https://www.canada.ca/en/services/benefits/disability/canada-disability-benefit.html (HTTP 000, 0 chars)

@@ -1,0 +1,180 @@
+[
+ {
+  "id": "bc-medical-transportation",
+  "snapshot": "ok",
+  "confirmed": 14,
+  "differs": [],
+  "blocking_not_on_page": [
+   {
+    "field": "benefit.amount",
+    "claim": "May pay $0.36 per kilometre by private vehicle",
+    "why": "Page only says there is a set rate per kilometre, shown in a separate Rate Table not in the snapshot"
+   },
+   {
+    "field": "benefit.detail.about / aboutList",
+    "claim": "the ministry may issue up to $8 per meal",
+    "why": "Page says meal allowances may be issued not exceeding the Rate Table amount; $8 is not stated"
+   }
+  ],
+  "verdict": "keep"
+ },
+ {
+  "id": "adap",
+  "snapshot": "ok",
+  "confirmed": 14,
+  "differs": [],
+  "blocking_not_on_page": [
+   {
+    "field": "benefit.detail.tips[3]",
+    "claim": "Alberta says that when no CDB decision had been made by February 28, 2026, $200 was reduced from April 2026 benefits (and 'including the approved CDB amount')",
+    "why": "Neither the $200 reduction, the Feb 28/April 2026 dates, nor reporting the approved CDB amount appear in the snapshot; page only says ADAP clients must inform the program of approval or denial of CDB/DTC"
+   }
+  ],
+  "verdict": "keep"
+ },
+ {
+  "id": "hamilton-fare-assist",
+  "snapshot": "ok",
+  "confirmed": 18,
+  "differs": [],
+  "blocking_not_on_page": [],
+  "verdict": "bump"
+ },
+ {
+  "id": "handydart-translink",
+  "snapshot": "ok",
+  "confirmed": 10,
+  "differs": [],
+  "blocking_not_on_page": [
+   {
+    "field": "benefit.eligibility.note / requiresNote",
+    "claim": "TransLink states there is no age or income test",
+    "why": "Snapshot says only 'refer to the application form for detailed eligibility criteria'; no statement about age or income"
+   }
+  ],
+  "verdict": "keep"
+ },
+ {
+  "id": "vancouver-leisure-access",
+  "snapshot": "ok",
+  "confirmed": 16,
+  "differs": [],
+  "blocking_not_on_page": [
+   {
+    "field": "benefit.amount / summary",
+    "claim": "Free admission to pools and rinks, 50% off fitness centre admission and group swimming and skating lessons; outdoor pools need an online reservation",
+    "why": "Page only says 'free and reduced-fee access to programs and services at Park Board facilities'; no 50%, no specific free admissions. Suggested wording: 'Free and reduced-fee access to Park Board programs and services, and a pass valid for 3 years'"
+   },
+   {
+    "field": "benefit.eligibility.note",
+    "claim": "Not available to immigrants classified as investors or entrepreneurs",
+    "why": "Not on page (income exclusions are, but this one is not)"
+   }
+  ],
+  "verdict": "keep"
+ },
+ {
+  "id": "strathcona-subsidy",
+  "snapshot": "ok",
+  "confirmed": 9,
+  "differs": [
+   {
+    "field": "benefit.amount",
+    "old": "Reduced transit fare cap + free annual Active Pass+",
+    "new": "Reduced transit fare cap + free Active Pass",
+    "quote": "provides a free Active Pass  and reduced-fee programs for residents with limited incomes",
+    "why": "Page says Active Pass, not Active Pass+, and does not say annual"
+   }
+  ],
+  "blocking_not_on_page": [
+   {
+    "field": "benefit.note",
+    "claim": "AISH is below that [$33,675] line, so it's worth applying",
+    "why": "No AISH amount or comparison on page"
+   },
+   {
+    "field": "benefit.detail.tips[0]",
+    "claim": "The County raised its income limits",
+    "why": "Page only says income amounts are adjusted annually"
+   },
+   {
+    "field": "benefit.summary/detail",
+    "claim": "no-cost annual Active Pass+ and Everybody Gets to Play details",
+    "why": "The Everybody Gets to Play page itself is not in the snapshot; only the overview line is"
+   }
+  ],
+  "verdict": "keep"
+ },
+ {
+  "id": "bc-clbc",
+  "snapshot": "ok",
+  "confirmed": 9,
+  "differs": [],
+  "blocking_not_on_page": [
+   {
+    "field": "benefit.summary/eligibility.note",
+    "claim": "Youth can apply from age 16; supports continue beyond 65",
+    "why": "Page gives no application age and says nothing about 65"
+   },
+   {
+    "field": "benefit.detail.coversList",
+    "claim": "Respite for families, behavioural support, Provincial Assessment Centre mental-health services for people 14+",
+    "why": "Not on either page; the age 14+ is an age limit not stated"
+   }
+  ],
+  "verdict": "keep"
+ },
+ {
+  "id": "grt-mobilityplus",
+  "snapshot": "ok",
+  "confirmed": 9,
+  "differs": [],
+  "blocking_not_on_page": [
+   {
+    "field": "benefit.amount / values.note",
+    "claim": "$15 for 5 tickets, $104 monthly pass, $6.75 for 5 tickets with ATP approval",
+    "why": "No fares or ATP discount appear in the snapshot"
+   }
+  ],
+  "verdict": "keep"
+ },
+ {
+  "id": "bc-pharmacare-plan-c",
+  "snapshot": "ok",
+  "confirmed": 12,
+  "differs": [],
+  "blocking_not_on_page": [],
+  "verdict": "bump"
+ },
+ {
+  "id": "leduc-subsidies",
+  "snapshot": "ok",
+  "confirmed": 8,
+  "differs": [],
+  "blocking_not_on_page": [],
+  "verdict": "bump"
+ },
+ {
+  "id": "bc-learning-disability-assessment-bursary",
+  "snapshot": "ok",
+  "confirmed": 4,
+  "differs": [
+   {
+    "field": "benefit.summary",
+    "old": "Covers the up-front cost of a learning disability assessment.",
+    "new": "Helps with the up-front costs of a learning disability assessment.",
+    "quote": "helps part-time or full-time students with the up-front costs of the learning disabilities assessment",
+    "why": "Page says helps with costs, up to $3,500, not that it covers the cost"
+   },
+   {
+    "field": "values.note",
+    "old": "one-time, toward a learning-disability assessment",
+    "new": "toward a learning-disability assessment",
+    "quote": "Up to $3,500 is available to eligible students.",
+    "why": "'One-time' is not on the page"
+   }
+  ],
+  "blocking_not_on_page": [],
+  "verdict": "fix-then-bump"
+ }
+]

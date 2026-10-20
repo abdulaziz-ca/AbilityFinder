@@ -1,0 +1,442 @@
+URL: https://studentaidbc.ca/sites/all/files/school-officials/policy_manual_26_27.pdf | province: X | program: bc-access-grant-deaf-students | fetched: 2026-10-19
+=== PAGE: https://studentaidbc.ca/sites/all/files/school-officials/policy_manual_26_27.pdf (HTTP 200, 587936 chars)  [TRIMMED 2026-10-19: only passages within ~40 lines of "Deaf"/"hard of hearing" kept]
+[...]
+
+    •   Repayable Student Loan
+           o Canada-B.C. Integrated Student Loan (Full-Time)
+           o Canada Student Loan (Part-Time)
+
+
+
+
+StudentAid BC Policy Manual 2026/27 | SIMS                                        Effective: June 23, 2026
+Introduction                                                                                                 7
+
+
+
+Programs assessed through program-specific applications
+
+    •   Loan forgiveness/repayment assistance
+           o B.C. Loan Forgiveness Program
+           o B.C. Repayment Assistance Plan
+           o B.C. Severe Permanent Disability Benefit
+           o Canada Repayment Assistance Plan
+           o Canada Severe Permanent Disability Benefit
+           o Canada Student Loan Forgiveness
+           o Pacific Leaders Loan Forgiveness Program
+
+    •   Non-repayable financial assistance
+           o B.C. Access Grant for Deaf Students
+           o B.C. Assistance Program for Students with Disabilities
+           o Canada Student Grant - Services & Equipment for Students with Disabilities
+           o Learning Disability Assessment Bursary
+           o Pacific Leaders Scholarships for Children of Public Servants
+           o Youth Educational Assistance Fund (Legacy Program)
+
+Programs delivered in collaboration with public B.C. post-secondary
+institutions
+
+   •    Academic Communication Equity (formerly Post-Secondary Communication Access Services)
+   •    Adult Upgrading Grant
+   •    Assistance Program for Students with Disabilities
+   •    Centre for Accessible Post-Secondary Education Resources
+   •    Learning Disability Assessment Bursary
+   •    Lieutenant Governor’s Medal Program
+   •    Program for Institutional Loans of Adaptive Technology
+   •    Student Services Emergency Assistance Fund
+   •    Provincial Tuition Waiver Program (for Former Youth in Care)
+   •    Learning for Future Grant (for Former Youth in Care eligible for the Provincial Tuition Waiver
+        Program)
+   •    Targeted institution funding to provide on-campus supports to former Youth in Care eligible
+        for the Provincial Tuition Waiver Program
+
+
+
+
+StudentAid BC Policy Manual 2026/27 | SIMS                                        Effective: June 23, 2026
+Introduction                                                                                                      8
+
+
+
+Key Updates for Program Year 2026-27
+
+StudentAid BC Key Updates
+
+    •   Students studying at Canadian private institutions outside of B.C. will no longer be eligible
+        for provincial student financial assistance (SFA). A train out provision will allow students in
+        the same program, at the same institution, to apply to continue to receive SFA until their
+        program is complete, or until July 31, 2029, whichever occurs first.
+[...]
+Chapter 6: Accessibility Supports                                                                             71
+
+
+
+Chapter 6: Accessibility Supports
+6.1 Purpose
+                                                                                 Accessibility Supports
+6.2 Background
+                                                                                are available to students
+6.3 Eligibility                                                                with disabilities to address
+         6.3.1 Verification of disability                                      disability-related barriers
+         6.3.2 Attestation and re-verification                                     to accessing post-
+         6.3.3 Financial need assessment                                          secondary education
+         6.3.4 Increased lifetime maximum funding limit
+         6.3.5 Reduced course load
+6.4 Federal Financial Assistance Programs
+         6.4.1 Canada Student Grant for Students with Disabilities (CSG-D)
+         6.4.2 Canada Student Grant for Services and Equipment - Students with Disabilities (CSG-
+         DSE)
+                 6.4.2.1 CSG-DSE Disability Assessment Reimbursement
+         6.4.3 Repayment Assistance Plan for Borrowers with Disabilities (RAP-D)
+         6.4.4 Severe Permanent Disability Benefit (SPDB)
+6.5 Provincial Financial Assistance Programs
+         6.5.1 B.C. Access Grant for Students with Disabilities (BCAG-D)
+         6.5.2 B.C. Supplemental Bursary for Students with Disabilities (SBSD)
+         6.5.3 B.C. Access Grant for Deaf Students (BCAG-DS)
+         6.5.4 Learning Disability Assessment Bursary (LDAB)
+         6.5.5 Assistance Program for Students with Disabilities (APSD)
+         6.5.6 B.C. Provision for Students with Severe Disabilities (PSSD)
+6.6 Centralized Institution Support Programs
+         6.6.1 Accessibility and Interpreting Services
+         6.6.2 Centre for Accessible Post-Secondary Education Resources BC (CAPER-BC)
+         6.6.3 Academic Communication Equity – British Columbia (ACE-BC)
+         6.6.4 Public Post-Secondary Loan Program (PPL)
+         6.6.5 Program for Institutional Loans of Adaptive Technology (PILAT)
+
+
+
+6.1 Purpose
+
+Chapter 6 describes accessibility support programs administered by StudentAid BC to address
+barriers to post-secondary education faced by students with disabilities. These support programs
+include non-repayable student financial assistance, funding for assistive services and equipment,
+loan repayment support and debt forgiveness, and centralized post-secondary institution support
+services.
+
+
+
+
+StudentAid BC Policy Manual 2026/27 | SIMS                                         Effective: June 23, 2026
+Chapter 6: Accessibility Supports                                                                           72
+
+
+6.2 Background
+
+The accessibility support programs administered by StudentAid BC are funded by the Government
+of Canada or the Province of British Columbia.
+
+Financial assistance programs provide students with disabilities with non-repayable student
+financial assistance to address disability-related costs associated with post-secondary education
+(i.e., education and living-related expenses).
+
+Assistive services and equipment programs provide students with disabilities with access to
+exceptional education-related services and technology which address accessibility-related barriers
+to post-secondary education.
+[...]
+                                                                                                              accessed?          Issuer
+Canada Student Grant for Students with Disabilities            $2,800 per program year
+                                                                                                                                 NSLSC
+
+Canada Student Grant for Services and Equipment - Up to $20,000 per program year
+                                                                                                                                  SABC
+Students with Disabilities
+Canada Student Grant for Services and Equipment - 100% of the cost of a Disability
+Students with Disabilities – Disability Assessment Assessment, up to $3,500 per program                                          NSLSC
+Reimbursement                                      year
+Canada Repayment Assistance Program for Students Reduced loan repayment based on
+                                                                                                                                  N/A
+with Disabilities                                  income and disability related costs
+Canada Severe Permanent Disability Benefit         Forgiveness of federal student loan debt                                      NSLSC
+
+Provincial Programs
+BC Supplemental Bursary for Students with                      $800 for full-time and $400 for part-time
+                                                                                                                                  SABC
+Disabilities                                                   students per program year
+B.C. Access Grant for Students with Disabilities               Up to $1,560 per program year
+                                                                                                                                  SABC
+
+Assistance Program for Students with Disabilities              Up to $12,000 per program year
+                                                                                                                                SABC/PSI*
+
+B.C. Access Grant for Deaf Students                            Up to $30,000 per program year
+                                                                                                                                  SABC
+
+Learning Disability Assessment Bursary                         One-time award up to $3,500                                          PSI
+Provision for Students with Severe Disabilities                Reduced loan repayment based on
+                                                                                                                                  N/A
+                                                               income and disability related costs
+
+Centralized Institution Support Programs
+Accessible Communication Equity                                Accessibility services provided to
+                                                                                                                                  N/A
+                                                               institutions based on student need
+Public Post-Secondary Loan Program                             Assistive technology provided to students
+                                                                                                                                  N/A
+                                                               based on need
+Program for the Institutional Loan of Adaptive                 Accessibility services provided to
+                                                                                                                                  N/A
+Technology                                                     institutions based on student need
+Centre for Accessible Post-Secondary Education                 Accessibility services provided to
+                                                                                                                                  N/A
+Resources                                                      institutions based on student need
+*T4As issued by SABC only for direct payments to students. Post-secondary institutions issue T4As to students who receive payments from
+their post-secondary institution.
+
+
+Icon      Assessed via:                                                      Abbreviation          Meaning
+                                                                                                   National Student Loans Service
+          •    StudentAid BC application                                     NSLSC
+                                                                                                   Centre
+
+          •    Separate application                                          SABC                  StudentAid BC
+
+          •    Secondary application through a B.C. Public post-
+                                                                             PSI                   Post-Secondary Institution
+               secondary institution Accessibility Office
+
+
+
+
+       StudentAid BC Policy Manual 2026/27 | SIMS                                                      Effective: June 23, 2026
+[...]
+Part-time students enrolled in a course load of 20-39% are eligible for a $400 bursary (per program
+year).
+
+Note: If a part-time student, studying at 20-39% of a full course load, receives $400 in their first
+         semester and then subsequently enrols in 40% or more of a full course load in the next
+         semester (within the same program year), they will be eligible for an additional $400 in
+         SBSD funding in the second semester. Maximum funding for full-time or part-time students
+         must not exceed $800 per loan year.
+
+Eligibility
+
+    •    For full-time students, qualify for a B.C. student loan and demonstrate $1 of provincial
+         assessed financial need.
+    •    For part-time students, qualify for a federal part-time student loan and demonstrate $1 of
+         federal assessed financial need.
+    •    Be enrolled in full-time or part-time studies at a designated B.C. public post-secondary
+         institution.
+    •    Have a verified permanent disability or a persistent or prolonged disability (Chapter 6,
+         Section 3).
+
+Application Process
+
+Students do not need to apply for this bursary. They will be automatically assessed for the bursary
+if they qualify for student financial assistance and have verified their disability with StudentAid BC.
+
+6.5.3 B.C. Access Grant for Deaf Students (BCAG-DS)
+
+Policy
+
+The B.C. Access Grant for Deaf Students (BCAG-DS) provides up to $30,000 per program year to
+eligible deaf and hard of hearing students, to help with the additional costs of attending a post-
+secondary institution where curriculum is delivered in American Sign Language.
+
+Eligibility
+
+To be eligible for the B.C. Access Grant for Deaf Students (BCAG-DS), students must meet all the
+following criteria:
+
+    •    Qualify for a B.C. student loan
+    •    Demonstrate $1 of provincial assessed financial need
+    •    Be deaf or hard of hearing and have your auditory disability verified as a permanent
+         disability or a persistent or prolonged disability (see Chapter 6, Section 3 for more
+         information).
+    •    Be attending an eligible, designated post-secondary institution, where the curriculum is
+         delivered primarily in American Sign Language (see below)
+
+
+
+StudentAid BC Policy Manual 2026/27 | SIMS                                         Effective: June 23, 2026
+Chapter 6: Accessibility Supports                                                                            82
+
+
+    •    Be enrolled in a full-time course load (60% or greater). The reduced course load policy for
+         students with a verified permanent disability or persistent or prolonged disability does not
+         apply to the BCAG-DS (see Chapter 6, Section 3.5 for more information).
+
+Eligible post-secondary institutions
+
+    •    Gallaudet University in Washington, D.C.
+    •    National Technical Institute for the Deaf in Rochester, New York
+
+Application process
+
+    1. The student must have their disability (permanent, or persistent or prolonged) verified by
+         StudentAid BC (see Chapter 6, Section 3 for more information).
+
+    2. An official from the post-secondary institution (financial aid or registrar’s office only) must
+         confirm enrolment in SIMS to initiate payment of funds.
+
+Disbursement of funds
+
+The BCAG-DS is disbursed by StudentAid BC at the beginning and, where applicable, midpoint of
+the study period.
+
+Withdrawal
+
+If recipients do not complete the study period for which they have been awarded grant funding,
+they will be deemed to have withdrawn. The recipient will not be required to repay the grant;
+however, the recipient will not be eligible for future funding under the BCAG-DS. Students who are
+deemed to have withdrawn are required to return any unused grant funding that is refunded by
+their institution to StudentAid BC.
+
+Recipients of the BCAG-DS who have withdrawn from their program due to extenuating
+circumstances may request further grant funding if they return to full-time studies. The student
+must provide proof of the extenuating circumstances that led to their withdrawal to StudentAid BC
+for consideration.
+
+6.5.4 Learning Disability Assessment Bursary (LDAB)
+
+Policy
+
+The Learning Disability Assessment Bursary (LDAB) is a one-time, needs-based bursary of up to
+$3,500 to help eligible students with the upfront costs of a learning disability assessment (i.e.,
+psycho-educational assessment).
+
+A psycho-educational assessment is required to verify a learning disability as a permanent
+disability, or a persistent or prolonged disability (Chapter 6, Section 3 for more information). For the
+
+
+[...]
+
+
+
+StudentAid BC Policy Manual 2026/27 | SIMS                                         Effective: June 23, 2026
+Chapter 6: Accessibility Supports                                                                           86
+
+
+6.6.2 Centre for Accessible Post-Secondary Education Resources BC (CAPER-BC)
+
+The Centre for Accessible Post-Secondary Education Resources BC (CAPER-BC) fosters increased
+rates of participation in and completion of post-secondary education for students requiring
+alternate format course and resource materials by:
+
+    •   Sourcing alternate learning formats, such as digital audio books, large print texts, electronic
+        texts and other suitable formats from other sources.
+    •   Producing new material in alternate formats to address student requests.
+    •   Increasing access to alternate formats to ensure equity of access and promote institutional
+        effectiveness.
+    •   Delivering training tools and workshops to inform service providers, institution staff and
+        students about alternate formats, CAPER services, and accessible online learning
+   •    Continuing to research accessible electronic resources and making them available.
+
+6.6.3 Academic Communication Equity – British Columbia (ACE-BC)
+
+Academic Communication Equity – British Columbia (ACE-BC) coordinates and assists institutions
+with the delivery of communication, interpreting and captioning services to students who are Deaf,
+hard of hearing and DeafBlind, to ensure consistency and quality of service delivery. To achieve
+these objectives ACE-BC provides:
+
+    •   Advice to colleges, universities, institutes and agencies on providing services for students
+        who are Deaf, hard of hearing and DeafBlind.
+    •   Outreach and communication to students who are Deaf, hard of hearing and DeafBlind and
+        transitioning from high school to post-secondary studies.
+   •    Training and information for accessibility services coordinators at public post-secondary
+        institutions to help them determine appropriate accommodations for communication
+        equity needs.
+   •    Training to service providers at post-secondary institutions in the use and implementation
+        of TypeWell and other communication access technology.
+
+6.6.4 Public Post-Secondary Loan Program (PPL)
+
+The Public Post-Secondary Loan Program (PPL) provides for the loan of assistive technology to
+students with accessibility challenges who are either not eligible for Assistive Services and
+Equipment Programs or who are not accommodated by their institution.
+
+Equipment may also be loaned in situations where a student’s specific technological needs are still
+in the process of being determined, or to allow a student to try different assistive equipment and
+fine-tune their equipment needs prior to purchase. More information on the PPL can be accessed
+through Assistive Technology British Columbia.
+
+
+
+
+StudentAid BC Policy Manual 2026/27 | SIMS                                       Effective: June 23, 2026
+Chapter 6: Accessibility Supports                                                                            87
+
+
+6.6.5 Program for Institutional Loans of Adaptive Technology (PILAT)
+
+The Program for Institutional Loans of Adaptive Technology (PILAT) supports institution-level
+access to assistive technology for students by loaning adaptive equipment to institutions to use
+onsite to supplement existing institutional resources as accessibility issues arise. This can include:
+
+    •   Providing adaptive technology loans when:
+            o   An institution seeks funding for needed technology
+            o   Existing equipment is under repair
+            o   Ordered equipment has not been received
+            o   Equipment needs to be tested for suitability before purchase
+   •    Providing adaptive technology loans for situations when this technology is rarely required
+        at the institution (making the purchase of it a questionable use of institutional funding).
+
+=== PAGE: https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-deaf-students (HTTP 200, 1193 chars)
+- 
+- 
+- 
+ B.C. Access Grant for Deaf Students | StudentAid BC 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+ Skip to main content
+ B.C. Access Grant for Deaf Students 
+ Back to all programs 
+ This grant helps deaf and hard of hearing students cover the extra costs of attending specialized schools that offer American Sign Language.
+- 
+ Am I eligible?
+- 
+ How do I apply?
+ Am I eligible?
+ You may be eligible if you:
+- Are deaf or hard of hearing
+- Have disability status verified by StudentAid BC
+- Demonstrate financial need
+- Are attending an eligible school
+- Are enrolled in full-time course load (60% or more)
+ Eligible schools:
+- Gallaudet University in Washington, D.C.
+- National Technical Institute for the Deaf in Rochester, New York
+ How do I apply?
+ You don't need to submit a separate application. If StudentAid BC has verified your disability status and you are attending one of the eligible schools, we will assess your eligibility for the B.C. Access Grant for Deaf Students.
+ For more information on supports for students with disabilities, go to How to apply for disability funding .

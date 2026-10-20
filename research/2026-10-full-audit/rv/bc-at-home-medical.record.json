@@ -1,0 +1,81 @@
+{
+ "id": "bc-at-home-medical",
+ "benefit": {
+  "id": "bc-at-home-medical",
+  "needsPractitioner": true,
+  "name": "At Home Program: Medical Benefits",
+  "level": "British Columbia",
+  "category": "Health",
+  "amount": "Per-item coverage — wheelchair seating to $9,000, lifts to $8,000, hospital bed to $4,000, scooter to $3,700, dental $700 a year, optical $150 a year, plus 100% of eligible prescription drugs and designated medical supplies through PharmaCare Plan F",
+  "summary": "Medical equipment, therapies, dental and optical care, medical travel and PharmaCare Plan F for eligible children. See the assessed daily-living, direct nursing care and palliative routes below.",
+  "requires": [
+   "bc",
+   "child",
+   "bcMsp",
+   "bcAtHomeMedicalRoute"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "Your child is 17 or younger.",
+    "Your child is a BC resident enrolled in the Medical Services Plan.",
+    "Your child lives at home with a parent or guardian, or with an Extended Family Program caregiver.",
+    "Your child meets one of the routes listed below."
+   ]
+  },
+  "requiresNote": "Your child is 17 or younger, is a BC resident enrolled in the Medical Services Plan, and lives at home with a parent or guardian or with an Extended Family Program caregiver. Medical-benefit routes are alternatives: assessed dependence in at least three of eating, dressing, toileting and washing; eligibility for Nursing Support Services direct nursing care, without an eligibility assessment; or a palliative condition with life expectancy of up to six months as indicated by a physician or nurse practitioner, without an eligibility assessment.",
+  "note": "Benefits last until the last day of the month your child turns 18. PharmaCare Plan F coverage ends the same day. Start the adult disability assistance application about six months before that birthday. Young people in the program get a streamlined route into it. New families can still apply until March 2027.",
+  "applyText": "See eligibility and apply",
+  "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program/at-home-program-eligibility",
+  "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program",
+  "detail": {
+   "about": "Medical Benefits can cover approved equipment, supplies, therapies, dental, optical, medical travel, and prescription drugs and designated medical supplies at 100% through PharmaCare Plan F. The program must approve many items before they are bought, and coverage ends on the last day of the month the child turns 18.",
+   "aboutList": {
+    "lead": "Medical Benefits can cover approved equipment, supplies, therapies, dental, optical, medical travel, and prescription drugs and designated medical supplies at 100% through PharmaCare Plan F.",
+    "items": [
+     "The program must approve many items before they are bought.",
+     "Coverage ends on the last day of the month the child turns 18.",
+     "Any one of these routes can apply: assessed dependence in at least three of eating, dressing, toileting and washing.",
+     "Eligible for Nursing Support Services direct nursing care: no eligibility assessment is required.",
+     "Palliative route: a palliative condition with life expectancy of up to six months.",
+     "A physician or nurse practitioner must indicate this palliative life expectancy.",
+     "No eligibility assessment is required for this palliative route."
+    ]
+   },
+   "steps": [
+    "Complete the At Home Program application with a doctor or nurse practitioner",
+    "Attach the requested identification and functional assessments; children under 3 may be asked for extra supporting information",
+    "Send the application to the regional At Home Program office listed by the province",
+    "Take part in the in-home assessment of eating, dressing, toileting and washing if one is required",
+    "Wait for the written decision, then work with the CYSN worker or Medical Benefits branch before purchasing covered equipment or services"
+   ],
+   "documents": [
+    "Completed At Home Program application with parent and medical-professional sections",
+    "Identification for the child and parent or guardian",
+    "Child's Personal Health Number and proof of active MSP",
+    "Requested functional assessments such as Vineland-3, PEDI-CAT or GMFCS, when applicable"
+   ],
+   "tips": [
+    "Families in current pilot areas use a different Medical Benefits application route. Check the official page for your community.",
+    "Do not buy equipment, dental, optical or travel first when pre-approval is required",
+    "Start adult PWD planning about six months before the child's 18th birthday",
+    "PharmaCare Plan F is not a separate application. Once your child gets full benefits or medical benefits through the At Home Program, MCFD sends their information to PharmaCare. The drug coverage then follows automatically.",
+    "Plan F covers designated medical supplies at 100%, as well as prescription drugs. Before you keep buying a supply yourself, ask the At Home Program or your pharmacist if it is on the designated list."
+   ],
+   "time": "Assessment and regional review follow a complete application; no guaranteed timeline is published",
+   "phone": "Medical Benefits: 1-888-613-3232"
+  }
+ },
+ "values": {
+  "kind": "coverage",
+  "excludeFromEstimate": true,
+  "note": "per-item equipment, therapy, dental/optical, PharmaCare Plan F"
+ },
+ "meta": {
+  "difficulty": 4,
+  "effort": "Application + functional assessment and medical records",
+  "wait": "Not published — ask the program"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

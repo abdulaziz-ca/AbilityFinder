@@ -1,0 +1,61 @@
+{
+ "id": "woodbuffalo-lift",
+ "benefit": {
+  "id": "woodbuffalo-lift",
+  "name": "Wood Buffalo LIFT (Low-Income Fare Transit)",
+  "level": "Fort McMurray",
+  "category": "Getting around & recreation",
+  "amount": "$10/month transit pass + 75% off SMART Bus + 60% off recreation",
+  "summary": "A $10 monthly transit pass, 75% off specialized SMART Bus passes, and 60% off regional recreation memberships through a community partner.",
+  "requires": [
+   "woodbuffalo",
+   "lowIncomeOrDisabilityIncome"
+  ],
+  "note": "This is one of only two municipal programs here that discount specialized (door-to-door) transit. The other is Lethbridge's Access-A-Ride. Your AISH statement is accepted as proof of income.",
+  "applyText": "Open the application form on rmwb.ca",
+  "applyUrl": "https://forms.rmwb.ca/Community-Services/LIFT-Program-Application",
+  "source": "https://www.rmwb.ca/LIFT",
+  "detail": {
+   "about": "The Regional Municipality of Wood Buffalo's Low-Income Fare Transit program: a monthly conventional transit pass for $10, and 75% off 10- and 25-ride passes for the SMART Bus (the specialized service for seniors and people with mobility needs). Everyone in the household is covered by the one application. The Wood Buffalo Recreation Support Program is a separate program that gives 60% off memberships at Syncrude Sport and Wellness Centre, Regional Recreation Corporation facilities and Vista Ridge. The LIFT page says only one application is required to assess eligibility for these community partner discounts.",
+   "aboutList": {
+    "lead": "The Regional Municipality of Wood Buffalo's Low-Income Fare Transit program: a monthly conventional transit pass for $10, and 75% off 10- and 25-ride passes for the SMART Bus (the specialized service for seniors and people with mobility needs).",
+    "items": [
+     "Everyone in the household is covered by the one application.",
+     "The Wood Buffalo Recreation Support Program is a separate program that gives 60% off memberships at:",
+     "Syncrude Sport and Wellness Centre, Regional Recreation Corporation facilities and Vista Ridge.",
+     "The LIFT page says only one application is required to assess eligibility for these community partner discounts."
+    ]
+   },
+   "steps": [
+    "Apply online for LIFT, or email community.services@rmwb.ca, or apply in person.",
+    "Send your AISH statement as proof of income — it's accepted.",
+    "You will be notified within 7–10 business days if you submit a complete application.",
+    "For SMART Bus, buy the discounted 10- or 25-ride passes directly from the operator once you're approved.",
+    "Ask the City or the Recreation Support Program how to claim the 60% recreation discount once you are approved; the LIFT page says one application assesses eligibility."
+   ],
+   "documents": [
+    "AISH statement (or other proof of household income)",
+    "Proof of a Wood Buffalo address"
+   ],
+   "tips": [
+    "The income line here is high: about $35,500 for one person, well above AISH.",
+    "One application covers your partner and dependent children too, not just you.",
+    "Call Pulse on 780-743-7000 if anything about the form is unclear.",
+    "You must be 18 or older to apply (people under 18 who live independently may be considered)"
+   ],
+   "time": "Notification within 7–10 business days of a complete application.",
+   "phone": "Pulse: 780-743-7000"
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "note": "$10/mo transit pass + 75% off SMART Bus + 60% off recreation"
+ },
+ "meta": {
+  "difficulty": 1,
+  "effort": "Online form + proof of income",
+  "wait": "7–10 business days"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

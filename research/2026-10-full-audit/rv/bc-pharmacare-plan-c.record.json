@@ -1,0 +1,52 @@
+{
+ "id": "bc-pharmacare-plan-c",
+ "benefit": {
+  "id": "bc-pharmacare-plan-c",
+  "name": "PharmaCare Plan C (Income & Disability Assistance)",
+  "level": "British Columbia",
+  "category": "Health",
+  "amount": "100% of the cost of eligible drugs and dispensing fees",
+  "summary": "Automatic drug coverage from the first dollar if you are on BC income, disability or hardship assistance. PharmaCare pays the full cost of eligible drugs and dispensing fees at the pharmacy counter.",
+  "requires": [
+   "bc",
+   "bcAssistanceStatus"
+  ],
+  "requiresNote": "You are receiving income assistance, disability assistance, hardship assistance or Medical Services Only through the Ministry of Social Development and Poverty Reduction; or you are a child or youth in the care of the Ministry of Children and Family Development or of an Indigenous Governing Body; or you arrived in BC through the Canada-Ukraine authorization for emergency travel.",
+  "note": "You cannot be charged for medications or dispensing fees covered by Plan C. Medical devices and supplies are the exception. They are exempt from PharmaCare's Full Payment Policy, so a pharmacy or device provider may charge you above the maximum eligible cost.",
+  "applyText": "Automatic — learn more",
+  "applyUrl": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/plan-c",
+  "source": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/plan-c",
+  "detail": {
+   "about": "Enrolment in those programs automatically enrols you in Plan C — there is no separate application. It also covers prostheses and orthoses including offloading devices for diabetic foot ulcers, ostomy supplies, and insulin and insulin pumps (insulin pumps need an approved Special Authority request from a doctor).",
+   "steps": [
+    "Confirm that your qualifying income, disability, hardship, care or protected status is active with the responsible ministry",
+    "Give the pharmacy your BC Services Card or Personal Health Number so it can check Plan C",
+    "If the status is active but the pharmacy cannot see Plan C, ask the ministry or Health Insurance BC to correct the enrolment",
+    "If you are eligible for Plan C but not yet enrolled and need a prescription urgently, ask the prescriber or pharmacist whether they can request emergency Plan C coverage, which provides up to 48 hours of PharmaCare coverage"
+   ],
+   "documents": [
+    "BC Services Card or Personal Health Number",
+    "Any recent ministry notice showing the qualifying assistance or care status"
+   ],
+   "tips": [
+    "There is no separate Plan C application",
+    "Register for Fair PharmaCare as well, so coverage can continue if your assistance status changes",
+    "Ask the pharmacy about any amount before you pay. Covered drugs and dispensing fees should not be charged under Plan C."
+   ],
+   "time": "Automatic when the qualifying ministry status is active",
+   "phone": "1-800-663-7100"
+  }
+ },
+ "values": {
+  "kind": "coverage",
+  "excludeFromEstimate": true,
+  "note": "100% of eligible drug costs for people on assistance"
+ },
+ "meta": {
+  "difficulty": 1,
+  "effort": "Usually automatic with qualifying assistance",
+  "wait": "Automatic when ministry status is active"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

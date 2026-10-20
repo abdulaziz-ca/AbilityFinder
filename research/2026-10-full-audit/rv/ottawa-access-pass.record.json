@@ -1,0 +1,62 @@
+{
+ "id": "ottawa-access-pass",
+ "benefit": {
+  "id": "ottawa-access-pass",
+  "name": "Access pass — OC Transpo discount for Para Transpo customers (Ottawa)",
+  "level": "Ottawa",
+  "category": "Transit",
+  "amount": "$43.25 a month, plus a $2.75 top-up per Para Transpo ride",
+  "summary": "A discounted monthly OC Transpo pass for registered Para Transpo customers. It gives unlimited travel on the O-Train and all buses except Para Transpo. It takes about a third off the cash fare on Para Transpo trips.",
+  "note": "Access pass holders pay a $2.75 top-up for each Para Transpo ride. If you also get ODSP, compare it with the Community Pass. The Community Pass costs the same $43.25 and includes Para Transpo with no top-up.",
+  "requires": [
+   "ottawa",
+   "paraTranspoRegistered"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "You are registered as a Para Transpo customer"
+   ],
+   "note": "You will be asked for your Para Transpo registration number. Discounted fares cannot be used when paying cash."
+  },
+  "applyText": "See reduced fares",
+  "applyUrl": "https://www.octranspo.com/en/fares/reduced-fares/",
+  "source": "https://www.octranspo.com/en/fares/reduced-fares/",
+  "detail": {
+   "about": "The Access pass is a discounted monthly pass for people registered as Para Transpo customers. At $43.25 a month it gives unlimited rides on the O-Train and all buses that are not Para Transpo, and saves one third of the cash-fare price on each Para Transpo trip. Access pass holders pay a $2.75 top-up charge per ride to use Para Transpo.",
+   "aboutList": {
+    "lead": "The Access pass is OC Transpo's discounted monthly pass for Para Transpo customers.",
+    "items": [
+     "$43.25 a month.",
+     "Unlimited travel on the O-Train and all non-Para Transpo buses.",
+     "Saves one third of the cash-fare price on each Para Transpo trip.",
+     "A $2.75 top-up is charged for each Para Transpo ride.",
+     "ParaPay and ParaPass cannot be used on OC Transpo buses or the O-Train."
+    ]
+   },
+   "steps": [
+    "Register as a Para Transpo customer and note your registration number",
+    "Set the Access discount at an OC Transpo Customer Service Centre, or by calling OC Transpo Customer Service",
+    "Buy the monthly pass up to 14 days before the month begins"
+   ],
+   "documents": [
+    "Your Para Transpo registration number"
+   ],
+   "tips": [
+    "If you also get ODSP, check the Community Pass first. It costs the same and has no Para Transpo top-up.",
+    "Fare capping means that paying as you go with Presto never costs more than $12.25 in a day. In a month, it never costs more than the monthly pass price."
+   ]
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "note": "$43.25/month, unlimited O-Train and non-Para buses, $2.75 top-up per Para Transpo ride"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Register with Para Transpo, then set the discount at a Customer Service Centre",
+  "wait": "Not published"
+ },
+ "extra": null,
+ "verified": "2026-09"
+}

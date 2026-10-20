@@ -689,7 +689,7 @@ const BENEFIT_VALUES = {
   "bc-access-grant-students-disabilities": { kind: "grant", excludeFromEstimate: true, annualMax: 1560, note: "student-only; $30 per week of study" },
   "bc-supplemental-bursary-students-disabilities": { kind: "grant", excludeFromEstimate: true, annualMax: 800, note: "student-only; $800 full-time / $400 part-time" },
   "bc-assistance-program-students-disabilities": { kind: "grant", excludeFromEstimate: true, annualMax: 10000, note: "student-only; up to $12,000 if an attendant is required" },
-  "bc-learning-disability-assessment-bursary": { kind: "grant", excludeFromEstimate: true, annualMax: 3500, note: "one-time, toward a learning-disability assessment" },
+  "bc-learning-disability-assessment-bursary": { kind: "grant", excludeFromEstimate: true, annualMax: 3500, note: "toward a learning-disability assessment" },
   "bc-access-grant-deaf-students": { kind: "grant", excludeFromEstimate: true, annualMax: 30000, note: "up to $30,000 per program year, based on StudentAid BC-assessed financial need" },
   "bc-additional-home-owner-grant": { kind: "grant", excludeFromEstimate: true, note: "reduces the property tax you owe; it is not a payment" },
   "bc-raha": { kind: "grant", excludeFromEstimate: true, note: "lifetime maximum per household; adaptations completed before written approval are not eligible" },
@@ -1117,7 +1117,7 @@ const BENEFIT_META = {
   "ottawa-access-pass": { difficulty: 2, effort: "Register with Para Transpo, then set the discount at a Customer Service Centre", wait: "Not published" },
   "ottawa-equipass": { difficulty: 2, effort: "Application and consent form plus a CRA Notice of Assessment", wait: "Not published" },
   "ottawa-a-card": { difficulty: 1, effort: "Bring a CNIB or Guide Dog photo ID card to a Customer Service Centre", wait: "Not published" },
-  "london-ontario-renovates": { difficulty: 3, effort: "Application package with income, property and asset documents plus three repair estimates", wait: "Not published — first come, first served until funds run out" },
+  "london-ontario-renovates": { difficulty: 3, effort: "Application package with income, property and asset documents plus three repair estimates", wait: "Not published — first come, first served; applications close October 30, 2026 at 4:30 p.m." },
   "windsor-affordable-pass": { difficulty: 2, effort: "Application through the local municipal transit department with proof of income and residency", wait: "Not published — funding is first-come, first-served and subject to local demands and budgets" },
   "windsor-recreation-assistance": { difficulty: 2, effort: "Application through the local municipal recreation department with proof of income and residency", wait: "Not published — funding is first-come, first-served and subject to local demands and budgets" },
   "hamilton-fare-assist": { difficulty: 2, effort: "Application with your Ontario Works or ODSP Member ID, or a Notice of Assessment for each family member", wait: "Not published" },
@@ -1374,7 +1374,7 @@ const BENEFIT_EXTRA = {
     faqs: [
       { q: "Do I need the DTC?", a: "Yes — get the DTC first; it's required." },
       { q: "How much will I get?", a: "For July 2026 to June 2027, the maximum is $204.20 per month. Your actual amount is recalculated from adjusted family net income on your 2025 federal tax return." },
-      { q: "What is the $150 supplement?", a: "Starting in September 2026, eligible recipients may receive a separate fixed $150 lump sum toward the cost of obtaining the DTC. You do not apply for it separately." },
+      { q: "What is the $150 supplement?", a: "Starting in fall 2026, eligible recipients may receive a separate fixed $150 lump sum toward the cost of obtaining the DTC. You do not apply for it separately." },
     ],
     related: ["dtc", "aish", "adap"],
   },
@@ -3126,7 +3126,7 @@ const BENEFITS = [
     amount: "A 10-year forgivable loan up to $25,000 — the first $5,000 is a grant for accessibility work",
     summary:
       "Federal and provincial funding, run by the City of London. It helps lower- and moderate-income homeowners make their home accessible or do essential repairs. They must be seniors aged 60 or older, or people with disabilities.",
-    note: "Funding is limited. Applications are processed first come, first served until the money runs out, so applying early matters. You may be asked for more documents, such as a medical form, when they assess accessibility changes.",
+    note: "Funding is limited. Applications close October 30, 2026 at 4:30 p.m. Apply early: it is first come, first served. You may be asked for more documents, such as a medical form, when they assess accessibility changes.",
     requires: ["london", "londonRenovatesEligibility"],
     eligibility: {
       mode: "all",
@@ -3471,7 +3471,7 @@ const BENEFITS = [
     category: "Recreation",
     amount: "$185 a year per person toward City recreation and culture programs",
     summary:
-      "Fee support for City of Ottawa recreation and culture programs, for residents with a low income, a family member with a disability, or who already take part in a community or social service agency program. Receiving ODSP or Assistance for Children with Severe Disabilities counts as proof of financial need.",
+      "Fee support for City of Ottawa recreation and culture programs, for residents who can show financial need. Receiving ODSP or Assistance for Children with Severe Disabilities counts as proof of financial need.",
     note: "A parent or guardian can transfer all or part of their fee support to a child in their household. You are encouraged to pay at least 25 per cent of the program cost yourself.",
     requires: ["ottawa", "lowIncome"],
     eligibility: {
@@ -3481,7 +3481,7 @@ const BENEFITS = [
         "You are applying for yourself or for a dependant",
         "You can show proof of identity, residency and financial need",
       ],
-      note: "Residents of all ages are eligible. Financial need can be shown by evidence of receiving Essential Health and Social Supports, the Ontario Disability Support Program, Assistance for Children with Severe Disabilities, or the Guaranteed Income Supplement; by a means test using the Low Income Cut-Off; or by a T451E Notice of Assessment or Child Tax Benefit form. Special circumstances may also be considered.",
+      note: "Residents of all ages are eligible. Financial need can be shown by evidence of receiving Ontario Works, a Child Care Subsidy, Essential Health and Social Supports, the Ontario Disability Support Program, Assistance for Children with Severe Disabilities, or the Guaranteed Income Supplement; by a means test using the Low Income Cut-Off; or by a T451E Notice of Assessment or Child Tax Benefit form. Special circumstances may also be considered.",
     },
     applyText: "See how to apply for Hand in Hand",
     applyUrl: "https://ottawa.ca/en/recreation-and-parks/register-courses-and-camps/registration-terms-and-cancellations/financial-support-ottawa-hand-hand",
@@ -4129,7 +4129,7 @@ const BENEFITS = [
           "It is issued to a person, not a vehicle, so it can only be used when the permit holder is driving or riding in the vehicle.",
           "There is no cost to get, renew, or replace it.",
           "Each municipality sets its own parking privileges through local bylaws, so always follow the rules where you park.",
-          "Using the permit when the holder is not present can bring a fine of up to $5,000 and loss of the permit.",
+          "Using the permit when the holder is not present could bring a fine of up to $5,000, and the permit may be seized.",
         ],
       },
       steps: [
@@ -4232,7 +4232,7 @@ const BENEFITS = [
       },
       steps: [
         "Make sure your DTC is approved and your taxes are filed.",
-        "Apply online, by phone, by mail, or in person once applications are open to you.",
+        "Apply online, by phone, by mail, or in person at a Service Canada office.",
         "Provide direct-deposit details so payments arrive automatically.",
       ],
       documents: [
@@ -5160,7 +5160,7 @@ const BENEFITS = [
     category: "Health",
     amount: "Dental care, prescription drugs, eye exams and glasses, and more — ask your provider what is paid for",
     summary:
-      "Health coverage for adults in lower-income households. It covers prescriptions, dental, eye care, and essential diabetic supplies.",
+      "Health coverage for lower-income adults who are pregnant, have high ongoing drug needs, or are leaving Income Support or AISH because of work or CPP-D income. It covers prescriptions, dental, eye care, and essential diabetic supplies.",
     requires: ["adult", "ab", "citizenPR", "adultHealthIncome", "adultHealthGateway"],
     note:
       "Helps cover the cost of medication if you're on a lower income and not already covered by AISH.",
@@ -5169,7 +5169,7 @@ const BENEFITS = [
     source: "https://www.alberta.ca/alberta-adult-health-benefit",
     detail: {
       about:
-        "Ongoing health coverage for adults and families with lower incomes — prescription drugs, dental, optical, emergency ambulance, and diabetic supplies — at no monthly premium.",
+        "Ongoing health coverage for lower-income adults and families who qualify — prescription drugs, dental, optical, emergency ambulance, and diabetic supplies — at no monthly premium.",
       steps: [
         "Check the income guidelines on the page.",
         "Complete the Alberta Adult Health Benefit application.",
@@ -5539,13 +5539,13 @@ const BENEFITS = [
       aboutList: { lead: "Two City of Red Deer programs.", items: ["The Transit Fare Assistance Pass drops a monthly pass to $34 no matter which type you'd normally buy (regular passes run $62–$75).", "The Recreation Fee Assistance Program adds a Recreation Pass Card for drop-in use.", "Plus, pending available funding, up to $200 a year per eligible person toward Safe & Healthy Communities program registrations."] },
       steps: [
         "Apply online for Recreation Fee Assistance, or for the Transit Fare Assistance Pass — being approved for recreation also qualifies you for transit.",
-        "If you're on AISH, Income Support or Guaranteed Income Supplement, provide that document — the City says you may automatically qualify.",
+        "If you're on AISH or Income Support, provide that document (Guaranteed Income Supplement qualifies for the transit pass only) — the City says you may automatically qualify.",
         "Otherwise attach your CRA Notice of Assessment so they can check you against the low-income line.",
         "Allow up to 10 business days (recreation applications may take longer due to high volume), then buy the $34 pass.",
         "Re-apply every year — approval expires.",
       ],
       documents: [
-        "Proof you're on AISH / Income Support / GIS — or a CRA Notice of Assessment",
+        "Proof you're on AISH / Income Support (or GIS, for the transit pass only) — or a CRA Notice of Assessment",
         "Government-issued ID, and proof of residence if your ID does not show your current Red Deer address",
       ],
       tips: [
@@ -6124,7 +6124,7 @@ const BENEFITS = [
       "aboutList": { "lead": "MSP contributes $23 per visit for a combined annual limit of 10 visits each calendar year, for acupuncture, chiropractic, massage therapy, naturopathy, physical therapy and non-surgical podiatry from approved providers.", "items": ["Eligibility is assessed from last year's net income as confirmed by the Canada Revenue Agency, or the combined net income of you and your spouse, less certain deductions.", "The figure that remains is called adjusted net income, and if it is less than $42,000 your family may qualify.", "People enroled with MSP through the At Home Program, and people enroled with MSP as Mental Health Clients, may also be eligible.", "Applying is free, and once approved you generally do not need to reapply while you stay eligible for MSP, because income is re-verified each year automatically.", "MSP does not cover supplementary benefit services received outside the province."] },
       "steps": ["Make sure MSP enrolment is complete for you and your spouse if you have one", "Complete the BC Application for Health and Drug Coverage, which applies for MSP enrolment, Supplementary Benefits and Fair PharmaCare on one form", "Give CRA permission on the application to release your Notice of Assessment so your income can be verified", "If you are newly eligible for MSP, book a B.C. driver licensing office appointment to get your Photo BC Services Card"],
       "documents": ["The BC Application for Health and Drug Coverage", "Your and your spouse's CRA Notice of Assessment or Reassessment information: on the application you give CRA permission to release it; if you apply by mail, include copies with the form", "Your Personal Health Number if you already have one"],
-      "tips": ["The 10 visits are a combined limit across all six service types, so they run down together", "$23 is a contribution, not the full fee. Ask the practitioner what you will owe before booking.", "Keep filing your taxes every year. MSP checks your income automatically from your CRA return, and your eligibility may be affected if you do not file.", "Tell MSP if you marry or start living in a marriage-like relationship, because that changes how your income is assessed", "If your children are under 19, families deemed eligible for Supplementary Benefits may be eligible for basic dental treatment, optical care and hearing assistance through the Healthy Kids Program"]
+      "tips": ["The 10 visits are a combined limit across all six service types, so they run down together", "$23 is a contribution, not the full fee. Ask the practitioner what you will owe before booking.", "Keep filing your taxes every year. MSP checks your income automatically from your CRA return, and your eligibility may be affected if you do not file.", "Tell MSP if you marry or start living in a marriage-like relationship, because that changes how your income is assessed", "Families deemed eligible for Supplementary Benefits may be eligible for basic dental treatment, optical care and hearing assistance through the Healthy Kids Program"]
     }
   },
   {
@@ -6203,7 +6203,7 @@ const BENEFITS = [
   },
   {
     "id": "bc-fnha-health-benefits",
-    "eligibility": { "mode": "all", "items": ["You must be a First Nations person with Indian status living in British Columbia."], "note": "Infants up to 24 months are covered if at least one parent is eligible. You are not eligible if you have health insurance provided by the federal government, or by a First Nations organization as part of a self-government agreement with Canada. The pharmacy coverage, which B.C. calls PharmaCare Plan W, also requires active Medical Services Plan enrolment." },
+    "eligibility": { "mode": "all", "items": ["You must be a First Nations person with Indian status living in British Columbia."], "note": "Infants up to 24 months are covered if at least one parent is eligible. You may not qualify if you already have coverage through a treaty and land claims agreement, or through certain First Nations funding arrangements with a government that B.C. has identified. The pharmacy coverage, which B.C. calls PharmaCare Plan W, also requires active Medical Services Plan enrolment." },
     "name": "First Nations Health Benefits (FNHA)",
     "level": "British Columbia",
     "category": "Health",
@@ -6211,7 +6211,7 @@ const BENEFITS = [
     "requires": ["bc", "firstNationsStatus"],
     "summary": "Status First Nations people living in B.C. get health coverage through the First Nations Health Authority. It covers prescriptions, medical supplies and equipment, dental, vision, mental health and medical transportation. You enrol by phone with your status number.",
     "note": "Plan W is not a separate application. B.C. states that you do not apply for Plan W and must be enrolled with FNHA to be covered by it. So enrolling with FNHA is the whole route. Some items, including insulin pumps, need special authorization and are not covered automatically.",
-    "requiresNote": "You must be a First Nations person with Indian status living in British Columbia. Infants up to 24 months are covered if at least one parent is eligible. You are not eligible if you have health insurance provided by the federal government, or by a First Nations organization as part of a self-government agreement with Canada. The pharmacy coverage, which B.C. calls PharmaCare Plan W, also requires active Medical Services Plan enrolment.",
+    "requiresNote": "You must be a First Nations person with Indian status living in British Columbia. Infants up to 24 months are covered if at least one parent is eligible. You may not qualify if you already have coverage through a treaty and land claims agreement, or through certain First Nations funding arrangements with a government that B.C. has identified. The pharmacy coverage, which B.C. calls PharmaCare Plan W, also requires active Medical Services Plan enrolment.",
     "applyText": "Open the official page on fnha.ca",
     "applyUrl": "https://www.fnha.ca/benefits",
     "source": "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/first-nations-health-authority-clients",
@@ -6220,7 +6220,7 @@ const BENEFITS = [
       "aboutList": { "lead": "The FNHA Health Benefits program includes dental, medical supplies and equipment, medical transportation, mental health, pharmacy and vision care.", "items": ["The pharmacy part is PharmaCare Plan W, which covers 100 percent of eligible prescription costs, certain medical supplies, certain over-the-counter drugs, some natural health products, and pharmacy services.", "Covered medical supplies include diabetes supplies such as test strips, lancets and alcohol wipes, contraceptives, and ostomy supplies.", "Plan W requires active MSP coverage together with registered Indian status under the Indian Act, or being a child under two years old with at least one parent who is a registered Indian under the Indian Act."] },
       "steps": ["Have your status number ready", "Call FNHA Health Benefits at 1-855-550-5454 to enrol, Monday to Friday, 8 a.m. to 4:30 p.m., excluding weekends and statutory holidays", "If you are registering for the first time, you may also need to complete the Pacific Blue Cross Enrollment Application for Group Benefits and the Medical Services Plan Application for Enrollment", "Email the completed forms to HealthBenefits@fnha.ca", "To enrol a child, register the birth with B.C. within three months so the child gets a Personal Health Number, and register the child for Indian Status with Indigenous Services Canada"],
       "documents": ["Status number", "Personal Health Number", "Pacific Blue Cross Enrollment Application for Group Benefits, for first-time registration", "Medical Services Plan Application for Enrollment, for first-time registration"],
-      "tips": ["A child with a Personal Health Number can be covered under a parent's account until age two while waiting for their own status number. Once the child has their own status number, call 1-855-550-5454 to enrol them separately.", "You enrol by phone, not through an online form. Plan the call inside the weekday office hours.", "If you already have health insurance from the federal government, or through a First Nations self-government agreement with Canada, you are not eligible for this program"]
+      "tips": ["A child with a Personal Health Number can be covered under a parent's account until age two while waiting for their own status number. Once the child has their own status number, call 1-855-550-5454 to enrol them separately.", "You enrol by phone, not through an online form. Plan the call inside the weekday office hours.", "If you already have coverage through a treaty and land claims agreement, or through certain First Nations funding arrangements with a government, you may not qualify for this program."]
     }
   },
   {
@@ -6618,7 +6618,7 @@ const BENEFITS = [
     "level": "British Columbia",
     "category": "Health",
     "amount": "Up to $180/month for dietary items plus up to $45/month for vitamins or minerals",
-    "summary": "Extra monthly money on top of disability assistance for PWD recipients whose severe condition causes chronic, progressive deterioration of health, and who need extra nutrition to avoid serious decline.",
+    "summary": "Extra monthly money on top of disability assistance for PWD recipients whose severe condition causes chronic, progressive deterioration of health, and who need extra nutrition to prevent imminent danger to life and have no other family resources to pay for it.",
     "requires": ["bc", "age18plus", "bcPwdStatus", "nutritionNeed", "lowIncome"],
     "note": "A practitioner must confirm at least two symptoms. Examples are malnutrition, underweight status, significant weight loss, significant muscle-mass loss, significant neurological degeneration, deterioration of a vital organ, or moderate-to-severe immune suppression.",
     "applyText": "Get form HR2847 (PDF)",
@@ -6647,8 +6647,8 @@ const BENEFITS = [
     "applyUrl": "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance/supplements/optical",
     "source": "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/health-supplements-and-programs-rate-table",
     "detail": {
-      "about": "Everyone receiving income or disability assistance gets specified optical services: routine eye exams for adults ($44.83 with an optometrist or $48.90 with an ophthalmologist every two years), new eyeglasses up to ministry maximum rates, new lenses if your eye doctor confirms a change in your prescription, and necessary repairs to lenses or frames. Payment goes straight from the ministry to the optometrist or optician.",
-      "aboutList": { "lead": "Everyone receiving income or disability assistance gets specified optical services:", "items": ["Routine eye exams for adults ($44.83 with an optometrist or $48.90 with an ophthalmologist every two years)", "New eyeglasses up to ministry maximum rates", "New lenses if your eye doctor confirms a change in your prescription", "And necessary repairs to lenses or frames", "Payment goes straight from the ministry to the optometrist or optician."] },
+      "about": "Everyone receiving income or disability assistance gets specified optical services: routine eye exams for adults (up to $44.83 with an optometrist or $48.90 with an ophthalmologist every two years), new eyeglasses up to ministry maximum rates, new lenses if your eye doctor confirms a change in your prescription, and necessary repairs to lenses or frames. Payment goes straight from the ministry to the optometrist or optician.",
+      "aboutList": { "lead": "Everyone receiving income or disability assistance gets specified optical services:", "items": ["Routine eye exams for adults (up to $44.83 with an optometrist or $48.90 with an ophthalmologist every two years)", "New eyeglasses up to ministry maximum rates", "New lenses if your eye doctor confirms a change in your prescription", "And necessary repairs to lenses or frames", "Payment goes straight from the ministry to the optometrist or optician."] },
       "steps": ["Take your BC Services Card to any eye clinic", "The clinic verifies your coverage through Pacific Blue Cross", "Get your exam and choose frames within the ministry rate (or pay the difference)", "The ministry pays the provider directly"],
       "documents": ["BC Services Card"],
       "tips": ["Ask the clinic which frames are fully covered at ministry rates before choosing", "If your eye doctor confirms a change in your prescription, new lenses are covered"],
@@ -6762,7 +6762,7 @@ const BENEFITS = [
     "detail": {
       "about": "Medical Benefits can cover approved equipment, supplies, therapies, dental, optical, medical travel, and prescription drugs and designated medical supplies at 100% through PharmaCare Plan F. The program must approve many items before they are bought, and coverage ends on the last day of the month the child turns 18.",
       "aboutList": { "lead": "Medical Benefits can cover approved equipment, supplies, therapies, dental, optical, medical travel, and prescription drugs and designated medical supplies at 100% through PharmaCare Plan F.", "items": ["The program must approve many items before they are bought.", "Coverage ends on the last day of the month the child turns 18.", "Any one of these routes can apply: assessed dependence in at least three of eating, dressing, toileting and washing.", "Eligible for Nursing Support Services direct nursing care: no eligibility assessment is required.", "Palliative route: a palliative condition with life expectancy of up to six months.", "A physician or nurse practitioner must indicate this palliative life expectancy.", "No eligibility assessment is required for this palliative route."] },
-      "steps": ["Complete the At Home Program application with a doctor or nurse practitioner", "Attach the requested identification and functional assessments; children under 3 may be asked for extra supporting information", "Send the application to the regional At Home Program office listed by the province", "Take part in the in-home assessment of eating, dressing, toileting and washing if one is required", "Wait for the written decision, then work with the CYSN worker or Medical Benefits branch before purchasing covered equipment or services"],
+      "steps": ["Complete the At Home Program application with a doctor or nurse practitioner", "Attach the requested identification and functional assessments; children under 3 will be asked for extra supporting information", "Send the application to the regional At Home Program office listed by the province", "Take part in the in-home assessment of eating, dressing, toileting and washing if one is required", "Wait for the written decision, then work with the CYSN worker or Medical Benefits branch before purchasing covered equipment or services"],
       "documents": ["Completed At Home Program application with parent and medical-professional sections", "Identification for the child and parent or guardian", "Child's Personal Health Number and proof of active MSP", "Requested functional assessments such as Vineland-3, PEDI-CAT or GMFCS, when applicable"],
       "tips": ["Families in current pilot areas use a different Medical Benefits application route. Check the official page for your community.", "Do not buy equipment, dental, optical or travel first when pre-approval is required", "Start adult PWD planning about six months before the child's 18th birthday", "PharmaCare Plan F is not a separate application. Once your child gets full benefits or medical benefits through the At Home Program, MCFD sends their information to PharmaCare. The drug coverage then follows automatically.", "Plan F covers designated medical supplies at 100%, as well as prescription drugs. Before you keep buying a supply yourself, ask the At Home Program or your pharmacist if it is on the designated list."],
       "time": "Assessment and regional review follow a complete application; no guaranteed timeline is published",
@@ -6810,12 +6810,12 @@ const BENEFITS = [
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program/medical-benefits",
     "source": "https://www2.gov.bc.ca/assets/gov/family-and-social-supports/children-teens-with-support-needs/at_home_program_guide.pdf",
     "detail": {
-      "about": "Up to $5,760 per 12-month period for each of occupational therapy, physiotherapy and speech-language pathology (including therapist-assistant services), delivered one-to-one or in groups. Maximum billing rates: $160/hour for therapists, $60/hour for therapist assistants; up to $480 of the maximum can go to consultation, report writing and travel. A separate $1,920/year is available for chiropractic ($40/session) or massage ($40/hour). Exceptions to maximums are considered for post-surgical rehabilitation. Services must complement, not duplicate, school-based therapy.",
+      "about": "Up to $5,760 per 12-month period for each of occupational therapy, physiotherapy and speech-language pathology (including therapist-assistant services), delivered one-to-one or in groups. Maximum billing rates: $160/hour for therapists, $60/hour for therapist assistants; up to $480 of the maximum can go to consultation, report writing and travel. A separate maximum of $1,920/year may be provided for chiropractic ($40/session) or massage ($40/hour). Exceptions to maximums are considered for post-surgical rehabilitation. Services must complement, not duplicate, school-based therapy.",
       "aboutList": {
         "lead": "Up to $5,760 per 12-month period for each of occupational therapy, physiotherapy and speech-language pathology (including therapist-assistant services), delivered one-to-one or in groups.",
         "items": [
           "Maximum billing rates: $160/hour for therapists, $60/hour for therapist assistants; up to $480 of the maximum can go to consultation, report writing and travel.",
-          "A separate $1,920/year is available for chiropractic ($40/session) or massage ($40/hour).",
+          "A separate maximum of $1,920/year may be provided for chiropractic ($40/session) or massage ($40/hour).",
           "Exceptions to maximums are considered for post-surgical rehabilitation.",
           "Services must complement, not duplicate, school-based therapy."
         ]
@@ -6834,7 +6834,7 @@ const BENEFITS = [
         "The therapist who requests services must work with the school-based therapy team so services do not overlap",
         "Sequential therapy blocks (one goal at a time) are preferred over running everything at once",
         "If your child moved to the Disability Benefit in April 2026, pay for the same therapies from the new $6,500/$17,000 allocation instead",
-        "Post-surgical rehab can go over the annual maximum. Ask for an exception."
+        "Exceptions to the annual maximum are considered for post-surgical rehab. Ask for an exception."
       ],
       "time": "Requests reviewed by AHP Medical Benefits; SAET recipients transitioned to the Disability Benefit starting April 2026.",
       "phone": "1-888-613-3232"
@@ -7050,7 +7050,7 @@ const BENEFITS = [
     "level": "British Columbia",
     "category": "Education",
     "amount": "Up to $3,500",
-    "summary": "Covers the up-front cost of a learning disability assessment. This assessment is what opens the door to disability funding and academic accommodations.",
+    "summary": "Helps with the up-front costs of a learning disability assessment. This assessment is what opens the door to disability funding and academic accommodations.",
     "requires": ["bc", "student", "learningDisability", "bcLdAssessmentReferral"],
     eligibility: {
       mode: "all",
@@ -7240,11 +7240,11 @@ const BENEFITS = [
       items: [
         "You are a recent post-secondary graduate with a two-year diploma, associate degree, bachelor's degree, master's degree or doctorate from a recognized post-secondary institution.",
         "Your graduation date is within 3 years of the program start date.",
-        "You self-identify as having a disability.",
+        "You self-identify as having a disability, are a resident of British Columbia and are legally entitled to work in Canada.",
       ],
       note: "You do not have to disclose your specific diagnosis.",
     },
-    "requiresNote": "You must be a recent post-secondary graduate with a two-year diploma, associate degree, bachelor's degree, master's degree or doctorate from a recognized post-secondary institution, with a graduation date within 3 years of the program start date, and self-identify as having a disability. You do not have to disclose your specific diagnosis.",
+    "requiresNote": "You must be a recent post-secondary graduate with a two-year diploma, associate degree, bachelor's degree, master's degree or doctorate from a recognized post-secondary institution, with a graduation date within 3 years of the program start date, self-identify as having a disability, are a resident of British Columbia, and are legally entitled to work in Canada. You do not have to disclose your specific diagnosis.",
     "note": "Intake runs every year. Applications for the 2026/27 cohort are closed. The page says to check back in Spring 2027 for information on the 2027/28 intake. Graduates keep access to internal BC Public Service job postings for 24 months after they finish the program.",
     "applyText": "Check intake dates and apply",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/careers-myhr/job-seekers/internship-co-op-opportunities/work-able",
@@ -25464,7 +25464,6 @@ const BENEFIT_VERIFIED = {
   // OPEN item; see research/reverify/VERIFIED-DATES-2026-10-17.md.
   // #216: amount calculation (CDB) and grant/bond window (RDSP) re-checked
   // against the supplied official pages on 2026-10-14; month granularity.
-  "cdb-adult": "2026-07",
   "waterloo-ontario-renovates": "2026-10", "waterloo-homemaking-support": "2026-10",
   "waterloo-curbside-waste-support": "2026-10",
   "grt-affordable-transit": "2026-09", "grt-cnib-pass": "2026-10",
@@ -25473,39 +25472,35 @@ const BENEFIT_VERIFIED = {
   // Toronto municipal records, verified against the City of Toronto's own pages
   // on 2026-09-04.
   "toronto-fair-pass": "2026-10", "toronto-welcome-policy": "2026-10",
-  "ottawa-hand-in-hand": "2026-09", "mississauga-activeassist": "2026-09",
   "brampton-activeassist": "2026-10", "hamilton-fare-assist": "2026-09",
-  "london-ontario-renovates": "2026-09",
   "windsor-affordable-pass": "2026-09", "windsor-recreation-assistance": "2026-09",
   "ottawa-community-pass": "2026-09", "ottawa-access-pass": "2026-09",
   "ottawa-equipass": "2026-09", "ottawa-a-card": "2026-10",
   "york-region-homemakers": "2026-10", "york-region-recreation-subsidies": "2026-10",
   // Ontario province-level records, each verified against its official ontario.ca
   // page on 2026-09-04. Month granularity only — no fabricated day.
-  "on-parking-permit": "2026-09", odsp: "2026-09", "on-adp": "2026-10",
+  odsp: "2026-09", "on-adp": "2026-10",
   "ontario-autism-program": "2026-10", ssah: "2026-10", acsd: "2026-10",
   "passport-program": "2026-10", hvmp: "2026-10", "trillium-drug-program": "2026-10",
   dtc: "2026-07", aish: "2026-07", adap: "2026-07",
   "adult-health-benefit": "2026-07",
   ramp: "2026-07",
-  "cpp-disability": "2026-07", "cpp-childrens-benefit": "2026-07", "parking-placard": "2026-07",
-  "ab-service-dog-id-card": "2026-10", "ab-capcc": "2026-07", "ab-special-needs-housing": "2026-10",
-  "multigenerational-home-renovation-tax-credit": "2026-07", "excise-gasoline-tax-refund": "2026-07",
+  "parking-placard": "2026-07",
+  "ab-service-dog-id-card": "2026-10", "ab-special-needs-housing": "2026-10",
   "canmore-affordable-services": "2026-10", "cochrane-connect-card": "2026-10",
-  "fortsask-access": "2026-10", "leduc-subsidies": "2026-07",
+  "fortsask-access": "2026-10",
   "lloydminster-recreation-access": "2026-10", "okotoks-fee-assistance": "2026-10",
   "sprucegrove-low-income-transit": "2026-10",
-  "bc-access-grant-deaf-students": "2026-07", "bc-access-grant-students-disabilities": "2026-10",
+  "bc-access-grant-students-disabilities": "2026-10",
   "bc-assistance-program-students-disabilities": "2026-07", "bc-at-home-saet": "2026-07",
   "bc-autism-funding-6-18": "2026-07", "bc-autism-funding-under-6": "2026-07",
   "bc-bus-pass": "2026-10", "bc-clbc": "2026-07", "bc-csg-services-equipment": "2026-07",
   "bc-csg-students-disabilities": "2026-10", "bc-cy-disability-benefit": "2026-10",
-  "bc-dental-supplement": "2026-07", "bc-disability-assistance-pwd": "2026-07",
-  "bc-fnha-health-benefits": "2026-07", "bc-home-reno-tax-credit": "2026-10", "bc-learning-disability-assessment-bursary": "2026-07",
-  "bc-medical-equipment-devices": "2026-07", "bc-monthly-nutritional-supplement": "2026-07",
-  "bc-msp-supplementary-benefits": "2026-07", "bc-optical-supplement": "2026-07", "bc-pharmacare-plan-g": "2026-10", "bc-pharmacare-plan-p": "2026-10", "bc-supplemental-bursary-students-disabilities": "2026-10",
-  "bc-work-able-internship": "2026-07", "bc-workbc-assistive-technology": "2026-10",
-  "kamloops-arch": "2026-07", "sparc-parking-permit": "2026-07",
+  "bc-disability-assistance-pwd": "2026-07",
+  "bc-home-reno-tax-credit": "2026-10",
+  "bc-pharmacare-plan-g": "2026-10", "bc-pharmacare-plan-p": "2026-10", "bc-supplemental-bursary-students-disabilities": "2026-10",
+  "bc-workbc-assistive-technology": "2026-10",
+  "kamloops-arch": "2026-07",
   // 2026-10 additions (same review, VERIFIED-DATES-2026-10-17.md):
   "csg-disability": "2026-10", "csg-dse": "2026-10", "taxi-saver-bctransit": "2026-10",
   "home-accessibility-tax-credit": "2026-10", "fscd": "2026-10", "ab-grant-disability": "2026-10",
@@ -25513,4 +25508,48 @@ const BENEFIT_VERIFIED = {
   "bc-fuel-tax-refund-disabilities": "2026-10", "bc-icbc-disability-discount": "2026-10",
   "surrey-leisure-access": "2026-10", "burnaby-fair-play": "2026-10",
   "richmond-rec-fee-subsidy": "2026-10", "saanich-life": "2026-10", "coquitlam-far": "2026-10",
+  "canada-caregiver-credit": "2026-10", // re-verified 2026-10-19 (full audit; canada.ca pages read in the browser pane)
+  "canadian-dental-care-plan": "2026-10", // re-verified 2026-10-19 (full audit; canada.ca pages read in the browser pane)
+  "cdb-adult": "2026-10", // re-verified 2026-10-19 (full audit; canada.ca pages read in the browser pane)
+  "child-disability-benefit": "2026-10", // re-verified 2026-10-19 (full audit; canada.ca pages read in the browser pane)
+  "cpp-childrens-benefit": "2026-10", // re-verified 2026-10-19 (full audit; canada.ca pages read in the browser pane)
+  "cpp-disability": "2026-10", // re-verified 2026-10-19 (full audit; canada.ca pages read in the browser pane)
+  "cwb-disability": "2026-10", // re-verified 2026-10-19 (full audit; canada.ca pages read in the browser pane)
+  "disability-supports-deduction": "2026-10", // re-verified 2026-10-19 (full audit; canada.ca pages read in the browser pane)
+  "dtc": "2026-10", // re-verified 2026-10-19 (full audit; canada.ca pages read in the browser pane)
+  "excise-gasoline-tax-refund": "2026-10", // re-verified 2026-10-19 (full audit; canada.ca pages read in the browser pane)
+  "medical-expense-tax-credit": "2026-10", // re-verified 2026-10-19 (full audit; canada.ca pages read in the browser pane)
+  "multigenerational-home-renovation-tax-credit": "2026-10", // re-verified 2026-10-19 (full audit; canada.ca pages read in the browser pane)
+  "rdsp": "2026-10", // re-verified 2026-10-19 (full audit; canada.ca pages read in the browser pane)
+  "london-ontario-renovates": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "bc-supported-child-development": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "dres": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "sparc-parking-permit": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "bc-workbc-employment-services": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "kelowna-recreation-assistance": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "woodbuffalo-lift": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "bc-optical-supplement": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "stalbert-subsidy": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "bc-monthly-nutritional-supplement": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "mississauga-activeassist": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "bc-medical-equipment-devices": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "bc-msp-supplementary-benefits": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "bc-work-able-internship": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "reddeer-fee-assistance": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "ramp": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "edmonton-fare-assistance": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "aadl": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "ab-capcc": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "bc-pwd-designation": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "taxisaver-translink": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "bc-dental-supplement": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "ottawa-hand-in-hand": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "bc-pharmacare-plan-c": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "leduc-subsidies": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "bc-learning-disability-assessment-bursary": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "on-parking-permit": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "bc-access-grant-deaf-students": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "bc-fnha-health-benefits": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "victoria-life": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "bc-sales-tax-credit": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
 };

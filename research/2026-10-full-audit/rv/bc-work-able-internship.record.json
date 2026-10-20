@@ -1,0 +1,62 @@
+{
+ "id": "bc-work-able-internship",
+ "benefit": {
+  "id": "bc-work-able-internship",
+  "name": "Work-Able Accessible Employment Program (BC Public Service)",
+  "level": "British Columbia",
+  "category": "Work",
+  "amount": "Paid BC Public Service internship of up to 24 months",
+  "summary": "A paid internship program in the BC Public Service for recent post-secondary graduates who self-identify as having a disability. This can be any physical, sensory, neurological, visible or invisible disability.",
+  "requires": [
+   "bc",
+   "age18plus",
+   "employmentActive",
+   "bcWorkAbleSelfIdentify",
+   "recentGraduate"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "You are a recent post-secondary graduate with a two-year diploma, associate degree, bachelor's degree, master's degree or doctorate from a recognized post-secondary institution.",
+    "Your graduation date is within 3 years of the program start date.",
+    "You self-identify as having a disability."
+   ],
+   "note": "You do not have to disclose your specific diagnosis."
+  },
+  "requiresNote": "You must be a recent post-secondary graduate with a two-year diploma, associate degree, bachelor's degree, master's degree or doctorate from a recognized post-secondary institution, with a graduation date within 3 years of the program start date, and self-identify as having a disability. You do not have to disclose your specific diagnosis.",
+  "note": "Intake runs every year. Applications for the 2026/27 cohort are closed. The page says to check back in Spring 2027 for information on the 2027/28 intake. Graduates keep access to internal BC Public Service job postings for 24 months after they finish the program.",
+  "applyText": "Check intake dates and apply",
+  "applyUrl": "https://www2.gov.bc.ca/gov/content/careers-myhr/job-seekers/internship-co-op-opportunities/work-able",
+  "source": "https://www2.gov.bc.ca/gov/content/careers-myhr/job-seekers/internship-co-op-opportunities/work-able",
+  "detail": {
+   "about": "Work-Able coordinates paid internship opportunities across the BC Public Service for recent graduates with disabilities, for up to 24 months. Participants get government work experience, a peer cohort of other graduates with disabilities, exposure to different career paths, and post-program access to internal job postings.",
+   "steps": [
+    "Check the Work-Able page in Spring 2027 for information on the 2027/28 intake, or contact the Work-Able team to be notified when the next application period opens.",
+    "Confirm you graduated within 3 years of the program start date.",
+    "Apply online during the intake window; you self-identify as having a disability without disclosing a diagnosis.",
+    "If selected, you are placed in a paid position with a ministry."
+   ],
+   "documents": [
+    "Proof of post-secondary graduation (within 3 years of program start)",
+    "Resume"
+   ],
+   "tips": [
+    "Contact the Work-Able team to be notified when the next application period opens.",
+    "Workplace accommodations are part of the program's design, so you do not need to negotiate them alone."
+   ],
+   "time": "Annual intake; internships run up to 24 months"
+  }
+ },
+ "values": {
+  "kind": "access",
+  "excludeFromEstimate": true,
+  "note": "paid BC Public Service internship (up to 24 months)"
+ },
+ "meta": {
+  "difficulty": 3,
+  "effort": "Online application during an open intake",
+  "wait": "Depends on the current intake"
+ },
+ "extra": null,
+ "verified": "2026-07"
+}

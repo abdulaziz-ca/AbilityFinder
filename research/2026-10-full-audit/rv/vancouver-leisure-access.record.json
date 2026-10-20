@@ -1,0 +1,123 @@
+{
+ "id": "vancouver-leisure-access",
+ "benefit": {
+  "id": "vancouver-leisure-access",
+  "name": "Leisure Access Program (LAP)",
+  "level": "Vancouver",
+  "category": "Recreation",
+  "amount": "Free admission to pools and rinks, 50% off fitness centre admission and group swimming and skating lessons, and a pass valid for 3 years",
+  "summary": "Vancouver's low-income recreation pass. Swimming and skating admission are free; outdoor pools require an online reservation. Fitness centre admission, group swimming and skating lessons and other listed programs are half price.",
+  "requires": [
+   "bc",
+   "vancouver",
+   "lowIncome"
+  ],
+  "eligibility": {
+   "mode": "any",
+   "items": [
+    "Child Disability Benefit: a family with a child up to 17 that receives the Child Disability Benefit, shown on its Canada Child Benefit notice",
+    "Disability Tax Credit: you, your spouse or partner, or a dependent aged 18 or older qualifies for the Disability Tax Credit, and your family's combined net income is at or below the table maximum",
+    "Income assistance: you receive income assistance or one of the listed provincial or federal subsidies (for example MSDPR assistance, Guaranteed Income Supplement, RAP, SAFER or a valid red bus pass)",
+    "Agency referral: you are a client of a non-profit or government agency that can refer you",
+    "Asylum seeker or temporary foreign worker: the non-profit or government agency you are a client of refers you (Third Party Referral form)",
+    "Low income without income assistance, and you cannot be referred: your net family income is at or below the table maximum",
+    "Employment Insurance: you are receiving EI benefits in 2026/2027, and your projected family income is at or below the table maximum"
+   ],
+   "note": "You must be a resident of the City of Vancouver (UBC and the University Endowment Lands are not in the City). Leisure Access is not available to immigrants classified as investors or entrepreneurs. It is also not available to individuals or families with combined interest and other investment income (line 12100) over $1,500, net rental income (line 12600) over $2,000, or capital gains (line 12700) over $2,000."
+  },
+  "requiresNote": "You must be a City of Vancouver resident and meet one of the routes below, including its income or referral conditions and the exclusions.",
+  "note": "Starting January 1, 2026, Leisure Access passes are valid for 3 years. A pass issued in 2026 does not expire until 2029. Note that UBC and the University Endowment Lands are not in the City of Vancouver.",
+  "applyText": "Apply for a Leisure Access pass",
+  "applyUrl": "https://vancouver.ca/parks-recreation-culture/leisure-access-card.aspx",
+  "source": "https://vancouver.ca/parks-recreation-culture/leisure-access-card.aspx",
+  "detail": {
+   "about": "The pass adds free or reduced recreation access to a Vancouver Park Board OneCard and ActiveNet account. The route and documents depend on whether you qualify through a listed benefit, an agency referral or the low-income application.",
+   "steps": [
+    "Open the City's page and choose the application route matching your situation",
+    "Complete the Leisure Access application and gather the documents listed for that route",
+    "Submit it at a Park Board community centre or by the stated mail process",
+    "After approval, have the Leisure Access membership added to the OneCard and ActiveNet account",
+    "For a child 16 or younger, complete the parent or guardian photo-consent form"
+   ],
+   "documents": [
+    "Proof of a qualifying benefit or current Proof of Income Statement, depending on route",
+    "Proof of a City of Vancouver address dated within 90 days",
+    "Government-issued identification",
+    "OneCard photo consent for children 16 and younger",
+    "2025 Canada Child Benefit notice (Child Disability Benefit route)",
+    "2025 Proof of Income Statement verifying receipt of the Disability Tax Credit (not a Notice of Assessment)",
+    "Original Third Party Referral form completed by the referring agency within 90 days, signed and dated by you (agency referral routes)",
+    "Family members' 2025 tax year Proof of Income Statement (EI route)",
+    "Service Canada letter showing your Employment Insurance start and finish date and benefit rate (EI route)"
+   ],
+   "tips": [
+    "A Notice of Assessment is not the same as the CRA Proof of Income Statement asked for on the low-income route",
+    "UBC and University Endowment Lands addresses are outside the City of Vancouver",
+    "Bring the pass and photo identification when a partner venue asks for both"
+   ],
+   "time": "Ask the Leisure Access office when submitting"
+  },
+  "amountTiers": {
+   "caption": "Maximum net family income by route (EI route: projected family income)",
+   "headers": [
+    "Family size",
+    "Disability Tax Credit route",
+    "Low-income self-referral and EI routes"
+   ],
+   "rows": [
+    [
+     "1 person",
+     "$53,166",
+     "$43,028"
+    ],
+    [
+     "2 people",
+     "$70,972",
+     "$60,834"
+    ],
+    [
+     "3 people",
+     "$84,645",
+     "$74,507"
+    ],
+    [
+     "4 people",
+     "$96,171",
+     "$86,033"
+    ],
+    [
+     "5 people",
+     "$106,325",
+     "$96,187"
+    ],
+    [
+     "6 people",
+     "$115,506",
+     "$105,368"
+    ],
+    [
+     "7 people",
+     "$123,948",
+     "$113,810"
+    ],
+    [
+     "Each additional person",
+     "Not stated on the page",
+     "Add $8,450"
+    ]
+   ]
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "excludeFromEstimate": true,
+  "note": "free pool/rink admission + 50% off fitness"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Application + income or referral proof",
+  "wait": "Confirm with the City"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

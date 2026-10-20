@@ -1,0 +1,54 @@
+{
+ "id": "handycard-translink",
+ "benefit": {
+  "id": "handycard-translink",
+  "name": "HandyCard (TransLink)",
+  "level": "Metro Vancouver",
+  "category": "Transit",
+  "amount": "Free photo ID card — concession fares for you, free travel for your attendant, and access to half-price TaxiSaver coupons",
+  "summary": "Photo ID card for Metro Vancouver riders who cannot use regular transit without assistance. It gets you concession fares, lets an attendant travel free, and gives you access to the TaxiSaver program.",
+  "requires": [
+   "bc",
+   "metroVancouver",
+   "transitBarrier"
+  ],
+  "requiresNote": "You apply on the same combined HandyDART and HandyCard application form. HandyDART users may also be eligible for HandyCard, a photo-identity card for customers who need assistance to use the conventional system. The HandyDART test is a physical, sensory or cognitive disability that means you cannot use conventional public transit for all trips without assistance; see the application form for detailed criteria.",
+  "note": "The attendant travels free on buses, SkyTrain, SeaBus and West Coast Express. HandyDART trips are paid separately at the 1-Zone fare.",
+  "applyText": "Apply with the HandyDART & HandyCard form",
+  "applyUrl": "https://www.translink.ca/rider-guide/transit-accessibility/handydart",
+  "source": "https://www.translink.ca/rider-guide/transit-accessibility/handydart",
+  "detail": {
+   "about": "HandyCard is for conventional TransLink services, not HandyDART. Carry the original photo card and show it when paying a concession fare or travelling with an attendant.",
+   "steps": [
+    "Complete the combined HandyDART and HandyCard application",
+    "Describe why you cannot use conventional transit without an attendant",
+    "Include the required photo and submit the form using its instructions",
+    "When the card arrives, carry it on every eligible trip and show it when requested"
+   ],
+   "documents": [
+    "Completed combined application",
+    "A recent photo meeting the form requirements",
+    "Optional supporting verification describing the transit barrier"
+   ],
+   "tips": [
+    "HandyCard applicants must be at least 12 and live in the TransLink service region",
+    "An attendant rides free with you on conventional transit, but you still pay your own concession fare",
+    "The same application can request HandyDART and HandyCard together"
+   ],
+   "time": "Allow 4 to 6 weeks for HandyCard applications to be processed",
+   "phone": "604-953-3680"
+  }
+ },
+ "values": {
+  "kind": "access",
+  "excludeFromEstimate": true,
+  "note": "concession-fare photo ID; attendant rides free"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Same application as HandyDART",
+  "wait": "Allow 4 to 6 weeks for processing"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}

@@ -1,0 +1,60 @@
+{
+ "id": "handydart-bctransit",
+ "benefit": {
+  "id": "handydart-bctransit",
+  "name": "handyDART (BC Transit)",
+  "level": "British Columbia",
+  "category": "Transit",
+  "amount": "Registration is free; attendants ride free",
+  "summary": "Door-to-door shared-ride transit in BC Transit communities outside Metro Vancouver, for people whose disability prevents them from using fixed-route transit without assistance.",
+  "requires": [
+   "bc",
+   "outsideMetroVancouver",
+   "transitBarrier"
+  ],
+  "eligibility": {
+   "mode": "all",
+   "items": [
+    "You live in a BC Transit community that has handyDART service.",
+    "You have a permanent or temporary disability that prevents you from using fixed-route transit without assistance."
+   ]
+  },
+  "requiresNote": "You live in a BC Transit community that has handyDART service, and you have a permanent or temporary disability that prevents you from using fixed-route transit without assistance.",
+  "note": "Attendants ride free and must board and exit at the same stop as you. Each region has its own handyDART page, contact and booking office — start from your community's page on bctransit.com.",
+  "applyText": "Register with your region's handyDART office",
+  "detail": {
+   "about": "handyDART is shared, door-to-door service. Drivers drop you off at the closest accessible point near your destination. Registration is free. You can pay your fare with cash when you board, or buy fare products in advance.",
+   "steps": [
+    "Find your community on the BC Transit website and open its handyDART registration page",
+    "Complete, sign and date the regional handyDART application",
+    "Describe which parts of fixed-route transit you cannot use without assistance",
+    "Include the optional medical verification if it helps explain the functional barrier",
+    "Submit the form to the regional registrar, then follow the local instructions for booking after approval"
+   ],
+   "documents": [
+    "Completed regional handyDART application",
+    "Optional Medical Verification of Eligibility form",
+    "Mobility-aid measurements or travel-support details if requested by the region"
+   ],
+   "tips": [
+    "Registration is free and eligibility is based on functional ability, not diagnosis, age or mobility device",
+    "Contacts, fares and booking hours differ by community — use your own regional page",
+    "Ask whether your region offers a handyPASS for a free attendant and Taxi Saver access"
+   ],
+   "time": "Varies by regional transit system",
+   "phone": "Use the handyDART number on your community's BC Transit page"
+  }
+ },
+ "values": {
+  "kind": "discount",
+  "excludeFromEstimate": true,
+  "note": "free registration; attendants ride free"
+ },
+ "meta": {
+  "difficulty": 2,
+  "effort": "Regional registration + supporting information",
+  "wait": "Varies by transit system"
+ },
+ "extra": null,
+ "verified": "(inherited)"
+}
