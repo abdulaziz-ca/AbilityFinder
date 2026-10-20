@@ -34,6 +34,10 @@
 # unversioned and deliberately absent.
 /app.js
   Cache-Control: public, max-age=31536000, immutable
+/data-core.js
+  Cache-Control: public, max-age=31536000, immutable
+/data-pack-*
+  Cache-Control: public, max-age=31536000, immutable
 /data.js
   Cache-Control: public, max-age=31536000, immutable
 /i18n.js

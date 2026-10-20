@@ -6,6 +6,48 @@
    button and reloads never lose the user's answers.
    ========================================================================== */
 
+const DATA_PACKS = true;
+// The index also names the unchanged, deployed full-data fallback. Core exports
+// are configurable globals so full data.js can shadow them without redeclarations.
+const CATALOGUE_INDEX = typeof BENEFIT_INDEX !== "undefined"
+  ? BENEFIT_INDEX : BENEFITS.map(b => [b.id, b.level, null]);
+const packRequests = new Map();
+function loadDataScript(src) {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = src;
+    script.onload = () => resolve();
+    script.onerror = () => { script.remove(); reject(new Error("Program data could not be downloaded. Please try again.")); };
+    document.head.appendChild(script);
+  });
+}
+function dataAssetVersion() {
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "232";
+}
+function ensurePacks(provs) {
+  if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
+  return Promise.all([...new Set(provs)].filter(p => COVERED_PROVINCES.includes(p)).map(p => {
+    if (AF_LOADED_PACKS.has(p)) return Promise.resolve();
+    if (!packRequests.has(p)) {
+      const request = loadDataScript(`data-pack-${p}.js?v=${dataAssetVersion()}`)
+        .then(() => { if (!AF_LOADED_PACKS.has(p)) throw new Error(`Program pack ${p} did not load.`); })
+        .catch(error => { packRequests.delete(p); throw error; });
+      packRequests.set(p, request);
+    }
+    return packRequests.get(p);
+  }));
+}
+function packsForIds(ids) {
+  const selected = new Set(ids);
+  return CATALOGUE_INDEX.filter(row => selected.has(row[0])).map(row => row[2]).filter(Boolean);
+}
+function packsForView() {
+  if (["browse", "coverage", "updates", "impact"].includes(view)) return COVERED_PROVINCES;
+  if (["results", "detail"].includes(view)) {
+    return [answers.province, ...packsForIds([...Object.keys(progress), ...(view === "detail" ? [detailId, ...(BENEFIT_EXTRA[detailId]?.related || [])] : [])])];
+  }
+  return [];
+}
 const BC_ENABLED = true;
 // Ontario rollout — dark until launch (ticket #91)
 const ON_ENABLED = true;
@@ -4261,7 +4303,7 @@ const BROWSE_LEVELS = [
 ];
 
 const PROGRAM_CHANGE_DATA = typeof AbilityFinderProgramChanges !== "undefined" && typeof DATA_CHANGELOG !== "undefined"
-  ? AbilityFinderProgramChanges.collect(DATA_CHANGELOG, BENEFITS.map((b) => b.id))
+  ? AbilityFinderProgramChanges.collect(DATA_CHANGELOG, CATALOGUE_INDEX.map(row => row[0]))
   // No feed means no notices or new baselines. Preserve existing review markers
   // during validation rather than rejecting them against a fabricated zero.
   : { watermark: Number.MAX_SAFE_INTEGER, changes: [] };
@@ -4279,7 +4321,7 @@ const PERSISTENCE_SELECTIONS = {
   cities: [...ALBERTA_CITIES, ...(BC_ENABLED ? BC_CITIES : []), ...(ON_ENABLED ? ON_CITIES : []), ...(SK_ENABLED ? SK_CITIES.filter((c) => !ALBERTA_CITIES.includes(c)) : []), ...(MB_ENABLED ? MB_CITIES : []), ...(NB_ENABLED ? NB_CITIES : []), ...(NS_ENABLED ? NS_CITIES : []), ...(PE_ENABLED ? PE_CITIES : []), ...(NL_ENABLED ? NL_CITIES : []), ...(QC_ENABLED ? QC_CITIES : [])],
   citiesByProvince: { AB: ALBERTA_CITIES, BC: BC_ENABLED ? BC_CITIES : [], ON: ON_ENABLED ? ON_CITIES : [], SK: SK_ENABLED ? SK_CITIES : [], MB: MB_ENABLED ? MB_CITIES : [], NB: NB_ENABLED ? NB_CITIES : [], NS: NS_ENABLED ? NS_CITIES : [], PE: PE_ENABLED ? PE_CITIES : [], NL: NL_ENABLED ? NL_CITIES : [], QC: QC_ENABLED ? QC_CITIES : [] },
   browseLevels: BROWSE_LEVELS.map((level) => level.key),
-  benefitIds: BENEFITS.map((benefit) => benefit.id),
+  benefitIds: CATALOGUE_INDEX.map(row => row[0]),
   progressStages: STAGES.map((stage) => stage.key),
 };
 
@@ -4349,7 +4391,7 @@ async function loadState() {
 
   // Drop unknown tracker stages and invalid guide IDs before either can render.
   for (const id in progress) if (!STAGE[progress[id]]) delete progress[id];
-  if (view === "detail" && !browseCatalog().some((b) => b.id === detailId)) view = "results";
+  if (view === "detail" && !CATALOGUE_INDEX.some(([id]) => id === detailId)) view = "results";
   // Older snapshots may not contain the current age band and functional answers.
   // Never render broad results from an incomplete legacy questionnaire.
   if (view === "results" && !wizardDone()) {
@@ -4688,7 +4730,26 @@ function renderSafely(fn, label) {
   }
 }
 
+let packRenderRevision = 0;
 function render() {
+  const revision = ++packRenderRevision;
+  const required = packsForView();
+  if (DATA_PACKS && typeof AF_LOADED_PACKS !== "undefined" && required.some(p => COVERED_PROVINCES.includes(p) && !AF_LOADED_PACKS.has(p))) {
+    // Keep the current page visible while its successor downloads. A newer
+    // navigation wins over an older in-flight render (including Back/Forward).
+    void ensurePacks(required).then(() => {
+      if (revision === packRenderRevision) render();
+    }).catch(error => {
+      if (revision !== packRenderRevision) return;
+      document.getElementById("app").innerHTML = renderSafely(() => { throw error; }, "program data");
+      document.getElementById("reRetry")?.addEventListener("click", () => render());
+      document.getElementById("reReset")?.addEventListener("click", () => {
+        answers = BLANK(); confirmedFacts = {}; progress = {}; stepIndex = 0; detailId = null;
+        setState("landing");
+      });
+    });
+    return;
+  }
   updateNavTag();
   const app = document.getElementById("app");
   const progress = document.querySelector(".progress");
@@ -5433,7 +5494,7 @@ function renderAbout() {
     <p class="legal-lede">AbilityFinder makes it easier to find disability benefits and understand what to do next.</p>
 
     ${block("What AbilityFinder is", `<p>AbilityFinder is a free, independent tool that helps ${SCOPE_RESIDENTS} with disabilities find benefits in our catalog that may match their situation. It is not affiliated with any government. There is no login and there are no ads.</p>`)}
-    ${block("How we verify facts", `<p>Every benefit links to an official government source. ${BENEFITS.filter(b => !verifiedFor(b).inherited).length} programs were individually re-checked against their official source; the remaining ${BENEFITS.filter(b => verifiedFor(b).inherited).length} were last checked in the ${verifiedFor(null).label} catalogue review.</p><p>Every few hours, automated monitoring checks a rotating set of official links and flags pages that break or move. A working link does not mean the rules or amounts are unchanged. Each guide shows its review date and warns when the numbers are worth re-confirming.</p>`)}
+    ${block("How we verify facts", `<p>Every benefit links to an official government source. ${CATALOGUE_INDEX.filter(([id]) => !verifiedFor({ id }).inherited).length} programs were individually re-checked against their official source; the remaining ${CATALOGUE_INDEX.filter(([id]) => verifiedFor({ id }).inherited).length} were last checked in the ${verifiedFor(null).label} catalogue review.</p><p>Every few hours, automated monitoring checks a rotating set of official links and flags pages that break or move. A working link does not mean the rules or amounts are unchanged. Each guide shows its review date and warns when the numbers are worth re-confirming.</p>`)}
     ${block("What we never do", `<p>We do not create accounts, show ads, or use third-party trackers. Your answers stay on your device. We never sell or share your data.</p>`)}
     ${block("Found a mistake?", `<p>Please tell us through the <button class="linklike js-feedback">feedback form</button>. Corrections help everyone who uses AbilityFinder.</p>`)}
     ${block("Who runs this", `<p>AbilityFinder is an independent project built in Alberta by a small team. It is not a government service.</p>`)}
@@ -5513,7 +5574,7 @@ function renderCoverage() {
   const names = { AB: "Alberta", BC: "British Columbia", ON: "Ontario", ...(SK_ENABLED ? { SK: "Saskatchewan" } : {}), ...(MB_ENABLED ? { MB: "Manitoba" } : {}), ...(NB_ENABLED ? { NB: "New Brunswick" } : {}), ...(NS_ENABLED ? { NS: "Nova Scotia" } : {}), ...(PE_ENABLED ? { PE: "Prince Edward Island" } : {}), ...(NL_ENABLED ? { NL: "Newfoundland and Labrador" } : {}), ...(QC_ENABLED ? { QC: "Quebec" } : {}) };
   const cityRows = Object.entries(missing).filter(([p]) => names[p]).map(([p, list]) =>
     `<p><b>${names[p]}:</b> ${list.length ? reqEscape(list.join(", ")) : "every listed community has at least one local program"}.</p>`).join("");
-  const localCount = BENEFITS.filter((b) => !LOCAL_LEVELS_EXCLUDED.has(b.level)).length;
+  const localCount = CATALOGUE_INDEX.filter(([, level]) => !LOCAL_LEVELS_EXCLUDED.has(level)).length;
   return `
   <section class="legal" lang="en">
     <button class="back-link" id="cv-back">${icon("arrowLeft")} Back</button>
@@ -5578,7 +5639,7 @@ function renderProfessionals() {
 }
 
 function renderPartnerOverview() {
-  const programCount = browseCatalog().length;
+  const programCount = browseCatalog(CATALOGUE_INDEX.map(([id, level]) => ({ id, level }))).length;
   const municipalityCount = Array.isArray(CITIES_WITH_PROGRAMS) ? new Set(CITIES_WITH_PROGRAMS).size : 0;
   return `<article class="partner-overview" id="partnerOverview">
     <header class="partner-head">
@@ -5826,14 +5887,15 @@ function wireOrganizations() {
 
 function impactCatalogStats() {
   const programs = browseCatalog();
-  const levels = programs.reduce((counts, benefit) => {
+  const indexed = browseCatalog(CATALOGUE_INDEX.map(([id, level]) => ({ id, level })));
+  const levels = indexed.reduce((counts, benefit) => {
     if (benefit.level === "Federal") counts.federal += 1;
     else if (PROVINCE_LEVEL_NAMES.has(benefit.level)) counts.provincial += 1;
     else counts.municipal += 1;
     return counts;
   }, { federal: 0, provincial: 0, municipal: 0 });
   return {
-    programs: programs.length,
+    programs: indexed.length,
     municipalities: Array.isArray(CITIES_WITH_PROGRAMS) ? new Set(CITIES_WITH_PROGRAMS).size : 0,
     categories: new Set(programs.map((benefit) => benefit.category).filter(Boolean)).size,
     sourced: programs.filter((benefit) => benefit.source).length,
@@ -6099,6 +6161,7 @@ function applyWizardSelection(step, value) {
   else {
     const previous = answers[step.key];
     answers[step.key] = value;
+    if (step.key === "province") void ensurePacks([value]).catch(() => {}); // results retries/report failures
     if (step.onPick) step.onPick(value, previous);
   }
   notifyStateChange("wizard-answer");
@@ -6356,9 +6419,9 @@ function baselineProgramChanges() {
   if (typeof AbilityFinderProgramChanges === "undefined") return;
   let changed = false;
   if (!programChanges) { programChanges = { version: 1, seenByProgram: {} }; changed = true; }
-  for (const b of BENEFITS) {
-    if (!Object.prototype.hasOwnProperty.call(programChanges.seenByProgram, b.id)) {
-      programChanges.seenByProgram[b.id] = PROGRAM_CHANGE_DATA.watermark;
+  for (const [id] of CATALOGUE_INDEX) {
+    if (!Object.prototype.hasOwnProperty.call(programChanges.seenByProgram, id)) {
+      programChanges.seenByProgram[id] = PROGRAM_CHANGE_DATA.watermark;
       changed = true;
     }
   }
@@ -7659,8 +7722,8 @@ function benefitIsNewfoundlandandLabrador(b) {
 function benefitIsQuebec(b) {
   return b.level === "Quebec" || QC_CITIES.includes(b.level);
 }
-function browseCatalog() {
-  let list = BENEFITS;
+function browseCatalog(records = BENEFITS) {
+  let list = records;
   if (!BC_ENABLED) list = list.filter((b) => !benefitIsBritishColumbia(b));
   if (!ON_ENABLED) list = list.filter((b) => !benefitIsOntario(b));
   if (!SK_ENABLED) list = list.filter((b) => !benefitIsSaskatchewan(b));
@@ -8550,7 +8613,14 @@ function wireAssistant() {
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
+  if (!DATA_PACKS && typeof BENEFIT_INDEX !== "undefined") {
+    const fallback = document.querySelector("script[data-full-source]")?.getAttribute("data-full-source");
+    await loadDataScript(fallback || `data.js?v=${dataAssetVersion()}`);
+  }
   await loadState();
+  // Restore all records needed by results, saved follow-ups and deep links
+  // before readiness is signalled. Landing never waits for province data.
+  if (view !== "landing") await ensurePacks([answers.province, ...packsForView()]);
   // Stable deep link for static guide footers. Only this one value is honoured.
   try {
     if (new URLSearchParams(window.location.search).get("view") === "privacy") view = "privacy";

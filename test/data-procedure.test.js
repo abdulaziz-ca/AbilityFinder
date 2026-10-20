@@ -20,7 +20,9 @@ const DATA_FILES = [
 // Changing one without moving ?v=N would leave returning visitors on the old file,
 // so "the index asset version moves" also fires for these (site audit 2026-10, P2-1).
 // embed.js is unversioned and deliberately not long-cached.
-const isVersionedAsset = (file) => (/^public\/[^/]+\.(js|css)$/.test(file) && file !== "public/embed.js") || file === "public/favicon.svg";
+// Includes generated data-core.js and every data-pack-XX.js; they share ?v=N.
+const PACK_ASSETS = ["public/data-core.js", ...["AB", "BC", "ON", "SK", "MB", "NB", "NS", "PE", "NL", "QC"].map(p => `public/data-pack-${p}.js`)];
+const isVersionedAsset = (file) => PACK_ASSETS.includes(file) || (/^public\/[^/]+\.(js|css)$/.test(file) && file !== "public/embed.js") || file === "public/favicon.svg";
 
 function runGit(args) {
   try {

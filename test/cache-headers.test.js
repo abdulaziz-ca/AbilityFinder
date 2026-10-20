@@ -15,7 +15,12 @@ function immutablePaths() {
     if (/^\/\S*$/.test(line)) current = line.trim();
     else if (current && /Cache-Control:.*immutable/.test(line)) out.push(current);
   }
-  return out.filter((p) => p !== "/fonts/*");
+  return out.filter((p) => p !== "/fonts/*").flatMap(p => {
+    if (p !== "/data-pack-*") return [p];
+    const packs = fs.readdirSync(path.join(ROOT, "public")).filter(name => /^data-pack-[A-Z]{2}\.js$/.test(name));
+    assert.equal(packs.length, 10, "all ten province packs are immutable-cached");
+    return packs.map(name => `/${name}`);
+  });
 }
 
 function htmlFiles(dir) {
