@@ -1,0 +1,280 @@
+[
+ {
+  "id": "bc-disability-assistance-pwd",
+  "snapshot": "ok",
+  "confirmed": 4,
+  "differs": [
+   {
+    "field": "benefit.detail.about; benefit.detail.aboutList.items[1]",
+    "old": "100% drug coverage under PharmaCare Plan C",
+    "new": "no-deductible PharmaCare prescription coverage",
+    "quote": "No-deductible PharmaCare prescription coverage",
+    "why": "Page says no-deductible PharmaCare coverage; Plan C and 100% are not stated for people on disability assistance (100% applies for a year after leaving assistance). Replace in both places."
+   },
+   {
+    "field": "benefit.detail.tips[3]",
+    "old": "At 65 most recipients move to federal Old Age Security and GIS. The ministry will contact you before then.",
+    "new": "",
+    "quote": "(no age-65 rule on any official page fetched)",
+    "why": "Age-65 move to OAS/GIS and a ministry contact are not stated; remove this tip."
+   }
+  ],
+  "blocking_not_on_page": [],
+  "verdict": "fix-then-bump",
+  "new_pages": [
+   "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance",
+   "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/eligibility/monthly-reporting-requirements",
+   "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance/supplements",
+   "https://www2.gov.bc.ca/gov/content/family-social-supports/income-assistance/on-assistance/leaving-assistance",
+   "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/eligibility/income-treatment-and-exemptions"
+  ],
+  "blocked": []
+ },
+ {
+  "id": "adult-health-benefit",
+  "snapshot": "ok",
+  "confirmed": 0,
+  "differs": [
+   {
+    "field": "benefit.summary",
+    "old": "Health coverage for adults in lower-income households.",
+    "new": "Health coverage for lower-income adults who are pregnant, have high ongoing prescription drug needs, or are leaving Income Support or AISH due to excess employment, self-employment or CPP-D income.",
+    "quote": "You may be eligible if you: are pregnant; have high ongoing prescription drug needs; are leaving the Income Support or ... AISH programs due to excess income from employment, self-employment or CPP-D benefits",
+    "why": "Round-1 fix kept."
+   },
+   {
+    "field": "benefit.detail.about",
+    "old": "Ongoing health coverage for adults and families with lower incomes",
+    "new": "Ongoing health coverage for lower-income households where an adult is pregnant, has high ongoing prescription drug needs, or is leaving Income Support or AISH due to excess employment, self-employment or CPP-D income",
+    "quote": "You may be eligible if you: are pregnant; have high ongoing prescription drug needs; are leaving the Income Support ... programs",
+    "why": "Round-1 fix kept."
+   },
+   {
+    "field": "benefit.detail.about",
+    "old": " — at no monthly premium",
+    "new": "",
+    "quote": "(no premium statement on the Adult Health Benefit page; the \"Premium-free\" wording on the drug-coverage page refers to the Coverage for Seniors Program)",
+    "why": "No-premium claim is not supported for this program; remove."
+   }
+  ],
+  "blocking_not_on_page": [],
+  "verdict": "fix-then-bump",
+  "new_pages": [
+   "https://www.alberta.ca/drug-coverage-health-benefits"
+  ],
+  "blocked": []
+ },
+ {
+  "id": "aish",
+  "snapshot": "ok",
+  "confirmed": 2,
+  "differs": [
+   {
+    "field": "extra.taxNote",
+    "old": "AISH is not taxable. ",
+    "new": "",
+    "quote": "(no official Alberta page fetched states AISH tax treatment)",
+    "why": "Tax treatment not stated on any official page captured; remove the claim."
+   }
+  ],
+  "blocking_not_on_page": [],
+  "verdict": "fix-then-bump",
+  "new_pages": [
+   "https://www.alberta.ca/aish-apply-for-federal-disability-supports",
+   "https://www.alberta.ca/system/files/alss-cdb-and-dtc-fact-sheet-for-aish-recipients.pdf",
+   "https://www.alberta.ca/aish-what-you-get",
+   "https://www.alberta.ca/aish-and-adap-payment-details",
+   "https://www.alberta.ca/aish"
+  ],
+  "blocked": []
+ },
+ {
+  "id": "bc-raha",
+  "snapshot": "ok",
+  "confirmed": 6,
+  "differs": [
+   {
+    "field": "eligibility.items[4]; requiresNote",
+    "old": "a Canadian citizen, authorized to take up permanent residence in Canada, or a Convention refugee, and not under private sponsorship",
+    "new": "a Canadian citizen, a permanent resident of Canada, a refugee sponsored by the Government of Canada, or someone who has applied for refugee status, and not under sponsorship",
+    "quote": "The tenant(s) and the person(s) requiring the adaptions must not be under sponsorship and must be one of the following: Canadian citizen; Permanent resident of Canada; Refugee sponsored by the Government of Canada; Individual who has applied for refugee status",
+    "why": "Current wording differs. Replace in both places (eligibility.items[4] and requiresNote)."
+   },
+   {
+    "field": "eligibility.note; requiresNote",
+    "old": " For this program \"household\" means the owner(s) plus any relative permanently living in the home.",
+    "new": "",
+    "quote": "(no household definition on the pages)",
+    "why": "Household definition not stated; remove."
+   },
+   {
+    "field": "benefit.note",
+    "old": "Adaptations completed before BC Housing gives written approval are not eligible for a rebate.",
+    "new": "Adaptations completed before BC Housing gives written approval are not eligible for a rebate, except emergency adaptations required before hospital release.",
+    "quote": "Adaptations completed before approval from BC Housing are not eligible. Exception: emergency adaptations required before hospital release.",
+    "why": "Dropped exception."
+   }
+  ],
+  "blocking_not_on_page": [],
+  "verdict": "fix-then-bump",
+  "new_pages": [
+   "https://www.bchousing.org/housing-assistance/BC-RAHA/FAQ",
+   "https://www.bchousing.org/housing-assistance/BC-RAHA/homeowner",
+   "https://www.bchousing.org/housing-assistance/BC-RAHA/landlord-tenant",
+   "https://www.bchousing.org/housing-assistance/BC-RAHA/program-overview",
+   "https://www.bchousing.org/housing-assistance/BC-RAHA/eligible-properties",
+   "https://www.bchousing.org/housing-assistance/BC-RAHA/home-assessment",
+   "https://www.bchousing.org/housing-assistance/BC-RAHA/approved-applicants",
+   "https://www.bchousing.org/housing-assistance/BC-RAHA/eligible-adaptations"
+  ],
+  "blocked": []
+ },
+ {
+  "id": "bc-autism-funding-under-6",
+  "snapshot": "ok",
+  "confirmed": 0,
+  "differs": [
+   {
+    "field": "benefit.note",
+    "old": "accepts new applications until March 2027 and ends March 31, 2027.",
+    "new": "accepts new applications until March 2027 and the current system is in effect until March 2027.",
+    "quote": "The current Autism Funding system is in effect until March of 2027, and we will continue to receive applications and onboard eligible families until then.",
+    "why": "No March 31, 2027 end date stated."
+   },
+   {
+    "field": "benefit.note",
+    "old": " Final aligned funding periods may be prorated to March 31, 2027.",
+    "new": "",
+    "quote": "(no proration statement)",
+    "why": "Not on page; remove."
+   },
+   {
+    "field": "benefit.detail.about",
+    "old": "For the final aligned funding period ending March 31, 2027, BC increased the allowable TTE portion to 50%. Requests must not",
+    "new": "Requests must not",
+    "quote": "Requests must not exceed 50% of a child/youth’s annual funding amount ... For families with youth aging out (turning 19) prior to March 31, 2027, requests must not exceed 20%.",
+    "why": "\"Raised from 20% to 50% for final aligned period\" not stated; keep the stated 50%/12-month rule."
+   },
+   {
+    "field": "benefit.detail.tips[1]",
+    "old": "The normal training, travel and equipment limit is 20%, but BC raised it to 50% for the final aligned funding period ending March 31, 2027. Requests must not",
+    "new": "The training, travel and equipment limit is up to 20% in the first 12 months. Requests must not",
+    "quote": "with the first 12 months being available at 20%",
+    "why": "Same unsupported raise claim."
+   },
+   {
+    "field": "benefit.detail.tips[2]",
+    "old": "Approved services and purchases must be delivered by March 31, 2027; direct-payment supporting documents are due May 31, 2027, and final invoices or reimbursement requests are due September 30, 2027",
+    "new": "Invoices must be submitted to the Autism Funding Branch within six months of purchasing the service, equipment, training or travel.",
+    "quote": "Invoices must be submitted to the Autism Funding Branch within six months of purchasing the service, equipment, training or travel.",
+    "why": "The March/May/September 2027 dates are not on the pages; replaced by the stated six-month invoice rule."
+   },
+   {
+    "field": "benefit.detail.tips[3]",
+    "old": "From July 2026 the ministry contacts Autism Funding families about moving to the new Disability Benefit ($6,500 or $17,000/year).",
+    "new": "The ministry will contact Autism Funding families about moving to the new BC Children and Youth Disability Benefit before March 2027.",
+    "quote": "We will contact all recipients about their eligibility to transfer to the new BC Children and Youth Disability Benefit ahead of the transition.",
+    "why": "July 2026 date and dollar amounts not stated."
+   },
+   {
+    "field": "benefit.detail.time",
+    "old": "The program and final aligned funding periods end March 31, 2027; later paperwork deadlines do not extend the service-delivery date.",
+    "new": "The current system is in effect until March 2027.",
+    "quote": "The current Autism Funding system is in effect until March of 2027",
+    "why": "Unsupported end date and deadline claims."
+   },
+   {
+    "field": "benefit.detail.steps[0]",
+    "old": "BCAAN, free via physician referral",
+    "new": "BCAAN",
+    "quote": "(no cost or referral statement on the pages)",
+    "why": "Not stated; remove."
+   }
+  ],
+  "blocking_not_on_page": [],
+  "verdict": "fix-then-bump",
+  "new_pages": [
+   "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding",
+   "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/training",
+   "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/travel",
+   "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/purchase-equipment-supplies",
+   "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding/autism-support-services-therapy",
+   "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/",
+   "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/diagnosis"
+  ],
+  "blocked": []
+ },
+ {
+  "id": "kamloops-arch",
+  "snapshot": "ok",
+  "confirmed": 2,
+  "differs": [],
+  "blocking_not_on_page": [],
+  "verdict": "bump",
+  "new_pages": [
+   "https://www.kamloops.ca/our-community/building-strong-communities/accessibility/kampass-program",
+   "https://www.kamloops.ca/our-community/accessibility-inclusion/accessible-transportation/kampass-program",
+   "https://www.kamloops.ca/sites/default/files/docs/ARCH%20KamPASS%202026%20-%202027%20Application%20Fillable.pdf"
+  ],
+  "blocked": []
+ },
+ {
+  "id": "hamilton-fare-assist",
+  "snapshot": "ok",
+  "confirmed": 0,
+  "differs": [],
+  "blocking_not_on_page": [],
+  "verdict": "bump",
+  "new_pages": [],
+  "blocked": []
+ },
+ {
+  "id": "bc-clbc",
+  "snapshot": "ok",
+  "confirmed": 2,
+  "differs": [
+   {
+    "field": "benefit.eligibility.note; requiresNote",
+    "old": "supports continue beyond 65",
+    "new": "supports can be life-long",
+    "quote": "CLBC provides specific supports to youth transitioning to adulthood, and can be life-long, beginning from age 19.",
+    "why": "Age 65 not stated."
+   },
+   {
+    "field": "benefit.detail.coversList.items[7]",
+    "old": "The Provincial Assessment Centre's mental-health services for people 14+ with developmental disabilities",
+    "new": "",
+    "quote": "The Provincial Assessment Centre will be transferred from Community Living BC (CLBC) to ... PHSA in fall 2023.",
+    "why": "PAC moved from CLBC to PHSA; no longer a CLBC-funded service. Remove the item."
+   }
+  ],
+  "blocking_not_on_page": [],
+  "verdict": "fix-then-bump",
+  "new_pages": [
+   "https://www.communitylivingbc.ca/what-support-is-available/support-for-you-and-your-familys-well-being/",
+   "https://www.communitylivingbc.ca/what-support-is-available/connecting-community/",
+   "https://www.communitylivingbc.ca/how-do-i-get-support/preparing-access-clbc-supports/",
+   "https://www.communitylivingbc.ca/how-do-i-get-support/preparing-access-clbc-supports/services-to-adults-with-developmental-disabilities-stadd/",
+   "https://www.communitylivingbc.ca/how-do-i-get-support/understand-clbc-funding-decisions/",
+   "https://www.communitylivingbc.ca/about-us/frequently-asked-questions/",
+   "https://www.communitylivingbc.ca/clbc-services/provincial-assessment-centre-to-join-provincial-health-services-authority/"
+  ],
+  "blocked": []
+ },
+ {
+  "id": "ottawa-community-pass",
+  "snapshot": "ok",
+  "confirmed": 3,
+  "differs": [],
+  "blocking_not_on_page": [],
+  "verdict": "bump",
+  "new_pages": [
+   "https://www.octranspo.com/en/fares/reduced-fares/access-pass/",
+   "https://www.octranspo.com/en/fares/reduced-fares/community-pass/",
+   "https://www.octranspo.com/en/fares/costs/",
+   "https://www.octranspo.com/en/para-transpo/para-fares/",
+   "https://www.octranspo.com/en/fares/payment/presto/"
+  ],
+  "blocked": []
+ }
+]

@@ -1,0 +1,225 @@
+[
+  {
+    "id": "bc-at-home-saet",
+    "snapshot": "ok",
+    "confirmed": 3,
+    "differs": [
+      {
+        "field": "benefit.detail.about",
+        "old": "A separate $1,920/year is available",
+        "new": "Up to a separate $1,920/year may be provided",
+        "quote": "A maximum of $1,920 may be provided for any one of chiropractic or massage services",
+        "why": "Preserve the discretionary maximum rather than promise funding."
+      },
+      {
+        "field": "benefit.detail.aboutList.items[1]",
+        "old": "A separate $1,920/year is available",
+        "new": "Up to a separate $1,920/year may be provided",
+        "quote": "A maximum of $1,920 may be provided for any one of chiropractic or massage services",
+        "why": "Preserve the discretionary maximum."
+      },
+      {
+        "field": "benefit.detail.tips[3]",
+        "old": "Post-surgical rehab can go over the annual maximum. Ask for an exception.",
+        "new": "Exceptions to the annual maximum are considered for post-surgical rehab. Ask for an exception.",
+        "quote": "Exceptions to this maximum will be considered for children requiring post-surgical rehabilitation services.",
+        "why": "An exception is considered, not assured."
+      },
+      {
+        "field": "benefit.note",
+        "old": "SAET families were among the first moved to the new B.C. Children and Youth Disability Benefit. This began April 1, 2026. It started with children already in the At Home Program, autism funding and other children-and-youth-with-support-needs services.",
+        "new": "Children enrolled in and still eligible for the At Home Program transition first to the new B.C. Children and Youth Disability Benefit during the April 2026–March 2027 phase.",
+        "quote": "Phase 1 (April 2026-March 2027)\nChildren and youth who are enrolled in and remain eligible for the At Home Program will transition to the Disability Benefit first.",
+        "why": "The current official page describes a phased transition, not an April 1 completed move or a first phase covering all the named programs."
+      },
+      {
+        "field": "benefit.detail.tips[2]",
+        "old": "If your child moved to the Disability Benefit in April 2026, pay for the same therapies from the new $6,500/$17,000 allocation instead",
+        "new": "If your child has transitioned to the Disability Benefit, ask which therapies can be paid from the $6,500/$17,000 annual allocation instead",
+        "quote": "Base tier: $6,500 per year; Higher tier: $17,000 per year",
+        "why": "Amounts are confirmed, but the page does not establish an April 2026 move for the individual child; eligible expenses remain subject to the operational policy."
+      }
+    ],
+    "blocking_not_on_page": [],
+    "verdict": "fix-then-bump",
+    "new_pages": [
+      "https://www2.gov.bc.ca/gov/content/family-social-supports/youth-and-family-services/children-and-youth-with-support-needs",
+      "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs",
+      "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/financial-supports/disability-benefit"
+    ],
+    "blocked": []
+  },
+  {
+    "id": "pdd",
+    "snapshot": "ok",
+    "confirmed": 2,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump",
+    "new_pages": [
+      "https://www.alberta.ca/pdd-eligibility"
+    ],
+    "blocked": []
+  },
+  {
+    "id": "parking-placard",
+    "snapshot": "ok",
+    "confirmed": 0,
+    "differs": [
+      {
+        "field": "benefit.amount",
+        "old": "Low-cost accessible parking permit",
+        "new": "Accessible parking permit",
+        "quote": "a long-term placard, issued for 5 years",
+        "why": "Official pages do not establish the price; remove the unsupported price characterization."
+      },
+      {
+        "field": "values.note",
+        "old": "low-cost accessible parking permit",
+        "new": "accessible parking permit",
+        "quote": "a long-term placard, issued for 5 years",
+        "why": "Official pages do not establish the price."
+      },
+      {
+        "field": "benefit.detail.about",
+        "old": "Blue placards are for long-term disabilities",
+        "new": "Long-term placards are for long-term disabilities",
+        "quote": "a long-term placard, issued for 5 years",
+        "why": "The official text confirms the term but not the blue colour; the linked form renders only a loading shell."
+      }
+    ],
+    "blocking_not_on_page": [],
+    "verdict": "fix-then-bump",
+    "new_pages": [
+      "https://www.alberta.ca/get-parking-placard-people-disabilities",
+      "https://www.alberta.ca/parking-placard-disabilities",
+      "https://cfr.forms.gov.ab.ca/form/REG3164"
+    ],
+    "blocked": []
+  },
+  {
+    "id": "child-health-benefit",
+    "snapshot": "ok",
+    "confirmed": 0,
+    "differs": [
+      {
+        "field": "benefit.note",
+        "old": "Income Support, AISH, the Child and Youth Support Program, and Non-Insured Health Benefits",
+        "new": "Income Support, AISH, and Non-Insured Health Benefits",
+        "quote": "not be receiving health benefits from other government programs:; Income Support; Assured Income for the Severely Handicapped (AISH); Canadian government programs for Albertans with First Nations or Inuit status (Non-Insured Health benefits program)",
+        "why": "Remove the additional named exclusion not supported by the published eligibility list. The application form exposes only a loading shell; the attempted supplementary program URL is a 404."
+      },
+      {
+        "field": "benefit.detail.tips[0]",
+        "old": "Income Support, AISH, the Child and Youth Support Program, and Non-Insured Health Benefits",
+        "new": "Income Support, AISH, and Non-Insured Health Benefits",
+        "quote": "not be receiving health benefits from other government programs:; Income Support; Assured Income for the Severely Handicapped (AISH); Canadian government programs for Albertans with First Nations or Inuit status (Non-Insured Health benefits program)",
+        "why": "Remove the additional named exclusion not supported by the published eligibility list. The application form exposes only a loading shell; the attempted supplementary program URL is a 404."
+      }
+    ],
+    "blocking_not_on_page": [],
+    "verdict": "fix-then-bump",
+    "new_pages": [
+      "https://www.alberta.ca/child-and-youth-support-program",
+      "https://cfr.forms.gov.ab.ca/Form/AEHB3931"
+    ],
+    "blocked": []
+  },
+  {
+    "id": "handydart-bctransit",
+    "snapshot": "ok",
+    "confirmed": 0,
+    "differs": [],
+    "blocking_not_on_page": [
+      {
+        "field": "benefit.amount; benefit.note; values.note",
+        "claim": "Attendants ride free and must board and exit at the same stop as you.",
+        "why": "The new general handyDART page recovers the program overview and confirms free registration, but does not state attendant fare or same-stop conditions. The round-1 bad snapshot did not audit these claims; regional confirmation is still needed."
+      }
+    ],
+    "verdict": "keep",
+    "new_pages": [
+      "https://www.bctransit.com/handydart/"
+    ],
+    "blocked": []
+  },
+  {
+    "id": "grt-affordable-transit",
+    "snapshot": "ok",
+    "confirmed": 1,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump",
+    "new_pages": [
+      "https://www.grt.ca/fares-and-payment/fare-prices/"
+    ],
+    "blocked": []
+  },
+  {
+    "id": "ottawa-access-pass",
+    "snapshot": "ok",
+    "confirmed": 3,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump",
+    "new_pages": [
+      "https://www.octranspo.com/en/fares/costs/",
+      "https://www.octranspo.com/en/para-transpo/para-fares/",
+      "https://www.octranspo.com/en/fares/payment/",
+      "https://www.octranspo.com/en/fares/reduced-fares/access-pass/"
+    ],
+    "blocked": []
+  },
+  {
+    "id": "handydart-translink",
+    "snapshot": "ok",
+    "confirmed": 0,
+    "differs": [
+      {
+        "field": "benefit.eligibility.note",
+        "old": "TransLink states there is no age or income test.",
+        "new": "TransLink states eligibility is not based on advanced age or limited income.",
+        "quote": "Eligibility is not based on advanced age, limited income, language barriers,",
+        "why": "Use the application’s precise criteria rather than imply that every possible age condition is absent."
+      },
+      {
+        "field": "benefit.requiresNote",
+        "old": "TransLink states no age or income test.",
+        "new": "TransLink states eligibility is not based on advanced age or limited income.",
+        "quote": "Eligibility is not based on advanced age, limited income, language barriers,",
+        "why": "Preserve the official wording about advanced age and limited income."
+      }
+    ],
+    "blocking_not_on_page": [],
+    "verdict": "fix-then-bump",
+    "new_pages": [
+      "https://www.translink.ca/-/media/translink/documents/rider-guide/transit-accessibility/handydart/handydart-card-application-form.pdf"
+    ],
+    "blocked": []
+  },
+  {
+    "id": "grt-mobilityplus",
+    "snapshot": "ok",
+    "confirmed": 1,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump",
+    "new_pages": [
+      "https://www.grt.ca/fares-and-payment/fare-prices/"
+    ],
+    "blocked": []
+  },
+  {
+    "id": "ottawa-equipass",
+    "snapshot": "ok",
+    "confirmed": 3,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump",
+    "new_pages": [
+      "https://www.octranspo.com/en/fares/reduced-fares/equipass/",
+      "https://www.octranspo.com/en/fares/costs/"
+    ],
+    "blocked": []
+  }
+]

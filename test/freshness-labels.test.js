@@ -35,6 +35,6 @@ test('every record has exactly one honest label, agrees with queue and generated
     assert.ok(html.includes(`<span class="verified">${label}</span>`), record.id);
   }
   assert.equal(queue.length, 463);
-  assert.equal(inherited, 18);
+  assert.equal(inherited, 5);
   assert.ok(app.includes('${vFresh.wording}'));
 });

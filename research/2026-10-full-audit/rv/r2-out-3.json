@@ -1,0 +1,281 @@
+[
+ {
+  "id": "bc-at-home-medical",
+  "snapshot": "ok",
+  "confirmed": 27,
+  "differs": [
+   {
+    "field": "benefit.detail.steps[1]",
+    "old": "children under 3 may be asked for extra supporting information",
+    "new": "children under 3 will be asked for extra supporting information",
+    "quote": "if the child applying is under 3 years old, additional supporting documentation will be requested",
+    "why": "Source makes this definite."
+   },
+   {
+    "field": "benefit.amount",
+    "old": "plus 100% of eligible prescription drugs and designated medical supplies through PharmaCare Plan F",
+    "new": "plus the full cost of eligible prescription drugs through PharmaCare Plan F, which also pays part of the cost of some medical supplies",
+    "quote": "The full cost of eligible drugs and dispensing fees ... PharmaCare covers part of the cost of eligible: Needles and syringes ... Ostomy supplies",
+    "why": "Plan F pays the full cost of drugs only; supplies are part-cost."
+   },
+   {
+    "field": "benefit.detail.about",
+    "old": "and prescription drugs and designated medical supplies at 100% through PharmaCare Plan F",
+    "new": "and, through PharmaCare Plan F, the full cost of eligible prescription drugs and part of the cost of some medical supplies",
+    "quote": "Under Plan F, PharmaCare covers part of the cost of eligible: Needles and syringes for insulin-dependent diabetes Continuous and flash glucose monitors",
+    "why": "Supplies are not covered at 100%."
+   },
+   {
+    "field": "benefit.detail.aboutList.lead",
+    "old": "and prescription drugs and designated medical supplies at 100% through PharmaCare Plan F",
+    "new": "and, through PharmaCare Plan F, the full cost of eligible prescription drugs and part of the cost of some medical supplies",
+    "quote": "Under Plan F, PharmaCare covers part of the cost of eligible: Needles and syringes for insulin-dependent diabetes Continuous and flash glucose monitors",
+    "why": "Supplies are not covered at 100%."
+   },
+   {
+    "field": "benefit.detail.tips[4]",
+    "old": "Plan F covers designated medical supplies at 100%, as well as prescription drugs.",
+    "new": "Plan F pays the full cost of eligible prescription drugs and part of the cost of some medical supplies.",
+    "quote": "Under Plan F, PharmaCare covers part of the cost of eligible: Needles and syringes for insulin-dependent diabetes Continuous and flash glucose monitors",
+    "why": "Supplies are not covered at 100%."
+   }
+  ],
+  "blocking_not_on_page": [],
+  "verdict": "fix-then-bump",
+  "new_pages": [
+   "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program/medical-benefits",
+   "https://www2.gov.bc.ca/assets/gov/family-and-social-supports/children-teens-with-support-needs/at_home_program_guide.pdf",
+   "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/children-in-the-at-home-program-plan-f"
+  ],
+  "blocked": [
+   "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/plan-f-bc-at-home-program (404, wrong guess)"
+  ]
+ },
+ {
+  "id": "bc-fair-pharmacare",
+  "snapshot": "ok",
+  "confirmed": 40,
+  "differs": [],
+  "blocking_not_on_page": [],
+  "verdict": "bump",
+  "new_pages": [
+   "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/fair-pharmacare-plan/how-your-coverage-is-calculated/fair-pharmacare-assistance-levels-regular",
+   "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/fair-pharmacare-plan/increased-assistance-and-payment-options",
+   "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/fair-pharmacare-plan/how-your-coverage-is-calculated",
+   "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/children-in-the-at-home-program-plan-f",
+   "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/what-we-cover/bc-smoking-cessation-program",
+   "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/what-we-cover/diabetes-supplies",
+   "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/what-we-cover/prescription-contraceptives",
+   "https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/pharmacare/plans",
+   "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/what-we-cover",
+   "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/long-term-care-plan-b",
+   "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/national-pharmacare",
+   "https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/pharmacare/plans/national-pharmacare-plan-np",
+   "https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/pharmacare/plans/national-pharmacare-plan-np/plan-np-diabetes-medications"
+  ],
+  "blocked": []
+ },
+ {
+  "id": "airdrie-fair-access",
+  "snapshot": "ok",
+  "confirmed": 18,
+  "differs": [
+   {
+    "field": "benefit.detail.about",
+    "old": " (formerly the Airdrie Participant Support Program)",
+    "new": "",
+    "quote": "(not found on any official Airdrie page fetched)",
+    "why": "Former name is not supported by official pages; drop it."
+   },
+   {
+    "field": "benefit.detail.aboutList.lead",
+    "old": " (formerly the Airdrie Participant Support Program)",
+    "new": "",
+    "quote": "(not found on any official Airdrie page fetched)",
+    "why": "Former name is not supported by official pages; drop it."
+   },
+   {
+    "field": "benefit.detail.tips[1]",
+    "old": "ask whether your subsidy applies to it. The program page doesn't say either way, so check.",
+    "new": "ask about it when you apply. The eligible services list names ACCESS Airdrie, the paratransit service.",
+    "quote": "ACCESS Airdrie services – A shared ride, curb-to-curb, paratransit service for eligible residents that are unable to use fixed route services.",
+    "why": "The AFA eligible services list does include ACCESS Airdrie."
+   }
+  ],
+  "blocking_not_on_page": [],
+  "verdict": "fix-then-bump",
+  "new_pages": [
+   "https://www.airdrie.ca/getLink.cfm?ID=11374"
+  ],
+  "blocked": []
+ },
+ {
+  "id": "windsor-affordable-pass",
+  "snapshot": "ok",
+  "confirmed": 24,
+  "differs": [],
+  "blocking_not_on_page": [],
+  "verdict": "bump",
+  "new_pages": [
+   "https://www.citywindsor.ca/residents/social-services/social-policy-and-pathway-to-potential/pathway-to-potential/p2p-programs/eligibility-requirements",
+   "https://www.citywindsor.ca/residents/transit-windsor",
+   "https://www.citywindsor.ca/residents/transit-windsor/fares/"
+  ],
+  "blocked": []
+ },
+ {
+  "id": "bc-additional-home-owner-grant",
+  "snapshot": "ok",
+  "confirmed": 17,
+  "differs": [
+   {
+    "field": "benefit.amount",
+    "old": "up to $845 in the Capital, Fraser Valley and Metro Vancouver regional districts, or up to $1,045 elsewhere in B.C.",
+    "new": "up to $845, or up to $1,045 in a northern and rural area",
+    "quote": "Most low income people with disabilities who qualify and apply for the supplement receive a cheque for $845 ($1,045 in a northern and rural area).",
+    "why": "Official pages use 'northern and rural area'; the regional-district split is not stated."
+   },
+   {
+    "field": "benefit.detail.about",
+    "old": "The regular grant for 2026 is up to $570 in the Capital, Fraser Valley and Metro Vancouver regional districts and up to $770 elsewhere.",
+    "new": "The regular grant is $570. Northern and rural properties have had an extra $200, which ends January 1, 2027.",
+    "quote": "Effective January 1, 2027, the regular grant amount is $570 for properties located in B.C., including properties located in northern and rural areas. The additional grant amount of $200 for northern and rural properties ... has now ended.",
+    "why": "Regional-district split and $770 are not stated."
+   },
+   {
+    "field": "benefit.detail.about",
+    "old": "the additional grant raises that to up to $845 and up to $1,045.",
+    "new": "the additional grant raises that to up to $845, or up to $1,045 in a northern and rural area.",
+    "quote": "$845 ($1,045 in a northern and rural area)",
+    "why": "Region wording."
+   },
+   {
+    "field": "benefit.detail.aboutList.items[0]",
+    "old": "The regular grant for 2026 is up to $570 in the Capital, Fraser Valley and Metro Vancouver regional districts and up to $770 elsewhere.",
+    "new": "The regular grant is $570. Northern and rural properties have had an extra $200, which ends January 1, 2027.",
+    "quote": "Effective January 1, 2027, the regular grant amount is $570 ... The additional grant amount of $200 for northern and rural properties ... has now ended.",
+    "why": "Regional-district split and $770 are not stated."
+   },
+   {
+    "field": "benefit.detail.aboutList.items[1]",
+    "old": "the additional grant raises that to up to $845 and up to $1,045.",
+    "new": "the additional grant raises that to up to $845, or up to $1,045 in a northern and rural area.",
+    "quote": "$845 ($1,045 in a northern and rural area)",
+    "why": "Region wording."
+   }
+  ],
+  "blocking_not_on_page": [],
+  "verdict": "fix-then-bump",
+  "new_pages": [
+   "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/home-owner-grant",
+   "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/home-owner-grant/person-with-disabilities/low-income",
+   "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/home-owner-grant/apply",
+   "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/home-owner-grant/senior",
+   "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/rural-area"
+  ],
+  "blocked": []
+ },
+ {
+  "id": "windsor-recreation-assistance",
+  "snapshot": "ok",
+  "confirmed": 17,
+  "differs": [],
+  "blocking_not_on_page": [],
+  "verdict": "bump",
+  "new_pages": [
+   "https://www.citywindsor.ca/residents/social-services/social-policy-and-pathway-to-potential/pathway-to-potential/p2p-programs/eligibility-requirements"
+  ],
+  "blocked": []
+ },
+ {
+  "id": "adap",
+  "snapshot": "ok",
+  "confirmed": 15,
+  "differs": [
+   {
+    "field": "benefit.detail.tips[3]",
+    "old": " Alberta says that when no CDB decision had been made by February 28, 2026, $200 was reduced from April 2026 benefits.",
+    "new": "",
+    "quote": "(no $200 reduction or Feb 28 / April 2026 dates on any official Alberta page fetched)",
+    "why": "Unsupported claim; remove."
+   }
+  ],
+  "blocking_not_on_page": [],
+  "verdict": "fix-then-bump",
+  "new_pages": [
+   "https://www.alberta.ca/alberta-disability-assistance-program",
+   "https://www.alberta.ca/aish-apply-for-federal-disability-supports",
+   "https://www.alberta.ca/aish-and-adap-payment-details",
+   "https://www.alberta.ca/report-a-change-to-aish-or-adap"
+  ],
+  "blocked": []
+ },
+ {
+  "id": "strathcona-subsidy",
+  "snapshot": "ok",
+  "confirmed": 12,
+  "differs": [
+   {
+    "field": "benefit.note",
+    "old": "AISH is below that, so it's worth applying.",
+    "new": "If your household income is under that, it's worth applying.",
+    "quote": "Net household income is less than $2,806 per month ($33,675 per year)",
+    "why": "Page has no AISH amount."
+   },
+   {
+    "field": "benefit.detail.tips[0]",
+    "old": "The County raised its income limits.",
+    "new": "The County adjusts its income limits every year.",
+    "quote": "net household income qualification amounts are adjusted annually",
+    "why": "Page says adjusted annually, not raised."
+   }
+  ],
+  "blocking_not_on_page": [],
+  "verdict": "fix-then-bump",
+  "new_pages": [
+   "https://www.strathcona.ca/community-families/affordable-services/everybody-gets-to-play/",
+   "https://www.strathcona.ca/recreation-events/activities/active-pass/"
+  ],
+  "blocked": []
+ },
+ {
+  "id": "bc-csg-services-equipment",
+  "snapshot": "ok",
+  "confirmed": 11,
+  "differs": [
+   {
+    "field": "benefit.note",
+    "old": "on top of the $2,800 Canada Student Grant for Students with Disabilities",
+    "new": "on top of the Canada Student Grant for Students with Disabilities ($2,800 per program year, temporarily increased by 40% until July 31, 2027)",
+    "quote": "$2,800* $2,000 per program year ... *Note: the above Canada Student Grant amount is temporarily increased by 40% from 2019/20 pre-pandemic levels until July 31, 2027.",
+    "why": "Temporary increase condition was dropped."
+   }
+  ],
+  "blocking_not_on_page": [],
+  "verdict": "fix-then-bump",
+  "new_pages": [
+   "https://studentaidbc.ca/explore/grants-scholarships",
+   "https://studentaidbc.ca/explore/grants-scholarships/canada-student-grant-students-disabilities",
+   "https://studentaidbc.ca/explore/grants-scholarships/bc-assistance-program-students-disabilities",
+   "https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-students-disabilities"
+  ],
+  "blocked": [
+   "https://www.canada.ca/en/employment-social-development/services/student-financial-aid/student-loan/student-grants/csg/disabilities-service-equipment.html (curl failed, HTTP 000)"
+  ]
+ },
+ {
+  "id": "calgary-fair-entry",
+  "snapshot": "ok",
+  "confirmed": 5,
+  "differs": [],
+  "blocking_not_on_page": [],
+  "verdict": "bump",
+  "new_pages": [
+   "https://www.calgary.ca/social-services/low-income/fair-entry-subsidy/programs.html",
+   "https://www.calgary.ca/social-services/low-income/fair-entry-subsidy/faq.html",
+   "https://www.calgary.ca/social-services/low-income/fair-entry-subsidy/how-to-apply.html",
+   "https://www.calgarytransit.com/content/transit/en/home/fares---passes/passes/low-income-monthly-pass.html"
+  ],
+  "blocked": []
+ }
+]

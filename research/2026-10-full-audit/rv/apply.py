@@ -3,7 +3,7 @@ A fix is applied only when its `old` text occurs exactly once in the record's ow
 import json,glob,sys,re
 D='public/data.js'; s=open(D).read()
 rows=[]
-for f in sorted(glob.glob('research/2026-10-full-audit/rv/out-*.json')):
+for f in sorted(glob.glob('research/2026-10-full-audit/rv/'+__import__('os').environ.get('RV','out-')+'*.json')):
     for r in json.load(open(f)):
         for k,d in enumerate(r.get('differs',[])): rows.append((r['id'],k,d,f))
 def js(t): return json.dumps(t,ensure_ascii=False)[1:-1]

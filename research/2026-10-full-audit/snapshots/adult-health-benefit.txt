@@ -179,3 +179,40 @@ Edmonton, Alberta  T5J 5H3
  Opioid Agonist Therapy Gap Coverage Program 
  Next 
  Specialized drug benefits
+=== PAGE: https://www.alberta.ca/drug-coverage-health-benefits (HTTP 200, 2504 chars) [round 2]
+
+ Coverage and benefits | Alberta.ca
+Coverage and benefits
+ Alberta Aids to Daily Living, Alberta Health Care Insurance Plan (AHCIP), adult and child health benefit programs, drug and palliative care benefits, seniors benefits, benefit claims.
+ A-Z
+ Alberta Adult Health Benefit 
+Benefits are available to low-income Albertans through the Adult Health Benefit.
+ Alberta Aids to Daily Living (AADL) 
+AADL helps Albertans with a long-term disability, chronic or terminal illness to pay for basic medical equipment and supplies.
+ Alberta Child Health Benefit 
+Low income families can apply to this program to get eyeglasses, prescription drugs and dental care for their kids.
+ Alberta Health Care Insurance Plan 
+Register or update your information, find forms and learn about insured health care services covered under the AHCIP.
+ Assured Income for the Severely Handicapped (AISH) 
+Provides financial and health benefits for eligible Albertans with a severe disability that is permanent and prevents employment.
+ Biosimilar drugs 
+Learn about Alberta's Biosimilar Initiative, the drugs affected and the process to switch from biologic to biosimilar drugs.
+ Claim benefits through Alberta Blue Cross 
+Learn how to claim eligible expenses covered under supplementary drug and health benefit programs managed through Alberta Blue Cross.
+ Coverage for Seniors Program 
+Premium-free coverage for prescriptions drugs and other health-related services not covered under the Alberta Health Care Insurance Plan.
+ Drug benefit list and drug review process 
+Learn about the drug benefit list, what drugs are covered, drug price policy and drug review process.
+ Income Support 
+Supports for individuals and families to pay for basic expenses like food, clothing and shelter.
+ Non-Group Coverage 
+Learn about Non-Group Coverage for supplementary health benefits, eligibility, benefits covered and premiums.
+ Opioid Agonist Therapy Gap Coverage Program 
+Albertans without health benefit plans can get immediate, no-cost access to opioid agonist medications for up to 120 days.
+ Palliative care health benefits 
+Learn about the Palliative Coverage Program, who is eligible, what benefits are provided, and how to apply to receive benefits.
+ Seniors health benefits 
+Alberta Seniors Benefit, dental and optical assistance, and additional health benefits for seniors.
+ Specialized drug benefits 
+Learn about some of the specialized drugs and drug programs available to Albertans covered as a supplementary health benefit.
+

@@ -126,3 +126,334 @@ Property tax deferment program eligibility - Province of British Columbia
  Did you find what you were looking for? 
  Yes No 
  The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments.
+
+=== PAGE: https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/property-tax-deferment-program/tax-deferment-interest-fees (HTTP 200, 7904 chars) [round 2]
+Interest and fees for property tax deferment - Province of British Columbia
+Skip to main content
+Skip to main navigation
+Accessibility Statement
+Search
+Cancel
+Menu
+Find information
+Employment, business and economic development
+Data and information management
+Birth, adoption, death, marriage and divorce
+British Columbians and our governments
+Education and training
+Farming, natural resources and industry
+Driving and transportation
+Family and social supports
+Health
+Environmental protection and sustainability
+Housing and tenancy
+Law, crime and justice
+Public safety and emergency services
+Sports, recreation, arts and culture
+Taxes and tax credits
+Tourism and immigration
+More
+Careers & MyHR
+Services
+Forms
+News
+Contact us
+Home/Taxes and tax credits/Property taxes/Annual property tax/Property tax deferment program/Interest and fees
+More topics
+Property tax deferment program
+Eligibility
+Before you apply
+Interest and fees
+Current and previous interest rates
+Understanding equity
+Apply
+What to do after you apply
+Frequently asked questions
+Repaying your property tax deferment loan
+Interest and fees for property tax deferment Last updated on July 2, 2026
+Learn how interest and fees apply to your deferred property taxes.
+On this page
+Interest rates for property tax deferment
+Interest applicable to amounts deferred for 2026 and subsequent tax years
+Interest applicable to amounts deferred before 2026
+Fees
+How we apply your deferment amounts
+Automatic renewals
+Interest rates for property tax deferment
+Interest is charged on your property tax deferment loan from the date your property tax is due or the date you apply to defer your taxes, whichever is later.
+The interest rates are as follows:
+Interest rate: regular program
+Interest rate: families with children program
+Interest rate terms
+Taxes deferred for 2025 and previous years
+Prime minus 2%
+Prime
+Simple interest
+Taxes deferred for 2026 and subsequent years
+Prime plus 2%
+Prime plus 2%
+Compound interest
+Current and previous interest rates
+See the current and previous years' interest rates for each of the tax deferment programs.
+Interest applicable to amounts deferred for 2026 and subsequent tax years
+The interest rates are:
+Set January 1, April 1, July 1 and October 1 every year
+Calculated daily
+Compounded monthly
+Under the regular program and the families with children program, you're charged compound interest at an annual rate of 2% above the prime rate of the government's principal banker.
+How interest is calculated
+For taxes deferred for 2026 and subsequent tax years, the tax deferment program will use compound interest, which means:
+Interest will compound monthly at an annual rate of 2% above the prime rate of the government's principal banker
+On the 23rd day of each month, accrued interest for the month will be added to your balance and subject to interest the following month
+You will not be charged interest on application or renewal fees
+Example of how compound interest accumulates
+Interest rates in the table below are for illustrative purposes only and may not reflect current rates.
+Interest for regular and families with children programs
+Year
+Opening balance
+Interest (6.45% annually)
+Closing balance
+Year 1
+$3,000.00
+$199.32
+$3,199.32
+Year 2
+$3,199.32
+$212.57
+$3,411.89
+Year 3
+$3,411.89
+$226.69
+$3,638.58
+Interest applicable to amounts deferred before 2026
+Interest is charged on your tax deferment loan from the date your property tax is due or the date you apply to defer your taxes, whichever is later.
+The interest rate you're charged depends on the tax deferment program you're enrolled in. The interest rates are:
+Set April 1 and October 1 every year
+Calculated on the 23rd of each month
+Not compounded
+The current interest rates are in effect until September 30, 2026.
+Under the regular program, you're charged simple interest at a rate not greater than 2% below the prime rate of the government's principal banker.
+Under the families with children program, you're charged simple interest at a rate not greater than the prime rate of the government's principal banker.
+Note: The Financial hardship program was only available to homeowners in 2009 and 2010.
+How interest is calculated
+For taxes deferred before 2026, the tax deferment program will continue using simple interest, which means you're:
+Only charged interest on the principal amount that has been deferred
+Not charged interest on top of the amount of interest owed
+Not charged interest on application or renewal fees
+Example of how interest and fees accumulate
+Interest rates in the table below are for illustrative purposes only and may not reflect current rates.
+Regular program
+Year
+Deferral amount
+Principal
+Interest (2.45%)
+Fees
+Total
+Year 1
+$3,000.00
+$3,000.00
+$73.50
+$60.00
+$3,133.50
+Year 2
+$3,000.00
+$6,000.00
+$147.00
+$10.00
+$3,157.00
+Year 2 End Total
+$6,000.00
+$220.50
+$70.00
+$6,290.50
+Interest rates in the table below are for illustrative purposes only and may not reflect current rates.
+Families with children program
+Year
+Deferral amount
+Principal
+Interest (4.45%)
+Fees
+Total
+Year 1
+$3,000.00
+$3,000.00
+$133.50
+$0
+$3,133.50
+Year 2
+$3,000.00
+$6,000.00
+$267.00
+$0
+$3,267.00
+Year 2 End Total
+$6,000.00
+$400.50
+$0
+$6,400.50
+Fees
+When you first apply for the regular program, you will be charged a $60 administrative fee. For every year that you renew your application, you will be charged a $10 renewal fee. These fees are charged and added to your loan balance if you're approved. Issued by early May each year, you will receive an annual Statement of Account letter which will indicate fees.
+You will not be charged these fees if your application under the program or your renewal application has been denied.
+You will not be charged these fees if you apply for the families with children program.
+How we apply your deferment payments
+If you make a payment on your property tax deferment account, the payment is applied in the following order, starting with the oldest 2026 and subsequent debt first, and then the oldest pre-2026 debt:
+Fees (if applicable)
+Interest
+Principal
+Automatic renewals
+If you're registered for the automatic renewal option, your 2026 and subsequent years property taxes will be automatically deferred under the new interest rate terms unless you choose to opt out of automatic renewal. We will continue to confirm you meet the program requirements before deferring your 2026 taxes.
+How to opt out of automatic renewal
+Submit a web message through your eTaxBC Property Tax Deferment account by selecting Contact the Ministry and select the message type Account change. Use the subject line: Opt-Out Auto Renewal, or
+Call us at 1-888-355-2700
+You can opt out of automatic renewal at any time. However, we suggest you contact us before June 1, 2026, if you do not want your 2026 taxes automatically deferred.
+Opting out of automatic renewal does not require immediate repayment of your previous loans. However, you must pay your current property taxes to your municipality or rural tax office on or before the tax due date to avoid penalties and interest charges.
+More topics
+Resources
+Repay your deferred property taxes
+Contact information
+Contact us with your questions about deferring your property taxes.
+Toll Free
+1-888-355-2700
+Office
+1-250-387-0555
+Did you find what you were looking for?
+YesNo
+The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments.
+We can help in over 220 languages and through other accessible options. Call, email or text us, or find a service centre
+More info
+Home
+About gov.bc.ca
+Disclaimer
+Privacy
+Accessibility
+Copyright
+Contact us
+© 2026 Government of British Columbia
+
+
+=== PAGE: https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/property-tax-deferment-program/before-you-apply (HTTP 200, 8678 chars) [round 2]
+Before you apply for the property tax deferment program - Province of British Columbia
+Skip to main content
+Skip to main navigation
+Accessibility Statement
+Search
+Cancel
+Menu
+Find information
+Employment, business and economic development
+Data and information management
+Birth, adoption, death, marriage and divorce
+British Columbians and our governments
+Education and training
+Farming, natural resources and industry
+Driving and transportation
+Family and social supports
+Health
+Environmental protection and sustainability
+Housing and tenancy
+Law, crime and justice
+Public safety and emergency services
+Sports, recreation, arts and culture
+Taxes and tax credits
+Tourism and immigration
+More
+Careers & MyHR
+Services
+Forms
+News
+Contact us
+Home/Taxes and tax credits/Property taxes/Annual property tax/Property tax deferment program/Before you apply
+More topics
+Property tax deferment program
+Eligibility
+Before you apply
+City of Vancouver residents
+Property title changes
+Interest and fees
+Understanding equity
+Apply
+What to do after you apply
+Frequently asked questions
+Repaying your property tax deferment loan
+Before you apply for the property tax deferment program Last updated on September 5, 2024
+This information will help you prepare for the property tax deferment program application. You apply online through eTaxBC to defer your property tax or renew your application for the property tax deferment program.
+If you live in the City of Vancouver, follow these additional instructions for City of Vancouver residents.
+On this page
+When to apply
+Property tax late payment penalties
+Complete the following steps before you submit your application
+When to apply
+If you qualify for the program, you can submit an application to defer your unpaid current year property taxes between May 1 and December 31. We recommend you apply immediately after you receive your property tax notice and, to avoid late payment penalties for property tax, before your property tax due date.
+If you have not received your tax notice by the end of June, contact your property tax office.
+Only your current year’s taxes classed as residential (class 1) and residential and farm (class 1 and 9) can be deferred. Property taxes for classes 2 to 8 cannot be deferred and must be paid directly to your property tax office before the property tax due date. Learn more about property classifications.
+If you apply between January and end of April (outside the application time)
+If you apply between January 1 and April 30 for the current tax year, your application will be cancelled. Applications are only accepted from May to December 31 each year.
+If you apply before receiving your property tax notice
+If you apply in May, but before you receive your property tax notice, your application will be held until the current year’s property tax information is available from your municipality.
+If you apply after the property tax due date
+If you apply after your property taxes are due, you must pay any late payment penalties to your municipality or rural tax office.
+If you apply before the property tax due date but your application is approved after the due date
+Applications are processed in the order they are received. They may take several months to be reviewed. Learn how to check the status of your application.
+If you applied before the property tax due date and your application was approved after the due date, you will not be charged late payment penalties on the deferred taxes.
+Property tax late payment penalties
+Your property tax office may charge you a late payment penalty if:
+You applied after the property tax due date
+Your application was denied and it’s past the property tax due date
+You withdraw your application or your application is rejected for any reason by the Tax Deferment Office after your property tax due date
+Your home owner grant (if applicable) was claimed after the property tax due date
+You have unpaid current year utility fees on the property tax due date
+You have taxes unpaid from property classes that are not deferrable. Property classes 2-8 must be paid to your property tax office each year before the property taxes due date
+Late payment penalties are applied after the property tax due date, and are legislative and cannot be waived or removed.
+Complete the following steps before you submit your application
+1. Check that you meet all qualifications
+See Property tax deferment program eligibility to see all qualifications including requirements for your property and equity.
+2. Check with your financial institution
+If you have a secured debt on your property, such as a mortgage or a line of credit, contact your lender before you apply. You need to ensure your approval into the tax deferment program does not conflict with the terms of your loan. Some lenders may not allow you to enrol into the tax deferment program with the type of loan you have.
+3. Make sure you complete any necessary changes to your property title
+See Changing your property titles while in tax deferment to learn about the property title changes you cannot make while in the tax deferment program.
+4. Remove deceased registered owners from the property title, if applicable
+If you're applying for the tax deferment program for the first time and a registered owner is deceased, you must contact the Land Title Office or the Personal Property Registry (for manufactured homes) to remove their name from the property title or manufactured home registry.
+5. Make sure all registered owners agree to defer property taxes
+After you submit your application, all registered owners must provide their authorization within 28 days. Learn how to submit the authorization in eTaxBC.
+6. Pay any outstanding debt
+Before you apply, you pay any debt owing from previous taxation years, including:
+Unpaid property taxes
+Penalties
+Utility fees
+Interest
+For example, if you intend to defer your taxes for the 2024 tax year, all outstanding taxes, unpaid utilities, unclaimed home owner grant(s) and taxes in arrears from 2023 or prior tax years must be paid to your property tax office before applying for tax deferment program.
+7. Do not pay your current year property taxes in full or you will not be able to defer this year
+You can only defer property taxes assessed for property class 1 (residential) or class 1 and class 9 (residential and farm). Property taxes for all other property classifications (class 2-8) must be paid to your property tax office prior to the tax due date.
+Cancel automatic payments
+If you are set up to make automatic payments for your property tax account, either through your property tax office or your lender, contact them directly to cancel your payments and advise them you want to apply for the tax deferment program.
+If your automatic payments have already paid your current year taxes in full, you will need to wait and apply the following tax year in May.
+If your automatic payments went towards part of your property taxes, you may be able to defer a portion of your residential (class 1) or residential and farm (class 1 & 9) taxes.
+8. Pay any current year utility fees that are listed on your property tax notice by the due date to avoid late payment penalties
+See Property tax notice to learn more about your tax notice and how to make a payment.
+9. Claim your home owner grant
+If you’re eligible, apply for the home owner grant when you receive you annual property tax notice. If you did not qualify or apply for the grant last year, you can apply retroactively. You must apply by December 31 of the current year to claim last year’s home owner grant.
+More topics
+More than one registered owner
+If the property has more than one registered owner, each owner must agree separately to the property tax deferment program's terms and conditions.
+Learn more about entering into an agreement with the registered owners.
+Or
+Go to eTaxBC to agree to the terms and conditions.
+Contact information
+Contact us with your questions about deferring your property taxes.
+Toll Free
+1-888-355-2700
+Office
+250-387-0555
+Did you find what you were looking for?
+YesNo
+The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments.
+We can help in over 220 languages and through other accessible options. Call, email or text us, or find a service centre
+More info
+Home
+About gov.bc.ca
+Disclaimer
+Privacy
+Accessibility
+Copyright
+Contact us
+© 2026 Government of British Columbia

@@ -292,3 +292,248 @@ URL: https://www.bctransit.com/ | province: X | program: handydart-bctransit | f
  Terrace 
  Gitsegukla 
  Hazeltons
+=== PAGE: https://www.bctransit.com/handydart/ (HTTP 200, 9812 chars) [round 2]
+﻿
+ handyDART | BC Transit 
+ Skip To Content 
+ Alerts 
+ About BC Transit 
+ Careers 
+ News & Media 
+ Plan a Trip Toggle submenu 
+ Plan a trip 
+ Interregional routes 
+ Mobile apps 
+ Connecting with BC Ferries & TransLink 
+ How to Pay 
+ How to Ride Toggle submenu 
+ Rider Information 
+ Bikes and scooters 
+ Bus Etiquette 
+ Getting on and off the Bus 
+ Food and Beverages 
+ Parcels, Pets and Strollers 
+ Safety 
+ Seatbelts on Buses 
+ Transit Accessibility 
+ Assistance Animals 
+ Mobility Aids 
+ Customer Service 
+ Search 
+ Alerts 
+ Search 
+ Plan a Trip Toggle submenu 
+ Plan a trip Toggle submenu 
+ Interregional routes 
+ Mobile apps 
+ Connecting with BC Ferries & TransLink 
+ How to Pay 
+ How to Ride Toggle submenu 
+ Rider Information Toggle submenu 
+ Bikes and scooters 
+ Bus Etiquette 
+ Getting on and off the Bus 
+ Food and Beverages 
+ Parcels, Pets and Strollers 
+ Safety 
+ Seatbelts on Buses 
+ Transit Accessibility Toggle submenu 
+ Assistance Animals 
+ Mobility Aids 
+ Customer Service 
+ About BC Transit 
+ Careers 
+ News & Media 
+ Change Transit System 
+ Search transit system 
+ 100 Mile House 
+ Agassiz-Harrison 
+ Ashcroft-Cache Creek-Clinton 
+ Bella Coola Valley 
+ Boundary 
+ Bulkley-Nechako 
+ Campbell River 
+ Central Fraser Valley 
+ Chilliwack 
+ Clearwater 
+ Columbia Valley 
+ Comox Valley 
+ Cowichan Valley 
+ Cranbrook 
+ Creston Valley 
+ Dawson Creek 
+ Elk Valley 
+ Fort St. John 
+ Hazeltons 
+ Hope 
+ Kamloops 
+ Kelowna 
+ Kimberley 
+ Kitimat 
+ Merritt 
+ Mount Waddington 
+ Nanaimo 
+ Pemberton Valley 
+ Port Alberni 
+ Port Edward 
+ Powell River 
+ Prince George 
+ Prince Rupert 
+ Quesnel 
+ Revelstoke 
+ Salt Spring Island 
+ Shuswap 
+ Smithers 
+ South Okanagan-Similkameen 
+ Squamish 
+ Sunshine Coast 
+ Terrace 
+ Vernon 
+ Victoria 
+ West Coast 
+ West Kootenay 
+ Whistler 
+ Williams Lake 
+ Or Search Our Transit System Directory 
+ handyDART 
+ handyDART provides door-to-door transit for people whose disability prevents them from using fixed-route transit without assistance. 
+ New handyDART technology is here 
+ Riders in Abbotsford, Mission and Chilliwack can now use new handyDART digital technology. More communities across B.C. will follow. 
+ New ways to use handyDART 
+ handyDART is an accessible, door-to-door transit service for people with permanent or temporary disabilities that prevents them from using fixed-route transit without assistance. It is part of BC Transit’s Accessible Transit Services, offered through 28 transit systems. Many riders use both handyDART and fixed-route buses, depending on where they’re going and what works best for them. Registration is free, and you’ll need to register before booking your first trip. 
+ Learn more about handyDART in your region 
+ Choose your transit system 
+ Campbell River 
+ Central Fraser Valley 
+ Chilliwack 
+ Comox Valley 
+ Cowichan Valley 
+ Cranbrook 
+ Creston 
+ Dawson Creek 
+ Fort St. John 
+ Kamloops 
+ Kelowna 
+ Kitimat 
+ Nanaimo 
+ Port Alberni 
+ Powell River 
+ Prince George 
+ Prince Rupert 
+ Quesnel 
+ Revelstoke 
+ Shuswap 
+ South Okanagan-Similkameen 
+ Squamish 
+ Sunshine Coast 
+ Terrace 
+ Vernon 
+ Victoria 
+ West Kootenay 
+ Williams Lake 
+ New ways to use handyDART 
+ Book, manage and track your handyDART trips when and where you want. You can book online or in the app, track your vehicle and find your trip information in one place. 
+ Prefer to call? Phone booking continues to be available. This new digital technology gives you more ways to manage your trips without changing the service you rely on. 
+ Frequently asked questions 
+ This new technology is rolling out to all 28 handyDART systems starting with Chilliwack and Central Fraser Valley. 
+ Check to see if your system is added: 
+ Register 
+ Central Fraser Valley 
+ Chilliwack 
+ Book a Trip 
+ Central Fraser Valley 
+ Chilliwack 
+ Video transcript 
+ A More Convenient and Connected handyDART 
+ [Adam Bishop, Manager of Accessible Transit Integrated Service Planning, speaking in front of a handyDART bus.] 
+ For thousands of people across British Columbia, handyDART is more than a bus ride. 
+ It’s a vital connection – to health care, community programs, family, friends, and independence. 
+ As demand for handyDART continues to grow, BC Transit is introducing modern rider facing tools and technology systems designed to improve handyDART services for today’s riders and future generations to come. 
+ More Choice and Improved Trip Management 
+ With the modernization of handyDART, scheduling and managing trips is now easier and more flexible than ever.  
+ [A text box appears on screen. Text on screen: 
+ “Book trips your way 
+ BC Transit handyDART App 
+ Website 
+ By phone 
+ Visit bctransit.com/handyDART for links and phone numbers”.] 
+ Riders can choose the booking option that works best for their unique needs – whether that’s through the BC Transit handyDART app, website, or by phone through a customer service representative. 
+ [Demonstration of booking a handyDART trip with the app or website appears on screen.] 
+ Riders who use the app or website can now schedule, change, or cancel trips at their convenience, with 24/7 trip management access when they want it, not dependent on business hours or waiting on the phone. 
+ Riders who prefer a human connection when booking can expect to find efficiencies too, with phone booking times expected to improve as many other riders move to self-service options. 
+ Regardless of the booking method, all riders can expect an enhanced booking process, including the ability to save rider profiles with favourite destinations and accessibility requirements. 
+ More Information and Confidence 
+ [Demonstration of tracking a handyDART trip with the app or website appears on screen.] 
+ When riders know what to expect, they travel with more confidence. 
+ [A text box appears on screen. Text on screen: 
+ “Stay informed with:  
+ Trip reminders 
+ Notifications 
+ Service updates”.] 
+ Riders can stay informed throughout their journey with upcoming trip reminders, notifications about the vehicle picking them up, and service updates now delivered directly through the BC Transit handyDART app and website. 
+ [A text box appears on screen. Text on screen: “Track your ride. Share your trip details with family members or caregivers”.] 
+ Riders can confidently know when their vehicle is expected to arrive by tracking their ride in real-time on a map. 
+ These trip details can also be shared with family members or caregivers, helping them stay informed. 
+ Supporting New Riders 
+ [Demonstration of submitting an online application appears on screen.] 
+ Improvements and functionality aren’t limited to current riders. 
+ Future handyDART riders will benefit from a streamlined online application process that makes it easier and more efficient to become a new handyDART rider. 
+ Applicants, or their caregivers, can track their application progress and receive timely reminders throughout the process, helping ensure nothing is missed. 
+ Supporting the Future of handyDART 
+ While we’re excited to introduce new tools and benefits for riders, a modernized handyDART also delivers important enhancements behind the scenes. 
+ Advanced scheduling and dispatch technology helps coordinate trips more efficiently and makes better use of available vehicles and resources – meaning more service hours get spent where they matter most – directly supporting riders. 
+ [A clip of handyDART bus on the road appears on screen.] 
+ Together, these improvements help support a stronger, more efficient handyDART service – one that is better equipped to meet the needs of riders today and into the future. 
+ [A slide appears on screen. Graphic in slide: “BC Transit logo”. Text in slide: “ bctransit.com/handyDART ”.] 
+ Plan your journey 
+ Add your needs 
+ Track your ride 
+ New features 
+ Book trips anytime 
+ Book handyDART trips online or in the app at a time that works for you. 
+ Follow your ride 
+ Track your vehicle as it approaches and during your trip. 
+ Keep trips organized 
+ View upcoming and past trips. You can also cancel upcoming trips online or in the app. 
+ Get helpful updates 
+ Receive booking confirmations, trip reminders and updates when your vehicle is on the way. 
+ Make the account work for you 
+ Save favourite locations, accessibility needs and trip preferences for future bookings. 
+ Get help managing trips 
+ Give a family member, caregiver or care team access to help book trips, manage your account and track your ride. 
+ Let’s get you started! 
+ New handyDART online digital technologies are rolling out across B.C. Check back to see when they’re available in your region. 
+ Register 
+ New to handyDART? Register online to get started. Once you’re approved, you can book trips online or in the app, manage your bookings and track your ride. 
+ Prefer paper registration? You can still apply using a paper application package. 
+ Register in your region 
+ Central Fraser Valley 
+ Chilliwack 
+ Book a trip 
+ Taken handyDART in the last 18 months? Great news! You’re already in the system. You can book trips online or in the app, manage your bookings and track your ride. 
+ Prefer to book by phone? You can continue calling your handyDART office. 
+ Book a trip in your region 
+ Central Fraser Valley 
+ Chilliwack 
+ Contact Us 
+ instagram 
+ twitter 
+ facebook 
+ linkedin 
+ youtube 
+ Community Connections blog 
+ Community guidelines 
+ About BC Transit 
+ Accessibility 
+ Business and partnerships 
+ Careers 
+ Transit plans and projects 
+ Give Us Your Feedback 
+ Territorial Acknowledgement 
+ We respectfully acknowledge that BC Transit operates across the ancestral and unceded territories of Indigenous Peoples throughout British Columbia, and honour their ongoing relationships with these lands and waters. 
+ BC Transit Corporation. All rights reserved. 
+ Privacy notice 
+ Open Data 
+ Copyright 
+ Sitemap 
+ 

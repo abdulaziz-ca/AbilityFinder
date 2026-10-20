@@ -1,0 +1,173 @@
+[
+  {
+    "id": "handycard-translink",
+    "snapshot": "ok",
+    "confirmed": 3,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump",
+    "new_pages": [
+      "https://www.translink.ca/-/media/translink/documents/rider-guide/transit-accessibility/handydart/handydart-card-application-form.pdf",
+      "https://www.translink.ca/rider-guide/transit-accessibility/taxisaver",
+      "https://www.translink.ca/rider-guide/transit-accessibility/accessing-public-transit"
+    ],
+    "blocked": []
+  },
+  {
+    "id": "odsp",
+    "snapshot": "ok",
+    "confirmed": 5,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump",
+    "new_pages": [
+      "https://www.ontario.ca/page/ontario-disability-support-program-eligibility-income-support",
+      "https://www.ontario.ca/page/ontario-disability-support-program-disability-determination-package"
+    ],
+    "blocked": []
+  },
+  {
+    "id": "bc-assistance-program-students-disabilities",
+    "snapshot": "ok",
+    "confirmed": 0,
+    "differs": [],
+    "blocking_not_on_page": [
+      {
+        "field": "values.annualMax",
+        "claim": "10000 as an annual maximum",
+        "why": "The program page still states up to $10,000 ($12,000 if an attendant is required), without specifying the funding period. The linked disability-funding application guidance does not establish an annual period either. No supported numeric replacement for annualMax is available; the record already excludes this benefit from the estimate. Retain pending clarification from StudentAid BC."
+      }
+    ],
+    "verdict": "keep",
+    "new_pages": [
+      "https://studentaidbc.ca/explore/grants-scholarships/bc-assistance-program-students-disabilities",
+      "https://studentaidbc.ca/apply/how-to-apply-disability-funding"
+    ],
+    "blocked": []
+  },
+  {
+    "id": "bc-property-tax-deferment-disabilities",
+    "snapshot": "ok",
+    "confirmed": 3,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump",
+    "new_pages": [
+      "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/property-tax-deferment-program/tax-deferment-interest-fees",
+      "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/property-tax-deferment-program/before-you-apply"
+    ],
+    "blocked": []
+  },
+  {
+    "id": "bc-autism-funding-6-18",
+    "snapshot": "ok",
+    "confirmed": 2,
+    "differs": [
+      {
+        "field": "benefit.detail.tips[2]",
+        "old": "Approved services and purchases must be delivered by March 31, 2027; direct-payment supporting documents are due May 31, 2027, and final invoices or reimbursement requests are due September 30, 2027",
+        "new": "Approved services and purchases must be delivered by March 31, 2027; direct-payment supporting documents are due May 31, 2027. Invoices and reimbursement requests must be submitted within 6 months of the service or purchase; September 30, 2027 is the deadline for services and purchases made on March 31, 2027.",
+        "quote": "September 30, 2027 – Final deadline to submit invoices and reimbursement requests for eligible services and purchases made on March 31, 2027.",
+        "why": "The transition page confirms the dates but limits the September deadline to March 31 services and purchases. It separately requires earlier services and purchases to be submitted within 6 months; the original blanket deadline omits that condition."
+      }
+    ],
+    "blocking_not_on_page": [],
+    "verdict": "fix-then-bump",
+    "new_pages": [
+      "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/autism-spectrum-disorder/autism-funding",
+      "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs",
+      "https://www2.gov.bc.ca/assets/gov/health/managing-your-health/autism/autism_handbook_english.pdf"
+    ],
+    "blocked": []
+  },
+  {
+    "id": "grandeprairie-aish-pass",
+    "snapshot": "ok",
+    "confirmed": 1,
+    "differs": [
+      {
+        "field": "benefit.detail.steps[2]",
+        "old": "In-person applications are approved on the spot — about 10 minutes. Online takes about 2 days.",
+        "new": "In-person applications are approved on the spot — about 15 minutes. Online takes about 2 days.",
+        "quote": "An in-person appointment takes about 15 minutes and there is no waiting period before approval.",
+        "why": "The linked application page confirms about 2 days online but says about 15 minutes in person, not 10. The recreation page also confirms the Low-Income Cut-Off plus 30%."
+      },
+      {
+        "field": "benefit.summary",
+        "old": " This is the deepest municipal transit discount in the province that we've found.",
+        "new": "",
+        "quote": "The program offers a 75% subsidy on applicable memberships, punch passes, and registered programs to approved applicants at participating facilities.",
+        "why": "Neither the transit sources nor the recreation program and application pages support a province-wide comparison. Remove the unsupported superlative without inventing a replacement."
+      }
+    ],
+    "blocking_not_on_page": [],
+    "verdict": "fix-then-bump",
+    "new_pages": [
+      "https://cityofgp.com/parks-recreation/programs-camps-funding/grants-funding/recreation-access-program",
+      "https://www.cityofgp.com/city-services/permits-licenses-forms/eastlink-centre/recreation-access-program-application"
+    ],
+    "blocked": []
+  },
+  {
+    "id": "bc-medical-transportation",
+    "snapshot": "ok",
+    "confirmed": 2,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump",
+    "new_pages": [
+      "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/bc-employment-and-assistance-rate-tables/health-supplements-and-programs-rate-table"
+    ],
+    "blocked": []
+  },
+  {
+    "id": "vancouver-leisure-access",
+    "snapshot": "ok",
+    "confirmed": 0,
+    "differs": [],
+    "blocking_not_on_page": [
+      {
+        "field": "benefit.amount / benefit.summary",
+        "claim": "Free admission to pools and rinks; 50% off fitness centre admission and group swimming and skating lessons; outdoor pools require an online reservation.",
+        "why": "The existing browser snapshot does not state these specific discounts or the reservation condition. Official City pages returned HTTP 403 in round 2, so these claims remain unresolved; no attempt was made to bypass the block."
+      },
+      {
+        "field": "benefit.eligibility.note",
+        "claim": "Leisure Access is not available to immigrants classified as investors or entrepreneurs.",
+        "why": "Not stated in the existing snapshot, and the official City pages returned HTTP 403. Eligibility exclusion remains unresolved."
+      }
+    ],
+    "verdict": "keep",
+    "new_pages": [],
+    "blocked": [
+      "https://vancouver.ca/parks-recreation-culture/leisure-access-card.aspx",
+      "https://vancouver.ca/files/cov/leisure-access-program-application-form.pdf",
+      "https://vancouver.ca/parks-recreation-culture/leisure-access-program.aspx"
+    ]
+  },
+  {
+    "id": "local-supports",
+    "snapshot": "ok",
+    "confirmed": 2,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump",
+    "new_pages": [
+      "https://211.ca/"
+    ],
+    "blocked": []
+  },
+  {
+    "id": "bc-healthy-kids",
+    "snapshot": "ok",
+    "confirmed": 3,
+    "differs": [],
+    "blocking_not_on_page": [],
+    "verdict": "bump",
+    "new_pages": [
+      "https://www2.gov.bc.ca/gov/content/governments/policies-for-government/bcea-policy-and-procedure-manual/health-supplements-and-programs/healthy-kids",
+      "https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp/bc-residents/benefits/services-covered-by-msp/supplementary-benefits"
+    ],
+    "blocked": []
+  }
+]

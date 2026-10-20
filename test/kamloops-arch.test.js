@@ -80,5 +80,5 @@ test("the matcher uses the ARCH income-or-assistance route gate", () => {
 test("official links are canonical and the record is dated", () => {
   assert.equal(benefit.applyUrl, CANONICAL_URL);
   assert.equal(benefit.source, CANONICAL_URL);
-  assert.equal(verified, "2026-07");
+  assert.equal(verified, "2026-10");
 });

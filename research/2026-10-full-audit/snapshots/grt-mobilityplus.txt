@@ -107,3 +107,232 @@ Phone: 519-585-7555
 - Report an issue 
 - Find a lost item 
 - Reload a fare card online
+=== PAGE: https://www.grt.ca/fares-and-payment/fare-prices/ (HTTP 200, 6428 chars) [round 2]
+
+ Fare prices | Grand River Transit 
+ This website uses cookies to enhance usability and provide you with a more personal experience. By using this website, you agree to our use of cookies as explained in our Privacy Policy . 
+ Agree
+ Dismiss all alerts 
+ We are experiencing some technical difficulties. The Affordable Transit Program application and older adult age verification form are currently unavailable.  
+ Service alerts are currently unavailable.  
+ Real-time departure information is not available and trip planning tools are showing scheduled departure times. View a list of impacted tools 
+ Skip to main content 
+ Skip to footer 
+ Grand River Transit 
+ Menu 
+ Schedules and Maps 
+ Expand sub pages Schedules and Maps 
+ Alerts and detours 
+ Bus and train schedules 
+ Holiday service 
+ Late night service 
+ Maps 
+ Fares and Payment 
+ Expand sub pages Fares and Payment 
+ Affordable transit program 
+ Fare prices 
+ GO Transit customers 
+ How to pay your fare 
+ Older adult day pass 
+ Tickets and passes 
+ Where to buy 
+ Rider Info 
+ Expand sub pages Rider Info 
+ Accessibility on buses and trains 
+ Connect with other transit services 
+ Get there with GRT 
+ How to ride 
+ Lost and found 
+ Plan your trip 
+ Transit support person program 
+ Travel training 
+ TravelWise 
+ Winter and snow clearing 
+ MobilityPLUS 
+ Expand sub pages MobilityPLUS 
+ Accessibility on buses and trains 
+ Apply for MobilityPLUS 
+ MobilityPLUS booking, riding and notifications 
+ Specialized transit services for township residents 
+ Taxi coupons 
+ Transit support person program 
+ Travel training 
+ About GRT 
+ Expand sub pages About GRT 
+ About us 
+ Advertising on GRT 
+ Career opportunities 
+ Contact us 
+ GRT blog 
+ Media and filming requests 
+ News 
+ Open data 
+ Plans and projects 
+ Policies 
+ Public art installations 
+ Ridership and performance 
+ Transit customer panel 
+ Quick links 
+ Reload your fare card 
+ Expand Search 
+ Grand River Transit 
+ Fares and Payment 
+ Fare prices 
+ Fare prices 
+ Section Menu 
+ All GRT fare products are non-refundable. GRT is not responsible for lost, stolen, or unused products. 
+ Single tickets/fares
+ Passes
+ MobilityPLUS fare products
+ 2-ride fare card
+ Gift cards
+ Single ticket/fare 
+ Types of fares with prices 
+ Type of fare 
+ Price 
+ Children 6 and under 
+ Maximum 3 children with a fare-paying customer 
+ Free 
+ Cash fare 
+ $4 
+ Single ticket from a fare vending machine 
+ $4 
+ GRT Pay and Transit app 
+ $3 
+ EasyGO fare card stored value payment 
+ $3 
+ Affordable Transit Program stored value payment 
+ $1.35 
+ Corporate pass holder stored value payment 
+ $2.55 
+ New EasyGO fare card 
+ $4 
+ Passes 
+ Types of passes and prices 
+ Type of pass 
+ Price 
+ Day pass 
+ Good for one calendar day 
+ $8 
+ Group pass 
+ For groups of 2-5 people traveling together for one calendar day 
+ $12 
+ Monthly pass 
+ Good for one calendar month 
+ $104 
+ Affordable Transit Program monthly pass 
+ $47 
+ Corporate monthly pass 
+ For employees of Travelwise member companies 
+ $88 
+ Summer pass 
+ Good for the months of July and August 
+ $176 
+ U-Pass 
+ For full-time students at Conestoga College, University of Waterloo and Wilfrid Laurier University. Price effective Sept. 1. 
+ $131.14 
+ College pass 
+ Four-month pass for students at eligible colleges 
+ $325 
+ Veteran's pass 
+ For Canadian veterans 65 and older 
+ No cost 
+ CNIB pass 
+ For CNIB customers 
+ No cost 
+ Ontario Works programs 
+ For eligible Ontario Works adult participants 
+ No cost 
+ MobilityPLUS fare products 
+ For use on MobilityPLUS specialized services only. MobilityPLUS customers ride free on conventional buses and light rail. 
+ MobilityPLUS fare products and prices 
+ Product 
+ Price 
+ MobilityPLUS tickets 
+ Sold in a strip of 5 
+ $15 
+ MobilityPLUS monthly pass 
+ Paper pass good for one calendar month 
+ $104 
+ Affordable Transit Program MobilityPLUS tickets  
+ Sold in a strip of 5 
+ $6.75 
+ Single ticket in GRT Pay and Transit app 
+ $3 
+ 2-ride fare card program 
+ Not-for-profit and community agencies can purchase 2-ride fare cards to support people facing transportation barriers. 
+ 2-ride fare cards can only be used on GRT bus and ION train fare systems. For assistance supporting MobilityPLUS customers, provide details on the order form. 
+ 2-ride fare cards will be stamped with the expiry date. Both rides must be used by the expiry date stamped on the card. Any unused cards or rides will expire and are non-refundable. 
+ Interested agencies must complete the eligibility form .  
+ Gift cards 
+ Gift cards are available for purchase at GRT customer service centres. They can be loaded with any dollar amount. 
+ Gift cards have no cash value and are redeemable for fare products or GRT merchandise at GRT customer service centres only. Gift cards cannot be tapped on fare devices to pay fares. Purchases are non-refundable; GRT is not responsible for lost or stolen gift cards.  
+ Fares and Payment 
+ Fare prices 
+ Toggle Menu Html.Raw(currentTopLevel.Value ("subNavigationLinkText")).ToString() : currentTopLevel.Name) 
+ Fare prices 
+ View Full Menu 
+ Toggle Menu Fare prices 
+Affordable transit program 
+ Toggle Section 
+Affordable Transit Program brochures 
+GO Transit customers 
+How to pay your fare 
+ Toggle Section 
+EasyGO fare card 
+ Toggle Section 
+Manage your card online 
+Troubleshooting and FAQs 
+GRT Pay and Transit app 
+Paying with a student card 
+Paying with cash, credit or debit 
+Fare vending machines 
+Older adult day pass 
+Tickets and passes 
+ Toggle Section 
+Single ticket/fare 
+Passes 
+ Toggle Section 
+CNIB pass 
+College pass 
+Corporate pass 
+U-Pass 
+Veteran's pass 
+Ontario Works programs 
+Where to buy 
+ Contact Us 
+ Grand River Transit 
+ 250 Strasburg Rd 
+ Kitchener, ON N2E 3M6 
+ Phone: 519-585-7555 
+ Contact Us 
+ Grand River Transit 
+ 250 Strasburg Rd 
+ Kitchener, ON N2E 3M6 
+ Phone: 519-585-7555 
+ Customer feedback form 
+ Resources 
+ Sitemap 
+ Accessibility 
+ Privacy Policy 
+ Alerts 
+ Connect With Us 
+ Facebook 
+ Twitter/X 
+ Instagram 
+ LinkedIn 
+ YouTube 
+ © 2026 Grand River Transit 
+ Made with 
+ Govstack 
+ Back to top 
+ I want to... 
+ Apply for the Affordable Transit Program 
+ Apply for MobilityPLUS 
+ Find PDF schedules 
+ See the schedule for my route 
+ See next departures from my stop 
+ Report an issue 
+ Find a lost item 
+ Reload a fare card online 
+ 

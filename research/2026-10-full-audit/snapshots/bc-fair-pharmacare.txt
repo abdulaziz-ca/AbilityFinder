@@ -142,3 +142,1973 @@ There is no cost to apply for MSP, PharmaCare or Supplementary Benefits.
 - 
  JHA 
 -
+=== PAGE: https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/fair-pharmacare-plan/how-your-coverage-is-calculated/fair-pharmacare-assistance-levels-regular (HTTP 200, 6475 chars) [round 2]
+ Fair PharmaCare assistance levels - Province of British Columbia Home / Health / Health and drug coverage / BC PharmaCare / BC PharmaCare plans / Fair PharmaCare plan / How your Fair PharmaCare coverage is calculated / Fair PharmaCare assistance levels More topics How your Fair PharmaCare coverage is calculated Fair PharmaCare assistance levels Fair PharmaCare assistance levels Last updated on May 1, 2026 This page shows Fair PharmaCare deductible and family maximum amounts based on income. On this page 
+ What to know 
+ Regular assistance levels 
+ Enhanced assistance levels  (if someone in the family is born before 1940 
+ What to know 
+ When you register for Fair PharmaCare, your coverage is based on family net income. 
+ If you do not register for Fair PharmaCare, or if you register and your income cannot be verified, you have the default Fair PharmaCare family deductible of $10,000. 
+ The tables below show deductible and family maximums for registered families. You can also estimate your deductible or family maximum with the  Fair PharmaCare Calculator 
+ Learn about Fair PharmaCare coverage, including meeting your deductible and family maximum, at Fair PharmaCare plan . 
+ Regular assistance levels 
+ Once you've met the family deductible 1 , PharmaCare covers 70% of eligible costs until you meet the family maximum. After you meet the family maximum, PharmaCare covers 100% of eligible costs. 
+ A printable version of this table (PDF) is also available. 
+ Family Net Income 
+        Family Deductible     
+        Family Maximum     
+ $0.00 – $1,875.00 
+ $0.00 
+ $0.00 
+ $1,875.01 – $3,125.00 
+ $0.00 
+ $0.00 
+ $3,125.01 – $4,375.00 
+ $0.00 
+ $0.00 
+ $4,375.01 – $6,250.00 
+ $0.00 
+ $0.00 
+ $6,250.01 – $8,750.00 
+ $0.00 
+ $0.00 
+ $8750.01 – $11,250.00 
+ $0.00 
+ $0.00 
+ $11,250.01 – $13,750.00 
+ $0.00 
+ $0.00 
+ $13,750.01 – $15,000.00 
+ $0.00 
+ $100.00 
+ $15,000.01 – $16,250.00 
+ $0.00 
+ $200.00 
+ $16,250.01 – $18,750.00 
+ $0.00 
+ $300.00 
+ $18,750.01 – $21,250.00 
+ $0.00 
+ $400.00 
+ $21,250.01 – $23,750.00 
+ $0.00 
+ $500.00 
+ $23,750.01 – $26,250.00 
+ $0.00 
+ $600.00 
+ $26,250.01 – $28,750.00 
+ $0.00 
+ $700.00 
+ $28,750.01 – $30,000.00 
+ $0.00 
+ $800.00 
+ $30,000.01 – $31,667.00 
+ $650.00 
+ $900.00 
+ $31,667.01 – $35,000.00 
+ $800.00 
+ $1,150.00 
+ $35,000.01 – $38,333.00 
+ $950.00 
+ $1,350.00 
+ $38,333.01 – $41,667.00 
+ $1,100.00 
+ $1,500.00 
+ $41,667.01 – $45,000.00 
+ $1,300.00 
+ $1,700.00 
+ $45,000.01 – $48,333.00 
+ $1,400.00 
+ $1,875.00 
+ $48,333.01 – $51,667.00 
+ $1,500.00 
+ $2,000.00 
+ $51,667.01 – $55,000.00 
+ $1,600.00 
+ $2,150.00 
+ $55,000.01 – $58,333.00 
+ $1,700.00 
+ $2,275.00 
+ $58,333.01 – $61,667.00 
+ $1,800.00 
+ $2,400.00 
+ $61,667.01 – $65,000.00 
+ $1,900.00 
+ $2,550.00 
+ $65,000.01 – $70,833.00 
+ $2,000.00 
+ $2,675.00 
+ $70,833.01 – $79,167.00 
+ $2,250.00 
+ $3,000.00 
+ $79,167.01 – $87,500.00 
+ $2,500.00 
+ $3,350.00 
+ $87,500.01 – $95,833.00 
+ $2,750.00 
+ $3,675.00 
+ $95,833.01 – $108,333.00 
+ $3,000.00 
+ $4,000.00 
+ $108,333.01 – $125,000.00 
+ $3,500.00 
+ $4,675.00 
+ $125,000.01 – $141,667.00 
+ $4,000.00 
+ $5,350.00 
+ $141,667.01 – $158,333.00 
+ $4,500.00 
+ $6,000.00 
+ $158,333.01 – $183,333.00 
+ $5,000.00 
+ $6,675.00 
+ $183,333.01 – $216,667.00 
+ $6,000.00 
+ $8,000.00 
+ $216,667.01 – $250,000.00 
+ $7,000.00 
+ $9,350.00 
+ $250,000.01 – $283,333.00 
+ $8,000.00 
+ $10,000.00 
+ $283,333.01 – $316,667.00 
+ $9,000.00 
+ $10,000.00 
+ $316,667.01 – $999,999,999.00 
+ $10,000.00 
+ $10,000.00 
+ Enhanced assistance levels for families with at least one registrant born before 1940 
+ Once you've met the family deductible 1 , PharmaCare covers 75% of eligible costs until you meet the family maximum. After you meet the family maximum, PharmaCare covers 100% of eligible costs. 
+ A printable version of this table (PDF) is also available. 
+ Enhanced assistance levels for families with at least one member born before 1940 
+ Family Net Income 
+        Family Deductible     
+        Family Maximum     
+ $0.00 – $3,000.00 
+ $0.00 
+ $0.00 
+ $3,000.01 – $5,000.00 
+ $0.00 
+ $0.00 
+ $5,000.01 – $7,000.00 
+ $0.00 
+ $0.00 
+ $7,000.01 – $10,000.00 
+ $0.00 
+ $0.00 
+ $10,000.01 – $14,000.00 
+ $0.00 
+ $0.00 
+ $14,000.01 – $18,000.00 
+ $0.00 
+ $200.00 
+ $18,000.01 – $22,000.00 
+ $0.00 
+ $250.00 
+ $22,000.01 – $26,000.00 
+ $0.00 
+ $300.00 
+ $26,000.01 – $30,000.00 
+ $0.00 
+ $350.00 
+ $30,000.01 – $33,000.00 
+ $0.00 
+ $400.00 
+ $33,000.01 – $37,500.00 
+ $350.00 
+ $700.00 
+ $37,500.01 – $42,500.00 
+ $400.00 
+ $800.00 
+ $42,500.01 – $47,500.00 
+ $450.00 
+ $900.00 
+ $47,500.01 – $50,000.00 
+ $500.00 
+ $1,000.00 
+ $50,000.01 – $52,500.00 
+ $1,000.00 
+ $1,500.00 
+ $52,500.01 – $57,500.00 
+ $1,100.00 
+ $1,650.00 
+ $57,500.01 – $62,500.00 
+ $1,200.00 
+ $1,800.00 
+ $62,500.01 – $67,500.00 
+ $1,300.00 
+ $1,950.00 
+ $67,500.01 – $72,500.00 
+ $1,400.00 
+ $2,100.00 
+ $72,500.01 – $77,500.00 
+ $1,500.00 
+ $2,250.00 
+ $77,500.01 – $82,500.00 
+ $1,600.00 
+ $2,400.00 
+ $82,500.01 – $87,500.00 
+ $1,700.00 
+ $2,550.00 
+ $87,500.01 – $92,500.00 
+ $1,800.00 
+ $2,700.00 
+ $92,500.01 – $97,500.00 
+ $1,900.00 
+ $2,850.00 
+ $97,500.01 – $106,250.00 
+ $2,000.00 
+ $3,000.00 
+ $106,250.01 – $118,750.00 
+ $2,250.00 
+ $3,375.00 
+ $118,750.01 – $131,250.00 
+ $2,500.00 
+ $3,750.00 
+ $131,250.01 – $143,750.00 
+ $2,750.00 
+ $4,125.00 
+ $143,750.01 – $162,500.00 
+ $3,000.00 
+ $4,500.00 
+ $162,500.01 – $187,500.00 
+ $3,500.00 
+ $5,250.00 
+ $187,500.01 – $212,500.00 
+ $4,000.00 
+ $6,000.00 
+ $212,500.01 – $237,500.00 
+ $4,500.00 
+ $6,750.00 
+ $237,500.01 – $275,000.00 
+ $5,000.00 
+ $7,500.00 
+ $275,000.01 – $325,000.00 
+ $6,000.00 
+ $9,000.00 
+ $325,000.01 – $375,000.00 
+ $7,000.00 
+ $10,000.00 
+ $375,000.01 – $425,000.00 
+ $8,000.00 
+ $10,000.00 
+ $425,000.01 – $475,000.00 
+ $9,000.00 
+ $10,000.00 
+ $475,000.01 – $999,999,999.00 
+ $10,000.00 
+ $10,000.00 
+ Resources 
+ Fair PharmaCare Calculator 
+ Get help paying your Fair PharmaCare deductible 
+ Information sheet about Fair PharmaCare  in 15 languages 
+ Register for Fair PharmaCare 
+ Questions? 
+ Contact us . We provide interpreter services in over 140 languages. 
+   Did you find what you were looking for? Yes No The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments. 
+
+=== PAGE: https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/fair-pharmacare-plan/increased-assistance-and-payment-options (HTTP 200, 8312 chars) [round 2]
+ Get help paying your Fair PharmaCare deductible - Province of British Columbia Home / Health / Health and drug coverage / BC PharmaCare / BC PharmaCare plans / Fair PharmaCare plan / Get help paying your deductible More topics Fair PharmaCare plan How your Fair PharmaCare coverage is calculated Get help paying your deductible Updating your coverage information New residents of Canada and Fair PharmaCare Get help paying your Fair PharmaCare deductible Last updated on October 8, 2026 This page has information about BC PharmaCare's income review and monthly deductible payment option for people with Fair PharmaCare coverage. 
+ What to know 
+ Monthly deductible payment option 
+ Income review 
+ What to know 
+ Monthly deductible payment option 
+ You may want to apply for the monthly deductible payment option. This can allow you to pay your deductible in monthly instalments throughout the year and get help right away with eligible costs, as if you have met your deductible. 
+ Income review 
+ If your family income has dropped by 10% or more in the past 2 years, you can apply for an income review, which may result in having your deductible or family maximum lowered. 
+ Expand All  |  Collapse All 
+ Monthly deductible payment option (MDPO) 
+ Families enrolled in MDPO pay their deductible in monthly instalments spread over the year. As soon as they are enrolled, their prescription claims are processed as though they have met their deductible. In most cases, this means PharmaCare pays 70% of eligible costs (or 75% of eligible costs for families with a family member born before 1940). 
+ This option will not benefit you if your annual prescription costs are less than your deductible or if your deductible is $0. 
+ If you enrol and later begin receiving private health insurance that includes a drug benefit plan, you must cancel your MDPO enrolment. 
+ You will receive a tax receipt at the end of the year, so you can claim your monthly payments as medical expenses. Your monthly deductible payments do not show on pharmacy receipts. 
+ Eligibility for MDPO 
+ To be eligible, a family must: 
+ Register for Fair PharmaCare; and 
+ Not have private health insurance with a drug benefit plan (if your private health insurer contributes to your prescription costs, enrolling in MDPO could complicate or delay your private health benefits); and 
+ Have a Fair PharmaCare deductible greater than $0 
+ How to make payments 
+ You can choose to: 
+ Have your financial institution deduct your monthly payment 
+ Receive a bill each month, (payable on the 15th of the month). If you receive a monthly bill, you can use the Revenue Services BC online payment service 
+ How to enrol in MDPO 
+ Download the  MDPO 2026 Enrolment Form (HLTH 5303) (PDF, 53.1KB)  to enrol and re-enrol in MDPO. 
+ Or  call us  to mail it to you.  If you call, staff will make sure that MDPO is right for you. If it is, they will mail you a form. 
+ Check all boxes on the form, sign it by hand, and then either: 
+ Mail the form to  Fair PharmaCare, PO Box 9685 Stn Prov Govt, Victoria BC V8W 9P7, or 
+ Fax to 250-405-3598 (a ServiceBC office can fax the form for you; your local pharmacy may also help) 
+ For the current calendar year, you must enrol before the last business day of September. After September 30, you can request enrolment for the following year. 
+ Your enrolment will be processed 2 to 3 business days after we receive the forms. 
+ How the MDPO can benefit a family 
+ Brenda and John's prescription costs are about $200 a month. Their Fair PharmaCare deductible, based on their combined annual income, is $1,200. Currently, Brenda and John pay the $1,200 deductible at the beginning of the year, which means they get no help from PharmaCare for the first six months of the year. Once they have paid the entire deductible for eligible prescription costs, PharmaCare begins contributing 70%. 
+ Under the MDPO, Brenda and John would pay $100 towards their deductible each month, and PharmaCare would begin paying 70% of eligible prescription costs as soon as they enrol. Brenda and John would pay only 30% of their eligible prescription costs at the pharmacy until they reach their family maximum. 
+ If I discover the payment plan doesn't help me, can I cancel my enrolment? 
+ You can cancel your enrolment at any time by  contacting us . 
+ If you cancel, PharmaCare will reconcile your account for the previous year and issue you a statement early in the next year. You will receive a refund if you have paid more than your required contribution. If you received more assistance than your monthly payments accounted for up to the cancellation date, PharmaCare will recover that amount. Revenue Services BC manages both refunds and recoveries. 
+ You must keep both the statement and your prescription receipts if you wish to submit your prescription costs as medical expenses on your income tax return. 
+ What happens if my prescription costs end up being lower than my deductible? 
+ Early in the following year, PharmaCare will reconcile your account for the previous year and issue a statement. You will receive a refund if you have paid more than your required contribution under the Fair PharmaCare plan. You must keep the statement and your prescription receipts if you wish to submit your prescription costs as medical expenses on your income tax return. 
+ If I enrol, do I need to report changes in my family structure to PharmaCare? 
+ In cases of marriage, separation or divorce, tell us of the change in your family. We will review the options with you (for example, changes to your monthly payment amount or account reconciliation). 
+ Income review 
+ Your Fair PharmaCare coverage is based on your income information from 2 years ago. If your family income has dropped by 10% or more in the past two years, you can apply for an income review, which may lower your deductible or family maximum. 
+ You will need to provide documentation to support your income information. 
+ You can apply for an income review only for the current year’s coverage. You must apply before December 31 of the current year. 
+ Refer to  Fair PharmaCare assistance levels to see how your coverage could change. 
+ How to apply for income review 
+ To make sure you are eligible for an income review, read page 2 of Application for Income Review (HLTH 5355) (PDF, 718KB) . 
+ If you are eligible, complete the application and submit with copies of your supporting documents. 
+ Online application for income review 
+ Paper application for income review (HLTH 5355) (PDF, 718KB) 
+ We will review your application and, where possible, verify your income with the Canada Revenue Agency (CRA). If we approve your application, we will confirm your new level of coverage about one month after we receive your application. If more than a month has gone by,  contact us . 
+ Note: If the income information you provide with your application cannot be verified when tax information for that year becomes available, PharmaCare will recover any overpayment of assistance. 
+ Will PharmaCare reimburse me for amounts I paid above the lower deductible? 
+ If your income review results in a lower deductible and family maximum, it applies to the eligible costs of any prescriptions you purchased after the later of: 
+ January 1, or 
+ The date your family registered for Fair PharmaCare, or 
+ The date of the most recent addition or removal of a spouse from your Fair PharmaCare coverage, or 
+ The restore date after a cancellation of your coverage 
+ If you qualify for a refund, PharmaCare will reimburse you in the spring of the following year. 
+ Resources 
+ MDPO 2026 Enrolment Form (HLTH 5303) (PDF, 53.1KB)   
+ Online application for income review 
+ Paper application for income review (HLTH 5355) (PDF, 718KB) 
+ Fair PharmaCare information sheet  in 15 languages. 
+ Questions? 
+ Contact us . We provide interpreter services in over 140 languages. 
+   Did you find what you were looking for? Yes No The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments. 
+
+=== PAGE: https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/fair-pharmacare-plan/how-your-coverage-is-calculated (HTTP 200, 2501 chars) [round 2]
+ How your Fair Pharmacare coverage is calculated - Province of British Columbia Home / Health / Health and drug coverage / BC PharmaCare / BC PharmaCare plans / Fair PharmaCare plan / How your Fair PharmaCare coverage is calculated More topics Fair PharmaCare plan How your Fair PharmaCare coverage is calculated Fair PharmaCare assistance levels Get help paying your deductible Updating your coverage information New residents of Canada and Fair PharmaCare How your Fair Pharmacare coverage is calculated Last updated on October 14, 2026 This page has information about how BC PharmaCare calculates your coverage. On this page 
+ What to know 
+ Income from 2 years ago 
+ Information from your tax return 
+ What to know 
+ PharmaCare calculates your coverage when you first register for Fair PharmaCare, and on January 1 of every year. 
+ Income from 2 years ago 
+ Fair PharmaCare coverage is based on your family income from 2 years ago.  This is because your income tax information from last year is usually not available yet. So your 2026 coverage is based on your 2024 tax return. 
+ Estimate your deductible and family maximum with the  Fair PharmaCare calculator  or at  Fair PharmaCare assistance levels . 
+ Information from your tax return 
+ PharmaCare uses the net income from  Line 23600 of your and your spouse's (if you have one) tax returns, minus any amount on Line 12500 (Registered Disability Savings Plan). 
+ If your spouse has not filed a separate tax return, PharmaCare may include the Married Amount from Line 30300 of your return. They may also refer to the GST credit application on your income tax return to calculate your spouse's income. 
+ Request a copy of your Notice of Assessment  from the CRA 
+ Get help filing your taxes   for free if you have a modest income and simple tax situation 
+ Resources 
+ Get help paying your Fair PharmaCare deductible 
+ Fair PharmaCare assistance levels 
+ Information sheet about Fair PharmaCare  in 15 languages 
+ Register for Fair PharmaCare 
+ Questions? 
+ Contact us . We provide interpreter services in over 140 languages. 
+ More topics Did you find what you were looking for? Yes No The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments. 
+
+=== PAGE: https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/children-in-the-at-home-program-plan-f (HTTP 200, 2312 chars) [round 2]
+ Children in the At Home Program (Plan F) - Province of British Columbia Home / Health / Health and drug coverage / BC PharmaCare / BC PharmaCare plans / Children in the At Home Program (Plan F) More topics BC PharmaCare plans Fair PharmaCare plan Children in the At Home Program (Plan F) Last updated on April 1, 2026 B.C.'s At Home Program helps parents and guardians with the costs of caring for a child with complex disabilities at home. 
+ Children enrolled in the program qualify for full coverage of eligible prescription drugs and eligible medical supplies and equipment under PharmaCare Plan F. If your child is enrolled in the At Home Program, the Ministry of Children and Family Development (MCFD) contacts BC PharmaCare to enroll your child in Plan F. There may be a short delay between enrolment in the At Home Program and Plan F coverage.  Plan F coverage cannot be provided retroactively. 
+ What does Plan F pay for? 
+ Under Plan F, PharmaCare pays: 
+ The full cost of eligible drugs and dispensing fees 
+ Under Plan F, PharmaCare covers part of the cost of eligible: 
+ Needles and syringes for insulin-dependent diabetes 
+ Continuous and flash glucose monitors 
+ Blood glucose test strips  (administered by someone certified by a diabetes education center) 
+ Insulin pump supplies 
+ Ostomy supplies 
+ Some prostheses and orthoses 
+ To be eligible for Plan F, individuals must have active Medical Services Plan (MSP) coverage. 
+ Plan F coverage ends on the last day of the month that a child turns 18 years old. 
+ Coverage under Plan F does not extend to patients in acute or extended care hospitals. 
+ Plan F covers the child in the At Home Program only. Other family members are encouraged to  register for Fair PharmaCare and may be eligible for another PharmaCare plan . 
+ Resources 
+ At Home Program 
+ At Home Program Information Sheet (PDF, 84KB) 
+ At Home Program Guide (PDF, 5.7MB) 
+   Did you find what you were looking for? Yes No The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments. 
+
+=== PAGE: https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/what-we-cover/bc-smoking-cessation-program (HTTP 200, 8018 chars) [round 2]
+ Get help quitting tobacco - Province of British Columbia Home / Health / Health and drug coverage / BC PharmaCare / What BC PharmaCare covers / Quitting tobacco More topics What BC PharmaCare covers Pharmacy services Diabetes management Opioid use treatment Devices and supplies Drugs that require Special Authority Free contraceptives Quitting tobacco Smoking cessation products Biosimilars Initiative Get help quitting tobacco Last updated on May 22, 2026 Information for health professionals is at  Smoking Cessation Program - for health professionals This page has information about BC PharmaCare's Smoking Cessation Program. 
+ On this page 
+ What to know 
+ How does it work?   
+ How to get gum, lozenges and patches (NRTs )  
+ How to get smoking cessation prescription drugs   
+ Switching between NRTs and prescription drugs 
+ What to know 
+ BC PharmaCare's Smoking Cessation Program helps eligible B.C residents of any age stop using tobacco products. 
+ PharmaCare pays: 
+ The full cost of nicotine gum, lozenges and patches (nicotine replacement therapy or NRT) or 
+ Some or all of the cost of certain smoking cessation prescription drugs , with coverage depending on your PharmaCare plan 
+ How does it work? 
+ Each calendar year (January to December), you can receive PharmaCare coverage for one continuous course of treatment of up to 12 weeks (84 days) for either NRT or prescription medication. You will get one month’s supply at a time. The 12-week coverage period begins when you pick up your first NRT product or fill your first prescription. 
+ If you are still smoking at the end of the treatment, you can receive coverage for another course of treatment the following year (starting January 1), if you meet the eligibility criteria again. 
+ After you pick up your first month's supply, you have 84 days to request your remaining prescription or NRT supplies. After that, if you want additional coverage, you will have to wait until the next calendar year before PharmaCare will help pay for these products again. To complete the full course of treatment before the end of the calendar year, the latest you can start treatment is November 6. 
+ Note: If NRTs are part of your smoking cessation plan and you need to stop your treatment before the 12-week course is complete, you can contact PharmaCare to request coverage for the remainder of the 12-week course when you are ready to resume NRT. 
+ How to get gum, lozenges and patches (NRTs) 
+ Visit your local pharmacy. You and the pharmacist must both sign a declaration form. You do not need a prescription, and you can likely get NRTs the same day.  
+ A pharmacist can also assess you for nicotine dependence as part of the Minor Ailment and Contraception Service (MACS). They can then recommend treatment options (including NRTs) if appropriate. Learn more at Pharmacy Services in B.C. 
+ You do not need to be signed up for Fair PharmaCare, but you do need to be enrolled in  MSP . 
+ PharmaCare covers the following types of NRT: 
+ Product type and brand name 
+ Strengths 
+ Nicorette ®  gum (ultra fresh mint flavour only) 
+ 2 mg 
+ 4 mg 
+ Nicorette ®  lozenges (mint flavour only) 
+ 2 mg 
+ 4 mg 
+ Nicoderm ®  patches 
+ Step 1 patches - 21 mg 
+ Step 2 patches - 14 mg 
+ Step 3 patches - 7 mg 
+ You may want to talk to your pharmacist or healthcare provider about whether NRTs are the best choice for you if you: 
+ Are pregnant or breastfeeding 
+ Have a chronic medical conditions (e.g., diabetes, high blood pressure, heart problem, kidney disease, breathing issue) 
+ Were recently in the hospital 
+ Quitting smoking can affect how your body handles substances including medications and caffeine. Talk to your healthcare provider about any medications or substances you may be taking.  
+ During a quit attempt, monitoring or adjustment may be needed for medications such as: 
+ caffeine 
+ clonazepam 
+ olanzapine 
+ insulin 
+ warfarin 
+ benzodiazepines 
+ How to get smoking cessation prescription drugs 
+ Talk to a healthcare provider, including a pharmacist , to see if smoking cessation drugs are right for you. 
+ If they prescribe a drug, they will advise you on how best to improve your chances of quitting. 
+ Fill your prescription at the pharmacy. 
+ PharmaCare helps pay for two prescribed smoking cessation drugs: 
+ Bupropion (brand name Zyban ® only), and 
+ Varenicline generics (you may know the drug as Champix ) 
+ You must be covered by one of these PharmaCare plans: 
+ Fair PharmaCare  - Coverage depends on whether you have met your deductible and family maximum 
+ Plan B (Long-term Care)  - Full cost covered 
+ Plan C (Income Assistance)  - Full cost covered 
+ Plan G (Psychiatric Medications)  - Full cost covered 
+ Plan W (First Nations Health Benefits)  - Full cost covered 
+ To find out if you are covered by any of these plans, contact  the PharmaCare help desk. 
+ Switching between NRTs and prescription drugs 
+ Switching from one NRT product to another NRT product:  If you started with an NRT product and want to switch to a different NRT product, you can request this at your pharmacy when you go for your next refill. 
+ Switching from one prescription drug to another prescription drug:  If you started with a smoking cessation prescription drug and want to switch to a different prescription drug, your healthcare provider can likely prescribe the other drug. Your healthcare provider will need to submit a  Special Authority  request before PharmaCare will cover the new drug. 
+ Switching from an NRT product to a prescription drug:  If you started with an NRT product and want to switch to a prescription smoking cessation drug, you will usually have to wait until the next calendar year before PharmaCare will provide coverage. In some cases, PharmaCare will cover the prescription drug in the same year. Your healthcare provider will need to submit a  Special Authority request. 
+ Switching from a prescription drug to an NRT product:  If you paid the entire cost of the prescription smoking cessation drug without any PharmaCare contribution , you can get an NRT product free of charge. If PharmaCare paid part or all of the cost of the prescription smoking cessation drug, you may be able to get an NRT product at no charge in the same year. Your healthcare provider will need to submit a  Special Authority request. 
+ QuitNow.ca 
+ QuitNow.ca  provides one-on-one support and valuable resources in multiple languages to help you plan, start and manage quitting smoking or using other tobacco products. Visit QuitNow.ca before you start using NRT products or prescription drugs. See their: 
+ Medication guide  - all about prescription smoking cessation drugs and NRT products 
+ Community forum  - where British Columbians share about their quit journey 
+ How-to videos  - how to use nicotine patches and gum to get the right amount of nicotine and avoid withdrawal symptoms 
+ FNHA clients 
+ First Nations individuals on a journey to quit commercial tobacco may be interested in learning about coverage through the FNHA Health Benefits Program. See Coverage for Products to Quit the Use of Commercial Tobacco (PDF, 186KB) 
+ See also First Nations Health Authority Respecting Tobacco for a variety of resources for First Nations people, including videos and podcasts. 
+ Related links 
+ PharmaCare-covered smoking cessation products 
+ QuitNow.ca 
+ Information sheet in 15 languages 
+ PharmaCare Smoking Cessation Program Poster (PDF, 422KB)   
+ Pharmacy Services in B.C. 
+ Not registered for Fair PharmaCare ? Register now! 
+ Questions? 
+ Contact us . We provide interpreter services in over 140 languages. 
+ More topics Did you find what you were looking for? Yes No The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments. 
+
+=== PAGE: https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/what-we-cover/diabetes-supplies (HTTP 200, 3264 chars) [round 2]
+ Diabetes management - Province of British Columbia Home / Health / Health and drug coverage / BC PharmaCare / What BC PharmaCare covers / Diabetes management More topics What BC PharmaCare covers Pharmacy services Diabetes management Insulin pumps and supplies Glucose monitors Blood glucose test strips Alcohol wipes, lancets, ketone strips, needles and syringes Opioid use treatment Devices and supplies Drugs that require Special Authority Free contraceptives Quitting tobacco Biosimilars Initiative Diabetes management Last updated on August 5, 2026 Information for health professionals is at Diabetes devices and supplies PINs . This page links to information about BC PharmaCare coverage of medications, devices and supplies that help B.C. residents manage diabetes. On this page 
+ What to know 
+ Diabetes medications 
+ Diabetes devices and supplies 
+ What to know 
+ BC PharmaCare covers medications and devices and supplies that help with diabetes management. Coverage is under various plans.  
+ PharmaCare also covers offloading devices for diabetic foot ulcers and prostheses . 
+ Diabetes medications 
+ As of March 1, 2026, the  BC PharmaCare Plan NP (National Pharmacare plan)  pays the full cost of many diabetes medications, including insulin, metformin, glyburide, glicazide, dapagliflozin, and empagliflozin. 
+ You do not need a certificate of training from a diabetes education centre (DEC) or primary care network (PCN) to qualify for coverage. 
+ B.C. residents enrolled in MSP are automatically covered under Plan NP.  
+ View the list of diabetes medications covered under Plan NP 
+ If you have a prescription for a medication that is not on the Plan NP diabetes medication list, use the PharmaCare Formulary Search to find out if other PharmaCare coverage is available. In the formulary search results page, click on DIN/PIN/NPN to view which PharmaCare plans cover the medication. 
+ If a medication requires Special Authority coverage, ask a health care provider if you qualify and if they can apply for Special Authority coverage for you. 
+ Visit the PharmaCare Formulary Search 
+ Diabetes devices and supplies 
+ Various BC PharmaCare plans covers several diabetes management devices and supplies. Some products require Special Authority coverage, or training from an accredited diabetes education centre. 
+ Learn about devices and supplies coverage: 
+ Insulin pumps and insulin pumps supplies ​ 
+ Glucose monitors 
+ Blood glucose test strips 
+ Alcohol wipes, lancets and ketone strips 
+ Needles and syringes 
+ Resources 
+ BC PharmaCare Plan NP (National Pharmacare plan) 
+ Register for the  Fair PharmaCare plan 
+ For health professionals: 
+ Plan NP diabetes medications 
+ Diabetes devices and supplies PINs 
+ National Pharmacare (Plan NP) 
+ Questions? 
+ Contact us . We provide interpreter services in over 140 languages 
+   More topics Did you find what you were looking for? Yes No The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments. 
+
+=== PAGE: https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/what-we-cover/prescription-contraceptives (HTTP 200, 12674 chars) [round 2]
+ Free contraceptives - Province of British Columbia Home / Health / Health and drug coverage / BC PharmaCare / What BC PharmaCare covers / Free contraceptives More topics What BC PharmaCare covers Pharmacy services Diabetes management Opioid use treatment Devices and supplies Drugs that require Special Authority Free contraceptives Quitting tobacco Biosimilars Initiative Free contraceptives Last updated on September 9, 2026 As of March 1, 2026, contraceptives are covered with national pharmacare funding provided by the federal government. Learn more at   BC PharmaCare Plan NP (National Pharmacare Plan) Prescribers and pharmacists, visit  Free contraceptives - information for health professionals . This page provides information for the public about PharmaCare contraceptives coverage. On this page  
+ What to know 
+ How it works 
+ Covered contraceptives 
+ Medical abortion 
+ Resources 
+ What to know 
+ PharmaCare pays for these prescription contraceptives for any B.C. resident:  
+ Most prescription contraceptive pills 
+ Intrauterine devices (IUDs)  – hormonal and copper 
+ Hormonal implant 
+ Hormonal vaginal ring 
+ Contraceptive injection 
+ Emergency contraception (no prescription needed) 
+ To get free contraceptives, you need to be enrolled in the BC Medical Services Plan (MSP) . If you have applied and your MSP coverage is not yet active, a pharmacist can help you get exceptional coverage.  
+ If you have a prescription for an eligible contraceptive medication, it is covered. It doesn’t matter what the prescription is for. 
+ How it works 
+ 1. The prescription 
+ Get a prescription from a doctor, nurse practitioner, midwife or pharmacist at, for example, a walk-in clinic, hospital, pharmacy, or through a street nurse program. As of June 1, 2023, pharmacists can prescribe contraceptives. Read about pharmacist prescribing at Pharmacy services in B.C. 
+ Request a type that PharmaCare fully covers.  Some contraceptives are partially covered. 
+ If you've been prescribed a prescription that isn't fully covered, you can ask a pharmacist to change it to an equivalent that is free 
+ To switch to a different type of contraception, for example from the pill to an IUD, talk to a doctor, nurse practitioner, midwife or pharmacist 
+ You do not need a prescription for emergency contraception. Ask the pharmacist how to get emergency contraceptives for free 
+ 2. Present the prescription at a pharmacy 
+ Present the prescription and your Personal Health Number at a pharmacy. Your Personal Health Number can be found on the back of your driver's licence, BC Services Card or CareCard. 
+ If you are prescribed an IUD or implant, you will need to arrange a visit to a doctor or clinic to have it inserted 
+ Pharmacists can administer the contraceptive injection 
+ 3. Pay nothing 
+ The pharmacist dispenses your prescription. You pay nothing (as long as it is a fully covered contraceptive). The pharmacist can  not  charge you a fee for the dispense, assessment, or any other action associated with filling the prescription. 
+ Covered contraceptives 
+ Prescription contraceptive pills 
+ Copper IUDs 
+ Hormonal IUDs 
+ Contraceptive injection 
+ Hormonal implant 
+ Hormonal vaginal ring 
+ Emergency contraceptives 
+ Prescription contraceptive pills 
+ Product 
+ Ingredient 
+ Benefit status 
+ (full means free) 
+ DIN 
+ (for pharmacist use) 
+ Alesse 21 
+ ethinyl estradiol 20 mcg 
+ levonorgestrel 0.1 mg 
+ Partial benefit 
+ *Please talk to a pharmacist for a free generic option 
+ 2236974 
+ Alesse 28 
+ ethinyl estradiol 20 mcg 
+ levonorgestrel 0.1 mg 
+ Partial benefit 
+ *Please talk to a pharmacist for a free generic option. 
+ 2236975 
+ Alysena 21 
+ ethinyl estradiol 20 mcg 
+ levonorgestrel 0.1 mg 
+ Full benefit 
+ 2387875 
+ Alysena 28 
+ ethinyl estradiol 20 mcg 
+ levonorgestrel 0.1 mg 
+ Full benefit 
+ 2387883 
+ Apri 21 
+ ethinyl estradiol 30 mcg 
+ desogestrel 0.15 mg 
+ Full benefit 
+ 2317192 
+ Apri 28 
+ ethinyl estradiol 30 mcg 
+ desogestrel 0.15 mg 
+ Full benefit 
+ 2317206 
+ Audrina 21 
+ ethinyl estradiol 20 mcg 
+ levonorgestrel 0.1 mg 
+ Full benefit 
+ 2532174 
+ Audrina 28 
+ ethinyl estradiol 20 mcg 
+ levonorgestrel 0.1 mg 
+ Full benefit 
+ 2532182 
+ Aviane 21 
+ ethinyl estradiol 20 mcg 
+ levonorgestrel 0.1 mg 
+ Full benefit 
+ 2298538 
+ Aviane 28 
+ ethinyl estradiol 20 mcg 
+ levonorgestrel 0.1 mg 
+ Full benefit 
+ 2298546 
+ Brevicon 0.5/35 (21) 
+ ethinyl estradiol 35 mcg 
+ norethindrone 0.5 mg 
+ Full benefit 
+ 2187086 
+ Brevicon 0.5/35 (28) 
+ ethinyl estradiol 35 mcg 
+ norethindrone 0.5 mg 
+ Full benefit 
+ 2187094 
+ Brevicon 1/35 (21) 
+ ethinyl estradiol 35 mcg 
+ norethindrone 1 mg 
+ Full benefit 
+ 2189054 
+ Brevicon 1/35 (28) 
+ ethinyl estradiol 35 mcg 
+ norethindrone 1 mg 
+ Full benefit 
+ 2189062 
+ Drospirenone and Ethinyl Estradiol Tablets 
+ ethinyl estradiol 20 mcg 
+ drospirenone 3 mg 
+ Full benefit 
+ 2462060 
+ Drospirenone and Ethinyl Estradiol Tablets 21 
+ ethinyl estradiol 30 mcg 
+ drospirenone 3 mg 
+ Full benefit 
+ 2421437 
+ Drospirenone and Ethinyl Estradiol Tablets 28 
+ ethinyl estradiol 30 mcg 
+ drospirenone 3 mg 
+ Full benefit 
+ 2421445 
+ Elfy 
+ ethinyl estradiol 10 mcg 
+ norethindrone acetate 1 mg 
+ Full benefit 
+ 2553481 
+ Freya 21 
+ ethinyl estradiol 30 mcg 
+ desogestrel 0.15 mg 
+ Full benefit 
+ 2396491 
+ Freya 28 
+ ethinyl estradiol 30 mcg 
+ desogestrel 0.15 mg 
+ Full benefit 
+ 2396610 
+ Jencycla 
+ norethindrone 0.35 mg 
+ Full benefit 
+ 2441306 
+ Laylaa 21 
+ ethinyl estradiol 20 mcg 
+ levonorgestrel 0.1 mg 
+ Full benefit 
+ 2424282 
+ Laylaa 28 
+ ethinyl estradiol 20 mcg 
+ levonorgestrel 0.1 mg 
+ Full benefit 
+ 2424290 
+ Linessa 21 
+ ethinyl estradiol 25 mcg 
+ desogestrel 0.1/ 0.125/ 0.15 mg 
+ Full benefit 
+ 2272903 
+ Linessa 28 
+ ethinyl estradiol 25 mcg 
+ desogestrel 0.1/ 0.125/ 0.15 mg 
+ Full benefit 
+ 2257238 
+ LOLO 
+ ethinyl estradiol 10 mcg 
+ norethindrone acetate 1 mg 
+ Full benefit until July 4, 2026. 
+ Partial benefit effective July 4, 2026 (Please talk to a pharmacist for a free generic option). 
+ 2417456 
+ Marvelon 21 
+ ethinyl estradiol 30 mcg 
+ desogestrel 0.15 mg 
+ Partial benefit 
+ *Please talk to a pharmacist for a free generic option. 
+ 2042487 
+ Marvelon 28 
+ ethinyl estradiol 30 mcg 
+ desogestrel 0.15 mg 
+ Partial benefit 
+ *Please talk to a pharmacist for a free generic option. 
+ 2042479 
+ Miley 21 
+ ethinyl estradiol 30 mcg 
+ desogestrel 0.15 mg 
+ Full benefit 
+ 2556553 
+ Miley 28 
+ ethinyl estradiol 30 mcg 
+ desogestrel 0.15 mg 
+ Full benefit 
+ 2556561 
+ Min-Ovral 21 
+ ethinyl estradiol 30 mcg 
+ levonorgestrel 0.15 mg 
+ Partial benefit 
+ *Please talk to a pharmacist for a free generic option. 
+ 2042320 
+ Min-Ovral 28 
+ ethinyl estradiol 30 mcg 
+ levonorgestrel 0.15 mg 
+ Partial benefit 
+ *Please talk to a pharmacist for a free generic option. 
+ 2042339 
+ Mirvala 21  
+ ethinyl estradiol 30 mcg 
+ desogestrel 0.15 mg 
+ Full benefit 
+ 2410249 
+ Mirvala 28  
+ ethinyl estradiol 30 mcg 
+ desogestrel 0.15 mg 
+ Full benefit 
+ 2410257 
+ Movisse 
+ norethindrone 0.35 mg 
+ Full benefit 
+ 2410303 
+ Mya 
+ ethinyl estradiol 20 mcg 
+ drospirenone 3 mg 
+ Full benefit 
+ 2415380 
+ Ovima 21 
+ ethinyl estradiol 30 mcg 
+ levonorgestrel 0.15 mg 
+ Full benefit 
+ 2387085 
+ Ovima 28 
+ ethinyl estradiol 30 mcg 
+ levonorgestrel 0.15 mg 
+ Full benefit 
+ 2387093 
+ Portia 21 
+ ethinyl estradiol 30 mcg 
+ levonorgestrel 0.15 mg 
+ Full benefit 
+ 2295946 
+ Portia 28  
+ ethinyl estradiol 30 mcg 
+ levonorgestrel 0.15 mg 
+ Full benefit 
+ 2295954 
+ Slynd 
+ drospirenone 4 mg 
+ Full benefit 
+ 2522802 
+ Synphasic 21 
+ ethinyl estradiol 35 mcg 
+ norethindrone 0.5/ 1 mg 
+ Full benefit 
+ 2187108 
+ Synphasic 28 
+ ethinyl estradiol 35 mcg 
+ norethindrone 0.5/ 1 mg 
+ Full benefit 
+ 2187116 
+ Tri-Cira 21 
+ ethinyl estradiol 35 mcg 
+ norgestimate 0.18/ 0.215/ 0.25 mg 
+ Full benefit 
+ 2508087 
+ Tri-Cira 28 
+ ethinyl estradiol 35 mcg 
+ norgestimate 0.18/ 0.215/ 0.25 mg 
+ Full benefit 
+ 2508095 
+ Tri-Jordyna 21 
+ ethinyl estradiol 35 mcg 
+ norgestimate 0.18/ 0.215/ 0.25 mg 
+ Full benefit 
+ 2486296 
+ Tri-Jordyna 28 
+ ethinyl estradiol 35 mcg 
+ norgestimate 0.18/ 0.215/ 0.25 mg 
+ Full benefit 
+ 2486318 
+ Tricira-Lo 21 
+ ethinyl estradiol 25 mcg 
+ norgestimate 0.18/ 0.215/ 0.25 mg 
+ Full benefit 
+ 2401967 
+ Tricira-Lo 28 
+ ethinyl estradiol 25 mcg 
+ norgestimate 0.18/ 0.215/ 0.25 mg 
+ Full benefit 
+ 2401975 
+ Triquilar 21  
+ ethinyl estradiol 30 mcg 
+ levonorgestrel 0.05/ 0.075/ 0.125 mg 
+ Full benefit 
+ 707600 
+ Triquilar 28  
+ ethinyl estradiol 30 mcg 
+ levonorgestrel 0.05/ 0.075/ 0.125 mg 
+ Full benefit 
+ 707503 
+ Yasmin 21 
+ ethinyl estradiol 30 mcg 
+ drospirenone 3 mg 
+ Partial benefit 
+ *Please talk to a pharmacist for a free generic option. 
+ 2261723 
+ Yasmin 28 
+ ethinyl estradiol 30 mcg 
+ drospirenone 3 mg 
+ Partial benefit 
+ *Please talk to a pharmacist for a free generic option. 
+ 2261731 
+ Yaz 
+ ethinyl estradiol 20 mcg 
+ drospirenone 3 mg 
+ Partial benefit 
+ *Please talk to a pharmacist for a free generic option. 
+ 2321157 
+ Zamine 21 
+ ethinyl estradiol 30 mcg 
+ drospirenone 3 mg 
+ Full benefit 
+ 2410788 
+ Zamine 28 
+ ethinyl estradiol 30 mcg 
+ drospirenone 3 mg 
+ Full benefit 
+ 2410796 
+ Copper IUDs 
+ Product 
+ Benefit status (full means free) 
+ PIN (for pharmacist use) 
+ Flexi-T 300 
+ Full benefit 
+ 66127954 
+ Flexi-T +300 
+ Full benefit 
+ 66128087 
+ Flexi-T 380 
+ Full benefit 
+ 66128088 
+ Liberte UT 380 Short 
+ Full benefit 
+ 66128089 
+ Liberte UT 380 Standard 
+ Full benefit 
+ 66128090 
+ Liberte TT 380 Short 
+ Full benefit 
+ 66128091 
+ Liberte TT 380 Standard 
+ Full benefit 
+ 66128092 
+ Liberté UT 380 Silver-Copper Standard   
+ Full benefit 
+ 66128387 
+ Liberté UT 380 Silver-Copper Short 
+ Full benefit 
+ 66128388 
+ Mona Lisa 10 
+ Full benefit 
+ 66128153 
+ Mona Lisa 5 Mini 
+ Full benefit 
+ 66128154 
+ Mona Lisa 5 Standard 
+ Full benefit 
+ 66128390 
+ Mona Lisa N 
+ Full benefit 
+ 66128158 
+ TCU380 AG IUD Mini 
+ Full benefit 
+ 66128641 
+ TCU380 AG IUD Normal 
+ Full benefit 
+ 66128642 
+ Hormonal IUDs 
+ Product 
+ Ingredient 
+ Benefit Status (full means free) 
+ DIN (for pharmacist use) 
+ Kyleena 
+ levonorgestrel 19.5 mg 
+ Full benefit 
+ 2459523 
+ Mirena 
+ levonorgestrel 52 mg 
+ Full benefit 
+ 2243005 
+ Contraceptive injection 
+ Product 
+ Ingredient 
+ Benefit status (full means free) 
+ DIN (for pharmacist use) 
+ Depo-Provera 
+ medroxyprogesterone acetate 150 mg 
+ Full benefit 
+ 2523493 
+ Hormonal implant 
+ Product 
+ Ingredient 
+ Benefit status (full means free) 
+ DIN (for pharmacist use) 
+ Nexplanon 
+ etonogestrel 68 mg 
+ Full benefit 
+ 2499509 
+ Hormonal vaginal ring 
+ Product 
+ Ingredient 
+ Benefit status 
+ DIN (for pharmacist use) 
+ Haloette 
+ Delivers etonogestrel / ethinyl estradiol 120 mcg / 15 mcg per day 
+ Full benefit 
+ 2520028 
+ NuvaRing 
+ Delivers etonogestrel / ethinyl estradiol 120 mcg / 15 mcg per day 
+ Partial benefit (talk to a pharmacist for a free, generic option) 
+ 2253186 
+ Emergency contraceptives 
+ Product 
+ Ingredient 
+ Benefit status 
+ DIN (for pharmacist use) 
+ Contingency One 
+ levonorgestrel 1.5 mg 
+ Full benefit 
+ 2425009 
+ Backup Plan One-step 
+ levonorgestrel 1.5 mg 
+ Full benefit 
+ 2433532 
+ Plan B 
+ levonorgestrel 1.5 mg 
+ Partial benefit (talk to a pharmacist for a free, generic option) 
+ 2293854 
+ Mystep 
+ levonorgestrel 1.5 mg 
+ Full benefit 
+ 2548461 
+ PharmaCare doesn't currently cover cervical caps, condoms (often available free at sexual health clinics), diaphragms, patches, or sponges. 
+ Medical abortion (two-pill combination) 
+ PharmaCare pays the full cost of medical abortion for any B.C. resident with a prescription. All you need to do is present a prescription and your BC Services Card at the pharmacy counter. You can read about medical abortion at  HealthLinkBC . If you are in the wait period for MSP coverage, the pharmacist will ask you to sign a form for exceptional coverage.  
+ You may be interested in information about coverage of  surgical abortion . 
+ Resources 
+ Poster, (PDF, 68KB) 
+ Information sheet (available in 15 languages) 
+ Posts for  Twitter , Facebook , Instagram 
+ Free contraceptives in B.C. (video) 
+ Related links 
+ HealthLinkBC – Birth control 
+ Foundry – Sexual wellness 
+ Options for Sexual Health 
+ Smart Sex Resource 
+ Clinic finder in your community 
+ Questions? 
+ Contact us . We provide interpreter services in over 140 languages.​ 
+   Did you find what you were looking for? Yes No The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments. 
+
+=== PAGE: https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/pharmacare/plans (HTTP 200, 12719 chars) [round 2]
+ BC PharmaCare plans: Information for health professionals - Province of British Columbia Home / Health / Practitioner and professional resources / BC PharmaCare for health professionals / Plans More topics BC PharmaCare for health professionals Programs Plans Pharmacies Device and supply providers Drug reviews Newsletter, manuals, pamphlets, reports PharmaCare 101 PharmaCare forms Pharmaceutical care PharmaNet PharmaCare substance use disorder hub BC PharmaCare plans: Information for health professionals Last updated on August 27, 2026 Information for the public is available at  BC PharmaCare plans This page for health professionals has information about PharmaCare's coverage plans and select benefits. On this page 
+ Overview 
+ Fair PharmaCare Plan 
+ Plan B (Long-term Care) 
+ Plan C (Income Assistance and Family Services) 
+ Plan F (Children in the At Home Program) 
+ Plan W (First Nations Health Benefits) 
+ Plan D (Cystic Fibrosis) 
+ Plan G (Psychiatric Medications) 
+ Plan P (Palliative Care) 
+ Plan Z  (Assurance) 
+ Plan NP (National Pharmacare) 
+ Plan S   (Smoking Cessation) 
+ Plan X   (British Columbia Centre for Excellence in HIV/AIDS) 
+ Plan M (Medication Management) 
+ Overview 
+ For most plans, a person must be a B.C. resident actively  enrolled in MSP .  Exceptional Plan Z and Plan G coverage, and in some cases Plan P coverage, is available for people in the MSP wait period. Healthcare providers must register clients for Plan G and Plan P. 
+ A person can be covered by several plans at once. These five primary plans   cover a wide range of benefits: 
+ Fair PharmaCare  – please always encourage clients to register at gov.bc.ca/ahdc 
+ Plan B (Long-term Care) 
+ Plan C (Income Assistance and Family Services) 
+ Plan F (Children in the At Home Program) 
+ Plan W (First Nations Health Benefits) 
+ Seven   supplemental plans   cover specific items related to specific conditions and/or patient groups: 
+ Plan D (Cystic Fibrosis) 
+ Plan G (Psychiatric Medications) 
+ Plan P (Palliative Care) 
+ Plan Z  (Assurance) 
+ Plan NP (National Pharmacare) 
+ Plan S   (Smoking Cessation) 
+ Plan X   (British Columbia Centre for Excellence in HIV/AIDS) 
+ Plan M (Medication Management) 
+ For items not covered under the supplemental plans, individuals must register for   Fair PharmaCare   or qualify for coverage under another primary plan. 
+ Share the PharmaCare Compass with your clients, to help them understand what PharmaCare covers for them. 
+ Coverage, criteria and procedures for specific medications: 
+ Contraceptives 
+ Diabetes medications 
+ Menopausal hormone therapy 
+ Opioid agonist treatment 
+ Paxlovid 
+ Prolastin-C 
+ COPD inhalers 
+ PharmaCare coverage and MSP enrolment 
+ Most PharmaCare plans require people to be enrolled in the BC Medical Services Plan (MSP) to receive coverage.  This means they have c ompleted the Application for Health and Drug Coverage and , usually, p resented their identification at an ICBC driver licensing office (adults), and r eached the end of the MSP wait period, which is two months plus the balance of the month they started living in B.C. 
+ Coverage is available under Plan Z and Plan G for people living in B.C. who are not yet actively enrolled in MSP. 
+ MSP enrolment 
+ To enrol in MSP and obtain a photo BC Services Card, most adults must complete two steps: 
+ Submit the Application for Health and Drug Coverage (AHDC) , and  
+ Attend an ICBC driver licensing office  to provide primary and secondary identification. Note: Children and temporary document holders don’t need to attend an ICBC office. They will be issued a non-photo BC Services Card 
+ MSP coverage becomes active once MSP enrolment is complete and the resident has completed the wait period consisting of the balance of the month in which they established residency in B.C., plus two months. 
+ Once these two steps are done, MSP coverage becomes active after the balance of the month in which you established residency in B.C., plus two months. 
+ First Nations clients 
+ First Nations Health Authority (FNHA) manages MSP for First Nations people in B.C. Status First Nations people can enrol for MSP through the First Nations Health Benefits program (Plan W). The MSP enrolment application is available online or by calling First Nations Health Benefits at 1-855-550-5454. 
+ Fair PharmaCare Plan 
+ Coverage under the Fair PharmaCare Plan  is based on income. It is the only plan that people register for on their own. They provide their Social Insurance Number and consent for their income to be checked each year with the Canada Revenue Agency to set their deductible and family maximum. Over 1.3 million B.C. families are registered for Fair PharmaCare coverage. 
+ Please encourage all your clients to register at www.gov.bc.ca/ahdc or over the phone at  1-800-663-7100.   You can print off the Fair PharmaCare information sheet  (available in 15 languages).  
+ Fair PharmaCare appears in the PharmaCare Formulary Search as Plan I. 
+ Learn more:
+ Fair PharmaCare 
+ PharmaCare Policy Manual, Section 7.2: Fair PharmaCare (Plan I) 
+ Long-term Care (Plan B) 
+ Plan B provides 100% coverage of eligible prescription drugs and medical supplies for permanent residents of licensed long-term care facilities that are registered to be Plan B providers. When someone becomes a permanent resident of a Plan B facility, they are automatically covered. Plan B does not apply to people staying in extended-care, acute-care, multi-level, or assisted-living facilities or short-term patients in a licensed long-term care facility. 
+ Learn more:
+ Long-term Care (Plan B)   
+ PharmaCare Policy Manual, Section 7.3: Long-term Care (Plan B) 
+ Income Assistance and Family Services (Plan C) 
+ Plan C automatically covers 100% of the cost of many  prescription drugs,  some medical devices and supplies, and dispensing fees for B.C. residents receiving benefits and income assistance through the Ministry of Social Development and Poverty Reduction (SDPR), or in the care of or an agreement with Ministry of Children and Family Services (MCFD). 
+  Individuals covered by Plan C are encouraged to register for Fair PharmaCare, so if Plan C coverage ends, Fair PharmaCare coverage will begin automatically. 
+ Learn more: 
+ Income Assistance and Family Services (Plan C) 
+ PharmaCare Policy Manual, Section 7.4: Income Assistance and Family Services (Plan C) 
+ Children in the At Home Program (Plan F) 
+ Plan F covers 100% of the cost of eligible prescription drugs and medical supplies for   children and teens with complex health care needs, who are  receiving benefits through the  The  ​ At Home Program of the Ministry of Children and Family Development (MCFD). MCFD organizes the client's PharmaCare coverage. 
+  Individuals covered by Plan F are encouraged to register for Fair PharmaCare, so if Plan F coverage ends, Fair PharmaCare coverage will begin automatically. 
+ Learn more:
+ Children in the At Home Program (Plan F) 
+ PharmaCare Policy Manual, Section 7.6: Children in the At Home Program (Plan F) 
+ First Nations Health Benefits (Plan W) 
+ Plan W covers 100% of the cost of  many  prescription drugs,  some medical devices and supplies, dispensing fees, and certain   over-the-counter drugs  and non-OTC items . If you have a First Nations client who wants to be enrolled in Plan W, please have them contact FNHA at 1-855-550-5454.  
+ Learn more: 
+ Plan W: Information for Health Providers 
+ PharmaCare Policy Manual, Section 7.12: First Nations Health Benefits (Plan W) 
+ Cystic Fibrosis (Plan D) 
+ Plan D covers 100% of the cost of eligible digestive enzymes in the   Plan D formulary  and partial or full coverage of other products in the formulary, depending on a client's other PharmaCare plan (i.e., Plan C, Plan F, Plan W, or Fair PharmaCare). Clients register with a provincial cystic fibrosis clinic to get coverage. 
+ Learn more: 
+ PharmaCare Policy Manual, Section 7.5: Cystic Fibrosis (Plan D) 
+ Cystic fibrosis PINs 
+ Psychiatric Medications (Plan G) 
+ The Psychiatric Medications plan (Plan G) covers 100% of the cost of many psychiatric medications and drugs to treat opioid use disorder when cost is a serious barrier to a person getting treatment (i.e.,  less than $42,000 adjusted family net income plus $3,000 per dependent) .  Prescribers apply for Plan G coverage on the patient's behalf. Plan G coverage is for a limited time. Please support clients in renewing their coverage.  Exceptional coverage is also available in certain circumstances.  
+ Learn more:
+ Psychiatric Medications (Plan G) 
+ PharmaCare Policy Manual, Section 7.7: Psychiatric Medications (Plan G) 
+ Palliative Care (Plan P) 
+ Plan P covers 100% of the cost of eligible medications for B.C. residents who have reached the end stage of a life-threatening disease or illness and who wish to receive palliative care at home (including with family or friends, in a supportive/assisted living residence, or hospice unit at a long-term care facility). Physicians and nurse practitioners register patients.  
+ Learn more:
+ Palliative Care Benefits (Plan P)   
+ Plan P formulary 
+ PharmaCare Policy Manual, Section 7.8: Palliative Care (Plan P) 
+ Assurance Plan (Plan Z) 
+ Plan Z automatically covers 100% of the cost of mifepristone-misoprostol,   opioid use disorder treatment (OAT) , Paxlovid , and Medical Assistance in Dying (MAiD) medications for any B.C. resident, though exceptional coverage is available to new B.C. residents in the wait period for MSP. No registration required.  As of March 1, 2026,  the  same   contraceptives previously covered under Plan Z  are now covered under the National Pharmacare Plan (Plan NP) .  
+ Learn more:
+ Plan Z (Assurance) 
+ PharmaCare Policy Manual, Section 7.13: Assurance Plan (Plan Z) 
+ National Pharmacare (Plan NP) 
+ The BC PharmaCare National Pharmacare Plan covers 100% of the cost of many contraceptives , diabetes medications and menopausal hormone therapy (MHT) for any B.C. residents. Exceptional coverage is available to new B.C. residents in the wait period for MSP. 
+ Learn more:
+ National Pharmacare (Plan NP) 
+ PharmaCare Policy Manual, Section 7.14: National Pharmacare (Plan NP) 
+ Smoking Cessation (Plan S) 
+ Plan S covers 100% of the cost of nicotine gum, lozenges or patches, and some or all of the cost of certain   smoking cessation prescription drugs for B.C residents of any age. A pharmacist enrols people in the program. 
+ Learn more:
+ Smoking Cessation Program: Information for health professionals 
+ PharmaCare Policy Manual, Section 5.20: Smoking Cessation Program (Plan S) 
+ British Columbia Centre for Excellence in HIV/AIDS (Plan X) 
+ Plan X covers antiretroviral drugs for HIV-positive individuals through the BC Centre for Excellence in HIV/AIDS. 
+ Learn more:  PharmaCare Policy Manual, Section 7.11: British Columbia Centre for Excellence in HIV/AIDS (Plan X) 
+  Medication Management (Plan M) 
+ Plan M covers individuals for eligible  services provided by pharmacies , such as clinical services, medication reviews, and publicly funded vaccinations. 
+ Learn more:  PharmaCare Policy Manual, Section 7.9: Medication Management (Plan M) 
+ Resources 
+ Share information with your clients:  PharmaCare pamphlets for the public are available in 15 languages. Please print and share with your clients. Post the QR Matrix Sheet (PDF)  in your office or pharmacy for easy access. 
+ Fair PharmaCare Plan 
+ Contraceptives 
+ Blood glucose test strips 
+ Insulin pumps 
+ Pharmacy services 
+ Get help quitting tobacco 
+ Palliative care benefits 
+ Spec ial Authority 
+ Prosthetics and orthotics 
+ Offloading devices 
+ Plagiocephaly helmet coverage 
+ Policy 
+ PharmaCare Policy Manual: 
+ Section 7.2: Fair PharmaCare (Plan I) 
+ Section 7.3: Long-term Care (Plan B) 
+ Section 7.4: Income Assistance and Family Services (Plan C) 
+ Section 7.6: Children in the At Home Program (Plan F) 
+ Section 7.12: First Nations Health Benefits (Plan W) 
+ Section 7.5: Cystic Fibrosis (Plan D) 
+ Section 7.7: Psychiatric Medications (Plan G) 
+ Section 7.8: Palliative Care (Plan P) 
+ Section 7.13: Assurance Plan (Plan Z) 
+ Section 7.14: National Pharmacare (Plan NP) 
+ Section 5.20: Smoking Cessation Program (Plan S) 
+ Section 7.11: British Columbia Centre for Excellence in HIV/AIDS (Plan X) 
+ Section 7.9: Medication Management (Plan M) 
+ Did you find what you were looking for? Yes No The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments. 
+
+=== PAGE: https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/what-we-cover (HTTP 200, 5411 chars) [round 2]
+ What BC PharmaCare covers - Province of British Columbia Home / Health / Health and drug coverage / BC PharmaCare / What BC PharmaCare covers More topics BC PharmaCare BC PharmaCare plans What BC PharmaCare covers Pharmacy services Diabetes management Devices and supplies Opioid use treatment Drugs that require Special Authority Free contraceptives Quitting tobacco Biosimilars Initiative BC PharmaCare policies BC PharmaCare drug review About PharmaNet PharmaCare Community Hub National pharmacare Info sheets/resources Contact BC PharmaCare What BC PharmaCare covers Last updated on May 22, 2026 This page has information about medications, medical devices and supplies, and pharmacy services that BC PharmaCare covers. On this page 
+ What to know 
+ Formulary Search 
+ What BC PharmaCare does not cover 
+ What to know 
+ PharmaCare covers: 
+ Many medications  - prescribed by a health professional licensed and practicing in B.C. 
+ Contraceptives  - many are free 
+ Diabetes devices and supplies  and medications 
+ Devices and supplies , such as  prostheses  and  orthoses 
+ Ostomy supplies 
+ Nicotine replacement therapy and smoking cessation prescription drugs 
+ Treatments for opioid use disorder 
+ Many pharmacy services , such as: 
+ Pharmacist assessment and prescribing for minor ailments and contraception (learn more:  Pharmacy services in B.C. ) 
+ Dispenses 
+ Medication reviews 
+ Prescription renewals or adaptations 
+ Vaccinations (of publicly funded vaccines) and certain injections 
+ Expensive drugs for rare diseases  o n a case-by-case, last-resort basis, with approximate annual cost of more than $100,000 
+ Medications for medical assistance in dying (MAiD) 
+ Depending on the coverage plan and the benefit, coverage may be partial or full. Coverage under Fair PharmaCare is subject to deductible and family maximum requirements. 
+ Some drugs require approval for PharmaCare coverage  ("Special Authority"). Special Authority coverage may be partial or full, and is subject to plan requirements. 
+ Pharmacies charge different amounts for drugs and services. You may want to compare prices and services. 
+ Formulary Search 
+ Use the PharmaCare Formulary Search to find out which drugs PharmaCare covers. Click on a drug's DIN/PIN/NPN to find out which plans cover the drug. 
+ View the short Got a Minute video to learn how to use the Formulary Search:  Does PharmaCare Cover My Medication? 
+ Find out how PharmaCare decides which medications and medical devices to cover at BC PharmaCare drug review 
+ What BC PharmaCare does not cover 
+ PharmaCare does not help pay for... 
+ Drugs covered by other agencies or facilities, such as those: 
+ Dispensed or administered in hospitals and emergency departments 
+ Used to treat cancer (available through  BC Cancer Agency ) 
+ For transplants (available through  BC Transplant Society ) 
+ For kidney dialysis (available through  BC Renal Agency ) 
+ Vaccines funded by the  BC Centre for Disease Control   
+ For anti-retroviral treatment (funded by PharmaCare but provided through BC Centre for Excellence in HIV/AIDS ) 
+ The following medical supplies and devices: 
+ Hearing aids or hearing aid batteries 
+ Continuous positive airway pressure (CPAP) machines 
+ Wheelchairs and walkers 
+ Eyeglasses 
+ Bandages 
+ Baby formula 
+ Herbal medicine products 
+ Artificial sweeteners, and 
+ Supplies and devices not listed on Medical Supplies 
+ Drugs: 
+ Purchased from pharmacies not enrolled in the PharmaCare program 
+ Purchased outside B.C. or from companies/pharmacies outside B.C. (except eligible Plan W benefits) 
+ Purchased over the counter, unless eligible under a specific PharmaCare plan 
+ That PharmaCare has decided not to cover (visit  Drugs that require Special Authority ) 
+ For which a manufacturer has not submitted a request for PharmaCare coverage 
+ PharmaCare is currently considering for coverage 
+ Available as part of a private clinical trial 
+ Prescribed by a veterinarian 
+ Normally used for cosmetic purposes (e.g., wrinkle prevention) 
+ Paid for by another payer, such as:
+ A private or federal insurer 
+ WorkSafe BC or ICBC 
+ Through an award for damages, or settlement agreement 
+ These fees: 
+ Any portion of a dispensing fee above the maximum dispensing fee PharmaCare covers 
+ Dispensing fees above the maximum number of fees PharmaCare covers 
+ Drug costs above the maximum drug price PharmaCare cover 
+ These pharmacy services: 
+ Pharmacogenomics testing 
+ Children in low and moderate income families may be eligible for basic dental and vision care coverage through B.C.'s  Healthy Kids Program . 
+ PharmaCare Compass 
+ Click on the image for an interactive, online tool, to learn about PharmaCare coverage available to you. You can also d ownload or print the   PharmaCare Compass ( PDF, 227 KB)   for quick reference. 
+ Resources 
+ PharmaCare Formulary Search 
+ Got a Minute video: Does PharmaCare Cover My Medication? 
+ Questions? 
+ Contact us . We provide interpreter services in over 140 languages 
+ More topics Did you find what you were looking for? Yes No The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments. 
+
+=== PAGE: https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/long-term-care-plan-b (HTTP 200, 4486 chars) [round 2]
+ Long-term Care (Plan B) - Province of British Columbia Home / Health / Health and drug coverage / BC PharmaCare / BC PharmaCare plans / Long-term Care (Plan B) More topics BC PharmaCare plans Fair PharmaCare plan Long-term Care (Plan B) Last updated on June 4, 2026 Information for health professionals is at PharmaCare Policy Manual, Section 7.3: Long-term Care (Plan B) . This page explains BC PharmaCare Long-term Care (Plan B) coverage. On this page 
+ What to know 
+ Who is eligible for Plan B 
+ What Plan B covers 
+ What to know 
+ Plan B is for B.C. residents who live permanently in a licensed long-term care facility enrolled in PharmaCare Plan B. 
+ Plan B covers the full cost of many prescription drugs, pharmacy services, and some medical devices and supplies.  
+ Not all long-term care facilities in B.C. are enrolled. Before moving into a long-term care facility, ask if it is enrolled in Plan B for the best PharmaCare coverage.  
+ Who is eligible for Plan B 
+ Coverage is for adult B.C. residents who are permanent residents of a licensed long-term care facility enrolled as a PharmaCare Plan B site. 
+ You do not need to register (or apply) for Plan B. If the facility you move to is enrolled in Plan B, coverage begins the day you move in.  
+ Plan B does not  apply to people who are: 
+ Living in extended care, acute care, multi-level, or assisted living facilities 
+ Temporarily living in licensed long-term care facility (e.g., for respite care, hospice or palliative care) 
+ Facilities must maintain Plan B designation for coverage; if a facility opts out, residents will no longer have Plan B coverage. 
+ People who do not live in a facility enrolled in Plan B are eligible for other coverage under PharmaCare plans, including Fair PharmaCare . Visit Fair PharmaCare Registration Status Search to check if you're already registered to get the best coverage possible. Use the PharmaCare Compass to determine your eligibility for other plans. 
+ To find out which drugs PharmaCare covers, and under which plans, use the BC PharmaCare Formulary Search tool. 
+ What Plan B covers 
+ Permanent residents of long-term care facilities enrolled in PharmaCare Plan B receive 100% coverage of: 
+ Many prescription medications, and 
+ Many pharmacy services, such as dispensing and medication reviews, and publicly funded vaccinations administered by a pharmacist. 
+ Plan B covers the cost of eligible medical supplies and devices, up to a maximum price set by PharmaCare. This includes: 
+ Prostheses and orthoses 
+ Ostomy supplies 
+ Insulin pumps (with Special Authority approval), and 
+ Insulin pump supplies ( pods, infusion sets/kits, and insulin pump reservoirs/cartridges ). 
+ PharmaCare's Full Payment Policy means that you cannot be charged for medications when they are a full benefit under Plan B.  
+ The Full Payment Policy does not apply to medical devices and supplies, so you may have to pay for costs beyond the maximum amount PharmaCare covers. 
+ Learn more about maximum costs and the Full Payment Policy at BC PharmaCare policies . 
+ Licensed long-term care facilities in B.C. are required to provide routine medical supplies such as needles, syringes and blood glucose test strips at no cost to residents. These supplies are not covered by Plan B. 
+ Special Authority 
+ Some drugs require a special request from a healthcare provider to be partially or fully covered by PharmaCare. If your prescriber believes a Special Authority (SA) drug would be best for your circumstances, they can request SA coverage. Pharmacists who are collaborating with a prescriber as part of comprehensive care at a long-term care facility can also submit SA requests.  
+ Find out more at Drugs that require Special Authority . 
+ Resources 
+ Advance Care Planning (guide) – available in multiple languages 
+ PharmaCare Policy Manual, Section 7.3: Long-term Care (Plan B) 
+ BC PharmaCare: Get help paying for medications and medical supplies  – general information about PharmaCare coverage 
+ Questions? 
+ Contact us . We provide interpreter services in over 140 languages.  
+ Did you find what you were looking for? Yes No The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments. 
+
+=== PAGE: https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/national-pharmacare (HTTP 200, 6381 chars) [round 2]
+ BC PharmaCare Plan NP (National Pharmacare plan) - Province of British Columbia Home / Health / Health and drug coverage / BC PharmaCare / National pharmacare BC PharmaCare Plan NP (National Pharmacare plan) Last updated on June 29, 2026 Information for health professionals is at  National Pharmacare (Plan NP) This page has information about BC PharmaCare's Plan NP. 
+ English |  繁體中文   | 简体中文 |  Français​  |  Tagalog |  ਪੰਜਾਬੀ 
+ On this page 
+ What to know 
+ How it works 
+ What is covered 
+ Diabetes medications 
+ Menopausal hormone therapy 
+ Contraceptives 
+ Background 
+ What to know 
+ The BC PharmaCare National Pharmacare plan (Plan NP) launched on March 1, 2026. 
+ Plan NP covers many diabetes medications, menopause hormone therapy medications and contraceptives for all B.C. residents enrolled in MSP. 
+ Coverage is automatic at the pharmacy. You do not need to register or submit receipts. 
+ To be eligible for Plan NP coverage: 
+ You must be a B.C. resident enrolled in BC Medical Services Plan (MSP) 
+ The prescription must be dispensed in B.C. 
+ Plan NP is a provincial plan, administered in B.C. It is supported with federal funding. 
+ Plan NP does not cover people from other provinces or dispenses in other provinces. 
+ On April 1, 2026, BC PharmaCare expanded coverage of certain diabetes-related supplies and devices with federal funding. Learn about coverage at Diabetes management . 
+ How it works 
+ B.C. residents must be enrolled in MSP to be eligible. 
+ If you have applied and your MSP coverage is not yet active, a pharmacist can help you get exceptional Plan NP coverage in the meantime. 
+ Coverage is provided automatically at the pharmacy counter, as with other BC PharmaCare plans. You do not need to register for coverage or submit receipts. 
+ For coverage: 
+ Present a prescription for a covered medication and your BC Services Card at a B.C. pharmacy. A prescription is not needed for insulins. 
+ The pharmacist processes the prescription and provides your medication. For fully covered items, you pay nothing. 
+ Plan NP dispenses do not count towards the  Fair PharmaCare  deductible or family maximum. 
+ Note that some medications require Special Authority approval. 
+ Always ask for a prescription with the best PharmaCare coverage. You can also ask a pharmacist if they can substitute your prescription for a medication that is equally safe and effective, but that has better coverage. 
+ What is covered 
+ Plan NP covers the full cost of many  diabetes medications ,  contraceptives  and  menopausal hormone therapy (MHT) . 
+ Some medications are partially covered. A pharmacist or prescriber can often change a partially covered prescription (i.e., brand name) to an equally safe and effective product that is 100% covered (i.e., generic) under the   Low Cost Alternative (LCA) program . 
+ For diabetes medications (saxagliptin, linagliptin and pioglitazone), your prescriber must submit a  Special Authority (SA)  request for coverage. The SA request must be approved before you fill your prescription to receive coverage. Track SA requests at  Health Gateway . 
+ Plan NP provides coverage of specific medications. The medications are covered regardless of why they were prescribed. 
+ If BC PharmaCare previously helped pay for your diabetes medications, and they are now covered by Plan NP, they may have 100% coverage. Some may no longer require Special Authority for coverage. 
+ Diabetes medications 
+ Plan NP covers 100% of the cost of these diabetes medications: 
+ Insulins 
+ Metformin 
+ Glyburide 
+ Gliclazide 
+ Dapagliflozin 
+ Empagliflozin 
+ Empagliflozin with metformin 
+ These diabetes medications require  Special Authority  for coverage: 
+ Linagliptin 
+ Linagliptin with metformin 
+ Pioglitazone 
+ Saxagliptin 
+ Saxagliptin with metformin 
+ Your health provider applies for Special Authority for you if you meet the criteria for coverage. 
+ The SA request must be approved before you fill your prescription to receive coverage. Track SA requests at  Health Gateway . 
+ You can find the full list of covered diabetes medications at  Plan NP diabetes medications . 
+ Menopausal hormone therapy (MHT) 
+ Plan NP covers 100% of the cost of these menopause hormone therapy medications (MHTs): 
+ Oral conjugated estrogen 
+ Oral medroxyprogesterone 
+ Oral micronized progesterone 
+ Vaginal estrogen 
+ Topical estrogen and estrogen/progesterone (gels & patches) 
+ Oral estradiol 
+ MHT was previously called hormone replacement therapy (HRT). 
+ You can find the full list of covered menopausal hormone therapy medications at  Plan NP menopausal hormone therapy . 
+ Contraceptives 
+ Plan NP covers 100% of the cost of versions of these contraceptives: 
+ Most prescription contraceptive pills 
+ Intrauterine devices (IUDs) – hormonal and copper 
+ Hormonal implant 
+ Hormonal vaginal rings 
+ Contraceptive injection 
+ Emergency contraception (no prescription needed) 
+ For more information on contraceptives covered by Plan NP, visit  Free contraceptives . 
+ Background 
+ The Province of B.C. and the Government of Canada signed an agreement on March 6, 2025, for federal funding for medication and medical device and supply coverage in B.C., with the federal government providing up to $670 million in funding over three years. The agreement is an outcome of the 2024 Pharmacare Act . 
+ The federal government contributes funding for Plan NP and extended coverage of some diabetes devices and supplies. 
+ Manitoba, Prince Edward Island, and Yukon also signed  national pharmacare agreements in 2025. The federal government contributes funding for national pharmacare but the programs are administered by the provinces and territory. 
+ Resources 
+ PharmaCare Plan NP information sheet (PDF, 138KB) 
+ PharmaCare Plan NP poster (PDF, 260KB) 
+ PharmaCare Plan NP social media graphics 
+ Plan NP Facebook (PNG, 101KB) 
+ Plan NP Instagram 4x5 (PNG, 163KB) 
+ Questions? 
+ Contact us . We provide interpreter services in over 140 languages. 
+ Did you find what you were looking for? Yes No The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments. 
+
+=== PAGE: https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/pharmacare/plans/national-pharmacare-plan-np (HTTP 200, 5485 chars) [round 2]
+ National Pharmacare (Plan NP) - Province of British Columbia Home / Health / Practitioner and professional resources / BC PharmaCare for health professionals / Plans / National PharmaCare (Plan NP) More topics Plans National Pharmacare (Plan NP) Last updated on August 27, 2026 Health providers can review the Plan NP benefit lists on these webpages: 
+ Plan NP menopausal hormone therapy 
+ Plan NP diabetes medications 
+ Information for the public is available at BC PharmaCare Plan NP (National Pharmacare plan) On April 1, 2026, BC PharmaCare expanded coverage of certain diabetes-related devices and supplies, made possible by federal national pharmacare funding. Read Expanded coverage for diabetes-related supplies and devices below for more details. On this page 
+ Overview 
+ Full Payment Policy 
+ Special Authority 
+ Benefit DINs 
+ Eligibility 
+ Resources 
+ Overview 
+ As of March 1, 2026, the National Pharmacare Plan (Plan NP) provides 100% coverage of select diabetes medications, menopausal hormone therapy (MHT), and contraceptives for any B.C. resident enrolled in MSP. The federal government contributes funding for national pharmacare. 
+ With the launch of Plan NP, the pricing of insulin as a PharmaCare benefit is regulated under the Drug Price Regulation and subject to the Maximum Pricing Policy , and subject to the Full Payment Policy through an amendment to the Provider Regulation . 
+ Some benefits are partially covered, subject to Low Cost Alternative (LCA) pricing. The public is being encouraged to ask their pharmacist or prescriber to adapt to or prescribe fully covered benefits. 
+ Plan NP dispenses do not count towards the   Fair PharmaCare   deductible or family maximum. 
+ Expanded coverage for diabetes-related supplies and devices 
+ With help from federal national pharmacare funding, PharmaCare expanded coverage for alcohol wipes, lancets and blood and urine ketone strips. 
+ PharmaCare also listed the mylife Ypsopump on December 17, 2025, and the Omnipod 5 hybrid closed-loop automated insulin delivery (AID) system on April 1, 2026.  
+ Coverage for diabetes supplies is through Fair PharmaCare, Plan C, Plan F and Plan W. Coverage for insulin pumps is through these plans as well as Plan B. For more details, refer to the March 2026 and April 2026 PharmaCare Newsletters and Diabetes supplies and devices PINs .  
+ Full Payment Policy 
+ PharmaCare's Full Payment Policy   applies to Plan NP benefits with 100% coverage. This means pharmacies cannot charge a client for the medication or any service associated with the dispense. 
+ Special Authority 
+ Several Plan NP diabetes benefits continue to require Special Authority (SA) . Once SA is approved, these benefits have 100% coverage, unless LCA pricing applies.  
+ Special Authority is no longer required for: 
+ Empagliflozin 
+ Empagliflozin/metformin 
+ Gliclazide 
+ Insulin glargine (Semglee, Basaglar) 
+ Topical estrogen and estrogen/progesterone (gels & patches) 
+ No MHTs or contraceptives will require SA. 
+ Benefit lists with DINs 
+ If a client has a prescription for a Plan NP medication, it is covered. It doesn’t matter what the prescription is for. Exceptions are   saxagliptin, linagliptin and pioglitazone, which need  Special Authority, and non-benefit insulins. 
+ Health providers can review the MHT and diabetes DINs that will be covered under Plan NP at: 
+ Plan NP menopausal hormone therapy 
+ Plan NP diabetes medications 
+ The same contraceptives previously covered under Plan Z  are now covered under Plan NP.  
+ Eligibility 
+ All B.C. residents enrolled in MSP are eligible for Plan NP coverage. Plan NP coverage is provided at the pharmacy and processed in PharmaNet, as with all BC PharmaCare plans. 
+ Clients in the MSP wait period 
+ Exceptional Plan NP coverage is available to B.C. residents who have completed   both steps of MSP enrolment   but are still in the wait period/not yet actively enrolled. 
+ How to apply for Plan NP exceptional coverage 
+ The pharmacist must: 
+ Confirm with the patient that they have completed the two MSP enrolment steps 
+ Complete and fax the HLTH 5499 – Exceptional coverage: National Pharmacare and Mifepristone-Misoprostol (PDF, 82KB)  form  to Health Insurance BC (HIBC) at 250-405-3587. A digital version will be coming 
+ If patient is eligible: 
+ 3 months of coverage will be activated in PharmaNet, and 
+ The form will be faxed back to the pharmacy with the coverage dates 
+ If patient is not eligible: 
+ The form will be faxed back to the pharmacy with the reason for ineligibility 
+ Related links 
+ Plan NP menopausal hormone therapy 
+ Plan NP diabetes medications 
+ BC PharmaCare Plan NP (National Pharmacare plan) webpage for the public 
+ Health Canada pages 
+ Government of Canada signs pharmacare agreement with British Columbia 
+ British Columbia’s pharmacare agreement 
+ Special Authority (SA) 
+ Resources 
+ PharmaCare Plan NP information sheet (PDF, 138KB) 
+ PharmaCare Plan NP poster (PDF, 260KB) 
+ PharmaCare Plan NP social media graphics 
+ Plan NP Facebook (PNG, 101KB) 
+ Plan NP Instagram 4x5 (PNG, 163KB) 
+ Did you find what you were looking for? Yes No The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments. 
+
+=== PAGE: https://www2.gov.bc.ca/gov/content/health/practitioner-professional-resources/pharmacare/plans/national-pharmacare-plan-np/plan-np-diabetes-medications (HTTP 200, 15383 chars) [round 2]
+ Plan NP diabetes medications - Province of British Columbia Home / Health / Practitioner and professional resources / BC PharmaCare for health professionals / Plans / Plan NP diabetes medications Plan NP diabetes medications Last updated on June 8, 2026 As of March 1, 2026, diabetes medications are covered with national pharmacare funding provided by the federal government. Learn more at  BC PharmaCare Plan NP (National Pharmacare Plan) Health providers can review these other Plan NP webpages: 
+ Plan NP menopausal hormone therapy 
+ National Pharmacare (Plan NP) 
+ Information for the public is available at BC PharmaCare Plan NP (National Pharmacare Plan)   
+ The benefits on these tables are covered under the National Pharmacare Plan (Plan NP). The federal government contributes funding for national pharmacare. 
+ PharmaCare's  Full Payment Policy applies to Plan NP benefits with full coverage. This means pharmacies cannot charge clients for the medication or any service associated with the dispense. 
+ Benefits with partial coverage are subject to  Low Cost Alternative (LCA) pricing. Please prescribe a fully covered version whenever possible, to save your patient extra expense. 
+ With the launch of Plan NP, the pricing of insulin as a PharmaCare benefit will be regulated under the Drug Price Regulation and subject to the   Maximum Pricing Policy , and subject to the   Full Payment Policy   through an amendment to the   Provider Regulation . 
+ Plan NP dispenses do not count towards the   Fair PharmaCare   deductible or family maximum. 
+ Special Authority 
+ Several Plan NP benefits will continue to require  Special Authority (SA) . Once SA is approved the benefits have 100% coverage, unless LCA pricing applies. SA is no longer required for gliclazide, empagliflozin, empagliflozin/metformin, and insulin glargine (Semglee, Basaglar). 
+ Pharmacists cannot apply for SA for Plan NP benefits, but can draft an SA request for a prescriber to review, sign, and submit. 
+ For the non-benefit insulins listed below , as per  Plan NP Annex A , BC PharmaCare may provide exceptional coverage on a rare, case-by-case basis. 
+ Benefit lists ​ 
+ If a client has a prescription for a Plan NP medication, it is covered. It doesn’t matter what the prescription is for.  Exceptions are   saxagliptin, linagliptin and pioglitazone, which need  Special Authority, and non-benefit insulins. 
+ Insulin can be dispensed to a client with or without a prescription from a prescriber. 
+ Pressing Ctrl+F (or Command+F on a Mac) will let you search the page for specific medications. 
+ Insulins 
+ Metformin 
+ Glyburide 
+ Gliclazide 
+ Dapagliflozin 
+ Empagliflozin 
+ Saxagliptin 
+ Linagliptin 
+ Pioglitazone 
+ Insulins 
+ Insulins covered by Plan NP (full benefit) – Coverage begins March 1, 2026 
+ Ingredient 
+ Product name 
+ DIN 
+ insulin regular porcine 100 U/mL vial 
+ Hypurin Regular Insulin Pork 
+ 2275872 
+ insulin isophane porcine NPH 100 U/mL vial 
+ Hypurin NPH Insulin Isophane Pork 
+ 2275864 
+ short-acting insulin regular (human) 100 U/mL vial 
+ Humulin R 
+ 586714 
+ short-acting insulin regular (human) 100 U/mL insulin pen 
+ Humulin R (KwikPen) 
+ 2415089 
+ short-acting insulin regular (human) 100 U/mL cartridge 
+ Humulin R Cartridge 
+ 1959220 
+ short-acting insulin regular (human) 100 U/mL vial 
+ Novolin ge Toronto 
+ 2024233 
+ short-acting insulin regular (human) 100 U/mL cartridge 
+ Novolin ge Toronto Penfill 
+ 2024284 
+ short-acting insulin regular concentrated 500 U/mL   insulin pen 
+ ENTUZITY KwikPen 
+ 2466864 
+ fast-acting insulin lispro 100 U/mL cartridge 
+ ADMELOG 
+ 2469898 
+ fast-acting insulin lispro 100 U/mL vial 
+ ADMELOG 
+ 2469901 
+ fast-acting insulin lispro 100 U/mL insulin pen 
+ ADMELOG SoloSTAR 
+ 2469871 
+ fast-acting insulin aspart 100 U/mL insulin pen 
+ Kirsty 
+ 2520974 
+ fast-acting insulin aspart 100 U/mL cartridge 
+ TRURAPI 
+ 2506564 
+ fast-acting insulin aspart 100 U/mL insulin pen 
+ TRURAPI 
+ 2506572 
+ fast-acting insulin aspart 100 U/mL vial 
+ TRURAPI 
+ 2529254 
+ fast-acting insulin glulisine 100 U/mL vial 
+ APIDRA 
+ 2279460 
+ fast-acting insulin glulisine 100 U/mL cartridge 
+ APIDRA 
+ 2279479 
+ fast-acting insulin glulisine 100 U/mL insulin pen 
+ APIDRA 
+ 2294346 
+ intermediate-acting insulin human isophane NPH 100 U/mL vial 
+ Humulin N 
+ 587737 
+ intermediate-acting insulin human isophane NPH 100 U/mL cartridge 
+ Humulin N (Cartridge) 
+ 1959239 
+ intermediate-acting insulin human isophane NPH 100 U/mL insulin pen 
+ Humulin N (KwikPen) 
+ 2403447 
+ intermediate-acting insulin human isophane NPH 100 U/mL vial 
+ Novolin ge NPH 
+ 2024225 
+ intermediate-acting insulin human isophane NPH 100 U/mL cartridge 
+ Novolin ge NPH Penfill 
+ 2024268 
+ insulin regular (human) and insulin isophane NPH blend 
+ 30-70/mL vial 
+ Humulin 30/70 (insulin human biosynth INJ) 
+ 795879 
+ insulin regular (human) and insulin isophane NPH blend 
+ 30-70/mL cartridge 
+ Humulin 30/70 Cartridge 
+ 1959212 
+ insulin regular (human) and insulin isophane NPH blend 
+ 30-70/mL vial 
+ Novolin ge 30/70 
+ 2024217 
+ insulin regular (human) and insulin isophane NPH blend 
+ 30-70/mL cartridge 
+ Novolin ge 30/70 Penfill 
+ 2025248 
+ long-acting insulin glargine 100 U/mL cartridge 
+ BASAGLAR 
+ 2444844 
+ long-acting insulin glargine 100 U/mL insulin pen 
+ BASAGLAR 
+ 2461528 
+ long-acting insulin glargine 100 U/mL insulin pen 
+ SEMGLEE 
+ 2526441 
+ Non benefit insulin  
+ For the non-benefit insulins listed below, as per  Plan NP Annex A , BC PharmaCare may provide exceptional coverage on a rare, case-by-case basis. 
+ Non benefit insulin 
+ Ingredient 
+ Product name 
+ DIN 
+ fast-acting insulin lispro 100 U/mL vial 
+ HUMALOG 
+ 2229704 
+ fast-acting insulin lispro 100 U/mL insulin pen 
+ HUMALOG 
+ 2470152 
+ fast-acting insulin lispro 100 U/mL cartridge 
+ HUMALOG   (Cartridge) 
+ 2229705 
+ fast-acting insulin lispro 100 U/mL insulin pen 
+ HUMALOG   (KwikPen) 
+ 2403412 
+ fast-acting insulin aspart 100 U/mL cartridge 
+ NovoRapid 
+ 2244353 
+ fast-acting insulin aspart 100 U/mL vial 
+ NovoRapid 
+ 2245397 
+ Insulin lispro and insulin lispro protamine blend 
+ 25-75/mL cartridge 
+ HUMALOG MIX25   (cartridge) 
+ 2240294 
+ Insulin lispro and insulin lispro protamine blend 
+ 25-75/mL insulin pen 
+ HUMALOG MIX25   (KwikPen) 
+ 2403420 
+ Insulin lispro and insulin lispro protamine blend 
+ 50-50/mL cartridge 
+ HUMALOG MIX50   (cartridge) 
+ 2240297 
+ Insulin lispro and insulin lispro protamine blend 
+ 50-50/mL insulin pen 
+ HUMALOG MIX50   (KwikPen) 
+ 2403439 
+ long-acting insulin glargine 100 U/mL vial 
+ LANTUS 
+ 2245689 
+ long-acting insulin glargine 100 U/mL cartridge 
+ LANTUS 
+ 2251930 
+ long-acting insulin glargine 100 U/mL insulin pen 
+ LANTUS 
+ 2294338 
+ insulin aspart and aspart protamine blend 
+ 30-70/mL cartridge 
+ NovoMix 30 
+ 2265435 
+ Metformin 
+ Metformin covered by Plan NP (full benefit unless otherwise indicated) – Coverage begins March 1, 2026 
+ Ingredient 
+ Product name 
+ DIN  
+ metformin 500 mg tablet 
+ APO-METFORMIN 
+ 2167786 
+ metformin 500 mg tablet 
+ AURO-METFORMIN 
+ 2438275 
+ metformin 850 mg tablet 
+ AURO-METFORMIN 
+ 2438283 
+ metformin 500 mg tablet 
+ GLUCOPHAGE 
+ (partial benefit) 
+ 2099233 
+ metformin 850 mg tablet 
+ GLUCOPHAGE 
+ (partial benefit) 
+ 2162849 
+ metformin 500 mg tablet 
+ JAMP METFORMIN 
+ 2380196 
+ metformin 850 mg tablet 
+ JAMP METFORMIN 
+ 2380218 
+ metformin 500 mg tablet 
+ MAR-METFORMIN 
+ 2378620 
+ metformin 850 mg tablet 
+ MAR-METFORMIN 
+ 2378639 
+ metformin 500 mg tablet 
+ METFORMIN 
+ 2353377 
+ metformin 850 mg tablet 
+ METFORMIN 
+ 2353385 
+ metformin 500 mg tablet 
+ METFORMIN FC 
+ 2385341 
+ metformin 850 mg tablet 
+ METFORMIN FC 
+ 2385368 
+ metformin 500 mg tablet 
+ M-METFORMIN 
+ 2547767 
+ metformin 850 mg tablet 
+ M-METFORMIN    
+ 2547775 
+ metformin 1000 mg tablet 
+ M-METFORMIN    
+ 2548275 
+ metformin 500 mg tablet 
+ MINT-METFORMIN 
+ 2388766 
+ metformin 850 mg tablet 
+ MINT-METFORMIN 
+ 2388774 
+ metformin 500 mg tablet 
+ NRA-METFORMIN 
+ 2536439 
+ metformin 850 mg tablet 
+ NRA-METFORMIN 
+ 2536447 
+ metformin 500 mg tablet 
+ pms-METFORMIN 
+ 2223562 
+ metformin 850 mg tablet 
+ pms-METFORMIN 
+ 2242589 
+ metformin 500 mg tablet 
+ pmsc-METFORMIN 
+ 2520303 
+ metformin 850 mg tablet 
+ pmsc-METFORMIN 
+ 2520311 
+ metformin 500 mg tablet 
+ PRO-METFORMIN 
+ 2314908 
+ metformin 850 mg tablet 
+ PRO-METFORMIN 
+ 2314894 
+ metformin 500 mg tablet 
+ PRZ-METFORMIN 
+ 2531895 
+ metformin 850 mg tablet 
+ PRZ-METFORMIN 
+ 2531909 
+ metformin 1000 mg tablet 
+ PRZ-METFORMIN 
+ 2534673 
+ metformin 500 mg tablet 
+ Sandoz Metformin FC 
+ 2246820 
+ metformin 850 mg tablet 
+ Sandoz Metformin FC 
+ 2246821 
+ metformin 500 mg tablet 
+ SEPTA-METFORMIN 
+ 2379767 
+ metformin 850 mg tablet 
+ SEPTA-METFORMIN 
+ 2379775 
+ metformin 500 mg tablet 
+ Teva-Metformin 
+ 2257726 
+ metformin 850 mg tablet 
+ Teva-Metformin 
+ 2257734 
+ Glyburide 
+ Glyburide covered by Plan NP (full benefit) – Coverage begins March 1, 2026 
+ Ingredient 
+ Product name 
+ DIN 
+ glyburide 2.5 mg tablet 
+ APO GLYBURIDE 
+ 1913654 
+ glyburide 5 mg tablet 
+ APO GLYBURIDE 
+ 1913662 
+ glyburide 2.5 mg tablet 
+ GLYBURIDE 
+ 2350459 
+ glyburide 5 mg   tablet 
+ GLYBURIDE 
+ 2350467 
+ glyburide 2.5 mg tablet 
+ Teva-Glyburide 
+ 1913670 
+ glyburide 5 mg   tablet 
+ Teva-Glyburide 
+ 1913689 
+ Gliclazide 
+ Gliclazide covered by Plan NP (full benefit unless otherwise indicated) – Coverage begins March 1, 2026 
+ Ingredient 
+ Product name 
+ DIN 
+ gliclazide 30 mg modified release tablet 
+ JAMP GLICLAZIDE-MR 
+ 2429764 
+ gliclazide 60 mg modified release tablet 
+ JAMP GLICLAZIDE-MR 
+ 2429772 
+ gliclazide 80 mg tablet 
+ APO-GLICLAZIDE 
+ 2245247 
+ gliclazide 30 mg modified release tablet 
+ APO-GLICLAZIDE MR 
+ 2297795 
+ gliclazide 60 mg modified release tablet 
+ APO-GLICLAZIDE MR 
+ 2407124 
+ gliclazide 30 mg modified release tablet 
+ DIAMICRON MR 
+ (partial benefit) 
+ 2242987 
+ gliclazide 60 mg modified release tablet 
+ DIAMICRON MR 
+ (partial benefit) 
+ 2356422 
+ gliclazide 80 mg tablet 
+ GLICLAZIDE 
+ 2287072 
+ gliclazide 30 mg modified release tablet 
+ GLICLAZIDE MR 
+ 2524856 
+ gliclazide 60 mg modified release tablet 
+ GLICLAZIDE MR 
+ 2524864 
+ gliclazide 30 mg modified release tablet 
+ MINT-GLICLAZIDE MR 
+ 2423286 
+ gliclazide 60 mg modified release tablet 
+ MINT-GLICLAZIDE MR 
+ 2423294 
+ gliclazide 30 mg modified release tablet 
+ MYLAN-GLICLAZIDE MR 
+ 2438658 
+ gliclazide 30 mg modified release tablet 
+ SANDOZ GLICLAZIDE MR 
+ 2461323 
+ gliclazide 60 mg modified release tablet 
+ SANDOZ GLICLAZIDE MR 
+ 2461331 
+ gliclazide 30 mg modified release tablet 
+ TARO-GLICLAZIDE MR 
+ 2463571 
+ gliclazide 60 mg modified release tablet 
+ TARO-GLICLAZIDE MR 
+ 2439328 
+ gliclazide 80 mg tablet 
+ TEVA-GLICLAZIDE 
+ 2238103 
+ Dapagliflozin 
+ Dapagliflozin covered by Plan NP (full benefit unless otherwise indicated) – Coverage begins March 1, 2026 
+ Ingredient 
+ Product name 
+ DIN 
+ dapagliflozin 5 mg tablet 
+ APO-DAPAGLIFLOZIN 
+ 2527189 
+ dapagliflozin 10 mg tablet 
+ APO-DAPAGLIFLOZIN 
+ 2527197 
+ dapagliflozin 5 mg tablet 
+ Auro-Dapagliflozin 
+ 2531402     
+ dapagliflozin 10 mg tablet 
+ Auro-Dapagliflozin 
+ 2531410 
+ dapagliflozin 5 mg tablet 
+ FORXIGA 
+ (partial benefit) 
+ 2435462     
+ dapagliflozin 10 mg tablet 
+ FORXIGA 
+ (partial benefit) 
+ 2435470 
+ dapagliflozin 5 mg tablet 
+ GLN-DAPAGLIFLOZIN 
+ 2519852 
+ dapagliflozin 10 mg tablet 
+ GLN-DAPAGLIFLOZIN 
+ 2519860 
+ dapagliflozin 5 mg tablet 
+ JAMP DAPAGLIFLOZIN 
+ 2531364 
+ dapagliflozin 10 mg tablet 
+ JAMP DAPAGLIFLOZIN 
+ 2531372 
+ dapagliflozin 5 mg tablet 
+ M-DAPAGLIFLOZIN 
+ 2535297 
+ dapagliflozin 10 mg tablet 
+ M-DAPAGLIFLOZIN 
+ 2535300 
+ dapagliflozin 5 mg tablet 
+ NRA-DAPAGLIFLOZIN 
+ 2538334     
+ dapagliflozin 10 mg tablet 
+ NRA-DAPAGLIFLOZIN 
+ 2538342 
+ dapagliflozin 5 mg tablet 
+ pms-DAPAGLIFLOZIN 
+ 2531550     
+ dapagliflozin 10 mg tablet 
+ pms-DAPAGLIFLOZIN 
+ 2531569 
+ dapagliflozin 5 mg tablet 
+ Sandoz Dapagliflozin 
+ 2518732     
+ dapagliflozin 10 mg tablet 
+ Sandoz Dapagliflozin 
+ 2518740 
+ Empagliflozin 
+ Empagliflozin covered by Plan NP (full benefit) – Coverage begins March 1, 2026 
+ Ingredient 
+ Product name 
+ DIN 
+ empagliflozin 10 mg tablet 
+ JARDIANCE 
+ 2443937 
+ empagliflozin 25 mg tablet 
+ JARDIANCE 
+ 2443945 
+ empagliflozin and metformin 5 mg-500 mg tablet 
+ SYNJARDY 
+ 2456575 
+ empagliflozin and metformin 5 mg-850 mg tablet 
+ SYNJARDY 
+ 2456583 
+ empagliflozin and metformin 5 mg-1000 mg tablet 
+ SYNJARDY 
+ 2456591 
+ empagliflozin and metformin 12.5 mg-500 mg tablet 
+ SYNJARDY 
+ 2456605 
+ empagliflozin and metformin 12.5 mg-850 mg tablet 
+ SYNJARDY 
+ 2456613 
+ empagliflozin and metformin 12.5 mg-1000 mg tablet 
+ SYNJARDY 
+ 2456621 
+ Saxagliptin 
+ Saxagliptin covered by Plan NP (Special Authority required) – Coverage begins March 1, 2026 
+ Ingredient 
+ Product name 
+ DIN 
+ saxagliptin 2.5 mg tablet 
+ APO-SAXAGLIPTIN 
+ 2507471 
+ saxagliptin 5 mg   tablet 
+ APO-SAXAGLIPTIN 
+ 2507498 
+ saxagliptin 5 mg   tablet 
+ ONGLYZA 
+ (partial benefit if Special Authority is approved) 
+ 2333554 
+ saxagliptin  2.5 mg tablet 
+ ONGLYZA 
+ (partial benefit if Special Authority is approved) 
+ 2375842 
+ saxagliptin 2.5 mg tablet 
+ Sandoz Saxagliptin 
+ 2468603 
+ saxagliptin 5 mg tablet 
+ Sandoz Saxagliptin 
+ 2468611    
+ saxagliptin and metformin 2.5 mg-500 mg tablet 
+ KOMBOGLYZE 
+ 2389169 
+ saxagliptin and metformin 2.5 mg-850 mg tablet 
+ KOMBOGLYZE 
+ 2389177 
+ saxagliptin and metformin 2.5 mg-1000 mg tablet 
+ KOMBOGLYZE 
+ 2389185 
+ Linagliptin 
+ Linagliptin covered by Plan NP (Special Authority required) – Coverage begins March 1, 2026 
+ Ingredient 
+ Product name 
+ DIN 
+ linagliptin 5 mg tablet 
+ TRAJENTA 
+ 2370921 
+ linagliptin and metformin 2.5 mg-500 mg tablet 
+ JENTADUETO 
+ 2403250 
+ linagliptin and metformin 2.5 mg-850 mg tablet 
+ JENTADUETO 
+ 2403269 
+ linagliptin and metformin 2.5 mg-1000 mg tablet 
+ JENTADUETO 
+ 2403277 
+ Pioglitazone 
+ Pioglitazone covered by Plan NP (Special Authority required) – Coverage begins March 1, 2026 
+ Ingredient  
+ Product name 
+ DIN 
+ pioglitazone 15 mg tablet 
+ ACH-Pioglitazone 
+ 2391600 
+ pioglitazone 30 mg tablet 
+ ACH-Pioglitazone 
+ 2339587 
+ pioglitazone 45 mg tablet 
+ ACH-Pioglitazone 
+ 2339595 
+ pioglitazone 15 mg tablet 
+ APO-PIOGLITAZONE 
+ 2302942 
+ pioglitazone 30 mg tablet 
+ APO-PIOGLITAZONE 
+ 2302950 
+ pioglitazone 45 mg tablet 
+ APO-PIOGLITAZONE 
+ 2302977 
+ pioglitazone 15 mg tablet 
+ JAMP PIOGLITAZONE 
+ 2397307 
+ pioglitazone 30 mg tablet 
+ JAMP PIOGLITAZONE 
+ 2365529 
+ pioglitazone 45 mg tablet 
+ JAMP PIOGLITAZONE 
+ 2365537 
+ pioglitazone 15 mg tablet 
+ MINT-PIOGLITAZONE 
+ 2326477 
+ pioglitazone 30 mg tablet 
+ MINT-PIOGLITAZONE 
+ 2326485 
+ pioglitazone 45 mg tablet 
+ MINT-PIOGLITAZONE 
+ 2326493 
+ pioglitazone 15 mg tablet 
+ TEVA PIOGLITAZONE 
+ 2302861 
+ pioglitazone 30 mg tablet 
+ TEVA PIOGLITAZONE 
+ 2302888 
+ pioglitazone 45 mg tablet 
+ TEVA PIOGLITAZONE 
+ 2302896 
+ pioglitazone 15 mg tablet 
+ TEVA-PIOGLITAZONE 
+ 2274914 
+ pioglitazone 30 mg tablet 
+ TEVA-PIOGLITAZONE 
+ 2274922 
+ pioglitazone 45 mg tablet 
+ TEVA-PIOGLITAZONE 
+ 2274930 
+ Did you find what you were looking for? Yes No The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all Indigenous Peoples - First Nations, Métis, and Inuit - respecting and acknowledging their distinct cultures, histories, rights, laws, and governments. 

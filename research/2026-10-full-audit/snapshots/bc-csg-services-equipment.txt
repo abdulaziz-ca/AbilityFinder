@@ -202,3 +202,138 @@ URL: https://studentaidbc.ca/explore/grants-scholarships/canada-student-grant-se
 - B.C. Supplemental Bursary for Students with Disabilities 
 - B.C. Assistance Program for Students with Disabilities 
 - Canada Student Grant for Students with Disabilities
+=== PAGE: https://www.canada.ca/en/employment-social-development/services/student-financial-aid/student-loan/student-grants/csg/disabilities-service-equipment.html (HTTP 000, 0 chars) [round 2]
+
+
+=== PAGE: https://studentaidbc.ca/explore/grants-scholarships (HTTP 200, 2342 chars) [round 2]
+
+ StudentAid BC 
+ Skip to main content
+ Grants, scholarships, and other financial supports 
+ There are many programs available that can help with the cost of post-secondary education. 
+ The table below is a list of available grants, scholarships and other non-repayable financial supports. Click each program for more information. 
+ Program 
+ Tag 
+ Adult Upgrading Grant 
+ adults 
+ B.C. Access Grant (Full-Time) 
+ full-time, middle-income, low-income 
+ B.C. Access Grant (Part-Time) 
+ part-time, middle-income, low-income 
+ B.C. Access Grant for Deaf Students 
+ students with disabilities 
+ B.C. Access Grant for Students with Disabilities 
+ students with disabilities, full-time 
+ B.C. Assistance Program for Students with Disabilities 
+ students with disabilities, part-time, full-time 
+ B.C. Loan Forgiveness Program 
+ Repayment 
+ B.C. Scholarship Society – Indigenous Students Awards 
+ full-time 
+ B.C. Scholarship Society – International Scholarships 
+ full-time 
+ B.C. Scholarship Society – Transfer Scholarships 
+ full-time 
+ B.C. Supplemental Bursary for Students with Disabilities 
+ students with disabilities, full-time, part-time 
+ Bursary for Full-Time Students – Post-Secondary Education in French 
+ full-time 
+ Canada Student Grant for Full-Time Students 
+ full-time, low-income 
+ Canada Student Grant for Part-Time Students with Dependants 
+ part-time, dependants 
+ Canada Student Grant for Part-Time Studies 
+ part-time 
+ Canada Student Grant for Services and Equipment – Students with Disabilities 
+ students with disabilities 
+ Canada Student Grant for Students with Dependants 
+ dependants, full-time, low-income 
+ Canada Student Grant for Students with Disabilities 
+ students with disabilities, full-time, part-time 
+ Chinese Government Scholarship Program 
+ full-time 
+ Learning Disability Assessment Bursary 
+ students with disabilities 
+ Learning for Future Grant 
+ full-time, part-time 
+ Learning Fund for Young Adults 
+ young adults 
+ Lieutenant Governor’s Medal Program for Inclusion, Democracy and Reconciliation 
+ general 
+ Pacific Leaders Programs for Public Service Employees 
+ full-time, part-time 
+ Provincial Scholarships Program 
+ Grade 12 students 
+ Provincial Tuition Waiver Program 
+ full-time, part-time 
+ The Nurses Education Bursary 
+ full-time 
+ Youth Futures Education Fund 
+ full-time, part-time 
+
+
+=== PAGE: https://studentaidbc.ca/explore/grants-scholarships/canada-student-grant-students-disabilities (HTTP 200, 1043 chars) [round 2]
+
+ Canada Student Grant for Students with Disabilities | StudentAid BC 
+ Skip to main content
+ Canada Student Grant for Students with Disabilities 
+ Back to all programs 
+ This program helps full-time or part-time students with a permanent disability, or a persistent or prolonged disability with the cost of education. 
+ What is available?
+ Am I eligible?
+ How do I apply?
+ What is available? 
+ $2,800* $2,000 per program year (August 1 to July 31). 
+ *Note: the above Canada Student Grant amount is temporarily increased by 40% from 2019/20 pre-pandemic levels until July 31, 2027. 
+ Am I eligible? 
+ You may be eligible if you: 
+ qualify for a federal student loan 
+ are enrolled in full-time or part-time studies at a designated post-secondary institution 
+ have a permanent disability , or a persistent or prolonged disability as defined by the Canada Student Financial Assistance Program 
+ Please see the Canada.ca site for full eligibility requirements. 
+ How do I apply? 
+ Visit How to apply for disability funding to learn more.
+
+
+=== PAGE: https://studentaidbc.ca/explore/grants-scholarships/bc-assistance-program-students-disabilities (HTTP 200, 1235 chars) [round 2]
+
+ B.C. Assistance Program for Students with Disabilities | StudentAid BC 
+ Skip to main content
+ B.C. Assistance Program for Students with Disabilities 
+ Back to all programs 
+ This program helps students with disabilities pay for exceptional education-related services and adaptive equipment. 
+ What is available?
+ Am I eligible?
+ How do I apply?
+ What is available? 
+ Depending on your need, grants of up to $10,000 ($12,000 if an attendant is required at school) are available to students attending public and private post-secondary schools in B.C. 
+ You can only receive this grant when you have used up all available funds through the Canada Student Grant for Services and Equipment – Students with Disabilities (CSG-DSE). 
+ Am I eligible? 
+ You may be eligible if you: 
+ are a student with a permanent disability , or a persistent or prolonged disability ; 
+ are enrolled at a designated private or public post-secondary institution in B.C.; and 
+ are in developmental program/courses (upgrading, English as a Second Language or Accessible Education and Training); or 
+ are studying at the post-secondary level and have exhausted CSG-DSE funding 
+ How do I apply? 
+ Visit How to apply for disability funding to learn more.
+
+
+=== PAGE: https://studentaidbc.ca/explore/grants-scholarships/bc-access-grant-students-disabilities (HTTP 200, 1298 chars) [round 2]
+
+ B.C. Access Grant for Students with Disabilities | StudentAid BC 
+ Skip to main content
+ B.C. Access Grant for Students with Disabilities 
+ Back to all programs 
+ This program helps full-time students with a permanent, or a persistent or prolonged, disability with the cost of education by replacing up to $1,560 ($30 per week of study) per program year of B.C. student loan funding with non-repayable grant funding. 
+ The B.C. Access Grant for Students with Disabilities (BCAG-D) is only available to students attending B.C. public post-secondary schools. 
+ Note: Students enrolled at schools other than a B.C. public school during the 2025/26 program year who received BCAG-D funding for the same program at the same school, may request to continue to receive these grants until their program is complete, or until July 31, 2029, whichever occurs first. 
+ Am I eligible?
+ How do I apply?
+ Am I eligible? 
+ You may be eligible if you: 
+ qualify for federal and provincial student financial aid 
+ are enrolled in a full-time program at a designated public post-secondary school 
+ have a permanent disability , or a persistent or prolonged disability as defined by the Canada Student Financial Assistance Program 
+ How do I apply? 
+ Visit How to apply for disability funding to learn more.
+

@@ -145,3 +145,577 @@ Reduced fares | OC Transpo
  If you don’t have a NOA, other documentation (question #28) can be used to apply. 
  Discounted EquiPass , which costs approximately half the cost of an Adult pass 
  Read More about the EquiPass
+=== PAGE: https://www.octranspo.com/en/fares/reduced-fares/access-pass/ (HTTP 200, 4901 chars) [round 2]
+
+ Access pass | OC Transpo
+ int(1)
+ ["name"]=>
+ string(7) "English"
+ ["abbreviation"]=>
+ string(2) "en"
+ ["force_prefix"]=>
+ string(1) "1"
+ ["enabled"]=>
+ string(1) "1"
+}
+ -->
+ Home
+Fares
+Reduced fares
+Access pass
+ Access pass
+About the Access pass
+The Access pass offers full fare on OC Transpo conventional bus and train services. On Para Transpo trips, the pass will let you save one-third of the single-ride fare. The Access pass is the same price as the Community pass. It can offer savings for Para Transpo customers who also ride OC Transpo bus and train service.
+If you are a Para Transpo customer who never uses OC Transpo, you should not buy the Access pass. The pass will not offer you any savings.
+Access pass eligibility
+In order take advantage of Access discount, you need to:
+ Be a registered Para Transpo customer
+ Live in Ottawa
+Helpful tips for customers
+The Access pass may be a good option if you:
+ Are a Para Transpo customer who uses a combination of OC Transpo and Para Transpo services
+ Only use OC Transpo bus and train services in a given month
+Whether the Access pass offers savings depends on your travel choices each month.
+Best value pass for you
+ Access pass
+ Adult pass
+ You make:
+ Less than 32 trips per month on Para Transpo
+ 13 or more trips per month on OC Transpo
+ You make:
+ 34 or more trips per month on Para Transpo
+You cannot buy an Access pass through ParaPay. Instead, purchase your Access pass on a Presto card. This will allow you to use your pass on OC Transpo buses and the O-Train. Calling an OC Transpo Customer Service Representative is the quickest way to set the Access discount on your card.
+How to use Presto
+Learn how to load money onto your Presto card, register your card, and use your card to ride transit.
+ How to use Presto
+ How to use Presto on Para Transpo
+Fares
+Transit fares effective January 1, 2025
+Per-ride
+ Presto Access
+ $4.10
+Per-month
+ Presto monthly Access pass
+ $43.25
+In the Para Transpo rural zone, Access pass holders must pay a flat-rate of $11.00 (children aged 10 and under ride free).
+Required top-ups
+Access pass holders need to pay a top-up to ride Para Transpo:
+ Access pass per-ride top-up
+ Regular (urban) fare zone
+ $2.75
+How to apply
+Apply by telephoneApply by mail or faxApply in-person
+Apply by telephone
+Tel: 613-560-5000
+ Have the following information ready before starting your telephone application:
+ Para Transpo ID number
+ Registered Presto card number
+ Required information details
+ Call an OC Transpo Customer Service Representative to complete the Access pass discount application process.
+After applying by phone, allow 10 days for your application to be approved. Once approved, your discount will be set automatically.
+Caution: You must either use your Presto card or purchase your monthly pass within 30 days of the approval for the discount to be applied.
+Apply by mail or fax
+OC Transpo: Access pass discount program
+1500 St-Laurent Blvd.
+Ottawa, ON K1G 0Z8
+Allow at least 3 weeks for your application to be processed, plus mailing time. Apply by telephone to set your discount within 10 days.
+Fax: 613-746-7648
+ Fill in the Access pass discount application form:
+ Access pass discount application form
+ Send the following documents to OC Transpo by postal mail or fax. Photocopies will be accepted.
+ Completed Access pass discount application form
+ Registered Presto card number
+Apply in-person
+Apply by telephone to avoid line ups at the Customer Service Centre. Apply in-person if you need to set the Access pass discount the same day as your application.
+ Fill in the Access pass discount application form:
+ Access pass discount application form
+ Bring the following documents with you to an OC Transpo Customer Service Centre. Photocopies will be accepted.
+ Completed Access pass discount application form
+ Valid photo ID or completed Eligible Guarantor Form
+ Registered Presto card number
+ Required information details
+Don’t let your discount expire!
+To make sure you don't lose your discount, call us at least 10 days before the expiration date to renew your Access pass discount.
+Required information
+To complete your Access pass discount application, you will need to provide your:
+ Para Transpo ID number
+ New to Para Transpo? Para Transpo is transit service open to eligible customers who are unable to take conventional transit (buses and O-Train) some or all of the time due to a disability.
+ Presto card number: 17-digit registration number found on the back of Presto cards; or
+ Need to get a Presto card? Presto cards can be purchased and registered online, or at participating locations
+ Valid photo ID: For example, an age of majority card, workplace or volunteer ID card, driver’s licence, or passport.
+ Don't have valid photo ID? You can verify your identity with help from an eligible guarantor. The completed Eligible Guarantor Form must be submitted with your application.
+
+
+=== PAGE: https://www.octranspo.com/en/fares/reduced-fares/community-pass/ (HTTP 200, 2957 chars) [round 2]
+
+ Community pass | OC Transpo
+ int(1)
+ ["name"]=>
+ string(7) "English"
+ ["abbreviation"]=>
+ string(2) "en"
+ ["force_prefix"]=>
+ string(1) "1"
+ ["enabled"]=>
+ string(1) "1"
+}
+ -->
+ Home
+Fares
+Reduced fares
+Community pass
+ Community pass
+About the Community pass
+The Community pass is available to Ontario Disability Support Program (ODSP) recipients and offers a reduced fare on single-ride and monthly passes. With the Community pass, the fare per-ride is about half the cost of a regular fare.
+The Community pass is valid as full fare on all OC Transpo bus routes, the O-Train, and Para Transpo trips. This excludes rural trips. In the rural zone, Community pass holders must pay a flat-rate of $11.00.
+Community pass eligibility
+You are eligible for the Community pass if you:
+ Receive benefits under the Ontario Disability Support Program (ODSP) 
+ Live in Ottawa
+Renewal no longer required
+You no longer need to renew your pass every two years. Once issued, your Community pass will remain valid for as long as you qualify for ODSP or until you turn 65.
+Please make sure to advise OC Transpo at 613‑560‑5000 if your Presto card number changes. Presto cards must be registered in the applicant’s name for the Community pass discount to be renewed.
+Fares
+Transit fares effective January 1, 2026
+Per‑ride
+ Presto Community pass
+ $1.75
+ ParaPay Community pass
+ $1.75
+Per‑month
+ Presto monthly Community pass
+ $43.25
+ ParaPay monthly Community pass
+ $43.25
+How to apply
+Tel: 613-560-5000
+Relay service: 711
+VRS: Canada Video Relay Services
+ Have the following information ready before starting your telephone application:
+ ODSP number
+ Presto card number (registered in the applicant’s name) or Para Transpo ID number, or both
+ Call an OC Transpo Customer Service Representative to complete the Community pass application process.
+After applying by phone, allow 10 days for your application to be approved. Once approved, your Community pass will be set automatically.
+Once approved, you must apply your discount within 30 days by:
+ Buying a monthly pass
+ Querying your card at a ticket machine or a retailer
+Required information
+To complete your Community pass application, you will need to provide your:
+ ODSP number: 9‑digit identification number found on ODSP documents or benefit cheque stubs.
+ Need to get an ODSP number? Contact your local ODSP office for more information.
+You will also need to provide at least one of the following pieces of information:
+ Presto card number: 17‑digit registration number found on the back of Presto cards.
+ The Presto card must be registered in the name of the applicant.
+ Need to get a Presto card? Presto cards can be purchased and registered online, or at participating locations.
+ Para Transpo ID number
+ New to Para Transpo? Para Transpo is a transit service open to eligible customers who are unable to take conventional transit (buses and O‑Train) some or all of the time due to a disability.
+Back to the top
+
+
+=== PAGE: https://www.octranspo.com/en/fares/costs/ (HTTP 200, 3119 chars) [round 2]
+
+ Prices | OC Transpo
+ Home
+Fares
+Prices
+ Prices
+OC Transpo and Para Transpo fares effective July 1, 2026
+The fare is the same for all routes across the OC Transpo network, including the O-Train.
+Per ride
+ Cash
+ $4.15
+ O-Payment
+ $4.10
+ Presto fares
+ Adult
+ $4.10
+ Senior
+ Ages 65+
+ $3.28
+ Pre-Teen
+ Ages 11–12
+ $2.05
+ EquiPass
+ Eligibility for the EquiPass
+ $1.75
+ Community
+ Eligibility for the Community discount
+ $1.75
+ Child
+ Ages 10 & under
+ Free
+ Single-ride fare includes a 90 to 105-minute transfer time on weekdays, evenings and weekends. Transfer time details
+ Seniors ride free on Wednesdays and Sundays. 
+-->
+ Presto fares
+ Adult
+ $4.10
+ Senior
+ Ages 65+
+ $3.28
+ Youth
+ Ages 13–18
+ $4.10
+ Free*
+ Pre-Teen
+ Ages 11–12
+ $2.05
+ Free*
+ EquiPass
+ Eligibility for the EquiPass
+ $1.75
+ Community
+ Eligibility for the Community discount
+ $1.75
+ Child
+ Ages 10 & under
+ Free
+ Single-ride fare includes a 90 to 105-minute transfer time on weekdays, evenings and weekends. Transfer time details
+ Seniors ride free on Wednesdays and Sundays. 
+*Youth & Pre-teens age 11-18 ride for free on OC Transpo buses, trains and Para Transpo, on evenings (after 5 pm), weekends, and holidays! Outside of these times, regular fares apply. Read more about Youth and Pre-teen fares
+Per 1, 3, 5, 7 days
+ 1 day
+ $12.25
+ 3 days
+ $30.75
+ 5 days
+ $49.00
+ 7 days
+ $58.00
+ On weekends and specified holidays, use a 1-day DayPass as a 2-for-1 Pass (details)
+ Applicable for customers aged 11+ (customers aged 10 & under ride for free)
+Don't have a
+Presto card?
+Buy your Presto card for $4.00 online or at an OC Transpo Customer Service Centre or participating Shoppers Drug Mart, Loblaws, and Real Canadian Superstore locations
+ How to purchase, load, and use your Presto card
+Per month
+ Rider
+ Presto / ParaPay
+ Adult
+ $138.50
+ Youth
+ Ages 13–19
+ $104.00
+ -->
+ Senior
+ Ages 65+
+ $59.75
+ EquiPass
+ Eligibility for the EquiPass
+ $58.25
+ Community
+ Eligibility for the Community discount
+ $43.25
+ Access (for OC Transpo routes)
+ Eligibility & conditions for the Access pass
+ $43.25
+Youth monthly pass to be discontinued on September 1
+As of September 1, customers who have a Youth concession set on their Presto card will be charged the price of an Adult monthly pass.
+-->
+Fare capping with Presto
+Tap your Presto card all day on the O-Train, buses, and Para Transpo, and you'll never be charged more than $12.25 — the price of a DayPass.
+Ride all month and you won't be charged more than the price of a monthly pass.
+Don't have a Presto card?
+Buy your Presto card for $4.00 online or at an OC Transpo Customer Service Centre or participating Shoppers Drug Mart, Loblaws, and Real Canadian Superstore locations.
+ How to purchase, load, and use your Presto card
+-->
+Para Transpo rural zone
+ ParaPay / Cash
+ All Riders*
+ $11.00
+ Child Ages 10 & under
+ Free
+ *One-way trip between a rural zone and the urban area
+ Para Transpo fare zone map
+Park & Ride
+ Regular parking permit
+ $31.00
+ Gold parking permit
+ $70.00
+ Park & Ride information
+Bikesecure
+ Key fob
+ $6.00
+ Parking permit
+ $10.00
+ Bikesecure information
+Charters
+Current charter rates
+
+
+=== PAGE: https://www.octranspo.com/en/para-transpo/para-fares/ (HTTP 200, 5510 chars) [round 2]
+
+ Para Transpo fares | OC Transpo
+ Home
+Para Transpo
+Para Transpo fares
+ Para Transpo fares
+Para Transpo service costs the same as trips on buses or the O-Train, making it easy to travel across the system. Para Transpo trips from an urban to rural, or rural to urban location cost extra.
+Your fare allows one support person to ride with you at a time. Support persons must be registered in advance.
+Fare types
+Para Transpo fares effective Jan. 1, 2026
+ Per ride fares
+ Cash
+ $4.15
+ O-Payment
+ $4.10
+ Adult
+ $4.10
+ Senior (ages 65 and up)
+ $3.28
+ Pre-Teen (ages 11-12)
+ $2.05
+ Child (ages 10 and under)
+ Free
+ EquiPass
+ What is EquiPass?
+ $1.75
+ Community
+ What is a Community Pass?
+ $1.75
+ Rural
+ Flat rate
+ $11.00
+Discounted single-ride fares must be paid with a Presto card or with ParaPay. Discounted fares, including Senior fares, cannot be paid by cash. Cash, credit card and debit card payments will be charged the price of an Adult fare (see O-Payment below). O-Payment is not accepted for rural fares.
+ Monthly passes
+ Fare
+ Presto or ParaPay
+ Adults
+ $138.50
+ Youth 13–19
+ $104.00
+-->
+ Seniors 65+
+ $59.75
+ Community
+ $43.25
+ EquiPass
+ $58.25
+ Access
+ (Not available on ParaPay)
+ $43.25
+Exceptions
+ A supplement payment of $2.75 per ride is required by Access pass holders on Para Transpo trips.
+ The a-card is not accepted on Para Transpo.
+Rural fare zones
+Para Transpo Fare Zone Map
+Click to open the map in a preview window.
+Trips from a rural address to another rural address are only offered through the Taxi coupon program.
+Para Transpo Rural Fare Zone Map
+Payment options
+Para Transpo fares can be paid with:
+Presto Cash O-Payment AboutParaPay
+DayPasses and multi-day passes
+Para Transpo customers or their companions can buy a DayPass or multi-day pass to use as regular fare on Para Transpo trips.
+DayPass exception
+ Day Passes apply to regular fares only. They are NOT valid for Para Transpo rural zone fares.
+ You can buy a DayPass on a regular (non-Para) bus or at a ticket machine. You can only buy a multi-day pass at a ticket machine.
+For more information about DayPasses and multi-day passes, visit our Where and how to pay page.
+Presto
+Customers can pay for trips on Para Transpo using a Presto card. Load your Presto card with a monthly pass or load funds to pay per ride.
+Find out more about where to buy a Presto card and how to load it.
+O-Payment: credit card, debit card or mobile wallet
+You can pay with a credit card, debit card or mobile wallet if you are paying an Adult fare only. Register your credit card at o-payment.octranspo.com to view your transaction history.
+You can't use a credit card, debit card or mobile wallet to pay the fare of another person.
+Fare capping
+Both Presto and O-Payment offer automatic fare capping. This means that you will not pay more than the maximum fare amount for a time period, no matter how many trips you take.
+Fare capping with Presto
+Presto offers both daily and monthly fare capping. This means that when you pay for your trip, you will never pay more than the price of a DayPass or price of a monthly pass.
+For rural trips, only the base fare amount counts towards the monthly cap. The base fare is the cost of a single urban trip. When you reach the monthly fare cap, you will still have to pay the difference between the base fare and the rural fare.
+For example: If you have a Senior discount, $3.28 from your rural fare will count towards your monthly cap, but $7.72 will not. ($3.28 + $7.72 = $11.00)
+Fare capping with O-Payment
+O-Payment offers both daily and monthly fare capping. This means that when you pay for your trip with a credit card, debit card or mobile wallet, you will never pay more than the price of a DayPass or Adult monthly pass. You can't pay for rural trips with O-Payment. These trips won't count towards your daily or monthly cap.
+When you pay for a trip by debit card, credit card, or mobile wallet, your daily charges will automatically be capped at the price of a DayPass ($12.25) if you take multiple urban trips in one day. Daily fare capping for urban trips does not apply to fares paid with Presto.
+Rural fares paid with Presto will not be capped, but will be discounted after the daily cap total of a DayPass has been reached.
+For customers who take a mix of urban and rural or all rural trips, $4.10 from every trip fare will count towards the daily cap of $12.25. 
+Once the $4.10 portion of a customer’s fares have totalled $12.25, rural fares will only cost $6.30.
+-->
+Tap Tip!
+Make sure to pay with the same credit card or mobile wallet each time you pay a fare to benefit from daily fare capping.
+Monthly fare capping
+Fares paid with Presto or O-Payment will be capped at the rate of a monthly pass. Discounted fares paid with Presto will be capped at their respective monthly pass rate.
+-->
+For seniors on Para Transpo
+NEW! Seniors age 65 and up who use Para Transpo are eligible for four free trips a month when they use a registered Presto card to pay per trip.
+Your four free monthly trips will be refunded as a Presto credit in the following month.
+The credit cannot be applied to monthly passes. Some seniors who currently buy a monthly pass may choose to start paying per trip instead, to receive the credit.
+There is no action required by customers to receive this credit as long as you already have a Senior discount on your registered Presto card. Be sure to use the same Presto card for all of your Para Transpo trips.
+Registering your Presto card on prestocard.ca
+Back to top 
+
+
+=== PAGE: https://www.octranspo.com/en/fares/payment/presto/ (HTTP 200, 13083 chars) [round 2]
+
+ Use a Presto card | OC Transpo
+ Home
+Fares
+Payment
+Use a Presto card
+ Use a Presto card
+How to buy and load your Presto card?
+Getting and using your Presto card is simple. Follow these three simple steps
+Buy a Presto card
+Get your card online, at stations, or retail locations.
+keyboard_arrow_down 
+Load funds
+Add money online, at a ticket machine, or setup autoload.
+keyboard_arrow_down 
+Use your Presto card
+Tap and go on OC Transpo, the O-Train or Para Transpo.
+keyboard_arrow_down 
+Presto on mobile wallet (Google Pay or Apple Pay)
+block Don't add your Presto card to Apple Wallet or Google Wallet:
+Presto on these apps won't work on OC Transpo buses, fare gates, or Para Transpo.
+ Use O‑Payment instead:
+Just tap your Interac® Debit, Visa, Mastercard, or mobile wallet (Google Pay or Apple Pay) to pay.
+Benefits of using a Presto card
+payment_card
+What exactly is a Presto card? Does it only work on OC Transpo?
+It's a $4.00 reloadable card that never expires, and it covers more than just OC Transpo! You can use it on OC Transpo buses, the O-Train, Para Transpo, and even STO routes and other transit systems across Ontario.
+Everything — (single fares, monthly passes, transfers) is stored right on the same card, which makes travelling super convenient.
+How Presto ensures you always pay the lowest fare?
+When you tap your Presto card, the system automatically tracks your trips and calculates the lowest fare based on how often you ride.
+ Daily fare capping: Tap your Presto card all day on the O-Train, buses, and Para Transpo, and you'll never be charged more than $12.25 — the price of a DayPass.
+ Monthly fare capping: If you ride often, Presto will stop charging you once you reach the cost of a monthly pass. This means you never pay more than necessary.
+ Transfers included
+ Presto remembers if you set a discount and only charges you the correct fare.
+Check out reduced fares
+mintmark
+airline_stops
+What happens if I need to transfer between buses or trains?
+Transfers are totally free! Depending on the time of day, you have 90 or 105 minutes to switch between buses, trains or Para Transpo without paying again.
+Just tap like usual when you board the next ride.
+More about transfer times
+Do I have to line up at a machine to reload it?
+Not at all — you can do everything online. Just go to prestocard.ca or use the official Presto app. You can reload your card, buy passes, set up Autoload and Autorenew, track your trips, and even report a lost or stolen card.
+It's quick and secure.
+autorenew
+Get your Presto card
+Where to buy a Presto card
+You can purchase a Presto card for $4.00 at the following locations:
+ In person at the Rideau OC Transpo Customer Service Centre or:
+ Ticket machines
+ Participating Shoppers Drug Mart, Loblaws and Real Canadian Superstore locations
+ In-person at two No Frills locations*
+ Connor and Kennedy's No Frills (2681 Alta Vista Drive map link)
+ Chris and Samia's No Frills (200 Grant Carman Drive map link)
+ Online at prestocard.ca or by phone at 1‑8‑PRESTO‑123 (1‑877‑378‑6123)
+ It can take up to 7 to 10 business days for your card to ship
+*Limited pilot program started in September 2025. 
+Register your card to protect your balance
+As soon as you receive your card, you should register it at prestocard.ca or complete a paper Presto registration form and mail it to the Presto Customer Service Centre. Registration lets you:
+ Transfer funds to a new card if your card is lost or stolen
+ Access your Transit Usage Report for tax credit purposes
+Set your Presto card for a Community, EquiPass or Access discount
+Before you can take advantage of a Community, EquiPass or Access fare discount for which you qualify, you need to bring your card and proof of eligibility to the Rideau OC Transpo Customer Service Centre. Once you have bought and setup your card, you’re ready to load it.
+Buying a Presto card with an age-based (Pre-teen or Senior) discount
+You can purchase a Presto card set with a Pre-Teen or Senior discount at the Rideau OC Transpo Customer Service Centre (CSC) or a participating Shoppers Drug Mart store. The Pre-Teen discount will appear a Child discount in the Presto system.
+See the complete price list 
+Replacing a lost or stolen card
+If your card is registered, you can transfer your balance to a new card if it gets lost or stolen:
+ Report your card lost or stolen. It can take up to 24 hours for the card to be blocked on the readers. You are responsible for charges during this period.
+ Get a replacement card (card costs $4.00)
+ NEW: Transfer your card balance to another card in your account, a new card you bought online, or a new card you bought in-person.
+ You can only transfer your balance to a new card if:
+ It doesn't have any discounts set or has the same fare type as your current card.
+ Isn't loaded with a monthly pass.
+ Some information on the new card will be overwritten to reflect the information on the old card.
+ More on replacing a Presto car from Prestocard.ca.
+ Transfer your information by phone or online
+ Have your new card number at hand
+Please note that until your new card is active and the transfer is complete, full fares must be paid using cash or O-Payment.
+Load funds to your card
+How to load funds to your Presto card
+Choose from several convenient options to add funds to your Presto card:
+ Online at prestocard.ca
+ By phone at 1-8-PRESTO-123 (1-877-378-6123)
+ In person at the Rideau OC Transpo Customer Service Centre, or at a Ticket Machine and at participating Shoppers Drug Mart stores
+ In-person at two No Frills locations*
+ Connor and Kennedy's No Frills (2681 Alta Vista Drive map link)
+ Chris and Samia's No Frills (200 Grant Carman Drive map link)
+ Download the official PRESTO app (Android, Apple) for a simple, easy way to manage and instantly load your card on the go.
+*Limited pilot program started in September 2025.
+Load funds
+If you load your card online or by phone, you need to load at least $0.05 at a time. Your account can't hold more than $1,000. Card readers on the bus are updated at least three times a day. Be sure to leave enough time for your online purchase to get activated on the buses. Once loaded, you need to tap onto a card reader within 30 days to complete the transaction.
+Autoload your card
+Make sure your card never runs out of money by setting up Autoload:
+ Register your card.
+ Set-up an Autoload contract at prestocard.ca:
+ Choose the balance at which you want to reload
+ Choose the amount that will be loaded at each reload
+ Activate your Autoload contract by tapping onto a reader within 30 days.
+Load a pass onto your Presto card
+You can load a monthly pass onto your card up to 14 days before the start of the month. Before you can ride with your pass, you need to activate it by tapping your card onto a Presto reader on or after the first day of the month. If you have not done so, your monthly pass is not valid and does not count as paid fare.
+Autorenew your pass
+Make sure you always have a pass loaded to your account by setting up Autorenew. Your payments will go through six days before the start of the month. Simply cancel Autorenew before the 20th day of the month to stop the following month’s pass from loading. At the start of the month, you need to tap your card as part of a regular trip to activate the load onto your PRESTO card. Until you have done so, your monthly pass is not valid and does not count as paid fare.
+Use your Presto card
+Tap and go on OC Transpo buses, the O-Train or Para Transpo. It's that simple.
+OC Transpo buses
+How to pay:
+ Board through the front door.
+ Tap your Presto card on the reader.
+ Wait for the green light and beep, then take your seat.
+O-Train
+How to pay:
+ Tap your card at station fare gates.
+ Enter when gates open.
+ Board any train.
+Para Transpo
+Para Transpo minibuses:
+ Tap on the red O-Payment readers. You'll find the reader in the customer area.
+ The reader's screen will turn green to show that the payment is successful.
+On vans and taxis:
+ Hand your card to the driver. They'll tap your card, then return it to you.
+ The reader will make a sound if your payment is successful.
+Using your card on OC Transpo buses and the O-Train
+Once your card is loaded and ready to go, you can use it to pay for your travels. Whether it’s pay per ride or monthly pass, always tap your card when boarding. The readers are located near the doors of buses and on the fare gates at O-Train stations.
+When you tap, Presto will instantly calculate the fare and deduct it from your account as needed.
+ If the screen goes green, your fare was accepted
+ A screen with a yellow exclamation point icon means the reader is rebooting or not ready to accept payment. Please wait before tapping.
+ If a red light goes on and you hear two beeps, the transaction did not go through. If this happens, pay the fare with cash and contact Presto
+If you ride without tapping (and your card isn’t loaded with a valid pass or transfer), you may be fined.
+Tapping every time also helps us better plan our service levels. We review the number of taps on our different routes and factor them in when we develop schedules.
+Using Presto on Para Transpo
+Load your card with a monthly pass or load funds to pay per trip. On minibuses, tap your card on the red readers. On taxis and vans, hand your Presto card to the operator after boarding. The operator will tap your card on the Presto smartcard reader located at the front of the vehicle.
+If you are using a Presto card to pay for a rural trip, make sure to load funds to your card. A monthly pass cannot be used to pay for a rural fare.
+Learn about Para Transpo fares
+Sharing your card
+Lend your monthly pass
+You can share your monthly Presto pass with someone else, who can use it when you aren't. However, if your card is set for a discount (Senior or Pre-teen) you can only lend it to someone else who qualifies. Presto passes loaded with a Community Pass, Access Pass, or EquiPass can't be shared.
+Use your card to pay for a second fare
+If you pay per ride aboard a bus or Para Transpo vehicle, you can use your Presto funds to pay the fares of others you are riding with. Here’s what to do:
+ Board the bus.
+ Let your driver know that you would like to pay an additional fare.
+ On Para Transpo, your companion will not receive a transfer.
+Current system limitations only allow you to pay one fare at a time at the O-Train station using a Presto card. You can purchase a second person’s fare from the vending machine using cash or a credit card.
+Transferring
+The transfer period begins from the time your Presto card is tapped on a fare reader. Depending on the time of day, this period is 90 or 105 minutes long.
+When you pay with a Presto card, you can transfer between buses, the O-Train and Para Transpo vehicles within this transfer period for no additional charge.
+Because Para Transpo trips must be booked 90 minutes apart, most normal trips don't qualify for a transfer.
+Using Presto on STO routes
+You can use your Presto pass and valid transfer to ride on all STO routes, without a fare top-up. Simply tap your card. You can't use your Presto funds to start your trip on an STO route.
+Using Presto with other transit agencies
+Presto cards can be used at transit agencies across Ontario. Visit Presto’s Transit Agency Fares page for a list of participating agencies and their fares.
+Manage your Presto card online
+Managing your Presto account online is simple, secure, and convenient. You can do most tasks at prestocard.ca. Please note: setting up a discount (Senior, Pre-Teen, Community, or Access Pass) must be done in person at approved locations.
+Things you can do on the Presto website:
+ Order and register a new card
+ Load your card or set up Auto-reload
+ Check your balance and travel history
+ View and download your usage report for taxes
+Extra options for registered cards:
+ Update Pre-teen/Senior status and renew discount documents
+ Transfer your balance to a new card if it is lost or stolen
+ Block (hotlist) a lost or stolen card
+ Note: Blocking a lost card takes up to 24 hours. Any fares used during that time can't be refunded.
+You can also download the official PRESTO app (Android, Apple) for a simple, easy way to manage and instantly load your card on the go.
+Manage your Presto card 
+blockPresto on mobile wallet (Google Pay or Apple Pay)
+Presto cards in Apple Wallet or Google Wallet don't work with OC Transpo. They aren't accepted on buses, O‑Train fare gates, or Para Transpo. The Presto app blocks mobile setup to avoid payment issues.
+What to use instead:
+Use your Presto card to access discounted fares or transfer to STO. Or, tap your debit card, credit card, or phone with O‑Payment for adult fares. With O‑Payment, your fare is capped at $12.25 per day and $138.50 per month, after that, you ride free for the rest of the day or month.
+O-Payment
+O-Payment makes taking OC Transpo much easier and faster.
+Pay your fare by tapping with Interac® Debit card, Visa, Mastercard, or Google Pay or Apple Pay mobile wallets at fare readers on buses and fare gates at O-Train stations.
+Learn more about O-Payment
+

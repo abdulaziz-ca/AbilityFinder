@@ -650,7 +650,7 @@ const BENEFIT_VALUES = {
     note: "per loan year; limited to approved service/equipment costs after federal funding is allocated first" },
   "adult-health-benefit": { kind: "coverage", note: "prescriptions, dental, optical, ambulance and diabetes supplies — Alberta publishes no annual dollar value" },
   "child-health-benefit": { kind: "coverage", note: "eligible prescription drugs, basic and preventative dental care and eyeglasses for children in low-income households" },
-  "parking-placard": { kind: "access", note: "low-cost accessible parking permit" },
+  "parking-placard": { kind: "access", note: "accessible parking permit" },
   "ab-service-dog-id-card": { kind: "access", excludeFromEstimate: true,
     note: "Free provincial ID card for a qualified service dog team, mailed in about 2 weeks" },
   "ab-capcc": { kind: "services", excludeFromEstimate: true,
@@ -5198,7 +5198,7 @@ const BENEFITS = [
       "Health coverage for children under 18 in lower-income families. There is also a conditional route for 18- and 19-year-olds still in high school through grade 12.",
     requires: ["achbAge", "ab", "citizenPR", "lowIncome", "achbOlderDependent", "achbFamilyResidencyStatus", "achbCoverageCoordination"],
     note:
-      "The applicant and family members must live in Alberta and be Canadian citizens or permanent residents. Income Support, AISH, the Child and Youth Support Program, and Non-Insured Health Benefits are excluded government coverage. Private plans are used first. They are not exclusions. For services covered by both ACHB and the Canadian Dental Care Plan, claims go to the Canadian Dental Care Plan first.",
+      "The applicant and family members must live in Alberta and be Canadian citizens or permanent residents. Income Support, AISH, and Non-Insured Health Benefits are excluded government coverage. Private plans are used first. They are not exclusions. For services covered by both ACHB and the Canadian Dental Care Plan, claims go to the Canadian Dental Care Plan first.",
     applyText: "Open the official page on alberta.ca",
     applyUrl: "https://www.alberta.ca/alberta-child-health-benefit",
     source: "https://www.alberta.ca/alberta-child-health-benefit",
@@ -5219,7 +5219,7 @@ const BENEFITS = [
         "Declaration AEHB3654 for an eligible 18- or 19-year-old dependent",
       ],
       tips: [
-        "Income Support, AISH, the Child and Youth Support Program, and Non-Insured Health Benefits for First Nations and Inuit are excluded government health-benefit coverage.",
+        "Income Support, AISH, and Non-Insured Health Benefits for First Nations and Inuit are excluded government health-benefit coverage.",
         "Private or other health insurance is not an exclusion. Use it first. ACHB may cover remaining eligible costs.",
         "If you also have the Canadian Dental Care Plan, claims for services covered by both plans go to the Canadian Dental Care Plan first. ACHB may then cover remaining eligible dental costs.",
       ],
@@ -5273,7 +5273,7 @@ const BENEFITS = [
     name: "Disability Parking Placard",
     level: "Alberta",
     category: "Getting around",
-    amount: "Low-cost accessible parking permit",
+    amount: "Accessible parking permit",
     summary:
       "A placard that lets you use accessible parking spaces.",
     requires: ["ab", "abPlacardMobility", "certifier"],
@@ -5284,7 +5284,7 @@ const BENEFITS = [
     source: "https://www.alberta.ca/parking-placard-disabilities",
     detail: {
       about:
-        "A permit that lets you park in designated accessible spaces. Blue placards are for long-term disabilities (valid 5 years); red placards are for temporary ones (3–12 months).",
+        "A permit that lets you park in designated accessible spaces. Long-term placards are for long-term disabilities (valid 5 years); red placards are for temporary ones (3–12 months).",
       steps: [
         "Get the application form and have a medical practitioner complete their section.",
         "Take it to any registry agent (e.g. an AMA centre).",
@@ -5650,7 +5650,7 @@ const BENEFITS = [
     category: "Getting around & recreation",
     amount: "$10.25/month transit pass + 75% off recreation",
     summary:
-      "If you're on AISH, a monthly Grande Prairie transit pass costs $10.25 instead of $74.25. This is the deepest municipal transit discount in the province that we've found.",
+      "If you're on AISH, a monthly Grande Prairie transit pass costs $10.25 instead of $74.25.",
     requires: ["grandeprairie", "municipalProgramEligibility"],
     note:
       "Important: AISH and ADAP recipients are not part of the general Transit Access Program. You get your own, cheaper pass instead ($10.25 vs $37.13). Ask for the AISH pass by name at City Hall.",
@@ -5664,7 +5664,7 @@ const BENEFITS = [
       steps: [
         "For the transit pass: go to City Hall (10205 98 Street) and ask for the AISH monthly pass — bring your AISH documentation.",
         "For recreation: apply separately to the Recreation Access Program, online or in person.",
-        "In-person applications are approved on the spot — about 10 minutes. Online takes about 2 days.",
+        "In-person applications are approved on the spot — about 15 minutes. Online takes about 2 days.",
       ],
       documents: [
         "Proof you receive AISH (or ADAP)",
@@ -5734,7 +5734,7 @@ const BENEFITS = [
       "strathcona",
       "lowIncomeOrDisabilityIncome"
     ],
-    "note": "These programs are based on income, not disability. The income line is roughly $33,675/year for one person. AISH is below that, so it's worth applying.",
+    "note": "These programs are based on income, not disability. The income line is roughly $33,675/year for one person. If your household income is under that, it's worth applying.",
     "applyText": "Open the official page on strathcona.ca",
     "applyUrl": "https://www.strathcona.ca/community-families/affordable-services/subsidized-fares/",
     "source": "https://www.strathcona.ca/community-families/affordable-services/",
@@ -5753,7 +5753,7 @@ const BENEFITS = [
         "New refugee or permanent resident in the first year with no NOA: 3 months of bank statements from a Canadian bank"
       ],
       "tips": [
-        "The County raised its income limits. A refusal from years ago is not a reason to skip re-applying.",
+        "The County adjusts its income limits every year. A refusal from years ago is not a reason to skip re-applying.",
         "Everybody Rides works by changing the fare cap on your Arc card. You keep using the same card."
       ],
       "time": "Ask when you apply — it isn't published.",
@@ -5789,7 +5789,7 @@ const BENEFITS = [
       ],
       tips: [
         "Income up to 25% above the low-income cut-off still gets you the 25% tier. Don't assume you earn too much.",
-        "If you use Access Airdrie (paratransit), ask whether your subsidy applies to it. The program page doesn't say either way, so check.",
+        "If you use Access Airdrie (paratransit), ask about it when you apply. The eligible services list names ACCESS Airdrie, the paratransit service.",
       ],
       time: "Ask when you apply.",
       phone: "City of Airdrie: 403-948-8800 · Community Links: 403-945-3900",
@@ -6305,9 +6305,9 @@ const BENEFITS = [
         "You live in Metro Vancouver.",
         "You have a physical, sensory or cognitive disability that means you cannot use conventional public transit for all trips without assistance.",
       ],
-      note: "TransLink states there is no age or income test.",
+      note: "TransLink states eligibility is not based on advanced age or limited income.",
     },
-    "requiresNote": "You live in Metro Vancouver and have a physical, sensory or cognitive disability that means you cannot use conventional public transit for all trips without assistance. TransLink states no age or income test.",
+    "requiresNote": "You live in Metro Vancouver and have a physical, sensory or cognitive disability that means you cannot use conventional public transit for all trips without assistance. TransLink states eligibility is not based on advanced age or limited income.",
     "note": "This is a Metro Vancouver service. Outside Metro Vancouver, look for BC Transit handyDART instead. Fares shown are current as of July 1, 2026 — TransLink usually changes fares on July 1.",
     "applyText": "Download the HandyDART & HandyCard application",
     "applyUrl": "https://www.translink.ca/handydart",
@@ -6512,7 +6512,7 @@ const BENEFITS = [
       "tips": [
         "Intervention services must come from providers on the RASP registry, or from behaviour interventionists supervised by a RASP professional. Family counselling or therapy providers do not need to be on RASP.",
         "The normal training, travel and equipment limit is 20%, but BC raised it to 50% for the final aligned funding period ending March 31, 2027. Requests must not exceed 50% of a child/youth’s annual funding amount for benefit plans that are 12 months or less. For benefit plans that are 13 months or longer, the limit is 50% on the adjusted portion, with the first 12 months being available at 20%. Families are encouraged to check their TTE balance on MyFamily Services (MyFS) or call Autism Funding to confirm their balance (Toll Free: 1 877 777-3530).",
-        "Approved services and purchases must be delivered by March 31, 2027; direct-payment supporting documents are due May 31, 2027, and final invoices or reimbursement requests are due September 30, 2027",
+        "Approved services and purchases must be delivered by March 31, 2027; direct-payment supporting documents are due May 31, 2027. Submit invoices and reimbursement requests within 6 months of each service or purchase; for those made on March 31, 2027, the last day is September 30, 2027",
         "From July 2026 the ministry contacts Autism Funding families about moving to the new Disability Benefit ($6,500 or $17,000/year). You keep your current funding until your transition date.",
         "These professionals may be eligible to provide family counselling or therapy: Canadian Certified Counsellors, Registered Clinical Counsellors, Registered Marriage and Family Therapists, Registered Psychiatrists, Registered Psychologists, and Registered Social Workers or Registered Clinical Social Workers. Contact Autism Funding or Autism Information Services BC for more information."
       ],
@@ -6572,7 +6572,7 @@ const BENEFITS = [
       "tips": [
         "For ages 6-18, providers do not have to be RASP-listed for every service type. So therapy, tutoring and camps are easier to fund than under the Under-6 program.",
         "The normal training, travel and equipment limit is 20%, but BC raised it to 50% for the final aligned funding period ending March 31, 2027. Requests must not exceed 50% of a child/youth’s annual funding amount for benefit plans that are 12 months or less. For benefit plans that are 13 months or longer, the limit is 50% on the adjusted portion, with the first 12 months being available at 20%. Families are encouraged to check their TTE balance on MyFamily Services (MyFS) or call Autism Funding to confirm their balance (Toll Free: 1 877 777-3530).",
-        "Approved services and purchases must be delivered by March 31, 2027; direct-payment supporting documents are due May 31, 2027, and final invoices or reimbursement requests are due September 30, 2027",
+        "Approved services and purchases must be delivered by March 31, 2027; direct-payment supporting documents are due May 31, 2027. Submit invoices and reimbursement requests within 6 months of each service or purchase; for those made on March 31, 2027, the last day is September 30, 2027",
         "For families with youth aging out (turning 19) before March 31, 2027, requests for travel, training and equipment purchases must not exceed 20%.",
         "Ask your CYSN office about the transition schedule if you have not been contacted by fall 2026"
       ],
@@ -6742,7 +6742,7 @@ const BENEFITS = [
     "name": "At Home Program: Medical Benefits",
     "level": "British Columbia",
     "category": "Health",
-    "amount": "Per-item coverage — wheelchair seating to $9,000, lifts to $8,000, hospital bed to $4,000, scooter to $3,700, dental $700 a year, optical $150 a year, plus 100% of eligible prescription drugs and designated medical supplies through PharmaCare Plan F",
+    "amount": "Per-item coverage — wheelchair seating to $9,000, lifts to $8,000, hospital bed to $4,000, scooter to $3,700, dental $700 a year, optical $150 a year, plus the full cost of eligible prescription drugs through PharmaCare Plan F, which also pays part of the cost of some medical supplies",
     "summary": "Medical equipment, therapies, dental and optical care, medical travel and PharmaCare Plan F for eligible children. See the assessed daily-living, direct nursing care and palliative routes below.",
     "requires": ["bc", "child", "bcMsp", "bcAtHomeMedicalRoute"],
     eligibility: {
@@ -6760,11 +6760,11 @@ const BENEFITS = [
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program/at-home-program-eligibility",
     "source": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program",
     "detail": {
-      "about": "Medical Benefits can cover approved equipment, supplies, therapies, dental, optical, medical travel, and prescription drugs and designated medical supplies at 100% through PharmaCare Plan F. The program must approve many items before they are bought, and coverage ends on the last day of the month the child turns 18.",
-      "aboutList": { "lead": "Medical Benefits can cover approved equipment, supplies, therapies, dental, optical, medical travel, and prescription drugs and designated medical supplies at 100% through PharmaCare Plan F.", "items": ["The program must approve many items before they are bought.", "Coverage ends on the last day of the month the child turns 18.", "Any one of these routes can apply: assessed dependence in at least three of eating, dressing, toileting and washing.", "Eligible for Nursing Support Services direct nursing care: no eligibility assessment is required.", "Palliative route: a palliative condition with life expectancy of up to six months.", "A physician or nurse practitioner must indicate this palliative life expectancy.", "No eligibility assessment is required for this palliative route."] },
+      "about": "Medical Benefits can cover approved equipment, supplies, therapies, dental, optical, medical travel, and, through PharmaCare Plan F, the full cost of eligible prescription drugs and part of the cost of some medical supplies. The program must approve many items before they are bought, and coverage ends on the last day of the month the child turns 18.",
+      "aboutList": { "lead": "Medical Benefits can cover approved equipment, supplies, therapies, dental, optical, medical travel, and, through PharmaCare Plan F, the full cost of eligible prescription drugs and part of the cost of some medical supplies.", "items": ["The program must approve many items before they are bought.", "Coverage ends on the last day of the month the child turns 18.", "Any one of these routes can apply: assessed dependence in at least three of eating, dressing, toileting and washing.", "Eligible for Nursing Support Services direct nursing care: no eligibility assessment is required.", "Palliative route: a palliative condition with life expectancy of up to six months.", "A physician or nurse practitioner must indicate this palliative life expectancy.", "No eligibility assessment is required for this palliative route."] },
       "steps": ["Complete the At Home Program application with a doctor or nurse practitioner", "Attach the requested identification and functional assessments; children under 3 will be asked for extra supporting information", "Send the application to the regional At Home Program office listed by the province", "Take part in the in-home assessment of eating, dressing, toileting and washing if one is required", "Wait for the written decision, then work with the CYSN worker or Medical Benefits branch before purchasing covered equipment or services"],
       "documents": ["Completed At Home Program application with parent and medical-professional sections", "Identification for the child and parent or guardian", "Child's Personal Health Number and proof of active MSP", "Requested functional assessments such as Vineland-3, PEDI-CAT or GMFCS, when applicable"],
-      "tips": ["Families in current pilot areas use a different Medical Benefits application route. Check the official page for your community.", "Do not buy equipment, dental, optical or travel first when pre-approval is required", "Start adult PWD planning about six months before the child's 18th birthday", "PharmaCare Plan F is not a separate application. Once your child gets full benefits or medical benefits through the At Home Program, MCFD sends their information to PharmaCare. The drug coverage then follows automatically.", "Plan F covers designated medical supplies at 100%, as well as prescription drugs. Before you keep buying a supply yourself, ask the At Home Program or your pharmacist if it is on the designated list."],
+      "tips": ["Families in current pilot areas use a different Medical Benefits application route. Check the official page for your community.", "Do not buy equipment, dental, optical or travel first when pre-approval is required", "Start adult PWD planning about six months before the child's 18th birthday", "PharmaCare Plan F is not a separate application. Once your child gets full benefits or medical benefits through the At Home Program, MCFD sends their information to PharmaCare. The drug coverage then follows automatically.", "Drugs are fully paid, but supplies such as syringes or glucose monitors are only partly paid, so ask what you will owe. Before you keep buying a supply yourself, ask the At Home Program or your pharmacist if it is on the designated list."],
       "time": "Assessment and regional review follow a complete application; no guaranteed timeline is published",
       "phone": "Medical Benefits: 1-888-613-3232"
     }
@@ -6805,7 +6805,7 @@ const BENEFITS = [
       "atHomeProgram"
     ],
     "requiresNote": "School-aged children and youth enrolled in the At Home Program",
-    "note": "SAET families were among the first moved to the new B.C. Children and Youth Disability Benefit. This began April 1, 2026. It started with children already in the At Home Program, autism funding and other children-and-youth-with-support-needs services. Therapies remain an approved use of the new benefit. SAET stays available until March 31, 2027, or until your child transitions, whichever comes first. All SAET authorizations are being updated to match that end date. New families are told to keep using the current pathways for now. The new benefit is fully operational provincewide from April 1, 2027. Ask AHP Medical Benefits which stream applies to your child.",
+    "note": "Children enrolled in and still eligible for the At Home Program transition first to the new B.C. Children and Youth Disability Benefit during the April 2026–March 2027 phase. Therapies remain an approved use of the new benefit. SAET stays available until March 31, 2027, or until your child transitions, whichever comes first. All SAET authorizations are being updated to match that end date. New families are told to keep using the current pathways for now. The new benefit is fully operational provincewide from April 1, 2027. Ask AHP Medical Benefits which stream applies to your child.",
     "applyText": "Request through AHP Medical Benefits",
     "applyUrl": "https://www2.gov.bc.ca/gov/content/health/managing-your-health/child-behaviour-development/support-needs/complex-health-needs/at-home-program/medical-benefits",
     "source": "https://www2.gov.bc.ca/assets/gov/family-and-social-supports/children-teens-with-support-needs/at_home_program_guide.pdf",
@@ -6833,7 +6833,7 @@ const BENEFITS = [
       "tips": [
         "The therapist who requests services must work with the school-based therapy team so services do not overlap",
         "Sequential therapy blocks (one goal at a time) are preferred over running everything at once",
-        "If your child moved to the Disability Benefit in April 2026, pay for the same therapies from the new $6,500/$17,000 allocation instead",
+        "If your child has transitioned to the Disability Benefit, ask which therapies can be paid from the $6,500/$17,000 annual allocation instead",
         "Exceptions to the annual maximum are considered for post-surgical rehab. Ask for an exception."
       ],
       "time": "Requests reviewed by AHP Medical Benefits; SAET recipients transitioned to the Disability Benefit starting April 2026.",
@@ -6855,16 +6855,16 @@ const BENEFITS = [
         "You are an adult 19 or older with significantly impaired intellectual and adaptive functioning that began before age 18.",
         "Under the PSI stream, you are an adult with an FASD or autism spectrum diagnosis plus significant adaptive-functioning limitations.",
       ],
-      note: "You can apply from age 16, and supports continue beyond 65.",
+      note: "You can apply from age 16, and supports can be life-long.",
     },
-    "requiresNote": "Adults 19+ with significantly impaired intellectual and adaptive functioning that began before age 18; or, under the PSI stream, adults with an FASD or autism spectrum diagnosis plus significant adaptive-functioning limitations. Apply from age 16; supports continue beyond 65",
+    "requiresNote": "Adults 19+ with significantly impaired intellectual and adaptive functioning that began before age 18; or, under the PSI stream, adults with an FASD or autism spectrum diagnosis plus significant adaptive-functioning limitations. Apply from age 16; supports can be life-long",
     "note": "There are two eligibility streams. Developmental Disability needs a psychologist's cognitive and adaptive assessments. The Personalized Supports Initiative needs an FASD or ASD diagnosis plus significant daily-living limitations. You do not need an intellectual disability for this stream. These assessments are sometimes already done when you were in school, so ask before arranging new ones.",
     "applyText": "Check CLBC eligibility",
     "applyUrl": "https://www.communitylivingbc.ca/who-does-clbc-support/eligible-clbc-support/",
     "source": "https://www.communitylivingbc.ca/what-support-is-available/",
     "detail": {
       "about": "Services are delivered through a network of contracted agencies and planned individually with a CLBC facilitator.",
-      "coversList": { "lead": "CLBC funds and coordinates:", "items": ["Residential supports (living in your own place, shared living/home sharing with a contracted family, or staffed homes)", "Employment support to find and keep a job", "Community inclusion and connection programs", "Skill development", "Respite for families", "Wellness supports for daily responsibilities", "Behavioural support", "The Provincial Assessment Centre's mental-health services for people 14+ with developmental disabilities"] },
+      "coversList": { "lead": "CLBC funds and coordinates:", "items": ["Residential supports (living in your own place, shared living/home sharing with a contracted family, or staffed homes)", "Employment support to find and keep a job", "Community inclusion and connection programs", "Skill development", "Respite for families", "Wellness supports for daily responsibilities", "Behavioural support"] },
       "steps": ["From age 16, ask your MCFD/CYSN worker about transition planning to CLBC", "Contact your nearest CLBC office (1-877-660-2522) — a facilitator explains the required documents and approved assessors", "Submit assessments and forms completed by an approved professional (registered psychologist for the DD stream); school-years assessments may be reusable", "Once eligibility is confirmed, attend the CLBC Welcome Workshop series and work with your facilitator on a support plan", "CLBC connects you to funded services based on the plan and available resources"],
       "documents": ["Cognitive/psychoeducational assessment by a registered psychologist (DD stream)", "Adaptive functioning assessment completed by an approved professional", "Confirmed FASD or autism spectrum diagnosis for the PSI stream", "CLBC eligibility forms completed by approved professionals"],
       "tips": ["Start at 16, because assessments and planning take time. What funded support you get, and when, depends on how urgent your situation is and the funding CLBC has at the time of your request.", "If you were assessed in school, ask the school district for copies. You may not need a new assessment.", "Not eligible under the DD stream? Ask specifically about the Personalized Supports Initiative (PSI)", "Respite or equivalent funding is commonly the first service offered to families of transitioning youth. Ask your facilitator what is available in your region.", "Adults on CLBC services usually also qualify for BC PWD disability assistance. Apply for both."],
@@ -6923,7 +6923,7 @@ const BENEFITS = [
       ],
     },
     "requiresNote": "You must qualify for a federal student loan, study full-time or part-time at a designated institution, have a verified permanent or persistent/prolonged disability, and have exceptional education-related costs caused by your disability.",
-    "note": "This grant is on top of the $2,800 Canada Student Grant for Students with Disabilities. If you use up the full $20,000 and still have costs, the B.C. Assistance Program for Students with Disabilities can add up to $10,000-$12,000 more.",
+    "note": "This grant adds to the Canada Student Grant for Students with Disabilities ($2,800 a year until July 31, 2027). If costs remain after the full $20,000, B.C.'s Assistance Program for Students with Disabilities can add up to $10,000-$12,000.",
     "applyText": "Apply through StudentAid BC",
     "applyUrl": "https://studentaidbc.ca/apply/how-to-apply-disability-funding",
     "source": "https://studentaidbc.ca/explore/grants-scholarships/canada-student-grant-services-and-equipment-students-disabilities",
@@ -7137,7 +7137,7 @@ const BENEFITS = [
     "name": "B.C. Home Owner Grant — additional grant for people with disabilities",
     "level": "British Columbia",
     "category": "Tax",
-    "amount": "For 2026, up to $845 in the Capital, Fraser Valley and Metro Vancouver regional districts, or up to $1,045 elsewhere in B.C.",
+    "amount": "For 2026, up to $845, or up to $1,045 in a northern and rural area",
     "summary": "A larger property tax grant for B.C. homeowners with a disability, or who live with a relative who has one. It reduces the property tax you owe; it is not a payment.",
     "requires": ["bc", "homeowner", "bcHomeOwnerGrantDisabilityRoute"],
     "eligibility": {
@@ -7154,8 +7154,8 @@ const BENEFITS = [
     "applyUrl": "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/home-owner-grant/person-with-disabilities",
     "source": "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/annual-property-tax/home-owner-grant/person-with-disabilities",
     "detail": {
-      "about": "The home owner grant lowers the property tax on your principal residence. The regular grant for 2026 is up to $570 in the Capital, Fraser Valley and Metro Vancouver regional districts and up to $770 elsewhere. If you are a person with a disability, or you live with a relative who has one, the additional grant raises that to up to $845 and up to $1,045. The 2026 grant threshold is an assessed value of $2,075,000, and the grant is reduced by $5 for each $1,000 of assessed value above it. For Option B (the daily-living or structural-modification route), a health professional must certify on Form B (FIN 74) that the person has a severe mental or physical impairment likely to continue for at least two years. If your assessed value is above the threshold, a separate low income grant supplement may apply when adjusted net income is $32,000 or less.",
-      "aboutList": { "lead": "The home owner grant lowers the property tax on your principal residence.", "items": ["The regular grant for 2026 is up to $570 in the Capital, Fraser Valley and Metro Vancouver regional districts and up to $770 elsewhere.", "If you are a person with a disability, or you live with a relative who has one, the additional grant raises that to up to $845 and up to $1,045.", "The 2026 grant threshold is an assessed value of $2,075,000, and the grant is reduced by $5 for each $1,000 of assessed value above it.", "Option B is the daily-living or structural-modification route.", "For Option B, Form B (FIN 74) requires health-professional certification of a severe mental or physical impairment likely to continue for at least two years.", "If your assessed value is above the threshold, a separate low income grant supplement may apply when adjusted net income is $32,000 or less."] },
+      "about": "The home owner grant lowers the property tax on your principal residence. For 2026 the regular grant is up to $570, plus an extra $200 for northern and rural properties; from January 1, 2027 it is $570 everywhere. If you are a person with a disability, or you live with a relative who has one, the additional grant raises that to up to $845, or up to $1,045 in a northern and rural area. The 2026 grant threshold is an assessed value of $2,075,000, and the grant is reduced by $5 for each $1,000 of assessed value above it. For Option B (the daily-living or structural-modification route), a health professional must certify on Form B (FIN 74) that the person has a severe mental or physical impairment likely to continue for at least two years. If your assessed value is above the threshold, a separate low income grant supplement may apply when adjusted net income is $32,000 or less.",
+      "aboutList": { "lead": "The home owner grant lowers the property tax on your principal residence.", "items": ["For 2026 the regular grant is up to $570, plus an extra $200 for northern and rural properties; from January 1, 2027 it is $570 everywhere.", "If you are a person with a disability, or you live with a relative who has one, the additional grant raises that to up to $845, or up to $1,045 in a northern and rural area.", "The 2026 grant threshold is an assessed value of $2,075,000, and the grant is reduced by $5 for each $1,000 of assessed value above it.", "Option B is the daily-living or structural-modification route.", "For Option B, Form B (FIN 74) requires health-professional certification of a severe mental or physical impairment likely to continue for at least two years.", "If your assessed value is above the threshold, a separate low income grant supplement may apply when adjusted net income is $32,000 or less."] },
       "steps": ["Read the eligibility page for people with disabilities", "If you qualify through disability assistance, no health professional form is needed and you may optionally file Form FIN 81, Home Owner Grant Consent for Release of Information", "If you qualify on the daily-living or structural-modification route, have a health professional complete Form B (FIN 74), Certificate of Health Professional and Property Owner, with your first application", "Apply for the grant each year, through the province rather than your municipality"],
       "documents": ["Form B (FIN 74), Certificate of Health Professional and Property Owner, for the daily-living or structural-modification route on a first application", "Optionally Form FIN 81, Home Owner Grant Consent for Release of Information", "Your property tax notice"],
       "tips": ["You must apply every year, the grant is not automatic", "You must still pay at least $100 in property taxes", "The higher northern and rural amount ends January 1, 2027"],
@@ -7208,12 +7208,12 @@ const BENEFITS = [
         "The home is the principal residence of the owner(s) and of the person needing the adaptations.",
         "Your combined household assets are less than $100,000, not counting the value of the home being adapted.",
         "Your combined annual gross household income is less than $146,270.00.",
-        "Everyone who owns the home, and the person needing the adaptations, is a Canadian citizen, authorized to take up permanent residence in Canada, or a Convention refugee, and not under private sponsorship."
+        "Everyone who owns the home, and the person needing the adaptations, is a Canadian citizen, a permanent resident of Canada, a refugee sponsored by the Government of Canada, or someone who has applied for refugee status, and not under sponsorship."
       ],
       "note": "BC Housing also checks your community together with the assessed value of the home, so there is no single home-value cutoff. For this program \"household\" means the owner(s) plus any relative permanently living in the home. Some adaptations need an assessment from an occupational therapist or physical therapist."
     },
-    "requiresNote": "You or someone in your household must have a permanent disability or loss of physical ability, and the home must be the principal residence of the owner(s) and of the person needing the adaptations. Your combined household assets must be less than $100,000, not counting the value of the home being adapted, and your combined annual gross household income must be less than $146,270.00. BC Housing also checks your community together with the assessed value of the home, so there is no single home-value cutoff. Everyone who owns the home, and the person needing the adaptations, must be a Canadian citizen, authorized to take up permanent residence in Canada, or a Convention refugee, and not under private sponsorship. For this program \"household\" means the owner(s) plus any relative permanently living in the home. Some adaptations need an assessment from an occupational therapist or physical therapist.",
-    "note": "Adaptations completed before BC Housing gives written approval are not eligible for a rebate. Once approved you have 180 days to finish the work.",
+    "requiresNote": "You or someone in your household must have a permanent disability or loss of physical ability, and the home must be the principal residence of the owner(s) and of the person needing the adaptations. Your combined household assets must be less than $100,000, not counting the value of the home being adapted, and your combined annual gross household income must be less than $146,270.00. BC Housing also checks your community together with the assessed value of the home, so there is no single home-value cutoff. Everyone who owns the home, and the person needing the adaptations, must be a Canadian citizen, a permanent resident of Canada, a refugee sponsored by the Government of Canada, or someone who has applied for refugee status, and not under sponsorship. For this program \"household\" means the owner(s) plus any relative permanently living in the home. Some adaptations need an assessment from an occupational therapist or physical therapist.",
+    "note": "Adaptations completed before BC Housing gives written approval are not eligible for a rebate, except emergency adaptations required before hospital release. Once approved you have 180 days to finish the work.",
     "applyText": "Apply for BC RAHA",
     "applyUrl": "https://www.bchousing.org/housing-assistance/BC-RAHA",
     "source": "https://www.bchousing.org/housing-assistance/BC-RAHA",
@@ -25466,16 +25466,14 @@ const BENEFIT_VERIFIED = {
   // against the supplied official pages on 2026-10-14; month granularity.
   "waterloo-ontario-renovates": "2026-10", "waterloo-homemaking-support": "2026-10",
   "waterloo-curbside-waste-support": "2026-10",
-  "grt-affordable-transit": "2026-09", "grt-cnib-pass": "2026-10",
-  "grt-mobilityplus": "2026-09", "grt-taxi-coupons": "2026-10",
+  "grt-cnib-pass": "2026-10",
+  "grt-taxi-coupons": "2026-10",
   "grt-support-person": "2026-10",
   // Toronto municipal records, verified against the City of Toronto's own pages
   // on 2026-09-04.
   "toronto-fair-pass": "2026-10", "toronto-welcome-policy": "2026-10",
   "brampton-activeassist": "2026-10", "hamilton-fare-assist": "2026-09",
-  "windsor-affordable-pass": "2026-09", "windsor-recreation-assistance": "2026-09",
-  "ottawa-community-pass": "2026-09", "ottawa-access-pass": "2026-09",
-  "ottawa-equipass": "2026-09", "ottawa-a-card": "2026-10",
+  "ottawa-a-card": "2026-10",
   "york-region-homemakers": "2026-10", "york-region-recreation-subsidies": "2026-10",
   // Ontario province-level records, each verified against its official ontario.ca
   // page on 2026-09-04. Month granularity only — no fabricated day.
@@ -25485,22 +25483,20 @@ const BENEFIT_VERIFIED = {
   dtc: "2026-07", aish: "2026-07", adap: "2026-07",
   "adult-health-benefit": "2026-07",
   ramp: "2026-07",
-  "parking-placard": "2026-07",
   "ab-service-dog-id-card": "2026-10", "ab-special-needs-housing": "2026-10",
   "canmore-affordable-services": "2026-10", "cochrane-connect-card": "2026-10",
   "fortsask-access": "2026-10",
   "lloydminster-recreation-access": "2026-10", "okotoks-fee-assistance": "2026-10",
   "sprucegrove-low-income-transit": "2026-10",
   "bc-access-grant-students-disabilities": "2026-10",
-  "bc-assistance-program-students-disabilities": "2026-07", "bc-at-home-saet": "2026-07",
-  "bc-autism-funding-6-18": "2026-07", "bc-autism-funding-under-6": "2026-07",
-  "bc-bus-pass": "2026-10", "bc-clbc": "2026-07", "bc-csg-services-equipment": "2026-07",
+  "bc-assistance-program-students-disabilities": "2026-07",
+  "bc-autism-funding-under-6": "2026-07",
+  "bc-bus-pass": "2026-10",
   "bc-csg-students-disabilities": "2026-10", "bc-cy-disability-benefit": "2026-10",
   "bc-disability-assistance-pwd": "2026-07",
   "bc-home-reno-tax-credit": "2026-10",
   "bc-pharmacare-plan-g": "2026-10", "bc-pharmacare-plan-p": "2026-10", "bc-supplemental-bursary-students-disabilities": "2026-10",
   "bc-workbc-assistive-technology": "2026-10",
-  "kamloops-arch": "2026-07",
   // 2026-10 additions (same review, VERIFIED-DATES-2026-10-17.md):
   "csg-disability": "2026-10", "csg-dse": "2026-10", "taxi-saver-bctransit": "2026-10",
   "home-accessibility-tax-credit": "2026-10", "fscd": "2026-10", "ab-grant-disability": "2026-10",
@@ -25552,4 +25548,31 @@ const BENEFIT_VERIFIED = {
   "bc-fnha-health-benefits": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
   "victoria-life": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
   "bc-sales-tax-credit": "2026-10", // re-verified 2026-10-19 (full audit; fresh official snapshot, research/2026-10-full-audit/rv)
+  "bc-at-home-saet": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "pdd": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "parking-placard": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "child-health-benefit": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "grt-affordable-transit": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "ottawa-access-pass": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "handydart-translink": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "grt-mobilityplus": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "ottawa-equipass": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "handycard-translink": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "odsp": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "bc-property-tax-deferment-disabilities": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "bc-autism-funding-6-18": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "grandeprairie-aish-pass": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "bc-medical-transportation": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "local-supports": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "bc-healthy-kids": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "bc-fair-pharmacare": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "windsor-affordable-pass": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "windsor-recreation-assistance": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "calgary-fair-entry": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "strathcona-subsidy": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "bc-csg-services-equipment": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "bc-additional-home-owner-grant": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "kamloops-arch": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "ottawa-community-pass": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
+  "bc-clbc": "2026-10", // re-verified 2026-10-19 (full audit round 2; official secondary pages, research/2026-10-full-audit/rv)
 };

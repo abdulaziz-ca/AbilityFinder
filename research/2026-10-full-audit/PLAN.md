@@ -38,3 +38,10 @@ redesign. Work continues across usage resets; this file is the resume point.
 - 2026-10-20: Phase 4 baseline (live v228, `D-perf.js`, iPhone 13 profile, 4x CPU): FCP 960 ms, LCP 1256 ms,
   ready 1458 ms, results render 142 ms (AB) / 72 ms (ON), browse-all 191 ms. Payload: data.js 284 KB br of
   ~470 KB total JS br. Biggest win left is network: per-province data split.
+- 2026-10-20: Phase 3 phones: all 36 phone numbers in ORGS_DIRECTORY, GRANTS_DIRECTORY and HELP_ORGS appear on
+  the organization's own site (31 by curl, 5 JS-rendered sites in the browser pane): `phone-check.tsv`. Links for
+  all 141 directory entries were already in the Phase 1 sweep (no 404s). Directory wording was reviewed on
+  2026-10-16/19 (`research/reverify/REPORT-2026-10-19-directories.md`); the SK–QC entries were built this month.
+- 2026-10-20: pass 1 shipped as 7c0e3a02 (v229): 44 records to 2026-10 (13 federal + 31 AB/BC/ON). Round 2 for the
+  39 kept records: `rv/ROUND2-BRIEF.md`, reviewers fetch the official secondary pages (fare tables, rate pages)
+  and append them to the snapshots; outputs `rv/r2-out-<n>.json`.
