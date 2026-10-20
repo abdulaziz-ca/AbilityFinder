@@ -45,3 +45,15 @@ redesign. Work continues across usage resets; this file is the resume point.
 - 2026-10-20: pass 1 shipped as 7c0e3a02 (v229): 44 records to 2026-10 (13 federal + 31 AB/BC/ON). Round 2 for the
   39 kept records: `rv/ROUND2-BRIEF.md`, reviewers fetch the official secondary pages (fare tables, rate pages)
   and append them to the snapshots; outputs `rv/r2-out-<n>.json`.
+- 2026-10-20: round 2 shipped as 59d97af2 (v230): 27 more records to 2026-10 (71 of 83 in total). Left at older dates on
+  purpose (likely-true facts not on any fetchable page, kept rather than deleted): hamilton-fare-assist,
+  bc-disability-assistance-pwd, adult-health-benefit, aish, bc-raha, bc-autism-funding-under-6, airdrie-fair-access,
+  adap, bc-at-home-medical, plus handydart-bctransit (bad snapshot) and bc-assistance-program-students-disabilities,
+  vancouver-leisure-access (blocked figures).
+- 2026-10-20: Phase 4 measured on the network: Fast 3G ready 4.19 s, 720 KB transferred, data.js 373 KB as served
+  (Cloudflare brotli is about level 4; our own q11 would be 284 KB, but serving pre-compressed files needs the Worker
+  in the asset path, which spends the free-plan request quota, so it was rejected). Spec: `SPEED-SPEC.md`
+  (per-province packs generated from data.js, kill switch). Codex (medium) is building it on branch `speed-packs`.
+- 2026-10-20: Phase 5 survey: app.js has 203 functions and 127 top-level consts, and only `hasAnyDisability` is unused.
+  Remove it after the speed branch merges. The CSS is 24 KB br; a coverage-based prune risks the live design and
+  waits for the redesign.
