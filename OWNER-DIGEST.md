@@ -6,6 +6,32 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-20 — Full audit: accuracy pass on the older programs
+
+### Shipped
+- **71 older programs re-checked** (federal, Alberta, BC, Ontario: the ones last reviewed July–September) against
+  fresh copies of their official pages, including the fare tables and rate pages they depend on. They now show
+  October 2026 review dates. Commits 7c0e3a02 (`?v=229`) and 59d97af2 (`?v=230`).
+- Real corrections found: London Ontario Renovates closes **October 30, 2026**; Red Deer recreation does not accept
+  GIS as proof; Ottawa Hand in Hand's full proof list; BC Plan F pays only part of medical supplies; the BC home
+  owner grant's $200 northern/rural top-up ends January 1, 2027; Community Living BC no longer runs the Provincial
+  Assessment Centre; Grande Prairie in-person approval is about 15 minutes; several "up to"/"may" hedges restored.
+- All 36 phone numbers in the help directories still appear on each organization's own site.
+
+### Verified how
+- Codex (gpt-6.1-sol, low) and Sonnet (low) reviewed in parallel batches; I checked every quoted sentence against
+  the saved official text and every bump figure by figure before applying anything. About a third of proposed
+  deletions were rejected (e.g. one reviewer missed BC's autism transition page and wanted to delete true dates).
+- Unit tests 239/239 and the eligibility oracle pass before each push; CI and the live version checked after.
+
+### Decisions we made for you
+- A fact that is probably true but not on any page we could fetch was **kept, not deleted**; that record simply
+  keeps its older review date (9 records: Hamilton, BC PWD, Alberta Adult Health Benefit, AISH, RAHA, Autism
+  under-6, Airdrie, ADAP, BC At Home medical). Hamilton stays because the city still prints a limit as "$74.109".
+
+### Needs you
+- Nothing. Next: speed (load only the chosen province's programs; about 200 KB less on a first visit).
+
 ## 2026-10-18 — Quebec tax credits and RAMQ programs added
 
 ### Shipped
