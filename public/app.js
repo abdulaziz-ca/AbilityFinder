@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "232";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "233";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -221,7 +221,6 @@ const isLooking = () => has(answers.situation, "looking");
 const isUnableToWork = () => has(answers.situation, "unableToWork");
 const lowIncome = () => answers.income === "low";
 const hasDisability = (v) => has(answers.disabilities, v);
-const hasAnyDisability = (list) => list.some((v) => hasDisability(v));
 const hasFunctionalNeed = (v) => has(answers.functionalNeeds, v);
 const functionalNeedUnknown = () => hasFunctionalNeed("unsure");
 const hasCircumstance = (v) => has(answers.circumstances, v);
