@@ -8011,7 +8011,9 @@ function renderBrowse() {
       .map((d) => browseChip(browseDis === d.value, d.value, d.label, "bdis")))
     .join("");
   const needChips = [browseChip(browseNeed === "all", "all", t("browse.need.any"), "bneed")]
-    .concat(BROWSE_NEEDS.map((need) => browseChip(
+    // Offer only needs that at least one program is aimed at; a chip whose only
+    // message is "no program is aimed at this" is noise. Nothing is hidden.
+    .concat(BROWSE_NEEDS.filter((need) => need === browseNeed || browseCatalog().some((b) => isNeedSpecific(b, need))).map((need) => browseChip(
       browseNeed === need, need, t(BROWSE_NEED_LABEL_KEYS[need]), "bneed")))
     .join("");
   // Say the true thing rather than quietly hiding potentially useful benefits.
