@@ -6,6 +6,26 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-20 — Visitor statistics on (Cloudflare Web Analytics)
+
+### Shipped
+- At your request, AbilityFinder now counts visits with **Cloudflare Web Analytics** (`?v=238`). See them in the
+  Cloudflare dashboard → Analytics & Logs → Web Analytics → abilityfinder.ca: visits, page views, top pages and
+  guides, referrers, countries, devices and page speed.
+- It is cookieless, does not follow people to other sites, and never sees questionnaire answers (they still
+  stay on the device). It counts only on abilityfinder.ca, never tests, previews or partner embeds.
+- The privacy, About, Impact and partner pages (English and French) now say exactly this; the old "no analytics /
+  no third-party trackers" lines are gone.
+- In Cloudflare, the site was switched from automatic injection (which had recorded 0 visits) to snippet
+  installation; the snippet is in our own `analytics.js`.
+
+### Verified how
+- Live check: the beacon loads and Cloudflare accepted the visit report (HTTP 204). CI green on all browsers.
+
+### Decisions we made for you
+- Cloudflare's bot-check inline script stays blocked (it is separate from analytics and only adds console noise).
+- To undo later: tell me, and I will remove analytics.js and restore the privacy wording in one change.
+
 ## 2026-10-20 — Features: dates to know, what we can't tell you, browse by need
 
 ### Shipped
