@@ -40,7 +40,7 @@ test.describe('Dates to know', () => {
     await openProfile(page, profile(), '2026-10-31T12:00:00-04:00');
     const block=page.locator('.dates-to-know').first();
     await expect(block).not.toContainText('Applications close');
-    await expect(block).toContainText('Expected to reopen (expected)');
+    await expect(block).toContainText('Expected to reopen');
     await expect(block).toContainText('Check the official page; this date is not final.');
     await expect(block.getByRole('button',{name:/London/i})).toHaveCount(0);
   });

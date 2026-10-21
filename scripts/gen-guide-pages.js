@@ -274,7 +274,7 @@ const formatDate = (entry) => {
 const staticDates = (b, L) => {
   const entries = benefitDates[b.id] || [];
   if (!entries.length) return "";
-  return `<section class="guide-block dates-to-know"><h2 class="guide-h">${L.dates}</h2><p>${esc(L.datesAsOf(ctx.guideFreshness(b).label))}</p><ul class="dates-list">${entries.slice().sort((a, z) => a.date.localeCompare(z.date)).map((entry) => `<li><p class="date-when">${esc(formatDate(entry))}</p><h3>${esc(entry.label)}${entry.expected ? ` ${L.expected}` : ""}</h3><p>${esc(entry.text)}</p></li>`).join("")}</ul></section>`;
+  return `<section class="guide-block dates-to-know"><h2 class="guide-h">${L.dates}</h2><p>${esc(L.datesAsOf(ctx.guideFreshness(b).label))}</p><ul class="dates-list">${entries.slice().sort((a, z) => a.date.localeCompare(z.date)).map((entry) => `<li><p class="date-when">${esc(formatDate(entry))}</p><h3>${esc(entry.label)}${entry.expected && !/expect/i.test(entry.label) ? ` ${L.expected}` : ""}</h3><p>${esc(entry.text)}</p></li>`).join("")}</ul></section>`;
 };
 
 const list = (title, items, ordered = false) => {

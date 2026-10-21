@@ -6610,11 +6610,11 @@ function renderBenefitDates(benefits, options = {}) {
     ${staticAsOf ? `<p>${t("dates.static").replace("{month}", reqEscape(staticAsOf))}</p>` : ""}
     <ul class="dates-list">${rows.map(({ b, entry, index }) => {
       const A = recAttr(b);
-      const expected = entry.expected ? ` ${t("dates.expected")}` : "";
+      const expected = entry.expected && !/expect/i.test(entry.label) ? ` ${t("dates.expected")}` : "";
       const action = benefitDateCalendarEligible(entry) && !options.noCalendar
         ? `<button class="tool-btn date-calendar" type="button" data-date-program="${reqEscape(b.id)}" data-date-index="${index}" aria-label="${reqEscape(`Add ${b.name} ${entry.label.toLowerCase()} to calendar`)}">${icon("clock")}${t("dates.add")}</button>`
         : `<p class="date-not-final">${t("dates.notFinal")}</p>`;
-      return `<li><p class="date-when">${reqEscape(formatBenefitDate(entry))}</p><h3${A}>${reqEscape(entry.label)}${expected}</h3><p>${guideLink(b, b.name)}</p><p${A}>${reqEscape(entry.text)}</p>${action}</li>`;
+      return `<li><p class="date-when">${reqEscape(formatBenefitDate(entry))}</p><h3${A}>${reqEscape(entry.label)}${expected}</h3><p><span${A}>${reqEscape(b.name)}</span> — ${guideLink(b)}</p><p${A}>${reqEscape(entry.text)}</p>${action}</li>`;
     }).join("")}</ul></div>
   </section>`;
 }
