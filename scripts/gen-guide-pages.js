@@ -380,7 +380,7 @@ ${header(L)}
         <div class="detail-body">
           <div class="detail-main">
             ${detail.aboutList && detail.aboutList.items && detail.aboutList.items.length
-              ? `<section class="guide-block"><h2 class="guide-h">${L.whatItIs}</h2>${detail.aboutList.lead ? `<p class="detail-about">${esc(detail.aboutList.lead)}</p>` : ""}<ul class="eligibility-list">${detail.aboutList.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul></section>`
+              ? `<section class="guide-block"><h2 class="guide-h">${L.whatItIs}</h2>${detail.aboutList.lead ? `<p class="detail-about">${esc(detail.aboutList.lead)}</p>` : ""}<ul class="eligibility-list">${detail.aboutList.items.map((it) => `<li>${escWithLinks(it)}</li>`).join("")}</ul></section>`
               : detail.about ? `<section class="guide-block"><h2 class="guide-h">${L.whatItIs}</h2><p class="detail-about">${esc(detail.about)}</p></section>` : ""}
             ${b.note ? `<section class="guide-block"><h2 class="guide-h">${L.goodToKnow}</h2><p class="detail-about">${esc(b.note)}</p></section>` : ""}
             ${b.eligibility && b.eligibility.items && b.eligibility.items.length
@@ -425,6 +425,14 @@ const publishableBenefits = benefits.filter((b) => {
   skippedIds.push(b.id);
   return false;
 });
+
+// aboutList items may carry a plain official link written as <a href="https://...">text</a>
+// (the app renders those as links). Everything is escaped first; only that exact
+// https-link shape is turned back into a link, so no other markup can get through.
+function escWithLinks(text) {
+  return esc(text).replace(/&lt;a href=&quot;(https:\/\/[^"&<>\s]+)&quot;&gt;([^<&]*?)&lt;\/a&gt;/g,
+    (m, href, label) => `<a class="guide-link" href="${href}" rel="noopener">${label}</a>`);
+}
 
 const groups = new Map([["Federal", []], ["Provincial", []], ["Municipal", []]]);
 for (const b of publishableBenefits) {

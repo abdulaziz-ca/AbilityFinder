@@ -76,7 +76,7 @@ html.v2 :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; 
 html.v2 ::selection { background: rgba(143, 134, 255, 0.35); }
 
 /* Page widths per view: wide canvases, a focused column for questions. */
-html.v2 .wrap { overflow-x: clip; max-width: 1200px; width: 100%; margin-left: auto; margin-right: auto; padding-left: 24px; padding-right: 24px; box-sizing: border-box; }
+html.v2 .wrap { max-width: 1200px; width: 100%; margin-left: auto; margin-right: auto; padding-left: 24px; padding-right: 24px; box-sizing: border-box; }
 html.v2[data-view="wizard"] .wrap { max-width: 1080px; }
 html.v2[data-view="privacy"] .wrap, html.v2[data-view="about"] .wrap, html.v2[data-view="accessibility"] .wrap,
 html.v2[data-view="coverage"] .wrap, html.v2[data-view="support"] .wrap, html.v2[data-view="help"] .wrap { max-width: 860px; }
@@ -121,13 +121,13 @@ html.v2 .disclaimer { color: var(--text-dimmer); }
 
 /* ── Landing ── */
 html.v2[data-view="landing"] #app { position: relative; }
-html.v2 .hero-full { position: relative; isolation: isolate; overflow: visible; min-height: 0; padding: 96px 0 40px; text-align: left; background: none; }
+html.v2 .hero-full { position: relative; isolation: isolate; overflow: visible; min-height: 0; align-items: stretch; padding: 96px 0 40px; text-align: left; background: none; }
 html.v2 .hero-atmos { display: none; }
 html.v2 .v2-ribbon { position: absolute; z-index: -1; top: -120px; bottom: -380px; left: 50%; width: 100vw; transform: translateX(-50%); pointer-events: none; }
 html.v2 .v2-ribbon canvas { width: 100%; height: 100%; display: block; }
 html.v2 .v2-ribbon::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, var(--bg) 96%); }
 html.v2[data-theme="light"] .v2-ribbon { opacity: 0.55; }
-html.v2 .hero-inner { width: auto; max-width: 1152px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; text-align: left; align-items: flex-start; }
+html.v2 .hero-inner { width: 100%; max-width: 1152px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; text-align: left; align-items: flex-start; }
 html.v2 .hero-title { font-family: var(--font-sans); font-size: clamp(2.3rem, 4.8vw, 4.1rem); line-height: 1.04; letter-spacing: -0.04em; font-weight: 580; max-width: 17ch; margin: 24px 0 20px; text-align: left; background: linear-gradient(100deg, var(--text) 30%, #c9c4ff 65%, #8ff0e3 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 html.v2[data-theme="light"] .hero-title { background: linear-gradient(100deg, var(--text) 40%, #4f3fd9 75%, #0f8f83 100%); -webkit-background-clip: text; background-clip: text; }
 html.v2 .hero-sub { font-size: 1.15rem; color: var(--text-dim); max-width: 46ch; margin: 0 0 30px; text-align: left; }
@@ -240,7 +240,7 @@ html.v2 .result-group-main + .result-group, html.v2 .notmatch { border-radius: 1
 
 /* ── Guides (app detail) ── */
 html.v2 .detail-hero { position: relative; padding: 32px 0 28px; }
-html.v2 .detail-hero::before { content: ""; position: absolute; z-index: -1; inset: -40px -30vw 0 auto; width: 60vw; background: radial-gradient(40% 70% at 70% 20%, rgba(109, 94, 245, 0.22), transparent 70%); pointer-events: none; }
+html.v2 .detail-hero::before { content: ""; position: absolute; z-index: -1; top: -60px; right: -40px; width: min(720px, 70%); height: 360px; background: radial-gradient(closest-side, rgba(109, 94, 245, 0.22), transparent); pointer-events: none; }
 html.v2 .detail-title { font-family: var(--font-sans); font-size: clamp(2.2rem, 5vw, 3.8rem); letter-spacing: -0.045em; line-height: 1.02; font-weight: 580; }
 html.v2 .detail-lede { font-size: 1.12rem; color: var(--text-dim); }
 html.v2 .af-cell { border-radius: 16px; border: 1px solid var(--hair-2); background: var(--v2-glass); backdrop-filter: blur(10px); }
@@ -282,7 +282,35 @@ html.v2.motion .v2-route-in { animation: v2routeIn 0.5s var(--ease); }
 }
 
 /* Programmatic focus moves to headings on each route change; only keyboard focus shows a ring. */
-html.v2 [tabindex="-1"]:focus:not(:focus-visible) { outline: none; }
+html.v2 h1[tabindex="-1"]:focus, html.v2 h2[tabindex="-1"]:focus, html.v2 [tabindex="-1"]:focus:not(:focus-visible) { outline: none; }
 html.v2 .nav-row { justify-content: flex-start; }
 html.v2 .nav-row .btn-primary { flex: 0 0 auto; min-width: 140px; }
 html.v2 .btn-primary:disabled, html.v2 .btn-primary[aria-disabled="true"] { background: var(--panel-2); color: var(--text-dimmer); box-shadow: none; }
+
+/* Results polish: full-width list, calm amounts, compact dates. */
+html.v2 .result-group, html.v2 .results-head, html.v2 .results-tools, html.v2 .answers-bar, html.v2 .dates-to-know { max-width: none; }
+html.v2 .benefit-value .amount { font-size: 0.98rem; line-height: 1.4; font-weight: 600; color: var(--text); letter-spacing: -0.01em; text-align: right; }
+html.v2 .benefit.ready .benefit-value .amount { color: var(--text); }
+html.v2 .benefit-side { gap: 10px; }
+html.v2 .benefit-actions .apply { border-radius: 999px; min-height: 40px; padding: 0 16px; font-weight: 560; background: var(--btn); color: var(--btn-ink); }
+html.v2 .guide-toggle { border-radius: 999px; min-height: 40px; border: 1px solid var(--hair-2); background: transparent; color: var(--text); }
+html.v2 .guide-toggle:hover { border-color: var(--accent-line); background: var(--accent-soft); }
+html.v2 .dates-to-know { padding: 20px 22px; }
+html.v2 .dates-to-know h2 { font-size: 1.1rem; letter-spacing: -0.02em; margin: 0 0 6px; }
+html.v2 .dates-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+html.v2 .dates-list > li { display: grid; grid-template-columns: 170px minmax(0, 1fr) auto; gap: 4px 18px; align-items: start; padding: 14px 0; border-top: 1px solid var(--hair); }
+html.v2 .dates-list > li:first-child { border-top: 0; }
+html.v2 .dates-list > li > .date-when { grid-row: 1 / span 4; margin: 2px 0 0; }
+html.v2 .dates-list > li > h3 { font-size: 1rem; margin: 0; letter-spacing: -0.01em; }
+html.v2 .dates-list > li > p { margin: 0; color: var(--text-dim); font-size: 0.92rem; }
+html.v2 .dates-list > li > .date-calendar, html.v2 .dates-list > li > .date-not-final { grid-column: 3; grid-row: 1 / span 4; align-self: center; margin: 0; max-width: 220px; }
+html.v2 .date-not-final { font-size: 0.84rem; color: var(--text-dimmer); }
+@media (max-width: 700px) {
+  html.v2 .dates-list > li { grid-template-columns: 1fr; }
+  html.v2 .dates-list > li > .date-when, html.v2 .dates-list > li > .date-calendar, html.v2 .dates-list > li > .date-not-final { grid-row: auto; grid-column: auto; }
+  html.v2 .benefit-value .amount { text-align: left; }
+}
+html.v2 { overflow-x: clip; }
+html.v2 .nav-tag { white-space: nowrap; max-width: 280px; overflow: hidden; text-overflow: ellipsis; padding: 4px 10px; }
+html.v2 #app h1, html.v2 .legal-title { font-family: var(--font-sans); font-weight: 580; letter-spacing: -0.038em; line-height: 1.06; }
+html.v2 #app h2 { font-family: var(--font-sans); }
