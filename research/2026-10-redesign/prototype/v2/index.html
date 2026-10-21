@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AbilityFinder — redesign v2 (home)</title>
+<style>
+@font-face { font-family: "Inter"; src: url("/public/fonts/inter-latin.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+
+:root {
+  --bg: #07080b;
+  --bg-2: #0c0e13;
+  --panel: rgba(18, 21, 28, 0.72);
+  --panel-solid: #11141a;
+  --line: rgba(255, 255, 255, 0.07);
+  --line-2: rgba(255, 255, 255, 0.12);
+  --edge: #5b6476;
+  --text: #f2f3f6;
+  --text-2: #a9afbc;
+  --text-3: #7d8494;
+  --violet: #8f86ff;
+  --violet-strong: #6d5ef5;
+  --teal: #3ad6c4;
+  --amber: #f7c35f;
+  --green: #6ee7a8;
+  --focus: #b8b4ff;
+  --ease: cubic-bezier(.2,.7,.2,1);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { font-size: 112.5%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; font-feature-settings: "cv11", "ss01", "ss03"; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 8px; }
+.wrap { width: min(1200px, 100% - 48px); margin-inline: auto; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ── announcement + nav ── */
+.announce { position: relative; z-index: 3; display: flex; justify-content: center; gap: 10px; align-items: center; min-height: 44px; font-size: .84rem; color: var(--text-2); border-bottom: 1px solid var(--line); background: rgba(7,8,11,.6); backdrop-filter: blur(12px); }
+.announce b { color: var(--text); font-weight: 600; }
+.announce .pill { font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #0b0a16; background: linear-gradient(90deg, var(--violet), var(--teal)); padding: 3px 8px; border-radius: 999px; }
+.announce a { text-decoration: none; color: var(--text); }
+.announce a:hover { text-decoration: underline; }
+
+header.nav { position: sticky; top: 0; z-index: 20; transition: background .3s var(--ease), border-color .3s var(--ease); border-bottom: 1px solid transparent; }
+header.nav.scrolled { background: rgba(7, 8, 11, 0.72); backdrop-filter: blur(16px) saturate(140%); border-bottom-color: var(--line); }
+.nav-in { display: flex; align-items: center; gap: 28px; min-height: 68px; }
+.logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 640; letter-spacing: -0.02em; font-size: 1.05rem; }
+.logo svg { width: 26px; height: 26px; }
+.links { display: flex; gap: 4px; margin-left: 12px; }
+.links a { text-decoration: none; color: var(--text-2); font-size: .9rem; padding: 10px 12px; border-radius: 10px; min-height: 44px; display: inline-flex; align-items: center; }
+.links a:hover { color: var(--text); background: rgba(255,255,255,.05); }
+.nav-right { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+.btn { --h: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: var(--h); padding: 0 20px; border-radius: 999px; font: inherit; font-size: .92rem; font-weight: 600; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: transform .2s var(--ease), background .2s var(--ease), box-shadow .2s var(--ease); white-space: nowrap; }
+.btn:active { transform: translateY(1px); }
+.btn-light { background: #f2f3f6; color: #0b0c10; }
+.btn-light:hover { background: #fff; box-shadow: 0 0 0 4px rgba(255,255,255,.08); }
+.btn-ghost { color: var(--text); border-color: var(--line-2); background: rgba(255,255,255,.03); }
+.btn-ghost:hover { background: rgba(255,255,255,.07); }
+.btn .arr { transition: transform .2s var(--ease); }
+.btn:hover .arr { transform: translateX(3px); }
+
+/* ── hero ── */
+.hero { position: relative; isolation: isolate; padding: 120px 0 0; margin-top: -68px; overflow: hidden; }
+#ribbon { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; display: block; }
+.hero-fallback { position: absolute; inset: 0; z-index: -3; background:
+   radial-gradient(60% 50% at 78% 18%, rgba(109, 94, 245, .35), transparent 70%),
+   radial-gradient(40% 40% at 92% 55%, rgba(58, 214, 196, .18), transparent 70%),
+   radial-gradient(50% 40% at 10% 0%, rgba(247, 195, 95, .10), transparent 70%); }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(7,8,11,0) 0%, rgba(7,8,11,0) 50%, var(--bg) 88%); }
+.grain { position: absolute; inset: 0; z-index: -1; opacity: .035; pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+.guides { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.guides::before, .guides::after { content: ""; position: absolute; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, transparent, var(--line) 15%, var(--line) 85%, transparent); }
+.guides::before { left: max(24px, calc(50% - 600px)); }
+.guides::after { right: max(24px, calc(50% - 600px)); }
+
+.eyebrow { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px 6px 6px; border-radius: 999px; border: 1px solid var(--line-2); background: rgba(12, 14, 19, .6); backdrop-filter: blur(8px); font-size: .82rem; color: var(--text-2); }
+.eyebrow .live { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 999px; background: rgba(110, 231, 168, .12); color: var(--green); font-weight: 650; font-size: .76rem; }
+.eyebrow .live i { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(110,231,168,.6); animation: pulse 2.4s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(110,231,168,.55); } 70% { box-shadow: 0 0 0 8px rgba(110,231,168,0); } 100% { box-shadow: 0 0 0 0 rgba(110,231,168,0); } }
+.hero h1 { font-size: clamp(2.6rem, 6.4vw, 5.2rem); line-height: 1.0; letter-spacing: -0.045em; font-weight: 580; margin: 26px 0 22px; max-width: 13ch; }
+.hero h1 .dim { color: var(--text-3); }
+.hero h1 .glow { background: linear-gradient(100deg, #ffffff 10%, #c9c4ff 45%, #8ff0e3 90%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero .lede { font-size: 1.18rem; color: var(--text-2); max-width: 44ch; margin: 0 0 34px; font-weight: 420; }
+
+.starter { display: flex; align-items: center; gap: 6px; width: min(560px, 100%); padding: 6px; border-radius: 999px; background: rgba(20, 23, 31, .62); border: 1px solid var(--line-2); backdrop-filter: blur(14px) saturate(150%); box-shadow: 0 20px 60px -20px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.06); }
+.starter label { padding-left: 18px; color: var(--text-3); font-size: .86rem; white-space: nowrap; }
+.starter select { flex: 1; min-width: 0; appearance: none; height: 50px; border: 0; background: transparent; color: var(--text); font: inherit; font-size: 1rem; padding: 0 30px 0 6px; cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23a9afbc' stroke-width='2.2'><path d='M6 9l6 6 6-6'/></svg>"); background-repeat: no-repeat; background-position: right 8px center; }
+.starter select option { background: #11141a; }
+.starter .btn { --h: 50px; background: var(--violet-strong); color: #fff; box-shadow: 0 8px 24px -8px rgba(109,94,245,.8), inset 0 1px 0 rgba(255,255,255,.2); }
+.starter .btn:hover { background: #7b6dff; }
+.hero-meta { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 22px; color: var(--text-3); font-size: .86rem; }
+.hero-meta span { display: inline-flex; gap: 8px; align-items: center; }
+.hero-meta svg { width: 16px; height: 16px; color: var(--text-2); }
+
+/* ── product showcase ── */
+.stage { position: relative; margin-top: 76px; perspective: 1800px; }
+.stage::before { content: ""; position: absolute; left: 6%; right: 6%; bottom: -40px; height: 220px; background: radial-gradient(50% 60% at 50% 40%, rgba(109,94,245,.45), transparent 70%); filter: blur(30px); z-index: -1; }
+.app { position: relative; border-radius: 18px; padding: 1px; background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.04) 30%, rgba(255,255,255,.02)); transform: rotateX(9deg) translateY(0); transform-origin: 50% 0%; transition: transform .9s var(--ease); box-shadow: 0 60px 120px -30px rgba(0,0,0,.8); }
+.stage.in .app { transform: rotateX(0deg); }
+@media (prefers-reduced-motion: reduce) { .app { transform: none; transition: none; } }
+.app-in { border-radius: 17px; background: linear-gradient(180deg, #11141b, #0b0d12); overflow: hidden; display: grid; grid-template-columns: 236px 1fr 320px; min-height: 560px; }
+.chrome { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border-bottom: 1px solid var(--line); color: var(--text-3); font-size: .78rem; }
+.chrome i { width: 11px; height: 11px; border-radius: 50%; background: #2a2f3a; }
+.chrome .url { margin-left: 14px; padding: 4px 12px; border-radius: 8px; background: rgba(255,255,255,.04); border: 1px solid var(--line); }
+.side { border-right: 1px solid var(--line); padding: 16px 12px; display: grid; gap: 2px; align-content: start; font-size: .82rem; white-space: nowrap; }
+.side .grp { color: var(--text-3); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; margin: 14px 10px 6px; }
+.side a { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 8px; color: var(--text-2); text-decoration: none; }
+.side a.on { background: rgba(255,255,255,.06); color: var(--text); }
+.side a .n { margin-left: auto; font-variant-numeric: tabular-nums; font-size: .74rem; color: var(--text-3); }
+.side svg { width: 16px; height: 16px; flex: 0 0 16px; }
+.main { padding: 20px 22px; min-width: 0; }
+.main-h { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.main-h h3 { margin: 0; font-size: 1.02rem; font-weight: 600; letter-spacing: -0.01em; }
+.main-h .chips { margin-left: auto; display: flex; gap: 6px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--line-2); font-size: .72rem; color: var(--text-2); white-space: nowrap; }
+.datebar { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; background: linear-gradient(90deg, rgba(247,195,95,.12), rgba(247,195,95,.03)); border: 1px solid rgba(247,195,95,.22); font-size: .8rem; color: var(--text-2); margin-bottom: 16px; }
+.datebar b { color: var(--amber); font-variant-numeric: tabular-nums; }
+.datebar strong { color: var(--text); font-weight: 600; }
+.sec { font-size: .7rem; letter-spacing: .09em; text-transform: uppercase; color: var(--text-3); margin: 14px 4px 6px; display: flex; gap: 8px; }
+.sec b { color: var(--text-2); }
+.rowx { display: grid; grid-template-columns: 22px 1fr auto auto; gap: 12px; align-items: center; padding: 10px 10px; border-radius: 10px; font-size: .84rem; border: 1px solid transparent; }
+.rowx:hover, .rowx.on { background: rgba(255,255,255,.04); border-color: var(--line); }
+.rowx .st { width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; font-size: .66rem; font-weight: 800; }
+.st.ok { background: rgba(110,231,168,.16); color: var(--green); }
+.st.q { background: rgba(247,195,95,.16); color: var(--amber); }
+.rowx b { font-weight: 560; display: block; }
+.rowx small { color: var(--text-3); font-size: .74rem; display: block; margin-top: 1px; }
+.tag { font-size: .68rem; color: var(--text-2); border: 1px solid var(--line-2); padding: 2px 7px; border-radius: 6px; }
+.amt { font-variant-numeric: tabular-nums; font-weight: 600; font-size: .8rem; color: var(--text); }
+.detail { border-left: 1px solid var(--line); padding: 20px; display: grid; gap: 14px; align-content: start; font-size: .82rem; background: linear-gradient(180deg, rgba(255,255,255,.015), transparent); }
+.detail h4 { margin: 0; font-size: 1.05rem; letter-spacing: -0.015em; }
+.detail .big { font-size: 1.7rem; font-weight: 620; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.detail .big small { font-size: .8rem; color: var(--text-3); font-weight: 500; letter-spacing: 0; }
+.check { display: grid; gap: 8px; }
+.check div { display: flex; gap: 10px; align-items: flex-start; color: var(--text-2); }
+.check .st { flex: 0 0 18px; width: 18px; height: 18px; border-radius: 6px; display: grid; place-items: center; font-size: .66rem; font-weight: 800; margin-top: 2px; }
+.apply { display: flex; justify-content: center; align-items: center; height: 40px; border-radius: 10px; background: var(--violet-strong); color: #fff; font-weight: 600; font-size: .84rem; }
+
+.float { position: absolute; display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 14px; background: rgba(18, 21, 28, .82); border: 1px solid var(--line-2); backdrop-filter: blur(12px); font-size: .82rem; box-shadow: 0 20px 50px -15px rgba(0,0,0,.7); }
+.float b { font-weight: 600; }
+.float small { color: var(--text-3); display: block; font-size: .72rem; }
+.float .ico { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; }
+.f1 { left: -46px; bottom: 70px; } .f1 .ico { background: rgba(110,231,168,.15); color: var(--green); }
+.f2 { right: -36px; top: -26px; } .f2 .ico { background: rgba(247,195,95,.15); color: var(--amber); }
+@media (prefers-reduced-motion: no-preference) {
+  .f1 { animation: bob 6s ease-in-out infinite; } .f2 { animation: bob 7s ease-in-out -2s infinite; }
+}
+@keyframes bob { 50% { transform: translateY(-8px); } }
+
+/* ── sources strip ── */
+.sources { padding: 96px 0 40px; }
+.sources p { text-align: center; color: var(--text-3); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 28px; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+.marquee { position: relative; overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.track { display: flex; gap: 56px; width: max-content; }
+@media (prefers-reduced-motion: no-preference) { .track { animation: slide 46s linear infinite; } }
+@keyframes slide { to { transform: translateX(-50%); } }
+.track span { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; color: #c7cbd4; opacity: .85; white-space: nowrap; display: inline-flex; align-items: center; gap: 10px; }
+.track span i { width: 8px; height: 8px; border-radius: 2px; background: currentColor; opacity: .5; transform: rotate(45deg); }
+
+/* ── statement ── */
+.statement { padding: 80px 0 40px; }
+.statement h2 { font-size: clamp(1.8rem, 3.6vw, 3rem); line-height: 1.12; letter-spacing: -0.035em; font-weight: 560; margin: 0; max-width: 24ch; }
+.statement h2 span { color: var(--text-3); }
+
+/* ── bento ── */
+.bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; padding: 56px 0 40px; }
+.card { --x: 50%; --y: 50%; position: relative; border-radius: 22px; padding: 1px; background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.03)); overflow: hidden; }
+.card::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(360px circle at var(--x) var(--y), rgba(143,134,255,.45), transparent 45%); opacity: 0; transition: opacity .3s var(--ease); }
+.card:hover::before { opacity: 1; }
+.card-in { position: relative; height: 100%; border-radius: 21px; background: linear-gradient(180deg, #10131a, #0b0d12); padding: 28px; display: flex; flex-direction: column; gap: 10px; min-height: 340px; overflow: hidden; }
+.card h3 { margin: 0; font-size: 1.15rem; letter-spacing: -0.02em; font-weight: 600; }
+.card p { margin: 0; color: var(--text-2); font-size: .95rem; max-width: 40ch; }
+.c-wide { grid-column: span 4; } .c-narrow { grid-column: span 2; } .c-half { grid-column: span 3; }
+.vis { margin-top: auto; position: relative; }
+
+/* mini question */
+.mq { display: grid; gap: 8px; max-width: 420px; }
+.mq .o { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-radius: 12px; border: 1px solid var(--line-2); background: rgba(255,255,255,.02); font-size: .86rem; color: var(--text-2); }
+.mq .o .b { width: 16px; height: 16px; border-radius: 5px; border: 1.5px solid var(--edge); display: grid; place-items: center; }
+.mq .o.sel { border-color: rgba(143,134,255,.7); background: rgba(143,134,255,.10); color: var(--text); }
+.mq .o.sel .b { background: var(--violet-strong); border-color: var(--violet-strong); }
+.mq .o.sel .b::after { content: "✓"; color: #fff; font-size: 11px; font-weight: 800; }
+.mq .cta { justify-self: start; margin-top: 4px; padding: 9px 16px; border-radius: 999px; background: #f2f3f6; color: #0b0c10; font-weight: 600; font-size: .82rem; }
+
+/* calendar */
+.cal { width: 168px; border-radius: 18px; overflow: hidden; border: 1px solid var(--line-2); box-shadow: 0 24px 50px -20px rgba(247,195,95,.35); }
+.cal .m { background: linear-gradient(90deg, #f7c35f, #f39a52); color: #1a1205; font-weight: 800; text-align: center; letter-spacing: .1em; font-size: .78rem; padding: 6px; }
+.cal .d { background: #12151c; text-align: center; padding: 10px 0 14px; font-size: 3.4rem; font-weight: 650; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.cal .d small { display: block; font-size: .74rem; font-weight: 500; color: var(--text-3); letter-spacing: 0; margin-top: 6px; }
+.bell { position: absolute; left: 150px; top: -10px; padding: 8px 12px; border-radius: 12px; background: rgba(18,21,28,.9); border: 1px solid var(--line-2); font-size: .76rem; color: var(--text-2); white-space: nowrap; }
+.bell b { color: var(--text); }
+
+/* checklist */
+.cl { display: grid; gap: 8px; }
+.cl div { display: flex; align-items: center; gap: 10px; font-size: .86rem; color: var(--text-2); padding: 9px 12px; border-radius: 12px; background: rgba(255,255,255,.02); border: 1px solid var(--line); }
+.cl .bx { width: 18px; height: 18px; border-radius: 6px; border: 1.5px solid var(--edge); display: grid; place-items: center; font-size: 11px; font-weight: 800; color: #0b0c10; }
+.cl .done .bx { background: var(--green); border-color: var(--green); }
+.cl .done span { text-decoration: line-through; text-decoration-color: rgba(255,255,255,.3); }
+.cl small { margin-left: auto; color: var(--text-3); font-size: .72rem; }
+
+/* provinces */
+.prov { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.prov span { display: grid; place-items: center; height: 46px; border-radius: 12px; border: 1px solid var(--line-2); font-weight: 650; font-size: .82rem; color: var(--text-2); background: rgba(255,255,255,.02); }
+.prov span.hot { color: var(--text); border-color: rgba(58,214,196,.5); background: rgba(58,214,196,.10); box-shadow: 0 0 24px -6px rgba(58,214,196,.5); }
+
+/* privacy */
+.lock { display: grid; place-items: center; height: 170px; position: relative; }
+.lock .ring { position: absolute; width: 150px; height: 150px; border-radius: 50%; border: 1px dashed rgba(143,134,255,.35); }
+.lock .ring.r2 { width: 220px; height: 220px; border-color: rgba(143,134,255,.15); }
+@media (prefers-reduced-motion: no-preference) { .lock .ring { animation: spin 40s linear infinite; } .lock .ring.r2 { animation-duration: 70s; animation-direction: reverse; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+.lock .core { width: 74px; height: 74px; border-radius: 22px; display: grid; place-items: center; background: linear-gradient(160deg, #2a2463, #12151c); border: 1px solid rgba(143,134,255,.5); box-shadow: 0 0 40px -6px rgba(109,94,245,.7); color: #d7d3ff; }
+
+/* guide snippet */
+.gs { border-radius: 14px; border: 1px solid var(--line-2); background: rgba(255,255,255,.02); padding: 16px; font-size: .84rem; color: var(--text-2); display: grid; gap: 10px; max-width: 460px; }
+.gs b { color: var(--text); }
+.gs .ow { border-top: 1px solid var(--line); padding-top: 10px; display: flex; justify-content: space-between; color: var(--text); font-weight: 560; }
+
+/* ── steps ── */
+.steps { padding: 80px 0; }
+.steps h2, .faq h2 { font-size: clamp(1.7rem, 3.2vw, 2.6rem); letter-spacing: -0.035em; font-weight: 580; margin: 0 0 12px; }
+.steps .sub, .faq .sub { color: var(--text-2); margin: 0 0 40px; max-width: 52ch; }
+.timeline { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.timeline::before { content: ""; position: absolute; top: 22px; left: 22px; right: 22px; height: 1px; background: linear-gradient(90deg, var(--violet), var(--teal), transparent); opacity: .6; }
+.t { position: relative; padding-top: 64px; }
+.t .num { position: absolute; top: 0; left: 0; width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; font-weight: 700; background: #12151c; border: 1px solid var(--line-2); box-shadow: 0 0 0 6px var(--bg); }
+.t h3 { margin: 0 0 6px; font-size: 1.12rem; letter-spacing: -0.015em; }
+.t p { margin: 0; color: var(--text-2); font-size: .95rem; }
+
+/* ── faq ── */
+.faq { padding: 40px 0 80px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 64px; font-weight: 560; font-size: 1.02rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .pm { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line-2); display: grid; place-items: center; transition: transform .25s var(--ease); flex: 0 0 28px; }
+.faq details[open] summary .pm { transform: rotate(45deg); }
+.faq details p { margin: 0 0 20px; color: var(--text-2); max-width: 60ch; }
+
+/* ── cta + footer ── */
+.cta { position: relative; overflow: hidden; border-radius: 28px; margin: 40px 0 80px; padding: 72px 48px; text-align: center; border: 1px solid var(--line-2);
+  background: radial-gradient(60% 120% at 50% 120%, rgba(109,94,245,.55), transparent 60%), radial-gradient(40% 80% at 85% 0%, rgba(58,214,196,.25), transparent 60%), #0c0e14; }
+.cta h2 { font-size: clamp(1.9rem, 4vw, 3.2rem); letter-spacing: -0.04em; font-weight: 580; margin: 0 0 14px; }
+.cta p { color: var(--text-2); margin: 0 auto 30px; max-width: 46ch; }
+footer { border-top: 1px solid var(--line); padding: 56px 0 72px; color: var(--text-3); font-size: .86rem; }
+.fgrid { display: grid; grid-template-columns: 1.6fr repeat(3, 1fr); gap: 32px; }
+.fgrid h4 { color: var(--text); font-size: .86rem; margin: 0 0 14px; font-weight: 600; }
+.fgrid a { display: block; text-decoration: none; padding: 5px 0; color: var(--text-3); }
+.fgrid a:hover { color: var(--text); }
+
+.reveal { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+}
+
+@media (max-width: 1060px) {
+  .app-in { grid-template-columns: 190px 1fr; } .detail { display: none; }
+  .c-wide, .c-narrow, .c-half { grid-column: span 3; }
+}
+@media (max-width: 760px) {
+  .links, .nav-right .btn-ghost { display: none; }
+  .app-in { grid-template-columns: 1fr; min-height: 0; } .side { display: none; }
+  .rowx { grid-template-columns: 22px 1fr auto; } .rowx .tag { display: none; }
+  .float { display: none; }
+  .bento { grid-template-columns: 1fr; } .c-wide, .c-narrow, .c-half { grid-column: auto; }
+  .timeline { grid-template-columns: 1fr; } .timeline::before { display: none; }
+  .faq { grid-template-columns: 1fr; gap: 8px; }
+  .fgrid { grid-template-columns: 1fr 1fr; }
+  .starter { flex-wrap: wrap; border-radius: 22px; } .starter label { padding: 8px 12px 0; width: 100%; } .starter select { width: 100%; flex-basis: 100%; } .starter .btn { width: 100%; }
+  .cta { padding: 48px 22px; }
+  .ann-long, .eb-long { display: none; }
+  .eyebrow { padding-right: 6px; }
+}
+@media (forced-colors: active) { .card, .app, .starter, .float { border: 1px solid CanvasText; } .hero h1 .glow { color: CanvasText; background: none; } }
+</style>
+</head>
+<body>
+<a class="sr-only" href="#main">Skip to main content</a>
+<div class="announce"><span class="pill">New</span><span><b>Dates to know</b><span class="ann-long"> — see application deadlines and add them to your calendar.</span></span><a href="#">See how →</a></div>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#" aria-label="AbilityFinder home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9d98ff"/><stop offset="1" stop-color="#3ad6c4"/></linearGradient></defs><rect x="1" y="1" width="30" height="30" rx="9" fill="url(#lg)"/><path d="M9 22 L16 9 L23 22" fill="none" stroke="#0b0c10" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="18.5" r="2.2" fill="#0b0c10"/></svg>
+      AbilityFinder
+    </a>
+    <nav class="links" aria-label="Main">
+      <a href="#">Find benefits</a><a href="#">Browse programs</a><a href="#">Grants</a><a href="#">Organizations</a><a href="#">How we verify</a>
+    </nav>
+    <div class="nav-right">
+      <a class="btn btn-ghost" href="#">Français</a>
+      <a class="btn btn-light" href="#">Start <span class="arr" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" aria-labelledby="hero-h">
+  <div class="hero-fallback" aria-hidden="true"></div>
+  <canvas id="ribbon" aria-hidden="true"></canvas>
+  <div class="guides" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow"><span class="live"><i></i>Updated October 2026</span><span class="eb-long">463 programs · 10 provinces · federal</span></span>
+    <h1 id="hero-h"><span class="glow">Disability benefits,</span> <span class="dim">made clear.</span></h1>
+    <p class="lede">Answer a few short questions. See the programs across Canada you may qualify for, the one thing each still needs, and exactly what to do next.</p>
+    <form class="starter" onsubmit="event.preventDefault()">
+      <label for="prov">I live in</label>
+      <select id="prov">
+        <option>Choose your province</option><option>Alberta</option><option>British Columbia</option><option>Manitoba</option><option>New Brunswick</option><option>Newfoundland and Labrador</option><option>Nova Scotia</option><option>Ontario</option><option>Prince Edward Island</option><option>Quebec</option><option>Saskatchewan</option>
+      </select>
+      <button class="btn" type="submit">Find my benefits <span class="arr" aria-hidden="true">→</span></button>
+    </form>
+    <div class="hero-meta">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>About 5 minutes</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>No account — answers stay on your device</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Free, independent, not a government site</span>
+    </div>
+
+    <div class="stage" id="stage">
+      <div class="app" id="app">
+        <div class="app-in">
+          <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="url">abilityfinder.ca · Your plan</span></div>
+          <aside class="side" aria-hidden="true">
+            <span class="grp">Your plan</span>
+            <a class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Programs to check<span class="n">17</span></a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Dates to know<span class="n">1</span></a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h11"/></svg>Documents<span class="n">8</span></a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Saved<span class="n">3</span></a>
+            <span class="grp">Help</span>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5M16 11a3 3 0 1 0 0-6M21 20c0-2.5-2-4.3-4.5-4.8"/></svg>Organizations</a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a1 1 0 0 1 1-1h11l4 4v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M8 12h8M8 16h5"/></svg>Guides</a>
+          </aside>
+          <div class="main" aria-hidden="true">
+            <div class="main-h"><h3>Programs based on your answers</h3><div class="chips"><span class="chip">Ontario · London</span><span class="chip">60–64</span><span class="chip">Mobility</span></div></div>
+            <div class="datebar"><b>OCT 30</b><span><strong>Applications close</strong> · Ontario Renovates (London), 4:30 p.m.</span></div>
+            <div class="sec">Matches your answers <b>3</b></div>
+            <div class="rowx on"><span class="st ok">✓</span><span><b>Canada Disability Benefit</b><small>Monthly payment · DTC + lower income</small></span><span class="tag">Federal</span><span class="amt">$204.20/mo</span></div>
+            <div class="rowx"><span class="st ok">✓</span><span><b>Ontario Electricity Support Program</b><small>Credit on your electricity bill</small></span><span class="tag">Ontario</span><span class="amt">Monthly</span></div>
+            <div class="rowx"><span class="st ok">✓</span><span><b>London Transit paratransit</b><small>Door-to-door rides</small></span><span class="tag">London</span><span class="amt">Regular fare</span></div>
+            <div class="sec">More to check <b>9</b></div>
+            <div class="rowx"><span class="st q">?</span><span><b>Ontario Renovates (London)</b><small>Check: you own your home</small></span><span class="tag">London</span><span class="amt">Up to $25,000</span></div>
+            <div class="rowx"><span class="st q">?</span><span><b>Ontario Trillium Benefit</b><small>Check: 2025 tax return filed</small></span><span class="tag">Ontario</span><span class="amt">Monthly</span></div>
+            <div class="rowx"><span class="st q">?</span><span><b>Assistive Devices Program</b><small>Check: prescriber confirms the device</small></span><span class="tag">Ontario</span><span class="amt">Up to 75%</span></div>
+          </div>
+          <aside class="detail" aria-hidden="true">
+            <span class="chip" style="justify-self:start">Federal · Money</span>
+            <h4>Canada Disability Benefit</h4>
+            <div class="big">$204.20 <small>/ month, up to</small></div>
+            <div class="check">
+              <div><span class="st ok">✓</span>You are 18 to 64</div>
+              <div><span class="st ok">✓</span>Approved for the Disability Tax Credit</div>
+              <div><span class="st q">?</span>2025 tax return filed (we did not ask)</div>
+            </div>
+            <div class="apply">Apply on canada.ca ↗</div>
+            <span style="color:var(--text-3)">Checked against the official page · Oct 2026</span>
+          </aside>
+        </div>
+      </div>
+      <div class="float f1" aria-hidden="true"><span class="ico">✓</span><span><b>3 programs match</b><small>based on your answers</small></span></div>
+      <div class="float f2" aria-hidden="true"><span class="ico">⏰</span><span><b>Reminder set</b><small>7 days before Oct 30</small></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sources" aria-label="Official sources">
+  <p>Every program links to its official source</p>
+  <div class="marquee" aria-hidden="true"><div class="track" id="track">
+    <span><i></i>canada.ca</span><span><i></i>alberta.ca</span><span><i></i>gov.bc.ca</span><span><i></i>ontario.ca</span><span><i></i>saskatchewan.ca</span><span><i></i>gov.mb.ca</span><span><i></i>gnb.ca</span><span><i></i>novascotia.ca</span><span><i></i>princeedwardisland.ca</span><span><i></i>gov.nl.ca</span><span><i></i>quebec.ca</span><span><i></i>ramq.gouv.qc.ca</span>
+  </div></div>
+  <p class="sr-only">Sources include canada.ca and the official sites of all ten provinces.</p>
+</section>
+
+<section class="statement wrap reveal">
+  <h2>Finding help shouldn't be a second job. <span>AbilityFinder reads the official rules for 463 programs, asks only what matters, and turns it into a plan you can act on.</span></h2>
+</section>
+
+<section class="wrap bento" aria-label="What you get">
+  <article class="card c-wide reveal"><div class="card-in">
+    <h3>Questions that respect your energy</h3>
+    <p>One question at a time, in plain words. "I'm not sure" is always an answer, and you can stop and come back.</p>
+    <div class="vis"><div class="mq" aria-hidden="true">
+      <div class="o sel"><span class="b"></span>I can't use regular transit without help</div>
+      <div class="o"><span class="b"></span>I need medical equipment or supplies</div>
+      <div class="o sel"><span class="b"></span>My home needs changes for access or safety</div>
+      <span class="cta">Continue →</span>
+    </div></div>
+  </div></article>
+  <article class="card c-narrow reveal"><div class="card-in">
+    <h3>Dates to know</h3>
+    <p>Deadlines from official pages, with a reminder a week before.</p>
+    <div class="vis" aria-hidden="true" style="padding-top:14px"><div class="cal"><div class="m">OCTOBER</div><div class="d">30<small>Applications close</small></div></div><div class="bell">🔔 <b>Reminder</b> · Oct 23, 9 a.m.</div></div>
+  </div></article>
+  <article class="card c-half reveal"><div class="card-in">
+    <h3>One checklist for everything</h3>
+    <p>See every document your applications ask for, once, and tick them off as you gather them.</p>
+    <div class="vis cl" aria-hidden="true">
+      <div class="done"><span class="bx">✓</span><span>Notice of Assessment (2025)</span><small>3 programs</small></div>
+      <div class="done"><span class="bx">✓</span><span>Proof of address</span><small>4 programs</small></div>
+      <div><span class="bx"></span><span>Disability Tax Credit approval letter</span><small>2 programs</small></div>
+      <div><span class="bx"></span><span>Three contractor estimates</span><small>1 program</small></div>
+    </div>
+  </div></article>
+  <article class="card c-half reveal"><div class="card-in">
+    <h3>All ten provinces, plus federal</h3>
+    <p>Provincial and local programs for where you live, from Victoria to St. John's. Quebec programs are in French.</p>
+    <div class="vis prov" aria-hidden="true"><span>BC</span><span>AB</span><span>SK</span><span>MB</span><span class="hot">ON</span><span>QC</span><span>NB</span><span>NS</span><span>PE</span><span>NL</span></div>
+  </div></article>
+  <article class="card c-narrow reveal"><div class="card-in">
+    <h3>Private by design</h3>
+    <p>No account. Your answers never leave your device.</p>
+    <div class="vis lock" aria-hidden="true"><span class="ring r2"></span><span class="ring"></span><span class="core"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span></div>
+  </div></article>
+  <article class="card c-wide reveal"><div class="card-in">
+    <h3>Plain-language guides, official wording one tap away</h3>
+    <p>The short version first, so you can decide quickly. The exact government wording is always there when you need it.</p>
+    <div class="vis gs" aria-hidden="true"><span><b>You may qualify if</b> you are 18 to 64, approved for the Disability Tax Credit, and filed your 2025 tax return.</span><span class="ow">Official wording from canada.ca <span>＋</span></span></div>
+  </div></article>
+</section>
+
+<section class="wrap steps reveal" aria-labelledby="steps-h">
+  <h2 id="steps-h">From questions to a plan in three steps</h2>
+  <p class="sub">Most people finish in about five minutes. Nothing is submitted for you; you stay in control.</p>
+  <div class="timeline">
+    <div class="t"><span class="num">1</span><h3>Answer short questions</h3><p>Where you live, how daily life is affected, and a few money questions. Skip anything you are not sure about.</p></div>
+    <div class="t"><span class="num">2</span><h3>See programs to check</h3><p>Matches first, then programs with one thing left to check, each with the reason in plain words.</p></div>
+    <div class="t"><span class="num">3</span><h3>Apply with a plan</h3><p>Guides, a document checklist and dates to know. Every apply button goes to the official site.</p></div>
+  </div>
+</section>
+
+<section class="wrap faq" aria-labelledby="faq-h">
+  <div><h2 id="faq-h">Questions people ask</h2><p class="sub">Still unsure? Free local organizations can help you apply or appeal.</p></div>
+  <div>
+    <details><summary>Is AbilityFinder a government website? <span class="pm" aria-hidden="true">＋</span></summary><p>No. It is a free, independent tool. Every program links to the official government page, and you always apply there.</p></details>
+    <details><summary>Will it tell me if I'm approved? <span class="pm" aria-hidden="true">＋</span></summary><p>No. Each program makes its own decision, often using medical or income details we do not ask for. We show which programs are worth checking and what each one still needs.</p></details>
+    <details><summary>Where do my answers go? <span class="pm" aria-hidden="true">＋</span></summary><p>Nowhere. They stay in your browser on this device. We count visits with Cloudflare Web Analytics, which does not use cookies and never sees your answers.</p></details>
+    <details><summary>Do I need my documents to start? <span class="pm" aria-hidden="true">＋</span></summary><p>No. It helps to know your province, your city and roughly your household income. Your results include a checklist of documents for later.</p></details>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="cta reveal">
+    <h2>See what you may qualify for.</h2>
+    <p>About five minutes. Free, private, and every answer can be "I'm not sure".</p>
+    <a class="btn btn-light" href="#">Find my benefits <span class="arr" aria-hidden="true">→</span></a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap fgrid">
+    <div><a class="logo" href="#" style="color:var(--text);padding:0">AbilityFinder</a><p style="max-width:34ch">A free, independent guide to disability benefits in Canada. Not a government service. Built in Alberta by a small team.</p></div>
+    <div><h4>Find</h4><a href="#">Find my benefits</a><a href="#">Browse programs</a><a href="#">Grants and funds</a><a href="#">Organizations</a></div>
+    <div><h4>Trust</h4><a href="#">How we verify</a><a href="#">Data updates</a><a href="#">What we don't cover yet</a><a href="#">Privacy</a></div>
+    <div><h4>More</h4><a href="#">For professionals</a><a href="#">Accessibility</a><a href="#">Français</a><a href="#">Send feedback</a></div>
+  </div>
+</footer>
+
+<script>
+/* Header gets its glass background once you scroll. */
+const nav = document.getElementById("nav");
+addEventListener("scroll", () => nav.classList.toggle("scrolled", scrollY > 10), { passive: true });
+
+/* Reveal on scroll, and straighten the product window as it enters. */
+const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.15 });
+document.querySelectorAll(".reveal, #stage").forEach((el) => io.observe(el));
+
+/* Linear-style spotlight border that follows the pointer. */
+document.querySelectorAll(".card").forEach((c) => c.addEventListener("pointermove", (e) => {
+  const r = c.getBoundingClientRect(); c.style.setProperty("--x", `${e.clientX - r.left}px`); c.style.setProperty("--y", `${e.clientY - r.top}px`);
+}));
+
+/* Seamless marquee: duplicate the track once. */
+const track = document.getElementById("track"); track.innerHTML += track.innerHTML;
+
+/* Stripe-like flowing ribbon (WebGL). Static single frame under reduced motion,
+   paused when the tab is hidden; CSS gradients remain if WebGL is unavailable. */
+(() => {
+  const canvas = document.getElementById("ribbon");
+  const gl = canvas.getContext("webgl", { premultipliedAlpha: false, antialias: false });
+  if (!gl) return;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const vs = "attribute vec2 p; void main(){ gl_Position = vec4(p,0.,1.); }";
+  const fs = `precision highp float;
+  uniform vec2 r; uniform float t;
+  vec3 hash3(vec2 p){ vec3 q = vec3(dot(p,vec2(127.1,311.7)), dot(p,vec2(269.5,183.3)), dot(p,vec2(419.2,371.9))); return fract(sin(q)*43758.5453); }
+  float noise(vec2 p){ vec2 i=floor(p), f=fract(p); vec2 u=f*f*(3.-2.*f);
+    float a=dot(hash3(i).xy-.5, f), b=dot(hash3(i+vec2(1,0)).xy-.5, f-vec2(1,0)), c=dot(hash3(i+vec2(0,1)).xy-.5, f-vec2(0,1)), d=dot(hash3(i+vec2(1,1)).xy-.5, f-vec2(1,1));
+    return mix(mix(a,b,u.x), mix(c,d,u.x), u.y); }
+  float fbm(vec2 p){ float v=0., a=.5; for(int i=0;i<5;i++){ v+=a*noise(p); p*=2.03; a*=.5; } return v; }
+  vec3 pal(float x){ // violet → indigo → teal → amber → rose
+    vec3 a = vec3(.43,.37,.96), b = vec3(.33,.55,1.0), c = vec3(.23,.84,.77), d = vec3(.98,.74,.36), e = vec3(.96,.45,.72);
+    x = fract(x);
+    if (x < .25) return mix(a,b,x*4.); if (x < .5) return mix(b,c,(x-.25)*4.); if (x < .75) return mix(c,d,(x-.5)*4.); return mix(d,e,(x-.75)*4.);
+  }
+  void main(){
+    vec2 uv = gl_FragCoord.xy / r.xy; vec2 p = uv; p.x *= r.x / r.y;
+    float tt = t * .16;
+    vec3 col = vec3(0.);
+    for (int i = 0; i < 34; i++) {
+      float fi = float(i) / 33.;
+      vec2 P = r.x > r.y ? p : vec2(uv.x * 1.6, uv.y * .9 + .12);   // portrait: same sweep, upper hero
+      float x = P.x;
+      float y = .60 + (x - .75) * .95                       // sweep up through the top-right of the hero
+              + .16 * sin(x * 2.1 + fi * 2.6 + tt)         // the fold
+              + .07 * sin(x * 4.3 - fi * 5.0 + tt * 1.7)
+              + .12 * fbm(vec2(x * .8 + fi * .6, tt * .35))
+              + (fi - .5) * .62;
+      float dd = abs(P.y - y);
+      float w = .0022 + .007 * fi;
+      float line = exp(-dd * dd / (w * w)) * .9 + exp(-dd * dd / (w * w * 90.)) * .10;   // core + soft glow
+      col += pal(fi * .85 + x * .22 + tt * .03) * line * (.22 + .40 * fi);
+    }
+    col = 1. - exp(-col * 1.05);                            // gentle tone map, no white-out
+    col = mix(vec3(dot(col, vec3(.33))), col, 1.35);        // a touch more saturation
+    col *= r.x > r.y ? smoothstep(.46, .80, uv.x)           // desktop: the headline side stays dark
+                     : .45 * smoothstep(-.3, 1.0, uv.x);    // phone: soft, behind the text
+    col *= 1. - smoothstep(.90, 1.0, uv.y);                 // clear of the menu bar
+    col *= smoothstep(.0, .18, uv.y);
+    gl_FragColor = vec4(col, 1.);
+  }`;
+  const sh = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; };
+  const pr = gl.createProgram(); gl.attachShader(pr, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(pr);
+  if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return;
+  gl.useProgram(pr);
+  const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(pr, "p"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+  const uR = gl.getUniformLocation(pr, "r"), uT = gl.getUniformLocation(pr, "t");
+  const scale = Math.min(1, 1.25 / (devicePixelRatio || 1));   // render at reduced resolution; it is soft anyway
+  const size = () => { canvas.width = Math.round(canvas.clientWidth * scale); canvas.height = Math.round(canvas.clientHeight * scale); gl.viewport(0, 0, canvas.width, canvas.height); };
+  const draw = (ms) => { gl.uniform2f(uR, canvas.width, canvas.height); gl.uniform1f(uT, ms / 1000 + 40); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); };
+  size(); addEventListener("resize", () => { size(); if (reduce) draw(0); });
+  if (reduce) { draw(0); return; }
+  let raf; const loop = (ms) => { draw(ms); raf = requestAnimationFrame(loop); }; raf = requestAnimationFrame(loop);
+  document.addEventListener("visibilitychange", () => { if (document.hidden) cancelAnimationFrame(raf); else raf = requestAnimationFrame(loop); });
+})();
+</script>
+</body>
+</html>
