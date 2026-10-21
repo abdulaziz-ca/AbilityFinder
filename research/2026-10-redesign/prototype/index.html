@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AbilityFinder redesign prototype</title>
+<style>
+@font-face { font-family: "Inter"; src: url("../../../public/fonts/inter-latin.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+
+/* ── Tokens ──────────────────────────────────────────────────────────────
+   Dark is the default (owner, 2026-10-20). Every text pair is checked by
+   check-contrast.js: body 7:1+, all text 4.5:1+, controls and focus 3:1+. */
+:root, [data-theme="dark"] {
+  --bg: #0b0d12;
+  --bg-glow-1: rgba(110, 94, 245, 0.22);
+  --bg-glow-2: rgba(32, 178, 170, 0.14);
+  --surface: #12151c;
+  --surface-2: #181c25;
+  --hairline: #232835;          /* decorative dividers only */
+  --edge: #5b6476;              /* control and card edges (3:1 on --bg) */
+  --text: #eef0f4;
+  --text-2: #b4bac6;
+  --accent: #9d98ff;            /* links, focus, selected */
+  --accent-strong: #6d5ef5;     /* primary button fill */
+  --on-accent: #ffffff;
+  --ready: #6ee7a8;  --ready-bg: rgba(110, 231, 168, 0.12);
+  --check: #f8c45c;  --check-bg: rgba(248, 196, 92, 0.12);
+  --notnow: #c3c8d2; --notnow-bg: rgba(195, 200, 210, 0.10);
+  --focus: #b8b4ff;
+  --shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 8px 24px rgba(0,0,0,0.35);
+  color-scheme: dark;
+}
+[data-theme="light"] {
+  --bg: #f7f7f9;
+  --bg-glow-1: rgba(109, 94, 245, 0.12);
+  --bg-glow-2: rgba(20, 160, 150, 0.08);
+  --surface: #ffffff;
+  --surface-2: #f1f2f5;
+  --hairline: #e3e5ea;
+  --edge: #7d8595;
+  --text: #0f1218;
+  --text-2: #4a5263;
+  --accent: #4f3fd9;
+  --accent-strong: #5141e0;
+  --on-accent: #ffffff;
+  --ready: #0f6e45;  --ready-bg: #e3f5ec;
+  --check: #7a4b00;  --check-bg: #fbefd6;
+  --notnow: #4a5263; --notnow-bg: #eceef2;
+  --focus: #4f3fd9;
+  --shadow: 0 1px 2px rgba(16,18,24,0.06), 0 8px 24px rgba(16,18,24,0.06);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { font-size: 112.5%; } /* 18px body */
+body {
+  margin: 0; font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 1rem; line-height: 1.6; color: var(--text); background: var(--bg);
+  -webkit-font-smoothing: antialiased; font-feature-settings: "cv11", "ss01";
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+.measure { max-width: 65ch; }
+@media (prefers-reduced-motion: no-preference) { .rise { animation: rise .35s ease-out both; } }
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* ── Header (Mercury-quiet) ── */
+.top { position: sticky; top: 0; z-index: 5; backdrop-filter: blur(10px); background: color-mix(in srgb, var(--bg) 82%, transparent); border-bottom: 1px solid var(--hairline); }
+.top .wrap { display: flex; align-items: center; gap: 16px; min-height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 650; letter-spacing: -0.01em; color: var(--text); text-decoration: none; }
+.brand-mark { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, #6d5ef5, #22b0a6); display: grid; place-items: center; color: #fff; font-size: 15px; font-weight: 800; }
+.nav { display: flex; gap: 4px; margin-left: auto; flex-wrap: wrap; }
+.btn-ghost { min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid transparent; background: none; color: var(--text-2); font: inherit; font-size: .9rem; cursor: pointer; }
+.btn-ghost:hover, .btn-ghost[aria-current="page"] { color: var(--text); background: var(--surface-2); }
+.theme-btn { border-color: var(--edge); color: var(--text); }
+
+/* ── Buttons ── */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 12px; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none; border: 1px solid transparent; }
+.btn-primary { background: var(--accent-strong); color: var(--on-accent); }
+.btn-primary:hover { filter: brightness(1.08); }
+.btn-secondary { background: transparent; color: var(--text); border-color: var(--edge); }
+
+/* ── Home (Stripe hierarchy + Mercury restraint + Figma tiles) ── */
+.hero { position: relative; overflow: hidden; padding: 88px 0 64px; }
+.hero::before { content: ""; position: absolute; inset: -20% -10% auto -10%; height: 140%; pointer-events: none;
+  background: radial-gradient(40% 50% at 78% 20%, var(--bg-glow-1), transparent 70%), radial-gradient(35% 45% at 12% 70%, var(--bg-glow-2), transparent 70%); }
+.hero > .wrap { position: relative; }
+.eyebrow { display: inline-flex; gap: 8px; align-items: center; font-size: .82rem; font-weight: 600; color: var(--text-2); border: 1px solid var(--hairline); background: var(--surface); padding: 6px 12px; border-radius: 999px; }
+.eyebrow b { color: var(--ready); font-weight: 650; }
+h1.display { font-size: clamp(2.3rem, 5.2vw, 4rem); line-height: 1.06; letter-spacing: -0.035em; font-weight: 700; margin: 20px 0 18px; max-width: 16ch; }
+.display .soft { color: var(--text-2); }
+.lede { font-size: 1.15rem; color: var(--text-2); max-width: 46ch; margin: 0 0 32px; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.meta-row { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--hairline); }
+.meta-row div { min-width: 140px; }
+.meta-row strong { display: block; font-size: 1.6rem; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.meta-row span { color: var(--text-2); font-size: .9rem; }
+.section { padding: 56px 0; }
+.section h2 { font-size: 1.6rem; letter-spacing: -0.02em; margin: 0 0 8px; }
+.section .sub { color: var(--text-2); margin: 0 0 28px; }
+.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+@media (max-width: 860px) { .tiles { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .tiles { grid-template-columns: 1fr; } }
+.tile { display: grid; gap: 10px; align-content: start; min-height: 150px; padding: 20px; border-radius: 16px; background: var(--surface); border: 1px solid var(--hairline); color: var(--text); text-decoration: none; box-shadow: var(--shadow); }
+.tile:hover { border-color: var(--edge); }
+.tile-icon { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: var(--surface-2); color: var(--accent); }
+.tile b { font-size: 1.02rem; }
+.tile span { color: var(--text-2); font-size: .92rem; }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.step { padding: 22px; border-radius: 16px; border: 1px solid var(--hairline); background: var(--surface); }
+.step .n { font-size: .8rem; font-weight: 700; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; }
+.step h3 { margin: 8px 0 6px; font-size: 1.1rem; }
+.step p { margin: 0; color: var(--text-2); font-size: .95rem; }
+.before { margin-top: 18px; padding: 20px 22px; border-radius: 16px; background: var(--surface-2); color: var(--text-2); font-size: .95rem; }
+.before b { color: var(--text); }
+
+/* ── Question (Notion calm + Wise boldness + GOV.UK rules) ── */
+.q-shell { max-width: 720px; margin: 0 auto; padding: 32px 24px 80px; }
+.back { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--text-2); text-decoration: none; font-weight: 550; }
+.progress { display: flex; align-items: center; gap: 12px; margin: 24px 0 8px; color: var(--text-2); font-size: .88rem; }
+.bar { flex: 1; height: 6px; border-radius: 99px; background: var(--surface-2); overflow: hidden; }
+.bar i { display: block; height: 100%; width: 38%; background: linear-gradient(90deg, #6d5ef5, #22b0a6); border-radius: inherit; }
+fieldset { border: 0; padding: 0; margin: 0; }
+legend h1 { font-size: clamp(1.7rem, 3.6vw, 2.4rem); line-height: 1.15; letter-spacing: -0.025em; margin: 8px 0 10px; font-weight: 700; }
+.hint { color: var(--text-2); margin: 0 0 24px; max-width: 58ch; }
+.options { display: grid; gap: 10px; }
+.opt { position: relative; display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 14px 18px; border-radius: 14px; border: 1px solid var(--edge); background: var(--surface); cursor: pointer; }
+.opt input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.opt .dot { flex: 0 0 22px; height: 22px; border-radius: 50%; border: 2px solid var(--edge); display: grid; place-items: center; }
+.opt b { font-weight: 600; }
+.opt small { display: block; color: var(--text-2); font-size: .88rem; font-weight: 400; }
+.opt:has(input:checked) { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--surface)); }
+.opt:has(input:checked) .dot { border-color: var(--accent); }
+.opt:has(input:checked) .dot::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+.opt:has(input:focus-visible) { outline: 3px solid var(--focus); outline-offset: 3px; }
+.q-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-top: 28px; }
+.linkish { background: none; border: 0; color: var(--accent); font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; min-height: 44px; }
+.why { margin-top: 28px; border-top: 1px solid var(--hairline); padding-top: 18px; color: var(--text-2); font-size: .95rem; }
+.why summary { cursor: pointer; color: var(--text); font-weight: 600; min-height: 44px; display: flex; align-items: center; }
+
+/* ── Results (Linear rows + chips) ── */
+.res-head { padding: 40px 0 8px; }
+.res-head h1 { font-size: clamp(1.8rem, 3.6vw, 2.5rem); letter-spacing: -0.025em; margin: 0 0 8px; }
+.answers { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 8px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; padding: 0 12px; border-radius: 999px; font-size: .84rem; font-weight: 550; border: 1px solid var(--hairline); background: var(--surface); color: var(--text-2); }
+.chip.edit { color: var(--accent); border-color: var(--edge); text-decoration: none; min-height: 44px; }
+.dates { margin: 24px 0; border: 1px solid var(--hairline); border-radius: 16px; background: var(--surface); padding: 18px 20px; display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; }
+.dates .when { font-variant-numeric: tabular-nums; font-weight: 700; padding: 8px 12px; border-radius: 10px; background: var(--check-bg); color: var(--check); text-align: center; line-height: 1.2; font-size: .9rem; }
+.dates .when b { display: block; font-size: 1.35rem; }
+.dates p { margin: 0; color: var(--text-2); font-size: .95rem; }
+.dates p b { color: var(--text); }
+.group { margin: 32px 0 0; }
+.group-h { display: flex; align-items: baseline; gap: 10px; margin: 0 0 10px; font-size: .82rem; letter-spacing: .07em; text-transform: uppercase; color: var(--text-2); font-weight: 650; }
+.group-h .count { font-variant-numeric: tabular-nums; color: var(--text); }
+.list { border: 1px solid var(--hairline); border-radius: 16px; overflow: hidden; background: var(--surface); }
+.row { display: grid; grid-template-columns: auto 1fr auto; gap: 14px 18px; align-items: center; padding: 16px 20px; border-top: 1px solid var(--hairline); text-decoration: none; color: var(--text); }
+.row:first-child { border-top: 0; }
+.row:hover { background: var(--surface-2); }
+.status { display: inline-flex; align-items: center; gap: 6px; min-height: 28px; padding: 0 10px; border-radius: 8px; font-size: .78rem; font-weight: 650; white-space: nowrap; }
+.s-ready { color: var(--ready); background: var(--ready-bg); }
+.s-check { color: var(--check); background: var(--check-bg); }
+.s-not { color: var(--notnow); background: var(--notnow-bg); }
+.row-main b { display: block; font-weight: 600; }
+.row-main span { color: var(--text-2); font-size: .92rem; }
+.row-meta { display: flex; gap: 8px; align-items: center; justify-content: flex-end; flex-wrap: wrap; }
+.tag { font-size: .78rem; font-weight: 600; color: var(--text-2); border: 1px solid var(--hairline); padding: 3px 8px; border-radius: 7px; }
+.amount { font-weight: 650; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.arrow { color: var(--text-2); }
+.more { border: 1px solid var(--hairline); border-radius: 16px; background: var(--surface); margin-top: 32px; }
+.more summary { cursor: pointer; padding: 16px 20px; font-weight: 600; min-height: 56px; display: flex; align-items: center; justify-content: space-between; }
+
+/* ── Guide (Oscar warmth + reading measure + sticky apply card) ── */
+.guide { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 40px; padding: 40px 0 80px; align-items: start; }
+.crumbs { color: var(--text-2); font-size: .9rem; margin-bottom: 12px; }
+.guide h1 { font-size: clamp(1.9rem, 4vw, 2.8rem); letter-spacing: -0.03em; line-height: 1.1; margin: 0 0 14px; }
+.guide .short { font-size: 1.15rem; color: var(--text-2); margin: 0 0 22px; max-width: 58ch; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin: 0 0 32px; }
+.fact { padding: 14px 16px; border-radius: 14px; background: var(--surface); border: 1px solid var(--hairline); }
+.fact span { display: block; color: var(--text-2); font-size: .82rem; }
+.fact b { font-size: 1.05rem; }
+.guide h2 { font-size: 1.3rem; letter-spacing: -0.015em; margin: 36px 0 12px; }
+.checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.checks li { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; padding: 14px 16px; border-radius: 14px; background: var(--surface); border: 1px solid var(--hairline); }
+.checks .ic { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; font-size: .9rem; font-weight: 800; }
+.ic-yes { background: var(--ready-bg); color: var(--ready); }
+.ic-q { background: var(--check-bg); color: var(--check); }
+.checks small { display: block; color: var(--text-2); }
+ol.howto { padding-left: 1.3em; margin: 0; }
+ol.howto li { padding: 6px 0; }
+.official { margin-top: 12px; border: 1px solid var(--hairline); border-radius: 14px; background: var(--surface); }
+.official summary { cursor: pointer; padding: 14px 16px; font-weight: 600; min-height: 52px; display: flex; align-items: center; }
+.official div { padding: 0 16px 16px; color: var(--text-2); }
+.apply-card { position: sticky; top: 88px; padding: 22px; border-radius: 18px; background: var(--surface); border: 1px solid var(--hairline); box-shadow: var(--shadow); display: grid; gap: 14px; }
+.apply-card h3 { margin: 0; font-size: 1.05rem; }
+.apply-card p { margin: 0; color: var(--text-2); font-size: .92rem; }
+.apply-card .btn { width: 100%; }
+.limit { margin-top: 32px; padding: 16px 18px; border-radius: 14px; background: var(--surface-2); color: var(--text-2); font-size: .95rem; }
+.limit b { color: var(--text); }
+
+.screen { display: none; scroll-margin-top: 80px; }
+.screen.on { display: block; }
+.foot { border-top: 1px solid var(--hairline); padding: 28px 0 48px; color: var(--text-2); font-size: .88rem; }
+
+@media (max-width: 860px) {
+  .guide { grid-template-columns: 1fr; }
+  .apply-card { position: static; }
+  .row { grid-template-columns: 1fr; gap: 8px; }
+  .row-meta { justify-content: flex-start; }
+  .dates { grid-template-columns: 1fr; }
+  .hero { padding: 56px 0 40px; }
+}
+
+[tabindex="-1"]:focus { outline: none; }
+.opt .dot.box { border-radius: 6px; }
+.opt:has(input:checked) .dot.box::after { content: "✓"; width: auto; height: auto; background: none; color: var(--on-accent); font-size: 14px; font-weight: 800; line-height: 1; }
+.opt:has(input:checked) .dot.box { background: var(--accent-strong); border-color: var(--accent-strong); }
+.status { justify-self: start; }
+@media (max-width: 860px) {
+  .top .wrap { flex-wrap: wrap; padding-top: 8px; padding-bottom: 8px; }
+  .nav { margin-left: 0; width: 100%; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .nav .btn-ghost { flex: 0 0 auto; }
+  .dates .when { justify-self: start; padding: 8px 16px; }
+}
+@media (forced-colors: active) { .tile, .row, .opt, .list, .fact, .checks li, .apply-card { border: 1px solid CanvasText; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home" data-go="home"><span class="brand-mark" aria-hidden="true">A</span>AbilityFinder</a>
+    <nav class="nav" aria-label="Prototype screens">
+      <button class="btn-ghost" data-go="home" aria-current="page">Home</button>
+      <button class="btn-ghost" data-go="question">A question</button>
+      <button class="btn-ghost" data-go="results">Results</button>
+      <button class="btn-ghost" data-go="guide">A guide</button>
+      <button class="btn-ghost theme-btn" id="themeBtn" aria-pressed="true">Dark</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ── HOME ── -->
+<section class="screen on" id="screen-home" data-screen="home" aria-label="Home">
+  <div class="hero">
+    <div class="wrap rise">
+      <span class="eyebrow"><b>●</b> Free · private · no account</span>
+      <h1 class="display">Find the disability benefits <span class="soft">you may qualify for.</span></h1>
+      <p class="lede">Answer about 12 short questions. We match you against 463 federal, provincial and local programs across Canada, then show what to do next.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" data-go="question">Start — about 5 minutes →</button>
+        <a class="btn btn-secondary" href="#">Browse all programs</a>
+      </div>
+      <div class="meta-row" aria-label="At a glance">
+        <div><strong>463</strong><span>programs checked against official pages</span></div>
+        <div><strong>10</strong><span>provinces, plus federal programs</span></div>
+        <div><strong>Private</strong><span>no account; answers stay on your device</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="section"><div class="wrap">
+    <h2>Start from where you are</h2>
+    <p class="sub">Or pick what you need help with first.</p>
+    <div class="tiles">
+      <a class="tile" href="#"><span class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M7 9.5v5M17 9.5v5"/></svg></span><b>Money every month</b><span>Income support, disability benefits, tax credits</span></a>
+      <a class="tile" href="#"><span class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/><path d="M9 11h6M12 8v6"/></svg></span><b>Health costs</b><span>Drugs, dental, vision, equipment and supplies</span></a>
+      <a class="tile" href="#"><span class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M8 21v-4M16 21v-4"/><circle cx="8.5" cy="14" r=".6"/><circle cx="15.5" cy="14" r=".6"/></svg></span><b>Getting around</b><span>Accessible transit, parking permits, travel for care</span></a>
+      <a class="tile" href="#"><span class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"/></svg></span><b>Home and housing</b><span>Accessibility changes, repairs, rent help</span></a>
+      <a class="tile" href="#"><span class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg></span><b>School and work</b><span>Grants for students, job supports</span></a>
+      <a class="tile" href="#"><span class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7l5 5v11H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M14 4v5h5M9 13h6M9 17h4"/></svg></span><b>Help with forms</b><span>Free organizations that help you apply or appeal</span></a>
+    </div>
+  </div></div>
+  <div class="section"><div class="wrap">
+    <h2>How it works</h2>
+    <p class="sub">Three steps. You can stop and come back.</p>
+    <div class="steps">
+      <div class="step"><span class="n">Step 1</span><h3>Answer short questions</h3><p>One question per page. "Not sure" is always an answer.</p></div>
+      <div class="step"><span class="n">Step 2</span><h3>See programs to check</h3><p>Matches first, with the one thing each still needs.</p></div>
+      <div class="step"><span class="n">Step 3</span><h3>Apply with a plan</h3><p>Plain guides, documents to gather, and dates to know.</p></div>
+    </div>
+    <p class="before"><b>Before you start:</b> it helps to know your province and city, roughly your household income, and whether you have the Disability Tax Credit. You do not need any documents yet.</p>
+  </div></div>
+</section>
+
+<!-- ── QUESTION ── -->
+<section class="screen" id="screen-question" data-screen="question" aria-label="A question">
+  <div class="q-shell rise">
+    <a class="back" href="#home" data-go="home">← Back</a>
+    <div class="progress"><span>Question 5 of about 12</span><span class="bar" aria-hidden="true"><i></i></span></div>
+    <form onsubmit="event.preventDefault(); go('results')">
+      <fieldset>
+        <legend><h1>Which of these are true for you?</h1></legend>
+        <p class="hint">Pick only what applies. For many programs, how daily life is affected matters more than a diagnosis.</p>
+        <div class="options">
+          <label class="opt"><input type="checkbox" name="n" checked><span class="dot box" aria-hidden="true"></span><span><b>I can't use regular transit without help</b><small>For some or all trips</small></span></label>
+          <label class="opt"><input type="checkbox" name="n"><span class="dot box" aria-hidden="true"></span><span><b>I need medical equipment or supplies</b><small>Because of a disability</small></span></label>
+          <label class="opt"><input type="checkbox" name="n"><span class="dot box" aria-hidden="true"></span><span><b>My home needs changes for access or safety</b><small>Ramps, grab bars, a stair lift</small></span></label>
+          <label class="opt"><input type="checkbox" name="n"><span class="dot box" aria-hidden="true"></span><span><b>None of these</b></span></label>
+        </div>
+      </fieldset>
+      <div class="q-actions">
+        <button class="btn btn-primary" type="submit">Continue</button>
+        <button class="linkish" type="button">I'm not sure</button>
+      </div>
+    </form>
+    <details class="why"><summary>Why we ask this</summary><p>Some programs, like accessible transit and home-repair grants, are only for people with a specific daily-life need. Your answer stays on this device.</p></details>
+  </div>
+</section>
+
+<!-- ── RESULTS ── -->
+<section class="screen" id="screen-results" data-screen="results" aria-label="Results">
+  <div class="wrap rise">
+    <div class="res-head">
+      <h1>Programs based on your answers</h1>
+      <p class="hint" style="margin:0">17 programs to check in Ontario and federally. The program decides if you qualify.</p>
+      <div class="answers" aria-label="Your answers">
+        <span class="chip">Myself</span><span class="chip">Physical / mobility</span><span class="chip">60 to 64</span><span class="chip">Ontario · London</span><span class="chip">Lower income</span><span class="chip">DTC approved</span>
+        <a class="chip edit" href="#question" data-go="question">Edit answers</a>
+      </div>
+    </div>
+
+    <div class="dates" aria-label="Dates to know">
+      <span class="when">Oct<b>30</b>2026</span>
+      <p><b>Applications close at 4:30 p.m.</b> — Ontario Renovates home repair and accessibility funding (London). The program is expected to reopen April 1, 2027.</p>
+      <button class="btn btn-secondary" type="button">Add to calendar</button>
+    </div>
+
+    <div class="group">
+      <h2 class="group-h">Matches your answers <span class="count">3</span></h2>
+      <div class="list">
+        <a class="row" href="#guide" data-go="guide"><span class="status s-ready">✓ Matches</span><span class="row-main"><b>Canada Disability Benefit</b><span>Monthly payment for working-age adults with the DTC and a lower income.</span></span><span class="row-meta"><span class="tag">Federal</span><span class="amount">Up to $204.20/mo</span><span class="arrow" aria-hidden="true">›</span></span></a>
+        <a class="row" href="#guide" data-go="guide"><span class="status s-ready">✓ Matches</span><span class="row-main"><b>Ontario Electricity Support Program</b><span>A monthly credit on your electricity bill.</span></span><span class="row-meta"><span class="tag">Ontario</span><span class="amount">Monthly credit</span><span class="arrow" aria-hidden="true">›</span></span></a>
+        <a class="row" href="#guide" data-go="guide"><span class="status s-ready">✓ Matches</span><span class="row-main"><b>London Transit paratransit</b><span>Door-to-door rides if you can't use regular buses.</span></span><span class="row-meta"><span class="tag">London</span><span class="amount">Regular fare</span><span class="arrow" aria-hidden="true">›</span></span></a>
+      </div>
+    </div>
+
+    <div class="group">
+      <h2 class="group-h">More to check <span class="count">9</span></h2>
+      <div class="list">
+        <a class="row" href="#guide" data-go="guide"><span class="status s-check">? 1 thing to check</span><span class="row-main"><b>Ontario Renovates (London)</b><span>Check: you own your home and it is assessed at or below $320,000.</span></span><span class="row-meta"><span class="tag">London</span><span class="amount">Up to $25,000</span><span class="arrow" aria-hidden="true">›</span></span></a>
+        <a class="row" href="#guide" data-go="guide"><span class="status s-check">? 1 thing to check</span><span class="row-main"><b>Ontario Trillium Benefit</b><span>Check: you filed your 2025 tax return.</span></span><span class="row-meta"><span class="tag">Ontario</span><span class="amount">Paid monthly</span><span class="arrow" aria-hidden="true">›</span></span></a>
+        <a class="row" href="#guide" data-go="guide"><span class="status s-check">? 2 things to check</span><span class="row-main"><b>Assistive Devices Program</b><span>Check: a prescriber confirms the device and the vendor is registered.</span></span><span class="row-meta"><span class="tag">Ontario</span><span class="amount">Up to 75% of cost</span><span class="arrow" aria-hidden="true">›</span></span></a>
+      </div>
+    </div>
+
+    <details class="more"><summary>Not for your situation now (5) <span aria-hidden="true">＋</span></summary>
+      <div class="list" style="border:0;border-top:1px solid var(--hairline);border-radius:0">
+        <div class="row"><span class="status s-not">— Not now</span><span class="row-main"><b>Ontario Works</b><span>You told us you get ODSP. Ontario Works is for people not on ODSP.</span></span><span class="row-meta"><span class="tag">Ontario</span></span></div>
+      </div>
+    </details>
+    <p class="limit" style="margin-bottom:56px"><b>What this list can't tell you:</b> programs we have not added yet, whether you will be approved, and details we did not ask about.</p>
+  </div>
+</section>
+
+<!-- ── GUIDE ── -->
+<section class="screen" id="screen-guide" data-screen="guide" aria-label="A program guide">
+  <div class="wrap">
+    <div class="guide rise">
+      <article>
+        <p class="crumbs">Results › Federal › Money</p>
+        <h1>Canada Disability Benefit</h1>
+        <p class="short">A monthly payment for adults aged 18 to 64 who are approved for the Disability Tax Credit and have a lower income.</p>
+        <div class="facts">
+          <div class="fact"><span>Up to</span><b>$204.20 a month</b></div>
+          <div class="fact"><span>Effort</span><b>15–30 minutes</b></div>
+          <div class="fact"><span>First payment</span><b>Month after approval</b></div>
+        </div>
+        <h2>You may qualify if</h2>
+        <ul class="checks">
+          <li><span class="ic ic-yes" aria-hidden="true">✓</span><span>You are 18 to 64<small>You told us 60 to 64.</small></span></li>
+          <li><span class="ic ic-yes" aria-hidden="true">✓</span><span>You are approved for the Disability Tax Credit<small>You told us you are approved.</small></span></li>
+          <li><span class="ic ic-q" aria-hidden="true">?</span><span>You and your spouse filed your 2025 tax return<small>We did not ask. The benefit is based on that return.</small></span></li>
+        </ul>
+        <h2>How to apply</h2>
+        <ol class="howto measure">
+          <li>Make sure your DTC is approved and your taxes are filed.</li>
+          <li>Apply online, by phone, by mail, or at a Service Canada office.</li>
+          <li>Add direct deposit so payments arrive automatically.</li>
+        </ol>
+        <details class="official"><summary>Official wording from canada.ca</summary><div class="measure">"Benefit amounts are based on your adjusted family net income. The benefit amount will start to decrease after your adjusted family net income reaches a certain threshold."</div></details>
+        <p class="limit measure"><b>What this guide can't tell you:</b> whether you will be approved. The program decides, often using details we do not ask for.</p>
+      </article>
+      <aside class="apply-card" aria-label="Apply">
+        <h3>Ready to apply?</h3>
+        <p>You apply on the official Government of Canada site. It opens in a new tab.</p>
+        <a class="btn btn-primary" href="#">Apply on canada.ca ↗</a>
+        <a class="btn btn-secondary" href="#">Save to my plan</a>
+        <p>Checked against the official page in October 2026.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot"><div class="wrap">Prototype for review — real AbilityFinder content, not yet the live site. Help and feedback stay in the same place on every page.</div></footer>
+
+<script>
+function go(id) {
+  document.querySelectorAll(".screen").forEach((s) => s.classList.toggle("on", s.dataset.screen === id));
+  document.querySelectorAll(".nav [data-go]").forEach((b) => b.toggleAttribute("aria-current", b.dataset.go === id));
+  window.scrollTo(0, 0); requestAnimationFrame(() => window.scrollTo(0, 0)); // beat the native #anchor jump
+  const h = document.querySelector("#screen-" + id + " h1"); if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
+}
+document.addEventListener("click", (e) => { const t = e.target.closest("[data-go]"); if (t) { e.preventDefault(); go(t.dataset.go); } });
+const themeBtn = document.getElementById("themeBtn");
+themeBtn.addEventListener("click", () => {
+  const dark = document.documentElement.dataset.theme !== "dark";
+  document.documentElement.dataset.theme = dark ? "dark" : "light";
+  themeBtn.textContent = dark ? "Dark" : "Light"; themeBtn.setAttribute("aria-pressed", String(dark));
+});
+const fromHash = () => { const id = (location.hash || "#home").slice(1); if (document.getElementById("screen-" + id)) go(id); };
+window.addEventListener("hashchange", fromHash); fromHash();
+</script>
+</body>
+</html>
