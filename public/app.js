@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "236";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "237";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -194,6 +194,7 @@ let browseQuery = "";
 let browseTheme = "all"; // a THEMES key, or "all"
 let browseLevel = "all"; // "all" | "Federal" | "Alberta" | "local"
 let browseDis = "all";   // a DISABILITIES value, or "all" — sorts, never hides
+let browseNeed = "all";  // a browseable functional-need value, or "all" — sorts, never hides
 let helpTopic = null;    // current contextual "I'm not sure" help page
 let helpReturnStep = 0;  // which wizard step to come back to
 
@@ -3670,6 +3671,69 @@ const REQS = {
   },
 };
 
+/* ── Browse targeting maps ────────────────────────────────────────────────────
+   Derive these from the requirement registry itself so browse ordering follows
+   the eligibility gates instead of a second hand-maintained tag table. The gate
+   helpers that test membership are `hasDisability` and `hasFunctionalNeed`;
+   `Array#some(hasDisability)` is also used by skCognitiveDisability.
+
+   Only literal positive membership checks are safe to infer. Negated checks are
+   ignored, and syntax this small parser does not recognize simply leaves a gate
+   unmapped (the safe "applies to any" browse default). The three original browse
+   mappings remain explicit overrides and win over anything derived. */
+const BROWSE_NEEDS = [
+  "transitBarrier", "equipment", "nutrition", "medicalTravel", "communication",
+  "memorySafety", "sensory", "homeAccess", "careCoordination", "fatiguePain",
+];
+const BROWSE_NEED_LABEL_KEYS = {
+  transitBarrier: "browse.need.transitBarrier",
+  equipment: "browse.need.equipment",
+  nutrition: "browse.need.nutrition",
+  medicalTravel: "browse.need.medicalTravel",
+  communication: "browse.need.communication",
+  memorySafety: "browse.need.memorySafety",
+  sensory: "browse.need.sensory",
+  homeAccess: "browse.need.homeAccess",
+  careCoordination: "browse.need.careCoordination",
+  fatiguePain: "browse.need.fatiguePain",
+};
+function positiveLiteralHelperValues(source, helper) {
+  const out = new Set();
+  const direct = new RegExp(`${helper}\\(\\s*(["'])([^"']+)\\1\\s*\\)`, "g");
+  for (const match of source.matchAll(direct)) {
+    const prefix = source.slice(0, match.index);
+    if (!/!\s*(?:\(\s*)*$/.test(prefix)) out.add(match[2]);
+  }
+  const some = new RegExp(`\\[([^\\]]*)\\]\\.some\\(\\s*${helper}\\s*\\)`, "g");
+  for (const match of source.matchAll(some)) {
+    for (const literal of match[1].matchAll(/(["'])([^"']+)\1/g)) out.add(literal[2]);
+  }
+  return [...out];
+}
+function deriveBrowseRequirementMaps() {
+  const disabilities = {};
+  const needs = {};
+  for (const [gate, req] of Object.entries(REQS)) {
+    if (typeof req.met !== "function") continue;
+    const source = req.met.toString();
+    const gateDisabilities = positiveLiteralHelperValues(source, "hasDisability")
+      .filter((value) => value !== "other");
+    const gateNeeds = positiveLiteralHelperValues(source, "hasFunctionalNeed")
+      .filter((value) => BROWSE_NEEDS.includes(value));
+    if (gateDisabilities.length) disabilities[gate] = gateDisabilities;
+    if (gateNeeds.length) needs[gate] = gateNeeds;
+  }
+  return { disabilities, needs };
+}
+const DERIVED_BROWSE_MAPS = deriveBrowseRequirementMaps();
+const DIS_BY_REQ = {
+  ...DERIVED_BROWSE_MAPS.disabilities,
+  mobility: ["physical", "vision"],
+  equipmentNeed: EQUIP_NEED,
+  developmental: ["intellectual", "autism"],
+};
+const NEED_BY_REQ = DERIVED_BROWSE_MAPS.needs;
+
 /* some benefit URLs are functions of the answers (province-specific) */
 const resolveUrl = (u) => (typeof u === "function" ? u(answers) : u);
 
@@ -4320,6 +4384,7 @@ const PERSISTENCE_SELECTIONS = {
   cities: [...ALBERTA_CITIES, ...(BC_ENABLED ? BC_CITIES : []), ...(ON_ENABLED ? ON_CITIES : []), ...(SK_ENABLED ? SK_CITIES.filter((c) => !ALBERTA_CITIES.includes(c)) : []), ...(MB_ENABLED ? MB_CITIES : []), ...(NB_ENABLED ? NB_CITIES : []), ...(NS_ENABLED ? NS_CITIES : []), ...(PE_ENABLED ? PE_CITIES : []), ...(NL_ENABLED ? NL_CITIES : []), ...(QC_ENABLED ? QC_CITIES : [])],
   citiesByProvince: { AB: ALBERTA_CITIES, BC: BC_ENABLED ? BC_CITIES : [], ON: ON_ENABLED ? ON_CITIES : [], SK: SK_ENABLED ? SK_CITIES : [], MB: MB_ENABLED ? MB_CITIES : [], NB: NB_ENABLED ? NB_CITIES : [], NS: NS_ENABLED ? NS_CITIES : [], PE: PE_ENABLED ? PE_CITIES : [], NL: NL_ENABLED ? NL_CITIES : [], QC: QC_ENABLED ? QC_CITIES : [] },
   browseLevels: BROWSE_LEVELS.map((level) => level.key),
+  browseNeeds: BROWSE_NEEDS,
   benefitIds: CATALOGUE_INDEX.map(row => row[0]),
   progressStages: STAGES.map((stage) => stage.key),
 };
@@ -4332,7 +4397,7 @@ const stateChanges = new AbilityFinderState.StateChangeEmitter();
 function persistentState() {
   return AbilityFinderState.buildPersistedState({
     answers, confirmedFacts, view, stepIndex, detailId, detailFrom, progress, groupMode,
-    browseQuery, browseTheme, browseLevel, browseDis, a11y, lang: LANG,
+    browseQuery, browseTheme, browseLevel, browseDis, browseNeed, a11y, lang: LANG,
     helpTopic, helpReturnStep, programChanges,
     theme: document.documentElement.getAttribute("data-theme"), askConsent,
     validSelections: PERSISTENCE_SELECTIONS,
@@ -4383,6 +4448,7 @@ async function loadState() {
   browseTheme = restored.browseTheme;
   browseLevel = restored.browseLevel;
   browseDis = restored.browseDis;
+  browseNeed = restored.browseNeed;
   a11y = restored.a11y;
   LANG = restored.lang;
   askConsent = restored.askConsent;
@@ -7856,28 +7922,11 @@ function benefitSearchText(b) {
   return [b.name, b.summary, b.category, b.level, d.about, b.requiresNote, (d.tips || []).join(" ")]
     .filter(Boolean).join(" ").toLowerCase();
 }
-/* ── Per-disability browse (2026-07-15) ───────────────────────────────────────
-   Derived from each benefit's own `requires`, NOT a hand-written tag table:
-   one source of truth, so it cannot drift when the rules change.
-
-     mobility      → physical, vision
-     equipmentNeed → EQUIP_NEED
-     developmental → intellectual, autism
-
-   This is a *sort*, not a filter: most catalog entries are not diagnosis-specific
-   because Canadian and Alberta disability benefits usually key off how much a
-   condition limits someone, not the diagnosis label.
-
-   So hiding non-matching benefits would be actively harmful — pick "autism" and
-   you'd stop seeing DTC, AISH and RDSP, which you very likely qualify for. That
-   is the exact self-rejection this whole site exists to prevent. Instead we
-   surface the specific ones first, badge them, and say the true thing out loud. */
-const DIS_BY_REQ = {
-  mobility: ["physical", "vision"],
-  equipmentNeed: EQUIP_NEED,
-  developmental: ["intellectual", "autism"],
-};
-
+/* ── Disability / functional-need browse ──────────────────────────────────────
+   This is a *sort*, never a filter. Hiding non-matching programs would encourage
+   self-rejection because most disability benefits depend on functional impact,
+   not a diagnosis or one selected need. Specific programs rise first; all other
+   potentially useful programs stay visible. */
 /** Disabilities a benefit specifically targets. Empty = applies to any. */
 function benefitDisabilities(b) {
   const out = new Set();
@@ -7885,6 +7934,17 @@ function benefitDisabilities(b) {
   return [...out];
 }
 const isDisSpecific = (b, dis) => benefitDisabilities(b).includes(dis);
+/** Functional needs a benefit specifically targets. Empty = applies to any. */
+function benefitNeeds(b) {
+  const out = new Set();
+  for (const r of b.requires || []) (NEED_BY_REQ[r] || []).forEach((need) => out.add(need));
+  return [...out];
+}
+const isNeedSpecific = (b, need) => benefitNeeds(b).includes(need);
+function browseTargetScore(b) {
+  return (browseDis !== "all" && isDisSpecific(b, browseDis) ? 1 : 0)
+    + (browseNeed !== "all" && isNeedSpecific(b, browseNeed) ? 1 : 0);
+}
 
 function browseFiltered() {
   const q = browseQuery.trim().toLowerCase();
@@ -7896,27 +7956,26 @@ function browseFiltered() {
     if (q && !benefitSearchText(b).includes(q)) return false;
     return true;
   }).sort((a, b) => {
-    // Specifically-relevant first when a disability is picked; never hidden.
-    if (browseDis !== "all") {
-      const ra = isDisSpecific(a, browseDis) ? 1 : 0;
-      const rb = isDisSpecific(b, browseDis) ? 1 : 0;
-      if (ra !== rb) return rb - ra;
-    }
+    // Both selected targets first, then either target, then everything else.
+    // With one row at "Any", this naturally becomes matching then non-matching.
+    const targetDifference = browseTargetScore(b) - browseTargetScore(a);
+    if (targetDifference) return targetDifference;
     return priorityScore(b) - priorityScore(a);
   });
 }
 /* a status-agnostic card for browsing (no eligibility judgement) */
 function browseCard(b) {
   const v = valueParts(b);
+  const isTargeted = browseTargetScore(b) > 0;
   const valueHtml = `<span class="amount">${v.est ? `<span class="amount-tag">Published maximum</span>` : ""}<span${recAttr(b)}>${v.head}</span></span>${v.sub ? `<span class="amount-sub"${recAttr(b)}>${v.sub}</span>` : ""}`;
   return `
-  <div class="benefit browse-card${browseDis !== "all" && isDisSpecific(b, browseDis) ? " dis-match" : ""}">
+  <div class="benefit browse-card${isTargeted ? " dis-match" : ""}">
     <div class="benefit-row">
       <div class="benefit-main">
         <div class="top">
           <h3${recAttr(b)}>${b.name}</h3>
           <span class="tag lvl">${b.level}</span>
-          ${browseDis !== "all" && isDisSpecific(b, browseDis) ? `<span class="tag dis-tag">${icon("check")} Aimed at this</span>` : ""}
+          ${isTargeted ? `<span class="tag dis-tag">${icon("check")} Aimed at this</span>` : ""}
         </div>
         ${statusBadge(b)}<p class="summary"${recAttr(b)}>${b.summary}</p>
         ${metaRow(b)}
@@ -7951,7 +8010,11 @@ function renderBrowse() {
     .concat(DISABILITIES.filter((d) => d.value !== "other")
       .map((d) => browseChip(browseDis === d.value, d.value, d.label, "bdis")))
     .join("");
-  // Say the true thing rather than quietly hiding 17 benefits.
+  const needChips = [browseChip(browseNeed === "all", "all", t("browse.need.any"), "bneed")]
+    .concat(BROWSE_NEEDS.map((need) => browseChip(
+      browseNeed === need, need, t(BROWSE_NEED_LABEL_KEYS[need]), "bneed")))
+    .join("");
+  // Say the true thing rather than quietly hiding potentially useful benefits.
   const catalog = browseCatalog();
   const nSpec = browseDis === "all" ? 0 : catalog.filter((b) => isDisSpecific(b, browseDis)).length;
   const disLabel = (DISABILITIES.find((d) => d.value === browseDis) || {}).label || "";
@@ -7961,6 +8024,14 @@ function renderBrowse() {
         ? `<b>${nSpec} program${nSpec === 1 ? " is" : "s are"} aimed specifically at ${disLabel.toLowerCase()}</b> — shown first.`
         : `<b>No program is aimed only at ${disLabel.toLowerCase()}</b>.`}
       Everything else still applies to you: most disability benefits go by <b>how much your condition limits you</b>, not by your diagnosis. That's why we don't hide the rest.</span>
+    </p>`;
+  const nNeedSpec = browseNeed === "all" ? 0 : catalog.filter((b) => isNeedSpecific(b, browseNeed)).length;
+  const needNote = browseNeed === "all" ? "" : `
+    <p class="browse-disnote browse-neednote">${icon("info")}
+      <span>${nNeedSpec
+        ? `<b>${nNeedSpec} program${nNeedSpec === 1 ? " is" : "s are"} aimed specifically at this need — shown first.</b>`
+        : `<b>No program is aimed only at this need.</b>`}
+      Everything else may still apply.</span>
     </p>`;
   return `
   <section class="browse">
@@ -7978,8 +8049,10 @@ function renderBrowse() {
       <div class="browse-chiprow" role="group" aria-label="Filter by category">${themeChips}</div>
       <div class="browse-chiprow" role="group" aria-label="Filter by level">${levelChips}</div>
       <div class="browse-chiprow" role="group" aria-label="Show what is most relevant to a disability">${disChips}</div>
+      <div class="browse-chiprow" role="group" aria-label="${t("browse.need.row")}">${needChips}</div>
     </div>
     ${disNote}
+    ${needNote}
     <div class="browse-count" id="browseCount">${browseFiltered().length} benefit${browseFiltered().length === 1 ? "" : "s"}</div>
     <div id="browseResults">${browseResultsHtml()}</div>
   </section>`;
@@ -7998,6 +8071,8 @@ function refreshBrowse() {
     c.classList.toggle("on", c.dataset.blevel === browseLevel));
   document.querySelectorAll("[data-bdis]").forEach((c) =>
     c.classList.toggle("on", c.dataset.bdis === browseDis));
+  document.querySelectorAll("[data-bneed]").forEach((c) =>
+    c.classList.toggle("on", c.dataset.bneed === browseNeed));
 }
 function wireBrowse() {
   const back = document.getElementById("b-back");
@@ -8035,6 +8110,12 @@ function wireBrowse() {
       browseDis = c.dataset.bdis;
       notifyStateChange("browse-filter-change");
       render();      // full render: the explainer line above the list has to change too
+    }));
+  document.querySelectorAll("[data-bneed]").forEach((c) =>
+    c.addEventListener("click", () => {
+      browseNeed = c.dataset.bneed;
+      notifyStateChange("browse-filter-change");
+      render();
     }));
 
   // delegate "View guide" clicks (survives partial innerHTML refreshes)

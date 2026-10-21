@@ -1,0 +1,193 @@
+{
+  "DIS_BY_REQ": {
+    "abPlacardMobility": {
+      "values": [
+        "physical"
+      ],
+      "programs": 1
+    },
+    "autismSelected": {
+      "values": [
+        "autism"
+      ],
+      "programs": 6
+    },
+    "bcParkingMobility": {
+      "values": [
+        "physical"
+      ],
+      "programs": 8
+    },
+    "brainInjuryDisability": {
+      "values": [
+        "braininjury"
+      ],
+      "programs": 1
+    },
+    "brandonCnibFreeTransitRoute": {
+      "values": [
+        "vision"
+      ],
+      "programs": 1
+    },
+    "developmental": {
+      "values": [
+        "autism",
+        "intellectual"
+      ],
+      "programs": 3
+    },
+    "equipmentNeed": {
+      "values": [
+        "braininjury",
+        "chronic",
+        "hearing",
+        "physical",
+        "speech",
+        "vision"
+      ],
+      "programs": 4
+    },
+    "hearingDisability": {
+      "values": [
+        "hearing"
+      ],
+      "programs": 6
+    },
+    "hvmpMobility": {
+      "values": [
+        "physical",
+        "vision"
+      ],
+      "programs": 1
+    },
+    "intellectualDisability": {
+      "values": [
+        "intellectual"
+      ],
+      "programs": 2
+    },
+    "learningDisability": {
+      "values": [
+        "learning"
+      ],
+      "programs": 1
+    },
+    "mobility": {
+      "values": [
+        "physical",
+        "vision"
+      ],
+      "programs": 1
+    },
+    "monctonCnibFreeTransitRoute": {
+      "values": [
+        "vision"
+      ],
+      "programs": 1
+    },
+    "nbVehicleRetrofitRoute": {
+      "values": [
+        "physical"
+      ],
+      "programs": 1
+    },
+    "palliativeCandidateCondition": {
+      "values": [
+        "chronic"
+      ],
+      "programs": 1
+    },
+    "passportDevelopmental": {
+      "values": [
+        "autism",
+        "intellectual"
+      ],
+      "programs": 1
+    },
+    "physicalDisability": {
+      "values": [
+        "physical"
+      ],
+      "programs": 4
+    },
+    "psychiatricMedicationCandidate": {
+      "values": [
+        "mental"
+      ],
+      "programs": 1
+    },
+    "skCognitiveDisability": {
+      "values": [
+        "autism",
+        "braininjury",
+        "intellectual",
+        "learning"
+      ],
+      "programs": 1
+    },
+    "vehicleDisability": {
+      "values": [
+        "physical",
+        "vision"
+      ],
+      "programs": 0
+    },
+    "visionDisability": {
+      "values": [
+        "vision"
+      ],
+      "programs": 2
+    }
+  },
+  "NEED_BY_REQ": {
+    "bcMedTransportNeed": {
+      "values": [
+        "medicalTravel"
+      ],
+      "programs": 1
+    },
+    "equipmentNeed": {
+      "values": [
+        "equipment"
+      ],
+      "programs": 4
+    },
+    "homeAccessNeed": {
+      "values": [
+        "homeAccess"
+      ],
+      "programs": 2
+    },
+    "medicalTravelNeed": {
+      "values": [
+        "medicalTravel"
+      ],
+      "programs": 2
+    },
+    "mordenHandiVanRoute": {
+      "values": [
+        "transitBarrier"
+      ],
+      "programs": 1
+    },
+    "nutritionNeed": {
+      "values": [
+        "nutrition"
+      ],
+      "programs": 1
+    },
+    "transitBarrier": {
+      "values": [
+        "transitBarrier"
+      ],
+      "programs": 28
+    },
+    "vehicleDisability": {
+      "values": [
+        "transitBarrier"
+      ],
+      "programs": 0
+    }
+  }
+}

@@ -212,6 +212,9 @@
         browseDis: live.browseDis === "all" || (allowedValues(validSelections, "disabilities") || new Set()).has(live.browseDis)
           ? live.browseDis
           : "all",
+        browseNeed: live.browseNeed === "all" || (allowedValues(validSelections, "browseNeeds") || new Set()).has(live.browseNeed)
+          ? live.browseNeed
+          : "all",
         a11y: cleanA11y(live.a11y),
         lang: live.lang === "fr" ? "fr" : "en",
         theme: live.theme === "light" ? "light" : "dark",
@@ -228,6 +231,7 @@
     const restoredView = VIEWS.has(source.view) ? source.view : "landing";
     const disabilities = allowedValues(validSelections, "disabilities");
     const browseLevels = allowedValues(validSelections, "browseLevels") || BROWSE_LEVELS;
+    const browseNeeds = allowedValues(validSelections, "browseNeeds");
     const benefitIds = allowedValues(validSelections, "benefitIds");
     return {
       confirmedFacts: cleanConfirmedFacts(source.confirmedFacts),
@@ -245,6 +249,7 @@
       browseTheme: BROWSE_THEMES.has(ui.browseTheme) ? ui.browseTheme : "all",
       browseLevel: browseLevels.has(ui.browseLevel) ? ui.browseLevel : "all",
       browseDis: ui.browseDis === "all" || (disabilities && disabilities.has(ui.browseDis)) ? ui.browseDis : "all",
+      browseNeed: ui.browseNeed === "all" || (browseNeeds && browseNeeds.has(ui.browseNeed)) ? ui.browseNeed : "all",
       a11y: cleanA11y(ui.a11y),
       lang: ui.lang === "fr" ? "fr" : "en",
       theme: ui.theme === "light" || ui.theme === "dark"
@@ -271,6 +276,7 @@
       browseTheme: ui.browseTheme,
       browseLevel: ui.browseLevel,
       browseDis: ui.browseDis,
+      browseNeed: ui.browseNeed,
       a11y: ui.a11y,
       lang: ui.lang,
       theme: ui.theme,

@@ -98,11 +98,18 @@ test("buildPersistedState whitelists app selections and excludes free-text/priva
     browseTheme: "money",
     browseLevel: "Federal",
     browseDis: "physical",
+    browseNeed: "all",
     a11y: { fontScale: 1.2, spacing: true, contrast: false, links: true, guide: false, motion: true },
     lang: "fr",
     theme: "light",
     askConsent: true,
   });
+  const withNeed = buildPersistedState({ ...liveState(), browseNeed: "transitBarrier",
+    validSelections: { ...validSelections, browseNeeds: ["transitBarrier"] } });
+  assert.equal(withNeed.ui.browseNeed, "transitBarrier");
+  const badNeed = buildPersistedState({ ...liveState(), browseNeed: "made-up",
+    validSelections: { ...validSelections, browseNeeds: ["transitBarrier"] } });
+  assert.equal(badNeed.ui.browseNeed, "all");
 });
 
 test("restorePersistedState returns clean defaults when no initial data exists", () => {
