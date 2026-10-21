@@ -6,6 +6,37 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-20 — Features: dates to know, what we can't tell you, browse by need
+
+### Shipped
+- **Dates to know** (`?v=235`): results and guides show real dates for programs whose official page gives one,
+  for example **London Ontario Renovates closes October 30, 2026 at 4:30 p.m.**, with a one-click calendar
+  reminder (a week before and on the day). Dates that are not final (Waterloo's two conflicting deadlines,
+  "expected to reopen", month-only dates) are shown with "Check the official page; this date is not final." and
+  get no calendar button. 12 programs have dates, each restated from its verified record; past dates disappear
+  automatically.
+- **What this list can't tell you** (`?v=236`): a closed panel at the end of results covers three things:
+  programs we have not added yet (links "What we don't cover yet"), whether you will be approved, and details we
+  did not ask about. Guides say: "What this guide can't tell you: whether you will be approved."
+- **Browse by need** (`?v=237`): picking a disability in Browse now brings forward the programs aimed at it, using
+  21 disability gates instead of 3. A new row does the same for needs: getting around, equipment, special diet,
+  travel for medical care and home changes. Nothing is ever hidden; matches only move to the top.
+- **Fixes** (`?v=234`): the guide index files SK–QC provincial programs under Provincial (they showed as
+  Municipal); help texts that named only Alberta now fit every province; French province labels; the embed
+  widget no longer says "Alberta and BC".
+
+### Verified how
+- Unit tests 254/254; the full Chromium suite passes locally for each feature (328, 331, 335 tests); CI runs all
+  three browsers before each deploy. A live sweep of 20 journeys (10 provinces × adult/child) found no broken
+  pages or wrong-province programs.
+- Codex built the first two from my specs and I reviewed them (fixed a doubled program name for screen readers).
+  Codex then hit its usage limit; a Claude agent built Browse by need. **Codex review owed** for that one.
+
+### Needs you
+- **Cloudflare is injecting its analytics beacon** into every page. Our security policy blocks it, so nothing is
+  tracked, but it contradicts the "no third-party trackers" promise and logs an error. Turn off Web Analytics
+  automatic setup for abilityfinder.ca in the Cloudflare dashboard (board ticket #79).
+
 ## 2026-10-20 — Full audit: the site is faster
 
 ### Shipped
