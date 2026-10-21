@@ -12,7 +12,7 @@ function context() {
   const ctx = vm.createContext({ window: {}, document: {}, console,
     icon: () => '', wizardDone: () => false,
     verifiedFor: () => ({ wording: 'test', stale: false }),
-    p2Sections: () => ({}), listBlock: () => '', practitionerFinder: () => '',
+    p2Sections: () => ({}), listBlock: () => '', practitionerFinder: () => '', renderBenefitDates: () => '',
     resolveUrl: s => s,
   });
   vm.runInContext(data + '\n' + translations + '\n' + fn('reqEscape') + '\n' + fn('recLang') + '\n' + fn('recAttr') + '\n' + fn('glossaryBlock') + '\n' + fn('applyLabel') + '\n' + fn('statusBadge') + '\n' + fn('valueParts') + '\n' + fn('difficultyInfo') + '\n' + fn('renderGuideBody') + '\n' + fn('resultsBlurb') + '\nglobalThis.benefits = BENEFITS; globalThis.render = renderGuideBody;', ctx);

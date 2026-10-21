@@ -852,6 +852,14 @@ details.notmatch summary::-webkit-details-marker { display: none; }
 .note b { color: var(--text); font-weight: 550; }
 
 .guide-block { margin-top: 30px; }
+.dates-to-know { margin-block: 24px; }
+.dates-to-know > div { width: 100%; }
+.dates-to-know h2 { margin: 0 0 8px; }
+.dates-list { margin: 0; padding-left: 22px; }
+.dates-list li + li { margin-top: 18px; }
+.dates-list h3, .dates-list p { margin: 4px 0; }
+.date-when { font-weight: 700; }
+.date-not-final { font-weight: 600; }
 .guide-h { display: inline-flex; align-items: center; gap: 9px; font-weight: 600; letter-spacing: -0.02em; font-size: 1.04rem; margin-bottom: 14px; }
 .guide-h .ic { width: 18px; height: 18px; color: var(--accent-hi); }
 .guide-list { margin: 0; padding: 0; list-style: none; counter-reset: g; }

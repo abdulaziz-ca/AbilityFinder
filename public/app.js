@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "234";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "235";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -6561,6 +6561,64 @@ function provinceNoticeHtml(code) {
   return `<div class="callout province-notice" role="note" lang="${v === n.fr ? "fr" : "en"}"><span class="co-ic">${icon("info")}</span><div><b>${reqEscape(v.title)}</b><p>${reqEscape(v.lede)}</p><ul>${v.items.map((it) => `<li>${reqEscape(it)}</li>`).join("")}</ul></div></div>`;
 }
 
+function localDateFromIso(value) {
+  const m = /^(\d{4})-(\d{2})(?:-(\d{2}))?$/.exec(String(value || ""));
+  if (!m) return null;
+  return new Date(+m[1], +m[2] - 1, +(m[3] || 1));
+}
+function benefitDateUpcoming(entry, now = new Date()) {
+  const candidates = [entry.date, ...(entry.conflict || [])].filter(Boolean).sort();
+  const latest = candidates[candidates.length - 1];
+  if (!latest) return false;
+  const today = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
+  if (/^\d{4}-\d{2}$/.test(latest)) return +latest.replace("-", "") >= Math.floor(today / 100);
+  return +latest.replace(/-/g, "") >= today;
+}
+function benefitDateCalendarEligible(entry) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(entry.date) && !entry.expected && !(entry.conflict && entry.conflict.length);
+}
+function formatBenefitDate(entry) {
+  const date = localDateFromIso(entry.date);
+  if (!date) return entry.date;
+  if (/^\d{4}-\d{2}$/.test(entry.date)) {
+    return new Intl.DateTimeFormat("en-CA", { month: "long", year: "numeric" }).format(date);
+  }
+  let formatted = new Intl.DateTimeFormat("en-CA", { month: "long", day: "numeric", year: "numeric" }).format(date);
+  if (entry.time) {
+    const [hour, minute] = entry.time.split(":").map(Number);
+    date.setHours(hour, minute, 0, 0);
+    formatted += ` at ${new Intl.DateTimeFormat("en-CA", { hour: "numeric", minute: "2-digit", hour12: true }).format(date)}`;
+  }
+  return formatted;
+}
+function benefitDateRows(benefits, { upcoming = true, now = new Date() } = {}) {
+  const rows = [];
+  for (const b of benefits) {
+    const entries = typeof BENEFIT_DATES !== "undefined" ? BENEFIT_DATES[b.id] || [] : [];
+    entries.forEach((entry, index) => {
+      if (!upcoming || benefitDateUpcoming(entry, now)) rows.push({ b, entry, index });
+    });
+  }
+  return rows.sort((a, b) => a.entry.date.localeCompare(b.entry.date));
+}
+function renderBenefitDates(benefits, options = {}) {
+  const rows = benefitDateRows(benefits, options);
+  if (!rows.length) return "";
+  const staticAsOf = options.staticAsOf || "";
+  return `<section class="callout dates-to-know" aria-labelledby="${options.headingId || "dates-to-know-title"}">
+    <div><h2 id="${options.headingId || "dates-to-know-title"}">${t("dates.heading")}</h2>
+    ${staticAsOf ? `<p>${t("dates.static").replace("{month}", reqEscape(staticAsOf))}</p>` : ""}
+    <ul class="dates-list">${rows.map(({ b, entry, index }) => {
+      const A = recAttr(b);
+      const expected = entry.expected ? ` ${t("dates.expected")}` : "";
+      const action = benefitDateCalendarEligible(entry) && !options.noCalendar
+        ? `<button class="tool-btn date-calendar" type="button" data-date-program="${reqEscape(b.id)}" data-date-index="${index}" aria-label="${reqEscape(`Add ${b.name} ${entry.label.toLowerCase()} to calendar`)}">${icon("clock")}${t("dates.add")}</button>`
+        : `<p class="date-not-final">${t("dates.notFinal")}</p>`;
+      return `<li><p class="date-when">${reqEscape(formatBenefitDate(entry))}</p><h3${A}>${reqEscape(entry.label)}${expected}</h3><p>${guideLink(b, b.name)}</p><p${A}>${reqEscape(entry.text)}</p>${action}</li>`;
+    }).join("")}</ul></div>
+  </section>`;
+}
+
 function renderResults() {
   const evaluated = browseCatalog().filter((b) => benefitInResultsScope(b, answers)).map((b) => ({ b, r: evaluate(b) }));
   const groups = resultGroups(evaluated);
@@ -6582,6 +6640,7 @@ function renderResults() {
     ${groups.g1.length ? "" : `<p class="results-need-more"${enOnly()}>${t("res.needMore")}</p>`}
     <p>${resultsBlurb(ready.length, almost.length)}</p>
   </div>
+  ${renderBenefitDates([...groups.g1, ...groups.g2].map((e) => e.b))}
   ${provinceNoticeHtml(answers.province)}
   ${renderProgramUpdates(matched)}
   ${renderMoneyBand(ready, almost)}
@@ -6932,9 +6991,62 @@ function icsFold(line) {
   return out[0] + (out.length > 1 ? "\r\n " + out.slice(1).join("\r\n ") : "");
 }
 
+function buildCalendarIcs(events, now = new Date()) {
+  const stamp = icsUtcTimestamp(now);
+  const lines = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//AbilityFinder//Reminders//EN",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+  ];
+  for (const e of events) {
+    lines.push(
+      "BEGIN:VEVENT", `UID:${e.uid}`, `DTSTAMP:${stamp}`,
+      `DTSTART;VALUE=DATE:${icsDate(e.date)}`,
+      `DTEND;VALUE=DATE:${icsDate(addCalendarDays(e.date, 1))}`,
+      icsFold(`SUMMARY:${icsEsc(e.summary)}`),
+      icsFold(`DESCRIPTION:${icsEsc(e.desc)}`),
+      "TRANSP:TRANSPARENT"
+    );
+    for (const trigger of e.alarms || ["PT9H"]) lines.push(
+      "BEGIN:VALARM", `TRIGGER:${trigger}`, "ACTION:DISPLAY",
+      icsFold(`DESCRIPTION:${icsEsc(e.summary)}`), "END:VALARM"
+    );
+    lines.push("END:VEVENT");
+  }
+  lines.push("END:VCALENDAR");
+  return lines.join("\r\n") + "\r\n";
+}
+
+function benefitDateEvent(b, entry) {
+  const official = resolveUrl(b.applyUrl || b.source);
+  return {
+    uid: `date-${b.id}-${entry.date.replace(/-/g, "")}@abilityfinder.ca`,
+    date: localDateFromIso(entry.date),
+    summary: `${entry.label}: ${b.name}`,
+    desc: `${entry.text} Official page: ${official}`,
+    alarms: ["-P6DT15H", "PT9H"],
+  };
+}
+function buildBenefitDateIcs(b, entry, now = new Date()) {
+  return buildCalendarIcs([benefitDateEvent(b, entry)], now);
+}
+function downloadBenefitDate(id, index) {
+  const b = BENEFITS.find((item) => item.id === id);
+  const entry = b && BENEFIT_DATES[id] && BENEFIT_DATES[id][index];
+  if (!b || !entry || !benefitDateCalendarEligible(entry)) return false;
+  const blob = new Blob([buildBenefitDateIcs(b, entry)], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = `abilityfinder-${id}-date.ics`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  return true;
+}
+
 function buildReminderIcs() {
   const now = new Date();
-  const stamp = icsUtcTimestamp(now);
   const events = [];
   const addDays = (n) => addCalendarDays(now, n);
 
@@ -6967,34 +7079,15 @@ function buildReminderIcs() {
       "Re-run the questions at https://abilityfinder.ca to see if anything changed for you.",
   });
 
-  const lines = [
-    "BEGIN:VCALENDAR",
-    "VERSION:2.0",
-    "PRODID:-//AbilityFinder//Reminders//EN",
-    "CALSCALE:GREGORIAN",
-    "METHOD:PUBLISH",
-  ];
-  for (const e of events) {
-    lines.push(
-      "BEGIN:VEVENT",
-      `UID:${e.uid}`,
-      `DTSTAMP:${stamp}`,
-      `DTSTART;VALUE=DATE:${icsDate(e.date)}`,
-      `DTEND;VALUE=DATE:${icsDate(addCalendarDays(e.date, 1))}`,
-      icsFold(`SUMMARY:${icsEsc(e.summary)}`),
-      icsFold(`DESCRIPTION:${icsEsc(e.desc)}`),
-      "TRANSP:TRANSPARENT",
-      // 9am on the day, not midnight — a reminder nobody sees is not a reminder.
-      "BEGIN:VALARM",
-      "TRIGGER:PT9H",
-      "ACTION:DISPLAY",
-      icsFold(`DESCRIPTION:${icsEsc(e.summary)}`),
-      "END:VALARM",
-      "END:VEVENT"
-    );
+  // Exact, non-conflicting dates for every program the person has chosen to track.
+  for (const b of BENEFITS) {
+    if (!progress[b.id] || !STAGE[progress[b.id]]) continue;
+    for (const entry of BENEFIT_DATES[b.id] || []) {
+      if (benefitDateUpcoming(entry, now) && benefitDateCalendarEligible(entry)) events.push(benefitDateEvent(b, entry));
+    }
   }
-  lines.push("END:VCALENDAR");
-  return { ics: lines.join("\r\n") + "\r\n", count: events.length };
+
+  return { ics: buildCalendarIcs(events, now), count: events.length };
 }
 
 function downloadReminders() {
@@ -7338,8 +7431,18 @@ function renderSupportCard(item) {
   </div>`;
 }
 
+function wireBenefitDateButtons(root = document) {
+  root.querySelectorAll(".date-calendar").forEach((button) => button.addEventListener("click", () => {
+    if (downloadBenefitDate(button.dataset.dateProgram, Number(button.dataset.dateIndex))) {
+      button.classList.add("done");
+      button.innerHTML = `${icon("check")} ${t("dates.downloaded")}`;
+    }
+  }));
+}
+
 function wireResults() {
   wireProgramUpdates();
+  wireBenefitDateButtons();
   const scenarioToggle = document.getElementById("scenario-title");
   if (scenarioToggle) scenarioToggle.addEventListener("click", () => {
     scenarioOpen = !scenarioOpen;
@@ -8179,6 +8282,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
         ${coversSection}
         ${b.id === "dtc" ? `<div class="dtc-prep-guide-cta"><button class="apply" type="button" data-open-dtc-prep>${icon("print")}${t("dtcPrep.guideButton")}</button></div>` : ""}
         ${p2.tax}
+        ${renderBenefitDates([b], { headingId: `dates-to-know-${reqEscape(b.id)}` })}
         ${listBlock(t("guide.how"), "compass", guideSteps, true, d.steps && d.steps.length ? A : "")}
         ${b.needsPractitioner && !inline ? practitionerFinder(b) : ""}
         ${p2.related}
@@ -8235,6 +8339,7 @@ function wireDetail() {
 function wireGuideInteractions(root) {
   if (!root || root.dataset.guideWired === "true") return;
   root.dataset.guideWired = "true";
+  wireBenefitDateButtons(root);
   root.querySelectorAll("[data-copy-guide-link]").forEach((btn) => btn.addEventListener("click", async () => {
     const gid = btn.getAttribute("data-copy-guide-link");
     if (!gid) return;
