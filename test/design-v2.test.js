@@ -32,5 +32,5 @@ test("the v2 layer is built into styles.css and fully scoped under html.v2", () 
 test("motion respects reduced-motion preferences", () => {
   const app = read("public/app.js");
   assert.match(app, /function v2MotionAllowed\(\)[\s\S]*prefers-reduced-motion: reduce[\s\S]*a11y-nomotion/);
-  assert.match(app, /v2Ribbon\(host\.querySelector\("canvas"\), !v2MotionAllowed\(\)/, "ribbon is a still frame without motion");
+  assert.match(app, /v2Ribbon\(v2RibbonHost\.querySelector\("canvas"\), !v2MotionAllowed\(\)/, "ribbon is a still frame without motion");
 });

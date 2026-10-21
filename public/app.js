@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "239";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "240";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -4957,6 +4957,8 @@ function v2MotionAllowed() {
   return !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) && !document.body.classList.contains("a11y-nomotion");
 }
 let v2RibbonStop = null;
+let v2RibbonHost = null;
+const v2GL = new WeakMap(); // canvas -> { gl, program } so a re-used canvas keeps its context
 function v2Enhance(currentView, app) {
   document.documentElement.classList.toggle("motion", v2MotionAllowed());
   if (v2RibbonStop && currentView !== "landing") { v2RibbonStop(); v2RibbonStop = null; }
@@ -4966,13 +4968,17 @@ function v2Enhance(currentView, app) {
 function v2Landing(app) {
   const hero = app.querySelector(".hero-full");
   if (hero && !hero.querySelector(".v2-ribbon")) {
-    const host = document.createElement("div");
-    host.className = "v2-ribbon"; host.setAttribute("aria-hidden", "true");
-    host.innerHTML = "<canvas></canvas>";
-    hero.prepend(host);
+    // One canvas (one WebGL context) for the whole session, moved into each new hero:
+    // re-rendering the landing page must not pile up GPU contexts.
+    if (!v2RibbonHost) {
+      v2RibbonHost = document.createElement("div");
+      v2RibbonHost.className = "v2-ribbon"; v2RibbonHost.setAttribute("aria-hidden", "true");
+      v2RibbonHost.innerHTML = "<canvas></canvas>";
+    }
+    hero.prepend(v2RibbonHost);
     if (v2RibbonStop) v2RibbonStop();
     // Automated browsers (tests, crawlers) get one still frame instead of an animation loop.
-    v2RibbonStop = v2Ribbon(host.querySelector("canvas"), !v2MotionAllowed() || navigator.webdriver === true);
+    v2RibbonStop = v2Ribbon(v2RibbonHost.querySelector("canvas"), !v2MotionAllowed() || navigator.webdriver === true);
   }
   ["eyebrow", "hero-title", "hero-sub", "hero-cta", "trust"].forEach((cls, i) => {
     const el = hero && hero.querySelector("." + cls);
@@ -5039,7 +5045,8 @@ function v2Tabs(root) {
 /* Silk ribbon behind the landing hero (WebGL). One static frame when motion is reduced;
    stops when the tab is hidden or the landing view is left. CSS-only fallback: nothing. */
 function v2Ribbon(canvas, still) {
-  const gl = canvas.getContext("webgl", { antialias: false });
+  const cached = v2GL.get(canvas);
+  const gl = cached ? cached.gl : canvas.getContext("webgl", { antialias: false });
   if (!gl) return null;
   const vs = "attribute vec2 p; void main(){ gl_Position = vec4(p,0.,1.); }";
   const fs = `precision highp float; uniform vec2 r; uniform float t; uniform float light;
@@ -5068,11 +5075,15 @@ function v2Ribbon(canvas, still) {
     gl_FragColor = vec4(col, a);
   }`;
   const sh = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; };
-  const pr = gl.createProgram(); gl.attachShader(pr, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(pr);
-  if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return null;
-  gl.useProgram(pr);
-  const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
-  const loc = gl.getAttribLocation(pr, "p"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+  let pr = cached && cached.program;
+  if (!pr) {
+    pr = gl.createProgram(); gl.attachShader(pr, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(pr);
+    if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return null;
+    gl.useProgram(pr);
+    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(pr, "p"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    v2GL.set(canvas, { gl, program: pr });
+  }
   const uR = gl.getUniformLocation(pr, "r"), uT = gl.getUniformLocation(pr, "t");
   // Half resolution: the ribbon is soft, and this keeps phones and CPU renderers cool.
   const scale = 0.5 / Math.max(1, (window.devicePixelRatio || 1) / 2);

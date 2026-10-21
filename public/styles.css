@@ -2058,17 +2058,22 @@ html.v2[data-theme="light"] {
 }
 
 /* ── Base ── */
-html.v2 body { overflow-x: clip; background: var(--bg); color: var(--text); font-family: var(--font-sans); letter-spacing: -0.005em; font-feature-settings: "cv11", "ss01", "ss03"; }
+html.v2 body { background: var(--bg); color: var(--text); font-family: var(--font-sans); letter-spacing: -0.005em; font-feature-settings: "cv11", "ss01", "ss03"; }
 html.v2 body::before, html.v2 body::after, html.v2 .wrap::before, html.v2 .wrap::after { display: none !important; }
 html.v2 h1, html.v2 h2, html.v2 h3 { font-family: var(--font-sans); letter-spacing: -0.03em; }
 html.v2 :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 html.v2 ::selection { background: rgba(143, 134, 255, 0.35); }
 
 /* Page widths per view: wide canvases, a focused column for questions. */
-html.v2 .wrap { max-width: 1200px; width: 100%; margin-left: auto; margin-right: auto; padding-left: 24px; padding-right: 24px; box-sizing: border-box; }
-html.v2[data-view="wizard"] .wrap { max-width: 1080px; }
-html.v2[data-view="privacy"] .wrap, html.v2[data-view="about"] .wrap, html.v2[data-view="accessibility"] .wrap,
-html.v2[data-view="coverage"] .wrap, html.v2[data-view="support"] .wrap, html.v2[data-view="help"] .wrap { max-width: 860px; }
+/* The outer .wrap spans the viewport and clips decorative overflow (ribbon, glows,
+   marquee) so it can reach the screen edges without sideways scrolling. Clipping is
+   never put on html/body: Firefox applies root overflow to the viewport and then
+   cannot scroll elements into view. The content column is #app (and the bar). */
+html.v2 .wrap { max-width: none; width: 100%; margin: 0; padding: 0; overflow-x: clip; }
+html.v2 #app, html.v2 .wrap > .progress { width: auto; max-width: 1152px; margin-left: auto; margin-right: auto; box-sizing: content-box; padding-left: 24px; padding-right: 24px; }
+html.v2[data-view="wizard"] #app, html.v2[data-view="wizard"] .wrap > .progress { max-width: 1032px; }
+html.v2[data-view="privacy"] #app, html.v2[data-view="about"] #app, html.v2[data-view="accessibility"] #app,
+html.v2[data-view="coverage"] #app, html.v2[data-view="support"] #app, html.v2[data-view="help"] #app { max-width: 812px; }
 
 /* ── Buttons: slim pills (~40px, hit area 44px) ── */
 html.v2 .btn { position: relative; min-height: 42px; height: auto; padding: 9px 18px; border-radius: 999px; font-size: 0.9rem; font-weight: 540; letter-spacing: -0.005em; gap: 7px; transition: background 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease), border-color 0.2s; }
@@ -2299,7 +2304,6 @@ html.v2 .date-not-final { font-size: 0.84rem; color: var(--text-dimmer); }
   html.v2 .dates-list > li > .date-when, html.v2 .dates-list > li > .date-calendar, html.v2 .dates-list > li > .date-not-final { grid-row: auto; grid-column: auto; }
   html.v2 .benefit-value .amount { text-align: left; }
 }
-html.v2 { overflow-x: clip; }
 html.v2 .nav-tag { white-space: nowrap; max-width: 280px; overflow: hidden; text-overflow: ellipsis; padding: 4px 10px; }
 html.v2 #app h1, html.v2 .legal-title { font-family: var(--font-sans); font-weight: 580; letter-spacing: -0.038em; line-height: 1.06; }
 html.v2 #app h2 { font-family: var(--font-sans); }
