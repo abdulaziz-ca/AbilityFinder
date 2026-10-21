@@ -773,6 +773,60 @@ const DTC_SIGNER_SCOPES = [
 const DTC_SIGNER_SOURCE =
   "https://www.canada.ca/en/revenue-agency/services/tax/individuals/segments/tax-credits-deductions-persons-disabilities/disability-tax-credit/how-apply-dtc.html";
 
+/* Dates a person may need to act on, restated from each record's own verified text
+   (never inferred, never carried over from a past year). Shown on results and guides
+   under "Upcoming or uncertain dates" and offered as calendar reminders.
+   date: "YYYY-MM-DD", or "YYYY-MM" when the source names only a month.
+   kind: "deadline" (apply or claim by), "opens" (applications open or reopen), "ends"
+   (a program, window or approval period ends). expected: the source says "expected".
+   conflict: other dates the official pages give for the same step; such entries are
+   never turned into one confident calendar event.
+   test/benefit-dates.test.js checks every date also appears in the record's own text. */
+const BENEFIT_DATES = {
+  "london-ontario-renovates": [
+    { kind: "deadline", date: "2026-10-30", time: "16:30", label: "Applications close", text: "Applications close October 30, 2026 at 4:30 p.m." },
+    { kind: "opens", date: "2027-04-01", expected: true, label: "Expected to reopen", text: "The program is expected to reopen April 1, 2027." },
+  ],
+  "waterloo-ontario-renovates": [
+    { kind: "deadline", date: "2026-11-15", conflict: ["2026-12-01"], label: "Apply by (the official dates differ)", text: "The fact sheet says to apply before November 15, 2026. It also says the deadline to submit an application is December 1, 2026. Check the current deadline with the Region." },
+    { kind: "deadline", date: "2026-12-15", label: "Signed agreement needed", text: "You also need a signed agreement by December 15, 2026." },
+  ],
+  "ns-seniors-care-grant": [
+    { kind: "deadline", date: "2026-12-01", label: "Apply by", text: "You can apply until 1 December 2026." },
+  ],
+  "ns-seniors-property-tax-rebate": [
+    { kind: "deadline", date: "2026-12-31", label: "Apply by", text: "You can apply until 31 December 2026." },
+  ],
+  "passport-program": [
+    { kind: "deadline", date: "2027-03-31", label: "Claim older receipts by", text: "Claims for a service or product you received on or before March 31, 2026 must be submitted by March 31, 2027." },
+  ],
+  "ssah": [
+    { kind: "deadline", date: "2027-03-31", label: "Claim 2025–26 funding by", text: "Funding received between April 1, 2025 and March 31, 2026 must be claimed by March 31, 2027." },
+  ],
+  "bc-autism-funding-under-6": [
+    { kind: "ends", date: "2027-03-31", label: "Services must be delivered by", text: "Approved services and purchases must be delivered by March 31, 2027." },
+    { kind: "deadline", date: "2027-05-31", label: "Direct-payment documents due", text: "Direct-payment supporting documents are due May 31, 2027." },
+    { kind: "deadline", date: "2027-09-30", label: "Last invoices (for March 31, 2027 services)", text: "For services and purchases made on March 31, 2027, the last day to submit invoices is September 30, 2027." },
+  ],
+  "bc-autism-funding-6-18": [
+    { kind: "ends", date: "2027-03-31", label: "Services must be delivered by", text: "Approved services and purchases must be delivered by March 31, 2027." },
+    { kind: "deadline", date: "2027-05-31", label: "Direct-payment documents due", text: "Direct-payment supporting documents are due May 31, 2027." },
+    { kind: "deadline", date: "2027-09-30", label: "Last invoices (for March 31, 2027 services)", text: "For services and purchases made on March 31, 2027, the last day to submit invoices is September 30, 2027." },
+  ],
+  "bc-at-home-saet": [
+    { kind: "ends", date: "2027-03-31", label: "SAET available until", text: "SAET stays available until March 31, 2027, or until your child transitions, whichever comes first." },
+  ],
+  "bc-dental-supplement": [
+    { kind: "ends", date: "2026-12", label: "Current adult $1,000 window ends", text: "The current $1,000 window runs January 2025 through December 2026. Unused room disappears in January 2027." },
+  ],
+  "leduc-subsidies": [
+    { kind: "opens", date: "2027-01", label: "Recreation program reopens", text: "The Recreation Assistance Program is now closed and will reopen for new applications in January 2027." },
+  ],
+  "richmond-rec-fee-subsidy": [
+    { kind: "ends", date: "2027-08-31", label: "Current approval period ends", text: "Current 2026–2027 applications cover September 1, 2026 to August 31, 2027." },
+  ],
+};
+
 const BENEFIT_META = {
   "morden-handi-van": { difficulty: 1, effort: "Phone or email to book", wait: "Not published" },
   "halifax-recreation-access": { difficulty: 2, effort: "Fill in a form with proof of need before registering", wait: "Not published" },
@@ -1117,7 +1171,7 @@ const BENEFIT_META = {
   "ottawa-access-pass": { difficulty: 2, effort: "Register with Para Transpo, then set the discount at a Customer Service Centre", wait: "Not published" },
   "ottawa-equipass": { difficulty: 2, effort: "Application and consent form plus a CRA Notice of Assessment", wait: "Not published" },
   "ottawa-a-card": { difficulty: 1, effort: "Bring a CNIB or Guide Dog photo ID card to a Customer Service Centre", wait: "Not published" },
-  "london-ontario-renovates": { difficulty: 3, effort: "Application package with income, property and asset documents plus three repair estimates", wait: "Not published — first come, first served; applications close October 30, 2026 at 4:30 p.m." },
+  "london-ontario-renovates": { difficulty: 3, effort: "Application package with income, property and asset documents plus three repair estimates", wait: "Not published — first come, first served; applications close October 30, 2026 at 4:30 p.m. The program is expected to reopen April 1, 2027." },
   "windsor-affordable-pass": { difficulty: 2, effort: "Application through the local municipal transit department with proof of income and residency", wait: "Not published — funding is first-come, first-served and subject to local demands and budgets" },
   "windsor-recreation-assistance": { difficulty: 2, effort: "Application through the local municipal recreation department with proof of income and residency", wait: "Not published — funding is first-come, first-served and subject to local demands and budgets" },
   "hamilton-fare-assist": { difficulty: 2, effort: "Application with your Ontario Works or ODSP Member ID, or a Notice of Assessment for each family member", wait: "Not published" },

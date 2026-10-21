@@ -403,7 +403,7 @@ const groups = new Map([["Federal", []], ["Provincial", []], ["Municipal", []]])
 for (const b of publishableBenefits) {
   const group = b.level === "Federal"
     ? "Federal"
-    : ["Alberta", "British Columbia", "Ontario"].includes(b.level)
+    : ["Alberta", "British Columbia", "Ontario", "Saskatchewan", "Manitoba", "New Brunswick", "Nova Scotia", "Prince Edward Island", "Newfoundland and Labrador", "Quebec"].includes(b.level)
       ? "Provincial"
       : "Municipal";
   groups.get(group).push(b);

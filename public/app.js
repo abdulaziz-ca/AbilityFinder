@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "233";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "234";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -85,7 +85,7 @@ const SCOPE_DESTINATION = _joinOr(_SCOPE_FULL);
 // residency explanation, which is the whole point of help on a residency question
 // and was never a completeness claim.
 const SCOPE_RESIDENCY_HELP = `The federal benefits in our catalog apply anywhere in Canada. Provincial and municipal programs depend on where you live — our catalog includes selected ${SCOPE_LABEL_LONG} ones.`;
-const SCOPE_RESIDENCY_HELP_FR = `Les prestations fédérales du catalogue s'appliquent partout au Canada. Les programmes provinciaux et municipaux dépendent de votre lieu de résidence ; le catalogue en comprend une sélection pour ${["l'Alberta", ...(BC_ENABLED ? ["la Colombie-Britannique"] : []), ...(ON_ENABLED ? ["l'Ontario"] : [])].join(" et ")}.`;
+const SCOPE_RESIDENCY_HELP_FR = `Les prestations fédérales du catalogue s'appliquent partout au Canada. Les programmes provinciaux et municipaux dépendent de votre lieu de résidence ; le catalogue en comprend une sélection pour ${["l'Alberta", ...(BC_ENABLED ? ["la Colombie-Britannique"] : []), ...(ON_ENABLED ? ["l'Ontario"] : []), ...(SK_ENABLED ? ["la Saskatchewan"] : []), ...(MB_ENABLED ? ["le Manitoba"] : []), ...(NB_ENABLED ? ["le Nouveau-Brunswick"] : []), ...(NS_ENABLED ? ["la Nouvelle-Écosse"] : []), ...(PE_ENABLED ? ["l'Île-du-Prince-Édouard"] : []), ...(NL_ENABLED ? ["Terre-Neuve-et-Labrador"] : []), ...(QC_ENABLED ? ["le Québec"] : [])].join(", ")}.`;
 
 /* -------------------------------------------------- answer state (defaults) */
 const BLANK = () => ({
@@ -3973,7 +3973,7 @@ const STEPS = [
     // DYNAMIC — only if autism / intellectual selected (drives PDD eligibility)
     id: "onset", type: "single", kicker: "A bit more",
     q: "Did this begin before age 18?",
-    help: "Some Alberta programs (like PDD) are specifically for developmental disabilities that started in childhood.",
+    help: "Some provincial programs (like PDD in Alberta) are specifically for developmental disabilities that started in childhood.",
     key: "onsetBefore18",
     skipIf: () => !(hasDisability("autism") || hasDisability("intellectual")),
     options: [
@@ -6735,7 +6735,7 @@ function renderHelpDirectory() {
   return `
   <div class="help-area">
     <h2 class="supports-heading">${icon("help")} Real people who can help</h2>
-    <p class="supports-sub">You don't have to do this alone. These ${answers.province === "BC" ? "British Columbia and national" : answers.province === "AB" ? "Alberta and national" : SCOPE_ORGANIZATIONS} organizations can help with forms, appeals and local services. Each card says what it offers; confirm any fees when you contact them.</p>
+    <p class="supports-sub">You don't have to do this alone. These ${PROVINCE_NAME[answers.province] ? `${PROVINCE_NAME[answers.province]} and national` : SCOPE_ORGANIZATIONS} organizations can help with forms, appeals and local services. Each card says what it offers; confirm any fees when you contact them.</p>
     ${sections}
   </div>`;
 }
@@ -7281,7 +7281,7 @@ function practitionerFinder(b) {
       <div class="finder-ask-h">What to ask when you call a clinic</div>
       <ul>
         <li>“Do you complete disability forms like ${formName}?”</li>
-        <li>“Is there a fee to fill it out, and how much?” — form fees vary and usually aren't covered by Alberta Health, so it's fair to ask up front.</li>
+        <li>“Is there a fee to fill it out, and how much?” — form fees vary and usually aren't covered by your provincial health plan, so it's fair to ask up front.</li>
         <li>“How long is the wait for an appointment to get it done?”</li>
         <li>Book a longer appointment and bring concrete examples of how your condition limits your daily life — it makes the form much stronger.</li>
       </ul>
