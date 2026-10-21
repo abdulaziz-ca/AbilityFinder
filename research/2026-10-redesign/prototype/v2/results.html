@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Programs based on your answers · AbilityFinder (redesign v2)</title>
+<link rel="stylesheet" href="af.css">
+<style>
+.r-glow { position: absolute; left: 0; right: 0; top: 0; height: 520px; z-index: -1; pointer-events: none;
+  background: radial-gradient(45% 60% at 80% 0%, rgba(109,94,245,.22), transparent 70%), radial-gradient(35% 50% at 10% 10%, rgba(58,214,196,.10), transparent 70%); }
+.r-head { padding: 56px 0 28px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: end; }
+.r-head h1 { font-size: clamp(2rem, 4.2vw, 3.2rem); letter-spacing: -0.04em; line-height: 1.04; font-weight: 580; margin: 8px 0 12px; }
+.r-head p { margin: 0; color: var(--text-2); max-width: 56ch; }
+.crumb { font-size: .82rem; color: var(--text-3); }
+.stats { display: flex; gap: 10px; }
+.stat { min-width: 112px; padding: 14px 16px; border-radius: 16px; border: 1px solid var(--line-2); background: var(--glass); backdrop-filter: blur(10px); }
+.stat b { display: block; font-size: 1.7rem; letter-spacing: -0.03em; font-weight: 620; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.stat span { font-size: .78rem; color: var(--text-3); }
+.stat.g b { color: var(--green); } .stat.a b { color: var(--amber); }
+.answers { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+.answers .lbl { font-size: .8rem; color: var(--text-3); margin-right: 4px; }
+.answers .chip { height: 30px; font-size: .78rem; background: var(--surface); }
+.answers .edit { color: var(--violet); border-color: rgba(143,134,255,.4); text-decoration: none; height: 36px; }
+.r-body { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 36px; padding: 28px 0 80px; }
+.rail { position: sticky; top: 92px; align-self: start; display: grid; gap: 2px; font-size: .86rem; }
+.rail .h { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); margin: 18px 10px 6px; }
+.rail .h:first-child { margin-top: 0; }
+.rail button { all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 0 10px; border-radius: 10px; color: var(--text-2); cursor: pointer; }
+.rail button:hover { background: var(--surface); color: var(--text); }
+.rail button[aria-pressed="true"] { background: var(--surface-3); color: var(--text); box-shadow: inset 0 0 0 1px var(--line-2); }
+.rail button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.rail .n { margin-left: auto; font-size: .74rem; color: var(--text-3); font-variant-numeric: tabular-nums; }
+.rail .dot { width: 8px; height: 8px; border-radius: 50%; }
+.datecard { position: relative; overflow: hidden; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 18px; align-items: center; padding: 16px 18px; border-radius: 18px; border: 1px solid rgba(247,195,95,.28); background: linear-gradient(100deg, rgba(247,195,95,.12), rgba(247,195,95,.02) 60%), var(--surface); margin-bottom: 26px; }
+.datecard .cal { width: 58px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(247,195,95,.35); text-align: center; }
+.datecard .cal .m { background: linear-gradient(90deg, #f7c35f, #f39a52); color: #1a1205; font-size: .62rem; font-weight: 800; letter-spacing: .1em; padding: 2px 0; }
+.datecard .cal .d { background: var(--surface-3); font-size: 1.5rem; font-weight: 650; letter-spacing: -0.04em; padding: 2px 0 4px; }
+.datecard b { display: block; font-weight: 600; } .datecard span { color: var(--text-2); font-size: .88rem; }
+.datecard .btn { --h: 36px; }
+.motion .datecard::after { content: ""; position: absolute; top: 0; bottom: 0; width: 30%; left: -40%; background: linear-gradient(100deg, transparent, rgba(247,195,95,.12), transparent); animation: sweep 5s ease-in-out 1.2s infinite; }
+@keyframes sweep { 0%, 60% { left: -40%; } 100% { left: 130%; } }
+.gh { display: flex; align-items: baseline; gap: 10px; margin: 28px 2px 10px; }
+.gh h2 { margin: 0; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-2); font-weight: 650; }
+.gh .c { font-size: .78rem; color: var(--text); font-variant-numeric: tabular-nums; }
+.gh p { margin: 0 0 0 auto; font-size: .8rem; color: var(--text-3); }
+.list { border-radius: 18px; border: 1px solid var(--line-2); background: var(--surface); overflow: hidden; }
+.row { all: unset; box-sizing: border-box; width: 100%; display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto 18px; gap: 16px; align-items: center; padding: 16px 18px; border-top: 1px solid var(--line); cursor: pointer; transition: background .2s; }
+.row:first-child { border-top: 0; }
+.row:hover { background: var(--surface-3); }
+.row:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+.row[aria-expanded="true"] { background: var(--surface-3); box-shadow: inset 2px 0 0 var(--violet); }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 8px; font-size: .74rem; font-weight: 650; white-space: nowrap; }
+.b-ok { color: var(--green); background: rgba(110,231,168,.12); }
+.b-q { color: var(--amber); background: rgba(247,195,95,.12); }
+.b-no { color: var(--text-2); background: var(--surface-3); }
+.row b { display: block; font-weight: 560; letter-spacing: -0.01em; }
+.row small { display: block; color: var(--text-2); font-size: .86rem; margin-top: 2px; }
+.row .tag { white-space: nowrap; }
+.row .amt { font-weight: 620; font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+.row .chev { color: var(--text-3); transition: transform .25s; }
+.row:hover .chev { transform: translateX(3px); color: var(--text); }
+.notnow { margin-top: 28px; border-radius: 18px; border: 1px solid var(--line-2); background: var(--surface); }
+.notnow summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; min-height: 58px; padding: 0 18px; font-weight: 560; }
+.notnow summary::-webkit-details-marker { display: none; }
+.notnow summary .pm { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--line-2); display: grid; place-items: center; transition: transform .25s; }
+.notnow[open] summary .pm { transform: rotate(45deg); }
+.notnow .row { cursor: default; }
+.limits { margin-top: 14px; padding: 18px 20px; border-radius: 18px; background: var(--surface-2); border: 1px dashed var(--line-2); color: var(--text-2); font-size: .92rem; }
+.limits b { color: var(--text); }
+/* drawer */
+.scrim { position: fixed; inset: 0; background: rgba(0,0,0,.45); backdrop-filter: blur(2px); opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 40; }
+.scrim.on { opacity: 1; pointer-events: auto; }
+.drawer { position: fixed; top: 10px; right: 10px; bottom: 10px; width: min(460px, calc(100% - 20px)); z-index: 41; border-radius: 22px; padding: 1px; background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.03)); transform: translateX(calc(100% + 20px)); transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+.drawer.on { transform: none; }
+@media (prefers-reduced-motion: reduce) { .drawer, .scrim { transition: none; } }
+.drawer-in { height: 100%; overflow: auto; border-radius: 21px; background: var(--surface); padding: 22px; display: grid; gap: 16px; align-content: start; }
+.drawer-top { display: flex; align-items: center; gap: 8px; }
+.drawer-top .x { margin-left: auto; width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--surface-3); color: var(--text); cursor: pointer; display: grid; place-items: center; }
+.drawer h2 { margin: 0; font-size: 1.5rem; letter-spacing: -0.03em; }
+.drawer .big { font-size: 2.2rem; font-weight: 640; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.drawer .big small { font-size: .85rem; font-weight: 500; color: var(--text-3); letter-spacing: 0; }
+.dchk { display: grid; gap: 8px; }
+.dchk div { display: grid; grid-template-columns: 24px 1fr; gap: 10px; padding: 12px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface-2); font-size: .9rem; }
+.dchk .i { width: 24px; height: 24px; border-radius: 8px; display: grid; place-items: center; font-size: .74rem; font-weight: 800; }
+.dchk small { display: block; color: var(--text-3); font-size: .8rem; }
+.drawer .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.drawer .actions .btn { --h: 44px; }
+@media (max-width: 900px) { .r-body { grid-template-columns: 1fr; } .rail { position: static; display: flex; overflow-x: auto; gap: 6px; } .rail .h { display: none; } .rail button { flex: 0 0 auto; border: 1px solid var(--line-2); border-radius: 999px; } .r-head { grid-template-columns: 1fr; } .stats { flex-wrap: wrap; } }
+@media (max-width: 640px) { .stats { display: grid; grid-template-columns: repeat(3, 1fr); } .stat { min-width: 0; padding: 12px; } .stat b { font-size: 1.4rem; } .gh p { display: none; } .row { grid-template-columns: minmax(0, 1fr) 18px; } .row .badge { grid-column: 1; justify-self: start; } .row .tag, .row .amt { display: none; } .row .chev { grid-row: 1 / span 2; grid-column: 2; } .datecard { grid-template-columns: auto 1fr; } .datecard .btn { grid-column: 1 / -1; } }
+</style>
+</head>
+<body>
+<a class="sr-only" href="#main">Skip to main content</a>
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="index.html" aria-label="AbilityFinder home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9d98ff"/><stop offset="1" stop-color="#3ad6c4"/></linearGradient></defs><rect x="1" y="1" width="30" height="30" rx="9" fill="url(#lg)"/><path d="M9 22 L16 9 L23 22" fill="none" stroke="#0b0c10" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="18.5" r="2.2" fill="#0b0c10"/></svg>
+      AbilityFinder
+    </a>
+    <nav class="links" aria-label="Main"><a href="#">Find benefits</a><a href="#">Browse programs</a><a href="#">Grants</a><a href="#">Organizations</a></nav>
+    <div class="nav-right">
+      <button class="btn btn-ghost theme-btn" id="themeBtn" type="button" aria-pressed="true" aria-label="Colour theme"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><span>Dark</span></button>
+      <a class="btn btn-light" href="#">Print my plan</a>
+    </div>
+  </div>
+</header>
+
+<main id="main" style="position:relative">
+  <div class="r-glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="r-head">
+      <div>
+        <span class="crumb fade-load">Ontario · London · for yourself</span>
+        <h1 data-split>Programs based on your answers</h1>
+        <p class="fade-load" style="animation-delay:.4s">These are worth checking. Each program decides for itself, using its own rules.</p>
+      </div>
+      <div class="stats stagger" aria-label="Summary">
+        <div class="stat g"><b data-count="3">3</b><span>match your answers</span></div>
+        <div class="stat a"><b data-count="9">9</b><span>with one thing to check</span></div>
+        <div class="stat"><b data-count="1">1</b><span>date to know</span></div>
+      </div>
+    </div>
+    <div class="answers fade-load" style="animation-delay:.55s" aria-label="Your answers">
+      <span class="lbl">Your answers</span>
+      <span class="chip">Myself</span><span class="chip">Physical / mobility</span><span class="chip">60 to 64</span><span class="chip">London, Ontario</span><span class="chip">Lower income</span><span class="chip">DTC approved</span><span class="chip">Can't use regular transit</span>
+      <a class="chip edit" href="question.html">Edit answers</a>
+    </div>
+
+    <div class="r-body">
+      <nav class="rail" aria-label="Filter programs">
+        <span class="h">Show</span>
+        <button aria-pressed="true" data-f="all">All programs<span class="n">17</span></button>
+        <button aria-pressed="false" data-f="ok"><span class="dot" style="background:var(--green)"></span>Matches<span class="n">3</span></button>
+        <button aria-pressed="false" data-f="q"><span class="dot" style="background:var(--amber)"></span>To check<span class="n">9</span></button>
+        <span class="h">Type</span>
+        <button aria-pressed="false" data-f="money">Money<span class="n">6</span></button>
+        <button aria-pressed="false" data-f="health">Health<span class="n">4</span></button>
+        <button aria-pressed="false" data-f="travel">Getting around<span class="n">3</span></button>
+        <button aria-pressed="false" data-f="home">Home<span class="n">2</span></button>
+      </nav>
+      <div>
+        <div class="datecard reveal">
+          <div class="cal" aria-hidden="true"><div class="m">OCT</div><div class="d">30</div></div>
+          <div><b>Applications close October 30, 2026 at 4:30 p.m.</b><span>Ontario Renovates home repair and accessibility funding (London). Expected to reopen April 1, 2027.</span></div>
+          <button class="btn btn-ghost" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Add to calendar</button>
+        </div>
+
+        <div class="gh"><h2>Matches your answers</h2><span class="c">3</span><p>Based on what you told us</p></div>
+        <div class="list stagger">
+          <button class="row" data-k="ok money" data-open="cdb"><span class="badge b-ok">✓ Matches</span><span><b>Canada Disability Benefit</b><small>A monthly payment for adults 18 to 64 with the DTC and a lower income.</small></span><span class="tag">Federal</span><span class="amt">Up to $204.20/mo</span><span class="chev" aria-hidden="true">›</span></button>
+          <button class="row" data-k="ok money" data-open="cdb"><span class="badge b-ok">✓ Matches</span><span><b>Ontario Electricity Support Program</b><small>A credit on your electricity bill every month.</small></span><span class="tag">Ontario</span><span class="amt">Monthly credit</span><span class="chev" aria-hidden="true">›</span></button>
+          <button class="row" data-k="ok travel" data-open="cdb"><span class="badge b-ok">✓ Matches</span><span><b>London Transit paratransit</b><small>Door-to-door rides if you can't use regular buses.</small></span><span class="tag">London</span><span class="amt">Regular fare</span><span class="chev" aria-hidden="true">›</span></button>
+        </div>
+
+        <div class="gh"><h2>More to check</h2><span class="c">9</span><p>One or two things left to confirm</p></div>
+        <div class="list stagger">
+          <button class="row" data-k="q home" data-open="cdb"><span class="badge b-q">? 1 to check</span><span><b>Ontario Renovates (London)</b><small>Check: you own your home and it is assessed at or below $320,000.</small></span><span class="tag">London</span><span class="amt">Up to $25,000</span><span class="chev" aria-hidden="true">›</span></button>
+          <button class="row" data-k="q money" data-open="cdb"><span class="badge b-q">? 1 to check</span><span><b>Ontario Trillium Benefit</b><small>Check: you filed your 2025 tax return.</small></span><span class="tag">Ontario</span><span class="amt">Paid monthly</span><span class="chev" aria-hidden="true">›</span></button>
+          <button class="row" data-k="q health" data-open="cdb"><span class="badge b-q">? 2 to check</span><span><b>Assistive Devices Program</b><small>Check: a prescriber confirms the device, and the vendor is registered.</small></span><span class="tag">Ontario</span><span class="amt">Up to 75% of cost</span><span class="chev" aria-hidden="true">›</span></button>
+          <button class="row" data-k="q health" data-open="cdb"><span class="badge b-q">? 1 to check</span><span><b>Ontario Drug Benefit</b><small>Check: you are 65 or older, or on ODSP or Trillium.</small></span><span class="tag">Ontario</span><span class="amt">Most drug costs</span><span class="chev" aria-hidden="true">›</span></button>
+        </div>
+
+        <details class="notnow reveal"><summary>Not for your situation now <span style="color:var(--text-3);font-weight:500;margin-left:6px">5</span><span class="pm" aria-hidden="true" style="margin-left:auto">＋</span></summary>
+          <div class="list" style="border:0;border-top:1px solid var(--line);border-radius:0">
+            <div class="row"><span class="badge b-no">— Not now</span><span><b>Ontario Works</b><small>You told us you get ODSP. Ontario Works is for people who are not on ODSP.</small></span><span class="tag">Ontario</span><span class="amt"></span><span></span></div>
+          </div>
+        </details>
+        <p class="limits reveal"><b>What this list can't tell you:</b> programs we have not added yet, whether you will be approved, and details we did not ask about. <a href="#" style="color:var(--violet)">See what we don't cover yet</a></p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dh" aria-hidden="true">
+  <div class="drawer-in">
+    <div class="drawer-top"><span class="chip">Federal · Money</span><button class="x" id="dclose" aria-label="Close">✕</button></div>
+    <h2 id="dh">Canada Disability Benefit</h2>
+    <div class="big">$204.20 <small>a month, up to</small></div>
+    <p style="margin:0;color:var(--text-2)">A monthly payment for adults aged 18 to 64 who are approved for the Disability Tax Credit and have a lower income.</p>
+    <div class="dchk">
+      <div><span class="i" style="background:rgba(110,231,168,.14);color:var(--green)">✓</span><span>You are 18 to 64<small>You told us 60 to 64.</small></span></div>
+      <div><span class="i" style="background:rgba(110,231,168,.14);color:var(--green)">✓</span><span>Approved for the Disability Tax Credit<small>You told us you are approved.</small></span></div>
+      <div><span class="i" style="background:rgba(247,195,95,.14);color:var(--amber)">?</span><span>You and your spouse filed your 2025 tax return<small>We did not ask. The amount is based on that return.</small></span></div>
+    </div>
+    <div class="actions"><a class="btn btn-primary" href="#">Apply on canada.ca ↗</a><a class="btn btn-ghost" href="guide.html">Read the full guide</a></div>
+    <p style="margin:0;color:var(--text-3);font-size:.84rem">Checked against the official page in October 2026.</p>
+  </div>
+</aside>
+
+<script src="af.js"></script>
+<script>
+/* Filter rail: dims rows that don't match; never hides a group's heading. */
+document.querySelectorAll(".rail button").forEach((b) => b.addEventListener("click", () => {
+  document.querySelectorAll(".rail button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+  const f = b.dataset.f;
+  document.querySelectorAll(".row[data-k]").forEach((r) => { r.style.display = f === "all" || r.dataset.k.split(" ").includes(f) ? "" : "none"; });
+}));
+/* Detail drawer (Linear-style), with focus return and Escape to close. */
+const drawer = document.getElementById("drawer"), scrim = document.getElementById("scrim"); let opener = null;
+const open = (btn) => { opener = btn; document.querySelectorAll(".row").forEach((r) => r.setAttribute("aria-expanded", String(r === btn))); drawer.classList.add("on"); scrim.classList.add("on"); drawer.setAttribute("aria-hidden", "false"); setTimeout(() => document.getElementById("dclose").focus(), 50); };
+const close = () => { drawer.classList.remove("on"); scrim.classList.remove("on"); drawer.setAttribute("aria-hidden", "true"); document.querySelectorAll(".row").forEach((r) => r.setAttribute("aria-expanded", "false")); opener && opener.focus(); };
+document.querySelectorAll(".row[data-open]").forEach((r) => r.addEventListener("click", () => open(r)));
+document.getElementById("dclose").addEventListener("click", close); scrim.addEventListener("click", close);
+addEventListener("keydown", (e) => { if (e.key === "Escape" && drawer.classList.contains("on")) close(); });
+</script>
+</body>
+</html>
