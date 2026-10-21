@@ -3,10 +3,16 @@ const { test, expect } = require("@playwright/test");
 // Static guides follow the visitor's theme and display settings (site audit
 // 2026-10, D-ENGINEERING P2-5). They used to always render dark.
 
-test("a guide follows the system light theme when nothing is saved", async ({ browser }) => {
+// Design v2 (owner decision 2026-10-21): dark is the default even when the device
+// prefers light; a theme the visitor saved still wins (next test, and the light save below).
+test("a guide starts dark in design v2 when nothing is saved, and honours a saved light theme", async ({ browser }) => {
   const context = await browser.newContext({ colorScheme: "light" });
   const page = await context.newPage();
   await page.goto("/guides/aadl.html");
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await expect(page.locator("html")).toHaveClass(/\bv2\b/);
+  await page.evaluate(() => window.AbilityFinderDB.saveState({ schemaVersion: 2, answers: {}, view: "landing", progress: {}, ui: { theme: "light" } }));
+  await page.reload();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   await expect(page.locator(".nav-tag")).toHaveText("Alberta + BC + ON + SK + MB + NB + NS + PEI + NL + QC");
   await context.close();

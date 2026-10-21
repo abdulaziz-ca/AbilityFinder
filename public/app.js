@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "238";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "239";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -4816,6 +4816,9 @@ function render() {
     return;
   }
   updateNavTag();
+  // The v2 design sizes each view differently (wide landing/results/guides,
+  // a focused column for questions); the stylesheet keys off this attribute.
+  document.documentElement.dataset.view = view;
   const app = document.getElementById("app");
   const progress = document.querySelector(".progress");
   const bar = document.getElementById("progress-bar");
@@ -4941,7 +4944,150 @@ function render() {
   // Re-run after the scroll settles: "is it on screen already?" is meaningless
   // if we ask before scrollTo has moved us.
   wireReveals();
+  if (document.documentElement.classList.contains("v2")) v2Enhance(view, app);
   lastRenderKey = renderKey;
+}
+
+/* =============================================================================
+   Design v2 enhancements (DESIGN_V2 in theme-init.js). Visual only: no record,
+   answer, status or route changes. Motion is off under prefers-reduced-motion
+   and under the app's own "reduce motion" setting.
+   ========================================================================== */
+function v2MotionAllowed() {
+  return !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) && !document.body.classList.contains("a11y-nomotion");
+}
+let v2RibbonStop = null;
+function v2Enhance(currentView, app) {
+  document.documentElement.classList.toggle("motion", v2MotionAllowed());
+  if (v2RibbonStop && currentView !== "landing") { v2RibbonStop(); v2RibbonStop = null; }
+  if (v2MotionAllowed()) { app.classList.remove("v2-route-in"); void app.offsetWidth; app.classList.add("v2-route-in"); }
+  if (currentView === "landing") v2Landing(app);
+}
+function v2Landing(app) {
+  const hero = app.querySelector(".hero-full");
+  if (hero && !hero.querySelector(".v2-ribbon")) {
+    const host = document.createElement("div");
+    host.className = "v2-ribbon"; host.setAttribute("aria-hidden", "true");
+    host.innerHTML = "<canvas></canvas>";
+    hero.prepend(host);
+    if (v2RibbonStop) v2RibbonStop();
+    // Automated browsers (tests, crawlers) get one still frame instead of an animation loop.
+    v2RibbonStop = v2Ribbon(host.querySelector("canvas"), !v2MotionAllowed() || navigator.webdriver === true);
+  }
+  ["eyebrow", "hero-title", "hero-sub", "hero-cta", "trust"].forEach((cls, i) => {
+    const el = hero && hero.querySelector("." + cls);
+    if (el && v2MotionAllowed()) { el.classList.add("v2-fade"); el.style.animationDelay = `${0.08 + i * 0.12}s`; }
+  });
+  const preview = app.querySelector(".hero-preview-wrap");
+  if (preview && !app.querySelector(".v2-sources")) {
+    const sources = ["canada.ca", "alberta.ca", "gov.bc.ca", "ontario.ca", "saskatchewan.ca", "gov.mb.ca", "gnb.ca", "novascotia.ca", "princeedwardisland.ca", "gov.nl.ca", "quebec.ca", "ramq.gouv.qc.ca"];
+    const strip = document.createElement("section");
+    strip.className = "v2-sources"; strip.setAttribute("aria-label", t("v2.sourcesLabel"));
+    strip.innerHTML = `<p>${t("v2.sources")}</p><div class="v2-marquee" aria-hidden="true"><div class="v2-track">${[...sources, ...sources].map((d) => `<span>${d}</span>`).join("")}</div></div>`;
+    preview.after(strip);
+    const feats = [["v2.f1h", "v2.f1p"], ["v2.f2h", "v2.f2p"], ["v2.f3h", "v2.f3p"], ["v2.f4h", "v2.f4p"]];
+    const panels = [
+      `<div class="v2-mini-h"><span>${t("v2.p1h")}</span></div><div class="v2-mini-row"><span class="v2-st ok">✓</span>${t("v2.p1a")}</div><div class="v2-mini-row"><span class="v2-st q">?</span>${t("v2.p1b")}</div><div class="v2-mini-row"><span class="v2-st q">?</span>${t("v2.p1c")}</div>`,
+      `<div class="v2-mini-h"><span>${t("v2.p2h")}</span></div><div class="v2-mini-row"><span class="v2-st q">!</span>${t("v2.p2a")}</div><div class="v2-mini-row"><span class="v2-st ok">✓</span>${t("v2.p2b")}</div>`,
+      `<div class="v2-mini-h"><span>${t("v2.p3h")}</span></div><div class="v2-mini-row"><span class="v2-st ok">✓</span>${t("v2.p3a")}</div><div class="v2-mini-row"><span class="v2-st ok">✓</span>${t("v2.p3b")}</div><div class="v2-mini-row"><span class="v2-st q">·</span>${t("v2.p3c")}</div>`,
+      `<div class="v2-mini-h"><span>${t("v2.p4h")}</span></div><div class="v2-mini-row"><span class="v2-st ok">◎</span>${t("v2.p4a")}</div><div class="v2-mini-row"><span class="v2-st ok">◎</span>${t("v2.p4b")}</div>`,
+    ];
+    const feat = document.createElement("section");
+    feat.className = "v2-feat reveal-v2"; feat.setAttribute("aria-labelledby", "v2-feat-h");
+    feat.innerHTML = `<div class="v2-tabs"><h2 id="v2-feat-h">${t("v2.featH")} <span>${t("v2.featH2")}</span></h2><div role="tablist" aria-label="${t("v2.featH")}">${feats.map(([h, p], i) =>
+      `<button class="v2-tab" role="tab" type="button" id="v2tab${i}" aria-controls="v2panel${i}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}"><span class="bar" aria-hidden="true"></span><b>${t(h)}</b><small><span>${t(p)}</span></small></button>`).join("")}</div></div>
+      <div class="v2-stage"><div class="v2-stage-in">${panels.map((html, i) => `<div class="v2-mini${i === 0 ? " on" : ""}" role="tabpanel" id="v2panel${i}" aria-labelledby="v2tab${i}"${i ? " hidden" : ""}>${html}</div>`).join("")}</div></div>`;
+    strip.after(feat);
+    v2Tabs(feat);
+  }
+  if (preview && v2MotionAllowed()) v2Observe(preview, "in"); else if (preview) preview.classList.add("in");
+  app.querySelectorAll(".reveal-v2").forEach((el) => v2MotionAllowed() ? v2Observe(el, "in") : el.classList.add("in"));
+  app.querySelectorAll(".life-event-card").forEach((c) => c.addEventListener("pointermove", (e) => {
+    const r = c.getBoundingClientRect(); c.style.setProperty("--x", `${e.clientX - r.left}px`); c.style.setProperty("--y", `${e.clientY - r.top}px`);
+  }));
+}
+function v2Observe(el, cls) {
+  if (!("IntersectionObserver" in window)) { el.classList.add(cls); return; }
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add(cls); io.unobserve(e.target); } }), { threshold: 0.12 });
+  io.observe(el);
+}
+/* Mercury-style tabs: the active tab opens and its panel fades in. Auto-advances every
+   6 s; pauses on hover or keyboard focus; no auto-advance when motion is reduced. */
+function v2Tabs(root) {
+  const tabs = [...root.querySelectorAll('[role="tab"]')], panels = [...root.querySelectorAll('[role="tabpanel"]')];
+  const box = root.querySelector(".v2-tabs");
+  let i = 0, paused = false;
+  const show = (n, focus) => {
+    i = (n + tabs.length) % tabs.length;
+    tabs.forEach((tb, k) => { tb.setAttribute("aria-selected", String(k === i)); tb.tabIndex = k === i ? 0 : -1; });
+    panels.forEach((p, k) => { p.hidden = k !== i; p.classList.toggle("on", k === i); });
+    if (focus) tabs[i].focus();
+  };
+  tabs.forEach((tb, k) => {
+    tb.addEventListener("click", () => show(k));
+    tb.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") { e.preventDefault(); show(i + 1, true); }
+      if (e.key === "ArrowUp" || e.key === "ArrowLeft") { e.preventDefault(); show(i - 1, true); }
+    });
+  });
+  const pause = (v) => { paused = v; box.classList.toggle("paused", v); };
+  root.addEventListener("pointerenter", () => pause(true)); root.addEventListener("pointerleave", () => pause(false));
+  root.addEventListener("focusin", () => pause(true)); root.addEventListener("focusout", () => pause(false));
+  if (!v2MotionAllowed()) return;
+  const timer = setInterval(() => { if (!document.body.contains(root)) { clearInterval(timer); return; } if (!paused && !document.hidden) show(i + 1); }, 6000);
+}
+/* Silk ribbon behind the landing hero (WebGL). One static frame when motion is reduced;
+   stops when the tab is hidden or the landing view is left. CSS-only fallback: nothing. */
+function v2Ribbon(canvas, still) {
+  const gl = canvas.getContext("webgl", { antialias: false });
+  if (!gl) return null;
+  const vs = "attribute vec2 p; void main(){ gl_Position = vec4(p,0.,1.); }";
+  const fs = `precision highp float; uniform vec2 r; uniform float t; uniform float light;
+  vec3 hash3(vec2 p){ vec3 q = vec3(dot(p,vec2(127.1,311.7)), dot(p,vec2(269.5,183.3)), dot(p,vec2(419.2,371.9))); return fract(sin(q)*43758.5453); }
+  float noise(vec2 p){ vec2 i=floor(p), f=fract(p); vec2 u=f*f*(3.-2.*f);
+    float a=dot(hash3(i).xy-.5, f), b=dot(hash3(i+vec2(1,0)).xy-.5, f-vec2(1,0)), c=dot(hash3(i+vec2(0,1)).xy-.5, f-vec2(0,1)), d=dot(hash3(i+vec2(1,1)).xy-.5, f-vec2(1,1));
+    return mix(mix(a,b,u.x), mix(c,d,u.x), u.y); }
+  float fbm(vec2 p){ float v=0., a=.5; for(int i=0;i<5;i++){ v+=a*noise(p); p*=2.03; a*=.5; } return v; }
+  vec3 pal(float x){ vec3 a=vec3(.43,.37,.96), b=vec3(.33,.55,1.), c=vec3(.23,.84,.77), d=vec3(.98,.74,.36), e=vec3(.96,.45,.72); x=fract(x);
+    if(x<.25) return mix(a,b,x*4.); if(x<.5) return mix(b,c,(x-.25)*4.); if(x<.75) return mix(c,d,(x-.5)*4.); return mix(d,e,(x-.75)*4.); }
+  void main(){
+    vec2 uv = gl_FragCoord.xy / r.xy; vec2 p = uv; p.x *= r.x / r.y;
+    vec2 P = r.x > r.y ? p : vec2(uv.x * 1.6, uv.y * .9 + .12);
+    float tt = t * .16; vec3 col = vec3(0.);
+    for (int i = 0; i < 34; i++) {
+      float fi = float(i) / 33.; float x = P.x;
+      float y = .62 + (x - .75) * .95 + .16 * sin(x * 2.1 + fi * 2.6 + tt) + .07 * sin(x * 4.3 - fi * 5.0 + tt * 1.7) + .12 * fbm(vec2(x * .8 + fi * .6, tt * .35)) + (fi - .5) * .62;
+      float dd = abs(P.y - y); float w = .0022 + .007 * fi;
+      float line = exp(-dd * dd / (w * w)) * .9 + exp(-dd * dd / (w * w * 90.)) * .10;
+      col += pal(fi * .85 + x * .22 + tt * .03) * line * (.22 + .40 * fi);
+    }
+    col = 1. - exp(-col * 1.05); col = mix(vec3(dot(col, vec3(.33))), col, 1.35);
+    col *= r.x > r.y ? smoothstep(.46, .80, uv.x) : .45 * smoothstep(-.3, 1.0, uv.x);
+    col *= 1. - smoothstep(.90, 1.0, uv.y); col *= smoothstep(.0, .18, uv.y);
+    float a = clamp(max(col.r, max(col.g, col.b)) * 1.4, 0., 1.);
+    gl_FragColor = vec4(col, a);
+  }`;
+  const sh = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; };
+  const pr = gl.createProgram(); gl.attachShader(pr, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(pr);
+  if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return null;
+  gl.useProgram(pr);
+  const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(pr, "p"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+  const uR = gl.getUniformLocation(pr, "r"), uT = gl.getUniformLocation(pr, "t");
+  // Half resolution: the ribbon is soft, and this keeps phones and CPU renderers cool.
+  const scale = 0.5 / Math.max(1, (window.devicePixelRatio || 1) / 2);
+  const size = () => { canvas.width = Math.max(1, Math.round(canvas.clientWidth * scale)); canvas.height = Math.max(1, Math.round(canvas.clientHeight * scale)); gl.viewport(0, 0, canvas.width, canvas.height); };
+  const draw = (ms) => { gl.uniform2f(uR, canvas.width, canvas.height); gl.uniform1f(uT, ms / 1000 + 40); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); };
+  size();
+  const onResize = () => { size(); draw(performance.now()); };
+  window.addEventListener("resize", onResize);
+  let raf = 0, alive = true;
+  let last = 0;
+  const loop = (ms) => { if (!alive) return; if (ms - last > 32) { draw(ms); last = ms; } raf = requestAnimationFrame(loop); }; // ~30 fps
+  const onVis = () => { cancelAnimationFrame(raf); if (!document.hidden && !still && alive) raf = requestAnimationFrame(loop); };
+  if (still) draw(0); else raf = requestAnimationFrame(loop);
+  document.addEventListener("visibilitychange", onVis);
+  return () => { alive = false; cancelAnimationFrame(raf); window.removeEventListener("resize", onResize); document.removeEventListener("visibilitychange", onVis); };
 }
 
 /* =============================================================================

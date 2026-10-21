@@ -28,8 +28,14 @@
 // Set the theme before first paint to avoid a flash. Kept as an external file
 // (not an inline <script>) so the site can ship a strict Content-Security-Policy
 // with script-src 'self' — see _headers.
+// DESIGN_V2: the 2026 redesign (owner-approved 2026-10-21). Set to false to return to
+// the previous design without touching data or features; see
+// research/2026-10-redesign/BACKUP.md. Dark is the default in v2 (owner decision);
+// a theme the visitor chose is still restored below.
+var DESIGN_V2 = true;
 (function () {
-  var fallback = window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+  if (DESIGN_V2) document.documentElement.classList.add("v2");
+  var fallback = DESIGN_V2 ? "dark" : (window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
   document.documentElement.setAttribute("data-theme", fallback);
   // IndexedDB is asynchronous, unlike the legacy localStorage theme read. Set
   // the system preference immediately, then replace it as soon as the manager
