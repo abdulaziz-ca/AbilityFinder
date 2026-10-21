@@ -6,6 +6,38 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-21 — The redesign is live
+
+### Shipped
+- **New design across the whole site** (`?v=239`), built from your picks: Stripe and Mercury for the feel, Linear
+  for lists, Notion/Wise/Oscar for questions and guides. **Dark by default**, with the light switch kept.
+  - Home: a flowing silk-ribbon background, large gradient headline, slim pill buttons, a lit example window that
+    straightens as you scroll, a strip of the official government sources, and a Mercury-style feature section
+    whose tabs cycle on their own and pause when you hover or use the keyboard.
+  - Questions: big, calm question pages with answer cards that lift on hover and tick when chosen.
+  - Results: Linear-style rows with a coloured status edge, calm amounts and compact "Dates to know".
+  - Guides (app and the 462 static pages): large titles, glass fact tiles and a glowing "next step" card.
+  - Motion is gentle (fade-and-rise, soft blur, a sweep of light on the main button) and switches off for anyone
+    who asks their device or our accessibility menu for less motion.
+- **Words and results did not change**: only the look. All programs, answers and rules are as before.
+- Found and fixed along the way: two static guides (Canada Disability Benefit, RDSP) printed raw link code
+  instead of a link.
+
+### Backup and undo
+- The old site is saved as tag `pre-redesign-v238` (and branch `backup/pre-redesign-v238`) on GitHub, with
+  screenshots in `research/2026-10-redesign/before-v238/`. **One line switches the old design back**:
+  `DESIGN_V2 = false` in `public/theme-init.js` and `public/guide-prefs.js`. See `research/2026-10-redesign/BACKUP.md`.
+
+### Verified how
+- Unit tests 259/259; browser tests 335/335 on Chromium locally, then Chromium, Firefox and WebKit in CI before
+  the deploy. Every text colour passes contrast checks in both themes (lowest 4.6:1); no sideways scrolling at
+  phone width.
+- Prototypes you can click are in `research/2026-10-redesign/prototype/v2/` (home, question, results with a
+  slide-out detail panel, guide).
+
+### Needs you
+- Have a look and tell me what to adjust. Anything from colours to motion can be tuned quickly.
+
 ## 2026-10-20 — Visitor statistics on (Cloudflare Web Analytics)
 
 ### Shipped
