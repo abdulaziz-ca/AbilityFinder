@@ -5,8 +5,8 @@
 (function () {
   if (location.hostname !== "abilityfinder.ca" && location.hostname !== "www.abilityfinder.ca") return;
   var s = document.createElement("script");
-  s.defer = true;
+  s.type = "module"; // as in Cloudflare's current snippet
   s.src = "https://static.cloudflareinsights.com/beacon.min.js";
-  s.setAttribute("data-cf-beacon", JSON.stringify({ token: "__CF_WA_TOKEN__" }));
+  s.setAttribute("data-cf-beacon", JSON.stringify({ token: "ddfa6696ce10444fb1526ec39711bd9e" }));
   document.head.appendChild(s);
 })();
