@@ -6,6 +6,26 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-20 — Full audit: the site is faster
+
+### Shipped
+- **Only the programs you need are downloaded now.** The landing page loads the federal programs and a small index
+  of all 463; your province's programs load when you choose it. First visit: **720 KB → 423 KB**; on a slow 3G
+  phone the app is ready in about **3 s instead of 4.2 s**. An Ontario visitor downloads 131 KB of program data
+  instead of 373 KB, and each data update re-downloads only what changed. `?v=232`, plus a small cleanup `?v=233`.
+- Nothing looks different. Results are identical (checked on the live site with an Ontario profile).
+
+### Verified how
+- Unit tests 242/242; browser tests pass on Chromium, Firefox and WebKit in CI before the deploy.
+- A safety switch (`DATA_PACKS` in app.js) puts the old single data file back in one line if anything goes wrong.
+
+### Decisions we made for you
+- Not done: serving our own stronger compression. It would route every file through the Worker and use up the free
+  plan's daily request allowance, and the site would break if it ran out.
+
+### Needs you
+- Nothing. The audit is finished; next is features and fixes, then the redesign.
+
 ## 2026-10-20 — Full audit: accuracy pass on the older programs
 
 ### Shipped

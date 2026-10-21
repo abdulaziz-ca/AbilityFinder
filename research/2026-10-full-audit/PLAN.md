@@ -57,3 +57,15 @@ redesign. Work continues across usage resets; this file is the resume point.
 - 2026-10-20: Phase 5 survey: app.js has 203 functions and 127 top-level consts, and only `hasAnyDisability` is unused.
   Remove it after the speed branch merges. The CSS is 24 KB br; a coverage-based prune risks the live design and
   waits for the redesign.
+- 2026-10-20: Phase 4 shipped (726f53fc + a85dac04 + 11d375c9, live v232): `public/data.js` stays the source; `npm run
+  gen:packs` (also run by gen:guides) writes `data-core.js` (federal records + all maps + `BENEFIT_INDEX` of all 463)
+  and `data-pack-XX.js` per province. The app loads a pack through its render gate (`ensurePacks`); kill switch
+  `DATA_PACKS` in app.js falls back to the deployed full data.js. Catalogue-wide e2e probes load every pack
+  explicitly (`e2e/app-ready.js` `*AllPrograms` helpers); UI-flow tests are unchanged. Verified: unit 242/242,
+  chromium 324/324 locally, all three browsers in CI, live check (Ontario profile loads core + ON pack only; same
+  results as before). Measured live: landing transfer 720 KB → 423 KB; Fast 3G ready 4.19 s → 2.9–3.1 s; 4G
+  too noisy on this connection to call. Data for an Ontario visitor: 131 KB vs 373 KB.
+- 2026-10-20: Phase 5: removed unused `hasAnyDisability` (v233). Nothing else unused found.
+
+## Status: audit complete except the 12 records listed under round 2 (kept at older dates on purpose).
+Next per the owner's order: features and fixes, then the redesign, then the French UI.
