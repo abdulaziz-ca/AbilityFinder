@@ -2,7 +2,7 @@
 .DS_Store
 
 # Node / Wrangler (Phase 4)
-node_modules/
+node_modules
 .wrangler/
 test-results/
 playwright-report/

@@ -19,6 +19,7 @@ vm.runInContext(
   fs.readFileSync(DATA, "utf8") +
     '\n;globalThis.__B = typeof BENEFITS !== "undefined" ? BENEFITS : null;' +
     '\n;globalThis.__M = typeof BENEFIT_META !== "undefined" ? BENEFIT_META : null;' +
+    '\n;globalThis.__D = typeof BENEFIT_DATES !== "undefined" ? BENEFIT_DATES : {};' +
     '\n;globalThis.__STATUS = typeof BENEFIT_STATUS !== "undefined" ? BENEFIT_STATUS : {};' +
     '\n;globalThis.__GLOSS = typeof glossaryTermsFor === "function" ? glossaryTermsFor : () => [];' +
     '\n;globalThis.__BC_CITIES = typeof BC_CITIES !== "undefined" ? BC_CITIES : null;' +
@@ -37,6 +38,7 @@ vm.runInContext(
 );
 const allBenefits = ctx.__B;
 const benefitMeta = ctx.__M || {};
+const benefitDates = ctx.__D || {};
 const STATUS = ctx.__STATUS || {};
 const glossaryTermsFor = ctx.__GLOSS || (() => []);
 if (!Array.isArray(allBenefits) || allBenefits.length === 0) {
@@ -211,6 +213,7 @@ const GUIDE_LABELS = {
     mustAny: "The program requires at least one of these:", mustAll: "You must meet all of these:",
     amount: "Amount or value", tiers: "How the amount is worked out", glance: "At a glance",
     difficulty: "Difficulty", application: "Application", howLong: "How long", covers: "What it covers",
+    dates: "Dates to know", datesAsOf: (month) => `Dates as of the last review (${month}). Check the official page.`, expected: "(expected)", notFinal: "Check the official page; this date is not final.",
     how: "How to apply", need: "What you may need", tips: "Practical tips", timing: "Timing",
     abbr: "Abbreviations on this page", phone: "Phone", confirm: "Confirm before applying",
     nextH: "Your next step", nextP: "Open the official program page, check the current rules, and use its application route.",
@@ -240,6 +243,7 @@ const GUIDE_LABELS = {
     mustAny: "Le programme exige au moins une de ces conditions :", mustAll: "Vous devez remplir toutes ces conditions :",
     amount: "Montant ou valeur", tiers: "Calcul du montant", glance: "En bref",
     difficulty: "Difficulté", application: "Demande", howLong: "Délai", covers: "Ce qui est couvert",
+    dates: "Dates à retenir", datesAsOf: (month) => `Dates à la dernière vérification (${month}). Consultez la page officielle.`, expected: "(prévue)", notFinal: "Consultez la page officielle; cette date n’est pas définitive.",
     how: "Comment faire une demande", need: "Ce dont vous pourriez avoir besoin", tips: "Conseils pratiques", timing: "Délais",
     abbr: "Sigles sur cette page", phone: "Téléphone", confirm: "À confirmer avant de faire une demande",
     nextH: "Prochaine étape", nextP: "Ouvrez la page officielle du programme, vérifiez les règles en vigueur et suivez sa démarche de demande.",
@@ -254,6 +258,24 @@ const GUIDE_LABELS = {
   },
 };
 const labelsFor = (b) => GUIDE_LABELS[b && b.lang === "fr" ? "fr" : "en"];
+
+const formatDate = (entry) => {
+  const [year, month, day] = entry.date.split("-").map(Number);
+  const date = new Date(year, month - 1, day || 1);
+  if (!day) return new Intl.DateTimeFormat("en-CA", { month: "long", year: "numeric" }).format(date);
+  let value = new Intl.DateTimeFormat("en-CA", { month: "long", day: "numeric", year: "numeric" }).format(date);
+  if (entry.time) {
+    const [hour, minute] = entry.time.split(":").map(Number);
+    date.setHours(hour, minute);
+    value += ` at ${new Intl.DateTimeFormat("en-CA", { hour: "numeric", minute: "2-digit", hour12: true }).format(date)}`;
+  }
+  return value;
+};
+const staticDates = (b, L) => {
+  const entries = benefitDates[b.id] || [];
+  if (!entries.length) return "";
+  return `<section class="guide-block dates-to-know"><h2 class="guide-h">${L.dates}</h2><p>${esc(L.datesAsOf(ctx.guideFreshness(b).label))}</p><ul class="dates-list">${entries.slice().sort((a, z) => a.date.localeCompare(z.date)).map((entry) => `<li><p class="date-when">${esc(formatDate(entry))}</p><h3>${esc(entry.label)}${entry.expected && !/expect/i.test(entry.label) ? ` ${L.expected}` : ""}</h3><p>${esc(entry.text)}</p></li>`).join("")}</ul></section>`;
+};
 
 const list = (title, items, ordered = false) => {
   if (!Array.isArray(items) || !items.length) return "";
@@ -364,6 +386,7 @@ ${header(L)}
             ${b.amountTiers && b.amountTiers.rows && b.amountTiers.rows.length ? `<section class="guide-block"><h2 class="guide-h">${esc(b.amountTiers.caption || L.tiers)}</h2><div class="tier-scroll"><table class="amount-tiers"><thead><tr>${b.amountTiers.headers.map((h) => `<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${b.amountTiers.rows.map((row) => `<tr>${row.map((cell) => `<td>${esc(cell)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></section>` : ""}
             ${difficulty || meta.effort || (meta.wait && !detail.time) ? `<section class="guide-block"><h2 class="guide-h">${L.glance}</h2><dl class="guide-list">${difficulty ? `<div><dt>${L.difficulty}</dt><dd>${esc(difficulty)}</dd></div>` : ""}${meta.effort ? `<div><dt>${L.application}</dt><dd>${esc(meta.effort)}</dd></div>` : ""}${meta.wait && !detail.time ? `<div><dt>${L.howLong}</dt><dd>${esc(meta.wait)}</dd></div>` : ""}</dl></section>` : ""}
             ${detail.coversList && detail.coversList.items && detail.coversList.items.length ? `<section class="guide-block"><h2 class="guide-h">${L.covers}</h2>${detail.coversList.lead ? `<p class="eligibility-lead">${esc(detail.coversList.lead)}</p>` : ""}<ul class="eligibility-list">${detail.coversList.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul></section>` : ""}
+            ${staticDates(b, L)}
             ${list(L.how, steps, true)}
             ${list(L.need, detail.documents)}
             ${list(L.tips, detail.tips)}
