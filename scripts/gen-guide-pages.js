@@ -217,6 +217,7 @@ const GUIDE_LABELS = {
     how: "How to apply", need: "What you may need", tips: "Practical tips", timing: "Timing",
     abbr: "Abbreviations on this page", phone: "Phone", confirm: "Confirm before applying",
     nextH: "Your next step", nextP: "Open the official program page, check the current rules, and use its application route.",
+    limitLead: "What this guide can't tell you:", limitBody: "whether you will be approved. The program decides, often using details we do not ask for.",
     foot: "Benefit rules and amounts can change. Confirm the current details before applying.",
     cta: "Answer a few questions to see benefits you may qualify for",
     official: "Official government source", easy: "Easy", medium: "Medium", hard: "Hard",
@@ -247,6 +248,7 @@ const GUIDE_LABELS = {
     how: "Comment faire une demande", need: "Ce dont vous pourriez avoir besoin", tips: "Conseils pratiques", timing: "Délais",
     abbr: "Sigles sur cette page", phone: "Téléphone", confirm: "À confirmer avant de faire une demande",
     nextH: "Prochaine étape", nextP: "Ouvrez la page officielle du programme, vérifiez les règles en vigueur et suivez sa démarche de demande.",
+    limitLead: "Ce que ce guide ne peut pas vous dire :", limitBody: "si votre demande sera acceptée. Le programme décide, souvent à partir de renseignements que nous ne demandons pas.",
     foot: "Les règles et les montants peuvent changer. Confirmez les détails à jour avant de faire une demande.",
     cta: "Répondez à quelques questions pour voir les prestations auxquelles vous pourriez avoir droit",
     official: "Source gouvernementale officielle", easy: "Facile", medium: "Moyenne", hard: "Difficile",
@@ -356,6 +358,7 @@ function benefitPage(b) {
   const detail = b.detail || {};
   const meta = benefitMeta[b.id] || {};
   const L = labelsFor(b);
+  const guideLimit = `<p class="detail-about guide-limit"><strong>${L.limitLead}</strong> ${L.limitBody}</p>`;
   const difficulty = meta.difficulty <= 2 ? L.easy : meta.difficulty === 3 ? L.medium : meta.difficulty ? L.hard : "";
   const steps = Array.isArray(detail.steps) && detail.steps.length ? detail.steps : L.steps;
   const links = officialLinks(b);
@@ -380,8 +383,8 @@ ${header(L)}
               : detail.about ? `<section class="guide-block"><h2 class="guide-h">${L.whatItIs}</h2><p class="detail-about">${esc(detail.about)}</p></section>` : ""}
             ${b.note ? `<section class="guide-block"><h2 class="guide-h">${L.goodToKnow}</h2><p class="detail-about">${esc(b.note)}</p></section>` : ""}
             ${b.eligibility && b.eligibility.items && b.eligibility.items.length
-              ? `<section class="guide-block"><h2 class="guide-h">${L.mustMeet}</h2><p class="eligibility-lead">${b.eligibility.mode === "any" ? L.mustAny : L.mustAll}</p><ul class="eligibility-list">${b.eligibility.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul>${b.eligibility.note ? (b.eligibility.note.items ? `<p class="eligibility-lead">${esc(b.eligibility.note.lead)}</p><ul class="eligibility-list">${b.eligibility.note.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul><p class="detail-about eligibility-note">${esc(b.eligibility.note.after)}</p>` : `<p class="detail-about eligibility-note">${esc(b.eligibility.note)}</p>`) : ""}</section>`
-              : b.requiresNote ? `<section class="guide-block"><h2 class="guide-h">${L.mustMeet}</h2><p class="detail-about">${esc(b.requiresNote)}</p></section>` : ""}
+              ? `<section class="guide-block"><h2 class="guide-h">${L.mustMeet}</h2><p class="eligibility-lead">${b.eligibility.mode === "any" ? L.mustAny : L.mustAll}</p><ul class="eligibility-list">${b.eligibility.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul>${b.eligibility.note ? (b.eligibility.note.items ? `<p class="eligibility-lead">${esc(b.eligibility.note.lead)}</p><ul class="eligibility-list">${b.eligibility.note.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul><p class="detail-about eligibility-note">${esc(b.eligibility.note.after)}</p>` : `<p class="detail-about eligibility-note">${esc(b.eligibility.note)}</p>`) : ""}${guideLimit}</section>`
+              : b.requiresNote ? `<section class="guide-block"><h2 class="guide-h">${L.mustMeet}</h2><p class="detail-about">${esc(b.requiresNote)}</p>${guideLimit}</section>` : guideLimit}
             ${b.amount ? `<section class="guide-block"><h2 class="guide-h">${L.amount}</h2><p class="detail-amount">${esc(b.amount)}</p></section>` : ""}
             ${b.amountTiers && b.amountTiers.rows && b.amountTiers.rows.length ? `<section class="guide-block"><h2 class="guide-h">${esc(b.amountTiers.caption || L.tiers)}</h2><div class="tier-scroll"><table class="amount-tiers"><thead><tr>${b.amountTiers.headers.map((h) => `<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${b.amountTiers.rows.map((row) => `<tr>${row.map((cell) => `<td>${esc(cell)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></section>` : ""}
             ${difficulty || meta.effort || (meta.wait && !detail.time) ? `<section class="guide-block"><h2 class="guide-h">${L.glance}</h2><dl class="guide-list">${difficulty ? `<div><dt>${L.difficulty}</dt><dd>${esc(difficulty)}</dd></div>` : ""}${meta.effort ? `<div><dt>${L.application}</dt><dd>${esc(meta.effort)}</dd></div>` : ""}${meta.wait && !detail.time ? `<div><dt>${L.howLong}</dt><dd>${esc(meta.wait)}</dd></div>` : ""}</dl></section>` : ""}

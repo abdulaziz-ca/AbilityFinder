@@ -1508,7 +1508,7 @@ body.a11y-nomotion .wiz-mountains .wm { animation: none !important; }
 
 @media print {
   @page { margin: 16mm; }
-  .nav, .progress, .a11y-wrap, .ask-wrap, .reading-guide, .results-tools, .tracker-summary, .track, .apply-row, .restart, .disclaimer, details.notmatch, .back-link { display: none !important; }
+  .nav, .progress, .a11y-wrap, .ask-wrap, .reading-guide, .results-tools, .tracker-summary, .track, .apply-row, .restart, .limits-panel, .disclaimer, details.notmatch, .back-link { display: none !important; }
   .wrap::before, .wrap::after, body::before, body::after { display: none !important; }
   body { background: #fff !important; color: #000 !important; margin: 0; }
   #app { max-width: none; margin: 0; padding: 0; }
@@ -1933,13 +1933,17 @@ body.a11y-nomotion .side-note:hover .sn-go .ic { transform: none; }
 .compact-row .cr-name { font-weight: 600; }
 .compact-row .cr-have { color: var(--ok, var(--text)); font-weight: 600; }
 .row-guide-link { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
-.result-group-later { border: 1px solid var(--hair); border-radius: 12px; padding: 10px 14px; }
-.result-group-later > summary { cursor: pointer; list-style: none; }
-.result-group-later > summary::-webkit-details-marker { display: none; }
+.result-group-later, .limits-panel { border: 1px solid var(--hair); border-radius: 12px; padding: 10px 14px; }
+.result-group-later > summary, .limits-panel > summary { cursor: pointer; list-style: none; }
+.result-group-later > summary::-webkit-details-marker, .limits-panel > summary::-webkit-details-marker { display: none; }
 .result-group-later > summary .result-group-h { display: inline; margin: 0; }
-.result-group-later > summary::before { content: "\25B8\00a0"; }
-.result-group-later[open] > summary::before { content: "\25BE\00a0"; }
-.result-group-later[open] > summary { margin-bottom: 8px; }
+.result-group-later > summary::before, .limits-panel > summary::before { content: "\25B8\00a0"; }
+.result-group-later[open] > summary::before, .limits-panel[open] > summary::before { content: "\25BE\00a0"; }
+.result-group-later[open] > summary, .limits-panel[open] > summary { margin-bottom: 8px; }
+.limits-panel { max-width: 1000px; margin-top: 34px; }
+.limits-panel > summary { font-weight: 600; }
+.limits-panel ul { margin: 0; padding-left: 24px; }
+.limits-panel li + li { margin-top: 8px; }
 .later-why { margin: 0 0 8px; }
 .results-need-more { font-weight: 600; margin: 0 0 8px; }
 

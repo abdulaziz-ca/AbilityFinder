@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "235";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "236";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -6619,6 +6619,17 @@ function renderBenefitDates(benefits, options = {}) {
   </section>`;
 }
 
+function renderLimitsPanel(hasOtherPrograms) {
+  return `<details class="limits-panel">
+    <summary>${t("limits.summary")}</summary>
+    <ul>
+      <li><strong>${t("limits.programsLead")}</strong> ${t("limits.programsBody")} <button class="linklike" type="button" data-nav="coverage">${t("limits.coverage")}</button></li>
+      <li><strong>${t("limits.approvalLead")}</strong> ${t("limits.approvalBody")}</li>
+      <li><strong>${t("limits.detailsLead")}</strong> ${t("limits.detailsBody")}${hasOtherPrograms ? ` ${t("limits.otherPrograms")}` : ""}</li>
+    </ul>
+  </details>`;
+}
+
 function renderResults() {
   const evaluated = browseCatalog().filter((b) => benefitInResultsScope(b, answers)).map((b) => ({ b, r: evaluate(b) }));
   const groups = resultGroups(evaluated);
@@ -6680,6 +6691,7 @@ function renderResults() {
   html += renderSupportsArea();
   html += renderHelpDirectory();
   html += `<button class="btn btn-ghost restart" id="restart">${t("restart")}</button>`;
+  html += renderLimitsPanel(groups.g2.length > 0);
   html += `<p class="disclaimer">${t("disclaimer")}</p>`;
   return html;
 }
@@ -7572,6 +7584,8 @@ function wireResults() {
     window.print();
   });
 
+  document.querySelector('.limits-panel [data-nav="coverage"]')?.addEventListener("click", () => setState("coverage"));
+
   const r = document.getElementById("restart");
   if (r)
     r.addEventListener("click", () => {
@@ -8164,6 +8178,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   if (d.phone) meta.push(`<div class="meta-item"><span>${t("meta.contact")}</span>${d.phone}</div>`);
   const A = recAttr(b);
   const enNote = LANG !== "en" && recLang(b) === "en" ? `<div class="note">${t("det.enNote")}</div>` : "";
+  const guideLimit = `<p class="detail-about guide-limit"><strong>${t("guide.limitLead")}</strong> ${t("guide.limitBody")}</p>`;
 
   const v = valueParts(b);
   const valueHead = `<div class="detail-amount"${A}>${reqEscape(b.amount)}</div>${v.sub ? `<div class="detail-amount-sub"${A}>${v.sub}</div>` : ""}`;
@@ -8275,8 +8290,8 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
         ${aboutVisible}
         ${b.note ? `<section class="guide-block"><h2 class="guide-h">${t("guide.goodToKnow")}</h2><div class="note"${A}>${b.note}</div></section>` : ""}
         ${b.eligibility && b.eligibility.items && b.eligibility.items.length
-          ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="eligibility-lead">${b.eligibility.mode === "any" ? t("guide.mustMeetAny") : t("guide.mustMeetAll")}</p><ul class="eligibility-list"${A}>${b.eligibility.items.map((it) => `<li>${it}</li>`).join("")}</ul>${b.eligibility.note ? (b.eligibility.note.items ? `<p class="eligibility-lead"${A}>${b.eligibility.note.lead}</p><ul class="eligibility-list"${A}>${b.eligibility.note.items.map((it) => `<li>${it}</li>`).join("")}</ul><p class="detail-about eligibility-note"${A}>${b.eligibility.note.after}</p>` : `<p class="detail-about eligibility-note"${A}>${b.eligibility.note}</p>`) : ""}</section>`
-          : b.requiresNote ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="detail-about"${A}>${b.requiresNote}</p></section>` : ""}
+          ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="eligibility-lead">${b.eligibility.mode === "any" ? t("guide.mustMeetAny") : t("guide.mustMeetAll")}</p><ul class="eligibility-list"${A}>${b.eligibility.items.map((it) => `<li>${it}</li>`).join("")}</ul>${b.eligibility.note ? (b.eligibility.note.items ? `<p class="eligibility-lead"${A}>${b.eligibility.note.lead}</p><ul class="eligibility-list"${A}>${b.eligibility.note.items.map((it) => `<li>${it}</li>`).join("")}</ul><p class="detail-about eligibility-note"${A}>${b.eligibility.note.after}</p>` : `<p class="detail-about eligibility-note"${A}>${b.eligibility.note}</p>`) : ""}${guideLimit}</section>`
+          : b.requiresNote ? `<section class="guide-block"><h2 class="guide-h">${t("guide.mustMeet")}</h2><p class="detail-about"${A}>${b.requiresNote}</p>${guideLimit}</section>` : guideLimit}
         ${valueSection}
         ${tiersSection}
         ${coversSection}
