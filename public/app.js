@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "240";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "241";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -4958,11 +4958,15 @@ function v2MotionAllowed() {
 }
 let v2RibbonStop = null;
 let v2RibbonHost = null;
+let v2RibbonToken = 0;
+let v2LastView = null;
 const v2GL = new WeakMap(); // canvas -> { gl, program } so a re-used canvas keeps its context
 function v2Enhance(currentView, app) {
   document.documentElement.classList.toggle("motion", v2MotionAllowed());
-  if (v2RibbonStop && currentView !== "landing") { v2RibbonStop(); v2RibbonStop = null; }
-  if (v2MotionAllowed()) { app.classList.remove("v2-route-in"); void app.offsetWidth; app.classList.add("v2-route-in"); }
+  if (currentView !== "landing") { v2RibbonToken++; if (v2RibbonStop) { v2RibbonStop(); v2RibbonStop = null; } }
+  // The entrance plays only when the view changes; same-view re-renders (a toggle, an answer) stay still.
+  if (currentView !== v2LastView && v2MotionAllowed()) { app.classList.remove("v2-route-in"); void app.offsetWidth; app.classList.add("v2-route-in"); }
+  v2LastView = currentView;
   if (currentView === "landing") v2Landing(app);
 }
 function v2Landing(app) {
@@ -4976,9 +4980,18 @@ function v2Landing(app) {
       v2RibbonHost.innerHTML = "<canvas></canvas>";
     }
     hero.prepend(v2RibbonHost);
-    if (v2RibbonStop) v2RibbonStop();
-    // Automated browsers (tests, crawlers) get one still frame instead of an animation loop.
-    v2RibbonStop = v2Ribbon(v2RibbonHost.querySelector("canvas"), !v2MotionAllowed() || navigator.webdriver === true);
+    if (v2RibbonStop) { v2RibbonStop(); v2RibbonStop = null; }
+    // The shader compile is the costliest part of the landing page, so it waits until the page
+    // has loaded and the browser is idle; a re-render or navigation before then skips it.
+    const token = ++v2RibbonToken;
+    const start = () => {
+      if (token !== v2RibbonToken || !v2RibbonHost.isConnected) return;
+      // Automated browsers (tests, crawlers) and browsers without WebGL get a static CSS glow.
+      if (navigator.webdriver !== true) v2RibbonStop = v2Ribbon(v2RibbonHost.querySelector("canvas"), !v2MotionAllowed());
+      v2RibbonHost.classList.add(v2RibbonStop ? "on" : "flat");
+    };
+    const idle = () => (window.requestIdleCallback ? requestIdleCallback(start, { timeout: 1500 }) : setTimeout(start, 200));
+    if (document.readyState === "complete") idle(); else window.addEventListener("load", idle, { once: true });
   }
   ["eyebrow", "hero-title", "hero-sub", "hero-cta", "trust"].forEach((cls, i) => {
     const el = hero && hero.querySelector("." + cls);
