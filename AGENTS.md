@@ -51,8 +51,10 @@ Keep journeys forgiving and copy concrete.
 2. **Zero spend.** Production stays on Cloudflare Workers Free. Workers AI has no
    overage billing on that plan; requests fail after the free allocation. Read
    `DEPLOY.md` before changing plans, bindings, or model usage.
-3. **Privacy is part of the product.** No accounts, analytics, or remote storage of
-   wizard answers. The two opt-in submissions of user-entered content to our Worker
+3. **Privacy is part of the product.** No accounts or remote storage of wizard
+   answers. The one analytics tool is **Cloudflare Web Analytics** (cookieless visit and
+   page-view counts; owner decision 2026-10-20, to measure marketing). Never add another
+   analytics or measurement script, cookies, or anything that sends wizard answers. The two opt-in submissions of user-entered content to our Worker
    are `/api/ask` and `/api/feedback`. Update the privacy page in the same change if
    that boundary moves.
 4. **Eligibility is about functional limitation, not diagnosis.** Never imply that
@@ -236,9 +238,11 @@ null/undefined checks with truthiness checks.
   `browseQuery` text may persist locally, and practitioner searches put postal or
   coordinate text in a user-initiated Google Maps URL. Never put sensitive wizard
   or profile data in URLs or persist unapproved free text.
-- Cloudflare may inject Browser Insights/challenge scripts at the edge; the strict
-  CSP blocks them. Do not weaken CSP to allow analytics. Disable injection in the
-  Cloudflare dashboard instead if console noise needs removal.
+- The CSP allows exactly one outside script origin, `https://static.cloudflareinsights.com`
+  (the Web Analytics beacon, added as a tag in index.html, 404.html and the guide
+  generator) and one outside `connect-src`, `https://cloudflareinsights.com`. Do not
+  widen it further. Cloudflare's edge-injected challenge scripts stay blocked; disable
+  that injection in the dashboard if the console noise matters.
 
 ## Current priorities
 

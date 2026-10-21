@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "237";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "238";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -5524,9 +5524,9 @@ function renderPrivacy() {
 
     ${block("What stays on your device", `<p>AbilityFinder has no accounts, sign-up, or advertising. Your wizard answers, progress, bookmarks, browse search, and settings live only in <b>your own browser</b>, in this site's IndexedDB database. We can't see that local state, and it is not sent to our Worker.</p>`)}
     ${block("Two optional ways information leaves your browser", `<p><b>Assistant:</b> The Ask a question button opens an optional assistant. Before you type, you must agree to send data. Each time you send, the entire current in-memory conversation (up to 20 messages) is sent through our Worker to <b>Cloudflare's AI service</b>. It is not saved in IndexedDB or linked to an AbilityFinder account, but the words leave your browser, so <b>please don't type your name, address, or health details you would rather not send</b>.</p><p><b>Feedback:</b> Choosing “Send feedback” posts the type, message, and optional reply email to our Worker. The feedback is emailed to AbilityFinder's pinned inbox and the emailed copy may be retained by the mail provider. Choosing “Open my email app instead” does not submit the form through our Worker.</p><p>The assistant can be <b>wrong</b>. It can explain confusing wording, explain what a form asks for, and point to a guide. It cannot tell you whether you qualify or quote dollar amounts — the checked guides and official pages are the final word.</p>`)}
-    ${block("No analytics", `<p>AbilityFinder does not run client-side analytics or measure which pages or benefit guides you view. The site is delivered through Cloudflare, so ordinary web requests still pass through its infrastructure to load the site and protect it, but AbilityFinder does not use a Web Analytics or Browser Insights beacon.</p>`)}
-    ${block("No tracking cookies, no ads", `<p>There is no advertising, cross-site tracking, or fingerprinting. We don't set tracking cookies.</p>`)}
-    ${block("Fonts and files", `<p>All fonts and core app files are served from this site itself. AbilityFinder does not load an externally hosted analytics or measurement script.</p>`)}
+    ${block("Visit statistics", `<p>AbilityFinder uses <b>Cloudflare Web Analytics</b> to count visits and see which pages and guides are viewed, so we can tell whether the site is helping people. It does not use cookies, does not follow you to other websites, and never sees your answers to the questions, which stay on your device. It records things like the page address, the website that sent you here, your country, your type of device and browser, and how fast the page loaded.</p>`)}
+    ${block("No tracking cookies, no ads", `<p>There is no advertising and no tracking across other websites. We don't set tracking cookies.</p>`)}
+    ${block("Fonts and files", `<p>All fonts and core app files are served from this site itself. The one outside script is Cloudflare's visit counter, described above.</p>`)}
     ${block("Location", `<p>The “Use my location” button only asks your browser for your location when <b>you tap it</b>. A postal code stays in current-page memory; neither it nor your coordinates are saved in IndexedDB or sent to AbilityFinder. If you open a practitioner-search link, the postal code or coordinates are included in a user-initiated Google Maps URL and are then sent to Google under its privacy policy.</p>`)}
     ${block("Links to other sites", `<p>Every “Apply” and official link opens the relevant government website in a new tab. Once you're on those sites, their own privacy policies apply — not ours.</p>`)}
     ${block("Clearing your data", `<p>Click the <b>AbilityFinder</b> logo (or “Start over”) to wipe your answers, or clear your browser's site data at any time. IndexedDB is still browser-owned storage: if you clear this site's data or delete your browser profile, your saved progress is deleted and AbilityFinder cannot recover it.</p>`)}
@@ -5560,7 +5560,7 @@ function renderAbout() {
 
     ${block("What AbilityFinder is", `<p>AbilityFinder is a free, independent tool that helps ${SCOPE_RESIDENTS} with disabilities find benefits in our catalog that may match their situation. It is not affiliated with any government. There is no login and there are no ads.</p>`)}
     ${block("How we verify facts", `<p>Every benefit links to an official government source. ${CATALOGUE_INDEX.filter(([id]) => !verifiedFor({ id }).inherited).length} programs were individually re-checked against their official source; the remaining ${CATALOGUE_INDEX.filter(([id]) => verifiedFor({ id }).inherited).length} were last checked in the ${verifiedFor(null).label} catalogue review.</p><p>Every few hours, automated monitoring checks a rotating set of official links and flags pages that break or move. A working link does not mean the rules or amounts are unchanged. Each guide shows its review date and warns when the numbers are worth re-confirming.</p>`)}
-    ${block("What we never do", `<p>We do not create accounts, show ads, or use third-party trackers. Your answers stay on your device. We never sell or share your data.</p>`)}
+    ${block("What we never do", `<p>We do not create accounts, show ads, or set tracking cookies. Your answers stay on your device. We never sell your data. We count visits with Cloudflare Web Analytics, which does not use cookies.</p>`)}
     ${block("Found a mistake?", `<p>Please tell us through the <button class="linklike js-feedback">feedback form</button>. Corrections help everyone who uses AbilityFinder.</p>`)}
     ${block("Who runs this", `<p>AbilityFinder is an independent project built in Alberta by a small team. It is not a government service.</p>`)}
 

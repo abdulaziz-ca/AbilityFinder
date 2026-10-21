@@ -51,35 +51,51 @@ test("privacy invariants acknowledge nonsensitive browse and Maps exceptions", (
   }
 });
 
-test("repository and generated pages enforce the no-analytics privacy boundary", () => {
+test("analytics is cookieless Cloudflare Web Analytics only, disclosed, and nothing else", () => {
+  // Owner decision 2026-10-20: count visits to measure marketing. The boundary is one
+  // beacon from one origin, disclosed on the privacy page, with no cookies and nothing
+  // from the questionnaire.
   const app = source("public/app.js");
   const html = source("public/index.html");
+  const notFound = source("public/404.html");
   const i18n = source("public/i18n.js");
   const headers = source("public/_headers");
   const generator = source("scripts/gen-guide-pages.js");
+  const embed = source("public/embed.html");
   const guidesDir = path.join(ROOT, "public", "guides");
 
-  assert.match(app, /AbilityFinder does not run client-side analytics/i);
-  assert.match(i18n, /does not use client-side analytics/i);
-  assert.match(i18n, /There are no accounts, analytics, advertising, or tracking cookies/i);
+  assert.match(app, /uses <b>Cloudflare Web Analytics<\/b> to count visits/i);
+  assert.match(app, /does not use cookies, does not follow you to other websites, and never sees your answers/i);
+  assert.doesNotMatch(app, /does not run client-side analytics|use third-party trackers/i);
+  assert.match(i18n, /cookieless Cloudflare Web Analytics/i);
+  assert.match(i18n, /Cloudflare Web Analytics, sans témoins/i);
 
-  for (const [name, text] of [
-    ["index", html],
-    ["headers", headers],
-    ["guide generator", generator],
-  ]) {
-    assert.doesNotMatch(text, /cloudflareinsights|beacon\.min\.js|data-cf-beacon/i, name);
+  const loader = source("public/analytics.js");
+  assert.match(loader, /location\.hostname !== "abilityfinder\.ca"/, "only the real site counts visits");
+  assert.match(loader, /https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js/);
+  const token = (/token: "([^"]+)"/.exec(loader) || [])[1];
+  assert.ok(token, "loader carries the site token");
+  if (process.env.CI || process.env.REQUIRE_WA_TOKEN) assert.match(token, /^[0-9a-f]{32}$/, "real Web Analytics token, not the placeholder");
+  const LOADER = /<script defer src="\/?analytics\.js[^"]*"><\/script>/g;
+  for (const [name, text] of [["index", html], ["404", notFound], ["guide generator", generator]]) {
+    assert.equal([...text.matchAll(LOADER)].length, 1, `${name} loads analytics.js once`);
+    assert.doesNotMatch(text, /cloudflareinsights/, `${name} has no direct beacon tag`);
   }
-  assert.match(headers, /script-src 'self';/);
-  assert.match(headers, /connect-src 'self';/);
+  assert.doesNotMatch(embed, /analytics\.js|cloudflareinsights/, "the partner embed does not count partner visitors");
+
+  assert.match(headers, /script-src 'self' https:\/\/static\.cloudflareinsights\.com;/);
+  assert.match(headers, /connect-src 'self' https:\/\/cloudflareinsights\.com;/);
+  for (const csp of headers.split("\n").filter((line) => /^\s*Content-Security-Policy:/.test(line))) {
+    assert.doesNotMatch(csp, /script-src[^;]*'unsafe-inline'/, "no inline scripts");
+  }
+  for (const text of [app, html, generator]) {
+    assert.doesNotMatch(text, /googletagmanager|google-analytics|gtag\(|plausible\.io|matomo|hotjar|segment\.com|facebook\.net/i);
+  }
+  assert.doesNotMatch(app, /document\.cookie\s*=/);
 
   for (const file of fs.readdirSync(guidesDir).filter((name) => name.endsWith(".html"))) {
     const guide = fs.readFileSync(path.join(guidesDir, file), "utf8");
-    assert.doesNotMatch(
-      guide,
-      /cloudflareinsights|beacon\.min\.js|data-cf-beacon/i,
-      `generated guide ${file}`
-    );
+    assert.equal([...guide.matchAll(LOADER)].length, 1, `generated guide ${file} loads analytics.js once`);
   }
 });
 

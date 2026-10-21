@@ -25,7 +25,8 @@ universal list of qualifying diagnoses.
 ## Privacy
 
 Wizard answers, the local browse search, and approved UI preferences stay in the
-browser's IndexedDB. There are no accounts or analytics. Postal/geolocation input
+browser's IndexedDB. There are no accounts; visits are counted with cookieless
+Cloudflare Web Analytics (page views only, never wizard answers). Postal/geolocation input
 and assistant history are not persisted. Feedback text is not saved in IndexedDB;
 the submitted copy is emailed to AbilityFinder and may remain with the mail provider.
 

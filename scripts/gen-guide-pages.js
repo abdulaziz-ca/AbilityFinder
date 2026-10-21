@@ -307,6 +307,7 @@ function head({ title, desc, canonical }) {
     <link rel="stylesheet" href="${esc(styleHref)}" />
     <script src="/dbManager.js${esc(assetQuery)}"></script>
     <script src="/guide-prefs.js${esc(assetQuery)}"></script>
+    <script defer src="/analytics.js"></script>
     <style>
       .guide-link, .guide-link:visited {
         color: var(--accent-hi);
