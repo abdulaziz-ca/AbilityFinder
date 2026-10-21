@@ -9,7 +9,7 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 ## 2026-10-21 — The redesign is live
 
 ### Shipped
-- **New design across the whole site** (`?v=239`), built from your picks: Stripe and Mercury for the feel, Linear
+- **New design across the whole site** (live as `?v=241`), built from your picks: Stripe and Mercury for the feel, Linear
   for lists, Notion/Wise/Oscar for questions and guides. **Dark by default**, with the light switch kept.
   - Home: a flowing silk-ribbon background, large gradient headline, slim pill buttons, a lit example window that
     straightens as you scroll, a strip of the official government sources, and a Mercury-style feature section
@@ -17,8 +17,9 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
   - Questions: big, calm question pages with answer cards that lift on hover and tick when chosen.
   - Results: Linear-style rows with a coloured status edge, calm amounts and compact "Dates to know".
   - Guides (app and the 462 static pages): large titles, glass fact tiles and a glowing "next step" card.
-  - Motion is gentle (fade-and-rise, soft blur, a sweep of light on the main button) and switches off for anyone
-    who asks their device or our accessibility menu for less motion.
+  - Motion is gentle (pages fade in when you move between them, the home page rises in, a sweep of light on the
+    main button) and switches off for anyone who asks their device or our accessibility menu for less motion.
+  - Speed: the ribbon starts only after the page has loaded, so the home page shows up as fast as before.
 - **Words and results did not change**: only the look. All programs, answers and rules are as before.
 - Found and fixed along the way: two static guides (Canada Disability Benefit, RDSP) printed raw link code
   instead of a link.
