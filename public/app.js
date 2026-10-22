@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "245";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "246";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -8597,7 +8597,7 @@ function browseCard(b) {
     <div class="benefit-row">
       <div class="benefit-main">
         <div class="top">
-          <h3${recAttr(b)}>${b.name}</h3>
+          ${isDesignV2() ? `<span class="b-ic" aria-hidden="true">${icon(v2ThemeIcon(benefitTheme(b)))}</span>` : ""}<h3${recAttr(b)}>${b.name}</h3>
           <span class="tag lvl">${b.level}</span>
           ${isTargeted ? `<span class="tag dis-tag">${icon("check")} Aimed at this</span>` : ""}
         </div>
@@ -8621,7 +8621,31 @@ function browseResultsHtml() {
   return `<div class="benefits-grid">${items.map(browseCard).join("")}</div>`;
 }
 function browseChip(active, key, label, kind) {
-  return `<button class="browse-chip ${active ? "on" : ""}" data-${kind}="${key}">${label}</button>`;
+  return `<button class="browse-chip ${active ? "on" : ""}" type="button" aria-pressed="${active}" data-${kind}="${key}">${label}</button>`;
+}
+/* The "aimed at this" notes count within what is currently listed (category, place and search
+   applied), so they stay true as the other filters change. Say the true thing rather than
+   quietly hiding potentially useful benefits. */
+function browseNotesHtml() {
+  const shown = browseFiltered();
+  const nSpec = browseDis === "all" ? 0 : shown.filter((b) => isDisSpecific(b, browseDis)).length;
+  const disLabel = (DISABILITIES.find((d) => d.value === browseDis) || {}).label || "";
+  const disNote = browseDis === "all" ? "" : `
+    <p class="browse-disnote">${icon("info")}
+      <span>${nSpec
+        ? `<b>${nSpec} program${nSpec === 1 ? " is" : "s are"} aimed specifically at ${disLabel.toLowerCase()}</b> — shown first.`
+        : `<b>No program is aimed only at ${disLabel.toLowerCase()}</b>.`}
+      Everything else still applies to you: most disability benefits go by <b>how much your condition limits you</b>, not by your diagnosis. That's why we don't hide the rest.</span>
+    </p>`;
+  const nNeedSpec = browseNeed === "all" ? 0 : shown.filter((b) => isNeedSpecific(b, browseNeed)).length;
+  const needNote = browseNeed === "all" ? "" : `
+    <p class="browse-disnote browse-neednote">${icon("info")}
+      <span>${nNeedSpec
+        ? `<b>${nNeedSpec} program${nNeedSpec === 1 ? " is" : "s are"} aimed specifically at this need — shown first.</b>`
+        : `<b>No program is aimed only at this need.</b>`}
+      Everything else may still apply.</span>
+    </p>`;
+  return disNote + needNote;
 }
 function renderBrowse() {
   const themeChips = [browseChip(browseTheme === "all", "all", "All categories", "btheme")]
@@ -8640,25 +8664,9 @@ function renderBrowse() {
     .concat(BROWSE_NEEDS.filter((need) => need === browseNeed || browseCatalog().some((b) => isNeedSpecific(b, need))).map((need) => browseChip(
       browseNeed === need, need, t(BROWSE_NEED_LABEL_KEYS[need]), "bneed")))
     .join("");
-  // Say the true thing rather than quietly hiding potentially useful benefits.
   const catalog = browseCatalog();
-  const nSpec = browseDis === "all" ? 0 : catalog.filter((b) => isDisSpecific(b, browseDis)).length;
-  const disLabel = (DISABILITIES.find((d) => d.value === browseDis) || {}).label || "";
-  const disNote = browseDis === "all" ? "" : `
-    <p class="browse-disnote">${icon("info")}
-      <span>${nSpec
-        ? `<b>${nSpec} program${nSpec === 1 ? " is" : "s are"} aimed specifically at ${disLabel.toLowerCase()}</b> — shown first.`
-        : `<b>No program is aimed only at ${disLabel.toLowerCase()}</b>.`}
-      Everything else still applies to you: most disability benefits go by <b>how much your condition limits you</b>, not by your diagnosis. That's why we don't hide the rest.</span>
-    </p>`;
-  const nNeedSpec = browseNeed === "all" ? 0 : catalog.filter((b) => isNeedSpecific(b, browseNeed)).length;
-  const needNote = browseNeed === "all" ? "" : `
-    <p class="browse-disnote browse-neednote">${icon("info")}
-      <span>${nNeedSpec
-        ? `<b>${nNeedSpec} program${nNeedSpec === 1 ? " is" : "s are"} aimed specifically at this need — shown first.</b>`
-        : `<b>No program is aimed only at this need.</b>`}
-      Everything else may still apply.</span>
-    </p>`;
+  const disNote = "", needNote = `<div id="browseNotes">${browseNotesHtml()}</div>`;
+  if (isDesignV2()) return renderBrowseV2({ themeChips, levelChips, disChips, needChips, disNote, needNote, catalog });
   return `
   <section class="browse">
     <button class="back-link" id="b-back">${icon("arrowLeft")} Home</button>
@@ -8683,22 +8691,71 @@ function renderBrowse() {
     <div id="browseResults">${browseResultsHtml()}</div>
   </section>`;
 }
+/* Design v2 catalog: filters in a sticky side column with headings, results as a grid of
+   compact cards. Same filters, same order, nothing hidden by a disability or need choice. */
+const browseFiltersActive = () => browseTheme !== "all" || browseLevel !== "all" || browseDis !== "all" || browseNeed !== "all" || !!browseQuery.trim();
+function renderBrowseV2({ themeChips, levelChips, disChips, needChips, disNote, needNote, catalog }) {
+  const group = (key, label, chips) => `<div class="v2-fgroup"><p class="v2-fh" id="v2fh-${key}">${t(key)}</p><div class="browse-chiprow" role="group" aria-labelledby="v2fh-${key}">${chips}</div></div>`;
+  const n = browseFiltered().length;
+  return `
+  <section class="browse v2-browse">
+    <button class="back-link" id="b-back">${icon("arrowLeft")} ${t("l2b.home")}</button>
+    <div class="browse-head">
+      <h1>${t("menu.browse")}</h1>
+      <p>${t("l2b.intro").replace("{n}", catalog.length)}
+        <button class="linklike" id="b-start">${t("l2b.personal")} ${icon("arrowRight")}</button></p>
+    </div>
+    <div class="browse-search">
+      ${icon("search")}
+      <input type="search" id="browseInput" class="text-input" placeholder="${t("l2b.search")}" value="${browseQuery.replace(/"/g, "&quot;")}" aria-label="${t("l2b.searchLabel")}" />
+    </div>
+    <div class="v2-browse-layout">
+      <aside class="browse-filters v2-filters" aria-label="${t("l2b.filters")}">
+        ${group("l2b.category", "", themeChips)}
+        ${group("l2b.where", "", levelChips)}
+        ${group("l2b.disability", "", disChips)}
+        ${group("l2b.need", "", needChips)}
+        <button class="btn btn-ghost v2-clear" id="bClear" type="button"${browseFiltersActive() ? "" : " hidden"}>${icon("x")} ${t("l2b.clear")}</button>
+      </aside>
+      <div class="v2-browse-main">
+        ${disNote}
+        ${needNote}
+        <div class="v2-browse-bar"><div class="browse-count" id="browseCount">${browseCountText(n)}</div><span class="v2-sortnote">${t("l2.exTop")}</span></div>
+        <p class="sr-only" id="browseStatus" role="status"></p>
+        <div id="browseResults">${browseResultsHtml()}</div>
+      </div>
+    </div>
+  </section>`;
+}
+let browseStatusTimer = 0;
+const browseCountText = (n) => isDesignV2() ? t(n === 1 ? "l2b.countOne" : "l2b.count").replace("{n}", n) : `${n} benefit${n === 1 ? "" : "s"}`;
 function refreshBrowse() {
   const results = document.getElementById("browseResults");
   const count = document.getElementById("browseCount");
   if (results) results.innerHTML = browseResultsHtml();
+  const notes = document.getElementById("browseNotes");
+  if (notes) notes.innerHTML = browseNotesHtml();
   if (count) {
     const n = browseFiltered().length;
-    count.textContent = `${n} benefit${n === 1 ? "" : "s"}`;
+    count.textContent = browseCountText(n);
+    // Screen readers hear the count once typing pauses, not after every key.
+    const status = document.getElementById("browseStatus");
+    if (status) { clearTimeout(browseStatusTimer); browseStatusTimer = setTimeout(() => { status.textContent = browseCountText(n); }, 700); }
   }
-  document.querySelectorAll("[data-btheme]").forEach((c) =>
-    c.classList.toggle("on", c.dataset.btheme === browseTheme));
-  document.querySelectorAll("[data-blevel]").forEach((c) =>
-    c.classList.toggle("on", c.dataset.blevel === browseLevel));
-  document.querySelectorAll("[data-bdis]").forEach((c) =>
-    c.classList.toggle("on", c.dataset.bdis === browseDis));
-  document.querySelectorAll("[data-bneed]").forEach((c) =>
-    c.classList.toggle("on", c.dataset.bneed === browseNeed));
+  document.querySelectorAll("[data-btheme]").forEach((c) => {
+    c.classList.toggle("on", c.dataset.btheme === browseTheme); c.setAttribute("aria-pressed", String(c.dataset.btheme === browseTheme));
+  });
+  document.querySelectorAll("[data-blevel]").forEach((c) => {
+    c.classList.toggle("on", c.dataset.blevel === browseLevel); c.setAttribute("aria-pressed", String(c.dataset.blevel === browseLevel));
+  });
+  document.querySelectorAll("[data-bdis]").forEach((c) => {
+    c.classList.toggle("on", c.dataset.bdis === browseDis); c.setAttribute("aria-pressed", String(c.dataset.bdis === browseDis));
+  });
+  document.querySelectorAll("[data-bneed]").forEach((c) => {
+    c.classList.toggle("on", c.dataset.bneed === browseNeed); c.setAttribute("aria-pressed", String(c.dataset.bneed === browseNeed));
+  });
+  const clear = document.getElementById("bClear");
+  if (clear) clear.hidden = !browseFiltersActive();
 }
 function wireBrowse() {
   const back = document.getElementById("b-back");
@@ -8710,6 +8767,15 @@ function wireBrowse() {
       const firstMissing = visibleSteps().findIndex((step) => !stepAnswered(step));
       setState("wizard", { stepIndex: Math.max(0, firstMissing) });
     }
+  });
+
+  const clear = document.getElementById("bClear");
+  if (clear) clear.addEventListener("click", () => {
+    browseTheme = "all"; browseLevel = "all"; browseDis = "all"; browseNeed = "all"; browseQuery = "";
+    notifyStateChange("browse-filter-change");
+    render();
+    const search = document.getElementById("browseInput");
+    if (search) search.focus();
   });
 
   const input = document.getElementById("browseInput");
@@ -8736,12 +8802,16 @@ function wireBrowse() {
       browseDis = c.dataset.bdis;
       notifyStateChange("browse-filter-change");
       render();      // full render: the explainer line above the list has to change too
+      const again = document.querySelector(`[data-bdis="${browseDis}"]`);
+      if (again) again.focus();
     }));
   document.querySelectorAll("[data-bneed]").forEach((c) =>
     c.addEventListener("click", () => {
       browseNeed = c.dataset.bneed;
       notifyStateChange("browse-filter-change");
       render();
+      const again = document.querySelector(`[data-bneed="${browseNeed}"]`);
+      if (again) again.focus();
     }));
 
   // delegate "View guide" clicks (survives partial innerHTML refreshes)

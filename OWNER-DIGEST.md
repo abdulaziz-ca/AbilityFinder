@@ -6,6 +6,18 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-21 — Catalog page redesign
+
+### Shipped (`?v=246`)
+- **Filters in a side column** with headings (Category, Where, Disability, Need) that stays in view while you scroll,
+  plus a **Clear filters** button. On phones they become swipeable rows.
+- **Programs as a two-column grid of compact cards**: icon, name, level, summary, difficulty, value and "View guide".
+  How to apply and wait times are one click away in each guide. Every program is still listed — a disability or
+  need choice only moves the most relevant ones to the top, as before.
+- A big search bar; the page is now in French when the site is in French (the filter chip names still need it).
+- Codex reviewed it; fixed: screen readers now hear which filter is on, the result count is read once you stop
+  typing, the "N programs aimed at this" note counts within the other filters, and focus stays on the chip you chose.
+
 ## 2026-10-21 — Question pages redesign + Reduce motion fix
 
 ### Fixed

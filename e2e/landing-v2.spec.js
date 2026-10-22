@@ -130,3 +130,18 @@ test("wizard rail shows answered questions and reopens one", async ({ page }) =>
   await rail.locator("[data-rail-step='1']").click();
   await expect(page.locator("#wizard-question")).toHaveText(/Which of these apply to you/);
 });
+
+test("catalog filters sit in labelled groups and Clear filters resets them", async ({ page }) => {
+  await gotoReady(page);
+  await page.evaluate(() => setState("browse"));
+  const all = await page.locator("#browseResults .browse-card").count();
+  await expect(page.locator("#bClear")).toBeHidden();
+  await expect(page.getByRole("group", { name: "Where" })).toBeVisible();
+  await page.locator('[data-blevel="Federal"]').click();
+  await expect(page.locator("#bClear")).toBeVisible();
+  expect(await page.locator("#browseResults .browse-card").count()).toBeLessThan(all);
+  await page.locator("#bClear").click();
+  await expect(page.locator('[data-blevel="all"]')).toHaveClass(/on/);
+  await expect(page.locator("#browseResults .browse-card")).toHaveCount(all);
+  await expect(page.locator("#browseInput")).toBeFocused();
+});
