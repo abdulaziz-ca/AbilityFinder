@@ -106,3 +106,27 @@ test("in-app guide lists its sections and jumps to one", async ({ page }) => {
   await expect(page.locator(".detail-main .guide-h", { hasText: "What you'll need" })).toBeFocused();
   await expect(link).toHaveAttribute("aria-current", "true");
 });
+
+test("with Reduce motion saved, the home page headline and buttons are visible after a reload", async ({ page }) => {
+  await gotoReady(page);
+  await page.locator("#a11yFab").click();
+  await page.locator('.a11y-toggle[data-toggle="motion"]').click();
+  await page.waitForTimeout(400);
+  await page.reload();
+  await expect(page.locator("body")).toHaveClass(/a11y-nomotion/);
+  for (const sel of [".hero-title", ".hero-cta .js-start"]) {
+    await expect(page.locator(sel)).toBeVisible();
+    await expect.poll(() => page.locator(sel).evaluate((el) => getComputedStyle(el.closest(".hero-title, .hero-cta")).opacity)).toBe("1");
+  }
+});
+
+test("wizard rail shows answered questions and reopens one", async ({ page }) => {
+  await gotoReady(page);
+  await page.evaluate(() => { answers = { ...BLANK(), forWho: "self", disabilities: ["physical"] }; setState("wizard", { stepIndex: 2 }); });
+  const rail = page.locator(".v2-rail");
+  await expect(rail.locator("li.current")).toHaveAttribute("aria-current", "step");
+  await expect(rail.locator("li.done")).toHaveCount(2);
+  await expect(rail.locator("li.done").nth(1)).toContainText("Physical / mobility");
+  await rail.locator("[data-rail-step='1']").click();
+  await expect(page.locator("#wizard-question")).toHaveText(/Which of these apply to you/);
+});

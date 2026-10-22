@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "244";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "245";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -4965,8 +4965,11 @@ let v2LastMotion = null;
 function v2MotionSync() {
   if (!document.documentElement.classList.contains("v2")) return;
   const motion = v2MotionAllowed();
-  if (v2LastMotion === null || motion === v2LastMotion) { v2LastMotion = motion; return; }
+  // Compare with what the page actually shows: saved settings are applied after the first
+  // render, and that first change must take effect too (it once left the hero invisible).
   v2LastMotion = motion;
+  if (!hasRenderedView) return;
+  if (motion === document.documentElement.classList.contains("motion")) return;
   document.documentElement.classList.toggle("motion", motion);
   if (view !== "landing") return;
   v2RibbonToken++;
@@ -6670,7 +6673,8 @@ function renderStep(step) {
         </label>`;
       })
       .join("");
-    const twoCol = stepOpts.length === 2 ? "two" : "";
+    // Design v2: long lists (the disability list has 12) sit in two columns on wide screens.
+    const twoCol = stepOpts.length === 2 ? "two" : isDesignV2() && stepOpts.length > 6 ? "many" : "";
     controlHtml = `
       <fieldset class="wizard-options-fieldset" aria-describedby="wizard-help">
         <legend class="sr-only">${T.q}</legend>
@@ -6689,7 +6693,7 @@ function renderStep(step) {
   </div>
   <div class="wizard-layout">
     <div class="card wizard-card">
-      <p class="step-kicker">${icon("compass")} ${T.kicker} · ${t("wiz.step")} ${stepIndex + 1} ${t("wiz.of")} ${steps.length}</p>
+      <p class="step-kicker">${isDesignV2() ? v2StepRing(stepIndex + 1, steps.length) : icon("compass")} ${T.kicker} · ${t("wiz.step")} ${stepIndex + 1} ${t("wiz.of")} ${steps.length}</p>
       <h2 class="step-q" id="wizard-question" tabindex="-1">${T.q}</h2>
       <p class="step-help" id="wizard-help">${T.help}</p>
       ${/* ABOVE the options, not below. Someone who doesn't know the answer
@@ -6714,6 +6718,7 @@ function renderStep(step) {
       </div>
     </div>
     <aside class="wizard-aside">
+      ${isDesignV2() ? v2StepRail(steps) : ""}
       <div class="aside-card">
         <h4>${t("aside.title")}</h4>
         <ul class="aside-list">
@@ -6724,6 +6729,30 @@ function renderStep(step) {
       </div>
     </aside>
   </div>`;
+}
+
+/* Design v2: a small progress ring beside the step count (decorative; the text says it). */
+function v2StepRing(n, total) {
+  const c = 2 * Math.PI * 9, done = c * (n / total);
+  return `<svg class="v2-ring" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" class="bg"/><circle cx="12" cy="12" r="9" class="fg" stroke-dasharray="${done.toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 12 12)"/></svg>`;
+}
+/* Design v2: every question in order, marked done (with the answer), current or still to come.
+   Answered questions before this one can be reopened, like the Back button would. */
+function v2StepRail(steps) {
+  const items = steps.map((s, i) => {
+    const label = I18N.en["l2r.q." + s.id] ? t("l2r.q." + s.id) : stepText(s).kicker;
+    // "Done" means a real answer is saved (an optional question that was skipped is not done),
+    // wherever it sits, so editing an early answer from the results keeps later ones marked.
+    const v = answers[s.key];
+    const hasAnswer = Array.isArray(v) ? v.length > 0 : v !== null && v !== undefined && v !== "";
+    const state = i === stepIndex ? "current" : hasAnswer ? "done" : "todo";
+    const value = state === "done" ? answerSummary(s) : "";
+    const inner = `<span class="v2-rail-dot" aria-hidden="true">${state === "done" ? icon("check") : ""}</span><span class="v2-rail-t"><b>${label}</b>${value && value !== "—" ? `<small>${value}</small>` : ""}</span>`;
+    // Earlier questions stay reachable even if skipped; later ones open in order.
+    const reachable = i !== stepIndex && (i < stepIndex || hasAnswer);
+    return `<li class="${state}"${state === "current" ? ' aria-current="step"' : ""}>${reachable ? `<button type="button" class="v2-rail-btn" data-rail-step="${i}">${inner}<span class="sr-only"> — ${t("l2w.change")}</span></button>` : `<span class="v2-rail-btn">${inner}</span>`}</li>`;
+  }).join("");
+  return `<nav class="v2-rail" aria-label="${t("l2w.progress")}"><p class="v2-rail-h">${t("l2w.progress")}</p><ol>${items}</ol></nav>`;
 }
 
 function stepAnswered(step) {
@@ -6770,6 +6799,7 @@ function refreshWizardSelectionControls(step) {
 }
 
 function wireStep(step) {
+  v2WireRail();
   const sn = document.getElementById("sideNote");
   if (sn && step.sideNote)
     sn.addEventListener("click", () => {
@@ -6840,6 +6870,7 @@ function wireStep(step) {
       const value = JSON.parse(choice.dataset.value);
       if (!applyWizardSelection(step, value)) return;
       refreshWizardSelectionControls(step);
+      if (isDesignV2()) v2RefreshRail();
       // Keep native selection and focus without replacing the question.
     });
   });
@@ -6848,6 +6879,19 @@ function wireStep(step) {
   const next = document.getElementById("next");
   if (back) back.addEventListener("click", goBack);
   if (next) next.addEventListener("click", goNext);
+}
+/* Design v2 step rail: reopen a question. */
+function v2WireRail() {
+  document.querySelectorAll("#app [data-rail-step]").forEach((btn) => btn.addEventListener("click", () => {
+    setState("wizard", { stepIndex: Number(btn.dataset.railStep) });
+  }));
+}
+/* An answer can add or remove later questions; redraw the rail (never the focused option). */
+function v2RefreshRail() {
+  const rail = document.querySelector("#app .v2-rail");
+  if (!rail) return;
+  rail.outerHTML = v2StepRail(visibleSteps());
+  v2WireRail();
 }
 
 function toggleMulti(step, value) {

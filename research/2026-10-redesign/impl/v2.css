@@ -770,3 +770,60 @@ html.v2[data-view="guide"] .browse .gi-lvl { display: inline-block; justify-self
 @media (max-width: 600px) {
   html.v2[data-view="guide"] .nav .brand-name { display: inline; font-size: 1rem; }
 }
+/* Safety net: "less motion" switches every animation off, so anything that fades in must
+   simply be shown (the hero used to stay invisible when the setting was saved). */
+html.v2 body.a11y-nomotion .v2-fade, html.v2 body.a11y-nomotion .v2-split .w, html.v2 body.a11y-nomotion .reveal-v2, html.v2 body.a11y-nomotion .v2-explore-wrap .v2-explore { opacity: 1 !important; filter: none !important; transform: none !important; }
+
+/* ── Wizard v2.1 (owner request 2026-10-21): a progress rail of every question, a ring
+   beside the step count, long lists in two columns, and Back / Continue kept in view. ── */
+html.v2 .wizard-layout { grid-template-columns: minmax(0, 1fr) minmax(250px, 300px); align-items: start; }
+html.v2 .step-kicker { display: inline-flex; align-items: center; gap: 10px; padding: 5px 12px 5px 6px; border-radius: 999px; border: 1px solid var(--hair-2); background: var(--panel); color: var(--text-dim); font-family: var(--font-sans); font-size: 0.8rem; font-weight: 560; }
+html.v2 .v2-ring { width: 22px; height: 22px; flex: 0 0 auto; }
+html.v2 .v2-ring circle { fill: none; stroke-width: 2.6; }
+html.v2 .v2-ring .bg { stroke: var(--hair-2); }
+html.v2 .v2-ring .fg { stroke: var(--accent); stroke-linecap: round; }
+html.v2 .step-help { color: var(--text-dim); font-size: 1.02rem; max-width: 62ch; }
+/* Options */
+html.v2 .options.many { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+html.v2 .options.many .opt { min-height: 0; height: 100%; box-sizing: border-box; align-items: flex-start; padding: 14px 16px; }
+html.v2 .options.many .opt .sub { font-size: 0.8rem; }
+html.v2 .opt > .ic { flex: 0 0 auto; width: 18px; height: 18px; padding: 8px; box-sizing: content-box; border-radius: 10px; background: var(--accent-soft); color: var(--accent); }
+html.v2 .wizard-choice:checked + .opt { box-shadow: 0 0 0 1px var(--accent-line), 0 18px 40px -24px rgba(109, 94, 245, 0.7); }
+html.v2 .wizard-choice:checked + .opt > .ic { background: var(--v2-violet); color: #fff; }
+/* Back / Continue stay in view on long questions */
+html.v2[data-view="wizard"] .nav-row { position: sticky; bottom: 16px; z-index: 5; margin-top: 24px; padding: 10px; border-radius: 999px; border: 1px solid var(--hair-2); background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); width: fit-content; box-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.8); }
+/* Progress rail */
+html.v2 .wizard-aside { position: static; display: grid; gap: 14px; }
+html.v2 .v2-rail { padding: 18px; border-radius: 18px; border: 1px solid var(--hair-2); background: var(--panel); }
+html.v2 .v2-rail-h { margin: 0 0 12px; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dimmer); }
+html.v2 .v2-rail ol { list-style: none; margin: 0; padding: 0; display: grid; }
+html.v2 .v2-rail li { position: relative; }
+html.v2 .v2-rail li:not(:last-child)::after { content: ""; position: absolute; left: 10px; top: 26px; bottom: -4px; width: 1px; background: var(--hair-2); }
+html.v2 .v2-rail li.done:not(:last-child)::after { background: var(--accent-line); }
+html.v2 .v2-rail-btn { display: flex; gap: 12px; align-items: flex-start; width: 100%; padding: 4px 6px 10px 0; border: 0; border-radius: 10px; background: none; color: inherit; font: inherit; text-align: left; }
+html.v2 button.v2-rail-btn { cursor: pointer; }
+html.v2 button.v2-rail-btn:hover b { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+html.v2 button.v2-rail-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+html.v2 .v2-rail-dot { flex: 0 0 auto; width: 21px; height: 21px; margin-top: 1px; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid var(--hair-2); background: var(--bg-2); }
+html.v2 .v2-rail-dot .ic { width: 12px; height: 12px; }
+html.v2 .v2-rail li.done .v2-rail-dot { border-color: var(--accent); background: var(--v2-violet); color: #fff; }
+html.v2 .v2-rail li.current .v2-rail-dot { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+html.v2 .v2-rail-t { display: grid; gap: 1px; min-width: 0; }
+html.v2 .v2-rail-t b { font-size: 0.88rem; font-weight: 560; color: var(--text-dim); }
+html.v2 .v2-rail li.current .v2-rail-t b { color: var(--text); }
+html.v2 .v2-rail li.todo .v2-rail-t b { color: var(--text-dimmer); font-weight: 500; }
+html.v2 .v2-rail-t small { font-size: 0.78rem; color: var(--text-dimmer); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html.v2 .wizard-aside .aside-card { padding: 16px 18px; font-size: 0.86rem; }
+@media (max-width: 900px) {
+  html.v2 .wizard-layout { grid-template-columns: 1fr; }
+  html.v2 .wizard-aside { position: static; }
+  html.v2 .v2-rail { display: none; }
+}
+@media (max-width: 700px) {
+  html.v2 .options.many { grid-template-columns: 1fr; }
+  /* Sits above the round help and accessibility buttons in the bottom corners. */
+  html.v2[data-view="wizard"] .nav-row { width: auto; bottom: 84px; justify-content: space-between; }
+}
+/* Keep a focused option clear of the sticky Back / Continue bar (WCAG 2.4.11). */
+html.v2[data-view="wizard"] { scroll-padding-bottom: 120px; }
+@media (max-width: 700px) { html.v2[data-view="wizard"] { scroll-padding-bottom: 190px; } }

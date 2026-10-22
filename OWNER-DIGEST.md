@@ -6,6 +6,22 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-21 — Question pages redesign + Reduce motion fix
+
+### Fixed
+- **With "Reduce motion" turned on, the home page headline and buttons disappeared** after a reload. The saved
+  setting was applied just after the page had started its fade-in, which "Reduce motion" then froze at invisible.
+  Now the setting always takes effect, and anything that fades in is simply shown when motion is reduced.
+
+### Shipped (`?v=245`)
+- **Progress rail** beside each question: every question in order, ticked when answered (with your answer), the
+  current one highlighted, and earlier ones reopen with one click. (Hidden on phones, where space is tight.)
+- A small **progress ring** next to "Step 2 of 11".
+- **Long lists** (like the 12 disability types) show in **two columns** on wider screens, so less scrolling.
+- **Back / Continue stay in view** at the bottom while you scroll through a long list.
+- Codex reviewed it; fixed: rail on the City question, rail when editing from results, rail updating when an
+  answer adds/removes questions, skipped optional question no longer shown as done, focus never hidden by the bar.
+
 ## 2026-10-21 — Guide pages redesign
 
 ### Shipped (`?v=244`)
