@@ -6,6 +6,21 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-21 — Results page redesign + "Canada-wide" everywhere
+
+### Shipped (`?v=243`)
+- **Results overview** at the top: tiles for "Matches your answers", "More to check", "Other programs" (and "You already
+  get" when it applies), each jumping to its section, plus a "Your progress" tile (programs you have started tracking).
+- **Your answers** are labelled (For, Age, Province…); a skipped question says "Not answered" instead of "—".
+- **Program cards** are compact: icon + name, status pill, summary and details on the left; the value, "How to apply",
+  "Full guide" and progress tracking together on the right. Requirements sit in a tidy box.
+- Lower sections (other programs, documents, not-a-match, limits) restyled to match.
+- **Province lists replaced** with "Canada-wide · federal, provincial and local programs" in the footer, printed report,
+  catalog intro, the page title / search & social descriptions, and on all 462 guide pages (header tag now "Canada").
+  Note: the territories (Yukon, NWT, Nunavut) still only get federal programs — the "What we don't cover yet" page says so.
+- Codex reviewed it; fixed: progress count, screen-reader roles, visible focus after a tile jump, category view, and
+  counts staying correct after an in-place fact check.
+
 ## 2026-10-21 — Home page, second pass (your feedback)
 
 ### Shipped (`?v=242`)

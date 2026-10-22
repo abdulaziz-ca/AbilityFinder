@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "242";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "243";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -5472,7 +5472,7 @@ function landingTailHtml() {
         <button class="linklike" type="button" data-info-nav="grants">${t("footer.grants")}</button>
         <button class="linklike" type="button" data-info-nav="organizations">${t("footer.organizations")}</button>
         <button class="linklike js-browse">${t("menu.browse")}</button>
-        <span class="sf-note">${SCOPE_LABEL} · Each guide shows when it was last checked · Not government-affiliated</span>
+        <span class="sf-note">${t("l2.eyebrow")} · Each guide shows when it was last checked · Not government-affiliated</span>
       </div>
     </footer>
 `;
@@ -7178,6 +7178,46 @@ function renderLimitsPanel(hasOtherPrograms) {
   </details>`;
 }
 
+/** True when design v2 is on (false in test sandboxes without a document). */
+function isDesignV2() {
+  return typeof document !== "undefined" && !!document.documentElement && document.documentElement.classList.contains("v2");
+}
+/* Design v2 results overview: what the list holds and how far along the person is.
+   Counts only; every tile jumps to its section. */
+function v2ResultsOverview(groups, ready, almost) {
+  const g1 = [...ready, ...almost];
+  // Only programs to check carry a progress control, so only they count here.
+  const tracked = g1.filter((e) => STAGE[progress[e.b.id]]).length;
+  // In the category view there are no status headings to jump to, so those tiles just count.
+  const byCategory = groupMode === "category";
+  const tiles = [
+    ready.length && ["ok", ready.length, t("grp.ready"), t("l2r.readySub"), byCategory ? "" : ".group-title.ready"],
+    almost.length && ["q", almost.length, t("grp.almost"), t("l2r.almostSub"), byCategory ? "" : ".group-title.almost"],
+    groups.g0.length && ["have", groups.g0.length, t("l2r.have"), t("l2r.haveSub"), "#g0-title"],
+    groups.g2.length && ["other", groups.g2.length, t("l2r.other"), t("l2r.otherSub"), "#g2-title"],
+  ].filter(Boolean);
+  if (!tiles.length) return "";
+  const pct = g1.length ? Math.round((tracked / g1.length) * 100) : 0;
+  const tile = ([tone, n, label, sub, target]) => {
+    const inner = `<span class="v2-ov-top"><i class="v2-ov-dot"></i>${label}</span><b data-ov-count="${tone}">${n}</b><small>${sub}</small>`;
+    return `<li>${target ? `<button type="button" class="v2-ov-tile ${tone}" data-jump="${target}">${inner}</button>` : `<div class="v2-ov-tile ${tone}">${inner}</div>`}</li>`;
+  };
+  return `<ul class="v2-overview">
+    ${tiles.map(tile).join("")}
+    ${g1.length ? `<li class="tracked"><div class="v2-ov-tile tracked"><span class="v2-ov-top">${icon("bookmark")}${t("l2r.progress")}</span><b>${tracked}<span> / ${g1.length}</span></b><span class="v2-ov-bar" aria-hidden="true"><i style="width:${pct}%"></i></span><small>${t("l2r.progressSub")}</small></div></li>` : ""}
+  </ul>`;
+}
+/* A fact check changes a card's status in place (cards are never regrouped mid-edit);
+   keep the overview counts equal to what the cards now say. */
+function v2RefreshOverview() {
+  const main = document.querySelector(".result-group-main");
+  if (!main) return;
+  [["ok", ".benefit.ready"], ["q", ".benefit.almost"]].forEach(([tone, sel]) => {
+    const el = document.querySelector(`[data-ov-count="${tone}"]`);
+    if (el) el.textContent = main.querySelectorAll(sel).length;
+  });
+}
+
 function renderResults() {
   const evaluated = browseCatalog().filter((b) => benefitInResultsScope(b, answers)).map((b) => ({ b, r: evaluate(b) }));
   const groups = resultGroups(evaluated);
@@ -7198,6 +7238,7 @@ function renderResults() {
     <h1${enOnly()}>${t("res.title")}</h1>
     ${groups.g1.length ? "" : `<p class="results-need-more"${enOnly()}>${t("res.needMore")}</p>`}
     <p>${resultsBlurb(ready.length, almost.length)}</p>
+    ${isDesignV2() ? v2ResultsOverview(groups, ready, almost) : ""}
   </div>
   ${renderBenefitDates([...groups.g1, ...groups.g2].map((e) => e.b))}
   ${provinceNoticeHtml(answers.province)}
@@ -7776,6 +7817,7 @@ function wireFactChecks() {
     document.querySelectorAll(`[data-fact-program="${id}"]`).forEach(el => {
       el.classList.remove("ready", "almost", "no"); el.classList.add(r.status);
     });
+    if (isDesignV2()) v2RefreshOverview();
     document.querySelectorAll(`[data-fact-requirements="${id}"]`).forEach(el => {
       el.innerHTML = `<p class="req-count">${reqCount(r.needs.length)}</p>${r.needs.length ? `<ul class="req-list">${r.needs.map(n => `<li class="req-cue">${reqEscape(n.text)}</li>`).join("")}</ul>` : ""}`;
     });
@@ -7806,7 +7848,7 @@ function benefitCard(b, r, rank) {
     <div class="benefit-row">
       <div class="benefit-main">
         <div class="top">
-          ${rankBadge}
+          ${isDesignV2() ? `<span class="b-ic" aria-hidden="true">${icon(v2ThemeIcon(benefitTheme(b)))}</span>` : ""}${rankBadge}
           <h3 id="benefit-title-${b.id}"${recAttr(b)}>${b.name}</h3>
           <span class="program-kind ${benefitType(b)}">${benefitTypeLabel(b)}</span>
           <span class="tag lvl">${b.level}</span>
@@ -7852,8 +7894,15 @@ function answerSummary(step) {
   return v == null ? "—" : valueLabel(step, v);
 }
 function renderAnswerChips() {
+  const v2 = isDesignV2();
   const chips = visibleSteps()
-    .map((s, i) => `<button class="chip" data-edit="${i}" title="${stepText(s).q}">${answerSummary(s)}</button>`)
+    .map((s, i) => {
+      if (!v2) return `<button class="chip" data-edit="${i}" title="${stepText(s).q}">${answerSummary(s)}</button>`;
+      // Design v2: each chip names its question, and a skipped one says so instead of "—".
+      const value = answerSummary(s), empty = value === "—";
+      const label = I18N.en["l2r.q." + s.id] ? t("l2r.q." + s.id) : "";
+      return `<button class="chip${empty ? " empty" : ""}" data-edit="${i}" title="${stepText(s).q}">${label ? `<span class="chip-q">${label}</span>` : ""}<span class="chip-v">${empty ? t("l2r.notAnswered") : value}</span></button>`;
+    })
     .join("");
   return `<div class="answers-bar">
     <span class="answers-lbl">${t("res.yourAnswers")}</span>
@@ -8123,6 +8172,15 @@ function wireResults() {
     })
   );
 
+  // Design v2 overview tiles jump to their section and move focus there.
+  document.querySelectorAll("#app [data-jump]").forEach((tile) => tile.addEventListener("click", () => {
+    const target = document.querySelector(tile.dataset.jump);
+    if (!target) return;
+    target.scrollIntoView({ behavior: v2MotionAllowed() ? "smooth" : "auto", block: "start" });
+    if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+  }));
+
   const print = document.getElementById("printList");
   if (print) print.addEventListener("click", () => {
     const date = document.querySelector(".print-action-plan .print-date");
@@ -8325,7 +8383,7 @@ function printResults() {
       @media print{.noprint{display:none;} body{margin:0;}}
     </style></head><body>
     <header>
-      <p class="brand">AbilityFinder · ${SCOPE_LABEL}</p>
+      <p class="brand">AbilityFinder · Canada-wide · federal, provincial and local programs</p>
       <h1>My disability benefits report</h1>
       ${profile ? `<p class="profile"><b>Based on:</b> ${esc(profile)}</p>` : ""}
       ${total > 0 ? `<p class="total">Estimated value represented by programs under Matches your answers: <b>up to ~$${total.toLocaleString("en-CA")}/year</b>, plus one-time back-pay and lifetime savings where noted. This is not an eligibility or payment estimate, and programs may not stack.</p>` : ""}
@@ -8522,7 +8580,7 @@ function renderBrowse() {
     <button class="back-link" id="b-back">${icon("arrowLeft")} Home</button>
     <div class="browse-head">
       <h1>${t("menu.browse")}</h1>
-      <p>Explore all ${catalog.length} programs in our ${SCOPE_LABEL} catalog — no questionnaire needed. Want a list tailored to you?
+      <p>Explore all ${catalog.length} federal, provincial and local programs in our Canada-wide catalog — no questionnaire needed. Want a list tailored to you?
         <button class="linklike" id="b-start">Get my personalized results ${icon("arrowRight")}</button></p>
     </div>
     <div class="browse-search">

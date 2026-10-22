@@ -128,26 +128,6 @@ const onRegions = ctx.__ON_REGIONS || [];
 const benefitIsOntario = (b) =>
   b.level === "Ontario" || onCities.includes(b.level) || onRegions.includes(b.level);
 
-/* Public-facing copy composes from the enabled provinces, so flipping a province flag
-   updates the guides index without anyone remembering to hand-edit the description.
-   With BC on and Ontario off this produces exactly the prior "Alberta and British
-   Columbia" wording, so a dark rollout leaves the generated output byte-identical. */
-const enabledProvinceNames = [
-  "Alberta",
-  ...(bcEnabled ? ["British Columbia"] : []),
-  ...(onEnabled ? ["Ontario"] : []),
-  ...(skEnabled ? ["Saskatchewan"] : []),
-  ...(mbEnabled ? ["Manitoba"] : []),
-  ...(nbEnabled ? ["New Brunswick"] : []),
-  ...(nsEnabled ? ["Nova Scotia"] : []),
-  ...(peEnabled ? ["Prince Edward Island"] : []),
-  ...(nlEnabled ? ["Newfoundland and Labrador"] : []),
-  ...(qcEnabled ? ["Quebec"] : []),
-];
-const provinceProse =
-  enabledProvinceNames.length <= 1
-    ? enabledProvinceNames[0] || ""
-    : `${enabledProvinceNames.slice(0, -1).join(", ")} and ${enabledProvinceNames[enabledProvinceNames.length - 1]}`;
 let benefits = allBenefits;
 if (!bcEnabled) benefits = benefits.filter((b) => !benefitIsBritishColumbia(b));
 if (!onEnabled) benefits = benefits.filter((b) => !benefitIsOntario(b));
@@ -173,7 +153,8 @@ const styleHref = styleMatch[1].replace(/^\/?/, "/");
 const assetQuery = (/\?v=[^"]+$/.exec(styleHref) || [""])[0];
 // Short scope label for the header tag, e.g. "Alberta + BC + Ontario".
 // Same short form as the app header (_SCOPE_ABBR): ten full province names overflow the nav.
-const scopeTag = ["Alberta", ...(bcEnabled ? ["BC"] : []), ...(onEnabled ? ["ON"] : []), ...(skEnabled ? ["SK"] : []), ...(mbEnabled ? ["MB"] : []), ...(nbEnabled ? ["NB"] : []), ...(nsEnabled ? ["NS"] : []), ...(peEnabled ? ["PEI"] : []), ...(nlEnabled ? ["NL"] : []), ...(qcEnabled ? ["QC"] : [])].join(" + ")
+// The guides say "Canada" like the app header; the province list crowded the bar (owner, 2026-10-21).
+const scopeTag = "Canada";
 
 // Non-breaking spaces stay: French typography uses them before ":" and "$".
 const clean = (value) => String(value ?? "").replace(/[^\S\u00a0\u202f]+/g, " ").trim();
@@ -447,7 +428,7 @@ const guideIndex = `<!DOCTYPE html>
 <html lang="en">
 ${head({
   title: "Disability benefit program guides — AbilityFinder",
-  desc: `Plain-language guides to disability benefits for ${provinceProse}, plus Canada-wide federal programs and selected municipal programs, with eligibility, value, application steps, and official sources.`,
+  desc: `Plain-language guides to Canada-wide federal, provincial and selected municipal disability programs, with eligibility, value, application steps, and official sources.`,
   canonical: "https://abilityfinder.ca/guides/",
 })}
   <body>
@@ -455,7 +436,7 @@ ${header()}
     <div class="wrap">
       <main class="browse">
         <header class="browse-head">
-          <p class="eyebrow">${provinceProse} + federal benefits</p>
+          <p class="eyebrow">Canada-wide · federal, provincial and local programs</p>
           <h1>Program guides</h1>
           <p>Browse plain-language guides to the programs in the AbilityFinder catalog.</p>
           <p><a class="btn btn-primary" href="https://abilityfinder.ca/">Answer a few questions to see benefits you may qualify for</a></p>

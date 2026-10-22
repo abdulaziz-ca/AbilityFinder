@@ -14,7 +14,7 @@ test("a guide starts dark in design v2 when nothing is saved, and honours a save
   await page.evaluate(() => window.AbilityFinderDB.saveState({ schemaVersion: 2, answers: {}, view: "landing", progress: {}, ui: { theme: "light" } }));
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
-  await expect(page.locator(".nav-tag")).toHaveText("Alberta + BC + ON + SK + MB + NB + NS + PEI + NL + QC");
+  await expect(page.locator(".nav-tag")).toHaveText("Canada");
   await context.close();
 });
 
@@ -33,7 +33,7 @@ test("a saved theme, contrast and text size apply on a guide", async ({ browser 
   await context.close();
 });
 
-test("the guides index names every live province", async ({ page }) => {
+test("the guides index is labelled Canada-wide", async ({ page }) => {
   await page.goto("/guides/");
-  await expect(page.locator(".eyebrow").first()).toHaveText("Alberta, British Columbia, Ontario, Saskatchewan, Manitoba, New Brunswick, Nova Scotia, Prince Edward Island, Newfoundland and Labrador and Quebec + federal benefits");
+  await expect(page.locator(".eyebrow").first()).toHaveText("Canada-wide · federal, provincial and local programs");
 });
