@@ -260,12 +260,12 @@ const staticDates = (b, L) => {
   return `<section class="guide-block dates-to-know"><h2 class="guide-h">${L.dates}</h2><p>${esc(L.datesAsOf(ctx.guideFreshness(b).label))}</p><ul class="dates-list">${entries.slice().sort((a, z) => a.date.localeCompare(z.date)).map((entry) => `<li><p class="date-when">${esc(formatDate(entry))}</p><h3>${esc(entry.label)}${entry.expected && !/expect/i.test(entry.label) ? ` ${L.expected}` : ""}</h3><p>${esc(entry.text)}</p></li>`).join("")}</ul></section>`;
 };
 
-const list = (title, items, ordered = false) => {
+const list = (title, items, ordered = false, cls = "") => {
   if (!Array.isArray(items) || !items.length) return "";
   const tag = ordered ? "ol" : "ul";
   return `<section class="guide-block">
 <h2 class="guide-h">${esc(title)}</h2>
-<${tag} class="guide-list">
+<${tag} class="guide-list${cls ? ` ${cls}` : ""}">
 ${items.map((x) => `  <li>${esc(x)}</li>`).join("\n")}
 </${tag}>
 </section>`;
@@ -373,8 +373,8 @@ ${header(L)}
             ${detail.coversList && detail.coversList.items && detail.coversList.items.length ? `<section class="guide-block"><h2 class="guide-h">${L.covers}</h2>${detail.coversList.lead ? `<p class="eligibility-lead">${esc(detail.coversList.lead)}</p>` : ""}<ul class="eligibility-list">${detail.coversList.items.map((it) => `<li>${esc(it)}</li>`).join("")}</ul></section>` : ""}
             ${staticDates(b, L)}
             ${list(L.how, steps, true)}
-            ${list(L.need, detail.documents)}
-            ${list(L.tips, detail.tips)}
+            ${list(L.need, detail.documents, false, "doc-list")}
+            ${list(L.tips, detail.tips, false, "tip-list")}
             ${detail.time ? `<section class="guide-block"><h2 class="guide-h">${L.timing}</h2><p class="detail-about">${esc(detail.time)}</p></section>` : ""}
             ${(() => { const terms = glossaryTermsFor(b); return terms.length ? `<section class="guide-block"><h2 class="guide-h">${L.abbr}</h2><dl class="guide-list">${terms.map(([a, e]) => `<div><dt><abbr title="${esc(e)}">${esc(a)}</abbr></dt><dd>${esc(e)}</dd></div>`).join("")}</dl></section>` : ""; })()}
             ${detail.phone ? `<section class="guide-block"><h2 class="guide-h">${L.phone}</h2><p class="detail-about">${esc(detail.phone)}</p></section>` : ""}
@@ -444,7 +444,7 @@ ${header()}
 ${[...groups].map(([name, items]) => `        <section class="section">
           <h2 class="section-title">${name}</h2>
           <ul class="guide-list">
-${items.map((b) => `            <li><a class="guide-link" href="/guides/${slugify(b.id)}">${esc(b.name)}</a> — ${esc(b.summary)}</li>`).join("\n")}
+${items.map((b) => `            <li class="gi-item"><a class="guide-link" href="/guides/${slugify(b.id)}">${esc(b.name)}</a><span class="gi-dash"> — </span><span class="gi-sum">${esc(b.summary)}</span><span class="gi-lvl">${esc(b.level)}</span></li>`).join("\n")}
           </ul>
         </section>`).join("\n")}
       </main>

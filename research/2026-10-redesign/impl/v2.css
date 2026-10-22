@@ -667,3 +667,106 @@ html.v2[data-view="results"] .scenario-toggle { border-radius: 16px; }
 @media (max-width: 760px) {
   html.v2 .benefit .top h3 { flex: 1 1 calc(100% - 50px); }
 }
+
+/* ── Guides v2.1 (owner request 2026-10-21): docs-style reading layout. Sections become
+   clear blocks (steps as a timeline, documents as a checklist, tips and denial reasons as
+   panels, FAQ as rows) and a sticky "On this page" list replaces the empty side column. ── */
+html.v2 .detail-title { font-size: clamp(2.1rem, 4.4vw, 3.3rem); line-height: 1.05; }
+html.v2 .detail-lede { font-size: 1.12rem; color: var(--text-dim); max-width: 60ch; }
+html.v2 .detail-side { position: static; align-self: stretch; display: grid; align-content: start; gap: 16px; }
+html.v2 .detail-side .side-card { position: static; }
+html.v2 .detail-main > .guide-block, html.v2 .detail-main > section.guide-block { margin-top: 44px; padding: 0; border: 0; background: none; }
+html.v2 .detail-main .guide-h { display: flex; align-items: center; gap: 10px; margin: 0 0 16px; font-size: 1.32rem; font-weight: 600; letter-spacing: -0.025em; color: var(--text); scroll-margin-top: 96px; }
+html.v2 .detail-main .guide-h .ic { width: 18px; height: 18px; padding: 7px; box-sizing: content-box; border-radius: 10px; background: var(--accent-soft); color: var(--accent); }
+html.v2 .detail-main .guide-h:focus { outline: none; }
+html.v2 .detail-main .guide-h:focus-visible { outline: 3px solid var(--accent); outline-offset: 6px; border-radius: 8px; }
+
+/* Steps: numbered timeline */
+html.v2 .detail-main ol.guide-list { list-style: none; counter-reset: v2step; position: relative; margin: 0; padding: 0; display: grid; gap: 0; }
+html.v2 .detail-main ol.guide-list > li { counter-increment: v2step; position: relative; margin: 0; padding: 4px 0 22px 50px; min-height: 34px; line-height: 1.6; background: none; border: 0; }
+html.v2 .detail-main ol.guide-list > li::before { content: counter(v2step); position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--panel-2); border: 1px solid var(--accent-line); color: var(--text); font-size: 0.86rem; font-weight: 600; box-shadow: 0 0 0 5px var(--bg); }
+html.v2 .detail-main ol.guide-list > li::after { content: ""; position: absolute; left: 16px; top: 36px; bottom: 2px; width: 1px; background: linear-gradient(var(--accent-line), var(--hair)); }
+html.v2 .detail-main ol.guide-list > li:last-child { padding-bottom: 0; }
+html.v2 .detail-main ol.guide-list > li:last-child::after { display: none; }
+
+/* Unordered lists become panels of rows */
+html.v2 .detail-main ul.guide-list, html.v2 .detail-main ul.eligibility-list { list-style: none; margin: 0; padding: 4px 18px; border: 1px solid var(--hair-2); border-radius: 16px; background: var(--panel); }
+html.v2 .detail-main ul.guide-list > li, html.v2 .detail-main ul.eligibility-list > li { position: relative; margin: 0; padding: 13px 0 13px 30px; border-top: 1px solid var(--hair); line-height: 1.6; }
+html.v2 .detail-main ul.guide-list > li:first-child, html.v2 .detail-main ul.eligibility-list > li:first-child { border-top: 0; }
+html.v2 .detail-main ul.guide-list > li::before, html.v2 .detail-main ul.eligibility-list > li::before { content: ""; position: absolute; left: 4px; top: 22px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+/* What you'll need: empty boxes to tick off yourself (nothing is marked as done) */
+html.v2 .detail-main ul.doc-list > li::before { top: 15px; left: 0; width: 18px; height: 18px; border-radius: 6px; background: transparent; border: 1.5px solid var(--accent-line); }
+/* Tips and denial reasons */
+html.v2 .detail-main ul.tip-list { background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 7%, var(--panel)), var(--panel)); }
+html.v2 .detail-main ul.warn-list { background: var(--panel); border-color: rgba(247, 195, 95, 0.32); box-shadow: inset 3px 0 0 var(--warn); }
+html.v2 .detail-main ul.warn-list > li::before { background: var(--warn); }
+html.v2 .detail-main .eligibility-lead { margin: 0 0 12px; color: var(--text-dim); }
+html.v2 .detail-main .note, html.v2 .detail-main .p2-text, html.v2 .detail-main .detail-about { line-height: 1.7; }
+html.v2 .detail-main .note { padding: 14px 18px; border-radius: 14px; border: 1px solid var(--hair); background: var(--bg-2); }
+/* FAQ */
+html.v2 .detail-main .faqs { display: grid; border: 1px solid var(--hair-2); border-radius: 16px; background: var(--panel); overflow: hidden; }
+html.v2 .detail-main .faq-item { padding: 16px 20px; border-top: 1px solid var(--hair); margin: 0; }
+html.v2 .detail-main .faq-item:first-child { border-top: 0; }
+html.v2 .detail-main .faq-q { margin: 0 0 6px; font-weight: 600; color: var(--text); }
+html.v2 .detail-main .faq-a { margin: 0; color: var(--text-dim); line-height: 1.65; }
+/* Definition lists (at a glance, abbreviations) */
+html.v2 .detail-main dl.guide-list { margin: 0; padding: 4px 18px; border: 1px solid var(--hair-2); border-radius: 16px; background: var(--panel); }
+html.v2 .detail-main dl.guide-list > div { display: grid; grid-template-columns: minmax(110px, 0.35fr) 1fr; gap: 16px; padding: 12px 0; border-top: 1px solid var(--hair); }
+html.v2 .detail-main dl.guide-list > div:first-child { border-top: 0; }
+html.v2 .detail-main dl.guide-list dt { color: var(--text-dimmer); font-size: 0.88rem; }
+html.v2 .detail-main dl.guide-list dd { margin: 0; color: var(--text); }
+html.v2 .detail-main .detail-amount { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text); padding: 16px 18px; border-radius: 16px; border: 1px solid var(--accent-line); background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 10%, var(--panel)), var(--panel)); }
+
+/* On this page */
+html.v2 .v2-toc { position: sticky; top: 92px; display: grid; gap: 10px; padding: 18px; border-radius: 18px; border: 1px solid var(--hair-2); background: var(--panel); }
+html.v2 .v2-toc > p { margin: 0; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dimmer); }
+html.v2 .v2-toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; border-left: 1px solid var(--hair-2); }
+html.v2 .v2-toc ol a { display: block; margin-left: -1px; padding: 5px 0 5px 14px; border-left: 2px solid transparent; color: var(--text-dim); font-size: 0.88rem; line-height: 1.4; text-decoration: none; transition: color 0.2s, border-color 0.2s; }
+html.v2 .v2-toc ol a:hover { color: var(--text); }
+html.v2 .v2-toc ol a[aria-current="true"] { color: var(--text); border-left-color: var(--accent); }
+html.v2 .v2-toc ol a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+html.v2 .v2-toc-apply { display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-top: 6px; min-height: 40px; padding: 8px 14px; border-radius: 999px; background: var(--btn); color: var(--btn-ink); font-weight: 560; font-size: 0.88rem; text-align: center; text-decoration: none; }
+html.v2 .v2-toc-apply .ic { width: 14px; height: 14px; }
+html.v2 .v2-toc-apply:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+/* Static guide pages (/guides/…): page column, header and side card links */
+html.v2[data-view="guide"] .wrap > main, html.v2[data-view="guide"] .wrap > .site-footer { max-width: 1152px; margin-left: auto; margin-right: auto; padding-left: 24px; padding-right: 24px; box-sizing: content-box; }
+html.v2[data-view="guide"] .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+html.v2[data-view="guide"] .nav .brand-name { font-weight: 600; letter-spacing: -0.02em; }
+html.v2[data-view="guide"] .nav-right { display: flex; align-items: center; gap: 8px; }
+html.v2[data-view="guide"] .nav-right .guide-link { padding: 7px 14px; border-radius: 999px; border: 1px solid var(--hair-2); color: var(--text); text-decoration: none; font-size: 0.88rem; }
+html.v2[data-view="guide"] .nav-right .guide-link:hover { border-color: var(--accent-line); }
+html.v2[data-view="guide"] .side-card .guide-list { list-style: none; margin: 14px 0; padding: 0; display: grid; gap: 8px; }
+html.v2[data-view="guide"] .side-card .guide-list li::before { display: none; }
+html.v2[data-view="guide"] .side-card .guide-list a { display: flex; justify-content: center; align-items: center; min-height: 42px; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--hair-2); color: var(--text); text-decoration: none; font-weight: 560; font-size: 0.9rem; text-align: center; }
+html.v2[data-view="guide"] .side-card .guide-list li:first-child a { background: var(--btn); color: var(--btn-ink); border-color: transparent; }
+html.v2[data-view="guide"] .side-card .btn { text-decoration: none; width: 100%; justify-content: center; box-sizing: border-box; }
+html.v2[data-view="guide"] .detail-hero .eyebrow { padding: 4px 12px; }
+
+@media (max-width: 900px) {
+  html.v2 .v2-toc { display: none; }
+  html.v2 .detail-side .side-card { position: static; }
+}
+@media (max-width: 600px) {
+  html.v2 .detail-main dl.guide-list > div { grid-template-columns: 1fr; gap: 2px; }
+  html.v2[data-view="guide"] .nav-right .guide-link { padding: 6px 10px; font-size: 0.8rem; }
+}
+html.v2[data-view="guide"] .side-card .guide-list li { padding: 0; margin: 0; }
+/* Guides index: cards instead of a list of links */
+html.v2[data-view="guide"] .browse-head { padding-top: 56px; }
+html.v2[data-view="guide"] .browse-head .eyebrow { font-size: 0.72rem; padding: 4px 12px; }
+html.v2[data-view="guide"] .browse-head h1 { font-size: clamp(2.2rem, 4.6vw, 3.4rem); font-weight: 580; letter-spacing: -0.045em; }
+html.v2[data-view="guide"] .btn { text-decoration: none; }
+html.v2[data-view="guide"] .browse .section-title { font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 580; letter-spacing: -0.03em; }
+html.v2[data-view="guide"] .browse .guide-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+html.v2[data-view="guide"] .browse .gi-item { position: relative; display: grid; align-content: start; gap: 6px; margin: 0; padding: 18px 20px; border-radius: 16px; border: 1px solid var(--hair-2); background: linear-gradient(180deg, var(--panel), var(--bg-2)); transition: border-color 0.25s, transform 0.25s var(--ease); }
+html.v2[data-view="guide"] .browse .gi-item::before { display: none; }
+html.v2[data-view="guide"] .browse .gi-item:hover, html.v2[data-view="guide"] .browse .gi-item:focus-within { border-color: var(--accent-line); }
+html.v2[data-view="guide"] .browse .gi-item .guide-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+html.v2[data-view="guide"] .browse .gi-item .guide-link { color: var(--text); font-weight: 600; text-decoration: none; line-height: 1.35; }
+html.v2[data-view="guide"] .browse .gi-dash { display: none; }
+html.v2[data-view="guide"] .browse .gi-sum { color: var(--text-dim); font-size: 0.88rem; line-height: 1.5; }
+html.v2[data-view="guide"] .browse .gi-lvl { display: inline-block; justify-self: start; margin-top: 4px; padding: 2px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-hi); font-size: 0.72rem; font-weight: 560; }
+@media (max-width: 600px) {
+  html.v2[data-view="guide"] .nav .brand-name { display: inline; font-size: 1rem; }
+}

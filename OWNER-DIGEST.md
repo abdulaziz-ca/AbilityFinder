@@ -6,6 +6,19 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-21 — Guide pages redesign
+
+### Shipped (`?v=244`)
+- **In the app and on all 462 static guide pages**: a sticky **"On this page"** list beside the guide that marks the
+  section you're reading and jumps to any section, with the main "Apply" link always in reach.
+- Sections are easier to scan: **How to apply** is a numbered timeline, **What you'll need** is a checklist (empty
+  boxes to tick yourself), tips, reasons people get denied and the FAQ sit in their own panels.
+- **Static guide pages fixed**: they had lost their page margins and header layout in the new design (text touched
+  the left edge, links were underlined, "At a glance" was unstyled). The guides index is now a grid of cards with
+  each program's level.
+- Codex reviewed it; fixed a scroll-listener leak, possible duplicate section ids, keyboard focus on static guides,
+  ticked-looking checkboxes, truncated summaries on the index, and cards that blocked text selection.
+
 ## 2026-10-21 — Results page redesign + "Canada-wide" everywhere
 
 ### Shipped (`?v=243`)

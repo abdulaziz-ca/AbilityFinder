@@ -76,3 +76,33 @@ test("results overview counts match the lists and its tiles jump to their sectio
   await expect(page.locator(".answers-bar .chip.empty").first()).toContainText("Not answered");
   await expect(page.locator(".answers-bar .chip-v", { hasText: /^—$/ })).toHaveCount(0);
 });
+
+test("static guide has an On this page list that follows the reader", async ({ page }) => {
+  await page.goto("/guides/aish.html");
+  const toc = page.locator(".v2-toc");
+  await expect(toc).toBeVisible();
+  await expect(toc.locator("ol a").first()).toHaveAttribute("aria-current", "true");
+  const tips = toc.locator("ol a", { hasText: "Practical tips" });
+  await tips.click();
+  await expect(tips).toHaveAttribute("aria-current", "true");
+  await expect(toc.locator(".v2-toc-apply")).toHaveAttribute("href", /alberta\.ca/);
+});
+
+test("guides index shows each program as a card with its level", async ({ page }) => {
+  await page.goto("/guides/");
+  const card = page.locator(".gi-item").first();
+  await expect(card.locator(".gi-lvl")).toBeVisible();
+  await expect(card.locator(".gi-dash")).toBeHidden();
+});
+
+test("in-app guide lists its sections and jumps to one", async ({ page }) => {
+  await gotoReady(page);
+  await page.evaluate(async () => { await ensurePacks(["AB"]); detailFrom = "browse"; setState("detail", { detailId: "aish" }); });
+  // Related programs' data can finish loading and re-render the guide; let that settle first.
+  await page.waitForLoadState("networkidle");
+  const link = page.locator(".v2-toc ol a", { hasText: "What you'll need" });
+  await expect(link).toBeVisible();
+  await link.click();
+  await expect(page.locator(".detail-main .guide-h", { hasText: "What you'll need" })).toBeFocused();
+  await expect(link).toHaveAttribute("aria-current", "true");
+});

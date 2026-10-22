@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "243";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "244";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -4985,11 +4985,51 @@ let v2LastView = null;
 const v2GL = new WeakMap(); // canvas -> { gl, program } so a re-used canvas keeps its context
 function v2Enhance(currentView, app) {
   document.documentElement.classList.toggle("motion", v2MotionAllowed());
-  if (currentView !== "landing") { v2RibbonToken++; if (v2RibbonStop) { v2RibbonStop(); v2RibbonStop = null; } v2Observers.forEach((io) => io.disconnect()); v2Observers.clear(); }
+  // Each render replaces the page, so observers and listeners from the previous one are released first.
+  v2Observers.forEach((io) => io.disconnect()); v2Observers.clear();
+  if (v2TocCleanup) { v2TocCleanup(); v2TocCleanup = null; }
+  if (currentView !== "landing") { v2RibbonToken++; if (v2RibbonStop) { v2RibbonStop(); v2RibbonStop = null; } }
   // The entrance plays only when the view changes; same-view re-renders (a toggle, an answer) stay still.
   if (currentView !== v2LastView && v2MotionAllowed()) { app.classList.remove("v2-route-in"); void app.offsetWidth; app.classList.add("v2-route-in"); }
   v2LastView = currentView;
   if (currentView === "landing") v2Landing(app);
+  if (currentView === "detail") v2GuideToc(app);
+}
+/* Guide page: an "On this page" list in the side column, built from the section
+   headings, marking the section being read. Same behaviour as the static guides
+   (guide-prefs.js); in the app the links scroll instead of changing the URL. */
+let v2TocCleanup = null;
+function v2GuideToc(app) {
+  const main = app.querySelector(".detail-main"), side = app.querySelector(".detail-side");
+  if (!main || !side || side.querySelector(".v2-toc")) return;
+  const heads = [...main.querySelectorAll(":scope > .guide-block > .guide-h, :scope > section > .guide-h")];
+  if (heads.length < 3) return;
+  const nav = document.createElement("nav");
+  nav.className = "v2-toc"; nav.setAttribute("aria-label", t("l2g.toc"));
+  // Unique ids (another element may already use a short one); links resolve through `heads`, not by id lookup.
+  heads.forEach((h, i) => { if (!h.id) { let id = `af-guide-sec-${i + 1}`, n = 1; while (document.getElementById(id)) id = `af-guide-sec-${i + 1}-${++n}`; h.id = id; } });
+  const apply = side.querySelector(".side-actions .apply");
+  nav.innerHTML = `<p>${t("l2g.toc")}</p><ol>${heads.map((h) => `<li><a href="#${h.id}">${reqEscape(h.textContent.trim())}</a></li>`).join("")}</ol>${apply ? `<a class="v2-toc-apply" href="${reqEscape(apply.href)}" target="_blank" rel="noopener noreferrer" data-ext>${reqEscape(apply.textContent.trim())} ${icon("external")}</a>` : ""}`;
+  side.appendChild(nav);
+  const links = [...nav.querySelectorAll("ol a")];
+  links.forEach((a, i) => a.addEventListener("click", (e) => {
+    e.preventDefault();
+    const h = heads[i];
+    h.scrollIntoView({ behavior: v2MotionAllowed() ? "smooth" : "auto", block: "start" });
+    h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true });
+  }));
+  // Current section = the last heading above the reading line.
+  let queued = false, frame = 0;
+  const mark = () => {
+    queued = false;
+    let cur = 0;
+    heads.forEach((h, i) => { if (h.getBoundingClientRect().top <= 140) cur = i; });
+    links.forEach((a, i) => { if (i === cur) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
+  };
+  const onScroll = () => { if (!queued) { queued = true; frame = requestAnimationFrame(mark); } };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  v2TocCleanup = () => { window.removeEventListener("scroll", onScroll); cancelAnimationFrame(frame); };
+  mark();
 }
 function v2Landing(app) {
   const hero = app.querySelector(".hero-full");
@@ -8843,8 +8883,8 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
   const aboutMore = (aboutListData || aboutLong || p2.plainTest)
     ? `<section class="guide-block"><h2 class="guide-h">${t("guide.moreAbout")}</h2>${aboutListData ? `${aboutListData.lead ? `<p class="detail-about"${A}>${aboutListData.lead}</p>` : ""}<ul class="eligibility-list"${A}>${aboutListData.items.map((it) => `<li>${it}</li>`).join("")}</ul>` : (aboutLong ? `<p class="detail-about"${A}>${aboutText}</p>` : "")}${p2.plainTest}</section>`
     : "";
-  const documentsMore = moreList(t("guide.need"), d.documents);
-  const tipsMore = moreList(t("guide.tips"), d.tips);
+  const documentsMore = moreList(t("guide.need"), d.documents, "doc-list");
+  const tipsMore = moreList(t("guide.tips"), d.tips, "tip-list");
   const denialsMore = moreList(t("guide.denials"), x.denials, "warn-list");
   const appealMore = x.appeal ? `<section class="guide-block"><h2 class="guide-h">${t("guide.appeal")}</h2><p class="p2-text">${x.appeal}</p></section>` : "";
   const faqsMore = (x.faqs && x.faqs.length)
