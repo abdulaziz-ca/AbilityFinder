@@ -728,6 +728,13 @@ body.a11y-nomotion .scenario-toggle .ic:last-child { transition: none; }
 .track .track-ic .ic { width: 15px; height: 15px; }
 .track-sel { appearance: none; font-family: inherit; font-size: 0.84rem; font-weight: 550; color: var(--text-dim); background: transparent; border: none; cursor: pointer; padding: 5px 24px 5px 4px; background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%); background-position: calc(100% - 11px) center, calc(100% - 7px) center; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; }
 .track-sel:focus { outline: none; }
+/* Home-page starting point note shown in the questionnaire. */
+.life-note { display: flex; gap: 10px; align-items: flex-start; margin: 0 0 18px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--accent-line, var(--hair-2)); background: var(--accent-soft); color: var(--text); font-size: 0.92rem; line-height: 1.55; }
+.life-note .ic { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 2px; color: var(--accent); }
+/* The day the person says they submitted; reminders count from it. */
+.track-date { display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--text-dim); }
+.track-date input { font: inherit; color: var(--text); background: var(--panel); border: 1px solid var(--hair-2); border-radius: 8px; padding: 4px 8px; }
+.track-date input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .track-sel option { background: var(--panel); color: var(--text); }
 .track.saved     { background: var(--accent-soft); border-color: var(--accent-line); }
 .track.submitted { background: var(--accent-soft); border-color: var(--accent-line); }
@@ -3009,4 +3016,8 @@ html.v2 .partner-foot { margin-top: 20px; color: var(--text-dimmer); font-size: 
   html.v2 .partner-actions { display: none; }
 }
 html.v2 .partner-metrics { background: none; }
+/* "Submitted on" date under the tracker in v2 cards. */
+html.v2 .benefit-actions .track-date { grid-column: 1 / -1; justify-content: space-between; padding: 2px 4px; }
+html.v2 .track-date input { min-height: 34px; border-radius: 10px; color-scheme: dark; }
+html.v2[data-theme="light"] .track-date input { color-scheme: light; }
 /* === DESIGN V2 END === */

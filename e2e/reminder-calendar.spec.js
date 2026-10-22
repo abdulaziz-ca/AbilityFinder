@@ -221,6 +221,8 @@ test.describe("all-day reminder calendar dates", () => {
 
   async function downloadIcs(page, now) {
     await page.clock.setFixedTime(now);
+    // Follow-ups count from the recorded submission day; record it as the fixed "today".
+    await page.evaluate(() => { progressDates["edmonton-fare-assistance"] = isoToday(); });
     const downloadPromise = page.waitForEvent("download");
     await page.locator("#tsRemind").click();
     const download = await downloadPromise;
@@ -272,7 +274,7 @@ test.describe("all-day reminder calendar dates", () => {
       expect(followup).toContain(`DTSTAMP:${sample.stamp}`);
 
       const displayedLocalDate = await page.evaluate(() => new Date().toLocaleDateString("en-CA"));
-      expect(followup).toContain(`You marked this as application submitted on ${displayedLocalDate}.`);
+      expect(followup).toContain(`You submitted this on ${displayedLocalDate}.`);
     }
   });
 

@@ -503,7 +503,7 @@ test("browse filters distinguish BC provincial and local programs", async ({ pag
 test("impact page includes both provinces and all listed municipalities", async ({ page }) => {
   await page.locator('[data-info-nav="impact"]').click();
   await expect(page.locator(".impact-page")).toBeVisible();
-  const expectedMunicipalities = await page.evaluate(() => new Set(CITIES_WITH_PROGRAMS).size);
+  const expectedMunicipalities = await page.evaluate(() => localProgramAreas().length);
   const municipalityMetric = page.locator(".impact-metric", { hasText: "municipalities with local programs" });
   await expect(municipalityMetric.locator("strong")).toHaveText(String(expectedMunicipalities));
   await expect(page.locator('.impact-levels span', { hasText: "provincial" }).locator("b")).not.toHaveText("0");

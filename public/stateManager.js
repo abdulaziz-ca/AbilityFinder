@@ -168,6 +168,27 @@
     return clean;
   }
 
+  // "Submitted on" dates the person entered: valid calendar dates for known programs,
+  // never in the future. Anything else is dropped rather than guessed.
+  function cleanProgressDates(candidate, validSelections = {}) {
+    if (!candidate || typeof candidate !== "object" || Array.isArray(candidate)) return {};
+    const clean = {};
+    const benefitIds = allowedValues(validSelections, "benefitIds");
+    const today = new Date();
+    const todayIso = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+    Object.keys(candidate).forEach((key) => {
+      const value = candidate[key];
+      if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return;
+      const [y, m, d] = value.split("-").map(Number);
+      const date = new Date(y, m - 1, d);
+      if (date.getFullYear() !== y || date.getMonth() !== m - 1 || date.getDate() !== d) return;
+      if (value > todayIso || y < 2000) return;
+      if (benefitIds && !benefitIds.has(key)) return;
+      clean[key] = value;
+    });
+    return clean;
+  }
+
   // Feature markers are all-or-nothing: corruption must never invent history.
   function cleanProgramChanges(candidate, validSelections = {}) {
     const plain = (value) => value && typeof value === "object" && !Array.isArray(value) &&
@@ -203,6 +224,7 @@
       helpTopic: HELP_TOPICS.includes(live.helpTopic) ? live.helpTopic : null,
       helpReturnStep: Number.isInteger(live.helpReturnStep) && live.helpReturnStep >= 0 ? live.helpReturnStep : 0,
       progress: cleanProgress(live.progress, validSelections),
+      progressDates: cleanProgressDates(live.progressDates, validSelections),
       ui: {
         programChanges: cleanProgramChanges(live.programChanges, validSelections),
         groupMode: live.groupMode === "category" ? "category" : "priority",
@@ -243,6 +265,7 @@
       helpTopic,
       helpReturnStep: Number.isInteger(source.helpReturnStep) && source.helpReturnStep >= 0 ? source.helpReturnStep : 0,
       progress: cleanProgress(source.progress, validSelections),
+      progressDates: cleanProgressDates(source.progressDates, validSelections),
       programChanges: cleanProgramChanges(ui.programChanges, validSelections),
       groupMode: ui.groupMode === "category" ? "category" : "priority",
       browseQuery: typeof ui.browseQuery === "string" ? ui.browseQuery.slice(0, 200) : "",
@@ -271,6 +294,7 @@
       helpTopic: source.helpTopic,
       helpReturnStep: source.helpReturnStep,
       progress: source.progress,
+      progressDates: source.progressDates,
       groupMode: source.groupMode === "category" ? "category" : ui.groupMode,
       browseQuery: ui.browseQuery,
       browseTheme: ui.browseTheme,

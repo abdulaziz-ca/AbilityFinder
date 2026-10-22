@@ -6,6 +6,22 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-22 — Phase 0 fixes, part 1 (live as `?v=250`)
+
+- **Local programs:** 81 cities across all ten provinces (Regina, Winnipeg, Halifax, Moncton, St. John’s, Montréal,
+  Kingston, Nanaimo…) were getting an extra generic "local supports / 2-1-1" card on top of their real city programs,
+  because a hand-kept list only covered Alberta, BC and Ontario. That list is gone: the site now works it out from the
+  programs themselves. The coverage pages now say **107 communities and regions** with local programs (was 46).
+  PEI still asks for your town (it finds local 2-1-1 help and nearby practitioners), but now says honestly that no PEI
+  city programs are listed yet.
+- **Submitted on date:** marking a program "Application submitted" now records the day (today by default, editable).
+  Follow-up reminders count from that real date instead of the day you downloaded them. Older saves without a date
+  simply get no invented follow-up.
+- **Home-page starting points:** they now ask before clearing your answers and tracked applications (they used to
+  wipe them silently), open at the first question still to answer, and explain themselves: "Turning 18" no longer
+  forces "Myself, age exactly 18", and "Just moved" explains that federal programs go with you but provincial and
+  city programs usually need a new application.
+
 ## 2026-10-22 — Last redesign pieces
 
 ### Shipped (`?v=249`)

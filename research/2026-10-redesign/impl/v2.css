@@ -1018,3 +1018,7 @@ html.v2 .partner-foot { margin-top: 20px; color: var(--text-dimmer); font-size: 
   html.v2 .partner-actions { display: none; }
 }
 html.v2 .partner-metrics { background: none; }
+/* "Submitted on" date under the tracker in v2 cards. */
+html.v2 .benefit-actions .track-date { grid-column: 1 / -1; justify-content: space-between; padding: 2px 4px; }
+html.v2 .track-date input { min-height: 34px; border-radius: 10px; color-scheme: dark; }
+html.v2[data-theme="light"] .track-date input { color-scheme: light; }

@@ -302,6 +302,8 @@ const I18N = {
     "l2b.allLevels": "All levels",
     "l2b.localCity": "Local / city",
     "l2b.anyDis": "Any disability",
+    "life.note.turning18": "Turning 18 changes which programs apply. Answer for the person who is turning 18, and choose their age (16 to 17, or 18) so you see both the youth supports that end and the adult programs that start.",
+    "life.note.moved": "Federal programs, like the Disability Tax Credit, go with you when you move. Provincial and city programs are run separately in each province, so you will usually need to apply again where you live now. Choose your new province when asked.",
     "l2.example": "Example",
     "l2.exLabel": "Explore the catalog",
     "l2.exWhere": "Where do you live?",
@@ -936,6 +938,8 @@ const I18N = {
     "l2b.allLevels": "Tous les niveaux",
     "l2b.localCity": "Local / ville",
     "l2b.anyDis": "Tout handicap",
+    "life.note.turning18": "Les programmes changent à 18 ans. Répondez pour la personne qui aura 18 ans et choisissez son âge (16 à 17 ans, ou 18 ans) pour voir à la fois les soutiens jeunesse qui prennent fin et les programmes pour adultes qui commencent.",
+    "life.note.moved": "Les programmes fédéraux, comme le crédit d’impôt pour personnes handicapées, vous suivent quand vous déménagez. Les programmes provinciaux et municipaux sont gérés séparément dans chaque province : vous devrez généralement présenter une nouvelle demande là où vous habitez maintenant. Choisissez votre nouvelle province quand on vous la demande.",
     "l2.example": "Exemple",
     "l2.exLabel": "Explorer le catalogue",
     "l2.exWhere": "Où habitez-vous?",
@@ -1293,7 +1297,7 @@ const STEP_I18N = {
       options: { student: "Aux études postsecondaires", working: "En emploi", looking: "À la recherche d'un emploi ou d'une formation", unableToWork: "Un handicap m'empêche de travailler", none: "Aucune de ces réponses" } },
     income: { kicker: "Votre ménage", q: "Environ, quel est le revenu de votre ménage ?", help: "Certaines prestations visent les faibles revenus. Une réponse approximative suffit — elle est enregistrée uniquement dans ce navigateur, sur cet appareil. Nous ne l’envoyons nulle part.",
       options: { low: "Faible revenu", moderate: "Revenu moyen", high: "Revenu plus élevé" } },
-    city: { kicker: "Votre communauté", q: "Dans quelle ville ou village vivez-vous ou près de quelle ville ?", help: "Débloque les rabais locaux de transport et de loisirs. Commencez à taper pour trouver la vôtre.", placeholder: "Choisissez votre ville ou village…" },
+    city: { kicker: "Votre communauté", q: "Dans quelle ville ou village vivez-vous ou près de quelle ville ?", help: () => (typeof provinceHasLocalPrograms !== "function" || provinceHasLocalPrograms(answers.province)) ? "Débloque les rabais locaux de transport et de loisirs. Commencez à taper pour trouver la vôtre." : "Nous ne répertorions pas encore de programmes municipaux pour votre province. Votre ville nous aide quand même à vous diriger vers l’aide locale du 2-1-1 et des professionnels à proximité.", placeholder: "Choisissez votre ville ou village…" },
   },
 };
 

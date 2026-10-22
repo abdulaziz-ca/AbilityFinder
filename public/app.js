@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "249";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "250";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -181,6 +181,8 @@ let detailId = null;
 let detailFrom = "results"; // "results" | "browse" | "landing" — where the guide was opened from
 let confirmedFacts = {}; // program + gate + version + component choices; device only
 let progress = {};      // { benefitId: stageKey } — where the user is in each application
+let progressDates = {}; // { benefitId: "YYYY-MM-DD" } — the day the person says they submitted (never guessed)
+let lifeEventNote = null; // note for a home-page starting point (e.g. "Just moved"); session only
 let editingReturn = false; // when true, editing one answer returns to results
 let groupMode = "priority"; // "priority" | "category" — how results are grouped
 const expandedBenefitIds = new Set(); // results-only accordion state; deliberately never persisted
@@ -208,6 +210,9 @@ const STAGES = [
   { key: "denied",    label: "Denied",                   short: "Denied",    ic: "info",     cls: "denied" },
 ];
 const STAGE = Object.fromEntries(STAGES.map((s) => [s.key, s]));
+// Stages after an application has gone in: these keep the "submitted on" date.
+const SUBMITTED_STAGES = new Set(["submitted", "waiting", "approved", "denied"]);
+const isoToday = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; };
 
 /* accessibility preferences (kept separate so "start over" never resets them) */
 let a11y = { fontScale: 1, spacing: false, contrast: false, links: false, guide: false, motion: false };
@@ -3663,13 +3668,47 @@ const REQS = {
   kamloops: { met: () => answers.city === "Kamloops", fixed: true, unmet: "This is a City of Kamloops program." },
   cityOther: {
     // Anywhere we DON'T have a verified municipal program → the 2-1-1 finder.
-    // Add a city here the moment you add its program, or people get the generic
-    // fallback instead of the real thing.
-    met: () => !!answers.city && !CITIES_WITH_PROGRAMS.includes(answers.city),
+    // Derived from the records themselves (cityHasOwnProgram), so a new city program
+    // can never be shadowed by the generic fallback again.
+    met: () => !!answers.city && !cityHasOwnProgram(answers.city),
     fixed: true,
     unmet: "For communities without their own listed program.",
   },
 };
+
+/* Does a city have its own listed program? Derived from the requirement registry:
+   a local record is gated to a city when one of its rules mentions the city answer and
+   fails for a place that doesn't exist (so "outside Metro Vancouver"-style rules don't
+   count). Replaces the hand-kept CITIES_WITH_PROGRAMS list, which had drifted to cover
+   only Alberta, BC and Ontario. Only loaded records count; results load the person's
+   province pack first. */
+const cityProgramCache = new Map();
+function cityHasOwnProgram(city) {
+  if (!city) return false;
+  const key = `${answers.province}|${city}|${BENEFITS.length}`;
+  if (cityProgramCache.has(key)) return cityProgramCache.get(key);
+  const saved = answers.city;
+  const cityRule = (r) => REQS[r] && typeof REQS[r].met === "function" && /answers\.city/.test(String(REQS[r].met));
+  const metFor = (r, place) => { answers.city = place; try { return !!REQS[r].met(); } catch { return false; } };
+  let found = false;
+  try {
+    found = BENEFITS.some((b) => {
+      if (b.level === "Your community" || !benefitIsLocal(b)) return false;
+      const gates = (b.requires || []).filter((r) => cityRule(r) && !metFor(r, "\u0000no-such-place"));
+      return gates.length > 0 && gates.every((r) => metFor(r, city));
+    });
+  } finally { answers.city = saved; }
+  cityProgramCache.set(key, found);
+  return found;
+}
+/* Communities and regions with at least one listed local program, from the catalogue
+   index (no pack download needed). Used for the coverage counts. */
+function localProgramAreas() {
+  const provinceLevels = new Set(["Federal", "Your community", "Alberta", "British Columbia", "Ontario", "Saskatchewan", "Manitoba", "New Brunswick", "Nova Scotia", "Prince Edward Island", "Newfoundland and Labrador", "Quebec"]);
+  return [...new Set(CATALOGUE_INDEX.map((row) => row[1]).filter((level) => level && !provinceLevels.has(level)))];
+}
+/* Provinces whose catalogue has no local (city or regional) program yet. */
+const provinceHasLocalPrograms = (prov) => CATALOGUE_INDEX.some(([, level, pack]) => pack === prov && benefitIsLocal({ level }));
 
 /* ── Browse targeting maps ────────────────────────────────────────────────────
    Derive these from the requirement registry itself so browse ordering follows
@@ -4283,7 +4322,11 @@ const STEPS = [
   {
     id: "city", type: "select", kicker: "Your community",
     q: () => `Which city or town ${who().doQ.toLowerCase()} live in or near?`,
-    help: "Unlocks local transit and recreation discounts. Start typing to find yours.",
+    // Honest where no local program is listed yet (e.g. PEI): the town still finds local
+    // 2-1-1 help and nearby practitioners, but there are no city discounts to unlock.
+    help: () => provinceHasLocalPrograms(answers.province)
+      ? "Unlocks local transit and recreation discounts. Start typing to find yours."
+      : `We don't list city programs for ${PROVINCE_NAME[answers.province] || "your province"} yet. Your town still helps us point you to local 2-1-1 help and nearby practitioners.`,
     key: "city",
     placeholder: "Choose your city or town…",
     /* Skip when the province has no municipal list yet. Ontario went live with
@@ -4396,7 +4439,7 @@ const stateChanges = new AbilityFinderState.StateChangeEmitter();
 
 function persistentState() {
   return AbilityFinderState.buildPersistedState({
-    answers, confirmedFacts, view, stepIndex, detailId, detailFrom, progress, groupMode,
+    answers, confirmedFacts, view, stepIndex, detailId, detailFrom, progress, progressDates, groupMode,
     browseQuery, browseTheme, browseLevel, browseDis, browseNeed, a11y, lang: LANG,
     helpTopic, helpReturnStep, programChanges,
     theme: document.documentElement.getAttribute("data-theme"), askConsent,
@@ -4443,6 +4486,7 @@ async function loadState() {
   helpReturnStep = restored.helpReturnStep;
   confirmedFacts = restored.confirmedFacts;
   progress = restored.progress;
+  progressDates = restored.progressDates || {};
   groupMode = restored.groupMode;
   browseQuery = restored.browseQuery;
   browseTheme = restored.browseTheme;
@@ -4714,6 +4758,7 @@ function clearScenario() {
 
 function setState(nextView, opts = {}, push = true) {
   if (nextView !== "results") clearScenario();
+  if (nextView !== "wizard" && nextView !== "help") lifeEventNote = null;
   view = nextView;
   if ("stepIndex" in opts) stepIndex = opts.stepIndex;
   if ("detailId" in opts) detailId = opts.detailId;
@@ -4811,7 +4856,7 @@ function render() {
       document.getElementById("app").innerHTML = renderSafely(() => { throw error; }, "program data");
       document.getElementById("reRetry")?.addEventListener("click", () => render());
       document.getElementById("reReset")?.addEventListener("click", () => {
-        answers = BLANK(); confirmedFacts = {}; progress = {}; stepIndex = 0; detailId = null;
+        answers = BLANK(); confirmedFacts = {}; progress = {}; progressDates = {}; stepIndex = 0; detailId = null;
         setState("landing");
       });
     });
@@ -4937,7 +4982,7 @@ function render() {
   const reReset = document.getElementById("reReset");
   if (reReset)
     reReset.addEventListener("click", () => {
-      answers = BLANK(); confirmedFacts = {}; progress = {}; stepIndex = 0; detailId = null;
+      answers = BLANK(); confirmedFacts = {}; progress = {}; progressDates = {}; stepIndex = 0; detailId = null;
       setState("landing");
     });
   // Content CTAs can appear on results and information pages as well as the
@@ -5708,7 +5753,8 @@ function wireNavigation(root) {
 
 const LIFE_EVENT_ANSWERS = {
   "life-diagnosed": [],
-  "life-turning18": [["forWho", "self"], ["ageBand", "18"]],
+  // No age preset: the person turning 18 may be 16, 17 or 18, and a parent may be answering.
+  "life-turning18": [],
   "life-parent": [["forWho", "child"]],
   "life-unable": [["forWho", "self"], ["situation", "unableToWork"]],
   "life-alberta": [],
@@ -5719,18 +5765,32 @@ function startFromLifeEvent(startingPoint) {
   const selections = LIFE_EVENT_ANSWERS[startingPoint];
   if (!selections) return;
 
-  // Every starting point begins a fresh questionnaire. Preseeds are applied by
-  // the same validated selection helper used by the wizard's own option taps.
+  // Every starting point begins a fresh questionnaire — so, like the logo, ask before
+  // clearing answers or tracked applications the person would lose.
+  const hasWork = JSON.stringify(answers) !== JSON.stringify(BLANK()) || Object.keys(progress).length > 0;
+  if (hasWork && !window.confirm(t("brand.confirmStartOver"))) return;
+  // Preseeds are applied by the same validated selection helper the wizard's own taps use.
   answers = BLANK();
   confirmedFacts = {};
-  progress = {};
+  progress = {}; progressDates = {};
   editingReturn = false;
   selections.forEach(([key, value]) => {
     const step = STEPS.find((candidate) => candidate.key === key);
     if (!step) return;
     applyWizardSelection(step, value);
   });
-  setState("wizard", { stepIndex: 0 });
+  // Start at the first question still to answer, not back at question one.
+  const first = Math.max(0, visibleSteps().findIndex((step) => !stepAnswered(step)));
+  lifeEventNote = LIFE_EVENT_NOTES[startingPoint] ? { key: LIFE_EVENT_NOTES[startingPoint], step: first, kind: startingPoint } : null;
+  setState("wizard", { stepIndex: first });
+}
+/* A short, honest note for starting points that need more than pre-filled answers.
+   Shown on the first question, and for a move again on the province question. Not saved. */
+const LIFE_EVENT_NOTES = { "life-turning18": "life.note.turning18", "life-alberta": "life.note.moved" };
+function lifeEventNoteHtml(step) {
+  if (!lifeEventNote || view !== "wizard") return "";
+  const show = stepIndex === lifeEventNote.step || (lifeEventNote.kind === "life-alberta" && step.id === "residency");
+  return show ? `<p class="life-note" role="note">${icon("info")}<span>${t(lifeEventNote.key)}</span></p>` : "";
 }
 
 function wireLanding() {
@@ -6241,7 +6301,7 @@ function renderProfessionals() {
 
 function renderPartnerOverview() {
   const programCount = browseCatalog(CATALOGUE_INDEX.map(([id, level]) => ({ id, level }))).length;
-  const municipalityCount = Array.isArray(CITIES_WITH_PROGRAMS) ? new Set(CITIES_WITH_PROGRAMS).size : 0;
+  const municipalityCount = localProgramAreas().length;
   return `<article class="partner-overview" id="partnerOverview">
     <header class="partner-head">
       <div>
@@ -6561,7 +6621,7 @@ function impactCatalogStats() {
   }, { federal: 0, provincial: 0, municipal: 0 });
   return {
     programs: indexed.length,
-    municipalities: Array.isArray(CITIES_WITH_PROGRAMS) ? new Set(CITIES_WITH_PROGRAMS).size : 0,
+    municipalities: localProgramAreas().length,
     categories: new Set(programs.map((benefit) => benefit.category).filter(Boolean)).size,
     sourced: programs.filter((benefit) => benefit.source).length,
     ...levels,
@@ -6775,6 +6835,7 @@ function renderStep(step) {
       <p class="step-kicker">${isDesignV2() ? v2StepRing(stepIndex + 1, steps.length) : icon("compass")} ${T.kicker} · ${t("wiz.step")} ${stepIndex + 1} ${t("wiz.of")} ${steps.length}</p>
       <h2 class="step-q" id="wizard-question" tabindex="-1">${T.q}</h2>
       <p class="step-help" id="wizard-help">${T.help}</p>
+      ${lifeEventNoteHtml(step)}
       ${/* ABOVE the options, not below. Someone who doesn't know the answer
             decides that while reading the question — by the time they're
             scanning options they've already picked one and moved on, and on the
@@ -7821,13 +7882,19 @@ function buildReminderIcs() {
     if (stage !== "submitted" && stage !== "waiting") continue;
     const days = waitToDays(BENEFIT_META[b.id] && BENEFIT_META[b.id].wait);
     if (!days) continue;
+    // Count from the day the person says they submitted. Without that date we don't
+    // invent one (older saves), so no follow-up is scheduled for that program.
+    const sentOn = progressDates[b.id] && localDateFromIso(progressDates[b.id]);
+    if (!sentOn) continue;
+    let due = addCalendarDays(sentOn, days);
+    if (due < now) due = addDays(1); // already overdue: remind tomorrow rather than in the past
     const phone = (b.detail && b.detail.phone) ? ` You can call: ${b.detail.phone}.` : "";
     events.push({
-      uid: `followup-${b.id}-${icsDate(addDays(days))}@abilityfinder.ca`,
-      date: addDays(days),
+      uid: `followup-${b.id}-${icsDate(due)}@abilityfinder.ca`,
+      date: due,
       summary: `Follow up: ${b.name}`,
       desc:
-        `You marked this as ${STAGE[stage].label.toLowerCase()} on ${now.toLocaleDateString("en-CA")}. ` +
+        `You submitted this on ${sentOn.toLocaleDateString("en-CA")}. ` +
         `The usual wait is ${BENEFIT_META[b.id].wait}. If you have not heard back, it is worth chasing —` +
         ` applications do get lost, and chasing is normal.${phone}`,
     });
@@ -7892,10 +7959,14 @@ function statusControl(b) {
   const st = STAGE[cur];
   const opts = `<option value="">Not started</option>` +
     STAGES.map((s) => `<option value="${s.key}"${cur === s.key ? " selected" : ""}>${s.label}</option>`).join("");
+  // Once submitted, the person can record (or correct) the day it went in; reminders count from it.
+  const dated = SUBMITTED_STAGES.has(cur)
+    ? `<label class="track-date"><span>Submitted on</span><input type="date" data-track-date="${b.id}" value="${progressDates[b.id] || ""}" max="${isoToday()}" aria-label="Date you submitted ${reqEscape(b.name)}"></label>`
+    : "";
   return `<span class="track ${st ? st.cls : "none"}">
     <span class="track-ic" aria-hidden="true">${icon(st ? st.ic : "bookmark")}</span>
     <select class="track-sel" data-track="${b.id}" aria-label="Track your progress for ${b.name}">${opts}</select>
-  </span>`;
+  </span>${dated}`;
 }
 
 // Display-only requirements helpers. Never use actor metadata in eligibility.
@@ -8311,8 +8382,22 @@ function wireResults() {
       const id = sel.dataset.track;
       if (sel.value && STAGE[sel.value]) progress[id] = sel.value;
       else delete progress[id];
+      // First time it is marked as sent: assume today, editable right below the select.
+      if (SUBMITTED_STAGES.has(progress[id])) { if (!progressDates[id]) progressDates[id] = isoToday(); }
+      else delete progressDates[id];
       notifyStateChange("progress-change");
       render(); // same page → scroll position preserved
+      const again = document.querySelector(`[data-track="${id}"]`);
+      if (again) again.focus();
+    })
+  );
+  document.querySelectorAll("[data-track-date]").forEach((input) =>
+    input.addEventListener("change", () => {
+      const id = input.dataset.trackDate;
+      if (/^\d{4}-\d{2}-\d{2}$/.test(input.value) && input.value <= isoToday()) progressDates[id] = input.value;
+      else if (!input.value) delete progressDates[id];
+      else { input.value = progressDates[id] || ""; return; }
+      notifyStateChange("progress-change");
     })
   );
   // Download reminders as a calendar file (no account, no server).
@@ -8360,7 +8445,7 @@ function wireResults() {
     r.addEventListener("click", () => {
       answers = BLANK();
       confirmedFacts = {};
-      progress = {};
+      progress = {}; progressDates = {};
       stepIndex = 0;
       detailId = null;
       setState("landing", {}, true);
@@ -9656,7 +9741,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       stopReadAloud();
       answers = BLANK();
       confirmedFacts = {};
-      progress = {};
+      progress = {}; progressDates = {};
       stepIndex = 0;
       detailId = null;
       setState("landing");

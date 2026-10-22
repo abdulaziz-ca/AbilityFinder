@@ -39,20 +39,8 @@ const DISABILITIES = [
 /* Disability groups used by benefit targeting */
 const EQUIP_NEED = ["physical", "chronic", "vision", "hearing", "speech", "braininjury"];
 
-/* Municipalities with their own verified program in BENEFITS. Everywhere else
- * falls through to the generic 2-1-1 "local supports" finder (REQS.cityOther).
- * Keep this in step with the city-gated benefits below. */
-const CITIES_WITH_PROGRAMS = [
-  "Calgary", "Edmonton", "Red Deer", "Lethbridge",
-  "Medicine Hat", "Grande Prairie", "St. Albert", "Sherwood Park",
-  "Airdrie", "Fort McMurray", "Spruce Grove", "Stony Plain", "Leduc",
-  "Cochrane", "Okotoks", "Canmore", "Lloydminster", "Fort Saskatchewan",
-  "Vancouver", "Surrey", "Burnaby", "Richmond", "Victoria", "Saanich",
-  "Kelowna", "Coquitlam", "Kamloops",
-  "Toronto", "Ottawa", "Mississauga", "Brampton", "Hamilton", "London", "Windsor",
-  "Aurora", "Markham", "Newmarket", "Richmond Hill", "Vaughan",
-  "Cambridge", "Kitchener", "North Dumfries", "Waterloo", "Wellesley", "Wilmot", "Woolwich",
-];
+/* Which municipalities have their own program is derived from the records themselves
+ * (cityHasOwnProgram in app.js); there is no hand-kept list to update any more. */
 
 /* ---------------------------------------------- Alberta communities (pop >5,000)
    Includes cities, larger towns, and the two big urban service areas
@@ -101,7 +89,7 @@ resolveBcTransitHandyDartUrl.staticUrl = BC_TRANSIT_HANDYDART_CHOOSER;
 
 /* Province scaffolding can land before its catalog. Visibility is gated in app.js. */
 /* Ontario municipalities offered in the questionnaire. Listing a city here does NOT
-   mean it has its own programs — CITIES_WITH_PROGRAMS is that list. Alberta works the
+   mean it has its own programs — that is derived from the records (cityHasOwnProgram). Alberta works the
    same way: 51 cities offered, 27 with programs. */
 /* Ontario regional municipalities that deliver programs on behalf of their member cities.
    These are NOT city options in the questionnaire — nobody selects "York Region" — but a
@@ -3084,5 +3072,5 @@ function AF_ADD_PACK(province, records) {
   AF_LOADED_PACKS.add(province);
 }
 
-Object.assign(globalThis, {DISABILITIES,EQUIP_NEED,CITIES_WITH_PROGRAMS,ALBERTA_CITIES,BC_CITIES,BC_TRANSIT_HANDYDART_CHOOSER,BC_TRANSIT_HANDYDART_REGISTRATION,resolveBcTransitHandyDartUrl,ON_REGIONS,ON_CITIES,SK_CITIES,SHARED_CITIES,MB_CITIES,PROVINCE_NOTICES,NB_CITIES,NS_CITIES,PE_CITIES,NL_CITIES,QC_CITIES,CITIES_BY_PROVINCE,COVERED_PROVINCES,FED_STUDENT_AID,NATIONAL_211,STUDENT_AID,TWO_ELEVEN,EMPLOYMENT,BENEFIT_VALUES,BENEFIT_SIGNERS,DTC_SIGNER_SCOPES,DTC_SIGNER_SOURCE,BENEFIT_DATES,BENEFIT_META,BENEFIT_EXTRA,SUPPORTS,SUPPORT_CATEGORIES,HELP_CATEGORIES,HELP_ORGS,BENEFITS,GLOSSARY,BENEFIT_STATUS,BENEFIT_VERIFIED,glossaryTermsFor,BENEFIT_INDEX,AF_ADD_PACK,AF_LOADED_PACKS});
+Object.assign(globalThis, {DISABILITIES,EQUIP_NEED,ALBERTA_CITIES,BC_CITIES,BC_TRANSIT_HANDYDART_CHOOSER,BC_TRANSIT_HANDYDART_REGISTRATION,resolveBcTransitHandyDartUrl,ON_REGIONS,ON_CITIES,SK_CITIES,SHARED_CITIES,MB_CITIES,PROVINCE_NOTICES,NB_CITIES,NS_CITIES,PE_CITIES,NL_CITIES,QC_CITIES,CITIES_BY_PROVINCE,COVERED_PROVINCES,FED_STUDENT_AID,NATIONAL_211,STUDENT_AID,TWO_ELEVEN,EMPLOYMENT,BENEFIT_VALUES,BENEFIT_SIGNERS,DTC_SIGNER_SCOPES,DTC_SIGNER_SOURCE,BENEFIT_DATES,BENEFIT_META,BENEFIT_EXTRA,SUPPORTS,SUPPORT_CATEGORIES,HELP_CATEGORIES,HELP_ORGS,BENEFITS,GLOSSARY,BENEFIT_STATUS,BENEFIT_VERIFIED,glossaryTermsFor,BENEFIT_INDEX,AF_ADD_PACK,AF_LOADED_PACKS});
 })();

@@ -37,20 +37,8 @@ const DISABILITIES = [
 /* Disability groups used by benefit targeting */
 const EQUIP_NEED = ["physical", "chronic", "vision", "hearing", "speech", "braininjury"];
 
-/* Municipalities with their own verified program in BENEFITS. Everywhere else
- * falls through to the generic 2-1-1 "local supports" finder (REQS.cityOther).
- * Keep this in step with the city-gated benefits below. */
-const CITIES_WITH_PROGRAMS = [
-  "Calgary", "Edmonton", "Red Deer", "Lethbridge",
-  "Medicine Hat", "Grande Prairie", "St. Albert", "Sherwood Park",
-  "Airdrie", "Fort McMurray", "Spruce Grove", "Stony Plain", "Leduc",
-  "Cochrane", "Okotoks", "Canmore", "Lloydminster", "Fort Saskatchewan",
-  "Vancouver", "Surrey", "Burnaby", "Richmond", "Victoria", "Saanich",
-  "Kelowna", "Coquitlam", "Kamloops",
-  "Toronto", "Ottawa", "Mississauga", "Brampton", "Hamilton", "London", "Windsor",
-  "Aurora", "Markham", "Newmarket", "Richmond Hill", "Vaughan",
-  "Cambridge", "Kitchener", "North Dumfries", "Waterloo", "Wellesley", "Wilmot", "Woolwich",
-];
+/* Which municipalities have their own program is derived from the records themselves
+ * (cityHasOwnProgram in app.js); there is no hand-kept list to update any more. */
 
 /* ---------------------------------------------- Alberta communities (pop >5,000)
    Includes cities, larger towns, and the two big urban service areas
@@ -99,7 +87,7 @@ resolveBcTransitHandyDartUrl.staticUrl = BC_TRANSIT_HANDYDART_CHOOSER;
 
 /* Province scaffolding can land before its catalog. Visibility is gated in app.js. */
 /* Ontario municipalities offered in the questionnaire. Listing a city here does NOT
-   mean it has its own programs — CITIES_WITH_PROGRAMS is that list. Alberta works the
+   mean it has its own programs — that is derived from the records (cityHasOwnProgram). Alberta works the
    same way: 51 cities offered, 27 with programs. */
 /* Ontario regional municipalities that deliver programs on behalf of their member cities.
    These are NOT city options in the questionnaire — nobody selects "York Region" — but a
@@ -5563,8 +5551,8 @@ const BENEFITS = [
   /* ---- Alberta municipalities beyond Calgary/Edmonton -----------------------
      Researched and verified against each city's own page on 2026-07-15. Every
      figure below was read off the official source listed in the entry — none is
-     recalled or inferred. If you add a city: verify it the same way, and add it
-     to CITIES_WITH_PROGRAMS or its residents keep getting the 2-1-1 fallback.
+     recalled or inferred. If you add a city: verify it the same way; its residents
+     stop getting the 2-1-1 fallback automatically once the record is gated to it.
 
      Worth knowing: these are NOT all the same program with a different logo.
      Grande Prairie explicitly excludes AISH recipients from its low-income
