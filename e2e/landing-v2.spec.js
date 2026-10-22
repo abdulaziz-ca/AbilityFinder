@@ -134,7 +134,10 @@ test("wizard rail shows answered questions and reopens one", async ({ page }) =>
 test("catalog filters sit in labelled groups and Clear filters resets them", async ({ page }) => {
   await gotoReady(page);
   await page.evaluate(() => setState("browse"));
-  const all = await page.locator("#browseResults .browse-card").count();
+  // Every province pack loads before the full catalog is listed; count only once it is complete.
+  const expected = await page.evaluate(async () => { await ensurePacks(COVERED_PROVINCES); render(); return browseFiltered().length; });
+  await expect(page.locator("#browseResults .browse-card")).toHaveCount(expected);
+  const all = expected;
   await expect(page.locator("#bClear")).toBeHidden();
   await expect(page.getByRole("group", { name: "Where" })).toBeVisible();
   await page.locator('[data-blevel="Federal"]').click();
