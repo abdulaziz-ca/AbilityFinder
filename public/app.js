@@ -10,7 +10,7 @@ const DATA_PACKS = true;
 // The index also names the unchanged, deployed full-data fallback. Core exports
 // are configurable globals so full data.js can shadow them without redeclarations.
 const CATALOGUE_INDEX = typeof BENEFIT_INDEX !== "undefined"
-  ? BENEFIT_INDEX : BENEFITS.map(b => [b.id, b.level, null]);
+  ? BENEFIT_INDEX : BENEFITS.map(b => [b.id, b.level, null, b.category || ""]);
 const packRequests = new Map();
 function loadDataScript(src) {
   return new Promise((resolve, reject) => {
@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "241";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "242";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -178,7 +178,7 @@ let answers = BLANK();
 let view = "landing";   // landing, wizard, results, browse, detail, privacy, about, support, updates, help, accessibility, professionals, partner-overview, impact, dtc-prep, grants, organizations
 let stepIndex = 0;
 let detailId = null;
-let detailFrom = "results"; // "results" | "browse" — where the guide was opened from
+let detailFrom = "results"; // "results" | "browse" | "landing" — where the guide was opened from
 let confirmedFacts = {}; // program + gate + version + component choices; device only
 let progress = {};      // { benefitId: stageKey } — where the user is in each application
 let editingReturn = false; // when true, editing one answer returns to results
@@ -4489,6 +4489,7 @@ function applyA11y() {
   // The Reduce-motion toggle can flip mid-session; re-evaluate reveals so
   // anything mid-animation is pinned visible immediately.
   if (typeof wireReveals === "function") wireReveals();
+  if (typeof v2MotionSync === "function") v2MotionSync();
   // reflect toggle states in the panel
   document.querySelectorAll(".a11y-toggle").forEach((btn) => {
     btn.setAttribute("aria-pressed", String(!!a11y[btn.dataset.toggle]));
@@ -4756,7 +4757,8 @@ const PROVINCE_LEVEL_NAMES = new Set(
 );
 function updateNavTag() {
   const tag = document.getElementById("navTag");
-  if (tag) tag.textContent = PROVINCE_NAME[answers.province] || SCOPE_REGION_LABEL;
+  // Design v2 says "Canada" until a province is chosen; the long province list crowded the bar.
+  if (tag) tag.textContent = PROVINCE_NAME[answers.province] || (document.documentElement.classList.contains("v2") ? "Canada" : SCOPE_REGION_LABEL);
 }
 
 let lastRenderKey = null;
@@ -4956,6 +4958,26 @@ function render() {
 function v2MotionAllowed() {
   return !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) && !document.body.classList.contains("a11y-nomotion");
 }
+/* "Less motion" (accessibility menu or the device setting) is the site-wide pause for the
+   ribbon, the source strip and the demos, so a change applies at once: the landing page is
+   rebuilt, which stops its timers and redraws the ribbon as a still frame. */
+let v2LastMotion = null;
+function v2MotionSync() {
+  if (!document.documentElement.classList.contains("v2")) return;
+  const motion = v2MotionAllowed();
+  if (v2LastMotion === null || motion === v2LastMotion) { v2LastMotion = motion; return; }
+  v2LastMotion = motion;
+  document.documentElement.classList.toggle("motion", motion);
+  if (view !== "landing") return;
+  v2RibbonToken++;
+  if (v2RibbonStop) { v2RibbonStop(); v2RibbonStop = null; }
+  if (v2RibbonHost) v2RibbonHost.remove();
+  render();
+}
+if (typeof window !== "undefined" && typeof window.matchMedia === "function") {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (reduce && reduce.addEventListener) reduce.addEventListener("change", () => v2MotionSync());
+}
 let v2RibbonStop = null;
 let v2RibbonHost = null;
 let v2RibbonToken = 0;
@@ -4963,7 +4985,7 @@ let v2LastView = null;
 const v2GL = new WeakMap(); // canvas -> { gl, program } so a re-used canvas keeps its context
 function v2Enhance(currentView, app) {
   document.documentElement.classList.toggle("motion", v2MotionAllowed());
-  if (currentView !== "landing") { v2RibbonToken++; if (v2RibbonStop) { v2RibbonStop(); v2RibbonStop = null; } }
+  if (currentView !== "landing") { v2RibbonToken++; if (v2RibbonStop) { v2RibbonStop(); v2RibbonStop = null; } v2Observers.forEach((io) => io.disconnect()); v2Observers.clear(); }
   // The entrance plays only when the view changes; same-view re-renders (a toggle, an answer) stay still.
   if (currentView !== v2LastView && v2MotionAllowed()) { app.classList.remove("v2-route-in"); void app.offsetWidth; app.classList.add("v2-route-in"); }
   v2LastView = currentView;
@@ -4998,46 +5020,31 @@ function v2Landing(app) {
     if (el && v2MotionAllowed()) { el.classList.add("v2-fade"); el.style.animationDelay = `${0.08 + i * 0.12}s`; }
   });
   const preview = app.querySelector(".hero-preview-wrap");
-  if (preview && !app.querySelector(".v2-sources")) {
-    const sources = ["canada.ca", "alberta.ca", "gov.bc.ca", "ontario.ca", "saskatchewan.ca", "gov.mb.ca", "gnb.ca", "novascotia.ca", "princeedwardisland.ca", "gov.nl.ca", "quebec.ca", "ramq.gouv.qc.ca"];
-    const strip = document.createElement("section");
-    strip.className = "v2-sources"; strip.setAttribute("aria-label", t("v2.sourcesLabel"));
-    strip.innerHTML = `<p>${t("v2.sources")}</p><div class="v2-marquee" aria-hidden="true"><div class="v2-track">${[...sources, ...sources].map((d) => `<span>${d}</span>`).join("")}</div></div>`;
-    preview.after(strip);
-    const feats = [["v2.f1h", "v2.f1p"], ["v2.f2h", "v2.f2p"], ["v2.f3h", "v2.f3p"], ["v2.f4h", "v2.f4p"]];
-    const panels = [
-      `<div class="v2-mini-h"><span>${t("v2.p1h")}</span></div><div class="v2-mini-row"><span class="v2-st ok">✓</span>${t("v2.p1a")}</div><div class="v2-mini-row"><span class="v2-st q">?</span>${t("v2.p1b")}</div><div class="v2-mini-row"><span class="v2-st q">?</span>${t("v2.p1c")}</div>`,
-      `<div class="v2-mini-h"><span>${t("v2.p2h")}</span></div><div class="v2-mini-row"><span class="v2-st q">!</span>${t("v2.p2a")}</div><div class="v2-mini-row"><span class="v2-st ok">✓</span>${t("v2.p2b")}</div>`,
-      `<div class="v2-mini-h"><span>${t("v2.p3h")}</span></div><div class="v2-mini-row"><span class="v2-st ok">✓</span>${t("v2.p3a")}</div><div class="v2-mini-row"><span class="v2-st ok">✓</span>${t("v2.p3b")}</div><div class="v2-mini-row"><span class="v2-st q">·</span>${t("v2.p3c")}</div>`,
-      `<div class="v2-mini-h"><span>${t("v2.p4h")}</span></div><div class="v2-mini-row"><span class="v2-st ok">◎</span>${t("v2.p4a")}</div><div class="v2-mini-row"><span class="v2-st ok">◎</span>${t("v2.p4b")}</div>`,
-    ];
-    const feat = document.createElement("section");
-    feat.className = "v2-feat reveal-v2"; feat.setAttribute("aria-labelledby", "v2-feat-h");
-    feat.innerHTML = `<div class="v2-tabs"><h2 id="v2-feat-h">${t("v2.featH")} <span>${t("v2.featH2")}</span></h2><div role="tablist" aria-label="${t("v2.featH")}">${feats.map(([h, p], i) =>
-      `<button class="v2-tab" role="tab" type="button" id="v2tab${i}" aria-controls="v2panel${i}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}"><span class="bar" aria-hidden="true"></span><b>${t(h)}</b><small><span>${t(p)}</span></small></button>`).join("")}</div></div>
-      <div class="v2-stage"><div class="v2-stage-in">${panels.map((html, i) => `<div class="v2-mini${i === 0 ? " on" : ""}" role="tabpanel" id="v2panel${i}" aria-labelledby="v2tab${i}"${i ? " hidden" : ""}>${html}</div>`).join("")}</div></div>`;
-    strip.after(feat);
-    v2Tabs(feat);
-  }
   if (preview && v2MotionAllowed()) v2Observe(preview, "in"); else if (preview) preview.classList.add("in");
   app.querySelectorAll(".reveal-v2").forEach((el) => v2MotionAllowed() ? v2Observe(el, "in") : el.classList.add("in"));
   app.querySelectorAll(".life-event-card").forEach((c) => c.addEventListener("pointermove", (e) => {
     const r = c.getBoundingClientRect(); c.style.setProperty("--x", `${e.clientX - r.left}px`); c.style.setProperty("--y", `${e.clientY - r.top}px`);
   }));
+  v2ExploreWire(app);
+  app.querySelectorAll(".v2-feat").forEach(v2Tabs);
+  const compare = app.querySelector(".v2-compare");
+  if (compare) v2Demo(compare);
+  v2CatsWire(app);
 }
+const v2Observers = new Set(); // disconnected when the landing page is left, so detached sections are released
 function v2Observe(el, cls) {
   if (!("IntersectionObserver" in window)) { el.classList.add(cls); return; }
-  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add(cls); io.unobserve(e.target); } }), { threshold: 0.12 });
-  io.observe(el);
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add(cls); io.disconnect(); v2Observers.delete(io); } }), { threshold: 0.12 });
+  v2Observers.add(io); io.observe(el);
 }
 /* Mercury-style tabs: the active tab opens and its panel fades in. Auto-advances every
    6 s; pauses on hover or keyboard focus; no auto-advance when motion is reduced. */
 function v2Tabs(root) {
   const tabs = [...root.querySelectorAll('[role="tab"]')], panels = [...root.querySelectorAll('[role="tabpanel"]')];
   const box = root.querySelector(".v2-tabs");
-  let i = 0, paused = false;
+  let i = 0, paused = false, elapsed = 0;
   const show = (n, focus) => {
-    i = (n + tabs.length) % tabs.length;
+    i = (n + tabs.length) % tabs.length; elapsed = 0;
     tabs.forEach((tb, k) => { tb.setAttribute("aria-selected", String(k === i)); tb.tabIndex = k === i ? 0 : -1; });
     panels.forEach((p, k) => { p.hidden = k !== i; p.classList.toggle("on", k === i); });
     if (focus) tabs[i].focus();
@@ -5049,11 +5056,22 @@ function v2Tabs(root) {
       if (e.key === "ArrowUp" || e.key === "ArrowLeft") { e.preventDefault(); show(i - 1, true); }
     });
   });
-  const pause = (v) => { paused = v; box.classList.toggle("paused", v); };
-  root.addEventListener("pointerenter", () => pause(true)); root.addEventListener("pointerleave", () => pause(false));
-  root.addEventListener("focusin", () => pause(true)); root.addEventListener("focusout", () => pause(false));
-  if (!v2MotionAllowed()) return;
-  const timer = setInterval(() => { if (!document.body.contains(root)) { clearInterval(timer); return; } if (!paused && !document.hidden) show(i + 1); }, 6000);
+  // Paused while hovered or focused, or for good with the pause button (WCAG 2.2.2).
+  let held = false, stopped = false;
+  const sync = () => { paused = held || stopped; box.classList.toggle("paused", paused); root.classList.toggle("paused", paused); };
+  root.addEventListener("pointerenter", () => { held = true; sync(); }); root.addEventListener("pointerleave", () => { held = false; sync(); });
+  root.addEventListener("focusin", (e) => { if (!e.target.closest(".v2-pause")) { held = true; sync(); } }); root.addEventListener("focusout", () => { held = false; sync(); });
+  const btn = root.querySelector(".v2-pause");
+  if (!v2MotionAllowed()) { if (btn) btn.hidden = true; return; }
+  if (btn) btn.addEventListener("click", () => {
+    stopped = !stopped; sync();
+    btn.setAttribute("aria-pressed", String(stopped)); btn.setAttribute("aria-label", t(stopped ? "l2.play" : "l2.pause")); btn.title = t(stopped ? "l2.play" : "l2.pause");
+  });
+  // Counts only unpaused time, so the next tab arrives exactly when its progress bar fills.
+  const timer = setInterval(() => {
+    if (!document.body.contains(root)) { clearInterval(timer); return; }
+    if (!paused && !document.hidden && (elapsed += 200) >= 6000) show(i + 1);
+  }, 200);
 }
 /* Silk ribbon behind the landing hero (WebGL). One static frame when motion is reduced;
    stops when the tab is hidden or the landing view is left. CSS-only fallback: nothing. */
@@ -5117,7 +5135,351 @@ function v2Ribbon(canvas, still) {
 /* =============================================================================
    LANDING PAGE
    ========================================================================== */
+/* ── Landing page, design v2 ───────────────────────────────────────────────────
+   Live demos instead of static lists. Everything shown as an example is labelled
+   as one; the catalog explorer and the topic counts read the real catalogue index,
+   never a person's answers, so nothing here is a match verdict. */
+const V2_PROVINCES = [["AB", "Alberta", "Alberta"], ["BC", "British Columbia", "Colombie-Britannique"], ["MB", "Manitoba", "Manitoba"], ["NB", "New Brunswick", "Nouveau-Brunswick"], ["NL", "Newfoundland and Labrador", "Terre-Neuve-et-Labrador"], ["NS", "Nova Scotia", "Nouvelle-Écosse"], ["ON", "Ontario", "Ontario"], ["PE", "Prince Edward Island", "Île-du-Prince-Édouard"], ["QC", "Quebec", "Québec"], ["SK", "Saskatchewan", "Saskatchewan"]];
+let v2ExploreProv = null; // null = federal programs only ("anywhere in Canada")
+let v2ExploreTheme = "all";
+const v2ThemeIcon = (key) => (THEMES.find((th) => th.key === key) || THEMES[0]).icon;
+
+/** Catalogue rows for a province (plus federal) and topic. Row: [id, level, pack, category]. */
+function v2CatalogRows(prov, theme) {
+  return CATALOGUE_INDEX.filter(([, level, pack, category]) => level !== "Your community"
+    && (level === "Federal" || (prov && pack === prov))
+    && (theme === "all" || benefitTheme({ category: category || "" }) === theme));
+}
+function v2CountTo(el, n) {
+  if (!el) return;
+  const from = Number(el.dataset.n || 0);
+  el.dataset.n = n;
+  if (!v2MotionAllowed() || from === n) { el.textContent = n; return; }
+  const t0 = performance.now();
+  const step = (now) => {
+    const k = Math.min(1, (now - t0) / 520), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = Math.round(from + (n - from) * e);
+    if (k < 1 && el.dataset.n == n) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+function renderLandingV2() {
+  const esc = reqEscape;
+  const provName = ([, en, fr]) => (LANG === "fr" ? fr : en);
+  const statusPill = (tone, key) => `<span class="v2-pill ${tone}">${t(key)}</span>`;
+  const pause = `<button class="v2-pause" type="button" aria-pressed="false" aria-label="${t("l2.pause")}" title="${t("l2.pause")}"><svg class="pz" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="6" width="3.2" height="12" rx="1"/><rect x="13.8" y="6" width="3.2" height="12" rx="1"/></svg><svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6.2v11.6c0 .8.9 1.3 1.6.8l8.6-5.8c.6-.4.6-1.2 0-1.6L9.6 5.4C8.9 4.9 8 5.4 8 6.2z"/></svg></button>`;
+  const tabsBlock = (id, title, sub, items, lede) => `<div class="v2-tabs"><h2 id="${id}-h">${title}${sub ? ` <span>${sub}</span>` : ""}</h2>${lede ? `<p class="v2-lede">${lede}</p>` : ""}<div role="tablist" aria-label="${title.replace(/<[^>]+>/g, "")}">${items.map(([h, p], i) =>
+    `<button class="v2-tab" role="tab" type="button" id="${id}tab${i}" aria-controls="${id}panel${i}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}"><span class="bar" aria-hidden="true"></span><b>${t(h)}</b><small><span>${t(p)}</span></small></button>`).join("")}</div>${pause}</div>`;
+  const stage = (id, panels) => `<div class="v2-stage"><div class="v2-stage-in">${panels.map((html, i) => `<div class="v2-mini${i === 0 ? " on" : ""}" role="tabpanel" id="${id}panel${i}" aria-labelledby="${id}tab${i}"${i ? " hidden" : ""}>${html}</div>`).join("")}</div></div>`;
+  const row = (ic, name, sub, right, i) => `<div class="v2-mini-row" style="--i:${i}"><span class="v2-ic">${icon(ic)}</span><span class="v2-row-t"><b>${name}</b>${sub ? `<small>${sub}</small>` : ""}</span>${right || ""}</div>`;
+
+  /* How it works: the real first question, an example list, a real guide's checklist. */
+  const howPanels = [
+    `<div class="v2-mini-h"><span>${t("l2.hqStep")}</span><span class="v2-prog"><i style="width:12%"></i></span></div>
+     <div class="v2-q"><p class="v2-q-t">${t("l2.hq")}</p>${["l2.hq1", "l2.hq2", "l2.hq3"].map((k, i) => `<span class="v2-opt${i === 0 ? " pick" : ""}" style="--i:${i}"><span class="v2-radio"></span>${t(k)}</span>`).join("")}<span class="v2-cursor" aria-hidden="true"></span></div>`,
+    `<div class="v2-mini-h"><span>${t("l2.hrH")}</span><span class="v2-ex-tag">${t("l2.example")}</span></div>
+     ${row("money", t("l2.cmpP1"), t("l2.fdFed"), statusPill("q", "l2.cmpS4"), 0)}${row("money", t("l2.cmpP3"), t("l2.fdFed"), statusPill("q", "l2.cmpS3"), 1)}${row("transit", t("l2.fd3"), t("l2.fdLocal"), statusPill("q", "l2.cmpS2"), 2)}`,
+    `<div class="v2-mini-h"><span>${t("l2.hgH")}</span><span class="v2-src">${icon("external")}${t("l2.hgSrc")}</span></div>
+     <div class="v2-guide"><p class="v2-q-t">${t("l2.hgBring")}</p>${["l2.hg1", "l2.hg2", "l2.hg3"].map((k, i) => `<span class="v2-check" style="--i:${i}"><span class="v2-box">${icon("check")}</span>${t(k)}</span>`).join("")}<p class="v2-guide-foot">${icon("clock")}${t("l2.hgChecked")}</p></div>`,
+  ];
+
+  /* Everything you need to apply: four small product screens, each labelled as an example. */
+  const cal = Array.from({ length: 35 }, (_, i) => { const d = i - 2; return `<span class="${d === 17 ? "hit" : d === 10 ? "rem" : d === 24 ? "draft" : ""}">${d > 0 && d <= 30 ? d : ""}</span>`; }).join("");
+  const featPanels = [
+    `<div class="v2-mini-h"><span>${t("v2.p1h")}</span></div>
+     ${row("money", t("l2.fd1"), t("l2.fdWhy1"), statusPill("ok", "l2.cmpS1"), 0)}${row("money", t("l2.fd2"), t("l2.fdWhy2"), statusPill("q", "v2.p1b"), 1)}${row("transit", t("l2.fd3"), t("l2.fdWhy3"), statusPill("q", "v2.p1b"), 2)}`,
+    `<div class="v2-mini-h"><span>${t("v2.p2h")}</span><span class="v2-ex-tag">${t("l2.fcMonth")}</span></div>
+     <div class="v2-cal"><div class="v2-cal-grid">${cal}</div><div class="v2-cal-side">
+       <div class="v2-cal-item close" style="--i:0"><i></i><span><b>${t("l2.fcClose")}</b><small>${t("l2.example")}</small></span></div>
+       <div class="v2-cal-item rem" style="--i:1"><i></i><span><b>${t("l2.fcRemind")}</b></span></div>
+       <div class="v2-cal-item draft" style="--i:2"><i></i><span><b>${t("l2.fcDraft")}</b></span></div>
+       <span class="v2-fake-btn" style="--i:3">${icon("clock")}${t("l2.fcAdd")}</span></div></div>`,
+    `<div class="v2-mini-h"><span>${t("v2.p3h")}</span><span class="v2-ex-tag">${t("l2.fkReady")}</span></div>
+     <div class="v2-meter"><i></i></div>
+     <div class="v2-guide">${["l2.fk1", "l2.fk2", "l2.fk3", "l2.fk4", "l2.fk5"].map((k, i) => `<span class="v2-check${i > 2 ? " todo" : ""}" style="--i:${i}"><span class="v2-box">${icon("check")}</span>${t(k)}</span>`).join("")}</div>`,
+    `<div class="v2-mini-h"><span>${t("v2.p4h")}</span></div>
+     ${row("phone", t("l2.fh1"), t("l2.fh1p"), statusPill("ok", "l2.fhFree"), 0)}${row("scale", t("l2.fh2"), t("l2.fh2p"), statusPill("ok", "l2.fhFree"), 1)}${row("help", t("l2.fh3"), t("l2.fh3p"), statusPill("ok", "l2.fhFree"), 2)}`,
+  ];
+
+  /* Search-vs-AbilityFinder demo. Purely illustrative, so hidden from assistive tech;
+     the same comparison is given as text right beside it for screen readers. */
+  const compare = `
+    <section class="v2-sec v2-compare reveal-v2" aria-labelledby="v2cmp-h">
+      <div class="v2-sec-head"><h2 class="v2-h2" id="v2cmp-h">${t("prob.title")}</h2>${pause}</div>
+      <div class="sr-only"><h3>${t("prob.badH")}</h3><ul>${[1, 2, 3, 4].map((i) => `<li>${t("prob.bad" + i)}</li>`).join("")}</ul><h3>${t("prob.goodH")}</h3><ul>${[1, 2, 3, 4].map((i) => `<li>${t("prob.good" + i)}</li>`).join("")}</ul></div>
+      <div class="v2-demo v2-cmp" data-step="0" aria-hidden="true">
+        <div class="v2-cmp-pane bad">
+          <div class="v2-cmp-h"><span>${t("l2.cmpSelfH")}</span><span class="v2-tabcount"><b class="js-tabs">1</b> ${t("l2.cmpTabs")}</span></div>
+          <div class="v2-browser">
+            <div class="v2-tabstrip">${Array.from({ length: 9 }, (_, i) => `<i style="--i:${i}"></i>`).join("")}</div>
+            <div class="v2-search">${icon("search")}<span class="js-type" data-text="${esc(t("l2.cmpQuery"))}"></span><i class="v2-caret"></i></div>
+            <div class="v2-results">${[1, 2, 3, 4].map((i) => `<div class="v2-res" style="--i:${i}"><b>${t("l2.cmpR" + i)}</b><span class="ln"></span><span class="ln s"></span></div>`).join("")}</div>
+          </div>
+          <p class="v2-cmp-end">${t("l2.cmpSelfEnd")}</p>
+        </div>
+        <div class="v2-cmp-pane good">
+          <div class="v2-cmp-h"><span>${icon("compass")}${t("l2.cmpAfH")}</span></div>
+          <div class="v2-answers">${[1, 2, 3].map((i) => `<span class="v2-ans" style="--i:${i}">${icon("check")}${t("l2.cmpA" + i)}</span>`).join("")}</div>
+          <div class="v2-mini v2-cmp-list"><div class="v2-mini-h"><span>${t("l2.cmpListH")}</span></div>
+            ${row("money", t("l2.cmpP1"), t("l2.fdFed"), statusPill("q", "l2.cmpS4"), 0)}${row("money", t("l2.cmpP2"), "Ontario", statusPill("q", "l2.cmpS2"), 1)}${row("money", t("l2.cmpP3"), t("l2.fdFed"), statusPill("q", "l2.cmpS3"), 2)}</div>
+          <p class="v2-cmp-end">${t("l2.cmpAfEnd")}</p>
+        </div>
+      </div>
+    </section>`;
+
+  const lifeItems = [["life-diagnosed", "compass", "diagnosed"], ["life-turning18", "clock", "turning18"], ["life-parent", "family", "parent"], ["life-unable", "unable", "unable"], ["life-alberta", "globe", "alberta"], ["life-helper", "help", "helper"]];
+  const catCounts = Object.fromEntries(THEMES.map((th) => [th.key, CATALOGUE_INDEX.filter(([, level, , category]) => level !== "Your community" && benefitTheme({ category: category || "" }) === th.key).length]));
+  // Federal / provincial / local split per topic, straight from the index.
+  const provLevels = new Set(V2_PROVINCES.map((p) => p[1]));
+  const catSplit = (key) => {
+    const rows = CATALOGUE_INDEX.filter(([, level, , category]) => level !== "Your community" && benefitTheme({ category: category || "" }) === key);
+    const f = rows.filter((r) => r[1] === "Federal").length, p = rows.filter((r) => provLevels.has(r[1])).length;
+    return [f, p, rows.length - f - p];
+  };
+
+  return `
+  <section class="landing v2-landing">
+    <section class="hero-full">
+      <div class="hero-atmos" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <span class="eyebrow"><span class="dot"></span>${t("l2.eyebrow")}</span>
+        <h1 class="hero-title">${t("land.title")}</h1>
+        <p class="hero-sub">${t("land.sub")}</p>
+        <div class="hero-cta">
+          <button class="btn btn-primary js-start">${t("land.find")} ${icon("arrowRight")}</button>
+          <button class="btn btn-ghost js-browse">${icon("search")} ${t("menu.browse")}</button>
+        </div>
+        <div class="trust">
+          <span>${icon("lock")}${t("trust.private")}</span>
+          <span>${icon("check")}${t("trust.free")}</span>
+          <span>${icon("link")}${t("trust.official")}</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="hero-preview-wrap v2-explore-wrap">
+      <section class="preview v2-explore" aria-labelledby="v2ex-h">
+        <div class="v2-win-bar" aria-hidden="true"><i></i><i></i><i></i><span>abilityfinder.ca</span></div>
+        <div class="v2-explore-grid">
+          <div class="v2-explore-controls">
+            <h2 class="v2-kicker" id="v2ex-h">${t("l2.exLabel")}</h2>
+            <label class="v2-field"><span>${t("l2.exWhere")}</span>
+              <select id="v2ex-prov" class="select-input">
+                <option value="">${t("l2.exCanada")}</option>
+                ${V2_PROVINCES.map((p) => `<option value="${p[0]}"${v2ExploreProv === p[0] ? " selected" : ""}>${provName(p)}</option>`).join("")}
+              </select>
+            </label>
+            <fieldset class="v2-chipset"><legend>${t("l2.exTopic")}</legend>
+              ${[["all", "grid", t("l2.exAll")], ...THEMES.map((th) => [th.key, th.icon, t("l2.th." + th.key)])].map(([key, ic, label]) =>
+                `<button type="button" class="v2-chip" data-ex-theme="${key}" aria-pressed="${v2ExploreTheme === key}">${icon(ic)}${label}</button>`).join("")}
+            </fieldset>
+          </div>
+          <div class="v2-explore-out">
+            <div class="v2-count"><span aria-hidden="true"><b id="v2ex-n" data-n="0">0</b> <span id="v2ex-lbl">${t("l2.exCount")}</span></span><p class="v2-split" id="v2ex-split" aria-hidden="true"></p><p class="sr-only" id="v2ex-status" role="status"></p></div>
+            <p class="v2-top-lbl">${t("l2.exTop")}</p>
+            <ul class="v2-ex-list" id="v2ex-list"></ul>
+            <p class="v2-ex-note">${icon("info")}${t("l2.exNote")}</p>
+            <div class="v2-ex-actions">
+              <button class="btn btn-primary js-start">${t("l2.exCta")} ${icon("arrowRight")}</button>
+              <button class="btn btn-ghost" type="button" id="v2ex-all">${t("l2.exSeeAll")}</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="v2-sources" aria-label="${t("v2.sourcesLabel")}"><p>${t("v2.sources")}</p><div class="v2-marquee" aria-hidden="true"><div class="v2-track">${(() => { const d = ["canada.ca", "alberta.ca", "gov.bc.ca", "ontario.ca", "saskatchewan.ca", "gov.mb.ca", "gnb.ca", "novascotia.ca", "princeedwardisland.ca", "gov.nl.ca", "quebec.ca", "ramq.gouv.qc.ca"]; return [...d, ...d].map((x) => `<span>${x}</span>`).join(""); })()}</div></div></section>
+
+    ${compare}
+
+    <section class="v2-sec v2-feat v2-how reveal-v2" aria-labelledby="v2how-h">
+      ${tabsBlock("v2how", t("l2.howH"), "", [["how.1h", "how.1p"], ["how.2h", "how.2p"], ["how.3h", "how.3p"]], t("l2.howSub"))}
+      ${stage("v2how", howPanels)}
+    </section>
+
+    <section class="v2-sec v2-feat reveal-v2" aria-labelledby="v2feat-h">
+      ${tabsBlock("v2feat", t("v2.featH"), t("v2.featH2"), [["v2.f1h", "v2.f1p"], ["v2.f2h", "v2.f2p"], ["v2.f3h", "v2.f3p"], ["v2.f4h", "v2.f4p"]])}
+      ${stage("v2feat", featPanels)}
+    </section>
+
+    <section class="v2-sec life-events reveal-v2" aria-labelledby="life-events-title">
+      <div class="v2-sec-head stacked"><h2 class="v2-h2" id="life-events-title">${t("life.title")}</h2><p>${t("l2.lifeSub")}</p></div>
+      <div class="life-event-grid v2-life">
+        ${lifeItems.map(([nav, ic, key]) => `<button class="life-event-card menu-item" type="button" data-nav="${nav}">
+          <span class="life-event-icon" aria-hidden="true">${icon(ic)}</span>
+          <span class="life-event-copy"><span class="life-event-title">${t("life." + key + ".h")}</span><span class="life-event-description">${t("life." + key + ".p")}</span></span>
+          <span class="life-event-arrow" aria-hidden="true">${icon("arrowRight")}</span>
+        </button>`).join("")}
+      </div>
+    </section>
+
+    <section class="v2-sec v2-cats reveal-v2" aria-labelledby="v2cats-h">
+      <div class="v2-sec-head stacked"><h2 class="v2-h2" id="v2cats-h">${t("l2.catH")}</h2><p>${t("l2.catSub")}</p></div>
+      <div class="v2-cat-grid">
+        ${THEMES.map((th, i) => { const [f, p, l] = catSplit(th.key), total = f + p + l || 1; return `<button type="button" class="v2-cat" data-cat-theme="${th.key}" style="--i:${i}">
+          <span class="v2-cat-top"><span class="v2-ic">${icon(th.icon)}</span><span class="v2-cat-n"><b>${catCounts[th.key]}</b> ${t("l2.catPrograms")}</span></span>
+          <span class="v2-cat-name">${t("l2.th." + th.key)}</span>
+          <span class="v2-cat-eg">${t("l2.cd." + th.key)}</span>
+          <span class="v2-cat-bar" aria-hidden="true"><i class="f" style="width:${(f / total) * 100}%"></i><i class="p" style="width:${(p / total) * 100}%"></i><i class="l" style="width:${(l / total) * 100}%"></i></span>
+          <span class="v2-cat-legend">${t("l2.exSplit").replace("{f}", f).replace("{p}", p).replace("{l}", l)}</span>
+          <span class="v2-cat-go">${t("l2.catBrowse")} ${icon("arrowRight")}</span>
+        </button>`; }).join("")}
+      </div>
+      <p class="cats-note">${t("cats.note")}</p>
+    </section>
+
+${landingTailHtml()}
+  </section>`;
+}
+
+/* Fills the explorer's results from the catalogue index; loads a province's
+   program names the first time that province is picked. */
+function v2ExploreUpdate(root) {
+  const out = root.querySelector(".v2-explore-out");
+  if (!out) return;
+  const prov = v2ExploreProv, theme = v2ExploreTheme;
+  const rows = v2CatalogRows(prov, theme);
+  const provName = prov ? V2_PROVINCES.find(([code]) => code === prov)[1] : null;
+  const fed = rows.filter((r) => r[1] === "Federal").length, provincial = provName ? rows.filter((r) => r[1] === provName).length : 0;
+  v2CountTo(root.querySelector("#v2ex-n"), rows.length);
+  root.querySelector("#v2ex-lbl").textContent = rows.length === 1 ? t("l2.exCountOne") : t("l2.exCount");
+  root.querySelector("#v2ex-split").textContent = prov ? t("l2.exSplit").replace("{f}", fed).replace("{p}", provincial).replace("{l}", rows.length - fed - provincial) : t("l2.exFedOnly");
+  // One announcement with the final numbers (the visible count animates, so it is hidden from screen readers).
+  root.querySelector("#v2ex-status").textContent = `${rows.length} ${root.querySelector("#v2ex-lbl").textContent}. ${root.querySelector("#v2ex-split").textContent}`;
+  const list = root.querySelector("#v2ex-list");
+  const ids = new Set(rows.map((r) => r[0]));
+  const loaded = BENEFITS.filter((b) => ids.has(b.id));
+  if (loaded.length < rows.length && prov) {
+    list.innerHTML = Array.from({ length: 4 }, () => `<li class="v2-skel" aria-hidden="true"><i></i><span></span></li>`).join("") + `<li class="sr-only">${t("l2.exLoading")}</li>`;
+    ensurePacks([prov]).then(() => { if (v2ExploreProv === prov && root.isConnected && BENEFITS.some((b) => ids.has(b.id) && b.level !== "Federal")) v2ExploreUpdate(root); })
+      .catch(() => { if (v2ExploreProv === prov && root.isConnected) list.innerHTML = `<li class="v2-ex-err">${t("l2.exError")}</li>`; });
+    return;
+  }
+  const top = loaded.sort((a, b) => priorityScore(b) - priorityScore(a)).slice(0, 5);
+  list.innerHTML = top.map((b, i) => `<li style="--i:${i}"><button type="button" class="v2-ex-item" data-id="${reqEscape(b.id)}"><span class="v2-ic">${icon(v2ThemeIcon(benefitTheme(b)))}</span><span class="v2-row-t"><b${recLang(b) !== "en" ? ` lang="${recLang(b)}"` : ""}>${reqEscape(b.name)}</b><small>${reqEscape(b.level)}</small></span>${icon("arrowRight")}</button></li>`).join("");
+}
+function v2ExploreWire(app) {
+  const root = app.querySelector(".v2-explore");
+  if (!root) return;
+  const sel = root.querySelector("#v2ex-prov");
+  if (!v2ExploreProv && COVERED_PROVINCES.includes(answers.province)) { v2ExploreProv = answers.province; sel.value = answers.province; }
+  sel.addEventListener("change", () => { v2ExploreProv = sel.value || null; v2ExploreUpdate(root); });
+  root.querySelectorAll("[data-ex-theme]").forEach((chip) => chip.addEventListener("click", () => {
+    v2ExploreTheme = chip.dataset.exTheme;
+    root.querySelectorAll("[data-ex-theme]").forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
+    v2ExploreUpdate(root);
+  }));
+  root.querySelector("#v2ex-list").addEventListener("click", (e) => {
+    const item = e.target.closest(".v2-ex-item");
+    if (item) { detailFrom = "landing"; setState("detail", { detailId: item.dataset.id }); }
+  });
+  root.querySelector("#v2ex-all").addEventListener("click", () => { browseTheme = v2ExploreTheme; browseQuery = ""; navigateBrowse(); });
+  v2ExploreUpdate(root);
+}
+
+/* Scripted demo: steps advance on a timer and loop; a pause button stops it.
+   Without motion it shows the finished state and the pause button is hidden. */
+function v2Demo(section) {
+  const demo = section.querySelector(".v2-demo"), btn = section.querySelector(".v2-pause");
+  const typer = demo.querySelector(".js-type"), tabs = demo.querySelector(".js-tabs");
+  const steps = [{ ms: 2200, tabs: 1 }, { ms: 1700, tabs: 6 }, { ms: 1700, tabs: 17 }, { ms: 2600, tabs: 40 }, { ms: 5200, tabs: 40 }];
+  const text = typer ? typer.dataset.text : "";
+  const set = (n) => {
+    demo.dataset.step = n;
+    for (let k = 1; k < steps.length; k++) demo.classList.toggle("s" + k, n >= k); // cumulative, so CSS can say "from step k on"
+    if (tabs) tabs.textContent = steps[Math.min(n, steps.length - 1)].tabs;
+    if (typer) typer.textContent = n === 0 ? "" : text;
+  };
+  if (!v2MotionAllowed()) { set(steps.length - 1); if (btn) btn.hidden = true; return; }
+  let n = 0, timer = null, typing = null, paused = false;
+  const type = () => {
+    let k = 0; clearInterval(typing);
+    typing = setInterval(() => { if (paused) return; typer.textContent = text.slice(0, ++k); if (k >= text.length) clearInterval(typing); }, 55);
+  };
+  const run = () => {
+    clearTimeout(timer);
+    if (!section.isConnected) { clearInterval(typing); return; }
+    set(n); if (n === 0 && typer) type();
+    timer = setTimeout(() => { if (!paused && !document.hidden) n = (n + 1) % steps.length; run(); }, steps[n].ms);
+  };
+  btn.addEventListener("click", () => {
+    paused = !paused;
+    btn.setAttribute("aria-pressed", String(paused)); btn.setAttribute("aria-label", t(paused ? "l2.play" : "l2.pause")); btn.title = t(paused ? "l2.play" : "l2.pause");
+    demo.classList.toggle("paused", paused);
+  });
+  // Start when it scrolls into view, so people see it from the beginning.
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); v2Observers.delete(io); run(); } }, { threshold: 0.3 });
+    v2Observers.add(io); io.observe(demo);
+  } else run();
+}
+function v2CatsWire(app) {
+  app.querySelectorAll("[data-cat-theme]").forEach((card) => {
+    card.addEventListener("click", () => { browseTheme = card.dataset.catTheme; browseQuery = ""; navigateBrowse(); });
+    card.addEventListener("pointermove", (e) => { const r = card.getBoundingClientRect(); card.style.setProperty("--x", `${e.clientX - r.left}px`); card.style.setProperty("--y", `${e.clientY - r.top}px`); });
+  });
+}
+
+/* Final call to action, feedback form and footer: shared by both landing designs. */
+function landingTailHtml() {
+  return `
+    <div class="final-cta">
+      <h2>${t("final.title")}</h2>
+      <p>${t("final.sub")}</p>
+      <button class="btn btn-primary js-start">${t("land.find")} ${icon("arrowRight")}</button>
+    </div>
+
+    <div class="section feedback" id="feedback">
+      <span class="eyebrow"><span class="dot"></span>${t("fb.label")}</span>
+      <h2 class="section-title">${t("fb.title")}</h2>
+      <p class="feedback-lead">${t("fb.lead")}</p>
+      <div class="fb-grid">
+        <label class="fb-field"><span class="fb-lbl">${t("fb.typeLabel")}</span>
+          <select id="fb-type" class="select-input">
+            <option value="Feature request">${t("fb.tFeature")}</option>
+            <option value="Bug or broken link">${t("fb.tBug")}</option>
+            <option value="Missing benefit">${t("fb.tMissing")}</option>
+            <option value="Something else">${t("fb.tOther")}</option>
+          </select>
+        </label>
+        <label class="fb-field"><span class="fb-lbl">${t("fb.emailLabel")} <span class="opt-tag">${t("fb.optional")}</span></span>
+          <input type="email" id="fb-email" class="text-input" placeholder="you@example.com" />
+        </label>
+      </div>
+      <label class="fb-field"><span class="fb-lbl">${t("fb.msgLabel")}</span>
+        <textarea id="fb-msg" class="text-input" rows="4" placeholder="${t("fb.placeholder")}" aria-describedby="fb-status" aria-invalid="false"></textarea>
+      </label>
+      <div class="fb-actions">
+        <button class="btn btn-primary" id="fb-send">${t("fb.send")} ${icon("arrowRight")}</button>
+        <button class="btn btn-ghost" id="fb-mailto" type="button">${icon("external")} Open my email app instead</button>
+      </div>
+      <p class="fb-note" id="fb-status" role="status" aria-live="polite">${t("fb.note")}</p>
+    </div>
+
+    <p class="disclaimer">${t("disclaimer")}</p>
+
+    <footer class="site-footer">
+      <div class="sf-brand">${icon("compass")} AbilityFinder</div>
+      <div class="sf-links">
+        <button class="linklike js-privacy">Privacy &amp; disclaimer</button>
+        <button class="linklike" type="button" data-info-nav="accessibility">${t("footer.accessibility")}</button>
+        <button class="linklike js-about">About &amp; how we verify</button>
+        <button class="linklike js-support">Support AbilityFinder</button>
+        <button class="linklike js-updates">Data updates</button>
+        <button class="linklike" type="button" data-info-nav="impact">${t("footer.impact")}</button>
+        <button class="linklike" type="button" data-info-nav="professionals">${t("footer.professionals")}</button>
+        <button class="linklike" type="button" data-info-nav="grants">${t("footer.grants")}</button>
+        <button class="linklike" type="button" data-info-nav="organizations">${t("footer.organizations")}</button>
+        <button class="linklike js-browse">${t("menu.browse")}</button>
+        <span class="sf-note">${SCOPE_LABEL} · Each guide shows when it was last checked · Not government-affiliated</span>
+      </div>
+    </footer>
+`;
+}
+
 function renderLanding() {
+  if (document.documentElement.classList.contains("v2")) return renderLandingV2();
   const cat = (ic, key) => `<span class="cat">${icon(ic)}${t("cat." + key)}</span>`;
   return `
   <section class="landing">
@@ -5247,57 +5609,7 @@ function renderLanding() {
       <p class="cats-note">${t("cats.note")}</p>
     </div>
 
-    <div class="final-cta">
-      <h2>${t("final.title")}</h2>
-      <p>${t("final.sub")}</p>
-      <button class="btn btn-primary js-start">${t("land.find")} ${icon("arrowRight")}</button>
-    </div>
-
-    <div class="section feedback" id="feedback">
-      <span class="eyebrow"><span class="dot"></span>${t("fb.label")}</span>
-      <h2 class="section-title">${t("fb.title")}</h2>
-      <p class="feedback-lead">${t("fb.lead")}</p>
-      <div class="fb-grid">
-        <label class="fb-field"><span class="fb-lbl">${t("fb.typeLabel")}</span>
-          <select id="fb-type" class="select-input">
-            <option value="Feature request">${t("fb.tFeature")}</option>
-            <option value="Bug or broken link">${t("fb.tBug")}</option>
-            <option value="Missing benefit">${t("fb.tMissing")}</option>
-            <option value="Something else">${t("fb.tOther")}</option>
-          </select>
-        </label>
-        <label class="fb-field"><span class="fb-lbl">${t("fb.emailLabel")} <span class="opt-tag">${t("fb.optional")}</span></span>
-          <input type="email" id="fb-email" class="text-input" placeholder="you@example.com" />
-        </label>
-      </div>
-      <label class="fb-field"><span class="fb-lbl">${t("fb.msgLabel")}</span>
-        <textarea id="fb-msg" class="text-input" rows="4" placeholder="${t("fb.placeholder")}" aria-describedby="fb-status" aria-invalid="false"></textarea>
-      </label>
-      <div class="fb-actions">
-        <button class="btn btn-primary" id="fb-send">${t("fb.send")} ${icon("arrowRight")}</button>
-        <button class="btn btn-ghost" id="fb-mailto" type="button">${icon("external")} Open my email app instead</button>
-      </div>
-      <p class="fb-note" id="fb-status" role="status" aria-live="polite">${t("fb.note")}</p>
-    </div>
-
-    <p class="disclaimer">${t("disclaimer")}</p>
-
-    <footer class="site-footer">
-      <div class="sf-brand">${icon("compass")} AbilityFinder</div>
-      <div class="sf-links">
-        <button class="linklike js-privacy">Privacy &amp; disclaimer</button>
-        <button class="linklike" type="button" data-info-nav="accessibility">${t("footer.accessibility")}</button>
-        <button class="linklike js-about">About &amp; how we verify</button>
-        <button class="linklike js-support">Support AbilityFinder</button>
-        <button class="linklike js-updates">Data updates</button>
-        <button class="linklike" type="button" data-info-nav="impact">${t("footer.impact")}</button>
-        <button class="linklike" type="button" data-info-nav="professionals">${t("footer.professionals")}</button>
-        <button class="linklike" type="button" data-info-nav="grants">${t("footer.grants")}</button>
-        <button class="linklike" type="button" data-info-nav="organizations">${t("footer.organizations")}</button>
-        <button class="linklike js-browse">${t("menu.browse")}</button>
-        <span class="sf-note">${SCOPE_LABEL} · Each guide shows when it was last checked · Not government-affiliated</span>
-      </div>
-    </footer>
+${landingTailHtml()}
   </section>`;
 }
 
@@ -8411,7 +8723,7 @@ function p2Sections(b) {
 
 function renderGuideBody(b, r = evaluate(b), options = {}) {
   const inline = !!options.inline;
-  const backBtn = (idn) => `<button class="back-link${idn === "d-back2" ? " bottom" : ""}" id="${idn}">${icon("arrowLeft")} ${t("det.back")}</button>`;
+  const backBtn = (idn) => `<button class="back-link${idn === "d-back2" ? " bottom" : ""}" id="${idn}">${icon("arrowLeft")} ${t(typeof detailFrom !== "undefined" && detailFrom === "landing" ? "det.backHome" : "det.back")}</button>`;
   const d = b.detail || {};
   const guideSteps = d.steps && d.steps.length ? d.steps : [
     "Open the official program page and review the current eligibility rules, dates and application method.",
@@ -8598,7 +8910,7 @@ function wireDetail() {
   // separately by the popstate listener.
   ["d-back", "d-back2"].forEach((id) => {
     const el = document.getElementById(id);
-    if (el) el.addEventListener("click", () => setState(detailFrom === "browse" ? "browse" : "results"));
+    if (el) el.addEventListener("click", () => setState(detailFrom === "browse" ? "browse" : detailFrom === "landing" ? "landing" : "results"));
   });
 
   wireGuideInteractions(document.querySelector(".detail") || document);

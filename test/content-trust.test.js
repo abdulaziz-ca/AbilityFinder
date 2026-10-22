@@ -54,7 +54,8 @@ test('landing illustration contains neither prices nor a match verdict', () => {
 test('French scope follows both province flags and French results match the English caveat', () => {
   const ctx = context();
   vm.runInContext('var BC_ENABLED = true; var ON_ENABLED = true; LANG = "fr";', ctx);
-  for (const key of ['land.eyebrow', 'orgs.lede', 'pro.what.p', 'life.alberta.h', 'partner.title']) {
+  // life.alberta.h is province-neutral since the 2026-10-21 landing rewrite ("Just moved to a new province").
+  for (const key of ['land.eyebrow', 'orgs.lede', 'pro.what.p', 'partner.title']) {
     assert.match(vm.runInContext(`t(${JSON.stringify(key)})`, ctx), /Ontario|ontariens|Ontariens/);
   }
   for (const counts of [[1,0], [0,1], [1,1], [0,0]]) {

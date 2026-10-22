@@ -6,6 +6,25 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-21 — Home page, second pass (your feedback)
+
+### Shipped (`?v=242`)
+- **Canada-wide** label at the top (no province list), and the header tag says "Canada" until a province is picked.
+- **Header centred** on the page column (it was stuck to the left).
+- **Catalog explorer** replaces the placeholder preview: pick a province and a topic and see real counts
+  (federal / provincial / local) and the five most useful programs; click one to open its guide
+  ("Back to the home page" returns). Clearly labelled "our catalog, not your match".
+- **Search vs AbilityFinder demo** and **How it works demo** moved up under "Every program links to its official
+  source": a search that ends at 40 tabs, beside a three-answer short list; then the real first question, an example
+  list and the real Disability Tax Credit checklist. Both have a pause button (Mercury-style).
+- **Everything you need to apply**: four small product screens (list with reasons, a calendar of dates, a document
+  checklist, free help including 211).
+- **Where are you starting from**: one tidy 3×2 grid, reworded (e.g. "Just moved to a new province").
+- **What you could find**: six topic cards with real program counts and a federal/provincial/local bar; each opens
+  the catalog on that topic.
+- Codex reviewed it; fixed what it found (a too-confident "Matches your answers" in the demo, the 211 wording, screen
+  reader announcements, the French "Play" label, and "less motion" now stopping everything immediately).
+
 ## 2026-10-21 — The redesign is live
 
 ### Shipped

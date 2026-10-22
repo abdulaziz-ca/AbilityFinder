@@ -23,7 +23,8 @@ function generate() {
     const owners = ["Federal", "Your community"].includes(b.level) ? [] : PACKS.filter((p, i) => b.level === NAMES[i] || CITIES_BY_PROVINCE[p].includes(b.level) || (p === "BC" && b.level === "Metro Vancouver") || (p === "ON" && ON_REGIONS.includes(b.level)) || (p === "AB" && b.level === "Spruce Grove area"));
     if (!["Federal", "Your community"].includes(b.level) && !owners.length) throw new Error(`No pack for ${b.id}: ${b.level}`);
     for (const p of owners) packs[p].push(b);
-    return [b.id, b.level, owners[0] || null];
+    // The category lets the landing page count programs by topic without loading every pack.
+    return [b.id, b.level, owners[0] || null, b.category || ""];
   });
   const begin = source.indexOf("const BENEFITS = [");
   const end = source.indexOf("\n];", begin) + 3;

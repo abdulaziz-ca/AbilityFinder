@@ -668,7 +668,9 @@ test("DTC disability amount is not presented as cash, tax savings, or back-pay e
   expect(dtcModel.priorityScore).toBeLessThan(10);
 
   await expect(page.locator("body")).not.toContainText("$10,138");
-  await expect(page.locator(".pv-hero-val")).toHaveText("Amounts vary");
+  // The landing catalog explorer lists programs, never amounts or a verdict.
+  await expect(page.locator(".v2-explore")).toBeVisible();
+  await expect(page.locator(".v2-explore")).not.toContainText("$");
 });
 
 test("money band covers empty, ready, mixed, zero-total, and RDSP states", async ({ page }) => {
