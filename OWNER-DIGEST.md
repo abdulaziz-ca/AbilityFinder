@@ -6,6 +6,17 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-22 — Last redesign pieces
+
+### Shipped (`?v=249`)
+- **Help topics** (the "Not sure which one to pick?" pages from the questions): the points are numbered cards, with a
+  clear "Back to the question" button at the end.
+- **Partner overview**: stat tiles and section cards; still prints plainly. Its text no longer says AbilityFinder
+  "does not track visitors" — that stopped being true when visit statistics were turned on; it now says visits are
+  counted with cookieless Cloudflare Web Analytics.
+- **Catalog filters in French**: categories, levels (Fédéral, Colombie-Britannique, Local / ville…) and disability
+  types now show in French on the French site. English is unchanged.
+
 ## 2026-10-22 — Info pages redesign
 
 ### Shipped (`?v=248`)

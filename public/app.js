@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "248";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "249";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -8727,15 +8727,24 @@ function browseNotesHtml() {
   return disNote + needNote;
 }
 function renderBrowse() {
-  const themeChips = [browseChip(browseTheme === "all", "all", "All categories", "btheme")]
-    .concat(THEMES.map((th) => browseChip(browseTheme === th.key, th.key, th.label, "btheme")))
+  // French labels for the filter chips; English keeps its original wording.
+  const fr = LANG === "fr";
+  const frDis = (fr && typeof STEP_I18N !== "undefined" && STEP_I18N.fr && STEP_I18N.fr.disabilities && STEP_I18N.fr.disabilities.options) || {};
+  const levelLabel = (l) => {
+    if (!fr) return l.label;
+    if (l.key === "all" || l.key === "Federal" || l.key === "local") return t({ all: "l2b.allLevels", Federal: "l2.fdFed", local: "l2b.localCity" }[l.key]);
+    const p = V2_PROVINCES.find((row) => row[1] === l.key);
+    return p ? p[2] : l.label;
+  };
+  const themeChips = [browseChip(browseTheme === "all", "all", fr ? t("l2b.allCat") : "All categories", "btheme")]
+    .concat(THEMES.map((th) => browseChip(browseTheme === th.key, th.key, fr ? t("l2.th." + th.key) : th.label, "btheme")))
     .join("");
   const levelChips = BROWSE_LEVELS
-    .map((l) => browseChip(browseLevel === l.key, l.key, l.label, "blevel"))
+    .map((l) => browseChip(browseLevel === l.key, l.key, levelLabel(l), "blevel"))
     .join("");
-  const disChips = [browseChip(browseDis === "all", "all", "Any disability", "bdis")]
+  const disChips = [browseChip(browseDis === "all", "all", fr ? t("l2b.anyDis") : "Any disability", "bdis")]
     .concat(DISABILITIES.filter((d) => d.value !== "other")
-      .map((d) => browseChip(browseDis === d.value, d.value, d.label, "bdis")))
+      .map((d) => browseChip(browseDis === d.value, d.value, frDis[d.value] || d.label, "bdis")))
     .join("");
   const needChips = [browseChip(browseNeed === "all", "all", t("browse.need.any"), "bneed")]
     // Offer only needs that at least one program is aimed at; a chip whose only

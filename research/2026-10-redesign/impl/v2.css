@@ -84,7 +84,7 @@ html.v2 .wrap { max-width: none; width: 100%; margin: 0; padding: 0; overflow-x:
 html.v2 #app, html.v2 .wrap > .progress { width: auto; max-width: 1152px; margin-left: auto; margin-right: auto; box-sizing: content-box; padding-left: 24px; padding-right: 24px; }
 html.v2[data-view="wizard"] #app, html.v2[data-view="wizard"] .wrap > .progress { max-width: 1032px; }
 html.v2[data-view="privacy"] #app, html.v2[data-view="about"] #app, html.v2[data-view="accessibility"] #app,
-html.v2[data-view="coverage"] #app, html.v2[data-view="support"] #app, html.v2[data-view="help"] #app { max-width: 812px; }
+html.v2[data-view="coverage"] #app, html.v2[data-view="support"] #app, html.v2[data-view="help"] #app { max-width: 1152px; }
 
 /* ── Buttons: slim pills (~40px, hit area 44px) ── */
 html.v2 .btn { position: relative; min-height: 42px; height: auto; padding: 9px 18px; border-radius: 999px; font-size: 0.9rem; font-weight: 540; letter-spacing: -0.005em; gap: 7px; transition: background 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease), border-color 0.2s; }
@@ -980,3 +980,41 @@ html.v2 .updates-feed-heading { display: flex; justify-content: space-between; a
 html.v2 .updates-feed-heading h3 { margin: 0; font-size: 0.98rem; font-weight: 600; color: var(--text); }
 html.v2 .updates-feed-heading time { flex: 0 0 auto; padding: 2px 10px; border-radius: 999px; background: var(--ok-soft); color: var(--ok); font-size: 0.74rem; font-weight: 560; }
 html.v2 .updates-feed:not(.updates-changelog) .updates-feed-item p { margin: 6px 0 0; font-size: 0.9rem; }
+
+/* ── Help topics and partner overview (2026-10-22) ── */
+/* Help topic: the points as a numbered timeline of cards, then a clear way back. */
+html.v2 .helppage .pt-list { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 12px; }
+html.v2 .helppage .pt-item { position: relative; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 16px; margin: 0; padding: 20px 22px; border: 1px solid var(--hair-2); border-radius: 18px; background: linear-gradient(180deg, var(--panel), var(--bg-2)); }
+html.v2 .helppage .pt-num { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--accent-line); background: var(--panel-2); color: var(--text); font: 600 0.9rem/1 var(--font-sans); opacity: 1; }
+html.v2 .helppage .pt-item h4 { margin: 4px 0 8px; font-size: 1.06rem; font-weight: 600; letter-spacing: -0.015em; color: var(--text); }
+html.v2 .helppage .pt-item p { margin: 0; color: var(--text-dim); line-height: 1.7; }
+html.v2 .helppage .pt-item p b, html.v2 .helppage .pt-item p strong { color: var(--text); }
+html.v2 .helppage .pt-foot { display: flex; gap: 10px; align-items: flex-start; margin: 16px 0 0; padding: 16px 18px; border-radius: 16px; border: 1px solid var(--accent-line); background: var(--accent-soft); color: var(--text); }
+html.v2 .helppage .pt-foot .ic { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 2px; color: var(--accent); }
+html.v2 .helppage .back-link.bottom { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 0 18px; border-radius: 999px; background: var(--btn); color: var(--btn-ink); font-weight: 560; text-decoration: none; }
+/* Partner overview: one-page summary with stat tiles and cards; prints plainly. */
+html.v2 .partner-overview { padding-top: 28px; }
+html.v2 .partner-head { display: grid; gap: 16px; padding-bottom: 8px; border: 0; }
+html.v2 .partner-head .section-label { display: flex; width: fit-content; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--hair-2); background: var(--panel); font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.14em; color: var(--text-dim); }
+html.v2 .partner-head .legal-title { font-family: var(--font-sans); font-size: clamp(2.1rem, 4.4vw, 3.3rem); font-weight: 580; letter-spacing: -0.045em; line-height: 1.06; margin: 14px 0 12px; }
+html.v2 .partner-head .legal-lede { font-size: 1.1rem; color: var(--text-dim); max-width: 62ch; border: 0; padding: 0; }
+html.v2 .partner-actions { display: flex; flex-direction: row-reverse; justify-content: flex-end; align-items: center; gap: 10px; }
+html.v2 .partner-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 20px 0 0; border: 0; }
+html.v2 .partner-metrics > div { display: grid; gap: 6px; padding: 22px; border: 1px solid var(--hair-2); border-radius: 18px; background: linear-gradient(180deg, var(--panel), var(--bg-2)); }
+html.v2 .partner-metrics strong { font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 600; letter-spacing: -0.045em; line-height: 1; color: var(--text); }
+html.v2 .partner-metrics span { color: var(--text-dim); }
+html.v2 .partner-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+html.v2 .partner-grid > section { margin: 0; padding: 22px; border: 1px solid var(--hair-2); border-radius: 18px; background: var(--panel); }
+html.v2 .partner-grid h2 { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; font-size: 1.08rem; font-weight: 600; }
+html.v2 .partner-grid h2 .ic { width: 16px; height: 16px; padding: 7px; box-sizing: content-box; border-radius: 10px; background: var(--accent-soft); color: var(--accent); }
+html.v2 .partner-grid p { margin: 0; color: var(--text-dim); line-height: 1.65; }
+html.v2 .partner-foot { margin-top: 20px; color: var(--text-dimmer); font-size: 0.8rem; }
+@media (max-width: 700px) {
+  html.v2 .partner-metrics, html.v2 .partner-grid { grid-template-columns: 1fr; }
+  html.v2 .helppage .pt-item { grid-template-columns: 1fr; gap: 10px; }
+}
+@media print {
+  html.v2 .partner-metrics > div, html.v2 .partner-grid > section, html.v2 .helppage .pt-item { background: none; border-color: #bbb; }
+  html.v2 .partner-actions { display: none; }
+}
+html.v2 .partner-metrics { background: none; }

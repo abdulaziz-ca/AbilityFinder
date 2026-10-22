@@ -181,3 +181,25 @@ test("info pages get an On this page list and older data changes fold away", asy
   await more.locator("summary").click();
   await expect(more.locator(".updates-feed-item").first()).toBeVisible();
 });
+
+test("catalog filter chips are in French on the French site, English unchanged", async ({ page }) => {
+  await gotoReady(page);
+  await page.evaluate(() => setState("browse"));
+  await expect(page.locator('[data-blevel="Federal"]')).toHaveText("Federal");
+  await page.evaluate(() => { LANG = "fr"; render(); });
+  await expect(page.locator('[data-blevel="Federal"]')).toHaveText("Fédéral");
+  await expect(page.locator('[data-blevel="British Columbia"]')).toHaveText("Colombie-Britannique");
+  await expect(page.locator('[data-bdis="physical"]')).toHaveText("Physique / mobilité");
+  await expect(page.locator('[data-btheme="all"]')).toHaveText("Toutes les catégories");
+});
+
+test("help topic and partner overview render with the v2 layout", async ({ page }) => {
+  await gotoReady(page);
+  await page.evaluate(() => { helpReturnStep = 1; helpTopic = "disabilities"; setState("help"); });
+  await expect(page.locator(".helppage .pt-item")).not.toHaveCount(0);
+  await page.locator("#hp-back2").click();
+  await expect(page.locator("#wizard-question")).toBeVisible();
+  await page.evaluate(() => setState("partner-overview"));
+  await expect(page.locator(".partner-metrics > div")).toHaveCount(2);
+  await expect(page.locator("#partnerOverview")).not.toContainText("does not track visitors");
+});
