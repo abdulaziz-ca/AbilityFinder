@@ -919,3 +919,64 @@ html.v2 .grants-suggest, html.v2 .orgs-suggest, html.v2 .orgs-rules { margin-top
   html.v2 .v2-dir-layout .grants-filter[aria-pressed="true"] { box-shadow: none; border-color: var(--accent-line); }
 }
 html.v2 .grants-page, html.v2 .orgs-page { max-width: none; }
+
+/* ── Info pages v2.1 (about, coverage, support, privacy, updates, impact, professionals,
+   accessibility; owner request 2026-10-22): one docs-style layout — big header, sections
+   as cards, and a sticky "On this page" list when a page has three or more sections. ── */
+html.v2[data-view="privacy"] #app, html.v2[data-view="about"] #app, html.v2[data-view="accessibility"] #app,
+html.v2[data-view="coverage"] #app, html.v2[data-view="support"] #app { max-width: 1152px; }
+html.v2 section.legal { max-width: 820px; }
+html.v2 section.legal.has-toc { max-width: none; display: grid; grid-template-columns: minmax(0, 780px) minmax(220px, 260px); column-gap: 56px; justify-content: space-between; align-items: start; }
+html.v2 section.legal.has-toc > * { grid-column: 1; }
+html.v2 section.legal.has-toc > .v2-toc { grid-column: 2; grid-row: 1 / span 40; align-self: start; position: sticky; top: 92px; margin-top: 44px; }
+html.v2 section.legal .section-label { display: flex; align-items: center; justify-self: start; width: fit-content; margin: 18px 0 0; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--hair-2); background: var(--panel); font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.14em; color: var(--text-dim); }
+html.v2 section.legal .legal-title { font-family: var(--font-sans); font-size: clamp(2.1rem, 4.4vw, 3.3rem); font-weight: 580; letter-spacing: -0.045em; line-height: 1.06; margin: 16px 0 12px; }
+html.v2 section.legal .legal-lede { font-size: 1.1rem; color: var(--text-dim); max-width: 62ch; margin: 0 0 12px; padding: 0; border: 0; }
+html.v2 section.legal > .legal-block { margin: 16px 0 0; padding: 24px 26px; border: 1px solid var(--hair-2); border-radius: 18px; background: linear-gradient(180deg, var(--panel), var(--bg-2)); }
+html.v2 section.legal > .legal-block:first-of-type { margin-top: 28px; }
+html.v2 section.legal > .legal-block h2 { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; font-family: var(--font-sans); font-size: 1.22rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text); scroll-margin-top: 96px; }
+html.v2 section.legal > .legal-block h2 > .ic { flex: 0 0 auto; width: 18px; height: 18px; padding: 7px; box-sizing: content-box; border-radius: 10px; background: var(--accent-soft); color: var(--accent); }
+html.v2 section.legal > .legal-block h2:focus { outline: none; }
+html.v2 section.legal > .legal-block h2:focus-visible { outline: 3px solid var(--accent); outline-offset: 6px; border-radius: 8px; }
+html.v2 section.legal > .legal-block p, html.v2 section.legal > .legal-block li { color: var(--text-dim); line-height: 1.7; }
+html.v2 section.legal > .legal-block p:last-child { margin-bottom: 0; }
+html.v2 section.legal > .legal-block b, html.v2 section.legal > .legal-block strong { color: var(--text); }
+html.v2 section.legal > .legal-block ul { padding-left: 0; list-style: none; display: grid; gap: 8px; }
+html.v2 section.legal > .legal-block ul > li { position: relative; padding-left: 22px; }
+html.v2 section.legal > .legal-block ul > li::before { content: ""; position: absolute; left: 4px; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+html.v2 section.legal .back-link.bottom { margin-top: 32px; }
+/* Impact: numbers as stat tiles */
+html.v2 .impact-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 4px 0 12px; }
+html.v2 .impact-metric { display: grid; gap: 4px; padding: 16px; border-radius: 14px; border: 1px solid var(--hair); background: var(--bg-2); }
+html.v2 .impact-metric strong { font-size: 2rem; font-weight: 600; letter-spacing: -0.04em; line-height: 1; color: var(--text); font-variant-numeric: tabular-nums; }
+html.v2 .impact-metric span { font-size: 0.84rem; color: var(--text-dim); }
+html.v2 .impact-levels { display: flex; flex-wrap: wrap; gap: 8px; }
+html.v2 .impact-levels span { padding: 5px 12px; border-radius: 999px; border: 1px solid var(--hair-2); font-size: 0.84rem; color: var(--text-dim); }
+html.v2 .impact-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 24px; }
+html.v2 .impact-links button { display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-radius: 16px; border: 1px solid var(--hair-2); background: var(--panel); color: var(--text); font: inherit; font-weight: 560; text-align: left; cursor: pointer; transition: border-color 0.25s; }
+html.v2 .impact-links button:hover { border-color: var(--accent-line); }
+html.v2 .impact-links button span { flex: 1; }
+html.v2 .impact-links button .ic { width: 18px; height: 18px; color: var(--accent); }
+/* Data updates: a compact timeline */
+html.v2 .updates-feed { list-style: none; margin: 0; padding: 0; display: grid; }
+html.v2 .updates-changelog .updates-feed-item { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-top: 1px solid var(--hair); }
+html.v2 .updates-changelog .updates-feed-item:first-child { border-top: 0; }
+html.v2 .updates-changelog .updates-feed-item time { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dimmer); padding-top: 3px; }
+html.v2 .updates-changelog .updates-feed-item p { margin: 0; }
+html.v2 .v2-more { margin-top: 12px; border-top: 1px solid var(--hair); }
+html.v2 .v2-more > summary { padding: 14px 0 4px; cursor: pointer; color: var(--accent-hi); font-weight: 560; }
+@media (max-width: 1000px) {
+  html.v2 section.legal.has-toc { display: block; }
+  html.v2 section.legal.has-toc > .v2-toc { display: none; }
+}
+@media (max-width: 640px) {
+  html.v2 .impact-metrics, html.v2 .impact-links { grid-template-columns: 1fr; }
+  html.v2 .updates-changelog .updates-feed-item { grid-template-columns: 1fr; gap: 2px; }
+  html.v2 section.legal > .legal-block { padding: 18px; }
+}
+html.v2 .updates-feed:not(.updates-changelog) .updates-feed-item { padding: 14px 0; border-top: 1px solid var(--hair); }
+html.v2 .updates-feed:not(.updates-changelog) .updates-feed-item:first-child { border-top: 0; }
+html.v2 .updates-feed-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+html.v2 .updates-feed-heading h3 { margin: 0; font-size: 0.98rem; font-weight: 600; color: var(--text); }
+html.v2 .updates-feed-heading time { flex: 0 0 auto; padding: 2px 10px; border-radius: 999px; background: var(--ok-soft); color: var(--ok); font-size: 0.74rem; font-weight: 560; }
+html.v2 .updates-feed:not(.updates-changelog) .updates-feed-item p { margin: 6px 0 0; font-size: 0.9rem; }

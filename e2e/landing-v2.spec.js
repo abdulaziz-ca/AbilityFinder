@@ -164,3 +164,20 @@ test("organizations directory filters by place (with Canada-wide entries) and by
   await expect(page.locator("#dirEmpty")).toBeVisible();
   await expect(page.locator("#dirCount")).toHaveText("0 listed");
 });
+
+test("info pages get an On this page list and older data changes fold away", async ({ page }) => {
+  await gotoReady(page);
+  await page.evaluate(() => setState("privacy"));
+  const toc = page.locator("section.legal .v2-toc");
+  await expect(toc).toBeVisible();
+  const link = toc.locator("ol a").nth(2);
+  const name = (await link.textContent()).trim();
+  await link.click();
+  await expect(page.locator("section.legal .legal-block h2", { hasText: name })).toBeFocused();
+  await page.evaluate(() => setState("updates"));
+  const more = page.locator(".v2-more");
+  await expect(more).toBeVisible();
+  await expect(page.locator(".updates-changelog").first().locator(".updates-feed-item")).toHaveCount(15);
+  await more.locator("summary").click();
+  await expect(more.locator(".updates-feed-item").first()).toBeVisible();
+});

@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "247";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "248";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -4997,6 +4997,7 @@ function v2Enhance(currentView, app) {
   v2LastView = currentView;
   if (currentView === "landing") v2Landing(app);
   if (currentView === "detail") v2GuideToc(app);
+  if (["about", "coverage", "support", "privacy", "updates", "impact", "professionals", "accessibility"].includes(currentView)) v2InfoToc(app);
 }
 /* Guide page: an "On this page" list in the side column, built from the section
    headings, marking the section being read. Same behaviour as the static guides
@@ -5006,12 +5007,21 @@ function v2GuideToc(app) {
   const main = app.querySelector(".detail-main"), side = app.querySelector(".detail-side");
   if (!main || !side || side.querySelector(".v2-toc")) return;
   const heads = [...main.querySelectorAll(":scope > .guide-block > .guide-h, :scope > section > .guide-h")];
-  if (heads.length < 3) return;
+  v2BuildToc(heads, side, side.querySelector(".side-actions .apply"));
+}
+/* Info pages (about, privacy, coverage…): the same "On this page" list beside the sections. */
+function v2InfoToc(app) {
+  const page = app.querySelector("section.legal");
+  if (!page || page.querySelector(".v2-toc")) return;
+  const heads = [...page.querySelectorAll(":scope > .legal-block > h2")];
+  if (v2BuildToc(heads, page, null)) page.classList.add("has-toc");
+}
+function v2BuildToc(heads, side, apply) {
+  if (heads.length < 3) return false;
   const nav = document.createElement("nav");
   nav.className = "v2-toc"; nav.setAttribute("aria-label", t("l2g.toc"));
   // Unique ids (another element may already use a short one); links resolve through `heads`, not by id lookup.
   heads.forEach((h, i) => { if (!h.id) { let id = `af-guide-sec-${i + 1}`, n = 1; while (document.getElementById(id)) id = `af-guide-sec-${i + 1}-${++n}`; h.id = id; } });
-  const apply = side.querySelector(".side-actions .apply");
   nav.innerHTML = `<p>${t("l2g.toc")}</p><ol>${heads.map((h) => `<li><a href="#${h.id}">${reqEscape(h.textContent.trim())}</a></li>`).join("")}</ol>${apply ? `<a class="v2-toc-apply" href="${reqEscape(apply.href)}" target="_blank" rel="noopener noreferrer" data-ext>${reqEscape(apply.textContent.trim())} ${icon("external")}</a>` : ""}`;
   side.appendChild(nav);
   const links = [...nav.querySelectorAll("ol a")];
@@ -5033,6 +5043,7 @@ function v2GuideToc(app) {
   window.addEventListener("scroll", onScroll, { passive: true });
   v2TocCleanup = () => { window.removeEventListener("scroll", onScroll); cancelAnimationFrame(frame); };
   mark();
+  return true;
 }
 function v2Landing(app) {
   const hero = app.querySelector(".hero-full");
@@ -6667,16 +6678,20 @@ function renderUpdates() {
   const changes = typeof DATA_CHANGELOG !== "undefined" && Array.isArray(DATA_CHANGELOG)
     ? DATA_CHANGELOG.filter((change) => change && typeof change === "object")
     : [];
-  const changelogSection = changes.length ? `
-    <div class="legal-block">
-      <h2>${t("updates.changelog.h")}</h2>
-      <ol class="updates-feed updates-changelog">${[...changes]
-        .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")))
-        .map((change) => `
+  const changeItem = (change) => `
           <li class="updates-feed-item">
             <time datetime="${ttsEscape(String(change.date || ""))}">${ttsEscape(plainEnglishDate(change.date))}</time>
             <p>${ttsEscape(String(change.text || "Catalog updated."))}</p>
-          </li>`).join("")}</ol>
+          </li>`;
+  const sortedChanges = [...changes].sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
+  // Design v2: the latest changes in view, the rest one click away (nothing removed).
+  const shownChanges = isDesignV2() ? sortedChanges.slice(0, 15) : sortedChanges;
+  const olderChanges = isDesignV2() ? sortedChanges.slice(15) : [];
+  const changelogSection = changes.length ? `
+    <div class="legal-block">
+      <h2>${t("updates.changelog.h")}</h2>
+      <ol class="updates-feed updates-changelog">${shownChanges.map(changeItem).join("")}</ol>
+      ${olderChanges.length ? `<details class="v2-more"><summary>${t("l2i.olderChanges").replace("{n}", olderChanges.length)}</summary><ol class="updates-feed updates-changelog">${olderChanges.map(changeItem).join("")}</ol></details>` : ""}
     </div>` : "";
   return `<section class="legal updates-page">
     <button class="back-link" id="u-back">${icon("arrowLeft")} ${t("updates.back")}</button>

@@ -6,6 +6,21 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-22 — Info pages redesign
+
+### Shipped (`?v=248`)
+- About, What we don't cover yet, Support, Privacy, Data updates, Impact, For professionals and Accessibility now share
+  one layout: a big header, each section as a card, and a sticky **"On this page"** list on the right (pages with
+  three or more sections) that marks where you are.
+- **Impact**: the catalog numbers are stat tiles (463 programs, 46 municipalities, 26 categories) with the
+  federal / provincial / local split as pills, and the links at the bottom are cards.
+- **Data updates**: recently verified programs are tidy rows with a date badge; the changelog shows the latest 15
+  changes and folds the other 128 behind "Show 128 earlier changes" (nothing removed). The page went from 23,500px
+  to about 6,000px.
+- **No province lists** in For professionals, the partner page title, the organizations listing rules and the French
+  categories note. Where it matters for accuracy it now says "federal programs across Canada and provincial and
+  municipal programs in all 10 provinces" (the territories only get federal programs).
+
 ## 2026-10-21 — Grants and organizations pages redesign
 
 ### Shipped (`?v=247`)
