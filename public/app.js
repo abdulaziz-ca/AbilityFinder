@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "246";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "247";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -6369,6 +6369,66 @@ function wirePartnerOverview() {
   wirePageFeedback();
 }
 
+/* Design v2 directories (grants, organizations): search and a "Where" filter in a side
+   column, entries in a two-column grid. Filtering here is in-page only. */
+const v2DirWhere = (entry) => Array.isArray(entry.coverage) && entry.coverage.length ? entry.coverage.join(" ") : "CA";
+// Search and place are kept per directory, so grants and organizations never share filters.
+const v2DirState = { grants: { q: "", place: "all" }, organizations: { q: "", place: "all" } };
+const v2Dir = () => v2DirState[view] || (v2DirState[view] = { q: "", place: "all" });
+const v2PlaceName = (code) => { const p = V2_PROVINCES.find(([c]) => c === code); return p ? (LANG === "fr" ? p[2] : p[1]) : PROVINCE_NAME[code] || code; };
+function v2DirectoryLayout(entries, extraFilters, grid) {
+  const state = v2Dir();
+  const places = [...new Set(entries.flatMap((e) => v2DirWhere(e).split(" ")))].filter((c) => c !== "CA").sort((a, b) => v2PlaceName(a).localeCompare(v2PlaceName(b)));
+  const hasCanada = entries.some((e) => v2DirWhere(e).split(" ").includes("CA"));
+  // A saved place that this list no longer offers falls back to everything.
+  if (state.place !== "all" && !(state.place === "CA" ? hasCanada : places.includes(state.place))) state.place = "all";
+  const chip = (key, label) => `<button type="button" class="browse-chip${state.place === key ? " on" : ""}" aria-pressed="${state.place === key}" data-dir-place="${key}">${label}</button>`;
+  const whereChips = [chip("all", t("l2d.everywhere")), hasCanada ? chip("CA", t("l2d.canadaWide")) : "", ...places.map((c) => chip(c, v2PlaceName(c)))].join("");
+  return `<div class="v2-browse-layout v2-dir-layout">
+    <aside class="v2-filters" aria-label="${t("l2b.filters")}">
+      <div class="browse-search v2-dir-search">${icon("search")}<input type="search" class="text-input" id="dirSearch" placeholder="${t("l2d.search")}" aria-label="${t("l2d.search")}" value="${ttsEscape(state.q)}"></div>
+      ${extraFilters}
+      ${places.length ? `<div class="v2-fgroup"><p class="v2-fh" id="v2fh-where">${t("l2b.where")}</p><div class="browse-chiprow" role="group" aria-labelledby="v2fh-where">${whereChips}</div></div>` : ""}
+    </aside>
+    <div class="v2-browse-main">
+      <div class="v2-browse-bar"><div class="browse-count" id="dirCount"></div></div>
+      <p class="sr-only" id="dirStatus" role="status"></p>
+      ${grid}
+      <p class="browse-empty" id="dirEmpty" hidden>${icon("search")} ${t("l2d.none")}</p>
+    </div>
+  </div>`;
+}
+let v2DirTimer = 0;
+function v2DirApply(announce) {
+  const cards = [...document.querySelectorAll("#app [data-dir-where]")];
+  const { q: query, place } = v2Dir();
+  const q = query.trim().toLowerCase();
+  let n = 0;
+  cards.forEach((card) => {
+    const where = card.dataset.dirWhere.split(" ");
+    // A province also lists the Canada-wide entries, since those apply there too.
+    const inPlace = place === "all" || where.includes(place) || (place !== "CA" && where.includes("CA"));
+    const show = inPlace && (!q || card.dataset.dirText.includes(q));
+    card.hidden = !show; if (show) n++;
+  });
+  const text = t(n === 1 ? "l2d.countOne" : "l2d.count").replace("{n}", n);
+  const count = document.getElementById("dirCount"); if (count) count.textContent = text;
+  const empty = document.getElementById("dirEmpty"); if (empty) empty.hidden = n > 0;
+  const status = document.getElementById("dirStatus");
+  if (status && announce) { clearTimeout(v2DirTimer); v2DirTimer = setTimeout(() => { status.textContent = text; }, 700); }
+}
+function v2WireDirectory() {
+  const search = document.getElementById("dirSearch");
+  if (!search) return;
+  search.addEventListener("input", () => { v2Dir().q = search.value; v2DirApply(true); });
+  document.querySelectorAll("#app [data-dir-place]").forEach((chip) => chip.addEventListener("click", () => {
+    v2Dir().place = chip.dataset.dirPlace;
+    document.querySelectorAll("#app [data-dir-place]").forEach((c) => { c.classList.toggle("on", c === chip); c.setAttribute("aria-pressed", String(c === chip)); });
+    v2DirApply(true);
+  }));
+  v2DirApply(false);
+}
+
 function renderGrants() {
   const directory = typeof GRANTS_DIRECTORY !== "undefined" && Array.isArray(GRANTS_DIRECTORY)
     ? GRANTS_DIRECTORY
@@ -6380,7 +6440,7 @@ function renderGrants() {
       ${t(`grants.filter.${audience}`)}
     </button>`).join("");
   const cards = visible.map((grant) => `
-    <article class="grant-card" data-grant-id="${ttsEscape(grant.id)}">
+    <article class="grant-card" data-grant-id="${ttsEscape(grant.id)}" data-dir-where="${v2DirWhere(grant)}" data-dir-text="${ttsEscape([grant.name, grant.org, grant.whoFor, grant.offers].join(" ").toLowerCase())}">
       <header>
         <span class="grant-card-icon" aria-hidden="true">${icon("money")}</span>
         <div><h2>${ttsEscape(grant.name)}</h2><p class="grant-org">${ttsEscape(grant.org)} · ${coverageLabel(grant)}</p></div>
@@ -6397,8 +6457,8 @@ function renderGrants() {
     <p class="section-label">${t("grants.kicker")}</p>
     <h1 class="legal-title">${t("grants.title")}</h1>
     <p class="legal-lede">${t("grants.lede")} ${COVERED_PROVINCES.includes(answers.province) ? `Showing ${PROVINCE_NAME[answers.province]} and Canada-wide funds.` : "Choose a province in the questionnaire to narrow this directory."}</p>
-    <div class="grants-filters" role="group" aria-label="${t("grants.filter.label")}">${filters}</div>
-    <div class="grants-grid">${cards}</div>
+    ${isDesignV2() ? v2DirectoryLayout(visible, `<div class="v2-fgroup"><p class="v2-fh" id="v2fh-aud">${t("l2d.audience")}</p><div class="grants-filters" role="group" aria-labelledby="v2fh-aud">${filters}</div></div>`, `<div class="grants-grid">${cards}</div>`) : `<div class="grants-filters" role="group" aria-label="${t("grants.filter.label")}">${filters}</div>
+    <div class="grants-grid">${cards}</div>`}
     <aside class="grants-suggest">
       <span aria-hidden="true">${icon("help")}</span>
       <div><h2>${t("grants.suggest.h")}</h2><p>${t("grants.suggest.p")}</p>
@@ -6414,8 +6474,11 @@ function wireGrants() {
     grantsAudience = button.dataset.grantsFilter;
     lastRenderKey = null;
     render();
+    const again = document.querySelector(`[data-grants-filter="${grantsAudience}"]`);
+    if (again) again.focus();
   }));
   wirePageFeedback();
+  v2WireDirectory();
 }
 
 function renderOrganizations() {
@@ -6429,13 +6492,13 @@ function renderOrganizations() {
       .filter(Boolean)
   );
   const cards = visible.map((organization) => `
-    <article class="org-card" data-org-id="${ttsEscape(organization.id)}">
+    <article class="org-card" data-org-id="${ttsEscape(organization.id)}" data-dir-where="${v2DirWhere(organization)}" data-dir-text="${ttsEscape([organization.name, organization.region, organization.whatTheyDo].join(" ").toLowerCase())}">
       <header>
         <span class="org-card-icon" aria-hidden="true">${icon("help")}</span>
         <div><h2>${ttsEscape(organization.name)}</h2><p class="org-region"${recAttr(organization)}>${ttsEscape(organization.region)}</p></div>
       </header>
       <dl>
-        <div><dt>${t("orgs.region")}</dt><dd${recAttr(organization)}>${ttsEscape(organization.region)}</dd></div>
+        <div class="org-region-row"><dt>${t("orgs.region")}</dt><dd${recAttr(organization)}>${ttsEscape(organization.region)}</dd></div>
         <div><dt>${t("orgs.what")}</dt><dd${recAttr(organization)}>${ttsEscape(organization.whatTheyDo)}</dd></div>
       </dl>
       <a class="org-link" href="${ttsEscape(organization.url)}" target="_blank" rel="noopener noreferrer">${t("orgs.website")} ${icon("external")}</a>
@@ -6456,7 +6519,7 @@ function renderOrganizations() {
           ? `Showing organizations that serve ${PROVINCE_NAME[answers.province]}.`
           : `No organizations listed for ${PROVINCE_NAME[answers.province]} yet. The directory currently covers ${directoryProvinceNames || "no provinces"}.`
     }</p>
-    <div class="orgs-grid">${cards}</div>
+    ${isDesignV2() ? v2DirectoryLayout(visible, "", `<div class="orgs-grid">${cards}</div>`) : `<div class="orgs-grid">${cards}</div>`}
     <section class="orgs-rules" aria-labelledby="orgs-rules-title">
       <h2 id="orgs-rules-title">${icon("check")}${t("orgs.rules.h")}</h2>
       <ul>${rules}</ul>
@@ -6473,6 +6536,7 @@ function renderOrganizations() {
 function wireOrganizations() {
   document.querySelectorAll("[data-orgs-back]").forEach((button) => button.addEventListener("click", () => setState("landing")));
   wirePageFeedback();
+  v2WireDirectory();
 }
 
 function impactCatalogStats() {

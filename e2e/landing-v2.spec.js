@@ -145,3 +145,22 @@ test("catalog filters sit in labelled groups and Clear filters resets them", asy
   await expect(page.locator("#browseResults .browse-card")).toHaveCount(all);
   await expect(page.locator("#browseInput")).toBeFocused();
 });
+
+test("organizations directory filters by place (with Canada-wide entries) and by search", async ({ page }) => {
+  await gotoReady(page);
+  await page.evaluate(() => setState("organizations"));
+  const cards = page.locator("#app article.org-card");
+  const visible = () => page.locator("#app article.org-card:not([hidden])").count();
+  const all = await cards.count();
+  await expect(page.locator("#dirCount")).toHaveText(`${all} listed`);
+  await page.locator('[data-dir-place="ON"]').click();
+  await expect(page.locator('[data-dir-place="ON"]')).toHaveAttribute("aria-pressed", "true");
+  const onCount = await visible();
+  expect(onCount).toBeGreaterThan(0);
+  expect(onCount).toBeLessThan(all);
+  expect(await page.locator("#app article.org-card:not([hidden])").evaluateAll((els) => els.every((e) => /\bON\b|\bCA\b/.test(e.dataset.dirWhere)))).toBe(true);
+  await page.locator('[data-dir-place="all"]').click();
+  await page.locator("#dirSearch").fill("zzzz-no-such-org");
+  await expect(page.locator("#dirEmpty")).toBeVisible();
+  await expect(page.locator("#dirCount")).toHaveText("0 listed");
+});

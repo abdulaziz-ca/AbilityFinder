@@ -55,7 +55,8 @@ test('French scope follows both province flags and French results match the Engl
   const ctx = context();
   vm.runInContext('var BC_ENABLED = true; var ON_ENABLED = true; LANG = "fr";', ctx);
   // life.alberta.h is province-neutral since the 2026-10-21 landing rewrite ("Just moved to a new province").
-  for (const key of ['land.eyebrow', 'orgs.lede', 'pro.what.p', 'partner.title']) {
+  // orgs.lede is Canada-wide since 2026-10-21 (owner: no province lists on pages).
+  for (const key of ['land.eyebrow', 'pro.what.p', 'partner.title']) {
     assert.match(vm.runInContext(`t(${JSON.stringify(key)})`, ctx), /Ontario|ontariens|Ontariens/);
   }
   for (const counts of [[1,0], [0,1], [1,1], [0,0]]) {

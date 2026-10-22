@@ -6,6 +6,17 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-21 — Grants and organizations pages redesign
+
+### Shipped (`?v=247`)
+- Both directories now match the catalog: **search and a "Where" filter** in a side column (picking a province also
+  shows the Canada-wide entries, since those apply there too), plus **Who it's for** on grants; entries in a
+  **two-column grid of compact cards** with a count. The organizations page is half as long.
+- The organizations intro no longer lists every province: "Independent organizations across Canada that help people
+  with disabilities and their families." Each organization's region is shown once, under its name.
+- Codex reviewed it; fixed: filters no longer carry over between the two pages, keyboard focus stays on the audience
+  button you chose, and province names are in French on the French site.
+
 ## 2026-10-21 — Catalog page redesign
 
 ### Shipped (`?v=246`)
