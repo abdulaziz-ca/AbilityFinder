@@ -728,6 +728,12 @@ body.a11y-nomotion .scenario-toggle .ic:last-child { transition: none; }
 .track .track-ic .ic { width: 15px; height: 15px; }
 .track-sel { appearance: none; font-family: inherit; font-size: 0.84rem; font-weight: 550; color: var(--text-dim); background: transparent; border: none; cursor: pointer; padding: 5px 24px 5px 4px; background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%); background-position: calc(100% - 11px) center, calc(100% - 7px) center; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; }
 .track-sel:focus { outline: none; }
+/* Results: privacy reminder and the note for towns without a listed city program. */
+.results-privacy { display: flex; align-items: center; gap: 8px; margin: 14px 0 0; font-size: 0.84rem; color: var(--text-dim); }
+.results-privacy .ic { width: 15px; height: 15px; flex: 0 0 auto; }
+.local-coverage-note { display: flex; gap: 10px; align-items: flex-start; margin: 14px 0 0; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--hair-2); background: var(--panel); color: var(--text-dim); font-size: 0.9rem; line-height: 1.55; }
+.local-coverage-note .ic { flex: 0 0 auto; width: 17px; height: 17px; margin-top: 2px; }
+.answers-skipped { margin: 12px 0 0; font-size: 0.86rem; color: var(--text-dim); }
 /* Home-page starting point note shown in the questionnaire. */
 .life-note { display: flex; gap: 10px; align-items: flex-start; margin: 0 0 18px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--accent-line, var(--hair-2)); background: var(--accent-soft); color: var(--text); font-size: 0.92rem; line-height: 1.55; }
 .life-note .ic { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 2px; color: var(--accent); }
@@ -3020,4 +3026,13 @@ html.v2 .partner-metrics { background: none; }
 html.v2 .benefit-actions .track-date { grid-column: 1 / -1; justify-content: space-between; padding: 2px 4px; }
 html.v2 .track-date input { min-height: 34px; border-radius: 10px; color-scheme: dark; }
 html.v2[data-theme="light"] .track-date input { color-scheme: light; }
+/* "Suggest a fix" links on listings and the note on the data updates page. */
+html.v2 .suggest-fix { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--text-dimmer); }
+html.v2 .suggest-fix .ic { width: 14px; height: 14px; }
+html.v2 .suggest-fix:hover { color: var(--accent-hi); }
+html.v2 .updates-fixnote { display: flex; gap: 10px; align-items: flex-start; margin: 4px 0 0; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--hair-2); background: var(--panel); color: var(--text-dim); font-size: 0.92rem; }
+html.v2 .updates-fixnote .ic { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 2px; color: var(--accent); }
+html.v2[data-view="guide"] .guide-fix { margin: 8px 0 0; font-size: 0.85rem; text-align: center; }
+html.v2[data-view="guide"] .guide-fix-link { color: var(--text-dim); text-decoration: underline; text-underline-offset: 3px; }
+html.v2[data-view="guide"] .guide-fix-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 /* === DESIGN V2 END === */

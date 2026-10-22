@@ -189,6 +189,14 @@
     return clean;
   }
 
+  // A date only belongs to a program the person still tracks as sent.
+  const SENT_STAGES = new Set(["submitted", "waiting", "approved", "denied"]);
+  function datesForSent(dates, progress) {
+    const kept = {};
+    Object.keys(dates).forEach((id) => { if (SENT_STAGES.has(progress[id])) kept[id] = dates[id]; });
+    return kept;
+  }
+
   // Feature markers are all-or-nothing: corruption must never invent history.
   function cleanProgramChanges(candidate, validSelections = {}) {
     const plain = (value) => value && typeof value === "object" && !Array.isArray(value) &&
@@ -224,7 +232,7 @@
       helpTopic: HELP_TOPICS.includes(live.helpTopic) ? live.helpTopic : null,
       helpReturnStep: Number.isInteger(live.helpReturnStep) && live.helpReturnStep >= 0 ? live.helpReturnStep : 0,
       progress: cleanProgress(live.progress, validSelections),
-      progressDates: cleanProgressDates(live.progressDates, validSelections),
+      progressDates: datesForSent(cleanProgressDates(live.progressDates, validSelections), cleanProgress(live.progress, validSelections)),
       ui: {
         programChanges: cleanProgramChanges(live.programChanges, validSelections),
         groupMode: live.groupMode === "category" ? "category" : "priority",
@@ -265,7 +273,7 @@
       helpTopic,
       helpReturnStep: Number.isInteger(source.helpReturnStep) && source.helpReturnStep >= 0 ? source.helpReturnStep : 0,
       progress: cleanProgress(source.progress, validSelections),
-      progressDates: cleanProgressDates(source.progressDates, validSelections),
+      progressDates: datesForSent(cleanProgressDates(source.progressDates, validSelections), cleanProgress(source.progress, validSelections)),
       programChanges: cleanProgramChanges(ui.programChanges, validSelections),
       groupMode: ui.groupMode === "category" ? "category" : "priority",
       browseQuery: typeof ui.browseQuery === "string" ? ui.browseQuery.slice(0, 200) : "",

@@ -6,6 +6,21 @@ Each entry: **Shipped** (commit + live version) · **Verified how** · **Decisio
 
 > Dates corrected 2026-10-16: earlier headings counted work sessions as days and ran ahead of the calendar. They now follow the real commit dates.
 
+## 2026-10-22 — Phase 0 fixes, part 2 (`?v=251`)
+
+- **Suggest a fix** on every program guide (in the app and on the 462 static guide pages), every grant and every
+  organization. It opens the feedback form with a new "A correction to a listing" type and the listing's name filled
+  in; only the listing's name and id are added, never anyone's answers. The Data updates page now invites corrections
+  and lists the confirmed ones.
+- **Honest coverage and privacy notes on results:** if your town has no listed city program, results say so and
+  point you to 2-1-1; a line says your answers stay in this browser; "What this list can't tell you" now covers
+  local programs ("we list local programs for 107 cities and regions so far").
+- **Skipped questions:** results now say "You skipped N questions" with a button to the first one.
+- Codex reviewed Phase 0: fixed leftover submitted-on dates on programs no longer marked as sent, a follow-up due
+  today being pushed to tomorrow, the coverage wording ("cities and regions"), and missing French for the new
+  date field and the "Start over?" prompt. One suggestion was checked and was wrong (Lloydminster already works for
+  Saskatchewan residents).
+
 ## 2026-10-22 — Phase 0 fixes, part 1 (live as `?v=250`)
 
 - **Local programs:** 81 cities across all ten provinces (Regina, Winnipeg, Halifax, Moncton, St. John’s, Montréal,

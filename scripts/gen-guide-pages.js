@@ -200,6 +200,7 @@ const GUIDE_LABELS = {
     nextH: "Your next step", nextP: "Open the official program page, check the current rules, and use its application route.",
     limitLead: "What this guide can't tell you:", limitBody: "whether you will be approved. The program decides, often using details we do not ask for.",
     foot: "Benefit rules and amounts can change. Confirm the current details before applying.",
+    suggestFix: "Spotted a mistake? Suggest a fix",
     cta: "Answer a few questions to see benefits you may qualify for",
     official: "Official government source", easy: "Easy", medium: "Medium", hard: "Hard",
     steps: [
@@ -231,6 +232,7 @@ const GUIDE_LABELS = {
     nextH: "Prochaine étape", nextP: "Ouvrez la page officielle du programme, vérifiez les règles en vigueur et suivez sa démarche de demande.",
     limitLead: "Ce que ce guide ne peut pas vous dire :", limitBody: "si votre demande sera acceptée. Le programme décide, souvent à partir de renseignements que nous ne demandons pas.",
     foot: "Les règles et les montants peuvent changer. Confirmez les détails à jour avant de faire une demande.",
+    suggestFix: "Une erreur? Proposer une correction",
     cta: "Répondez à quelques questions pour voir les prestations auxquelles vous pourriez avoir droit",
     official: "Source gouvernementale officielle", easy: "Facile", medium: "Moyenne", hard: "Difficile",
     steps: [
@@ -388,6 +390,7 @@ ${links.map((x) => `              <li><a class="guide-link" href="${esc(x.url)}"
             </ul>
             <p class="side-foot"><span class="verified">${esc(L.verified(ctx.guideFreshness(b).wording))}</span></p>
             <p class="detail-foot">${L.foot}</p>
+            <p class="guide-fix"><a class="guide-fix-link" href="https://abilityfinder.ca/?fix=${esc(b.id)}">${L.suggestFix}</a></p>
             <p><a class="btn btn-primary" href="https://abilityfinder.ca/">${L.cta}</a></p>
             </div>
           </aside>

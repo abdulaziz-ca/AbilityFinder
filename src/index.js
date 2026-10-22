@@ -398,7 +398,7 @@ async function handleAsk(request, env) {
 }
 
 const MAX_FEEDBACK_CHARS = 4000;
-const FEEDBACK_KINDS = ["Feature request", "Bug or broken link", "Missing benefit", "Something else"];
+const FEEDBACK_KINDS = ["Feature request", "Bug or broken link", "Missing benefit", "Correction to a listing", "Something else"];
 
 /**
  * POST /api/feedback — send the feedback form without a desktop mail app.

@@ -1022,3 +1022,12 @@ html.v2 .partner-metrics { background: none; }
 html.v2 .benefit-actions .track-date { grid-column: 1 / -1; justify-content: space-between; padding: 2px 4px; }
 html.v2 .track-date input { min-height: 34px; border-radius: 10px; color-scheme: dark; }
 html.v2[data-theme="light"] .track-date input { color-scheme: light; }
+/* "Suggest a fix" links on listings and the note on the data updates page. */
+html.v2 .suggest-fix { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--text-dimmer); }
+html.v2 .suggest-fix .ic { width: 14px; height: 14px; }
+html.v2 .suggest-fix:hover { color: var(--accent-hi); }
+html.v2 .updates-fixnote { display: flex; gap: 10px; align-items: flex-start; margin: 4px 0 0; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--hair-2); background: var(--panel); color: var(--text-dim); font-size: 0.92rem; }
+html.v2 .updates-fixnote .ic { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 2px; color: var(--accent); }
+html.v2[data-view="guide"] .guide-fix { margin: 8px 0 0; font-size: 0.85rem; text-align: center; }
+html.v2[data-view="guide"] .guide-fix-link { color: var(--text-dim); text-decoration: underline; text-underline-offset: 3px; }
+html.v2[data-view="guide"] .guide-fix-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }

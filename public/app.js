@@ -22,7 +22,7 @@ function loadDataScript(src) {
   });
 }
 function dataAssetVersion() {
-  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "250";
+  return document.querySelector('script[src*="app.js?v="]')?.getAttribute("src").split("?v=")[1] || "251";
 }
 function ensurePacks(provs) {
   if (!DATA_PACKS || typeof AF_ADD_PACK === "undefined") return Promise.resolve();
@@ -5539,6 +5539,7 @@ function landingTailHtml() {
             <option value="Feature request">${t("fb.tFeature")}</option>
             <option value="Bug or broken link">${t("fb.tBug")}</option>
             <option value="Missing benefit">${t("fb.tMissing")}</option>
+            <option value="Correction to a listing">${t("fb.tFix")}</option>
             <option value="Something else">${t("fb.tOther")}</option>
           </select>
         </label>
@@ -6328,6 +6329,33 @@ function renderPartnerOverview() {
   </article>`;
 }
 
+/* "Suggest a fix" on a program, grant or organization: open the feedback form with the
+   correction type chosen and the listing named. Only the listing's name and id are added —
+   never the person's answers or tracked applications. */
+function listingName(id) {
+  const b = BENEFITS.find((x) => x.id === id);
+  if (b) return b.name;
+  const pools = [typeof ORGS_DIRECTORY !== "undefined" ? ORGS_DIRECTORY : [], typeof GRANTS_DIRECTORY !== "undefined" ? GRANTS_DIRECTORY : []];
+  for (const pool of pools) { const e = Array.isArray(pool) && pool.find((x) => x.id === id); if (e) return e.name; }
+  return null;
+}
+function openCorrection(id) {
+  const name = listingName(id);
+  if (!name) return false;
+  setState("landing");
+  requestAnimationFrame(() => {
+    const type = document.getElementById("fb-type"), msg = document.getElementById("fb-msg");
+    if (type) type.value = "Correction to a listing";
+    if (msg && !msg.value.trim()) msg.value = `${t("fb.fixPrefix").replace("{name}", name)} [${id}]\n`;
+    document.getElementById("feedback")?.scrollIntoView({ block: "start" });
+    if (msg) { msg.focus({ preventScroll: true }); msg.setSelectionRange(msg.value.length, msg.value.length); }
+  });
+  return true;
+}
+function suggestFixButton(id) {
+  return `<button class="linklike suggest-fix" type="button" data-suggest-fix="${reqEscape(id)}">${icon("help")} ${t("fb.suggestFix")}</button>`;
+}
+
 function wirePageFeedback() {
   document.querySelectorAll("[data-page-feedback]").forEach((el) => el.addEventListener("click", () => {
     setState("landing");
@@ -6522,6 +6550,7 @@ function renderGrants() {
         <div><dt>${t("grants.apply")}</dt><dd><a href="${ttsEscape(grant.url)}" target="_blank" rel="noopener noreferrer">${ttsEscape(grant.howToApply)} ${icon("external")}</a></dd></div>
       </dl>
       <p class="grant-verified">${icon("check")}${t("grants.verified").replace("{date}", plainEnglishDate(grant.verified))}</p>
+      ${suggestFixButton(grant.id)}
     </article>`).join("");
   return `<section class="legal grants-page">
     <button class="back-link" type="button" data-grants-back>${icon("arrowLeft")} ${t("grants.back")}</button>
@@ -6574,6 +6603,7 @@ function renderOrganizations() {
       </dl>
       <a class="org-link" href="${ttsEscape(organization.url)}" target="_blank" rel="noopener noreferrer">${t("orgs.website")} ${icon("external")}</a>
       ${orgVerifiedLabel(organization) ? `<p class="org-verified">${icon("check")}${t("orgs.verified").replace("{date}", orgVerifiedLabel(organization))}</p>` : ""}
+      ${suggestFixButton(organization.id)}
     </article>`).join("");
   const rules = Array.from({ length: 6 }, (_, index) => {
     const content = t(`orgs.rules.${index + 1}`);
@@ -6758,6 +6788,7 @@ function renderUpdates() {
     <p class="section-label">${t("updates.kicker")}</p>
     <h1 class="legal-title">${t("updates.title")}</h1>
     <p class="legal-lede">${t("updates.lede")}</p>
+    <p class="updates-fixnote">${icon("help")} <span>${t("updates.fixNote")}</span></p>
     <div class="legal-block">
       <h2>${t("updates.verified.h")}</h2>
       <p>${t("updates.verified.note")}</p>
@@ -7396,10 +7427,19 @@ function renderLimitsPanel(hasOtherPrograms) {
     <summary>${t("limits.summary")}</summary>
     <ul>
       <li><strong>${t("limits.programsLead")}</strong> ${t("limits.programsBody")} <button class="linklike" type="button" data-nav="coverage">${t("limits.coverage")}</button></li>
+      <li><strong>${t("limits.localLead")}</strong> ${t("limits.localBody").replace("{n}", localProgramAreas().length)}</li>
       <li><strong>${t("limits.approvalLead")}</strong> ${t("limits.approvalBody")}</li>
       <li><strong>${t("limits.detailsLead")}</strong> ${t("limits.detailsBody")}${hasOtherPrograms ? ` ${t("limits.otherPrograms")}` : ""}</li>
     </ul>
   </details>`;
+}
+
+/* Honest note when the person's town has no listed city program: local help may still
+   exist, and the 2-1-1 card is the way to find it. */
+function localCoverageNote() {
+  const city = answers.city;
+  if (!city || city === "Other / my town isn't listed" || cityHasOwnProgram(city)) return "";
+  return `<p class="local-coverage-note" role="note">${icon("info")}<span>${t("res.noLocal").replace("{city}", reqEscape(city))}</span></p>`;
 }
 
 /** True when design v2 is on (false in test sandboxes without a document). */
@@ -7476,7 +7516,9 @@ function renderResults() {
     </div>` : ""}
   </div>
   ${trackerSummary(matched)}
+  <p class="results-privacy">${icon("lock")}<span>${t("res.privacyLine")}</span></p>
   ${renderAnswerChips()}
+  ${localCoverageNote()}
   ${renderPrintActionPlan(groups.g1)}`;
 
   html += renderAlreadyGet(groups.g0);
@@ -7887,7 +7929,8 @@ function buildReminderIcs() {
     const sentOn = progressDates[b.id] && localDateFromIso(progressDates[b.id]);
     if (!sentOn) continue;
     let due = addCalendarDays(sentOn, days);
-    if (due < now) due = addDays(1); // already overdue: remind tomorrow rather than in the past
+    // Already overdue: remind tomorrow rather than in the past (a follow-up due today stays today).
+    if (icsDate(due) < icsDate(now)) due = addDays(1);
     const phone = (b.detail && b.detail.phone) ? ` You can call: ${b.detail.phone}.` : "";
     events.push({
       uid: `followup-${b.id}-${icsDate(due)}@abilityfinder.ca`,
@@ -7961,7 +8004,7 @@ function statusControl(b) {
     STAGES.map((s) => `<option value="${s.key}"${cur === s.key ? " selected" : ""}>${s.label}</option>`).join("");
   // Once submitted, the person can record (or correct) the day it went in; reminders count from it.
   const dated = SUBMITTED_STAGES.has(cur)
-    ? `<label class="track-date"><span>Submitted on</span><input type="date" data-track-date="${b.id}" value="${progressDates[b.id] || ""}" max="${isoToday()}" aria-label="Date you submitted ${reqEscape(b.name)}"></label>`
+    ? `<label class="track-date"><span>${t("track.submittedOn")}</span><input type="date" data-track-date="${b.id}" value="${progressDates[b.id] || ""}" max="${isoToday()}" aria-label="${reqEscape(t("track.submittedAria").replace("{name}", b.name))}"></label>`
     : "";
   return `<span class="track ${st ? st.cls : "none"}">
     <span class="track-ic" aria-hidden="true">${icon(st ? st.ic : "bookmark")}</span>
@@ -8138,9 +8181,15 @@ function renderAnswerChips() {
       return `<button class="chip${empty ? " empty" : ""}" data-edit="${i}" title="${stepText(s).q}">${label ? `<span class="chip-q">${label}</span>` : ""}<span class="chip-v">${empty ? t("l2r.notAnswered") : value}</span></button>`;
     })
     .join("");
+  // Skipped questions, said plainly, with a way straight to the first one.
+  const skipped = visibleSteps().map((s, i) => [s, i]).filter(([s]) => answerSummary(s) === "—");
+  const skippedLine = skipped.length
+    ? `<p class="answers-skipped">${t(skipped.length === 1 ? "res.skippedOne" : "res.skipped").replace("{n}", skipped.length)} <button class="linklike" type="button" data-edit="${skipped[0][1]}">${t("res.skippedGo")}</button></p>`
+    : "";
   return `<div class="answers-bar">
     <span class="answers-lbl">${t("res.yourAnswers")}</span>
     <div class="chips">${chips}</div>
+    ${skippedLine}
   </div>`;
 }
 
@@ -9273,6 +9322,7 @@ function renderGuideBody(b, r = evaluate(b), options = {}) {
             ${b.declarationUrl ? `<a class="source-link" href="${resolveUrl(b.declarationUrl)}" target="_blank" rel="noopener noreferrer" data-ext>${b.declarationText || "Required dependent declaration"} ${icon("external")}</a>` : ""}
             <a class="source-link" href="${resolveUrl(b.source)}" target="_blank" rel="noopener noreferrer" data-ext>${t("det.official")} ${icon("external")}</a>
             ${inline ? "" : `<button class="source-link copy-link" type="button" data-copy-guide-link="${b.id}">Copy link to this guide</button>`}
+            ${typeof suggestFixButton === "function" ? suggestFixButton(b.id) : ""}
           </div>
           <p class="side-foot"><span class="verified${vFresh.stale ? " stale" : ""}">${icon(vFresh.stale ? "info" : "check")} ${vFresh.wording}</span></p>
           ${vFresh.stale ? `<p class="side-stale">${icon("info")} <span>That was about ${vFresh.months} months ago. Amounts and income rules usually change each year, so <b>check the official page above</b> before you count on a number here.</span></p>` : ""}
@@ -9691,8 +9741,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   // before readiness is signalled. Landing never waits for province data.
   if (view !== "landing") await ensurePacks([answers.province, ...packsForView()]);
   // Stable deep link for static guide footers. Only this one value is honoured.
+  let pendingFix = null;
   try {
-    if (new URLSearchParams(window.location.search).get("view") === "privacy") view = "privacy";
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("view") === "privacy") view = "privacy";
+    // "Suggest a fix" from a static guide page: only a known listing id is honoured.
+    const fix = params.get("fix");
+    if (fix && /^[a-z0-9-]{1,80}$/.test(fix)) pendingFix = fix;
   } catch (_) { /* malformed query strings must never block boot */ }
   applyA11y();
   applyStaticI18n();
@@ -9708,6 +9763,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   history.replaceState({ view, stepIndex, detailId }, "");
   render();
   if (!document.querySelector(".render-error")) baselineProgramChanges();
+  if (pendingFix) {
+    const id = pendingFix;
+    const pack = CATALOGUE_INDEX.find((row) => row[0] === id);
+    Promise.resolve(pack && pack[2] ? ensurePacks([pack[2]]) : null).catch(() => {}).then(() => {
+      if (openCorrection(id)) history.replaceState(history.state, "", window.location.pathname);
+    });
+  }
 
   // language switcher
   const langBtn = document.getElementById("langBtn");
@@ -9746,6 +9808,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       detailId = null;
       setState("landing");
     });
+
+  // "Suggest a fix" buttons anywhere in the app (guides, grants, organizations).
+  document.addEventListener("click", (e) => {
+    const fix = e.target.closest("[data-suggest-fix]");
+    if (fix) { e.preventDefault(); openCorrection(fix.dataset.suggestFix); }
+  });
 
   // Guarantee every external link opens in a NEW tab (never navigates away).
   document.addEventListener("click", (e) => {

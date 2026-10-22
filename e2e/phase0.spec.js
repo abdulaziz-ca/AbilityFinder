@@ -61,11 +61,11 @@ test("marking a program Submitted records the date, and follow-ups count from it
   expect(legacy).not.toContain(`followup-${id}`);
 });
 
-test("saved submitted-on dates are cleaned: no future, malformed or unknown-program dates", async ({ page }) => {
+test("saved submitted-on dates are cleaned: no future, malformed, unknown-program or not-yet-sent dates", async ({ page }) => {
   await gotoReady(page);
   const out = await page.evaluate(() => AbilityFinderState.buildPersistedState({
-    answers: BLANK(), progress: { dtc: "submitted" },
-    progressDates: { dtc: "2026-02-30", aish: "2099-01-01", rdsp: "2026-03-04", "not-a-program": "2026-03-04" },
+    answers: BLANK(), progress: { dtc: "submitted", aish: "waiting", rdsp: "approved", cdb: "saved" },
+    progressDates: { dtc: "2026-02-30", aish: "2099-01-01", rdsp: "2026-03-04", cdb: "2026-03-04", "not-a-program": "2026-03-04" },
     validSelections: PERSISTENCE_SELECTIONS,
   }).progressDates);
   expect(out).toEqual({ rdsp: "2026-03-04" });
@@ -92,4 +92,57 @@ test("starting points ask before clearing work, resume at the first open questio
   await page.locator('[data-nav="life-turning18"]').click();
   expect(await page.evaluate(() => [answers.forWho, answers.ageBand])).toEqual([null, null]);
   await expect(page.locator(".life-note")).toContainText("16 to 17, or 18");
+});
+
+test("Suggest a fix opens a prefilled correction from a guide, an organization, and a static-guide link", async ({ page }) => {
+  await gotoReady(page);
+  await page.evaluate(async () => { await ensurePacks(["AB"]); detailFrom = "browse"; setState("detail", { detailId: "aish" }); });
+  await page.locator('[data-suggest-fix="aish"]').click();
+  await expect(page.locator("#fb-type")).toHaveValue("Correction to a listing");
+  await expect(page.locator("#fb-msg")).toHaveValue(/Correction for Assured Income for the Severely Handicapped \(AISH\): \[aish\]/);
+  await expect(page.locator("#fb-msg")).toBeFocused();
+  // Organizations too.
+  await page.evaluate(() => { document.getElementById("fb-msg").value = ""; setState("organizations"); });
+  const org = page.locator("#app article.org-card").first();
+  const orgId = await org.getAttribute("data-org-id");
+  await org.locator("[data-suggest-fix]").click();
+  await expect(page.locator("#fb-msg")).toHaveValue(new RegExp(`\\[${orgId}\\]`));
+  // Static guides link to ?fix=<id>, which opens the same prefilled form; nothing else is sent.
+  await page.goto("/guides/aish.html");
+  await expect(page.locator('.guide-fix-link')).toHaveAttribute("href", "https://abilityfinder.ca/?fix=aish");
+  await page.goto("/?fix=aish");
+  await expect(page.locator("#fb-type")).toHaveValue("Correction to a listing");
+  await expect(page).toHaveURL(/\/$/);
+});
+
+test("results say honestly when a town has no listed city program, and that answers stay on the device", async ({ page }) => {
+  await gotoReady(page);
+  const open = async (province, city) => page.evaluate(async ({ province, city }) => {
+    answers = { ...BLANK(), province, city, forWho: "self", ageBand: "19to59", ageGroup: "adult", citizenPR: true,
+      disabilities: ["physical"], functionalNeeds: ["mobility"], income: "low" };
+    await ensurePacks([province]); setState("results");
+  }, { province, city });
+  await open("PE", "Summerside");
+  await expect(page.locator(".local-coverage-note")).toContainText("We don't list a city program for Summerside yet");
+  await expect(page.locator(".results-privacy")).toContainText("Your answers stay in this browser");
+  await page.locator(".limits-panel summary").click();
+  await expect(page.locator(".limits-panel")).toContainText(new RegExp(`for ${await page.evaluate(() => localProgramAreas().length)} cities and regions`));
+  await open("SK", "Regina");
+  await expect(page.locator(".local-coverage-note")).toHaveCount(0);
+});
+
+test("results name the skipped questions and open the first one", async ({ page }) => {
+  await gotoReady(page);
+  await page.evaluate(async () => {
+    answers = { ...BLANK(), province: "AB", city: "Calgary", forWho: "self", ageBand: "19to59", ageGroup: "adult", citizenPR: true,
+      disabilities: ["physical"], functionalNeeds: ["mobility"], income: "low" };
+    await ensurePacks(["AB"]); setState("results");
+  });
+  const line = page.locator(".answers-skipped");
+  const expected = await page.evaluate(() => visibleSteps().filter((s) => answerSummary(s) === "—").length);
+  test.skip(expected === 0, "this persona answered everything");
+  await expect(line).toContainText(`You skipped ${expected} question`);
+  const firstSkipped = await page.evaluate(() => visibleSteps().find((s) => answerSummary(s) === "—").id);
+  await line.locator("[data-edit]").click();
+  expect(await page.evaluate(() => [view, visibleSteps()[stepIndex].id])).toEqual(["wizard", firstSkipped]);
 });
